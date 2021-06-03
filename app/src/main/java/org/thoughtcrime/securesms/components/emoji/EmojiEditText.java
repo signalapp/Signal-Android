@@ -35,10 +35,8 @@ public class EmojiEditText extends AppCompatEditText {
     boolean forceCustom = a.getBoolean(R.styleable.EmojiTextView_emoji_forceCustom, false);
     a.recycle();
 
-    if (forceCustom || !SignalStore.settings().isPreferSystemEmoji()) {
-      if (!isInEditMode()) {
-        setFilters(appendEmojiFilter(this.getFilters()));
-      }
+    if (!isInEditMode() && (forceCustom || !SignalStore.settings().isPreferSystemEmoji())) {
+      setFilters(appendEmojiFilter(this.getFilters()));
     }
   }
 

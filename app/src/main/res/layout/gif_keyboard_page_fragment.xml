@@ -1,81 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_constraintBottom_toTopOf="@id/gif_keyboard_packs_background"
     tools:background="@color/signal_background_secondary">
 
-    <FrameLayout
-        android:id="@+id/gif_keyboard_search_frame"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/signal_background_secondary"
+        app:elevation="0dp">
 
         <org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
             android:id="@+id/gif_keyboard_search_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:click_only="true"
+            app:layout_scrollFlags="scroll"
             app:search_hint="@string/KeyboardPagerFragment_search_giphy"
-            app:show_always="true"
-            app:click_only="true"/>
-    </FrameLayout>
+            app:show_always="true" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
         android:id="@+id/gif_keyboard_giphy_frame"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/gif_keyboard_packs_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gif_keyboard_search_frame"
-        app:layout_goneMarginTop="0dp" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <View
+    <LinearLayout
         android:id="@+id/gif_keyboard_packs_background"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="?actionBarSize"
+        android:layout_gravity="bottom"
         android:background="@color/signal_background_secondary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/gif_keyboard_search"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="?selectableItemBackground"
-        android:contentDescription="@string/KeyboardPagerFragment_open_gif_search"
-        android:padding="13dp"
-        android:scaleType="fitCenter"
-        app:tint="@color/icon_tab_selector"
-        app:layout_constraintBottom_toBottomOf="@id/gif_keyboard_packs_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/gif_keyboard_packs_background"
-        app:srcCompat="@drawable/ic_search_24" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/gif_keyboard_quick_search_recycler"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="@id/gif_keyboard_packs_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/gif_keyboard_search"
-        app:layout_constraintTop_toTopOf="@id/gif_keyboard_packs_background"
-        tools:itemCount="10"
-        tools:listitem="@layout/keyboard_pager_category_icon" />
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="top"
-        android:background="@color/signal_inverse_transparent_05"
-        app:layout_constraintBottom_toTopOf="@+id/gif_keyboard_packs_background"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/gif_keyboard_search"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?selectableItemBackground"
+            android:contentDescription="@string/KeyboardPagerFragment_open_gif_search"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_search_24"
+            app:tint="@color/icon_tab_selector" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gif_keyboard_quick_search_recycler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="10"
+            tools:listitem="@layout/keyboard_pager_category_icon" />
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
