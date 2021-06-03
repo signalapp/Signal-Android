@@ -1854,7 +1854,7 @@
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizado recentemente</string>
-  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emojis &amp; pessoas</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emojis e pessoas</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Animais e natureza</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Comida e bebidas</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Atividades</string>
@@ -2949,7 +2949,25 @@
   <string name="EditReactionsFragment_save">Salvar</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Auto combina a cor com o papel de parede</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Arraste para mudar a direção do gradiente</string>
+  <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Novas cores de conversas</string>
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Mudamos as cores das conversas para oferecer mais opções e facilitar a leitura das conversas.</string>
+  <string name="ChatColorsMegaphone__appearance">Aparência</string>
+  <string name="ChatColorsMegaphone__not_now">Agora não</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emojis</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Fazer pesquisa de emoji</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Fazer pesquisa de figurinha</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Fazer pesquisa de GIF</string>
+  <string name="KeyboardPagerFragment_stickers">Figurinhas</string>
+  <string name="KeyboardPagerFragment_gifs">GIFs</string>
+  <string name="KeyboardPagerFragment_search_emoji">Pesquisar emoji</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Voltar para os emojis</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Limpar texto no campo de pesquisa</string>
+  <string name="KeyboardPagerFragment_search_giphy">Pesquisar via GIPHY</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Pesquisar figurinha</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Nenhum resultado encontrado</string>
+  <string name="EmojiSearchFragment__no_results_found">Nenhum resultado encontrado</string>
   <!--EOF-->
 </resources>

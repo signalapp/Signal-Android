@@ -3133,7 +3133,26 @@
   <string name="EditReactionsFragment_save">Сохранить</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">«Авто» выбирает цвет, соответствующий обоям</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Перетащите для изменения направления градиента</string>
+  <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Новые цвета чатов</string>
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Мы поменяли цвета чатов, чтобы предоставить вам больше опций и сделать чаты более удобными для чтения.</string>
+  <string name="ChatColorsMegaphone__appearance">Внешний вид</string>
+  <string name="ChatColorsMegaphone__not_now">Не сейчас</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Эмодзи</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Открыть поиск эмодзи</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Открыть поиск стикеров</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Открыть поиск GIF-анимаций</string>
+  <string name="KeyboardPagerFragment_stickers">Стикеры</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">GIF-анимации</string>
+  <string name="KeyboardPagerFragment_search_emoji">Искать эмодзи</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Назад к эмодзи</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Очистить поисковый запрос</string>
+  <string name="KeyboardPagerFragment_search_giphy">Искать в GIPHY</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Искать стикеры</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Поиск не дал результатов</string>
+  <string name="EmojiSearchFragment__no_results_found">Поиск не дал результатов</string>
   <!--EOF-->
 </resources>

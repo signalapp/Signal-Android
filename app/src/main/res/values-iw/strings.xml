@@ -3137,5 +3137,13 @@
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">הקש כדי להחליף אימוג\'י</string>
   <string name="EditReactionsFragment__reset">אפס</string>
   <string name="EditReactionsFragment_save">שמור</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">מראה</string>
+  <string name="ChatColorsMegaphone__not_now">לא עכשיו</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">אמוג\'י</string>
+  <string name="KeyboardPagerFragment_stickers">מדבקות</string>
+  <string name="KeyboardPagerFragment_backspace">מקש חזרה</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

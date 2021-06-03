@@ -2573,5 +2573,12 @@
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">Рестартирай</string>
   <string name="EditReactionsFragment_save">Запази</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Облик</string>
+  <string name="ChatColorsMegaphone__not_now">Не сега</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Емоджи</string>
+  <string name="KeyboardPagerFragment_stickers">Стикери</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

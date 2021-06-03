@@ -2787,5 +2787,13 @@
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">重置</string>
   <string name="EditReactionsFragment_save">保存</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">外观</string>
+  <string name="ChatColorsMegaphone__not_now">稍后再说</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">表情符号</string>
+  <string name="KeyboardPagerFragment_stickers">贴纸</string>
+  <string name="KeyboardPagerFragment_backspace">退格键</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

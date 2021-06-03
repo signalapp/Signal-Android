@@ -2523,5 +2523,12 @@
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">초기화</string>
   <string name="EditReactionsFragment_save">저장</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">모양</string>
+  <string name="ChatColorsMegaphone__not_now">나중에</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">이모지</string>
+  <string name="KeyboardPagerFragment_stickers">스티커</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

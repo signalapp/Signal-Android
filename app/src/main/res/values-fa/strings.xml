@@ -2964,8 +2964,32 @@
   <string name="ChatColorGradientTool_top_edge_selector">لبهٔ گزینش‌گر بالایی</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">لبهٔ گزینش‌گر پایینی</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">سفارشی‌سازی واکنش‌ها</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">برای جایگزینی ایموجی ضربه بزنید</string>
   <string name="EditReactionsFragment__reset">بازنشانی</string>
   <string name="EditReactionsFragment_save">ذخیره</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">خودکار رنگ کاغذدیواری را تطبیق می‌دهد</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">بکشید تا جهت گرادیان را تغییر دهید</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">رنگ‌های جدید گفتگو‌</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">ما رنگ‌های گفتگو را تغییر دادیم تا به شما گزینه‌ها‌ی بیشتری بدهیم و خواندن گفتگوها را آسان‌تر کنیم.</string>
+  <string name="ChatColorsMegaphone__appearance">ظاهر برنامه</string>
+  <string name="ChatColorsMegaphone__not_now">حالا نه</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">شکلک</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">جستجوی ایموجی را باز کنید</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">جستجوی استیکر را باز کنید</string>
+  <string name="KeyboardPagerFragment_open_gif_search">جستجوی گیف را باز کنید</string>
+  <string name="KeyboardPagerFragment_stickers">استیکرها</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">گیف‌ها</string>
+  <string name="KeyboardPagerFragment_search_emoji">جستجوی ایموجی</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">بازگشت به ایموجی</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">پاک کردن ورودی جستجو</string>
+  <string name="KeyboardPagerFragment_search_giphy">جستجوی GIPHY</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">استیکرها را جستجو کنید</string>
+  <string name="StickerSearchDialogFragment_no_results_found">هیچ نتیجه‌ای پیدا نشد</string>
+  <string name="EmojiSearchFragment__no_results_found">هیچ نتیجه‌ای پیدا نشد</string>
   <!--EOF-->
 </resources>

@@ -3050,5 +3050,13 @@ broj telefona</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Pritisnite za zamjenu emotikona</string>
   <string name="EditReactionsFragment__reset">Poništi</string>
   <string name="EditReactionsFragment_save">Spremi</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Izgled</string>
+  <string name="ChatColorsMegaphone__not_now">Ne sada</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Smajlić</string>
+  <string name="KeyboardPagerFragment_stickers">Naljepnice</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

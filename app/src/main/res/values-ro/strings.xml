@@ -2929,5 +2929,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">Resetare</string>
   <string name="EditReactionsFragment_save">Salvează</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Aspect</string>
+  <string name="ChatColorsMegaphone__not_now">Nu acum</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_stickers">Autocolante</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

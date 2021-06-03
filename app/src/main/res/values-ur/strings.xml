@@ -2568,5 +2568,12 @@
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">دوبارہ بحال کریں</string>
   <string name="EditReactionsFragment_save">محفوظ کریں</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">ظہور ہونا</string>
+  <string name="ChatColorsMegaphone__not_now">ابھی نہیں</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">ایموجی</string>
+  <string name="KeyboardPagerFragment_stickers">اسٹیکرز</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

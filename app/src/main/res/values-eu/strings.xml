@@ -2593,5 +2593,12 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">Berrabiarazi</string>
   <string name="EditReactionsFragment_save">Gorde</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Itxura</string>
+  <string name="ChatColorsMegaphone__not_now">Orain ez</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_stickers">Eranskailuak</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

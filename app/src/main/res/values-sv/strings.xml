@@ -2963,5 +2963,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tryck för att ersätta en emoji</string>
   <string name="EditReactionsFragment__reset">Starta om</string>
   <string name="EditReactionsFragment_save">Spara</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Utseende</string>
+  <string name="ChatColorsMegaphone__not_now">Inte nu</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_stickers">Klistermärken</string>
+  <string name="KeyboardPagerFragment_backspace">Backsteg</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

@@ -2592,5 +2592,12 @@
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">పునరుద్ధరించు</string>
   <string name="EditReactionsFragment_save">భద్రపరుచు</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">స్వరూపం</string>
+  <string name="ChatColorsMegaphone__not_now">ఇప్పుడు కాదు</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">ఎమోజి</string>
+  <string name="KeyboardPagerFragment_stickers">స్టిక్కర్లు</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

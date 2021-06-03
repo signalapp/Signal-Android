@@ -2970,5 +2970,12 @@
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">إعادة التعيين</string>
   <string name="EditReactionsFragment_save">حفظ</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">المظهر</string>
+  <string name="ChatColorsMegaphone__not_now">ليس الآن</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">وجه مُعبِّر</string>
+  <string name="KeyboardPagerFragment_stickers">المُلصقات</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

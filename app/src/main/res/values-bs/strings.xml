@@ -3058,5 +3058,12 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Pritisnite da biste zamijenili emoji-sličicu</string>
   <string name="EditReactionsFragment__reset">Poništi</string>
   <string name="EditReactionsFragment_save">Pohrani</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Izgled</string>
+  <string name="ChatColorsMegaphone__not_now">Ne sada</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_stickers">Naljepnice</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

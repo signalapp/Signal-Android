@@ -2966,8 +2966,32 @@
   <string name="ChatColorGradientTool_top_edge_selector">Selettore bordo superiore</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Selettore bordo inferiore</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Personalizza reazioni</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Clicca per sostituire un\'emoji</string>
   <string name="EditReactionsFragment__reset">Resetta</string>
   <string name="EditReactionsFragment_save">Salva</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Abbina automaticamente il colore allo sfondo</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Trascina per cambiare la direzione del gradiente</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Nuovi colori delle chat</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Abbiamo cambiato i colori delle chat per darti più opzioni e rendere le chat più facili da leggere.</string>
+  <string name="ChatColorsMegaphone__appearance">Aspetto</string>
+  <string name="ChatColorsMegaphone__not_now">Non ora</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Apri ricerca emoji</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Apri ricerca adesivi</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Apri ricerca gif</string>
+  <string name="KeyboardPagerFragment_stickers">Adesivi</string>
+  <string name="KeyboardPagerFragment_backspace">Cancella</string>
+  <string name="KeyboardPagerFragment_gifs">Gif</string>
+  <string name="KeyboardPagerFragment_search_emoji">Cerca emoji</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Torna alle emoji</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Cancella voce di ricerca</string>
+  <string name="KeyboardPagerFragment_search_giphy">Cerca GIPHY</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Cerca adesivi</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Nessun risultato trovato</string>
+  <string name="EmojiSearchFragment__no_results_found">Nessun risultato trovato</string>
   <!--EOF-->
 </resources>

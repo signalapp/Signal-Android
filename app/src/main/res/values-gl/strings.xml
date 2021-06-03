@@ -2683,5 +2683,12 @@
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">Restablecer</string>
   <string name="EditReactionsFragment_save">Gardar</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Aparencia</string>
+  <string name="ChatColorsMegaphone__not_now">Agora non</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_stickers">Adhesivos</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

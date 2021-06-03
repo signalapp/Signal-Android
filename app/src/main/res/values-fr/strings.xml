@@ -2793,6 +2793,16 @@
   <string name="EditReactionsFragment_save">Enregistrer</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Adapter automatiquement la couleur au fond d’écran</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Faites glisser pour modifier la direction du dégradé</string>
+  <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Nouvelles couleurs de conversation</string>
+  <string name="ChatColorsMegaphone__appearance">Apparence</string>
+  <string name="ChatColorsMegaphone__not_now">Pas maintenant</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Émoji</string>
+  <string name="KeyboardPagerFragment_stickers">Autocollants</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Effacer l’historique de recherche</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_no_results_found">Aucun résultat trouvé</string>
+  <string name="EmojiSearchFragment__no_results_found">Aucun résultat trouvé</string>
   <!--EOF-->
 </resources>

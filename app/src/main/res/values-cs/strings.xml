@@ -3139,7 +3139,26 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="EditReactionsFragment_save">Uložit</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Automatické přizpůsobení barvy tapetě</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Přetažením změníte směr gradientu</string>
+  <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Nové barvy konverzací</string>
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Změnili jsme barvy konverzací, abyste měli více možností a konverzace byly přehlednější.</string>
+  <string name="ChatColorsMegaphone__appearance">Vzhled</string>
+  <string name="ChatColorsMegaphone__not_now">Teď ne</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Otevřít vyhledávání emoji</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Otevřít hledání nálepek</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Otevřít hledání gifů</string>
+  <string name="KeyboardPagerFragment_stickers">Nálepky</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">Gify</string>
+  <string name="KeyboardPagerFragment_search_emoji">Hledat emoji</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Zpět do emoji</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Vymazat hledání</string>
+  <string name="KeyboardPagerFragment_search_giphy">Hledat v GIPHY</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Hledat nálepky</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Nebyly nalezeny žádné výsledky</string>
+  <string name="EmojiSearchFragment__no_results_found">Nebyly nalezeny žádné výsledky</string>
   <!--EOF-->
 </resources>

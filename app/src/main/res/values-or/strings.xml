@@ -2608,5 +2608,11 @@
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">ରିସେଟ୍ କରନ୍ତୁ</string>
   <string name="EditReactionsFragment_save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">ଦୃଶ୍ୟ</string>
+  <string name="ChatColorsMegaphone__not_now">ଏବେ ନୁହେଁ</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_stickers">ଷ୍ଟିକର୍</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

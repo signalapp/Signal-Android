@@ -2971,7 +2971,26 @@
   <string name="EditReactionsFragment_save">ساقلا</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">تام قەغەز رەڭگىگە ئۆزلۈكىدىن ماسلىشىدۇ</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">گىرادۇس يۆنىلىشىنى ئۆزگەرتىش ئۈچۈن سۆرەڭ</string>
+  <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">يېڭى سۆھبەت رەڭگى</string>
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">سۆھبەت رەڭگىنى ئۆزگەرتىش ئۈچۈن سىزگە تېخىمۇ كۆپ تاللاش بېرىپ ھەمدە سۆھبەت ئوقۇشنى تېخىمۇ قۇلايلاشتۇردۇق.</string>
+  <string name="ChatColorsMegaphone__appearance">كۆرۈنۈش</string>
+  <string name="ChatColorsMegaphone__not_now">ھازىر ئەمەس</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">چىراي بەلگە</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">چىراي بەلگە ئىزدەشنى ئاچ</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">چاپلاق ئىزدەشنى ئاچ</string>
+  <string name="KeyboardPagerFragment_open_gif_search">gif ئىزدەشنى ئاچ</string>
+  <string name="KeyboardPagerFragment_stickers">چاپلاقلار</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">Gifs</string>
+  <string name="KeyboardPagerFragment_search_emoji">چىراي بەلگە ئىزدە</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">چىراي بەلگىگە قايت</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">ئىزدىگەنلەرنى تازىلا</string>
+  <string name="KeyboardPagerFragment_search_giphy">‫GIPHY ئىزدە</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">چاپلاق ئىزدە</string>
+  <string name="StickerSearchDialogFragment_no_results_found">ھېچقانداق نەتىجە تېپىلمىدى</string>
+  <string name="EmojiSearchFragment__no_results_found">ھېچقانداق نەتىجە تېپىلمىدى</string>
   <!--EOF-->
 </resources>

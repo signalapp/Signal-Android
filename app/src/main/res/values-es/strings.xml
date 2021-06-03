@@ -1632,7 +1632,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Sin grupos en común. Revisar solicitud.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Sin participantes conocid@s. Revisar solicitud.</string>
   <string name="ConversationUpdateItem_view">Ver</string>
-  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">El tiempo de desaparición de mensajes será de %1$s cuando inicies un chat.</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">El tiempo de desaparición de mensajes será de %1$s cuando inicies un chat con alguien.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">reproducir o pausar audio</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
@@ -2966,8 +2966,32 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ChatColorGradientTool_top_edge_selector">Selector límite superior</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Selector límite inferior</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Personalizar reacciones</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Toca para reemplazar un emoji</string>
   <string name="EditReactionsFragment__reset">Reiniciar</string>
   <string name="EditReactionsFragment_save">Guardar</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">«Auto» combina el color de las burbujas con el del fondo del chat</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Desliza para cambiar la dirección del gradiente</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Nuevos colores en chats</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Hemos cambiado las burbujas coloreadas de chat para darte más opciones y que los chats sean más fáciles de leer.</string>
+  <string name="ChatColorsMegaphone__appearance">Apariencia</string>
+  <string name="ChatColorsMegaphone__not_now">Ahora no</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoticonos y personas</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Abrir búsqueda de emojis</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Abrir búsqueda de stickers</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Abrir búsqueda de GIFs</string>
+  <string name="KeyboardPagerFragment_stickers">Stickers</string>
+  <string name="KeyboardPagerFragment_backspace">Atrás</string>
+  <string name="KeyboardPagerFragment_gifs">GIFs</string>
+  <string name="KeyboardPagerFragment_search_emoji">Buscar emoji</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Volver a emojis</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Eliminar término de búsqueda</string>
+  <string name="KeyboardPagerFragment_search_giphy">Buscar en GIPHY</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Buscar stickers</string>
+  <string name="StickerSearchDialogFragment_no_results_found">No se encontraron resultados</string>
+  <string name="EmojiSearchFragment__no_results_found">No se encontraron resultados</string>
   <!--EOF-->
 </resources>

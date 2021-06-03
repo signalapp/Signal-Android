@@ -2988,5 +2988,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tapnite za zamenjavo emojija</string>
   <string name="EditReactionsFragment__reset">Ponastavi</string>
   <string name="EditReactionsFragment_save">Shrani</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Izgled</string>
+  <string name="ChatColorsMegaphone__not_now">Ne zdaj</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_stickers">Nalepke</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

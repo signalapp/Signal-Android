@@ -2708,5 +2708,11 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">Wennez</string>
   <string name="EditReactionsFragment_save">Sekles</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Askan</string>
+  <string name="ChatColorsMegaphone__not_now">Mačči tura</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_stickers">Astickers</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

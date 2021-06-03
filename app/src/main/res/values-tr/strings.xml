@@ -2910,5 +2910,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">Sıfırla</string>
   <string name="EditReactionsFragment_save">Kaydet</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Görünüm</string>
+  <string name="ChatColorsMegaphone__not_now">Şimdi değil</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_stickers">Çıkartmalar</string>
+  <string name="KeyboardPagerFragment_backspace">Geri silme</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

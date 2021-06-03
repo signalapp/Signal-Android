@@ -2965,8 +2965,21 @@
   <string name="ChatColorGradientTool_top_edge_selector">Seletor da borda superior</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Seletor da borda inferior</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Personalizar reações</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Toque para substituir um emoji</string>
   <string name="EditReactionsFragment__reset">Reiniciar</string>
   <string name="EditReactionsFragment_save">Guardar</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Faz corresponder automaticamente a cor com o fundo de ecrã</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Arraste para alterar a orientação do gradiente</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Novas cores de conversas</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Trocamos as cores das conversas para lhe dar mais opções e facilitar a leitura das conversas.</string>
+  <string name="ChatColorsMegaphone__appearance">Aspeto</string>
+  <string name="ChatColorsMegaphone__not_now">Agora não</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_stickers">Autocolantes</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

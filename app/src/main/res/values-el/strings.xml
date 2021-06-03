@@ -2832,7 +2832,14 @@
   <string name="EditReactionsFragment_save">Αποθήκευση</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Αυτόματο ταίριασμα του χρώματος με την ταπετσαρία</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Σύρε για να αλλάξεις τη φορά της διαβάθμισης</string>
+  <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Χρώματα νέων συνομιλιών</string>
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Βελτιώσαμε τα χρώματα των συνομιλιών για να σου δώσουμε περισσότερες επιλογές και για να κάνουμε τις συνομιλίες πιο ευανάγνωστες.</string>
+  <string name="ChatColorsMegaphone__appearance">Εμφάνιση</string>
+  <string name="ChatColorsMegaphone__not_now">Όχι τώρα</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_stickers">Αυτοκόλλητα</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

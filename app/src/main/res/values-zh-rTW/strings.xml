@@ -2881,5 +2881,13 @@
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">點擊即可替換表情符號</string>
   <string name="EditReactionsFragment__reset">重設</string>
   <string name="EditReactionsFragment_save">儲存</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">介面設定</string>
+  <string name="ChatColorsMegaphone__not_now">稍後</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">表情</string>
+  <string name="KeyboardPagerFragment_stickers">貼圖</string>
+  <string name="KeyboardPagerFragment_backspace">退格鍵</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

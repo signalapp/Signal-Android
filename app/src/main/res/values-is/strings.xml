@@ -2935,5 +2935,13 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">Endurstilla</string>
   <string name="EditReactionsFragment_save">Vista</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Útlit</string>
+  <string name="ChatColorsMegaphone__not_now">Ekki núna</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Tjáningartákn</string>
+  <string name="KeyboardPagerFragment_stickers">Límmiðar</string>
+  <string name="KeyboardPagerFragment_backspace">Bakfærsla</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

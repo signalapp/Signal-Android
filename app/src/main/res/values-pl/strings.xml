@@ -3130,9 +3130,28 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Stuknij, aby zastąpić emotikonę</string>
   <string name="EditReactionsFragment__reset">Zresetuj</string>
   <string name="EditReactionsFragment_save">Zapisz</string>
-  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Automatyczny dopasowuje kolor do tapety</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">\"Automatyczny\" dopasowuje kolor do tapety</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Przeciągnij, aby zmienić kierunek gradientu</string>
+  <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Nowe kolory czatów</string>
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Zamieniliśmy kolory czatów, aby dać Ci więcej opcji i zwiększyć czytelność rozmów.</string>
+  <string name="ChatColorsMegaphone__appearance">Wygląd</string>
+  <string name="ChatColorsMegaphone__not_now">Nie teraz</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emotikony</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Otwórz wyszukiwarkę emotikon</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Otwórz wyszukiwarkę naklejek</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Otwórz wyszukiwarkę GIF-ów</string>
+  <string name="KeyboardPagerFragment_stickers">Naklejki</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">GIF-y</string>
+  <string name="KeyboardPagerFragment_search_emoji">Szukaj emotikon</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Wróć do emotikon</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Wyczyść wyszukiwanie</string>
+  <string name="KeyboardPagerFragment_search_giphy">Szukaj w GIPHY</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Szukaj naklejek</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Brak wyników</string>
+  <string name="EmojiSearchFragment__no_results_found">Brak wyników</string>
   <!--EOF-->
 </resources>

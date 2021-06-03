@@ -1731,7 +1731,7 @@
   <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Siųsti</string>
   <string name="conversation_activity__compose_description">Žinutės rašymas</string>
-  <string name="conversation_activity__emoji_toggle_description">Perjungti jaustukų klaviatūrą</string>
+  <string name="conversation_activity__emoji_toggle_description">Perjungti šypsenėlių klaviatūrą</string>
   <string name="conversation_activity__attachment_thumbnail">Priedo miniatiūra</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Perjungti sparčiosios kameros priedų stalčių</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Įrašyti ir siųsti garso įrašo priedą</string>
@@ -2163,8 +2163,8 @@
   <string name="preferences_storage__none">Nėra</string>
   <string name="preferences_storage__s_messages">%1$s žinučių</string>
   <string name="preferences_storage__custom">Tinkintai</string>
-  <string name="preferences_advanced__use_system_emoji">Naudoti sistemos jaustukus</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Išjungti Signal įtaisytą jaustukų palaikymą</string>
+  <string name="preferences_advanced__use_system_emoji">Naudoti sistemos šypsenėles</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Išjungti Signal įtaisytą šypsenėlių palaikymą</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Retransliuoti visus skambučius per Signal serverį, kad būtų išvengta jūsų IP adreso atskleidimo jūsų adresatui. Įjungus, pablogės skambučių kokybė.</string>
   <string name="preferences_advanced__always_relay_calls">Visada retransliuoti skambučius</string>
   <string name="preferences_app_protection__who_can">Kas gali…</string>
@@ -3134,8 +3134,32 @@
   <string name="ChatColorGradientTool_top_edge_selector">Viršutinio krašto parinkiklis</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Apatinio krašto parinkiklis</string>
   <!--EditReactionsFragment-->
-  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Bakstelėkite, norėdami pakeisti jaustuką</string>
+  <string name="EditReactionsFragment__customize_reactions">Tinkinti reakcijas</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Bakstelėkite, norėdami pakeisti šypsenėlę</string>
   <string name="EditReactionsFragment__reset">Atstatyti</string>
   <string name="EditReactionsFragment_save">Įrašyti</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Auto priderina spalvą prie fono</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Tempkite, norėdami keisti gradiento kryptį</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Naujos pokalbių spalvos</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Mes perjungėme pokalbių spalvas, kad suteiktume jums daugiau parinkčių ir palengvintume pokalbių skaitymą.</string>
+  <string name="ChatColorsMegaphone__appearance">Išvaizda</string>
+  <string name="ChatColorsMegaphone__not_now">Ne dabar</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Šypsenėlės</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Atverti šypsenėlių paiešką</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Atverti lipdukų paiešką</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Atverti GIF paiešką</string>
+  <string name="KeyboardPagerFragment_stickers">Lipdukai</string>
+  <string name="KeyboardPagerFragment_backspace">Naikinimas</string>
+  <string name="KeyboardPagerFragment_gifs">GIF atvaizdai</string>
+  <string name="KeyboardPagerFragment_search_emoji">Ieškoti šypsenėlių</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Atgal į šypsenėles</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Išvalyti paieškos įrašą</string>
+  <string name="KeyboardPagerFragment_search_giphy">Ieškoti GIPHY</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Ieškoti lipdukų</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Nerasta jokių rezultatų</string>
+  <string name="EmojiSearchFragment__no_results_found">Nerasta jokių rezultatų</string>
   <!--EOF-->
 </resources>

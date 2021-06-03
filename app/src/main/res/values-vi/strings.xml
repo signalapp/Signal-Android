@@ -2543,5 +2543,12 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">Đặt lại</string>
   <string name="EditReactionsFragment_save">Lưu</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Diện mạo</string>
+  <string name="ChatColorsMegaphone__not_now">Để sau</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_stickers">Nhãn dán</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

@@ -2801,5 +2801,13 @@
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">Lähtesta</string>
   <string name="EditReactionsFragment_save">Salvesta</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Välimus</string>
+  <string name="ChatColorsMegaphone__not_now">Mitte praegu</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_stickers">Kleebised</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

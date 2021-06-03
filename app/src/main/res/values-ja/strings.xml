@@ -2725,13 +2725,13 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">「最近使ったアプリ」やアプリ内でのスクリーンショットをブロックします</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signalメッセージと通話, 通話を常に中継, 送信者の秘匿化</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">新規チャットの既定タイマー</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">あなたによる新規チャットでの、消えるメッセージの既定タイマーを設定します。</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">あなたの新規チャットでの、消えるメッセージの既定タイマーを設定します。</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">ステータスアイコンを表示する</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">送信者の秘匿化を用いて届けられたメッセージの詳細で、アイコンを表示します。</string>
   <!--ExpireTimerSettingsFragment-->
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">有効にすると、それ以降に作られた新しいチャットの中でやりとりしたメッセージは、閲覧後に消えます。</string>
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">有効にすると、このチャット内で新たに送受信されたメッセージは、閲覧後に消えます。</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">有効にすると、あなたの新規チャットで新たに送受信されるメッセージは、閲覧後に消えます。</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">有効にすると、このチャットで新たに送受信されたメッセージは、閲覧後に消えます。</string>
   <string name="ExpireTimerSettingsFragment__off">オフ</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4週間</string>
   <string name="ExpireTimerSettingsFragment__1_week">1週間</string>
@@ -2784,8 +2784,32 @@
   <string name="ChatColorGradientTool_top_edge_selector">上端セレクター</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">下端セレクター</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">リアクションのカスタマイズ</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">タップすると絵文字を置き換えます</string>
-  <string name="EditReactionsFragment__reset">リセットする</string>
+  <string name="EditReactionsFragment__reset">リセット</string>
   <string name="EditReactionsFragment_save">保存</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">色を自動で壁紙に合わせます</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">ドラッグしてグラデーションの方向を変更できます</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">新しいチャットの色</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">チャットの色のオプションを増やし、チャットを読みやすくしました。</string>
+  <string name="ChatColorsMegaphone__appearance">デザイン</string>
+  <string name="ChatColorsMegaphone__not_now">あとで</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">絵文字</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">絵文字検索を開く</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">ステッカー検索を開く</string>
+  <string name="KeyboardPagerFragment_open_gif_search">GIF検索を開く</string>
+  <string name="KeyboardPagerFragment_stickers">ステッカー</string>
+  <string name="KeyboardPagerFragment_backspace">バックスペース</string>
+  <string name="KeyboardPagerFragment_gifs">GIF</string>
+  <string name="KeyboardPagerFragment_search_emoji">絵文字を検索</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">絵文字に戻る</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">検索テキストを消去</string>
+  <string name="KeyboardPagerFragment_search_giphy">GIPHYを検索</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">ステッカーを検索</string>
+  <string name="StickerSearchDialogFragment_no_results_found">検索結果はありません</string>
+  <string name="EmojiSearchFragment__no_results_found">検索結果はありません</string>
   <!--EOF-->
 </resources>

@@ -2963,5 +2963,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Feu un toc per substituir l\'emoticona</string>
   <string name="EditReactionsFragment__reset">Restableix</string>
   <string name="EditReactionsFragment_save">Desa</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">Aparença</string>
+  <string name="ChatColorsMegaphone__not_now">Ara no</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoticones</string>
+  <string name="KeyboardPagerFragment_stickers">Adhesius</string>
+  <string name="KeyboardPagerFragment_backspace">Retrocés</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

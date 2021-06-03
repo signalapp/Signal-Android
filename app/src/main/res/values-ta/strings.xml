@@ -2596,5 +2596,12 @@
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">மீட்டமைக்க</string>
   <string name="EditReactionsFragment_save">சேமி</string>
+  <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__appearance">தோற்றம்</string>
+  <string name="ChatColorsMegaphone__not_now">இப்போது இல்லை</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">உணர்வு படங்கள்</string>
+  <string name="KeyboardPagerFragment_stickers">ஒட்டிகள்</string>
+  <!--StickerSearchDialogFragment-->
   <!--EOF-->
 </resources>

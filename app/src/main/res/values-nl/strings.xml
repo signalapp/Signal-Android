@@ -1359,7 +1359,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubmitDebugLogActivity_submit">Uploaden</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Uploaden van foutlogs is mislukt</string>
   <string name="SubmitDebugLogActivity_success">Succesvol geüpload!</string>
-  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze URL en voeg die toe aan je foutrapport op GitHub of aan een e-mail aan onze ondersteuning:\n\n<b>%1$s</b></string>
+  <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze URL (door deze aan te tikken en vast te houden) en voeg die toe aan je foutrapport op GitHub of aan een e-mail aan onze ondersteuning:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Doorsturen via andere app</string>
   <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Dit logbestand wordt publiekelijk beschikbaar gesteld op internet zodat de ontwikkelaars en vrijwilligers het kunnen bestuderen. Je kunt het bekijken en aanpassen voor je het upload.</string>
   <!--SupportEmailUtil-->
@@ -2972,11 +2972,30 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Reactie-balk personaliseren</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tik op een emoji om die te vervangen</string>
-  <string name="EditReactionsFragment__reset">Voor dit gesprek verwijderen</string>
+  <string name="EditReactionsFragment__reset">Standaardinstelling herstellen</string>
   <string name="EditReactionsFragment_save">Opslaan</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">‘Auto’ betekent dat er automatisch een kleur wordt gekozen die past bij de achtergrond</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Sleep om de richting van het verloop te veranderen</string>
+  <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Nieuwe gesprekskleuren</string>
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">We hebben de kleuren van berichtenbubbels omgewisseld, zodat je meer mogelijkheden hebt om zelf kleuren te kiezen en zodat gesprekken makkelijker te lezen zijn.</string>
+  <string name="ChatColorsMegaphone__appearance">Uiterlijk</string>
+  <string name="ChatColorsMegaphone__not_now">Niet nu</string>
+  <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Emoji-zoeken</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Sticker zoeken</string>
+  <string name="KeyboardPagerFragment_open_gif_search">GIF zoeken</string>
+  <string name="KeyboardPagerFragment_stickers">Stickers</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">GIFs</string>
+  <string name="KeyboardPagerFragment_search_emoji">Emoji zoeken</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Terug naar emoji-overzicht</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Zoekveld leegmaken</string>
+  <string name="KeyboardPagerFragment_search_giphy">Bij GIPHY zoeken</string>
+  <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Stickers zoeken</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Geen sticker gevonden</string>
+  <string name="EmojiSearchFragment__no_results_found">Geen emoji gevonden</string>
   <!--EOF-->
 </resources>
