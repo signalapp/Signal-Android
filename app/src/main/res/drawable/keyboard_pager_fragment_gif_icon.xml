@@ -3,7 +3,7 @@
     <item android:drawable="@drawable/keyboard_pager_fragment_selected" />
     <item
         android:bottom="6dp"
-        android:drawable="@drawable/ic_gif_outline_24"
+        android:drawable="@drawable/ic_gif_24"
         android:left="6dp"
         android:right="6dp"
         android:top="6dp" />
