@@ -2692,6 +2692,7 @@
   <string name="PaymentNotificationsView__view">Afficher</string>
   <!--UnreadPayments-->
   <string name="UnreadPayments__s_sent_you_s">%1$s vous a envoyé %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d nouvelles notifications de paiement</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">Envoyez un message</string>
   <!--GroupsInCommonMessageRequest-->
@@ -2727,6 +2728,7 @@
   <string name="PrivacySettingsFragment__disappearing_messages">Messages éphémères</string>
   <string name="PrivacySettingsFragment__app_security">Sécurité de l’appli</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquer les captures d’écran dans la liste des récents et dans l’appli</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Messages et appels Signal, toujours relayer les appels et expéditeur scellé</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Minuterie par défaut pour les nouvelles conversations</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Afficher l’icône d’état</string>
@@ -2795,13 +2797,21 @@
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Faites glisser pour modifier la direction du dégradé</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Nouvelles couleurs de conversation</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Nous avons modifié les choix de couleurs des conversations pour vous offrir plus d’options et les rendre plus faciles à lire.</string>
   <string name="ChatColorsMegaphone__appearance">Apparence</string>
   <string name="ChatColorsMegaphone__not_now">Pas maintenant</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Émoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Ouvrir la recherche d’émojis</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Ouvrir la recherche d’autocollants</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Ouvrir la recherche de GIF</string>
   <string name="KeyboardPagerFragment_stickers">Autocollants</string>
+  <string name="KeyboardPagerFragment_gifs">GIF</string>
+  <string name="KeyboardPagerFragment_search_emoji">Chercher un émoji</string>
   <string name="KeyboardPagerfragment_clear_search_entry">Effacer l’historique de recherche</string>
+  <string name="KeyboardPagerFragment_search_giphy">Chercher dans GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Chercher des autocollants</string>
   <string name="StickerSearchDialogFragment_no_results_found">Aucun résultat trouvé</string>
   <string name="EmojiSearchFragment__no_results_found">Aucun résultat trouvé</string>
   <!--EOF-->

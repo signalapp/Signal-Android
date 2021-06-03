@@ -2878,16 +2878,32 @@
   <string name="ChatColorGradientTool_top_edge_selector">頂部邊緣選擇器</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">底部邊緣選擇器</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">自定義回應</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">點擊即可替換表情符號</string>
   <string name="EditReactionsFragment__reset">重設</string>
   <string name="EditReactionsFragment_save">儲存</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">自動將顏色與壁紙相配</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">拖動以更改傾斜的方向</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">新的聊天顏色</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">我們變更了聊天顏色，為你提供更多選擇並使聊天更易於閱讀。</string>
   <string name="ChatColorsMegaphone__appearance">介面設定</string>
   <string name="ChatColorsMegaphone__not_now">稍後</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">表情</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">開啟表情符號搜尋</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">開啟貼圖搜尋</string>
+  <string name="KeyboardPagerFragment_open_gif_search">開啟 gif 搜尋</string>
   <string name="KeyboardPagerFragment_stickers">貼圖</string>
   <string name="KeyboardPagerFragment_backspace">退格鍵</string>
+  <string name="KeyboardPagerFragment_gifs">Gifs</string>
+  <string name="KeyboardPagerFragment_search_emoji">搜尋表情符號</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">回到表情符號</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">清除搜尋輸入</string>
+  <string name="KeyboardPagerFragment_search_giphy">搜尋 GIPHY(GIF搜尋引擎)</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">搜尋貼圖</string>
+  <string name="StickerSearchDialogFragment_no_results_found">未找到結果</string>
+  <string name="EmojiSearchFragment__no_results_found">未找到結果</string>
   <!--EOF-->
 </resources>

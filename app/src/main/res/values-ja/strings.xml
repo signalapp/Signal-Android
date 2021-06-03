@@ -177,7 +177,7 @@
   <string name="ConversationItem_from_s">%s から</string>
   <string name="ConversationItem_to_s">%s へ</string>
   <string name="ConversationItem_read_more">  続きを読む</string>
-  <string name="ConversationItem_download_more">  更にダウンロード</string>
+  <string name="ConversationItem_download_more">  さらにダウンロード</string>
   <string name="ConversationItem_pending">  保留中</string>
   <string name="ConversationItem_this_message_was_deleted">このメッセージは削除されました。</string>
   <string name="ConversationItem_you_deleted_this_message">メッセージを削除しました。</string>
@@ -605,7 +605,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">このグループをアップグレードしてください。</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">これは安全でないMMSグループです。安全にチャットするには、連絡先をSignalに招待してください。</string>
   <string name="ManageGroupActivity_invite_now">招待する</string>
-  <string name="ManageGroupActivity_more">さらに</string>
+  <string name="ManageGroupActivity_more">続き</string>
   <string name="ManageGroupActivity_add_group_description">グループの説明を追加…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">メンションの通知</string>
@@ -2034,8 +2034,8 @@
   <string name="PaymentsTransferFragment__you_can_transfer">取引所のウォレットアドレスへの送金を完了することで、MobileCoinを送金できます。ウォレットアドレスは、QRコードの下にある文字列です。</string>
   <string name="PaymentsTransferFragment__next">次へ</string>
   <string name="PaymentsTransferFragment__invalid_address">無効なアドレス</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QRコードをスキャンするには、Signalにカメラへのアクセスを許可してください。</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QRコードをスキャンするには、Signalにカメラへのアクセスを許可してください。</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QRコードをスキャンするには、Signalにカメラへのアクセス許可が必要です。</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QRコードをスキャンするには、Signalにカメラへのアクセス許可が必要です。</string>
   <string name="PaymentsTransferFragment__settings">設定</string>
   <!--PaymentsTransferQrScanFragment-->
   <!--CreatePaymentFragment-->

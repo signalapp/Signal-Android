@@ -2075,8 +2075,8 @@
   <string name="PaymentsAllActivityFragment__received">Recebidos</string>
   <string name="PaymentsHomeFragment__introducing_payments">Apresentando os Pagamentos (Beta)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Use o Signal para enviar e receber MobileCoin, uma nova moeda digital com foco na privacidade. Ative para começar.</string>
-  <string name="PaymentsHomeFragment__activate_payments">Ativar Pagamentos</string>
-  <string name="PaymentsHomeFragment__activating_payments">Ativando pagamentos…</string>
+  <string name="PaymentsHomeFragment__activate_payments">Ativar o módulo de Pagamentos</string>
+  <string name="PaymentsHomeFragment__activating_payments">Ativando o módulo de pagamentos…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Restaurar a conta de pagamentos</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">Nenhuma atividade recente</string>
   <string name="PaymentsHomeFragment__pending_requests">Solicitações pendentes</string>
@@ -2086,7 +2086,7 @@
   <string name="PaymentsHomeFragment__sent_s">Enviou %1$s</string>
   <string name="PaymentsHomeFragment__received_s">Recebeu %1$s</string>
   <string name="PaymentsHomeFragment__currency_conversion">Conversão de moeda</string>
-  <string name="PaymentsHomeFragment__deactivate_payments">Desativar pagamentos</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">Desativar o módulo de pagamentos</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Senha de recuperação</string>
   <string name="PaymentsHomeFragment__help">Ajuda</string>
   <string name="PaymentsHomeFragment__sent_payment">Pagamento enviado</string>
@@ -2097,14 +2097,15 @@
   <string name="PaymentsHomeFragment__cant_display_currency_conversion">Não é possível exibir a conversão de moeda. Verifique a conexão do seu telefone e tente novamente.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Pagamentos não estão disponíveis na sua região.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Não foi possível habilitar pagamentos. Tente mais tarde.</string>
-  <string name="PaymentsHomeFragment__deactivate_payments_question">Desativar Pagamentos?</string>
-  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Você não poderá enviar ou receber MobileCoin no Signal, se desativar os pagamentos.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Desativar o módulo de Pagamentos?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Você não poderá enviar ou receber MobileCoin no Signal, se desativar o módulo de pagamentos.</string>
   <string name="PaymentsHomeFragment__deactivate">Desativar</string>
   <string name="PaymentsHomeFragment__continue">Continuar</string>
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">O saldo não está disponível no momento.</string>
-  <string name="PaymentsHomeFragment__payments_deactivated">Pagamentos desativados.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Módulo de pagamentos desativado.</string>
   <string name="PaymentsHomeFragment__payment_failed">Falha ao pagar</string>
   <string name="PaymentsHomeFragment__details">Detalhes</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Você pode usar o Signal para enviar e receber MobileCoin. Todos os pagamentos estão sujeitos aos Termos de Uso de MobileCoins e de uma Carteira MobileCoin. Esse recurso está sendo testado, portanto você poderá encontrar alguns problemas. Pagamentos que você realizar ou saldos que você perder não podem ser recuperados.</string>
   <string name="PaymentsHomeFragment__activate">Ativar</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ver os termos da MobileCoin</string>
   <!--PaymentsAddMoneyFragment-->
@@ -2125,6 +2126,7 @@
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s em %2$s às %3$s</string>
   <string name="PaymentsDetailsFragment__to">Para</string>
   <string name="PaymentsDetailsFragment__from">De</string>
+  <string name="PaymentsDetailsFragment__information">Os detalhes da transação, incluindo o valor do pagamento e a hora da transação, fazem parte do Livro-razão MobileCoin.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Não há detalhes adicionais sobre esta transação</string>
   <string name="PaymentsDetailsFragment__sent_payment">Pagamento enviado</string>
   <string name="PaymentsDetailsFragment__received_payment">Pagamento recebido</string>
@@ -2143,6 +2145,7 @@
   <string name="PaymentsTransferFragment__settings">Configurações</string>
   <!--PaymentsTransferQrScanFragment-->
   <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Escanear o código QR do endereço</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Escaneie o código QR do endereço do destinatário</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Pedido</string>
   <string name="CreatePaymentFragment__pay">Pagar</string>
@@ -2160,6 +2163,7 @@
   <string name="CreatePaymentFragment__decimal">,</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Apagar</string>
   <string name="CreatePaymentFragment__add_note">Adicionar nota</string>
   <string name="CreatePaymentFragment__conversions_are_just_estimates">Conversões são apenas estimativas e podem ser imprecisas.</string>
   <!--EditNoteFragment-->
@@ -2773,6 +2777,7 @@
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Sobre a MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin é uma nova moeda digital focada em privacidade.</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Você pode enviar MobileCoin para o endereço da sua carteira, de modo a usá-lo no Signal.</string>
   <string name="payment_info_card_hide_this_card">Esconder este cartão?</string>
   <string name="payment_info_card_hide">Ocultar</string>
   <string name="payment_info_card_record_recovery_phrase">Gravar senha de recuperação</string>
@@ -2784,10 +2789,12 @@
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Desativar carteira</string>
   <string name="DeactivateWalletFragment__your_balance">Seu saldo</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">É recomendável que você transfira o seu saldo para outro endereço de carteira antes de desativar o módulo de pagamentos. Se você optar por não transferir o seu saldo agora, ele permanecerá em sua carteira vinculada à sua conta do Signal, mas estará suspenso para utilização até o momento em que você decida reativar o módulo de pagamentos.</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">Transferir saldo remanescente</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">Desativar sem transferir</string>
   <string name="DeactivateWalletFragment__deactivate">Desativar</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Desativar sem transferir?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Seu saldo permanecerá em sua carteira vinculada à sua conta do Signal, mas estará suspenso para utilização até o momento em que você decida reativar o módulo de pagamentos.</string>
   <string name="DeactivateWalletFragment__error_deactivating_wallet">Erro ao desativar a carteira.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Senha de recuperação</string>
@@ -2960,6 +2967,7 @@
   <string name="KeyboardPagerFragment_open_sticker_search">Fazer pesquisa de figurinha</string>
   <string name="KeyboardPagerFragment_open_gif_search">Fazer pesquisa de GIF</string>
   <string name="KeyboardPagerFragment_stickers">Figurinhas</string>
+  <string name="KeyboardPagerFragment_backspace">Apagar</string>
   <string name="KeyboardPagerFragment_gifs">GIFs</string>
   <string name="KeyboardPagerFragment_search_emoji">Pesquisar emoji</string>
   <string name="KeyboardPagerfragment_back_to_emoji">Voltar para os emojis</string>

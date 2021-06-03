@@ -654,7 +654,7 @@
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Legg til systemkontakter</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Denne personen er i kontaktlisten din</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Forsvinnende meldinger</string>
+  <string name="ManageRecipientActivity_disappearing_messages">Tidsavgrensede meldinger</string>
   <string name="ManageRecipientActivity_chat_color">Samtalefarge</string>
   <string name="ManageRecipientActivity_chat_wallpaper">Samtale bakgrunn</string>
   <string name="ManageRecipientActivity_block">Blokker</string>
@@ -888,11 +888,11 @@
   <string name="MessageRecord_s_updated_group">%s oppdaterte gruppa.</string>
   <string name="MessageRecord_s_called_you_date">%1$sringte deg %2$s·</string>
   <string name="MessageRecord_s_joined_signal">%s er på Signal!</string>
-  <string name="MessageRecord_you_disabled_disappearing_messages">Du deaktiverte forsvinnende meldinger.</string>
-  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s deaktiverte forsvinnende meldinger.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du satte utløpstid for meldinger til %1$s.</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Du skrudde av tidsavgrensede meldinger.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s skrudde av forsvinnende meldinger.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du satte utløpstiden for meldinger til %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s satte utløpstiden for meldinger til %2$s.</string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">Utløpstid for meldinger er blitt satt til %1$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Utløpstiden for meldinger er blitt satt til %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Gruppen ble oppdatert til en ny gruppe.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunne ikke bli lagt til den nye gruppen og har blitt invitert til å bli med.</string>
   <string name="MessageRecord_chat_session_refreshed">Samtaleøkt lastet inn på nytt</string>
@@ -1372,8 +1372,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_this_message_was_deleted">Denne meldingen ble slettet.</string>
   <string name="ThreadRecord_you_deleted_this_message">Du slettet denne meldingen.</string>
   <string name="ThreadRecord_s_is_on_signal"> %s er på Signal!</string>
-  <string name="ThreadRecord_disappearing_messages_disabled">Forsvinnende meldinger deaktivert</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for meldinger endret til %s</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Tidsavgrensede meldinger deaktivert</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstiden for meldinger endret til %s</string>
   <string name="ThreadRecord_safety_number_changed">Sikkerhetsnummer endret </string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sikkerhetsnummeret ditt for %s er endret.</string>
   <string name="ThreadRecord_you_marked_verified">Markert som bekreftet</string>
@@ -2176,7 +2176,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Lagre vedlegg</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Forsvinnende meldinger</string>
+  <string name="conversation_expiring_off__disappearing_messages">Tidsavgrensede meldinger</string>
   <!--conversation_expiring_on-->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Inviter</string>
@@ -2825,12 +2825,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PrivacySettingsFragment__blocked">Blokkert</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontakter</string>
   <string name="PrivacySettingsFragment__messaging">Meldinger</string>
-  <string name="PrivacySettingsFragment__disappearing_messages">Forsvinnende meldinger</string>
+  <string name="PrivacySettingsFragment__disappearing_messages">Tidsavgrensede meldinger</string>
   <string name="PrivacySettingsFragment__app_security">App-sikkerhet</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokker skjermbilder i sist brukte-liste og i programmet</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-meldinger og samtaler, omdiriger alle samtaler, og forseglet avsender</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standard nedtelling for nye samtaler</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Sett standard utløpstid for tidsbegrensede meldinger for nye  samtaler startet av deg.</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Sett standard utløpstid for tidsbegrensede meldinger for nye samtaler startet av deg.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Vis status-ikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis et statusikon i meldingsdetaljer når de ble levert ved bruk av forseglet avsender.</string>
@@ -2894,6 +2894,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Trykk for å erstatte en emoji</string>
   <string name="EditReactionsFragment__reset">Tilbakestill</string>
   <string name="EditReactionsFragment_save">Lagre</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Auto-tilpasser fargen til bakgrunnen</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Dra for å endre retning på graderingen</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">Utseende</string>
   <string name="ChatColorsMegaphone__not_now">Ikke nå</string>
