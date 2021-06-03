@@ -317,9 +317,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
                     }
                     if (isClosedGroup) {
                         MessageSender.explicitLeave(groupPublicKey!!, false)
-                    } else {
-                        Toast.makeText(context, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
-                        return@launch
                     }
                 }
                 // Delete the conversation
