@@ -140,7 +140,7 @@ public class FullBackupImporter extends FullBackupBase {
     boolean isForEmojiSecretTable  = statement.getStatement().contains(EmojiSearchDatabase.TABLE_NAME);
     boolean isForSqliteSecretTable = statement.getStatement().toLowerCase().startsWith("create table sqlite_");
 
-    if (isForSmsFtsSecretTable || isForMmsFtsSecretTable || isForSqliteSecretTable) {
+    if (isForSmsFtsSecretTable || isForMmsFtsSecretTable || isForEmojiSecretTable || isForSqliteSecretTable) {
       Log.i(TAG, "Ignoring import for statement: " + statement.getStatement());
       return;
     }
