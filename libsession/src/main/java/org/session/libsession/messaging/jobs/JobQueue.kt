@@ -37,9 +37,9 @@ class JobQueue : JobDelegate {
     init {
         // Process jobs
         scope.launch {
-            val rxQueue = Channel<Job>(capacity = 1024)
-            val txQueue = Channel<Job>(capacity = 1024)
-            val attachmentQueue = Channel<Job>(capacity = 1024)
+            val rxQueue = Channel<Job>(capacity = 4096)
+            val txQueue = Channel<Job>(capacity = 4096)
+            val attachmentQueue = Channel<Job>(capacity = 4096)
 
             val receiveJob = processWithDispatcher(rxQueue, rxDispatcher)
             val txJob = processWithDispatcher(txQueue, txDispatcher)
@@ -50,7 +50,7 @@ class JobQueue : JobDelegate {
                     when (job) {
                         is NotifyPNServerJob, is AttachmentUploadJob, is MessageSendJob -> txQueue.send(job)
                         is AttachmentDownloadJob -> attachmentQueue.send(job)
-                        is MessageReceiveJob -> rxQueue.send(job)
+                        is MessageReceiveJob, is TrimThreadJob -> rxQueue.send(job)
                         else -> throw IllegalStateException("Unexpected job type.")
                     }
                 }

@@ -1,5 +1,6 @@
 package org.session.libsession.messaging.open_groups
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.databind.annotation.JsonNaming
 import com.fasterxml.jackson.databind.type.TypeFactory
@@ -17,14 +18,9 @@ import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPolle
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.utilities.AESGCM
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.utilities.HTTP
-import org.session.libsignal.utilities.HTTP.Verb.*
-import org.session.libsignal.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.utilities.toHexString
+import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64.*
-import org.session.libsignal.utilities.Hex
-import org.session.libsignal.utilities.JsonUtil
-import org.session.libsignal.utilities.Log
+import org.session.libsignal.utilities.HTTP.Verb.*
 import org.whispersystems.curve25519.Curve25519
 import java.util.*
 
@@ -63,11 +59,13 @@ object OpenGroupAPIV2 {
 
     @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
     data class CompactPollRequest(val roomID: String, val authToken: String, val fromDeletionServerID: Long?, val fromMessageServerID: Long?)
-    data class CompactPollResult(val messages: List<OpenGroupMessageV2>, val deletions: List<Long>, val moderators: List<String>)
+    data class CompactPollResult(val messages: List<OpenGroupMessageV2>, val deletions: List<MessageDeletion>, val moderators: List<String>)
 
-    @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
-    data class MessageDeletion
-        @JvmOverloads constructor(val id: Long = 0, val deletedMessageId: Long = 0
+    data class MessageDeletion(
+        @JsonProperty("id")
+        val id: Long = 0,
+        @JsonProperty("deleted_message_id")
+        val deletedMessageServerID: Long = 0
     ) {
 
         companion object {
@@ -237,7 +235,10 @@ object OpenGroupAPIV2 {
         return send(request).map { json ->
             @Suppress("UNCHECKED_CAST") val rawMessage = json["message"] as? Map<String, Any>
                     ?: throw Error.ParsingFailed
-            OpenGroupMessageV2.fromJSON(rawMessage) ?: throw Error.ParsingFailed
+            val result = OpenGroupMessageV2.fromJSON(rawMessage) ?: throw Error.ParsingFailed
+            val storage = MessagingModuleConfiguration.shared.storage
+            storage.addReceivedMessageTimestamp(result.sentTimestamp)
+            result
         }
     }
     // endregion
@@ -258,9 +259,6 @@ object OpenGroupAPIV2 {
     }
 
     private fun parseMessages(room: String, server: String, rawMessages: List<Map<*, *>>): List<OpenGroupMessageV2> {
-        val storage = MessagingModuleConfiguration.shared.storage
-        val lastMessageServerID = storage.getLastMessageServerID(room, server) ?: 0
-        var currentLastMessageServerID = lastMessageServerID
         val messages = rawMessages.mapNotNull { json ->
             json as Map<String, Any>
             try {
@@ -275,15 +273,11 @@ object OpenGroupAPIV2 {
                     Log.d("Loki", "Ignoring message with invalid signature.")
                     return@mapNotNull null
                 }
-                if (message.serverID > lastMessageServerID) {
-                    currentLastMessageServerID = message.serverID
-                }
                 message
             } catch (e: Exception) {
                 null
             }
         }
-        storage.setLastMessageServerID(room, server, currentLastMessageServerID)
         return messages
     }
     // endregion
@@ -403,18 +397,13 @@ object OpenGroupAPIV2 {
                 // Deletions
                 val type = TypeFactory.defaultInstance().constructCollectionType(List::class.java, MessageDeletion::class.java)
                 val idsAsString = JsonUtil.toJson(json["deletions"])
-                val deletedServerIDs = JsonUtil.fromJson<List<MessageDeletion>>(idsAsString, type) ?: throw Error.ParsingFailed
-                val lastDeletionServerID = storage.getLastDeletionServerID(roomID, server) ?: 0
-                val serverID = deletedServerIDs.maxByOrNull { it.id } ?: MessageDeletion.empty
-                if (serverID.id > lastDeletionServerID) {
-                    storage.setLastDeletionServerID(roomID, server, serverID.id)
-                }
+                val deletions = JsonUtil.fromJson<List<MessageDeletion>>(idsAsString, type) ?: throw Error.ParsingFailed
                 // Messages
                 val rawMessages = json["messages"] as? List<Map<String, Any>> ?: return@mapNotNull null
                 val messages = parseMessages(roomID, server, rawMessages)
                 roomID to CompactPollResult(
                     messages = messages,
-                    deletions = deletedServerIDs.map { it.deletedMessageId },
+                    deletions = deletions,
                     moderators = moderators
                 )
             }.toMap()

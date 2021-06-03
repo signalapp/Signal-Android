@@ -12,7 +12,6 @@ import android.os.Handler;
  * See http://rxmarbles.com/#debounce
  */
 public class Debouncer {
-
   private final Handler handler;
   private final long    threshold;
 

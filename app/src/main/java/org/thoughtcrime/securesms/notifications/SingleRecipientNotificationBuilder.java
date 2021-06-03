@@ -119,18 +119,8 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
     if (privacy.isDisplayContact() && threadRecipients.isOpenGroupRecipient()) {
-      String displayName;
-      SessionContactDatabase contactDB = DatabaseFactory.getSessionContactDatabase(context);
-      String sessionID = individualRecipient.getAddress().serialize();
-      Contact contact = contactDB.getContactWithSessionID(sessionID);
-      if (contact != null) {
-        displayName = contact.displayName(Contact.ContactContext.OPEN_GROUP);
-      } else {
-        displayName = sessionID;
-      }
-      if (displayName != null) {
-        stringBuilder.append(Util.getBoldedString(displayName + ": "));
-      }
+      String displayName = getOpenGroupDisplayName(individualRecipient);
+      stringBuilder.append(Util.getBoldedString(displayName + ": "));
     }
 
     if (privacy.isDisplayMessage()) {
@@ -215,18 +205,8 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
     if (privacy.isDisplayContact() && threadRecipient.isOpenGroupRecipient()) {
-      String displayName;
-      SessionContactDatabase contactDB = DatabaseFactory.getSessionContactDatabase(context);
-      String sessionID = individualRecipient.getAddress().serialize();
-      Contact contact = contactDB.getContactWithSessionID(sessionID);
-      if (contact != null) {
-        displayName = contact.displayName(Contact.ContactContext.OPEN_GROUP);
-      } else {
-        displayName = sessionID;
-      }
-      if (displayName != null) {
-        stringBuilder.append(Util.getBoldedString(displayName + ": "));
-      }
+      String displayName = getOpenGroupDisplayName(individualRecipient);
+      stringBuilder.append(Util.getBoldedString(displayName + ": "));
     }
 
     if (privacy.isDisplayMessage()) {
@@ -341,5 +321,18 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     String publicKey = recipient.getAddress().serialize();
     String displayName = recipient.getName();
     return AvatarPlaceholderGenerator.generate(context, 128, publicKey, displayName);
+  }
+
+  /**
+   * @param recipient the * individual * recipient for which to get the open group display name.
+   */
+  private String getOpenGroupDisplayName(Recipient recipient) {
+    SessionContactDatabase contactDB = DatabaseFactory.getSessionContactDatabase(context);
+    String sessionID = recipient.getAddress().serialize();
+    Contact contact = contactDB.getContactWithSessionID(sessionID);
+    if (contact == null) { return sessionID; }
+    String displayName = contact.displayName(Contact.ContactContext.OPEN_GROUP);
+    if (displayName == null) { return sessionID; }
+    return displayName;
   }
 }

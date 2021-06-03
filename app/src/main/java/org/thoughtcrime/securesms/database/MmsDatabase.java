@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
-import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.session.libsession.messaging.messages.signal.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.session.libsession.messaging.messages.signal.OutgoingExpirationUpdateMessage;
@@ -668,7 +667,6 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     notifyConversationListeners(threadId);
-    ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
 
     return Optional.of(new InsertResult(messageId, threadId));
   }
@@ -812,7 +810,6 @@ public class MmsDatabase extends MessagingDatabase {
 
     DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
     DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
-    ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
 
     return messageId;
   }

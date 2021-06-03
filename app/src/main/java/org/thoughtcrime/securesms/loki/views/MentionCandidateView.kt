@@ -34,7 +34,6 @@ class MentionCandidateView(context: Context, attrs: AttributeSet?, defStyleAttr:
         profilePictureView.publicKey = mentionCandidate.publicKey
         profilePictureView.displayName = mentionCandidate.displayName
         profilePictureView.additionalPublicKey = null
-        profilePictureView.isRSSFeed = false
         profilePictureView.glide = glide!!
         profilePictureView.update()
         if (openGroupServer != null && openGroupRoom != null) {

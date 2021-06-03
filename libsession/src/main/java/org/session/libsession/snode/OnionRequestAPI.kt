@@ -430,7 +430,7 @@ object OnionRequestAPI {
     /**
      * Sends an onion request to `snode`. Builds new paths as needed.
      */
-    internal fun sendOnionRequest(method: Snode.Method, parameters: Map<*, *>, snode: Snode, publicKey: String): Promise<Map<*, *>, Exception> {
+    internal fun sendOnionRequest(method: Snode.Method, parameters: Map<*, *>, snode: Snode, publicKey: String? = null): Promise<Map<*, *>, Exception> {
         val payload = mapOf( "method" to method.rawValue, "params" to parameters )
         return sendOnionRequest(Destination.Snode(snode), payload).recover { exception ->
             val httpRequestFailedException = exception as? HTTP.HTTPRequestFailedException

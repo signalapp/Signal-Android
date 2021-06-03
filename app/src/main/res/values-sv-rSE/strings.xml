@@ -61,7 +61,7 @@
     <string name="ConversationActivity_add_attachment">Bifoga fil</string>
     <string name="ConversationActivity_select_contact_info">Välj kontaktinformation</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Tyvärr uppstod det ett fel vid bifogning av din fil.</string>
-    <string name="ConversationActivity_message">Message</string>
+    <string name="ConversationActivity_message">Meddelande</string>
     <string name="ConversationActivity_compose">Compose</string>
     <string name="ConversationActivity_muted_until_date">Muted until %1$s</string>
     <string name="ConversationActivity_member_count">%1$d members</string>
@@ -77,8 +77,8 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Den bifogade filen är för stor för den typ av meddelande du försöker skicka.</string>
     <string name="ConversationActivity_unable_to_record_audio">Kunde inte spela in ljud!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det finns ingen app på din enhet som kan hantera den här länken.</string>
-    <string name="ConversationActivity_invite_to_open_group">Add members</string>
-    <string name="ConversationActivity_join_open_group">Join %s</string>
+    <string name="ConversationActivity_invite_to_open_group">Lägg till medlemmar</string>
+    <string name="ConversationActivity_join_open_group">Gå med %s</string>
     <string name="ConversationActivity_join_open_group_confirmation_message">Are you sure you want to join the <b>%s</b> open group?</string>
     <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">För att skicka ljudmeddelanden, vänligen ge Session tillgång till din mikrofon.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session behöver behörigheten Mikrofon för att skicka ljudmeddelanden men har nekats den permanent. Fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Mikrofon\".</string>
@@ -551,10 +551,10 @@ för nyckelutbyte!</string>
     <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
     <!-- Session -->
     <string name="continue_2">Continue</string>
-    <string name="copy">Copy</string>
+    <string name="copy">Kopiera</string>
     <string name="invalid_url">Invalid URL</string>
     <string name="copied_to_clipboard">Copied to clipboard</string>
-    <string name="next">Next</string>
+    <string name="next">Nästa</string>
     <string name="share">Share</string>
     <string name="invalid_session_id">Invalid Session ID</string>
     <string name="cancel">Cancel</string>

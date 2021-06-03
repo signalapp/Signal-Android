@@ -20,17 +20,15 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator
 import org.thoughtcrime.securesms.mms.GlideRequests
 
-// TODO: Look into a better way of handling different sizes. Maybe an enum (with associated values) encapsulating the different modes?
-
 class ProfilePictureView : RelativeLayout {
     lateinit var glide: GlideRequests
     var publicKey: String? = null
     var displayName: String? = null
     var additionalPublicKey: String? = null
     var additionalDisplayName: String? = null
-    var isRSSFeed = false
     var isLarge = false
-    private val profilePicturesCached = mutableMapOf<String,String?>()
+
+    private val profilePicturesCache = mutableMapOf<String, String?>()
 
     // region Lifecycle
     constructor(context: Context) : super(context) {
@@ -79,15 +77,11 @@ class ProfilePictureView : RelativeLayout {
             val apk = randomUsers.getOrNull(1) ?: ""
             additionalPublicKey = apk
             additionalDisplayName = getUserDisplayName(apk)
-            isRSSFeed = recipient.name == "Loki News" ||
-                    recipient.name == "Session Updates" ||
-                    recipient.name == "Session Public Chat"
         } else {
             val publicKey = recipient.address.toString()
             this.publicKey = publicKey
             displayName = getUserDisplayName(publicKey)
             additionalPublicKey = null
-            isRSSFeed = false
         }
         update()
     }
@@ -95,68 +89,47 @@ class ProfilePictureView : RelativeLayout {
     fun update() {
         val publicKey = publicKey ?: return
         val additionalPublicKey = additionalPublicKey
-        doubleModeImageViewContainer.visibility = if (additionalPublicKey != null && !isRSSFeed) {
-            setProfilePictureIfNeeded(
-                    doubleModeImageView1,
-                    publicKey,
-                    displayName,
-                    R.dimen.small_profile_picture_size)
-            setProfilePictureIfNeeded(
-                    doubleModeImageView2,
-                    additionalPublicKey,
-                    additionalDisplayName,
-                    R.dimen.small_profile_picture_size)
-            View.VISIBLE
+        if (additionalPublicKey != null) {
+            setProfilePictureIfNeeded(doubleModeImageView1, publicKey, displayName, R.dimen.small_profile_picture_size)
+            setProfilePictureIfNeeded(doubleModeImageView2, additionalPublicKey, additionalDisplayName, R.dimen.small_profile_picture_size)
+            doubleModeImageViewContainer.visibility = View.VISIBLE
         } else {
             glide.clear(doubleModeImageView1)
             glide.clear(doubleModeImageView2)
-            View.INVISIBLE
+            doubleModeImageViewContainer.visibility = View.INVISIBLE
         }
-        singleModeImageViewContainer.visibility = if (additionalPublicKey == null && !isRSSFeed && !isLarge) {
-            setProfilePictureIfNeeded(
-                    singleModeImageView,
-                    publicKey,
-                    displayName,
-                    R.dimen.medium_profile_picture_size)
-            View.VISIBLE
+        if (additionalPublicKey == null && !isLarge) {
+            setProfilePictureIfNeeded(singleModeImageView, publicKey, displayName, R.dimen.medium_profile_picture_size)
+            singleModeImageView.visibility = View.VISIBLE
         } else {
             glide.clear(singleModeImageView)
-            View.INVISIBLE
+            singleModeImageView.visibility = View.INVISIBLE
         }
-        largeSingleModeImageViewContainer.visibility = if (additionalPublicKey == null && !isRSSFeed && isLarge) {
-            setProfilePictureIfNeeded(
-                    largeSingleModeImageView,
-                    publicKey,
-                    displayName,
-                    R.dimen.large_profile_picture_size)
-            View.VISIBLE
+        if (additionalPublicKey == null && isLarge) {
+            setProfilePictureIfNeeded(largeSingleModeImageView, publicKey, displayName, R.dimen.large_profile_picture_size)
+            largeSingleModeImageView.visibility = View.VISIBLE
         } else {
             glide.clear(largeSingleModeImageView)
-            View.INVISIBLE
+            largeSingleModeImageView.visibility = View.INVISIBLE
         }
-        rssImageView.visibility = if (isRSSFeed) View.VISIBLE else View.INVISIBLE
     }
 
     private fun setProfilePictureIfNeeded(imageView: ImageView, publicKey: String, displayName: String?, @DimenRes sizeResId: Int) {
         if (publicKey.isNotEmpty()) {
             val recipient = Recipient.from(context, Address.fromSerialized(publicKey), false)
-            if (profilePicturesCached.containsKey(publicKey) && profilePicturesCached[publicKey] == recipient.profileAvatar) return
+            if (profilePicturesCache.containsKey(publicKey) && profilePicturesCache[publicKey] == recipient.profileAvatar) return
             val signalProfilePicture = recipient.contactPhoto
             val avatar = (signalProfilePicture as? ProfileContactPhoto)?.avatarObject
             if (signalProfilePicture != null && avatar != "0" && avatar != "") {
                 glide.clear(imageView)
                 glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).circleCrop().into(imageView)
-                profilePicturesCached[publicKey] = recipient.profileAvatar
+                profilePicturesCache[publicKey] = recipient.profileAvatar
             } else {
                 val sizeInPX = resources.getDimensionPixelSize(sizeResId)
                 glide.clear(imageView)
-                glide.load(AvatarPlaceholderGenerator.generate(
-                        context,
-                        sizeInPX,
-                        publicKey,
-                        displayName
-                )).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
-                profilePicturesCached[publicKey] = recipient.profileAvatar
+                glide.load(AvatarPlaceholderGenerator.generate(context, sizeInPX, publicKey, displayName))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
+                profilePicturesCache[publicKey] = recipient.profileAvatar
             }
         } else {
             imageView.setImageDrawable(null)
@@ -164,7 +137,7 @@ class ProfilePictureView : RelativeLayout {
     }
 
     fun recycle() {
-        profilePicturesCached.clear()
+        profilePicturesCache.clear()
     }
     // endregion
 }

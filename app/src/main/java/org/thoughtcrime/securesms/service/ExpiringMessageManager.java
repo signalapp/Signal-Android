@@ -178,6 +178,7 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
   }
 
   private class LoadTask implements Runnable {
+
     public void run() {
       SmsDatabase.Reader smsReader = smsDatabase.readerFor(smsDatabase.getExpirationStartedMessages());
       MmsDatabase.Reader mmsReader = mmsDatabase.getExpireStartedMessages();

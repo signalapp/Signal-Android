@@ -234,7 +234,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     }
     // Cancel any typing indicators if needed
     cancelTypingIndicatorsIfNeeded(message.sender!!)
-    //Notify the user if needed
+    // Notify the user if needed
     SSKEnvironment.shared.notificationManager.updateNotification(context, threadID)
 }
 //endregion

@@ -61,7 +61,7 @@
     <string name="ConversationActivity_add_attachment">Aggiungi allegato</string>
     <string name="ConversationActivity_select_contact_info">Seleziona informazioni dei contatti</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Attenzione, c\'è stato un errore nell\'inviare il tuo allegato.</string>
-    <string name="ConversationActivity_message">Message</string>
+    <string name="ConversationActivity_message">Messaggio</string>
     <string name="ConversationActivity_compose">Compose</string>
     <string name="ConversationActivity_muted_until_date">Muted until %1$s</string>
     <string name="ConversationActivity_member_count">%1$d members</string>
@@ -607,7 +607,7 @@ scambia un altro messaggio!</string>
     <string name="fragment_enter_public_key_edit_text_hint">Inserisci la Sessione ID del destinatario</string>
     <string name="fragment_enter_public_key_explanation">Gli utenti possono condividere la propria Sessione ID accedendo alle impostazioni del proprio account e toccando Condividi la Sessione ID o condividendo il proprio codice QR.</string>
     <string name="fragment_scan_qr_code_camera_access_explanation">La Sessione richiede l\'accesso alla fotocamera per scansionare i codici QR</string>
-    <string name="fragment_scan_qr_code_grant_camera_access_button_title">Concedi l\'accesso alla fotocamera</string>
+    <string name="fragment_scan_qr_code_grant_camera_access_button_title">Consenti Accesso Fotocamera</string>
     <string name="activity_create_closed_group_title">Nuovo gruppo chiuso</string>
     <string name="activity_create_closed_group_edit_text_hint">Inserisci un nome per il gruppo</string>
     <string name="activity_create_closed_group_empty_state_message">Non hai ancora nessun contatto</string>

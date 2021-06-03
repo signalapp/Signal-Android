@@ -13,9 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_create_private_chat.*
-import kotlinx.android.synthetic.main.activity_create_private_chat.tabLayout
-import kotlinx.android.synthetic.main.activity_create_private_chat.viewPager
 import kotlinx.android.synthetic.main.activity_link_device.*
 import kotlinx.android.synthetic.main.conversation_activity.*
 import kotlinx.android.synthetic.main.fragment_recovery_phrase.*

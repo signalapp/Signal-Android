@@ -51,17 +51,12 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import java.io.IOException
 
-class HomeActivity : PassphraseRequiredActionBarActivity(),
-    ConversationClickListener,
-    SeedReminderViewDelegate,
-    NewConversationButtonSetViewDelegate {
+class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
     private var broadcastReceiver: BroadcastReceiver? = null
 
     private val publicKey: String
-        get() {
-            return TextSecurePreferences.getLocalNumber(this)!!
-        }
+        get() = TextSecurePreferences.getLocalNumber(this)!!
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
@@ -330,9 +325,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
                 // Delete the conversation
                 val v2OpenGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
                 if (v2OpenGroup != null) {
-                    val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
-                    apiDB.removeLastMessageServerID(v2OpenGroup.room, v2OpenGroup.server)
-                    apiDB.removeLastDeletionServerID(v2OpenGroup.room, v2OpenGroup.server)
                     OpenGroupManager.delete(v2OpenGroup.server, v2OpenGroup.room, this@HomeActivity)
                 } else {
                     ThreadUtils.queue {

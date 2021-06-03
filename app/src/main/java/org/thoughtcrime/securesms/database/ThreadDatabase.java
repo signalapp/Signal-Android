@@ -423,6 +423,7 @@ public class ThreadDatabase extends Database {
     DatabaseFactory.getSmsDatabase(context).deleteThread(threadId);
     DatabaseFactory.getMmsDatabase(context).deleteThread(threadId);
     DatabaseFactory.getDraftDatabase(context).clearDrafts(threadId);
+    DatabaseFactory.getLokiMessageDatabase(context).deleteThread(threadId);
     deleteThread(threadId);
     notifyConversationListeners(threadId);
     notifyConversationListListeners();
