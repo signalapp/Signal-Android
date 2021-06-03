@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.components.emoji;
 
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.Space;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -25,45 +27,18 @@ public class EmojiPageViewGridAdapter extends MappingAdapter implements PopupWin
                                   @NonNull EmojiEventListener emojiEventListener,
                                   @NonNull VariationSelectorListener variationSelectorListener,
                                   boolean allowVariations,
-                                  @LayoutRes int displayItemLayoutResId,
-                                  @Nullable KeyboardPageSearchView.Callbacks callbacks)
+                                  @LayoutRes int displayItemLayoutResId)
   {
     this.variationSelectorListener = variationSelectorListener;
 
     popup.setOnDismissListener(this);
 
-    registerFactory(SearchModel.class, new LayoutFactory<>(v -> {
-      ((KeyboardPageSearchView) v).setCallbacks(callbacks);
-      return new SearchViewHolder(v);
-    }, R.layout.emoji_page_view_search));
     registerFactory(EmojiModel.class, new LayoutFactory<>(v -> new EmojiViewHolder(v, emojiEventListener, variationSelectorListener, popup, allowVariations), displayItemLayoutResId));
   }
 
   @Override
   public void onDismiss() {
     variationSelectorListener.onVariationSelectorStateChanged(false);
-  }
-
-  static class SearchModel implements MappingModel<SearchModel> {
-    @Override
-    public boolean areItemsTheSame(@NonNull @NotNull SearchModel newItem) {
-      return true;
-    }
-
-    @Override
-    public boolean areContentsTheSame(@NonNull @NotNull SearchModel newItem) {
-      return true;
-    }
-  }
-
-  static class SearchViewHolder extends MappingViewHolder<SearchModel> {
-    public SearchViewHolder(@NonNull View itemView) {
-      super(itemView);
-    }
-
-    @Override
-    public void bind(@NonNull @NotNull SearchModel model) {
-    }
   }
 
   static class EmojiModel implements MappingModel<EmojiModel> {

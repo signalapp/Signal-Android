@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.wallpaper;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -111,6 +110,7 @@ public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
     } else {
       onPageChanged = new OnPageChanged();
       viewPager.registerOnPageChangeCallback(onPageChanged);
+      bubble2.addOnLayoutChangeListener(new UpdateChatColorsOnNextLayoutChange(selected.getAutoChatColors()));
     }
 
     new FullscreenHelper(this).showSystemUI();
@@ -131,7 +131,6 @@ public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
     public void onPageSelected(int position) {
       ChatWallpaperSelectionMappingModel model = (ChatWallpaperSelectionMappingModel) adapter.getCurrentList().get(position);
 
-
       updateChatColors(model.getWallpaper().getAutoChatColors());
     }
   }
@@ -146,6 +145,21 @@ public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
     );
 
     bubble2.getBackground().setColorFilter(chatColors.getChatBubbleColorFilter());
+  }
+
+  private class UpdateChatColorsOnNextLayoutChange implements View.OnLayoutChangeListener {
+
+    private final ChatColors chatColors;
+
+    private UpdateChatColorsOnNextLayoutChange(@NonNull ChatColors chatColors) {
+      this.chatColors = chatColors;
+    }
+
+    @Override
+    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+      v.removeOnLayoutChangeListener(this);
+      updateChatColors(chatColors);
+    }
   }
 
   @Override

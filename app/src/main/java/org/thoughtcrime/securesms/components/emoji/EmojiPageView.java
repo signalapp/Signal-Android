@@ -9,11 +9,14 @@ import android.widget.FrameLayout;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
+import com.google.android.material.appbar.AppBarLayout;
 
+import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider.EmojiEventListener;
@@ -33,8 +36,8 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
   private RecyclerView.OnItemTouchListener scrollDisabler;
   private VariationSelectorListener        variationSelectorListener;
   private EmojiVariationSelectorPopup      popup;
+  private AppBarLayout                     appBarLayout;
   private boolean                          searchEnabled;
-  private SpanSizeLookup                   spanSizeLookup;
 
   public EmojiPageView(@NonNull Context context,
                        @NonNull EmojiEventListener emojiSelectionListener,
@@ -66,13 +69,13 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
                                                              emojiSelectionListener,
                                                              this,
                                                              allowVariations,
-                                                             displayItemLayoutResId,
-                                                             searchCallbacks);
+                                                             displayItemLayoutResId);
 
-    if (layoutManager instanceof GridLayoutManager) {
-      spanSizeLookup = new SpanSizeLookup();
-      ((GridLayoutManager) layoutManager).setSpanSizeLookup(spanSizeLookup);
-    }
+    this.appBarLayout = view.findViewById(R.id.emoji_keyboard_search_appbar);
+    ((CoordinatorLayout.LayoutParams) this.appBarLayout.getLayoutParams()).setBehavior(new BlockableScrollBehavior());
+
+    KeyboardPageSearchView searchView = view.findViewById(R.id.emoji_keyboard_search_text);
+    searchView.setCallbacks(searchCallbacks);
 
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setItemAnimator(null);
@@ -98,37 +101,11 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
 
     EmojiPageViewGridAdapter adapter = adapterFactory.create();
     recyclerView.setAdapter(adapter);
-    adapter.submitList(getMappingModelList(), () -> {
-      layoutManager.scrollToPosition(1);
-      recyclerView.post(() -> {
-        if (!searchEnabled || recyclerView.getAdapter() == null) {
-          return;
-        }
-
-        KeyboardPageSearchView searchView = (KeyboardPageSearchView) layoutManager.findViewByPosition(0);
-        if (searchView == null) {
-          return;
-        }
-
-        int allowedScrollDistance = recyclerView.computeVerticalScrollRange() - recyclerView.computeVerticalScrollExtent();
-        if (allowedScrollDistance < searchView.getMeasuredHeight()) {
-          View lastView = Objects.requireNonNull(layoutManager.findViewByPosition(recyclerView.getAdapter().getItemCount() - 1));
-          int scrollDelta = searchView.getMeasuredHeight() - allowedScrollDistance;
-          int distanceFromBottom = Math.max(0, recyclerView.getMeasuredHeight() - lastView.getBottom());
-          lastView.setPadding(lastView.getPaddingLeft(), lastView.getPaddingTop(), lastView.getPaddingRight(), lastView.getPaddingBottom() + scrollDelta + distanceFromBottom);
-
-          recyclerView.post(() -> layoutManager.scrollToPosition(1));
-        }
-      });
-    });
+    adapter.submitList(getMappingModelList());
   }
 
   private @NonNull MappingModelList getMappingModelList() {
     MappingModelList mappingModels = new MappingModelList();
-
-    if (searchEnabled) {
-      mappingModels.add(new EmojiPageViewGridAdapter.SearchModel());
-    }
 
     if (model != null) {
       mappingModels.addAll(Stream.of(model.getDisplayEmoji()).map(EmojiPageViewGridAdapter.EmojiModel::new).toList());
@@ -150,7 +127,6 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
       int idealWidth  = getContext().getResources().getDimensionPixelOffset(R.dimen.emoji_drawer_item_width);
       int spanCount = Math.max(w / idealWidth, 1);
 
-      spanSizeLookup.setSpansPerRow(spanCount);
       ((GridLayoutManager) layoutManager).setSpanCount(spanCount);
     }
   }
@@ -185,17 +161,20 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
     public void onRequestDisallowInterceptTouchEvent(boolean b) { }
   }
 
-  private class SpanSizeLookup extends GridLayoutManager.SpanSizeLookup {
-
-    private int spansPerRow;
-
-    public void setSpansPerRow(int spansPerRow) {
-      this.spansPerRow = spansPerRow;
+  private class BlockableScrollBehavior extends AppBarLayout.Behavior {
+    @Override public boolean onStartNestedScroll(@NonNull CoordinatorLayout parent,
+                                                 @NonNull AppBarLayout child,
+                                                 @NonNull View directTargetChild,
+                                                 View target,
+                                                 int nestedScrollAxes,
+                                                 int type)
+    {
+      return searchEnabled && super.onStartNestedScroll(parent, child, directTargetChild, target, nestedScrollAxes, type);
     }
 
     @Override
-    public int getSpanSize(int position) {
-      return position == 0 && searchEnabled ? spansPerRow : 1;
+    public boolean onTouchEvent(@NonNull @NotNull CoordinatorLayout parent, @NonNull @NotNull AppBarLayout child, @NonNull @NotNull MotionEvent ev) {
+      return searchEnabled && super.onTouchEvent(parent, child, ev);
     }
   }
 
