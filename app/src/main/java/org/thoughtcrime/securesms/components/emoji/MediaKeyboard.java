@@ -167,7 +167,7 @@ public class MediaKeyboard extends FrameLayout implements InputView,
       transaction.runOnCommit(() -> show(latestKeyboardHeight, false));
     }
 
-    transaction.commit();
+    transaction.commitAllowingStateLoss();
   }
 
   public void onOpenEmojiSearch() {
@@ -182,7 +182,7 @@ public class MediaKeyboard extends FrameLayout implements InputView,
                    .add(R.id.media_keyboard_fragment_container, new EmojiSearchFragment(), EMOJI_SEARCH)
                    .runOnCommit(() -> show(latestKeyboardHeight, true))
                    .setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-                   .commit();
+                   .commitAllowingStateLoss();
   }
 
   private void initView() {

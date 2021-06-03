@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.keyboard.emoji.search
 
 import android.content.Context
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter
@@ -34,6 +36,7 @@ class EmojiSearchFragment : Fragment(R.layout.emoji_search_fragment), EmojiPageV
 
     viewModel = ViewModelProviders.of(this, factory)[EmojiSearchViewModel::class.java]
 
+    val keyboardAwareLinearLayout: KeyboardAwareLinearLayout = view.findViewById(R.id.kb_aware_layout)
     val eventListener: EmojiKeyboardProvider.EmojiEventListener = requireNotNull(findListener())
     val searchBar: KeyboardPageSearchView = view.findViewById(R.id.emoji_search_view)
     val resultsContainer: FrameLayout = view.findViewById(R.id.emoji_search_results_container)
@@ -56,12 +59,17 @@ class EmojiSearchFragment : Fragment(R.layout.emoji_search_fragment), EmojiPageV
         noResults.visibility = View.VISIBLE
       }
     }
+
+    view.post {
+      keyboardAwareLinearLayout.addOnKeyboardHiddenListener {
+        callback.closeEmojiSearch()
+      }
+    }
   }
 
   private inner class SearchCallbacks : KeyboardPageSearchView.Callbacks {
     override fun onNavigationClicked() {
       ViewUtil.hideKeyboard(requireContext(), requireView())
-      callback.closeEmojiSearch()
     }
 
     override fun onQueryChanged(query: String) {
