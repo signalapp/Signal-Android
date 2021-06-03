@@ -52,6 +52,7 @@ class VisibleMessageContentView : LinearLayout {
         background.colorFilter = filter
         setBackground(background)
         // Body
+        mainContainer.removeAllViews()
         if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
             val linkPreviewView = LinkPreviewView(context)
             linkPreviewView.bind(message)
@@ -74,6 +75,10 @@ class VisibleMessageContentView : LinearLayout {
             val bodyTextView = getBodyTextView(message)
             mainContainer.addView(bodyTextView)
         }
+    }
+
+    fun recycle() {
+        mainContainer.removeAllViews()
     }
     // endregion
 

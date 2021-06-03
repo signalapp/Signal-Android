@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.conversation.v2
 
+import android.database.Cursor
 import android.os.Bundle
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import network.loki.messenger.R
@@ -10,6 +13,13 @@ import org.thoughtcrime.securesms.mms.GlideApp
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
     private var threadID: Long = -1
+
+    private val adapter by lazy {
+        val cursor = DatabaseFactory.getMmsSmsDatabase(this).getConversation(threadID)
+        val adapter = ConversationAdapter(this, cursor)
+        adapter.setHasStableIds(true)
+        adapter
+    }
 
     private val thread by lazy {
         DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadID)!!
@@ -33,13 +43,26 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
     }
 
     private fun setUpRecyclerView() {
-        val cursor = DatabaseFactory.getMmsSmsDatabase(this).getConversation(threadID)
-        val adapter = ConversationAdapter(this, cursor)
-        adapter.setHasStableIds(true)
         conversationRecyclerView.adapter = adapter
         val layoutManager = LinearLayoutManager(this)
         layoutManager.reverseLayout = true
+        layoutManager.stackFromEnd = true
         conversationRecyclerView.layoutManager = layoutManager
+        // Workaround for the fact that CursorRecyclerViewAdapter doesn't actually auto-update automatically (even though it says it will)
+        LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {
+
+            override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<Cursor> {
+                return ConversationLoader(threadID, this@ConversationActivityV2)
+            }
+
+            override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor?) {
+                adapter.changeCursor(cursor)
+            }
+
+            override fun onLoaderReset(cursor: Loader<Cursor>) {
+                adapter.changeCursor(null)
+            }
+        })
     }
 
     private fun setUpToolbar() {

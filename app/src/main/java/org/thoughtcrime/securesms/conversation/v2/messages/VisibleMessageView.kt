@@ -81,6 +81,7 @@ class VisibleMessageView : LinearLayout {
 
     fun recycle() {
         profilePictureView.recycle()
+        messageContentView.recycle()
     }
     // endregion
 }
