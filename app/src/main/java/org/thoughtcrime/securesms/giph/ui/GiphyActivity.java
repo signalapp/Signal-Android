@@ -52,6 +52,8 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
     getSupportFragmentManager().beginTransaction()
                                .replace(R.id.fragment_container, fragment)
                                .commit();
+
+    ViewUtil.focusAndShowKeyboard(findViewById(R.id.emoji_search_entry));
   }
 
   private void initializeToolbar() {
