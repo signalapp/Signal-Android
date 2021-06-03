@@ -882,6 +882,7 @@
   <string name="Megaphones_new_group">Nova grupa</string>
   <string name="Megaphones_invite_friends">Pozovi prijatelje</string>
   <string name="Megaphones_use_sms">Koristi SMS</string>
+  <string name="Megaphones_appearance">Izgled</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal poziv u tijeku</string>
   <string name="NotificationBarManager__establishing_signal_call">Uspostavljanje Signal poziva</string>
@@ -3045,5 +3046,9 @@ broj telefona</string>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Birač na gornjem rubu</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Birač na donjem rubu</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Pritisnite za zamjenu emotikona</string>
+  <string name="EditReactionsFragment__reset">Poništi</string>
+  <string name="EditReactionsFragment_save">Spremi</string>
   <!--EOF-->
 </resources>

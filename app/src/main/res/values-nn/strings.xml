@@ -844,6 +844,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="Megaphones_new_group">Ny gruppe</string>
   <string name="Megaphones_invite_friends">Inviter vennar</string>
   <string name="Megaphones_use_sms">Bruk SMS</string>
+  <string name="Megaphones_appearance">Utsjåande</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale i gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Set opp Signal-anrop</string>
@@ -2970,5 +2971,9 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Toppkantveljar</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Botnkantveljar</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Trykk for å bytta ut ein emoji</string>
+  <string name="EditReactionsFragment__reset">Tilbakestill</string>
+  <string name="EditReactionsFragment_save">Lagra</string>
   <!--EOF-->
 </resources>

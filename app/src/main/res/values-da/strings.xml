@@ -840,6 +840,7 @@
   <string name="Megaphones_new_group">Opret ny gruppe</string>
   <string name="Megaphones_invite_friends">Invitér venner</string>
   <string name="Megaphones_use_sms">Brug SMS</string>
+  <string name="Megaphones_appearance">Udseende</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal opkald i gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Foretager Signalopkald</string>
@@ -2964,5 +2965,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Øverste kantvælger</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Nederste kantvælger</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tryk for at skifte en emoji</string>
+  <string name="EditReactionsFragment__reset">Nulstil</string>
+  <string name="EditReactionsFragment_save">Gem</string>
   <!--EOF-->
 </resources>

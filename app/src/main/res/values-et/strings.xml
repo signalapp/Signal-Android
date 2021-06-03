@@ -835,6 +835,7 @@
   <string name="Megaphones_new_group">Uus grupp</string>
   <string name="Megaphones_invite_friends">Kutsu sõpru</string>
   <string name="Megaphones_use_sms">Kasuta SMSi</string>
+  <string name="Megaphones_appearance">Välimus</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signali kõne käib</string>
   <string name="NotificationBarManager__establishing_signal_call">Alustan Signali kõnet</string>
@@ -2797,5 +2798,8 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Ülemise ääre valija</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Alumise ääre valija</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">Lähtesta</string>
+  <string name="EditReactionsFragment_save">Salvesta</string>
   <!--EOF-->
 </resources>

@@ -843,6 +843,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="Megaphones_new_group">Grup i ri</string>
   <string name="Megaphones_invite_friends">Ftoni shokë</string>
   <string name="Megaphones_use_sms">Use SMS</string>
+  <string name="Megaphones_appearance">Dukje</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Thirrje Signal në zhvillim e sipër</string>
   <string name="NotificationBarManager__establishing_signal_call">Po bëhet thirrje Signal</string>
@@ -2968,5 +2969,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Përzgjedhësi i skajit të epërm</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Përzgjedhës i skajit të poshtëm</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Prekeni që të zëvendësoni një emoxhi</string>
+  <string name="EditReactionsFragment__reset">Riktheje</string>
+  <string name="EditReactionsFragment_save">Ruaje</string>
   <!--EOF-->
 </resources>

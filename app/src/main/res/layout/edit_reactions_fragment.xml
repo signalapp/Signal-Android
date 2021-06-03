@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="@string/EditReactionsFragment__reset_emoji"
+        android:text="@string/EditReactionsFragment__reset"
         app:layout_constraintBottom_toBottomOf="@+id/edit_reactions_fragment_save"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/edit_reactions_fragment_save" />

@@ -836,6 +836,7 @@
   <string name="Megaphones_new_group">కొత్త సమూహం</string>
   <string name="Megaphones_invite_friends">స్నేహితులను ఆహ్వానించండి</string>
   <string name="Megaphones_use_sms">సందేశాన్ని వాడుటకు </string>
+  <string name="Megaphones_appearance">స్వరూపం</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">పురోగతి లో Signal కాల్</string>
   <string name="NotificationBarManager__establishing_signal_call">స్థాపించబడుతున్న Signal కాల్</string>
@@ -2588,5 +2589,8 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">భద్రపరుచు</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">పునరుద్ధరించు</string>
+  <string name="EditReactionsFragment_save">భద్రపరుచు</string>
   <!--EOF-->
 </resources>

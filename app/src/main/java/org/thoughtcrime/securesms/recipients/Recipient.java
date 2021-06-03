@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
+import org.thoughtcrime.securesms.database.model.databaseprotos.ChatColor;
 import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -910,21 +911,22 @@ public class Recipient {
   }
 
   public @NonNull ChatColors getChatColors() {
-    if (chatColors != null && chatColors.getId() instanceof ChatColors.Id.Auto) {
-      return getAutoChatColor();
-    } else if (chatColors != null) {
+    if (chatColors != null && chatColors.getId() instanceof ChatColors.Id.Custom) {
       return chatColors;
-    } else if (SignalStore.chatColorsValues().hasChatColors()) {
-      return Objects.requireNonNull(SignalStore.chatColorsValues().getChatColors());
-    } else {
+    } if (chatColors != null && chatColors.getId() instanceof ChatColors.Id.Auto) {
       return getAutoChatColor();
+    } else {
+      ChatColors global = SignalStore.chatColorsValues().getChatColors();
+      if (global != null && global.getId() instanceof ChatColors.Id.Custom) {
+        return global;
+      } else {
+        return getAutoChatColor();
+      }
     }
   }
 
   private @NonNull ChatColors getAutoChatColor() {
-    if (wallpaper != null) {
-      return wallpaper.getAutoChatColors();
-    } else if (getWallpaper() != null) {
+    if (getWallpaper() != null) {
       return getWallpaper().getAutoChatColors();
     } else {
       return ChatColorsPalette.Bubbles.getDefault().withId(ChatColors.Id.Auto.INSTANCE);

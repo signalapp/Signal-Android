@@ -9,11 +9,26 @@ internal class ChatColorsValues internal constructor(store: KeyValueStore) : Sig
   companion object {
     private const val KEY_CHAT_COLORS = "chat_colors.chat_colors"
     private const val KEY_CHAT_COLORS_ID = "chat_colors.chat_colors.id"
+    private const val KEY_CHAT_COLORS_AUTO_TOOLTIP = "chat_colors.auto.tooltip"
+    private const val KEY_CHAT_COLORS_GRADIENT_TOOLTIP = "chat_colors.gradient.tooltip"
   }
 
   override fun onFirstEverAppLaunch() = Unit
 
-  override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf()
+  override fun getKeysToIncludeInBackup(): MutableList<String> = mutableListOf(
+    KEY_CHAT_COLORS,
+    KEY_CHAT_COLORS_ID,
+    KEY_CHAT_COLORS_AUTO_TOOLTIP,
+    KEY_CHAT_COLORS_GRADIENT_TOOLTIP
+  )
+
+  var shouldShowAutoTooltip: Boolean
+    get() = getBoolean(KEY_CHAT_COLORS_AUTO_TOOLTIP, true)
+    set(value) = putBoolean(KEY_CHAT_COLORS_AUTO_TOOLTIP, value)
+
+  var shouldShowGradientTooltip: Boolean
+    get() = getBoolean(KEY_CHAT_COLORS_GRADIENT_TOOLTIP, true)
+    set(value) = putBoolean(KEY_CHAT_COLORS_GRADIENT_TOOLTIP, value)
 
   val hasChatColors: Boolean
     @JvmName("hasChatColors")

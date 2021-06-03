@@ -25,7 +25,7 @@ import java.util.List;
  * Adapter for a specific page in the sticker keyboard. Shows the stickers in a grid.
  * @see StickerKeyboardPageFragment
  */
-final class StickerKeyboardPageAdapter extends RecyclerView.Adapter<StickerKeyboardPageAdapter.StickerKeyboardPageViewHolder> {
+public final class StickerKeyboardPageAdapter extends RecyclerView.Adapter<StickerKeyboardPageAdapter.StickerKeyboardPageViewHolder> {
 
   private final GlideRequests       glideRequests;
   private final EventListener       eventListener;
@@ -34,7 +34,7 @@ final class StickerKeyboardPageAdapter extends RecyclerView.Adapter<StickerKeybo
 
   private int stickerSize;
 
-  StickerKeyboardPageAdapter(@NonNull GlideRequests glideRequests, @NonNull EventListener eventListener, boolean allowApngAnimation) {
+  public StickerKeyboardPageAdapter(@NonNull GlideRequests glideRequests, @NonNull EventListener eventListener, boolean allowApngAnimation) {
     this.glideRequests      = glideRequests;
     this.eventListener      = eventListener;
     this.allowApngAnimation = allowApngAnimation;
@@ -68,7 +68,7 @@ final class StickerKeyboardPageAdapter extends RecyclerView.Adapter<StickerKeybo
     return stickers.size();
   }
 
-  void setStickers(@NonNull List<StickerRecord> stickers, @Px int stickerSize) {
+  public void setStickers(@NonNull List<StickerRecord> stickers, @Px int stickerSize) {
     this.stickers.clear();
     this.stickers.addAll(stickers);
 
@@ -77,7 +77,7 @@ final class StickerKeyboardPageAdapter extends RecyclerView.Adapter<StickerKeybo
     notifyDataSetChanged();
   }
 
-  void setStickerSize(@Px int stickerSize) {
+  public void setStickerSize(@Px int stickerSize) {
     this.stickerSize = stickerSize;
     notifyDataSetChanged();
   }
@@ -131,7 +131,7 @@ final class StickerKeyboardPageAdapter extends RecyclerView.Adapter<StickerKeybo
     }
   }
 
-  interface EventListener {
+  public interface EventListener {
     void onStickerClicked(@NonNull StickerRecord sticker);
     void onStickerLongClicked(@NonNull View targetView);
   }

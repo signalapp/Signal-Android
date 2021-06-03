@@ -1007,6 +1007,7 @@
   <string name="Megaphones_new_group">مجموعة جديدة</string>
   <string name="Megaphones_invite_friends">دعوة الأصدقاء</string>
   <string name="Megaphones_use_sms">استخدام رسالة قصيرة</string>
+  <string name="Megaphones_appearance">المظهر</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">مكالمة Signal جارية</string>
   <string name="NotificationBarManager__establishing_signal_call">بدء مكالمة Signal</string>
@@ -2966,5 +2967,8 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">حفظ</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">إعادة التعيين</string>
+  <string name="EditReactionsFragment_save">حفظ</string>
   <!--EOF-->
 </resources>

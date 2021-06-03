@@ -90,7 +90,7 @@ final class ReactWithAnyEmojiAdapter extends ListAdapter<ReactWithAnyEmojiPage, 
   }
 
   private EmojiPageView createEmojiPageView(@NonNull Context context) {
-    return new EmojiPageView(context, emojiEventListener, variationSelectorListener, true);
+    return new EmojiPageView(context, emojiEventListener, variationSelectorListener, true, null);
   }
 
   static abstract class ReactWithAnyEmojiPageViewHolder extends RecyclerView.ViewHolder implements ScrollableChild {

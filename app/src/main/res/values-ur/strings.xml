@@ -827,6 +827,7 @@
   <string name="Megaphones_new_group">نیا گروپ</string>
   <string name="Megaphones_invite_friends">دوستوں کو مدعو کریں</string>
   <string name="Megaphones_use_sms">ایس ایم ایس کا استعمال کریں</string>
+  <string name="Megaphones_appearance">ظہور ہونا</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">signal کال پروگریس میں ہے</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal کال قائم ہو رہی ہے</string>
@@ -2564,5 +2565,8 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">محفوظ کریں</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">دوبارہ بحال کریں</string>
+  <string name="EditReactionsFragment_save">محفوظ کریں</string>
   <!--EOF-->
 </resources>

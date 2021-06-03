@@ -925,6 +925,7 @@
   <string name="Megaphones_new_group">קבוצה חדשה</string>
   <string name="Megaphones_invite_friends">הזמן חברים</string>
   <string name="Megaphones_use_sms">השתמש במסרון</string>
+  <string name="Megaphones_appearance">מראה</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
@@ -3132,5 +3133,9 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">בוחר קצה עליון</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">בוחר קצה תחתון</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">הקש כדי להחליף אימוג\'י</string>
+  <string name="EditReactionsFragment__reset">אפס</string>
+  <string name="EditReactionsFragment_save">שמור</string>
   <!--EOF-->
 </resources>

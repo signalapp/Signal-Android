@@ -790,6 +790,7 @@
   <string name="Megaphones_new_group">အဖွဲ့သစ်</string>
   <string name="Megaphones_invite_friends">သူငယ်ချင်းများကို ဖိတ်ပါ</string>
   <string name="Megaphones_use_sms">SMS ကိုသုံးပါ</string>
+  <string name="Megaphones_appearance">ပုံပန်းသဏ္ဌာန်</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal ဖုန်းခေါ်နေသည်</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal ဖုန်းခေါ်ဆိုမှုစတင်နေသည်</string>
@@ -2779,5 +2780,8 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">သိမ်းမယ်</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">ရီဆက်ချမည်</string>
+  <string name="EditReactionsFragment_save">သိမ်းမယ်</string>
   <!--EOF-->
 </resources>

@@ -839,6 +839,7 @@
   <string name="Megaphones_new_group">Új csoport</string>
   <string name="Megaphones_invite_friends">Barátok meghívása</string>
   <string name="Megaphones_use_sms">SMS használata</string>
+  <string name="Megaphones_appearance">Megjelenés</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal hívás folyamatban</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal hívás létesítése</string>
@@ -2936,5 +2937,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Mentés</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">Alaphelyzetbe állítás</string>
+  <string name="EditReactionsFragment_save">Mentés</string>
   <!--EOF-->
 </resources>

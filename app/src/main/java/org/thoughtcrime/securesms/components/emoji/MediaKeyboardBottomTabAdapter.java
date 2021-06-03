@@ -16,22 +16,19 @@ public class MediaKeyboardBottomTabAdapter extends RecyclerView.Adapter<MediaKey
 
   private final GlideRequests glideRequests;
   private final EventListener eventListener;
-  private final boolean       highlightTop;
 
   private TabIconProvider tabIconProvider;
   private int             activePosition;
   private int             count;
 
-  public MediaKeyboardBottomTabAdapter(@NonNull GlideRequests glideRequests, @NonNull EventListener eventListener, boolean highlightTop) {
+  public MediaKeyboardBottomTabAdapter(@NonNull GlideRequests glideRequests, @NonNull EventListener eventListener) {
     this.glideRequests = glideRequests;
     this.eventListener = eventListener;
-    this.highlightTop  = highlightTop;
   }
 
   @Override
   public @NonNull MediaKeyboardBottomTabViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-    return new MediaKeyboardBottomTabViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.media_keyboard_bottom_tab_item, viewGroup, false),
-                                                highlightTop);
+    return new MediaKeyboardBottomTabViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.media_keyboard_bottom_tab_item, viewGroup, false));
   }
 
   @Override
@@ -64,18 +61,12 @@ public class MediaKeyboardBottomTabAdapter extends RecyclerView.Adapter<MediaKey
   static class MediaKeyboardBottomTabViewHolder extends RecyclerView.ViewHolder {
 
     private final ImageView image;
-    private final View      indicator;
+    private final View      imageSelected;
 
-    public MediaKeyboardBottomTabViewHolder(@NonNull View itemView, boolean highlightTop) {
+    public MediaKeyboardBottomTabViewHolder(@NonNull View itemView) {
       super(itemView);
-
-      View indicatorTop    = itemView.findViewById(R.id.media_keyboard_top_tab_indicator);
-      View indicatorBottom = itemView.findViewById(R.id.media_keyboard_bottom_tab_indicator);
-
-      this.image     = itemView.findViewById(R.id.media_keyboard_bottom_tab_image);
-      this.indicator = highlightTop ? indicatorTop : indicatorBottom;
-
-      this.indicator.setVisibility(View.VISIBLE);
+      this.image         = itemView.findViewById(R.id.category_icon);
+      this.imageSelected = itemView.findViewById(R.id.category_icon_selected);
     }
 
     void bind(@NonNull GlideRequests glideRequests,
@@ -86,9 +77,7 @@ public class MediaKeyboardBottomTabAdapter extends RecyclerView.Adapter<MediaKey
     {
       tabIconProvider.loadCategoryTabIcon(glideRequests, image, index);
       image.setAlpha(selected ? 1 : 0.5f);
-      image.setSelected(selected);
-
-      indicator.setVisibility(selected ? View.VISIBLE : View.INVISIBLE);
+      imageSelected.setSelected(selected);
 
       itemView.setOnClickListener(v -> eventListener.onTabSelected(index));
     }
@@ -98,7 +87,7 @@ public class MediaKeyboardBottomTabAdapter extends RecyclerView.Adapter<MediaKey
     }
   }
 
-  interface EventListener {
+  public interface EventListener {
     void onTabSelected(int index);
   }
 }

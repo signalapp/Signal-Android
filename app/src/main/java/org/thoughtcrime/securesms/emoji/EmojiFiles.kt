@@ -111,7 +111,7 @@ object EmojiFiles {
   }
 
   @JvmStatic
-  fun getLatestEmojiData(context: Context, version: Version): EmojiData? {
+  fun getLatestEmojiData(context: Context, version: Version): ParsedEmojiData? {
     val names = NameCollection.read(context, version)
     val dataUuid = names.getUUIDForEmojiData() ?: return null
     val file = version.getFile(context, dataUuid)

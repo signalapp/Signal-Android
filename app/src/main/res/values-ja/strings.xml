@@ -91,6 +91,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s のブロックを解除しますか？</string>
   <string name="BlockUnblockDialog_block">ブロックする</string>
   <string name="BlockUnblockDialog_block_and_leave">ブロックして抜ける</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">スパムとして報告してブロックする</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">今日</string>
   <string name="BucketedThreadMedia_Yesterday">昨日</string>
@@ -237,6 +238,7 @@
   <string name="ConversationActivity_join">参加する</string>
   <string name="ConversationActivity_full">満席</string>
   <string name="ConversationActivity_error_sending_media">メディア送信エラー</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">スパムとして報告してブロックしました。</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d件の未読メッセージ</item>
@@ -412,7 +414,7 @@
   <string name="AddToGroupActivity_s_added_to_s">「%1$s」が「%2$s」へ追加されました。</string>
   <string name="AddToGroupActivity_add_to_group">グループへ追加</string>
   <string name="AddToGroupActivity_add_to_groups">グループへ追加</string>
-  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">この連絡先をレガシーグループに入れることはできません。</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">このユーザーはレガシーグループに追加できません。</string>
   <string name="AddToGroupActivity_add">追加する</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">新しい管理者を選択</string>
@@ -527,7 +529,7 @@
   <string name="RequestingMembersFragment_denied_s">「%1$s」を拒否しました</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">完了</string>
-  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">この連絡先をレガシーグループに入れることはできません。</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">このユーザーはレガシーグループに追加できません。</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="other">%3$d人のメンバーを「%2$s」へ追加しますか？</item>
   </plurals>
@@ -576,6 +578,7 @@
   <string name="ManageGroupActivity_mute_notifications">通知をミュート</string>
   <string name="ManageGroupActivity_custom_notifications">カスタム通知</string>
   <string name="ManageGroupActivity_mentions">メンション</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">チャットの色と壁紙</string>
   <string name="ManageGroupActivity_until_s">%1$s まで</string>
   <string name="ManageGroupActivity_always">常時</string>
   <string name="ManageGroupActivity_off">オフ</string>
@@ -792,11 +795,12 @@
   <string name="Megaphones_new_group">新規グループ</string>
   <string name="Megaphones_invite_friends">友達を招待しましょう</string>
   <string name="Megaphones_use_sms">SMSを使用する</string>
+  <string name="Megaphones_appearance">デザイン</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal通話を接続しています</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal通話の着信</string>
-  <string name="NotificationBarManager__stopping_signal_call_service">Signal着信サービスを停止しています</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Signal通話サービスを停止しています</string>
   <string name="NotificationBarManager__deny_call">通話を拒否</string>
   <string name="NotificationBarManager__answer_call">通話を開始</string>
   <string name="NotificationBarManager__end_call">通話を終了</string>
@@ -1108,7 +1112,7 @@
   <string name="ReactionsRecipientAdapter_you">あなた</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">メッセージ送受信のため認証してください</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signalが迷惑メッセージを回避するために、認証を完了していください。</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signalがスパムを回避するために、認証を完了していください。</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">認証後は、メッセージの送受信を再開できます。保留されたメッセージは、自動で送信されます。</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ブロックする</string>
@@ -1146,6 +1150,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">誰も参加していません</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s が参加中</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s と %2$s が参加中</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s が画面を共有しています</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s, %2$s ほか%3$d人が参加中</item>
   </plurals>
@@ -1161,6 +1166,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s からの音声と映像を受信できません</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">相手があなたの安全番号の変更を検証していないか、相手の端末に問題があるか、あなたがブロックされている可能性があります。</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">スワイプすると画面共有を表示します</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">プロキシサーバ</string>
   <string name="ProxyBottomSheetFragment_proxy_address">プロキシアドレス</string>
@@ -1279,6 +1285,7 @@
   <string name="SubmitDebugLogActivity_success">成功しました！</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">このURLをコピーしてバグレポートやサポートメールに貼り付けてください:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">共有</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">このログはコントリビュータに公開されますが、アップロードする前に内容を確認したり編集することができます。</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">フィルタ:</string>
   <string name="SupportEmailUtil_device_info">Device info:</string>
@@ -1391,7 +1398,7 @@
   <string name="MessageNotifier_failed_to_deliver_message">メッセージの配信に失敗しました。</string>
   <string name="MessageNotifier_error_delivering_message">メッセージの配信中にエラーが発生しました。</string>
   <string name="MessageNotifier_message_delivery_paused">メッセージの配送が保留されました。</string>
-  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Signalでのメッセージ送受信を続けるために、認証してください。</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Signalでのメッセージ送受信を続けるため、認証してください。</string>
   <string name="MessageNotifier_mark_all_as_read">すべて既読にする</string>
   <string name="MessageNotifier_mark_read">既読にする</string>
   <string name="MessageNotifier_turn_off_these_notifications">これらの通知を無効にする</string>
@@ -1549,6 +1556,7 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">共通のグループはありません。慎重に申請を確認してください。</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">このグループに連絡先の人はいません。慎重に申請を確認してください。</string>
   <string name="ConversationUpdateItem_view">表示する</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">メッセージの送信時に、消えるメッセージのタイマーが%1$sに設定されます。</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">再生 … 停止</string>
   <string name="audio_view__download_accessibility_description">ダウンロード</string>
@@ -1574,7 +1582,7 @@
   <string name="safety_number_change_dialog__previous_verified">以前に検証済み</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
   <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">着信通知を有効にしました。</string>
-  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">着信通知を有効にする</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">着信通知を有効にしてください</string>
   <string name="EnableCallNotificationSettingsDialog__enable_background_activity">バックグラウンド動作を有効にする</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">すべて順調そうです！</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">着信通知を受けるには、ここをタップして「通知を表示する」を有効にします。</string>
@@ -1751,6 +1759,15 @@
   <string name="HelpFragment__debug_log">デバッグログ:</string>
   <string name="HelpFragment__could_not_upload_logs">ログをアップロードできませんでした</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">問題を理解するため、できるだけ詳細に記述してください。</string>
+  <string-array name="HelpFragment__categories">
+    <item>-- 選択してください --</item>
+    <item>機能の不具合</item>
+    <item>機能のリクエスト</item>
+    <item>質問</item>
+    <item>フィードバック</item>
+    <item>その他</item>
+    <item>支払い機能</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">このメッセージ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使ったもの</string>
@@ -1868,6 +1885,7 @@
   <string name="preferences__appearance">デザイン</string>
   <string name="preferences__theme">テーマ</string>
   <string name="preferences__chat_wallpaper">チャットの壁紙</string>
+  <string name="preferences__chat_color_and_wallpaper">チャットの色と壁紙</string>
   <string name="preferences__disable_pin">PINを無効化</string>
   <string name="preferences__enable_pin">PINを有効化</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PINを無効にすると、自身でバックアップと復元を行わない限り、Signalに再登録する際すべてのデータが失われます。PINを無効にしている間は登録ロックは使用できません。</string>
@@ -1886,6 +1904,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">既読通知を無効にすると、相手の既読通知も受け取れません。</string>
   <string name="preferences__typing_indicators">入力中アイコン</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">入力中アイコンが無効の場合、相手の入力中アイコンも表示されません。</string>
+  <string name="preferences__request_keyboard_to_disable">キーボードに自動学習の停止を要求します。</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">この設定はキーボードに無視される可能性があり、保証されません。</string>
   <string name="preferences_app_protection__blocked_users">ブロック中のユーザー</string>
   <string name="preferences_chats__when_using_mobile_data">モバイルデータ通信利用時</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi利用時</string>
@@ -2333,7 +2353,7 @@
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">画面ロックまでの無操作時間</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__create_a_pin">PINを作成する</string>
-  <string name="preferences_app_protection__change_your_pin">PINを変更する</string>
+  <string name="preferences_app_protection__change_your_pin">PINを変更</string>
   <string name="preferences_app_protection__pin_reminders">PINリマインダー</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Signal内に保存された情報は、PINにより暗号化を保持されるため、あなたのみアクセスできます。PINを使うことで、Signalの再インストール時にあなたのプロフィール、設定および連絡先が復元されます。</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">電話番号を再度Signalに登録する際にSignal PINを要求することで、さらにセキュリティを強化します。</string>
@@ -2380,16 +2400,16 @@
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">古いAndroid端末を検出し接続するには、Signalに位置情報へのアクセス許可が必要です。</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">古いAndroid端末を検出し接続するには、位置情報サービスを有効にする必要があります。</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signalが古いAndroid端末を検出して接続するには、Wi-Fiが有効になっている必要があります。ただし、Wi-Fiネットワークに接続されている必要はありません。</string>
-  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">申し訳ありませんが、この端末はWi-Fi Directに対応していないようです。Signalは、Wi-Fi Directを使って古いAndroid端末を検出し、接続します。古いAndroid端末からアカウントを復元するために、バックアップを復元することは可能です。</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">この端末はWi-Fi Directに対応していないようです。Signalは、Wi-Fi Directを使って古いAndroid端末を検出し、接続します。古いAndroid端末からアカウントを復元するために、バックアップを復元することは可能です。</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">バックアップを復元</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">古いAndroid端末への接続時に、予期しないエラーが発生しました。</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_new_android_device">新しいAndroid端末を検索しています…</string>
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">新しいAndroid端末を探しています…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">新しいAndroid端末を検出し接続するには、Signalに位置情報へのアクセス許可が必要です。</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">新しいAndroid端末を検出し接続するには、位置情報サービスを有効にする必要があります。</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signalが新しいAndroid端末を検出して接続するには、Wi-Fiが有効になっている必要があります。ただし、Wi-Fiネットワークに接続されている必要はありません。</string>
   <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">申し訳ありませんが、この端末はWi-Fi Directに対応していないようです。Signalは、Wi-Fi Directを使って新しいAndroid端末を検出し、接続します。新しいAndroid端末でアカウントを復元するために、バックアップを作成することは可能です。</string>
-  <string name="OldDeviceTransferSetup__create_a_backup">バックアップを作成する</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">バックアップを作成</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">新しいAndroid端末への接続時に、予期しないエラーが発生しました。</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi設定を開けません。手動でWi-Fiを有効にしてください。</string>
@@ -2401,8 +2421,8 @@
   <string name="DeviceTransferSetup__retry">再試行</string>
   <string name="DeviceTransferSetup__submit_debug_logs">デバッグログを送信する</string>
   <string name="DeviceTransferSetup__verify_code">コードの確認</string>
-  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">両方の端末で、以下のコードが一致するか確認してください。確認後、タップして続けます。</string>
-  <string name="DeviceTransferSetup__the_numbers_do_not_match">番号が一致しません</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">両方の端末で以下のコードが一致している場合、「続ける」をタップしてください。</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">一致しません</string>
   <string name="DeviceTransferSetup__continue">続ける</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">番号が異なります</string>
   <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">端末で番号が一致しない場合、間違った端末に接続した可能性があります。修正するには、移行を中止して再度試し、両方の端末を閉じたままにしてください。</string>
@@ -2413,21 +2433,21 @@
   <string name="DeviceTransferSetup__location_permission">位置情報へのアクセス許可</string>
   <string name="DeviceTransferSetup__location_services">位置情報サービス</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi Direct画面で、記憶されているグループをすべて削除し、招待された端末や接続された端末のリンクを解除してください。</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi Direct画面で、記憶されているグループをすべて削除し、招待されたり接続されている端末のリンクをすべて解除してください。</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct画面</string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">両方の端末でWi-Fiのオフ、オンを試してください。</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">両方の端末が移行モードであることを確認してください。</string>
   <string name="DeviceTransferSetup__go_to_support_page">サポートページへ</string>
   <string name="DeviceTransferSetup__try_again">もう一度試す</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">他の端末を待っています</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">他の端末で「続ける」をタップして、移行を開始します。</string>
-  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">他の端末で「続ける」をタップしてください…</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">移行を開始するには、他方の端末で「続ける」をタップしてください。</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">他方の端末で「続ける」をタップしてください…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">より新しいバージョンのSignalからは移行できません</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">データを移行しています</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">端末同士を近づけてください。どちらの端末も電源を切らず、Signalを開いたままにしてください。転送はエンドツーエンドで暗号化されます。</string>
-  <string name="DeviceTransfer__d_messages_so_far">これまで%1$d件のメッセージ…</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d件のメッセージ…</string>
   <string name="DeviceTransfer__cancel">キャンセル</string>
   <string name="DeviceTransfer__try_again">もう一度試す</string>
   <string name="DeviceTransfer__stop_transfer_question">移行を停止しますか？</string>
@@ -2439,22 +2459,22 @@
   <string name="OldDeviceTransferInstructions__transfer_account">アカウントの移行</string>
   <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">新しいAndroid端末でSignalを設定する際、以下の前であれば、あなたのSignalアカウントを移行できます:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
-  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">新しいAndroid端末でSignalをダウンロード</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">新しいAndroid端末でSignalをダウンロードしてください</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">「アカウントの移行または復元」をタップ</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">「アカウントの移行または復元」をタップしてください</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">表示に従い「Android端末から移行」を選択し「続ける」をタップして端末同士を近づける</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">表示に従い「Android端末から移行」を選択し「続ける」をタップして端末同士を近づけてください</string>
   <string name="OldDeviceTransferInstructions__continue">続ける</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">移行が完了しました</string>
-  <string name="OldDeviceTransferComplete__go_to_your_new_device">新しい端末に行きます</string>
-  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">あなたのSignalデータは、新しい端末に転送されました。移行を完了するには、新しい端末で登録を継続する必要があります。</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">新しい端末へ行きましょう</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">あなたのSignalデータは、新しい端末に転送されました。移行を完了するには、新しい端末で登録を続ける必要があります。</string>
   <string name="OldDeviceTransferComplete__close">閉じる</string>
   <!--NewDeviceTransferComplete-->
   <string name="NewDeviceTransferComplete__transfer_successful">移行に成功しました</string>
   <string name="NewDeviceTransferComplete__transfer_complete">移行が完了しました</string>
-  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">移行を完了するには、登録を継続する必要があります。</string>
-  <string name="NewDeviceTransferComplete__continue_registration">登録を完了します</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">移行を完了するには、登録を続ける必要があります。</string>
+  <string name="NewDeviceTransferComplete__continue_registration">登録を続ける</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">アカウントの移行</string>
   <string name="DeviceToDeviceTransferService_status_ready">他のAndroid端末への接続を準備しています…</string>
@@ -2585,12 +2605,24 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">チャットの壁紙</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">チャットの色</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">チャットの色をリセット</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">チャットの色をリセット</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">チャットの色をリセットしますか？</string>
   <string name="ChatWallpaperFragment__set_wallpaper">壁紙を設定</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">ダークモードで壁紙を暗くする</string>
   <string name="ChatWallpaperFragment__contact_name">連絡先名</string>
   <string name="ChatWallpaperFragment__reset">リセットする</string>
   <string name="ChatWallpaperFragment__clear">消去する</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">壁紙のプレビュー</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">すべての色を上書きしますか？</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">すべての壁紙を上書きしますか？</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">既定の色をリセットする</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">すべての色をリセットする</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">既定の壁紙をリセットする</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">すべての壁紙をリセット</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">壁紙をリセット</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">壁紙をリセット</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">壁紙をリセットしますか？</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">写真から選択</string>
   <string name="ChatWallpaperSelectionFragment__presets">プリセット</string>
@@ -2634,7 +2666,7 @@
   <string name="PaymentsRecoveryPhraseFragment__next">次へ</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">編集</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">前へ</string>
-  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">スクリーンショットを使ったり、メールで転送しないこと</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">スクリーンショットを使ったり、メールで送信しないでください。</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">支払い口座が復元されました</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">クリップボードにコピーしますか？</string>
   <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">リカバリーフレーズを電子的に保存する場合、信頼できる安全な場所に保存してください。</string>
@@ -2658,37 +2690,57 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">あなたの連絡先やチャット相手は、このグループにはいません。望まないメッセージを避けるために、申請は慎重に確認してください。</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">メッセージ申請について</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">チャットの色のプレビューです。</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">この色はあなたたけに表示されます。</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">グループの説明</string>
   <!--QualitySelectorBottomSheetDialog-->
-  <string name="QualitySelectorBottomSheetDialog__high">高</string>
+  <string name="QualitySelectorBottomSheetDialog__standard">標準</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">速い, 少ないデータ量</string>
+  <string name="QualitySelectorBottomSheetDialog__high">高画質</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">遅い, 多いデータ量</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">写真の画質</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">友達を招待</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">アカウント</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">確認の頻度は次第に減ります</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">あなたの電話番号をSignalに再登録する際にSignal PINを要求します</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">キーボード</string>
   <string name="ChatsSettingsFragment__enter_key_sends">エンターキーで送信する</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">既定のSMSアプリにする</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">メッセージ</string>
   <string name="NotificationsSettingsFragment__calls">通話</string>
-  <string name="NotificationsSettingsFragment__notify_when">通知のタイミング</string>
+  <string name="NotificationsSettingsFragment__notify_when">その他の通知</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">連絡先のSignal参加時</string>
   <!--PrivacySettingsFragment-->
-  <string name="PrivacySettingsFragment__blocked">ブロックリスト</string>
-  <string name="PrivacySettingsFragment__messaging">メッセージ</string>
+  <string name="PrivacySettingsFragment__blocked">ブロック中</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d件</string>
+  <string name="PrivacySettingsFragment__messaging">メッセージ送受信</string>
   <string name="PrivacySettingsFragment__disappearing_messages">消えるメッセージ</string>
+  <string name="PrivacySettingsFragment__app_security">アプリのセキュリティ</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">「最近使ったアプリ」やアプリ内でのスクリーンショットをブロックします</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">あなたが開始した会話でメッセージが消えるまでの時間を設定します</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signalメッセージと通話, 通話を常に中継, 送信者の秘匿化</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">新規チャットの既定タイマー</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">あなたによる新規チャットでの、消えるメッセージの既定タイマーを設定します。</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">ステータスアイコンを表示する</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">送信者の秘匿化を用いて届けられたメッセージの詳細で、アイコンを表示します。</string>
   <!--ExpireTimerSettingsFragment-->
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">有効にすると、このチャット内で送受信されたメッセージは閲覧後に消えます。</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">有効にすると、それ以降に作られた新しいチャットの中でやりとりしたメッセージは、閲覧後に消えます。</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">有効にすると、このチャット内で新たに送受信されたメッセージは、閲覧後に消えます。</string>
   <string name="ExpireTimerSettingsFragment__off">オフ</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4週間</string>
   <string name="ExpireTimerSettingsFragment__1_week">1週間</string>
   <string name="ExpireTimerSettingsFragment__1_day">1日</string>
   <string name="ExpireTimerSettingsFragment__8_hours">8時間</string>
   <string name="ExpireTimerSettingsFragment__1_hour">1時間</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5分</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30秒</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">カスタム時間</string>
   <string name="ExpireTimerSettingsFragment__set">設定する</string>
   <string name="ExpireTimerSettingsFragment__save">保存</string>
   <string name="CustomExpireTimerSelectorView__seconds">秒</string>
@@ -2697,19 +2749,43 @@
   <string name="CustomExpireTimerSelectorView__days">日</string>
   <string name="CustomExpireTimerSelectorView__weeks">週</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">サポートセンター</string>
   <string name="HelpSettingsFragment__contact_us">お問い合わせ</string>
   <string name="HelpSettingsFragment__version">バージョン</string>
   <string name="HelpSettingsFragment__debug_log">デバッグログ</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">使用条件とプライバシーポリシー</string>
+  <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Licensed under the GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">通話</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">自動</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">カスタム色を使用</string>
   <string name="ChatColorSelectionFragment__chat_color">チャットの色</string>
   <string name="ChatColorSelectionFragment__edit">編集</string>
-  <string name="ChatColorSelectionFragment__delete">削除する</string>
+  <string name="ChatColorSelectionFragment__duplicate">複製</string>
+  <string name="ChatColorSelectionFragment__delete">削除</string>
+  <string name="ChatColorSelectionFragment__delete_color">色を削除</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="other">この色は%1$d件のチャットで使用されています。すべてのチャットで削除しますか？</item>
+  </plurals>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">無地</string>
+  <string name="CustomChatColorCreatorFragment__gradient">グラデーション</string>
+  <string name="CustomChatColorCreatorFragment__hue">色相</string>
+  <string name="CustomChatColorCreatorFragment__saturation">彩度</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">保存</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">色を編集</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="other">この色は%1$d件のチャットで使用されています。すべてのチャットで変更しますか？</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">上端セレクター</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">下端セレクター</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">タップすると絵文字を置き換えます</string>
+  <string name="EditReactionsFragment__reset">リセットする</string>
+  <string name="EditReactionsFragment_save">保存</string>
   <!--EOF-->
 </resources>

@@ -790,6 +790,7 @@
   <string name="Megaphones_new_group">新建群组</string>
   <string name="Megaphones_invite_friends">邀请好友</string>
   <string name="Megaphones_use_sms">使用短信</string>
+  <string name="Megaphones_appearance">外观</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">正在处理 Signal 呼叫</string>
   <string name="NotificationBarManager__establishing_signal_call">正在建立 Signal 呼叫</string>
@@ -2783,5 +2784,8 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">保存</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">重置</string>
+  <string name="EditReactionsFragment_save">保存</string>
   <!--EOF-->
 </resources>

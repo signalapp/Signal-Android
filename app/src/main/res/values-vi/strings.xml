@@ -784,6 +784,7 @@
   <string name="Megaphones_new_group">Tạo nhóm mới</string>
   <string name="Megaphones_invite_friends">Mời bạn bè</string>
   <string name="Megaphones_use_sms">Sử dụng SMS</string>
+  <string name="Megaphones_appearance">Diện mạo</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Đang tiến hành cuộc gọi Signal </string>
   <string name="NotificationBarManager__establishing_signal_call">Đang thiết lập cuộc gọi Signal</string>
@@ -2539,5 +2540,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Lưu</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">Đặt lại</string>
+  <string name="EditReactionsFragment_save">Lưu</string>
   <!--EOF-->
 </resources>

@@ -839,6 +839,7 @@
   <string name="Megaphones_new_group">Ny grupp</string>
   <string name="Megaphones_invite_friends">Bjud in vänner</string>
   <string name="Megaphones_use_sms">Använd SMS</string>
+  <string name="Megaphones_appearance">Utseende</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtal pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>
@@ -1766,7 +1767,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="EditAboutFragment_taking_a_break">Tar en rast</string>
   <string name="EditAboutFragment_working_on_something_new">Arbetar på något nytt</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group">Ändra grupp</string>
+  <string name="EditProfileFragment__edit_group">Redigera grupp</string>
   <string name="EditProfileFragment__group_name">Gruppnamn</string>
   <string name="EditProfileFragment__group_description">Gruppbeskrivning</string>
   <!--EditProfileNameFragment-->
@@ -2932,6 +2933,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Samtal</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Automatiskt</string>
   <string name="ChatColorSelectionFragment__use_custom_colors">Använd anpassade färger</string>
   <string name="ChatColorSelectionFragment__chat_color">Chattfärg</string>
   <string name="ChatColorSelectionFragment__edit">Ändra</string>
@@ -2943,6 +2945,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">Denna anpassade färg används %1$d chattar. Vill du ta bort den för alla chattar?</item>
   </plurals>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Solid</string>
   <string name="CustomChatColorCreatorFragment__gradient">Lutning</string>
   <string name="CustomChatColorCreatorFragment__hue">Nyans</string>
   <string name="CustomChatColorCreatorFragment__saturation">Mättnad</string>
@@ -2954,5 +2957,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">Denna färg används i %1$d chattar. Vill du spara ändringar för alla chattar?</item>
   </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Övre kantväljare</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Nedre kantväljare</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tryck för att ersätta en emoji</string>
+  <string name="EditReactionsFragment__reset">Starta om</string>
+  <string name="EditReactionsFragment_save">Spara</string>
   <!--EOF-->
 </resources>

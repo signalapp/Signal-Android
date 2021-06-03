@@ -11,8 +11,11 @@ import android.graphics.PointF
 import android.graphics.RectF
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.PopupWindow
 import android.widget.ScrollView
 import android.widget.SeekBar
 import androidx.annotation.ColorInt
@@ -28,6 +31,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ui.ChatColorPreviewView
 import org.thoughtcrime.securesms.conversation.colors.ui.ChatColorSelectionViewModel
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.customizeOnDraw
@@ -193,6 +197,23 @@ class CustomChatColorCreatorPageFragment :
         save.setOnClickListener {
           viewModel.startSave(chatColor)
         }
+      }
+    }
+
+    if (page == 1 && SignalStore.chatColorsValues().shouldShowGradientTooltip) {
+      view.post {
+        SignalStore.chatColorsValues().shouldShowGradientTooltip = false
+        val contentView = layoutInflater.inflate(R.layout.gradient_tool_tooltip, view as ViewGroup, false)
+        val popupWindow = PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+        popupWindow.isOutsideTouchable = false
+        popupWindow.isFocusable = true
+
+        if (Build.VERSION.SDK_INT > 21) {
+          popupWindow.elevation = ViewUtil.dpToPx(8).toFloat()
+        }
+
+        popupWindow.showAsDropDown(gradientTool, 0, -gradientTool.measuredHeight + ViewUtil.dpToPx(48))
       }
     }
   }

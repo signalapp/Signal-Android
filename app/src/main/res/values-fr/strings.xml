@@ -634,6 +634,7 @@
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ce groupe est un groupe de messages multimédias non sécurisé. Pour converser en toute confidentialité, invitez vos contacts sur Signal.</string>
   <string name="ManageGroupActivity_invite_now">Inviter maintenant</string>
   <string name="ManageGroupActivity_more">plus</string>
+  <string name="ManageGroupActivity_add_group_description">Ajouter une description au groupe…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me signaler les mentions</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Recevoir des notifications si vous êtes mentionné dans des conversations en sourdine ?</string>
@@ -832,6 +833,7 @@
   <string name="Megaphones_new_group">Nouveau groupe</string>
   <string name="Megaphones_invite_friends">Inviter des amis</string>
   <string name="Megaphones_use_sms">Utiliser les textos</string>
+  <string name="Megaphones_appearance">Apparence</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Appel Signal en cours</string>
   <string name="NotificationBarManager__establishing_signal_call">Établissement de l’appel Signal</string>
@@ -1162,6 +1164,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Vous</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Pour aider à prévenir le spam sur Signal, veuillez procéder à la confirmation.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bloquer</string>
   <string name="RecipientPreferenceActivity_unblock">Débloquer</string>
@@ -2488,6 +2491,7 @@
   <!--NewDeviceTransferComplete-->
   <string name="NewDeviceTransferComplete__transfer_successful">Transfert réussi</string>
   <string name="NewDeviceTransferComplete__transfer_complete">Transfert terminé</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Poursuivre l’inscription</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Transfert de compte</string>
   <string name="DeviceToDeviceTransferService_status_ready">Preparing to connect to your other Android device…</string>
@@ -2498,6 +2502,7 @@
   <string name="DeviceToDeviceTransferService_status_service_connected">Transfert du compte…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">Terminé</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annuler et activer cette appareil</string>
   <!--AdvancedPreferenceFragment-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloquer</string>
@@ -2617,12 +2622,18 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Fond d’écran de la conversation</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Couleur de la conversation</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Réinitialiser la couleur de la conversation</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Réinitialiser la couleur de la conversation ?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Définir un fond d’écran</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Le mode sombre atténue le fond d’écran</string>
   <string name="ChatWallpaperFragment__contact_name">Nom du contact</string>
   <string name="ChatWallpaperFragment__reset">Réinitialiser</string>
   <string name="ChatWallpaperFragment__clear">Réinitialiser</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Aperçu du fond d’écran</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Réinitialiser toutes les couleurs</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Réinitialiser tous les fonds d’écran</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Réinitialiser le fond d\'écran</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Réinitialiser le fond d\'écran ?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Choisir parmi les photos</string>
   <string name="ChatWallpaperSelectionFragment__presets">Préréglages</string>
@@ -2644,13 +2655,19 @@
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">À propos de MobileCoin</string>
   <string name="payment_info_card_adding_funds">Ajout de fonds</string>
+  <string name="payment_info_card_hide_this_card">Masquer cette carte ?</string>
   <string name="payment_info_card_hide">Cacher</string>
   <string name="payment_info_card_update_pin">Mettre le NIP à jour</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">Désactiver dans transférer</string>
   <string name="DeactivateWalletFragment__deactivate">Désactiver</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Désactiver sans transférer ?</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Phrase de récupération</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Entrer manuellement</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Coller depuis le presse-papiers</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Coller la phrase de récupération</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Phrase de récupération</string>
   <string name="PaymentsRecoveryPasteFragment__next">Suivant</string>
   <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Phrase de récupération invalide</string>
@@ -2659,7 +2676,9 @@
   <string name="PaymentsRecoveryPhraseFragment__edit">Modifier</string>
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Votre phrase de récupération</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Phrase de récupération invalide</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Assurez-vous d’avoir correctement saisi votre phrase et réessayez.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Copier dans le presse-papiers ?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Si vous choisissez de stocker numériquement votre phrase de récupération, assurez-vous qu’elle le soit en toute sécurité dans un endroit de confiance.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Copier</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Revoir la phrase</string>
@@ -2683,7 +2702,9 @@
   <string name="GroupDescriptionDialog__group_description">Description du groupe</string>
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Rapide, plus léger</string>
   <string name="QualitySelectorBottomSheetDialog__high">Élevée</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Qualité d’image</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Invitez vos amis</string>
   <!--AccountSettingsFragment-->
@@ -2708,6 +2729,8 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquer les captures d’écran dans la liste des récents et dans l’appli</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Minuterie par défaut pour les nouvelles conversations</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Afficher l’icône d’état</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Afficher une icône dans les détails des messages qui ont été remis avec l’option « expéditeur scellé ».</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Si cette option est activée, les nouveaux messages envoyés et reçus dans cette conversation disparaîtront après avoir été lus.</string>
   <string name="ExpireTimerSettingsFragment__off">Désactivé</string>
@@ -2744,6 +2767,10 @@
   <string name="ChatColorSelectionFragment__duplicate">Dupliquer</string>
   <string name="ChatColorSelectionFragment__delete">Supprimer</string>
   <string name="ChatColorSelectionFragment__delete_color">Supprimer la couleur</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Cette couleur personnalisée est utilisée dans %1$d conversation. Souhaitez-vous la supprimer pour toutes les conversations ?</item>
+    <item quantity="other">Cette couleur personnalisée est utilisée dans %1$d conversations. Souhaitez-vous la supprimer pour toutes les conversations ?</item>
+  </plurals>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Unie</string>
   <string name="CustomChatColorCreatorFragment__gradient">Dégradée</string>
@@ -2752,8 +2779,20 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Enregistrer</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Modifier la couleur</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Cette couleur est utilisée dans %1$d conversation. Souhaitez-vous enregistrer les changements pour toutes les conversations ?</item>
+    <item quantity="other">Cette couleur est utilisée dans %1$d conversations. Souhaitez-vous enregistrer les changements pour toutes les conversations ?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Sélecteur de bord supérieur</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Sélecteur de bord inférieur</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Personnaliser les réactions</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Touchez pour remplacer un émoji</string>
+  <string name="EditReactionsFragment__reset">Réinitialiser</string>
+  <string name="EditReactionsFragment_save">Enregistrer</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Adapter automatiquement la couleur au fond d’écran</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Faites glisser pour modifier la direction du dégradé</string>
+  <string name="ChatColorsMegaphone__new_chat_colors">Nouvelles couleurs de conversation</string>
   <!--EOF-->
 </resources>

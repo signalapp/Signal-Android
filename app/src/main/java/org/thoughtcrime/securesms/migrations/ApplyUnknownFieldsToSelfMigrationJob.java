@@ -52,8 +52,16 @@ public class ApplyUnknownFieldsToSelfMigrationJob extends MigrationJob {
       return;
     }
 
-    Recipient                           self     = Recipient.self();
-    RecipientDatabase.RecipientSettings settings = DatabaseFactory.getRecipientDatabase(context).getRecipientSettingsForSync(self.getId());
+    Recipient                           self;
+    RecipientDatabase.RecipientSettings settings;
+
+    try {
+      self     = Recipient.self();
+      settings = DatabaseFactory.getRecipientDatabase(context).getRecipientSettingsForSync(self.getId());
+    } catch (RecipientDatabase.MissingRecipientException e) {
+      Log.w(TAG, "Unable to find self");
+      return;
+    }
 
     if (settings == null || settings.getSyncExtras().getStorageProto() == null) {
       Log.d(TAG, "No unknowns to apply");

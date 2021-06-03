@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.ChatColorsDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase;
+import org.thoughtcrime.securesms.database.EmojiSearchDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -190,8 +191,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int SERVER_GUID                      = 99;
   private static final int CHAT_COLORS                      = 100;
   private static final int AVATAR_COLORS                    = 101;
+  private static final int EMOJI_SEARCH                     = 102;
 
-  private static final int    DATABASE_VERSION = 101;
+  private static final int    DATABASE_VERSION = 102;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -224,6 +226,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     db.execSQL(MentionDatabase.CREATE_TABLE);
     db.execSQL(PaymentDatabase.CREATE_TABLE);
     db.execSQL(ChatColorsDatabase.CREATE_TABLE);
+    db.execSQL(EmojiSearchDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE);
 
@@ -1504,6 +1507,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
             db.update("recipient", values, "_id = ?", new String[] { String.valueOf(id) });
           }
         }
+      }
+
+      if (oldVersion < EMOJI_SEARCH) {
+        db.execSQL("CREATE VIRTUAL TABLE emoji_search USING fts5(label, emoji UNINDEXED)");
       }
 
       db.setTransactionSuccessful();

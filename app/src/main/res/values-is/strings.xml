@@ -838,6 +838,7 @@
   <string name="Megaphones_new_group">Nýr hópur</string>
   <string name="Megaphones_invite_friends">Bjóða vinum</string>
   <string name="Megaphones_use_sms">Nota SMS</string>
+  <string name="Megaphones_appearance">Útlit</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Hringing með Signal í gangi</string>
   <string name="NotificationBarManager__establishing_signal_call">Er að tengja hringingu með Signal</string>
@@ -2931,5 +2932,8 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Vista</string>
   <!--ChatColorGradientTool-->
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__reset">Endurstilla</string>
+  <string name="EditReactionsFragment_save">Vista</string>
   <!--EOF-->
 </resources>

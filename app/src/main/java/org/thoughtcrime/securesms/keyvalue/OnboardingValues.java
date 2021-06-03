@@ -15,6 +15,7 @@ public final class OnboardingValues extends SignalStoreValues {
   private static final String SHOW_NEW_GROUP      = "onboarding.new_group";
   private static final String SHOW_INVITE_FRIENDS = "onboarding.invite_friends";
   private static final String SHOW_SMS            = "onboarding.sms";
+  private static final String SHOW_APPEARANCE     = "onboarding.appearance";
 
   OnboardingValues(@NonNull KeyValueStore store) {
     super(store);
@@ -25,6 +26,7 @@ public final class OnboardingValues extends SignalStoreValues {
     putBoolean(SHOW_NEW_GROUP, true);
     putBoolean(SHOW_INVITE_FRIENDS, true);
     putBoolean(SHOW_SMS, true);
+    putBoolean(SHOW_APPEARANCE, true);
   }
 
   @Override
@@ -36,12 +38,14 @@ public final class OnboardingValues extends SignalStoreValues {
     setShowNewGroup(false);
     setShowInviteFriends(false);
     setShowSms(false);
+    setShowAppearance(false);
   }
 
   public boolean hasOnboarding(@NonNull Context context) {
     return shouldShowNewGroup()      ||
            shouldShowInviteFriends() ||
-           shouldShowSms(context);
+           shouldShowSms(context)    ||
+           shouldShowAppearance();
   }
 
   public void setShowNewGroup(boolean value) {
@@ -66,5 +70,13 @@ public final class OnboardingValues extends SignalStoreValues {
 
   public boolean shouldShowSms(@NonNull Context context) {
     return getBoolean(SHOW_SMS, false) && !Util.isDefaultSmsProvider(context) && PhoneNumberFormatter.getLocalCountryCode() != 91;
+  }
+
+  public void setShowAppearance(boolean value) {
+    putBoolean(SHOW_APPEARANCE, value);
+  }
+
+  public boolean shouldShowAppearance() {
+    return getBoolean(SHOW_APPEARANCE, false);
   }
 }

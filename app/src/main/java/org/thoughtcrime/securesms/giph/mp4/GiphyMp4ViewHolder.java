@@ -23,11 +23,14 @@ import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 /**
  * Holds a view which will either play back an MP4 gif or show its still.
  */
 final class GiphyMp4ViewHolder extends RecyclerView.ViewHolder implements GiphyMp4Playable {
+
+  private static final Projection.Corners CORNERS = new Projection.Corners(ViewUtil.dpToPx(8));
 
   private final AspectRatioFrameLayout     container;
   private final ImageView                  stillImage;
@@ -43,7 +46,7 @@ final class GiphyMp4ViewHolder extends RecyclerView.ViewHolder implements GiphyM
                      @NonNull GiphyMp4MediaSourceFactory mediaSourceFactory)
   {
     super(itemView);
-    this.container          = (AspectRatioFrameLayout) itemView;
+    this.container          = itemView.findViewById(R.id.container);
     this.listener           = listener;
     this.stillImage         = itemView.findViewById(R.id.still_image);
     this.placeholder        = new ColorDrawable(Util.getRandomElement(ChatColorsPalette.Names.getAll()).getColor(itemView.getContext()));
@@ -57,7 +60,6 @@ final class GiphyMp4ViewHolder extends RecyclerView.ViewHolder implements GiphyM
     mediaSource = mediaSourceFactory.create(Uri.parse(giphyImage.getMp4PreviewUrl()));
 
     container.setAspectRatio(aspectRatio);
-    container.setBackground(placeholder);
 
     loadPlaceholderImage(giphyImage);
 
@@ -81,7 +83,7 @@ final class GiphyMp4ViewHolder extends RecyclerView.ViewHolder implements GiphyM
 
   @Override
   public @NonNull Projection getProjection(@NonNull ViewGroup recyclerView) {
-    return Projection.relativeToParent(recyclerView, itemView, null);
+    return Projection.relativeToParent(recyclerView, container, CORNERS);
   }
 
   @Override

@@ -925,6 +925,7 @@
   <string name="Megaphones_new_group">Новая группа</string>
   <string name="Megaphones_invite_friends">Пригласить друзей</string>
   <string name="Megaphones_use_sms">Использовать SMS</string>
+  <string name="Megaphones_appearance">Внешний вид</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Идёт звонок через Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Начинается звонок через Signal</string>
@@ -3125,5 +3126,14 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Выбор верхней грани</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Выбор нижней грани</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Настроить реакции</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Нажмите, чтобы заменить эмодзи</string>
+  <string name="EditReactionsFragment__reset">Сбросить</string>
+  <string name="EditReactionsFragment_save">Сохранить</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">«Авто» выбирает цвет, соответствующий обоям</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Перетащите для изменения направления градиента</string>
+  <string name="ChatColorsMegaphone__new_chat_colors">Новые цвета чатов</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Мы поменяли цвета чатов, чтобы предоставить вам больше опций и сделать чаты более удобными для чтения.</string>
   <!--EOF-->
 </resources>

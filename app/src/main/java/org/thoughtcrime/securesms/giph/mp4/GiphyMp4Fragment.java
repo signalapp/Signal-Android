@@ -67,5 +67,6 @@ public class GiphyMp4Fragment extends Fragment {
       adapter.submitList(images, progressBar::hide);
     });
     viewModel.getPagingController().observe(getViewLifecycleOwner(), adapter::setPagingController);
+    viewModel.getPagedData().observe(getViewLifecycleOwner(), unused -> recycler.scrollToPosition(0));
   }
 }

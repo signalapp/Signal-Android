@@ -33,7 +33,6 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -403,10 +402,9 @@ public class AttachmentManager {
                .execute();
   }
 
-  public static void selectGif(Activity activity, int requestCode, boolean isForMms, @ColorInt int color) {
+  public static void selectGif(Activity activity, int requestCode, boolean isForMms) {
     Intent intent = new Intent(activity, GiphyActivity.class);
     intent.putExtra(GiphyActivity.EXTRA_IS_MMS, isForMms);
-    intent.putExtra(GiphyActivity.EXTRA_COLOR, color);
     activity.startActivityForResult(intent, requestCode);
   }
 

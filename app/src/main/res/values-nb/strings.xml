@@ -608,6 +608,7 @@
   <string name="ManageGroupActivity_mute_notifications">Skru av varsler</string>
   <string name="ManageGroupActivity_custom_notifications">Egendefinerte varsler</string>
   <string name="ManageGroupActivity_mentions">Mentions</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Samtalefarge &amp; -bakgrunn</string>
   <string name="ManageGroupActivity_until_s">Frem til %1$s</string>
   <string name="ManageGroupActivity_always">Evig tid</string>
   <string name="ManageGroupActivity_off">Av</string>
@@ -835,6 +836,7 @@
   <string name="Megaphones_new_group">Ny gruppe</string>
   <string name="Megaphones_invite_friends">Inviter venner</string>
   <string name="Megaphones_use_sms">Bruk SMS</string>
+  <string name="Megaphones_appearance">Utseende</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Setter opp Signal-anrop</string>
@@ -1956,6 +1958,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__appearance">Utseende</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__chat_wallpaper">Samtale bakgrunn</string>
+  <string name="preferences__chat_color_and_wallpaper">Samtalefarge &amp; -bakgrunn</string>
   <string name="preferences__disable_pin">Deaktiver PIN-kode</string>
   <string name="preferences__enable_pin">Aktiver PIN-kode</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN-koden vil du miste all informasjon når du gjennomfører Signal-registrering på nytt, med mindre du manuelt tar en sikkerhetskopi og gjenoppretter innholdet. Du kan ikke skru på registreringslås mens PIN-koden er deaktivert.</string>
@@ -2697,12 +2700,24 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ChatWallpaperActivity__chat_wallpaper">Samtale bakgrunn</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Samtalefarge</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Tilbakestill samtalefarger</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Tilbakestill samtalefarge</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Tilbakestill samtalefarge?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Sett bakgrunn</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Mørkt tema demper bakgrunnen</string>
   <string name="ChatWallpaperFragment__contact_name">Kontakt navn</string>
   <string name="ChatWallpaperFragment__reset">Tilbakestill</string>
   <string name="ChatWallpaperFragment__clear">Slett</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Forhåndsvisning av bakgrunn</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vil du tibakestille alle samtalers farge?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Vil du overstyre alle bakgrunner?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Tilbakestill standardfarger</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Tilbakestill alle farger</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Tilbakestill standardbakgrunn</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Fjern alle bakgrunner</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Tilbakestill bakgrunner</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Tilbakestill bakgrunn</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Tilbakestill bakgrunn?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Velg fra bilder</string>
   <string name="ChatWallpaperSelectionFragment__presets">Forhåndsvalgte</string>
@@ -2749,6 +2764,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Forrige</string>
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Gjenopprettingsfrasen din</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Sjekk at du har oppgitt riktig gjenopprettingsfrase.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Ikke ta skjermbilder eller send frasen via e-post.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Betalingskontoen ble gjenopprettet.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Ugyldig gjenopprettingsfrase</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Kopier til utklippstavlen?</string>
@@ -2779,6 +2795,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ingen av kontaktene din eller folk du prater med er i denne gruppen. Se nøye gjennom forespørsler før du aksepterer, så du unngår uønskede meldinger.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Om meldingsforespørsler</string>
   <string name="GroupsInCommonMessageRequest__okay">Greit</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Her er en forhåndsvisning av samtalefargen.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Fargen synes kun for deg.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Gruppebeskrivelse</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2846,12 +2864,35 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Samtaler</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Auto</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Bruk selvvalgt farge</string>
   <string name="ChatColorSelectionFragment__chat_color">Samtalefarge</string>
   <string name="ChatColorSelectionFragment__edit">Rediger</string>
+  <string name="ChatColorSelectionFragment__duplicate">Duplikat</string>
   <string name="ChatColorSelectionFragment__delete">Slett</string>
+  <string name="ChatColorSelectionFragment__delete_color">Fjern farge</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Denne selvvalgte fargen brukes i %1$d samtale. Ønsker du å fjerne den?</item>
+    <item quantity="other">Denne selvvalgte fargen brukes i %1$d samtaler. Ønsker du å fjerne den for alle samtaler?</item>
+  </plurals>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Hel farge</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Graderinger</string>
+  <string name="CustomChatColorCreatorFragment__hue">Fargetone</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Fargemetning</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Lagre</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Endre farge</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Denne selvvalgte fargen brukes i %1$d samtale. Ønsker du å fjerne den?</item>
+    <item quantity="other">Denne fargen brukes i %1$d samtaler. Ønsker du å lagre endringen for alle samtalene?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Øvre velger</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Nedre velger</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Trykk for å erstatte en emoji</string>
+  <string name="EditReactionsFragment__reset">Tilbakestill</string>
+  <string name="EditReactionsFragment_save">Lagre</string>
   <!--EOF-->
 </resources>

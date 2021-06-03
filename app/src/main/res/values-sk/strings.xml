@@ -925,6 +925,7 @@
   <string name="Megaphones_new_group">Nová skupina</string>
   <string name="Megaphones_invite_friends">Pozvať priateľov</string>
   <string name="Megaphones_use_sms">Použiť SMS</string>
+  <string name="Megaphones_appearance">Vzhľad</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Prebieha Signal hovor</string>
   <string name="NotificationBarManager__establishing_signal_call">Príprava na Signal hovor</string>
@@ -3131,5 +3132,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Volič horného okraja</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Volič spodného okraja</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Ťuknutím nahradíte emotikon</string>
+  <string name="EditReactionsFragment__reset">Resetovať</string>
+  <string name="EditReactionsFragment_save">Uložiť</string>
   <!--EOF-->
 </resources>

@@ -23,6 +23,8 @@ import java.util.List;
 
 /**
  * A provider to select emoji in the {@link org.thoughtcrime.securesms.components.emoji.MediaKeyboard}.
+ *
+ * TODO [alex] -- Are we still using any of this?
  */
 public class EmojiKeyboardProvider implements MediaKeyboardProvider,
                                               MediaKeyboardProvider.TabIconProvider,
@@ -31,6 +33,7 @@ public class EmojiKeyboardProvider implements MediaKeyboardProvider,
 {
   private static final KeyEvent DELETE_KEY_EVENT = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL);
 
+  // TODO [alex] -- We are using this.
   public static final String RECENT_STORAGE_KEY = "pref_recent_emoji2";
 
   private final Context              context;
@@ -146,7 +149,7 @@ public class EmojiKeyboardProvider implements MediaKeyboardProvider,
 
     @Override
     public @NonNull Object instantiateItem(@NonNull ViewGroup container, int position) {
-      EmojiPageView page = new EmojiPageView(context, emojiSelectionListener, variationSelectorListener, true);
+      EmojiPageView page = new EmojiPageView(context, emojiSelectionListener, variationSelectorListener, true, null);
       page.setModel(pages.get(position));
       container.addView(page);
       return page;

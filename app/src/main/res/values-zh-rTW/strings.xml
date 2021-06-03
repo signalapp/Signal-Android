@@ -579,7 +579,7 @@
   <string name="ManageGroupActivity_mute_notifications">將通知調整為靜音</string>
   <string name="ManageGroupActivity_custom_notifications">自訂通知</string>
   <string name="ManageGroupActivity_mentions">提及</string>
-  <string name="ManageGroupActivity_chat_color_and_wallpaper">聊天顏色&amp;壁紙</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">聊天顏色與壁紙</string>
   <string name="ManageGroupActivity_until_s">直到 %1$s</string>
   <string name="ManageGroupActivity_always">永遠</string>
   <string name="ManageGroupActivity_off">關</string>
@@ -607,7 +607,7 @@
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">這是一個不安全的MMS群組。 要私下聊天，請邀請你的聯絡人加入Signal。</string>
   <string name="ManageGroupActivity_invite_now">立即邀請</string>
   <string name="ManageGroupActivity_more">更多</string>
-  <string name="ManageGroupActivity_add_group_description">新增群組說明…</string>
+  <string name="ManageGroupActivity_add_group_description">新增群組描述…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">通知我提及。</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">在靜音聊天中提及你時收到通知嗎？</string>
@@ -796,6 +796,7 @@
   <string name="Megaphones_new_group">新增群組</string>
   <string name="Megaphones_invite_friends">邀請好友</string>
   <string name="Megaphones_use_sms">使用 SMS</string>
+  <string name="Megaphones_appearance">介面設定</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
@@ -1891,7 +1892,7 @@
   <string name="preferences__appearance">介面設定</string>
   <string name="preferences__theme">主題</string>
   <string name="preferences__chat_wallpaper">聊天壁紙</string>
-  <string name="preferences__chat_color_and_wallpaper">聊天顏色&amp;壁紙</string>
+  <string name="preferences__chat_color_and_wallpaper">聊天顏色與壁紙</string>
   <string name="preferences__disable_pin">停用 PIN 碼</string>
   <string name="preferences__enable_pin">啟用 PIN 碼</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果你停用 PIN 碼，則除非你進行手動備份和還原，否則當你重新註冊 Signal 時，將會遺失所有資料。停用 PIN 碼時無法開啟註冊鎖定。</string>
@@ -2681,7 +2682,7 @@
   <string name="ChatWallpaperFragment__reset_all_wallpapers">重設所有壁紙</string>
   <string name="ChatWallpaperFragment__reset_wallpapers">重設壁紙</string>
   <string name="ChatWallpaperFragment__reset_wallpaper">重設壁紙</string>
-  <string name="ChatWallpaperFragment__reset_wallpaper_question">要重設壁紙嗎</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">要重設壁紙嗎？</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">從照片中選擇</string>
   <string name="ChatWallpaperSelectionFragment__presets">預設值</string>
@@ -2797,7 +2798,7 @@
   <string name="AppSettingsFragment__invite_your_friends">邀請你的朋友</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">帳號</string>
-  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">隨著時間的流逝，你的詢問頻率會降低</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">詢問您的次數將會隨著時間減少</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">要求你的 Signal PIN 碼才能在 Signal 再次註冊你的電話號碼</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">鍵盤</string>
@@ -2807,8 +2808,8 @@
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">訊息</string>
   <string name="NotificationsSettingsFragment__calls">通話</string>
-  <string name="NotificationsSettingsFragment__notify_when">在…時通知</string>
-  <string name="NotificationsSettingsFragment__contact_joins_signal">聯絡人加入Signal</string>
+  <string name="NotificationsSettingsFragment__notify_when">發生以下事件時通知你</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">聯絡人加入 Signal</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">已封鎖</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d 個聯絡人</string>
@@ -2829,7 +2830,7 @@
   <string name="ExpireTimerSettingsFragment__4_weeks">4 週</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 週</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 天</string>
-  <string name="ExpireTimerSettingsFragment__8_hours">8小時</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 小時</string>
   <string name="ExpireTimerSettingsFragment__1_hour">1 小時</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 分鐘</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 秒</string>
@@ -2846,9 +2847,9 @@
   <string name="HelpSettingsFragment__contact_us">與我們聯繫</string>
   <string name="HelpSettingsFragment__version">版本</string>
   <string name="HelpSettingsFragment__debug_log">除錯紀錄</string>
-  <string name="HelpSettingsFragment__terms_amp_privacy_policy">條款與條件；隱私權政策</string>
-  <string name="HelpFragment__copyright_signal_messenger">Signal Messenger版權所有</string>
-  <string name="HelpFragment__licenced_under_the_gplv3">根據GPLv3授權</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">服務條款與隱私權政策</string>
+  <string name="HelpFragment__copyright_signal_messenger">Signal Messenger 版權所有</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">根據 GPLv3 授權</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">通話</string>
   <!--ChatColorSelectionFragment-->
@@ -2863,8 +2864,8 @@
     <item quantity="other">此自定義顏色用於%1$d的聊天中。 你要刪除所有聊天記錄嗎？</item>
   </plurals>
   <!--CustomChatColorCreatorFragment-->
-  <string name="CustomChatColorCreatorFragment__solid">立體</string>
-  <string name="CustomChatColorCreatorFragment__gradient">坡度</string>
+  <string name="CustomChatColorCreatorFragment__solid">實色</string>
+  <string name="CustomChatColorCreatorFragment__gradient">漸層</string>
   <string name="CustomChatColorCreatorFragment__hue">色調</string>
   <string name="CustomChatColorCreatorFragment__saturation">飽和度</string>
   <!--CustomChatColorCreatorFragmentPage-->
@@ -2876,5 +2877,9 @@
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">頂部邊緣選擇器</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">底部邊緣選擇器</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">點擊即可替換表情符號</string>
+  <string name="EditReactionsFragment__reset">重設</string>
+  <string name="EditReactionsFragment_save">儲存</string>
   <!--EOF-->
 </resources>

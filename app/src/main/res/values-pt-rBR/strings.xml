@@ -58,7 +58,7 @@
   <string name="AttachmentKeyboard_file">Arquivo</string>
   <string name="AttachmentKeyboard_contact">Contato</string>
   <string name="AttachmentKeyboard_location">Local</string>
-  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">O Signal precisa de permissão para mostrar suas fotos e vídeos.</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal precisa de permissão para mostrar suas fotos e vídeos.</string>
   <string name="AttachmentKeyboard_give_access">Permitir acesso</string>
   <string name="AttachmentKeyboard_payment">Pagamento</string>
   <!--AttachmentManager-->
@@ -839,6 +839,7 @@
   <string name="Megaphones_new_group">Novo grupo</string>
   <string name="Megaphones_invite_friends">Convidar amigos(as)</string>
   <string name="Megaphones_use_sms">Usar SMS</string>
+  <string name="Megaphones_appearance">Aparência</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal em andamento</string>
   <string name="NotificationBarManager__establishing_signal_call">Estabelecendo chamada Signal</string>
@@ -2084,6 +2085,7 @@
   <string name="PaymentsHomeFragment__send">Enviar</string>
   <string name="PaymentsHomeFragment__sent_s">Enviou %1$s</string>
   <string name="PaymentsHomeFragment__received_s">Recebeu %1$s</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Conversão de moeda</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Desativar pagamentos</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Senha de recuperação</string>
   <string name="PaymentsHomeFragment__help">Ajuda</string>
@@ -2091,6 +2093,8 @@
   <string name="PaymentsHomeFragment__received_payment">Pagamento recebido</string>
   <string name="PaymentsHomeFragment__processing_payment">Processando o pagamento</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Conversão de moeda não está disponível</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Não é possível exibir a conversão de moeda. Verifique a conexão do seu telefone e tente novamente.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Pagamentos não estão disponíveis na sua região.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Não foi possível habilitar pagamentos. Tente mais tarde.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Desativar Pagamentos?</string>
@@ -2172,6 +2176,7 @@
   <string name="ConfirmPayment__payment_complete">Pagamento concluído</string>
   <string name="ConfirmPayment__payment_failed">Falha ao pagar</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Destinatário inválido</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Essa pessoa não ativou o módulo de pagamentos</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Não foi possível obter a taxa de transação. Para este pagamento prosseguir, toque em ok para tentar novamente.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
@@ -2658,9 +2663,9 @@
   <string name="BlockedUsersActivity__failed_to_block_s">Falha ao bloquear \"%1$s\"</string>
   <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" foi desbloqueado.</string>
   <!--ReviewCardDialogFragment-->
-  <string name="ReviewCardDialogFragment__review_members">Revisar os Membros</string>
-  <string name="ReviewCardDialogFragment__review_request">Analisar o Pedido</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d membros do grupo têm o mesmo nome, revise os membros abaixo e decida o que fazer.</string>
+  <string name="ReviewCardDialogFragment__review_members">Revisar os membros</string>
+  <string name="ReviewCardDialogFragment__review_request">Analisar o pedido</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d membros do grupo têm o mesmo nome. Revise os membros abaixo e decida o que fazer.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Se você não tiver certeza de quem é o pedido, revise os contatos abaixo e tome as providências.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nenhum outro grupo em comum.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Não há grupos em comum.</string>
@@ -2827,6 +2832,7 @@
   <string name="PaymentsRecoveryEntryFragment__next">Próximo</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">Palavra inválida</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Área de transferência limpa.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Exibir</string>
   <!--UnreadPayments-->
@@ -2929,8 +2935,21 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Salvar</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Editar cor</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Essa cor é usada em %1$d conversa. Deseja salvar as alterações para todas as conversas?</item>
+    <item quantity="other">Essa cor é usada em %1$d conversas. Deseja salvar as alterações para todas as conversas?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Selecionador da borda superior</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Selecionador da borda inferior</string>
+  <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Personalizar as reações</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Toque para substituir um emoji</string>
+  <string name="EditReactionsFragment__reset">Redefinir</string>
+  <string name="EditReactionsFragment_save">Salvar</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Auto combina a cor com o papel de parede</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Arraste para mudar a direção do gradiente</string>
+  <string name="ChatColorsMegaphone__new_chat_colors">Novas cores de conversas</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Mudamos as cores das conversas para oferecer mais opções e facilitar a leitura das conversas.</string>
   <!--EOF-->
 </resources>

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -23,6 +24,11 @@ public class EmojiValues extends SignalStoreValues {
   private static final String PREFIX               = "emojiPref__";
   private static final String NEXT_SCHEDULED_CHECK = PREFIX + "next_scheduled_check";
   private static final String REACTIONS_LIST       = PREFIX + "reactions_list";
+  private static final String SEARCH_VERSION       = PREFIX + "search_version";
+  private static final String SEARCH_LANGUAGE      = PREFIX + "search_language";
+  private static final String LAST_SEARCH_CHECK    = PREFIX + "last_search_check";
+
+  public static final String NO_LANGUAGE = "NO_LANGUAGE";
 
   EmojiValues(@NonNull KeyValueStore store) {
     super(store);
@@ -38,11 +44,11 @@ public class EmojiValues extends SignalStoreValues {
     return Collections.singletonList(REACTIONS_LIST);
   }
 
-  public long getNextScheduledCheck() {
+  public long getNextScheduledImageCheck() {
     return getStore().getLong(NEXT_SCHEDULED_CHECK, 0);
   }
 
-  public void setNextScheduledCheck(long nextScheduledCheck) {
+  public void setNextScheduledImageCheck(long nextScheduledCheck) {
     putLong(NEXT_SCHEDULED_CHECK, nextScheduledCheck);
   }
 
@@ -73,5 +79,32 @@ public class EmojiValues extends SignalStoreValues {
 
   public void setReactions(List<String> reactions) {
     putString(REACTIONS_LIST, Util.join(reactions, ","));
+  }
+
+  public void onSearchIndexUpdated(int version, @NonNull String language) {
+    getStore().beginWrite()
+              .putInteger(SEARCH_VERSION, version)
+              .putString(SEARCH_LANGUAGE, language)
+              .apply();
+  }
+
+  public boolean hasSearchIndex() {
+    return getSearchVersion() > 0 && getSearchLanguage() != null;
+  }
+
+  public int getSearchVersion() {
+    return getInteger(SEARCH_VERSION, 0);
+  }
+
+  public @Nullable String getSearchLanguage() {
+    return getString(SEARCH_LANGUAGE, null);
+  }
+
+  public long getLastSearchIndexCheck() {
+    return getLong(LAST_SEARCH_CHECK, 0);
+  }
+
+  public void setLastSearchIndexCheck(int time) {
+    putLong(LAST_SEARCH_CHECK, time);
   }
 }

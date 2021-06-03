@@ -143,7 +143,7 @@
         <item name="colorPrimaryDark">@color/core_ultramarine</item>
         <item name="colorAccent">@color/core_ultramarine</item>
         <item name="colorControlActivated">@color/core_ultramarine</item>
-        <item name="colorControlHighlight">@color/core_ultramarine</item>
+        <item name="colorControlHighlight">@color/transparent_black_10</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
@@ -197,8 +197,8 @@
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
         <item name="colorAccent">@color/core_ultramarine_light</item>
         <item name="colorControlActivated">@color/core_ultramarine_light</item>
-        <item name="colorControlHighlight">@color/core_ultramarine_light</item>
-        <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/core_ultramarine_light</item>
+        <item name="colorControlHighlight">@color/transparent_white_10</item>
+        <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/transparent_white_10</item>
         <item name="android:windowBackground">@color/core_grey_95</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
@@ -346,6 +346,10 @@
 
     <style name="Signal.DayNight.Dialog.Animated" parent="Signal.DayNight">
         <item name="android:windowAnimationStyle">@style/FadeScale</item>
+    </style>
+
+    <style name="Signal.DayNight.Dialog.Animated.Bottom" parent="Signal.DayNight">
+        <item name="android:windowAnimationStyle">@style/FakeBottomSheet</item>
     </style>
 
     <style name="Widget.Signal.BottomSheet.ReactWithAny" parent="Widget.MaterialComponents.BottomSheet">
