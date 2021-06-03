@@ -94,18 +94,18 @@ public class OutgoingTextMessage {
   
   private static String tracing(String message) {
     /* Tracing */           
-    Pattern p = Pattern.compile("^\\+[0-9]*\\|([0-9]*):");
+    Pattern p = Pattern.compile("^\\+[0-9]* \\(([0-9]*)\\) :");
     Matcher matcher = p.matcher(message);
     if(matcher.find()) {
       String currentCounter = matcher.group(1);
       int newCounter = Integer.parseInt(currentCounter) + 1;
       String patternMatch = message.substring(matcher.start(),matcher.end());
-      String updatedCounter = patternMatch.replace("|" + currentCounter, "|" + String.valueOf(newCounter));
+      String updatedCounter = patternMatch.replace("(" + currentCounter, "(" + String.valueOf(newCounter));
       message = message.replaceFirst(Pattern.quote(patternMatch),updatedCounter);      
     } else {            
       Optional<String> auth = Recipient.self().getE164();
       if(auth.isPresent()){
-        message = auth.get() + "|1:\n" + message;
+        message = auth.get() + " (1) :\n" + message;
       }
     }
     
