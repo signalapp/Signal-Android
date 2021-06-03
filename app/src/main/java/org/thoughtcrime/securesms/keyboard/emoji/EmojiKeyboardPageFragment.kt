@@ -27,6 +27,7 @@ class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fr
   private lateinit var callback: Callback
   private lateinit var pagesAdapter: EmojiKeyboardPageAdapter
   private lateinit var categoriesAdapter: EmojiKeyboardPageCategoriesAdapter
+  private lateinit var searchBar: KeyboardPageSearchView
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
@@ -38,6 +39,7 @@ class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fr
     super.onViewCreated(view, savedInstanceState)
     emojiPager = view.findViewById(R.id.emoji_pager)
     searchView = view.findViewById(R.id.emoji_search)
+    searchBar = view.findViewById(R.id.emoji_keyboard_search_text)
     emojiCategoriesRecycler = view.findViewById(R.id.emoji_categories_recycler)
     backspaceView = view.findViewById(R.id.emoji_backspace)
   }
@@ -47,7 +49,7 @@ class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fr
 
     viewModel = ViewModelProviders.of(requireActivity()).get(EmojiKeyboardPageViewModel::class.java)
 
-    pagesAdapter = EmojiKeyboardPageAdapter(this, this, EmojiKeyboardPageSearchViewCallbacks())
+    pagesAdapter = EmojiKeyboardPageAdapter(this, this)
 
     categoriesAdapter = EmojiKeyboardPageCategoriesAdapter { key ->
       viewModel.onKeySelected(key)
@@ -63,6 +65,8 @@ class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fr
 
     emojiPager.adapter = pagesAdapter
     emojiCategoriesRecycler.adapter = categoriesAdapter
+
+    searchBar.callbacks = EmojiKeyboardPageSearchViewCallbacks()
 
     searchView.setOnClickListener {
       callback.openEmojiSearch()

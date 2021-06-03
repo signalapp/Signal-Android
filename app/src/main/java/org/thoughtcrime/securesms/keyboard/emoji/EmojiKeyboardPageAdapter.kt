@@ -9,16 +9,16 @@ import org.thoughtcrime.securesms.util.MappingViewHolder
 
 class EmojiKeyboardPageAdapter(
   private val emojiSelectionListener: EmojiKeyboardProvider.EmojiEventListener,
-  private val variationSelectorListener: EmojiPageViewGridAdapter.VariationSelectorListener,
-  private val searchCallbacks: KeyboardPageSearchView.Callbacks
+  private val variationSelectorListener: EmojiPageViewGridAdapter.VariationSelectorListener
 ) : MappingAdapter() {
 
   init {
     registerFactory(EmojiPageMappingModel::class.java) { parent ->
-      val pageView = EmojiPageView(parent.context, emojiSelectionListener, variationSelectorListener, true, searchCallbacks)
+      val pageView = EmojiPageView(parent.context, emojiSelectionListener, variationSelectorListener, true)
 
       val layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
       pageView.layoutParams = layoutParams
+      pageView.presentForEmojiKeyboard()
 
       ViewHolder(pageView)
     }

@@ -40,7 +40,7 @@ class EmojiSearchFragment : Fragment(R.layout.emoji_search_fragment), EmojiPageV
     val searchBar: KeyboardPageSearchView = view.findViewById(R.id.emoji_search_view)
     val resultsContainer: FrameLayout = view.findViewById(R.id.emoji_search_results_container)
     val noResults: TextView = view.findViewById(R.id.emoji_search_empty)
-    val emojiPageView = EmojiPageView(requireContext(), eventListener, this, true, null, LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false), R.layout.emoji_search_result_display_item)
+    val emojiPageView = EmojiPageView(requireContext(), eventListener, this, true, LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false), R.layout.emoji_search_result_display_item)
 
     resultsContainer.addView(emojiPageView)
 

@@ -1,39 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/emoji"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/signal_background_secondary">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/emoji_keyboard_search_appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/signal_background_secondary"
-        app:elevation="0dp"
-        app:expanded="false">
-
-        <org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
-            android:id="@+id/emoji_keyboard_search_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:click_only="true"
-            app:layout_scrollFlags="scroll"
-            app:search_hint="@string/KeyboardPagerFragment_search_emoji"
-            app:show_always="true" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/emoji"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="8dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    android:clipToPadding="false"
+    android:paddingBottom="8dp" />

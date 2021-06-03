@@ -9,22 +9,17 @@ import android.widget.FrameLayout;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
-import com.google.android.material.appbar.AppBarLayout;
 
-import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.VariationSelectorListener;
-import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
 import org.thoughtcrime.securesms.util.MappingModelList;
-
-import java.util.Objects;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class EmojiPageView extends FrameLayout implements VariationSelectorListener {
   private static final String TAG = Log.tag(EmojiPageView.class);
@@ -36,23 +31,19 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
   private RecyclerView.OnItemTouchListener scrollDisabler;
   private VariationSelectorListener        variationSelectorListener;
   private EmojiVariationSelectorPopup      popup;
-  private AppBarLayout                     appBarLayout;
-  private boolean                          searchEnabled;
 
   public EmojiPageView(@NonNull Context context,
                        @NonNull EmojiEventListener emojiSelectionListener,
                        @NonNull VariationSelectorListener variationSelectorListener,
-                       boolean allowVariations,
-                       @Nullable KeyboardPageSearchView.Callbacks searchCallbacks)
+                       boolean allowVariations)
   {
-    this(context, emojiSelectionListener, variationSelectorListener, allowVariations, searchCallbacks, new GridLayoutManager(context, 8), R.layout.emoji_display_item);
+    this(context, emojiSelectionListener, variationSelectorListener, allowVariations, new GridLayoutManager(context, 8), R.layout.emoji_display_item);
   }
 
   public EmojiPageView(@NonNull Context context,
                        @NonNull EmojiEventListener emojiSelectionListener,
                        @NonNull VariationSelectorListener variationSelectorListener,
                        boolean allowVariations,
-                       @Nullable KeyboardPageSearchView.Callbacks searchCallbacks,
                        @NonNull RecyclerView.LayoutManager layoutManager,
                        @LayoutRes int displayItemLayoutResId)
   {
@@ -71,14 +62,17 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
                                                              allowVariations,
                                                              displayItemLayoutResId);
 
-    this.appBarLayout = view.findViewById(R.id.emoji_keyboard_search_appbar);
-    ((CoordinatorLayout.LayoutParams) this.appBarLayout.getLayoutParams()).setBehavior(new BlockableScrollBehavior());
-
-    KeyboardPageSearchView searchView = view.findViewById(R.id.emoji_keyboard_search_text);
-    searchView.setCallbacks(searchCallbacks);
-
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setItemAnimator(null);
+  }
+
+  public void presentForEmojiKeyboard() {
+    recyclerView.setPadding(recyclerView.getPaddingLeft(),
+                            recyclerView.getPaddingTop(),
+                            recyclerView.getPaddingRight(),
+                            recyclerView.getPaddingBottom() + ViewUtil.dpToPx(56));
+
+    recyclerView.setClipToPadding(false);
   }
 
   public void onSelected() {
@@ -96,8 +90,7 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
   }
 
   public void bindSearchableAdapter(@Nullable EmojiPageModel model) {
-    this.searchEnabled = true;
-    this.model         = model;
+    this.model = model;
 
     EmojiPageViewGridAdapter adapter = adapterFactory.create();
     recyclerView.setAdapter(adapter);
@@ -159,23 +152,6 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
 
     @Override
     public void onRequestDisallowInterceptTouchEvent(boolean b) { }
-  }
-
-  private class BlockableScrollBehavior extends AppBarLayout.Behavior {
-    @Override public boolean onStartNestedScroll(@NonNull CoordinatorLayout parent,
-                                                 @NonNull AppBarLayout child,
-                                                 @NonNull View directTargetChild,
-                                                 View target,
-                                                 int nestedScrollAxes,
-                                                 int type)
-    {
-      return searchEnabled && super.onStartNestedScroll(parent, child, directTargetChild, target, nestedScrollAxes, type);
-    }
-
-    @Override
-    public boolean onTouchEvent(@NonNull @NotNull CoordinatorLayout parent, @NonNull @NotNull AppBarLayout child, @NonNull @NotNull MotionEvent ev) {
-      return searchEnabled && super.onTouchEvent(parent, child, ev);
-    }
   }
 
   private interface AdapterFactory {
