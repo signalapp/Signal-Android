@@ -25,6 +25,7 @@ import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.Surface;
 import android.view.View;
+import android.view.WindowInsets;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
 
@@ -117,6 +118,25 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
       }
     } else if (keyboardOpen) {
       onKeyboardClose();
+    }
+  }
+
+  @Override
+  protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
+    if (Build.VERSION.SDK_INT >= 23 && getRootWindowInsets() != null) {
+      int          bottomInset;
+      WindowInsets windowInsets = getRootWindowInsets();
+      if (Build.VERSION.SDK_INT >= 30) {
+        bottomInset = windowInsets.getInsets(WindowInsets.Type.navigationBars()).bottom;
+      } else {
+        bottomInset = windowInsets.getStableInsetBottom();
+      }
+
+      if (bottomInset != 0 && (viewInset == 0 || viewInset == statusBarHeight)) {
+        Log.i(TAG, "Updating view inset based on WindowInsets. viewInset: " + viewInset + " windowInset: " + bottomInset);
+        viewInset = bottomInset;
+      }
     }
   }
 
