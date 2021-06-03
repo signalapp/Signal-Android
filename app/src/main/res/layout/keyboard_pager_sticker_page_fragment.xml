@@ -1,77 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:background="@color/signal_background_secondary">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/sticker_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/signal_background_secondary"
+        app:elevation="0dp">
+
+        <org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
+            android:id="@+id/sticker_keyboard_search_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:click_only="true"
+            app:layout_scrollFlags="scroll|snap"
+            app:search_hint="@string/StickerSearchDialogFragment_search_stickers"
+            app:show_always="true" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/sticker_pager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@id/sticker_packs_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_goneMarginTop="0dp" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <View
-        android:id="@+id/sticker_packs_background"
+    <LinearLayout
+        android:id="@+id/sticker_keyboard_packs_background"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="?actionBarSize"
+        android:layout_gravity="bottom"
         android:background="@color/signal_background_secondary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/sticker_search"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="?selectableItemBackground"
-        android:contentDescription="@string/KeyboardPagerFragment_open_sticker_search"
-        android:padding="13dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@id/sticker_packs_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/sticker_packs_background"
-        app:srcCompat="@drawable/ic_search_24"
-        app:tint="@color/icon_tab_selector" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/sticker_manage"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="?selectableItemBackground"
-        android:contentDescription="@string/KeyboardPagerFragment_backspace"
-        android:padding="13dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@id/sticker_packs_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/sticker_packs_background"
-        app:srcCompat="@drawable/ic_plus_24"
-        app:tint="@color/icon_tab_selector" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/sticker_packs_recycler"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="@id/sticker_packs_background"
-        app:layout_constraintEnd_toStartOf="@id/sticker_manage"
-        app:layout_constraintStart_toEndOf="@id/sticker_search"
-        app:layout_constraintTop_toTopOf="@id/sticker_packs_background"
-        tools:itemCount="10"
-        tools:listitem="@layout/keyboard_pager_category_icon" />
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="top"
-        android:background="@color/signal_inverse_transparent_05"
-        app:layout_constraintBottom_toTopOf="@+id/sticker_packs_background"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/sticker_search"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?selectableItemBackground"
+            android:contentDescription="@string/KeyboardPagerFragment_open_sticker_search"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_search_24"
+            app:tint="@color/icon_tab_selector" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sticker_packs_recycler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="10"
+            tools:listitem="@layout/keyboard_pager_category_icon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/sticker_manage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?selectableItemBackground"
+            android:contentDescription="@string/KeyboardPagerFragment_backspace"
+            android:padding="13dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_plus_24"
+            app:tint="@color/icon_tab_selector" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

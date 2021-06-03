@@ -6,10 +6,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.appbar.AppBarLayout
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboardBottomTabAdapter
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboardProvider
+import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.stickers.StickerKeyboardProvider
 import org.thoughtcrime.securesms.stickers.StickerKeyboardProvider.StickerEventListener
@@ -20,7 +22,6 @@ class StickerKeyboardPageFragment : LoggingFragment(R.layout.keyboard_pager_stic
   private lateinit var provider: StickerKeyboardProvider
 
   private lateinit var stickerPager: ViewPager
-  private lateinit var searchView: View
   private lateinit var stickerPacksRecycler: RecyclerView
   private lateinit var manageStickers: View
   private lateinit var tabAdapter: MediaKeyboardBottomTabAdapter
@@ -30,11 +31,18 @@ class StickerKeyboardPageFragment : LoggingFragment(R.layout.keyboard_pager_stic
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     stickerPager = view.findViewById(R.id.sticker_pager)
-    searchView = view.findViewById(R.id.sticker_search)
     manageStickers = view.findViewById(R.id.sticker_manage)
     stickerPacksRecycler = view.findViewById(R.id.sticker_packs_recycler)
 
-    searchView.setOnClickListener { StickerSearchDialogFragment.show(requireActivity().supportFragmentManager) }
+    view.findViewById<KeyboardPageSearchView>(R.id.sticker_keyboard_search_text).callbacks = object : KeyboardPageSearchView.Callbacks {
+      override fun onClicked() {
+        StickerSearchDialogFragment.show(requireActivity().supportFragmentManager)
+      }
+    }
+
+    view.findViewById<View>(R.id.sticker_search).setOnClickListener { StickerSearchDialogFragment.show(requireActivity().supportFragmentManager) }
+
+    view.findViewById<AppBarLayout>(R.id.sticker_appbar).setExpanded(false)
   }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
