@@ -84,6 +84,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -1103,10 +1104,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       case GALLERY:
         AttachmentManager.selectGallery(this, MEDIA_SENDER, recipient.get(), composeText.getTextTrimmed(), sendButton.getSelectedTransport());
         break;
-      case GIF:
-        AttachmentManager.selectGif(this, PICK_GIF, !isSecureText);
-        break;
-      case FILE:
+         case FILE:
         AttachmentManager.selectDocument(this, PICK_DOCUMENT);
         break;
       case CONTACT:
@@ -1424,6 +1422,16 @@ public class ConversationActivity extends PassphraseRequiredActivity
         container.show(composeText, attachmentKeyboardStub.get());
 
         viewModel.onAttachmentKeyboardOpen();
+
+        if (!SignalStore.tooltips().hasSeenGifsHaveMoved()) {
+          new MaterialAlertDialogBuilder(this)
+              .setTitle(R.string.ConversationActivity_gifs_have_moved)
+              .setMessage(R.string.ConversationActivity_look_for_gifs_next_to_emoji_and_stickers)
+              .setPositiveButton(android.R.string.ok, null)
+              .setOnDismissListener(unused -> inputPanel.showGifMovedTooltip())
+              .show();
+          SignalStore.tooltips().markGifsHaveMovedSeen();
+        }
       }
     } else {
       handleManualMmsRequired();

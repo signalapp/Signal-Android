@@ -12,6 +12,7 @@ public class TooltipValues extends SignalStoreValues {
   private static final String BLUR_HUD_ICON                    = "tooltip.blur_hud_icon";
   private static final String GROUP_CALL_SPEAKER_VIEW          = "tooltip.group_call_speaker_view";
   private static final String GROUP_CALL_TOOLTIP_DISPLAY_COUNT = "tooltip.group_call_tooltip_display_count";
+  private static final String GIFS_HAVE_MOVED                  = "tooltip.gifs_have_moved";
 
 
   TooltipValues(@NonNull KeyValueStore store) {
@@ -53,5 +54,13 @@ public class TooltipValues extends SignalStoreValues {
 
   public void markGroupCallingLobbyEntered() {
     putInteger(GROUP_CALL_TOOLTIP_DISPLAY_COUNT, Integer.MAX_VALUE);
+  }
+
+  public boolean hasSeenGifsHaveMoved() {
+    return getBoolean(GIFS_HAVE_MOVED, false);
+  }
+
+  public void markGifsHaveMovedSeen() {
+    putBoolean(GIFS_HAVE_MOVED, true);
   }
 }
