@@ -21,6 +21,8 @@ import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.Vari
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
 import org.thoughtcrime.securesms.util.MappingModelList;
 
+import java.util.Objects;
+
 public class EmojiPageView extends FrameLayout implements VariationSelectorListener {
   private static final String TAG = Log.tag(EmojiPageView.class);
 
@@ -96,7 +98,29 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
 
     EmojiPageViewGridAdapter adapter = adapterFactory.create();
     recyclerView.setAdapter(adapter);
-    adapter.submitList(getMappingModelList(), () -> layoutManager.scrollToPosition(1));
+    adapter.submitList(getMappingModelList(), () -> {
+      layoutManager.scrollToPosition(1);
+      recyclerView.post(() -> {
+        if (!searchEnabled || recyclerView.getAdapter() == null) {
+          return;
+        }
+
+        KeyboardPageSearchView searchView = (KeyboardPageSearchView) layoutManager.findViewByPosition(0);
+        if (searchView == null) {
+          return;
+        }
+
+        int allowedScrollDistance = recyclerView.computeVerticalScrollRange() - recyclerView.computeVerticalScrollExtent();
+        if (allowedScrollDistance < searchView.getMeasuredHeight()) {
+          View lastView = Objects.requireNonNull(layoutManager.findViewByPosition(recyclerView.getAdapter().getItemCount() - 1));
+          int scrollDelta = searchView.getMeasuredHeight() - allowedScrollDistance;
+          int distanceFromBottom = Math.max(0, recyclerView.getMeasuredHeight() - lastView.getBottom());
+          lastView.setPadding(lastView.getPaddingLeft(), lastView.getPaddingTop(), lastView.getPaddingRight(), lastView.getPaddingBottom() + scrollDelta + distanceFromBottom);
+
+          recyclerView.post(() -> layoutManager.scrollToPosition(1));
+        }
+      });
+    });
   }
 
   private @NonNull MappingModelList getMappingModelList() {

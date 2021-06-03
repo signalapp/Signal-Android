@@ -1,38 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="2dp"
-    android:background="?selectableItemBackground">
+    android:background="?selectableItemBackground"
+    android:padding="2dp">
 
     <ImageView
         android:id="@+id/emoji_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:paddingStart="6dp"
         android:paddingTop="6dp"
         android:paddingEnd="6dp"
-        android:paddingStart="6dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_emoji_smiley_24" />
 
     <org.thoughtcrime.securesms.components.emoji.AsciiEmojiView
         android:id="@+id/emoji_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="6dp"
         android:paddingTop="6dp"
         android:paddingEnd="6dp"
-        android:paddingStart="6dp"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/emoji_variation_hint"
         android:layout_width="7dp"
         android:layout_height="7dp"
-        android:layout_gravity="bottom|right|end"
-        app:srcCompat="@drawable/triangle_bottom_right_corner"
-        android:tint="@color/core_grey_25"/>
+        android:tint="@color/core_grey_25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/triangle_bottom_right_corner" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
