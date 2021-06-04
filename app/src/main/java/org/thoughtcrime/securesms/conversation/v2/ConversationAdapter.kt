@@ -11,7 +11,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import java.lang.IllegalStateException
 
-class ConversationAdapter(context: Context, cursor: Cursor) : CursorRecyclerViewAdapter<ViewHolder>(context, cursor) {
+class ConversationAdapter(context: Context, cursor: Cursor, private val onItemLongPress: (Int) -> Unit)
+    : CursorRecyclerViewAdapter<ViewHolder>(context, cursor) {
     private val messageDB = DatabaseFactory.getMmsSmsDatabase(context)
 
     sealed class ViewType(val rawValue: Int) {
@@ -55,7 +56,14 @@ class ConversationAdapter(context: Context, cursor: Cursor) : CursorRecyclerView
     override fun onBindItemViewHolder(viewHolder: ViewHolder, cursor: Cursor) {
         val message = getMessage(cursor)!!
         when (viewHolder) {
-            is VisibleMessageViewHolder -> viewHolder.view.bind(message)
+            is VisibleMessageViewHolder -> {
+                val view = viewHolder.view
+                view.bind(message)
+                view.setOnLongClickListener {
+                    onItemLongPress(viewHolder.adapterPosition)
+                    true
+                }
+            }
             is ControlMessageViewHolder -> viewHolder.view.bind(message)
         }
     }

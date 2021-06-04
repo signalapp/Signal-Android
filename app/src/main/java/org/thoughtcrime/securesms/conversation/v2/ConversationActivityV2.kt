@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.conversation.v2
 import android.database.Cursor
 import android.os.Bundle
 import android.util.Log
+import android.view.ActionMode
+import android.view.Menu
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -19,7 +21,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
 
     private val adapter by lazy {
         val cursor = DatabaseFactory.getMmsSmsDatabase(this).getConversation(threadID)
-        val adapter = ConversationAdapter(this, cursor)
+        val adapter = ConversationAdapter(this, cursor) { handleLongPress(it) }
         adapter.setHasStableIds(true)
         adapter
     }
@@ -88,6 +90,15 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
 
     private fun reply(messagePosition: Int) {
         Log.d("Loki", "Reply to message at position: $messagePosition.")
+    }
+
+    private fun handleLongPress(messagePosition: Int) {
+        val actionModeCallback = ConversationActionModeCallback()
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            startActionMode(actionModeCallback, ActionMode.TYPE_PRIMARY)
+        } else {
+            startActionMode(actionModeCallback)
+        }
     }
     // endregion
 }
