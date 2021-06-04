@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <org.thoughtcrime.securesms.loki.views.ProfilePictureView
+        android:id="@+id/profilePictureView"
+        android:layout_width="@dimen/small_profile_picture_size"
+        android:layout_height="@dimen/small_profile_picture_size" />
+
+    <TextView
+        android:id="@+id/conversationTitleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="Elon"
+        android:textColor="@color/text"
+        android:textStyle="bold"
+        android:textSize="@dimen/very_large_font_size" />
+
+</LinearLayout>

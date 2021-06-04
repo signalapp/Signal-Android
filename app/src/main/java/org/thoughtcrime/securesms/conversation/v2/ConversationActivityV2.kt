@@ -8,6 +8,7 @@ import androidx.loader.content.Loader
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
+import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -71,7 +72,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
     }
 
     private fun setUpToolbar() {
-        backButton.setOnClickListener { onBackPressed() }
+        val actionBar = supportActionBar!!
+        actionBar.setCustomView(R.layout.activity_conversation_v2_action_bar)
+        actionBar.setDisplayShowCustomEnabled(true)
         conversationTitleView.text = thread.toShortString()
         profilePictureView.glide = glide
         profilePictureView.update(thread, threadID)

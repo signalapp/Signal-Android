@@ -7,59 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/conversationToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?colorPrimary"
-        app:contentInsetStart="0dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-
-            <LinearLayout
-                android:id="@+id/backButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:orientation="horizontal"
-                android:background="@drawable/conversation_back_button_background">
-
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:src="@drawable/ic_baseline_arrow_back_compact_24"
-                    android:layout_marginRight="-2dp"
-                    android:layout_marginLeft="8dp" />
-
-                <org.thoughtcrime.securesms.loki.views.ProfilePictureView
-                    android:id="@+id/profilePictureView"
-                    android:layout_width="@dimen/small_profile_picture_size"
-                    android:layout_height="@dimen/small_profile_picture_size" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/conversationTitleView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="67dp"
-                android:text="Elon"
-                android:textColor="@color/text"
-                android:textStyle="bold"
-                android:textSize="@dimen/very_large_font_size" />
-
-        </RelativeLayout>
-
-    </androidx.appcompat.widget.Toolbar>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/conversationRecyclerView"
         android:layout_width="match_parent"
