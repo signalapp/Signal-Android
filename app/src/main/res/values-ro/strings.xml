@@ -239,6 +239,9 @@
   <string name="ConversationActivity_full">Plină</string>
   <string name="ConversationActivity_error_sending_media">Eroare la trimiterea conținutului media</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Raportat ca spam și blocat.</string>
+  <string name="ConversationActivity_gifs_have_moved">GIF-urile au fost mutate</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Căutați GIF-urile lângă emoji și autocolante.</string>
+  <string name="ConversationActivity__gifs_are_now_here">GIF-urile sunt acum aici.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesaj necitit</item>
@@ -2193,6 +2196,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Notă</string>
   <!--ConfirmPaymentFragment-->
@@ -2930,11 +2934,22 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="EditReactionsFragment__reset">Resetare</string>
   <string name="EditReactionsFragment_save">Salvează</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Noi culori de chat</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Am schimbat culorile chat-ului pentru a vă oferi mai multe opțiuni și a face chaturile mai ușor de citit.</string>
   <string name="ChatColorsMegaphone__appearance">Aspect</string>
   <string name="ChatColorsMegaphone__not_now">Nu acum</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Deschideți căutarea emoji</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Deschideți căutarea de autocolante</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Deschideți căutare GIF</string>
   <string name="KeyboardPagerFragment_stickers">Autocolante</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">Gif-uri</string>
+  <string name="KeyboardPagerFragment_search_emoji">Căutare emoji</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Înapoi la emoji</string>
+  <string name="KeyboardPagerFragment_search_giphy">Căutare GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Căutare autocolante</string>
   <!--EOF-->
 </resources>
