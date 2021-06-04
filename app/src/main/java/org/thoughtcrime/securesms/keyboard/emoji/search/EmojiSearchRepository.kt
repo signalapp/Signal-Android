@@ -25,25 +25,9 @@ class EmojiSearchRepository(private val context: Context) {
       SignalExecutors.SERIAL.execute {
         val emoji: List<String> = emojiSearchDatabase.query(query, EMOJI_SEARCH_LIMIT)
 
-        val variationMap: Map<String, String> = EmojiSource.latest.variationMap
-        val emojiVariationSets: MutableMap<String, LinkedHashSet<String>> = mutableMapOf()
-
-        variationMap
-          .filterKeys { emoji.contains(it) }
-          .forEach { (variation, canonical) ->
-            val set: LinkedHashSet<String> = emojiVariationSets.getOrDefault(canonical, linkedSetOf())
-
-            set.add(variation)
-            emojiVariationSets[canonical] = set
-          }
-
-        val displayEmoji: List<Emoji> = emoji.map { canonical ->
-          val variationSet: LinkedHashSet<String> = linkedSetOf(canonical).apply {
-            addAll(emojiVariationSets.getOrDefault(canonical, linkedSetOf()))
-          }
-
-          Emoji(variationSet.toList())
-        }
+        val displayEmoji: List<Emoji> = emoji
+          .mapNotNull { canonical -> EmojiSource.latest.canonicalToVariations[canonical] }
+          .map { Emoji(it) }
 
         consumer(EmojiSearchResultsPageModel(emoji, displayEmoji))
       }

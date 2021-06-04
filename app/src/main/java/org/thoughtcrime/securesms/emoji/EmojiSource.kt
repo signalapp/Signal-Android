@@ -23,7 +23,7 @@ class EmojiSource(
   private val emojiPageFactory: EmojiPageFactory
 ) : EmojiData by emojiData {
 
-  val variationMap: Map<String, String> by lazy {
+  val variationsToCanonical: Map<String, String> by lazy {
     val map = mutableMapOf<String, String>()
 
     for (page: EmojiPageModel in dataPages) {
@@ -31,6 +31,18 @@ class EmojiSource(
         for (variation: String in emoji.variations) {
           map[variation] = emoji.value
         }
+      }
+    }
+
+    map
+  }
+
+  val canonicalToVariations: Map<String, List<String>> by lazy {
+    val map = mutableMapOf<String, List<String>>()
+
+    for (page: EmojiPageModel in dataPages) {
+      for (emoji: Emoji in page.displayEmoji) {
+        map[emoji.value] = emoji.variations
       }
     }
 

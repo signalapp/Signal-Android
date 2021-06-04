@@ -49,7 +49,7 @@ public final class EmojiUtil {
    * If the emoji has no skin variations, this function will return the original emoji.
    */
   public static @NonNull String getCanonicalRepresentation(@NonNull String emoji) {
-    String canonical = EmojiSource.getLatest().getVariationMap().get(emoji);
+    String canonical = EmojiSource.getLatest().getVariationsToCanonical().get(emoji);
     return canonical != null ? canonical : emoji;
   }
 
