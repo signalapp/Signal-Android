@@ -294,7 +294,6 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
 
     ContentValues contents = new ContentValues();
     contents.put(ZOMBIE_MEMBERS, Address.toSerializedList(members, ','));
-    contents.put(ACTIVE, 1);
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
             new String[] {groupId});
   }

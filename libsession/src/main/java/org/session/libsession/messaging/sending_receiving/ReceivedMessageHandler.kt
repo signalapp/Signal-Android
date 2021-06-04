@@ -266,9 +266,11 @@ private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPubli
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     if (storage.getGroup(groupID) != null) {
         // Update the group
+        // clearing zombie list if the group was not active before the update is received
+        if (!storage.isGroupActive(groupID))
+            storage.setZombieMembers(groupID, listOf<String>().map { Address.fromSerialized(it) })
         storage.updateTitle(groupID, name)
         storage.updateMembers(groupID, members.map { Address.fromSerialized(it) })
-        storage.setZombieMembers(groupID, listOf<String>().map { Address.fromSerialized(it) })
     } else {
         storage.createGroup(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }),
             null, null, LinkedList(admins.map { Address.fromSerialized(it) }), formationTimestamp)
