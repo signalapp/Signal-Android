@@ -30,6 +30,7 @@ class ConversationTouchHelperCallback(private val adapter: ConversationAdapter, 
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        background.alpha = 0
         adapter.notifyItemChanged(viewHolder.adapterPosition)
     }
 
@@ -58,8 +59,6 @@ class ConversationTouchHelperCallback(private val adapter: ConversationAdapter, 
                 messageContentView.right + adjustedDistanceInPx.toInt() + iconSize + spacing,
                 itemViewTop + offset + iconSize
             )
-        } else {
-            //background.setBounds(0, 0, 0, 0)
         }
         background.draw(c)
         // Perform haptic feedback and invoke onSwipe callback if threshold has been reached
