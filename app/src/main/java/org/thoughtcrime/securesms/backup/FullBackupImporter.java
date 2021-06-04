@@ -137,7 +137,7 @@ public class FullBackupImporter extends FullBackupBase {
   private static void processStatement(@NonNull SQLiteDatabase db, SqlStatement statement) {
     boolean isForSmsFtsSecretTable = statement.getStatement().contains(SearchDatabase.SMS_FTS_TABLE_NAME + "_");
     boolean isForMmsFtsSecretTable = statement.getStatement().contains(SearchDatabase.MMS_FTS_TABLE_NAME + "_");
-    boolean isForEmojiSecretTable  = statement.getStatement().contains(EmojiSearchDatabase.TABLE_NAME);
+    boolean isForEmojiSecretTable  = statement.getStatement().contains(EmojiSearchDatabase.TABLE_NAME + "_");
     boolean isForSqliteSecretTable = statement.getStatement().toLowerCase().startsWith("create table sqlite_");
 
     if (isForSmsFtsSecretTable || isForMmsFtsSecretTable || isForEmojiSecretTable || isForSqliteSecretTable) {

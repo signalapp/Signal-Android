@@ -36,7 +36,7 @@ public class EmojiValues extends SignalStoreValues {
 
   @Override
   void onFirstEverAppLaunch() {
-
+    putInteger(SEARCH_VERSION, 0);
   }
 
   @Override
