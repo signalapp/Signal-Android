@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="66dp"
+                android:layout_marginLeft="67dp"
                 android:text="Elon"
                 android:textColor="@color/text"
                 android:textStyle="bold"

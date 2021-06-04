@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.database.Cursor
 import android.os.Bundle
+import android.util.Log
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import network.loki.messenger.R
@@ -63,6 +65,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
                 adapter.changeCursor(null)
             }
         })
+        val touchHelperCallback = ConversationTouchHelperCallback(adapter, this) { reply(it) }
+        val touchHelper = ItemTouchHelper(touchHelperCallback)
+        touchHelper.attachToRecyclerView(conversationRecyclerView)
     }
 
     private fun setUpToolbar() {
@@ -76,6 +81,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
     // region Interaction
     private fun showConversationSettings() {
         // TODO: Implement
+    }
+
+    private fun reply(messagePosition: Int) {
+        Log.d("Loki", "Reply to message at position: $messagePosition.")
     }
     // endregion
 }
