@@ -234,7 +234,7 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
     } else {
       val tone = RingtoneUtil.getRingtone(requireContext(), uri)
       if (tone != null) {
-        tone.getTitle(requireContext())
+        tone.getTitle(requireContext()) ?: getString(R.string.NotificationsSettingsFragment__unknown_ringtone)
       } else {
         getString(R.string.preferences__default)
       }
