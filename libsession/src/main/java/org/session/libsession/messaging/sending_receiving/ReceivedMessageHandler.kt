@@ -266,6 +266,9 @@ private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPubli
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     if (storage.getGroup(groupID) != null) {
         // Update the group
+        // clearing zombie list if the group was not active before the update is received
+        if (!storage.isGroupActive(groupID))
+            storage.setZombieMembers(groupID, listOf<String>().map { Address.fromSerialized(it) })
         storage.updateTitle(groupID, name)
         storage.updateMembers(groupID, members.map { Address.fromSerialized(it) })
     } else {
@@ -390,6 +393,12 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
     val updateMembers = kind.members.map { it.toByteArray().toHexString() }
     val newMembers = members + updateMembers
     storage.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
+
+    // update zombie members in case the added members are zombies
+    val zombies = storage.getZombieMembers(groupID)
+    if (zombies.intersect(updateMembers).isNotEmpty())
+        storage.setZombieMembers(groupID, zombies.minus(updateMembers).map { Address.fromSerialized(it) })
+
     // Notify the user
     if (userPublicKey == senderPublicKey) {
         val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
@@ -448,6 +457,7 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
     val members = group.members.map { it.serialize() }
     val admins = group.admins.map { it.toString() }
     val removedMembers = kind.members.map { it.toByteArray().toHexString() }
+    val zombies: Set<String> = storage.getZombieMembers(groupID)
     // Check that the admin wasn't removed
     if (removedMembers.contains(admins.first())) {
         Log.d("Loki", "Ignoring invalid closed group update.")
@@ -473,12 +483,12 @@ private fun MessageReceiver.handleClosedGroupMembersRemoved(message: ClosedGroup
         disableLocalGroupAndUnsubscribe(groupPublicKey, groupID, userPublicKey)
     } else {
         storage.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
+        // Update zombie members
+        storage.setZombieMembers(groupID, zombies.minus(removedMembers).map { Address.fromSerialized(it) })
     }
-    // Update zombie members
-    val zombies = storage.getZombieMembers(groupID)
-    storage.setZombieMembers(groupID, zombies.minus(removedMembers).map { Address.fromSerialized(it) })
-    val type = if (senderLeft) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.MEMBER_REMOVED
+
     // Notify the user
+    val type = if (senderLeft) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.MEMBER_REMOVED
     // We don't display zombie members in the notification as users have already been notified when those members left
     val notificationMembers = removedMembers.minus(zombies)
     if (notificationMembers.isNotEmpty()) {
