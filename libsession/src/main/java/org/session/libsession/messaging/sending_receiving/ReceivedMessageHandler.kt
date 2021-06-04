@@ -266,9 +266,10 @@ private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPubli
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     if (storage.getGroup(groupID) != null) {
         // Update the group
-        // clearing zombie list if the group was not active before the update is received
-        if (!storage.isGroupActive(groupID))
-            storage.setZombieMembers(groupID, listOf<String>().map { Address.fromSerialized(it) })
+        // Clear zombie list if the group wasn't active
+        if (!storage.isGroupActive(groupID)) {
+            storage.setZombieMembers(groupID, listOf())
+        }
         storage.updateTitle(groupID, name)
         storage.updateMembers(groupID, members.map { Address.fromSerialized(it) })
     } else {
@@ -394,10 +395,11 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
     val newMembers = members + updateMembers
     storage.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
 
-    // update zombie members in case the added members are zombies
+    // Update zombie members in case the added members are zombies
     val zombies = storage.getZombieMembers(groupID)
-    if (zombies.intersect(updateMembers).isNotEmpty())
+    if (zombies.intersect(updateMembers).isNotEmpty()) {
         storage.setZombieMembers(groupID, zombies.minus(updateMembers).map { Address.fromSerialized(it) })
+    }
 
     // Notify the user
     if (userPublicKey == senderPublicKey) {
