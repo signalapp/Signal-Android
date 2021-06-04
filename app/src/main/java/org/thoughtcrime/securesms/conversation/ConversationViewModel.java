@@ -44,12 +44,10 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
 
 public class ConversationViewModel extends ViewModel {
 
@@ -224,7 +222,7 @@ public class ConversationViewModel extends ViewModel {
     return Transformations.map(groupMembers, members -> {
       List<Recipient> sorted = Stream.of(members)
                                      .filter(member -> !Objects.equals(member, Recipient.self()))
-                                     .sortBy(this::getMemberIdentifier)
+                                     .sortBy(Recipient::requireStringId)
                                      .toList();
 
       List<NameColor> names = ChatColorsPalette.Names.getAll();
@@ -249,13 +247,6 @@ public class ConversationViewModel extends ViewModel {
       sessionMemberCache.put(groupId, cachedMembers);
       return cachedMembers;
     });
-  }
-
-  private @NonNull String getMemberIdentifier(@NonNull Recipient fullMember) {
-    return fullMember.getUuid()
-                     .transform(UUID::toString)
-                     .or(fullMember.getE164())
-                     .or("");
   }
 
   long getLastSeen() {
