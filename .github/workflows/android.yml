@@ -20,7 +20,7 @@ jobs:
       uses: gradle/wrapper-validation-action@v1
 
     - name: Build with Gradle
-      run: ./gradlew assembleRelease
+      run: ./gradlew assembleplayProdRelease
 
     - name: Archive apk
       uses: actions/upload-artifact@v2
