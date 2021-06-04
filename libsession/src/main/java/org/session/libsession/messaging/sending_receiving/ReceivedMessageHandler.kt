@@ -268,6 +268,7 @@ private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPubli
         // Update the group
         storage.updateTitle(groupID, name)
         storage.updateMembers(groupID, members.map { Address.fromSerialized(it) })
+        storage.setZombieMembers(groupID, listOf<String>().map { Address.fromSerialized(it) })
     } else {
         storage.createGroup(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }),
             null, null, LinkedList(admins.map { Address.fromSerialized(it) }), formationTimestamp)
