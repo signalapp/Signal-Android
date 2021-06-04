@@ -241,6 +241,9 @@
   <string name="ConversationActivity_full">Piena</string>
   <string name="ConversationActivity_error_sending_media">Errore durante l\'invio del media</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Segnalato come spam e bloccato.</string>
+  <string name="ConversationActivity_gifs_have_moved">Le GIF si sono spostate</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Cerca le GIF accanto a emoji e adesivi.</string>
+  <string name="ConversationActivity__gifs_are_now_here">Le GIF ora sono qui.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d messaggio non letto</item>

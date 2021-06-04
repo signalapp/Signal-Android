@@ -243,6 +243,9 @@
   <string name="ConversationActivity_full">Заполнен</string>
   <string name="ConversationActivity_error_sending_media">Ошибка при отправке медиафайла</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Было сообщено о спаме и пользователь был заблокирован.</string>
+  <string name="ConversationActivity_gifs_have_moved">GIF-анимации переместились</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Ищите GIF-анимации рядом с эмодзи и стикерами.</string>
+  <string name="ConversationActivity__gifs_are_now_here">GIF-анимации теперь здесь.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочитанное сообщение</item>

@@ -243,6 +243,9 @@
   <string name="ConversationActivity_full">Pilnas</string>
   <string name="ConversationActivity_error_sending_media">Klaida siunčiant mediją</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Pranešta apie brukalą ir užblokuota.</string>
+  <string name="ConversationActivity_gifs_have_moved">GIF atvaizdai perkelti</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIF atvaizdų ieškokite šalia šypsenėlių ir lipdukų.</string>
+  <string name="ConversationActivity__gifs_are_now_here">Nuo šiol, GIF atvaizdai yra čia.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neskaityta žinutė</item>

@@ -243,6 +243,9 @@
   <string name="ConversationActivity_full">Pełne</string>
   <string name="ConversationActivity_error_sending_media">Błąd przy wysyłaniu multimediów</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Zgłoszono, jako spam i zablokowano.</string>
+  <string name="ConversationActivity_gifs_have_moved">GIF-y zostały przeniesione</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Szukaj GIF-ów koło emotikon i naklejek.</string>
+  <string name="ConversationActivity__gifs_are_now_here">GIF-y są teraz tutaj.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nieprzeczytana wiadomość</item>
@@ -1723,7 +1726,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Wyślij</string>
   <string name="conversation_activity__compose_description">Kompozycja wiadomości</string>
-  <string name="conversation_activity__emoji_toggle_description">Przełącz do emoji klawiatury</string>
+  <string name="conversation_activity__emoji_toggle_description">Przełącz na emotikony klawiatury</string>
   <string name="conversation_activity__attachment_thumbnail">Minaturka załącznika</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Bezpośrednie przechwytywanie</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Nagraj i wyślij załącznik dźwiękowy</string>
@@ -2155,8 +2158,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_storage__none">Brak</string>
   <string name="preferences_storage__s_messages">%1$s wiadomości</string>
   <string name="preferences_storage__custom">Własny</string>
-  <string name="preferences_advanced__use_system_emoji">Używaj emoji systemu</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Wyłącz wbudowane wspomaganie emoji Signal</string>
+  <string name="preferences_advanced__use_system_emoji">Używaj emotikon systemu</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Wyłącz wbudowane wsparcie emotikon Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Przekazuj połączenia za pomocą serwerów Signal, aby uniknąć ujawnienia adresu IP Twoim kontaktom. Pogorszy to jakość połączenia.</string>
   <string name="preferences_advanced__always_relay_calls">Zawsze przekazuj połączenia</string>
   <string name="preferences_app_protection__who_can">Kto może…</string>

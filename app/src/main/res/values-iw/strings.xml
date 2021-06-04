@@ -243,6 +243,9 @@
   <string name="ConversationActivity_full">מלאה</string>
   <string name="ConversationActivity_error_sending_media">שגיאה בשליחת מדיה</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">דֻּוַּח כזבל ונחסם.</string>
+  <string name="ConversationActivity_gifs_have_moved">קבצי GIF הועברו</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">חפש קבצי GIF ליד אימוג\'י ומדבקות.</string>
+  <string name="ConversationActivity__gifs_are_now_here">קבצי GIF נמצאים כאן עכשיו.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">הודעה %d לא נקראה</item>
@@ -3134,16 +3137,32 @@
   <string name="ChatColorGradientTool_top_edge_selector">בוחר קצה עליון</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">בוחר קצה תחתון</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">התאם אישית תגובות</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">הקש כדי להחליף אימוג\'י</string>
   <string name="EditReactionsFragment__reset">אפס</string>
   <string name="EditReactionsFragment_save">שמור</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">מתאים באופן אוטומטי את הצבע אל הטפט</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">גרור את השינוי אל כיוון השיפוע</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">צבעי התכתבות חדשים</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">החלפנו צבעי התכתבות כדי לתת לך יותר אפשרויות ולעשות התכתבויות קלות יותר לקריאה.</string>
   <string name="ChatColorsMegaphone__appearance">מראה</string>
   <string name="ChatColorsMegaphone__not_now">לא עכשיו</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">אמוג\'י</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">פתח חיפוש אימוג\'י</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">פתח חיפוש מדבקות</string>
+  <string name="KeyboardPagerFragment_open_gif_search">פתח חיפוש GIF</string>
   <string name="KeyboardPagerFragment_stickers">מדבקות</string>
   <string name="KeyboardPagerFragment_backspace">מקש חזרה</string>
+  <string name="KeyboardPagerFragment_gifs">קבצי GIF</string>
+  <string name="KeyboardPagerFragment_search_emoji">חפש אימוג\'י</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">חזור אל אימוג\'י</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">נקה רשומת חיפוש</string>
+  <string name="KeyboardPagerFragment_search_giphy">חפש GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">חפש מדבקות</string>
+  <string name="StickerSearchDialogFragment_no_results_found">תוצאות לא נמצאו</string>
+  <string name="EmojiSearchFragment__no_results_found">תוצאות לא נמצאו</string>
   <!--EOF-->
 </resources>

@@ -241,6 +241,9 @@
   <string name="ConversationActivity_full">Ple</string>
   <string name="ConversationActivity_error_sending_media">Error en enviar contingut</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Se n\'ha informat com a brossa i s\'ha blocat.</string>
+  <string name="ConversationActivity_gifs_have_moved">S\'han mogut els GIF</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Cerqueu els GIF al costat d’emoticones i adhesius.</string>
+  <string name="ConversationActivity__gifs_are_now_here">Ara teniu aquí els GIF.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d missatge sense llegir</item>
@@ -2960,16 +2963,32 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ChatColorGradientTool_top_edge_selector">Selector de la vora de dalt</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Selector de la vora de baix</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Personalització de reaccions</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Feu un toc per substituir l\'emoticona</string>
   <string name="EditReactionsFragment__reset">Restableix</string>
   <string name="EditReactionsFragment_save">Desa</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Coincidència automàtica del color amb el fons</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Arrossegueu-ho per canviar la direcció del gradient.</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Colors nous de converses</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Hem canviat els colors de les converses per oferir-vos més opcions i facilitar-ne la lectura.</string>
   <string name="ChatColorsMegaphone__appearance">Aparença</string>
   <string name="ChatColorsMegaphone__not_now">Ara no</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoticones</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Obre la cerca d\'emoticones</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Obre la cerca d\'adhesius</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Obre la cerca de GIF</string>
   <string name="KeyboardPagerFragment_stickers">Adhesius</string>
   <string name="KeyboardPagerFragment_backspace">Retrocés</string>
+  <string name="KeyboardPagerFragment_gifs">GIF</string>
+  <string name="KeyboardPagerFragment_search_emoji">Cerca d\'emoticones</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Torna a les emoticones</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Neteja l\'entrada de la cerca</string>
+  <string name="KeyboardPagerFragment_search_giphy">Cerca de GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Cerca d\'adhesius</string>
+  <string name="StickerSearchDialogFragment_no_results_found">No s\'ha trobat cap resultat.</string>
+  <string name="EmojiSearchFragment__no_results_found">No s\'ha trobat cap resultat.</string>
   <!--EOF-->
 </resources>

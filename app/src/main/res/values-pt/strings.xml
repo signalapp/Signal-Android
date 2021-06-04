@@ -146,8 +146,8 @@
   <string name="ContactsCursorLoader_recent_chats">Conversas recentes</string>
   <string name="ContactsCursorLoader_contacts">Contactos</string>
   <string name="ContactsCursorLoader_groups">Grupos</string>
-  <string name="ContactsCursorLoader_phone_number_search">Pesquisar número de telefone</string>
-  <string name="ContactsCursorLoader_username_search">Pesquisar nome de utilizador</string>
+  <string name="ContactsCursorLoader_phone_number_search">Procurar número de telefone</string>
+  <string name="ContactsCursorLoader_username_search">Procurar nome de utilizador</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensagem %s</string>
   <string name="ContactsDatabase_signal_call_s">Chamada do Signal %s</string>
@@ -241,6 +241,9 @@
   <string name="ConversationActivity_full">Cheio(a)</string>
   <string name="ConversationActivity_error_sending_media">Erro ao enviar multimédia</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Reportado como spam e bloqueado.</string>
+  <string name="ConversationActivity_gifs_have_moved">Os GIFs foram movidos</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Procure GIFs próximo de emoji e autocolantes.</string>
+  <string name="ConversationActivity__gifs_are_now_here">Os GIFs chegaram.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -1513,8 +1516,8 @@
   <string name="SaveAttachmentTask_saved_to">Guardado em %s</string>
   <string name="SaveAttachmentTask_saved">Guardado</string>
   <!--SearchToolbar-->
-  <string name="SearchToolbar_search">Pesquisar</string>
-  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Pesquisar por conversas, contactos e mensagens</string>
+  <string name="SearchToolbar_search">Procurar</string>
+  <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Procurar por conversas, contactos e mensagens</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Atalho inválido</string>
   <!--SingleRecipientNotificationBuilder-->
@@ -1669,7 +1672,7 @@
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Para receber notificações de chamadas, toque em \'Definições\'i e ative ativar atividade em segundo plano nas definições de \"Bateria\".</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">A carregar lista de países…</string>
-  <string name="country_selection_fragment__search">Pesquisar</string>
+  <string name="country_selection_fragment__search">Procurar</string>
   <string name="country_selection_fragment__no_matching_countries">Sem países correspondentes</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Leia o código QR apresentado no dispositivo no qual deseja associar</string>
@@ -1721,7 +1724,7 @@
     <item quantity="other">%d outros</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs">Pesquisar GIFs</string>
+  <string name="giphy_activity_toolbar__search_gifs">Procurar GIFs</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Não foi encontrado nada</string>
   <!--log_submit_activity-->
@@ -2237,7 +2240,7 @@
   <string name="conversation_list_batch__menu_mark_as_unread">Marcar como por ler</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Atalho para definições</string>
-  <string name="conversation_list_search_description">Pesquisar</string>
+  <string name="conversation_list_search_description">Procurar</string>
   <string name="conversation_list__pinned">Afixada</string>
   <string name="conversation_list__chats">Conversas</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">Apenas pode afixar até %1$d conversas</string>
@@ -2733,7 +2736,7 @@
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Falha ao eliminar os dados locais. Pode limpá-los manualmente nas definições das aplicações no sistema.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Iniciar as Definições das aplicações</string>
   <!--DeleteAccountCountryPickerFragment-->
-  <string name="DeleteAccountCountryPickerFragment__search_countries">Pesquisar países</string>
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Procurar países</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Saltar</string>
   <!--ShareActivity-->
@@ -2978,8 +2981,19 @@
   <string name="ChatColorsMegaphone__not_now">Agora não</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Abrir a pesquisa de emoji</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Abrir a pesquisa de autocolantes</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Abrir a pesquisa de GIFs</string>
   <string name="KeyboardPagerFragment_stickers">Autocolantes</string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">Gifs</string>
+  <string name="KeyboardPagerFragment_search_emoji">Procurar emoji</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Voltar aos emoji</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Limpar a entrada de pesquisa</string>
+  <string name="KeyboardPagerFragment_search_giphy">Procurar GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Procurar autocolantes</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Não foram encontrados resultados</string>
+  <string name="EmojiSearchFragment__no_results_found">Não foram encontrados resultados</string>
   <!--EOF-->
 </resources>

@@ -2960,16 +2960,30 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ChatColorGradientTool_top_edge_selector">Övre kantväljare</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Nedre kantväljare</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Anpassa reaktioner</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tryck för att ersätta en emoji</string>
-  <string name="EditReactionsFragment__reset">Starta om</string>
+  <string name="EditReactionsFragment__reset">Återställ</string>
   <string name="EditReactionsFragment_save">Spara</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Matchar automatiskt färgen till bakgrunden</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Nya chattfärger</string>
   <string name="ChatColorsMegaphone__appearance">Utseende</string>
   <string name="ChatColorsMegaphone__not_now">Inte nu</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Öppna emoji-sökning</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Öppna klistermärkesökning</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Öppna gif-sökning</string>
   <string name="KeyboardPagerFragment_stickers">Klistermärken</string>
   <string name="KeyboardPagerFragment_backspace">Backsteg</string>
+  <string name="KeyboardPagerFragment_gifs">Gif</string>
+  <string name="KeyboardPagerFragment_search_emoji">Sök emoji</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Tillbaka till emoji</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Rensa sökpost</string>
+  <string name="KeyboardPagerFragment_search_giphy">Sök GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Sök klistermärken</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Inga resultat hittades</string>
+  <string name="EmojiSearchFragment__no_results_found">Inga resultat hittades</string>
   <!--EOF-->
 </resources>
