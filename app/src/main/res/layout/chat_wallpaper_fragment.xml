@@ -83,7 +83,7 @@
                 app:srcCompat="@drawable/ic_arrow_left_24"
                 app:tint="@color/core_white" />
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <org.thoughtcrime.securesms.components.AvatarImageView
                 android:id="@+id/chat_wallpaper_preview_top_bar_portrait"
                 android:layout_width="16dp"
                 android:layout_height="16dp"

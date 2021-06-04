@@ -1,11 +1,7 @@
 package org.thoughtcrime.securesms.wallpaper;
 
 import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -29,6 +25,7 @@ import androidx.navigation.Navigation;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.conversation.colors.ColorizerView;
 import org.thoughtcrime.securesms.util.DisplayMetricsUtil;
 import org.thoughtcrime.securesms.util.Projection;
@@ -52,7 +49,7 @@ public class ChatWallpaperFragment extends Fragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     viewModel = ViewModelProviders.of(requireActivity()).get(ChatWallpaperViewModel.class);
 
-    ImageView              portrait             = view.findViewById(R.id.chat_wallpaper_preview_top_bar_portrait);
+    AvatarImageView        portrait             = view.findViewById(R.id.chat_wallpaper_preview_top_bar_portrait);
     Toolbar                toolbar              = view.findViewById(R.id.toolbar);
     ImageView              chatWallpaperPreview = view.findViewById(R.id.chat_wallpaper_preview_background);
     View                   setWallpaper         = view.findViewById(R.id.chat_wallpaper_set_wallpaper);
@@ -73,6 +70,9 @@ public class ChatWallpaperFragment extends Fragment {
     });
 
     forceAspectRatioToScreenByAdjustingHeight(chatWallpaperPreview);
+
+    viewModel.getWallpaperPreviewPortrait().observe(getViewLifecycleOwner(),
+                                                    wallpaperPreviewPortrait -> wallpaperPreviewPortrait.applyToAvatarImageView(portrait));
 
     viewModel.getCurrentWallpaper().observe(getViewLifecycleOwner(), wallpaper -> {
       if (wallpaper.isPresent()) {
@@ -187,8 +187,6 @@ public class ChatWallpaperFragment extends Fragment {
       Drawable colorCircle = chatColors.asCircle();
       colorCircle.setBounds(0, 0, ViewUtil.dpToPx(16), ViewUtil.dpToPx(16));
       TextViewCompat.setCompoundDrawablesRelative(setChatColor, null, null, colorCircle, null);
-
-      portrait.setImageDrawable(chatColors.asCircle());
     });
 
     sentBubble.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> viewModel.refreshChatColors());

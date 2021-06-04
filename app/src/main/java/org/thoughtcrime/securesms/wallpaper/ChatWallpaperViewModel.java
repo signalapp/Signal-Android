@@ -10,12 +10,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.MappingModel;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -34,6 +36,7 @@ public class ChatWallpaperViewModel extends ViewModel {
   private final RecipientId                              recipientId;
   private final LiveRecipient                            liveRecipient;
   private final RecipientForeverObserver                 recipientObserver       = r -> refreshChatColors();
+  private final LiveData<WallpaperPreviewPortrait>       wallpaperPreviewPortrait;
 
   private ChatWallpaperViewModel(@Nullable RecipientId recipientId) {
     this.recipientId = recipientId;
@@ -46,8 +49,16 @@ public class ChatWallpaperViewModel extends ViewModel {
     if (recipientId != null) {
       liveRecipient = Recipient.live(recipientId);
       liveRecipient.observeForever(recipientObserver);
+      wallpaperPreviewPortrait = Transformations.map(liveRecipient.getLiveData(), recipient -> {
+        if (recipient.getContactPhoto() != null) {
+          return new WallpaperPreviewPortrait.ContactPhoto(recipient);
+        } else {
+          return new WallpaperPreviewPortrait.SolidColor(recipient.getAvatarColor());
+        }
+      });
     } else {
-      liveRecipient = null;
+      liveRecipient            = null;
+      wallpaperPreviewPortrait = new DefaultValueLiveData<>(new WallpaperPreviewPortrait.SolidColor(AvatarColor.ULTRAMARINE));
     }
   }
 
@@ -117,15 +128,19 @@ public class ChatWallpaperViewModel extends ViewModel {
   @NonNull LiveData<Optional<ChatWallpaper>> getCurrentWallpaper() {
     return wallpaper;
   }
-  
+
   @NonNull LiveData<ChatColors> getCurrentChatColors() {
     return chatColors;
   }
 
+  @NonNull LiveData<WallpaperPreviewPortrait> getWallpaperPreviewPortrait() {
+    return wallpaperPreviewPortrait;
+  }
+
   @NonNull LiveData<List<MappingModel<?>>> getWallpapers() {
     return LiveDataUtil.combineLatest(builtins, dimInDarkTheme, (wallpapers, dimInDarkMode) ->
-      Stream.of(wallpapers)
-            .map(paper -> ChatWallpaperFactory.updateWithDimming(paper, dimInDarkMode ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0f))
+        Stream.of(wallpapers)
+              .map(paper -> ChatWallpaperFactory.updateWithDimming(paper, dimInDarkMode ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0f))
             .<MappingModel<?>>map(ChatWallpaperSelectionMappingModel::new).toList()
     );
   }
