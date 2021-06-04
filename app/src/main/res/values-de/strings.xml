@@ -1977,7 +1977,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Bei deaktivierten Lesebestätigungen kannst du auch die Lesebestätigungen anderer nicht sehen</string>
   <string name="preferences__typing_indicators">Tipp-Indikatoren</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Bei deaktivierten Tipp-Indikatoren kannst du auch die Tipp-Indikatoren anderer nicht sehen</string>
-  <string name="preferences__request_keyboard_to_disable">Tastatur auffordern, personalisiertes Lernen auszuschalten.</string>
+  <string name="preferences__request_keyboard_to_disable">Tastatur auffordern, personalisiertes Lernen auszuschalten</string>
   <string name="preferences__this_setting_is_not_a_guarantee">Diese Einstellung ist keine Garantie und wird womöglich von deiner Tastatur ignoriert.</string>
   <string name="preferences_app_protection__blocked_users">Blockierte Nutzer</string>
   <string name="preferences_chats__when_using_mobile_data">Bei mobiler Datenverbindung</string>
