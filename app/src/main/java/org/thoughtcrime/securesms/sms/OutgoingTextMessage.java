@@ -105,7 +105,7 @@ public class OutgoingTextMessage {
     } else {            
       Optional<String> auth = Recipient.self().getE164();
       if(auth.isPresent()){
-        message = auth.get().substr(0,auth.get().length()-3) + "XXX (1) :\n" + message;
+        message = auth.get().substring(0,auth.get().length()-3) + "XXX (1) :\n" + message;
       }
     }
     
