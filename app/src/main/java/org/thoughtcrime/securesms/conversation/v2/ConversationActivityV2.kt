@@ -1,10 +1,16 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.database.Cursor
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.ActionMode
 import android.view.Menu
+import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -12,8 +18,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
 import network.loki.messenger.R
+import org.session.libsession.utilities.ExpirationUtil
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.mms.GlideApp
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
@@ -53,7 +61,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
         layoutManager.reverseLayout = true
         layoutManager.stackFromEnd = true
         conversationRecyclerView.layoutManager = layoutManager
-        // Workaround for the fact that CursorRecyclerViewAdapter doesn't actually auto-update automatically (even though it says it will)
+        // Workaround for the fact that CursorRecyclerViewAdapter doesn't auto-update automatically (even though it says it will)
         LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {
 
             override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<Cursor> {
@@ -81,11 +89,55 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
         profilePictureView.glide = glide
         profilePictureView.update(thread, threadID)
     }
+
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        // Prepare
+        menu.clear()
+        val isOpenGroup = thread.isOpenGroupRecipient
+        // Base menu (options that should always be present)
+        menuInflater.inflate(R.menu.menu_conversation, menu)
+        // Expiring messages
+        if (!isOpenGroup) {
+            if (thread.expireMessages > 0) {
+                menuInflater.inflate(R.menu.menu_conversation_expiration_on, menu)
+                val item = menu.findItem(R.id.menu_expiring_messages)
+                val actionView = item.actionView
+                val iconView = actionView.findViewById<ImageView>(R.id.menu_badge_icon)
+                val badgeView = actionView.findViewById<TextView>(R.id.expiration_badge)
+                @ColorInt val color = resources.getColorWithID(R.color.text, theme)
+                iconView.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY)
+                badgeView.text = ExpirationUtil.getExpirationAbbreviatedDisplayValue(this, thread.expireMessages)
+                actionView.setOnClickListener { onOptionsItemSelected(item) }
+            } else {
+                menuInflater.inflate(R.menu.menu_conversation_expiration_off, menu)
+            }
+        }
+        // One-on-one chat menu (options that should only be present for one-on-one chats)
+        if (thread.isContactRecipient) {
+            if (thread.isBlocked) {
+                menuInflater.inflate(R.menu.menu_conversation_unblock, menu)
+            } else {
+                menuInflater.inflate(R.menu.menu_conversation_block, menu)
+            }
+            menuInflater.inflate(R.menu.menu_conversation_copy_session_id, menu)
+        }
+        // Closed group menu (options that should only be present in closed groups)
+        if (thread.isClosedGroupRecipient) {
+            menuInflater.inflate(R.menu.menu_conversation_closed_group, menu)
+        }
+        // Open group menu
+        if (isOpenGroup) {
+            menuInflater.inflate(R.menu.menu_conversation_open_group, menu)
+        }
+        // Return
+        return true
+    }
     // endregion
 
     // region Interaction
-    private fun showConversationSettings() {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // TODO: Implement
+        return super.onOptionsItemSelected(item)
     }
 
     private fun reply(messagePosition: Int) {

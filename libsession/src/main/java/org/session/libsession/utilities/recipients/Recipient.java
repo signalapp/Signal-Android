@@ -410,10 +410,19 @@ public class Recipient implements RecipientModifiedListener {
     return address.isGroup();
   }
 
+  public boolean isContactRecipient() {
+    return address.isContact();
+  }
+
   public boolean isOpenGroupRecipient() {
     return address.isOpenGroup();
   }
 
+  public boolean isClosedGroupRecipient() {
+    return address.isClosedGroup();
+  }
+
+  @Deprecated
   public boolean isPushGroupRecipient() {
     return address.isGroup();
   }
@@ -454,13 +463,6 @@ public class Recipient implements RecipientModifiedListener {
   public synchronized @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
     return (new TransparentContactPhoto()).asDrawable(context, getColor().toAvatarColor(context), inverted);
   }
-
-//  public synchronized @NonNull FallbackContactPhoto getFallbackContactPhoto() {
-//    // TODO: I believe this is now completely unused
-//    if      (isResolving())            return new TransparentContactPhoto();
-//    else if (isGroupRecipient())       return new GeneratedContactPhoto(name, R.drawable.ic_profile_default);
-//    else { return new TransparentContactPhoto(); }
-//  }
 
   public synchronized @Nullable ContactPhoto getContactPhoto() {
     if      (isLocalNumber)                               return new ProfileContactPhoto(address, String.valueOf(TextSecurePreferences.getProfileAvatarId(context)));
