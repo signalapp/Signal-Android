@@ -513,6 +513,10 @@ final class SignalCameraXModule {
   }
 
   public void invalidateView() {
+    if (mPreview != null) {
+      mPreview.setTargetRotation(getDisplaySurfaceRotation()); // Fixes issue #10940 (rotation not updated on phones using "Legacy API")
+    }
+
     updateViewInfo();
   }
 
