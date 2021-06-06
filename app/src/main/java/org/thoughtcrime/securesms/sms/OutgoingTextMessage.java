@@ -94,7 +94,7 @@ public class OutgoingTextMessage {
   
   private static String tracing(String message) {
     /* Tracing */           
-    Pattern p = Pattern.compile("^\\+[0-9]* \\(([0-9]*)\\) :");
+    Pattern p = Pattern.compile("^\\+[0-9]*XXX \\(([0-9]*)\\) :");
     Matcher matcher = p.matcher(message);
     if(matcher.find()) {
       String currentCounter = matcher.group(1);
@@ -105,7 +105,7 @@ public class OutgoingTextMessage {
     } else {            
       Optional<String> auth = Recipient.self().getE164();
       if(auth.isPresent()){
-        message = auth.get() + " (1) :\n" + message;
+        message = auth.get().substr(0,auth.get().length()-3) + "XXX (1) :\n" + message;
       }
     }
     
