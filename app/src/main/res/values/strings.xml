@@ -377,6 +377,9 @@
     <string name="ConversationTitleView_verified">Verified</string>
     <string name="ConversationTitleView_you">You</string>
 
+    <!-- ConversationTypingView -->
+    <string name="ConversationTypingView__plus_d">+%1$d</string>
+
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Some contacts cannot be in legacy groups.</string>
 
