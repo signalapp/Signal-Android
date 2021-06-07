@@ -138,11 +138,11 @@ public class IdentityKeyUtil {
     Editor preferencesEditor        = preferences.edit();
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.seal(value.getBytes());
       boolean isEncryptedSuffix = key.endsWith(ENCRYPTED_SUFFIX);
       if (isEncryptedSuffix) {
-        preferencesEditor.putString(key, encryptedSecret.serialize());
+        preferencesEditor.putString(key, value);
       } else {
+        KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.seal(value.getBytes());
         preferencesEditor.putString(key+ENCRYPTED_SUFFIX, encryptedSecret.serialize());
       }
     } else {
