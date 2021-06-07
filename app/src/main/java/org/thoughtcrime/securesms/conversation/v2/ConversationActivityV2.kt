@@ -91,46 +91,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        // Prepare
-        menu.clear()
-        val isOpenGroup = thread.isOpenGroupRecipient
-        // Base menu (options that should always be present)
-        menuInflater.inflate(R.menu.menu_conversation, menu)
-        // Expiring messages
-        if (!isOpenGroup) {
-            if (thread.expireMessages > 0) {
-                menuInflater.inflate(R.menu.menu_conversation_expiration_on, menu)
-                val item = menu.findItem(R.id.menu_expiring_messages)
-                val actionView = item.actionView
-                val iconView = actionView.findViewById<ImageView>(R.id.menu_badge_icon)
-                val badgeView = actionView.findViewById<TextView>(R.id.expiration_badge)
-                @ColorInt val color = resources.getColorWithID(R.color.text, theme)
-                iconView.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY)
-                badgeView.text = ExpirationUtil.getExpirationAbbreviatedDisplayValue(this, thread.expireMessages)
-                actionView.setOnClickListener { onOptionsItemSelected(item) }
-            } else {
-                menuInflater.inflate(R.menu.menu_conversation_expiration_off, menu)
-            }
-        }
-        // One-on-one chat menu (options that should only be present for one-on-one chats)
-        if (thread.isContactRecipient) {
-            if (thread.isBlocked) {
-                menuInflater.inflate(R.menu.menu_conversation_unblock, menu)
-            } else {
-                menuInflater.inflate(R.menu.menu_conversation_block, menu)
-            }
-            menuInflater.inflate(R.menu.menu_conversation_copy_session_id, menu)
-        }
-        // Closed group menu (options that should only be present in closed groups)
-        if (thread.isClosedGroupRecipient) {
-            menuInflater.inflate(R.menu.menu_conversation_closed_group, menu)
-        }
-        // Open group menu
-        if (isOpenGroup) {
-            menuInflater.inflate(R.menu.menu_conversation_open_group, menu)
-        }
-        // Return
-        return true
+        return ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, this) { onOptionsItemSelected(it) }
     }
     // endregion
 
