@@ -400,6 +400,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private ConversationGroupViewModel   groupViewModel;
   private MentionsPickerViewModel      mentionsViewModel;
   private GroupCallViewModel           groupCallViewModel;
+  private VoiceRecorderWakeLock        voiceRecorderWakeLock;
 
   private LiveRecipient recipient;
   private long          threadId;
@@ -431,6 +432,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
       finish();
       return;
     }
+
+    voiceRecorderWakeLock = new VoiceRecorderWakeLock(this);
 
     new FullscreenHelper(this).showSystemUI();
 
@@ -3033,12 +3036,14 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @Override
   public void onRecorderLocked() {
+    voiceRecorderWakeLock.acquire();
     updateToggleButtonState();
     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
   }
 
   @Override
   public void onRecorderFinished() {
+    voiceRecorderWakeLock.release();
     updateToggleButtonState();
     Vibrator vibrator = ServiceUtil.getVibrator(this);
     vibrator.vibrate(20);
@@ -3095,6 +3100,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @Override
   public void onRecorderCanceled() {
+    voiceRecorderWakeLock.release();
     updateToggleButtonState();
     Vibrator vibrator = ServiceUtil.getVibrator(this);
     vibrator.vibrate(50);
