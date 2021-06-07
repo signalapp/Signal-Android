@@ -67,7 +67,8 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 } else {
                     null
                 }
-                view.bind(message)
+                val position = viewHolder.adapterPosition
+                view.bind(message, getMessageBefore(position, cursor), getMessageAfter(position, cursor))
                 view.setOnClickListener { onItemPress(message, viewHolder.adapterPosition) }
                 view.setOnLongClickListener {
                     onItemLongPress(message, viewHolder.adapterPosition)
@@ -87,6 +88,16 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
     }
 
     private fun getMessage(cursor: Cursor): MessageRecord? {
+        return messageDB.readerFor(cursor).current
+    }
+
+    private fun getMessageBefore(position: Int, cursor: Cursor): MessageRecord? {
+        if (!cursor.moveToPosition(position - 1)) { return null }
+        return messageDB.readerFor(cursor).current
+    }
+
+    private fun getMessageAfter(position: Int, cursor: Cursor): MessageRecord? {
+        if (!cursor.moveToPosition(position + 1)) { return null }
         return messageDB.readerFor(cursor).current
     }
 

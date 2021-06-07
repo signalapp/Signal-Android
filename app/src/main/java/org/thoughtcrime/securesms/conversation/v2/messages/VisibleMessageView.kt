@@ -10,8 +10,12 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_visible_message.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact.ContactContext
+import org.session.libsession.utilities.ViewUtil
+import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.util.DateUtils
+import kotlin.math.roundToInt
 
 class VisibleMessageView : LinearLayout {
 
@@ -35,7 +39,7 @@ class VisibleMessageView : LinearLayout {
     // endregion
 
     // region Updating
-    fun bind(message: MessageRecord) {
+    fun bind(message: MessageRecord, previous: MessageRecord?, next: MessageRecord?) {
         val sender = message.individualRecipient
         val senderSessionID = sender.address.serialize()
         val threadID = message.threadId
@@ -71,12 +75,44 @@ class VisibleMessageView : LinearLayout {
         messageContentViewLayoutParams.rightMargin = if (message.isOutgoing) resources.getDimension(R.dimen.medium_spacing).toInt()
             else resources.getDimension(R.dimen.very_large_spacing).toInt()
         messageContentView.layoutParams = messageContentViewLayoutParams
-        // TODO: Inter-message spacing
+        // Set inter-message spacing
+        setMessageSpacing(message, previous, next, isGroupThread)
         // Gravity
         val gravity = if (message.isOutgoing) Gravity.RIGHT else Gravity.LEFT
         mainContainer.gravity = gravity or Gravity.BOTTOM
         // Populate content view
         messageContentView.bind(message)
+    }
+
+    private fun setMessageSpacing(current: MessageRecord, previous: MessageRecord?, next: MessageRecord?, isGroupThread: Boolean) {
+        val isStartOfMessageCluster = (isStartOfMessageCluster(current, previous, isGroupThread))
+        val topPadding = if (isStartOfMessageCluster) R.dimen.conversation_vertical_message_spacing_default
+            else R.dimen.conversation_vertical_message_spacing_collapse
+        ViewUtil.setPaddingTop(this, resources.getDimension(topPadding).roundToInt())
+        val isEndOfMessageCluster = (isEndOfMessageCluster(current, previous, isGroupThread))
+        val bottomPadding = if (isEndOfMessageCluster) R.dimen.conversation_vertical_message_spacing_default
+            else R.dimen.conversation_vertical_message_spacing_collapse
+        ViewUtil.setPaddingBottom(this, resources.getDimension(bottomPadding).roundToInt())
+    }
+
+    private fun isStartOfMessageCluster(current: MessageRecord, previous: MessageRecord?, isGroupThread: Boolean): Boolean {
+        return if (isGroupThread) {
+            previous == null || previous.isUpdate || !DateUtils.isSameDay(current.timestamp, previous.timestamp)
+                || current.recipient.address != previous.recipient.address
+        } else {
+            previous == null || previous.isUpdate || !DateUtils.isSameDay(current.timestamp, previous.timestamp)
+                || current.isOutgoing != previous.isOutgoing
+        }
+    }
+
+    private fun isEndOfMessageCluster(current: MessageRecord, next: MessageRecord?, isGroupThread: Boolean): Boolean {
+        return if (isGroupThread) {
+            next == null || next.isUpdate || !DateUtils.isSameDay(current.timestamp, next.timestamp)
+                || current.recipient.address != next.recipient.address
+        } else {
+            next == null || next.isUpdate || !DateUtils.isSameDay(current.timestamp, next.timestamp)
+                || current.isOutgoing != next.isOutgoing
+        }
     }
 
     fun recycle() {
