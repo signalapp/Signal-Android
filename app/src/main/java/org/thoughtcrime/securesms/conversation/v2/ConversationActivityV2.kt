@@ -63,9 +63,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
 
     private fun setUpRecyclerView() {
         conversationRecyclerView.adapter = adapter
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.reverseLayout = true
-        layoutManager.stackFromEnd = true
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
         conversationRecyclerView.layoutManager = layoutManager
         // Workaround for the fact that CursorRecyclerViewAdapter doesn't auto-update automatically (even though it says it will)
         LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {

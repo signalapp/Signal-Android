@@ -63,7 +63,7 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
             is VisibleMessageViewHolder -> {
                 val view = viewHolder.view
                 view.background = if (selectedItems.contains(message)) {
-                    ColorDrawable(context.resources.getColorWithID(R.color.red, context.theme))
+                    ColorDrawable(context.resources.getColorWithID(R.color.accent, context.theme))
                 } else {
                     null
                 }
@@ -92,12 +92,16 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
     }
 
     private fun getMessageBefore(position: Int, cursor: Cursor): MessageRecord? {
-        if (!cursor.moveToPosition(position - 1)) { return null }
+        // The message that's visually before the current one is actually after the current
+        // one for the cursor because the layout is reversed
+        if (!cursor.moveToPosition(position + 1)) { return null }
         return messageDB.readerFor(cursor).current
     }
 
     private fun getMessageAfter(position: Int, cursor: Cursor): MessageRecord? {
-        if (!cursor.moveToPosition(position + 1)) { return null }
+        // The message that's visually after the current one is actually before the current
+        // one for the cursor because the layout is reversed
+        if (!cursor.moveToPosition(position - 1)) { return null }
         return messageDB.readerFor(cursor).current
     }
 
