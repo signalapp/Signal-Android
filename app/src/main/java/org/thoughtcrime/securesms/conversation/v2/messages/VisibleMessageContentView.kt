@@ -88,7 +88,7 @@ class VisibleMessageContentView : LinearLayout {
         } else if (isEndOfMessageCluster) {
             backgroundID = if (isOutgoing) R.drawable.message_bubble_background_sent_end else R.drawable.message_bubble_background_received_end
         } else {
-            backgroundID = if (isOutgoing) R.drawable.message_bubble_background_sent_middle else R.drawable.message_bubble_background_received_middle;
+            backgroundID = if (isOutgoing) R.drawable.message_bubble_background_sent_middle else R.drawable.message_bubble_background_received_middle
         }
         return ResourcesCompat.getDrawable(resources, backgroundID, context.theme)!!
     }

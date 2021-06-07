@@ -7,15 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_visible_message.view.*
 import network.loki.messenger.R
-import nl.komponents.kovenant.combine.Tuple8
 import org.session.libsession.messaging.contacts.Contact.ContactContext
 import org.session.libsession.utilities.ViewUtil
-import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.util.DateUtils
+import java.util.*
 import kotlin.math.roundToInt
 
 class VisibleMessageView : LinearLayout {
@@ -63,8 +63,9 @@ class VisibleMessageView : LinearLayout {
             senderNameTextView.visibility = View.GONE
         }
         // Date break
-        dateBreakTextView.text = "The Ancient Past"
-        dateBreakTextView.visibility = View.GONE // TODO: Set this correctly
+        val showDateBreak = (previous == null || !DateUtils.isSameDay(message.timestamp, previous.timestamp))
+        dateBreakTextView.isVisible = showDateBreak
+        dateBreakTextView.text = if (showDateBreak) DateUtils.getRelativeDate(context, Locale.getDefault(), message.timestamp) else ""
         // Margins
         val messageContentViewLayoutParams = messageContentView.layoutParams as LinearLayout.LayoutParams
         if (isGroupThread) {
