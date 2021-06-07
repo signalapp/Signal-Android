@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.conversation.v2
+package org.thoughtcrime.securesms.conversation.v2.menus
 
 import android.content.Context
 import android.view.ActionMode
@@ -7,21 +7,26 @@ import android.view.MenuItem
 import network.loki.messenger.R
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.TextSecurePreferences
+import org.thoughtcrime.securesms.conversation.v2.ConversationAdapter
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
-import java.util.*
 
 class ConversationActionModeCallback(private val adapter: ConversationAdapter, private val threadID: Long,
     private val context: Context) : ActionMode.Callback {
 
     override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
-        // Prepare
         val inflater = mode.menuInflater
         inflater.inflate(R.menu.menu_conversation_item_action, menu)
+        updateActionModeMenu(menu)
+        return true
+    }
+
+    fun updateActionModeMenu(menu: Menu) {
+        // Prepare
         val selectedItems = adapter.selectedItems
         val containsControlMessage = selectedItems.any { it.isUpdate }
         val hasText = selectedItems.any { it.body.isNotEmpty() }
-        if (selectedItems.isEmpty()) { mode.finish(); return false }
+        if (selectedItems.isEmpty()) { return }
         val firstMessage = selectedItems.iterator().next()
         val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
@@ -58,8 +63,6 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
         // Reply
         menu.findItem(R.id.menu_context_reply).isVisible =
             (selectedItems.size == 1 && !firstMessage.isPending && !firstMessage.isFailed)
-        // Return
-        return true
     }
 
     override fun onPrepareActionMode(mode: ActionMode?, menu: Menu): Boolean {
@@ -71,6 +74,7 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
     }
 
     override fun onDestroyActionMode(mode: ActionMode) {
-
+        adapter.selectedItems.clear()
+        adapter.notifyDataSetChanged()
     }
 }

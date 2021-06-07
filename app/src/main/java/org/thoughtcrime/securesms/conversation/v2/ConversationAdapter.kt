@@ -2,19 +2,22 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
 import android.database.Cursor
+import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import network.loki.messenger.R
 import org.thoughtcrime.securesms.conversation.v2.messages.ControlMessageView
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import java.lang.IllegalStateException
 
-class ConversationAdapter(context: Context, cursor: Cursor, private val onItemLongPress: (Int) -> Unit)
-    : CursorRecyclerViewAdapter<ViewHolder>(context, cursor) {
+class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPress: (MessageRecord, Int) -> Unit,
+    private val onItemLongPress: (MessageRecord, Int) -> Unit) : CursorRecyclerViewAdapter<ViewHolder>(context, cursor) {
     private val messageDB = DatabaseFactory.getMmsSmsDatabase(context)
-    var selectedItems = setOf<MessageRecord>()
+    var selectedItems = mutableSetOf<MessageRecord>()
 
     sealed class ViewType(val rawValue: Int) {
         object Visible : ViewType(0)
@@ -59,9 +62,15 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemLo
         when (viewHolder) {
             is VisibleMessageViewHolder -> {
                 val view = viewHolder.view
+                view.background = if (selectedItems.contains(message)) {
+                    ColorDrawable(context.resources.getColorWithID(R.color.red, context.theme))
+                } else {
+                    null
+                }
                 view.bind(message)
+                view.setOnClickListener { onItemPress(message, viewHolder.adapterPosition) }
                 view.setOnLongClickListener {
-                    onItemLongPress(viewHolder.adapterPosition)
+                    onItemLongPress(message, viewHolder.adapterPosition)
                     true
                 }
             }
@@ -79,5 +88,10 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemLo
 
     private fun getMessage(cursor: Cursor): MessageRecord? {
         return messageDB.readerFor(cursor).current
+    }
+
+    fun toggleSelection(message: MessageRecord, position: Int) {
+        if (selectedItems.contains(message)) selectedItems.remove(message) else selectedItems.add(message)
+        notifyItemChanged(position)
     }
 }

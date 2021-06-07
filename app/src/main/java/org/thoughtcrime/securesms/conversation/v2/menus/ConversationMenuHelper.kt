@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.conversation.v2
+package org.thoughtcrime.securesms.conversation.v2.menus
 
 import android.content.Context
 import android.graphics.PorterDuff
@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 
 object ConversationMenuHelper {
     
-    fun onPrepareOptionsMenu(menu: Menu, inflater: MenuInflater, thread: Recipient, context: Context, onOptionsItemSelected: (MenuItem) -> Unit): Boolean {
+    fun onPrepareOptionsMenu(menu: Menu, inflater: MenuInflater, thread: Recipient, context: Context, onOptionsItemSelected: (MenuItem) -> Unit) {
         // Prepare
         menu.clear()
         val isOpenGroup = thread.isOpenGroupRecipient
@@ -62,7 +62,5 @@ object ConversationMenuHelper {
             inflater.inflate(R.menu.menu_conversation_unmuted, menu)
         }
         // TODO: Implement search
-        // Return
-        return true
     }
 }

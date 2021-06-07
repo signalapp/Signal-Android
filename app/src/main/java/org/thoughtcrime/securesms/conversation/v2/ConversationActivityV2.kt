@@ -14,15 +14,28 @@ import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
+import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.mms.GlideApp
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
     private var threadID: Long = -1
+    private var actionMode: ActionMode? = null
 
     private val adapter by lazy {
         val cursor = DatabaseFactory.getMmsSmsDatabase(this).getConversation(threadID)
-        val adapter = ConversationAdapter(this, cursor) { handleLongPress(it) }
+        val adapter = ConversationAdapter(
+            this,
+            cursor,
+            onItemPress = { message, position ->
+                handlePress(message, position)
+            },
+            onItemLongPress = { message, position ->
+                handleLongPress(message, position)
+            }
+        )
         adapter.setHasStableIds(true)
         adapter
     }
@@ -84,7 +97,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        return ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, this) { onOptionsItemSelected(it) }
+        ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, this) { onOptionsItemSelected(it) }
+        // FIXME: Make the menu respect the current app theme
+        super.onPrepareOptionsMenu(menu)
+        return true
     }
     // endregion
 
@@ -98,12 +114,36 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
         Log.d("Loki", "Reply to message at position: $messagePosition.")
     }
 
-    private fun handleLongPress(messagePosition: Int) {
+    private fun handlePress(message: MessageRecord, position: Int) {
+        val actionMode = this.actionMode
+        if (actionMode != null) {
+            adapter.toggleSelection(message, position)
+            val actionModeCallback = ConversationActionModeCallback(adapter, threadID, this)
+            actionModeCallback.updateActionModeMenu(actionMode.menu)
+            if (adapter.selectedItems.isEmpty()) {
+                actionMode.finish()
+                this.actionMode = null
+            }
+        }
+    }
+
+    private fun handleLongPress(message: MessageRecord, position: Int) {
+        val actionMode = this.actionMode
         val actionModeCallback = ConversationActionModeCallback(adapter, threadID, this)
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            startActionMode(actionModeCallback, ActionMode.TYPE_PRIMARY)
+        if (actionMode == null) { // Nothing should be selected if this is the case
+            adapter.toggleSelection(message, position)
+            this.actionMode = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                startActionMode(actionModeCallback, ActionMode.TYPE_PRIMARY)
+            } else {
+                startActionMode(actionModeCallback)
+            }
         } else {
-            startActionMode(actionModeCallback)
+            adapter.toggleSelection(message, position)
+            actionModeCallback.updateActionModeMenu(actionMode.menu)
+            if (adapter.selectedItems.isEmpty()) {
+                actionMode.finish()
+                this.actionMode = null
+            }
         }
     }
     // endregion
