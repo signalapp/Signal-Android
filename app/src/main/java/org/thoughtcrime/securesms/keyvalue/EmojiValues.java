@@ -104,7 +104,7 @@ public class EmojiValues extends SignalStoreValues {
     return getLong(LAST_SEARCH_CHECK, 0);
   }
 
-  public void setLastSearchIndexCheck(int time) {
+  public void setLastSearchIndexCheck(long time) {
     putLong(LAST_SEARCH_CHECK, time);
   }
 }

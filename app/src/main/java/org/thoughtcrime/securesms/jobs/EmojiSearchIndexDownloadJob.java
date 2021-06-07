@@ -115,6 +115,7 @@ public final class EmojiSearchIndexDownloadJob extends BaseJob {
 
     DatabaseFactory.getEmojiSearchDatabase(context).setSearchIndex(searchIndex);
     SignalStore.emojiValues().onSearchIndexUpdated(manifest.getVersion(), remoteLanguage);
+    SignalStore.emojiValues().setLastSearchIndexCheck(System.currentTimeMillis());
 
     Log.i(TAG, "Success! Now at version: " + manifest.getVersion() + ", language: " + remoteLanguage);
   }
