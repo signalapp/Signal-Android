@@ -1,16 +1,11 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.database.Cursor
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.annotation.ColorInt
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -18,10 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
 import network.loki.messenger.R
-import org.session.libsession.utilities.ExpirationUtil
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.mms.GlideApp
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
@@ -106,7 +99,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
     }
 
     private fun handleLongPress(messagePosition: Int) {
-        val actionModeCallback = ConversationActionModeCallback()
+        val actionModeCallback = ConversationActionModeCallback(adapter, threadID, this)
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             startActionMode(actionModeCallback, ActionMode.TYPE_PRIMARY)
         } else {

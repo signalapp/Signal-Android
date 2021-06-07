@@ -55,6 +55,13 @@ object ConversationMenuHelper {
         if (isOpenGroup) {
             inflater.inflate(R.menu.menu_conversation_open_group, menu)
         }
+        // Muting
+        if (thread.isMuted) {
+            inflater.inflate(R.menu.menu_conversation_muted, menu)
+        } else {
+            inflater.inflate(R.menu.menu_conversation_unmuted, menu)
+        }
+        // TODO: Implement search
         // Return
         return true
     }

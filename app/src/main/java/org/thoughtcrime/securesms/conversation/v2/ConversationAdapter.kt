@@ -14,6 +14,7 @@ import java.lang.IllegalStateException
 class ConversationAdapter(context: Context, cursor: Cursor, private val onItemLongPress: (Int) -> Unit)
     : CursorRecyclerViewAdapter<ViewHolder>(context, cursor) {
     private val messageDB = DatabaseFactory.getMmsSmsDatabase(context)
+    var selectedItems = setOf<MessageRecord>()
 
     sealed class ViewType(val rawValue: Int) {
         object Visible : ViewType(0)
