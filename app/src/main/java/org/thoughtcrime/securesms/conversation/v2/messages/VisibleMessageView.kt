@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_visible_message.view.*
 import network.loki.messenger.R
+import nl.komponents.kovenant.combine.Tuple8
 import org.session.libsession.messaging.contacts.Contact.ContactContext
 import org.session.libsession.utilities.ViewUtil
 import org.session.libsignal.utilities.guava.Optional
@@ -76,22 +77,20 @@ class VisibleMessageView : LinearLayout {
             else resources.getDimension(R.dimen.very_large_spacing).toInt()
         messageContentView.layoutParams = messageContentViewLayoutParams
         // Set inter-message spacing
-        setMessageSpacing(message, previous, next, isGroupThread)
+        val isStartOfMessageCluster = isStartOfMessageCluster(message, previous, isGroupThread)
+        val isEndOfMessageCluster = isEndOfMessageCluster(message, next, isGroupThread)
+        setMessageSpacing(isStartOfMessageCluster, isEndOfMessageCluster)
         // Gravity
         val gravity = if (message.isOutgoing) Gravity.RIGHT else Gravity.LEFT
         mainContainer.gravity = gravity or Gravity.BOTTOM
         // Populate content view
-        messageContentView.bind(message)
+        messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster)
     }
 
-    private fun setMessageSpacing(current: MessageRecord, previous: MessageRecord?, next: MessageRecord?, isGroupThread: Boolean) {
-        val isStartOfMessageCluster = (isStartOfMessageCluster(current, previous, isGroupThread))
-        val topPadding = if (isStartOfMessageCluster) R.dimen.conversation_vertical_message_spacing_default
-            else R.dimen.conversation_vertical_message_spacing_collapse
+    private fun setMessageSpacing(isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {
+        val topPadding = if (isStartOfMessageCluster) R.dimen.conversation_vertical_message_spacing_default else R.dimen.conversation_vertical_message_spacing_collapse
         ViewUtil.setPaddingTop(this, resources.getDimension(topPadding).roundToInt())
-        val isEndOfMessageCluster = (isEndOfMessageCluster(current, previous, isGroupThread))
-        val bottomPadding = if (isEndOfMessageCluster) R.dimen.conversation_vertical_message_spacing_default
-            else R.dimen.conversation_vertical_message_spacing_collapse
+        val bottomPadding = if (isEndOfMessageCluster) R.dimen.conversation_vertical_message_spacing_default else R.dimen.conversation_vertical_message_spacing_collapse
         ViewUtil.setPaddingBottom(this, resources.getDimension(bottomPadding).roundToInt())
     }
 

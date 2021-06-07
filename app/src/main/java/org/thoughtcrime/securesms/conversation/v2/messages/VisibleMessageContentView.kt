@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.DrawableRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
@@ -42,10 +44,9 @@ class VisibleMessageContentView : LinearLayout {
     // endregion
 
     // region Updating
-    fun bind(message: MessageRecord) {
+    fun bind(message: MessageRecord, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {
         // Background
-        // TODO: Set background to one of sent/received + top/middle/bottom + color
-        val background = ResourcesCompat.getDrawable(resources, R.drawable.message_bubble_background, context.theme)!!
+        val background = getBackground(message.isOutgoing, isStartOfMessageCluster, isEndOfMessageCluster)
         val colorID = if (message.isOutgoing) R.attr.message_sent_background_color else R.attr.message_received_background_color
         val color = ThemeUtil.getThemedColor(context, colorID)
         val filter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(color, BlendModeCompat.SRC_IN)
@@ -75,6 +76,21 @@ class VisibleMessageContentView : LinearLayout {
             val bodyTextView = getBodyTextView(message)
             mainContainer.addView(bodyTextView)
         }
+    }
+
+    private fun getBackground(isOutgoing: Boolean, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean): Drawable {
+        val isSingleMessage = (isStartOfMessageCluster && isEndOfMessageCluster)
+        @DrawableRes val backgroundID: Int
+        if (isSingleMessage) {
+            backgroundID = if (isOutgoing) R.drawable.message_bubble_background_sent_alone else R.drawable.message_bubble_background_received_alone
+        } else if (isStartOfMessageCluster) {
+            backgroundID = if (isOutgoing) R.drawable.message_bubble_background_sent_start else R.drawable.message_bubble_background_received_start
+        } else if (isEndOfMessageCluster) {
+            backgroundID = if (isOutgoing) R.drawable.message_bubble_background_sent_end else R.drawable.message_bubble_background_received_end
+        } else {
+            backgroundID = if (isOutgoing) R.drawable.message_bubble_background_sent_middle else R.drawable.message_bubble_background_received_middle;
+        }
+        return ResourcesCompat.getDrawable(resources, backgroundID, context.theme)!!
     }
 
     fun recycle() {
