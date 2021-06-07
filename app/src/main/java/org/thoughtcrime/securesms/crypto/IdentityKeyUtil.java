@@ -139,7 +139,12 @@ public class IdentityKeyUtil {
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.seal(value.getBytes());
-      preferencesEditor.putString(key+ENCRYPTED_SUFFIX, encryptedSecret.serialize());
+      boolean isEncryptedSuffix = key.endsWith(ENCRYPTED_SUFFIX);
+      if (isEncryptedSuffix) {
+        preferencesEditor.putString(key, encryptedSecret.serialize());
+      } else {
+        preferencesEditor.putString(key+ENCRYPTED_SUFFIX, encryptedSecret.serialize());
+      }
     } else {
       preferencesEditor.putString(key, value);
     }
