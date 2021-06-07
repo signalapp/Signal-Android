@@ -44,6 +44,8 @@ public class NotificationChannels {
 
   private static final String TAG = Log.tag(NotificationChannels.class);
 
+  private static final long[] EMPTY_VIBRATION_PATTERN = new long[] { 0 };
+
   private static class Version {
     static final int MESSAGES_CATEGORY   = 2;
     static final int CALLS_PRIORITY_BUMP = 3;
@@ -183,7 +185,7 @@ public class NotificationChannels {
 
     setLedPreference(channel, SignalStore.settings().getMessageLedColor());
     channel.setGroup(CATEGORY_MESSAGES);
-    channel.enableVibration(vibrationEnabled);
+    setVibrationEnabled(channel, vibrationEnabled);
 
     if (messageSound != null) {
       channel.setSound(messageSound, new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
@@ -358,7 +360,7 @@ public class NotificationChannels {
     }
     Log.i(TAG, "Updating default vibrate with value: " + enabled);
 
-    updateMessageChannel(context, channel -> channel.enableVibration(enabled));
+    updateMessageChannel(context, channel -> setVibrationEnabled(channel, enabled));
   }
 
   /**
@@ -376,13 +378,32 @@ public class NotificationChannels {
 
     boolean enabled      = vibrateState == VibrateState.DEFAULT ? getMessageVibrate(context) : vibrateState == VibrateState.ENABLED;
     String  newChannelId = generateChannelIdFor(recipient);
-    boolean success      = updateExistingChannel(ServiceUtil.getNotificationManager(context),
-                                                 recipient.getNotificationChannel(),
-                                                 newChannelId,
-                                                 channel -> channel.enableVibration(enabled));
+
+    boolean success = updateExistingChannel(ServiceUtil.getNotificationManager(context),
+                                            recipient.getNotificationChannel(),
+                                            newChannelId,
+                                            channel -> setVibrationEnabled(channel, enabled));
 
     DatabaseFactory.getRecipientDatabase(context).setNotificationChannel(recipient.getId(), success ? newChannelId : null);
     ensureCustomChannelConsistency(context);
+  }
+
+  /**
+   * Some devices don't seem to respect the vibration flag on a notification channel. To disable, we
+   * instead set the pattern to be empty.
+   *
+   * Note: Calling {@link NotificationChannel#setVibrationPattern(long[])} with null will clear the empty
+   * vibration pattern (if any) but also set the enable vibration flag to false, hence the two steps to enable.
+   * Likewise, setting the pattern to any non-zero length array will set enable vibration flag to true.
+   */
+  @TargetApi(26)
+  private static void setVibrationEnabled(@NonNull NotificationChannel channel, boolean enabled) {
+    if (enabled) {
+      channel.setVibrationPattern(null);
+      channel.enableVibration(true);
+    } else {
+      channel.setVibrationPattern(EMPTY_VIBRATION_PATTERN);
+    }
   }
 
   /**
@@ -524,7 +545,7 @@ public class NotificationChannels {
     NotificationChannel joinEvents   = new NotificationChannel(JOIN_EVENTS, context.getString(R.string.NotificationChannel_contact_joined_signal), NotificationManager.IMPORTANCE_DEFAULT);
 
     messages.setGroup(CATEGORY_MESSAGES);
-    messages.enableVibration(SignalStore.settings().isMessageVibrateEnabled());
+    setVibrationEnabled(messages, SignalStore.settings().isMessageVibrateEnabled());
     messages.setSound(SignalStore.settings().getMessageNotificationSound(), getRingtoneAudioAttributes());
     setLedPreference(messages, SignalStore.settings().getMessageLedColor());
 
@@ -532,8 +553,7 @@ public class NotificationChannels {
     backups.setShowBadge(false);
     lockedStatus.setShowBadge(false);
     other.setShowBadge(false);
-    other.setVibrationPattern(new long[]{0});
-    other.enableVibration(true);
+    setVibrationEnabled(other, false);
     voiceNotes.setShowBadge(false);
     joinEvents.setShowBadge(false);
 
