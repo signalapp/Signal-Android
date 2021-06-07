@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.backup.BackupPassphrase
 import org.thoughtcrime.securesms.backup.BackupProtos.SharedPreference
 import org.thoughtcrime.securesms.backup.FullBackupExporter
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
-import org.session.libsession.utilities.IdentityKeyUtil
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.database.BackupFileRecord
 import org.thoughtcrime.securesms.service.LocalBackupListener

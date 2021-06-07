@@ -11,13 +11,13 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_seed.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.session.libsession.utilities.IdentityKeyUtil
-import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.utilities.hexEncodedPrivateKey
+import org.thoughtcrime.securesms.BaseActionBarActivity
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
+import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 
 class SeedActivity : BaseActionBarActivity() {
 

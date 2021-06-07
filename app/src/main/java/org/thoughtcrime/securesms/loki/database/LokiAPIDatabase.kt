@@ -2,22 +2,25 @@ package org.thoughtcrime.securesms.loki.database
 
 import android.content.ContentValues
 import android.content.Context
-import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.crypto.ecc.DjbECPrivateKey
 import org.session.libsignal.crypto.ecc.DjbECPublicKey
 import org.session.libsignal.crypto.ecc.ECKeyPair
-import org.session.libsignal.utilities.Snode
 import org.session.libsignal.database.LokiAPIDatabaseProtocol
-import org.session.libsignal.utilities.PublicKeyValidation
-import org.session.libsignal.utilities.removing05PrefixIfNeeded
-import org.session.libsignal.utilities.toHexString
-import org.session.libsignal.utilities.Hex
-import org.session.libsignal.utilities.Log
+import org.session.libsignal.utilities.*
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
 import java.util.*
+import kotlin.Array
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.Long
+import kotlin.Pair
+import kotlin.String
+import kotlin.arrayOf
+import kotlin.to
 
 class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiAPIDatabaseProtocol {
 

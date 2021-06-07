@@ -15,21 +15,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.session.libsession.utilities;
+package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.Build;
+
 import androidx.annotation.NonNull;
 
-import org.session.libsignal.crypto.ecc.ECPublicKey;
 import org.session.libsignal.crypto.IdentityKey;
 import org.session.libsignal.crypto.IdentityKeyPair;
-import org.session.libsignal.exceptions.InvalidKeyException;
 import org.session.libsignal.crypto.ecc.Curve;
 import org.session.libsignal.crypto.ecc.ECKeyPair;
 import org.session.libsignal.crypto.ecc.ECPrivateKey;
-
+import org.session.libsignal.crypto.ecc.ECPublicKey;
+import org.session.libsignal.exceptions.InvalidKeyException;
 import org.session.libsignal.utilities.Base64;
 
 import java.io.IOException;
@@ -45,6 +46,7 @@ public class IdentityKeyUtil {
 
   @SuppressWarnings("unused")
   private static final String TAG = IdentityKeyUtil.class.getSimpleName();
+  private static final String ENCRYPTED_SUFFIX = "_encrypted";
 
   public static final String IDENTITY_PUBLIC_KEY_PREF                    = "pref_identity_public_v3";
   public static final String IDENTITY_PRIVATE_KEY_PREF                   = "pref_identity_private_v3";
@@ -56,8 +58,10 @@ public class IdentityKeyUtil {
     SharedPreferences preferences = context.getSharedPreferences(MASTER_SECRET_UTIL_PREFERENCES_NAME, 0);
 
     return
-        preferences.contains(IDENTITY_PUBLIC_KEY_PREF) &&
-        preferences.contains(IDENTITY_PRIVATE_KEY_PREF);
+            (preferences.contains(IDENTITY_PUBLIC_KEY_PREF) &&
+        preferences.contains(IDENTITY_PRIVATE_KEY_PREF))
+            || (preferences.contains(IDENTITY_PUBLIC_KEY_PREF+ENCRYPTED_SUFFIX) &&
+                    preferences.contains(IDENTITY_PRIVATE_KEY_PREF+ENCRYPTED_SUFFIX));
   }
 
   public static @NonNull IdentityKey getIdentityKey(@NonNull Context context) {
@@ -94,14 +98,51 @@ public class IdentityKeyUtil {
 
   public static String retrieve(Context context, String key) {
     SharedPreferences preferences = context.getSharedPreferences(MASTER_SECRET_UTIL_PREFERENCES_NAME, 0);
-    return preferences.getString(key, null);
+
+    String unencryptedSecret = preferences.getString(key, null);
+    String encryptedSecret   = preferences.getString(key+ENCRYPTED_SUFFIX, null);
+
+    if      (unencryptedSecret != null) return getUnencryptedSecret(key, unencryptedSecret, context);
+    else if (encryptedSecret != null)   return getEncryptedSecret(encryptedSecret);
+
+    return null;
   }
+
+  private static String getUnencryptedSecret(String key, String unencryptedSecret, Context context) {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+      return unencryptedSecret;
+    } else {
+      KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.seal(unencryptedSecret.getBytes());
+
+      // save the encrypted suffix secret "key_encrypted"
+      save(context,key+ENCRYPTED_SUFFIX,encryptedSecret.serialize());
+      // delete the regular secret "key"
+      delete(context,key);
+
+      return unencryptedSecret;
+    }
+  }
+
+  private static String getEncryptedSecret(String encryptedSecret) {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+      throw new AssertionError("OS downgrade not supported. KeyStore sealed data exists on platform < M!");
+    } else {
+      KeyStoreHelper.SealedData sealedData = KeyStoreHelper.SealedData.fromString(encryptedSecret);
+      return new String(KeyStoreHelper.unseal(sealedData));
+    }
+  }
+
 
   public static void save(Context context, String key, String value) {
     SharedPreferences preferences   = context.getSharedPreferences(MASTER_SECRET_UTIL_PREFERENCES_NAME, 0);
     Editor preferencesEditor        = preferences.edit();
 
-    preferencesEditor.putString(key, value);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+      KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.seal(value.getBytes());
+      preferencesEditor.putString(key+ENCRYPTED_SUFFIX, encryptedSecret.serialize());
+    } else {
+      preferencesEditor.putString(key, value);
+    }
     if (!preferencesEditor.commit()) throw new AssertionError("failed to save identity key/value to shared preferences");
   }
 

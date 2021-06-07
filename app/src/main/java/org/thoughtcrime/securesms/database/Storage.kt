@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.database
 
-import android.app.job.JobScheduler
 import android.content.Context
 import android.net.Uri
 import org.session.libsession.database.StorageProtocol
@@ -27,6 +26,7 @@ import org.session.libsignal.messages.SignalServiceGroup
 import org.session.libsignal.utilities.KeyHelper
 import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.loki.api.OpenGroupManager
