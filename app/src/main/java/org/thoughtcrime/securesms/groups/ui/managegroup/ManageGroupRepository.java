@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.groups.MembershipNotSuitableForV2Exception;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -146,6 +147,15 @@ final class ManageGroupRepository {
       RecipientId recipientId = Recipient.externalGroupExact(context, groupId).getId();
       DatabaseFactory.getRecipientDatabase(context).setMentionSetting(recipientId, mentionSetting);
     });
+  }
+
+  @WorkerThread
+  boolean hasCustomNotifications(Recipient recipient) {
+    if (recipient.getNotificationChannel() != null || !NotificationChannels.supported()) {
+      return true;
+    }
+
+    return NotificationChannels.updateWithShortcutBasedChannel(context, recipient);
   }
 
   static final class GroupStateResult {

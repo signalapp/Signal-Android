@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.recipients.ui.managerecipient;
 
 import android.app.Activity;
+import android.app.NotificationChannel;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -78,7 +79,7 @@ public final class ManageRecipientViewModel extends ViewModel {
     this.groupListCollapseState    = new DefaultValueLiveData<>(CollapseState.COLLAPSED);
     this.disappearingMessageTimer  = Transformations.map(this.recipient, r -> ExpirationUtil.getExpirationDisplayValue(context, r.getExpireMessages()));
     this.muteState                 = Transformations.map(this.recipient, r -> new MuteState(r.getMuteUntil(), r.isMuted()));
-    this.hasCustomNotifications    = Transformations.map(this.recipient, r -> r.getNotificationChannel() != null || !NotificationChannels.supported());
+    this.hasCustomNotifications    = LiveDataUtil.mapAsync(this.recipient, manageRecipientRepository::hasCustomNotifications);
     this.canBlock                  = Transformations.map(this.recipient, r -> RecipientUtil.isBlockable(r) && !r.isBlocked());
     this.canUnblock                = Transformations.map(this.recipient, Recipient::isBlocked);
     this.internalDetails           = Transformations.map(this.recipient, this::populateInternalDetails);

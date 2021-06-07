@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.addmembers.AddMembersActivity;
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupMentionSettingDialog;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkUrlAndStatus;
-import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -120,8 +119,7 @@ public class ManageGroupViewModel extends ViewModel {
     this.canAddMembers             = liveGroup.selfCanAddMembers();
     this.muteState                 = Transformations.map(this.groupRecipient,
                                                          recipient -> new MuteState(recipient.getMuteUntil(), recipient.isMuted()));
-    this.hasCustomNotifications    = Transformations.map(this.groupRecipient,
-                                                         recipient -> recipient.getNotificationChannel() != null || !NotificationChannels.supported());
+    this.hasCustomNotifications    = LiveDataUtil.mapAsync(this.groupRecipient, manageGroupRepository::hasCustomNotifications);
     this.canLeaveGroup             = liveGroup.isActive();
     this.canBlockGroup             = Transformations.map(this.groupRecipient, recipient -> RecipientUtil.isBlockable(recipient) && !recipient.isBlocked());
     this.canUnblockGroup           = Transformations.map(this.groupRecipient, Recipient::isBlocked);

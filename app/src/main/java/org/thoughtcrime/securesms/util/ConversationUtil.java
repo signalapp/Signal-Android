@@ -8,6 +8,7 @@ import android.content.pm.ShortcutManager;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
 
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobs.ConversationShortcutUpdateJob;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -130,6 +130,22 @@ public final class ConversationUtil {
    */
   public static @NonNull String getShortcutId(@NonNull Recipient recipient) {
     return getShortcutId(recipient.getId());
+  }
+
+  /**
+   * Extract the recipient id from the provided shortcutId.
+   */
+  public static @Nullable RecipientId getRecipientId(@Nullable String shortcutId) {
+    if (shortcutId == null) {
+      return null;
+    }
+
+    try {
+      return RecipientId.from(shortcutId);
+    } catch (Throwable t) {
+      Log.d(TAG, "Unable to parse recipientId from shortcutId", t);
+      return null;
+    }
   }
 
   @RequiresApi(CONVERSATION_SUPPORT_VERSION)

@@ -176,10 +176,15 @@ public final class NotificationCancellationHelper {
       return true;
     }
 
-    RecipientId recipientId = RecipientId.from(notification.getShortcutId());
-    Long        threadId    = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipientId);
+    RecipientId recipientId = ConversationUtil.getRecipientId(notification.getShortcutId());
+    if (recipientId == null) {
+      Log.d(TAG, "isCancellable: Unable to get recipient from shortcut id");
+      return true;
+    }
 
+    Long threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipientId);
     long focusedThreadId = ApplicationDependencies.getMessageNotifier().getVisibleThread();
+
     if (Objects.equals(threadId, focusedThreadId)) {
       Log.d(TAG, "isCancellable: user entered full screen thread.");
       return true;

@@ -430,7 +430,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
               }
             }
 
-            String channelId = NotificationChannels.createChannelFor(context, "contact_" + address + "_" + System.currentTimeMillis(), displayName, messageSoundUri, vibrateEnabled);
+            String channelId = NotificationChannels.createChannelFor(context, "contact_" + address + "_" + System.currentTimeMillis(), displayName, messageSoundUri, vibrateEnabled, null);
 
             ContentValues values = new ContentValues(1);
             values.put("notification_channel", channelId);

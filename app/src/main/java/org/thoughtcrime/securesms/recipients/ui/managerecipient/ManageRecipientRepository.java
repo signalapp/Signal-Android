@@ -10,15 +10,12 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.color.MaterialColors;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -105,5 +102,14 @@ final class ManageRecipientRepository {
 
   void getActiveGroupCount(@NonNull Consumer<Integer> onComplete) {
     SignalExecutors.BOUNDED.execute(() -> onComplete.accept(DatabaseFactory.getGroupDatabase(context).getActiveGroupCount()));
+  }
+
+  @WorkerThread
+  boolean hasCustomNotifications(Recipient recipient) {
+    if (recipient.getNotificationChannel() != null || !NotificationChannels.supported()) {
+      return true;
+    }
+
+    return NotificationChannels.updateWithShortcutBasedChannel(context, recipient);
   }
 }
