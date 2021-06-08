@@ -72,7 +72,7 @@ public final class FeatureFlags {
   private static final String ANIMATED_STICKER_MIN_TOTAL_MEMORY = "android.animatedStickerMinTotalMemory";
   private static final String MESSAGE_PROCESSOR_ALARM_INTERVAL  = "android.messageProcessor.alarmIntervalMins";
   private static final String MESSAGE_PROCESSOR_DELAY           = "android.messageProcessor.foregroundDelayMs";
-  private static final String MP4_GIF_SEND_SUPPORT              = "android.mp4GifSendSupport";
+  private static final String MP4_GIF_SEND_SUPPORT              = "android.mp4GifSendSupport.2";
   private static final String MEDIA_QUALITY_LEVELS              = "android.mediaQuality.levels";
   private static final String RETRY_RECEIPT_LIFESPAN            = "android.retryReceiptLifespan";
   private static final String RETRY_RESPOND_MAX_AGE             = "android.retryRespondMaxAge";
