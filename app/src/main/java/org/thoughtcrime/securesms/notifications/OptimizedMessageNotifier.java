@@ -11,7 +11,6 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BubbleUtil;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LeakyBucketLimiter;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -21,14 +20,11 @@ import org.thoughtcrime.securesms.util.Util;
 public class OptimizedMessageNotifier implements MessageNotifier {
 
   private final LeakyBucketLimiter limiter;
-
-  private final DefaultMessageNotifier messageNotifierV1;
-  private final MessageNotifierV2      messageNotifierV2;
+  private final MessageNotifierV2  messageNotifierV2;
 
   @MainThread
   public OptimizedMessageNotifier(@NonNull Application context) {
     this.limiter           = new LeakyBucketLimiter(5, 1000, new Handler(SignalExecutors.getAndStartHandlerThread("signal-notifier").getLooper()));
-    this.messageNotifierV1 = new DefaultMessageNotifier();
     this.messageNotifierV2 = new MessageNotifierV2(context);
   }
 
@@ -119,10 +115,6 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   }
 
   private MessageNotifier getNotifier() {
-    if (FeatureFlags.useNewNotificationSystem()) {
-      return messageNotifierV2;
-    } else {
-      return messageNotifierV1;
-    }
+    return messageNotifierV2;
   }
 }

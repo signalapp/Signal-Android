@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.util;
 
-import android.app.Application;
-import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -77,7 +75,6 @@ public final class FeatureFlags {
   private static final String ANIMATED_STICKER_MIN_TOTAL_MEMORY = "android.animatedStickerMinTotalMemory";
   private static final String MESSAGE_PROCESSOR_ALARM_INTERVAL  = "android.messageProcessor.alarmIntervalMins";
   private static final String MESSAGE_PROCESSOR_DELAY           = "android.messageProcessor.foregroundDelayMs";
-  private static final String NOTIFICATION_REWRITE              = "android.notificationRewrite";
   private static final String MP4_GIF_SEND_SUPPORT              = "android.mp4GifSendSupport";
   private static final String MEDIA_QUALITY_LEVELS              = "android.mediaQuality.levels";
   private static final String RETRY_RECEIPT_LIFESPAN            = "android.retryReceiptLifespan";
@@ -114,7 +111,6 @@ public final class FeatureFlags {
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
       MESSAGE_PROCESSOR_DELAY,
-      NOTIFICATION_REWRITE,
       MP4_GIF_SEND_SUPPORT,
       MEDIA_QUALITY_LEVELS,
       RETRY_RECEIPT_LIFESPAN,
@@ -163,7 +159,6 @@ public final class FeatureFlags {
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
       MESSAGE_PROCESSOR_DELAY,
       GV1_FORCED_MIGRATE,
-      NOTIFICATION_REWRITE,
       MP4_GIF_SEND_SUPPORT,
       MEDIA_QUALITY_LEVELS,
       RETRY_RECEIPT_LIFESPAN,
@@ -352,11 +347,6 @@ public final class FeatureFlags {
   /** The minimum total memory for rendering animated stickers in the keyboard and such */
   public static int animatedStickerMinimumTotalMemoryMb() {
     return getInteger(ANIMATED_STICKER_MIN_TOTAL_MEMORY, (int) ByteUnit.GIGABYTES.toMegabytes(3));
-  }
-
-  /** Whether or not to use the new notification system. */
-  public static boolean useNewNotificationSystem() {
-    return Build.VERSION.SDK_INT >= 26 || getBoolean(NOTIFICATION_REWRITE, false);
   }
 
   public static boolean mp4GifSendSupport() {

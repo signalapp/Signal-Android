@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -61,7 +62,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
 
     final RecipientId  recipientId  = intent.getParcelableExtra(RECIPIENT_EXTRA);
     final ReplyMethod  replyMethod  = (ReplyMethod) intent.getSerializableExtra(REPLY_METHOD);
-    final CharSequence responseText = remoteInput.getCharSequence(DefaultMessageNotifier.EXTRA_REMOTE_REPLY);
+    final CharSequence responseText = remoteInput.getCharSequence(MessageNotifierV2.EXTRA_REMOTE_REPLY);
 
     if (recipientId == null) throw new AssertionError("No recipientId specified");
     if (replyMethod == null) throw new AssertionError("No reply method specified");

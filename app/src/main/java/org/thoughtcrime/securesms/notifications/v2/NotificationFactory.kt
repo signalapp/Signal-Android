@@ -21,8 +21,8 @@ import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -181,7 +181,7 @@ object NotificationFactory {
       setSmallIcon(R.drawable.ic_notification)
       setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
       setCategory(NotificationCompat.CATEGORY_MESSAGE)
-      setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP)
+      setGroup(MessageNotifierV2.NOTIFICATION_GROUP)
       setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN)
       setChannelId(conversation.getChannelId(context))
       setContentTitle(conversation.getContentTitle(context))
@@ -225,7 +225,7 @@ object NotificationFactory {
       setSmallIcon(R.drawable.ic_notification)
       setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
       setCategory(NotificationCompat.CATEGORY_MESSAGE)
-      setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP)
+      setGroup(MessageNotifierV2.NOTIFICATION_GROUP)
       setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN)
       setChannelId(NotificationChannels.getMessagesChannel(context))
       setContentTitle(context.getString(R.string.app_name))
@@ -253,7 +253,7 @@ object NotificationFactory {
   private fun notifyInThread(context: Context, recipient: Recipient, lastAudibleNotification: Long) {
     if (!SignalStore.settings().isMessageNotificationsInChatSoundsEnabled ||
       ServiceUtil.getAudioManager(context).ringerMode != AudioManager.RINGER_MODE_NORMAL ||
-      (System.currentTimeMillis() - lastAudibleNotification) < DefaultMessageNotifier.MIN_AUDIBLE_PERIOD_MILLIS
+      (System.currentTimeMillis() - lastAudibleNotification) < MessageNotifierV2.MIN_AUDIBLE_PERIOD_MILLIS
     ) {
       return
     }
@@ -341,6 +341,38 @@ object NotificationFactory {
     }
 
     NotificationManagerCompat.from(context).safelyNotify(context, recipient, threadId.toInt(), builder.build())
+  }
+
+  @JvmStatic
+  fun notifyToBubbleConversation(context: Context, recipient: Recipient, threadId: Long) {
+    val builder: NotificationBuilder = NotificationBuilder.create(context)
+
+    val conversation = NotificationConversation(
+      recipient = recipient,
+      threadId = threadId,
+      notificationItems = listOf(
+        MessageNotification(
+          threadRecipient = recipient,
+          record = InMemoryMessageRecord.ForceConversationBubble(recipient, threadId)
+        )
+      )
+    )
+
+    builder.apply {
+      setSmallIcon(R.drawable.ic_notification)
+      setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
+      setCategory(NotificationCompat.CATEGORY_MESSAGE)
+      setChannelId(conversation.getChannelId(context))
+      setContentTitle(conversation.getContentTitle(context))
+      setLargeIcon(conversation.getContactLargeIcon(context).toLargeBitmap(context))
+      addPerson(conversation.recipient)
+      setShortcutId(ConversationUtil.getShortcutId(conversation.recipient))
+      addMessages(conversation)
+      setBubbleMetadata(conversation, BubbleUtil.BubbleState.SHOWN)
+    }
+
+    Log.d(TAG, "Posting Notification for requested bubble")
+    NotificationManagerCompat.from(context).safelyNotify(context, recipient, conversation.notificationId, builder.build())
   }
 
   private fun NotificationManagerCompat.safelyNotify(context: Context, threadRecipient: Recipient?, notificationId: Int, notification: Notification) {

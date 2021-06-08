@@ -20,6 +20,7 @@ public class InMemoryMessageRecord extends MessageRecord {
 
   private static final int NO_GROUPS_IN_COMMON_ID    = -1;
   private static final int UNIVERSAL_EXPIRE_TIMER_ID = -2;
+  private static final int FORCE_BUBBLE_ID           = -3;
 
   private InMemoryMessageRecord(long id,
                                 String body,
@@ -135,6 +136,15 @@ public class InMemoryMessageRecord extends MessageRecord {
     @Override
     public boolean isUpdate() {
       return true;
+    }
+  }
+
+  /**
+   * Useful for create an empty message record when one is needed.
+   */
+  public static final class ForceConversationBubble extends InMemoryMessageRecord {
+    public ForceConversationBubble(Recipient conversationRecipient, long threadId) {
+      super(FORCE_BUBBLE_ID, "", conversationRecipient, threadId, 0);
     }
   }
 }

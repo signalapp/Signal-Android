@@ -718,20 +718,6 @@
         </intent-filter>
     </receiver>
 
-    <receiver android:name=".notifications.AndroidAutoHeardReceiver"
-              android:exported="false">
-        <intent-filter>
-          <action android:name="org.thoughtcrime.securesms.notifications.ANDROID_AUTO_HEARD"/>
-        </intent-filter>
-    </receiver>
-
-    <receiver android:name=".notifications.AndroidAutoReplyReceiver"
-              android:exported="false">
-        <intent-filter>
-          <action android:name="org.thoughtcrime.securesms.notifications.ANDROID_AUTO_REPLY"/>
-        </intent-filter>
-    </receiver>
-
     <receiver android:name=".service.ExpirationListener" />
 
     <receiver android:name=".revealable.ViewOnceMessageManager$ViewOnceAlarm" />

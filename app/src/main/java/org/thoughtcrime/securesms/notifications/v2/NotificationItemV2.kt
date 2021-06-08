@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.mms.SlideDeck
-import org.thoughtcrime.securesms.notifications.AbstractNotificationBuilder
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.service.KeyCachingService
@@ -30,6 +29,7 @@ import org.thoughtcrime.securesms.util.Util
 
 private val TAG: String = Log.tag(NotificationItemV2::class.java)
 private const val EMOJI_REPLACEMENT_STRING = "__EMOJI__"
+private const val MAX_DISPLAY_LENGTH = 500
 
 /**
  * Base for messaged-based notifications. Represents a single notification.
@@ -145,10 +145,10 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
 
   private fun CharSequence?.trimToDisplayLength(): CharSequence {
     val text: CharSequence = this ?: ""
-    return if (text.length <= AbstractNotificationBuilder.MAX_DISPLAY_LENGTH) {
+    return if (text.length <= MAX_DISPLAY_LENGTH) {
       text
     } else {
-      text.subSequence(0, AbstractNotificationBuilder.MAX_DISPLAY_LENGTH)
+      text.subSequence(0, MAX_DISPLAY_LENGTH)
     }
   }
 

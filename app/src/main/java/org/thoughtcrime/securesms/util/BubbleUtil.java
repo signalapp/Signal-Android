@@ -18,9 +18,8 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
-import org.thoughtcrime.securesms.notifications.SingleRecipientNotificationBuilder;
+import org.thoughtcrime.securesms.notifications.v2.NotificationFactory;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -90,16 +89,8 @@ public final class BubbleUtil {
           if (activeThreadNotification != null && activeThreadNotification.deleteIntent != null) {
             ApplicationDependencies.getMessageNotifier().updateNotification(context, threadId, BubbleState.SHOWN);
           } else {
-            Recipient                          recipient = Recipient.resolved(recipientId);
-            SingleRecipientNotificationBuilder builder   = new SingleRecipientNotificationBuilder(context, SignalStore.settings().getMessageNotificationsPrivacy());
-
-            builder.addMessageBody(recipient, recipient, "", System.currentTimeMillis(), null);
-            builder.setThread(recipient);
-            builder.setDefaultBubbleState(BubbleState.SHOWN);
-            builder.setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP);
-
-            Log.d(TAG, "Posting Notification for requested bubble");
-            notificationManager.notify(NotificationIds.getNotificationIdForThread(threadId), builder.build());
+            Recipient recipient = Recipient.resolved(recipientId);
+            NotificationFactory.notifyToBubbleConversation(context, recipient, threadId);
           }
         }
       });

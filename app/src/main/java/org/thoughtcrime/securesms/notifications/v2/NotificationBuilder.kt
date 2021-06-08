@@ -1,19 +1,15 @@
 package org.thoughtcrime.securesms.notifications.v2
 
-import android.annotation.TargetApi
 import android.app.Notification
 import android.app.PendingIntent
-import android.app.Person
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.drawable.Icon
 import android.net.Uri
 import android.os.Build
 import android.text.TextUtils
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
-import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
 import androidx.core.app.RemoteInput
@@ -22,7 +18,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.ReplyMethod
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference
@@ -171,7 +166,7 @@ sealed class NotificationBuilder(protected val context: Context) {
   /**
    * Notification builder using solely androidx/compat libraries.
    */
-  class NotificationBuilderCompat(context: Context) : NotificationBuilder(context) {
+  private class NotificationBuilderCompat(context: Context) : NotificationBuilder(context) {
     val builder: NotificationCompat.Builder = NotificationCompat.Builder(context, NotificationChannels.getMessagesChannel(context))
 
     override fun addActions(replyMethod: ReplyMethod, conversation: NotificationConversation) {
@@ -194,7 +189,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         val label: String = context.getString(replyMethod.toLongDescription())
         val replyAction: NotificationCompat.Action = if (Build.VERSION.SDK_INT >= 24) {
           NotificationCompat.Action.Builder(R.drawable.ic_reply_white_36dp, actionName, remoteReply)
-            .addRemoteInput(RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY).setLabel(label).build())
+            .addRemoteInput(RemoteInput.Builder(MessageNotifierV2.EXTRA_REMOTE_REPLY).setLabel(label).build())
             .setSemanticAction(NotificationCompat.Action.SEMANTIC_ACTION_REPLY)
             .setShowsUserInterface(false)
             .build()
@@ -203,7 +198,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         }
 
         val wearableReplyAction = NotificationCompat.Action.Builder(R.drawable.ic_reply, actionName, remoteReply)
-          .addRemoteInput(RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY).setLabel(label).build())
+          .addRemoteInput(RemoteInput.Builder(MessageNotifierV2.EXTRA_REMOTE_REPLY).setLabel(label).build())
           .build()
 
         builder.addAction(replyAction)
@@ -451,228 +446,6 @@ sealed class NotificationBuilder(protected val context: Context) {
       builder.setSubText(subText)
     }
   }
-
-  /**
-   * Notification builder using solely on device OS libraries.
-   */
-  @TargetApi(28)
-  class NotificationBuilderOS(context: Context) : NotificationBuilder(context) {
-    val builder: Notification.Builder = Notification.Builder(context, NotificationChannels.getMessagesChannel(context))
-
-    override fun addActions(replyMethod: ReplyMethod, conversation: NotificationConversation) {
-      val markAsRead: PendingIntent = conversation.getMarkAsReadIntent(context)
-      val markAsReadAction: Notification.Action = Notification.Action.Builder(context.getIcon(R.drawable.check), context.getString(R.string.MessageNotifier_mark_read), markAsRead)
-        .setSemanticAction(Notification.Action.SEMANTIC_ACTION_MARK_AS_READ)
-        .build()
-      val extender: Notification.WearableExtender = Notification.WearableExtender()
-
-      builder.addAction(markAsReadAction)
-      extender.addAction(markAsReadAction)
-
-      if (conversation.mostRecentNotification.canReply(context)) {
-        val remoteReply: PendingIntent = conversation.getRemoteReplyIntent(context, replyMethod)
-
-        val actionName: String = context.getString(R.string.MessageNotifier_reply)
-        val label: String = context.getString(replyMethod.toLongDescription())
-        val replyAction: Notification.Action = Notification.Action.Builder(context.getIcon(R.drawable.ic_reply_white_36dp), actionName, remoteReply)
-          .addRemoteInput(android.app.RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY).setLabel(label).build())
-          .setSemanticAction(Notification.Action.SEMANTIC_ACTION_REPLY)
-          .build()
-
-        val wearableReplyAction = Notification.Action.Builder(context.getIcon(R.drawable.ic_reply), actionName, remoteReply)
-          .addRemoteInput(android.app.RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY).setLabel(label).build())
-          .build()
-
-        builder.addAction(replyAction)
-        extender.addAction(wearableReplyAction)
-      }
-
-      builder.extend(extender)
-    }
-
-    override fun addMarkAsReadActionActual(state: NotificationStateV2) {
-      val markAllAsReadAction: Notification.Action = Notification.Action.Builder(
-        context.getIcon(R.drawable.check),
-        context.getString(R.string.MessageNotifier_mark_all_as_read),
-        state.getMarkAsReadIntent(context)
-      ).build()
-
-      builder.addAction(markAllAsReadAction)
-      builder.extend(Notification.WearableExtender().addAction(markAllAsReadAction))
-    }
-
-    override fun addTurnOffJoinedNotificationsAction(pendingIntent: PendingIntent) {
-      val turnOffTheseNotifications: Notification.Action = Notification.Action.Builder(
-        context.getIcon(R.drawable.check),
-        context.getString(R.string.MessageNotifier_turn_off_these_notifications),
-        pendingIntent
-      ).build()
-
-      builder.addAction(turnOffTheseNotifications)
-    }
-
-    override fun addMessagesActual(conversation: NotificationConversation, includeShortcut: Boolean) {
-      val self: Person = Person.Builder()
-        .setBot(false)
-        .setName(if (includeShortcut) Recipient.self().getDisplayName(context) else context.getString(R.string.SingleRecipientNotificationBuilder_you))
-        .setIcon(if (includeShortcut) Recipient.self().getContactDrawable(context).toLargeBitmap(context).toIcon() else null)
-        .setKey(ConversationUtil.getShortcutId(Recipient.self().id))
-        .build()
-
-      val messagingStyle: Notification.MessagingStyle = Notification.MessagingStyle(self)
-      messagingStyle.conversationTitle = conversation.getConversationTitle(context)
-      messagingStyle.isGroupConversation = conversation.isGroup
-
-      conversation.notificationItems.forEach { notificationItem ->
-        val personBuilder: Person.Builder = Person.Builder()
-          .setBot(false)
-          .setName(notificationItem.getPersonName(context))
-          .setUri(notificationItem.getPersonUri(context))
-          .setIcon(notificationItem.getPersonIcon(context).toIcon())
-
-        if (includeShortcut) {
-          personBuilder.setKey(ConversationUtil.getShortcutId(notificationItem.individualRecipient))
-        }
-
-        val (dataUri: Uri?, mimeType: String?) = notificationItem.getThumbnailInfo(context)
-
-        messagingStyle.addMessage(Notification.MessagingStyle.Message(notificationItem.getPrimaryText(context), notificationItem.timestamp, personBuilder.build()).setData(mimeType, dataUri))
-      }
-
-      builder.style = messagingStyle
-    }
-
-    override fun setBubbleMetadataActual(conversation: NotificationConversation, bubbleState: BubbleUtil.BubbleState) {
-      if (Build.VERSION.SDK_INT < ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
-        return
-      }
-
-      val intent = PendingIntent.getActivity(
-        context,
-        0,
-        ConversationIntents.createBubbleIntent(context, conversation.recipient.id, conversation.threadId),
-        0
-      )
-
-      val bubbleMetadata = Notification.BubbleMetadata.Builder(intent, AvatarUtil.getIconForShortcut(context, conversation.recipient))
-        .setAutoExpandBubble(bubbleState === BubbleUtil.BubbleState.SHOWN)
-        .setDesiredHeight(600)
-        .setSuppressNotification(bubbleState === BubbleUtil.BubbleState.SHOWN)
-        .build()
-
-      builder.setBubbleMetadata(bubbleMetadata)
-    }
-
-    override fun addMessagesActual(state: NotificationStateV2) {
-      // Intentionally left blank
-    }
-
-    override fun setLights(@ColorInt color: Int, onTime: Int, offTime: Int) {
-      // Intentionally left blank
-    }
-
-    override fun setAlarms(recipient: Recipient?) {
-      // Intentionally left blank
-    }
-
-    override fun setSmallIcon(drawable: Int) {
-      builder.setSmallIcon(drawable)
-    }
-
-    override fun setColor(@ColorInt color: Int) {
-      builder.setColor(color)
-    }
-
-    override fun setCategory(category: String) {
-      builder.setCategory(category)
-    }
-
-    override fun setGroup(group: String) {
-      builder.setGroup(group)
-    }
-
-    override fun setGroupAlertBehavior(behavior: Int) {
-      builder.setGroupAlertBehavior(behavior)
-    }
-
-    override fun setChannelId(channelId: String) {
-      builder.setChannelId(channelId)
-    }
-
-    override fun setContentTitle(contentTitle: CharSequence) {
-      builder.setContentTitle(contentTitle)
-    }
-
-    override fun setLargeIcon(largeIcon: Bitmap?) {
-      builder.setLargeIcon(largeIcon)
-    }
-
-    override fun setShortcutIdActual(shortcutId: String) {
-      builder.setShortcutId(shortcutId)
-    }
-
-    @Suppress("DEPRECATION")
-    override fun setContentInfo(contentInfo: String) {
-      builder.setContentInfo(contentInfo)
-    }
-
-    override fun setNumber(number: Int) {
-      builder.setNumber(number)
-    }
-
-    override fun setContentText(contentText: CharSequence?) {
-      builder.setContentText(contentText)
-    }
-
-    override fun setTicker(ticker: CharSequence?) {
-      builder.setTicker(ticker)
-    }
-
-    override fun setContentIntent(pendingIntent: PendingIntent?) {
-      builder.setContentIntent(pendingIntent)
-    }
-
-    override fun setDeleteIntent(deleteIntent: PendingIntent?) {
-      builder.setDeleteIntent(deleteIntent)
-    }
-
-    override fun setSortKey(sortKey: String) {
-      builder.setSortKey(sortKey)
-    }
-
-    override fun setOnlyAlertOnce(onlyAlertOnce: Boolean) {
-      builder.setOnlyAlertOnce(onlyAlertOnce)
-    }
-
-    override fun setPriority(priority: Int) {
-      // Intentionally left blank
-    }
-
-    override fun setAutoCancel(autoCancel: Boolean) {
-      builder.setAutoCancel(autoCancel)
-    }
-
-    override fun build(): Notification {
-      return builder.build()
-    }
-
-    override fun addPersonActual(recipient: Recipient) {
-      builder.addPerson(ConversationUtil.buildPerson(context, recipient))
-    }
-
-    override fun setWhen(timestamp: Long) {
-      builder.setWhen(timestamp)
-      builder.setShowWhen(true)
-    }
-
-    override fun setGroupSummary(isGroupSummary: Boolean) {
-      builder.setGroupSummary(isGroupSummary)
-    }
-
-    override fun setSubText(subText: String) {
-      builder.setSubText(subText)
-    }
-  }
 }
 
 private fun Bitmap?.toIconCompat(): IconCompat? {
@@ -681,20 +454,6 @@ private fun Bitmap?.toIconCompat(): IconCompat? {
   } else {
     null
   }
-}
-
-@RequiresApi(23)
-private fun Bitmap?.toIcon(): Icon? {
-  return if (this != null) {
-    Icon.createWithBitmap(this)
-  } else {
-    null
-  }
-}
-
-@RequiresApi(23)
-private fun Context.getIcon(@DrawableRes drawableRes: Int): Icon {
-  return Icon.createWithResource(this, drawableRes)
 }
 
 @StringRes

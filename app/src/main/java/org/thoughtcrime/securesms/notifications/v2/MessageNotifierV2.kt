@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.database.MessageDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver
-import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier
 import org.thoughtcrime.securesms.notifications.MessageNotifier
 import org.thoughtcrime.securesms.notifications.MessageNotifier.ReminderReceiver
 import org.thoughtcrime.securesms.notifications.NotificationCancellationHelper
@@ -89,7 +88,7 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
   }
 
   override fun updateNotification(context: Context, threadId: Long) {
-    if (System.currentTimeMillis() - lastDesktopActivityTimestamp < DefaultMessageNotifier.DESKTOP_ACTIVITY_PERIOD) {
+    if (System.currentTimeMillis() - lastDesktopActivityTimestamp < DESKTOP_ACTIVITY_PERIOD) {
       Log.i(TAG, "Scheduling delayed notification...")
       executor.enqueue(context, threadId)
     } else {
@@ -264,7 +263,13 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
 
   companion object {
     val TAG: String = Log.tag(MessageNotifierV2::class.java)
+
     private val REMINDER_TIMEOUT: Long = TimeUnit.MINUTES.toMillis(2)
+    val MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(2)
+    val DESKTOP_ACTIVITY_PERIOD = TimeUnit.MINUTES.toMillis(1)
+
+    const val EXTRA_REMOTE_REPLY = "extra_remote_reply"
+    const val NOTIFICATION_GROUP = "messages"
 
     private fun updateBadge(context: Context, count: Int) {
       try {
