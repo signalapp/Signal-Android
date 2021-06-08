@@ -267,7 +267,7 @@ private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPubli
     if (storage.getGroup(groupID) != null) {
         // Update the group
         // Clear zombie list if the group wasn't active
-        if (!storage.isGroupActive(groupID)) {
+        if (!storage.isGroupActive(groupPublicKey)) {
             storage.setZombieMembers(groupID, listOf())
         }
         storage.updateTitle(groupID, name)
