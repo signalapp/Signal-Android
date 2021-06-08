@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
@@ -23,10 +24,13 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sharing.MultiShareArgs;
 import org.thoughtcrime.securesms.sharing.MultiShareDialogs;
+import org.thoughtcrime.securesms.sharing.ShareFlowConstants;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
+
+import java.util.Objects;
 
 /**
  * Handles display and editing of a text message (with possible link preview) before it is forwarded
@@ -125,6 +129,9 @@ public class ShareInterstitialActivity extends PassphraseRequiredActivity {
 
     contactsRecycler = findViewById(R.id.selected_list);
     contactsRecycler.setAdapter(adapter);
+
+    RecyclerView.ItemAnimator itemAnimator = Objects.requireNonNull(contactsRecycler.getItemAnimator());
+    ShareFlowConstants.applySelectedContactsRecyclerAnimationSpeeds(itemAnimator);
 
     confirm.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
       int pad = Math.abs(v.getWidth() + ViewUtil.dpToPx(16));

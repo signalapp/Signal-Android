@@ -17,16 +17,14 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.sharing.MultiShareArgs;
 import org.thoughtcrime.securesms.sharing.MultiShareSender;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
-import org.thoughtcrime.securesms.util.MappingModel;
+import org.thoughtcrime.securesms.util.MappingModelList;
 import org.thoughtcrime.securesms.util.Util;
-
-import java.util.List;
 
 class ShareInterstitialViewModel extends ViewModel {
 
-private final MultiShareArgs                           args;
-  private final MutableLiveData<List<MappingModel<?>>> recipients;
-  private final MutableLiveData<String>                draftText;
+private final MultiShareArgs                      args;
+  private final MutableLiveData<MappingModelList> recipients;
+  private final MutableLiveData<String>           draftText;
 
   private LinkPreview linkPreview;
 
@@ -37,12 +35,12 @@ private final MultiShareArgs                           args;
 
     repository.loadRecipients(args.getShareContactAndThreads(),
                               list -> recipients.postValue(Stream.of(list)
-                                                                 .<MappingModel<?>>mapIndexed((i, r) -> new ShareInterstitialMappingModel(r, i == list.size() - 1))
-                                                                 .toList()));
+                                                                 .mapIndexed((i, r) -> new ShareInterstitialMappingModel(r, i == 0))
+                                                                 .collect(MappingModelList.toMappingModelList())));
 
   }
 
-  LiveData<List<MappingModel<?>>> getRecipients() {
+  LiveData<MappingModelList> getRecipients() {
     return recipients;
   }
 

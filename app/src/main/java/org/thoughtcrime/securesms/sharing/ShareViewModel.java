@@ -5,7 +5,6 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -19,8 +18,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
-import org.thoughtcrime.securesms.util.MappingModel;
-import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
+import org.thoughtcrime.securesms.util.MappingModelList;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
@@ -89,10 +87,10 @@ public class ShareViewModel extends ViewModel {
     }
   }
 
-  @NonNull LiveData<List<MappingModel<?>>> getSelectedContactModels() {
+  @NonNull LiveData<MappingModelList> getSelectedContactModels() {
     return Transformations.map(selectedContacts, set -> Stream.of(set)
-                                                              .<MappingModel<?>>mapIndexed((i, c) -> new ShareSelectionMappingModel(c, i == set.size() - 1))
-                                                              .toList());
+                                                              .mapIndexed((i, c) -> new ShareSelectionMappingModel(c, i == 0))
+                                                              .collect(MappingModelList.toMappingModelList()));
   }
 
   @NonNull LiveData<SmsShareRestriction> getSmsShareRestriction() {

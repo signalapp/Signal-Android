@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -67,6 +66,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -253,6 +253,9 @@ public class ShareActivity extends PassphraseRequiredActivity
 
     RecyclerView contactsRecycler = findViewById(R.id.selected_list);
     contactsRecycler.setAdapter(adapter);
+
+    RecyclerView.ItemAnimator itemAnimator = Objects.requireNonNull(contactsRecycler.getItemAnimator());
+    ShareFlowConstants.applySelectedContactsRecyclerAnimationSpeeds(itemAnimator);
 
     getSupportFragmentManager().beginTransaction()
                                .replace(R.id.contact_selection_list_fragment, contactsFragment)
