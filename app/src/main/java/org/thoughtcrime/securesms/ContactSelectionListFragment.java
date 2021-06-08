@@ -114,6 +114,8 @@ public final class ContactSelectionListFragment extends LoggingFragment
   public static final String HIDE_COUNT        = "hide_count";
   public static final String CAN_SELECT_SELF   = "can_select_self";
   public static final String DISPLAY_CHIPS     = "display_chips";
+  public static final String RV_PADDING_BOTTOM = "recycler_view_padding_bottom";
+  public static final String RV_CLIP           = "recycler_view_clipping";
 
   private ConstraintLayout                            constraintLayout;
   private TextView                                    emptyText;
@@ -244,6 +246,15 @@ public final class ContactSelectionListFragment extends LoggingFragment
 
     Intent intent    = requireActivity().getIntent();
     Bundle arguments = safeArguments();
+
+    int     recyclerViewPadBottom = arguments.getInt(RV_PADDING_BOTTOM, intent.getIntExtra(RV_PADDING_BOTTOM, -1));
+    boolean recyclerViewClipping  = arguments.getBoolean(RV_CLIP, intent.getBooleanExtra(RV_CLIP, true));
+
+    if (recyclerViewPadBottom != -1) {
+      ViewUtil.setPaddingBottom(recyclerView, recyclerViewPadBottom);
+    }
+
+    recyclerView.setClipToPadding(recyclerViewClipping);
 
     swipeRefresh.setEnabled(arguments.getBoolean(REFRESHABLE, intent.getBooleanExtra(REFRESHABLE, true)));
 

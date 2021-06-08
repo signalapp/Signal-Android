@@ -32,11 +32,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.util.Consumer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.transition.TransitionManager;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -59,6 +57,7 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -97,6 +96,8 @@ public class ShareActivity extends PassphraseRequiredActivity
   private SearchToolbar                searchToolbar;
   private ImageView                    searchAction;
   private View                         shareConfirm;
+  private RecyclerView                 contactsRecycler;
+  private View                         contactsRecyclerDivider;
   private ShareSelectionAdapter        adapter;
   private boolean                      disallowMultiShare;
 
@@ -190,23 +191,21 @@ public class ShareActivity extends PassphraseRequiredActivity
   }
 
   private void animateInSelection() {
-    TransitionManager.endTransitions(shareContainer);
-    TransitionManager.beginDelayedTransition(shareContainer);
-
-    ConstraintSet constraintSet = new ConstraintSet();
-    constraintSet.clone(shareContainer);
-    constraintSet.setVisibility(R.id.selection_group, ConstraintSet.VISIBLE);
-    constraintSet.applyTo(shareContainer);
+    contactsRecyclerDivider.animate()
+                           .alpha(1f)
+                           .translationY(0);
+    contactsRecycler.animate()
+                    .alpha(1f)
+                    .translationY(0);
   }
 
   private void animateOutSelection() {
-    TransitionManager.endTransitions(shareContainer);
-    TransitionManager.beginDelayedTransition(shareContainer);
-
-    ConstraintSet constraintSet = new ConstraintSet();
-    constraintSet.clone(shareContainer);
-    constraintSet.setVisibility(R.id.selection_group, ConstraintSet.GONE);
-    constraintSet.applyTo(shareContainer);
+    contactsRecyclerDivider.animate()
+                           .alpha(0f)
+                           .translationY(ViewUtil.dpToPx(48));
+    contactsRecycler.animate()
+                    .alpha(0f)
+                    .translationY(ViewUtil.dpToPx(48));
   }
 
   private void initializeIntent() {
@@ -228,6 +227,8 @@ public class ShareActivity extends PassphraseRequiredActivity
     getIntent().putExtra(ContactSelectionListFragment.HIDE_COUNT, true);
     getIntent().putExtra(ContactSelectionListFragment.DISPLAY_CHIPS, false);
     getIntent().putExtra(ContactSelectionListFragment.CAN_SELECT_SELF, true);
+    getIntent().putExtra(ContactSelectionListFragment.RV_CLIP, false);
+    getIntent().putExtra(ContactSelectionListFragment.RV_PADDING_BOTTOM, ViewUtil.dpToPx(48));
   }
 
   private void initializeToolbar() {
@@ -242,14 +243,15 @@ public class ShareActivity extends PassphraseRequiredActivity
   }
 
   private void initializeResources() {
-    searchToolbar    = findViewById(R.id.search_toolbar);
-    searchAction     = findViewById(R.id.search_action);
-    shareConfirm     = findViewById(R.id.share_confirm);
-    shareContainer   = findViewById(R.id.container);
-    contactsFragment = new ContactSelectionListFragment();
-    adapter          = new ShareSelectionAdapter();
+    searchToolbar           = findViewById(R.id.search_toolbar);
+    searchAction            = findViewById(R.id.search_action);
+    shareConfirm            = findViewById(R.id.share_confirm);
+    shareContainer          = findViewById(R.id.container);
+    contactsFragment        = new ContactSelectionListFragment();
+    adapter                 = new ShareSelectionAdapter();
+    contactsRecycler        = findViewById(R.id.selected_list);
+    contactsRecyclerDivider = findViewById(R.id.divider);
 
-    RecyclerView contactsRecycler = findViewById(R.id.selected_list);
     contactsRecycler.setAdapter(adapter);
 
     RecyclerView.ItemAnimator itemAnimator = Objects.requireNonNull(contactsRecycler.getItemAnimator());
