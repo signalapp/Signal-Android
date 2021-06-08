@@ -1234,7 +1234,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean forceFooter(@NonNull MessageRecord messageRecord) {
-    return FeatureFlags.viewedReceipts() && hasAudio(messageRecord) && messageRecord.getViewedReceiptCount() == 0;
+    return hasAudio(messageRecord) && messageRecord.getViewedReceiptCount() == 0;
   }
 
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {

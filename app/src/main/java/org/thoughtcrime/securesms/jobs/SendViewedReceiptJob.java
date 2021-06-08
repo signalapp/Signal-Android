@@ -96,7 +96,15 @@ public class SendViewedReceiptJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    if (!TextSecurePreferences.isReadReceiptsEnabled(context) || syncTimestamps.isEmpty() || !FeatureFlags.sendViewedReceipts()) return;
+    if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
+      Log.w(TAG, "Read receipts not enabled!");
+      return;
+    }
+
+    if (syncTimestamps.isEmpty()) {
+      Log.w(TAG, "No sync timestamps!");
+      return;
+    }
 
     if (!RecipientUtil.isMessageRequestAccepted(context, threadId)) {
       Log.w(TAG, "Refusing to send receipts to untrusted recipient");

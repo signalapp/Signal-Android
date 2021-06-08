@@ -313,10 +313,7 @@ public class ConversationItemFooter extends LinearLayout {
   private void showAudioDurationViews() {
     audioSpace.setVisibility(View.VISIBLE);
     audioDuration.setVisibility(View.GONE);
-
-    if (FeatureFlags.viewedReceipts()) {
-      revealDot.setVisibility(View.VISIBLE);
-    }
+    revealDot.setVisibility(View.VISIBLE);
   }
 
   private void hideAudioDurationViews() {

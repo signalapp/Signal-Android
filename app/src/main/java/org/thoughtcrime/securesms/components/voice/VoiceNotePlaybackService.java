@@ -205,8 +205,8 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
   private void sendViewedReceiptForCurrentWindowIndex() {
     if (player.getPlaybackState() == Player.STATE_READY &&
         player.getPlayWhenReady() &&
-        player.getCurrentWindowIndex() != C.INDEX_UNSET &&
-        FeatureFlags.sendViewedReceipts()) {
+        player.getCurrentWindowIndex() != C.INDEX_UNSET)
+    {
 
       final MediaDescriptionCompat descriptionCompat = queueDataAdapter.getMediaDescription(player.getCurrentWindowIndex());
 

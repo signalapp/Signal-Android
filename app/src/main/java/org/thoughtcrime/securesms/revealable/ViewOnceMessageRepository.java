@@ -33,14 +33,12 @@ class ViewOnceMessageRepository {
       try (MmsDatabase.Reader reader = MmsDatabase.readerFor(mmsDatabase.getMessageCursor(messageId))) {
         MmsMessageRecord record = (MmsMessageRecord) reader.getNext();
 
-        if (FeatureFlags.sendViewedReceipts()) {
-          MessageDatabase.MarkedMessageInfo info = mmsDatabase.setIncomingMessageViewed(record.getId());
-          if (info != null) {
-            ApplicationDependencies.getJobManager().add(new SendViewedReceiptJob(record.getThreadId(),
-                                                                                 info.getSyncMessageId().getRecipientId(),
-                                                                                 info.getSyncMessageId().getTimetamp()));
-            MultiDeviceViewedUpdateJob.enqueue(Collections.singletonList(info.getSyncMessageId()));
-          }
+        MessageDatabase.MarkedMessageInfo info = mmsDatabase.setIncomingMessageViewed(record.getId());
+        if (info != null) {
+          ApplicationDependencies.getJobManager().add(new SendViewedReceiptJob(record.getThreadId(),
+                                                                               info.getSyncMessageId().getRecipientId(),
+                                                                               info.getSyncMessageId().getTimetamp()));
+          MultiDeviceViewedUpdateJob.enqueue(Collections.singletonList(info.getSyncMessageId()));
         }
 
         callback.onComplete(Optional.fromNullable(record));

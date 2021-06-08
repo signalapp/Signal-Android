@@ -60,8 +60,6 @@ public final class FeatureFlags {
   private static final String PHONE_NUMBER_PRIVACY_VERSION      = "android.phoneNumberPrivacyVersion";
   private static final String CLIENT_EXPIRATION                 = "android.clientExpiration";
   public  static final String DONATE_MEGAPHONE                  = "android.donate";
-  private static final String VIEWED_RECEIPTS                   = "android.viewed.receipts";
-  private static final String SEND_VIEWED_RECEIPTS              = "android.sendViewedReceipts";
   private static final String CUSTOM_VIDEO_MUXER                = "android.customVideoMuxer";
   private static final String CDS_REFRESH_INTERVAL              = "cds.syncInterval.seconds";
   private static final String AUTOMATIC_SESSION_RESET           = "android.automaticSessionReset.2";
@@ -94,8 +92,6 @@ public final class FeatureFlags {
       VERIFY_V2,
       CLIENT_EXPIRATION,
       DONATE_MEGAPHONE,
-      VIEWED_RECEIPTS,
-      SEND_VIEWED_RECEIPTS,
       CUSTOM_VIDEO_MUXER,
       CDS_REFRESH_INTERVAL,
       GROUP_NAME_MAX_LENGTH,
@@ -274,16 +270,6 @@ public final class FeatureFlags {
    */
   public static boolean phoneNumberPrivacy() {
     return getVersionFlag(PHONE_NUMBER_PRIVACY_VERSION) == VersionFlag.ON;
-  }
-
-  /** Whether the user should display the content revealed dot in voice notes. */
-  public static boolean viewedReceipts() {
-    return getBoolean(VIEWED_RECEIPTS, false);
-  }
-
-  /** Whether or not to send viewed receipts. */
-  public static boolean sendViewedReceipts() {
-    return getBoolean(SEND_VIEWED_RECEIPTS, false);
   }
 
   /** Whether to use the custom streaming muxer or built in android muxer. */
