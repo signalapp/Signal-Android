@@ -381,11 +381,7 @@ public final class SettingsValues extends SignalStoreValues {
   }
 
   public int getUniversalExpireTimer() {
-    if (FeatureFlags.defaultMessageTimer()) {
-      return getInteger(UNIVERSAL_EXPIRE_TIMER, 0);
-    } else {
-      return 0;
-    }
+    return getInteger(UNIVERSAL_EXPIRE_TIMER, 0);
   }
 
   private @Nullable Uri getUri(@NonNull String key) {

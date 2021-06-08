@@ -80,7 +80,6 @@ public final class FeatureFlags {
   private static final String NOTIFICATION_REWRITE              = "android.notificationRewrite";
   private static final String MP4_GIF_SEND_SUPPORT              = "android.mp4GifSendSupport";
   private static final String MEDIA_QUALITY_LEVELS              = "android.mediaQuality.levels";
-  private static final String DEFAULT_MESSAGE_TIMER             = "android.defaultMessageTimer.2";
   private static final String RETRY_RECEIPT_LIFESPAN            = "android.retryReceiptLifespan";
   private static final String RETRY_RESPOND_MAX_AGE             = "android.retryRespondMaxAge";
   private static final String SENDER_KEY                        = "android.senderKey";
@@ -118,7 +117,6 @@ public final class FeatureFlags {
       NOTIFICATION_REWRITE,
       MP4_GIF_SEND_SUPPORT,
       MEDIA_QUALITY_LEVELS,
-      DEFAULT_MESSAGE_TIMER,
       RETRY_RECEIPT_LIFESPAN,
       RETRY_RESPOND_MAX_AGE,
       SENDER_KEY
@@ -168,7 +166,6 @@ public final class FeatureFlags {
       NOTIFICATION_REWRITE,
       MP4_GIF_SEND_SUPPORT,
       MEDIA_QUALITY_LEVELS,
-      DEFAULT_MESSAGE_TIMER,
       RETRY_RECEIPT_LIFESPAN,
       RETRY_RESPOND_MAX_AGE
   );
@@ -368,10 +365,6 @@ public final class FeatureFlags {
 
   public static @Nullable String getMediaQualityLevels() {
     return getString(MEDIA_QUALITY_LEVELS, "");
-  }
-
-  public static boolean defaultMessageTimer() {
-    return getBoolean(DEFAULT_MESSAGE_TIMER, false);
   }
 
   /** How long to wait before considering a retry to be a failure. */
