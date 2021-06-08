@@ -24,6 +24,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
     private var threadID: Long = -1
     private var actionMode: ActionMode? = null
 
+    // TODO: Selected message background color
+    // TODO: Overflow menu background + text color
+    // TODO: Make swipe to reply better. The current implementation is mediocre.
+
     private val adapter by lazy {
         val cursor = DatabaseFactory.getMmsSmsDatabase(this).getConversation(threadID)
         val adapter = ConversationAdapter(
