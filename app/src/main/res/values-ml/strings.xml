@@ -469,9 +469,9 @@
     <item quantity="other">ഈ അംഗങ്ങൾക്ക് പുതിയ ഗ്രൂപ്പുകളിൽ‌ ചേരാൻ‌ കഴിയില്ല, മാത്രമല്ല ഈ ഗ്രൂപ്പിൽ‌ നിന്നും നീക്കംചെയ്യുകയും ചെയ്യും:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@സൂചനകള്‍ അഡ്‌മിനുകള്‍ പോലുള്ള പുതിയ സവിശേഷതകൾ ആക്‌സസ് ചെയ്യുന്നതിന്, ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">ഇപ്പോൾ വേണ്ട</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@സൂചനകള്‍ അഡ്‌മിനുകള്‍ പോലുള്ള പുതിയ സവിശേഷതകൾ ആക്‌സസ് ചെയ്യുന്നതിന്, ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">ഇപ്പോൾ വേണ്ട</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d അംഗത്തെപുതിയ ഗ്രൂപ്പിലേക്ക് വീണ്ടും ചേർക്കാൻ കഴിഞ്ഞില്ല. അവരെ ഇപ്പോൾ ചേർക്കാൻ ആഗ്രഹിക്കുന്നുണ്ടോ?</item>
@@ -604,6 +604,7 @@
   <string name="ManageGroupActivity_mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക </string>
   <string name="ManageGroupActivity_custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
   <string name="ManageGroupActivity_mentions">സൂചനകൾ</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">ചാറ്റ് നിറവും വാൾപേപ്പറും</string>
   <string name="ManageGroupActivity_until_s">%1$s വരെ</string>
   <string name="ManageGroupActivity_always">എല്ലായ്പ്പോഴും</string>
   <string name="ManageGroupActivity_off">ഓഫ്</string>
@@ -631,6 +632,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">ഇതൊരു സുരക്ഷിതമല്ലാത്ത MMS ഗ്രൂപ്പാണ്. സ്വകാര്യമായി ചാറ്റുചെയ്യാൻ, നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകളെ Signal-ലേക്ക് ക്ഷണിക്കുക.</string>
   <string name="ManageGroupActivity_invite_now">ഇപ്പോൾ ക്ഷണിക്കുക</string>
+  <string name="ManageGroupActivity_more">കൂടുതൽ</string>
   <string name="ManageGroupActivity_add_group_description">ഗ്രൂപ്പ് വിവരണം ചേർക്കുക…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">സൂചനകൾ എന്നെ അറിയിക്കുക</string>
@@ -1921,6 +1923,7 @@
   <string name="preferences__appearance">ദൃശ്യത</string>
   <string name="preferences__theme">തീം</string>
   <string name="preferences__chat_wallpaper">ചാറ്റ് വാൾപേപ്പർ</string>
+  <string name="preferences__chat_color_and_wallpaper">ചാറ്റ് നിറവും വാൾപേപ്പറും</string>
   <string name="preferences__disable_pin">PIN അപ്രാപ്‌തമാക്കുക</string>
   <string name="preferences__enable_pin">PIN പ്രവർത്തനക്ഷമമാക്കുക</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">നിങ്ങൾ‌ PIN (പിൻ) അപ്രാപ്‌തമാക്കുകയാണെങ്കിൽ‌, നിങ്ങൾ‌ സ്വമേധയാ ബാക്കപ്പുചെയ്‌ത് പുന.സ്ഥാപിച്ചില്ലെങ്കിൽ,‌ നിങ്ങൾ‌ സിഗ്നൽ‌ വീണ്ടും രജിസ്റ്റർ‌ ചെയ്യുമ്പോൾ‌ എല്ലാ ഡാറ്റയും നഷ്‌ടപ്പെടും. PIN (പിൻ) പ്രവർത്തനരഹിതമാക്കിയിരിക്കുമ്പോൾ നിങ്ങൾക്ക് രജിസ്ട്രേഷൻ ലോക്ക് ഓണാക്കാൻ കഴിയില്ല.</string>
@@ -1980,8 +1983,8 @@
   <string name="preferences_data_and_storage__calls">കോളുകൾ</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">കോളുകള്ക്ക് കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുക</string>
   <string name="preferences_data_and_storage__never">ഒരിക്കലും വേണ്ട</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi &amp; സെല്ലുലാർ</string>
-  <string name="preferences_data_and_storage__cellular_only">സെല്ലുലാർ മാത്രം</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi &amp; സെല്ലുലാർ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">സെല്ലുലാർ മാത്രം</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുന്നത് ബലഹീന നെറ്വർക്കിൽ ഗുണമേന്മ ഉയർത്തിയേക്കാം.</string>
   <string name="preferences_notifications__messages">സന്ദേശങ്ങൾ</string>
   <string name="preferences_notifications__events">ഇവന്റുകൾ</string>
@@ -2058,8 +2061,10 @@
   <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">കുറിപ്പ് ചേര്ക്കുക</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">കുറിപ്പ്</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">സ്വീകർത്താവ്:</string>
+  <string name="ConfirmPayment__total_amount">മൊത്തം തുക</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <!--SetCurrencyFragment-->
   <!--****************************************-->
@@ -2388,15 +2393,20 @@
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__restore_a_backup">ഒരു ബാക്കപ്പ് വീണ്ടെടുക്കുക</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__create_a_backup">ഒരു ബാക്കപ്പ് സൃഷ്ടിക്കുക</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__retry">വീണ്ടും ശ്രമിക്കുക</string>
+  <string name="DeviceTransferSetup__verify_code">കോഡ് ഉറപ്പാക്കൂ</string>
   <string name="DeviceTransferSetup__continue">തുടരുക</string>
   <string name="DeviceTransferSetup__stop_transfer">കൈമാറ്റം നിർത്തുക</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__try_again">വീണ്ടും ശ്രമിക്കുക</string>
   <!--NewDeviceTransferFragment-->
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">ഡാറ്റ കൈമാറുന്നു</string>
+  <string name="DeviceTransfer__d_messages_so_far">ഇതുവരെ %1$d സന്ദേശങ്ങൾ</string>
   <string name="DeviceTransfer__cancel">റദ്ദാക്കൂ</string>
   <string name="DeviceTransfer__try_again">വീണ്ടും ശ്രമിക്കുക</string>
   <string name="DeviceTransfer__stop_transfer_question">കൈമാറ്റം നിർത്തണോ?</string>
@@ -2414,6 +2424,7 @@
   <string name="OldDeviceTransferInstructions__continue">തുടരുക</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">കൈമാറ്റം പൂർത്തിയായി</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">പുതിയ ഉപകരണത്തിലേക്ക് പോകു</string>
   <string name="OldDeviceTransferComplete__close">അടയ്ക്കുക</string>
   <!--NewDeviceTransferComplete-->
   <string name="NewDeviceTransferComplete__transfer_complete">കൈമാറ്റം പൂർത്തിയായി</string>
@@ -2529,7 +2540,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">പങ്കിടുക</string>
   <string name="ShareActivity__send">അയയ്‌ക്കുക</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">ഒന്നിലധികം ചാറ്റുകളിലേക്ക് പങ്കിടുന്നത് Signal സന്ദേശങ്ങൾക്ക് മാത്രമേ പിന്തുണക്കൂ</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ചില ഉപയോക്താക്കള്‍ക്ക് അയയ്ക്കാന്‍ കഴിഞ്ഞില്ല</string>
@@ -2565,7 +2576,10 @@
   <string name="WallpaperCropActivity__error_setting_wallpaper">വാള്‍പേപ്പര്‍ സജ്ജമാക്കുന്നതില്‍ പിശക്</string>
   <string name="WallpaperCropActivity__blur_photo">ചിത്രം അവ്യക്തമാക്കുക</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">MobileCoin-നെ കുറിച്ച്</string>
+  <string name="payment_info_card_hide_this_card">ഈ കാർഡ് മറയ്ക്കുക</string>
   <string name="payment_info_card_hide">മറയ്ക്കുക</string>
+  <string name="payment_info_card_update_your_pin">നിങ്ങളുടെ PIN പുതുക്കുക</string>
   <string name="payment_info_card_update_pin">PIN പുതുക്കുക </string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
@@ -2650,6 +2664,7 @@
   <string name="ChatColorSelectionFragment__chat_color">ചാറ്റ് നിറം</string>
   <string name="ChatColorSelectionFragment__edit">തിരുത്തുക</string>
   <string name="ChatColorSelectionFragment__delete">ഇല്ലാതാക്കൂ</string>
+  <string name="ChatColorSelectionFragment__delete_color">നിറം ഇല്ലാതാക്കൂ</string>
   <!--CustomChatColorCreatorFragment-->
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">സംരക്ഷിക്കൂ</string>
@@ -2664,6 +2679,9 @@
   <string name="KeyboardPagerFragment_emoji">ഇമോജി</string>
   <string name="KeyboardPagerFragment_stickers">സ്റ്റിക്കറുകൾ</string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_search_giphy">GIPHY തിരയുക</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_no_results_found">ഫലങ്ങളൊന്നുമില്ല.</string>
+  <string name="EmojiSearchFragment__no_results_found">ഫലങ്ങളൊന്നുമില്ല.</string>
   <!--EOF-->
 </resources>

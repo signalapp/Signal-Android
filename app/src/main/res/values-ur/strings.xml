@@ -469,9 +469,9 @@
     <item quantity="other">یہ ممبر نئے گروپس میں شامل ہونے کے اہل نہیں ہیں ، اور انہیں گروپ سے نکال دیا جائے گا:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ذکر, خصوصیات اور منتظمین جیسی نئی خصوصیات تک رسائی حاصل کرنے کے لیئے اس گروپ کو اپ گریڈ کریں۔</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">ابھی نہیں</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">گروپ کو اپ گریڈ کریں</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ذکر, خصوصیات اور منتظمین جیسی نئی خصوصیات تک رسائی حاصل کرنے کے لیئے اس گروپ کو اپ گریڈ کریں۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">ابھی نہیں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">گروپ کو اپ گریڈ کریں</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">نئے گروپ میں %1$d ممبر کو دوبارہ شامل نہیں کیا جاسکا۔ کیا آپ انہیں ابھی شامل کرنا چاہتے ہیں؟</item>
@@ -1956,8 +1956,8 @@
   <string name="preferences_data_and_storage__calls">کالز</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">کالوں کے لئے کم ڈیٹا استعمال کریں</string>
   <string name="preferences_data_and_storage__never">کبھی نہیں</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">وائی فائی اور سیلولر</string>
-  <string name="preferences_data_and_storage__cellular_only">صرف سیلولر</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">وائی فائی اور سیلولر</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">صرف سیلولر</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">کم ڈیٹا کا استعمال خراب نیٹ ورکس پر کالوں کو بہتر بنا سکتا ہے</string>
   <string name="preferences_notifications__messages">پیغامات</string>
   <string name="preferences_notifications__events">تقریبات</string>
@@ -2465,7 +2465,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">اشتراک کریں</string>
   <string name="ShareActivity__send">بھیجیں</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">متعدد چیٹس پر اشتراک صرف Signal پیغامات کیلئے معاون ہے</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">کچھ صارفین کو بھیجنے میں ناکام</string>

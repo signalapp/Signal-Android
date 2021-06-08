@@ -513,9 +513,9 @@
     <item quantity="other">Šie nariai negali prisijungti prie naujosios grupės ir todėl bus iš jos pašalinti:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Norėdami naudotis tokiomis ypatybėmis kaip @paminėjimai ir administratoriai, naujinkite šią grupę.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Ne dabar</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Naujinti grupę</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Norėdami naudotis tokiomis ypatybėmis kaip @paminėjimai ir administratoriai, naujinkite šią grupę.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Ne dabar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Naujinti grupę</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d nario nepavyko iš naujo pridėti į naująją grupę. Ar norite pridėti jį dabar?</item>
@@ -2178,8 +2178,8 @@
   <string name="preferences_data_and_storage__calls">Skambučiai</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Naudoti skambučiams mažiau duomenų</string>
   <string name="preferences_data_and_storage__never">Niekada</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Belaidis (WiFi) ir mobilusis ryšys</string>
-  <string name="preferences_data_and_storage__cellular_only">Tik mobilusis ryšys</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Belaidis (WiFi) ir mobilusis ryšys</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Tik mobilusis ryšys</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Mažesnis duomenų naudojimas gali pagerinti skambučių kokybę bloguose tinkluose</string>
   <string name="preferences_notifications__messages">Žinutės</string>
   <string name="preferences_notifications__events">Įvykiai</string>
@@ -2907,7 +2907,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Bendrinti</string>
   <string name="ShareActivity__send">Siųsti</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Bendrinimas su keliais pokalbiais yra palaikomas tik Signal žinutėms</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Nepavyko išsiųsti kai kuriems naudotojams</string>
@@ -3164,5 +3164,6 @@
   <string name="StickerSearchDialogFragment_search_stickers">Ieškoti lipdukų</string>
   <string name="StickerSearchDialogFragment_no_results_found">Nerasta jokių rezultatų</string>
   <string name="EmojiSearchFragment__no_results_found">Nerasta jokių rezultatų</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Nežinoma skambučio melodija</string>
   <!--EOF-->
 </resources>

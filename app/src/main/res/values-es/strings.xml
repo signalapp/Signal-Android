@@ -479,9 +479,9 @@
     <item quantity="other">Est@s participantes no pueden unirse a nuevos grupos y se les expulsará del grupo:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para acceder a funciones que incluyen @menciones y admins, actualiza este grupo.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Ahora no</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Actualizar grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para acceder a funciones que incluyen @menciones y admins, actualiza este grupo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Ahora no</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Actualizar grupo</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">No se ha podido añadir a %1$d participante al nuevo grupo. ¿Deseas hacerlo ahora?</item>
@@ -2032,8 +2032,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_data_and_storage__calls">Llamadas</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Ahorrar datos en llamadas</string>
   <string name="preferences_data_and_storage__never">Nunca</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi y red móvil</string>
-  <string name="preferences_data_and_storage__cellular_only">Sólo red móvil</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi y red móvil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Sólo red móvil</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Al ahorrar datos, mejora la calidad de las llamadas en redes móviles con mala cobertura</string>
   <string name="preferences_notifications__messages">Mensajes</string>
   <string name="preferences_notifications__events">Eventos</string>
@@ -2743,7 +2743,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--ShareActivity-->
   <string name="ShareActivity__share">Compartir</string>
   <string name="ShareActivity__send">Enviar</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Compartir en múltiples chats sólo funciona con mensajes de Signal.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Fallo al enviar a algunas personas</string>
@@ -2996,5 +2996,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="StickerSearchDialogFragment_search_stickers">Buscar stickers</string>
   <string name="StickerSearchDialogFragment_no_results_found">No se encontraron resultados</string>
   <string name="EmojiSearchFragment__no_results_found">No se encontraron resultados</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Tono de llamada desconocido</string>
   <!--EOF-->
 </resources>

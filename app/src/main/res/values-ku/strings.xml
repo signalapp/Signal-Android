@@ -453,8 +453,8 @@
     <item quantity="other">Ev endam nikarin tevlî Komên Nû bibin, û ew ê ji komê bên derxistin:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Ji bo çalakkirina taybetiyên wekî @behskirin û rêveberan, vê komê bilind bike.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Ne niha</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Ji bo çalakkirina taybetiyên wekî @behskirin û rêveberan, vê komê bilind bike.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Ne niha</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d endam li komê nehat tevlîkirin. Tu dixwazî aniha tevlî bikî?</item>
@@ -1854,8 +1854,8 @@
   <string name="preferences_data_and_storage__calls">Gerîn</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Ji bo gerînan daneyên kêmtir bi kar bîne</string>
   <string name="preferences_data_and_storage__never">Qet</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi û Hucreyî</string>
-  <string name="preferences_data_and_storage__cellular_only">Tenê hucreyî</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi û Hucreyî</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Tenê hucreyî</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Dibe ku rewşa axaftinên we baştir be ger hun hindik data bikar bînin.</string>
   <string name="preferences_notifications__messages">Peyam</string>
   <string name="preferences_notifications__events">Çalakî</string>
@@ -2334,7 +2334,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Parve bike</string>
   <string name="ShareActivity__send">Bişîne</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Parvekirina zêdetir axaftina tenê ji bo peyamên Signal tê piştgirîkirin</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Ji hinek bikarhêneran re nehate şandin</string>

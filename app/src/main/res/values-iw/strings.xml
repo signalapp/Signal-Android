@@ -513,9 +513,9 @@
     <item quantity="other">חברי קבוצה אלו אינם מסוגלים להצטרף אל קבוצות חדשות, והם יוסרו מהקבוצה:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">כדי להשיג גישה אל מאפיינים חדשים כמו @אזכורים ומנהלנים, שדרג קבוצה זו.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">לא עכשיו</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">שדרג קבוצה</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">כדי להשיג גישה אל מאפיינים חדשים כמו @אזכורים ומנהלנים, שדרג קבוצה זו.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">לא עכשיו</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">שדרג קבוצה</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d חבר קבוצה לא היה יכול להתווסף מחדש אל הקבוצה החדשה. האם אתה רוצה להוסיף אותו עכשיו?</item>
@@ -2178,8 +2178,8 @@
   <string name="preferences_data_and_storage__calls">שיחות</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">השתמש בפחות נתונים עבור שיחות</string>
   <string name="preferences_data_and_storage__never">אף פעם</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi וסלולרי</string>
-  <string name="preferences_data_and_storage__cellular_only">סלולרי בלבד</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi וסלולרי</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">סלולרי בלבד</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">שימוש בפחות נתונים עשוי לשפר שיחות על רשתות גרועות</string>
   <string name="preferences_notifications__messages">הודעות</string>
   <string name="preferences_notifications__events">אירועים</string>
@@ -2907,7 +2907,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">שתף</string>
   <string name="ShareActivity__send">שלח</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">העברה הלאה אל התכתבויות רבות נתמכת רק עבור הודעות Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">נכשל בשליחה אל כמה משתמשים</string>
@@ -3164,5 +3164,6 @@
   <string name="StickerSearchDialogFragment_search_stickers">חפש מדבקות</string>
   <string name="StickerSearchDialogFragment_no_results_found">תוצאות לא נמצאו</string>
   <string name="EmojiSearchFragment__no_results_found">תוצאות לא נמצאו</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">צלצול בלתי ידוע</string>
   <!--EOF-->
 </resources>

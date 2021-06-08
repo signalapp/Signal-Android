@@ -445,7 +445,7 @@
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">ਨੈਟਵਰਕ ਤਰੁਟੀ ਹੋਈ. ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">ਅਪਗ੍ਰੇਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ.</string>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_not_now">ਹਾਲੇ ਨਹੀਂ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">ਹਾਲੇ ਨਹੀਂ</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">ਸਦੱਸ ਸ਼ਾਮਲ ਕਰੋ</item>
@@ -1654,8 +1654,8 @@
   <string name="preferences_data_and_storage__calls">ਕਾਲਾਂ </string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">ਕਾਲਾਂ ਲਈ ਘੱਟ ਡਾਟਾ ਵਰਤੋਂ</string>
   <string name="preferences_data_and_storage__never">ਕਦੇ ਨਹੀਂ</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">ਵਾਈ-ਫਾਈ ਤੇ ਸੈਲੂਲਰ</string>
-  <string name="preferences_data_and_storage__cellular_only">ਸਿਰਫ਼ ਸੈਲੂਲਰ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">ਵਾਈ-ਫਾਈ ਤੇ ਸੈਲੂਲਰ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">ਸਿਰਫ਼ ਸੈਲੂਲਰ</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ਖ਼ਰਾਬ ਨੈੱਟਵਰਕ ਉੱਤੇ ਘੱਟ ਡਾਟਾ ਵਰਤਣਾ ਕਾਲਾਂ ਦਾ ਪੱਧਰ ਸੁਧਾਰ ਸਕਦਾ ਹੈ</string>
   <string name="preferences_notifications__messages">ਸੁਨੇਹੇ </string>
   <string name="preferences_notifications__events">ਸਮਾਗਮ</string>

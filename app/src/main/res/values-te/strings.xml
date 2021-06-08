@@ -474,9 +474,9 @@
     <item quantity="other">ఈ సభ్యులు క్రొత్త సమూహాలలో చేరడానికి సామర్థ్యం కలిగి లేరు మరియు సమూహం నుండి తొలగించబడతారు:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ప్రస్తావనలు మరియు నిర్వాహకులు వంటి క్రొత్త లక్షణాలను ప్రాప్తి చేయడానికి, ఈ గుంపును అప్‌గ్రేడ్ చేయండి.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">ఇప్పుడు కాదు</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">సమూహాన్ని అప్‌గ్రేడ్ చేయండి</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ప్రస్తావనలు మరియు నిర్వాహకులు వంటి క్రొత్త లక్షణాలను ప్రాప్తి చేయడానికి, ఈ గుంపును అప్‌గ్రేడ్ చేయండి.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">ఇప్పుడు కాదు</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">సమూహాన్ని అప్‌గ్రేడ్ చేయండి</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d మంది సభ్యులను కొత్త సమూహంలో తిరిగి చేర్చడం సాధ్యం కాలేదు. మీరు ఇప్పుడు వాటిని జోడించాలనుకుంటున్నారా?</item>
@@ -1973,8 +1973,8 @@
   <string name="preferences_data_and_storage__calls">కాల్స్</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">కాల్‌ల కోసం తక్కువ డేటాను ఉపయోగించండి</string>
   <string name="preferences_data_and_storage__never">ఎప్పుడూ</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi మరియు సెల్యులార్</string>
-  <string name="preferences_data_and_storage__cellular_only">సెల్యులార్ మాత్రమే</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi మరియు సెల్యులార్</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">సెల్యులార్ మాత్రమే</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">తక్కువ డేటాను ఉపయోగించడం సరికాని నెట్‌వర్క్‌లలో కాల్‌లను మెరుగుపరుస్తుంది</string>
   <string name="preferences_notifications__messages">సందేశాలు</string>
   <string name="preferences_notifications__events">సంఘటనలు</string>
@@ -2484,7 +2484,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">పంచుకోండి</string>
   <string name="ShareActivity__send">పంపు</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">బహుళ మాటామంతీ‌లకు భాగస్వామ్యం చేయడం Signalసందేశాలకు మాత్రమే మద్దతిస్తుంది</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">కొంతమంది వినియోగదారులకు పంపడంలో విఫలమైంది</string>

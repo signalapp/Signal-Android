@@ -240,6 +240,9 @@
   <string name="ConversationActivity_full">Polno</string>
   <string name="ConversationActivity_error_sending_media">Napaka pri pošiljanju medijske datoteke</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Označeno kot neželeno in blokirano.</string>
+  <string name="ConversationActivity_gifs_have_moved">GIF-i so premaknjeni</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Najdete jih zraven emojijev in nalepk.</string>
+  <string name="ConversationActivity__gifs_are_now_here">GIF-i so odslej tu.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprebrano sporočilo</item>
@@ -507,9 +510,9 @@
     <item quantity="other">Ti/te člani/ce se ne morejo pridružiti Novim skupinam, zato so bili/e odstranjeni/e iz skupine:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Za uporabo naprednih funkcij, kot so @omembe in skrbniki/ce skupin, nadgradite to skupino.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Ne zdaj</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Nadgradi skupino</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Za uporabo naprednih funkcij, kot so @omembe in skrbniki/ce skupin, nadgradite to skupino.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Ne zdaj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Nadgradi skupino</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d član/ica ni mogel/la biti ponovno dodan/a v Novo skupino. Ga/jo želite dodati zdaj?</item>
@@ -2163,8 +2166,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_data_and_storage__calls">Klici</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Porabi manj podatkov za klice</string>
   <string name="preferences_data_and_storage__never">Nikoli</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi in mobilni podatki</string>
-  <string name="preferences_data_and_storage__cellular_only">Samo mobilni podatki</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi in mobilni podatki</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Samo mobilni podatki</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Poraba manj podatkov pri klicih lahko izboljša zanesljivost klicov v slabih omrežjih</string>
   <string name="preferences_notifications__messages">Sporočila</string>
   <string name="preferences_notifications__events">Dogodki</string>
@@ -2252,6 +2255,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__backspace">Nazaj</string>
   <!--EditNoteFragment-->
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__to">Naslovnik</string>
@@ -2811,7 +2815,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--ShareActivity-->
   <string name="ShareActivity__share">Deli</string>
   <string name="ShareActivity__send">Pošlji</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Deljenje med večimi pogovori je možno samo za sporočila Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Pošiljanje nekaterim uporabnikom/cam ni uspelo</string>
@@ -2985,15 +2989,33 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ChatColorGradientTool_top_edge_selector">Gornji rob</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Spodnji rob</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Prilagodi reakcije</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tapnite za zamenjavo emojija</string>
   <string name="EditReactionsFragment__reset">Ponastavi</string>
   <string name="EditReactionsFragment_save">Shrani</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Barva se prilagaja ozadju</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Potegnite za spremembo smeri preliva</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Nove barve pogovorov</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Spremenili smo barve pogovorov, da bodo ti bolj berljivi in je na razpolago več opcij.</string>
   <string name="ChatColorsMegaphone__appearance">Izgled</string>
   <string name="ChatColorsMegaphone__not_now">Ne zdaj</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Odpri iskanje po emojijih</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Odpri iskanje po nalepkah</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Odpri iskanje po GIF-ih</string>
   <string name="KeyboardPagerFragment_stickers">Nalepke</string>
+  <string name="KeyboardPagerFragment_backspace">Nazaj</string>
+  <string name="KeyboardPagerFragment_gifs">GIF-i</string>
+  <string name="KeyboardPagerFragment_search_emoji">Iskanje po emojijih</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Nazaj k emojijem</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Počisti iskalno polje</string>
+  <string name="KeyboardPagerFragment_search_giphy">Iskanje po GIPHY-ju</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Iskanje med nalepkami</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Ni rezultatov</string>
+  <string name="EmojiSearchFragment__no_results_found">Ni rezultatov</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Neznano zvonenje</string>
   <!--EOF-->
 </resources>

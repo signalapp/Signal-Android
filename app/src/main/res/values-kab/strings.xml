@@ -473,9 +473,9 @@
     <item quantity="other">Iεeggalen-a ad zmiren ara ad rnun ɣer yigrawen imaynuten, yerna ad ttwakksen seg ugraw:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">I unekcum ɣer tmahilin timaynutin am @mentions akked yinedbalen, leqqem agraw-a.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Mačči tura</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Leqqem agraw</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">I unekcum ɣer tmahilin timaynutin am @mentions akked yinedbalen, leqqem agraw-a.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Mačči tura</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Leqqem agraw</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d n uεeggal ur yezmir ara ad yettwarnu i tikkelt-nniḍen ɣer ugraw amaynut. Tebɣiḍ ad t-ternuḍ tura?</item>
@@ -1987,8 +1987,8 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="preferences_data_and_storage__calls">Isawalen</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Seqdec drus n yisefka i yisawalen</string>
   <string name="preferences_data_and_storage__never">Werǧin</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi akked Uziraz</string>
-  <string name="preferences_data_and_storage__cellular_only">Aziraz kan</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi akked Uziraz</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Aziraz kan</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Aseqdec n drus n yisefka iseqεad isawalen deg yir izeḍwa</string>
   <string name="preferences_notifications__messages">Iznan</string>
   <string name="preferences_notifications__events">Tidyanin</string>
@@ -2599,7 +2599,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Bḍu</string>
   <string name="ShareActivity__send">Azen</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Beṭṭu ɣer waṭas n yidiwenniyen yettusefrak kan i yiznan n Signal.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Tuzna i kra n yiseqdacen ur teddi ara</string>

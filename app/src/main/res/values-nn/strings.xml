@@ -484,9 +484,9 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
     <item quantity="other">Desse medlemmane kan ikkje bli med i Nye grupper og blir derfor fjerna frå gruppa:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Oppgrader denne gruppa for å få nye funksjonar som @nemningar og administratorar.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Ikkje no</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Oppgrader gruppa</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Oppgrader denne gruppa for å få nye funksjonar som @nemningar og administratorar.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Ikkje no</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Oppgrader gruppa</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d medlem kunne ikkje bli lagt til i den Nye gruppa igjen. Vil du legga dei til no?</item>
@@ -2036,8 +2036,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences_data_and_storage__calls">Samtalar</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Bruk mindre data for oppringingar</string>
   <string name="preferences_data_and_storage__never">Aldri</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Trådlaus og mobildata</string>
-  <string name="preferences_data_and_storage__cellular_only">Berre mobildata</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Trådlaus og mobildata</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Berre mobildata</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Mindre databruk kan forbetra samtalar på dårlege nettverk</string>
   <string name="preferences_notifications__messages">Meldingar</string>
   <string name="preferences_notifications__events">Hendingar</string>
@@ -2749,7 +2749,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Del</string>
   <string name="ShareActivity__send">Send</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Sending til fleire samtalar er berre støtta for Signal-meldingar</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Klarte ikkje senda til visse brukarar</string>
@@ -3002,5 +3002,6 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="StickerSearchDialogFragment_search_stickers">Søk etter klistremerke</string>
   <string name="StickerSearchDialogFragment_no_results_found">Ingen resultat</string>
   <string name="EmojiSearchFragment__no_results_found">Ingen resultat</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Ukjend ringelyd</string>
   <!--EOF-->
 </resources>

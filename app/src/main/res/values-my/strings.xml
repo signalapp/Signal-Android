@@ -456,9 +456,9 @@
     <item quantity="other">အဖွဲ့ဝင်များသည် အဖွဲ့အသစ်များသို့ ဝင်ရောက်နိုင်ခြင်း မရှိသောကြောင့် အဖွဲ့မှဖယ်ရှားခံရလိမ့်မည်။</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@mentions နှင့် အက်မင် ကဲ့သို့သောအင်္ဂါရပ်အသစ်များကို အသုံးပြုရန် ဤအုပ်စုကိုအဆင့်မြှင့်ပါ။</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ဤအုပ်စုကို အဆင့်မြှင့်မည်။</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@mentions နှင့် အက်မင် ကဲ့သို့သောအင်္ဂါရပ်အသစ်များကို အသုံးပြုရန် ဤအုပ်စုကိုအဆင့်မြှင့်ပါ။</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">ယခု မလုပ်ဆောင်သေးပါ။</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ဤအုပ်စုကို အဆင့်မြှင့်မည်။</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">အဖွဲ့ဝင်အသစ် %1$d ယောက်ကို အုပ်စုသစ်သို့ ပြန်ထည့်၍ မရပါ။ သူတို့ကို သင်ယခု ထည့်သွင်း လိုသလား။</item>
@@ -1917,8 +1917,8 @@
   <string name="preferences_data_and_storage__calls">ဖုန်းခေါ်ဆိုမှုများ</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">ခေါ်ဆိုမှုများအတွက် ဒေတာလျော့သုံးမယ်</string>
   <string name="preferences_data_and_storage__never">ဘယ်တော့မှမ</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">ဝိုင်ဖိုင်နှင့်ဆယ်လူလာ</string>
-  <string name="preferences_data_and_storage__cellular_only">ဆယ်လူလာအတွက်သာ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">ဝိုင်ဖိုင်နှင့်ဆယ်လူလာ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">ဆယ်လူလာအတွက်သာ</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">မကောင်းသော ချိတ်ဆက်မှုလိုင်းပေါ်တွင် ဒေတာပိုနည်းစွာသုံးလျှင် ခေါ်ဆိုမှုများ ပိုကြည်လင်ကောင်းမွန် နိုင်ပါသည်</string>
   <string name="preferences_notifications__messages">စာများ</string>
   <string name="preferences_notifications__events">ပွဲများ</string>
@@ -2618,7 +2618,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">ဝေမျှမည်</string>
   <string name="ShareActivity__send">ပေးပို့မည်</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">စကားပြောဆိုမှုပေါင်းစုံများနှင့် ဝေမျှခြင်းအတွက် Signal မက်ဆေ့ချ်များကိုသာ ပံ့ပိုးပါသည်</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">အသုံးပြုသူများသို့ပေးပို့ရန်မအောင်မြင်ပါ</string>

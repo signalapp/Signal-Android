@@ -496,9 +496,9 @@
     <item quantity="other">Ови чланови не могу да се придруже новим групама и биће уклоњени из групе:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Да бисте приступили новим функцијама попут @помињања и администратори, надоградите ову групу.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Не сада</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Надогради групу</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Да бисте приступили новим функцијама попут @помињања и администратори, надоградите ову групу.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Не сада</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Надогради групу</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d члана није могуће додати у групу. Да ли желите да га додате сада?</item>
@@ -2104,8 +2104,8 @@
   <string name="preferences_data_and_storage__calls">Позиви</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Користите мање података за позиве</string>
   <string name="preferences_data_and_storage__never">Никад</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">ВиФи и мобилни податци</string>
-  <string name="preferences_data_and_storage__cellular_only">Само мобилни податци</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">ВиФи и мобилни податци</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Само мобилни податци</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Коришћење мање података може побољшати позиве на лошим мрежама</string>
   <string name="preferences_notifications__messages">Поруке</string>
   <string name="preferences_notifications__events">Догађаји</string>
@@ -2825,7 +2825,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Поделите</string>
   <string name="ShareActivity__send">Пошаљи</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Дељење у више ћаскања је подржано само за Signal поруке</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Слање неким корисницима није успело</string>

@@ -479,9 +479,9 @@
     <item quantity="other">این اعضا قابلیت پیوستن به گروه‌های جدید را ندارند و از گروه حذف خواهند شد:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">برای دسترسی به قابلیت‌های جدید مثل اشاره‌ها@ و مدیران این گروه را ارتقا دهید.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">حالا نه</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ارتقا گروه</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">برای دسترسی به قابلیت‌های جدید مثل اشاره‌ها@ و مدیران این گروه را ارتقا دهید.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">حالا نه</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ارتقا گروه</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d کاربر نمی‌تواند به گروه جدید اضافه شود. می‌خواهید حالا او را اضافه کنید؟</item>
@@ -878,7 +878,7 @@
     <item quantity="other">شما نمی‌توانید بیش از %d مورد را به اشتراک بگذارید.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">گیرندگان را انتخاب کنید</string>
-  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">برای ناپدید شدن پیام بعد از مشاهده اینجا ضربه بزنید.</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">اینجا ضربه بزنید تا این پیام پس از مشاهده شدن ناپدید شود.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">همهٔ رسانه‌ها</string>
   <string name="MediaRepository__camera">دوربین</string>
@@ -1385,7 +1385,7 @@
   <string name="ThreadRecord_you_deleted_this_message">شما این پیام را حذف کردید.</string>
   <string name="ThreadRecord_s_is_on_signal">%s به سیگنال پیوست!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">پیام‌های ناپدید شونده غیرفعال شدند</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">زمان ناپدید شدن پیام روی %s تنظیم شد</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">زمان پیام ناپدید شونده روی %s تنظیم شد</string>
   <string name="ThreadRecord_safety_number_changed">شمارهٔ امنیتی تغییر یافت</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">شمارهٔ امنیتی شما با %s تغییر یافت.</string>
   <string name="ThreadRecord_you_marked_verified">شما وارسی شده علامت زدید</string>
@@ -1905,7 +1905,7 @@
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">پیام‌ها با زدن کلید Enter ارسال خواهند شد</string>
   <string name="preferences__pref_use_address_book_photos">استفاده از عکس‌های دفترچهٔ تلفن</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">نمایش عکس‌های مخاطبین از دفترچهٔ تلفن در صورت وجود</string>
-  <string name="preferences__generate_link_previews">ایجاد پیش‌نمایش‌‌های پیوند</string>
+  <string name="preferences__generate_link_previews">تولید پیش‌نمایش‌‌های پیوند</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">پیش‌نمایش‌های پیوند را به صورت مستقیم از وب‌سایت‌ها برای پیام‌هایی که ارسال می‌کنید، دریافت کنید.</string>
   <string name="preferences__choose_identity">انتخاب هویت</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">مخاطب خود را از فهرست مخاطبین انتخاب کنید.</string>
@@ -2030,8 +2030,8 @@
   <string name="preferences_data_and_storage__calls">تماس‌ها</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">استفادهٔ کمتر داده‌ها برای تماس‌ها</string>
   <string name="preferences_data_and_storage__never">هرگز</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi و شبکهٔ تلفن همراه</string>
-  <string name="preferences_data_and_storage__cellular_only">فقط شبکهٔ تلفن ‌همراه</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi و شبکهٔ تلفن همراه</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">فقط شبکهٔ تلفن ‌همراه</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">استفادهٔ کمتر داده‌ها ممکن است کیفیت تماس‌ها را بر روی شبکه‌های ضعیف بهبود ببخشد</string>
   <string name="preferences_notifications__messages">پیام‌ها</string>
   <string name="preferences_notifications__events">رخدادها</string>
@@ -2092,7 +2092,7 @@
   <string name="PaymentsHomeFragment__deactivate_payments">غیرفعال کردن پرداخت‌ها</string>
   <string name="PaymentsHomeFragment__recovery_phrase">عبارت بازیابی</string>
   <string name="PaymentsHomeFragment__help">راهنمایی</string>
-  <string name="PaymentsHomeFragment__coin_cleanup_fee">هزینهٔ تصفیهٔ سکه</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">هزینهٔ تمیزکاری سکه</string>
   <string name="PaymentsHomeFragment__sent_payment">پرداخت ارسال شد</string>
   <string name="PaymentsHomeFragment__received_payment">پرداخت دریافت شد</string>
   <string name="PaymentsHomeFragment__processing_payment">در حال پردازش پرداخت</string>
@@ -2134,8 +2134,8 @@
   <string name="PaymentsDetailsFragment__to">به</string>
   <string name="PaymentsDetailsFragment__from">از</string>
   <string name="PaymentsDetailsFragment__information">جزئیات تراکنش شامل مقدار پرداخت و زمان تراکنش بخشی از دفتر کل MobileCoin هستند.</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_fee">هزینهٔ تمیز کردن سکه</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_information">«هزینهٔ تمیزکاری سکه» زمانی کم می‌شود که سکه‌های در اختیار شما نمی‌توانند برای کامل کردن یک تراکنش ترکیب شوند. تمیزکاری به شما اجازه می‌دهد که به ارسال پرداخت‌ها ادامه دهید.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">هزینهٔ تمیزکاری سکه</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">«هزینهٔ تمیزکاری سکه» زمانی کم می‌شود که سکه‌های در اختیار شما نمی‌توانند برای کامل کردن یک تراکنش ترکیب شوند. تمیزکاری به شما اجازه خواهد داد تا به ارسال پرداخت‌ها ادامه دهید.</string>
   <string name="PaymentsDetailsFragment__no_details_available">هیچ جزئیات بیشتری برای این تراکنش وجود ندارد</string>
   <string name="PaymentsDetailsFragment__sent_payment">پرداخت ارسال شد</string>
   <string name="PaymentsDetailsFragment__received_payment">پرداخت دریافت شد</string>
@@ -2308,7 +2308,7 @@
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">درصد بینش‌ها بر اساس تعداد پیام‌های خروجی در %1$d روز گذشته که حذف نشده‌اند یا ناپدید نشده‌اند محاسبه می‌شود.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">شروع یک مکالمه</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">ارتباط امن برقرار کنید و قابلیت‌های جدید را که از محدودیت‌های پیامک رمزگذاری نشده فراتر می‌روند با دعوت مخاطبین بیشتر به سیگنال فعال کنید.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">این آمارها به صورت محلی بر روی دستگاه شما ایجاد شده‌اند و فقط شما توانایی دیدن آن‌ها را دارید. آن‌ها هیچ‌گاه به جایی ارسال نمی‌شوند.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">این آمارها به صورت محلی بر روی دستگاه شما تولید شده‌اند و فقط شما توانایی دیدن آن‌ها را دارید. آن‌ها هیچ‌گاه به جایی ارسال نمی‌شوند.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">پیام‌های رمزگذاری شده</string>
   <string name="InsightsDashboardFragment__cancel">لغو</string>
   <string name="InsightsDashboardFragment__send">ارسال</string>
@@ -2741,7 +2741,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">اشتراک‌گذاری</string>
   <string name="ShareActivity__send">ارسال</string>
-  <string name="ShareActivity__s_comma">%1$s،</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s،</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">اشتراک گذاری به چند گفتگو فقط برای پیام های سیگنال پشتیبانی میشود</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ارسال به برخی کاربران موفق نبود</string>
@@ -2911,8 +2911,8 @@
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">نمایش آیکون وضعیت</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">نمایش یک آیکون در جزئیات پیام وقتی که با استفاده از فرستندهٔ ناشناس تحویل داده شده‌اند.</string>
   <!--ExpireTimerSettingsFragment-->
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">وقتی فعال شد، پیام‌های جدید ارسال و دریافت شده در گفتگوهایی که شما آغاز می‌کنید پس از دیده شدن ناپدید خواهند شد.</string>
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">وقتی فعال شود، پیام‌های جدید ارسال و دریافت شده در این گفتگو پس از دیده شدن ناپدید خواهند شد.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">وقتی فعال شد، در گفتگوهایی که شما آغاز می‌کنید پیام‌های ارسال و دریافت شدهٔ جدید پس از دیده شدن ناپدید خواهند شد.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">وقتی فعال شد، در این گفتگو پیام‌های ارسال و دریافت شدهٔ جدید پس از دیده شدن ناپدید خواهند شد.</string>
   <string name="ExpireTimerSettingsFragment__off">خاموش</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">۴ هفته</string>
   <string name="ExpireTimerSettingsFragment__1_week">۱ هفته</string>
@@ -2994,5 +2994,6 @@
   <string name="StickerSearchDialogFragment_search_stickers">استیکرها را جستجو کنید</string>
   <string name="StickerSearchDialogFragment_no_results_found">هیچ نتیجه‌ای پیدا نشد</string>
   <string name="EmojiSearchFragment__no_results_found">هیچ نتیجه‌ای پیدا نشد</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">صدای زنگ ناشناخته</string>
   <!--EOF-->
 </resources>

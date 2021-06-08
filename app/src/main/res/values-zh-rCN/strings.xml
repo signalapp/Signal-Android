@@ -92,6 +92,7 @@
   <string name="BlockUnblockDialog_unblock_s">解除屏蔽%1$s?</string>
   <string name="BlockUnblockDialog_block">屏蔽</string>
   <string name="BlockUnblockDialog_block_and_leave">屏蔽并离开</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">举报垃圾消息与屏蔽</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">今天</string>
   <string name="BucketedThreadMedia_Yesterday">昨天</string>
@@ -167,6 +168,7 @@
   <string name="ConversationItem_error_network_not_delivered">发送失败</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">已收到密钥交换消息，点击处理。</string>
   <string name="ConversationItem_group_action_left">%1$s 已经离开该群组。</string>
+  <string name="ConversationItem_send_paused">发送已暂停</string>
   <string name="ConversationItem_click_to_approve_unencrypted">发送失败，点击使用不安全的方式发送</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">使用未加密的短信？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">使用未加密的彩信？</string>
@@ -237,6 +239,10 @@
   <string name="ConversationActivity_join">加入</string>
   <string name="ConversationActivity_full">已满</string>
   <string name="ConversationActivity_error_sending_media">媒体发送失败</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">已举报为垃圾消息并屏蔽。</string>
+  <string name="ConversationActivity_gifs_have_moved">GIF 已转移</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">在表情符号和贴纸旁查找 GIF。</string>
+  <string name="ConversationActivity__gifs_are_now_here">GIF 现在在此处。</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 条未读消息</item>
@@ -277,8 +283,8 @@
   <string name="ConversationFragment_you_already_viewed_this_message">已查看该消息</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">您可在此对话中为自己做笔记。\n若您的账户有关联设备，新笔记将同步到各设备上。</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d 位群组成员的名字相同。</string>
-  <string name="ConversationFragment__tap_to_review">点击开始审核</string>
-  <string name="ConversationFragment__review_requests_carefully">请仔细审核请求</string>
+  <string name="ConversationFragment__tap_to_review">点击开始审查</string>
+  <string name="ConversationFragment__review_requests_carefully">请仔细审查请求</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal 碰到了一个同名的联系人。</string>
   <string name="ConversationFragment_contact_us">联系我们</string>
   <string name="ConversationFragment_verify">验证</string>
@@ -456,9 +462,9 @@
     <item quantity="other">这些成员无法加入新版群组，所以其将被移出群组：</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">若要解锁@提醒和管理员的功能，请升级该群组。</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">稍后再说</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">升级群组</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">若要解锁@提醒和管理员的功能，请升级该群组。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">稍后再说</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">升级群组</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">无法转移%1$d位成员到新版群组，您现要再尝试添加其到新版群组吗？</item>
@@ -576,6 +582,7 @@
   <string name="ManageGroupActivity_mute_notifications">静音通知</string>
   <string name="ManageGroupActivity_custom_notifications">自定义通知</string>
   <string name="ManageGroupActivity_mentions">提及我</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">聊天颜色 &amp; 墙纸</string>
   <string name="ManageGroupActivity_until_s">直到 %1$s</string>
   <string name="ManageGroupActivity_always">总是</string>
   <string name="ManageGroupActivity_off">关</string>
@@ -602,6 +609,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">升级此群组。</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">这是个未加密的彩信群组。要加密聊天，请邀请您的联系人加入 Signal。</string>
   <string name="ManageGroupActivity_invite_now">现在邀请</string>
+  <string name="ManageGroupActivity_more">更多</string>
+  <string name="ManageGroupActivity_add_group_description">添加群组描述…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">提到我时通知我</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">静音群聊中被别人@时，是否接收提醒？</string>
@@ -618,7 +627,7 @@
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">添加至系统联系人</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">此人是你的联系人</string>
-  <string name="ManageRecipientActivity_disappearing_messages">阅后即焚</string>
+  <string name="ManageRecipientActivity_disappearing_messages">限时消息</string>
   <string name="ManageRecipientActivity_chat_color">聊天颜色</string>
   <string name="ManageRecipientActivity_chat_wallpaper">聊天墙纸</string>
   <string name="ManageRecipientActivity_block">屏蔽</string>
@@ -922,6 +931,9 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s 更改了群名称为 “%2$s”。</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">群组名称更改为“%1$s”。</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">您已更改群组描述。</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s 已更改群组描述。</string>
+  <string name="MessageRecord_the_group_description_has_changed">群组描述已更改。</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">您更改了群组头像。</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s 更改了群组头像。</string>
@@ -1104,6 +1116,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">您</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">验证以继续发送消息</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">为了防止 Signal 垃圾消息，请完成验证。</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">验证之后，可继续发送消息。任何暂停消息将自动发送。</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">屏蔽</string>
   <string name="RecipientPreferenceActivity_unblock">取消屏蔽</string>
@@ -1140,6 +1155,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">没有人在这里</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s 在此通话中</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 和 %2$s 在此通话中</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s 正在演示</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s、%2$s 及其它 %3$d 位用户在此通话中</item>
   </plurals>
@@ -1155,6 +1171,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">无法从%1$s接收音频与视频</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">这可能是因为他们还没验证过你的安全码发生的变更，或是因为他们的设备有问题，又或者是因为他们已经屏蔽了你。</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">轻扫查看屏幕共享</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">代理服务器</string>
   <string name="ProxyBottomSheetFragment_proxy_address">代理地址</string>
@@ -1162,6 +1179,8 @@
   <string name="ProxyBottomSheetFragment_use_proxy">使用代理</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">成功连接代理。</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">提交失败</string>
+  <string name="RecaptchaProofActivity_complete_verification">完成验证</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">选择国家</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">必须指定
@@ -1281,6 +1300,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">复制此 URL 并将其添加到问题报告或支持电子邮件:\n\n<b>%1$s</b>
 </string>
   <string name="SubmitDebugLogActivity_share">分享</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">该日志将在线公开发布，以供参与者查看。在上传之前，您可查看并编辑。</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">筛选器：</string>
   <string name="SupportEmailUtil_device_info">设备信息：</string>
@@ -1392,6 +1412,8 @@
   <string name="MessageNotifier_message_delivery_failed">消息发送失败。</string>
   <string name="MessageNotifier_failed_to_deliver_message">消息发送失败。</string>
   <string name="MessageNotifier_error_delivering_message">发送消息出错。</string>
+  <string name="MessageNotifier_message_delivery_paused">消息发送已暂停。</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">验证以继续在 Signal 上发送消息。</string>
   <string name="MessageNotifier_mark_all_as_read">全部已读</string>
   <string name="MessageNotifier_mark_read">已读</string>
   <string name="MessageNotifier_turn_off_these_notifications">关闭这些通知</string>
@@ -1546,7 +1568,10 @@
   <string name="ConversationUpdateItem_call_is_full">通话人数已满</string>
   <string name="ConversationUpdateItem_invite_friends">邀请好友</string>
   <string name="ConversationUpdateItem_enable_call_notifications">启用通话通知</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">无共同群组。请仔细审查请求。</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">该群组无联系人。请仔细审查请求。</string>
   <string name="ConversationUpdateItem_view">查看</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">在您向他们发送消息时，限时消息时间将设置为 %1$s。</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">播放 … 暂停</string>
   <string name="audio_view__download_accessibility_description">下载</string>
@@ -1575,12 +1600,12 @@
   <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">启用通话通知</string>
   <string name="EnableCallNotificationSettingsDialog__enable_background_activity">启用背景活动</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">目前看起来一切正常！</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">为了接收通话通知，请点击此次并开启“显示通知”。</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">为了接收通话通知，请点击此次并开启通知，以及确保已启用“声音”和“弹出”。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">为了接收通话通知，请点击此处并开启“显示通知”。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">为了接收通话通知，请点击此处并开启通知，以及确保已启用“声音”和“弹出”。</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">为了接收通话通知，请点击此处并启用“电池”设置下的背景活动。</string>
   <string name="EnableCallNotificationSettingsDialog__settings">设置</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">为了接收通话通知，请点击设置并开启“显示通知”。</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">为了接收通话通知，请点击此次并开启通知，以及确保已启用“声音”和“弹出”。</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">为了接收通话通知，请点击此处并开启通知，以及确保已启用“声音”和“弹出”。</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">为了接收通话通知，请点击设置并启用“电池”设置下的背景活动。</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">正在加载国家…</string>
@@ -1667,6 +1692,7 @@
   <string name="CreateProfileActivity__username">用户名</string>
   <string name="CreateProfileActivity__create_a_username">创建用户名</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">自定义MMS群组名称和图片将仅对你可见。</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">群组描述对于该群组成员以及受邀人可见。</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">关于</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">简单介绍下自己…</string>
@@ -1681,6 +1707,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group">编辑群组</string>
   <string name="EditProfileFragment__group_name">群组名称</string>
+  <string name="EditProfileFragment__group_description">群组描述</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">你的名字</string>
   <string name="EditProfileNameFragment_first_name">名</string>
@@ -1747,6 +1774,15 @@
   <string name="HelpFragment__debug_log">调试日志：</string>
   <string name="HelpFragment__could_not_upload_logs">无法上传日志</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">请尽可能描述一下，以帮助我们理解该问题。</string>
+  <string-array name="HelpFragment__categories">
+    <item>-- 请选择选项 --</item>
+    <item>出现问题</item>
+    <item>功能请求</item>
+    <item>疑问</item>
+    <item>反馈</item>
+    <item>其他</item>
+    <item>付款</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">此消息</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用</string>
@@ -1864,6 +1900,7 @@
   <string name="preferences__appearance">外观</string>
   <string name="preferences__theme">主题</string>
   <string name="preferences__chat_wallpaper">聊天墙纸</string>
+  <string name="preferences__chat_color_and_wallpaper">聊天颜色 &amp; 墙纸</string>
   <string name="preferences__disable_pin">禁用 PIN</string>
   <string name="preferences__enable_pin">启用 PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 Signal 时全部数据将丢失，除非使用手动备份并恢复。PIN 禁用时，无法启用注册锁定。</string>
@@ -1882,6 +1919,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">禁用已读回执之后，将无法查看来其他用户的已读回执。</string>
   <string name="preferences__typing_indicators">“正在输入”提示</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">禁用“正在输入”提示之后，无法查看其他用户的正在输入状态。</string>
+  <string name="preferences__request_keyboard_to_disable">请求键盘禁用个性化学习。</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">该设置并非保证，您的键盘可能忽略该设置。</string>
   <string name="preferences_app_protection__blocked_users">已屏蔽的用户</string>
   <string name="preferences_chats__when_using_mobile_data">当使用移动数据时</string>
   <string name="preferences_chats__when_using_wifi">当使用 WiFi 时</string>
@@ -1921,8 +1960,8 @@
   <string name="preferences_data_and_storage__calls">通话</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">通话使用更少数据</string>
   <string name="preferences_data_and_storage__never">永不</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi 和电话网络</string>
-  <string name="preferences_data_and_storage__cellular_only">仅电话网路</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi 和电话网络</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">仅电话网路</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">网络较差时，使用更少数据可能改善通话</string>
   <string name="preferences_notifications__messages">消息</string>
   <string name="preferences_notifications__events">事件</string>
@@ -2414,6 +2453,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">点击左上侧个人资料图片，打开设置。</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">点击“帐户”。</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">在两个设备，点击“转移帐户”，然后选择“继续”</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2566,8 +2606,8 @@
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">审查成员</string>
   <string name="ReviewCardDialogFragment__review_request">审查请求</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d 位成员的名字相同，请审阅下列成员并采取相应措施。</string>
-  <string name="ReviewCardDialogFragment__if_youre_not_sure">如果您不确定此请求的来源，请审阅以下联系人并采取相应措施。</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d 位群组成员的名字相同，请审查以下成员并采取相应措施。</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">如果您不确定此请求的来源，请审查以下联系人并采取相应措施。</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">没有其它共同群组。</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">无共同群组。</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -2622,7 +2662,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">分享</string>
   <string name="ShareActivity__send">发送</string>
-  <string name="ShareActivity__s_comma">%1$s，</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s，</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">分享至多个聊天仅支持 Signal 消息。</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">无法发送给某些用户</string>
@@ -2633,12 +2673,24 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">聊天墙纸</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">聊天颜色</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">重置聊天颜色</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">重置聊天颜色</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">是否重置聊天颜色？</string>
   <string name="ChatWallpaperFragment__set_wallpaper">设置墙纸</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">深色模式暗淡墙纸</string>
   <string name="ChatWallpaperFragment__contact_name">联系人名字</string>
   <string name="ChatWallpaperFragment__reset">重置</string>
   <string name="ChatWallpaperFragment__clear">清除</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">墙纸预览</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">是否想要覆盖全部聊天颜色？</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">是否想要覆盖全部墙纸？</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">重置默认颜色</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">重置全部颜色</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">重置默认墙纸</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">重置全部墙纸</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">重置墙纸</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">重置墙纸</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">是否重置墙纸？</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">从图片中选择</string>
   <string name="ChatWallpaperSelectionFragment__presets">预设</string>
@@ -2736,14 +2788,28 @@
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">为了发送付款，该用户需接受您的消息请求。请向他们发送消息，来创建消息请求。</string>
   <string name="CanNotSendPaymentDialog__send_a_message">发送消息</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">与此人无共同群组。为了避免垃圾消息，请在接受之前仔细审查请求。</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">该群组没有您的联系人或曾聊过的人。为了避免垃圾消息，请在接受之前仔细审查请求。</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">关于消息请求</string>
   <string name="GroupsInCommonMessageRequest__okay">好的</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">此处为聊天颜色预览。</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">该颜色仅对您可见。</string>
   <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">群组描述</string>
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">标准</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">速度更快，数据更少</string>
   <string name="QualitySelectorBottomSheetDialog__high">高</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">速度更慢，数据更多</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">图片质量</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">邀请好友</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">帐户</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">提醒次数将逐渐减少</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">再次用您的手机号码注册 Signal，要求输入 Signal PIN 码。</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">键盘</string>
   <string name="ChatsSettingsFragment__enter_key_sends">按回车发送</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">设置为默认短信应用</string>
@@ -2751,49 +2817,102 @@
   <string name="NotificationsSettingsFragment__messages">消息</string>
   <string name="NotificationsSettingsFragment__calls">通话</string>
   <string name="NotificationsSettingsFragment__notify_when">发送通知，当…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">联系人加入 Signal</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">已屏蔽</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d 个联系人</string>
   <string name="PrivacySettingsFragment__messaging">消息传输</string>
   <string name="PrivacySettingsFragment__disappearing_messages">限时消息</string>
+  <string name="PrivacySettingsFragment__app_security">应用安全</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">屏蔽最近使用应用和 Signal 截屏</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal 消息和通话，总是转发通话以及密封发送人</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">新聊天的默认计时器</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">对于您开启的全部新聊天，设置默认的限时消息计时器。</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">显示状态图标</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">当使用密封发送人送达消息时，在详情中显示图标。</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">如果启用，由您开启的新聊天，收发的新消息将在查看之后消失。</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">如果启用，该聊天中收发的新消息将在查看之后消失。</string>
   <string name="ExpireTimerSettingsFragment__off">关</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 周</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 周</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 天</string>
   <string name="ExpireTimerSettingsFragment__8_hours">8 小时</string>
   <string name="ExpireTimerSettingsFragment__1_hour">1 小时</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5分钟</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30秒</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">自定义时间</string>
   <string name="ExpireTimerSettingsFragment__set">设置</string>
   <string name="ExpireTimerSettingsFragment__save">保存</string>
+  <string name="CustomExpireTimerSelectorView__seconds">秒</string>
   <string name="CustomExpireTimerSelectorView__minutes">分钟</string>
   <string name="CustomExpireTimerSelectorView__hours">小时</string>
+  <string name="CustomExpireTimerSelectorView__days">天</string>
+  <string name="CustomExpireTimerSelectorView__weeks">周</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">支持中心</string>
   <string name="HelpSettingsFragment__contact_us">联系我们</string>
   <string name="HelpSettingsFragment__version">版本</string>
   <string name="HelpSettingsFragment__debug_log">调试日志</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">条款和隐私政策</string>
+  <string name="HelpFragment__copyright_signal_messenger">版权所有 Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">根据 GPLv3 授权许可</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">通话</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">自动</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">使用自定义颜色</string>
   <string name="ChatColorSelectionFragment__chat_color">聊天颜色</string>
   <string name="ChatColorSelectionFragment__edit">编辑</string>
+  <string name="ChatColorSelectionFragment__duplicate">复制</string>
   <string name="ChatColorSelectionFragment__delete">删除</string>
+  <string name="ChatColorSelectionFragment__delete_color">删除颜色</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="other">该自定义颜色将在 %1$d 个聊天中使用。是否想要对全部聊天删除？</item>
+  </plurals>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">纯色</string>
+  <string name="CustomChatColorCreatorFragment__gradient">渐变</string>
+  <string name="CustomChatColorCreatorFragment__hue">色调</string>
+  <string name="CustomChatColorCreatorFragment__saturation">饱和度</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">保存</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">编辑颜色</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="other">该颜色将在 %1$d 个聊天中使用。是否想要对全部聊天保存？</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">上边缘选择器</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">下边缘选择器</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">自定义反应</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">点击替换表情符号</string>
   <string name="EditReactionsFragment__reset">重置</string>
   <string name="EditReactionsFragment_save">保存</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">颜色自动匹配墙纸</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">拖动更改渐变方向</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">新聊天颜色</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">升级聊天颜色，提供更多选项，令聊天更易阅读。</string>
   <string name="ChatColorsMegaphone__appearance">外观</string>
   <string name="ChatColorsMegaphone__not_now">稍后再说</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">表情符号</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">打开表情符号搜索</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">打开贴纸搜索</string>
+  <string name="KeyboardPagerFragment_open_gif_search">打开 gif 搜索</string>
   <string name="KeyboardPagerFragment_stickers">贴纸</string>
   <string name="KeyboardPagerFragment_backspace">退格键</string>
+  <string name="KeyboardPagerFragment_gifs">Gif</string>
+  <string name="KeyboardPagerFragment_search_emoji">搜索表情符号</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">返回表情符号</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">清除搜索条目</string>
+  <string name="KeyboardPagerFragment_search_giphy">搜索 GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">搜索贴纸</string>
+  <string name="StickerSearchDialogFragment_no_results_found">未找到结果</string>
+  <string name="EmojiSearchFragment__no_results_found">未找到结果</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">未知铃声</string>
   <!--EOF-->
 </resources>

@@ -473,9 +473,9 @@
     <item quantity="other">Tiuj ĉi anoj ne povas anigi novtipajn grupojn, kaj ili estos forigitaj de la grupo:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Por uzi @menciojn kaj grupadministrantojn, ĝisdatigu tiun ĉi grupon.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Ne nun</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Ĝisdatigi la grupon</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Por uzi @menciojn kaj grupadministrantojn, ĝisdatigu tiun ĉi grupon.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Ne nun</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Ĝisdatigi la grupon</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d ano ne povis re-aldoniĝi al la novtipa grupo. Ĉu vi volas aldoni ŝin aŭ lin nun?</item>
@@ -1994,8 +1994,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_data_and_storage__calls">Alvokoj</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Uzi malpli da datumoj dum alvokado</string>
   <string name="preferences_data_and_storage__never">Neniam</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Vifia kaj ĉela retoj</string>
-  <string name="preferences_data_and_storage__cellular_only">Nur ĉela reto</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Vifia kaj ĉela retoj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Nur ĉela reto</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">La uzo de malpli da datumoj eble plibonigas alvokojn ĉe malbonaj retoj</string>
   <string name="preferences_notifications__messages">Mesaĝoj</string>
   <string name="preferences_notifications__events">Eventoj</string>
@@ -2681,7 +2681,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Kunhavigi</string>
   <string name="ShareActivity__send">Sendi</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Kunhavigi al pluraj interparoloj nur eblas por Signal-mesaĝoj</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">La sendo al kelkaj uzantoj malsukcesis</string>

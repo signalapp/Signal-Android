@@ -479,9 +479,9 @@
     <item quantity="other">Diese Mitglieder können Gruppen neuen Typs nicht beitreten und werden daher aus der Gruppe entfernt:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Aktualisiere diese Gruppe für neue Funktionen wie @Erwähnungen und Admins.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Jetzt nicht</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Gruppe aktualisieren</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Aktualisiere diese Gruppe für neue Funktionen wie @Erwähnungen und Admins.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Jetzt nicht</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Gruppe aktualisieren</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d Mitglied konnte der Gruppe neuen Typs nicht wieder hinzugefügt werden. Möchtest du es jetzt hinzufügen?</item>
@@ -2021,8 +2021,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_data_and_storage__calls">Anrufe</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Datenverbrauch für Anrufe reduzieren</string>
   <string name="preferences_data_and_storage__never">Nie</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WLAN und Mobilfunk</string>
-  <string name="preferences_data_and_storage__cellular_only">Nur Mobilfunk</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WLAN und Mobilfunk</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Nur Mobilfunk</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Das Reduzieren des Datenverbrauchs kann Anrufe bei schlechtem Netz verbessern</string>
   <string name="preferences_notifications__messages">Nachrichten</string>
   <string name="preferences_notifications__events">Ereignisse</string>
@@ -2732,7 +2732,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ShareActivity-->
   <string name="ShareActivity__share">Teilen</string>
   <string name="ShareActivity__send">Senden</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Das Weiterleiten an mehrere Unterhaltungen wird nur für Signal-Nachrichten unterstützt.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Die Nachricht konnte nicht an alle Nutzer gesendet werden</string>
@@ -2896,7 +2896,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PrivacySettingsFragment__app_security">App-Sicherheit</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-Nachrichten und -Anrufe, »Anrufe immer indirekt« und »Vertraulicher Absender«</string>
-  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardzeit für neue Unterhaltungen</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardablaufzeit für neue Unterhaltungen</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Lege eine Standardablaufzeit für verschwindende Nachrichten für alle von dir begonnenen neuen Unterhaltungen fest.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Statussymbol anzeigen</string>
@@ -2985,5 +2985,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="StickerSearchDialogFragment_search_stickers">Sticker suchen</string>
   <string name="StickerSearchDialogFragment_no_results_found">Keine Ergebnisse gefunden</string>
   <string name="EmojiSearchFragment__no_results_found">Keine Ergebnisse gefunden</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Unbekannter Klingelton</string>
   <!--EOF-->
 </resources>

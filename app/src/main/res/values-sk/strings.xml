@@ -243,6 +243,9 @@
   <string name="ConversationActivity_full">Plný</string>
   <string name="ConversationActivity_error_sending_media">Chyba pri odosielaní médií</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Nahlásené ako spam a blokované.</string>
+  <string name="ConversationActivity_gifs_have_moved">GIFy sa presunuli</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Hľadajte obrázky GIF vedľa emotikónových nálepiek.</string>
+  <string name="ConversationActivity__gifs_are_now_here">GIFy sú tu.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprečítaná správa</item>
@@ -510,9 +513,9 @@
     <item quantity="other">Títo členovia nedokážu vstupovať do Nových skupín a budú zo skupiny odstránení:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pre prístup k novým funkciám ako @spomenutia a administrátori modernizujte túto skupinu.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Teraz nie</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Modernizovať skupinu</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pre prístup k novým funkciám ako @spomenutia a administrátori modernizujte túto skupinu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Teraz nie</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Modernizovať skupinu</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d člen nemohol byť znovu pridaný do Novej skupiny. Chcete ho pridať teraz?</item>
@@ -2174,8 +2177,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_data_and_storage__calls">Volania</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Využívať menej dát na hovory</string>
   <string name="preferences_data_and_storage__never">Nikdy</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi a Mobilné siete</string>
-  <string name="preferences_data_and_storage__cellular_only">Iba mobilné</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi a Mobilné siete</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Iba mobilné</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks</string>
   <string name="preferences_notifications__messages">Správy</string>
   <string name="preferences_notifications__events">Udalosti</string>
@@ -2903,7 +2906,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Zdieľať</string>
   <string name="ShareActivity__send">Poslať</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Zdieľanie do viacerých chatov je možné iba Signal správami.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Zlyhalo odoslanie niektorým používateľom</string>
@@ -3133,18 +3136,33 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ChatColorGradientTool_top_edge_selector">Volič horného okraja</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Volič spodného okraja</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Prispôsobte reakcie</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Ťuknutím nahradíte emotikon</string>
   <string name="EditReactionsFragment__reset">Resetovať</string>
   <string name="EditReactionsFragment_save">Uložiť</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Automaticky nájde vhodnú farbu k pozadiu</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Potiahnite pre zmenu smeru farebného prechodu</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Nové farby konverzácie</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Prepli sme farby konverzácie, aby sme vám poskytli viac možností a uľahčili čítanie konverzácií.</string>
   <string name="ChatColorsMegaphone__appearance">Vzhľad</string>
   <string name="ChatColorsMegaphone__not_now">Teraz nie</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emotikony</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Otvoriť vyhľadávanie emotikónov</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Otvoriť vyhľadávanie nálepiek</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Otvoriť vyhľadávanie gif</string>
   <string name="KeyboardPagerFragment_stickers">Nálepky</string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">Gify</string>
+  <string name="KeyboardPagerFragment_search_emoji">Hľadať emotikon</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Naspäť k emotikonu</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Vymazať hľadaný záznam</string>
+  <string name="KeyboardPagerFragment_search_giphy">Hľadať GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Hľadať nálepky</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Neboli nájdené žiadne výsledky</string>
+  <string name="EmojiSearchFragment__no_results_found">Neboli nájdené žiadne výsledky</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Neznámy vyzváňací tón</string>
   <!--EOF-->
 </resources>

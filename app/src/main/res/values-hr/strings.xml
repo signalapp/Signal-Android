@@ -496,9 +496,9 @@
     <item quantity="other">Ovi članovi se ne mogu pridružiti Novim grupama i bit će uklonjeni iz grupe:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Da biste pristupili novim značajkama poput @spominjanja i administratora, nadogradite ovu grupu.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Ne sada</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Nadogradi grupu</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Da biste pristupili novim značajkama poput @spominjanja i administratora, nadogradite ovu grupu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Ne sada</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Nadogradi grupu</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d član nije bilo moguće ponovno dodati u Novu grupu. Želite li ga dodati sada?</item>
@@ -2102,8 +2102,8 @@ broj telefona</string>
   <string name="preferences_data_and_storage__calls">Pozivi</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Koristi manje mobilnih podataka za pozive</string>
   <string name="preferences_data_and_storage__never">Nikada</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi i mobilni podaci</string>
-  <string name="preferences_data_and_storage__cellular_only">Samo mobilni podaci</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi i mobilni podaci</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Samo mobilni podaci</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Korištenjem manje mobilnih podataka mogu se poboljšati pozivi na lošim mrežama</string>
   <string name="preferences_notifications__messages">Poruke</string>
   <string name="preferences_notifications__events">Događaji</string>
@@ -2822,7 +2822,7 @@ broj telefona</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Podijeli</string>
   <string name="ShareActivity__send">Pošalji</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Dijeljenje s više razgovora je podržano samo za Signal poruke</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Slanje nije uspjelo za neke korisnike</string>
@@ -3077,5 +3077,6 @@ broj telefona</string>
   <string name="StickerSearchDialogFragment_search_stickers">Pretraži naljepnice</string>
   <string name="StickerSearchDialogFragment_no_results_found">Nema rezultata</string>
   <string name="EmojiSearchFragment__no_results_found">Nema rezultata</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Nepoznata melodija</string>
   <!--EOF-->
 </resources>

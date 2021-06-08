@@ -173,6 +173,7 @@
   <string name="ConversationItem_error_network_not_delivered">فشل الإرسال</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">تم استلام رسالة تبادل مفاتيح، أنقر للمتابعة.</string>
   <string name="ConversationItem_group_action_left">%1$s تَرك المجموعة.</string>
+  <string name="ConversationItem_send_paused">الإرسال متوقف مؤقتا</string>
   <string name="ConversationItem_click_to_approve_unencrypted">فشل الإرسال، انقر للاستعاضة بارسال غير آمن</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">الاستعاضة برسالة SMS غير مُعمَّاة؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">الاستعاضة برسالة وسائط متعددة غير مُعمَّاة؟</string>
@@ -547,9 +548,9 @@
     <item quantity="other">هؤلاء الأعضاء غير قادرين على الانضمام إلى المجموعات الجديدة، وستتم إزالتهم من المجموعة :</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">للوصول إلى الميزات الجديدة مثل ‎@mentions والمشرفين، قم بترقية هذه المجموعة.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">ليس الآن</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">رقِّ المجموعة</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">للوصول إلى الميزات الجديدة مثل ‎@mentions والمشرفين، قم بترقية هذه المجموعة.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">ليس الآن</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">رقِّ المجموعة</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="zero">تعذرت إضافة %1$d عضو مرة ثانية إلى المجموعة الجديدة. ألديك نية ﻹضافة الشخص الآن ؟</item>
@@ -1600,6 +1601,7 @@
   <string name="SubmitDebugLogActivity_success">تم بنجاح !</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">يُرجى نسخ هذا العنوان وإضافته إلى بلاغك أو إلى بريد الدعم :\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">شارك</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">سوف يُرسَل هذا السجل ثم يصبح مرئيا لعموم المساهمين في التطبيق لكي يتمكنوا من عرضه. قد يلزمك تفقده وتحرير قبل رفعه.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">المُرشِّح :</string>
   <string name="SupportEmailUtil_device_info">معلومات الجهاز :</string>
@@ -2307,8 +2309,8 @@
   <string name="preferences_data_and_storage__calls">المكالمات</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">استخدام بيانات أقل أثناء المكالمات</string>
   <string name="preferences_data_and_storage__never">أبدا</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">شبكة WiFi والشبكة الخلوية</string>
-  <string name="preferences_data_and_storage__cellular_only">الشبكة الخلوية فقط</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">شبكة WiFi والشبكة الخلوية</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">الشبكة الخلوية فقط</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">يُحسِّن استخدام بيانات أقل جودة المكالمات في الشبكات الضعيفة</string>
   <string name="preferences_notifications__messages">الرسائل</string>
   <string name="preferences_notifications__events">الأحداث</string>
@@ -2811,6 +2813,7 @@
   <string name="OldDeviceTransferComplete__close">إغلاق</string>
   <!--NewDeviceTransferComplete-->
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_status_verification_required">التحقق ضروري</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">تمّ</string>
   <!--AdvancedPreferenceFragment-->
@@ -2929,7 +2932,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">مشاركة</string>
   <string name="ShareActivity__send">أرسل</string>
-  <string name="ShareActivity__s_comma">‏%1$s,‏</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">‏%1$s,‏</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">إن  خيار إعادة التوجيه نحو عدة محادثات مدعوم فقط مع رسائل Signal.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">فشل اﻹرسال إلى بعض المستخدمين.</string>
@@ -2940,12 +2943,22 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">خلفية المحادثة</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">لون المحادثة.</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">إعادة تعيين الألوان</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">إعادة تعيين اللون</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">أأعيد تعيين اللون ؟</string>
   <string name="ChatWallpaperFragment__set_wallpaper">ضبط الخلفية</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">الوضع الداكن يعتم الخلفية</string>
   <string name="ChatWallpaperFragment__contact_name">اسم جهة الاتصال</string>
   <string name="ChatWallpaperFragment__reset">إعادة التعيين</string>
   <string name="ChatWallpaperFragment__clear">محو</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">معاينة الخلفية</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">إعادة تعيين الألوان الافتراضية</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">إعادة تعيين كل الألوان</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">إعادة تعيين الخلفية الافتراضية</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">إعادة التعيين كل الخلفيات</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">إعادة تعيين الخلفيات</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">إعادة تعيين الخلفية</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">أأعيد تعيين الخلفية ؟</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">الاختيار من الصور</string>
   <string name="ChatWallpaperSelectionFragment__presets">الإعدادات الأولية</string>
@@ -2967,6 +2980,7 @@
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">حَول MobileCoin</string>
   <string name="payment_info_card_hide">إخفاء</string>
+  <string name="payment_info_card_record_your_phrase">تسجيل جملتك</string>
   <string name="payment_info_card_update_your_pin">حدِّث الـPIN الخاص بك</string>
   <string name="payment_info_card_update_pin">تحديث الرقم التعريفي الشخصي</string>
   <!--DeactivateWalletFragment-->
@@ -2976,22 +2990,32 @@
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">عرض جملة الاستعادة</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">إدخال جملة الاستعادة</string>
   <string name="PaymentsRecoveryStartFragment__start">البدأ</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">إدخال يدويا</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">لصق من الحافظة</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">جملة الاستعادة</string>
   <string name="PaymentsRecoveryPasteFragment__next">التالي</string>
   <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">جملة الاستعادة باطلة</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">يُرجى التأكد من إدخالك الـ %1$d كلمات ثم المحاولة مرة أخرى.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">التالي</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">تحرير</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">السابق</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">يٌرجى كتابة الكلمات الـ %1$d بالترتيب. كما يجب حفظ لائحتك في مكان آمن.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">يٌرجى التأكد من إدخالك الجملة بشكل صحيح.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">عدم أخذ لقطة الشاشة ولا إرسالها بالبريد الإلكتروني.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">استُعيد حساب الدفوعات.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">جملة الاستعادة باطلة</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">نسخ إلى الحافظة ؟</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">نسخ</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">تمّ</string>
   <!--PaymentsRecoveryEntryFragment-->
   <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">إدخال جملة الاستعادة</string>
   <string name="PaymentsRecoveryEntryFragment__next">التالي</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">كلمة باطلة</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">مُحيَت الحافظة</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">إظهار</string>
   <!--UnreadPayments-->
@@ -3029,15 +3053,18 @@
   <string name="PrivacySettingsFragment__app_security">أمان التطبيق</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">منع لقطات الشاشة داخل التطبيق وفي قائمة الأحدث  </string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">إظهار أيقونة الحالة</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">عِند التَّفعيل، إنَّ الرسائِل الجديدَة المُرسلَة أو المُستلَمة فِي هَذِهِ المُحادثَة سَوف تَختَفي بَعدَ رؤيَتِها.</string>
   <string name="ExpireTimerSettingsFragment__off">مُعطَّل</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 أسابيع</string>
   <string name="ExpireTimerSettingsFragment__1_week">أسبوع واحد</string>
   <string name="ExpireTimerSettingsFragment__1_day">يوم واحد</string>
   <string name="ExpireTimerSettingsFragment__8_hours">ثمانِ ساعات</string>
   <string name="ExpireTimerSettingsFragment__1_hour">ساعة واحدة</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">بعد 5 دقائق</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">بعد 30 ثانية</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">تخصيص الوقت</string>
   <string name="ExpireTimerSettingsFragment__set">تعيِّين</string>
   <string name="ExpireTimerSettingsFragment__save">حفظ</string>
   <string name="CustomExpireTimerSelectorView__seconds">ثوان</string>
@@ -3046,29 +3073,50 @@
   <string name="CustomExpireTimerSelectorView__days">أيام</string>
   <string name="CustomExpireTimerSelectorView__weeks">أسابيع</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">مركز الدعم</string>
   <string name="HelpSettingsFragment__contact_us">تواصل معنا</string>
   <string name="HelpSettingsFragment__version">اﻹصدار</string>
   <string name="HelpSettingsFragment__debug_log">سِجل التصحيح</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">الشروط  &amp; وسياسة الخصوصية</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">مُرخَّص بموجب « رخصة جْنُو العمومية، الإصدار الثالث »</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">المكالمات</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">تلقائي</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">استخدام ألوان مخصصة</string>
   <string name="ChatColorSelectionFragment__chat_color">لون المحادثة.</string>
   <string name="ChatColorSelectionFragment__edit">تحرير</string>
   <string name="ChatColorSelectionFragment__delete">حذف  </string>
+  <string name="ChatColorSelectionFragment__delete_color">حذف اللون</string>
   <!--CustomChatColorCreatorFragment-->
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">حفظ</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">تحرير الألوان</string>
   <!--ChatColorGradientTool-->
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">تخصيص التفاعلات</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">المس لاستبدال الوجه المُعبِّر</string>
   <string name="EditReactionsFragment__reset">إعادة التعيين</string>
   <string name="EditReactionsFragment_save">حفظ</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">ألوان المحادثات الجديدة</string>
   <string name="ChatColorsMegaphone__appearance">المظهر</string>
   <string name="ChatColorsMegaphone__not_now">ليس الآن</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">وجه مُعبِّر</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">فتح البحث عن الوجوه المُعبِّرة</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">فتح البحث عن الملصقات</string>
+  <string name="KeyboardPagerFragment_open_gif_search">فتح البحث عن الصور المتحركة</string>
   <string name="KeyboardPagerFragment_stickers">المُلصقات</string>
+  <string name="KeyboardPagerFragment_gifs">الصور المتحركة</string>
+  <string name="KeyboardPagerFragment_search_emoji">البحث عن الوجوه المُعبِّرة</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">الرجوع للوجوه المُعبِّرة</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">محو مُدخلات البحث</string>
+  <string name="KeyboardPagerFragment_search_giphy">البحث في GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">البحث عن الملصقات</string>
+  <string name="StickerSearchDialogFragment_no_results_found">لم يعثر على أي نتيجة</string>
+  <string name="EmojiSearchFragment__no_results_found">لم يعثر على أي نتيجة</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">رنة مجهولة</string>
   <!--EOF-->
 </resources>

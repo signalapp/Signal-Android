@@ -21,7 +21,7 @@
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signalメッセージと通話の登録を解除しています…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signalでのメッセージや通話を無効にしますか？</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">サーバから登録を削除することで、Signalでのメッセージや通話を無効にします。再びSignalを使用するには、電話番号を再登録する必要があります。</string>
-  <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバ接続中にエラーが発生しました！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS有効</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">タッチして規定のSMSアプリを変更します</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS無効</string>
@@ -167,7 +167,7 @@
   <string name="ConversationItem_error_network_not_delivered">送信に失敗しました。</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">鍵交換のメッセージを受信しました。タップして処理します。</string>
   <string name="ConversationItem_group_action_left">%1$s がグループを抜けました。</string>
-  <string name="ConversationItem_send_paused">送信を保留しました</string>
+  <string name="ConversationItem_send_paused">送信保留中</string>
   <string name="ConversationItem_click_to_approve_unencrypted">送信失敗、タップして保護されていない通信に切り替える</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">暗号化されないSMSに切り替えますか？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">暗号化されないMMSに切り替えますか？</string>
@@ -239,6 +239,9 @@
   <string name="ConversationActivity_full">満席</string>
   <string name="ConversationActivity_error_sending_media">メディア送信エラー</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">スパムとして報告してブロックしました。</string>
+  <string name="ConversationActivity_gifs_have_moved">GIFは移動しました</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIFは絵文字やステッカーの隣にあります。</string>
+  <string name="ConversationActivity__gifs_are_now_here">GIFはここです。</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d件の未読メッセージ</item>
@@ -458,9 +461,9 @@
     <item quantity="other">以下のメンバーは新しいグループに参加できないため、グループから削除されます:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@メンションや管理者などの新機能を使用するには、このグループをアップグレードしてください。</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">いまはしない</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">グループをアップグレードする</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@メンションや管理者などの新機能を使用するには、このグループをアップグレードしてください。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">いまはしない</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">グループをアップグレードする</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">%1$d人のメンバーが、新しいグループに再参加できませんでした。このメンバーをいま追加しますか？</item>
@@ -1113,7 +1116,7 @@
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">メッセージ送受信のため認証してください</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signalがスパムを回避するために、認証を完了していください。</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">認証後は、メッセージの送受信を再開できます。保留されたメッセージは、自動で送信されます。</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">認証後は、メッセージの送受信を再開できます。保留中のメッセージは、自動で送信されます。</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ブロックする</string>
   <string name="RecipientPreferenceActivity_unblock">ブロックを解除する</string>
@@ -1945,8 +1948,8 @@
   <string name="preferences_data_and_storage__calls">通話</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">通話でのデータ通信量の抑制</string>
   <string name="preferences_data_and_storage__never">なし</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fiと携帯電話回線</string>
-  <string name="preferences_data_and_storage__cellular_only">携帯電話回線のみ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fiと携帯電話回線</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">携帯電話回線のみ</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">データ通信量を抑えて低品質なネットワーク上での通話を改善します</string>
   <string name="preferences_notifications__messages">メッセージ</string>
   <string name="preferences_notifications__events">イベント</string>
@@ -2130,7 +2133,7 @@
   <string name="conversation__menu_view_all_media">すべてのメディア</string>
   <string name="conversation__menu_conversation_settings">チャット設定</string>
   <string name="conversation__menu_add_shortcut">ホーム画面に追加</string>
-  <string name="conversation__menu_create_bubble">バブルを作成</string>
+  <string name="conversation__menu_create_bubble">吹き出しを作成</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">ポップアップを拡大</string>
   <!--conversation_callable_insecure-->
@@ -2594,7 +2597,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">共有する</string>
   <string name="ShareActivity__send">送信する</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">複数チャットの共有は、Signalメッセージでのみサポートしています。</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">数名のユーザーへの送信に失敗しました</string>
@@ -2619,7 +2622,7 @@
   <string name="ChatWallpaperFragment__reset_default_colors">既定の色をリセットする</string>
   <string name="ChatWallpaperFragment__reset_all_colors">すべての色をリセットする</string>
   <string name="ChatWallpaperFragment__reset_default_wallpaper">既定の壁紙をリセットする</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">すべての壁紙をリセット</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">すべての壁紙をリセットする</string>
   <string name="ChatWallpaperFragment__reset_wallpapers">壁紙をリセット</string>
   <string name="ChatWallpaperFragment__reset_wallpaper">壁紙をリセット</string>
   <string name="ChatWallpaperFragment__reset_wallpaper_question">壁紙をリセットしますか？</string>
@@ -2717,7 +2720,7 @@
   <string name="NotificationsSettingsFragment__notify_when">その他の通知</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">連絡先のSignal参加時</string>
   <!--PrivacySettingsFragment-->
-  <string name="PrivacySettingsFragment__blocked">ブロック中</string>
+  <string name="PrivacySettingsFragment__blocked">ブロック中のユーザー</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d件</string>
   <string name="PrivacySettingsFragment__messaging">メッセージ送受信</string>
   <string name="PrivacySettingsFragment__disappearing_messages">消えるメッセージ</string>
@@ -2725,7 +2728,7 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">「最近使ったアプリ」やアプリ内でのスクリーンショットをブロックします</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signalメッセージと通話, 通話を常に中継, 送信者の秘匿化</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">新規チャットの既定タイマー</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">あなたの新規チャットでの、消えるメッセージの既定タイマーを設定します。</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">今後新しく始めるチャットについて、消えるメッセージのタイマーの既定値を設定します。</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">ステータスアイコンを表示する</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">送信者の秘匿化を用いて届けられたメッセージの詳細で、アイコンを表示します。</string>
@@ -2747,7 +2750,7 @@
   <string name="CustomExpireTimerSelectorView__minutes">分</string>
   <string name="CustomExpireTimerSelectorView__hours">時間</string>
   <string name="CustomExpireTimerSelectorView__days">日</string>
-  <string name="CustomExpireTimerSelectorView__weeks">週</string>
+  <string name="CustomExpireTimerSelectorView__weeks">週間</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">サポートセンター</string>
   <string name="HelpSettingsFragment__contact_us">お問い合わせ</string>
@@ -2788,7 +2791,7 @@
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">タップすると絵文字を置き換えます</string>
   <string name="EditReactionsFragment__reset">リセット</string>
   <string name="EditReactionsFragment_save">保存</string>
-  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">色を自動で壁紙に合わせます</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">自動で色を壁紙に合わせます</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">ドラッグしてグラデーションの方向を変更できます</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">新しいチャットの色</string>
@@ -2811,5 +2814,6 @@
   <string name="StickerSearchDialogFragment_search_stickers">ステッカーを検索</string>
   <string name="StickerSearchDialogFragment_no_results_found">検索結果はありません</string>
   <string name="EmojiSearchFragment__no_results_found">検索結果はありません</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">不明な着信音</string>
   <!--EOF-->
 </resources>

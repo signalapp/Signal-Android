@@ -239,6 +239,9 @@
   <string name="ConversationActivity_full">เต็ม</string>
   <string name="ConversationActivity_error_sending_media">เกิดข้อผิดพลาดในการส่งสื่อ</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">ถูกรายงานว่าเป็นสแปมและถูกปิดกั้นแล้ว</string>
+  <string name="ConversationActivity_gifs_have_moved">GIF ถูกย้าย</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">มองหา GIF ข้างๆ อีโมจิและสติกเกอร์</string>
+  <string name="ConversationActivity__gifs_are_now_here">ตอนนี้ GIF อยู่ที่นี่</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d ข้อความที่ยังไม่ได้อ่าน</item>
@@ -458,9 +461,9 @@
     <item quantity="other">สมาชิกเหล่านี้ไม่สามารถร่วมกลุ่มแบบใหม่ได้ และจะถูกนำออกจากกลุ่ม:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">ปรับรุ่นกลุ่มนี้ เพื่อใช้ความสามารถใหม่ เช่น @กล่าวถึง และระบบผู้ดูแลกลุ่ม</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">ไม่ใช่ตอนนี้</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ปรับรุ่นกลุ่ม</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">ปรับรุ่นกลุ่มนี้ เพื่อใช้ความสามารถใหม่ เช่น @กล่าวถึง และระบบผู้ดูแลกลุ่ม</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">ไม่ใช่ตอนนี้</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ปรับรุ่นกลุ่ม</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">ไม่สามารถเพิ่มสมาชิก %1$d คน เข้ากลุ่มแบบใหม่ได้ คุณต้องการเพิ่มพวกเขาตอนนี้หรือไม่? </item>
@@ -578,6 +581,7 @@
   <string name="ManageGroupActivity_mute_notifications">ปิดการแจ้งเตือน</string>
   <string name="ManageGroupActivity_custom_notifications">การแจ้งเตือนที่กำหนดเอง</string>
   <string name="ManageGroupActivity_mentions">การกล่าวถึง</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">สีและพื้นหลังแชต</string>
   <string name="ManageGroupActivity_until_s">จนถึง %1$s</string>
   <string name="ManageGroupActivity_always">ตลอดเวลา</string>
   <string name="ManageGroupActivity_off">ปิด</string>
@@ -1150,6 +1154,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">ไม่มีใครที่นี่</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s อยู่ในการโทรนี้</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s และ %2$s อยู่ในการโทรนี้</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s กำลังนำเสนออยู่</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s %2$s และ %3$d รวมถึงคนอื่นๆ อยู่ในการโทรนี้</item>
   </plurals>
@@ -1165,6 +1170,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">ไม่สามารถรับการโทรเสียงและการโทรวิดีโอจาก %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">เหตุนี้อาจเกิดขึ้นเนื่องจากพวกเขายังไม่ได้ตรวจยืนยันหมายเลขความปลอดภัยของคุณ อุปกรณ์ของพวกเขามีปัญหา หรือพวกเขาได้ปิดกั้นคุณไว้</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">ปัดเพื่อดูจอที่แบ่งปัน</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">เซิร์ฟเวอร์พร็อกซี</string>
   <string name="ProxyBottomSheetFragment_proxy_address">ที่อยู่พร็อกซี</string>
@@ -1880,6 +1886,7 @@
   <string name="preferences__appearance">ลักษณะ</string>
   <string name="preferences__theme">ธีม</string>
   <string name="preferences__chat_wallpaper">ภาพพื้นหลังของแชต</string>
+  <string name="preferences__chat_color_and_wallpaper">สีและพื้นหลังแชต</string>
   <string name="preferences__disable_pin">ปิดใช้งาน PIN</string>
   <string name="preferences__enable_pin">เปิดใช้งาน PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">หากคุณปิดใช้งาน PIN คุณจะสูญเสียข้อมูลเมื่อคุณลงทะเบียนบัญชี Signal ใหม่ นอกจากว่าคุณได้สำรองข้อมูลและกู้มันคืนมาเอง คุณไม่สามารถเปิดการใช้งานกุญแจลงทะเบียนในขณะที่ PIN ปิดการใช้งานอยู่</string>
@@ -1937,8 +1944,8 @@
   <string name="preferences_data_and_storage__calls">การโทร</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">ใช้ข้อมูลน้อยลงสำหรับการโทร</string>
   <string name="preferences_data_and_storage__never">ไม่เลย</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi และ เซลลูลาร์</string>
-  <string name="preferences_data_and_storage__cellular_only">เซลลูลาร์เท่านั้น</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi และ เซลลูลาร์</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">เซลลูลาร์เท่านั้น</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">การใช้ข้อมูลน้อยลงอาจช่วยปรับปรุงการโทรในเครือข่ายที่ไม่ดี</string>
   <string name="preferences_notifications__messages">ข้อความ</string>
   <string name="preferences_notifications__events">เหตุการณ์</string>
@@ -2614,7 +2621,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">แบ่งปัน</string>
   <string name="ShareActivity__send">ส่ง</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">การแบ่งปันแชตหลายแชตพร้อมกันนั้นรองรับเฉพาะแค่ข้อความของ Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">การส่งไปยังผู้ใช้อื่นล้มเหลว</string>
@@ -2772,15 +2779,21 @@
   <string name="HelpSettingsFragment__version">รุ่น</string>
   <string name="HelpSettingsFragment__debug_log">ปูมดีบัก</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">เงื่อนไขและนโยบายความเป็นส่วนตัว</string>
+  <string name="HelpFragment__copyright_signal_messenger">ลิขสิทธิ์ Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">อนุญาตให้ใช้ภายใต้ GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">การโทร</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">อัตโนมัติ</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">ใช้สีที่กำหนดเอง</string>
   <string name="ChatColorSelectionFragment__chat_color">สีแชต</string>
   <string name="ChatColorSelectionFragment__edit">แก้ไข</string>
   <string name="ChatColorSelectionFragment__duplicate">ทำซ้ำ</string>
   <string name="ChatColorSelectionFragment__delete">ลบ</string>
   <string name="ChatColorSelectionFragment__delete_color">ลบสี</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">ทึบ</string>
+  <string name="CustomChatColorCreatorFragment__gradient">ไล่สี</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">บันทึก</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">แก้สี</string>
@@ -2789,11 +2802,24 @@
   <string name="EditReactionsFragment__reset">รีเซ็ต</string>
   <string name="EditReactionsFragment_save">บันทึก</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">สีแชตใหม่</string>
   <string name="ChatColorsMegaphone__appearance">หน้าตา</string>
   <string name="ChatColorsMegaphone__not_now">ไม่ใช่ตอนนี้</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">อีโมจิ</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">หาอีโมจิ</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">หาสติกเกอร์</string>
+  <string name="KeyboardPagerFragment_open_gif_search">หา GIF</string>
   <string name="KeyboardPagerFragment_stickers">สติกเกอร์</string>
+  <string name="KeyboardPagerFragment_gifs">GIF</string>
+  <string name="KeyboardPagerFragment_search_emoji">หาอีโมจิ</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">กลับไปอีโมจิ</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">ล้างคำค้น</string>
+  <string name="KeyboardPagerFragment_search_giphy">หา GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">หาสติกเกอร์</string>
+  <string name="StickerSearchDialogFragment_no_results_found">ไม่พบผลลัพธ์</string>
+  <string name="EmojiSearchFragment__no_results_found">ไม่พบผลลัพธ์</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">เสียงเรียกเข้าที่ไม่รู้จัก</string>
   <!--EOF-->
 </resources>

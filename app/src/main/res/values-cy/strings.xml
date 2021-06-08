@@ -512,9 +512,9 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">Nid yw\'r aelodau hyn yn gallu ymuno â Grwpiau Newydd, a chânt eu tynnu o\'r grŵp:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">I gyrchu nodweddion newydd fel @crybwyll a gweinyddwyr, uwchraddiwch y grŵp hwn.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Nid nawr</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Uwchraddio\'r grŵp</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">I gyrchu nodweddion newydd fel @crybwyll a gweinyddwyr, uwchraddiwch y grŵp hwn.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Nid nawr</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Uwchraddio\'r grŵp</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">Nid oes modd ail-ychwanegu aelod %1$d at y Grŵp Newydd. Ydych chi am eu hychwanegu nawr?</item>
@@ -2173,8 +2173,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_data_and_storage__calls">Galwadau</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Defnyddio llai o ddata ar gyfer galwadau</string>
   <string name="preferences_data_and_storage__never">Byth</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Diwifr a Chellog</string>
-  <string name="preferences_data_and_storage__cellular_only">Cellog yn unig</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Diwifr a Chellog</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Cellog yn unig</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Efallai bydd defnyddio llai o ddata yn gwella galwadau ar rhai rhwydweithiau</string>
   <string name="preferences_notifications__messages">Negeseuon</string>
   <string name="preferences_notifications__events">Digwyddiadau</string>
@@ -2902,7 +2902,7 @@ Send neges heb ei ddiogelu?</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Rhannu</string>
   <string name="ShareActivity__send">Anfon</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Mae rhannu i sgyrsiau lluosog yn cael ei gynnal ar gyfer negeseuon Signal, yn unig.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Wedi methu anfon at rai defnyddwyr</string>
@@ -3105,6 +3105,8 @@ Send neges heb ei ddiogelu?</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">Ailosod</string>
   <string name="EditReactionsFragment_save">Cadw</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Yn dewis lliw yn awtomatig sy\'n cyfateb i\'r papur wal</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Llusgo i newid cyfeiriad y graddiant</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">Golwg</string>
   <string name="ChatColorsMegaphone__not_now">Nid nawr</string>

@@ -472,9 +472,9 @@
     <item quantity="other">Need liikmed pole võimelised uute gruppidega liituma ja eemaldatakse grupist:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Uuenda seda gruppi, et saada ligipääs uuele funktsionaalsusele, nt @mainimised ja administraatorid.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Mitte praegu</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Uuenda gruppi</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Uuenda seda gruppi, et saada ligipääs uuele funktsionaalsusele, nt @mainimised ja administraatorid.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Mitte praegu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Uuenda gruppi</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d liiget polnud võimalik uude gruppi uuesti lisada. Kas sa soovid teda nüüd lisada?</item>
@@ -2008,8 +2008,8 @@
   <string name="preferences_data_and_storage__calls">Kõned</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Kasuta kõnede jaoks vähem andmesidet</string>
   <string name="preferences_data_and_storage__never">Mitte kunagi</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi ja mobiilside</string>
-  <string name="preferences_data_and_storage__cellular_only">Ainult mobiilside</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi ja mobiilside</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Ainult mobiilside</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Väiksema andmemahu kasutamine võib kehvades võrkudes parendada kõnekvaliteeti.</string>
   <string name="preferences_notifications__messages">Sõnumid</string>
   <string name="preferences_notifications__events">Sündmused</string>
@@ -2637,7 +2637,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Jaga</string>
   <string name="ShareActivity__send">Saada</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Mitmesse vestlusse jagamine toetab ainult Signali sõnumeid</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Mõnedele kasutajatele saatmine ei õnnestunud.</string>

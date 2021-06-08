@@ -88,6 +88,7 @@
   <string name="BlockUnblockDialog_unblock_s">Bỏ chặn %1$s?</string>
   <string name="BlockUnblockDialog_block">Chặn</string>
   <string name="BlockUnblockDialog_block_and_leave">Chặn và rời</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Báo cáo spam và chặn</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hôm nay</string>
   <string name="BucketedThreadMedia_Yesterday">Hôm qua</string>
@@ -163,6 +164,7 @@
   <string name="ConversationItem_error_network_not_delivered">Không gửi được</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Đã nhận được yêu cầu trao đổi mã khoá, nhấn để tiếp tục.</string>
   <string name="ConversationItem_group_action_left">%1$s đã rời nhóm.</string>
+  <string name="ConversationItem_send_paused">Tạm dừng nhắn tin</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Không gửi được, nhấn để thử giao thức không bảo mật</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Trở lại SMS không mã hóa?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Trở lại MMS không mã hóa?</string>
@@ -233,6 +235,10 @@
   <string name="ConversationActivity_join">Tham gia</string>
   <string name="ConversationActivity_full">Đầy</string>
   <string name="ConversationActivity_error_sending_media">Lỗi gửi tệp đa phương tiện</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Đã chặn và báo cáo spam.</string>
+  <string name="ConversationActivity_gifs_have_moved">ảnh GIF đã được di chuyển</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Tìm ảnh GIF cạnh mục emoji và nhãn dán.</string>
+  <string name="ConversationActivity__gifs_are_now_here">ảnh GIF ở đây.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d tin nhắn chưa đọc</item>
@@ -452,9 +458,9 @@
     <item quantity="other">Những thành viên này không có khả năng tham gia Nhóm Mới, và sẽ được xóa khỏi nhóm:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Để truy cập các tính năng mới như @nhắc tên và quản trị viên, hãy nâng cấp nhóm này.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Để sau</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Nâng cấp nhóm</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Để truy cập các tính năng mới như @nhắc tên và quản trị viên, hãy nâng cấp nhóm này.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Để sau</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Nâng cấp nhóm</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">%1$d thành viên đã không thể được thêm lại vào Nhóm Mới. Bạn có muốn thêm họ bây giờ không?</item>
@@ -572,7 +578,9 @@
   <string name="ManageGroupActivity_mute_notifications">Tạm im thông báo</string>
   <string name="ManageGroupActivity_custom_notifications">Thông báo tuỳ chỉnh</string>
   <string name="ManageGroupActivity_mentions">Nhắc tên</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Màu cuộc trò chuyện &amp; hình nền</string>
   <string name="ManageGroupActivity_until_s">Cho đến %1$s</string>
+  <string name="ManageGroupActivity_always">Luôn luôn</string>
   <string name="ManageGroupActivity_off">Tắt</string>
   <string name="ManageGroupActivity_on">Bật</string>
   <string name="ManageGroupActivity_view_all_members">Xem tất cả thành viên</string>
@@ -597,6 +605,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">nâng cấp nhóm này.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Đây là một Nhóm MMS không bảo mật. Để nhắn tin bảo mật, mời các liên hệ của bạn vào Signal.</string>
   <string name="ManageGroupActivity_invite_now">Mời ngay</string>
+  <string name="ManageGroupActivity_more">thêm</string>
+  <string name="ManageGroupActivity_add_group_description">Thêm mô tả nhóm…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Thông báo khi tôi được nhắc tên</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Nhận thông báo khi bạn được nhắc tên trong cuộc trò chuyện đã im lặng?</string>
@@ -622,6 +632,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Tạm im thông báo</string>
   <string name="ManageRecipientActivity_custom_notifications">Thông báo tuỳ chỉnh</string>
   <string name="ManageRecipientActivity_until_s">Cho đến %1$s</string>
+  <string name="ManageRecipientActivity_always">Luôn luôn</string>
   <string name="ManageRecipientActivity_off">Tắt</string>
   <string name="ManageRecipientActivity_on">Bật</string>
   <string name="ManageRecipientActivity_add_to_a_group">Thêm vào một nhóm</string>
@@ -915,6 +926,9 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s đã đổi tên nhóm thành \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Tên nhóm đã được đổi thành \"%1$s\".</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Bạn đã sửa mô tả nhóm</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s đã sửa mô tả nhóm</string>
+  <string name="MessageRecord_the_group_description_has_changed">Mô tả nhóm đã được sửa.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Bạn đã đổi ảnh nhóm.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s đã đổi ảnh nhóm.</string>
@@ -1097,6 +1111,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Bạn</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Hãy xác minh để tiếp tục nhắn tin.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Để giúp hạn chế spam trên Signal, vui lòng thực hiện xác minh.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Sau khi xác minh, bạn có thể tiếp tục nhắn tin. Những tin nhắn đang tạm dừng sẽ được tự động gửi.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Chặn</string>
   <string name="RecipientPreferenceActivity_unblock">Bỏ chặn</string>
@@ -1133,6 +1150,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Không có ai khác đang ở đây</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s đang trong cuộc gọi này</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s và %2$s đang trong cuộc gọi này</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s đang chia sẻ màn hình</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s, %2$s, và %3$d người khác đang trong cuộc gọi này</item>
   </plurals>
@@ -1148,6 +1166,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Không thể nhận được âm thanh và video từ %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Điều này có thể vì họ chưa xác minh việc thay đổi mã số an toàn của bạn, có vấn đề với thiết bị của họ, hoặc họ đã chặn bạn.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Vuốt để xem chia sẻ màn hình</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Máy chủ proxy</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Địa chỉ proxy</string>
@@ -1155,6 +1174,8 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Sử dụng proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Đã kết nối thành công với proxy.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Không thể gửi</string>
+  <string name="RecaptchaProofActivity_complete_verification">Hoàn thành xác minh</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Chọn quốc gia bạn</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Bạn phải cho biết
@@ -1267,6 +1288,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="SubmitDebugLogActivity_success">Thành công!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Sao chép URL này và thêm nó vào báo cáo lỗi hoặc email hỗ trợ:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Chia sẻ</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Nhật kí này sẽ được đăng trực tuyến công khai cho những người đóng góp theo dõi. Bạn có thể kiểm tra và sửa đổi nó trước khi gửi đi.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Bộ lọc:</string>
   <string name="SupportEmailUtil_device_info">Thông tin thiết bị:</string>
@@ -1378,6 +1400,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MessageNotifier_message_delivery_failed">Không thể gửi tin nhắn.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Không thể gửi tin nhắn.</string>
   <string name="MessageNotifier_error_delivering_message">Có lỗi khi gửi tin nhắn.</string>
+  <string name="MessageNotifier_message_delivery_paused">Đang tạm dừng nhắn tin.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Hãy xác minh để tiếp tục nhắn tin trên Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Đánh dấu đã đọc tất cả</string>
   <string name="MessageNotifier_mark_read">Đánh dấu đã đọc</string>
   <string name="MessageNotifier_turn_off_these_notifications">Tắt các thông báo này</string>
@@ -1426,6 +1450,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Tin nhắn mới</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Yêu cầu nhắn tin</string>
   <string name="SingleRecipientNotificationBuilder_you">Bạn</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Phát video</string>
@@ -1529,7 +1554,11 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ConversationUpdateItem_return_to_call">Quay trở lại cuộc gọi</string>
   <string name="ConversationUpdateItem_call_is_full">Cuộc gọi đã đầy</string>
   <string name="ConversationUpdateItem_invite_friends">Mời bạn bè</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">Bật thông báo cuộc gọi</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Không có nhóm chung. Hãy xem xét yêu cầu thật kĩ lưỡng.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Không có liên hệ trong nhóm này. Hãy xem xét yêu cầu thật kĩ lưỡng.</string>
   <string name="ConversationUpdateItem_view">Xem</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Hẹn giờ tin nhắn tự huỷ sẽ được đặt thành %1$s khi bạn gửi tin nhắn cho họ.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Phát … Tạm dừng</string>
   <string name="audio_view__download_accessibility_description">Tải xuống</string>
@@ -1554,6 +1583,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="safety_number_change_dialog__view">Xem</string>
   <string name="safety_number_change_dialog__previous_verified">Đã từng được xác minh</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Đã bật thông báo cuộc gọi.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Bật thông báo cuộc gọi</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Bật hoạt động dưới nền</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Mọi thứ có vẻ đã ổn!</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Cài đặt</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Đang tải các quốc gia…</string>
@@ -1737,6 +1770,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="arrays__mute_for_one_hour">Tạm im 1 giờ</string>
   <string name="arrays__mute_for_one_day">Tạm im 1 ngày</string>
   <string name="arrays__mute_for_seven_days">Tạm im 7 ngày</string>
+  <string name="arrays__always">Luôn luôn</string>
   <string name="arrays__settings_default">Mặc định theo hệ thống</string>
   <string name="arrays__enabled">Bật</string>
   <string name="arrays__disabled">Tắt</string>
@@ -1831,6 +1865,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__appearance">Diện mạo</string>
   <string name="preferences__theme">Chủ đề</string>
   <string name="preferences__chat_wallpaper">Ảnh nền cuộc trò chuyện</string>
+  <string name="preferences__chat_color_and_wallpaper">Màu cuộc trò chuyện &amp; hình nền</string>
   <string name="preferences__disable_pin">Tắt PIN</string>
   <string name="preferences__enable_pin">Bật PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Nếu bạn tắt PIN, bạn sẽ mất toàn bộ dữ liệu khi bạn đăng kí lại với Signal trừ khi bạn sao lưu và khôi phục dữ liệu thủ công. Bạn không thể bật Khóa đăng kí khi PIN đang tắt.</string>
@@ -1888,8 +1923,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_data_and_storage__calls">Cuộc gọi</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Sử dụng ít lưu lượng data hơn khi gọi</string>
   <string name="preferences_data_and_storage__never">Không bao giờ</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Wifi và Dữ liệu di động</string>
-  <string name="preferences_data_and_storage__cellular_only">Chỉ Dữ liệu di động</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wifi và Dữ liệu di động</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Chỉ Dữ liệu di động</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Sử dụng ít lưu lượng data có thể cải thiện chất lượng cuộc gọi trong môi trường mạng kém</string>
   <string name="preferences_notifications__messages">Tin nhắn</string>
   <string name="preferences_notifications__events">Sự kiện</string>
@@ -2438,7 +2473,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ShareActivity-->
   <string name="ShareActivity__share">Chia sẻ</string>
   <string name="ShareActivity__send">Gửi</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Chia sẻ cho nhiều cuộc trò chuyện chỉ được hỗ trợ cho tin nhắn Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Không thể gửi cho một số người dùng</string>
@@ -2448,7 +2483,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Ảnh nền cuộc trò chuyện</string>
   <!--ChatWallpaperFragment-->
-  <string name="ChatWallpaperFragment__chat_color">Màu trò chuyện</string>
+  <string name="ChatWallpaperFragment__chat_color">Màu cuộc trò chuyện</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Chọn ảnh nền</string>
   <string name="ChatWallpaperFragment__contact_name">Tên liên hệ</string>
   <string name="ChatWallpaperFragment__reset">Đặt lại</string>
@@ -2504,7 +2539,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__enter_key_sends">Phím Enter gửi đi</string>
   <!--SmsSettingsFragment-->
-  <string name="SmsSettingsFragment__use_as_default_sms_app">Dùng làm ứng dụng SMS mặc định</string>
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Đặt làm ứng dụng SMS mặc định</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Tin nhắn</string>
   <string name="NotificationsSettingsFragment__calls">Cuộc gọi</string>
@@ -2521,7 +2556,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ExpireTimerSettingsFragment__1_hour">1 giờ</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 phút</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 giây</string>
-  <string name="ExpireTimerSettingsFragment__set">Cài</string>
+  <string name="ExpireTimerSettingsFragment__set">Đặt</string>
   <string name="ExpireTimerSettingsFragment__save">Lưu</string>
   <string name="CustomExpireTimerSelectorView__minutes">phút</string>
   <string name="CustomExpireTimerSelectorView__hours">giờ</string>
@@ -2533,7 +2568,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Cuộc gọi</string>
   <!--ChatColorSelectionFragment-->
-  <string name="ChatColorSelectionFragment__chat_color">Màu trò chuyện</string>
+  <string name="ChatColorSelectionFragment__chat_color">Màu cuộc trò chuyện</string>
   <string name="ChatColorSelectionFragment__edit">Sửa</string>
   <string name="ChatColorSelectionFragment__delete">Xóa</string>
   <!--CustomChatColorCreatorFragment-->

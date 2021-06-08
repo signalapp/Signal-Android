@@ -472,9 +472,9 @@
     <item quantity="other">ଏହି ସଦସ୍ୟମାନେ ନୂତନ ଗୋଷ୍ଠୀରେ ଯୋଗଦେବାକୁ ସକ୍ଷମ ନୁହଁନ୍ତି, ଏବଂ ଗୋଷ୍ଠୀରୁ ଅପସାରିତ ହେବେ:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ଉଲ୍ଲେଖ ଏବଂ ପରିଚାଳକ ପରି ନୂତନ ବୈଶିଷ୍ଟ୍ୟଗୁଡିକୁ ପ୍ରବେଶ କରିବାକୁ, ଏହି ଗୋଷ୍ଠୀକୁ ନବୀକରଣ କରନ୍ତୁ</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">ଏବେ ନୁହେଁ</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ଗୋଷ୍ଠୀ ଅଦ୍ୟତନ କରନ୍ତୁ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ଉଲ୍ଲେଖ ଏବଂ ପରିଚାଳକ ପରି ନୂତନ ବୈଶିଷ୍ଟ୍ୟଗୁଡିକୁ ପ୍ରବେଶ କରିବାକୁ, ଏହି ଗୋଷ୍ଠୀକୁ ନବୀକରଣ କରନ୍ତୁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">ଏବେ ନୁହେଁ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ଗୋଷ୍ଠୀ ଅଦ୍ୟତନ କରନ୍ତୁ</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$dଜଣେ ସଦସ୍ୟ ନୂତନ ଗୋଷ୍ଠୀରେ ପୁନଃଯୋଡି ହୋଇପାରିଲେ ନାହିଁ | ଆପଣ ବର୍ତ୍ତମାନ ସେଗୁଡିକୁ ଯୋଡିବାକୁ ଚାହୁଁଛନ୍ତି କି?</item>
@@ -1976,8 +1976,8 @@
   <string name="preferences_data_and_storage__calls">କଲ୍</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">କଲ୍ ପାଇଁ କମ୍ ଡାଟା ବ୍ୟବହାର କରନ୍ତୁ</string>
   <string name="preferences_data_and_storage__never">କଦାପି ନୁହେଁ</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">ୱାଇଫାଇ ଏବଂ ସେଲୁଲାର୍</string>
-  <string name="preferences_data_and_storage__cellular_only">କେବଳ ସେଲୁଲାର୍</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">ୱାଇଫାଇ ଏବଂ ସେଲୁଲାର୍</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">କେବଳ ସେଲୁଲାର୍</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">କମ୍ ଡାଟା ବ୍ୟବହାର କରିବା ଦ୍ୱାରା ଖରାପ ନେଟୱାର୍କରେ କଲ୍ ଉନ୍ନତ ହୋଇପାରେ</string>
   <string name="preferences_notifications__messages">ବାର୍ତ୍ତା</string>
   <string name="preferences_notifications__events">ଘଟଣା</string>
@@ -2506,7 +2506,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">ଅଂଶୀଦାର କରନ୍ତୁ</string>
   <string name="ShareActivity__send">ପଠାନ୍ତୁ</string>
-  <string name="ShareActivity__s_comma">%1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">ଏକାଧିକ ବାର୍ତ୍ତାଳାପରେ ଅଂଶୀଦାର କରିବା କେବଳ Signal ବାର୍ତ୍ତା ପାଇଁ ସମର୍ଥିତ</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">କିଛି ଉପଭୋକ୍ତାଙ୍କୁ ପଠାଇବାରେ ବିଫଳ</string>

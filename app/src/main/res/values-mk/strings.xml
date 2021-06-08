@@ -471,9 +471,9 @@
     <item quantity="other">Овие членови не се во можност да се приклучат на нови групи и ќе бидат отстранети од групата:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">За пристап до нови опции како @спомнувања и администратори надградете ја оваа група.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Не сега</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Надгради група</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">За пристап до нови опции како @спомнувања и администратори надградете ја оваа група.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Не сега</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Надгради група</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d член не можеше да биде повторно додаден во нова група. Дали сакате да го додадете сега?</item>
@@ -606,6 +606,7 @@
   <string name="ManageGroupActivity_mute_notifications">Исклучи известувања</string>
   <string name="ManageGroupActivity_custom_notifications">Прилагодени известувања</string>
   <string name="ManageGroupActivity_mentions">Спомнувања</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Боја и позадина за разговор</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
   <string name="ManageGroupActivity_always">Секогаш</string>
   <string name="ManageGroupActivity_off">Исклучено</string>
@@ -633,6 +634,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">ажурирај ја оваа група.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ова е небезбедна MMS група. За да разговарате приватно, поканете ги Вашите контакти на Signal.</string>
   <string name="ManageGroupActivity_invite_now">Покани сега</string>
+  <string name="ManageGroupActivity_more">повеќе</string>
+  <string name="ManageGroupActivity_add_group_description">Додадете опис на групата…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Извести ме на спомнувања</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Дали да добиете известување кога некој ќе Ве спомне во исклучени разговори?</string>
@@ -971,6 +974,9 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s го смени името на групата во „%2$s“.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">Името на групата е променето во „%1$s“.</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Го променивте описот на групата.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s го промени описот на групата. </string>
+  <string name="MessageRecord_the_group_description_has_changed">Описот на групата е променет.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Вие го сменивте групниот аватар.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s го промени групниот аватар.</string>
@@ -1161,6 +1167,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Вие</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Потврдете за да продолжите со пораките</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Блокирај</string>
   <string name="RecipientPreferenceActivity_unblock">Одблокирај</string>
@@ -1743,6 +1750,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group">Измени група</string>
   <string name="EditProfileFragment__group_name">Наслов на група</string>
+  <string name="EditProfileFragment__group_description">Опис на групата</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Вашето име</string>
   <string name="EditProfileNameFragment_first_name">Име</string>
@@ -1927,6 +1935,7 @@
   <string name="preferences__appearance">Изглед</string>
   <string name="preferences__theme">Дизајн</string>
   <string name="preferences__chat_wallpaper">Позадина за разговорот</string>
+  <string name="preferences__chat_color_and_wallpaper">Боја и позадина за разговор</string>
   <string name="preferences__disable_pin">Исклучи PIN</string>
   <string name="preferences__enable_pin">Вклучи PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Освен ако не направите рачна резервна копија и го исклучите PIN-от, ќе ги изгубите сите податоци кога повторно ќе се регистирате на Signal. Можете да да ја заклучите регистрацијата додека PIN-от не е исклучен.</string>
@@ -1984,8 +1993,8 @@
   <string name="preferences_data_and_storage__calls">Повици</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Користи помалку податоци за повици</string>
   <string name="preferences_data_and_storage__never">Никогаш</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi и мобилен</string>
-  <string name="preferences_data_and_storage__cellular_only">Само на мобилен</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi и мобилен</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Само на мобилен</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Користење на помалку податоци може да ги подобри повиците на лоши мрежи</string>
   <string name="preferences_notifications__messages">Пораки</string>
   <string name="preferences_notifications__events">Настани</string>
@@ -2655,7 +2664,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Сподели</string>
   <string name="ShareActivity__send">Испрати</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Споделување на повеќе разговори е поддржано само за Signal пораки</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Не успеав да испратам на некои корисници</string>
@@ -2667,6 +2676,7 @@
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Боја на разговор</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Постави позадина</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Темниот режим ја затемнува позадината</string>
   <string name="ChatWallpaperFragment__contact_name">Име на контакт</string>
   <string name="ChatWallpaperFragment__reset">Ресетираj</string>
   <string name="ChatWallpaperFragment__clear">Исчисти</string>
@@ -2735,6 +2745,7 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ниту еден од Вашите контакти или луѓе со кои разговарате не се во оваа група. Внимателно прегледајте ги барањата пред да прифатите за да избегнете несакани пораки.</string>
   <string name="GroupsInCommonMessageRequest__okay">Во ред</string>
   <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">Опис на групата</string>
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">Високо</string>
   <!--AppSettingsFragment-->
@@ -2749,18 +2760,21 @@
   <string name="NotificationsSettingsFragment__calls">Повици</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Блокирани</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d контакти</string>
   <string name="PrivacySettingsFragment__disappearing_messages">Пораки што исчезнуваат</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокирај слики од екранот во листата на последни апликации и во самата апликација</string>
   <!--AdvancedPrivacySettingsFragment-->
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Кога е овозможено, новите пораки испратени и примени во овој разговор ќе исчезнат откако ќе бидат видени.</string>
   <string name="ExpireTimerSettingsFragment__off">Исклучи</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 недели</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 недела</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 ден</string>
   <string name="ExpireTimerSettingsFragment__8_hours">8 часа</string>
   <string name="ExpireTimerSettingsFragment__1_hour">1 час</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 минути</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 секунди</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Прилагоди време</string>
   <string name="ExpireTimerSettingsFragment__set">Постави</string>
   <string name="ExpireTimerSettingsFragment__save">Зачувај</string>
   <string name="CustomExpireTimerSelectorView__seconds">секунди</string>
@@ -2769,10 +2783,13 @@
   <string name="CustomExpireTimerSelectorView__days">денови</string>
   <string name="CustomExpireTimerSelectorView__weeks">недели</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Центар за поддршка</string>
   <string name="HelpSettingsFragment__contact_us">Контактирајте нѐ</string>
   <string name="HelpSettingsFragment__version">Верзија</string>
   <string name="HelpSettingsFragment__debug_log">Запис за дебагирање</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">Услови &amp; Политика на приватност</string>
+  <string name="HelpFragment__copyright_signal_messenger">Авторски права Signal Messenger</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">Лиценцирано под GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Повици</string>
   <!--ChatColorSelectionFragment-->

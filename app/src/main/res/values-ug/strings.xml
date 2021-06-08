@@ -241,6 +241,9 @@
   <string name="ConversationActivity_full">توشتى</string>
   <string name="ConversationActivity_error_sending_media">ۋاسىتە ئەۋەتىش خاتالىقى</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">ئەخلەت ئۇچۇر دەپ مەلۇم قىلىنىپ چەكلەندى.</string>
+  <string name="ConversationActivity_gifs_have_moved">GIF يۆتكىۋېتىلدى</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">چىراي بەلگە ۋە چاپلاقنىڭ يېنىدىن GIF نى ئىزدەڭ.</string>
+  <string name="ConversationActivity__gifs_are_now_here">ھازىر GIF بۇ جايدا.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%dئوقۇلمىغان ئۇچۇر</item>
@@ -477,9 +480,9 @@
     <item quantity="other">بۇ ئەزالار «يېڭى گۇرۇپپا»غا كىرەلمەيدۇ، ھەمدە بۇ گۇرۇپپىدىن چىقىرىۋېتىلىدۇ:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">ئەگەر @ئاتاش ۋە باشقۇرغۇچى ئىقتىدارىنى ئىشلىتىش ئۈچۈن، مەزكۇر گۇرۇپپا دەرىجىسىنى ئۆستۈرۈڭ.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">ھازىر ئەمەس</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">گۇرۇپپىنى يېڭىلاڭ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">ئەگەر @ئاتاش ۋە باشقۇرغۇچى ئىقتىدارىنى ئىشلىتىش ئۈچۈن، مەزكۇر گۇرۇپپا دەرىجىسىنى ئۆستۈرۈڭ.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">ھازىر ئەمەس</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">گۇرۇپپىنى يېڭىلاڭ</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">يېڭى گۇرۇپپىغا %1$d ئەزانى قايتىدىن قوشالمايدۇ. ئۇلارنى ھازىرلا قوشامسىز؟</item>
@@ -2028,8 +2031,8 @@
   <string name="preferences_data_and_storage__calls">چاقىرىشلار</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">چاقىرىقلار ئۈچۈن ئازراق مەلۇمات ئىشلىتىش</string>
   <string name="preferences_data_and_storage__never">ھەرگىز</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi ۋە يانفون تورى</string>
-  <string name="preferences_data_and_storage__cellular_only">پەقەتلا يانفون تورى</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi ۋە يانفون تورى</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">پەقەتلا يانفون تورى</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ئاز مەلۇمات ئىشلىتىش ناچار تور شارائىتىدىكى چاقىرىقنى ياخشىلايدۇ</string>
   <string name="preferences_notifications__messages">ئۇچۇرلار</string>
   <string name="preferences_notifications__events">ھادىسىلەر</string>
@@ -2739,7 +2742,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">ھەمبەھىرلە</string>
   <string name="ShareActivity__send">ئەۋەت</string>
-  <string name="ShareActivity__s_comma">%1$s،</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s،</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">كۆپ سۆھبەتلەرگە ھەمبەھىرلەش پەقەت Signal ئۇچۇرلىرىنىلا قوللايدۇ. </string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">بەزى ئىشلەتكۈچىلەرگە يوللاش مەغلۇپ بولدى</string>
@@ -2992,5 +2995,6 @@
   <string name="StickerSearchDialogFragment_search_stickers">چاپلاق ئىزدە</string>
   <string name="StickerSearchDialogFragment_no_results_found">ھېچقانداق نەتىجە تېپىلمىدى</string>
   <string name="EmojiSearchFragment__no_results_found">ھېچقانداق نەتىجە تېپىلمىدى</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">يوچۇن قوڭغۇراق ئاۋازى</string>
   <!--EOF-->
 </resources>

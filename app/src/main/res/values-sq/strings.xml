@@ -480,9 +480,9 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
     <item quantity="other">Këta anëtarë s’janë të aftë të bëhen pjesë Grupesh të Rinj, dhe do të hiqen prej grupit:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Që të përdorni veçori të tilla si, @përmendje dhe përgjegjës, përmirësojeni këtë grup.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Jo tani</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Përmirësoni grupin</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Që të përdorni veçori të tilla si, @përmendje dhe përgjegjës, përmirësojeni këtë grup.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Jo tani</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Përmirësoni grupin</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d anëtar s’u rishtua dot te Grupi i Ri. Doni të shtohet tani?</item>
@@ -2034,8 +2034,8 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_data_and_storage__calls">Thirrje</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Përdor më pak të dhënë për thirrjet</string>
   <string name="preferences_data_and_storage__never">Kurrë</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi dhe Celulare</string>
-  <string name="preferences_data_and_storage__cellular_only">Vetëm celulare</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi dhe Celulare</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Vetëm celulare</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Përdorim i më pak të dhënave mund të përmirësojë thirrjet në rrjete të dobët</string>
   <string name="preferences_notifications__messages">Mesazhe</string>
   <string name="preferences_notifications__events">Veprimtari</string>
@@ -2747,7 +2747,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Ndajeni Me të Tjerë</string>
   <string name="ShareActivity__send">Dërgoje</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Dhënia e diçkaje në shumë fjalosje mbulohet vetëm për mesazhe Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">S’u arrit të dërgoheshin ca përdorues</string>
@@ -3000,5 +3000,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="StickerSearchDialogFragment_search_stickers">Kërkoni ngjitës</string>
   <string name="StickerSearchDialogFragment_no_results_found">S’u gjet përfundim</string>
   <string name="EmojiSearchFragment__no_results_found">S’u gjet përfundim</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Zile e panjohur</string>
   <!--EOF-->
 </resources>

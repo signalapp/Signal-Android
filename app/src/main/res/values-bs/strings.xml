@@ -242,6 +242,9 @@
   <string name="ConversationActivity_full">Popunjeno</string>
   <string name="ConversationActivity_error_sending_media">Greška prilikom slanja priloga</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Prijavljeno kao neželjena poruka i blokirano.</string>
+  <string name="ConversationActivity_gifs_have_moved">GIF-animacije su premještene</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIF-animacije tražite pored emoji-sličica i naljepnica.</string>
+  <string name="ConversationActivity__gifs_are_now_here">GIF-animacije sada se nalaze ovdje.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepročitana poruka</item>
@@ -493,9 +496,9 @@
     <item quantity="other">Ovi članovi ne mogu pristupiti novim grupama i stoga će biti uklonjeni iz grupe:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Da biste mogli koristiti nove mogućnosti poput @spomena i administracije grupe, nadogradite ovu grupu.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Ne sada</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Nadogradi grupu</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Da biste mogli koristiti nove mogućnosti poput @spomena i administracije grupe, nadogradite ovu grupu.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Ne sada</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Nadogradi grupu</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d člana nije bilo moguće ponovo dodati u novu grupu. Želite li ga dodati sada?</item>
@@ -643,7 +646,7 @@
   <string name="ManageGroupActivity_mute_notifications">Stišaj obavještenja</string>
   <string name="ManageGroupActivity_custom_notifications">Podešavanje obavještenja</string>
   <string name="ManageGroupActivity_mentions">Spomen</string>
-  <string name="ManageGroupActivity_chat_color_and_wallpaper">Boja konverzacije i pozadinska slika</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Boja poruka i pozadinska slika</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_always">Stalno</string>
   <string name="ManageGroupActivity_off">Isključeno</string>
@@ -2042,7 +2045,7 @@
   <string name="preferences__appearance">Izgled</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__chat_wallpaper">Pozadinska slika</string>
-  <string name="preferences__chat_color_and_wallpaper">Boja konverzacije i pozadinska slika</string>
+  <string name="preferences__chat_color_and_wallpaper">Boja poruka i pozadinska slika</string>
   <string name="preferences__disable_pin">Isključi PIN</string>
   <string name="preferences__enable_pin">Uključi PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ako isključite PIN, svi Vaši podaci bit će izbrisani kada se ponovo registrujete na Signal, izuzev ako ručno kreirate rezervnu kopiju i koristite je za povrat podataka. Nećete moći aktivirati zaključavanje registracije dok god je PIN isključen.</string>
@@ -2102,8 +2105,8 @@
   <string name="preferences_data_and_storage__calls">Pozivi</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Koristi manju količinu podataka za pozive</string>
   <string name="preferences_data_and_storage__never">Nikad</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi i mobilna mreža</string>
-  <string name="preferences_data_and_storage__cellular_only">Samo mobilna mreža</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi i mobilna mreža</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Samo mobilna mreža</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Korištenjem manje količine podataka može se poboljšati kvalitet poziva na lošim mrežama</string>
   <string name="preferences_notifications__messages">Poruke</string>
   <string name="preferences_notifications__events">Događaji</string>
@@ -2827,7 +2830,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Dijeli</string>
   <string name="ShareActivity__send">Šalji</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Dijeljenje s više od jedne konverzacije podržano je samo u Signalovim porukama</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Slanje nekim od korisnika nije uspjelo</string>
@@ -2838,16 +2841,16 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ChatWallpaperActivity__chat_wallpaper">Pozadinska slika</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Boja poruka</string>
-  <string name="ChatWallpaperFragment__reset_chat_colors">Poništi boje konverzacija</string>
-  <string name="ChatWallpaperFragment__reset_chat_color">Poništi boju konverzacije</string>
-  <string name="ChatWallpaperFragment__reset_chat_color_question">Poništiti boju konverzacije?</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Poništi boje poruka</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Poništi boju poruka</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Poništiti boju poruka?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Postavi pozadinsku sliku</string>
   <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Tamni način rada prigušit će intenzitet pozadinske slike</string>
   <string name="ChatWallpaperFragment__contact_name">Ime kontakta</string>
   <string name="ChatWallpaperFragment__reset">Poništi</string>
   <string name="ChatWallpaperFragment__clear">Ukloni</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Prikaz pozadinske slike</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Želite li poništiti sve boje konverzacija?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Želite li poništiti sve boje poruka?</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Želite li poništiti sve pozadinske slike?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">Vrati standardne boje</string>
   <string name="ChatWallpaperFragment__reset_all_colors">Poništi sve boje</string>
@@ -2957,7 +2960,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nijedan Vaš kontakt niti osobe s kojima komunicirate nisu članovi ove grupe. Pažljivo pregledajte zahtjeve prije nego što ih prihvatite kako biste izbjegli neželjene poruke.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">O zahtjevima za komunikaciju</string>
   <string name="GroupsInCommonMessageRequest__okay">Uredu</string>
-  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Ovako izgleda boja konverzacije.</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Ovako izgleda boja poruke.</string>
   <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Boja je prikazana samo za Vas.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Opis grupe</string>
@@ -3055,15 +3058,33 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ChatColorGradientTool_top_edge_selector">Birač za vrh</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Birač za dno</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Prilagodi reakcije</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Pritisnite da biste zamijenili emoji-sličicu</string>
   <string name="EditReactionsFragment__reset">Poništi</string>
   <string name="EditReactionsFragment_save">Pohrani</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Automatski se slaže s bojom pozadine</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Prevucite da biste promijenili pravac prijelaza boje</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Nove boje poruka</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Zamijenili smo pozicije boja u porukama da bismo Vam dali više mogućnosti i tekst učinili lakšim za čitanje.</string>
   <string name="ChatColorsMegaphone__appearance">Izgled</string>
   <string name="ChatColorsMegaphone__not_now">Ne sada</string>
   <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">Emoji-sličice</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Otvori pretragu emoji-sličica</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Otvori pretragu naljepnica</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Otvori pretragu gif-animacija</string>
   <string name="KeyboardPagerFragment_stickers">Naljepnice</string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">Gif-animacije</string>
+  <string name="KeyboardPagerFragment_search_emoji">Traži emoji-sličicu</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Nazad do emoji-sličica</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Izbriši traženi izraz</string>
+  <string name="KeyboardPagerFragment_search_giphy">Pretraži GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Traži naljepnice</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Nema rezultata</string>
+  <string name="EmojiSearchFragment__no_results_found">Nema rezultata</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Nepoznat zvuk zvona</string>
   <!--EOF-->
 </resources>

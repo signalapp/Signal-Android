@@ -435,7 +435,7 @@
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_not_now">ពេលក្រោយ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">ពេលក្រោយ</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">ទេ អរគុណ</string>
   <!--GroupsV1MigrationSuggestionsDialog-->

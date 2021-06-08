@@ -462,9 +462,9 @@
     <item quantity="other">這些成員無法加入新版群組，因此將從該群組中刪除：</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">要連結@提及和管理員等新功能，請升級此群組。</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">稍後</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">升級群組</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">要連結@提及和管理員等新功能，請升級此群組。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">稍後</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">升級群組</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">%1$d 個成員無法將重新新增到新群組中。你要立即新增他們嗎？</item>
@@ -1955,8 +1955,8 @@
   <string name="preferences_data_and_storage__calls">通話</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">使用更少的數據進行通話</string>
   <string name="preferences_data_and_storage__never">永不</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi和行動通訊</string>
-  <string name="preferences_data_and_storage__cellular_only">僅行動通訊</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi和行動通訊</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">僅行動通訊</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">使用較少的數據可能改善不良網路上的通話</string>
   <string name="preferences_notifications__messages">訊息</string>
   <string name="preferences_notifications__events">事件</string>
@@ -2657,7 +2657,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">分享</string>
   <string name="ShareActivity__send">傳送</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">分享多個聊天僅支援 Signal 訊息</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">無法傳送給某些使用者</string>
@@ -2908,5 +2908,6 @@
   <string name="StickerSearchDialogFragment_search_stickers">搜尋貼圖</string>
   <string name="StickerSearchDialogFragment_no_results_found">未找到結果</string>
   <string name="EmojiSearchFragment__no_results_found">未找到結果</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">未知的鈴聲</string>
   <!--EOF-->
 </resources>

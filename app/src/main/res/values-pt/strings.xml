@@ -479,9 +479,9 @@
     <item quantity="other">Estes membros não são capazes de se juntarem a \'Novos grupos\', e serão removidos do grupo:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para aceder a novos recursos como @menções e administradores, faça o upgrade deste grupo.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">Agora não</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Upgrade do grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para aceder a novos recursos como @menções e administradores, faça o upgrade deste grupo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Agora não</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Upgrade do grupo</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membro não pode ser readicionado ao \'Novo grupo\'. Deseja adiciona-lo novamente?</item>
@@ -2031,8 +2031,8 @@
   <string name="preferences_data_and_storage__calls">Chamadas</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Utilizar menos dados para as chamadas</string>
   <string name="preferences_data_and_storage__never">Nunca</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi e dados móveis</string>
-  <string name="preferences_data_and_storage__cellular_only">Apenas dados móveis</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi e dados móveis</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Apenas dados móveis</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">A utilização de menos dados poderá melhorar as chamadas em redes más</string>
   <string name="preferences_notifications__messages">Mensagens</string>
   <string name="preferences_notifications__events">Eventos</string>
@@ -2742,7 +2742,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Partilhar</string>
   <string name="ShareActivity__send">Enviar</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">A partilha para várias conversas é apenas suportada para mensagens do Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Falha ao enviar para alguns utilizadores</string>
@@ -2995,5 +2995,6 @@
   <string name="StickerSearchDialogFragment_search_stickers">Procurar autocolantes</string>
   <string name="StickerSearchDialogFragment_no_results_found">Não foram encontrados resultados</string>
   <string name="EmojiSearchFragment__no_results_found">Não foram encontrados resultados</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Toque desconhecido</string>
   <!--EOF-->
 </resources>

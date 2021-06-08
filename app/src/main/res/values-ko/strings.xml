@@ -452,9 +452,9 @@
     <item quantity="other">이 멤버들은 새 그룹에 가입할 수 없으며 그룹에서 제거됩니다.</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">그룹을 업그레이드하여 @멘션 및 관리자와 같은 새로운 기능에 액세스하세요.</string>
-  <string name="GroupsV1MigrationInitiationReminder_not_now">나중에</string>
-  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">그룹 업그레이드</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">그룹을 업그레이드하여 @멘션 및 관리자와 같은 새로운 기능에 액세스하세요.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">나중에</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">그룹 업그레이드</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">%1$d명의 멤버를 새 그룹에 다시 추가할 수 없습니다. 지금 추가하시겠습니까?</item>
@@ -1906,8 +1906,8 @@
   <string name="preferences_data_and_storage__calls">전화</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">통화에 더 적은 양의 데이터 사용하기</string>
   <string name="preferences_data_and_storage__never">없음</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi 및 셀룰러</string>
-  <string name="preferences_data_and_storage__cellular_only">셀룰러 데이터만 사용</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi 및 셀룰러</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">셀룰러 데이터만 사용</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">더 적은 양의 데이터를 사용하는 것은 망품질이 낮은 네트워크에서의 통화 품질을 개선할 수 있습니다</string>
   <string name="preferences_notifications__messages">메시지</string>
   <string name="preferences_notifications__events">이벤트</string>
@@ -2412,7 +2412,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">공유</string>
   <string name="ShareActivity__send">보내기</string>
-  <string name="ShareActivity__s_comma">%1$s,</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">여러 개의 채팅방에 공유하기는 Signal 메시지에서만 지원됩니다</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">일부 사용자에 대한 보내기가 실패했습니다</string>
