@@ -367,7 +367,6 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
     revealButton.setOnClickListener(v -> viewModel.onRevealButtonToggled());
 
-    qualityButton.setVisibility(Util.isLowMemory(this) ? View.GONE : View.VISIBLE);
     qualityButton.setOnClickListener(v -> QualitySelectorBottomSheetDialog.show(getSupportFragmentManager()));
 
     continueButton.setOnClickListener(v -> {
@@ -785,6 +784,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
       }
     });
 
+    viewModel.getShowMediaQualityToggle().observe(this, show -> qualityButton.setVisibility(show && !Util.isLowMemory(this) ? View.VISIBLE : View.GONE));
     viewModel.getSentMediaQuality().observe(this, q -> qualityButton.setImageResource(q == SentMediaQuality.STANDARD ? R.drawable.ic_quality_standard_32 : R.drawable.ic_quality_high_32));
 
     viewModel.getSelectedMedia().observe(this, media -> {

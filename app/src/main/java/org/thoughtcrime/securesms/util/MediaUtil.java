@@ -313,6 +313,10 @@ public class MediaUtil {
     return isImageType(contentType) || isVideoType(contentType);
   }
 
+  public static boolean isImageAndNotGif(@NonNull String contentType) {
+    return isImageType(contentType) && !isGif(contentType);
+  }
+
   public static boolean isLongTextType(String contentType) {
     return (null != contentType) && contentType.equals(LONG_TEXT);
   }

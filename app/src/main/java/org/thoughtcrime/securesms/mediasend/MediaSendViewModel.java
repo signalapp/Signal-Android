@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.libsignal.util.guava.Preconditions;
 
@@ -67,6 +68,7 @@ class MediaSendViewModel extends ViewModel {
   private final SingleLiveEvent<Error>             error;
   private final SingleLiveEvent<Event>             event;
   private final MutableLiveData<SentMediaQuality>  sentMediaQuality;
+  private final LiveData<Boolean>                  showMediaQualityToggle;
   private final Map<Uri, Object>                   savedDrawState;
 
   private TransportOption  transport;
@@ -93,27 +95,28 @@ class MediaSendViewModel extends ViewModel {
                              @NonNull MediaRepository repository,
                              @NonNull MediaUploadRepository uploadRepository)
   {
-    this.application       = application;
-    this.repository        = repository;
-    this.uploadRepository  = uploadRepository;
-    this.selectedMedia     = new MutableLiveData<>();
-    this.bucketMedia       = new MutableLiveData<>();
-    this.mostRecentMedia   = new MutableLiveData<>();
-    this.position          = new MutableLiveData<>();
-    this.bucketId          = new MutableLiveData<>();
-    this.folders           = new MutableLiveData<>();
-    this.hudState          = new MutableLiveData<>();
-    this.error             = new SingleLiveEvent<>();
-    this.event             = new SingleLiveEvent<>();
-    this.sentMediaQuality  = new MutableLiveData<>(SentMediaQuality.STANDARD);
-    this.savedDrawState    = new HashMap<>();
-    this.lastCameraCapture = Optional.absent();
-    this.body              = "";
-    this.buttonState       = ButtonState.GONE;
-    this.railState         = RailState.GONE;
-    this.viewOnceState     = ViewOnceState.GONE;
-    this.page              = Page.UNKNOWN;
-    this.preUploadEnabled  = true;
+    this.application            = application;
+    this.repository             = repository;
+    this.uploadRepository       = uploadRepository;
+    this.selectedMedia          = new MutableLiveData<>();
+    this.bucketMedia            = new MutableLiveData<>();
+    this.mostRecentMedia        = new MutableLiveData<>();
+    this.position               = new MutableLiveData<>();
+    this.bucketId               = new MutableLiveData<>();
+    this.folders                = new MutableLiveData<>();
+    this.hudState               = new MutableLiveData<>();
+    this.error                  = new SingleLiveEvent<>();
+    this.event                  = new SingleLiveEvent<>();
+    this.sentMediaQuality       = new MutableLiveData<>(SentMediaQuality.STANDARD);
+    this.savedDrawState         = new HashMap<>();
+    this.lastCameraCapture      = Optional.absent();
+    this.body                   = "";
+    this.buttonState            = ButtonState.GONE;
+    this.railState              = RailState.GONE;
+    this.viewOnceState          = ViewOnceState.GONE;
+    this.page                   = Page.UNKNOWN;
+    this.preUploadEnabled       = true;
+    this.showMediaQualityToggle = LiveDataUtil.mapAsync(this.selectedMedia, s -> s.stream().anyMatch(m -> MediaUtil.isImageAndNotGif(m.getMimeType())));
 
     position.setValue(-1);
   }
@@ -575,6 +578,10 @@ class MediaSendViewModel extends ViewModel {
 
   @NonNull LiveData<SentMediaQuality> getSentMediaQuality() {
     return sentMediaQuality;
+  }
+
+  @NonNull LiveData<Boolean> getShowMediaQualityToggle() {
+    return showMediaQualityToggle;
   }
 
   @NonNull MediaConstraints getMediaConstraints() {
