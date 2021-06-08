@@ -61,7 +61,6 @@ public final class FeatureFlags {
   private static final String CLIENT_EXPIRATION                 = "android.clientExpiration";
   public  static final String DONATE_MEGAPHONE                  = "android.donate";
   private static final String VIEWED_RECEIPTS                   = "android.viewed.receipts";
-  private static final String GV1_FORCED_MIGRATE                = "android.groupsV1Migration.forced.2";
   private static final String SEND_VIEWED_RECEIPTS              = "android.sendViewedReceipts";
   private static final String CUSTOM_VIDEO_MUXER                = "android.customVideoMuxer";
   private static final String CDS_REFRESH_INTERVAL              = "cds.syncInterval.seconds";
@@ -96,7 +95,6 @@ public final class FeatureFlags {
       CLIENT_EXPIRATION,
       DONATE_MEGAPHONE,
       VIEWED_RECEIPTS,
-      GV1_FORCED_MIGRATE,
       SEND_VIEWED_RECEIPTS,
       CUSTOM_VIDEO_MUXER,
       CDS_REFRESH_INTERVAL,
@@ -158,7 +156,6 @@ public final class FeatureFlags {
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
       MESSAGE_PROCESSOR_ALARM_INTERVAL,
       MESSAGE_PROCESSOR_DELAY,
-      GV1_FORCED_MIGRATE,
       MP4_GIF_SEND_SUPPORT,
       MEDIA_QUALITY_LEVELS,
       RETRY_RECEIPT_LIFESPAN,
@@ -282,11 +279,6 @@ public final class FeatureFlags {
   /** Whether the user should display the content revealed dot in voice notes. */
   public static boolean viewedReceipts() {
     return getBoolean(VIEWED_RECEIPTS, false);
-  }
-
-  /** Whether or not forced migration from GV1->GV2 is enabled. */
-  public static boolean groupsV1ForcedMigration() {
-    return getBoolean(GV1_FORCED_MIGRATE, false);
   }
 
   /** Whether or not to send viewed receipts. */

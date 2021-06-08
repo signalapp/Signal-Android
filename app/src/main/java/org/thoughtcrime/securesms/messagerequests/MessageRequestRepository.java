@@ -103,14 +103,10 @@ final class MessageRequestRepository {
       }
     } else if (recipient.isPushV1Group()) {
       if (RecipientUtil.isMessageRequestAccepted(context, threadId)) {
-        if (FeatureFlags.groupsV1ForcedMigration()) {
-          if (recipient.getParticipants().size() > FeatureFlags.groupLimits().getHardLimit()) {
-            return MessageRequestState.DEPRECATED_GROUP_V1_TOO_LARGE;
-          } else {
-            return MessageRequestState.DEPRECATED_GROUP_V1;
-          }
+        if (recipient.getParticipants().size() > FeatureFlags.groupLimits().getHardLimit()) {
+          return MessageRequestState.DEPRECATED_GROUP_V1_TOO_LARGE;
         } else {
-          return MessageRequestState.NONE;
+          return MessageRequestState.DEPRECATED_GROUP_V1;
         }
       } else if (!recipient.isActiveGroup()) {
         return MessageRequestState.NONE;

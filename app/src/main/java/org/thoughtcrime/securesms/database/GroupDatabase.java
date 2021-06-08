@@ -1067,7 +1067,7 @@ private static final String[] GROUP_PROJECTION = {
           return GroupAccessControl.ALL_MEMBERS;
         }
         return GroupAccessControl.ONLY_ADMINS;
-      } else if (isV1Group() && FeatureFlags.groupsV1ForcedMigration()) {
+      } else if (isV1Group()) {
         return GroupAccessControl.NO_ONE;
       } else {
         return id.isV1() ? GroupAccessControl.ALL_MEMBERS : GroupAccessControl.ONLY_ADMINS;
@@ -1083,7 +1083,7 @@ private static final String[] GROUP_PROJECTION = {
           return GroupAccessControl.ALL_MEMBERS;
         }
         return GroupAccessControl.ONLY_ADMINS;
-      } else if (isV1Group() && FeatureFlags.groupsV1ForcedMigration()) {
+      } else if (isV1Group()) {
         return GroupAccessControl.NO_ONE;
       } else {
         return GroupAccessControl.ALL_MEMBERS;

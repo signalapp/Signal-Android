@@ -174,7 +174,7 @@ public final class PushGroupSendJob extends PushSendJob {
       throw new MmsException("Message recipient isn't a group!");
     }
 
-    if (groupRecipient.isPushV1Group() && FeatureFlags.groupsV1ForcedMigration()) {
+    if (groupRecipient.isPushV1Group()) {
       throw new MmsException("No GV1 messages can be sent anymore!");
     }
 

@@ -123,7 +123,6 @@ import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
-import org.thoughtcrime.securesms.components.reminder.GroupsV1MigrationInitiationReminder;
 import org.thoughtcrime.securesms.components.reminder.GroupsV1MigrationSuggestionsReminder;
 import org.thoughtcrime.securesms.components.reminder.PendingGroupJoinRequestsReminder;
 import org.thoughtcrime.securesms.components.reminder.Reminder;
@@ -1652,8 +1651,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private void initializeGroupV1MigrationsBanners() {
     groupViewModel.getGroupV1MigrationSuggestions()
                   .observe(this, s -> updateReminders());
-    groupViewModel.getShowGroupsV1MigrationBanner()
-                  .observe(this, b -> updateReminders());
   }
 
   private ListenableFuture<Boolean> initializeDraftFromDatabase() {
@@ -1812,7 +1809,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
     Optional<Reminder> inviteReminder              = inviteReminderModel.getReminder();
     Integer            actionableRequestingMembers = groupViewModel.getActionableRequestingMembers().getValue();
     List<RecipientId>  gv1MigrationSuggestions     = groupViewModel.getGroupV1MigrationSuggestions().getValue();
-    Boolean            gv1MigrationBanner          = groupViewModel.getShowGroupsV1MigrationBanner().getValue();
 
     if (UnauthorizedReminder.isEligible(this)) {
       reminderView.get().showReminder(new UnauthorizedReminder(this));
@@ -1835,15 +1831,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
       reminderView.get().setOnActionClickListener(id -> {
         if (id == R.id.reminder_action_review_join_requests) {
           startActivity(ManagePendingAndRequestingMembersActivity.newIntent(this, getRecipient().getGroupId().get().requireV2()));
-        }
-      });
-    } else if (gv1MigrationBanner == Boolean.TRUE && recipient.get().isPushV1Group()) {
-      reminderView.get().showReminder(new GroupsV1MigrationInitiationReminder(this));
-      reminderView.get().setOnActionClickListener(actionId -> {
-        if (actionId == R.id.reminder_action_gv1_initiation_update_group) {
-          GroupsV1MigrationInitiationBottomSheetDialogFragment.showForInitiation(getSupportFragmentManager(), recipient.getId());
-        } else if (actionId == R.id.reminder_action_gv1_initiation_not_now) {
-          groupViewModel.onMigrationInitiationReminderBannerDismissed(recipient.getId());
         }
       });
     } else if (gv1MigrationSuggestions != null && gv1MigrationSuggestions.size() > 0 && recipient.get().isPushV2Group()) {

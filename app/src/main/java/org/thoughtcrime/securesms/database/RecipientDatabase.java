@@ -140,7 +140,6 @@ public class RecipientDatabase extends Database {
   private static final String PROFILE_JOINED_NAME       = "profile_joined_name";
   private static final String MENTION_SETTING           = "mention_setting";
   private static final String STORAGE_PROTO             = "storage_proto";
-  private static final String LAST_GV1_MIGRATE_REMINDER = "last_gv1_migrate_reminder";
   private static final String LAST_SESSION_RESET        = "last_session_reset";
   private static final String WALLPAPER                 = "wallpaper";
   private static final String WALLPAPER_URI             = "wallpaper_file";
@@ -359,7 +358,6 @@ public class RecipientDatabase extends Database {
                                             MENTION_SETTING           + " INTEGER DEFAULT " + MentionSetting.ALWAYS_NOTIFY.getId() + ", " +
                                             STORAGE_PROTO             + " TEXT DEFAULT NULL, " +
                                             CAPABILITIES              + " INTEGER DEFAULT 0, " +
-                                            LAST_GV1_MIGRATE_REMINDER + " INTEGER DEFAULT 0, " +
                                             LAST_SESSION_RESET        + " BLOB DEFAULT NULL, " +
                                             WALLPAPER                 + " BLOB DEFAULT NULL, " +
                                             WALLPAPER_URI             + " TEXT DEFAULT NULL, " +
@@ -1582,27 +1580,6 @@ public class RecipientDatabase extends Database {
       Recipient.live(id).refresh();
     }
   }
-
-  public void markGroupsV1MigrationReminderSeen(@NonNull RecipientId id, long time) {
-    ContentValues values = new ContentValues(1);
-    values.put(LAST_GV1_MIGRATE_REMINDER, time);
-    if (update(id, values)) {
-      Recipient.live(id).refresh();
-    }
-  }
-
-  public long getGroupsV1MigrationReminderLastSeen(@NonNull RecipientId id) {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-
-    try (Cursor cursor = db.query(TABLE_NAME, new String[] { LAST_GV1_MIGRATE_REMINDER }, ID_WHERE, SqlUtil.buildArgs(id), null, null, null)) {
-      if (cursor.moveToFirst()) {
-        return CursorUtil.requireLong(cursor, LAST_GV1_MIGRATE_REMINDER);
-      }
-    }
-
-    return 0;
-  }
-
 
   public void setLastSessionResetTime(@NonNull RecipientId id, DeviceLastResetTime lastResetTime) {
     ContentValues values = new ContentValues(1);

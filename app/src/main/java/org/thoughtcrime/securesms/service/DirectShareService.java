@@ -67,7 +67,7 @@ public class DirectShareService extends ChooserTargetService {
     ComponentName  componentName  = new ComponentName(this, ShareActivity.class);
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(this);
 
-    try (ThreadDatabase.Reader reader = threadDatabase.readerFor(threadDatabase.getRecentConversationList(MAX_TARGETS, false, FeatureFlags.groupsV1ForcedMigration()))) {
+    try (ThreadDatabase.Reader reader = threadDatabase.readerFor(threadDatabase.getRecentConversationList(MAX_TARGETS, false, true))) {
       ThreadRecord record;
 
       while ((record = reader.getNext()) != null) {

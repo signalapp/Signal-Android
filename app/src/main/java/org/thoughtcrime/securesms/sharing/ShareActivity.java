@@ -217,9 +217,7 @@ public class ShareActivity extends PassphraseRequiredActivity
         mode |= DisplayMode.FLAG_SMS;
       }
 
-      if (FeatureFlags.groupsV1ForcedMigration()) {
-        mode |= DisplayMode.FLAG_HIDE_GROUPS_V1;
-      }
+      mode |= DisplayMode.FLAG_HIDE_GROUPS_V1;
 
       getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, mode);
     }
