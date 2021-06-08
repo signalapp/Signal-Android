@@ -46,6 +46,8 @@ public class AttachmentUtil {
         attachment.isSticker())
     {
       return true;
+    } else if (attachment.isVideoGif()) {
+      return NotInCallConstraint.isNotInConnectedCall() && allowedTypes.contains("image");
     } else if (isNonDocumentType(contentType)) {
       return NotInCallConstraint.isNotInConnectedCall() && allowedTypes.contains(MediaUtil.getDiscreteMimeType(contentType));
     } else {
