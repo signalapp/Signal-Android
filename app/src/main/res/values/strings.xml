@@ -2387,8 +2387,8 @@
     <string name="preferences_data_and_storage__calls">Calls</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Use less data for calls</string>
     <string name="preferences_data_and_storage__never">Never</string>
-    <string name="preferences_data_and_storage__wifi_and_cellular">WiFi and Cellular</string>
-    <string name="preferences_data_and_storage__cellular_only">Cellular only</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi and mobile data</string>
+    <string name="preferences_data_and_storage__mobile_data_only">Mobile data only</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks</string>
     <string name="preferences_notifications__messages">Messages</string>
     <string name="preferences_notifications__events">Events</string>
@@ -2413,7 +2413,7 @@
     <string name="preferences_off">Off</string>
     <string name="preferences_on">On</string>
     <string name="preferences_proxy_address">Proxy address</string>
-    <string name="preferences_only_use_a_proxy_if">Only use a proxy if you\'re not able to connect to Signal on cellular or Wi-Fi.</string>
+    <string name="preferences_only_use_a_proxy_if">Only use a proxy if you\'re not able to connect to Signal on mobile data or Wi-Fi.</string>
     <string name="preferences_share">Share</string>
     <string name="preferences_save">Save</string>
     <string name="preferences_connecting_to_proxy">Connecting to proxy…</string>
