@@ -444,7 +444,7 @@ public class ManageGroupFragment extends LoggingFragment {
   }
 
   private void updateGroupDescription(@NonNull ManageGroupViewModel.Description description) {
-    if (!TextUtils.isEmpty(description.getDescription()) || (FeatureFlags.groupsV2Description() && description.canEditDescription())) {
+    if (!TextUtils.isEmpty(description.getDescription()) || description.canEditDescription()) {
       groupDescription.setVisibility(View.VISIBLE);
       groupDescription.setMovementMethod(LongClickMovementMethod.getInstance(requireContext()));
       memberCountUnderAvatar.setVisibility(View.GONE);
@@ -455,7 +455,7 @@ public class ManageGroupFragment extends LoggingFragment {
     }
 
     if (TextUtils.isEmpty(description.getDescription())) {
-      if (FeatureFlags.groupsV2Description() && description.canEditDescription()) {
+      if (description.canEditDescription()) {
         groupDescription.setOverflowText(null);
         groupDescription.setText(R.string.ManageGroupActivity_add_group_description);
         groupDescription.setOnClickListener(v -> startActivity(EditProfileActivity.getIntentForGroupProfile(requireActivity(), getGroupId())));

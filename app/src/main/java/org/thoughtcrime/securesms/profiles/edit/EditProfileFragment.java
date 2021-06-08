@@ -184,7 +184,7 @@ public class EditProfileFragment extends LoggingFragment {
       toolbar.setTitle(R.string.EditProfileFragment__edit_group);
       preview.setVisibility(View.GONE);
 
-      if (FeatureFlags.groupsV2Description()) {
+      if (groupId.isV2()) {
         EditTextUtil.addGraphemeClusterLimitFilter(familyName, MAX_DESCRIPTION_GLYPHS);
         familyName.addTextChangedListener(new AfterTextChanged(s -> {
           EditProfileNameFragment.trimFieldToMaxByteLength(s, MAX_DESCRIPTION_BYTES);
