@@ -4,7 +4,9 @@ import android.content.Context
 import android.database.Cursor
 import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import kotlinx.android.synthetic.main.view_visible_message.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.conversation.v2.messages.ControlMessageView
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
@@ -62,11 +64,13 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
         when (viewHolder) {
             is VisibleMessageViewHolder -> {
                 val view = viewHolder.view
-                view.background = if (selectedItems.contains(message)) {
+                val isSelected = selectedItems.contains(message)
+                view.background = if (isSelected) {
                     ColorDrawable(context.resources.getColorWithID(R.color.accent, context.theme))
                 } else {
                     null
                 }
+                view.messageTimestampTextView.isVisible = isSelected
                 val position = viewHolder.adapterPosition
                 view.bind(message, getMessageBefore(position, cursor), getMessageAfter(position, cursor))
                 view.setOnClickListener { onItemPress(message, viewHolder.adapterPosition) }

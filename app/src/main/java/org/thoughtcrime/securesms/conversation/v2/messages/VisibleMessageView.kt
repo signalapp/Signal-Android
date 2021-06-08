@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -67,17 +66,19 @@ class VisibleMessageView : LinearLayout {
         val showDateBreak = (previous == null || !DateUtils.isSameDay(message.timestamp, previous.timestamp))
         dateBreakTextView.isVisible = showDateBreak
         dateBreakTextView.text = if (showDateBreak) DateUtils.getRelativeDate(context, Locale.getDefault(), message.timestamp) else ""
+        // Timestamp
+        messageTimestampTextView.text = DateUtils.getExtendedRelativeTimeSpanString(context, Locale.getDefault(), message.timestamp)
         // Margins
-        val messageContentViewLayoutParams = messageContentView.layoutParams as LinearLayout.LayoutParams
+        val messageContentContainerLayoutParams = messageContentContainer.layoutParams as LinearLayout.LayoutParams
         if (isGroupThread) {
-            messageContentViewLayoutParams.leftMargin = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt() else 0
+            messageContentContainerLayoutParams.leftMargin = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt() else 0
         } else {
-            messageContentViewLayoutParams.leftMargin = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt()
+            messageContentContainerLayoutParams.leftMargin = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt()
                 else resources.getDimension(R.dimen.medium_spacing).toInt()
         }
-        messageContentViewLayoutParams.rightMargin = if (message.isOutgoing) resources.getDimension(R.dimen.medium_spacing).toInt()
+        messageContentContainerLayoutParams.rightMargin = if (message.isOutgoing) resources.getDimension(R.dimen.medium_spacing).toInt()
             else resources.getDimension(R.dimen.very_large_spacing).toInt()
-        messageContentView.layoutParams = messageContentViewLayoutParams
+        messageContentContainer.layoutParams = messageContentContainerLayoutParams
         // Set inter-message spacing
         val isStartOfMessageCluster = isStartOfMessageCluster(message, previous, isGroupThread)
         val isEndOfMessageCluster = isEndOfMessageCluster(message, next, isGroupThread)
