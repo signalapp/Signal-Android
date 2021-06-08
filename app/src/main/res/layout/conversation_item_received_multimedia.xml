@@ -192,7 +192,7 @@
             android:clipToPadding="false"
             android:gravity="start"
             app:footer_icon_color="@color/conversation_item_sent_text_secondary_color"
-            app:footer_reveal_dot_color="@color/core_white"
+            app:footer_reveal_dot_color="@color/conversation_item_sent_text_secondary_color"
             app:footer_text_color="@color/conversation_item_sent_text_secondary_color" />
 
         <org.thoughtcrime.securesms.components.ConversationItemFooter
@@ -210,6 +210,7 @@
             android:gravity="start"
             android:visibility="gone"
             app:footer_icon_color="@color/signal_icon_tint_secondary"
+            app:footer_reveal_dot_color="@color/signal_icon_tint_secondary"
             app:footer_text_color="@color/signal_text_secondary" />
 
     </org.thoughtcrime.securesms.conversation.ConversationItemBodyBubble>

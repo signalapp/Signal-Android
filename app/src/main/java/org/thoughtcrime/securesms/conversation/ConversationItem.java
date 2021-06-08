@@ -462,6 +462,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       bodyText.setLinkTextColor(colorizer.getOutgoingBodyTextColor(context));
       footer.setTextColor(colorizer.getOutgoingFooterTextColor(context));
       footer.setIconColor(colorizer.getOutgoingFooterIconColor(context));
+      footer.setRevealDotColor(colorizer.getOutgoingFooterIconColor(context));
       footer.setOnlyShowSendingStatus(false, messageRecord);
     } else if (messageRecord.isRemoteDelete() || (isViewOnceMessage(messageRecord) && ViewOnceUtil.isViewed((MmsMessageRecord) messageRecord))) {
       if (hasWallpaper) {
@@ -469,6 +470,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       } else {
         bodyBubble.getBackground().setColorFilter(ContextCompat.getColor(context, R.color.signal_background_primary), PorterDuff.Mode.MULTIPLY);
         footer.setIconColor(ContextCompat.getColor(context, R.color.signal_icon_tint_secondary));
+        footer.setRevealDotColor(ContextCompat.getColor(context, R.color.signal_icon_tint_secondary));
       }
       footer.setTextColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
       footer.setOnlyShowSendingStatus(messageRecord.isRemoteDelete(), messageRecord);
@@ -476,6 +478,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       bodyBubble.getBackground().setColorFilter(getDefaultBubbleColor(hasWallpaper), PorterDuff.Mode.SRC_IN);
       footer.setTextColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
       footer.setIconColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
+      footer.setRevealDotColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
       footer.setOnlyShowSendingStatus(false, messageRecord);
     }
 
@@ -920,7 +923,13 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
           thumbnailSlides.get(0) instanceof VideoSlide)
       {
         canPlayContent = GiphyMp4PlaybackPolicy.autoplay() || allowedToPlayInline;
-        mediaSource    = attachmentMediaSourceFactory.createMediaSource(Objects.requireNonNull(thumbnailSlides.get(0).getUri()));
+
+        Uri uri = thumbnailSlides.get(0).getUri();
+        if (uri != null) {
+          mediaSource = attachmentMediaSourceFactory.createMediaSource(uri);
+        } else {
+          mediaSource = null;
+        }
       }
 
     } else {
@@ -1209,6 +1218,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
           activeFooter.disableBubbleBackground();
           activeFooter.setTextColor(ContextCompat.getColor(context, R.color.conversation_item_sent_text_secondary_color));
           activeFooter.setIconColor(ContextCompat.getColor(context, R.color.conversation_item_sent_text_secondary_color));
+          activeFooter.setRevealDotColor(ContextCompat.getColor(context, R.color.conversation_item_sent_text_secondary_color));
         } else {
           activeFooter.enableBubbleBackground(R.drawable.wallpaper_bubble_background_tintable_11,  getDefaultBubbleColor(hasWallpaper));
         }
@@ -1216,6 +1226,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         activeFooter.disableBubbleBackground();
         activeFooter.setTextColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
         activeFooter.setIconColor(ContextCompat.getColor(context, R.color.signal_icon_tint_secondary));
+        activeFooter.setRevealDotColor(ContextCompat.getColor(context, R.color.signal_icon_tint_secondary));
       } else {
         activeFooter.disableBubbleBackground();
       }
