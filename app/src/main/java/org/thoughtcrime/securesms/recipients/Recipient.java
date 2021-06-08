@@ -54,10 +54,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
 
@@ -68,6 +72,8 @@ public class Recipient {
   public static final Recipient UNKNOWN = new Recipient(RecipientId.UNKNOWN, new RecipientDetails(), true);
 
   public static final FallbackPhotoProvider DEFAULT_FALLBACK_PHOTO_PROVIDER = new FallbackPhotoProvider();
+
+  private static final int MAX_MEMBER_NAMES = 10;
 
   private final RecipientId            id;
   private final boolean                resolving;
@@ -431,16 +437,35 @@ public class Recipient {
   }
 
   public @Nullable String getGroupName(@NonNull Context context) {
-    if (this.groupName == null && groupId != null && groupId.isMms()) {
+    if (groupId != null && Util.isEmpty(this.groupName)) {
+      List<Recipient> others = participants.stream()
+                                           .filter(r -> !r.isSelf())
+                                           .limit(MAX_MEMBER_NAMES)
+                                           .collect(Collectors.toList());
+
+      Map<String, Integer> shortNameCounts = new HashMap<>();
+
+      for (Recipient participant : others) {
+        String shortName = participant.getShortDisplayName(context);
+        int    count     = Objects.requireNonNull(shortNameCounts.getOrDefault(shortName, 0));
+
+        shortNameCounts.put(shortName, count + 1);
+      }
+
       List<String> names = new LinkedList<>();
 
-      for (Recipient recipient : participants) {
-        names.add(recipient.getDisplayName(context));
+      for (Recipient participant : others) {
+        String shortName = participant.getShortDisplayName(context);
+        int    count     = Objects.requireNonNull(shortNameCounts.getOrDefault(shortName, 0));
+
+        if (count <= 1) {
+          names.add(shortName);
+        } else {
+          names.add(participant.getDisplayName(context));
+        }
       }
 
       return Util.join(names, ", ");
-    } else if (groupName == null && groupId != null && groupId.isPush()) {
-      return context.getString(R.string.RecipientProvider_unnamed_group);
     } else {
       return this.groupName;
     }
