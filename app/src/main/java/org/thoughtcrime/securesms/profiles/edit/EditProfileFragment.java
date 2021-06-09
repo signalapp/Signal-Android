@@ -38,7 +38,6 @@ import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -282,16 +281,20 @@ public class EditProfileFragment extends LoggingFragment {
   }
 
   private void handleUpload() {
-    viewModel.submitProfile(uploadResult -> {
+    viewModel.getUploadResult().observe(getViewLifecycleOwner(), uploadResult -> {
       if (uploadResult == EditProfileRepository.UploadResult.SUCCESS) {
-        RegistrationUtil.maybeMarkRegistrationComplete(requireContext());
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) handleFinishedLollipop();
-        else                                                       handleFinishedLegacy();
+        if (Build.VERSION.SDK_INT >= 21) {
+          handleFinishedLollipop();
+        }
+        else {
+          handleFinishedLegacy();
+        }
       } else {
         Toast.makeText(requireContext(), R.string.CreateProfileActivity_problem_setting_profile, Toast.LENGTH_LONG).show();
       }
     });
+
+    viewModel.submitProfile();
   }
 
   private void handleFinishedLegacy() {

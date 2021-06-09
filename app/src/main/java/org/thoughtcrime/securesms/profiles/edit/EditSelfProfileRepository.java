@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.SystemProfileUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -136,6 +137,8 @@ public class EditSelfProfileRepository implements EditProfileRepository {
                              .startChain(new ProfileUploadJob())
                              .then(Arrays.asList(new MultiDeviceProfileKeyUpdateJob(), new MultiDeviceProfileContentUpdateJob()))
                              .enqueue();
+
+      RegistrationUtil.maybeMarkRegistrationComplete(context);
 
       return UploadResult.SUCCESS;
     }, uploadResultConsumer::accept);
