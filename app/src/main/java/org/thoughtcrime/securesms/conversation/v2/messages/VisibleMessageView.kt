@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import android.util.Log
 import android.view.*
@@ -23,9 +25,13 @@ import kotlin.math.sqrt
 class VisibleMessageView : LinearLayout {
     private var dx = 0.0f
     private var previousTranslationX = 0.0f
+    private val gestureHandler = Handler(Looper.getMainLooper())
+    private var longPressCallback: Runnable? = null
 
     companion object {
-        const val swipeToReplyThreshold = 100.0f // dp
+        const val swipeToReplyThreshold = 90.0f // dp
+        const val longPressMovementTreshold = 10.0f // dp
+        const val longPressDurationThreshold = 250.0f // ms
     }
 
     // region Lifecycle
@@ -144,10 +150,25 @@ class VisibleMessageView : LinearLayout {
 
     private fun onDown(event: MotionEvent) {
         dx = x - event.rawX
+        val oldLongPressCallback = longPressCallback
+        if (oldLongPressCallback != null) {
+            gestureHandler.removeCallbacks(oldLongPressCallback)
+        }
+        val longPressCallback = Runnable { onLongPress() }
+        this.longPressCallback = longPressCallback
+        gestureHandler.postDelayed(longPressCallback, VisibleMessageView.longPressDurationThreshold)
     }
 
     private fun onMove(event: MotionEvent) {
         val translationX = toDp(event.rawX + dx, context.resources)
+        if (abs(translationX) < VisibleMessageView.longPressMovementTreshold) {
+            return
+        } else {
+            val longPressCallback = longPressCallback
+            if (longPressCallback != null) {
+                gestureHandler.removeCallbacks(longPressCallback)
+            }
+        }
         // The idea here is to asymptotically approach a maximum drag distance
         val damping = 50.0f
         val sign = -1.0f
@@ -171,6 +192,11 @@ class VisibleMessageView : LinearLayout {
             .translationX(0.0f)
             .setDuration(150)
             .start()
+    }
+
+    private fun onLongPress() {
+        performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+        Log.d("Test", "Long press")
     }
     // endregion
 }
