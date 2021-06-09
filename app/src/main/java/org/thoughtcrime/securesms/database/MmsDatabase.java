@@ -2074,8 +2074,11 @@ public class MmsDatabase extends MessageDatabase {
       int                  viewedReceiptCount   = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.VIEWED_RECEIPT_COUNT));
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
-        readReceiptCount   = 0;
-        viewedReceiptCount = 0;
+        readReceiptCount = 0;
+
+        if (MmsSmsColumns.Types.isOutgoingMessageType(box)) {
+          viewedReceiptCount = 0;
+        }
       }
 
       Recipient                 recipient          = Recipient.live(RecipientId.from(recipientId)).get();

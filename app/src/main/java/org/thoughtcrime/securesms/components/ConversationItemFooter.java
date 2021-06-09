@@ -124,7 +124,7 @@ public class ConversationItemFooter extends LinearLayout {
     revealDot.addValueCallback(
         new KeyPath("**"),
         LottieProperty.COLOR_FILTER,
-        frameInfo -> new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP)
+        frameInfo -> new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN)
     );
   }
 
