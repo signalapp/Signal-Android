@@ -29,15 +29,14 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.session.libsession.messaging.jobs.JobQueue
-import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.sending_receiving.MessageSender
-import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPollerV2
 import org.session.libsession.utilities.*
-import org.session.libsignal.utilities.toHexString
 import org.session.libsignal.utilities.ThreadUtils
+import org.session.libsignal.utilities.toHexString
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.api.OpenGroupManager
@@ -155,8 +154,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
 
     override fun onResume() {
         super.onResume()
-        if (TextSecurePreferences.getLocalNumber(this) == null) {
-            return; } // This can be the case after a secondary device is auto-cleared
+        if (TextSecurePreferences.getLocalNumber(this) == null) { return; } // This can be the case after a secondary device is auto-cleared
+        IdentityKeyUtil.checkUpdate(this)
         profileButton.recycle() // clear cached image before update tje profilePictureView
         profileButton.update()
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)

@@ -55,31 +55,32 @@ public class IdentityKeyUtil {
   public static final String LOKI_SEED                                   = "loki_seed";
   public static final String HAS_MIGRATED_KEY                            = "has_migrated_keys";
 
-  public static boolean hasIdentityKey(Context context) {
-    SharedPreferences preferences = context.getSharedPreferences(MASTER_SECRET_UTIL_PREFERENCES_NAME, 0);
+  private static SharedPreferences getSharedPreferences(Context context) {
+    return context.getSharedPreferences(MASTER_SECRET_UTIL_PREFERENCES_NAME, 0);
+  }
 
-    boolean hasIdentityKey = (preferences.contains(IDENTITY_PUBLIC_KEY_PREF) &&
+  public static boolean hasIdentityKey(Context context) {
+    SharedPreferences preferences = getSharedPreferences(context);
+
+    return (preferences.contains(IDENTITY_PUBLIC_KEY_PREF) &&
             preferences.contains(IDENTITY_PRIVATE_KEY_PREF))
             || (preferences.contains(IDENTITY_PUBLIC_KEY_PREF+ENCRYPTED_SUFFIX) &&
             preferences.contains(IDENTITY_PRIVATE_KEY_PREF+ENCRYPTED_SUFFIX));
-
-    // check if any keys are not migrated
-    if (hasIdentityKey && !preferences.getBoolean(HAS_MIGRATED_KEY, false)) {
-      // this will retrieve and force upgrade if possible
-      checkUpdate(context);
-      preferences.edit().putBoolean(HAS_MIGRATED_KEY, true).apply();
-    }
-
-    return hasIdentityKey;
   }
 
-  private static void checkUpdate(Context context) {
-    // retrieve will force upgrade if available
-    retrieve(context,IDENTITY_PUBLIC_KEY_PREF);
-    retrieve(context,IDENTITY_PRIVATE_KEY_PREF);
-    retrieve(context,ED25519_PUBLIC_KEY);
-    retrieve(context,ED25519_SECRET_KEY);
-    retrieve(context,LOKI_SEED);
+  public static void checkUpdate(Context context) {
+    SharedPreferences preferences = getSharedPreferences(context);
+    // check if any keys are not migrated
+    if (hasIdentityKey(context) && !preferences.getBoolean(HAS_MIGRATED_KEY, false)) {
+      // this will retrieve and force upgrade if possible
+      // retrieve will force upgrade if available
+      retrieve(context,IDENTITY_PUBLIC_KEY_PREF);
+      retrieve(context,IDENTITY_PRIVATE_KEY_PREF);
+      retrieve(context,ED25519_PUBLIC_KEY);
+      retrieve(context,ED25519_SECRET_KEY);
+      retrieve(context,LOKI_SEED);
+      preferences.edit().putBoolean(HAS_MIGRATED_KEY, true).apply();
+    }
   }
 
   public static @NonNull IdentityKey getIdentityKey(@NonNull Context context) {
