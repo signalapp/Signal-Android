@@ -1,11 +1,10 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
+import android.os.Build
 import android.util.AttributeSet
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import android.widget.LinearLayout
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_visible_message.view.*
@@ -14,28 +13,38 @@ import org.session.libsession.messaging.contacts.Contact.ContactContext
 import org.session.libsession.utilities.ViewUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.loki.utilities.toDp
 import org.thoughtcrime.securesms.util.DateUtils
 import java.util.*
+import kotlin.math.abs
 import kotlin.math.roundToInt
+import kotlin.math.sqrt
 
 class VisibleMessageView : LinearLayout {
+    private var dx = 0.0f
+    private var previousTranslationX = 0.0f
+
+    companion object {
+        const val swipeToReplyThreshold = 100.0f // dp
+    }
 
     // region Lifecycle
     constructor(context: Context) : super(context) {
-        setUpViewHierarchy()
+        initialize()
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        setUpViewHierarchy()
+        initialize()
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        setUpViewHierarchy()
+        initialize()
     }
 
-    private fun setUpViewHierarchy() {
+    private fun initialize() {
         LayoutInflater.from(context).inflate(R.layout.view_visible_message, this)
         layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        isHapticFeedbackEnabled = true
     }
     // endregion
 
@@ -120,6 +129,48 @@ class VisibleMessageView : LinearLayout {
     fun recycle() {
         profilePictureView.recycle()
         messageContentView.recycle()
+    }
+    // endregion
+
+    // region Interaction
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> onDown(event)
+            MotionEvent.ACTION_MOVE -> onMove(event)
+            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> onFinish(event)
+        }
+        return true
+    }
+
+    private fun onDown(event: MotionEvent) {
+        dx = x - event.rawX
+    }
+
+    private fun onMove(event: MotionEvent) {
+        val translationX = toDp(event.rawX + dx, context.resources)
+        // The idea here is to asymptotically approach a maximum drag distance
+        val damping = 50.0f
+        val sign = -1.0f
+        val x = (damping * (sqrt(abs(translationX)) / sqrt(damping))) * sign
+        this.translationX = x
+        if (abs(x) > VisibleMessageView.swipeToReplyThreshold && abs(previousTranslationX) < VisibleMessageView.swipeToReplyThreshold) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
+            } else {
+                performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+            }
+        }
+        previousTranslationX = x
+    }
+
+    private fun onFinish(event: MotionEvent) {
+        if (abs(translationX) > VisibleMessageView.swipeToReplyThreshold) {
+            Log.d("Test", "Reply")
+        }
+        animate()
+            .translationX(0.0f)
+            .setDuration(150)
+            .start()
     }
     // endregion
 }

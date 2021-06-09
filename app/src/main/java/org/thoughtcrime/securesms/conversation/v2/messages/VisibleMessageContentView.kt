@@ -25,6 +25,8 @@ import java.lang.IllegalStateException
 
 class VisibleMessageContentView : LinearLayout {
 
+    // TODO: Large emojis
+
     // region Lifecycle
     constructor(context: Context) : super(context) {
         setUpViewHierarchy()

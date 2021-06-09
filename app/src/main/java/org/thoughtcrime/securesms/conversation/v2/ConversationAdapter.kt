@@ -73,11 +73,6 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 view.messageTimestampTextView.isVisible = isSelected
                 val position = viewHolder.adapterPosition
                 view.bind(message, getMessageBefore(position, cursor), getMessageAfter(position, cursor))
-                view.setOnClickListener { onItemPress(message, viewHolder.adapterPosition) }
-                view.setOnLongClickListener {
-                    onItemLongPress(message, viewHolder.adapterPosition)
-                    true
-                }
             }
             is ControlMessageViewHolder -> viewHolder.view.bind(message)
         }

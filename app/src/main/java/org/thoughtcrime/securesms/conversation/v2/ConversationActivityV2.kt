@@ -84,9 +84,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
                 adapter.changeCursor(null)
             }
         })
-        val touchHelperCallback = ConversationTouchHelperCallback(adapter, this) { reply(it) }
-        val touchHelper = ItemTouchHelper(touchHelperCallback)
-        touchHelper.attachToRecyclerView(conversationRecyclerView)
     }
 
     private fun setUpToolbar() {
