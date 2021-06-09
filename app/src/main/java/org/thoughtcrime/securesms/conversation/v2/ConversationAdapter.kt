@@ -66,11 +66,7 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
             is VisibleMessageViewHolder -> {
                 val view = viewHolder.view
                 val isSelected = selectedItems.contains(message)
-                view.background = if (isSelected) {
-                    ColorDrawable(context.resources.getColorWithID(R.color.accent, context.theme))
-                } else {
-                    null
-                }
+                view.snIsSelected = isSelected
                 view.messageTimestampTextView.isVisible = isSelected
                 val position = viewHolder.adapterPosition
                 view.bind(message, getMessageBefore(position, cursor), getMessageAfter(position, cursor))

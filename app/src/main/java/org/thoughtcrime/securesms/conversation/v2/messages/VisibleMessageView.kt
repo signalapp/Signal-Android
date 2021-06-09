@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -14,6 +15,7 @@ import org.session.libsession.messaging.contacts.Contact.ContactContext
 import org.session.libsession.utilities.ViewUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.loki.utilities.toDp
 import org.thoughtcrime.securesms.util.DateUtils
 import java.util.*
@@ -27,6 +29,8 @@ class VisibleMessageView : LinearLayout {
     private val gestureHandler = Handler(Looper.getMainLooper())
     private var longPressCallback: Runnable? = null
     private var onDownTimestamp = 0L
+    var snIsSelected = false
+        set(value) { field = value; handleIsSelectedChanged()}
     var onPress: (() -> Unit)? = null
     var onSwipeToReply: (() -> Unit)? = null
     var onLongPress: (() -> Unit)? = null
@@ -135,6 +139,14 @@ class VisibleMessageView : LinearLayout {
         }
     }
 
+    private fun handleIsSelectedChanged() {
+        background = if (snIsSelected) {
+            ColorDrawable(context.resources.getColorWithID(R.color.accent, context.theme))
+        } else {
+            null
+        }
+    }
+
     fun recycle() {
         profilePictureView.recycle()
         messageContentView.recycle()
@@ -162,7 +174,7 @@ class VisibleMessageView : LinearLayout {
 
     private fun onMove(event: MotionEvent) {
         val translationX = toDp(event.rawX + dx, context.resources)
-        if (abs(translationX) < VisibleMessageView.longPressMovementTreshold) {
+        if (abs(translationX) < VisibleMessageView.longPressMovementTreshold || snIsSelected) {
             return
         } else {
             longPressCallback?.let { gestureHandler.removeCallbacks(it) }
