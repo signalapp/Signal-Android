@@ -1,13 +1,17 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
+import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_visible_message.view.*
 import network.loki.messenger.R
@@ -15,15 +19,20 @@ import org.session.libsession.messaging.contacts.Contact.ContactContext
 import org.session.libsession.utilities.ViewUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.loki.utilities.disableClipping
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.loki.utilities.toDp
+import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.util.DateUtils
 import java.util.*
 import kotlin.math.abs
+import kotlin.math.min
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
 class VisibleMessageView : LinearLayout {
+    private val swipeToReplyIcon = ContextCompat.getDrawable(context, R.drawable.ic_baseline_reply_24)!!
+    private val swipeToReplyIconRect = Rect()
     private var dx = 0.0f
     private var previousTranslationX = 0.0f
     private val gestureHandler = Handler(Looper.getMainLooper())
@@ -58,6 +67,7 @@ class VisibleMessageView : LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.view_visible_message, this)
         layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         isHapticFeedbackEnabled = true
+        setWillNotDraw(false)
     }
     // endregion
 
@@ -147,6 +157,25 @@ class VisibleMessageView : LinearLayout {
         }
     }
 
+    override fun onDraw(canvas: Canvas) {
+        if (translationX < 0) {
+            val spacing = context.resources.getDimensionPixelSize(R.dimen.small_spacing)
+            val threshold = VisibleMessageView.swipeToReplyThreshold
+            val iconSize = toPx(24, context.resources)
+            val bottomVOffset = paddingBottom + messageTimestampTextView.height + (messageContentView.height - iconSize) / 2
+            swipeToReplyIconRect.left = messageContentContainer.right + spacing
+            swipeToReplyIconRect.top = height - bottomVOffset - iconSize
+            swipeToReplyIconRect.right = messageContentContainer.right + iconSize + spacing
+            swipeToReplyIconRect.bottom = height - bottomVOffset
+            swipeToReplyIcon.bounds = swipeToReplyIconRect
+            swipeToReplyIcon.alpha = (255.0f * (min(abs(translationX), threshold) / threshold)).roundToInt()
+            swipeToReplyIcon.draw(canvas)
+        } else {
+            swipeToReplyIcon.alpha = 0
+        }
+        super.onDraw(canvas)
+    }
+
     fun recycle() {
         profilePictureView.recycle()
         messageContentView.recycle()
@@ -184,6 +213,7 @@ class VisibleMessageView : LinearLayout {
         val sign = -1.0f
         val x = (damping * (sqrt(abs(translationX)) / sqrt(damping))) * sign
         this.translationX = x
+        postInvalidate() // Ensure onDraw(canvas:) is called
         if (abs(x) > VisibleMessageView.swipeToReplyThreshold && abs(previousTranslationX) < VisibleMessageView.swipeToReplyThreshold) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
