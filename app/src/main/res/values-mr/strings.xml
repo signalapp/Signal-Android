@@ -312,6 +312,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">सत्यापित</string>
   <string name="ConversationTitleView_you">आपण</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">काही संपर्क लेगसी गटात असू शकत नाहीत.</string>
   <!--CreateProfileActivity-->
@@ -466,10 +468,6 @@
     <item quantity="one">हा सदस्य नवीन गटांमध्ये सामील होण्यास सक्षम नाही, आणि त्यामधून काढला जाईल:</item>
     <item quantity="other">हे सदस्य नवीन गटांमध्ये सामील होण्यास सक्षम नाहीत, आणि त्यामधून काढले जातील:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@उल्लेख आणि अॅडमिन सारखे वैशिष्ट्ये अॅक्सेस करण्यासाठी, हा गट श्रेणीसुधारित करा.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">आता नाही</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">गटात श्रेणीसुधारणा करा</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d सदस्य नवीन गटात पुन्हा जोडणे शक्य झाले नाही. आपल्याला त्याला आता जोडायचे आहे का?</item>
@@ -1705,6 +1703,7 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">आपल्या वायरलेस वाहकाद्वारे मिडिया आणि गट संदेश पोहोचविण्यासाठी Signal ला MMS सेटिंगची आवश्यकता असते. आपला डिव्हाईस ही माहिती उपलब्ध करून देत नाही, जे लॉक असलेल्या डिव्हाईस करिता आणि इतर प्रतिबंधक कॉन्फिगरेशन यांकरिता कधी कधी खरे असते.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">मिडिया आणि गट संदेश पाठविण्यासाठी, \'ठीक\' टॅप करा आणि विनंती केलेल्या सेटिंग पूर्ण करा. आपल्या वाहकासाठीच्या MMS सेटिंग सामान्यपणे \'आपला वाहक APN\' शोधून सापडू शकते. आपल्याला हे फक्त एकदा करावे लागेल.</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">पहिले नाव (आवश्यक)</string>
   <string name="CreateProfileActivity_last_name_optional">शेवटचे नाव (पर्यायी)</string>
@@ -1961,8 +1960,6 @@
   <string name="preferences_data_and_storage__calls">कॉल</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">कॉल करिता कमी डेटा वापरा</string>
   <string name="preferences_data_and_storage__never">कधीही नाही</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi आणि सेल्यूलर</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">फक्त सेल्यूलर</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">कमी डेटा वापरल्याने खराब नेटवर्कवर कॉल सुधारित होऊ शकतात</string>
   <string name="preferences_notifications__messages">संदेश</string>
   <string name="preferences_notifications__events">इव्हेंट</string>
@@ -1987,7 +1984,6 @@
   <string name="preferences_off">बंद</string>
   <string name="preferences_on">चालू</string>
   <string name="preferences_proxy_address">प्रॉक्सी पत्ता</string>
-  <string name="preferences_only_use_a_proxy_if">जर आपण सेल्यूलर किंवा Wi-Fi वरून Signal ला कनेक्ट करू शकत नसाल तरच प्रॉक्सी वापरा.</string>
   <string name="preferences_share">सामायिक करा</string>
   <string name="preferences_save">जतन करा</string>
   <string name="preferences_connecting_to_proxy">प्रॉक्सी शी कनेक्ट करत आहे…</string>
@@ -2470,7 +2466,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">सामायिक करा</string>
   <string name="ShareActivity__send">पाठवा</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">अनेक चॅट यांना शेअर करणे फक्त Signal संदेशांसाठी समर्थित आहे</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">काही वापरकर्त्यांना पाठवण्यात अयशस्वी</string>

@@ -324,6 +324,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">وارسی شده</string>
   <string name="ConversationTitleView_you">شما</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">بعضی از مخاطبین نمی‌توانند در گروه‌های قدیمی باشند.</string>
   <!--CreateProfileActivity-->
@@ -478,10 +480,6 @@
     <item quantity="one">این عضو قابلیت پیوستن به گروه‌های جدید را ندارد و از گروه حذف خواهد شد:</item>
     <item quantity="other">این اعضا قابلیت پیوستن به گروه‌های جدید را ندارند و از گروه حذف خواهند شد:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">برای دسترسی به قابلیت‌های جدید مثل اشاره‌ها@ و مدیران این گروه را ارتقا دهید.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">حالا نه</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ارتقا گروه</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d کاربر نمی‌تواند به گروه جدید اضافه شود. می‌خواهید حالا او را اضافه کنید؟</item>
@@ -1041,6 +1039,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">شما شمارهٔ امنیتی خود را با %s از طریق یک دستگاه دیگر وارسی شده علامت زدید</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">شما شمارهٔ امنیتی خود را با %s وارسی نشده علامت زدید</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">شما شمارهٔ امنیتی خود را با %s از طریق دستگاه یک دستگاه دیگر وارسی نشده علامت زدید</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">یک پیام از %s نتوانست تحویل داده شود</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s یک تماس گروهی آغاز کرد · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s در تماس گروهی است · %2$s</string>
@@ -1391,6 +1390,7 @@
   <string name="ThreadRecord_you_marked_verified">شما وارسی شده علامت زدید</string>
   <string name="ThreadRecord_you_marked_unverified">شما وارسی نشده علامت زدید</string>
   <string name="ThreadRecord_message_could_not_be_processed">پیام قابل پردازش نیست</string>
+  <string name="ThreadRecord_delivery_issue">اشکال تحویل</string>
   <string name="ThreadRecord_message_request">درخواست تبادل پیام</string>
   <string name="ThreadRecord_photo">عکس</string>
   <string name="ThreadRecord_gif">گیف</string>
@@ -1754,6 +1754,10 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">سیگنال برای تحویل رسانه‌ها و پیام‌های گروهی از طریق اپراتور همراه شما به تنظیمات فراپیام نیاز دارد. دستگاه شما این اطلاعات را در دسترس قرار نمی‌دهد، این مشکل معمولاً برای دستگاه‌های قفل شده و پیکربندی‌های محدود شده رخ می‌دهد.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">برای ارسال رسانه و پیام‌های گروهی، روی \'قبول\' ضربه بزنید و تنظیمات خواسته شده را کامل کنید. تنظیمات فراپیام برای اپراتور شما معمولاً با جستجو برای \'APN اپراتور شما\' یافت می‌شود. شما فقط یکبار نیاز به انجام این کار دارید.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">اشکال تحویل</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">یک پیام، استیکر، واکنش، یا رسید خوانده شدن از %s نتوانست به شما تحویل داده شود. ممکن است آن‌ها آن را به طور مستقیم، یا در یک گروه به شما ارسال کرده باشند.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">یک پیام، استیکر، واکنش، یا رسید خوانده شدن از %s نتوانست به شما تحویل داده شود.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">نام کوچک (الزامی)</string>
   <string name="CreateProfileActivity_last_name_optional">نام خانوادگی (اختیاری)</string>
@@ -2030,8 +2034,8 @@
   <string name="preferences_data_and_storage__calls">تماس‌ها</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">استفادهٔ کمتر داده‌ها برای تماس‌ها</string>
   <string name="preferences_data_and_storage__never">هرگز</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi و شبکهٔ تلفن همراه</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">فقط شبکهٔ تلفن ‌همراه</string> -->
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi و داده‌های تلفن همراه</string>
+  <string name="preferences_data_and_storage__mobile_data_only">و داده‌های تلفن همراه</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">استفادهٔ کمتر داده‌ها ممکن است کیفیت تماس‌ها را بر روی شبکه‌های ضعیف بهبود ببخشد</string>
   <string name="preferences_notifications__messages">پیام‌ها</string>
   <string name="preferences_notifications__events">رخدادها</string>
@@ -2056,7 +2060,7 @@
   <string name="preferences_off">خاموش</string>
   <string name="preferences_on">روشن</string>
   <string name="preferences_proxy_address">نشانی پروکسی</string>
-  <string name="preferences_only_use_a_proxy_if">فقط در صورتی از پروکسی استفاده کنید که قادر به اتصال به سیگنال بر روی تلفن همراه یا Wi-Fi نیستید.</string>
+  <string name="preferences_only_use_a_proxy_if">فقط در صورتی از پروکسی استفاده کنید که قادر به اتصال به سیگنال بر روی داده‌های تلفن همراه یا Wi-Fi نیستید.</string>
   <string name="preferences_share">اشتراک‌گذاری</string>
   <string name="preferences_save">ذخیره‌</string>
   <string name="preferences_connecting_to_proxy">در حال اتصال به پروکسی…</string>
@@ -2741,7 +2745,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">اشتراک‌گذاری</string>
   <string name="ShareActivity__send">ارسال</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s،</string> -->
+  <string name="ShareActivity__comma_s">، %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">اشتراک گذاری به چند گفتگو فقط برای پیام های سیگنال پشتیبانی میشود</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ارسال به برخی کاربران موفق نبود</string>

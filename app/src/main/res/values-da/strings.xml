@@ -325,6 +325,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verificeret</string>
   <string name="ConversationTitleView_you">Dig</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Nogle kontakter kan ikke være i forældede grupper</string>
   <!--CreateProfileActivity-->
@@ -479,10 +481,6 @@
     <item quantity="one">Dette medlem er ikke i stand til at deltage i Nye grupper, og vil blive fjernet fra gruppen:</item>
     <item quantity="other">Disse medlemmer er ikke i stand til at deltage i Nye grupper, og vil blive fjernet fra gruppen:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">For adgang til nye funktioner som @omtaler og administrator, skal gruppen opgraderes</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Ikke nu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Opgradér gruppe</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d medlem kunne ikke tilføjes igen til den nye gruppe. Ønsker du at tilføje dem nu?</item>
@@ -1393,6 +1391,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ThreadRecord_you_marked_verified">Markerét som verificeret</string>
   <string name="ThreadRecord_you_marked_unverified">Markerét som ubekræftet</string>
   <string name="ThreadRecord_message_could_not_be_processed">Besked kunne ikke håndteres</string>
+  <string name="ThreadRecord_delivery_issue">Leveringsproblem</string>
   <string name="ThreadRecord_message_request">Besked forespørgsel</string>
   <string name="ThreadRecord_photo">Billede</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1756,6 +1755,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal kræver adgang til MMS-indstillinger for at levere medie og gruppebeskeder gennem din teleudbyder. Din enhed gør ikke denne information tilgængelig, hvilket nogle gange er tilfældet for låste enheder og andre begrænsende opsætninger</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">For at sende multimedie- og gruppebeskeder, tap \"OK\" og sæt de nødvendige indstillinger. MMS indstillingerne for din teleoperatør kan ofte findes ved at søge på \"din operatørs APN\". Dette skal kun gøres én gang</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Leveringsproblem</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Fornavn (krævet)</string>
   <string name="CreateProfileActivity_last_name_optional">Efternavn (frivilligt)</string>
@@ -2032,8 +2033,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_data_and_storage__calls">Opkald</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Brug færre data til opkald</string>
   <string name="preferences_data_and_storage__never">Aldrig</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi og mobildata</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Kun mobildata</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Brug af færre data kan forbedre opkald på dårlige netværk</string>
   <string name="preferences_notifications__messages">Beskeder</string>
   <string name="preferences_notifications__events">Begivenheder</string>
@@ -2058,7 +2057,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_off">Deaktiveret</string>
   <string name="preferences_on">Aktiveret</string>
   <string name="preferences_proxy_address">Proxy-adresse</string>
-  <string name="preferences_only_use_a_proxy_if">Brug kun en proxy, hvis du ikke er i stand til at oprette forbindelse til Signal på mobil eller Wi-Fi.</string>
   <string name="preferences_share">Del</string>
   <string name="preferences_save">Gem</string>
   <string name="preferences_connecting_to_proxy">Forbinder til proxy…</string>
@@ -2743,7 +2741,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--ShareActivity-->
   <string name="ShareActivity__share">Del</string>
   <string name="ShareActivity__send">Send</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Deling til flere chats understøttes kun til Signal-beskeder</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Det kunne ikke sendes til nogle brugere</string>

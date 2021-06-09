@@ -314,6 +314,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Egiaztatua</string>
   <string name="ConversationTitleView_you">Zu</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kontaktu batzuk ezin dira jarauntsitako taldeetan egon.</string>
   <!--CreateProfileActivity-->
@@ -469,10 +471,6 @@
     <item quantity="one">Kide hau ezin da Talde Berrietara gehitu eta taldetik ezabatuko da:</item>
     <item quantity="other">Kide hauek ezin dira Talde Berrietara gehitu eta taldetik ezabatuko dira:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@aipamenak eta admnistratzaileak moduko ezaugarri berriak erabili ahal izateko, eguneratu talde hau.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Orain ez</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Eguneratu Taldea</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">Kide %1$d  kide ezin izan da Talde Berrira gehitu. Gehitu nahi duzu orain?</item>
@@ -1711,6 +1709,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signalek MMS ezarpenak behar ditu media eta taldeko mezuak banatu ahal izateko zure hari-gabeko hornitzailearen bitartez. Zure gailuak ez dauka informazio hau eskuragarri. Hau batzuetan gertatzen da blokeatuta dauden eta beste konfigurazio murrizgarriak dituzten gailuetan.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Medio eta talde mezuak bidaltzeko, ukitu \'Ados\' eta osatu beharrezkoak diren ezarpenak. Zure hornitzailearentzako ezarpenak normalean topa daitezke zure hornitzailearen APNa bilatuz. Bakarrik behin egin beharko duzu hau.</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Izena (beharrezkoa)</string>
   <string name="CreateProfileActivity_last_name_optional">Abizena (aukerazkoa)</string>
@@ -1967,8 +1966,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences_data_and_storage__calls">Deiak</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Deientzat datu gutxiago erabili</string>
   <string name="preferences_data_and_storage__never">Inoiz ez</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi eta Telefonoa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Telefonoa bakarrik</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Datu gutxiago erabiltzeak sare txarretan deiak hobetzea ekarri dezake</string>
   <string name="preferences_notifications__messages">Mezuak</string>
   <string name="preferences_notifications__events">Gertaerak</string>
@@ -1993,7 +1990,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences_off">Desaktibatuta</string>
   <string name="preferences_on">Aktibatuta</string>
   <string name="preferences_proxy_address">Proxyaren helbidea</string>
-  <string name="preferences_only_use_a_proxy_if">Signalera telefono edo wifi bidez konektatu ezin bazara bakarrik erabili proxya.</string>
   <string name="preferences_share">Partekatu</string>
   <string name="preferences_save">Gorde</string>
   <string name="preferences_connecting_to_proxy">Proxyra konektatzen…</string>
@@ -2488,7 +2484,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Elkarbanatu</string>
   <string name="ShareActivity__send">Bidali</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Hainbat solasalditara partekatzea Singal mezuekin bakarrik egin daiteke</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Huts egin du erabiltzaile batzuei bidaltzean</string>

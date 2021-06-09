@@ -324,6 +324,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verificato</string>
   <string name="ConversationTitleView_you">Tu</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Alcuni contatti non possono appartenere a gruppi legacy.</string>
   <!--CreateProfileActivity-->
@@ -478,10 +480,6 @@
     <item quantity="one">Questo membro non è in grado di unirsi ai Nuovi Gruppi e sarà rimosso dal gruppo:</item>
     <item quantity="other">Questi membri non sono in grado di unirsi ai Nuovi Gruppi e saranno rimossi dal gruppo:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Per accedere a nuove funzionalità come @menzioni e amministratori, aggiorna questo gruppo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Non ora</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Aggiorna gruppo</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">Non è stato possibile aggiungere di nuovo %1$d membro al Nuovo Gruppo. Vuoi aggiungerli adesso?</item>
@@ -1041,6 +1039,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Hai segnato il codice di sicurezza con %s come verificato da un altro dispositivo</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Hai segnato il codice di sicurezza con %s come non verificato</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Hai segnato il codice di sicurezza con %s come non verificato da un altro dispositivo</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Un messaggio da %s non può essere consegnato</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ha iniziato una chiamata di gruppo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s è nella chiamata di gruppo · %2$s</string>
@@ -1393,6 +1392,7 @@
   <string name="ThreadRecord_you_marked_verified">Hai segnato come verificato</string>
   <string name="ThreadRecord_you_marked_unverified">Hai segnato come non verificato</string>
   <string name="ThreadRecord_message_could_not_be_processed">Impossibile elaborare il messaggio</string>
+  <string name="ThreadRecord_delivery_issue">Problema di consegna</string>
   <string name="ThreadRecord_message_request">Richiesta di messaggio</string>
   <string name="ThreadRecord_photo">Foto</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1756,6 +1756,10 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal ha bisogno delle impostazioni degli MMS per poter inviare messaggi multimediali e di gruppo attraverso il tuo operatore. Il tuo dispositivo non fornisce queste impostazioni, probabilmente perché bloccato dall\'operatore  o altre configurazioni restrittive.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Per inviare media e messaggi di gruppo, tocca \'OK\' e completa le impostazioni richieste. Le impostazioni MMS per il tuo operatore possono essere trovate cercando per \'APN del tuo operatore\'. Dovrai fare questo solo una volta.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Problema di consegna</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Non è stato possibile consegnarti un messaggio, un adesivo, una reazione o una conferma di lettura da %s. Potrebbero aver provato a inviartelo direttamente o in gruppo.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Non è stato possibile consegnarti un messaggio, un adesivo, una reazione o una conferma di lettura da %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Nome (obbligatorio)</string>
   <string name="CreateProfileActivity_last_name_optional">Cognome (facoltativo)</string>
@@ -2032,8 +2036,8 @@
   <string name="preferences_data_and_storage__calls">Chiamate</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Utilizza meno dati per le chiamate</string>
   <string name="preferences_data_and_storage__never">Mai</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi e rete cellulare</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Solo rete cellulare</string> -->
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi e dati mobili</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Solo dati mobili</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">L\'utilizzo di meno dati può migliorare le chiamate su reti lente</string>
   <string name="preferences_notifications__messages">Messaggi</string>
   <string name="preferences_notifications__events">Eventi</string>
@@ -2058,7 +2062,7 @@
   <string name="preferences_off">Off</string>
   <string name="preferences_on">On</string>
   <string name="preferences_proxy_address">Indirizzo proxy</string>
-  <string name="preferences_only_use_a_proxy_if">Usa un proxy solo se non sei in grado di connetterti a Signal su rete cellulare o Wi-Fi.</string>
+  <string name="preferences_only_use_a_proxy_if">Usa un proxy solo se non sei in grado di connetterti a Signal su dati mobili o Wi-Fi.</string>
   <string name="preferences_share">Condividi</string>
   <string name="preferences_save">Salva</string>
   <string name="preferences_connecting_to_proxy">Connessione al proxy…</string>
@@ -2743,7 +2747,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Condividi</string>
   <string name="ShareActivity__send">Invia</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">La condivisione a più chat è supportata solo per i messaggi Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Invio non riuscito per alcuni utenti</string>

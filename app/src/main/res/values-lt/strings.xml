@@ -346,6 +346,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Patvirtinta(-s)</string>
   <string name="ConversationTitleView_you">Jūs</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kai kurie adresatai negali būti pasenusiose grupėse.</string>
   <!--CreateProfileActivity-->
@@ -512,10 +514,6 @@
     <item quantity="many">Šie nariai negali prisijungti prie naujosios grupės ir todėl bus iš jos pašalinti:</item>
     <item quantity="other">Šie nariai negali prisijungti prie naujosios grupės ir todėl bus iš jos pašalinti:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Norėdami naudotis tokiomis ypatybėmis kaip @paminėjimai ir administratoriai, naujinkite šią grupę.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Ne dabar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Naujinti grupę</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d nario nepavyko iš naujo pridėti į naująją grupę. Ar norite pridėti jį dabar?</item>
@@ -1143,6 +1141,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Jūs iš kito įrenginio pažymėjote savo saugumo numerį su %s kaip patvirtintą</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Jūs pažymėjote savo saugumo numerį su %s kaip nepatvirtintą</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Jūs iš kito įrenginio pažymėjote savo saugumo numerį su %s kaip nepatvirtintą</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Nepavyko pristatyti žinutės nuo %s</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s pradėjo grupės skambutį · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s yra grupės skambutyje · %2$s</string>
@@ -1515,6 +1514,7 @@
   <string name="ThreadRecord_you_marked_verified">Jūs pažymėjote patvirtintu</string>
   <string name="ThreadRecord_you_marked_unverified">Jūs pažymėjote nepatvirtintu</string>
   <string name="ThreadRecord_message_could_not_be_processed">Nepavyko apdoroti žinutės</string>
+  <string name="ThreadRecord_delivery_issue">Pristatymo problema</string>
   <string name="ThreadRecord_message_request">Žinutės užklausa</string>
   <string name="ThreadRecord_photo">Nuotrauka</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1900,6 +1900,10 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Tam, kad pristatytų mediją ir grupės žinutes per jūsų belaidį tiekėją, Signal reikalauja MMS nustatymų. Jūsų įrenginys nepadaro šios informacijos prieinamos, kas, dažniausiai, pasitvirtina užrakintiems įrenginiams ir ribotoms konfigūracijoms.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Norėdami siųsti mediją ir grupės žinutes, bakstelėkite „Gerai“ ir užbaikite užklaustus nustatymus. Įprastai, jūsų tiekėjo MMS nustatymus galima rasti, ieškant „jūsų tiekėjas APN“. Jums reikės tai atlikti tik vieną kartą.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Pristatymo problema</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Nepavyko jums nuo %s pristatyti žinutės, lipduko, reakcijos ar pranešimo apie žinutės skaitymą. Gali būti, kad šis žmogus bandė siųsti jums tiesiogiai arba grupėje.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Nepavyko jums nuo %s pristatyti žinutės, lipduko, reakcijos ar pranešimo apie žinutės skaitymą.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Vardas (būtinas)</string>
   <string name="CreateProfileActivity_last_name_optional">Pavardė (nebūtina)</string>
@@ -2178,8 +2182,8 @@
   <string name="preferences_data_and_storage__calls">Skambučiai</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Naudoti skambučiams mažiau duomenų</string>
   <string name="preferences_data_and_storage__never">Niekada</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Belaidis (WiFi) ir mobilusis ryšys</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Tik mobilusis ryšys</string> -->
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">Belaidis (WiFi) ir mobilieji duomenys</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Tik mobilieji duomenys</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Mažesnis duomenų naudojimas gali pagerinti skambučių kokybę bloguose tinkluose</string>
   <string name="preferences_notifications__messages">Žinutės</string>
   <string name="preferences_notifications__events">Įvykiai</string>
@@ -2204,7 +2208,7 @@
   <string name="preferences_off">Išjungta</string>
   <string name="preferences_on">Įjungta</string>
   <string name="preferences_proxy_address">Įgaliotojo serverio adresas</string>
-  <string name="preferences_only_use_a_proxy_if">Naudoti įgaliotąjį serverį tik tuo atveju, jei nepavyksta prisijungti prie Signal naudojant mobilųjį ar belaidį (Wi-Fi) ryšį.</string>
+  <string name="preferences_only_use_a_proxy_if">Naudokite įgaliotąjį serverį tik tuo atveju, jei negalite prisijungti prie Signal naudodamiesi mobiliaisiais duomenimis ar belaidžiu (Wi-Fi) tinklu.</string>
   <string name="preferences_share">Bendrinti</string>
   <string name="preferences_save">Įrašyti</string>
   <string name="preferences_connecting_to_proxy">Jungiamasi prie įgaliotojo serverio…</string>
@@ -2907,7 +2911,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Bendrinti</string>
   <string name="ShareActivity__send">Siųsti</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Bendrinimas su keliais pokalbiais yra palaikomas tik Signal žinutėms</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Nepavyko išsiųsti kai kuriems naudotojams</string>

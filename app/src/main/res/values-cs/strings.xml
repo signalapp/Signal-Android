@@ -346,6 +346,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Ověřeno</string>
   <string name="ConversationTitleView_you">Vy</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Některé kontakty nemohou být ve starších skupinách.</string>
   <!--CreateProfileActivity-->
@@ -512,10 +514,6 @@
     <item quantity="many">Tito členové nejsou způsobilí pro připojení k nové verzi skupin a budou odstraněni ze skupiny:</item>
     <item quantity="other">Tito členové nejsou způsobilí pro připojení k nové verzi skupin a budou odstraněni ze skupiny:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pro přístup k funkcím jako @zmínky a správci aktualizujete tuto skupinu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Teď ne</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Povýšit skupinu</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d člen nemohl být znovu přidán do nové skupiny. Chcete ho nyní přidat?</item>
@@ -1143,6 +1141,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Označili jste na jiném zařízení vaše bezpečnostní číslo pro komunikaci s %s jako ověřené.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Označili jste vaše bezpečnostní číslo pro komunikaci s %s jako neověřené.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Označili jste na jiném zařízení vaše bezpečnostní číslo pro komunikaci s %s jako neověřené.</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Zpráva od %s nemohla být doručena.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s zahájil skupinový hovor · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s se účastní skupinového hovoru · %2$s</string>
@@ -1514,6 +1513,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ThreadRecord_you_marked_verified">Označen jako ověřený</string>
   <string name="ThreadRecord_you_marked_unverified">Označen jako neověřený</string>
   <string name="ThreadRecord_message_could_not_be_processed">Zprávu nelze zpracovat</string>
+  <string name="ThreadRecord_delivery_issue">Potíže s doručením</string>
   <string name="ThreadRecord_message_request">Požadavek na zprávu</string>
   <string name="ThreadRecord_photo">Fotografie</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1899,6 +1899,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal vyžaduje informace o nastavení MMS, aby mohly být média a skupinové zprávy doručovány prostřednictvím operátora. Vaše zařízení tyto informace neposkytuje, což se občas stává u zamknutých zařízení a jiných omezujících nastavení.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pro odesílání médií a skupinových zpráv klepněte na \"OK\" a vyplňte požadované informace. Nastavení MMS pro vašeho operátora lze většinou zjistit hledáním \"*váš operátor* APN\". Toto stačí udělat pouze jednou.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Potíže s doručením</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Zpráva, nálepka, reakce nebo potvrzení o přečtení od %s vám nemohla být doručena. Možná se vám ji pokusili poslat přímo nebo ve skupině.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Zpráva, nálepka, reakce nebo potvrzení o přečtení od %s vám nemohla být doručena.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Křestní jméno (povinné)</string>
   <string name="CreateProfileActivity_last_name_optional">Příjmení (nepovinné)</string>
@@ -2177,8 +2181,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_data_and_storage__calls">Volání</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Šetřit data při hovorech</string>
   <string name="preferences_data_and_storage__never">Nikdy</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi a mobilní připojení</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Pouze mobilní připojení</string> -->
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi a mobilní data</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Pouze mobilní data</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Úspora dat může vylepšit kvalitu hovoru při špatném signálu</string>
   <string name="preferences_notifications__messages">Zprávy</string>
   <string name="preferences_notifications__events">Události</string>
@@ -2906,7 +2910,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Sdílet</string>
   <string name="ShareActivity__send">Odeslat</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Sdílení do více konverzací je podporováno pouze u Signal zpráv</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Odeslání některým uživatelům se nezdařilo</string>

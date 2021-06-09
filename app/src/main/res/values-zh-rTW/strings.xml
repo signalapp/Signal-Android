@@ -313,6 +313,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">已驗證</string>
   <string name="ConversationTitleView_you">你</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">某些聯絡人不能在舊群組中。</string>
   <!--CreateProfileActivity-->
@@ -461,10 +463,6 @@
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="other">這些成員無法加入新版群組，因此將從該群組中刪除：</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">要連結@提及和管理員等新功能，請升級此群組。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">稍後</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">升級群組</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">%1$d 個成員無法將重新新增到新群組中。你要立即新增他們嗎？</item>
@@ -990,6 +988,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">你從另一個裝置標記與 %s 的安全碼為已驗證</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">你已標記與 %s 的安全碼為未驗證</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">你已從另一個裝置標記與 %s 的安全碼為未驗證</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">來自%s的訊息無法傳遞</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 已開始群組通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群組通話中 · %2$s</string>
@@ -1328,6 +1327,7 @@
   <string name="ThreadRecord_you_marked_verified">您標記為已驗證</string>
   <string name="ThreadRecord_you_marked_unverified">您標記為未驗證</string>
   <string name="ThreadRecord_message_could_not_be_processed">訊息無法被處理</string>
+  <string name="ThreadRecord_delivery_issue">傳送問題</string>
   <string name="ThreadRecord_message_request">訊息要求</string>
   <string name="ThreadRecord_photo">照片</string>
   <string name="ThreadRecord_gif">動態圖檔</string>
@@ -1680,6 +1680,10 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal 需要多媒體訊息設定以透過業者傳輸媒體與群組訊息。您的裝置沒有所需的資訊，有可能是由於裝置被鎖定或者其他限制設定。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">傳送媒體檔案或群組訊息，請按下 \"OK\" 並完成必要的設定。您所使用電信業者相關的MMS多媒體簡訊設定可能羅列在 \'無線與網路／行動網路\'的設定項目內。且您只需設定一次。</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">傳送問題</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">無法從%s 向你傳送訊息、貼圖、回應或已讀回執。 他們可能已經嘗試將其直接傳送給你，或以群組的形式傳送給你。</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">無法從 %s向你傳送訊息、貼圖、回應或已讀回執。</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">名字 (必填)</string>
   <string name="CreateProfileActivity_last_name_optional">姓氏 (選用)</string>
@@ -1955,8 +1959,8 @@
   <string name="preferences_data_and_storage__calls">通話</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">使用更少的數據進行通話</string>
   <string name="preferences_data_and_storage__never">永不</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi和行動通訊</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">僅行動通訊</string> -->
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi和行動網路</string>
+  <string name="preferences_data_and_storage__mobile_data_only">僅限行動網路</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">使用較少的數據可能改善不良網路上的通話</string>
   <string name="preferences_notifications__messages">訊息</string>
   <string name="preferences_notifications__events">事件</string>
@@ -1981,7 +1985,7 @@
   <string name="preferences_off">關</string>
   <string name="preferences_on">開</string>
   <string name="preferences_proxy_address">代理伺服器位址</string>
-  <string name="preferences_only_use_a_proxy_if">僅當你無法使用行動網路或 Wi-Fi 連接上 Signal 時，才使用代理伺服器。</string>
+  <string name="preferences_only_use_a_proxy_if">僅當你無法透過行動數據或 Wi-Fi 連接到 Signal 時才使用代理。</string>
   <string name="preferences_share">分享</string>
   <string name="preferences_save">儲存</string>
   <string name="preferences_connecting_to_proxy">連接代理伺服器中…</string>
@@ -2657,7 +2661,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">分享</string>
   <string name="ShareActivity__send">傳送</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">分享多個聊天僅支援 Signal 訊息</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">無法傳送給某些使用者</string>

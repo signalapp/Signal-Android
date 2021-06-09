@@ -314,6 +314,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">പരിശോധിച്ചു </string>
   <string name="ConversationTitleView_you">നിങ്ങൾ</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">ചില കോൺ‌ടാക്റ്റുകൾ‌ ലെഗസി ഗ്രൂപ്പുകളിൽ‌ ഉണ്ടാകാനാകില്ല.</string>
   <!--CreateProfileActivity-->
@@ -468,10 +470,6 @@
     <item quantity="one">ഈ അംഗത്തിന്പുതിയ ഗ്രൂപ്പുകളിൽ‌ ചേരാൻ‌ കഴിയില്ല, മാത്രമല്ല ഈ ഗ്രൂപ്പിൽ‌ നിന്നും നീക്കംചെയ്യുകയും ചെയ്യും:</item>
     <item quantity="other">ഈ അംഗങ്ങൾക്ക് പുതിയ ഗ്രൂപ്പുകളിൽ‌ ചേരാൻ‌ കഴിയില്ല, മാത്രമല്ല ഈ ഗ്രൂപ്പിൽ‌ നിന്നും നീക്കംചെയ്യുകയും ചെയ്യും:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@സൂചനകള്‍ അഡ്‌മിനുകള്‍ പോലുള്ള പുതിയ സവിശേഷതകൾ ആക്‌സസ് ചെയ്യുന്നതിന്, ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">ഇപ്പോൾ വേണ്ട</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d അംഗത്തെപുതിയ ഗ്രൂപ്പിലേക്ക് വീണ്ടും ചേർക്കാൻ കഴിഞ്ഞില്ല. അവരെ ഇപ്പോൾ ചേർക്കാൻ ആഗ്രഹിക്കുന്നുണ്ടോ?</item>
@@ -1720,6 +1718,7 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">നിങ്ങളുടെ വയർലെസ് കാരിയർ വഴി മീഡിയയും ഗ്രൂപ്പ് സന്ദേശങ്ങളും കൈമാറാൻ Signal-ന് MMS ക്രമീകരണങ്ങൾ ആവശ്യമാണ്. നിങ്ങളുടെ ഉപകരണം ഈ വിവരങ്ങൾ ലഭ്യമാക്കുന്നില്ല, ഇത് ലോക്കുചെയ്‌ത ഉപകരണങ്ങൾക്കും മറ്റ് നിയന്ത്രിത കോൺഫിഗറേഷനുകൾക്കും ഇടയ്ക്കിടെ ശരിയാണ്.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">മീഡിയയും ഗ്രൂപ്പ് സന്ദേശങ്ങളും അയയ്‌ക്കാൻ, \'ശരി\' ടാപ്പുചെയ്‌ത് അഭ്യർത്ഥിച്ച ക്രമീകരണങ്ങൾ പൂർത്തിയാക്കുക. \'നിങ്ങളുടെ കാരിയർ APN\' എന്നതിനായി തിരയുന്നതിലൂടെ നിങ്ങളുടെ കാരിയറിനായുള്ള MMS ക്രമീകരണങ്ങൾ സാധാരണയായി കണ്ടെത്താനാകും. നിങ്ങൾ ഇത് ഒരു തവണ ചെയ്താൽ മതി.</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">പേരിൻ്റെ ആദ്യ ഭാഗം (ആവശ്യമാണ്)</string>
   <string name="CreateProfileActivity_last_name_optional">പേരിൻ്റെ അവസാന ഭാഗം (ഓപ്ഷണൽ)</string>
@@ -1983,8 +1982,6 @@
   <string name="preferences_data_and_storage__calls">കോളുകൾ</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">കോളുകള്ക്ക് കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുക</string>
   <string name="preferences_data_and_storage__never">ഒരിക്കലും വേണ്ട</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi &amp; സെല്ലുലാർ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">സെല്ലുലാർ മാത്രം</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുന്നത് ബലഹീന നെറ്വർക്കിൽ ഗുണമേന്മ ഉയർത്തിയേക്കാം.</string>
   <string name="preferences_notifications__messages">സന്ദേശങ്ങൾ</string>
   <string name="preferences_notifications__events">ഇവന്റുകൾ</string>
@@ -2009,7 +2006,6 @@
   <string name="preferences_off">ഓഫ്</string>
   <string name="preferences_on">ഓൺ</string>
   <string name="preferences_proxy_address">പ്രോക്സി വിലാസം</string>
-  <string name="preferences_only_use_a_proxy_if">സെല്ലുലാർ അല്ലെങ്കിൽ Wi-Fi വഴി Signal-ലേക്ക് കണക്റ്റുചെയ്യാൻ നിങ്ങൾക്ക് കഴിയുന്നില്ലെങ്കിൽ മാത്രം ഒരു പ്രോക്സി ഉപയോഗിക്കുക.</string>
   <string name="preferences_share">പങ്കിടുക</string>
   <string name="preferences_save">സംരക്ഷിക്കൂ</string>
   <string name="preferences_connecting_to_proxy">പ്രോക്‌സിയിലേക്ക് കണക്റ്റുചെയ്യുന്നു…</string>
@@ -2540,7 +2536,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">പങ്കിടുക</string>
   <string name="ShareActivity__send">അയയ്‌ക്കുക</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">ഒന്നിലധികം ചാറ്റുകളിലേക്ക് പങ്കിടുന്നത് Signal സന്ദേശങ്ങൾക്ക് മാത്രമേ പിന്തുണക്കൂ</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ചില ഉപയോക്താക്കള്‍ക്ക് അയയ്ക്കാന്‍ കഴിഞ്ഞില്ല</string>

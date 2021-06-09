@@ -346,6 +346,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Подтверждён</string>
   <string name="ConversationTitleView_you">Вы</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Некоторые контакты не могут находиться в старых группах.</string>
   <!--CreateProfileActivity-->
@@ -512,10 +514,6 @@
     <item quantity="many">Эти участники не могут присоединяться к Новым группам и будут удалены из группы:</item>
     <item quantity="other">Эти участники не могут присоединяться к Новым группам и будут удалены из группы:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Чтобы получить доступ к новым функциям, таким как @упоминания и администраторы групп, обновите эту группу.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Не сейчас</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Обновить группу</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d участника не удалось автоматически добавить в Новую группу. Добавить сейчас?</item>
@@ -1143,6 +1141,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Вы отметили код безопасности с %s как подтверждённый с другого устройства</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Вы отметили код безопасности с %s как неподтверждённый</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Вы отметили код безопасности с %s как неподтверждённый с другого устройства</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Не удалось доставить сообщение от %s</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s начал(-а) групповой звонок · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s в групповом звонке · %2$s</string>
@@ -1508,6 +1507,7 @@
   <string name="ThreadRecord_you_marked_verified">Вы отметили как подтверждённый</string>
   <string name="ThreadRecord_you_marked_unverified">Вы отметили как неподтверждённый</string>
   <string name="ThreadRecord_message_could_not_be_processed">Не удалось обработать сообщение</string>
+  <string name="ThreadRecord_delivery_issue">Ошибка доставки</string>
   <string name="ThreadRecord_message_request">Запрос на общение</string>
   <string name="ThreadRecord_photo">Фото</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1893,6 +1893,10 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Приложению Signal необходимо знать настройки MMS вашего сотового оператора, чтобы отправлять и получать мультимедийные и групповые сообщения. Ваше устройство не даёт доступа к этой информации — так иногда бывает, если в телефоне запрещена смена SIM-карты и в некоторых иных случаях.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Чтобы отправлять мультимедийные и групповые сообщения, нажмите «ОК» и введите необходимые настройки. Настройки MMS вашего оператора обычно можно найти в интернете по запросу «ваш оператор APN». Это нужно сделать только один раз.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Ошибка доставки</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Сообщение, стикер, реакцию или уведомление о прочтении от %s не удалось доставить вам. Этот человек мог отправить вышеуказанное напрямую вам или в какую-нибудь группу.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Сообщение, стикер, реакцию или уведомление о прочтении от %s не удалось доставить вам.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Имя (обязательно)</string>
   <string name="CreateProfileActivity_last_name_optional">Фамилия (необязательно)</string>
@@ -2171,8 +2175,8 @@
   <string name="preferences_data_and_storage__calls">Звонки</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Экономить трафик для звонков</string>
   <string name="preferences_data_and_storage__never">Никогда</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi и мобильные данные</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Только мобильные данные</string> -->
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi и мобильные данные</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Только мобильные данные</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Экономия трафика может улучшить звонки при плохой связи</string>
   <string name="preferences_notifications__messages">Сообщения</string>
   <string name="preferences_notifications__events">События</string>
@@ -2900,7 +2904,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Поделиться</string>
   <string name="ShareActivity__send">Отправить</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Возможность поделиться с несколькими чатами поддерживается только для сообщений Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Не удалось отправить некоторым пользователям</string>

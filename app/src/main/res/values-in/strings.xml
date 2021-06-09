@@ -307,6 +307,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Terverifikasi</string>
   <string name="ConversationTitleView_you">Anda</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Beberapa kontak tidak dapat berada di grup lama.</string>
   <!--CreateProfileActivity-->
@@ -455,10 +457,6 @@
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="other">Anggota ini tidak dapat bergabung ke Grup Baru, dan akan dikeluarkan dari grup:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Untuk mengakses fitur-fitur baru seperti @mention dan admin, perbarui grup ini.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Nanti saja</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Perbarui grup</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">%1$d anggota tidak dapat ditambahkan ulang ke dalam Grup Baru. Apa Anda ingin menambahkan mereka sekarang?</item>
@@ -1652,6 +1650,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal memerlukan pengaturan MMS untuk mengirimkan media dan pesan grup melalui jaringan operator. Perangkat Anda tidak dapat menyediakan informasi ini, yang bisa terjadi pada perangkat terkunci dan konfigurasi terbatas lainnya.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Untuk mengirim pesan media dan pesan grup, ketuk \'OK\' dan selesaikan pengaturan yang diminta. Pengaturan MMS untuk operator Anda biasanya dapat ditemukan dengan mencari \'APN operator Anda\'. Anda hanya perlu melakukan ini sekali saja.</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Nama depan (diperlukan)</string>
   <string name="CreateProfileActivity_last_name_optional">Nama belakang (opsional)</string>
@@ -1908,8 +1907,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_data_and_storage__calls">Panggilan</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Kurangi penggunaan data panggilan</string>
   <string name="preferences_data_and_storage__never">Tidak pernah</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi dan Data Seluler</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Hanya data seluler</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Mengurangi penggunaan data mungkin dapat memperbaiki panggilan pada jaringan buruk</string>
   <string name="preferences_notifications__messages">Pesan</string>
   <string name="preferences_notifications__events">Kegiatan</string>
@@ -1934,7 +1931,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_off">Mati</string>
   <string name="preferences_on">Aktif</string>
   <string name="preferences_proxy_address">Alamat proksi</string>
-  <string name="preferences_only_use_a_proxy_if">Hanya gunakan proksi jika Anda tidak dapat tersambung ke Signal dengan jaringan seluler atau Wi-Fi.</string>
   <string name="preferences_share">Bagikan</string>
   <string name="preferences_save">Simpan</string>
   <string name="preferences_connecting_to_proxy">Menyambung ke proksi…</string>
@@ -2410,7 +2406,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Bagikan</string>
   <string name="ShareActivity__send">Kirim</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Berbagi ke beberapa percakapan hanya didukung untuk pesan Signal.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Gagal mengirim ke beberapa pengguna</string>

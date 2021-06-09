@@ -321,6 +321,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Confirmé</string>
   <string name="ConversationTitleView_you">Vous</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Certains contacts ne peuvent pas être dans des groupes hérités.</string>
   <!--CreateProfileActivity-->
@@ -475,10 +477,6 @@
     <item quantity="one">Ce membre ne peut pas se joindre aux Nouveaux groupes et sera supprimé du groupe :</item>
     <item quantity="other">Ces membres ne peuvent pas se joindre aux Nouveaux groupes et seront supprimés du groupe :</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pour accéder aux nouvelles fonctions telles que les @mentions et l’administration, convertissez ce groupe.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Pas maintenant</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Convertir le groupe</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membre n’a pas pu être rajouté au Nouveau groupe. Voulez-vous l’ajouter maintenant ?</item>
@@ -1729,6 +1727,7 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal exige que les paramètres de messages multimédias remettent les messages multimédias et de groupe en utilisant votre opérateur de réseau mobile. Votre appareil n’offre pas ces renseignements, ce qui arrive parfois pour les appareils verrouillés ou d’autres configurations restrictives.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pour envoyer des messages multimédias ou de groupe, touchez Valider et remplissez les paramètres demandés. Les paramètres de messages multimédias pour votre opérateur peuvent habituellement être trouvés en cherchant l’APN (nom du point d’accès) de votre opérateur. Vous n’aurez à le faire qu’une seule fois.</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Prénom (requis)</string>
   <string name="CreateProfileActivity_last_name_optional">Nom de famille (facultatif)</string>
@@ -2004,8 +2003,6 @@
   <string name="preferences_data_and_storage__calls">Appels</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Utiliser moins de données pour les appels</string>
   <string name="preferences_data_and_storage__never">Jamais</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi et cellulaire</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Cellulaire seulement</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Sur les réseaux peu performants, utiliser moins de données pourrait améliorer la qualité des appels</string>
   <string name="preferences_notifications__messages">Messages</string>
   <string name="preferences_notifications__events">Évènements</string>
@@ -2030,7 +2027,6 @@
   <string name="preferences_off">Désactivé</string>
   <string name="preferences_on">Activé</string>
   <string name="preferences_proxy_address">Adresse du mandataire</string>
-  <string name="preferences_only_use_a_proxy_if">N’utilisez un mandataire que si vous n’arrivez pas à vous connecter à Signal par les données mobiles ou par Wi-Fi.</string>
   <string name="preferences_share">Partager</string>
   <string name="preferences_save">Enregistrer</string>
   <string name="preferences_connecting_to_proxy">Connexion au mandataire…</string>
@@ -2653,7 +2649,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Partager</string>
   <string name="ShareActivity__send">Envoyer</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Le partage vers plusieurs conversations n’est pris en charge que pour les messages Signal.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Échec d’envoi vers certains utilisateurs</string>

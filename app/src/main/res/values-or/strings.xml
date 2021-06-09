@@ -317,6 +317,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">ଯାଞ୍ଚ ହେଇଥିବା</string>
   <string name="ConversationTitleView_you">ଆପଣ</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">କିଛି ସମ୍ପର୍କ ପୁରୁଣା ଗୋଷ୍ଠୀରେ ରହିପାରିବ ନାହିଁ</string>
   <!--CreateProfileActivity-->
@@ -471,10 +473,6 @@
     <item quantity="one">ଏହି ସଦସ୍ୟ ନୂତନ ଗୋଷ୍ଠୀରେ ଯୋଗଦେବାକୁ ସକ୍ଷମ ନୁହଁନ୍ତି, ଏବଂ ଗୋଷ୍ଠୀରୁ ଅପସାରିତ ହେବେ:</item>
     <item quantity="other">ଏହି ସଦସ୍ୟମାନେ ନୂତନ ଗୋଷ୍ଠୀରେ ଯୋଗଦେବାକୁ ସକ୍ଷମ ନୁହଁନ୍ତି, ଏବଂ ଗୋଷ୍ଠୀରୁ ଅପସାରିତ ହେବେ:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ଉଲ୍ଲେଖ ଏବଂ ପରିଚାଳକ ପରି ନୂତନ ବୈଶିଷ୍ଟ୍ୟଗୁଡିକୁ ପ୍ରବେଶ କରିବାକୁ, ଏହି ଗୋଷ୍ଠୀକୁ ନବୀକରଣ କରନ୍ତୁ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">ଏବେ ନୁହେଁ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ଗୋଷ୍ଠୀ ଅଦ୍ୟତନ କରନ୍ତୁ</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$dଜଣେ ସଦସ୍ୟ ନୂତନ ଗୋଷ୍ଠୀରେ ପୁନଃଯୋଡି ହୋଇପାରିଲେ ନାହିଁ | ଆପଣ ବର୍ତ୍ତମାନ ସେଗୁଡିକୁ ଯୋଡିବାକୁ ଚାହୁଁଛନ୍ତି କି?</item>
@@ -1715,6 +1713,7 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">ଆପଣଙ୍କର ବେତାର ବାହକ ମାଧ୍ୟମରେ ମିଡିଆ ଏବଂ ଗୋଷ୍ଠୀ ବାର୍ତ୍ତା ବିତରଣ କରିବାକୁ Signal MMS ସେଟିଙ୍ଗ୍ ଆବଶ୍ୟକ କରେ | ଆପଣଙ୍କର ଉପକରଣ ଏହି ସୂଚନା ଉପଲବ୍ଧ କରାଏ ନାହିଁ, ଯାହାକି ଲକ୍ ହୋଇଥିବା ଉପକରଣ ଏବଂ ଅନ୍ୟାନ୍ୟ ପ୍ରତିବନ୍ଧକ ବିନ୍ୟାସ ପାଇଁ ବେଳେବେଳେ ସତ୍ୟ ଅଟେ</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">ମିଡିଆ ଏବଂ ଗୋଷ୍ଠୀ ବାର୍ତ୍ତା ପଠାଇବାକୁ, \'ଠିକ ଅଛି\' ଟ୍ୟାପ୍ କରନ୍ତୁ ଏବଂ ଅନୁରୋଧ କରାଯାଇଥିବା ସେଟିଙ୍ଗ୍ ସଂପୂର୍ଣ୍ଣ କରନ୍ତୁ | ଆପଣଙ୍କ ବାହକ ପାଇଁ MMS ସେଟିଂସମୂହ ସାଧାରଣତ \'ଆପଣଙ୍କର ବାହକ APN\' ସନ୍ଧାନ କରି ଖୋଜାଯାଇ ପାରେ | ଆପଣଙ୍କୁ ଏହା କେବଳ ଥରେ କରିବାକୁ ପଡିବ</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">ପ୍ରଥମ ନାମ (ଆବଶ୍ୟକ)</string>
   <string name="CreateProfileActivity_last_name_optional">ଶେଷ ନାମ (ବୈକଳ୍ପିକ)</string>
@@ -1976,8 +1975,6 @@
   <string name="preferences_data_and_storage__calls">କଲ୍</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">କଲ୍ ପାଇଁ କମ୍ ଡାଟା ବ୍ୟବହାର କରନ୍ତୁ</string>
   <string name="preferences_data_and_storage__never">କଦାପି ନୁହେଁ</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">ୱାଇଫାଇ ଏବଂ ସେଲୁଲାର୍</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">କେବଳ ସେଲୁଲାର୍</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">କମ୍ ଡାଟା ବ୍ୟବହାର କରିବା ଦ୍ୱାରା ଖରାପ ନେଟୱାର୍କରେ କଲ୍ ଉନ୍ନତ ହୋଇପାରେ</string>
   <string name="preferences_notifications__messages">ବାର୍ତ୍ତା</string>
   <string name="preferences_notifications__events">ଘଟଣା</string>
@@ -2002,7 +1999,6 @@
   <string name="preferences_off">ବନ୍ଦ</string>
   <string name="preferences_on">ଚାଲୁ</string>
   <string name="preferences_proxy_address">ପ୍ରକ୍ସି ଠିକଣା </string>
-  <string name="preferences_only_use_a_proxy_if">ଯଦି ଆପଣ ସେଲୁଲାର୍ କିମ୍ବା ୱାଇ-ଫାଇରେ Signal ସହିତ ସଂଯୋଗ କରିବାକୁ ସକ୍ଷମ ନୁହଁନ୍ତି ତେବେ କେବଳ ଏକ ପ୍ରକ୍ସି ବ୍ୟବହାର କରନ୍ତୁ</string>
   <string name="preferences_share">ଅଂଶୀଦାର କରନ୍ତୁ</string>
   <string name="preferences_save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
   <string name="preferences_connecting_to_proxy">ପ୍ରକ୍ସି ସହିତ ସଂଯୋଜିତ ହେଉଛି …</string>
@@ -2506,7 +2502,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">ଅଂଶୀଦାର କରନ୍ତୁ</string>
   <string name="ShareActivity__send">ପଠାନ୍ତୁ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">ଏକାଧିକ ବାର୍ତ୍ତାଳାପରେ ଅଂଶୀଦାର କରିବା କେବଳ Signal ବାର୍ତ୍ତା ପାଇଁ ସମର୍ଥିତ</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">କିଛି ଉପଭୋକ୍ତାଙ୍କୁ ପଠାଇବାରେ ବିଫଳ</string>

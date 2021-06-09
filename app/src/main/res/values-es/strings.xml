@@ -324,6 +324,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Identidad verificada</string>
   <string name="ConversationTitleView_you">Tú</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Algunas personas no pueden añadirse a grupos antiguos.</string>
   <!--CreateProfileActivity-->
@@ -478,10 +480,6 @@
     <item quantity="one">Est@ participante no puede unirse a nuevos grupos y se le expulsará del grupo:</item>
     <item quantity="other">Est@s participantes no pueden unirse a nuevos grupos y se les expulsará del grupo:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para acceder a funciones que incluyen @menciones y admins, actualiza este grupo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Ahora no</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Actualizar grupo</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">No se ha podido añadir a %1$d participante al nuevo grupo. ¿Deseas hacerlo ahora?</item>
@@ -1041,6 +1039,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Has marcado tus cifras de seguridad con %s como verificadas desde otro dispositivo</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Has retirado la marca de verificación de tus cifras de seguridad con %s.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Has retirado la marca de verificación de tus cifras de seguridad con %s desde otro dispositivo</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">No se pudo entregar un mensaje de %s</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ha iniciado una llamada en grupo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s está en la llamada en grupo · %2$s</string>
@@ -1393,6 +1392,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_you_marked_verified">Identidad verificada por ti</string>
   <string name="ThreadRecord_you_marked_unverified">Identidad no verificada</string>
   <string name="ThreadRecord_message_could_not_be_processed">Ha sido mposible procesar el mensaje</string>
+  <string name="ThreadRecord_delivery_issue">Fallo en la entrega</string>
   <string name="ThreadRecord_message_request">Solicitud de chat</string>
   <string name="ThreadRecord_photo">Foto</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1756,6 +1756,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal necesita una configuración de MMS válida para enviar los mensajes multimedia y de grupo a través del proveedor móvil. Tu dispositivo no proporciona esta información, algo que ocasionalmente ocurre con dispositivos bloqueados y otras configuraciones restrictivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar mensajes multimedia y de grupo, toca «Aceptar» y completa las configuraciones solicitadas. Las configuraciones de MMS para tu proveedor generalmente se pueden localizar buscando por «APN de proveedor». Sólo necesitarás hacer esto una vez.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Fallo en la entrega</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Un mensaje, sticker, reacción, justificante de recibo o adjunto de %s no se ha podido entregar. Lo ha enviado en un chat o en un grupo común.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Un mensaje, sticker, reacción, justificante de recibo o adjunto de %s no se ha podido entregar.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Nombre (necesario)</string>
   <string name="CreateProfileActivity_last_name_optional">Apellido(s) (opcional)</string>
@@ -2032,8 +2036,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_data_and_storage__calls">Llamadas</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Ahorrar datos en llamadas</string>
   <string name="preferences_data_and_storage__never">Nunca</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi y red móvil</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Sólo red móvil</string> -->
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi y red móvil</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Sólo red móvil</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Al ahorrar datos, mejora la calidad de las llamadas en redes móviles con mala cobertura</string>
   <string name="preferences_notifications__messages">Mensajes</string>
   <string name="preferences_notifications__events">Eventos</string>
@@ -2058,7 +2062,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_off">Inactivo</string>
   <string name="preferences_on">Activo</string>
   <string name="preferences_proxy_address">Dirección del proxy</string>
-  <string name="preferences_only_use_a_proxy_if">Un proxy sólo es necesario en el caso que Signal no pueda conectarse a su servidor en una red Wi-Fi o en la red móvil.</string>
+  <string name="preferences_only_use_a_proxy_if">Usa un proxy si Signal no puede conectar en una Wi-Fi o en la red móvil.</string>
   <string name="preferences_share">Compartir</string>
   <string name="preferences_save">Guardar</string>
   <string name="preferences_connecting_to_proxy">Conectando con el proxy …</string>
@@ -2743,7 +2747,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--ShareActivity-->
   <string name="ShareActivity__share">Compartir</string>
   <string name="ShareActivity__send">Enviar</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Compartir en múltiples chats sólo funciona con mensajes de Signal.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Fallo al enviar a algunas personas</string>

@@ -303,6 +303,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">인증됨</string>
   <string name="ConversationTitleView_you">나</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">일부 연락처는 기존 그룹에 있을 수 없습니다.</string>
   <!--CreateProfileActivity-->
@@ -451,10 +453,6 @@
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="other">이 멤버들은 새 그룹에 가입할 수 없으며 그룹에서 제거됩니다.</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">그룹을 업그레이드하여 @멘션 및 관리자와 같은 새로운 기능에 액세스하세요.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">나중에</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">그룹 업그레이드</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">%1$d명의 멤버를 새 그룹에 다시 추가할 수 없습니다. 지금 추가하시겠습니까?</item>
@@ -1646,6 +1644,7 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">이동 통신사를 통해 멀티미디어와 그룹 메시지를 전송하려면 MMS 설정 정보가 필요합니다. 기기에서는 정보가 제공되지 않습니다. 기기가 잠겨 있거나 기타 제한된 기기에서는 가끔 이러한 경우가 발생할 수 있습니다.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">멀티미디어와 그룹 메시지를 보내려면 확인을 터치하여 요구된 설정을 완료해야 합니다. 이동 통신사의 MMS 설정 정보를 찾으려면 \'이동 통신사 APN\'을 검색하세요.</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">이름(필수)</string>
   <string name="CreateProfileActivity_last_name_optional">성(선택 사항)</string>
@@ -1906,8 +1905,6 @@
   <string name="preferences_data_and_storage__calls">전화</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">통화에 더 적은 양의 데이터 사용하기</string>
   <string name="preferences_data_and_storage__never">없음</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi 및 셀룰러</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">셀룰러 데이터만 사용</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">더 적은 양의 데이터를 사용하는 것은 망품질이 낮은 네트워크에서의 통화 품질을 개선할 수 있습니다</string>
   <string name="preferences_notifications__messages">메시지</string>
   <string name="preferences_notifications__events">이벤트</string>
@@ -1932,7 +1929,6 @@
   <string name="preferences_off">꺼짐</string>
   <string name="preferences_on">켜짐</string>
   <string name="preferences_proxy_address">프록시 주소</string>
-  <string name="preferences_only_use_a_proxy_if">데이터나 Wi-Fi를 통한 Signal 연결에 실패할 경우에만 프록시를 사용하십시오.</string>
   <string name="preferences_share">공유</string>
   <string name="preferences_save">저장</string>
   <string name="preferences_connecting_to_proxy">프록시에 연결 중…</string>
@@ -2412,7 +2408,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">공유</string>
   <string name="ShareActivity__send">보내기</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">여러 개의 채팅방에 공유하기는 Signal 메시지에서만 지원됩니다</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">일부 사용자에 대한 보내기가 실패했습니다</string>

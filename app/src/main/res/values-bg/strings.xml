@@ -313,6 +313,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Потвърдено</string>
   <string name="ConversationTitleView_you">Ти</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Някои контакти не могат да бъдат в стари групи.</string>
   <!--CreateProfileActivity-->
@@ -467,10 +469,6 @@
     <item quantity="one">Този член няма възможност за присъединяване в нови групи и ще бъде премахнат от групата:</item>
     <item quantity="other">Тези членове нямат възможност за присъединяване в нови групи и ще бъдат премахнати от групата:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Обновете тази група за достъп до нови функционалности като @споменаване и администратори.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Не сега</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Надграждане на група</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d член не можа да бъде добавен към новата група. Искате ли да го/я добавите сега?</item>
@@ -1705,6 +1703,7 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal се нуждае от MMS настройки, за да може да достави медийни и групови съобщения през мрежата. Устройството ти не прави тази информация достъпна, което се случва понякога за заключени устройва и други ограничени конфигурации.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">За да изптратиш медийни и групови съобщения, избери \'ОК\' и нагласи изискваните настройки. MMS настройките на твоя мобилен оператор могат да бъдат намерени като потърсиш \'APN настройки\'. Нужно е да изпълниш тази стъпка само веднъж.</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Собствено име (задължително)</string>
   <string name="CreateProfileActivity_last_name_optional">Фамилия (по избор)</string>
@@ -1963,8 +1962,6 @@
   <string name="preferences_data_and_storage__calls">Обаждания</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Използвайте по-малко данни за разговори</string>
   <string name="preferences_data_and_storage__never">Никога</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi и клетъчни</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Само клетъчни</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Използването на по-малко данни може да подобри обажданията в лоши мрежи</string>
   <string name="preferences_notifications__messages">Съобщения</string>
   <string name="preferences_notifications__events">Събития</string>
@@ -1989,7 +1986,6 @@
   <string name="preferences_off">Деактивирано</string>
   <string name="preferences_on">Активирано</string>
   <string name="preferences_proxy_address">Прокси адрес</string>
-  <string name="preferences_only_use_a_proxy_if">Използвай прокси сако ако не можеш да се свържеш с Signal през моблната мрежа или Wi-Fi.</string>
   <string name="preferences_share">Споделяне</string>
   <string name="preferences_save">Запази</string>
   <string name="preferences_connecting_to_proxy">Свързване с проксито…</string>
@@ -2471,7 +2467,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Споделяне</string>
   <string name="ShareActivity__send">Изпращане</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Споделяне с множество чатове се подържа само за Signal съобщения</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Неуспешно изпращане до някои потребители</string>

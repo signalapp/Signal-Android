@@ -324,6 +324,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verificado</string>
   <string name="ConversationTitleView_you">Você</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+ %1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Alguns contatos não podem estar em grupos legados.</string>
   <!--CreateProfileActivity-->
@@ -478,10 +480,6 @@
     <item quantity="one">Este membro não é capaz de participar de Novos Grupos, e será removido do grupo:</item>
     <item quantity="other">Estes membros não são capazes de participar de Novos Grupos, e serão removidos do grupo:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para acessar novos recursos como @menções e administradores, atualize este grupo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Agora não</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Atualizar grupo</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membro não pôde ser adicionado ao Novo Grupo. Você deseja adicioná-lo agora?</item>
@@ -1041,6 +1039,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Você marcou o seu número de segurança com %scomo verificado através de outro dispositivo</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Você marcou o seu número de segurança com %scomo não verificado</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Você marcou o seu número de segurança com %s como não verificado através de outro dispositivo</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Uma mensagem de %s não pôde ser entregue</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s começou uma chamada em grupo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s está na chamada em grupo · %2$s</string>
@@ -1393,6 +1392,7 @@
   <string name="ThreadRecord_you_marked_verified">Você marcou como verificado</string>
   <string name="ThreadRecord_you_marked_unverified">Você marcou como não verificado</string>
   <string name="ThreadRecord_message_could_not_be_processed">A mensagem não pôde ser processada</string>
+  <string name="ThreadRecord_delivery_issue">Problema na entrega</string>
   <string name="ThreadRecord_message_request">Solicitação de conversa</string>
   <string name="ThreadRecord_photo">Foto</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1756,6 +1756,10 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">O Signal requer configurações de MMS para entregar mídia e mensagens de grupos através de seu provedor de wireless. Seu dispositivo não disponibiliza esta informação, o que ocasionalmente ocorre com dispositivos bloqueados ou com outras configurações restritivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar mensagens de grupo e de mídia, clique \'OK\' e complete as configurações solicitadas. As configurações de MMS para a sua operadora geralmente podem ser encontradas fazendo uma busca por \'APN da sua operadora\'. Você só precisará fazer isto uma vez.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Problema na entrega</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Não foi possível entregar para você uma mensagem (texto, figurinha, reação ou confirmação de leitura) de %s. Essa pessoa tentou enviar para você diretamente ou em um grupo.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Não foi possível entregar para você uma mensagem (texto, figurinha, reação ou confirmação de leitura) de %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Primeiro nome (obrigatório)</string>
   <string name="CreateProfileActivity_last_name_optional">Sobrenome (opcional)</string>
@@ -2032,8 +2036,8 @@
   <string name="preferences_data_and_storage__calls">Chamadas</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Usar menos dados em chamadas</string>
   <string name="preferences_data_and_storage__never">Nunca</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi e dados móveis</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Somente dados móveis</string> -->
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi e dados móveis</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Apenas dados móveis</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Usar menos dados pode melhorar as chamadas em redes ruins</string>
   <string name="preferences_notifications__messages">Mensagens</string>
   <string name="preferences_notifications__events">Eventos</string>
@@ -2730,7 +2734,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Compartilhar</string>
   <string name="ShareActivity__send">Enviar</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Compartilhar com várias conversas só é compatível com contatos no Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Falha ao enviar para algumas pessoas</string>

@@ -324,6 +324,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">U verifikua</string>
   <string name="ConversationTitleView_you">Ju</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Disa kontakte s’mund të jenë në grupe të dikurshëm.</string>
   <!--CreateProfileActivity-->
@@ -479,10 +481,6 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
     <item quantity="one">Ky anëtar s’është i aftë të bëhet pjesë Grupesh të Rinj, dhe do të hiqet prej grupit:</item>
     <item quantity="other">Këta anëtarë s’janë të aftë të bëhen pjesë Grupesh të Rinj, dhe do të hiqen prej grupit:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Që të përdorni veçori të tilla si, @përmendje dhe përgjegjës, përmirësojeni këtë grup.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Jo tani</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Përmirësoni grupin</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d anëtar s’u rishtua dot te Grupi i Ri. Doni të shtohet tani?</item>
@@ -1045,6 +1043,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">E shënuat numrin tuaj të sigurisë me %s si të verifikuar nga një tjetër pajisje</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">E shënuat numrin tuaj të sigurisë me %s si të paverifikuar</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">E shënuat numrin tuaj të sigurisë me %s si të paverifikuar nga një tjetër pajisje</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">S’u dërgua dot një mesazh prej %s</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s nisi një thirrje grupi · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s gjendet te thirrja e grupit · %2$s</string>
@@ -1393,6 +1392,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ThreadRecord_you_marked_verified">E shënuat si të verifikuar</string>
   <string name="ThreadRecord_you_marked_unverified">E shënuat si të paverifikuar</string>
   <string name="ThreadRecord_message_could_not_be_processed">Mesazhi s’u përpunua dot</string>
+  <string name="ThreadRecord_delivery_issue">Problem dërgimi</string>
   <string name="ThreadRecord_message_request">Kërkesë Mesazhi</string>
   <string name="ThreadRecord_photo">Foto</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1756,6 +1756,10 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Që të shpërndajë media dhe mesazhe grupi përmes shërbimit tuaj celular, Signal-i lyp rregullime për MMS-në. Pajisja juaj celulare nuk ofron të dhëna të tilla, çka ndodh, me raste, për pajisje të kyçura ose formësimeve të tjera kufizuese.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Për të dërgua media dhe mesazhe grupi, prekni \'OK\' dhe plotësoni rregullimet e domosdoshme. Rregullimet MMS për operatorin tuaj zakonisht mund të gjenden duke kërkuar për \'APN-në e operatorit tuaj\'. Këtë do t\’ju duhet ta bëni vetëm një herë.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Problem Dërgimi</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">S’u dërgua dot te ju një mesazh, ngjitës, reagim, ose dëftesë leximi nga %s. Mund të ketë provuar ta dërgojë drejtpërsëdrejti për ju, ose në një grup.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">S’u dërgua dot te ju një mesazh, ngjitës, reagim, ose dëftesë leximi nga %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Emër (i domosdoshëm)</string>
   <string name="CreateProfileActivity_last_name_optional">Mbiemër (i domosdoshëm)</string>
@@ -2034,8 +2038,8 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_data_and_storage__calls">Thirrje</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Përdor më pak të dhënë për thirrjet</string>
   <string name="preferences_data_and_storage__never">Kurrë</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi dhe Celulare</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Vetëm celulare</string> -->
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">Të dhëna WiFi dhe celulare</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Vetëm të dhëna celulare</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Përdorim i më pak të dhënave mund të përmirësojë thirrjet në rrjete të dobët</string>
   <string name="preferences_notifications__messages">Mesazhe</string>
   <string name="preferences_notifications__events">Veprimtari</string>
@@ -2747,7 +2751,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Ndajeni Me të Tjerë</string>
   <string name="ShareActivity__send">Dërgoje</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Dhënia e diçkaje në shumë fjalosje mbulohet vetëm për mesazhe Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">S’u arrit të dërgoheshin ca përdorues</string>

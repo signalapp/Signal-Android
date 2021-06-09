@@ -324,6 +324,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verifiziert</string>
   <string name="ConversationTitleView_you">Du</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Einige Kontakte können keine Mitglieder von Gruppen alten Typs sein.</string>
   <!--CreateProfileActivity-->
@@ -478,10 +480,6 @@
     <item quantity="one">Dieses Mitglied kann Gruppen neuen Typs nicht beitreten und wird daher aus der Gruppe entfernt:</item>
     <item quantity="other">Diese Mitglieder können Gruppen neuen Typs nicht beitreten und werden daher aus der Gruppe entfernt:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Aktualisiere diese Gruppe für neue Funktionen wie @Erwähnungen und Admins.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Jetzt nicht</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Gruppe aktualisieren</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d Mitglied konnte der Gruppe neuen Typs nicht wieder hinzugefügt werden. Möchtest du es jetzt hinzufügen?</item>
@@ -1041,6 +1039,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du hast deine Sicherheitsnummer mit %s von einem anderen Gerät aus als verifiziert markiert.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du hast deine Sicherheitsnummer mit %s als nicht verifiziert markiert.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du hast deine Sicherheitsnummer mit %s von einem anderen Gerät aus als nicht verifiziert markiert.</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Eine Nachricht von %s konnte nicht zugestellt werden</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s hat einen Gruppenanruf begonnen · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s nimmt am Gruppenanruf teil · %2$s</string>
@@ -1382,6 +1381,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ThreadRecord_you_marked_verified">Als verifiziert markiert</string>
   <string name="ThreadRecord_you_marked_unverified">Als nicht verifiziert markiert</string>
   <string name="ThreadRecord_message_could_not_be_processed">Nachricht konnte nicht verarbeitet werden</string>
+  <string name="ThreadRecord_delivery_issue">Zustellungsproblem</string>
   <string name="ThreadRecord_message_request">Unterhaltungsanfrage</string>
   <string name="ThreadRecord_photo">Foto</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1745,6 +1745,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal benötigt MMS-Einstellungen, um Nachrichten mit Medieninhalten und Gruppennachrichten über deinen Mobilfunkanbieter zu versenden. Dein Gerät stellt diese Informationen nicht zur Verfügung, was gelegentlich bei gesperrten oder anderweitig restriktiv konfigurierten Geräten der Fall ist.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Tippe zum Versenden von Nachrichten mit Medieninhalten und Gruppennachrichten bitte »OK« an und vervollständige die geforderten Einstellungen. Die MMS-Einstellungen deines Mobilfunkanbieters können normalerweise durch eine Internetsuche nach dem »APN« deines Anbieters gefunden werden.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Zustellungsproblem</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Eine Nachricht, ein Sticker, eine Reaktion oder eine Lesebestätigung von %s konnte dir nicht zugestellt werden. Der Versand wurde in einer direkten Unterhaltung oder einer Gruppenunterhaltung versucht.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Eine Nachricht, ein Sticker, eine Reaktion oder eine Lesebestätigung von %s konnte dir nicht zugestellt werden.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Vorname (erforderlich)</string>
   <string name="CreateProfileActivity_last_name_optional">Nachname (optional)</string>
@@ -2021,8 +2025,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_data_and_storage__calls">Anrufe</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Datenverbrauch für Anrufe reduzieren</string>
   <string name="preferences_data_and_storage__never">Nie</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WLAN und Mobilfunk</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Nur Mobilfunk</string> -->
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WLAN und Mobilfunk</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Nur Mobilfunk</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Das Reduzieren des Datenverbrauchs kann Anrufe bei schlechtem Netz verbessern</string>
   <string name="preferences_notifications__messages">Nachrichten</string>
   <string name="preferences_notifications__events">Ereignisse</string>
@@ -2047,7 +2051,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_off">Aus</string>
   <string name="preferences_on">Ein</string>
   <string name="preferences_proxy_address">Proxyadresse</string>
-  <string name="preferences_only_use_a_proxy_if">Verwende Proxies nur, falls trotz bestehender Internetverbindung die App sich nicht mit dem Signal-Server verbinden kann.</string>
+  <string name="preferences_only_use_a_proxy_if">Verwende einen Proxy nur, falls trotz bestehender Internetverbindung die App sich nicht mit dem Signal-Server verbinden kann.</string>
   <string name="preferences_share">Teilen</string>
   <string name="preferences_save">Speichern</string>
   <string name="preferences_connecting_to_proxy">Verbindung mit Proxy wird hergestellt …</string>
@@ -2732,7 +2736,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ShareActivity-->
   <string name="ShareActivity__share">Teilen</string>
   <string name="ShareActivity__send">Senden</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Das Weiterleiten an mehrere Unterhaltungen wird nur für Signal-Nachrichten unterstützt.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Die Nachricht konnte nicht an alle Nutzer gesendet werden</string>

@@ -307,6 +307,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">အတည်ပြုပါသည်</string>
   <string name="ConversationTitleView_you">သင်</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">အချို့သော အဆက်အသွယ်များသည် အမွေအုပ်စုများတွင်မဖြစ်နိုင်ပါ။</string>
   <!--CreateProfileActivity-->
@@ -455,10 +457,6 @@
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="other">အဖွဲ့ဝင်များသည် အဖွဲ့အသစ်များသို့ ဝင်ရောက်နိုင်ခြင်း မရှိသောကြောင့် အဖွဲ့မှဖယ်ရှားခံရလိမ့်မည်။</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@mentions နှင့် အက်မင် ကဲ့သို့သောအင်္ဂါရပ်အသစ်များကို အသုံးပြုရန် ဤအုပ်စုကိုအဆင့်မြှင့်ပါ။</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">ယခု မလုပ်ဆောင်သေးပါ။</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ဤအုပ်စုကို အဆင့်မြှင့်မည်။</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">အဖွဲ့ဝင်အသစ် %1$d ယောက်ကို အုပ်စုသစ်သို့ ပြန်ထည့်၍ မရပါ။ သူတို့ကို သင်ယခု ထည့်သွင်း လိုသလား။</item>
@@ -1656,6 +1654,7 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal သည် MMS အပြင်အဆင်ကို သင့်ဖုန်းမှတစ်ဆင့် မီဒီယာနှင့် အဖွဲ့သတင်းစကားများကိုပေးပို့နိုင်အောင်လုပ်ထားရန်လိုအပ်သည်။ ယင်းသို့ပြုလုပ်နိုင်ခြင်းသည် လော့ပိတ်ထားသော ဖုန်းများနှင့် အခြားသော ကန့်သတ်ဒီဇိုင်းပုံစံများအတွက်ပါအကြုံးဝင်သဖြင့် သင့်ဖုန်းကအထူးတလည် မဖော်ပြပါ။ </string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">ရုပ်၊သံ၊ပုံ နှင့်စာများပို့ရန် \'အိုခေ\' နှိပ်ပြီးပြောင်းလိုသော ပြင်ဆင်ချက်များပြုလုပ်ပါ။ ကိုယ်အသုံးပြုသော အော်ပရေတာ၏ MMS ပြင်ဆင်ချက်များကို \'your carrier APN\'  ဟုရေးပြီးရှာဖွေနိုင်ပါသည်။ ယခုပြင်ဆင်ချက်ကို တစ်ကြိမ်တည်းလုပ်ရန်လိုပါသည်။</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">အမည်အစ (လိုအပ်သည်)</string>
   <string name="CreateProfileActivity_last_name_optional">အမည်အဆုံး (ထည့်ရန် မလိုအပ်ပါ)</string>
@@ -1917,8 +1916,6 @@
   <string name="preferences_data_and_storage__calls">ဖုန်းခေါ်ဆိုမှုများ</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">ခေါ်ဆိုမှုများအတွက် ဒေတာလျော့သုံးမယ်</string>
   <string name="preferences_data_and_storage__never">ဘယ်တော့မှမ</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">ဝိုင်ဖိုင်နှင့်ဆယ်လူလာ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">ဆယ်လူလာအတွက်သာ</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">မကောင်းသော ချိတ်ဆက်မှုလိုင်းပေါ်တွင် ဒေတာပိုနည်းစွာသုံးလျှင် ခေါ်ဆိုမှုများ ပိုကြည်လင်ကောင်းမွန် နိုင်ပါသည်</string>
   <string name="preferences_notifications__messages">စာများ</string>
   <string name="preferences_notifications__events">ပွဲများ</string>
@@ -1943,7 +1940,6 @@
   <string name="preferences_off">ပိတ်ထားမယ်</string>
   <string name="preferences_on">ဖွင့်ထားမယ်</string>
   <string name="preferences_proxy_address">ကြားခံလိပ်စာ</string>
-  <string name="preferences_only_use_a_proxy_if">သင်သည် ဆယ်လူလာဒေတာ သို့မဟုတ် ဝိုင်ဖိုင်နှင့် Signal ပေါ်သို့ ချိတ်ဆက်၍မရမှသာလျှင် ကြားခံကို အသုံးပြုပါ။</string>
   <string name="preferences_share">ဝေမျှမယ်</string>
   <string name="preferences_save">သိမ်းမယ်</string>
   <string name="preferences_connecting_to_proxy">ကြားခံနှင့် ချိတ်ဆက်နေသည်…</string>
@@ -2618,7 +2614,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">ဝေမျှမည်</string>
   <string name="ShareActivity__send">ပေးပို့မည်</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">စကားပြောဆိုမှုပေါင်းစုံများနှင့် ဝေမျှခြင်းအတွက် Signal မက်ဆေ့ချ်များကိုသာ ပံ့ပိုးပါသည်</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">အသုံးပြုသူများသို့ပေးပို့ရန်မအောင်မြင်ပါ</string>

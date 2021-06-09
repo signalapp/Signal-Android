@@ -318,6 +318,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verifisert</string>
   <string name="ConversationTitleView_you">Deg</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Noen kontakter kan ikke eksistere i \"legacy\"-grupper.</string>
   <!--CreateProfileActivity-->
@@ -472,10 +474,6 @@
     <item quantity="one">Dette medlemmet kan ikke bli med i nye grupper, og vil bli fjernet fra gruppen:</item>
     <item quantity="other">Disse medlemmene kan ikke bli med i nye grupper, og vil bli fjernet fra gruppen:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">For å få tilgang til de nye funksjonene, som @mentions og administratorer, oppgrader gruppen.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Ikke nå</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Oppgrader gruppen</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d medlem kunne ikke legges til på nytt. Ønsker du å legge dem til nå?</item>
@@ -1742,6 +1740,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal krever MMS-oppsett for å levere medier og gruppemeldinger via mobilnett. Enheten din gjør ikke denne informasjonen tilgjengelig, som kan skje for låste enheter og andre restriktive konfigurasjoner.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Trykk «OK» og følg anvisninger hvis du vil sende medie- og gruppemeldinger. Du finner vanligvis MMS-oppsettet for operatøren din ved å søke etter «din operatør APN». Du trenger bare å gjøre dette én gang.</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Fornavn (påkrevd)</string>
   <string name="CreateProfileActivity_last_name_optional">Etternavn (valgfritt)</string>
@@ -2018,8 +2017,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_data_and_storage__calls">Samtaler</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Bruk mindre data for anrop</string>
   <string name="preferences_data_and_storage__never">Aldri</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi og mobildata</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Kun mobildata</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Lavere dataforbruk kan forbedre samtaler på dårlige nettverk</string>
   <string name="preferences_notifications__messages">Meldinger</string>
   <string name="preferences_notifications__events">Hendelser</string>
@@ -2044,7 +2041,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_off">Av</string>
   <string name="preferences_on">På</string>
   <string name="preferences_proxy_address">Proxy-adresse</string>
-  <string name="preferences_only_use_a_proxy_if">Bruk kun en proxy hvis du ikke er i stand til å koble til Signal fra mobilnettet eller Wi-Fi.</string>
   <string name="preferences_share">Del</string>
   <string name="preferences_save">Lagre</string>
   <string name="preferences_connecting_to_proxy">Kobler til proxy…</string>
@@ -2689,7 +2685,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Del</string>
   <string name="ShareActivity__send">Send</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Deling til flere samtaler støttes kun for Signal-meldinger</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Mislyktes med å sende meldingen til noen brukere.</string>

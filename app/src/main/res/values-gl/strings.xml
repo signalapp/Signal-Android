@@ -314,6 +314,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Verificado</string>
   <string name="ConversationTitleView_you">Ti</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Algúns contactos non poden estar nos grupos clásicos.</string>
   <!--CreateProfileActivity-->
@@ -468,10 +470,6 @@
     <item quantity="one">Este membro non pode unirse aos Grupos Novos, e vai ser eliminado do grupo:</item>
     <item quantity="other">Estos membros non poden unirse aos Grupos Novos, e van ser eliminados do grupo:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para acceder a novas características como @mencións e admins, actualiza este grupo.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Agora non</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Actualizar grupo</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membro non puido ser engadido ao Novo Grupo. Queres engadilo agora?</item>
@@ -1718,6 +1716,7 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal require configurar as MMS para enviar mensaxes a grupos e multimedia a través dos datos do teu provedor. O teu dispositivo non proporciona esta información, o cal en ocasións acontece con dispositivos bloqueados ou con configuracións moi restritivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar ficheiros multimedia e mensaxes a grupos, toca Aceptar e completa a configuración solicitada. Os axustes das MMS do teu provedor xeralmente pódense atopar buscando polo seu APN. Só necesitas facelo unha vez.</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Nome (obrigatorio)</string>
   <string name="CreateProfileActivity_last_name_optional">Apelido (optativo)</string>
@@ -1977,8 +1976,6 @@
   <string name="preferences_data_and_storage__calls">Chamadas</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Utilizar menos datos durante as chamadas</string>
   <string name="preferences_data_and_storage__never">Nunca</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wifi e datos móbiles</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Só datos móbiles</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Usar menos datos pode mellorar as chamadas naquelas redes deficientes</string>
   <string name="preferences_notifications__messages">Mensaxes</string>
   <string name="preferences_notifications__events">Eventos</string>
@@ -2003,7 +2000,6 @@
   <string name="preferences_off">Off</string>
   <string name="preferences_on">On</string>
   <string name="preferences_proxy_address">Enderezo do proxy</string>
-  <string name="preferences_only_use_a_proxy_if">Utiliza un proxy só se non podes conectar con Signal coa rede móbil ou Wi-Fi.</string>
   <string name="preferences_share">Compartir</string>
   <string name="preferences_save">Gardar</string>
   <string name="preferences_connecting_to_proxy">Conectando ao proxy…</string>
@@ -2580,7 +2576,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Compartir</string>
   <string name="ShareActivity__send">Enviar</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Compartir con múltiplos chats é algo que só se pode facer coas mensaxes do Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Fallou o envío a algúns usuarios</string>

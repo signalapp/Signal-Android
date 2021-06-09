@@ -316,6 +316,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Проверено</string>
   <string name="ConversationTitleView_you">Вие</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Некои контакти не можат да бидат во застарените групи.</string>
   <!--CreateProfileActivity-->
@@ -470,10 +472,6 @@
     <item quantity="one">Овој член не е во можност да се приклучи на нови групи и ќе биде отстранет од групата:</item>
     <item quantity="other">Овие членови не се во можност да се приклучат на нови групи и ќе бидат отстранети од групата:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">За пристап до нови опции како @спомнувања и администратори надградете ја оваа група.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Не сега</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Надгради група</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d член не можеше да биде повторно додаден во нова група. Дали сакате да го додадете сега?</item>
@@ -1729,6 +1727,7 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal има потреба од MMS поставувања за да испорачува медија и групни пораки преку Вашиот мобилен оператор. Вашиот уред не ги прави достапни овие информации, понекогаш ова се случува поради тоа што уредите се заклучени или поради рестриктивна конфигурација.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">За да испратите медија и групни пораки допрете „Во ред“  и довршете ги поставувањата. MMS поставувањата за Вашиот оператор можат да бидат пронајдени преку пребарување на „Вашиот APN за операторот“. Ова ќе треба да го направите само еднаш.</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Име (задолжително)</string>
   <string name="CreateProfileActivity_last_name_optional">Презиме (опционално)</string>
@@ -1993,8 +1992,6 @@
   <string name="preferences_data_and_storage__calls">Повици</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Користи помалку податоци за повици</string>
   <string name="preferences_data_and_storage__never">Никогаш</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi и мобилен</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Само на мобилен</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Користење на помалку податоци може да ги подобри повиците на лоши мрежи</string>
   <string name="preferences_notifications__messages">Пораки</string>
   <string name="preferences_notifications__events">Настани</string>
@@ -2019,7 +2016,6 @@
   <string name="preferences_off">Исклучи</string>
   <string name="preferences_on">Вклучено</string>
   <string name="preferences_proxy_address">Proxy адреса</string>
-  <string name="preferences_only_use_a_proxy_if">Користете proxy само ако не можете да се поврзете на Signal преку мобилна или Wi-Fi мрежа.</string>
   <string name="preferences_share">Сподели</string>
   <string name="preferences_save">Зачувај</string>
   <string name="preferences_connecting_to_proxy">Се поврзувам на proxy…</string>
@@ -2664,7 +2660,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Сподели</string>
   <string name="ShareActivity__send">Испрати</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Споделување на повеќе разговори е поддржано само за Signal пораки</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Не успеав да испратам на некои корисници</string>

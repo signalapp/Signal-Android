@@ -318,6 +318,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Επιβεβαιωμένος</string>
   <string name="ConversationTitleView_you">Εσύ</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Κάποιες επαφές δεν μπορούν να προστεθούν σε ομάδες παλαιού τύπου.</string>
   <!--CreateProfileActivity-->
@@ -472,10 +474,6 @@
     <item quantity="one">Αυτό το μέλος δεν μπορεί να μπει σε Ομάδες νέου τύπου, και θα αφαιρεθεί από την ομάδα:</item>
     <item quantity="other">Αυτά τα μέλη δεν μπορούν να μπουν σε Ομάδες νέου τύπου, και θα αφαιρεθούν από την ομάδα:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Για πρόσβαση σε δυνατότητες όπως οι @αναφορές και οι διαχειριστές ομάδας, αναβάθμισε την ομάδα.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Όχι τώρα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Αναβάθμιση ομάδας</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d μέλος δεν μπόρεσε να επαναπροστεθεί στην Ομάδα νέου τύπου. Θέλεις να τον/την προσθέσεις τώρα;</item>
@@ -1377,6 +1375,7 @@
   <string name="ThreadRecord_you_marked_verified">Σημείωσες ως επιβεβαιωμένο</string>
   <string name="ThreadRecord_you_marked_unverified">Σημείωσες ως μη επιβεβαιωμένο</string>
   <string name="ThreadRecord_message_could_not_be_processed">Αποτυχία επεξεργασίας μηνύματος</string>
+  <string name="ThreadRecord_delivery_issue">Θέμα κατά τη παράδοση</string>
   <string name="ThreadRecord_message_request">Αίτημα μηνύματος</string>
   <string name="ThreadRecord_photo">Φωτογραφία</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1737,6 +1736,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Το Signal χρειάζεται τις ρυθμίσεις MMS για την αποστολή μηνυμάτων πολυμέσων και ομαδικών συνομιλιών μέσω του παρόχου σου. Η συσκευή σου δεν παρέχει αυτές τις πληροφορίες, το οποίο μερικές φορές γίνεται σε κλειδωμένες συσκευές ή λόγω άλλων περιοριστικών ρυθμίσεων.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Για να στείλεις μηνύματα πολυμέσων, πάτα \'ΟΚ\' και συμπλήρωσε τις ρυθμίσεις. Θα βρεις τις σωστές ρυθμίσεις MMS για τον πάροχό σου ψάχνοντας στο ίντερνετ για \"όνομα του παρόχου σου\" + APN. Αυτές οι ρυθμίσεις πρέπει να γίνουν μόνο μια φορά.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Θέμα κατά τη παράδοση</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Όνομα (απαιτείται)</string>
   <string name="CreateProfileActivity_last_name_optional">Επώνυμο (προαιρετικό)</string>
@@ -2002,8 +2003,6 @@
   <string name="preferences_data_and_storage__calls">Κλήσεις</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Χρήση λιγότερων δεδομένων για τις κλήσεις</string>
   <string name="preferences_data_and_storage__never">Ποτέ</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi και δεδομένα κινητής</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Μόνο δεδομένα κινητής</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Η χρήση λιγότερων δεδομένων ίσως βελτιώσει τη ποιότητα των κλήσεων σε δίκτυα με κακή σύνδεση</string>
   <string name="preferences_notifications__messages">Μηνύματα</string>
   <string name="preferences_notifications__events">Συμβάντα</string>
@@ -2028,7 +2027,6 @@
   <string name="preferences_off">Ανενεργό</string>
   <string name="preferences_on">Ενεργό</string>
   <string name="preferences_proxy_address">Διεύθυνση proxy</string>
-  <string name="preferences_only_use_a_proxy_if">Χρησιμοποίησε το proxy μόνο αν δεν μπορείς να συνδεθείς στο Signal από δεδομένα κινητής ή Wi-Fi.</string>
   <string name="preferences_share">Μοιράσου</string>
   <string name="preferences_save">Αποθήκευση</string>
   <string name="preferences_connecting_to_proxy">Συνδεόμαστε στο proxy…</string>
@@ -2649,7 +2647,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Μοιράσου</string>
   <string name="ShareActivity__send">Αποστολή</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Ο διαμοιρασμός σε πολλαπλές συνομιλίες υποστηρίζεται μόνο για μηνύματα Signal.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Αποτυχία αποστολής σε μερικούς χρήστες</string>

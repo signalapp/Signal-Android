@@ -318,6 +318,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Yettwasenqed</string>
   <string name="ConversationTitleView_you">Kečč.Kemm</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kra n yinermisen ur zmiren ara ad ilin deg yigrawen iqburen.</string>
   <!--CreateProfileActivity-->
@@ -472,10 +474,6 @@
     <item quantity="one">Aεeggal-a ad yezmir ara ad yernu ɣer yigrawen imaynuten, yerna ad yettwakkes seg ugraw:</item>
     <item quantity="other">Iεeggalen-a ad zmiren ara ad rnun ɣer yigrawen imaynuten, yerna ad ttwakksen seg ugraw:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">I unekcum ɣer tmahilin timaynutin am @mentions akked yinedbalen, leqqem agraw-a.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Mačči tura</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Leqqem agraw</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d n uεeggal ur yezmir ara ad yettwarnu i tikkelt-nniḍen ɣer ugraw amaynut. Tebɣiḍ ad t-ternuḍ tura?</item>
@@ -1725,6 +1723,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal yesra iɣewwaren n MMS i wakken ad d-isuffeɣ imidyaten d n yiznan ugraw s umahal n tnilwa. Ibenk-ik·im ur yettarra ara talɣut-a tella, ayagi tikwal d tidet ɣef yibenkan isekkṛen akked twila yesεan tilisa.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">I tuzna n umidyat akked yiznan n ugraw, sit ɣef \'IH\' syen ččar iɣewwaren yettusran. Iɣewwaren MMS i umahal-ik·im zemren s umata ad ttusidgen s unadi i \'i umahal-ik·im APN\'. Tesriḍ ad tgeḍ aya tikkelt kan.</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Isem (yettwasra)</string>
   <string name="CreateProfileActivity_last_name_optional">Isem (d afrayan)</string>
@@ -1987,8 +1986,6 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="preferences_data_and_storage__calls">Isawalen</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Seqdec drus n yisefka i yisawalen</string>
   <string name="preferences_data_and_storage__never">Werǧin</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi akked Uziraz</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Aziraz kan</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Aseqdec n drus n yisefka iseqεad isawalen deg yir izeḍwa</string>
   <string name="preferences_notifications__messages">Iznan</string>
   <string name="preferences_notifications__events">Tidyanin</string>
@@ -2013,7 +2010,6 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="preferences_off">Yensa</string>
   <string name="preferences_on">Yermed</string>
   <string name="preferences_proxy_address">Tansa n upṛusi</string>
-  <string name="preferences_only_use_a_proxy_if">Seqdec apṛuksi ticki kan ur tezmireḍ ara ad teqneḍ ɣer Signal s uziraz neɣ s Wi-Fi.</string>
   <string name="preferences_share">Bḍu</string>
   <string name="preferences_save">Sekles</string>
   <string name="preferences_connecting_to_proxy">Tuqqna ɣer upṛuksi…</string>
@@ -2599,7 +2595,6 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Bḍu</string>
   <string name="ShareActivity__send">Azen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">Beṭṭu ɣer waṭas n yidiwenniyen yettusefrak kan i yiznan n Signal.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Tuzna i kra n yiseqdacen ur teddi ara</string>

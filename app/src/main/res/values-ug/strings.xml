@@ -324,6 +324,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">دەلىللەندى</string>
   <string name="ConversationTitleView_you">سىز</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">بەزى ئالاقەداشلار كونا گۇرۇپپىدا بولالمايدۇ.</string>
   <!--CreateProfileActivity-->
@@ -479,10 +481,6 @@
     <item quantity="one">بۇ ئەزا «يېڭى گۇرۇپپا»غا كىرەلمەيدۇ، ھەمدە بۇ گۇرۇپپىدىن چىقىرىۋېتىلىدۇ:</item>
     <item quantity="other">بۇ ئەزالار «يېڭى گۇرۇپپا»غا كىرەلمەيدۇ، ھەمدە بۇ گۇرۇپپىدىن چىقىرىۋېتىلىدۇ:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">ئەگەر @ئاتاش ۋە باشقۇرغۇچى ئىقتىدارىنى ئىشلىتىش ئۈچۈن، مەزكۇر گۇرۇپپا دەرىجىسىنى ئۆستۈرۈڭ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">ھازىر ئەمەس</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">گۇرۇپپىنى يېڭىلاڭ</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">يېڭى گۇرۇپپىغا %1$d ئەزانى قايتىدىن قوشالمايدۇ. ئۇلارنى ھازىرلا قوشامسىز؟</item>
@@ -1391,6 +1389,7 @@
   <string name="ThreadRecord_you_marked_verified">سىزگە دەلىللەندى بەلگىسى قويۇلدى</string>
   <string name="ThreadRecord_you_marked_unverified">سىزگە دەلىللەنمىدى بەلگىسى قويۇلدى</string>
   <string name="ThreadRecord_message_could_not_be_processed">ئۇچۇرنى بىر تەرەپ قىلالمىدى</string>
+  <string name="ThreadRecord_delivery_issue">يەتكۈزۈش مەسىلىسى</string>
   <string name="ThreadRecord_message_request">ئۇچۇر ئىلتىماسى</string>
   <string name="ThreadRecord_photo">رەسىم</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1755,6 +1754,8 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">سىمسىز تېلېگراف سودىگىرىڭىزنىڭ تورى ئارقىلىق كۆپ ۋاسىتە ئۇچۇر ۋە گۇرۇپپا ئۇچۇرى يوللاشتا، Signal كۆپ ۋاسىتە ئۇچۇر تەڭشىكىنى زىيارەت قىلىشقا ئېھتىياجلىق. ئۈسكۈنىڭىزدىن بۇ ئۇچۇرلارغا ئېرىشكىلى بولمىدى، قۇلۇپلانغان ئۈسكۈنە ياكى چەكلىك سەپلىمىلىك ئۈسكۈنىلەردە مۇشۇنىڭغا ئوخشاش ئەھۋال مەۋجۇت.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">ۋاسىتە ۋە گۇرۇپپا ئۇچۇرى يوللاشتا، «جەزملە» نى چېكىپ زۆرۈر تەڭشەكلەرنى تاماملاش كېرەك. كۆپ ۋاسىتە ئۇچۇر تەڭشىكىنى تېلېگراف سودىگىرىڭىزنىڭ «تېلگراف سودىگەر APN» دىن تاپالايسىز. بۇ مەشغۇلاتنى بىرلا قېتىم قىلىسىز.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">يەتكۈزۈش مەسىلىسى</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">ئات (زۆرۈر)</string>
   <string name="CreateProfileActivity_last_name_optional">تەگئات (تاللاشچان)</string>
@@ -2031,8 +2032,6 @@
   <string name="preferences_data_and_storage__calls">چاقىرىشلار</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">چاقىرىقلار ئۈچۈن ئازراق مەلۇمات ئىشلىتىش</string>
   <string name="preferences_data_and_storage__never">ھەرگىز</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi ۋە يانفون تورى</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">پەقەتلا يانفون تورى</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">ئاز مەلۇمات ئىشلىتىش ناچار تور شارائىتىدىكى چاقىرىقنى ياخشىلايدۇ</string>
   <string name="preferences_notifications__messages">ئۇچۇرلار</string>
   <string name="preferences_notifications__events">ھادىسىلەر</string>
@@ -2057,7 +2056,6 @@
   <string name="preferences_off">تاقاق</string>
   <string name="preferences_on">ئاچ</string>
   <string name="preferences_proxy_address">ۋاكالەتچى ئادرېس</string>
-  <string name="preferences_only_use_a_proxy_if">پەقەت Wi-Fi  ياكى يانفون تورى بىلەن Signal غا ئۇلىنىش مۈمكىن بولمىغاندا، ۋاكالەتچى ئىشلىتىڭ.</string>
   <string name="preferences_share">ھەمبەھىر</string>
   <string name="preferences_save">ساقلاش</string>
   <string name="preferences_connecting_to_proxy">ۋاكالەتچىگە ئۇلىنىۋاتىدۇ…</string>
@@ -2742,7 +2740,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">ھەمبەھىرلە</string>
   <string name="ShareActivity__send">ئەۋەت</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s،</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">كۆپ سۆھبەتلەرگە ھەمبەھىرلەش پەقەت Signal ئۇچۇرلىرىنىلا قوللايدۇ. </string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">بەزى ئىشلەتكۈچىلەرگە يوللاش مەغلۇپ بولدى</string>

@@ -324,6 +324,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Sannreynt</string>
   <string name="ConversationTitleView_you">Þú</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Sumir tengiliðir geta ekki verið í eldri gerð hópa.</string>
   <!--CreateProfileActivity-->
@@ -478,10 +480,6 @@
     <item quantity="one">Þessi meðlimur getur ekki tekið þátt í nýju gerðinni af hópum og verður því fjarlægður úr hópnum:</item>
     <item quantity="other">Þessir meðlimir geta ekki tekið þátt í nýju gerðinni af hópum og verða því fjarlægðir úr hópnum:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Til að nýta eiginleika á borð við @mentions og hópstjóra skaltu uppfæra þennan hóp.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Ekki núna</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Uppfæra hóp</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">Ekki var hægt að bæta %1$d meðlimi í nýju gerðina af hópum. Viltu bæta honum við núna?</item>
@@ -1041,6 +1039,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Þú merktir öryggisnúmer þitt með %s sem sannreynt á öðru tæki</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Þú merktir öryggisnúmer þitt með %s sem ekki sannreynt</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Þú merktir öryggisnúmer þitt með %s sem ekki sannreynt á öðru tæki</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Skilaboð frá %s var ekki hægt að afhenda</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s hóf hópsímtal · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er í hópsímtalinu · %2$s</string>
@@ -1392,6 +1391,7 @@
   <string name="ThreadRecord_you_marked_verified">Þú merktir staðfest</string>
   <string name="ThreadRecord_you_marked_unverified">Þú merktir óstaðfest</string>
   <string name="ThreadRecord_message_could_not_be_processed">Ekki var hægt að meðhöndla skilaboð</string>
+  <string name="ThreadRecord_delivery_issue">Vandamál með afhendingu</string>
   <string name="ThreadRecord_message_request">Beiðni um skilaboð</string>
   <string name="ThreadRecord_photo">Mynd</string>
   <string name="ThreadRecord_gif">GIF-mynd</string>
@@ -1755,6 +1755,10 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal þarfnast stilliga fyrir MMS til að geta afhent myndefni og hópskilaboð í gegnum farsímakerfi þjónustuaðilans þíns. Tækið þitt veitir ekki þessar upplýsingar, sem kemur fyrir þegar um tæki læst við tiltekinn þjónustuaðila og aðrar skilyrtar uppsetningar er að ræða.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Til að senda myndefni og hópskilaboð, skaltu ýta á \'Í lagi\' og ljúka við umbeðnar stillingar. MMS-stillingarnar fyrir símaþjónustuna þína er venjulega hægt að finna með því að leita að \'nafn símaþjónustufyrirtækis APN\'. Þú þarft aðeins að gera þetta einu sinni.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Vandamál með afhendingu</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Ekki var hægt að afhenda til þín skilaboð, límmerki, viðbrögð eða leskvittun frá %s. Mögulega var reynt að senda þetta til þín beint eða í hópi.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Ekki var hægt að afhenda til þín skilaboð, límmerki, viðbrögð eða leskvittun frá %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Eiginnafn (nauðsynlegt)</string>
   <string name="CreateProfileActivity_last_name_optional">Kenninafn (eftirnafn - valfrjálst)</string>
@@ -2031,8 +2035,8 @@
   <string name="preferences_data_and_storage__calls">Símtöl</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Nota minna gagnamagn fyrir símtöl</string>
   <string name="preferences_data_and_storage__never">Aldrei</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi og farsímasamband</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Einungis farsímasamband</string> -->
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi og farsímaáskrift</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Einungis farsímaáskrift</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Að nota minna gagnamagn getur bætt símtöl á lélegum netkerfum</string>
   <string name="preferences_notifications__messages">Skilaboð</string>
   <string name="preferences_notifications__events">Atburðir</string>
@@ -2270,7 +2274,7 @@
   <string name="conversation_add_to_contacts__menu_add_to_contacts">Bæta í tengiliði</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">Listi yfir viðtakendur</string>
-  <string name="conversation_group_options__delivery">Heimsending</string>
+  <string name="conversation_group_options__delivery">Afhending</string>
   <string name="conversation_group_options__conversation">Samtal</string>
   <string name="conversation_group_options__broadcast">Útvörpun</string>
   <!--text_secure_normal-->
@@ -2745,7 +2749,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--ShareActivity-->
   <string name="ShareActivity__share">Deila</string>
   <string name="ShareActivity__send">Senda</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Að deila í mörg samtöl í einu er aðeins stutt fyrir Signal-skilaboð</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Mistókst að senda til sumra notenda</string>
@@ -2765,6 +2769,8 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ChatWallpaperFragment__reset">Endurstilla</string>
   <string name="ChatWallpaperFragment__clear">Hreinsa</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Forskoðun bakgrunnsmyndar</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Viltu taka yfir alla liti spjalla?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Viltu taka yfir allar bakgrunnsmyndir?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">Endurstilla sjálfgefna liti</string>
   <string name="ChatWallpaperFragment__reset_all_colors">Endurstilla alla liti</string>
   <string name="ChatWallpaperFragment__reset_default_wallpaper">Endurstilla sjálfgefna bakgrunnsmynd</string>
@@ -2949,6 +2955,10 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ChatColorSelectionFragment__duplicate">Tvítaka</string>
   <string name="ChatColorSelectionFragment__delete">Eyða</string>
   <string name="ChatColorSelectionFragment__delete_color">Eyða lit</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Þessi sérsniðni litur er notaður í %1$d spjalli. Viltu eyða honum í öllum spjallrásum?</item>
+    <item quantity="other">Þessi sérsniðni litur er notaður í %1$d spjallrásum. Viltu eyða honum í þeim öllum?</item>
+  </plurals>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Einlitt</string>
   <string name="CustomChatColorCreatorFragment__gradient">Litstigull</string>
@@ -2957,7 +2967,13 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Vista</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Breyta lit</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Þessi litur er notaður í %1$d spjalli. Viltu vista breytingar í öllum spjallrásum?</item>
+    <item quantity="other">Þessi litur er notaður í %1$d spjallrásum. Viltu vista breytingar í þeim öllum?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Veljari við efri brún</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Veljari við neðri brún</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Sérsníða viðbrögð</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Ýttu til að skipta út tákni</string>
@@ -2967,6 +2983,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Dragðu til að breyta stefnu litstigulsins</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Nýir litir spjalls</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Við bættum við fleiri möguleikum á að sýsla með liti í spjallrásum, sem gerir auðveldara að lesa spjall.</string>
   <string name="ChatColorsMegaphone__appearance">Útlit</string>
   <string name="ChatColorsMegaphone__not_now">Ekki núna</string>
   <!--KeyboardPagerFragment-->

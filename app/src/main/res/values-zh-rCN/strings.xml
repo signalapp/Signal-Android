@@ -313,6 +313,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">已验证</string>
   <string name="ConversationTitleView_you">您</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">部分联系人无法被置于旧版群组中。</string>
   <!--CreateProfileActivity-->
@@ -461,10 +463,6 @@
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="other">这些成员无法加入新版群组，所以其将被移出群组：</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">若要解锁@提醒和管理员的功能，请升级该群组。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">稍后再说</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">升级群组</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">无法转移%1$d位成员到新版群组，您现要再尝试添加其到新版群组吗？</item>
@@ -1685,6 +1683,7 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">为了通过电信运营商发送媒体和群组消息，Signal 需要访问彩信设置。无法从你的设备获取相关信息。对于锁定设备或限制性配置的设备，有时存在这种情况。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">如需发送媒体和群组消息，点击“确定”并完成所需的设置。通常可搜索“运营商 APN”，来找到相应的彩信设置。该操作只需进行一次。</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">名字（必需）</string>
   <string name="CreateProfileActivity_last_name_optional">姓氏（可选）</string>
@@ -1960,8 +1959,6 @@
   <string name="preferences_data_and_storage__calls">通话</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">通话使用更少数据</string>
   <string name="preferences_data_and_storage__never">永不</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">WiFi 和电话网络</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">仅电话网路</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">网络较差时，使用更少数据可能改善通话</string>
   <string name="preferences_notifications__messages">消息</string>
   <string name="preferences_notifications__events">事件</string>
@@ -1986,7 +1983,6 @@
   <string name="preferences_off">关</string>
   <string name="preferences_on">开</string>
   <string name="preferences_proxy_address">代理地址</string>
-  <string name="preferences_only_use_a_proxy_if">仅当无法通过手机网络或 Wi-Fi 连接 Signal 时，使用代理。</string>
   <string name="preferences_share">分享</string>
   <string name="preferences_save">保存</string>
   <string name="preferences_connecting_to_proxy">正在连接代理…</string>
@@ -2662,7 +2658,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">分享</string>
   <string name="ShareActivity__send">发送</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s，</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">分享至多个聊天仅支持 Signal 消息。</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">无法发送给某些用户</string>

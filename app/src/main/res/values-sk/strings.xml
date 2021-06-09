@@ -346,6 +346,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Overený</string>
   <string name="ConversationTitleView_you">Vy</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Niektoré kontakty nemôžu byť v zastaraných skupinách.</string>
   <!--CreateProfileActivity-->
@@ -512,10 +514,6 @@
     <item quantity="many">Títo členovia nedokážu vstupovať do Nových skupín a budú zo skupiny odstránení:</item>
     <item quantity="other">Títo členovia nedokážu vstupovať do Nových skupín a budú zo skupiny odstránení:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pre prístup k novým funkciám ako @spomenutia a administrátori modernizujte túto skupinu.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Teraz nie</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Modernizovať skupinu</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d člen nemohol byť znovu pridaný do Novej skupiny. Chcete ho pridať teraz?</item>
@@ -1143,6 +1141,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Bezpečnostné číslo s %s ste označili ako overené z iného zariadenia</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Bezpečnostné číslo s %s ste označili ako neoverené</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Bezpečnostné číslo s %s ste označili ako neoverené z iného zariadenia</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Správu od %s sa nepodarilo doručiť</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s zahájil(a) skupinový hovor · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s je v skupinovom hovore · %2$s</string>
@@ -1514,6 +1513,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_you_marked_verified">Označili ste ako overené</string>
   <string name="ThreadRecord_you_marked_unverified">Označili ste ako neoverené</string>
   <string name="ThreadRecord_message_could_not_be_processed">Správu sa nepodarilo spracovať</string>
+  <string name="ThreadRecord_delivery_issue">Problém s doručením</string>
   <string name="ThreadRecord_message_request">Žiadosť o správu</string>
   <string name="ThreadRecord_photo">Fotka</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1899,6 +1899,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal vyžaduje nastavenia MMS na doručenie médií a skupinových správ cez vášho poskytovateľa pripojenia. Vaše zariadenie neposkytuje tieto informácie, čo občas spôsobujú uzamknuté zariadenia alebo iné obmedzenia v nastaveniach.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pre odoslanie médií a skupinových správ stlačte OK, a dokončite príslušné nastavenia. MMS nastavenia vášho poskytovateľa sa väčšinov dajú nájsť vyhľadaním \"váš poskytovateľ APN\". Toto nastavenie musíte urobiť len raz.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Problém s doručením</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Správu, nálepku, reakciu, potvrdenie o prečítaní, alebo média od %s vám nebolo možné doručiť. Možno sa vám pokúsili poslať ho priamo, alebo v skupine.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Od %s vám nebolo možné doručiť správu, nálepku, reakciu alebo potvrdenie o prečítaní.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Meno (povinné)</string>
   <string name="CreateProfileActivity_last_name_optional">Priezvisko (povinné)</string>
@@ -2177,8 +2181,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_data_and_storage__calls">Volania</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Využívať menej dát na hovory</string>
   <string name="preferences_data_and_storage__never">Nikdy</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi a Mobilné siete</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Iba mobilné</string> -->
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi a mobilné dáta</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Iba mobilné dáta</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks</string>
   <string name="preferences_notifications__messages">Správy</string>
   <string name="preferences_notifications__events">Udalosti</string>
@@ -2203,7 +2207,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_off">Vypnuté</string>
   <string name="preferences_on">Zapnuté</string>
   <string name="preferences_proxy_address">Proxy adresa</string>
-  <string name="preferences_only_use_a_proxy_if">Server proxy používajte iba v prípade, že sa nemôžete pripojiť k Signal prostredníctvom mobilnej siete alebo siete Wi-Fi.</string>
+  <string name="preferences_only_use_a_proxy_if">Server proxy používajte iba v prípade, že sa nemôžete pripojiť k Signal cez mobilné dáta, alebo Wi-Fi.</string>
   <string name="preferences_share">Zdieľať</string>
   <string name="preferences_save">Uložiť</string>
   <string name="preferences_connecting_to_proxy">Pripája sa ku proxy…</string>
@@ -2906,7 +2910,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Zdieľať</string>
   <string name="ShareActivity__send">Poslať</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Zdieľanie do viacerých chatov je možné iba Signal správami.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Zlyhalo odoslanie niektorým používateľom</string>

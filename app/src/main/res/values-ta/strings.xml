@@ -313,6 +313,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">சரிபார்க்கப்பட்டது</string>
   <string name="ConversationTitleView_you">நீங்கள்</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">சில தொடர்புகள் பழைய மரபு குழுக்களில் இருக்க முடியாது.</string>
   <!--CreateProfileActivity-->
@@ -467,10 +469,6 @@
     <item quantity="one">இந்த உறுப்பினர் புதிய குழுவில் சேர்க்கப்படமாட்டார். அவர் குழுவிலிருந்து அகற்றப்படுவார்:</item>
     <item quantity="other">இந்த உறுப்பினர்கள் புதிய குழுவில் சேர்க்கப்பட மாட்டார்கள். அவர்கள் குழுவிலிருந்து அகற்றப்படுவார்கள்:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ குறிப்புகள் மற்றும் நிர்வாகிகள் போன்ற புதிய அம்சங்களை அணுக, இந்த குழுவை மேம்படுத்தவும்.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">இப்போது இல்லை</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">குழுவை மேம்படுத்து</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">புதிய குழுவில் %1$dஉறுப்பினரை மீண்டும் சேர்க்க முடியவில்லை. இப்போது அந்த உறுப்பினரை சேர்க்க விரும்புகிறீர்களா?</item>
@@ -1709,6 +1707,7 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">உங்கள் வயர்லெஸ் கேரியர் மூலம் மீடியா மற்றும் குழு செய்திகளை வழங்க Signal கு எம்எம்எஸ் அமைப்புகள் தேவை. உங்கள் சாதனத்தில் இந்த தகவல் கிடைக்கும்  இருப்பில் இருக்காது, இது பூட்டப்பட்ட சாதனங்கள், மற்றும் பிற கட்டுப்பாட்டு உள்ளமைவுகளுக்கு, அவ்வப்போது பொருந்தும்  உண்மை.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">மீடியா மற்றும் குழு செய்திகளை அனுப்ப, \'சரி\' என்பதைத் தட்டவும், கோரப்பட்ட அமைப்புகளை முடிக்கவும். \'உங்கள் கேரியர் APN\' ஐத் தேடுவதன் மூலம் உங்கள் கேரியருக்கான MMS அமைப்புகள் பொதுவாக அமைந்திருக்கும். நீங்கள் இதை ஒரு முறை மட்டுமே செய்ய வேண்டும்.</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">முதல் பெயர் (தேவை)</string>
   <string name="CreateProfileActivity_last_name_optional">குடும்பப் பெயர் (விரும்பினால்)</string>
@@ -1967,8 +1966,6 @@
   <string name="preferences_data_and_storage__calls">அழைப்புகள்</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">அழைப்புகளுக்கு குறைந்த தரவைப் பயன்படும்</string>
   <string name="preferences_data_and_storage__never">ஒருபோதுமில்லை</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">அருகலை மற்றும் அலைபேசி</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">அருகலை மட்டுமே</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">குறைந்த தரவைப் பயன்படுத்துவது மோசமான நெட்வொர்க்குகளில் அழைப்புகளை மேம்படுத்தலாம்</string>
   <string name="preferences_notifications__messages">செய்திகள்</string>
   <string name="preferences_notifications__events">நிகழ்வுகள்</string>
@@ -1993,7 +1990,6 @@
   <string name="preferences_off">அணை</string>
   <string name="preferences_on">இயக்கு</string>
   <string name="preferences_proxy_address">பதிலி முகவரி</string>
-  <string name="preferences_only_use_a_proxy_if">நீங்கள் கைபேசியிலோ வைஃபையிலோ Signal உடன் இணைய முடியவில்லை என்றால் மட்டும் ஒரு பதிலியைப் பயன்படுத்துங்கள்.</string>
   <string name="preferences_share">பகிர்</string>
   <string name="preferences_save">சேமி</string>
   <string name="preferences_connecting_to_proxy">பதிலியுடன் இணைகிறது…</string>
@@ -2484,7 +2480,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">பகிர்</string>
   <string name="ShareActivity__send">அனுப்புக</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
   <string name="ShareActivity__sharing_to_multiple_chats_is">பல உரையாடல்களிலும் பகிர்வது Signal செய்திகளில் மட்டுமே சாத்தியம்.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">சில பயனர்களுக்கு அனுப்புவதில் தோல்வி</string>

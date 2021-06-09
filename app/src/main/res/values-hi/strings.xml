@@ -312,6 +312,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">सत्यापित</string>
   <string name="ConversationTitleView_you">आप</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">कुछ संपर्क लेगेसी ग्रुप्स में नहीं हो सकते।</string>
   <!--CreateProfileActivity-->
@@ -466,9 +468,6 @@
     <item quantity="one">यह मेंबर नए ग्रुपस में शामिल होने के योग्य नहीं हैं, और इसे ग्रुप में से निकाल दिया जाएगा:</item>
     <item quantity="other">ये मेंबर नए ग्रुप्स में शामिल होने के योग्य नहीं हैं, और इन्हें ग्रुप में से निकाल दिया जाएगा:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">नए फ़ीचर्स जैसे कि @mentions और एडमिन तक पहुँच प्राप्त करने के लिए, इस ग्रुप को अपग्रेड करें।</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">अभी नहीं</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d मेंबर को नए ग्रुप में दोबारा शामिल नहीं किया जा सका। क्या आप उन्हें अब शामिल करना चाहते हैं?</item>
@@ -1688,6 +1687,7 @@
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal को आपके वायरलेस वाहक के माध्यम से मीडिया और समूह मेसेज को वितरित करने के लिए MMS सेटिंग्स की आवश्यकता होती है। आपका डिवाइस यह जानकारी उपलब्ध नहीं कराता है, जो कभी-कभी लॉक किए गए डिवाइस और अन्य प्रतिबंधित कॉन्फ़िगरेशन के लिए सच है।</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">मीडिया और समूह मेसेज भेजने के लिए, \'OK\' टैप करें और अनुरोधित सेटिंग्स को पूरा करें। आपके वाहक के लिए MMS सेटिंग्स आम तौर पर \'आपके वाहक APN\' की खोज करके स्थित हो सकती हैं। आपको केवल एक बार ऐसा करने की आवश्यकता होगी।</string>
+  <!--BadDecryptLearnMoreDialog-->
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">पहला नाम (आवश्यक)</string>
   <string name="CreateProfileActivity_last_name_optional">अंतिम नाम (वैकल्पिक)</string>
@@ -1938,8 +1938,6 @@
   <string name="preferences_data_and_storage__calls">कॉल</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">कॉल के लिए कम डेटा का उपयोग करें</string>
   <string name="preferences_data_and_storage__never">कभी नहीं</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">वाईफाई और सेलुलर</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">केवल सेलुलर</string> -->
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">कम डेटा का उपयोग करने से खराब नेटवर्क पर कॉल में सुधार हो सकता है</string>
   <string name="preferences_notifications__messages">मेसेज</string>
   <string name="preferences_notifications__events">आयोजन</string>

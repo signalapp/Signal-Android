@@ -346,6 +346,8 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Zweryfikowano</string>
   <string name="ConversationTitleView_you">Ty</string>
+  <!--ConversationTypingView-->
+  <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Niektóre kontakty nie mogą być w Starych grupach.</string>
   <!--CreateProfileActivity-->
@@ -512,10 +514,6 @@
     <item quantity="many">Ci członkowie nie mogą dołączyć do Nowej grupy i zostaną z niej usunięci:</item>
     <item quantity="other">Ci członkowie nie mogą dołączyć do Nowej grupy i zostaną z niej usunięci:</item>
   </plurals>
-  <!--GroupsV1MigrationInitiationReminder-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Zaktualizuj tę grupę, aby uzyskać dostęp do takich nowych funkcji jak @wzmianki i administratorzy.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_not_now">Nie teraz</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Ulepsz grupę</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d członek nie mógł zostać ponownie dodany do Nowej grupy. Czy chcesz go teraz dodać?</item>
@@ -1143,6 +1141,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Oznaczyłeś(aś) numer bezpieczeństwa dla %s jako zweryfikowany na innym urządzeniu</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Oznaczyłeś(aś) numer bezpieczeństwa dla %s jako niezweryfikowany</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Oznaczyłeś(aś) numer bezpieczeństwa dla %s jako niezweryfikowany na innym urządzeniu</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Nie udało się dostarczyć wiadomości od %s</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s rozpoczął(ęła) połączenie grupowe · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s uczestniczy w rozmowie · %2$s</string>
@@ -1507,6 +1506,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_you_marked_verified">Oznaczyłeś(aś) jako zweryfikowany</string>
   <string name="ThreadRecord_you_marked_unverified">Oznaczyłeś(aś) jako niezweryfikowany</string>
   <string name="ThreadRecord_message_could_not_be_processed">Wiadomość nie mogła zostać przetworzona</string>
+  <string name="ThreadRecord_delivery_issue">Problem z dostarczeniem wiadomości</string>
   <string name="ThreadRecord_message_request">Prośba o kontakt</string>
   <string name="ThreadRecord_photo">Zdjęcie</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1892,6 +1892,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal wymaga ustawień MMS w celu dostarczenia wiadomości multimedialnych oraz wiadomości grupowych za pośrednictwem Twojego operatora. Twoje urządzenie nie udostępnia tych informacji. Może to być spowodowane pewnymi restrykcyjnymi konfiguracyjnymi w telefonie.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Aby wysyłać wiadomości multimedialne i grupowe, naciśnij „OK” i zmień żądane ustawienia. Ustawienia MMS twojego operatora zwykle można odnaleźć wyszukując „APN mojego operatora”. Ta operacja musi być ukończona tylko raz.</string>
+  <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Problem z dostarczeniem wiadomości</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Nie udało się dostarczyć Ci wiadomości, naklejki, reakcji lub potwierdzenia przeczytania od %s. Ten kontakt mógł próbować przesłać Ci tę wiadomość, bezpośrednio lub w rozmowie grupowej.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Nie udało się dostarczyć Ci wiadomości, naklejki, reakcji lub potwierdzenia przeczytania od %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Imię (wymagane)</string>
   <string name="CreateProfileActivity_last_name_optional">Nazwisko (opcjonalne)</string>
@@ -2170,8 +2174,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_data_and_storage__calls">Połączenia</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Używaj mniej danych dla połączeń</string>
   <string name="preferences_data_and_storage__never">Nigdy</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi i sieć komórkowa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_data_and_storage__cellular_only">Tylko sieć komórkowa</string> -->
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi i sieć komórkowa</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Tylko sieć komórkowa</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Używanie mniejszej ilości danych może poprawić połączenie w słabych sieciach</string>
   <string name="preferences_notifications__messages">Wiadomości</string>
   <string name="preferences_notifications__events">Zdarzenia</string>
@@ -2899,7 +2903,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Udostępnij</string>
   <string name="ShareActivity__send">Wyślij</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareActivity__s_comma">%1$s,</string> -->
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Udostępnianie w wielu rozmowach jest obsługiwane tylko dla wiadomości Signal.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Nie udało się wysłać do niektórych użytkowników</string>
@@ -2975,7 +2979,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Hasło odzyskiwania</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Zobacz hasło odzyskiwania</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Podaj hasło odzyskiwania</string>
-  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Twoje konto zostanie automatycznie przywrócone przy ponownej instalacji Signal, jeśli potwierdzisz swój PIN Signal. Możesz też przywrócić swoje środki, używając hasła odzyskiwania, które jest Twoim, złożonym z %1$dsłów, unikalnym hasłem. Zapisz je i przechowuj w bezpiecznym miejscu.</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Twoje konto zostanie automatycznie przywrócone przy ponownej instalacji Signal, jeśli potwierdzisz swój PIN Signal. Możesz też przywrócić swoje środki, używając hasła odzyskiwania, które jest Twoim, złożonym z %1$d słów, unikalnym hasłem. Zapisz je i przechowuj w bezpiecznym miejscu.</string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Hasło odzyskiwania, to Twoje, mające %1$dsłów, unikalne hasło. Użyj go do przywrócenia swojego konta.</string>
   <string name="PaymentsRecoveryStartFragment__start">Rozpocznij</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Wpisz ręcznie</string>
