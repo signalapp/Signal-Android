@@ -324,6 +324,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   @Override
+  public void updateTimestamps() {
+    getActiveFooter(messageRecord).setMessageRecord(messageRecord, locale);
+  }
+
+  @Override
   protected void onDetachedFromWindow() {
     ConversationSwipeAnimationHelper.update(this, 0f, 1f);
     unbind();

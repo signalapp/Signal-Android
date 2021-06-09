@@ -52,6 +52,10 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
 
   void setEventListener(@Nullable EventListener listener);
 
+  default void updateTimestamps() {
+    // Intentionally Blank.
+  }
+
   interface EventListener {
     void onQuoteClicked(MmsMessageRecord messageRecord);
     void onLinkPreviewClicked(@NonNull LinkPreview linkPreview);

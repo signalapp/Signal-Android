@@ -48,12 +48,12 @@ import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
-import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -99,6 +99,8 @@ public class ConversationAdapter
   private static final int MESSAGE_TYPE_HEADER              = 5;
   private static final int MESSAGE_TYPE_FOOTER              = 6;
   private static final int MESSAGE_TYPE_PLACEHOLDER         = 7;
+
+  private static final int PAYLOAD_TIMESTAMP = 0;
 
   private static final long HEADER_ID = Long.MIN_VALUE;
   private static final long FOOTER_ID = Long.MIN_VALUE + 1;
@@ -244,6 +246,24 @@ public class ConversationAdapter
         return new HeaderFooterViewHolder(CachedInflater.from(parent.getContext()).inflate(R.layout.cursor_adapter_header_footer_view, parent, false));
       default:
         throw new IllegalStateException("Cannot create viewholder for type: " + viewType);
+    }
+  }
+
+  @Override public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
+    if (payloads.contains(PAYLOAD_TIMESTAMP)) {
+      switch (getItemViewType(position)) {
+        case MESSAGE_TYPE_INCOMING_TEXT:
+        case MESSAGE_TYPE_INCOMING_MULTIMEDIA:
+        case MESSAGE_TYPE_OUTGOING_TEXT:
+        case MESSAGE_TYPE_OUTGOING_MULTIMEDIA:
+        case MESSAGE_TYPE_UPDATE:
+          ConversationViewHolder conversationViewHolder = (ConversationViewHolder) holder;
+          conversationViewHolder.getBindable().updateTimestamps();
+        default:
+          return;
+      }
+    } else {
+      super.onBindViewHolder(holder, position, payloads);
     }
   }
 
@@ -638,6 +658,10 @@ public class ConversationAdapter
       this.inlineContent = conversationMessage;
       notifyDataSetChanged();
     }
+  }
+
+  public void updateTimestamps() {
+    notifyItemRangeChanged(0, getItemCount(), PAYLOAD_TIMESTAMP);
   }
 
   final static class ConversationViewHolder extends RecyclerView.ViewHolder implements GiphyMp4Playable, Colorizable {
