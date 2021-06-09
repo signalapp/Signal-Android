@@ -53,6 +53,7 @@ public class IdentityKeyUtil {
   public static final String ED25519_PUBLIC_KEY                          = "pref_ed25519_public_key";
   public static final String ED25519_SECRET_KEY                          = "pref_ed25519_secret_key";
   public static final String LOKI_SEED                                   = "loki_seed";
+  public static final String HAS_MIGRATED_KEY                            = "has_migrated_keys";
 
   public static boolean hasIdentityKey(Context context) {
     SharedPreferences preferences = context.getSharedPreferences(MASTER_SECRET_UTIL_PREFERENCES_NAME, 0);
@@ -63,8 +64,10 @@ public class IdentityKeyUtil {
             preferences.contains(IDENTITY_PRIVATE_KEY_PREF+ENCRYPTED_SUFFIX));
 
     // check if any keys are not migrated
-    if (hasIdentityKey) {
+    if (hasIdentityKey && !preferences.getBoolean(HAS_MIGRATED_KEY, false)) {
+      // this will retrieve and force upgrade if possible
       checkUpdate(context);
+      preferences.edit().putBoolean(HAS_MIGRATED_KEY, true).apply();
     }
 
     return hasIdentityKey;
