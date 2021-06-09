@@ -1974,6 +1974,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     cancelJoinRequest      = findViewById(R.id.conversation_cancel_request);
     joinGroupCallButton    = findViewById(R.id.conversation_group_call_join);
 
+    container.setIsBubble(isInBubble());
     container.addOnKeyboardShownListener(this);
     inputPanel.setListener(this);
     inputPanel.setMediaListener(this);

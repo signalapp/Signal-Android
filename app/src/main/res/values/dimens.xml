@@ -5,6 +5,7 @@
     <dimen name="default_custom_keyboard_size">220dp</dimen>
     <dimen name="min_custom_keyboard_size">110dp</dimen>
     <dimen name="min_custom_keyboard_top_margin_portrait">170dp</dimen>
+    <dimen name="min_custom_keyboard_top_margin_landscape_bubble">56dp</dimen>
     <dimen name="emoji_drawer_item_width">48dp</dimen>
     <dimen name="conversation_item_body_text_size">16sp</dimen>
     <dimen name="conversation_item_date_text_size">12sp</dimen>
