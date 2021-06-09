@@ -5,7 +5,6 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
-import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
 import androidx.core.view.isVisible
@@ -27,11 +26,15 @@ class VisibleMessageView : LinearLayout {
     private var previousTranslationX = 0.0f
     private val gestureHandler = Handler(Looper.getMainLooper())
     private var longPressCallback: Runnable? = null
+    private var onDownTimestamp = 0L
+    var onPress: (() -> Unit)? = null
+    var onSwipeToReply: (() -> Unit)? = null
+    var onLongPress: (() -> Unit)? = null
 
     companion object {
         const val swipeToReplyThreshold = 90.0f // dp
         const val longPressMovementTreshold = 10.0f // dp
-        const val longPressDurationThreshold = 250.0f // ms
+        const val longPressDurationThreshold = 250L // ms
     }
 
     // region Lifecycle
@@ -150,13 +153,11 @@ class VisibleMessageView : LinearLayout {
 
     private fun onDown(event: MotionEvent) {
         dx = x - event.rawX
-        val oldLongPressCallback = longPressCallback
-        if (oldLongPressCallback != null) {
-            gestureHandler.removeCallbacks(oldLongPressCallback)
-        }
-        val longPressCallback = Runnable { onLongPress() }
-        this.longPressCallback = longPressCallback
-        gestureHandler.postDelayed(longPressCallback, VisibleMessageView.longPressDurationThreshold)
+        longPressCallback?.let { gestureHandler.removeCallbacks(it) }
+        val newLongPressCallback = Runnable { onLongPress() }
+        this.longPressCallback = newLongPressCallback
+        gestureHandler.postDelayed(newLongPressCallback, VisibleMessageView.longPressDurationThreshold)
+        onDownTimestamp = Date().time
     }
 
     private fun onMove(event: MotionEvent) {
@@ -164,10 +165,7 @@ class VisibleMessageView : LinearLayout {
         if (abs(translationX) < VisibleMessageView.longPressMovementTreshold) {
             return
         } else {
-            val longPressCallback = longPressCallback
-            if (longPressCallback != null) {
-                gestureHandler.removeCallbacks(longPressCallback)
-            }
+            longPressCallback?.let { gestureHandler.removeCallbacks(it) }
         }
         // The idea here is to asymptotically approach a maximum drag distance
         val damping = 50.0f
@@ -186,7 +184,10 @@ class VisibleMessageView : LinearLayout {
 
     private fun onFinish(event: MotionEvent) {
         if (abs(translationX) > VisibleMessageView.swipeToReplyThreshold) {
-            Log.d("Test", "Reply")
+            onSwipeToReply?.invoke()
+        } else if ((Date().time - onDownTimestamp) < VisibleMessageView.longPressDurationThreshold) {
+            longPressCallback?.let { gestureHandler.removeCallbacks(it) }
+            onPress?.invoke()
         }
         animate()
             .translationX(0.0f)
@@ -196,7 +197,7 @@ class VisibleMessageView : LinearLayout {
 
     private fun onLongPress() {
         performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
-        Log.d("Test", "Long press")
+        onLongPress?.invoke()
     }
     // endregion
 }

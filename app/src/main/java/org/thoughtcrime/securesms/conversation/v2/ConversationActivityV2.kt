@@ -36,6 +36,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
             onItemPress = { message, position ->
                 handlePress(message, position)
             },
+            onItemSwipeToReply = { message, position ->
+                handleSwipeToReply(message, position)
+            },
             onItemLongPress = { message, position ->
                 handleLongPress(message, position)
             }
@@ -109,10 +112,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun reply(messagePosition: Int) {
-        Log.d("Loki", "Reply to message at position: $messagePosition.")
-    }
-
+    // `position` is the adapter position; not the visual position
     private fun handlePress(message: MessageRecord, position: Int) {
         val actionMode = this.actionMode
         if (actionMode != null) {
@@ -126,6 +126,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
         }
     }
 
+    // `position` is the adapter position; not the visual position
+    private fun handleSwipeToReply(message: MessageRecord, position: Int) {
+
+    }
+
+    // `position` is the adapter position; not the visual position
     private fun handleLongPress(message: MessageRecord, position: Int) {
         val actionMode = this.actionMode
         val actionModeCallback = ConversationActionModeCallback(adapter, threadID, this)
