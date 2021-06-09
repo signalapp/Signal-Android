@@ -97,7 +97,7 @@ public class ReviewCardDialogFragment extends FullScreenDialogFragment {
 
   private void initializeViewModel() throws BadGroupIdException {
     ReviewCardRepository        repository = getRepository();
-    ReviewCardViewModel.Factory factory    = new ReviewCardViewModel.Factory(repository, getGroupId() != null);
+    ReviewCardViewModel.Factory factory    = new ReviewCardViewModel.Factory(repository, getGroupId());
 
     viewModel = ViewModelProviders.of(this, factory).get(ReviewCardViewModel.class);
   }
