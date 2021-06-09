@@ -52,6 +52,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.SqlCipherDatabaseHook;
+import org.thoughtcrime.securesms.database.SqlCipherErrorHandler;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.UnknownStorageIdDatabase;
@@ -205,7 +206,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private final DatabaseSecret databaseSecret;
 
   public SQLCipherOpenHelper(@NonNull Context context, @NonNull DatabaseSecret databaseSecret) {
-    super(context, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook());
+    super(context, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook(), new SqlCipherErrorHandler(DATABASE_NAME));
 
     this.context        = context.getApplicationContext();
     this.databaseSecret = databaseSecret;

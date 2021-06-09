@@ -77,4 +77,20 @@ public final class CursorUtil {
       return Optional.fromNullable(requireBlob(cursor, column));
     }
   }
+
+  /**
+   * Reads each column as a string, and concatenates them together into a single string separated by |
+   */
+  public static String readRowAsString(@NonNull Cursor cursor) {
+    StringBuilder row = new StringBuilder();
+
+    for (int i = 0, len = cursor.getColumnCount(); i < len; i++) {
+      row.append(cursor.getString(i));
+      if (i < len - 1) {
+        row.append(" | ");
+      }
+    }
+
+    return row.toString();
+  }
 }
