@@ -57,11 +57,26 @@ public class IdentityKeyUtil {
   public static boolean hasIdentityKey(Context context) {
     SharedPreferences preferences = context.getSharedPreferences(MASTER_SECRET_UTIL_PREFERENCES_NAME, 0);
 
-    return
-            (preferences.contains(IDENTITY_PUBLIC_KEY_PREF) &&
-        preferences.contains(IDENTITY_PRIVATE_KEY_PREF))
+    boolean hasIdentityKey = (preferences.contains(IDENTITY_PUBLIC_KEY_PREF) &&
+            preferences.contains(IDENTITY_PRIVATE_KEY_PREF))
             || (preferences.contains(IDENTITY_PUBLIC_KEY_PREF+ENCRYPTED_SUFFIX) &&
-                    preferences.contains(IDENTITY_PRIVATE_KEY_PREF+ENCRYPTED_SUFFIX));
+            preferences.contains(IDENTITY_PRIVATE_KEY_PREF+ENCRYPTED_SUFFIX));
+
+    // check if any keys are not migrated
+    if (hasIdentityKey) {
+      checkUpdate(context);
+    }
+
+    return hasIdentityKey;
+  }
+
+  private static void checkUpdate(Context context) {
+    // retrieve will force upgrade if available
+    retrieve(context,IDENTITY_PUBLIC_KEY_PREF);
+    retrieve(context,IDENTITY_PRIVATE_KEY_PREF);
+    retrieve(context,ED25519_PUBLIC_KEY);
+    retrieve(context,ED25519_SECRET_KEY);
+    retrieve(context,LOKI_SEED);
   }
 
   public static @NonNull IdentityKey getIdentityKey(@NonNull Context context) {
