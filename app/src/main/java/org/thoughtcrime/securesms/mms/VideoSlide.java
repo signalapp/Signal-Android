@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 public class VideoSlide extends Slide {
@@ -54,7 +55,7 @@ public class VideoSlide extends Slide {
 
   @Override
   public boolean hasPlayOverlay() {
-    return true;
+    return !(isVideoGif() && GiphyMp4PlaybackPolicy.autoplay());
   }
 
   @Override

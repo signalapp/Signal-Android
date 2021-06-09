@@ -25,6 +25,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -61,7 +62,6 @@ public class ThumbnailView extends FrameLayout {
   private ImageView         blurhash;
   private View              playOverlay;
   private View              captionIcon;
-  private Stub<VideoPlayer> videoPlayer;
   private OnClickListener   parentClickListener;
 
   private final int[] dimens        = new int[2];
@@ -93,7 +93,6 @@ public class ThumbnailView extends FrameLayout {
     this.blurhash    = findViewById(R.id.thumbnail_blurhash);
     this.playOverlay = findViewById(R.id.play_overlay);
     this.captionIcon = findViewById(R.id.thumbnail_caption_icon);
-    this.videoPlayer = new Stub<>(findViewById(R.id.thumbnail_player_stub));
     super.setOnClickListener(new ThumbnailClickDispatcher());
 
     if (attrs != null) {

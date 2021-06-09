@@ -236,6 +236,7 @@ public final class MediaOverviewPageFragment extends Fragment
       intent.putExtra(MediaPreviewActivity.HIDE_ALL_MEDIA_EXTRA, true);
       intent.putExtra(MediaPreviewActivity.SHOW_THREAD_EXTRA, threadId == MediaDatabase.ALL_THREADS);
       intent.putExtra(MediaPreviewActivity.SORTING_EXTRA, sorting.ordinal());
+      intent.putExtra(MediaPreviewActivity.IS_VIDEO_GIF, attachment.isVideoGif());
 
       intent.setDataAndType(mediaRecord.getAttachment().getUri(), mediaRecord.getContentType());
       context.startActivity(intent);

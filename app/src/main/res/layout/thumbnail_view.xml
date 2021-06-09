@@ -24,15 +24,6 @@
         android:scaleType="fitCenter"
         android:contentDescription="@string/conversation_item__mms_image_description" />
 
-    <ViewStub
-        android:id="@+id/thumbnail_player_stub"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="false"
-        android:inflatedId="@id/thumbnail_player_stub"
-        android:layout="@layout/thumbnail_player_stub"
-        android:longClickable="false" />
-
     <ImageView
         android:id="@+id/thumbnail_caption_icon"
         android:layout_width="wrap_content"
