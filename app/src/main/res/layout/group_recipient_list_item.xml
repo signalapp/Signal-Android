@@ -39,6 +39,7 @@
         android:gravity="start|center_vertical"
         android:textAlignment="viewStart"
         android:textAppearance="@style/Signal.Text.Body"
+        android:maxLines="2"
         app:layout_constraintBottom_toTopOf="@+id/recipient_about"
         app:layout_constraintEnd_toStartOf="@+id/admin"
         app:layout_constraintHorizontal_bias="0"
