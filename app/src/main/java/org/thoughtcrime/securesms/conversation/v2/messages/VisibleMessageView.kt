@@ -164,7 +164,7 @@ class VisibleMessageView : LinearLayout {
             val spacing = context.resources.getDimensionPixelSize(R.dimen.small_spacing)
             val threshold = VisibleMessageView.swipeToReplyThreshold
             val iconSize = toPx(24, context.resources)
-            val bottomVOffset = paddingBottom + messageTimestampTextView.height + (messageContentView.height - iconSize) / 2
+            val bottomVOffset = paddingBottom + (messageContentView.height - iconSize) / 2
             swipeToReplyIconRect.left = messageContentContainer.right + spacing
             swipeToReplyIconRect.top = height - bottomVOffset - iconSize
             swipeToReplyIconRect.right = messageContentContainer.right + iconSize + spacing
