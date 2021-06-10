@@ -917,7 +917,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Je hebt de groep aangemaakt.</string>
   <string name="MessageRecord_group_updated">Groep aangepast.</string>
-  <string name="MessageRecord_invite_friends_to_this_group">Nodig vrienden en kennissen uit voor deze groep via een groepsverwijzing</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Je kunt vrienden en kennissen voor deze groep uitnodigen via een groepsverwijzing</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Je hebt %1$s aan de groep toegevoegd.</string>
   <string name="MessageRecord_s_added_s">%1$s heeft %2$s toegevoegd aan de groep.</string>
@@ -1211,7 +1211,7 @@
   <string name="WebRtcCallView__reconnecting">Opnieuw aan het verbinden …</string>
   <string name="WebRtcCallView__joining">Verbinden met groep aan het maken …</string>
   <string name="WebRtcCallView__disconnected">Verbinding verbroken</string>
-  <string name="WebRtcCallView__no_one_else_is_here">Er is niemand behalve jou in dit gesprek</string>
+  <string name="WebRtcCallView__no_one_else_is_here">Er is niemand behalve jij in dit gesprek</string>
   <string name="WebRtcCallView__s_is_in_this_call">Gesprek met %1$s</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">Gesprek met %1$s en %2$s</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s laat zijn of haar scherm zien</string>
@@ -1771,7 +1771,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="CreateProfileActivity__username">Gebruikersnaam</string>
   <string name="CreateProfileActivity__create_a_username">Gebruikersnaam aanmaken</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Zelf ingestelde mms-groepsnamen en groepsafbeeldingen zullen alleen zichtbaar zijn voor jou.</string>
-  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">De groepsnaam, -afbeelding en -omschrijving zijn zichtbaar voor alle leden van deze groep, voor alle personen die zijn uitgenodigd om lid te worden en voor alle personen wie een werkende groepsverwijzing hebben, zelfs als ze nog niet hebben verzocht om lid te worden.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">De groepsnaam, -afbeelding en -omschrijving zijn zichtbaar voor alle leden van deze groep, voor alle personen die zijn uitgenodigd om lid te worden en voor alle personen die een werkende groepsverwijzing hebben, zelfs als ze nog niet hebben verzocht om lid te worden.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Over mij</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Schijf een paar woorden over jezelf …</string>
@@ -2931,7 +2931,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ExpireTimerSettingsFragment__1_hour">1 uur</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 minuten</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 seconden</string>
-  <string name="ExpireTimerSettingsFragment__custom_time">Zelf gekozen tijdspanne</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Zelfgekozen tijdspanne</string>
   <string name="ExpireTimerSettingsFragment__set">Instellen</string>
   <string name="ExpireTimerSettingsFragment__save">Opslaan</string>
   <string name="CustomExpireTimerSelectorView__seconds">seconden</string>

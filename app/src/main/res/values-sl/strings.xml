@@ -1138,6 +1138,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Varnostno število z uporabnikom/co %s ste potrdili na drugi napravi</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Varnostno število z uporabnikom/co %s ste označili kot nepotrjeno</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Varnostno število z uporabnikom/co %s ste na drugi napravi označili kot nepotrjeno</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Sporočilo uporabnika/ce %s ni moglo biti dostavljeno</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Uporabnik/ca %1$s je začel/a skupinski klic. · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Uporabnik/ca %1$s je v skupinskem klicu. · %2$s</string>
@@ -1889,6 +1890,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Za pošiljanje večpredstavnostnih in skupinskih sporočil tapnite \'OK\' in vnesite potrebne podatke. Nastavitve MMS za vašega operaterja lahko najverjetneje najdete z iskanjem po spletu. Podatke morate vnesti samo enkrat.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Problem pri dostavi</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Sporočilo, nalepka, reakcija ali obvestilo o prebranem sporočilu uporabnika/ce %s. vam niso mogli biti dostavljeni. Lahko so bili poslani osebno ali prek skupine.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Sporočilo, nalepka, reakcija ali obvestilo o prebranem sporočilu uporabnika/ce %s vam niso mogli biti dostavljeni.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Ime (zahtevano)</string>
   <string name="CreateProfileActivity_last_name_optional">Priimek (neobvezno)</string>
@@ -2167,6 +2170,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_data_and_storage__calls">Klici</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Porabi manj podatkov za klice</string>
   <string name="preferences_data_and_storage__never">Nikoli</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi in mobilni podatki</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Samo mobilni podatki</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Poraba manj podatkov pri klicih lahko izboljša zanesljivost klicov v slabih omrežjih</string>
   <string name="preferences_notifications__messages">Sporočila</string>
   <string name="preferences_notifications__events">Dogodki</string>
@@ -2191,6 +2196,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_off">Izklopljena</string>
   <string name="preferences_on">Vklopljena</string>
   <string name="preferences_proxy_address">Naslov proksi</string>
+  <string name="preferences_only_use_a_proxy_if">Proksi uporabite samo, če se ne morete povezati na Signal preko mobilnega omrežja ali Wi-Fija.</string>
   <string name="preferences_share">Deli</string>
   <string name="preferences_save">Shrani</string>
   <string name="preferences_connecting_to_proxy">Povezovanje s proksijem …</string>
@@ -2813,6 +2819,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--ShareActivity-->
   <string name="ShareActivity__share">Deli</string>
   <string name="ShareActivity__send">Pošlji</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Deljenje med večimi pogovori je možno samo za sporočila Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Pošiljanje nekaterim uporabnikom/cam ni uspelo</string>

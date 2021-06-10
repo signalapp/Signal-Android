@@ -210,7 +210,7 @@
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Você não pode enviar as mensagens para este grupo porque não é mais um membro.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Não há nenhum aplicativo disponível no seu dispositivo para abrir este link.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Seu pedido para participar foi enviado ao administrador do grupo. Você será notificado quando a decisão for tomada.</string>
-  <string name="ConversationActivity_cancel_request">Cancelar Pedido</string>
+  <string name="ConversationActivity_cancel_request">Cancelar pedido</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensagens de áudio, permita ao Signal acesso ao seu microfone.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">O Signal precisa da permissão Microfone para enviar mensagens de áudio, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\".</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">O Signal precisa das permissões Microfone e Câmera para chamar %s, mas elas foram permanentemente negadas. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\" e \"Câmera\".</string>
@@ -600,7 +600,7 @@
     <item quantity="other">Este grupo não pode ser criado porque %1$d membros estão usando versões desatualizadas do Signal. Você deverá removê-los antes de criar o grupo.</item>
   </plurals>
   <!--ManageGroupActivity-->
-  <string name="ManageGroupActivity_member_requests_and_invites">Pedidos de membros &amp; convites</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Pedidos de membros e convites</string>
   <string name="ManageGroupActivity_add_members">Adicionar membros</string>
   <string name="ManageGroupActivity_edit_group_info">Editar informações do grupo</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Quem pode adicionar novos membros?</string>
@@ -612,7 +612,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificações</string>
   <string name="ManageGroupActivity_custom_notifications">Personalizar notificações</string>
   <string name="ManageGroupActivity_mentions">Menções</string>
-  <string name="ManageGroupActivity_chat_color_and_wallpaper">Cor e papel de parede da conversa</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Cor e papel de parede do grupo</string>
   <string name="ManageGroupActivity_until_s">Até %1$s</string>
   <string name="ManageGroupActivity_always">Sempre</string>
   <string name="ManageGroupActivity_off">Desligado</string>
@@ -657,7 +657,7 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Falha ao salvar foto de perfil</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Adicionar aos contatos do sistema</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Esta pessoa está em seus contatos</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Informações do contato</string>
   <string name="ManageRecipientActivity_disappearing_messages">Mensagens efêmeras</string>
   <string name="ManageRecipientActivity_chat_color">Cor da conversa</string>
   <string name="ManageRecipientActivity_chat_wallpaper">Papel de parede da conversa</string>
@@ -692,14 +692,14 @@
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Usar notificações personalizadas</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Som das notificações</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibrar</string>
-  <string name="CustomNotificationsDialogFragment__call_settings">Configurações de chamada</string>
+  <string name="CustomNotificationsDialogFragment__call_settings">Configurações de chamadas</string>
   <string name="CustomNotificationsDialogFragment__ringtone">Toque</string>
   <string name="CustomNotificationsDialogFragment__enabled">Habilitada</string>
   <string name="CustomNotificationsDialogFragment__disabled">Desabilitada</string>
   <string name="CustomNotificationsDialogFragment__default">Padrão</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Link do grupo compartilhável</string>
-  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Gerenciar &amp; compartilhar</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Gerenciar e compartilhar</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Link do grupo</string>
   <string name="ShareableGroupLinkDialogFragment__share">Compartilhar</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Redefinir o link</string>
@@ -1226,7 +1226,7 @@
   <string name="CallParticipantView__s_is_blocked">%1$s está bloqueado</string>
   <string name="CallParticipantView__more_info">Detalhes</string>
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Você não receberá o áudio ou o vídeo dessa pessoa, e ela não receberá os seus.</string>
-  <string name="CallParticipantView__cant_receive_audio_video_from_s">Não é possível receber áudio &amp; vídeo de %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Não é possível receber áudio e vídeo de %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Não é possível receber áudio e vídeo de %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Isso pode acontecer porque: ou essa pessoa não verificou a alteração do seu número de segurança, ou há um problema com o dispositivo dela, ou ela bloqueou você.</string>
   <!--CallToastPopupWindow-->
@@ -2037,7 +2037,7 @@
   <string name="preferences_data_and_storage__use_less_data_for_calls">Usar menos dados em chamadas</string>
   <string name="preferences_data_and_storage__never">Nunca</string>
   <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi e dados móveis</string>
-  <string name="preferences_data_and_storage__mobile_data_only">Apenas dados móveis</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Somente por dados móveis</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Usar menos dados pode melhorar as chamadas em redes ruins</string>
   <string name="preferences_notifications__messages">Mensagens</string>
   <string name="preferences_notifications__events">Eventos</string>
@@ -2745,40 +2745,40 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Papel de parede da conversa</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Cor da conversa</string>
-  <string name="ChatWallpaperFragment__reset_chat_colors">Redefinir as cores da conversa</string>
-  <string name="ChatWallpaperFragment__reset_chat_color">Redefinir a cor da conversa</string>
-  <string name="ChatWallpaperFragment__reset_chat_color_question">Redefinir a cor da conversa?</string>
-  <string name="ChatWallpaperFragment__set_wallpaper">Definir papel de parede</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Remover as cores das conversas</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Remover a cor da conversa</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Remover a cor dessa conversa?</string>
+  <string name="ChatWallpaperFragment__set_wallpaper">Escolher o papel de parede</string>
   <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Escurecer o papel de parede no modo escuro</string>
   <string name="ChatWallpaperFragment__contact_name">Nome do contato</string>
-  <string name="ChatWallpaperFragment__reset">Reiniciar</string>
+  <string name="ChatWallpaperFragment__reset">Remover</string>
   <string name="ChatWallpaperFragment__clear">Limpar</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Visualização do papel de parede</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Deseja substituir as cores de todas as conversas?</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Deseja substituir todos os papéis de parede?</string>
-  <string name="ChatWallpaperFragment__reset_default_colors">Redefinir cores originais</string>
-  <string name="ChatWallpaperFragment__reset_all_colors">Redefinir todas as cores</string>
-  <string name="ChatWallpaperFragment__reset_default_wallpaper">Redefinir o papel de parede padrão</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Redefinir todos os papéis de parede</string>
-  <string name="ChatWallpaperFragment__reset_wallpapers">Redefinir os papéis de parede</string>
-  <string name="ChatWallpaperFragment__reset_wallpaper">Redefinir o papel de parede</string>
-  <string name="ChatWallpaperFragment__reset_wallpaper_question">Redefinir o papel de parede?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Deseja redefinir as cores de todas as conversas?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Deseja remover todos os papéis de parede?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Redefinir a cor padrão</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Redefinir a cor padrão e personalizadas</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Remover o papel de parede padrão</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Remover todos os papéis de parede</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Remover os papéis de parede</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Remover o papel de parede</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Remover o papel de parede?</string>
   <!--ChatWallpaperSelectionFragment-->
-  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Escolher foto</string>
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Escolher uma foto</string>
   <string name="ChatWallpaperSelectionFragment__presets">Pré-definidos</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Pré-visualização</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Definir papel de parede</string>
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Deslize para ver mais papéis de parede</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Definir papel de parede para todas as conversas</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Definir papel de parede para %1$s</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Definir esse papel de parede para todas as conversas</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Definir esse papel de parede para a conversa com %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">A visualização da sua galeria requer a permissão de armazenamento.</string>
   <!--WallpaperImageSelectionActivity-->
-  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Escolher imagem do papel de parede</string>
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Escolher foto para o papel de parede</string>
   <!--WallpaperCropActivity-->
-  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pince com os dedos para aproximar ou afastar, arraste para ajustar.</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Definir papel de parede para todas as conversas.</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_s">Definir papel de parede para %s.</string>
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Aproxime, afaste ou gire a imagem com dois dedos, e arraste-a com um dedo.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Definir esse papel de parede para todas as conversas.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Definir esse papel de parede para a conversa com %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Erro ao definir o papel de parede.</string>
   <string name="WallpaperCropActivity__blur_photo">Borrar foto</string>
   <!--InfoCard-->
@@ -2924,7 +2924,7 @@
   <string name="HelpSettingsFragment__contact_us">Entre em contato</string>
   <string name="HelpSettingsFragment__version">Versão</string>
   <string name="HelpSettingsFragment__debug_log">Registro de depuração </string>
-  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termos &amp; Política de Privacidade</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Termos e Política de Privacidade</string>
   <string name="HelpFragment__copyright_signal_messenger">Direitos autorais Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licenciado nos termos da GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
@@ -2936,10 +2936,10 @@
   <string name="ChatColorSelectionFragment__edit">Editar</string>
   <string name="ChatColorSelectionFragment__duplicate">Duplicar</string>
   <string name="ChatColorSelectionFragment__delete">Excluir</string>
-  <string name="ChatColorSelectionFragment__delete_color">Apagar cor</string>
+  <string name="ChatColorSelectionFragment__delete_color">Remover cor</string>
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-    <item quantity="one">Essa cor personalizada é usada em %1$d conversa. Deseja apagá-la da conversa?</item>
-    <item quantity="other">Essa cor personalizada é usada em %1$d conversas. Deseja apagá-la de todas as conversas?</item>
+    <item quantity="one">Essa cor personalizada é usada em %1$d conversa. Deseja removê-la da conversa?</item>
+    <item quantity="other">Essa cor personalizada é usada em %1$d conversas. Deseja removê-la de todas as conversas?</item>
   </plurals>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Sólida</string>

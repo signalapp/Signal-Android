@@ -987,6 +987,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s に対する安全番号を他の端末で検証済みにしました</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s に対する安全番号を未検証にしました</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s に対する安全番号を他の端末で未検証にしました</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s からのメッセージを配信できませんでした</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s がグループ通話を開始しました · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s はグループ通話中です · %2$s</string>
@@ -1674,6 +1675,8 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">メディアやグループメッセージを送信するには「OK」をタップして設定を完了してください。MMSの設定は一般的には「アクセスポイント名」を探すことで見つかります。これは1度だけ行う必要があります。</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">配信エラー</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%s からのメッセージ、ステッカー、リアクションまたは既読通知を、あなたに配信できませんでした。直接またはグループで、送信しようとしているかもしれません。</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%s からのメッセージ、ステッカー、リアクションまたは既読通知を、あなたに配信できませんでした。</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">名 (必須)</string>
   <string name="CreateProfileActivity_last_name_optional">姓 (任意)</string>
@@ -1949,6 +1952,8 @@
   <string name="preferences_data_and_storage__calls">通話</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">通話でのデータ通信量の抑制</string>
   <string name="preferences_data_and_storage__never">なし</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fiとモバイルデータ</string>
+  <string name="preferences_data_and_storage__mobile_data_only">モバイルデータのみ</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">データ通信量を抑えて低品質なネットワーク上での通話を改善します</string>
   <string name="preferences_notifications__messages">メッセージ</string>
   <string name="preferences_notifications__events">イベント</string>
@@ -1973,6 +1978,7 @@
   <string name="preferences_off">オフ</string>
   <string name="preferences_on">オン</string>
   <string name="preferences_proxy_address">プロキシアドレス</string>
+  <string name="preferences_only_use_a_proxy_if">Wi-FiやモバイルデータでSignalに接続できない場合のみ、プロキシを使用してください。</string>
   <string name="preferences_share">共有</string>
   <string name="preferences_save">保存</string>
   <string name="preferences_connecting_to_proxy">プロキシに接続しています…</string>
@@ -2434,8 +2440,8 @@
   <string name="DeviceTransferSetup__location_permission">位置情報へのアクセス許可</string>
   <string name="DeviceTransferSetup__location_services">位置情報サービス</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi Direct画面で、記憶されているグループをすべて削除し、招待されたり接続されている端末のリンクをすべて解除してください。</string>
-  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct画面</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Wi-Fi Direct画面で、記憶されているグループをすべて削除し、招待されたり接続されている端末のリンクをすべて解除してください。</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Wi-Fi Direct画面</string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">両方の端末でWi-Fiのオフ、オンを試してください。</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">両方の端末が移行モードであることを確認してください。</string>
   <string name="DeviceTransferSetup__go_to_support_page">サポートページへ</string>
@@ -2595,6 +2601,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">共有する</string>
   <string name="ShareActivity__send">送信する</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">複数チャットの共有は、Signalメッセージでのみサポートしています。</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">数名のユーザーへの送信に失敗しました</string>

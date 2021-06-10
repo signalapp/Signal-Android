@@ -233,6 +233,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">더 많은 옵션은 \'그룹 설정\'에서 가능합니다.</string>
   <string name="ConversationActivity_join">참가</string>
   <string name="ConversationActivity_full">최대한도 도달</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">스팸으로 보고하고 차단하기</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">읽지 않은 메시지 %d개</item>
@@ -596,6 +597,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">그룹을 업그레이드하세요.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">안전하지 않은 MMS 그룹입니다. 비공개로 채팅하려면 연락처를 Signal에 초대하세요.</string>
   <string name="ManageGroupActivity_invite_now">지금 초대하기</string>
+  <string name="ManageGroupActivity_add_group_description">그룹 설명 추가하기…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">멘션 알림</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">알림을 끈 대화에서 언급되면 알림을 받으시겠습니까?</string>
@@ -915,6 +917,7 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s 님이 그룹 이름을 \'%2$s\'(으)로 변경했습니다.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">그룹 이름이 \"%1$s\"로 바뀌었습니다.</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">그룹 설명을 변경했습니다.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">그룹 아바타를 변경하였습니다.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s가 그룹 아바타를 변경하였습니다.</string>
@@ -1305,6 +1308,7 @@
   <string name="ThreadRecord_you_marked_verified">인증됨으로 표시했습니다.</string>
   <string name="ThreadRecord_you_marked_unverified">인증되지 않음으로 표시했습니다.</string>
   <string name="ThreadRecord_message_could_not_be_processed">메시지를 처리할 수 없음</string>
+  <string name="ThreadRecord_delivery_issue">이슈 전송하기</string>
   <string name="ThreadRecord_message_request">메시지 요청</string>
   <string name="ThreadRecord_photo">사진</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1666,6 +1670,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group">그룹 편집</string>
   <string name="EditProfileFragment__group_name">그룹 이름</string>
+  <string name="EditProfileFragment__group_description">그룹 설명</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">내 이름</string>
   <string name="EditProfileNameFragment_first_name">이름</string>
@@ -2424,6 +2429,9 @@
   <string name="ChatWallpaperFragment__clear">제거</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">배경 미리보기</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">모든 배경 초기화하기</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">배경들을 초기화</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">배경 초기화</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">배경을 초기화할까요?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">사진에서 선택하기</string>
   <string name="ChatWallpaperSelectionFragment__presets">프리셋</string>
@@ -2448,6 +2456,7 @@
   <string name="payment_info_card_update_pin">번호 업데이트</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">복구 코드를 입력하기</string>
   <string name="PaymentsRecoveryStartFragment__start">시작</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">다음</string>
@@ -2455,27 +2464,44 @@
   <string name="PaymentsRecoveryPhraseFragment__next">다음</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">수정</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">이전</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">나의 복구 코드</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">클립보드에 복사할까요?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">복사</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">복구 코드 확인하기</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">단어 %1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">확인</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">복구 코드를 입력하기</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">%1$d를 입력하세요.</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">단어 %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">다음</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">유효하지 않은 단어</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">클립보드가 삭제되었습니다.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">보기</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s이 당신에게 %2$s을 보냈습니다.</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">메시지 보내기</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__about_message_requests">메시지 요청에 대해</string>
   <string name="GroupsInCommonMessageRequest__okay">확인</string>
   <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">그룹 설명</string>
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">기본</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">데이터를 덜 쓰며 빠르게</string>
   <string name="QualitySelectorBottomSheetDialog__high">높음</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">데이터를 더 쓰며 느리게</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">사진 품질</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">친구 초대하기</string>
   <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">계정</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">키보드</string>
   <string name="ChatsSettingsFragment__enter_key_sends">엔터 키로 메시지 보내기</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">기본 SMS 앱으로 사용</string>
@@ -2486,20 +2512,27 @@
   <string name="PrivacySettingsFragment__blocked">차단함</string>
   <string name="PrivacySettingsFragment__messaging">메시징</string>
   <string name="PrivacySettingsFragment__disappearing_messages">사라지는 메시지</string>
+  <string name="PrivacySettingsFragment__app_security">애플리케이션 보안</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">최근 사용 목록/개요 및 앱 내 스크린샷 차단</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">상태 아이콘 표시하기</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__off">꺼짐</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4주</string>
   <string name="ExpireTimerSettingsFragment__1_week">1주</string>
   <string name="ExpireTimerSettingsFragment__1_day">1일</string>
   <string name="ExpireTimerSettingsFragment__8_hours">8시간</string>
   <string name="ExpireTimerSettingsFragment__1_hour">1시간</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5분</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30초</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">지역 시간</string>
   <string name="ExpireTimerSettingsFragment__set">설정</string>
   <string name="ExpireTimerSettingsFragment__save">저장</string>
+  <string name="CustomExpireTimerSelectorView__seconds">초</string>
   <string name="CustomExpireTimerSelectorView__minutes">분</string>
   <string name="CustomExpireTimerSelectorView__hours">시간</string>
+  <string name="CustomExpireTimerSelectorView__days">일</string>
+  <string name="CustomExpireTimerSelectorView__weeks">주</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">문의하기</string>
   <string name="HelpSettingsFragment__version">버전</string>
@@ -2508,10 +2541,17 @@
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">전화</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">자동</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">사용자 지정 색상 사용하기</string>
   <string name="ChatColorSelectionFragment__chat_color">대화창 색</string>
   <string name="ChatColorSelectionFragment__edit">수정</string>
+  <string name="ChatColorSelectionFragment__duplicate">복사하기</string>
   <string name="ChatColorSelectionFragment__delete">삭제</string>
+  <string name="ChatColorSelectionFragment__delete_color">색상 삭제하기</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__gradient">그라디언트</string>
+  <string name="CustomChatColorCreatorFragment__hue">색상</string>
+  <string name="CustomChatColorCreatorFragment__saturation">채도</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">저장</string>
   <!--ChatColorGradientTool-->
@@ -2519,11 +2559,20 @@
   <string name="EditReactionsFragment__reset">초기화</string>
   <string name="EditReactionsFragment_save">저장</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">새로운 대화창 색</string>
   <string name="ChatColorsMegaphone__appearance">모양</string>
   <string name="ChatColorsMegaphone__not_now">나중에</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">이모지</string>
   <string name="KeyboardPagerFragment_stickers">스티커</string>
+  <string name="KeyboardPagerFragment_gifs">GIF</string>
+  <string name="KeyboardPagerFragment_search_emoji">이모지 검색</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">검색창 지우기</string>
+  <string name="KeyboardPagerFragment_search_giphy">GIPHY 검색</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">스티커 검색</string>
+  <string name="StickerSearchDialogFragment_no_results_found">결과 없음</string>
+  <string name="EmojiSearchFragment__no_results_found">결과 없음</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">알 수 없는 벨소리</string>
   <!--EOF-->
 </resources>
