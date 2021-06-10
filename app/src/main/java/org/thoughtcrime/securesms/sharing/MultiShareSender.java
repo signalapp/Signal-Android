@@ -10,6 +10,7 @@ import androidx.core.util.Consumer;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
@@ -92,6 +93,10 @@ public final class MultiShareSender {
         sendTextMessage(context, multiShareArgs, recipient, shareContactAndThread.getThreadId() ,forceSms, expiresIn, subscriptionId);
         results.add(new MultiShareSendResult(shareContactAndThread, MultiShareSendResult.Type.SUCCESS));
       }
+
+      // XXX We must do this to avoid sending out messages to the same recipient with the same
+      //     sentTimestamp. If we do this, they'll be considered dupes by the receiver.
+      ThreadUtil.sleep(5);
     }
 
     return new MultiShareSendResultCollection(results);
