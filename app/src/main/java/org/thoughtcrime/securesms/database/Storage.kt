@@ -428,6 +428,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiAPIDatabase(context).removeAllClosedGroupEncryptionKeyPairs(groupPublicKey)
     }
 
+    override fun updateFormationTimestamp(groupID: String, formationTimestamp: Long) {
+        DatabaseFactory.getGroupDatabase(context).updateFormationTimestamp(groupID, formationTimestamp)
+    }
+
     override fun getAllV2OpenGroups(): Map<Long, OpenGroupV2> {
         return DatabaseFactory.getLokiThreadDatabase(context).getAllV2OpenGroups()
     }
