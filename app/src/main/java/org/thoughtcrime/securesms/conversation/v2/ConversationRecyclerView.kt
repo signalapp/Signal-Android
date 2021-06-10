@@ -5,14 +5,19 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.VelocityTracker
 import androidx.recyclerview.widget.RecyclerView
+import org.thoughtcrime.securesms.loki.utilities.disableClipping
 import kotlin.math.abs
 
 class ConversationRecyclerView : RecyclerView {
     private var velocityTracker: VelocityTracker? = null
 
-    constructor(context: Context) : super(context)
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context) : super(context) { initialize() }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize() }
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
+
+    private fun initialize() {
+        disableClipping()
+    }
 
     override fun onInterceptTouchEvent(e: MotionEvent): Boolean {
         return false

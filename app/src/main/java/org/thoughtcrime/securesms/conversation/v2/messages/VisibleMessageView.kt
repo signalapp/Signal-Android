@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
+import android.graphics.Region
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Handler
@@ -12,6 +13,7 @@ import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.withClip
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_visible_message.view.*
 import network.loki.messenger.R
