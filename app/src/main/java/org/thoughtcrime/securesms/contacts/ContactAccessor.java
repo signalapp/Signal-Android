@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -177,41 +178,6 @@ public class ContactAccessor {
     }
 
     return contactData;
-  }
-
-  public List<String> getNumbersForThreadSearchFilter(Context context, String constraint) {
-    LinkedList<String> numberList = new LinkedList<>();
-
-    try (Cursor cursor = DatabaseFactory.getRecipientDatabase(context).queryAllContacts(constraint)) {
-      while (cursor != null && cursor.moveToNext()) {
-        String phone = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.PHONE));
-        String email = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.EMAIL));
-
-        numberList.add(Util.getFirstNonEmpty(phone, email));
-      }
-    }
-
-    GroupDatabase.Reader reader = null;
-    GroupRecord record;
-
-    try {
-      reader = DatabaseFactory.getGroupDatabase(context).getGroupsFilteredByTitle(constraint, true, false);
-
-      while ((record = reader.getNext()) != null) {
-        numberList.add(record.getId().toString());
-      }
-    } finally {
-      if (reader != null)
-        reader.close();
-    }
-
-    if (context.getString(R.string.note_to_self).toLowerCase().contains(constraint.toLowerCase()) &&
-        !numberList.contains(TextSecurePreferences.getLocalNumber(context)))
-    {
-      numberList.add(TextSecurePreferences.getLocalNumber(context));
-    }
-
-    return numberList;
   }
 
   public CharSequence phoneTypeToString(Context mContext, int type, CharSequence label) {
