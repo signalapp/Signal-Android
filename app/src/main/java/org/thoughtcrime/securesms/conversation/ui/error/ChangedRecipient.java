@@ -35,4 +35,9 @@ final class ChangedRecipient {
   boolean isVerified() {
     return record.getVerifiedStatus() == IdentityDatabase.VerifiedStatus.VERIFIED;
   }
+
+  @Override
+  public String toString() {
+    return "ChangedRecipient{" + "recipient=" + recipient.getId() + ", record=" + record.getIdentityKey().hashCode() + '}';
+  }
 }

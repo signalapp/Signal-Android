@@ -80,11 +80,11 @@ public class Util {
     return join(Arrays.asList(list), delimiter);
   }
 
-  public static String join(Collection<String> list, String delimiter) {
+  public static <T> String join(Collection<T> list, String delimiter) {
     StringBuilder result = new StringBuilder();
     int i = 0;
 
-    for (String item : list) {
+    for (T item : list) {
       result.append(item);
 
       if (++i < list.size())

@@ -1474,6 +1474,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @Override
   public void onSendAnywayAfterSafetyNumberChange(@NonNull List<RecipientId> changedRecipients) {
+    Log.d(TAG, "onSendAnywayAfterSafetyNumberChange");
     initializeIdentityRecords().addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) {
@@ -1484,6 +1485,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @Override
   public void onMessageResentAfterSafetyNumberChange() {
+    Log.d(TAG, "onMessageResentAfterSafetyNumberChange");
     initializeIdentityRecords().addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) { }

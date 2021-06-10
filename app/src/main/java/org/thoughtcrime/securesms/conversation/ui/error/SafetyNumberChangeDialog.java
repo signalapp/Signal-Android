@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -35,6 +36,8 @@ import java.util.Collection;
 import java.util.List;
 
 public final class SafetyNumberChangeDialog extends DialogFragment implements SafetyNumberChangeAdapter.Callbacks {
+
+  private static final String TAG = Log.tag(SafetyNumberChangeDialog.class);
 
   public static final String SAFETY_NUMBER_DIALOG = "SAFETY_NUMBER";
 
@@ -191,6 +194,8 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
   }
 
   private void handleSendAnyway(DialogInterface dialogInterface, int which) {
+    Log.d(TAG, "handleSendAnyway");
+
     Activity activity = getActivity();
     Callback callback;
     if (activity instanceof Callback) {
@@ -207,9 +212,11 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
         if (callback != null) {
           switch (result.getResult()) {
             case TRUST_AND_VERIFY:
+              Log.d(TAG, "Trust and verify");
               callback.onSendAnywayAfterSafetyNumberChange(result.getChangedRecipients());
               break;
             case TRUST_VERIFY_AND_RESEND:
+              Log.d(TAG, "Trust, verify, and resent");
               callback.onMessageResentAfterSafetyNumberChange();
               break;
           }

@@ -3,14 +3,13 @@ package org.thoughtcrime.securesms.crypto.storage;
 import android.content.Context;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
-import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
-import org.thoughtcrime.securesms.database.SenderKeySharedDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -58,6 +57,8 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
         identityDatabase.saveIdentity(recipientId, identityKey, VerifiedStatus.DEFAULT, true, System.currentTimeMillis(), nonBlockingApproval);
         return false;
       }
+
+      Log.i(TAG, "Existing: " + identityRecord.get().getIdentityKey().hashCode() + " New: " + identityKey.hashCode());
 
       if (!identityRecord.get().getIdentityKey().equals(identityKey)) {
         Log.i(TAG, "Replacing existing identity...");
@@ -145,7 +146,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     }
 
     if (!identityKey.equals(identityRecord.get().getIdentityKey())) {
-      Log.w(TAG, "Identity keys don't match...");
+      Log.w(TAG, "Identity keys don't match... service: " + identityRecord.get().getIdentityKey().hashCode() + " database: " + identityRecord.get().getIdentityKey().hashCode());
       return false;
     }
 
