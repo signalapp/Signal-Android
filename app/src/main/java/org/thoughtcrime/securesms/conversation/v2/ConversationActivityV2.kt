@@ -99,7 +99,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, this) { onOptionsItemSelected(it) }
-        // FIXME: Make the menu respect the current app theme
         super.onPrepareOptionsMenu(menu)
         return true
     }

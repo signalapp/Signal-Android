@@ -21,12 +21,10 @@ class ConversationRecyclerView : RecyclerView {
     }
 
     override fun onInterceptTouchEvent(e: MotionEvent): Boolean {
-        Log.d("Test", "here")
         val velocityTracker = velocityTracker ?: return super.onInterceptTouchEvent(e)
         velocityTracker.computeCurrentVelocity(1000) // Specifying 1000 gives pixels per second
         val vx = velocityTracker.xVelocity
         val vy = velocityTracker.yVelocity
-        Log.d("Test", "vx: $vx, vy: $vy")
         // Only allow swipes to the left; allowing swipes to the right interferes with some back gestures
         if (vx > 0) { return super.onInterceptTouchEvent(e) }
         // Return false if abs(v.x) > abs(v.y) so that only swipes that are more horizontal than vertical
