@@ -33,7 +33,7 @@ import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
 class VisibleMessageView : LinearLayout {
-    private val swipeToReplyIcon = ContextCompat.getDrawable(context, R.drawable.ic_baseline_reply_24)!!
+    private val swipeToReplyIcon = ContextCompat.getDrawable(context, R.drawable.ic_baseline_reply_24)!!.mutate()
     private val swipeToReplyIconRect = Rect()
     private var dx = 0.0f
     private var previousTranslationX = 0.0f
@@ -179,6 +179,8 @@ class VisibleMessageView : LinearLayout {
     }
 
     fun recycle() {
+        translationX = 0.0f
+        swipeToReplyIcon.alpha = 0
         profilePictureView.recycle()
         messageContentView.recycle()
     }
