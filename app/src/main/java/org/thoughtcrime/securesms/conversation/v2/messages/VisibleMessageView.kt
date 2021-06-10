@@ -153,7 +153,7 @@ class VisibleMessageView : LinearLayout {
 
     private fun handleIsSelectedChanged() {
         background = if (snIsSelected) {
-            ColorDrawable(context.resources.getColorWithID(R.color.accent, context.theme))
+            ColorDrawable(context.resources.getColorWithID(R.color.message_selected, context.theme))
         } else {
             null
         }
