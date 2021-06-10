@@ -179,8 +179,6 @@ class VisibleMessageView : LinearLayout {
     }
 
     fun recycle() {
-        translationX = 0.0f
-        swipeToReplyIcon.alpha = 0
         profilePictureView.recycle()
         messageContentView.recycle()
     }
@@ -217,6 +215,7 @@ class VisibleMessageView : LinearLayout {
         val sign = -1.0f
         val x = (damping * (sqrt(abs(translationX)) / sqrt(damping))) * sign
         this.translationX = x
+        this.dateBreakTextView.translationX = -x // Bit of a hack to keep the date break text view from moving
         postInvalidate() // Ensure onDraw(canvas:) is called
         if (abs(x) > VisibleMessageView.swipeToReplyThreshold && abs(previousTranslationX) < VisibleMessageView.swipeToReplyThreshold) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -238,8 +237,15 @@ class VisibleMessageView : LinearLayout {
         animate()
             .translationX(0.0f)
             .setDuration(150)
-            .setUpdateListener { postInvalidate() } // Ensure onDraw(canvas:) is called
+            .setUpdateListener {
+                postInvalidate() // Ensure onDraw(canvas:) is called
+            }
             .start()
+        // Bit of a hack to keep the date break text view from moving
+        dateBreakTextView.animate()
+                .translationX(0.0f)
+                .setDuration(150)
+                .start()
     }
 
     private fun onLongPress() {
