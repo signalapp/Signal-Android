@@ -169,10 +169,10 @@ class VisibleMessageView : LinearLayout {
             swipeToReplyIconRect.bottom = height - bottomVOffset
             swipeToReplyIcon.bounds = swipeToReplyIconRect
             swipeToReplyIcon.alpha = (255.0f * (min(abs(translationX), threshold) / threshold)).roundToInt()
-            swipeToReplyIcon.draw(canvas)
         } else {
             swipeToReplyIcon.alpha = 0
         }
+        swipeToReplyIcon.draw(canvas)
         super.onDraw(canvas)
     }
 
@@ -234,6 +234,7 @@ class VisibleMessageView : LinearLayout {
         animate()
             .translationX(0.0f)
             .setDuration(150)
+            .setUpdateListener { postInvalidate() } // Ensure onDraw(canvas:) is called
             .start()
     }
 
