@@ -66,6 +66,7 @@ import android.widget.Toast;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
@@ -2083,14 +2084,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
   }
 
-  private boolean isInBubble() {
-    if (Build.VERSION.SDK_INT >= ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
-      Display display = getDisplay();
-
-      return display != null && display.getDisplayId() != Display.DEFAULT_DISPLAY;
-    } else {
-      return false;
-    }
+  protected boolean isInBubble() {
+    return false;
   }
 
   private void initializeResources(@NonNull ConversationIntents.Args args) {
