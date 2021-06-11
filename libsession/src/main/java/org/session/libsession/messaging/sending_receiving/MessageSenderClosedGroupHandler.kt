@@ -133,7 +133,6 @@ fun MessageSender.addMembers(groupPublicKey: String, membersToAdd: List<String>)
         Log.d("Loki", "Can't add members to nonexistent closed group.")
         throw Error.NoThread
     }
-    // Get expiration timer value for the group
     val recipient = Recipient.from(context, fromSerialized(groupID), false)
     val expireTimer = recipient.expireMessages
     if (membersToAdd.isEmpty()) {

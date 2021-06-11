@@ -34,7 +34,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
             is Kind.New -> {
                 !kind.publicKey.isEmpty && kind.name.isNotEmpty() && kind.encryptionKeyPair?.publicKey != null
                     && kind.encryptionKeyPair?.privateKey != null && kind.members.isNotEmpty() && kind.admins.isNotEmpty()
-                        && kind.expireTimer >= 0
+                    && kind.expireTimer >= 0
             }
             is Kind.EncryptionKeyPair -> true
             is Kind.NameChange -> kind.name.isNotEmpty()
