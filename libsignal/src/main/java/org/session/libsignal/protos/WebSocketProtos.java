@@ -177,14 +177,14 @@ public final class WebSocketProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return WebSocketProtos.internal_static_signalservice_WebSocketRequestMessage_descriptor;
+      return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketRequestMessage_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return WebSocketProtos.internal_static_signalservice_WebSocketRequestMessage_fieldAccessorTable
+      return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketRequestMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              WebSocketProtos.WebSocketRequestMessage.class, WebSocketProtos.WebSocketRequestMessage.Builder.class);
+              org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.class, org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.Builder.class);
     }
 
     public static com.google.protobuf.Parser<WebSocketRequestMessage> PARSER =
@@ -431,53 +431,53 @@ public final class WebSocketProtos {
       return super.writeReplace();
     }
 
-    public static WebSocketProtos.WebSocketRequestMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static WebSocketProtos.WebSocketRequestMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static WebSocketProtos.WebSocketRequestMessage parseFrom(byte[] data)
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static WebSocketProtos.WebSocketRequestMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static WebSocketProtos.WebSocketRequestMessage parseFrom(java.io.InputStream input)
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static WebSocketProtos.WebSocketRequestMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static WebSocketProtos.WebSocketRequestMessage parseDelimitedFrom(java.io.InputStream input)
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static WebSocketProtos.WebSocketRequestMessage parseDelimitedFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static WebSocketProtos.WebSocketRequestMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static WebSocketProtos.WebSocketRequestMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -486,7 +486,7 @@ public final class WebSocketProtos {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(WebSocketProtos.WebSocketRequestMessage prototype) {
+    public static Builder newBuilder(org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -502,17 +502,17 @@ public final class WebSocketProtos {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements WebSocketProtos.WebSocketRequestMessageOrBuilder {
+       implements org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return WebSocketProtos.internal_static_signalservice_WebSocketRequestMessage_descriptor;
+        return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketRequestMessage_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return WebSocketProtos.internal_static_signalservice_WebSocketRequestMessage_fieldAccessorTable
+        return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketRequestMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                WebSocketProtos.WebSocketRequestMessage.class, WebSocketProtos.WebSocketRequestMessage.Builder.class);
+                org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.class, org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.Builder.class);
       }
 
       // Construct using org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.newBuilder()
@@ -554,23 +554,23 @@ public final class WebSocketProtos {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return WebSocketProtos.internal_static_signalservice_WebSocketRequestMessage_descriptor;
+        return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketRequestMessage_descriptor;
       }
 
-      public WebSocketProtos.WebSocketRequestMessage getDefaultInstanceForType() {
-        return WebSocketProtos.WebSocketRequestMessage.getDefaultInstance();
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage getDefaultInstanceForType() {
+        return org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.getDefaultInstance();
       }
 
-      public WebSocketProtos.WebSocketRequestMessage build() {
-        WebSocketProtos.WebSocketRequestMessage result = buildPartial();
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage build() {
+        org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public WebSocketProtos.WebSocketRequestMessage buildPartial() {
-        WebSocketProtos.WebSocketRequestMessage result = new WebSocketProtos.WebSocketRequestMessage(this);
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage buildPartial() {
+        org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage result = new org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -601,16 +601,16 @@ public final class WebSocketProtos {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof WebSocketProtos.WebSocketRequestMessage) {
-          return mergeFrom((WebSocketProtos.WebSocketRequestMessage)other);
+        if (other instanceof org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage) {
+          return mergeFrom((org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(WebSocketProtos.WebSocketRequestMessage other) {
-        if (other == WebSocketProtos.WebSocketRequestMessage.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage other) {
+        if (other == org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.getDefaultInstance()) return this;
         if (other.hasVerb()) {
           bitField0_ |= 0x00000001;
           verb_ = other.verb_;
@@ -649,11 +649,11 @@ public final class WebSocketProtos {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        WebSocketProtos.WebSocketRequestMessage parsedMessage = null;
+        org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (WebSocketProtos.WebSocketRequestMessage) e.getUnfinishedMessage();
+          parsedMessage = (org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -1149,14 +1149,14 @@ public final class WebSocketProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return WebSocketProtos.internal_static_signalservice_WebSocketResponseMessage_descriptor;
+      return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketResponseMessage_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return WebSocketProtos.internal_static_signalservice_WebSocketResponseMessage_fieldAccessorTable
+      return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketResponseMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              WebSocketProtos.WebSocketResponseMessage.class, WebSocketProtos.WebSocketResponseMessage.Builder.class);
+              org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.class, org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.Builder.class);
     }
 
     public static com.google.protobuf.Parser<WebSocketResponseMessage> PARSER =
@@ -1376,53 +1376,53 @@ public final class WebSocketProtos {
       return super.writeReplace();
     }
 
-    public static WebSocketProtos.WebSocketResponseMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static WebSocketProtos.WebSocketResponseMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static WebSocketProtos.WebSocketResponseMessage parseFrom(byte[] data)
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static WebSocketProtos.WebSocketResponseMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static WebSocketProtos.WebSocketResponseMessage parseFrom(java.io.InputStream input)
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static WebSocketProtos.WebSocketResponseMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static WebSocketProtos.WebSocketResponseMessage parseDelimitedFrom(java.io.InputStream input)
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static WebSocketProtos.WebSocketResponseMessage parseDelimitedFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static WebSocketProtos.WebSocketResponseMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static WebSocketProtos.WebSocketResponseMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1431,7 +1431,7 @@ public final class WebSocketProtos {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(WebSocketProtos.WebSocketResponseMessage prototype) {
+    public static Builder newBuilder(org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -1447,17 +1447,17 @@ public final class WebSocketProtos {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements WebSocketProtos.WebSocketResponseMessageOrBuilder {
+       implements org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return WebSocketProtos.internal_static_signalservice_WebSocketResponseMessage_descriptor;
+        return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketResponseMessage_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return WebSocketProtos.internal_static_signalservice_WebSocketResponseMessage_fieldAccessorTable
+        return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketResponseMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                WebSocketProtos.WebSocketResponseMessage.class, WebSocketProtos.WebSocketResponseMessage.Builder.class);
+                org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.class, org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.Builder.class);
       }
 
       // Construct using org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.newBuilder()
@@ -1499,23 +1499,23 @@ public final class WebSocketProtos {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return WebSocketProtos.internal_static_signalservice_WebSocketResponseMessage_descriptor;
+        return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketResponseMessage_descriptor;
       }
 
-      public WebSocketProtos.WebSocketResponseMessage getDefaultInstanceForType() {
-        return WebSocketProtos.WebSocketResponseMessage.getDefaultInstance();
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage getDefaultInstanceForType() {
+        return org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.getDefaultInstance();
       }
 
-      public WebSocketProtos.WebSocketResponseMessage build() {
-        WebSocketProtos.WebSocketResponseMessage result = buildPartial();
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage build() {
+        org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public WebSocketProtos.WebSocketResponseMessage buildPartial() {
-        WebSocketProtos.WebSocketResponseMessage result = new WebSocketProtos.WebSocketResponseMessage(this);
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage buildPartial() {
+        org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage result = new org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -1546,16 +1546,16 @@ public final class WebSocketProtos {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof WebSocketProtos.WebSocketResponseMessage) {
-          return mergeFrom((WebSocketProtos.WebSocketResponseMessage)other);
+        if (other instanceof org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage) {
+          return mergeFrom((org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(WebSocketProtos.WebSocketResponseMessage other) {
-        if (other == WebSocketProtos.WebSocketResponseMessage.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage other) {
+        if (other == org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.getDefaultInstance()) return this;
         if (other.hasId()) {
           setId(other.getId());
         }
@@ -1592,11 +1592,11 @@ public final class WebSocketProtos {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        WebSocketProtos.WebSocketResponseMessage parsedMessage = null;
+        org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (WebSocketProtos.WebSocketResponseMessage) e.getUnfinishedMessage();
+          parsedMessage = (org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -1898,7 +1898,7 @@ public final class WebSocketProtos {
     /**
      * <code>optional .signalservice.WebSocketMessage.Type type = 1;</code>
      */
-    WebSocketProtos.WebSocketMessage.Type getType();
+    org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.Type getType();
 
     // optional .signalservice.WebSocketRequestMessage request = 2;
     /**
@@ -1908,11 +1908,11 @@ public final class WebSocketProtos {
     /**
      * <code>optional .signalservice.WebSocketRequestMessage request = 2;</code>
      */
-    WebSocketProtos.WebSocketRequestMessage getRequest();
+    org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage getRequest();
     /**
      * <code>optional .signalservice.WebSocketRequestMessage request = 2;</code>
      */
-    WebSocketProtos.WebSocketRequestMessageOrBuilder getRequestOrBuilder();
+    org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessageOrBuilder getRequestOrBuilder();
 
     // optional .signalservice.WebSocketResponseMessage response = 3;
     /**
@@ -1922,11 +1922,11 @@ public final class WebSocketProtos {
     /**
      * <code>optional .signalservice.WebSocketResponseMessage response = 3;</code>
      */
-    WebSocketProtos.WebSocketResponseMessage getResponse();
+    org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage getResponse();
     /**
      * <code>optional .signalservice.WebSocketResponseMessage response = 3;</code>
      */
-    WebSocketProtos.WebSocketResponseMessageOrBuilder getResponseOrBuilder();
+    org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessageOrBuilder getResponseOrBuilder();
   }
   /**
    * Protobuf type {@code signalservice.WebSocketMessage}
@@ -1981,7 +1981,7 @@ public final class WebSocketProtos {
             }
             case 8: {
               int rawValue = input.readEnum();
-              WebSocketProtos.WebSocketMessage.Type value = WebSocketProtos.WebSocketMessage.Type.valueOf(rawValue);
+              org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.Type value = org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.Type.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(1, rawValue);
               } else {
@@ -1991,11 +1991,11 @@ public final class WebSocketProtos {
               break;
             }
             case 18: {
-              WebSocketProtos.WebSocketRequestMessage.Builder subBuilder = null;
+              org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.Builder subBuilder = null;
               if (((bitField0_ & 0x00000002) == 0x00000002)) {
                 subBuilder = request_.toBuilder();
               }
-              request_ = input.readMessage(WebSocketProtos.WebSocketRequestMessage.PARSER, extensionRegistry);
+              request_ = input.readMessage(org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.PARSER, extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(request_);
                 request_ = subBuilder.buildPartial();
@@ -2004,11 +2004,11 @@ public final class WebSocketProtos {
               break;
             }
             case 26: {
-              WebSocketProtos.WebSocketResponseMessage.Builder subBuilder = null;
+              org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.Builder subBuilder = null;
               if (((bitField0_ & 0x00000004) == 0x00000004)) {
                 subBuilder = response_.toBuilder();
               }
-              response_ = input.readMessage(WebSocketProtos.WebSocketResponseMessage.PARSER, extensionRegistry);
+              response_ = input.readMessage(org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.PARSER, extensionRegistry);
               if (subBuilder != null) {
                 subBuilder.mergeFrom(response_);
                 response_ = subBuilder.buildPartial();
@@ -2030,14 +2030,14 @@ public final class WebSocketProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return WebSocketProtos.internal_static_signalservice_WebSocketMessage_descriptor;
+      return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketMessage_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return WebSocketProtos.internal_static_signalservice_WebSocketMessage_fieldAccessorTable
+      return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              WebSocketProtos.WebSocketMessage.class, WebSocketProtos.WebSocketMessage.Builder.class);
+              org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.class, org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.Builder.class);
     }
 
     public static com.google.protobuf.Parser<WebSocketMessage> PARSER =
@@ -2121,7 +2121,7 @@ public final class WebSocketProtos {
       }
       public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
-        return WebSocketProtos.WebSocketMessage.getDescriptor().getEnumTypes().get(0);
+        return org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.getDescriptor().getEnumTypes().get(0);
       }
 
       private static final Type[] VALUES = values();
@@ -2149,7 +2149,7 @@ public final class WebSocketProtos {
     private int bitField0_;
     // optional .signalservice.WebSocketMessage.Type type = 1;
     public static final int TYPE_FIELD_NUMBER = 1;
-    private WebSocketProtos.WebSocketMessage.Type type_;
+    private org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.Type type_;
     /**
      * <code>optional .signalservice.WebSocketMessage.Type type = 1;</code>
      */
@@ -2159,13 +2159,13 @@ public final class WebSocketProtos {
     /**
      * <code>optional .signalservice.WebSocketMessage.Type type = 1;</code>
      */
-    public WebSocketProtos.WebSocketMessage.Type getType() {
+    public org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.Type getType() {
       return type_;
     }
 
     // optional .signalservice.WebSocketRequestMessage request = 2;
     public static final int REQUEST_FIELD_NUMBER = 2;
-    private WebSocketProtos.WebSocketRequestMessage request_;
+    private org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage request_;
     /**
      * <code>optional .signalservice.WebSocketRequestMessage request = 2;</code>
      */
@@ -2175,19 +2175,19 @@ public final class WebSocketProtos {
     /**
      * <code>optional .signalservice.WebSocketRequestMessage request = 2;</code>
      */
-    public WebSocketProtos.WebSocketRequestMessage getRequest() {
+    public org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage getRequest() {
       return request_;
     }
     /**
      * <code>optional .signalservice.WebSocketRequestMessage request = 2;</code>
      */
-    public WebSocketProtos.WebSocketRequestMessageOrBuilder getRequestOrBuilder() {
+    public org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessageOrBuilder getRequestOrBuilder() {
       return request_;
     }
 
     // optional .signalservice.WebSocketResponseMessage response = 3;
     public static final int RESPONSE_FIELD_NUMBER = 3;
-    private WebSocketProtos.WebSocketResponseMessage response_;
+    private org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage response_;
     /**
      * <code>optional .signalservice.WebSocketResponseMessage response = 3;</code>
      */
@@ -2197,20 +2197,20 @@ public final class WebSocketProtos {
     /**
      * <code>optional .signalservice.WebSocketResponseMessage response = 3;</code>
      */
-    public WebSocketProtos.WebSocketResponseMessage getResponse() {
+    public org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage getResponse() {
       return response_;
     }
     /**
      * <code>optional .signalservice.WebSocketResponseMessage response = 3;</code>
      */
-    public WebSocketProtos.WebSocketResponseMessageOrBuilder getResponseOrBuilder() {
+    public org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessageOrBuilder getResponseOrBuilder() {
       return response_;
     }
 
     private void initFields() {
-      type_ = WebSocketProtos.WebSocketMessage.Type.UNKNOWN;
-      request_ = WebSocketProtos.WebSocketRequestMessage.getDefaultInstance();
-      response_ = WebSocketProtos.WebSocketResponseMessage.getDefaultInstance();
+      type_ = org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.Type.UNKNOWN;
+      request_ = org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.getDefaultInstance();
+      response_ = org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2266,53 +2266,53 @@ public final class WebSocketProtos {
       return super.writeReplace();
     }
 
-    public static WebSocketProtos.WebSocketMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static WebSocketProtos.WebSocketMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static WebSocketProtos.WebSocketMessage parseFrom(byte[] data)
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static WebSocketProtos.WebSocketMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static WebSocketProtos.WebSocketMessage parseFrom(java.io.InputStream input)
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static WebSocketProtos.WebSocketMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static WebSocketProtos.WebSocketMessage parseDelimitedFrom(java.io.InputStream input)
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static WebSocketProtos.WebSocketMessage parseDelimitedFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static WebSocketProtos.WebSocketMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static WebSocketProtos.WebSocketMessage parseFrom(
+    public static org.session.libsignal.protos.WebSocketProtos.WebSocketMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2321,7 +2321,7 @@ public final class WebSocketProtos {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(WebSocketProtos.WebSocketMessage prototype) {
+    public static Builder newBuilder(org.session.libsignal.protos.WebSocketProtos.WebSocketMessage prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
@@ -2337,17 +2337,17 @@ public final class WebSocketProtos {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements WebSocketProtos.WebSocketMessageOrBuilder {
+       implements org.session.libsignal.protos.WebSocketProtos.WebSocketMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return WebSocketProtos.internal_static_signalservice_WebSocketMessage_descriptor;
+        return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketMessage_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return WebSocketProtos.internal_static_signalservice_WebSocketMessage_fieldAccessorTable
+        return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                WebSocketProtos.WebSocketMessage.class, WebSocketProtos.WebSocketMessage.Builder.class);
+                org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.class, org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.Builder.class);
       }
 
       // Construct using org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.newBuilder()
@@ -2372,16 +2372,16 @@ public final class WebSocketProtos {
 
       public Builder clear() {
         super.clear();
-        type_ = WebSocketProtos.WebSocketMessage.Type.UNKNOWN;
+        type_ = org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.Type.UNKNOWN;
         bitField0_ = (bitField0_ & ~0x00000001);
         if (requestBuilder_ == null) {
-          request_ = WebSocketProtos.WebSocketRequestMessage.getDefaultInstance();
+          request_ = org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.getDefaultInstance();
         } else {
           requestBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000002);
         if (responseBuilder_ == null) {
-          response_ = WebSocketProtos.WebSocketResponseMessage.getDefaultInstance();
+          response_ = org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.getDefaultInstance();
         } else {
           responseBuilder_.clear();
         }
@@ -2395,23 +2395,23 @@ public final class WebSocketProtos {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return WebSocketProtos.internal_static_signalservice_WebSocketMessage_descriptor;
+        return org.session.libsignal.protos.WebSocketProtos.internal_static_signalservice_WebSocketMessage_descriptor;
       }
 
-      public WebSocketProtos.WebSocketMessage getDefaultInstanceForType() {
-        return WebSocketProtos.WebSocketMessage.getDefaultInstance();
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketMessage getDefaultInstanceForType() {
+        return org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.getDefaultInstance();
       }
 
-      public WebSocketProtos.WebSocketMessage build() {
-        WebSocketProtos.WebSocketMessage result = buildPartial();
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketMessage build() {
+        org.session.libsignal.protos.WebSocketProtos.WebSocketMessage result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public WebSocketProtos.WebSocketMessage buildPartial() {
-        WebSocketProtos.WebSocketMessage result = new WebSocketProtos.WebSocketMessage(this);
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketMessage buildPartial() {
+        org.session.libsignal.protos.WebSocketProtos.WebSocketMessage result = new org.session.libsignal.protos.WebSocketProtos.WebSocketMessage(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -2440,16 +2440,16 @@ public final class WebSocketProtos {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof WebSocketProtos.WebSocketMessage) {
-          return mergeFrom((WebSocketProtos.WebSocketMessage)other);
+        if (other instanceof org.session.libsignal.protos.WebSocketProtos.WebSocketMessage) {
+          return mergeFrom((org.session.libsignal.protos.WebSocketProtos.WebSocketMessage)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(WebSocketProtos.WebSocketMessage other) {
-        if (other == WebSocketProtos.WebSocketMessage.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.session.libsignal.protos.WebSocketProtos.WebSocketMessage other) {
+        if (other == org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.getDefaultInstance()) return this;
         if (other.hasType()) {
           setType(other.getType());
         }
@@ -2471,11 +2471,11 @@ public final class WebSocketProtos {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        WebSocketProtos.WebSocketMessage parsedMessage = null;
+        org.session.libsignal.protos.WebSocketProtos.WebSocketMessage parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (WebSocketProtos.WebSocketMessage) e.getUnfinishedMessage();
+          parsedMessage = (org.session.libsignal.protos.WebSocketProtos.WebSocketMessage) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -2487,7 +2487,7 @@ public final class WebSocketProtos {
       private int bitField0_;
 
       // optional .signalservice.WebSocketMessage.Type type = 1;
-      private WebSocketProtos.WebSocketMessage.Type type_ = WebSocketProtos.WebSocketMessage.Type.UNKNOWN;
+      private org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.Type type_ = org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.Type.UNKNOWN;
       /**
        * <code>optional .signalservice.WebSocketMessage.Type type = 1;</code>
        */
@@ -2497,13 +2497,13 @@ public final class WebSocketProtos {
       /**
        * <code>optional .signalservice.WebSocketMessage.Type type = 1;</code>
        */
-      public WebSocketProtos.WebSocketMessage.Type getType() {
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.Type getType() {
         return type_;
       }
       /**
        * <code>optional .signalservice.WebSocketMessage.Type type = 1;</code>
        */
-      public Builder setType(WebSocketProtos.WebSocketMessage.Type value) {
+      public Builder setType(org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.Type value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -2517,15 +2517,15 @@ public final class WebSocketProtos {
        */
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        type_ = WebSocketProtos.WebSocketMessage.Type.UNKNOWN;
+        type_ = org.session.libsignal.protos.WebSocketProtos.WebSocketMessage.Type.UNKNOWN;
         onChanged();
         return this;
       }
 
       // optional .signalservice.WebSocketRequestMessage request = 2;
-      private WebSocketProtos.WebSocketRequestMessage request_ = WebSocketProtos.WebSocketRequestMessage.getDefaultInstance();
+      private org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage request_ = org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          WebSocketProtos.WebSocketRequestMessage, WebSocketProtos.WebSocketRequestMessage.Builder, WebSocketProtos.WebSocketRequestMessageOrBuilder> requestBuilder_;
+          org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage, org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.Builder, org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessageOrBuilder> requestBuilder_;
       /**
        * <code>optional .signalservice.WebSocketRequestMessage request = 2;</code>
        */
@@ -2535,7 +2535,7 @@ public final class WebSocketProtos {
       /**
        * <code>optional .signalservice.WebSocketRequestMessage request = 2;</code>
        */
-      public WebSocketProtos.WebSocketRequestMessage getRequest() {
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage getRequest() {
         if (requestBuilder_ == null) {
           return request_;
         } else {
@@ -2545,7 +2545,7 @@ public final class WebSocketProtos {
       /**
        * <code>optional .signalservice.WebSocketRequestMessage request = 2;</code>
        */
-      public Builder setRequest(WebSocketProtos.WebSocketRequestMessage value) {
+      public Builder setRequest(org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage value) {
         if (requestBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2562,7 +2562,7 @@ public final class WebSocketProtos {
        * <code>optional .signalservice.WebSocketRequestMessage request = 2;</code>
        */
       public Builder setRequest(
-          WebSocketProtos.WebSocketRequestMessage.Builder builderForValue) {
+          org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.Builder builderForValue) {
         if (requestBuilder_ == null) {
           request_ = builderForValue.build();
           onChanged();
@@ -2575,12 +2575,12 @@ public final class WebSocketProtos {
       /**
        * <code>optional .signalservice.WebSocketRequestMessage request = 2;</code>
        */
-      public Builder mergeRequest(WebSocketProtos.WebSocketRequestMessage value) {
+      public Builder mergeRequest(org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage value) {
         if (requestBuilder_ == null) {
           if (((bitField0_ & 0x00000002) == 0x00000002) &&
-              request_ != WebSocketProtos.WebSocketRequestMessage.getDefaultInstance()) {
+              request_ != org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.getDefaultInstance()) {
             request_ =
-              WebSocketProtos.WebSocketRequestMessage.newBuilder(request_).mergeFrom(value).buildPartial();
+              org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.newBuilder(request_).mergeFrom(value).buildPartial();
           } else {
             request_ = value;
           }
@@ -2596,7 +2596,7 @@ public final class WebSocketProtos {
        */
       public Builder clearRequest() {
         if (requestBuilder_ == null) {
-          request_ = WebSocketProtos.WebSocketRequestMessage.getDefaultInstance();
+          request_ = org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.getDefaultInstance();
           onChanged();
         } else {
           requestBuilder_.clear();
@@ -2607,7 +2607,7 @@ public final class WebSocketProtos {
       /**
        * <code>optional .signalservice.WebSocketRequestMessage request = 2;</code>
        */
-      public WebSocketProtos.WebSocketRequestMessage.Builder getRequestBuilder() {
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.Builder getRequestBuilder() {
         bitField0_ |= 0x00000002;
         onChanged();
         return getRequestFieldBuilder().getBuilder();
@@ -2615,7 +2615,7 @@ public final class WebSocketProtos {
       /**
        * <code>optional .signalservice.WebSocketRequestMessage request = 2;</code>
        */
-      public WebSocketProtos.WebSocketRequestMessageOrBuilder getRequestOrBuilder() {
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessageOrBuilder getRequestOrBuilder() {
         if (requestBuilder_ != null) {
           return requestBuilder_.getMessageOrBuilder();
         } else {
@@ -2626,11 +2626,11 @@ public final class WebSocketProtos {
        * <code>optional .signalservice.WebSocketRequestMessage request = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          WebSocketProtos.WebSocketRequestMessage, WebSocketProtos.WebSocketRequestMessage.Builder, WebSocketProtos.WebSocketRequestMessageOrBuilder>
+          org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage, org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.Builder, org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessageOrBuilder> 
           getRequestFieldBuilder() {
         if (requestBuilder_ == null) {
           requestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              WebSocketProtos.WebSocketRequestMessage, WebSocketProtos.WebSocketRequestMessage.Builder, WebSocketProtos.WebSocketRequestMessageOrBuilder>(
+              org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage, org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessage.Builder, org.session.libsignal.protos.WebSocketProtos.WebSocketRequestMessageOrBuilder>(
                   request_,
                   getParentForChildren(),
                   isClean());
@@ -2640,9 +2640,9 @@ public final class WebSocketProtos {
       }
 
       // optional .signalservice.WebSocketResponseMessage response = 3;
-      private WebSocketProtos.WebSocketResponseMessage response_ = WebSocketProtos.WebSocketResponseMessage.getDefaultInstance();
+      private org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage response_ = org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          WebSocketProtos.WebSocketResponseMessage, WebSocketProtos.WebSocketResponseMessage.Builder, WebSocketProtos.WebSocketResponseMessageOrBuilder> responseBuilder_;
+          org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage, org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.Builder, org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessageOrBuilder> responseBuilder_;
       /**
        * <code>optional .signalservice.WebSocketResponseMessage response = 3;</code>
        */
@@ -2652,7 +2652,7 @@ public final class WebSocketProtos {
       /**
        * <code>optional .signalservice.WebSocketResponseMessage response = 3;</code>
        */
-      public WebSocketProtos.WebSocketResponseMessage getResponse() {
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage getResponse() {
         if (responseBuilder_ == null) {
           return response_;
         } else {
@@ -2662,7 +2662,7 @@ public final class WebSocketProtos {
       /**
        * <code>optional .signalservice.WebSocketResponseMessage response = 3;</code>
        */
-      public Builder setResponse(WebSocketProtos.WebSocketResponseMessage value) {
+      public Builder setResponse(org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage value) {
         if (responseBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2679,7 +2679,7 @@ public final class WebSocketProtos {
        * <code>optional .signalservice.WebSocketResponseMessage response = 3;</code>
        */
       public Builder setResponse(
-          WebSocketProtos.WebSocketResponseMessage.Builder builderForValue) {
+          org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.Builder builderForValue) {
         if (responseBuilder_ == null) {
           response_ = builderForValue.build();
           onChanged();
@@ -2692,12 +2692,12 @@ public final class WebSocketProtos {
       /**
        * <code>optional .signalservice.WebSocketResponseMessage response = 3;</code>
        */
-      public Builder mergeResponse(WebSocketProtos.WebSocketResponseMessage value) {
+      public Builder mergeResponse(org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage value) {
         if (responseBuilder_ == null) {
           if (((bitField0_ & 0x00000004) == 0x00000004) &&
-              response_ != WebSocketProtos.WebSocketResponseMessage.getDefaultInstance()) {
+              response_ != org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.getDefaultInstance()) {
             response_ =
-              WebSocketProtos.WebSocketResponseMessage.newBuilder(response_).mergeFrom(value).buildPartial();
+              org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.newBuilder(response_).mergeFrom(value).buildPartial();
           } else {
             response_ = value;
           }
@@ -2713,7 +2713,7 @@ public final class WebSocketProtos {
        */
       public Builder clearResponse() {
         if (responseBuilder_ == null) {
-          response_ = WebSocketProtos.WebSocketResponseMessage.getDefaultInstance();
+          response_ = org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.getDefaultInstance();
           onChanged();
         } else {
           responseBuilder_.clear();
@@ -2724,7 +2724,7 @@ public final class WebSocketProtos {
       /**
        * <code>optional .signalservice.WebSocketResponseMessage response = 3;</code>
        */
-      public WebSocketProtos.WebSocketResponseMessage.Builder getResponseBuilder() {
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.Builder getResponseBuilder() {
         bitField0_ |= 0x00000004;
         onChanged();
         return getResponseFieldBuilder().getBuilder();
@@ -2732,7 +2732,7 @@ public final class WebSocketProtos {
       /**
        * <code>optional .signalservice.WebSocketResponseMessage response = 3;</code>
        */
-      public WebSocketProtos.WebSocketResponseMessageOrBuilder getResponseOrBuilder() {
+      public org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessageOrBuilder getResponseOrBuilder() {
         if (responseBuilder_ != null) {
           return responseBuilder_.getMessageOrBuilder();
         } else {
@@ -2743,11 +2743,11 @@ public final class WebSocketProtos {
        * <code>optional .signalservice.WebSocketResponseMessage response = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          WebSocketProtos.WebSocketResponseMessage, WebSocketProtos.WebSocketResponseMessage.Builder, WebSocketProtos.WebSocketResponseMessageOrBuilder>
+          org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage, org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.Builder, org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessageOrBuilder> 
           getResponseFieldBuilder() {
         if (responseBuilder_ == null) {
           responseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              WebSocketProtos.WebSocketResponseMessage, WebSocketProtos.WebSocketResponseMessage.Builder, WebSocketProtos.WebSocketResponseMessageOrBuilder>(
+              org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage, org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessage.Builder, org.session.libsignal.protos.WebSocketProtos.WebSocketResponseMessageOrBuilder>(
                   response_,
                   getParentForChildren(),
                   isClean());
@@ -2803,8 +2803,8 @@ public final class WebSocketProtos {
       "equestMessage\0229\n\010response\030\003 \001(\0132\'.signal",
       "service.WebSocketResponseMessage\".\n\004Type" +
       "\022\013\n\007UNKNOWN\020\000\022\013\n\007REQUEST\020\001\022\014\n\010RESPONSE\020\002" +
-      "BC\n0org.session.libsignal.service.intern" +
-      "al.websocketB\017WebSocketProtos"
+      "B/\n\034org.session.libsignal.protosB\017WebSoc" +
+      "ketProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

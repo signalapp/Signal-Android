@@ -1025,6 +1025,7 @@ public class ConversationFragment extends Fragment
 
     @Override
     public void onItemClick(MessageRecord messageRecord) {
+      if (messageRecord.isUpdate()) return;
       if (actionMode != null) {
         ((ConversationAdapter) list.getAdapter()).toggleSelection(messageRecord);
         list.getAdapter().notifyDataSetChanged();
@@ -1040,6 +1041,7 @@ public class ConversationFragment extends Fragment
 
     @Override
     public void onItemLongClick(MessageRecord messageRecord) {
+      if (messageRecord.isUpdate()) return;
       if (actionMode == null) {
         ((ConversationAdapter) list.getAdapter()).toggleSelection(messageRecord);
         list.getAdapter().notifyDataSetChanged();

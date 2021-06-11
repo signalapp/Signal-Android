@@ -115,6 +115,7 @@ interface StorageProtocol {
     fun isClosedGroup(publicKey: String): Boolean
     fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair>
     fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair?
+    fun setExpirationTimer(groupID: String, duration: Int)
 
     // Groups
     fun getAllGroups(): List<GroupRecord>
