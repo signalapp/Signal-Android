@@ -2098,7 +2098,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   @RequiresApi(31)
-  private boolean isLaunchedFromBubbleApi30() {
+  private boolean isLaunchedFromBubbleApi31() {
     return this.isLaunchedFromBubble();
   }
 
