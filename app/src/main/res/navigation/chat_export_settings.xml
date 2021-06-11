@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chat_export_settings"
+    tools:context =".export.ChatExportActivity"
+    app:startDestination="@id/chatExportSettingsFragment">
+
+    <fragment
+        android:id="@+id/chatExportSettingsFragment"
+        android:name="org.thoughtcrime.securesms.export.ChatExportFragment"
+        android:label="chat_export_settings_fragment"
+        tools:layout="@layout/chat_export_fragment">
+
+        <action
+            android:id="@+id/action_chatExportTimePicker"
+            app:destination="@id/chat_export_time_period_Fragment"
+            app:enterAnim="@anim/slide_from_end"
+            app:exitAnim="@anim/slide_to_start"
+            app:popEnterAnim="@anim/slide_from_start"
+            app:popExitAnim="@anim/slide_to_end" />
+
+        <argument
+            android:name="recipient_id"
+            app:argType="org.thoughtcrime.securesms.recipients.RecipientId"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chat_export_time_period_Fragment"
+        android:name="org.thoughtcrime.securesms.export.ChatExportTimePickerFragment"
+        android:label="chat_export_time_picker_fragment"
+        tools:layout="@layout/fragment_chat_export_time_picker">
+
+        <action
+            android:id="@+id/action_chatExportTimePicker_comeback"
+            app:destination="@id/chatExportSettingsFragment"
+            app:popUpTo="@+id/chat_export_settings"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+</navigation>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/export_time_period"
+            android:textAppearance="@style/Signal.Text.MessageRequest.Title"
+            android:textColor="@color/signal_text_secondary" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_export_create"
+            android:layout_width="match_parent"
+            android:layout_height="669dp"
+            android:background="?attr/selectableItemBackground"
+            android:minHeight="?attr/listPreferredItemHeightLarge"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chat_export_chip_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="visible"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_all"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/whole_historial" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_7_days"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/last_7_days" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_30_days"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/last_30_days" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_3_months"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/last_3_months" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_6_months"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/last_6_months" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <TableLayout
+                    android:layout_width= "wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="16dp">
+
+                        <TextView
+                            android:id="@+id/export_select_from_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:clickable="false"
+                            android:text="@string/export_select_from_title"
+                            android:textAppearance="@style/Signal.Text.Body"
+                            android:textColor="@color/signal_text_primary" />
+
+                        <TextView
+                            android:id="@+id/export_select_until_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:clickable="false"
+                            android:textAppearance="@style/Signal.Text.Body"
+                            android:textColor="@color/signal_text_primary"
+                            tools:text="@string/export_select_until_title" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/export_from_date"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:hint="@string/date"
+                            android:inputType="date"
+                            android:selectAllOnFocus="true"
+                            android:singleLine="true"
+                            android:textColor="@color/signal_text_secondary" />
+
+                        <EditText
+                            android:id="@+id/export_to_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:hint="@string/date"
+                            android:inputType="date"
+                            android:textColor="@color/signal_text_secondary" />
+                    </TableRow>
+
+                </TableLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button_set_time_period"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="62dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/cta_button_background"
+                        android:text="@string/set_time_period"
+                        android:textColor="@color/core_white"
+                        android:textSize="16sp"
+                        android:textStyle="normal|bold" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@color/signal_divider_major" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
