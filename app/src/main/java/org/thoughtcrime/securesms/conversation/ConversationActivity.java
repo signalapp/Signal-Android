@@ -2082,12 +2082,23 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   private boolean isInBubble() {
     if (Build.VERSION.SDK_INT >= ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
-      Display display = getDisplay();
-
-      return display != null && display.getDisplayId() != Display.DEFAULT_DISPLAY;
-    } else {
-      return false;
+      return isLaunchedFromBubbleApi30();
+    } else if (Build.VERSION.SDK_INT >= 31) {
+      return isLaunchedFromBubbleApi31();
     }
+      return false;
+  }
+
+  @RequiresApi(30)
+  private boolean isLaunchedFromBubbleApi30() {
+    Display display = getDisplay();
+
+    return display != null && display.getDisplayId() != Display.DEFAULT_DISPLAY;
+  }
+
+  @RequiresApi(31)
+  private boolean isLaunchedFromBubbleApi30() {
+    return this.isLaunchedFromBubble();
   }
 
   private void initializeResources(@NonNull ConversationIntents.Args args) {
