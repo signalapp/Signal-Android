@@ -17,4 +17,6 @@
 
     <item name="status_bar_guideline" type="id" />
     <item name="navigation_bar_guideline" type="id" />
+    <item name="action_chatExportSettingsFragment_to_chatExporter" type="id" />
+    <item name="chatExporterFragment" type="id" />
 </resources>

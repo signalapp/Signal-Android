@@ -170,4 +170,5 @@
     <dimen name="transfer_top_padding">64dp</dimen>
     <dimen name="transfer_split_top_padding">32dp</dimen>
     <dimen name="transfer_item_spacing">24dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

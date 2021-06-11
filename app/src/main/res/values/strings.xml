@@ -640,7 +640,7 @@
         <item quantity="one">Error revoking invite</item>
         <item quantity="other">Error revoking invites</item>
     </plurals>
-    
+
     <!-- RequestingMembersFragment -->
     <string name="RequestingMembersFragment_pending_member_requests">Pending member requests</string>
     <string name="RequestingMembersFragment_no_member_requests_to_show">No member requests to show.</string>
@@ -797,7 +797,7 @@
     <string name="CustomNotificationsDialogFragment__enabled">Enabled</string>
     <string name="CustomNotificationsDialogFragment__disabled">Disabled</string>
     <string name="CustomNotificationsDialogFragment__default">Default</string>
-    
+
     <!-- ShareableGroupLinkDialogFragment -->
     <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Shareable group link</string>
     <string name="ShareableGroupLinkDialogFragment__manage_and_share">Manage &amp; share</string>
@@ -1092,20 +1092,20 @@
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-      <item quantity="one">You revoked an invitation to the group.</item>
-      <item quantity="other">You revoked %1$d invitations to the group.</item>
+        <item quantity="one">You revoked an invitation to the group.</item>
+        <item quantity="other">You revoked %1$d invitations to the group.</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-      <item quantity="one">%1$s revoked an invitation to the group.</item>
-      <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
+        <item quantity="one">%1$s revoked an invitation to the group.</item>
+        <item quantity="other">%1$s revoked %2$d invitations to the group.</item>
     </plurals>
     <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Someone declined an invitation to the group.</string>
     <string name="MessageRecord_you_declined_the_invitation_to_the_group">You declined the invitation to the group.</string>
     <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s revoked your invitation to the group.</string>
     <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">An admin revoked your invitation to the group.</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-      <item quantity="one">An invitation to the group was revoked.</item>
-      <item quantity="other">%1$d invitations to the group were revoked.</item>
+        <item quantity="one">An invitation to the group was revoked.</item>
+        <item quantity="other">%1$d invitations to the group were revoked.</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
@@ -3046,6 +3046,83 @@
     <string name="WallpaperCropActivity__error_setting_wallpaper">Error setting wallpaper.</string>
     <string name="WallpaperCropActivity__blur_photo">Blur photo</string>
 
+
+    <!-- ExportChatActivity -->
+    <string name="ChatExportFragment__include_all_media">Include shared media</string>
+    <string name="ChatExportFragment__chat_export_settings">Export Chat</string>
+    <string name="ChatExportFragment__include_html_viewer">Include HTML Viewer</string>
+    <string name="ChatExportFragment__from_date">Start date</string>
+    <string name="ChatExportFragment__to_date">End date</string>
+    <string name="ChatExportFragment__export_now">Export now</string>
+    <string name="ChatExportFragment__from_date_disable">Off</string>
+    <string name="ChatExportFragment__to_date_disable">Off</string>
+    <string name="ChatExportFragment__from_date_enable">On</string>
+    <string name="ChatExportFragment__to_date_enable">On</string>
+    <string name="ChatExportFragment__chat_export_button">Export now</string>
+    <string name="ManageRecipientActivity_chat_export">Export conversation</string>
+    <string name="title_activity_select_date">selectDate</string>
+    <string name="ChatExportFragment__export_whole_chat">Specify period of time</string>
+    <string name="title_activity_create_zip">createZip</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ExportChatsFragment__info">Here it will be displayed some information about how it works</string>
+    <string name="ChatExporFragment__time_period_information">Time period:</string>
+    <string name="ChatExportFragment__format_information">Export options:</string>
+    <string name="ChatExportFragment__folder">Destination folder</string>
+    <string name="ChatExportFragment__folder_information">"Select path to folder"</string>
+
+    <string name="zip">zip</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="ChatExportExecutionFragment__percent">Percent: 0%</string>
+    <string name="ChatExportExecutionFragment__info">Overall progress</string>
+    <string name="ChatExportExecutionFragment__create_export">Create Package:</string>
+    <string name="ChatExporFragment__save_folder_information">Save directory:</string>
+    <string name="export_now">Export Now</string>
+    <string name="ManageGroupActivity_chat_export">Export group converstation</string>
+    <string name="ChatExporter_signal_requires_external_storage_permission_in_order_to_create_chat_export_zip_file" />
+    <string name="ChatExport_collecting_attachments">Processing all data…</string>
+    <string name="ChatExport_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal needs the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="ChatExport_unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
+
+
+    <!-- ExportZipUtil -->
+    <string name="ExportZip_save_to_external_storage">Save to storage?</string>
+    <plurals name="ExportZip_adding_n_media_to_storage_warning">
+        <item quantity="one">Adding this media to storage will allow any other apps on your device to access it.\n\nContinue?</item>
+        <item quantity="other">Saving all %1$d media to storage will allow any other apps on your device to access them.\n\nContinue?</item>
+    </plurals>
+    <plurals name="ExportZip_error_while_adding_attachments_to_external_storage">
+        <item quantity="one">Error while adding attachment to zip!</item>
+        <item quantity="other">Error while adding attachments to zip!</item>
+    </plurals>
+    <string name="ExportZip_unable_to_write_to_sd_card_exclamation">Unable to write to storage!</string>
+    <string name="export_time_period">Time Period</string>
+    <string name="clear_period">Clear time period</string>
+    <string name="set_time_period">Set time period</string>
+    <string name="whole_historial">All</string>
+    <string name="last_7_days">Last 7 days</string>
+    <string name="last_30_days">Last 30 days</string>
+    <string name="last_3_months">Last three months</string>
+    <string name="last_6_months">Last 6 months</string>
+    <string name="custom_range">Custom range</string>
+    <string name="export_select_from_title">FROM</string>
+    <string name="export_select_until_title">TO</string>
+    <string name="date">date</string>
+    <string name="ChatExportFragment__set_time_period">Time Period</string>
+    <string name="ChatExportFragment__select_time_period">Select time period</string>
+    <string name="ExportChatsFragment__chatexport_info">Require to approve storage permission for exporting the conversation</string>
+    <plurals name="ExportZip_adding_n_attachments">
+        <item quantity="one">Adding all media to the Zip…</item>
+        <item quantity="other">Adding %1$d attachments</item>
+    </plurals>
+    <plurals name="ExportZip_adding_n_attachments_to_media_folder">
+        <item quantity="one">Adding all media to the Zip…</item>
+        <item quantity="other">Adding %1$d attachments…</item>
+    </plurals>
+    <plurals name="ExportZip_start_to_export">Exporting the content>
+        <item quantity="one">Including conversation</item>
+        <item quantity="other">Adding %1$d attachments</item>
+    </plurals>
     <!-- EOF -->
 
 </resources>

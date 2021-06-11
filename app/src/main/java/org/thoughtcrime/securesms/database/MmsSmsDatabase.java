@@ -759,6 +759,13 @@ public class MmsSmsDatabase extends Database {
       return getCurrent();
     }
 
+    public MessageRecord getPrevious() {
+      if (cursor == null || !cursor.moveToPrevious())
+        return null;
+
+      return getCurrent();
+    }
+
     public MessageRecord getCurrent() {
       String type = cursor.getString(cursor.getColumnIndexOrThrow(TRANSPORT));
 

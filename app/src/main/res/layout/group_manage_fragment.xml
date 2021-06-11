@@ -344,7 +344,37 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/group_export_chat_card"
+                style="@style/Widget.Signal.CardView.PreferenceRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/group_manage_fragment_card_vertical_padding"
+                app:layout_constraintTop_toBottomOf="@id/group_notifications_card">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:id="@+id/chat_group_export"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="?selectableItemBackground"
+                        android:gravity="center_vertical|start"
+                        android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
+                        android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
+                        android:text="@string/ManageGroupActivity_chat_export"
+                        android:textAlignment="viewStart"
+                        android:textAppearance="@style/Signal.Text.Body" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 android:id="@+id/group_media_card"
                 style="@style/Widget.Signal.CardView.PreferenceRow"
@@ -352,7 +382,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/group_manage_fragment_card_vertical_padding"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/group_notifications_card"
+                app:layout_constraintTop_toBottomOf="@id/group_export_chat_card"
                 tools:visibility="visible">
 
                 <LinearLayout

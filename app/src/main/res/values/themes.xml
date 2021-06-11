@@ -11,8 +11,7 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
-    <style name="Theme.Signal.DayNight.NoActionBar" parent="TextSecure.LightNoActionBar">
-    </style>
+    <style name="Theme.Signal.DayNight.NoActionBar" parent="TextSecure.LightNoActionBar"></style>
 
     <style name="TextSecure.LightNoActionBar" parent="@style/TextSecure.BaseLightNoActionBar">
         <!-- leave empty to allow overriding -->
@@ -44,9 +43,13 @@
 
     <style name="Theme.Signal.WallpaperCropper" parent="@style/TextSecure.DarkNoActionBar">
         <item name="colorPrimaryDark">@color/wallpaper_preview_background</item>
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">
+            @color/wallpaper_preview_background
+        </item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">
+            @color/wallpaper_preview_background
+        </item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
@@ -56,8 +59,12 @@
         <item name="colorPrimaryDark">@color/wallpaper_preview_background</item>
         <item name="android:textColorSecondary">@color/white</item>
         <item name="android:windowTranslucentNavigation">true</item>
-        <item name="android:statusBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
-        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">
+            @color/wallpaper_preview_background
+        </item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">
+            @color/wallpaper_preview_background
+        </item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
     </style>
 
@@ -196,7 +203,9 @@
         <item name="colorAccent">@color/core_ultramarine_light</item>
         <item name="colorControlActivated">@color/core_ultramarine_light</item>
         <item name="colorControlHighlight">@color/core_ultramarine_light</item>
-        <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/core_ultramarine_light</item>
+        <item name="android:colorControlHighlight" tools:ignore="NewApi">
+            @color/core_ultramarine_light
+        </item>
         <item name="android:windowBackground">@color/core_grey_95</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
@@ -241,18 +250,15 @@
     </style>
 
 
-    <style name="Theme.Signal.Insights.Modal" parent="@style/Theme.AppCompat.Dialog.MinWidth">
-    </style>
+    <style name="Theme.Signal.Insights.Modal" parent="@style/Theme.AppCompat.Dialog.MinWidth"></style>
 
     <style name="TextSecure.MediaSendProgressDialog" parent="@android:style/Theme.Dialog">
         <item name="android:background">@color/core_grey_95</item>
     </style>
 
-    <style name="TextSecure.LightRegistrationTheme" parent="TextSecure.LightNoActionBar">
-    </style>
+    <style name="TextSecure.LightRegistrationTheme" parent="TextSecure.LightNoActionBar"></style>
 
-    <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar">
-    </style>
+    <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar"></style>
 
     <style name="TextSecure.FullScreenMedia" parent="TextSecure.DarkNoActionBar">
         <item name="android:windowFullscreen">true</item>
@@ -263,7 +269,9 @@
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
         <item name="collapseIcon">@drawable/ic_arrow_left_conversation_24</item>
-        <item name="android:collapseIcon" tools:ignore="NewApi">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="android:collapseIcon" tools:ignore="NewApi">
+            @drawable/ic_arrow_left_conversation_24
+        </item>
     </style>
 
     <style name="TextSecure.DarkNoActionBar.DarkToolbar" parent="TextSecure.DarkNoActionBar">
@@ -271,7 +279,9 @@
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
         <item name="collapseIcon">@drawable/ic_arrow_left_conversation_24</item>
-        <item name="android:collapseIcon" tools:ignore="NewApi">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="android:collapseIcon" tools:ignore="NewApi">
+            @drawable/ic_arrow_left_conversation_24
+        </item>
     </style>
 
     <style name="TextSecure.LightTheme.Conversation">
@@ -281,7 +291,9 @@
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
         <item name="collapseIcon">@drawable/ic_arrow_left_conversation_24</item>
-        <item name="android:collapseIcon" tools:ignore="NewApi">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="android:collapseIcon" tools:ignore="NewApi">
+            @drawable/ic_arrow_left_conversation_24
+        </item>
     </style>
 
     <style name="TextSecure.DarkTheme.Conversation">
@@ -291,7 +303,9 @@
         <item name="homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
         <item name="collapseIcon">@drawable/ic_arrow_left_conversation_24</item>
-        <item name="android:collapseIcon" tools:ignore="NewApi">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="android:collapseIcon" tools:ignore="NewApi">
+            @drawable/ic_arrow_left_conversation_24
+        </item>
     </style>
 
     <style name="TextSecure.DarkTheme.WebRTCCall">
@@ -305,11 +319,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Signal.Light.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
-    </style>
+    <style name="Theme.Signal.Light.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog"></style>
 
-    <style name="Theme.Signal.BottomSheetDialog" parent="Theme.Design.BottomSheetDialog">
-    </style>
+    <style name="Theme.Signal.BottomSheetDialog" parent="Theme.Design.BottomSheetDialog"></style>
 
     <style name="Theme.Signal.Light.BottomSheetDialog.Fixed">
         <item name="android:windowIsFloating">false</item>
@@ -331,7 +343,9 @@
     <style name="Theme.Signal.Light.BottomSheetDialog.Fixed.ReactWithAny">
         <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.ReactWithAny.Light</item>
         <item name="android:backgroundDimEnabled">true</item>
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded
+        </item>
     </style>
 
     <style name="Theme.Signal.Light.BottomSheetDialog.Fixed.ReactWithAny.Shadowless">
@@ -344,8 +358,12 @@
 
     <style name="Widget.Signal.BottomSheet.ReactWithAny" parent="Widget.MaterialComponents.BottomSheet">
         <item name="backgroundTint">@color/core_grey_75</item>
-        <item name="behavior_peekHeight">@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_min_height</item>
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+        <item name="behavior_peekHeight">
+            @dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_min_height
+        </item>
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded
+        </item>
     </style>
 
     <style name="Widget.Signal.BottomSheet.ReactWithAny.Light">
@@ -361,7 +379,9 @@
     </style>
 
     <style name="Widget.Signal.BottomSheet.Rounded" parent="Widget.MaterialComponents.BottomSheet">
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded
+        </item>
         <item name="backgroundTint">@color/core_grey_75</item>
     </style>
 
@@ -415,5 +435,14 @@
         <item name="chipBackgroundColor">@color/core_grey_05</item>
         <item name="closeIconTint">@color/core_grey_60</item>
     </style>
+
+    <style name="TextSecure.LightTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="TextSecure.LightTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="TextSecure.LightTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

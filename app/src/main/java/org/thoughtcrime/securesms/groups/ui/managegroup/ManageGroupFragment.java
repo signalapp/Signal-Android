@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
+import org.thoughtcrime.securesms.export.ChatExportActivity;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.GroupErrors;
@@ -117,6 +118,7 @@ public class ManageGroupFragment extends LoggingFragment {
   private View                               groupLinkRow;
   private TextView                           groupLinkButton;
   private View                               wallpaperButton;
+  private View                                   conversationExportButton;
 
   private final Recipient.FallbackPhotoProvider fallbackPhotoProvider = new Recipient.FallbackPhotoProvider() {
     @Override
@@ -179,6 +181,7 @@ public class ManageGroupFragment extends LoggingFragment {
     groupLinkRow                = view.findViewById(R.id.group_link_row);
     groupLinkButton             = view.findViewById(R.id.group_link_button);
     wallpaperButton             = view.findViewById(R.id.chat_wallpaper);
+    conversationExportButton    = view.findViewById(R.id.chat_group_export);
 
     return view;
   }
@@ -245,6 +248,7 @@ public class ManageGroupFragment extends LoggingFragment {
       customNotificationsRow.setOnClickListener(v -> CustomNotificationsDialogFragment.create(groupRecipient.getId())
                                                                                       .show(requireFragmentManager(), DIALOG_TAG));
       wallpaperButton.setOnClickListener(v -> startActivity(ChatWallpaperActivity.createIntent(requireContext(), groupRecipient.getId())));
+      conversationExportButton.setOnClickListener(v -> startActivity(ChatExportActivity.createIntent(requireContext(), groupRecipient.getId())));
     });
 
     if (groupId.isV2()) {

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,10 +41,12 @@ import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.export.ChatExportActivity;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -109,6 +112,8 @@ public class ManageRecipientFragment extends LoggingFragment {
   private View                                   insecureCallButton;
   private View                                   secureVideoCallButton;
   private View                                   chatWallpaperButton;
+  private View                                   conversationExportButton;
+  private Button                                zipButton;
 
   static ManageRecipientFragment newInstance(@NonNull RecipientId recipientId, boolean fromConversation) {
     ManageRecipientFragment fragment = new ManageRecipientFragment();
@@ -167,7 +172,7 @@ public class ManageRecipientFragment extends LoggingFragment {
     insecureCallButton          = view.findViewById(R.id.recipient_insecure_voice_call);
     secureVideoCallButton       = view.findViewById(R.id.recipient_video_call);
     chatWallpaperButton         = view.findViewById(R.id.chat_wallpaper);
-
+    conversationExportButton    = view.findViewById(R.id.chat_recipient_export);
     return view;
   }
 
@@ -278,6 +283,7 @@ public class ManageRecipientFragment extends LoggingFragment {
     insecureCallButton.setOnClickListener(v -> viewModel.onInsecureCall(requireActivity()));
     secureVideoCallButton.setOnClickListener(v -> viewModel.onSecureVideoCall(requireActivity()));
     chatWallpaperButton.setOnClickListener(v -> startActivity(ChatWallpaperActivity.createIntent(requireContext(), recipientId)));
+    conversationExportButton.setOnClickListener(v -> startActivity(ChatExportActivity.createIntent(requireContext(), recipientId)));
   }
 
   @Override

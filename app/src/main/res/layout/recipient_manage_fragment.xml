@@ -538,6 +538,37 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/recipient_export_chat_card"
+                style="@style/Widget.Signal.CardView.PreferenceRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/group_manage_fragment_card_vertical_padding"
+                app:layout_constraintTop_toBottomOf="@id/recipient_chat_color">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="?selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <TextView
+                        android:id="@+id/chat_recipient_export"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="?selectableItemBackground"
+                        android:gravity="center_vertical|start"
+                        android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
+                        android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
+                        android:text="@string/ManageRecipientActivity_chat_export"
+                        android:textAlignment="viewStart"
+                        android:textAppearance="@style/Signal.Text.Body" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/recipient_membership_card"
@@ -545,7 +576,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/group_manage_fragment_card_vertical_padding"
-                app:layout_constraintTop_toBottomOf="@id/recipient_chat_color">
+                app:layout_constraintTop_toBottomOf="@id/recipient_export_chat_card">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -606,6 +637,8 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/recipient_block_and_leave_card"
@@ -669,5 +702,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
