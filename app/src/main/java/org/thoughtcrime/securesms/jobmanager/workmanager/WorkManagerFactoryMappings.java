@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.jobs.SmsReceiveJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSentJob;
+import org.thoughtcrime.securesms.jobs.SystemContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.jobs.UpdateApkJob;
@@ -69,6 +70,7 @@ public class WorkManagerFactoryMappings {
     put("MultiDeviceBlockedUpdateJob", MultiDeviceBlockedUpdateJob.KEY);
     put("MultiDeviceConfigurationUpdateJob", MultiDeviceConfigurationUpdateJob.KEY);
     put("MultiDeviceContactUpdateJob", MultiDeviceContactUpdateJob.KEY);
+    put("SystemContactUpdateJob", SystemContactUpdateJob.KEY);
     put("MultiDeviceGroupUpdateJob", MultiDeviceGroupUpdateJob.KEY);
     put("MultiDeviceProfileKeyUpdateJob", MultiDeviceProfileKeyUpdateJob.KEY);
     put("MultiDeviceReadUpdateJob", MultiDeviceReadUpdateJob.KEY);

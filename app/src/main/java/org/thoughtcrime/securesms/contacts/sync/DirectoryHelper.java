@@ -61,6 +61,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -333,70 +334,30 @@ public class DirectoryHelper {
     }
   }
 
-  private static void syncRecipientInfoWithSystemContacts(@NonNull Context context, @NonNull Map<String, String> rewrites) {
-    RecipientDatabase     recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
-    BulkOperationsHandle  handle            = recipientDatabase.beginBulkSystemContactUpdate();
+  public static void syncRecipientInfoWithUpdatedSystemContacts(@NonNull Context context, long lastSyncTime) {
+    Cursor cursor = ContactAccessor.getInstance().getUpdatedSystemContacts(context, lastSyncTime);
+    if (cursor == null) return;
 
-    try (Cursor cursor = ContactAccessor.getInstance().getAllSystemContacts(context)) {
-      while (cursor != null && cursor.moveToNext()) {
-        String mimeType = getMimeType(cursor);
+    BulkOperationsHandle  handle = null;
+    try {
+      List<ContactHolder> updatedContacts   = getContractHolders(context, cursor, Collections.emptyMap());
+      RecipientDatabase   recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+                          handle            = recipientDatabase.beginBulkSystemContactUpdate(false);
 
-        if (!isPhoneMimeType(mimeType)) {
-          continue;
-        }
-
-        String        lookupKey     = getLookupKey(cursor);
-        ContactHolder contactHolder = new ContactHolder(lookupKey);
-
-        while (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey) && isPhoneMimeType(getMimeType(cursor))) {
-          String number = CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.NUMBER);
-
-          if (isValidContactNumber(number)) {
-            String formattedNumber = PhoneNumberFormatter.get(context).format(number);
-            String realNumber      = Util.getFirstNonEmpty(rewrites.get(formattedNumber), formattedNumber);
-
-            PhoneNumberRecord.Builder builder = new PhoneNumberRecord.Builder();
-
-            builder.withRecipientId(Recipient.externalContact(context, realNumber).getId());
-            builder.withDisplayName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-            builder.withContactPhotoUri(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
-            builder.withContactLabel(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LABEL));
-            builder.withPhoneType(CursorUtil.requireInt(cursor, ContactsContract.CommonDataKinds.Phone.TYPE));
-            builder.withContactUri(ContactsContract.Contacts.getLookupUri(CursorUtil.requireLong(cursor, ContactsContract.CommonDataKinds.Phone._ID),
-                CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)));
-
-            contactHolder.addPhoneNumberRecord(builder.build());
-          } else {
-            Log.w(TAG, "Skipping phone entry with invalid number");
-          }
-
-          cursor.moveToNext();
-        }
-
-        if (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey)) {
-          if (isStructuredNameMimeType(getMimeType(cursor))) {
-            StructuredNameRecord.Builder builder = new StructuredNameRecord.Builder();
-
-            builder.withGivenName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
-            builder.withFamilyName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
-
-            contactHolder.setStructuredNameRecord(builder.build());
-          } else {
-            Log.i(TAG, "Skipping invalid mimeType " + mimeType);
-          }
-        } else {
-          Log.i(TAG, "No structured name for user, rolling back cursor.");
-          cursor.moveToPrevious();
-        }
-
+      for (ContactHolder contactHolder: updatedContacts) {
         contactHolder.commit(handle);
       }
     } catch (IllegalStateException e) {
       Log.w(TAG, "Hit an issue with the cursor while reading!", e);
     } finally {
-      handle.finish();
+      cursor.close();
+      if (handle != null) handle.finish();
     }
 
+    updateNotificationChannels(context);
+  }
+
+  private static void updateNotificationChannels(@NonNull Context context) {
     if (NotificationChannels.supported()) {
       try (RecipientDatabase.RecipientReader recipients = DatabaseFactory.getRecipientDatabase(context).getRecipientsWithNotificationChannels()) {
         Recipient recipient;
@@ -405,6 +366,25 @@ public class DirectoryHelper {
         }
       }
     }
+  }
+
+  private static void syncRecipientInfoWithSystemContacts(@NonNull Context context, @NonNull Map<String, String> rewrites) {
+    RecipientDatabase     recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    BulkOperationsHandle  handle            = recipientDatabase.beginBulkSystemContactUpdate();
+
+    try (Cursor cursor = ContactAccessor.getInstance().getAllSystemContacts(context)) {
+      if (cursor == null) return;
+      List<ContactHolder> contacts   = getContractHolders(context, cursor, rewrites);
+      for (ContactHolder contactHolder: contacts) {
+        contactHolder.commit(handle);
+      }
+    } catch (IllegalStateException e) {
+      Log.w(TAG, "Hit an issue with the cursor while reading!", e);
+    } finally {
+      handle.finish();
+    }
+
+    updateNotificationChannels(context);
   }
 
   private static boolean isPhoneMimeType(@NonNull String mimeType) {
@@ -417,6 +397,78 @@ public class DirectoryHelper {
 
   private static boolean isValidContactNumber(@Nullable String number) {
     return !TextUtils.isEmpty(number) && !UuidUtil.isUuid(number);
+  }
+
+  private static List<ContactHolder> getContractHolders(@NonNull Context context,
+                                                        @NonNull Cursor cursor,
+                                                        @NonNull Map<String, String> rewrites)
+  {
+    List<ContactHolder> contactHolders = new LinkedList<>();
+    while (cursor.moveToNext()) {
+      String mimeType = getMimeType(cursor);
+      if (!isPhoneMimeType(mimeType)) {
+        continue;
+      }
+
+      String        lookupKey     = getLookupKey(cursor);
+      ContactHolder contactHolder = new ContactHolder(lookupKey);
+
+      while (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey) && isPhoneMimeType(getMimeType(cursor))) {
+        String number = CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.NUMBER);
+
+        if (isValidContactNumber(number)) {
+          String formattedNumber = PhoneNumberFormatter.get(context).format(number);
+          String realNumber      = Util.getFirstNonEmpty(rewrites.get(formattedNumber), formattedNumber);
+
+          contactHolder.addPhoneNumberRecord(getPhoneNumberRecord(context, cursor, realNumber));
+        } else {
+          Log.w(TAG, "Skipping phone entry with invalid number");
+        }
+
+        cursor.moveToNext();
+      }
+
+      if (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey)) {
+        if (isStructuredNameMimeType(getMimeType(cursor))) {
+          contactHolder.setStructuredNameRecord(getStructuredNameRecord(cursor));
+        } else {
+          Log.i(TAG, "Skipping invalid mimeType " + mimeType);
+        }
+      } else {
+        Log.i(TAG, "No structured name for user, rolling back cursor.");
+        cursor.moveToPrevious();
+      }
+
+      contactHolders.add(contactHolder);
+    }
+
+    return contactHolders;
+  }
+
+  private static @NonNull PhoneNumberRecord getPhoneNumberRecord(@NonNull Context context,
+                                                                 @NonNull Cursor cursor,
+                                                                 @NonNull String recipientIdentifier)
+  {
+    PhoneNumberRecord.Builder builder = new PhoneNumberRecord.Builder();
+
+    builder.withRecipientId(Recipient.externalContact(context, recipientIdentifier).getId());
+    builder.withDisplayName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+    builder.withContactPhotoUri(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
+    builder.withContactLabel(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LABEL));
+    builder.withPhoneType(CursorUtil.requireInt(cursor, ContactsContract.CommonDataKinds.Phone.TYPE));
+    builder.withContactUri(ContactsContract.Contacts.getLookupUri(CursorUtil.requireLong(cursor, ContactsContract.CommonDataKinds.Phone._ID),
+            CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)));
+
+    return builder.build();
+  }
+
+  private static @NonNull StructuredNameRecord getStructuredNameRecord(@NonNull Cursor cursor) {
+    StructuredNameRecord.Builder builder = new StructuredNameRecord.Builder();
+
+    builder.withGivenName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
+    builder.withFamilyName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
+
+    return builder.build();
   }
 
   private static @NonNull String getLookupKey(@NonNull Cursor cursor) {
