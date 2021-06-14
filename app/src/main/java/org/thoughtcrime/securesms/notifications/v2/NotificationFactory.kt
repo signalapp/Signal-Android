@@ -362,6 +362,7 @@ object NotificationFactory {
       setSmallIcon(R.drawable.ic_notification)
       setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
       setCategory(NotificationCompat.CATEGORY_MESSAGE)
+      setGroup(MessageNotifierV2.NOTIFICATION_GROUP)
       setChannelId(conversation.getChannelId(context))
       setContentTitle(conversation.getContentTitle(context))
       setLargeIcon(conversation.getContactLargeIcon(context).toLargeBitmap(context))
