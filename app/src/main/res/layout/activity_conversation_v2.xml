@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/contentView"
     android:layout_width="match_parent"
@@ -9,6 +9,13 @@
     <org.thoughtcrime.securesms.conversation.v2.ConversationRecyclerView
         android:id="@+id/conversationRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="40dp" />
 
-</LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/red"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
