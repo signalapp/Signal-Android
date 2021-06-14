@@ -66,10 +66,10 @@ final class MobileCoinTestNetConfig extends MobileCoinConfig {
   @Override
   @NonNull ClientConfig getConfig() {
     try {
-      byte[]               mrEnclaveConsensus  = Hex.toByteArray("9268c3220a5260e51e4b586f00e4677fed2b80380f1eeaf775af60f8e880fde8");
-      byte[]               mrEnclaveReport     = Hex.toByteArray("185875464ccd67a879d58181055383505a719b364b12d56d9bef90a40bed07ca");
-      byte[]               mrEnclaveLedger     = Hex.toByteArray("7330c9987f21b91313b39dcdeaa7da8da5ca101c929f5740c207742c762e6dcd");
-      byte[]               mrEnclaveView       = Hex.toByteArray("4e598799faa4bb08a3bd55c0bcda7e1d22e41151d0c591f6c2a48b3562b0881e");
+      byte[]               mrEnclaveConsensus  = Hex.toByteArray("9659ea738275b3999bf1700398b60281be03af5cb399738a89b49ea2496595af");
+      byte[]               mrEnclaveReport     = Hex.toByteArray("a4764346f91979b4906d4ce26102228efe3aba39216dec1e7d22e6b06f919f11");
+      byte[]               mrEnclaveLedger     = Hex.toByteArray("768f7bea6171fb83d775ee8485e4b5fcebf5f664ca7e8b9ceef9c7c21e9d9bf3");
+      byte[]               mrEnclaveView       = Hex.toByteArray("e154f108c7758b5aa7161c3824c176f0c20f63012463bf3cc5651e678f02fb9e");
       byte[]               mrSigner            = Hex.toByteArray("bf7fa957a6a94acb588851bc8767e0ca57706c79f4fc2aa6bcb993012c3c386c");
       Set<X509Certificate> trustRoots          = getTrustRoots(R.raw.signal_mobilecoin_authority);
       ClientConfig         config              = new ClientConfig();

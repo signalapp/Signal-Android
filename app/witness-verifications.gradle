@@ -405,8 +405,8 @@ dependencyVerification {
         ['com.melnykov:floatingactionbutton:1.3.0',
          '15d58d4fac0f7a288d0e5301bbaf501a146f5b3f5921277811bf99bd3b397263'],
 
-        ['com.mobilecoin:android-sdk:1.0.0',
-         '607b6d2bcbac6f4906fef84404f0e3dc30436eb86239db744f780e9112963359'],
+        ['com.mobilecoin:android-sdk:1.1.0',
+         'a57b73613c8fb255bf735d910268f945a6c690ff24d45cc6034aa34e9a3ae4d5'],
 
         ['com.nineoldandroids:library:2.4.0',
          '68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a'],

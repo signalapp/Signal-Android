@@ -379,7 +379,7 @@ dependencies {
     implementation 'org.whispersystems:signal-client-android:0.8.0'
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
 
-    implementation('com.mobilecoin:android-sdk:1.0.0') {
+    implementation('com.mobilecoin:android-sdk:1.1.0') {
         exclude group: 'com.google.protobuf'
     }
 

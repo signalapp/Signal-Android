@@ -104,7 +104,8 @@ public final class Wallet {
       paymentsValues.setMobileCoinFullLedger(Objects.requireNonNull(ledger));
     } catch (IOException e) {
       if ((retryOnAuthFailure && e.getCause() instanceof NetworkException) &&
-          (((NetworkException) e.getCause()).statusCode == 401)) {
+          (((NetworkException) e.getCause()).statusCode == 401))
+      {
         Log.w(TAG, "Failed to get up to date ledger, due to temp auth failure, retrying", e);
         return getFullLedger(false);
       } else {
@@ -124,6 +125,7 @@ public final class Wallet {
       UnsignedLong             highestBlockIndex     = UnsignedLong.ZERO;
       final long               asOfTimestamp         = System.currentTimeMillis();
       AccountSnapshot          accountSnapshot       = mobileCoinClient.getAccountSnapshot();
+      final BigInteger         minimumTxFee          = mobileCoinClient.getOrFetchMinimumTxFee();
 
       if (minimumBlockIndex != null) {
         long snapshotBlockIndex = accountSnapshot.getBlockIndex().longValue();
@@ -140,8 +142,7 @@ public final class Wallet {
                                                                                 .setKeyImage(ByteString.copyFrom(txOut.getKeyImage().getData()))
                                                                                 .setPublicKey(ByteString.copyFrom(txOut.getPublicKey().getKeyBytes()));
         if (txOut.getSpentBlockIndex() != null &&
-             (minimumBlockIndex == null ||
-              txOut.isSpent(UnsignedLong.valueOf(minimumBlockIndex))))
+            (minimumBlockIndex == null || txOut.isSpent(UnsignedLong.valueOf(minimumBlockIndex))))
         {
           txoBuilder.setSpentInBlock(getBlock(txOut.getSpentBlockIndex(), txOut.getSpentBlockTimestamp()));
           builder.addSpentTxos(txoBuilder);
@@ -167,7 +168,7 @@ public final class Wallet {
         }
       }
       builder.setBalance(Uint64Util.bigIntegerToUInt64(totalUnspent))
-             .setTransferableBalance(Uint64Util.bigIntegerToUInt64(accountSnapshot.getTransferableAmount()))
+             .setTransferableBalance(Uint64Util.bigIntegerToUInt64(accountSnapshot.getTransferableAmount(minimumTxFee)))
              .setAsOfTimeStamp(asOfTimestamp)
              .setHighestBlock(MobileCoinLedger.Block.newBuilder()
                                                     .setBlockNumber(highestBlockIndex.longValue())
@@ -399,7 +400,7 @@ public final class Wallet {
   public enum TransactionStatus {
     COMPLETE,
     IN_PROGRESS,
-    FAILED;
+    FAILED
   }
 
   public static final class TransactionStatusResult {
@@ -491,7 +492,7 @@ public final class Wallet {
 
     @Override
     public boolean onStepReady(@NonNull PendingTransaction pendingTransaction, @NonNull BigInteger fee)
-            throws NetworkException, InvalidTransactionException, AttestationException
+        throws NetworkException, InvalidTransactionException, AttestationException
     {
       Log.i(TAG, "Submitting defrag transaction");
       mobileCoinClient.submitTransaction(pendingTransaction.getTransaction());
