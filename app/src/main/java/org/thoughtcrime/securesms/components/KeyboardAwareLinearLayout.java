@@ -229,7 +229,8 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
 
   private int getKeyboardPortraitHeight() {
     if (isBubble) {
-      return getRootView().getHeight() - minCustomKeyboardTopMarginPortrait;
+      int height = getRootView().getHeight();
+      return height - (int)(height * 0.45);
     }
 
     int keyboardHeight = PreferenceManager.getDefaultSharedPreferences(getContext())
