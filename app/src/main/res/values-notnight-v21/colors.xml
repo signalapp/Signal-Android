@@ -20,10 +20,11 @@
     <color name="pn_option_background">#FCFCFC</color>
     <color name="open_group_chip_color">#0D000000</color>
     <color name="message_selected">#FFFFFF</color>
+    <color name="input_bar_background">#FCFCFC</color>
 
     <color name="default_background_start">#ffffff</color>
-    <color name="default_background_end">#fcfcfd</color>
-    <color name="action_bar_background">#fcfcfd</color>
+    <color name="default_background_end">#fcfcfc</color>
+    <color name="action_bar_background">#fcfcfc</color>
 
     <color name="app_icon_background">#333132</color>
     <color name="progress_bar_background">#0A000000</color>

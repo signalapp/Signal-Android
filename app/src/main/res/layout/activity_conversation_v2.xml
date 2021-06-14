@@ -10,12 +10,11 @@
         android:id="@+id/conversationRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="@dimen/input_bar_height" />
 
-    <View
+    <org.thoughtcrime.securesms.conversation.v2.input_bar.InputBar
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/red"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
 
 </RelativeLayout>
