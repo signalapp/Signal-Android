@@ -429,7 +429,7 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
         val encryptionKeyPair = pendingKeyPairs[groupPublicKey]?.orNull()
             ?: storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
         if (encryptionKeyPair == null) {
-            android.util.Log.d("Loki", "Couldn't get encryption key pair for closed group.")
+            Log.d("Loki", "Couldn't get encryption key pair for closed group.")
         } else {
             for (user in updateMembers) {
                 MessageSender.sendEncryptionKeyPair(groupPublicKey, encryptionKeyPair, setOf(user), targetUser = user, force = false)
@@ -561,12 +561,12 @@ private fun isValidGroupUpdate(group: GroupRecord, sentTimestamp: Long, senderPu
     val oldMembers = group.members.map { it.serialize() }
     // Check that the message isn't from before the group was created
     if (group.formationTimestamp > sentTimestamp) {
-        android.util.Log.d("Loki", "Ignoring closed group update from before thread was created.")
+        Log.d("Loki", "Ignoring closed group update from before thread was created.")
         return false
     }
     // Check that the sender is a member of the group (before the update)
     if (senderPublicKey !in oldMembers) {
-        android.util.Log.d("Loki", "Ignoring closed group info message from non-member.")
+        Log.d("Loki", "Ignoring closed group info message from non-member.")
         return false
     }
     return true
