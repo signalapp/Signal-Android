@@ -37,6 +37,8 @@
     <dimen name="path_row_dot_size">8dp</dimen>
     <dimen name="path_row_expanded_dot_size">16dp</dimen>
     <dimen name="input_bar_height">56dp</dimen>
+    <dimen name="input_bar_button_collapsed_size">40dp</dimen>
+    <dimen name="input_bar_button_expanded_size">48dp</dimen>
 
     <!-- Distances -->
     <dimen name="small_spacing">8dp</dimen>

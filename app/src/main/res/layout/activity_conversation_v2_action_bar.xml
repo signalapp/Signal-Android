@@ -19,6 +19,8 @@
         android:text="Elon"
         android:textColor="@color/text"
         android:textStyle="bold"
-        android:textSize="@dimen/very_large_font_size" />
+        android:textSize="@dimen/very_large_font_size"
+        android:maxLines="1"
+        android:ellipsize="end" />
 
 </LinearLayout>
