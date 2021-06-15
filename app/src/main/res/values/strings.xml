@@ -1370,6 +1370,9 @@
     <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">To help prevent spam on Signal, please complete verification.</string>
     <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">After verifying, you can continue messaging. Any paused messages will automatically be sent.</string>
 
+    <!-- Recipient -->
+    <string name="Recipient_you">You</string>
+
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">Block</string>
     <string name="RecipientPreferenceActivity_unblock">Unblock</string>

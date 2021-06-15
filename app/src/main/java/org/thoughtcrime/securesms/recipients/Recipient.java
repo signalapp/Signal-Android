@@ -454,6 +454,10 @@ public class Recipient {
 
       List<String> names = new LinkedList<>();
 
+      if (participants.stream().anyMatch(Recipient::isSelf)) {
+        names.add(context.getString(R.string.Recipient_you));
+      }
+
       for (Recipient participant : others) {
         String shortName = participant.getShortDisplayName(context);
         int    count     = Objects.requireNonNull(shortNameCounts.getOrDefault(shortName, 0));
