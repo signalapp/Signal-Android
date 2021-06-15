@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.jobs.GroupCallUpdateSendJob;
+import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -549,6 +550,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                       callMessage);
       } catch (UntrustedIdentityException e) {
         Log.i(TAG, "sendOpaqueCallMessage onFailure: ", e);
+        RetrieveProfileJob.enqueue(recipient.getId());
         process((s, p) -> p.handleGroupMessageSentError(s, new RemotePeer(recipient.getId()), UNTRUSTED_IDENTITY, Optional.fromNullable(e.getIdentityKey())));
       } catch (IOException e) {
         Log.i(TAG, "sendOpaqueCallMessage onFailure: ", e);
@@ -730,6 +732,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                       callMessage);
         process((s, p) -> p.handleMessageSentSuccess(s, remotePeer.getCallId()));
       } catch (UntrustedIdentityException e) {
+        RetrieveProfileJob.enqueue(remotePeer.getId());
         processSendMessageFailureWithChangeDetection(remotePeer,
                                                      (s, p) -> p.handleMessageSentError(s,
                                                                                         remotePeer.getCallId(),

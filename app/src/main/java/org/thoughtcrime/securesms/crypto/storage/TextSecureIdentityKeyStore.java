@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.crypto.storage;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
@@ -46,7 +48,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     return TextSecurePreferences.getLocalRegistrationId(context);
   }
 
-  public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey, boolean nonBlockingApproval) {
+  public @NonNull SaveResult saveIdentity(SignalProtocolAddress address, IdentityKey identityKey, boolean nonBlockingApproval) {
     try (SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
       IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
       RecipientId              recipientId      = RecipientId.fromExternalPush(address.getName());
@@ -55,13 +57,11 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
       if (!identityRecord.isPresent()) {
         Log.i(TAG, "Saving new identity...");
         identityDatabase.saveIdentity(recipientId, identityKey, VerifiedStatus.DEFAULT, true, System.currentTimeMillis(), nonBlockingApproval);
-        return false;
+        return SaveResult.NEW;
       }
 
-      Log.i(TAG, "Existing: " + identityRecord.get().getIdentityKey().hashCode() + " New: " + identityKey.hashCode());
-
       if (!identityRecord.get().getIdentityKey().equals(identityKey)) {
-        Log.i(TAG, "Replacing existing identity...");
+        Log.i(TAG, "Replacing existing identity... Existing: " + identityRecord.get().getIdentityKey().hashCode() + " New: " + identityKey.hashCode());
         VerifiedStatus verifiedStatus;
 
         if (identityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED ||
@@ -76,22 +76,22 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
         IdentityUtil.markIdentityUpdate(context, recipientId);
         SessionUtil.archiveSiblingSessions(context, address);
         DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(recipientId);
-        return true;
+        return SaveResult.UPDATE;
       }
 
       if (isNonBlockingApprovalRequired(identityRecord.get())) {
         Log.i(TAG, "Setting approval status...");
         identityDatabase.setApproval(recipientId, nonBlockingApproval);
-        return false;
+        return SaveResult.NON_BLOCKING_APPROVAL_REQUIRED;
       }
 
-      return false;
+      return SaveResult.NO_CHANGE;
     }
   }
 
   @Override
   public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
-    return saveIdentity(address, identityKey, false);
+    return saveIdentity(address, identityKey, false) == SaveResult.UPDATE;
   }
 
   @Override
@@ -146,7 +146,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     }
 
     if (!identityKey.equals(identityRecord.get().getIdentityKey())) {
-      Log.w(TAG, "Identity keys don't match... service: " + identityRecord.get().getIdentityKey().hashCode() + " database: " + identityRecord.get().getIdentityKey().hashCode());
+      Log.w(TAG, "Identity keys don't match... service: " + identityKey.hashCode() + " database: " + identityRecord.get().getIdentityKey().hashCode());
       return false;
     }
 
@@ -167,5 +167,12 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     return !identityRecord.isFirstUse() &&
            System.currentTimeMillis() - identityRecord.getTimestamp() < TimeUnit.SECONDS.toMillis(TIMESTAMP_THRESHOLD_SECONDS) &&
            !identityRecord.isApprovedNonBlocking();
+  }
+
+  public enum SaveResult {
+    NEW,
+    UPDATE,
+    NON_BLOCKING_APPROVAL_REQUIRED,
+    NO_CHANGE
   }
 }

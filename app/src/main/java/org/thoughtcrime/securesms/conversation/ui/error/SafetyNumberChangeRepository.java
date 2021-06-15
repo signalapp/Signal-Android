@@ -13,6 +13,7 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
+import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -126,8 +127,13 @@ final class SafetyNumberChangeRepository {
         SignalProtocolAddress      mismatchAddress  = new SignalProtocolAddress(changedRecipient.getRecipient().requireServiceId(), 1);
         TextSecureIdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(context);
         Log.d(TAG, "Saving identity for: " + changedRecipient.getRecipient().getId() + " " + changedRecipient.getIdentityRecord().getIdentityKey().hashCode());
-        boolean result = identityKeyStore.saveIdentity(mismatchAddress, changedRecipient.getIdentityRecord().getIdentityKey(), true);
+        TextSecureIdentityKeyStore.SaveResult result = identityKeyStore.saveIdentity(mismatchAddress, changedRecipient.getIdentityRecord().getIdentityKey(), true);
         Log.d(TAG, "Saving identity result: " + result);
+        if (result == TextSecureIdentityKeyStore.SaveResult.NO_CHANGE) {
+          Log.i(TAG, "Archiving sessions explicitly as they appear to be out of sync.");
+          SessionUtil.archiveSiblingSessions(context, mismatchAddress);
+          DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(changedRecipient.getRecipient().getId());
+        }
       }
     }
 
