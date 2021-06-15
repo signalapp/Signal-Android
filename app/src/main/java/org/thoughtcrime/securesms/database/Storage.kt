@@ -429,7 +429,13 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun updateFormationTimestamp(groupID: String, formationTimestamp: Long) {
-        DatabaseFactory.getGroupDatabase(context).updateFormationTimestamp(groupID, formationTimestamp)
+        DatabaseFactory.getGroupDatabase(context)
+            .updateFormationTimestamp(groupID, formationTimestamp)
+    }
+
+    override fun setExpirationTimer(groupID: String, duration: Int) {
+        val recipient = Recipient.from(context, fromSerialized(groupID), false)
+        DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient, duration);
     }
 
     override fun getAllV2OpenGroups(): Map<Long, OpenGroupV2> {
