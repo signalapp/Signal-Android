@@ -7,13 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
+import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
@@ -25,7 +24,6 @@ import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
 import org.thoughtcrime.securesms.messages.MessageDecryptionUtil.DecryptionResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -123,12 +121,7 @@ public class IncomingMessageProcessor {
 
       stopwatch.split("queue-check");
 
-      long ownerThreadId = DatabaseSessionLock.INSTANCE.getLikeyOwnerThreadId();
-      if (ownerThreadId != DatabaseSessionLock.NO_OWNER && ownerThreadId != Thread.currentThread().getId()) {
-        Log.i(TAG, "It is likely that some other thread has this lock. Owner: " + ownerThreadId + ", Us: " + Thread.currentThread().getId());
-      }
-
-      try (SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
+      try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
         Log.i(TAG, "Acquired lock while processing message " + envelope.getTimestamp() + ".");
 
         DecryptionResult result = MessageDecryptionUtil.decrypt(context, envelope);

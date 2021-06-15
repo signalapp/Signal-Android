@@ -18,7 +18,7 @@ public final class SenderKeyUtil {
    * Clears the state for a sender key session we created. It will naturally get re-created when it is next needed, rotating the key.
    */
   public static void rotateOurKey(@NonNull Context context, @NonNull DistributionId distributionId) {
-    try (SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
+    try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       new SignalSenderKeyStore(context).deleteAllFor(Recipient.self().getId(), distributionId);
       DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(distributionId);
     }
@@ -35,7 +35,7 @@ public final class SenderKeyUtil {
    * Deletes all stored state around session keys. Should only really be used when the user is re-registering.
    */
   public static void clearAllState(@NonNull Context context) {
-    try (SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
+    try (SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       new SignalSenderKeyStore(context).deleteAll();
       DatabaseFactory.getSenderKeySharedDatabase(context).deleteAll();
     }

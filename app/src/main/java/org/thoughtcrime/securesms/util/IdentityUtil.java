@@ -9,7 +9,7 @@ import androidx.annotation.StringRes;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
+import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -143,7 +143,7 @@ public final class IdentityUtil {
   }
 
   public static void saveIdentity(Context context, String user, IdentityKey identityKey) {
-    try(SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
+    try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       IdentityKeyStore      identityKeyStore = new TextSecureIdentityKeyStore(context);
       SessionStore          sessionStore     = new TextSecureSessionStore(context);
       SignalProtocolAddress address          = new SignalProtocolAddress(user, 1);
@@ -160,7 +160,7 @@ public final class IdentityUtil {
   }
 
   public static void processVerifiedMessage(Context context, VerifiedMessage verifiedMessage) {
-    try(SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
+    try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
       Recipient                recipient        = Recipient.externalPush(context, verifiedMessage.getDestination());
       Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(recipient.getId());
