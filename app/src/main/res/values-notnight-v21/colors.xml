@@ -21,6 +21,7 @@
     <color name="open_group_chip_color">#0D000000</color>
     <color name="message_selected">#FFFFFF</color>
     <color name="input_bar_background">#FCFCFC</color>
+    <color name="input_bar_button_background">#0D000000</color>
 
     <color name="default_background_start">#ffffff</color>
     <color name="default_background_end">#fcfcfc</color>

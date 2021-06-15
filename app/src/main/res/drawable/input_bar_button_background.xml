@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/accent">
+
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/input_bar_button_background" />
+        </shape>
+    </item>
+</ripple>
