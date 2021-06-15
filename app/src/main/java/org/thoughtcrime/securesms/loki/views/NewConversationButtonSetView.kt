@@ -1,19 +1,15 @@
 package org.thoughtcrime.securesms.loki.views
 
-import android.animation.ArgbEvaluator
 import android.animation.FloatEvaluator
 import android.animation.PointFEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
-import android.content.Context.VIBRATOR_SERVICE
 import android.content.res.ColorStateList
 import android.graphics.PointF
 import android.os.Build
-import android.os.VibrationEffect
-import android.os.VibrationEffect.DEFAULT_AMPLITUDE
-import android.os.Vibrator
 import android.util.AttributeSet
 import android.view.Gravity
+import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -162,6 +158,7 @@ class NewConversationButtonSetView : RelativeLayout {
 
     private fun setUpViewHierarchy() {
         disableClipping()
+        isHapticFeedbackEnabled = true
         // Set up session button
         addView(sessionButton)
         sessionButton.alpha = 0.0f
@@ -206,11 +203,10 @@ class NewConversationButtonSetView : RelativeLayout {
                     isExpanded = true
                     expand()
                 }
-                val vibrator = context.getSystemService(VIBRATOR_SERVICE) as Vibrator
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    vibrator.vibrate(VibrationEffect.createOneShot(50, DEFAULT_AMPLITUDE))
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
                 } else {
-                    vibrator.vibrate(50)
+                    performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
                 }
             }
             MotionEvent.ACTION_MOVE -> {

@@ -5,8 +5,10 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.PointF
+import android.os.Build
 import android.util.AttributeSet
 import android.view.Gravity
+import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -65,6 +67,7 @@ class InputBarButton : RelativeLayout {
         imageViewLayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT)
         imageView.layoutParams = imageViewLayoutParams
         gravity = Gravity.TOP or Gravity.LEFT // Intentionally not Gravity.START
+        isHapticFeedbackEnabled = true
     }
 
     fun expand() {
@@ -92,7 +95,14 @@ class InputBarButton : RelativeLayout {
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
-            MotionEvent.ACTION_DOWN -> { expand() }
+            MotionEvent.ACTION_DOWN -> {
+                expand()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
+                } else {
+                    performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+                }
+            }
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> { collapse() }
         }
         return true
