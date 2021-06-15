@@ -13,6 +13,7 @@
         android:layout_marginBottom="@dimen/input_bar_height" />
 
     <org.thoughtcrime.securesms.conversation.v2.input_bar.InputBar
+        android:id="@+id/inputBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />

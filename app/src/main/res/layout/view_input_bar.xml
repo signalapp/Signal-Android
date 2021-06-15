@@ -22,13 +22,18 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/small_spacing" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/inputBarEditText"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_centerInParent="true"
-            android:layout_marginStart="56dp"
-            android:layout_marginEnd="56dp"
-            android:background="@color/red" />
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="64dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/text"
+            android:textSize="@dimen/small_font_size"
+            android:background="@null"
+            android:hint="@string/ConversationActivity_message" />
 
         <RelativeLayout
             android:id="@+id/microphoneButtonContainer"

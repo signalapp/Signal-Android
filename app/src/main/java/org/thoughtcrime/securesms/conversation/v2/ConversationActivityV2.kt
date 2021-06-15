@@ -2,16 +2,15 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.database.Cursor
 import android.os.Bundle
-import android.util.Log
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
+import kotlinx.android.synthetic.main.view_input_bar.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
@@ -64,7 +63,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
         setContentView(R.layout.activity_conversation_v2)
         threadID = intent.getLongExtra(THREAD_ID, -1)
         setUpRecyclerView()
-        setUpToolbar()
+        setUpToolBar()
+        setUpInputBar()
     }
 
     private fun setUpRecyclerView() {
@@ -88,13 +88,17 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
         })
     }
 
-    private fun setUpToolbar() {
+    private fun setUpToolBar() {
         val actionBar = supportActionBar!!
         actionBar.setCustomView(R.layout.activity_conversation_v2_action_bar)
         actionBar.setDisplayShowCustomEnabled(true)
         conversationTitleView.text = thread.toShortString()
         profilePictureView.glide = glide
         profilePictureView.update(thread, threadID)
+    }
+
+    private fun setUpInputBar() {
+        inputBar.inputBarEditText.imeOptions = inputBar.inputBarEditText.imeOptions or 16777216 // Always use incognito keyboard
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
