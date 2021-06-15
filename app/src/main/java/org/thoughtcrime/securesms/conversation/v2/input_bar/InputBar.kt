@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.v2.input_bar
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -12,6 +13,7 @@ import org.thoughtcrime.securesms.loki.utilities.toDp
 import kotlin.math.roundToInt
 
 class InputBar : LinearLayout, InputBarEditTextDelegate {
+    var delegate: InputBarDelegate? = null
 
     private val attachmentsButton by lazy { InputBarButton(context, R.drawable.ic_plus_24) }
     private val microphoneButton by lazy { InputBarButton(context, R.drawable.ic_microphone) }
@@ -43,10 +45,17 @@ class InputBar : LinearLayout, InputBarEditTextDelegate {
     // endregion
 
     override fun inputBarEditTextHeightChanged(newValue: Int) {
-        val vMargin = resources.getDimension(R.dimen.small_spacing).roundToInt()
-        val layoutParams = this.layoutParams as RelativeLayout.LayoutParams
-        layoutParams.height = newValue + 2 * vMargin
-        this.layoutParams = layoutParams
+        val vMargin = toDp(4, resources)
+        val layoutParams = inputBarLinearLayout.layoutParams as LayoutParams
+        val newHeight = newValue + 2 * vMargin
+        layoutParams.height = newHeight
+        inputBarLinearLayout.layoutParams = layoutParams
+        delegate?.inputBarHeightChanged(newHeight)
     }
     // endregion
+}
+
+interface InputBarDelegate {
+
+    fun inputBarHeightChanged(newValue: Int)
 }

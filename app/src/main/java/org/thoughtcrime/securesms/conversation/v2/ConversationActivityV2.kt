@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.RelativeLayout
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,13 +14,14 @@ import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
 import kotlinx.android.synthetic.main.view_input_bar.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.mms.GlideApp
 
-class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
+class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate {
     private var threadID: Long = -1
     private var actionMode: ActionMode? = null
 
@@ -64,6 +66,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
         threadID = intent.getLongExtra(THREAD_ID, -1)
         setUpRecyclerView()
         setUpToolBar()
+        inputBar.delegate = this
     }
 
     private fun setUpRecyclerView() {
@@ -100,6 +103,14 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
         ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, this) { onOptionsItemSelected(it) }
         super.onPrepareOptionsMenu(menu)
         return true
+    }
+    // endregion
+
+    // region Updating
+    override fun inputBarHeightChanged(newValue: Int) {
+        val recyclerViewLayoutParams = conversationRecyclerView.layoutParams as RelativeLayout.LayoutParams
+        recyclerViewLayoutParams.bottomMargin = newValue
+        conversationRecyclerView.layoutParams = recyclerViewLayoutParams
     }
     // endregion
 
