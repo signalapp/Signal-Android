@@ -179,4 +179,19 @@ public class Media implements Parcelable {
   public int hashCode() {
     return uri.hashCode();
   }
+
+  public static @NonNull Media withMimeType(@NonNull Media media, @NonNull String newMimeType) {
+    return new Media(media.getUri(),
+                     newMimeType,
+                     media.getDate(),
+                     media.getWidth(),
+                     media.getHeight(),
+                     media.getSize(),
+                     media.getDuration(),
+                     media.isBorderless(),
+                     media.isVideoGif(),
+                     media.getBucketId(),
+                     media.getCaption(),
+                     media.getTransformProperties());
+  }
 }

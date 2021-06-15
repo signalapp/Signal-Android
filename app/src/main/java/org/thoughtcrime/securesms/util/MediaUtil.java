@@ -64,6 +64,7 @@ public class MediaUtil {
   public static final String LONG_TEXT         = "text/x-signal-plain";
   public static final String VIEW_ONCE         = "application/x-signal-view-once";
   public static final String UNKNOWN           = "*/*";
+  public static final String OCTET             = "application/octet-stream";
 
   public static SlideType getSlideTypeFromContentType(@NonNull String contentType) {
     if (isGif(contentType)) {
@@ -111,7 +112,7 @@ public class MediaUtil {
     }
 
     String type = context.getContentResolver().getType(uri);
-    if (type == null) {
+    if (type == null || isOctetStream(type)) {
       final String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
       type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.toLowerCase());
     }
@@ -323,6 +324,10 @@ public class MediaUtil {
 
   public static boolean isViewOnceType(String contentType) {
     return (null != contentType) && contentType.equals(VIEW_ONCE);
+  }
+
+  public static boolean isOctetStream(@Nullable String contentType) {
+    return OCTET.equals(contentType);
   }
 
   public static boolean hasVideoThumbnail(@NonNull Context context, @Nullable Uri uri) {
