@@ -64,7 +64,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
         threadID = intent.getLongExtra(THREAD_ID, -1)
         setUpRecyclerView()
         setUpToolBar()
-        setUpInputBar()
     }
 
     private fun setUpRecyclerView() {
@@ -95,10 +94,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity() {
         conversationTitleView.text = thread.toShortString()
         profilePictureView.glide = glide
         profilePictureView.update(thread, threadID)
-    }
-
-    private fun setUpInputBar() {
-        inputBar.inputBarEditText.imeOptions = inputBar.inputBarEditText.imeOptions or 16777216 // Always use incognito keyboard
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {

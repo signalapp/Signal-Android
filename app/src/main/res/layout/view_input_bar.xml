@@ -22,7 +22,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/small_spacing" />
 
-        <EditText
+        <org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarEditText
             android:id="@+id/inputBarEditText"
             android:layout_width="match_parent"
             android:layout_height="40dp"

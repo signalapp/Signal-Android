@@ -194,7 +194,7 @@ android {
         versionCode canonicalVersionCode * postFixSize
         versionName canonicalVersionName
 
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
 
         multiDexEnabled = true
