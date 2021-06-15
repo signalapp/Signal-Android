@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import kotlinx.android.synthetic.main.view_input_bar.view.*
 import network.loki.messenger.R
 
 class InputBar : LinearLayout {
@@ -23,6 +24,8 @@ class InputBar : LinearLayout {
 
     private fun setUpViewHierarchy() {
         LayoutInflater.from(context).inflate(R.layout.view_input_bar, this)
+        attachmentsButton.setOnClickListener {  }
+        microphoneButton.setOnClickListener {  }
     }
     // endregion
 }
