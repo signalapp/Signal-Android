@@ -428,6 +428,11 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiAPIDatabase(context).removeAllClosedGroupEncryptionKeyPairs(groupPublicKey)
     }
 
+    override fun updateFormationTimestamp(groupID: String, formationTimestamp: Long) {
+        DatabaseFactory.getGroupDatabase(context)
+            .updateFormationTimestamp(groupID, formationTimestamp)
+    }
+
     override fun setExpirationTimer(groupID: String, duration: Int) {
         val recipient = Recipient.from(context, fromSerialized(groupID), false)
         DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient, duration);

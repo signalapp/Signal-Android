@@ -161,7 +161,7 @@ fun MessageSender.addMembers(groupPublicKey: String, membersToAdd: List<String>)
     for (member in membersToAdd) {
         val closedGroupNewKind = ClosedGroupControlMessage.Kind.New(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), name, encryptionKeyPair, membersAsData, adminsAsData, expireTimer)
         val closedGroupControlMessage = ClosedGroupControlMessage(closedGroupNewKind)
-        closedGroupControlMessage.sentTimestamp = sentTime
+        closedGroupControlMessage.sentTimestamp = System.currentTimeMillis()
         send(closedGroupControlMessage, Address.fromSerialized(member))
     }
     // Notify the user
