@@ -263,27 +263,22 @@ private fun MessageReceiver.handleNewClosedGroup(message: ClosedGroupControlMess
 private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPublicKey: String, name: String, encryptionKeyPair: ECKeyPair, members: List<String>, admins: List<String>, formationTimestamp: Long, expireTimer: Int) {
     val context = MessagingModuleConfiguration.shared.context
     val storage = MessagingModuleConfiguration.shared.storage
+    val userPublicKey = TextSecurePreferences.getLocalNumber(context)
     // Create the group
     val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
     if (storage.getGroup(groupID) != null) {
         // Update the group
-        // Clear zombie list if the group wasn't active
         if (!storage.isGroupActive(groupPublicKey)) {
+            // Clear zombie list if the group wasn't active
             storage.setZombieMembers(groupID, listOf())
+            // Update the formation timestamp
+            storage.updateFormationTimestamp(groupID, formationTimestamp)
         }
         storage.updateTitle(groupID, name)
         storage.updateMembers(groupID, members.map { Address.fromSerialized(it) })
     } else {
         storage.createGroup(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }),
             null, null, LinkedList(admins.map { Address.fromSerialized(it) }), formationTimestamp)
-        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
-        // Notify the user
-        if (userPublicKey == sender) {
-            val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-            storage.insertOutgoingInfoMessage(context, groupID, SignalServiceGroup.Type.CREATION, name, members, admins, threadID, sentTimestamp)
-        } else {
-            storage.insertIncomingInfoMessage(context, sender, groupID, SignalServiceGroup.Type.CREATION, name, members, admins, sentTimestamp)
-        }
     }
     storage.setProfileSharing(Address.fromSerialized(groupID), true)
     // Add the group to the user's set of public keys to poll for
@@ -294,6 +289,13 @@ private fun handleNewClosedGroup(sender: String, sentTimestamp: Long, groupPubli
     storage.setExpirationTimer(groupID, expireTimer)
     // Notify the PN server
     PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Subscribe, groupPublicKey, storage.getUserPublicKey()!!)
+    // Notify the user
+    if (userPublicKey == sender) {
+        val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceGroup.Type.CREATION, name, members, admins, threadID, sentTimestamp)
+    } else {
+        storage.insertIncomingInfoMessage(context, sender, groupID, SignalServiceGroup.Type.CREATION, name, members, admins, sentTimestamp)
+    }
     // Start polling
     ClosedGroupPollerV2.shared.startPolling(groupPublicKey)
 }
@@ -427,7 +429,7 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
         val encryptionKeyPair = pendingKeyPairs[groupPublicKey]?.orNull()
             ?: storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
         if (encryptionKeyPair == null) {
-            android.util.Log.d("Loki", "Couldn't get encryption key pair for closed group.")
+            Log.d("Loki", "Couldn't get encryption key pair for closed group.")
         } else {
             for (user in updateMembers) {
                 MessageSender.sendEncryptionKeyPair(groupPublicKey, encryptionKeyPair, setOf(user), targetUser = user, force = false)
@@ -559,12 +561,12 @@ private fun isValidGroupUpdate(group: GroupRecord, sentTimestamp: Long, senderPu
     val oldMembers = group.members.map { it.serialize() }
     // Check that the message isn't from before the group was created
     if (group.formationTimestamp > sentTimestamp) {
-        android.util.Log.d("Loki", "Ignoring closed group update from before thread was created.")
+        Log.d("Loki", "Ignoring closed group update from before thread was created.")
         return false
     }
     // Check that the sender is a member of the group (before the update)
     if (senderPublicKey !in oldMembers) {
-        android.util.Log.d("Loki", "Ignoring closed group info message from non-member.")
+        Log.d("Loki", "Ignoring closed group info message from non-member.")
         return false
     }
     return true

@@ -56,6 +56,8 @@ class EditClosedGroupMembersAdapter(
 
         if (unlocked) {
             viewHolder.view.setOnClickListener { this.memberClickListener?.invoke(member) }
+        } else {
+            viewHolder.view.setOnClickListener(null)
         }
     }
 

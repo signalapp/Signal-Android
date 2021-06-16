@@ -308,6 +308,13 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?", new String[] {groupId});
   }
 
+  public void updateFormationTimestamp(String groupId, Long formationTimestamp) {
+    ContentValues contents = new ContentValues();
+    contents.put(TIMESTAMP, formationTimestamp);
+
+    databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?", new String[] {groupId});
+  }
+
   public void removeMember(String groupId, Address source) {
     List<Address> currentMembers = getCurrentMembers(groupId, false);
     currentMembers.remove(source);

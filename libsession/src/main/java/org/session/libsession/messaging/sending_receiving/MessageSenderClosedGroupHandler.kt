@@ -161,7 +161,13 @@ fun MessageSender.addMembers(groupPublicKey: String, membersToAdd: List<String>)
     for (member in membersToAdd) {
         val closedGroupNewKind = ClosedGroupControlMessage.Kind.New(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), name, encryptionKeyPair, membersAsData, adminsAsData, expireTimer)
         val closedGroupControlMessage = ClosedGroupControlMessage(closedGroupNewKind)
-        closedGroupControlMessage.sentTimestamp = sentTime
+        // It's important that the sent timestamp of this message is greater than the sent timestamp
+        // of the `MembersAdded` message above. The reason is that upon receiving this `New` message,
+        // the recipient will update the closed group formation timestamp and ignore any closed group
+        // updates from before that timestamp. By setting the timestamp of the message below to a value
+        // greater than that of the `MembersAdded` message, we ensure that newly added members ignore
+        // the `MembersAdded` message.
+        closedGroupControlMessage.sentTimestamp = System.currentTimeMillis()
         send(closedGroupControlMessage, Address.fromSerialized(member))
     }
     // Notify the user
