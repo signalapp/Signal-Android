@@ -1252,6 +1252,7 @@ public class MmsDatabase extends MessageDatabase {
           Avatar             updatedAvatar = new Avatar(contact.getAvatar().getAttachmentId(),
                                                         attachment,
                                                         contact.getAvatar().isProfile());
+
           contacts.add(new Contact(contact, updatedAvatar));
         } else {
           contacts.add(contact);
@@ -1289,6 +1290,8 @@ public class MmsDatabase extends MessageDatabase {
           DatabaseAttachment attachment = attachmentIdMap.get(preview.getAttachmentId());
           if (attachment != null) {
             previews.add(new LinkPreview(preview.getUrl(), preview.getTitle(), preview.getDescription(), preview.getDate(), attachment));
+          } else {
+            previews.add(preview);
           }
         } else {
           previews.add(preview);
@@ -2084,12 +2087,12 @@ public class MmsDatabase extends MessageDatabase {
       Recipient                 recipient          = Recipient.live(RecipientId.from(recipientId)).get();
       List<IdentityKeyMismatch> mismatches         = getMismatchedIdentities(mismatchDocument);
       List<NetworkFailure>      networkFailures    = getFailures(networkDocument);
-      List<DatabaseAttachment>  attachments        = DatabaseFactory.getAttachmentDatabase(context).getAttachment(cursor);
+      List<DatabaseAttachment>  attachments        = DatabaseFactory.getAttachmentDatabase(context).getAttachments(cursor);
       List<Contact>             contacts           = getSharedContacts(cursor, attachments);
       Set<Attachment>           contactAttachments = Stream.of(contacts).map(Contact::getAvatarAttachment).withoutNulls().collect(Collectors.toSet());
       List<LinkPreview>         previews           = getLinkPreviews(cursor, attachments);
       Set<Attachment>           previewAttachments = Stream.of(previews).filter(lp -> lp.getThumbnail().isPresent()).map(lp -> lp.getThumbnail().get()).collect(Collectors.toSet());
-      SlideDeck                 slideDeck          = getSlideDeck(Stream.of(attachments).filterNot(contactAttachments::contains).filterNot(previewAttachments::contains).toList());
+      SlideDeck                 slideDeck          = buildSlideDeck(context, Stream.of(attachments).filterNot(contactAttachments::contains).filterNot(previewAttachments::contains).toList());
       Quote                     quote              = getQuote(cursor);
 
       return new MediaMmsMessageRecord(id, recipient, recipient,
@@ -2124,7 +2127,7 @@ public class MmsDatabase extends MessageDatabase {
       return new LinkedList<>();
     }
 
-    private SlideDeck getSlideDeck(@NonNull List<DatabaseAttachment> attachments) {
+    public static SlideDeck buildSlideDeck(@NonNull Context context, @NonNull List<DatabaseAttachment> attachments) {
       List<DatabaseAttachment> messageAttachments = Stream.of(attachments)
                                                           .filterNot(Attachment::isQuote)
                                                           .sorted(new DatabaseAttachment.DisplayOrderComparator())
@@ -2138,7 +2141,7 @@ public class MmsDatabase extends MessageDatabase {
       CharSequence               quoteText        = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_BODY));
       boolean                    quoteMissing     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_MISSING)) == 1;
       List<Mention>              quoteMentions    = parseQuoteMentions(context, cursor);
-      List<DatabaseAttachment>   attachments      = DatabaseFactory.getAttachmentDatabase(context).getAttachment(cursor);
+      List<DatabaseAttachment>   attachments      = DatabaseFactory.getAttachmentDatabase(context).getAttachments(cursor);
       List<? extends Attachment> quoteAttachments = Stream.of(attachments).filter(Attachment::isQuote).toList();
       SlideDeck                  quoteDeck        = new SlideDeck(context, quoteAttachments);
 

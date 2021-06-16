@@ -183,11 +183,13 @@ public class MmsSmsDatabase extends Database {
 
 
   public Cursor getConversation(long threadId, long offset, long limit) {
-    String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
-    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
-    String limitStr  = limit > 0 || offset > 0 ? offset + ", " + limit : null;
+    SQLiteDatabase db        = databaseHelper.getReadableDatabase();
+    String         order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
+    String         selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
+    String         limitStr  = limit > 0 || offset > 0 ? offset + ", " + limit : null;
+    String         query     = buildQuery(PROJECTION, selection, order, limitStr, false);
 
-    Cursor cursor = queryTables(PROJECTION, selection, order, limitStr);
+    Cursor cursor = db.rawQuery(query, null);
     setNotifyConversationListeners(cursor, threadId);
 
     return cursor;
@@ -585,43 +587,46 @@ public class MmsSmsDatabase extends Database {
                .collect(Collectors.toList());
   }
 
-  private Cursor queryTables(String[] projection, String selection, String order, String limit) {
+  private static @NonNull String buildQuery(String[] projection, String selection, String order, String limit, boolean includeAttachments) {
+    String attachmentJsonJoin;
+    if (includeAttachments) {
+      attachmentJsonJoin = "json_group_array(json_object(" + "'" + AttachmentDatabase.ROW_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + ", " +
+                                                             "'" + AttachmentDatabase.UNIQUE_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", " +
+                                                             "'" + AttachmentDatabase.MMS_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + "," +
+                                                             "'" + AttachmentDatabase.SIZE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE + ", " +
+                                                             "'" + AttachmentDatabase.FILE_NAME + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FILE_NAME + ", " +
+                                                             "'" + AttachmentDatabase.DATA + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DATA + ", " +
+                                                             "'" + AttachmentDatabase.CONTENT_TYPE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", " +
+                                                             "'" + AttachmentDatabase.CDN_NUMBER + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CDN_NUMBER + ", " +
+                                                             "'" + AttachmentDatabase.CONTENT_LOCATION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_LOCATION + ", " +
+                                                             "'" + AttachmentDatabase.FAST_PREFLIGHT_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FAST_PREFLIGHT_ID + ", " +
+                                                             "'" + AttachmentDatabase.VOICE_NOTE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VOICE_NOTE + ", " +
+                                                             "'" + AttachmentDatabase.BORDERLESS + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.BORDERLESS + ", " +
+                                                             "'" + AttachmentDatabase.VIDEO_GIF + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VIDEO_GIF + ", " +
+                                                             "'" + AttachmentDatabase.WIDTH + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.WIDTH + ", " +
+                                                             "'" + AttachmentDatabase.HEIGHT + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.HEIGHT + ", " +
+                                                             "'" + AttachmentDatabase.QUOTE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.QUOTE + ", " +
+                                                             "'" + AttachmentDatabase.CONTENT_DISPOSITION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_DISPOSITION + ", " +
+                                                             "'" + AttachmentDatabase.NAME + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", " +
+                                                             "'" + AttachmentDatabase.TRANSFER_STATE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFER_STATE + ", " +
+                                                             "'" + AttachmentDatabase.CAPTION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CAPTION + ", " +
+                                                             "'" + AttachmentDatabase.STICKER_PACK_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_ID + ", " +
+                                                             "'" + AttachmentDatabase.STICKER_PACK_KEY + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_KEY + ", " +
+                                                             "'" + AttachmentDatabase.STICKER_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_ID + ", " +
+                                                             "'" + AttachmentDatabase.STICKER_EMOJI + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_EMOJI + ", " +
+                                                             "'" + AttachmentDatabase.VISUAL_HASH + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VISUAL_HASH + ", " +
+                                                             "'" + AttachmentDatabase.TRANSFORM_PROPERTIES + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFORM_PROPERTIES + ", " +
+                                                             "'" + AttachmentDatabase.DISPLAY_ORDER + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + ", " +
+                                                             "'" + AttachmentDatabase.UPLOAD_TIMESTAMP + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UPLOAD_TIMESTAMP + "))";
+    } else {
+      attachmentJsonJoin = "NULL";
+    }
+
     String[] mmsProjection = {MmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               MmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                               MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " AS " + MmsSmsColumns.ID,
-                              "'MMS::' || " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID
-                                  + " || '::' || " + MmsDatabase.DATE_SENT
-                                  + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
-                              "json_group_array(json_object(" +
-                              "'" + AttachmentDatabase.ROW_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + ", " +
-                              "'" + AttachmentDatabase.UNIQUE_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", " +
-                              "'" + AttachmentDatabase.MMS_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + "," +
-                              "'" + AttachmentDatabase.SIZE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE + ", " +
-                              "'" + AttachmentDatabase.FILE_NAME + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FILE_NAME + ", " +
-                              "'" + AttachmentDatabase.DATA + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DATA + ", " +
-                              "'" + AttachmentDatabase.CONTENT_TYPE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", " +
-                              "'" + AttachmentDatabase.CDN_NUMBER + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CDN_NUMBER + ", " +
-                              "'" + AttachmentDatabase.CONTENT_LOCATION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_LOCATION + ", " +
-                              "'" + AttachmentDatabase.FAST_PREFLIGHT_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.FAST_PREFLIGHT_ID + ", " +
-                              "'" + AttachmentDatabase.VOICE_NOTE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VOICE_NOTE + ", " +
-                              "'" + AttachmentDatabase.BORDERLESS + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.BORDERLESS + ", " +
-                              "'" + AttachmentDatabase.VIDEO_GIF + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VIDEO_GIF + ", " +
-                              "'" + AttachmentDatabase.WIDTH + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.WIDTH + ", " +
-                              "'" + AttachmentDatabase.HEIGHT + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.HEIGHT + ", " +
-                              "'" + AttachmentDatabase.QUOTE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.QUOTE + ", " +
-                              "'" + AttachmentDatabase.CONTENT_DISPOSITION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_DISPOSITION + ", " +
-                              "'" + AttachmentDatabase.NAME + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", " +
-                              "'" + AttachmentDatabase.TRANSFER_STATE + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFER_STATE + ", " +
-                              "'" + AttachmentDatabase.CAPTION + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CAPTION + ", " +
-                              "'" + AttachmentDatabase.STICKER_PACK_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_ID + ", " +
-                              "'" + AttachmentDatabase.STICKER_PACK_KEY + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_KEY + ", " +
-                              "'" + AttachmentDatabase.STICKER_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_ID + ", " +
-                              "'" + AttachmentDatabase.STICKER_EMOJI + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_EMOJI + ", " +
-                              "'" + AttachmentDatabase.VISUAL_HASH + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.VISUAL_HASH + ", " +
-                              "'" + AttachmentDatabase.TRANSFORM_PROPERTIES + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFORM_PROPERTIES + ", " +
-                              "'" + AttachmentDatabase.DISPLAY_ORDER + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + ", " +
-                              "'" + AttachmentDatabase.UPLOAD_TIMESTAMP + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UPLOAD_TIMESTAMP +
-                              ")) AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
+                              "'MMS::' || " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " || '::' || " + MmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
+                              attachmentJsonJoin + " AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
                               SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
                               SmsDatabase.TYPE, SmsDatabase.RECIPIENT_ID, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
@@ -653,10 +658,7 @@ public class MmsSmsDatabase extends Database {
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
-                              MmsSmsColumns.ID,
-                              "'SMS::' || " + MmsSmsColumns.ID
-                                  + " || '::' || " + SmsDatabase.DATE_SENT
-                                  + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
+                              MmsSmsColumns.ID, "'SMS::' || " + MmsSmsColumns.ID + " || '::' || " + SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
                               "NULL AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
                               SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
                               SmsDatabase.TYPE, SmsDatabase.RECIPIENT_ID, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
@@ -690,14 +692,19 @@ public class MmsSmsDatabase extends Database {
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
     SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
 
-    mmsQueryBuilder.setDistinct(true);
-    smsQueryBuilder.setDistinct(true);
+    if (includeAttachments) {
+      mmsQueryBuilder.setDistinct(true);
+      smsQueryBuilder.setDistinct(true);
+    }
 
     smsQueryBuilder.setTables(SmsDatabase.TABLE_NAME);
-    mmsQueryBuilder.setTables(MmsDatabase.TABLE_NAME + " LEFT OUTER JOIN " +
-                              AttachmentDatabase.TABLE_NAME +
-                              " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID);
 
+    if (includeAttachments) {
+      mmsQueryBuilder.setTables(MmsDatabase.TABLE_NAME + " LEFT OUTER JOIN " + AttachmentDatabase.TABLE_NAME +
+                                " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID);
+    } else {
+      mmsQueryBuilder.setTables(MmsDatabase.TABLE_NAME);
+    }
 
     Set<String> mmsColumnsPresent = new HashSet<>();
     mmsColumnsPresent.add(MmsSmsColumns.ID);
@@ -770,22 +777,24 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(MmsDatabase.REMOTE_DELETED);
     smsColumnsPresent.add(MmsSmsColumns.NOTIFIED_TIMESTAMP);
 
-    @SuppressWarnings("deprecation")
-    String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 4, MMS_TRANSPORT, selection, null, MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID, null);
-    @SuppressWarnings("deprecation")
+    String mmsGroupBy = includeAttachments ? MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID : null;
+
+    String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 4, MMS_TRANSPORT, selection, null, mmsGroupBy, null);
     String smsSubQuery = smsQueryBuilder.buildUnionSubQuery(TRANSPORT, smsProjection, smsColumnsPresent, 4, SMS_TRANSPORT, selection, null, null, null);
 
     SQLiteQueryBuilder unionQueryBuilder = new SQLiteQueryBuilder();
-    String unionQuery = unionQueryBuilder.buildUnionQuery(new String[] {smsSubQuery, mmsSubQuery}, order, limit);
+    String             unionQuery        = unionQueryBuilder.buildUnionQuery(new String[] { smsSubQuery, mmsSubQuery }, order, limit);
 
     SQLiteQueryBuilder outerQueryBuilder = new SQLiteQueryBuilder();
     outerQueryBuilder.setTables("(" + unionQuery + ")");
 
-    @SuppressWarnings("deprecation")
-    String query      = outerQueryBuilder.buildQuery(projection, null, null, null, null, null, null);
+    return outerQueryBuilder.buildQuery(projection, null, null, null, null, null, null);
+  }
 
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    return db.rawQuery(query, null);
+  private Cursor queryTables(String[] projection, String selection, String order, String limit) {
+    String query = buildQuery(projection, selection, order, limit, true);
+
+    return databaseHelper.getReadableDatabase().rawQuery(query, null);
   }
 
   public static Reader readerFor(@NonNull Cursor cursor) {

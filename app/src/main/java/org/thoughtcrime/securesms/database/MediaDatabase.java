@@ -205,7 +205,7 @@ public class MediaDatabase extends Database {
 
     public static MediaRecord from(@NonNull Context context, @NonNull Cursor cursor) {
       AttachmentDatabase       attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
-      List<DatabaseAttachment> attachments        = attachmentDatabase.getAttachment(cursor);
+      List<DatabaseAttachment> attachments        = attachmentDatabase.getAttachments(cursor);
       RecipientId              recipientId        = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.RECIPIENT_ID)));
       long                     threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID));
       boolean                  outgoing           = MessageDatabase.Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX)));
