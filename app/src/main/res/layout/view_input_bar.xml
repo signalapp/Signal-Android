@@ -38,7 +38,7 @@
             android:hint="@string/ConversationActivity_message" />
 
         <RelativeLayout
-            android:id="@+id/microphoneButtonContainer"
+            android:id="@+id/microphoneOrSendButtonContainer"
             android:layout_width="@dimen/input_bar_button_expanded_size"
             android:layout_height="@dimen/input_bar_button_expanded_size"
             android:layout_alignParentEnd="true"

@@ -23,6 +23,7 @@ class InputBarEditText : AppCompatEditText {
 
     override fun onTextChanged(text: CharSequence, start: Int, lengthBefore: Int, lengthAfter: Int) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter)
+        delegate?.inputBarEditTextContentChanged(text)
         val builder = StaticLayout.Builder.obtain(text, 0, text.length, paint, width)
             .setAlignment(Layout.Alignment.ALIGN_NORMAL)
             .setLineSpacing(0.0f, 1.0f)
@@ -40,5 +41,6 @@ class InputBarEditText : AppCompatEditText {
 
 interface InputBarEditTextDelegate {
 
+    fun inputBarEditTextContentChanged(text: CharSequence)
     fun inputBarEditTextHeightChanged(newValue: Int)
 }

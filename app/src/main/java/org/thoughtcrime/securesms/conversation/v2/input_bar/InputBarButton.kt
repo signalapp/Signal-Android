@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.loki.views.GlowViewUtilities
 import org.thoughtcrime.securesms.loki.views.InputBarButtonImageViewContainer
 
 class InputBarButton : RelativeLayout {
+    private var isSendButton = false
     @DrawableRes private var iconID = 0
 
     companion object {
@@ -27,6 +28,7 @@ class InputBarButton : RelativeLayout {
 
     private val expandedImageViewPosition by lazy { PointF(0.0f, 0.0f) }
     private val collapsedImageViewPosition by lazy { PointF((expandedSize - collapsedSize) / 2, (expandedSize - collapsedSize) / 2) }
+    private val defaultColorID by lazy { if (isSendButton) R.color.accent else R.color.input_bar_button_background }
 
     val expandedSize by lazy { resources.getDimension(R.dimen.input_bar_button_expanded_size) }
     val collapsedSize by lazy { resources.getDimension(R.dimen.input_bar_button_collapsed_size) }
@@ -36,7 +38,7 @@ class InputBarButton : RelativeLayout {
         val size = collapsedSize.toInt()
         result.layoutParams = LayoutParams(size, size)
         result.setBackgroundResource(R.drawable.input_bar_button_background)
-        result.mainColor = resources.getColorWithID(R.color.input_bar_button_background, context.theme)
+        result.mainColor = resources.getColorWithID(defaultColorID, context.theme)
         result
     }
 
@@ -54,7 +56,8 @@ class InputBarButton : RelativeLayout {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { throw IllegalAccessException("Use InputBarButton(context:iconID:) instead.") }
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { throw IllegalAccessException("Use InputBarButton(context:iconID:) instead.") }
 
-    constructor(context: Context, @DrawableRes iconID: Int) : super(context) {
+    constructor(context: Context, @DrawableRes iconID: Int, isSendButton: Boolean = false) : super(context) {
+        this.isSendButton = isSendButton
         this.iconID = iconID
         val size = resources.getDimension(R.dimen.input_bar_button_expanded_size).toInt()
         val layoutParams = LayoutParams(size, size)
@@ -71,13 +74,13 @@ class InputBarButton : RelativeLayout {
     }
 
     fun expand() {
-        GlowViewUtilities.animateColorChange(context, imageViewContainer, R.color.input_bar_button_background, R.color.accent)
+        GlowViewUtilities.animateColorChange(context, imageViewContainer, defaultColorID, R.color.accent)
         imageViewContainer.animateSizeChange(R.dimen.input_bar_button_collapsed_size, R.dimen.input_bar_button_expanded_size, animationDuration)
         animateImageViewContainerPositionChange(collapsedImageViewPosition, expandedImageViewPosition)
     }
 
     fun collapse() {
-        GlowViewUtilities.animateColorChange(context, imageViewContainer, R.color.accent, R.color.input_bar_button_background)
+        GlowViewUtilities.animateColorChange(context, imageViewContainer, R.color.accent, defaultColorID)
         imageViewContainer.animateSizeChange(R.dimen.input_bar_button_expanded_size, R.dimen.input_bar_button_collapsed_size, animationDuration)
         animateImageViewContainerPositionChange(expandedImageViewPosition, collapsedImageViewPosition)
     }
