@@ -34,7 +34,19 @@ class InputBarRecordingView : RelativeLayout {
             alpha = animator.animatedValue as Float
         }
         animation.start()
+        animateDotView()
         pulse()
+    }
+
+    private fun animateDotView() {
+        val animation = ValueAnimator.ofObject(FloatEvaluator(), 1.0f, 0.0f)
+        animation.duration = 500L
+        animation.addUpdateListener { animator ->
+            dotView.alpha = animator.animatedValue as Float
+        }
+        animation.repeatCount = ValueAnimator.INFINITE
+        animation.repeatMode = ValueAnimator.REVERSE
+        animation.start()
     }
 
     private fun pulse() {
