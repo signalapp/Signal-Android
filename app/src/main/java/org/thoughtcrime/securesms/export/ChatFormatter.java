@@ -12,8 +12,9 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Stream;
+
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
@@ -24,6 +25,7 @@ import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadBodyUtil;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -44,6 +46,8 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.Util;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -76,7 +80,7 @@ public class ChatFormatter {
     private static final String SCHEMA_PATH = "export_chat_xml_schema.xsd";
 
     private final        long                           threadId;
-    private final        Map<AttachmentId, MediaRecord> selectedMedia;
+    private final        Map<String, MediaRecord> selectedMedia;
     private final        Map<String, Uri>               otherFiles;
     private final        Context context;
 
@@ -120,6 +124,8 @@ public class ChatFormatter {
                 getClass().getResourceAsStream(SCHEMA_PATH)));
         dbf.setSchema(schema);*/
         try {
+            if(conversation.getCount () > 0 && reader.getCurrent () != null)
+            {
             // use factory to get an instance of document builder
             DocumentBuilder db = dbf.newDocumentBuilder ();
             // create instance of DOM
@@ -133,26 +139,25 @@ public class ChatFormatter {
             // create data elements and place them under root
             Element chat = addElement (rootEle, "chat");
             createConversationElem (chat);
-            if(reader.getCurrent () != null)
-                createMessageElem (chat);
 
-            //write the content into xml file
-            TransformerFactory transformerFactory = TransformerFactory.newInstance ();
-            Transformer transformer = transformerFactory.newTransformer ();
-            transformer.setOutputProperty (OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty (OutputKeys.METHOD, "xml");
-            transformer.setOutputProperty (OutputKeys.ENCODING, "UTF-16");
-            transformer.setOutputProperty ("{http://xml.apache.org/xslt}indent-amount", "4");
-            DOMSource source = new DOMSource (dom);
+             createMessageElem (chat);
 
-            StringWriter outWriter = new StringWriter ();
-            StreamResult result = new StreamResult (outWriter);
-            transformer.transform (source, result);
-            StringBuffer sb = outWriter.getBuffer ();
-            finalstring = sb.toString ();
-            Log.blockUntilAllWritesFinished ();
-            //TODO--removelog
-            Log.d ("ANGELA XML_VIEWER:", finalstring);
+             //write the content into xml file
+             TransformerFactory transformerFactory = TransformerFactory.newInstance ();
+             Transformer transformer = transformerFactory.newTransformer ();
+             transformer.setOutputProperty (OutputKeys.INDENT, "yes");
+             transformer.setOutputProperty (OutputKeys.METHOD, "xml");
+             transformer.setOutputProperty (OutputKeys.ENCODING, "UTF-16");
+             transformer.setOutputProperty ("{http://xml.apache.org/xslt}indent-amount", "4");
+             DOMSource source = new DOMSource (dom);
+
+             StringWriter outWriter = new StringWriter ();
+             StreamResult result = new StreamResult (outWriter);
+             transformer.transform (source, result);
+             StringBuffer sb = outWriter.getBuffer ();
+             finalstring = sb.toString ();
+            }
+
         } catch (ParserConfigurationException | TransformerConfigurationException pce) {
             System.out.println ("UsersXML: Error trying to instantiate DocumentBuilder " + pce);
         } catch (TransformerException transformerException) {
@@ -164,9 +169,11 @@ public class ChatFormatter {
 
     private void createConversationElem (Element conv) {
         ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase (context);
+        RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
         Recipient recipient = threadDatabase.getRecipientForThreadId (threadId);
-        // ADD CONVERSATION INFORMATION
-        if (recipient.isGroup ()) {
+        RecipientDatabase.RecipientSettings settings = recipientDatabase.getRecipientSettings(recipient.getId ());
+
+        if (settings.getGroupId() != null && recipient.isGroup ()) {
             Recipient groupRecipient = Recipient.resolved (recipient.getId ());
             GroupId groupId = groupRecipient.requireGroupId ();
             List<Recipient> registeredMembers = RecipientUtil.getEligibleForSending (groupRecipient.getParticipants ());
@@ -179,15 +186,15 @@ public class ChatFormatter {
             addAttribute (members, "number_of_members", String.valueOf (registeredMembers.size ()));
             for (Recipient r : registeredMembers) {
                 Element group_member = addElement (members, "contact");
-                createPersonElem (group_member, r);
+                createPersonElem (group_member, r, settings);
             }
         } else {
             Element contact = addElement (conv, "contact");
-            createPersonElem (contact, recipient);
+            createPersonElem (contact, recipient, settings);
         }
     }
 
-    private void createPersonElem (Element contact, Recipient recipient) {
+    private void createPersonElem (Element contact, Recipient recipient, RecipientDatabase.RecipientSettings settings) {
         addAttribute (contact, "id", recipient.getId ().toString ());
 
         addAttribute (contact, "name", recipient.getDisplayName (context));
@@ -206,9 +213,15 @@ public class ChatFormatter {
             addElement (contact, "email", recipient.getEmail ().get ());
         if (recipient.hasSmsAddress ())
             addElement (contact, "phone", PhoneNumberFormatter.prettyPrint(recipient.getSmsAddress ().get ()));
-        if (recipient.getContactPhoto ()!= null && recipient.getContactPhoto ().isProfilePhoto () && recipient.getContactPhoto ().getUri (context)!=null){
-            addElement (contact, "contact_photo_uri", recipient.getContactPhoto ().getUri (context).getPath ());
-            otherFiles.put (recipient.getId ().toString (), recipient.getContactPhoto ().getUri (context));
+
+        Uri systemContactPhoto          = Util.uri(settings.getSystemContactPhotoUri());
+        Uri systemContact =      Util.uri(settings.getSystemContactUri ());
+        if(systemContactPhoto!=null){
+            addElement (contact, "contact_photo_uri", systemContactPhoto.getPath ());
+            otherFiles.put (settings.getProfileKey ().toString (), systemContactPhoto);
+        }if(systemContact!=null){
+            addElement (contact, "contact_uri", systemContact.getPath ());
+            otherFiles.put (settings.getProfileKey ().toString (), systemContact);
         }
     }
 
@@ -248,20 +261,23 @@ public class ChatFormatter {
 
                     Element message = addElement (turn, "message");
                     addAttribute (message, MmsSmsColumns.ID, String.valueOf (record.getId ()));
-                    String timestamp_ = new SimpleDateFormat ("hh:mm:ss", Resources.getSystem ().getConfiguration ().locale).format (new Date (record.getDateSent ()));
+                    if(record.isRemoteDelete ()) addAttribute (message, "is_deleted", String.valueOf (record.isRemoteDelete ()));
+                    else {
+                        String timestamp_ = new SimpleDateFormat ("HH:mm:ss", Resources.getSystem ().getConfiguration ().locale).format (new Date (record.getDateSent ()));
 
-                    addAttribute (message, "time", timestamp_);
-                    if(record.isOutgoing ())
-                        addAttribute (message, "status", getStatusFor (record));
+                        addAttribute (message, "time", timestamp_);
+                        if (record.isOutgoing ())
+                            addAttribute (message, "status", getStatusFor (record));
 
-                    Element body = addElement (message, "body");
-                    createBodyElem(body, record);
-                    if (!record.getReactions ().isEmpty ()) createReactionsElem (body, record);
-                    if (!record.getIdentityKeyMismatches ().isEmpty ())
-                        addAttribute (message, MmsSmsColumns.MISMATCHED_IDENTITIES, IdentityKeyMismatch.class.getName ());
-                    long expires_in = record.getExpiresIn ();
-                    if(expires_in>0)addAttribute (message, MmsSmsColumns.EXPIRES_IN, String.valueOf (expires_in));
-
+                        Element body = addElement (message, "body");
+                        createBodyElem (body, record);
+                        if (!record.getReactions ().isEmpty ()) createReactionsElem (body, record);
+                        if (!record.getIdentityKeyMismatches ().isEmpty ())
+                            addAttribute (message, MmsSmsColumns.MISMATCHED_IDENTITIES, IdentityKeyMismatch.class.getName ());
+                        long expires_in = record.getExpiresIn ();
+                        if (expires_in > 0)
+                            addAttribute (message, MmsSmsColumns.EXPIRES_IN, String.valueOf ((int) (record.getExpiresIn () / 1000)));
+                    }
                 } catch (Exception e) {
                     System.out.println ("ANGELA XML error by accesing message details: " + e.getMessage () + " " + e.toString ());
                     e.printStackTrace ();
@@ -283,6 +299,8 @@ public class ChatFormatter {
                         Element mention = addElement (body, "mention");
                         addAttribute (mention, "id", String.valueOf (m.getRecipientId ()));
                         addElement (mention, "name", Recipient.resolved (m.getRecipientId ()).getDisplayName (context));
+                        addElement (mention, "start", String.valueOf (m.getStart ()));
+                        addElement (mention, "mention_length", String.valueOf (m.getLength ()));
                     }
                     addTextElement (body, record);
                 }
@@ -311,7 +329,7 @@ public class ChatFormatter {
                             addAttribute (post, "type", pa.getType ().name ());
                             if(pa.getLabel ()!=null) addElement (post, "label", pa.getLabel ());
                             addElement (post, "street", pa.getStreet ());
-                            addElement (post, "postal_Code", pa.getPostalCode ());
+                            addElement (post, "postal_code", pa.getPostalCode ());
                             addElement (post, "neighborhood", pa.getNeighborhood ());
                             addElement (post, "po_box", pa.getPoBox ());
                             addElement (post, "city", pa.getCity ());
@@ -330,14 +348,15 @@ public class ChatFormatter {
                             DatabaseAttachment a = DatabaseFactory.getAttachmentDatabase(context).getAttachment (lp.getAttachmentId ());
                             Element link_preview = addElement (link, "link_preview");
                             MediaRecord mediaRecord = new MediaRecord (a, record.getRecipient ().getId (), threadId, record.getDateSent (), record.isOutgoing ());
-                                selectedMedia.put (lp.getAttachmentId (), mediaRecord);
+                                selectedMedia.put (lp.getThumbnail ().get ().getKey (), mediaRecord);
                                 if(mediaRecord.getAttachment ().getAttachmentId ()!=null)
                                     addAttribute (link_preview, "id", mediaRecord.getAttachment ().getAttachmentId ().toString ());
                                 if(mediaRecord.getAttachment ().getFileName ()!=null)
                                     addElement (link_preview, "filename", mediaRecord.getAttachment ().getFileName ());
-                                if(a.getUri ()!=null) {
-                                    addElement (link_preview, "content_path", getContentPath (a.getContentType (),mediaRecord));
-                                }
+                            if(a.getUri ()!=null) {
+                                //addElement (link_preview, "content_path", getContentPath (a.getContentType (),a.getUploadTimestamp (),a.getUri ()));
+                                addElement (link_preview, "content_path", getContentPath (mediaRecord.getContentType (), mediaRecord.getDate (), mediaRecord.getAttachment ().getUri ()));
+                            }
                                 if(a.getContentType ()!=null){
                                     addAttribute (link_preview, "content_type", a.getContentType ());
                                 }
@@ -353,12 +372,30 @@ public class ChatFormatter {
                     Element quote = addElement (body, "quote");
                     assert q != null;
                     addAttribute (quote, "id", String.valueOf (q.getId ()));
-                    addElement (quote, "author", Recipient.resolved (q.getAuthor ()).getProfileName ().getGivenName ());
+                    Recipient author = Recipient.resolved (q.getAuthor ());
+                    addElement (quote, "author", author.getProfileName ().getGivenName ());
                     assert q.getDisplayText () != null;
-                    addElement (quote, "text",q.getDisplayText ().toString ());
-                    for(Slide s: q.getAttachment ().getSlides ())
-                        createAttachmentElem (quote, s);
+                    addElement (quote, "quote_text",q.getDisplayText ().toString ());
+                    if (q.isOriginalMissing ())
+                        addElement (quote, "original", "is_missing");
+                    if(q.getAttachment ()!= null){
+                        List<Slide> slides = Stream.of(q.getAttachment ().getSlides()).filter(s -> s.hasImage() || s.hasVideo() || s.hasSticker() || s.hasLocation ()
+                                || s.hasAudio () || s.hasDocument () || s.hasPlayOverlay ()).limit(1).toList();
+                        for(Slide s: slides){
+                            createAttachmentElem (quote, s);
+                        }
+                    }
+                    else{
+                        if(q.getDisplayText () == null)
+                            addElement (quote, "attachment", "is_missing");
+                    }
 
+                    MessageRecord message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(q.getId(), author.getId ());
+                    if(message != null)
+                        addElement(quote, "timestamp", DateUtils.getBriefRelativeTimeSpanString (context, Resources.getSystem ().getConfiguration ().locale, message.getTimestamp ()));
+                    else
+                        addElement(quote, "timestamp", "Unknown");
+                    addTextElement (body,record);
                 }
                 else{
                     if(getMessageType (record).contentEquals ("OUTGOING") || getMessageType (record).contentEquals ("PUSH")) addTextElement (body, record);
@@ -392,7 +429,8 @@ public class ChatFormatter {
         //Check if text is BASE_64 and decode it in case
         if (formattedMessageBody.length () % 4 == 0 && formattedMessageBody.toString ().endsWith ("=")){
             try {
-                formattedMessageBody = new StringBuilder (String.valueOf (Base64.decode (escapeXML(record.getBody ()))));
+                String bodytext = record.getBody ();
+                formattedMessageBody = new StringBuilder (String.valueOf (Base64.decode (escapeXML(bodytext))));
             } catch (IOException e) {
                 e.printStackTrace ();
             }
@@ -408,24 +446,27 @@ public class ChatFormatter {
                 Element media = addElement (body, "media_content");
                 Element attachment;
                 for (Slide s : ((MmsMessageRecord) record).getSlideDeck ().getSlides ()) {
-
-
                     attachment = addElement (media, "attachment");
                     createAttachmentElem (attachment, s);
-                    MediaRecord mediaRecord = MediaRecord.from (context, conversation, record);
+                    MediaRecord mediaRecord = new MediaRecord (((DatabaseAttachment)s.asAttachment()),
+                            record.getRecipient ().getId (),
+                            threadId,
+                            s.asAttachment ().getUploadTimestamp (),
+                            record.isOutgoing ());
 
-                    if (mediaRecord != null && mediaRecord.getAttachment ().hasData ()) {
-                        selectedMedia.put (mediaRecord.getAttachment ().getAttachmentId (), mediaRecord);
-                        if(mediaRecord.getAttachment ().getAttachmentId ()!=null)
-                            addAttribute (attachment, "id", mediaRecord.getAttachment ().getAttachmentId ().toString ());
-                        if(mediaRecord.getAttachment ().getFileName ()!=null)
-                            addAttribute (attachment, "filename", mediaRecord.getAttachment ().getFileName ());
+                    String path = "";
+                    if (mediaRecord != null && !mediaRecord.getAttachment ().hasData ())
+                    {
+                        addAttribute (attachment, "downloaded", String.valueOf (mediaRecord.getAttachment ().hasData ()));
+                    }
+                    else if (mediaRecord != null && mediaRecord.getAttachment ().hasData () ) {
+                        selectedMedia.put (s.asAttachment ().getKey (), mediaRecord);
+                        path = getContentPath (mediaRecord.getContentType (), mediaRecord.getDate (), mediaRecord.getAttachment ().getUri ());
                     }
                     else
-                        if(s.getUri ()!=null) otherFiles.put (s.getFileName ().get (),s.getUri ());
-                        String content_type = s.asAttachment ().getContentType ();
-                    addElement (attachment, "content_path", getContentPath(content_type,mediaRecord));
-
+                        if (s.getUri () != null)
+                            otherFiles.put (s.asAttachment ().getKey (), s.getUri ());
+                    addElement (attachment, "content_path", path);
                 }
             }
         } catch (Exception e) {
@@ -433,19 +474,47 @@ public class ChatFormatter {
         }
     }
 
-    private String getContentPath (String content_type, MediaRecord mediaRecord) {
-        return ExportZipUtil.getMediaStoreContentPathForType(content_type) + ExportZipUtil.generateOutputFileName(content_type,mediaRecord.getDate ());
+    private String getContentPath (String content_type, long timestamp,@NonNull Uri uri) {
+        return ExportZipUtil.getMediaStoreContentPathForType (content_type) +
+                ExportZipUtil.generateOutputFileName (content_type, timestamp, uri.getPathSegments ().get (0));
     }
 
     private void createAttachmentElem (Element attachment, Slide s) {
         try {
+
+            if(s.asAttachment ()!=null)
+                addAttribute (attachment, "id", String.valueOf (((DatabaseAttachment)s.asAttachment()).getAttachmentId()));
+            if(s.asAttachment ().getFileName ()!=null)
+                addElement (attachment, "filename", s.asAttachment ().getFileName ());
             if(s.asAttachment ().getFastPreflightId ()!=null)
-                addAttribute (attachment, "id", s.asAttachment ().getFastPreflightId ());
+                addElement (attachment, "fast_preflight_id", s.asAttachment ().getFastPreflightId ());
+            if(s.asAttachment ().getKey ()!=null)
+                addAttribute (attachment, "key", s.asAttachment ().getKey ());
+
+
+            /*if (s.getUri ()==null) {
+                otherFiles.put(s.asAttachment ().getKey (), u);
+            }
+
+            if(!((DatabaseAttachment) s.asAttachment ()).hasData () )
+                addElement (attachment, "data","false");
+            if (s.getUri ()==null) {
+                addElement (attachment, "uri", "false");
+                if(AttachmentUtil.isAutoDownloadPermitted (context, (DatabaseAttachment) s.asAttachment ()))
+                    addElement (attachment, "download", "permitted");
+
+
+            }
+            else{
+                path = getContentPath (s.getContentType (), s.asAttachment ().getUploadTimestamp (), Objects.requireNonNull (s.getUri ()));
+                addElement (attachment, "content_path", path);
+                addElement (attachment, "uri", s.getUri ().getEncodedPath ());
+            }*/
+
 
             Element metadata = addElement (attachment, "metadata");
             String name;
-            String size_ = String.valueOf (s.getFileSize ());
-            addElement (metadata, "size_in_bytes", size_);
+            addElement (metadata, "size", Util.getPrettyFileSize (s.getFileSize ()));
             if (s.hasAudio ()) {
                 Element audio = addElement (metadata, "audio");
                 addAttribute (audio, "content_type", s.getContentType ());
@@ -498,7 +567,6 @@ public class ChatFormatter {
                     name = s.getFileName ().get ();
                     addElement (image, "name", name);
                 }
-                //if (s.asAttachment ().isQuote ())
                 addElement (image, "width", String.valueOf (s.asAttachment ().getWidth ()));
                 addElement (image, "height", String.valueOf (s.asAttachment ().getHeight ()));
                 if(s.asAttachment ().getCaption ()!=null)
@@ -541,10 +609,11 @@ public class ChatFormatter {
         try {
             Element reactions = addElement (body, MmsSmsColumns.REACTIONS);
             for (ReactionRecord rr : record.getReactions ()) {
-                addElement (reactions, "author_id", rr.getAuthor ().toString ());
-                addElement (reactions, "author", Recipient.resolved (rr.getAuthor ()).getDisplayNameOrUsername (context));
-                addElement (reactions, "time", dateFormatter.format (rr.getDateReceived ()));
-                addElement (reactions, "emogi", rr.getEmoji ());
+                Element r = addElement (reactions, "reaction");
+                addAttribute (r, "author_id", rr.getAuthor ().toString ());
+                addElement (r, "author", Recipient.resolved (rr.getAuthor ()).getDisplayNameOrUsername (context));
+                addElement (r, "time", dateFormatter.format (rr.getDateReceived ()));
+                addElement (r, "emogi", rr.getEmoji ());
 
             }
         } catch (Exception e) {
@@ -578,18 +647,6 @@ public class ChatFormatter {
             addElement (message, "msg_type", "KEY_EXCHANGE");
         else if (record.isEndSession ())
             addElement (message, "msg_type", "END_SESSION");
-        else if (record.isGroupUpdate ())
-            addElement (message, "msg_type", "GROUP_UPDATE");
-        else if (record.isSelfCreatedGroup ())
-            addElement (message, "msg_type", "SELF_CREATED_GROUP");
-        else if (record.isGroupV2 ())
-            addElement (message, "msg_type", "GROUP_V2");
-        else if (record.isGroupQuit ())
-            addElement (message, "msg_type", "GROUP_QUIT");
-        else if (record.isGroupAction ())
-            addElement (message, "msg_type", "GROUP_ACTION");
-        else if (record.isExpirationTimerUpdate ())
-            addElement (message, "msg_type", "EXPIRATION_TIMER_UPDATE");
         else if (record.isJoined ())
             addElement (message, "msg_type", "MEMBER_HAS_JOINED");
         else if (record.isIncomingAudioCall ())
@@ -614,8 +671,6 @@ public class ChatFormatter {
             addElement (message, "msg_type", "FAILED");
         else if (record.isForcedSms ())
             addElement (message, "msg_type", "FORCED_SMS");
-        else if (record.isPush ())
-            addElement (message, "msg_type", "PUSH");
         else if (record.isIdentityUpdate ())
             addElement (message, "msg_type", "IDENTITY_UPDATE");
         else if (record.isIdentityDefault ())
@@ -634,6 +689,22 @@ public class ChatFormatter {
             addElement (message, "msg_type", "GROUP_V1_MIGRATION");
         else if (record.isFailedDecryptionType ())
             addElement (message, "msg_type", "FAILED_DESCRIPTION");
+        else if (record.isExpirationTimerUpdate ())
+            addElement (message, "msg_type", "EXPIRATION_TIMER_UPDATE");
+        else if (record.isSelfCreatedGroup ())
+            addElement (message, "msg_type", "SELF_CREATED_GROUP");
+        else if (record.isGroupQuit ())
+            addElement (message, "msg_type", "GROUP_QUIT");
+        else if (record.isGroupAction ())
+            addElement (message, "msg_type", "GROUP_ACTION");
+        else if (record.isGroupUpdate ())
+            addElement (message, "msg_type", "GROUP_UPDATE");
+        else if (record.isUpdate ())
+            addElement (message, "msg_type", "UPDATE");
+        else if (record.isGroupV2 ())
+            addElement (message, "msg_type", "GROUP_V2");
+        else if (record.isPush ())
+            addElement (message, "msg_type", "PUSH");
         else if (record.isOutgoing ())
             addElement (message, "msg_type", "OUTGOING");
         else if (record.isSent ())
@@ -742,7 +813,7 @@ public class ChatFormatter {
     }
 
 
-    public Map<AttachmentId, MediaRecord> getAllMedia () {
+    public Map<String, MediaRecord> getAllMedia () {
         return selectedMedia;
     }
 
@@ -750,7 +821,7 @@ public class ChatFormatter {
         return otherFiles;
     }
 
-   private String escapeXML(String s) {
+   private static String escapeXML (String s) {
         if (TextUtils.isEmpty(s)) return s;
         return s.replaceAll ("&", "&amp;")
                 .replaceAll (">", "&gt;")
@@ -845,7 +916,10 @@ public class ChatFormatter {
         public boolean isOutgoing () {
             return outgoing;
         }
-    }
 
+        public String getKey () {
+            return getAttachment ().getKey ();
+        }
+    }
 
 }

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <script type="text/javascript"  src = "jquery-3.6.0.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <script type="text/javascript">
+      var selectedFile;
+      var xmlpath;
+
+
+      function onFileSelected(event) {
+        if(event == 'undefined')return;
+          selectedFile = event.target.files[0];
+
+          if(typeof(FileReader)!="undefined"){
+            var reader = new FileReader();
+            $("#users").html("");
+            reader.readAsText(selectedFile, "UTF-8");
+
+            reader.onload = function(e){
+              var xmlDoc = $.parseXML(e.target.result);
+              var group_title = $(xmlDoc).find("group").attr("title");
+              if(group_title!=undefined){
+                $("#users").prepend("<li><h1 style='background-color:#23303D; text-align: center;'>"+group_title+"<\/h1><\/li>");
+              }
+              var xmlrows = $(xmlDoc).find("contact").each(printPerson);
+              $("#chat_records").html("");
+              var xmlrows = $(xmlDoc).find("Log").each(printDate);
+            }
+          }
+        }
+
+
+        function printPerson(){
+          person_name = $(this).attr("name");
+          person_about = $(this).find("about").text();
+          relation = $(this).find("relation").text();
+          person_email = $(this).find("email").text();
+          person_phone = $(this).find("phone").text();
+          var person = "<li><h3>&#128512; " + person_name +"<\/h3><hr>";
+          if(person_about.length!=0) person += "<i>"+person_about + "<\/i><hr>";
+          if(person_email.length!=0) person += "<p>&#9993; " + person_email +"<\/p><hr>";
+          if(person_phone.length!=0) person += "<p class='phone'>&#9742; " + person_phone + "<\/p><\/li>";
+          $("#users").append(person);
+        }//end printPerson
+
+
+        function printDate(){
+          date = $(this).attr("date");
+          date = "<br><li><ins><b>" + date + "<\/b><\/ins><\/li><br>";
+          $("#chat_records").append(date);
+          turn =$(this).find("turn").each(printTurn);
+        }//end printPerson
+
+        function printTurn(){
+          author = $(this).attr("author");
+          content = "<li><article><header><b class='post'>" + author + ":<\/b><\/header>";
+          message = $(this).find("message").each(function(){
+            deleted = $(this).attr("is_deleted");
+            if(deleted != undefined && deleted === "true"){
+              content += "<br><i>\"This message was deleted\"<\/i>";
+            }
+            else{
+              var body =  $(this).find("body");
+              $.each(body, function(){
+                type = $(this).find("type").text();
+                text = $(this).find("text").text();
+                var mention_text = $(this).parent().find("text").text();
+                var mention_comment="";
+                mention_text = $(this).find("mention").each(function(){
+                  if($(this).length == 0 || typeof $(this) === 'undefined') return;
+                  var name = $(this).find("name").text();
+                  var start = $(this).find("start").text();
+                  mention_length = $(this).find("mention_length").text();
+                  mention_text = insert(mention_text,start, name);
+                  mention_comment = mention_text;
+                });
+                shared_contact = $(this).find("shared_contact").text();
+                link = $(this).find("link").text();
+                quote = $(this).find("quote").text();
+                if (quote.length != 0 && typeof quote !== 'undefined' && quote !== false){
+                  var this_quote = $(this);
+                  content += "<section><p>"+printQuote(this_quote)+"<\/p><\/section>";
+                }
+                if (text.length != 0 && typeof text !== 'undefined' && text !== false){
+                  type = $(this).find("text").find("type").text();
+                  msg_type = $(this).find("text").find("msg_type").text();
+                  if(msg_type.length !=0)
+                    content += "<section><p style='border:2px dotted #000'>" + replace(text)+"<\/p><\/section>";
+                  else if (mention_text.length != 0)
+                    content += "<section><p><pre><code>" + replace(mention_comment) + "<\/code><\/pre><\/p><\/section>";
+                  else
+                    content += "<section><p><pre><code>" + replace(text) + "<\/code><\/pre><\/p><\/section>";
+                }
+                else if (shared_contact.length != 0 && typeof shared_contact !== 'undefined' && shared_contact !== false){
+                  var this_content = $(this);
+                  content += "<section><p>" + printSharedContact(this_content)+ "<\/p><\/section>";
+                }
+                else if (link.length != 0 && typeof link !== 'undefined' && link !== false){
+                  var this_link = $(this);
+                  content += "<section><p>"+printLink(this_link)+"<\/p><\/section>";
+                }
+                else if (type.length != 0 && typeof type !== 'undefined' && type !== false){
+                  content += "<section><p>Type:" + type+ "; <\/p><\/section>";
+                }
+                media_content = $(this).find("media_content").text();
+                if (media_content.length != 0 && media_content !== 'undefined' && media_content !== false){
+
+                  var this_content = $(this);
+
+                  content += "<section id='media_content'>" + printMediaContent(this_content)+ "<\/section>";
+                }
+
+                reactions = $(this).find("reactions").text();
+                if (reactions.length != 0 && reactions !== false){
+                  content += "<section><div class='reactions'>";
+                  $(this).find("reaction").each(function(){
+                    if($(this).length == 0 || typeof $(this) === 'undefined') return;
+                    var id = $(this).attr("author_id");
+                    var author = $(this).find("author").text();
+                    var emogi = $(this).find("emogi").text();
+                    var time = $(this).find("time").text();
+                    content +=  "<h2>"+emogi+"<\/h2><b>"+author+"<\/b><br><i style='font-size:10px'><time>"+time+"<\/time><\/i>";
+                  });
+                  content += "<\/div><\/section>";
+                }
+          });
+        }
+              time = $(this).attr("time");
+              if(deleted != "true")
+                content += "<p style='position:absolute; text-align: left;'><time>" + time + "<\/time><\/p>";
+
+            });
+            content += "<\/article><\/li><br><br><br>";
+            $("#chat_records").append(content);
+
+
+      }//end printBody
+
+      function printMention(mention_text){
+        if($(this).length == 0 || typeof $(this) === 'undefined') return;
+        var name = $(this).find("name").text();
+        var start = $(this).find("start").text();
+        mention_length = $(this).find("mention_length").text();
+          return insert(mention_text,start, name);
+      }
+
+      function insert(arr, index, name){
+        var result = "";
+        // part of the array before the specified index
+        result += arr.slice(0, index);
+        // inserted items
+        result += "@" + name;
+        // part of the array after the specified index
+        result +=arr.slice(index);
+        result = result.replaceAll('\ufffc',"");
+        return result;
+      }
+
+      function printSharedContact(this_contact){
+        name = $(this_contact).find("shared_contact").find("display_name").text();
+        var emails = "";
+        var phones = "";
+        var posts = "";
+        $.each($(this_contact).find("email"), function(){
+          current_mail_type = $(this).attr("type");
+          current_mail_address = $(this).find("address").text();
+          emails += "<p style='text-align: left'>&#9993; "+ current_mail_type+": <a href='mailto:"+current_mail_address+"'>"+current_mail_address+"</a><\/p><hr>";
+        });
+        $.each($(this_contact).find("phone"), function(){
+          current_phone_type = $(this).attr("type");
+          current_phone_number = $(this).find("number").text();
+          phones += "<p style='text-align: left' class='phone'>&#9742; "+current_phone_type+ ": "+ current_phone_number+"<\/p><hr>";
+        });
+
+        $.each($(this_contact).find("postal_address"), function(){
+          current_post_type = $(this).attr("type");
+          current_post_street = $(this).find("street").text();
+          current_post_neighborhood = $(this).find("neighborhood").text();
+          current_post_po_box = $(this).find("po_box").text();
+          current_post_city = $(this).find("city").text();
+          current_post_postalcode = $(this).find("postal_code").text();
+          current_post_country = $(this).find("country").text();
+          posts += "<p style='text-align: left'>&#8962; "+current_post_type;
+          posts += "<p style='text-align: left'> "+ current_post_street+"<\/p><p style='text-align: left'> "+ current_post_po_box+"<\/p>"
+          posts += "<p style='text-align: left'> "+ current_post_neighborhood+"<\/p><p style='text-align: left'> "+ current_post_city+"<\/p>"
+          posts += "<p style='text-align: left'> "+ current_post_postalcode+"<\/p><p style='text-align: left'> "+ current_post_country+"<\/p><\/p><hr>" ;
+        });
+        return "<div class='chat_sharedcontact'><div class='column'><span style='font-size:100px;'>&#128512;</span><h3 class='name'>"+ name +"<\/h3><\/div><div class='column'>"+emails+ phones+ posts+"<\/div><\/div>";
+
+      }
+
+
+        function printLink(this_link){
+          title = $(this_link).find("link").attr("title");
+          url = $(this_link).find("url").text();
+          description = $(this_link).find("description").text();
+          link_preview = $(this_link).find("link_preview").text();
+          attachment_path = $(this_link).find("link_preview").find("content_path").text();
+          attachment_path = attachment_path.substring(1);
+          content_type = $(this_link).find("link_preview").attr("content_type");
+          if(link_preview.length!=0){
+
+              return "<p><a  href='"+url+"'><div class='box'><img src='"+attachment_path+"' type='"+content_type+"'><\/img><br>"+ title +"<\/a><br>"+replace(description)+"<\/div><\/p>";
+          }
+        }
+
+        function printQuote(this_quote){
+          id = $(this_quote).find("quote").attr("id");
+          author = $(this_quote).find("author").text();
+          quote_timestamp = $(this_quote).find("timestamp").text();
+            quote_text = $(this_quote).find("quote_text").text();
+            return "<\/br><div class= 'quote' style='border:1px solid #ccc; background-clip: border-box;'><b>"+ author +"<\/b> ["+ quote_timestamp+"]:<p><i>"+quote_text+"<\/i><\/p><\/div>";
+        }
+
+
+        function replace(text) {
+            var Rexp = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
+            return text.replace(Rexp,"<a href='$1' target='_blank'>$1</a>");
+        }
+
+        function printMediaContent(this_content){
+          var result= "";
+          $(this_content).find("media_content").find("attachment").each(function(){
+            attachment_path = $(this).find("content_path").text();
+            attachment_path = attachment_path.substring(1);
+            if(attachment_path === undefined || attachment_path.length == 0){
+              result += "<br><i>\"This media was not downloaded\"<\/i>";
+              return result;
+            }
+            comment = $(this).find("comment").text();
+
+
+            signal_document =  $(this).find("metadata").find("document").text();
+            sticker =  $(this).find("sticker").text();
+            video = $(this).find("metadata").find("video").text();
+            image = $(this).find("metadata").find("image").text();
+            audio = $(this).find("metadata").find("audio").text();
+            if(audio.length != 0){
+              duration_sec = $(this).find("duration_sec").text();
+              content_type = $(this).find("audio").attr("content_type");
+              result += "<p><audio controls><source src='"+attachment_path+"' type='"+content_type+"'>Your browser does not support the audio element.<\/source><\/audio>"+replace(comment)+"<\/p><br>";
+            }
+            else if(video.length != 0){
+              video_width = $(this).find("video").find("width").text();
+              video_height = $(this).find("video").find("height").text();
+              content_type = $(this).find("video").attr("content_type");
+              result += "<p><video width='"+video_width+"' height='"+video_height+"' controls><source src='"+attachment_path+"' type='"+content_type+"'><\/source><\/video>"+replace(comment)+"<\/p><br>";
+            }
+            else if(sticker.length != 0){
+              content_type = $(this).find("sticker").attr("content_type");
+              result += "<p><embed type ='"+content_type+"' src='"+attachment_path+"'\/><\/p><br>";
+            }
+            else if(image.length != 0){
+              width = $(this).find("image").find("width").text();
+              height = $(this).find("image").find("height").text();
+              content_type = $(this).find("image").attr("content_type");
+                result += "<p><div class='box'><img src='"+attachment_path+"' width='"+width+"' height='"+height+"'><br><\/img>"+replace(comment)+"<\/div><\/p><br>";
+            }
+            else if(signal_document.length != 0){
+              filename = $(this).find("document").find("name").text();
+              result += "<p><a href='"+attachment_path+"'>"+filename+"<\/a><\/p>";
+            }
+
+            //else
+            if(comment.length!=0)
+              result += "<p><a  href='"+attachment_path+"'>"+ name + "<\/a>"+replace(comment)+"<\/p>";
+          });
+
+          return result;
+        }
+
+        function printChat(){
+          person_name = $(this).attr("name");
+          person_about = $(this).find("about").text();
+          person = "<li>" + person_name + ": " + "<br>" + person_about
+           + "<\/li>";
+          $("#users").append(person);
+        }//end printPerson
+  </script>
+
+    <style>
+      .content{
+          margin: auto;
+          max-width: inherit;
+          justify-content: center;
+          background-color: #086DD1;
+      }
+      .header {
+        color: white;
+        padding: 20px;
+      }
+      .subheader{
+
+        justify-content: center;
+        align-items: center;
+        padding-left:  90px;
+        font-family:sans-serif;
+      }
+
+      .header img {
+        float: left;
+        width: 80px;
+        height: 80px;
+      }
+
+      .header h1 {
+        position: relative;
+        top: 18px;
+        left: 20px;
+        font-family: arial;
+      }
+
+      .members {
+        color: white;
+        padding: 20px;
+        background-color: #086DD1;
+      }
+
+      .contact{
+        background-color: #CCCCFF;
+      }
+      .name{
+        font: italic 110% arial, sans-serif;
+      }
+      .phone{
+        font:100% monospace;
+      }
+
+      .post{
+        clear:both;
+        margin-bottom: 2em;
+        margin-left: 0em;
+        border-bottom: 1px solid #fef1ba;
+      }
+
+      .chat_content {
+        color: white;
+        padding: 20px;
+        font-family:sans-serif;
+      }
+      .quote {
+        border-radius: 10px;
+        border-style: inset;
+        color: lightgrey;
+        padding: 10px;
+        margin-top: 15px;
+        font-family:sans-serif;
+        background-color: grey;
+      }
+      .reactions {
+        margin-left: auto;
+        margin-right: 0px;
+        border-radius: 10px;
+        border-style:inset;
+        color: lightgrey;
+        padding: 10px;
+        margin-top: 15px;
+        background-color: darkgrey;
+        align-content: flex-end;
+        align-self: flex-end;
+      }
+
+      .chat_sharedcontact {
+        border: 5px outset red;
+        margin-top: 1em;
+        background-color: #CCCCFF;
+        text-align: center;
+      }
+      /* Clear floats after the columns */
+      .chat_sharedcontact:after {
+        display: table;
+        clear: both;
+      }
+      /* Create two equal columns that floats next to each other */
+      .column {
+        float: left;
+        width: auto;
+        padding: 25px;
+      }
+
+      body {
+        display: inline-block;
+        align-items: center;
+        background-color: #086DD1;
+        color: white;
+        font-size: 14px;
+        font-family: Arial, Helvetica, sans-serif;
+        word-break: normal;
+        word-wrap: normal;
+      }
+
+      img {
+        margin-top: 1em;
+        border: 0px;
+        width: inherit;
+
+    max-width:450px;
+    max-height:450px;
+        background:transparent;
+      }
+      embed{
+
+            max-width:300px;
+            max-height:300px;
+      }
+      video{
+
+            max-width:300px;
+            max-height:300px;
+      }
+
+      a {
+        color: white;
+        background-color: transparent;
+        text-decoration:underline;
+      }
+
+      p{
+        font-size: 1em;
+        line-height: 1.5em;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+        word-wrap: normal;
+        width: inherit;
+      }
+      li{
+        width: inherit;
+      }
+      pre {
+        overflow-x: auto;
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+     }
+
+      /* Style the navigation menu */
+      nav {
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        background: #ccc;
+      }
+
+      /* Style the content */
+      article {
+        -webkit-flex: 3;
+        -ms-flex: 3;
+        flex: 3;
+        box-shadow: 10px 10px 10px #000000;
+        border-radius: 15px;
+        background-color: #23303D;
+        padding: 10px;
+        width: inherit;
+        height: auto;
+        padding-bottom: 3em;
+        display: inline-block;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      /* Container for flexboxes */
+      section {
+        display: -webkit-flex;
+        display: flex;
+        //overflow: visible;
+      }
+      /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+      @media (max-width: 600px) {
+        section {
+          -webkit-flex-direction: column;
+          flex-direction: column;
+        }
+      }
+       #media_content{
+         flex-direction: column;
+       }
+
+      #xmlFile {
+        background-color: #086DD1;
+        color: black;
+        padding: 20px;
+        text-align: left;
+      }
+
+      /* Style the user_info */
+      #left {
+        background-color: #086DD1;
+        padding-left: 1px;
+        text-align: center;
+        color: white;
+        float:left;
+      }
+      #left li{
+        width:auto;
+        height:auto;
+        margin: 1em;
+        box-shadow: 10px 10px 10px #000000;
+        background-color: #0099ff;
+        list-style-type: none;
+        width: auto;
+        text-align: left;
+        margin-left: -2.5em;
+        padding: 6px;
+      }
+      /* Style the chat_content */
+      #right {
+      background-color: #086DD1;
+        padding-left: 1px;
+        text-align: center;
+        color: white;
+        float:left;
+
+      }#right li{
+        height: auto;
+        list-style-type: none;
+        width: 500px;
+        text-align: left;
+        padding-right: 50px;
+        margin-left: -2.5em;
+        margin-bottom: 1.5em;
+      }
+
+
+      /* Style the footer */
+      #footer {
+        clear: both;
+        border: black 2px solid;
+          background-color: #086DD1;
+        padding: 10px;
+        text-align: center;
+        color: white;
+      }.indented{
+        margin-left: 50%
+      }
+
+    </style>
+
+    <title>Signal Exported Chat Viewer</title>
+    <link href="/favicon.ico" type="image/x-icon" rel="icon" />
+
+</head>
+
+<body>
+<div class="content">
+    <div class="header" id="header">
+
+        <img src="signal-app.png" alt="logo" />
+        <h1>Signal Chat Viewer</h1>
+        <div class="subheader"><h3>Keep Those Special Signal Conversations Forever!</h3></div>
+    </div>
+
+    <div class="xml selection form">
+        <form id="xmlFile" name="xmlFile" enctype="multipart/form-data" method="post">
+            <fieldset>
+                <h3><strong>Select the&nbsp;</strong>
+                    "chat.xml"
+                    <strong>&nbsp;file from the export:&nbsp;</strong></h3>
+
+                <input type="file" accept=".xml" id="fileinput" onchange="onFileSelected(event)">
+
+                <br>
+                <br>
+            </fieldset>
+        </form>
+    </div>
+    <section class="chat-section">
+        <div class=members id="members">
+            <h3>Members</h3>
+            <hr>
+            <!-- Members List Section -->
+            <div class='user_info' id="left" >
+                <ul id="users"></ul>
+            </div>
+        </div>
+        <nav class='chat_content' id= right >
+            <h3 align="left">Conversation</h3>
+            <hr>
+            <ul id="chat_records">
+                <li>
+                </li>
+            </ul>
+        </nav>
+    </section>
+    <div id="footer">
+        <div class='module-splash-screen__logo module-img--150'></div>
+
+        <div class='version'></div>
+        <div class='environment'></div>
+        <div>
+            <a href='https://signal.org'>signal.org</a>
+        </div>
+        <br>
+        <div>
+            <a class="acknowledgments" href="https://github.com/signalapp/Signal-Desktop/blob/development/ACKNOWLEDGMENTS.md">Software Acknowledgments</a>
+        </div>
+        <div>
+            <a class="privacy" href="https://signal.org/legal">Terms &amp; Privacy Policy</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

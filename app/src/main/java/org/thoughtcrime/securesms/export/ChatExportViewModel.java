@@ -9,17 +9,15 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 public class ChatExportViewModel extends ViewModel {
 
-    private static final String TAG                        = Log.tag(ChatExportViewModel.class);
     private static final Boolean INITIAL_HTML_VIEWER_STATE = false;
     private static final Boolean INITIAL_MEDIA_STATE = false;
     private static final String INITIAL_TIME_PERIOD     = "Default (whole chat)";
@@ -68,8 +66,8 @@ public class ChatExportViewModel extends ViewModel {
             return INITIAL_TIME_PERIOD;
         }
         else{
-            String fromTimePeriod = dateFormatter.format (from.getValue ().get ());
-            String untilTimePeriod = dateFormatter.format (until.getValue ().get ());
+            String fromTimePeriod = dateFormatter.format (Objects.requireNonNull (from.getValue ()).get ());
+            String untilTimePeriod = dateFormatter.format (Objects.requireNonNull (until.getValue ()).get ());
             return "From " + fromTimePeriod + " to " + untilTimePeriod;
         }
 

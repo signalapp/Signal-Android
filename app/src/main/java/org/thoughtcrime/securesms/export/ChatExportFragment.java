@@ -1,21 +1,9 @@
 package org.thoughtcrime.securesms.export;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.widget.SwitchCompat;
-
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +11,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
+
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -60,14 +55,14 @@ public class ChatExportFragment extends Fragment {
     private View     selectTimePeriod;
     private TextView selectedTimePeriod;
     private Button           exportButton;
-    private TextView     infoText;
+    //private TextView     infoText;
 
     static boolean includeHTMLViewer;
     private boolean includeAllMedia;
 
     private static ExportZipUtil zip;
-    Map<AttachmentId, ChatFormatter.MediaRecord> selectedMedia = new HashMap<> ();
-     HashMap<String, Uri>                       otherFiles;
+    Map<String, ChatFormatter.MediaRecord> selectedMedia = new HashMap<> ();
+    HashMap<String, Uri>                   otherFiles;
 
 
     public ChatExportFragment newInstance (@NonNull RecipientId recipientId, boolean fromConversation) {
@@ -96,7 +91,7 @@ public class ChatExportFragment extends Fragment {
         this.selectTimePeriod = view.findViewById(R.id.chat_export_select_time_period);
         selectedTimePeriod = view.findViewById (R.id.chat_export_selected_time_period);
         this.exportButton = view.findViewById(R.id.chat_export_button);
-        this.infoText = view.findViewById(R.id.fragment_export_chat_info);
+        //this.infoText = view.findViewById(R.id.fragment_export_chat_info);
         return view;
     }
 
@@ -104,9 +99,7 @@ public class ChatExportFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         ChatExportViewModel viewModel  = ViewModelProviders.of(requireActivity()).get(ChatExportViewModel.class);
-        allMedia.setOnClickListener(v -> {
-            viewModel.toggleSelectAllMedia ();
-        });
+        allMedia.setOnClickListener(v -> viewModel.toggleSelectAllMedia ());
 
         viewModel.getAllMedia().observe(getViewLifecycleOwner(), shouldIncludeAllMedia -> {
             if (shouldIncludeAllMedia != allMediaSwitch.isChecked()) {
@@ -194,16 +187,19 @@ public class ChatExportFragment extends Fragment {
 
     void createZip (ChatFormatter exp, ChatExportViewModel viewModel) {
         String result = exp.parseConversationToXML ();
-        this.selectedMedia = new HashMap<> ();
-        this.otherFiles = new HashMap<> ();
-        if(viewModel.getCurrentSelectionAllMedia ()){
-            selectedMedia = exp.getAllMedia();
-            for(Map.Entry<String, Uri> e: exp.getOtherFiles().entrySet ()){
-                otherFiles.put (e.getKey (), e.getValue ());
+        if (result.length () > 0) {
+            this.selectedMedia = new HashMap<> ();
+            this.otherFiles = new HashMap<> ();
+            if (viewModel.getCurrentSelectionAllMedia ()) {
+                selectedMedia = exp.getAllMedia ();
+                for (Map.Entry<String, Uri> e : exp.getOtherFiles ().entrySet ()) {
+                    otherFiles.put (e.getKey (), e.getValue ());
+                }
             }
+            handleSaveMedia (selectedMedia.values (), otherFiles, viewModel.getCurrentSelectionViewer (), result);
         }
-        handleSaveMedia(selectedMedia.values (), otherFiles, viewModel.getCurrentSelectionViewer (), result);
-
+        else
+            Toast.makeText(getContext (),"No messages to export", Toast.LENGTH_SHORT).show(); //added
     }
 
     private void handleSaveMedia (
@@ -213,8 +209,7 @@ public class ChatExportFragment extends Fragment {
 
         if (StorageUtil.canWriteToMediaStore()) {
             performSaveToDisk(context, mediaRecords, moreFiles, currentSelectionViewer,  result);
-            infoText.clearComposingText();
-            infoText.append ("Done");
+           // infoText.setText ("Done");
             return;
         }
 

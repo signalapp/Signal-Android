@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavGraph;
@@ -22,7 +21,6 @@ import org.thoughtcrime.securesms.util.FullscreenHelper;
 public class ChatExportActivity extends PassphraseRequiredActivity {
 
     private static final String RECIPIENT_ID      = "RECIPIENT_ID";
-    private static final String FROM_CONVERSATION = "FROM_CONVERSATION";
 
     private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
     private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
@@ -32,17 +30,6 @@ public class ChatExportActivity extends PassphraseRequiredActivity {
         intent.putExtra(RECIPIENT_ID, recipientId);
         return intent;
     }
-
-    /**
-     * Makes the message button behave like back.
-     */
-    public static Intent newIntentFromConversation(@NonNull Context context, @NonNull RecipientId recipientId) {
-        Intent intent = new Intent(context, ChatExportActivity.class);
-        intent.putExtra(RECIPIENT_ID, recipientId);
-        intent.putExtra(FROM_CONVERSATION, true);
-        return intent;
-    }
-
 
     @Override
     protected void onPreCreate() {

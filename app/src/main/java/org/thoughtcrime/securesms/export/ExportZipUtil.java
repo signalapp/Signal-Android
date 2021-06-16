@@ -27,7 +27,6 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,6 +50,14 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
     private static final int FAILURE              = 1;
     private static final int WRITE_ACCESS_FAILURE = 2;
 
+
+    private static final String HTML_VIEWER_PATH = "chatexport.htmlviewer/viewer.html";
+    private static final String HTML_VIEWER_NAME = "viewer.html";
+    private static final String HTML_VIEWER_JQUERY_PATH = "chatexport.htmlviewer/jquery-3.6.0.min.js";
+    private static final String HTML_VIEWER_JQUERY_NAME = "jquery-3.6.0.min.js";
+    private static final String HTML_VIEWER_ICON_PATH = "chatexport.htmlviewer/signal-app.png";
+    private static final String HTML_VIEWER_ICON_NAME= "signal-app.png";
+
     private final WeakReference<Context> contextReference;
 
     private final int attachmentCount;
@@ -73,7 +80,13 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
         this.zipFile = getZipFile(threadId);
         this.out = getZipOutputStream();
         addXMLFile ("/chat.xml", result);
-       //TODO: if(hasViewer) zipFolder ("viewer_path");
+        if(hasViewer) includeHTMLViewerToZip (context);
+    }
+
+    private void includeHTMLViewerToZip (Context context) throws IOException {
+        addFile (HTML_VIEWER_NAME, context.getAssets().open(HTML_VIEWER_PATH));
+        addFile (HTML_VIEWER_JQUERY_NAME, context.getAssets().open(HTML_VIEWER_JQUERY_PATH));
+        addFile (HTML_VIEWER_ICON_NAME, context.getAssets().open(HTML_VIEWER_ICON_PATH));
     }
 
     private File getZipFile (long threadId) {
@@ -143,9 +156,10 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
     @SuppressLint("LogTagInlined")
     private String saveAttachment (Context context, Attachment attachment) throws IOException{
         //TODO --removelog
-        Log.i(TAG + "ANGELA Zip saveAttachment", "This" + attachment.fileName  +  " " +  attachment.contentType);
+        Log.i(TAG + "ANGELA Zip saveAttachment", "This" + attachment.fileName  +  " " +  attachment.contentType + " " +  attachment.uri.getLastPathSegment ());
         String      contentType = Objects.requireNonNull(MediaUtil.getCorrectedMimeType(attachment.contentType));
-        String      fileName = generateOutputFileName(contentType, attachment.date);
+        String      fileName ;
+        fileName = generateOutputFileName(contentType, attachment.date, attachment.uri.getPathSegments ().get (0));
 
         String           outputUri    = getMediaStoreContentPathForType(contentType);
         String           mediaUri     = createOutputPath( outputUri, fileName);
@@ -169,11 +183,12 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
         return outputUri;
     }
 
-    public static String generateOutputFileName (@NonNull String contentType, long timestamp) {
+    public static String generateOutputFileName (@NonNull String contentType, long date,@NonNull String uriPathSegment) {
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton ();
         String extension = mimeTypeMap.getExtensionFromMimeType (contentType);
         @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormatter = new SimpleDateFormat ("yyyy-MM-dd-HHmmss");
-        String base = "signal-" + dateFormatter.format (timestamp);
+        String base = "signal-" + dateFormatter.format (date) + uriPathSegment;
+
 
         if (extension == null) extension = "attach";
 
@@ -211,30 +226,29 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
             ex.printStackTrace ();
         }
     }
-/*
-    @SuppressLint("LogTagInlined")
-    private void zipFolder (String inputFolderPath) {
+
+    public void addFile (String name, InputStream data) {
         try {
-            File srcFile = new File(inputFolderPath);
-            File[] files = srcFile.listFiles();
-            Log.d(TAG, "Zip directory: " + srcFile.getName());
-            for (int i = 0; i < files.length; i++) {
-                Log.d("", "Adding file: " + files[i].getName());
-                byte[] buffer = new byte[BUFFER];
-                FileInputStream fis = new FileInputStream(files[i]);
-                out.putNextEntry(new ZipEntry(files[i].getName()));
-                int length;
-                while ((length = fis.read(buffer)) > 0) {
-                    out.write(buffer, 0, length);
+            byte[] buffer = new byte[1024];
+            ZipEntry zipEntry = new ZipEntry(name);
+            out.putNextEntry(zipEntry);
+
+            BufferedInputStream origin = new BufferedInputStream (data, BUFFER);
+            try {
+                int len;
+                while ((len = origin.read (buffer)) > 0) {
+                    out.write (buffer, 0, len);
                 }
-                out.closeEntry();
-                fis.close();
+                origin.close ();
+            } finally {
+                data.close ();
             }
-            out.close();
-        } catch (IOException ioe) {
-            Log.e("", ioe.getMessage());
+            out.closeEntry ();
+
+        } catch (IOException ex) {
+            ex.printStackTrace ();
         }
-    }*/
+    }
 
     public void closeZip () throws IOException {
         out.close();
@@ -321,11 +335,11 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
     }
 
     public static class Attachment {
-        public Uri uri;
-        public String fileName;
-        public String contentType;
-        public long   date;
-        private long size;
+        private final Uri    uri;
+        private final String fileName;
+        private final String contentType;
+        private final long   date;
+        private final long   size;
 
         public Attachment(Uri uri, String contentType,
                           long date, @Nullable String fileName, long size)

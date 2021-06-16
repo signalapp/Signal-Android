@@ -28,8 +28,6 @@ import java.util.Date;
 
 public class ChatExportTimePickerFragment extends Fragment {
 
-    private static final String TAG = ChatExportTimePickerFragment.class.getSimpleName ();
-
     private ChipGroup chipGroup;
     private Chip all;
     private Chip thirtyDays;
