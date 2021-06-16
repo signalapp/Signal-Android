@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.UiMode
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
+import org.thoughtcrime.securesms.loki.utilities.toPx
 import java.lang.IllegalStateException
 
 class VisibleMessageContentView : LinearLayout {
@@ -103,7 +104,9 @@ class VisibleMessageContentView : LinearLayout {
     // region Convenience
     private fun getBodyTextView(message: MessageRecord): TextView {
         val result = TextView(context)
-        result.setPadding(resources.getDimension(R.dimen.small_spacing).toInt())
+        val vPadding = resources.getDimension(R.dimen.small_spacing).toInt()
+        val hPadding = toPx(12, resources)
+        result.setPadding(hPadding, vPadding, hPadding, vPadding)
         result.text = message.body
         result.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.medium_font_size))
         val uiMode = UiModeUtilities.getUserSelectedUiMode(context)

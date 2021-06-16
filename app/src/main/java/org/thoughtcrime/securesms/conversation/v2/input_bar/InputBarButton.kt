@@ -48,7 +48,8 @@ class InputBarButton : RelativeLayout {
         result.layoutParams = LayoutParams(size, size)
         result.scaleType = ImageView.ScaleType.CENTER_INSIDE
         result.setImageResource(iconID)
-        result.imageTintList = ColorStateList.valueOf(resources.getColorWithID(R.color.text, context.theme))
+        val colorID = if (isSendButton) R.color.black else R.color.text
+        result.imageTintList = ColorStateList.valueOf(resources.getColorWithID(colorID, context.theme))
         result
     }
 
