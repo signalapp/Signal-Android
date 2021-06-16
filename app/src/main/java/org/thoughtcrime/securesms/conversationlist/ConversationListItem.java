@@ -48,7 +48,6 @@ import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.TypingIndicatorView;
-import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -61,6 +60,7 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
@@ -495,24 +495,20 @@ public final class ConversationListItem extends ConstraintLayout
         return emphasisAdded(context, context.getString(thread.isOutgoing() ? R.string.ThreadRecord_you_deleted_this_message : R.string.ThreadRecord_this_message_was_deleted), defaultTint);
       } else {
         String body = removeNewlines(thread.getBody());
-        if (thread.getRecipient().isGroup()) {
-          RecipientId groupMessageSender = thread.getGroupMessageSender();
-          if (!groupMessageSender.isUnknown()) {
-            return describeGroupMessage(context, body, groupMessageSender, thread.isRead());
+
+        LiveData<SpannableString> finalBody = recipientToStringAsync(thread.getRecipient().getId(), threadRecipient -> {
+          if (threadRecipient.isGroup()) {
+            RecipientId groupMessageSender = thread.getGroupMessageSender();
+            if (!groupMessageSender.isUnknown()) {
+              return createGroupMessageUpdateString(context, body, Recipient.resolved(groupMessageSender), thread.isRead());
+            }
           }
-        }
-        return LiveDataUtil.just(new SpannableString(body));
+          return new SpannableString(body);
+        });
+
+        return whileLoadingShow(body, finalBody);
       }
     }
-  }
-
-  private static LiveData<SpannableString> describeGroupMessage(@NonNull Context context,
-                                                                @NonNull String body,
-                                                                @NonNull RecipientId groupMessageSender,
-                                                                boolean read)
-  {
-    return whileLoadingShow(body, recipientToStringAsync(groupMessageSender,
-                                                         r -> createGroupMessageUpdateString(context, body, r, read)));
   }
 
   private static SpannableString createGroupMessageUpdateString(@NonNull Context context,
