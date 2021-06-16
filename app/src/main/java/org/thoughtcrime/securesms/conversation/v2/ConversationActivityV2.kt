@@ -6,6 +6,7 @@ import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.RelativeLayout
+import androidx.core.view.isVisible
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -111,6 +112,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val recyclerViewLayoutParams = conversationRecyclerView.layoutParams as RelativeLayout.LayoutParams
         recyclerViewLayoutParams.bottomMargin = newValue
         conversationRecyclerView.layoutParams = recyclerViewLayoutParams
+    }
+
+    override fun showVoiceMessageUI() {
+        inputBarRecordingView.isVisible = true
     }
     // endregion
 

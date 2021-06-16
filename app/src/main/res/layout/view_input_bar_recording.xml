@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <!-- The height of the fake input bar below is 68 dp
+         because the input bar is 56 dp but we have to
+         account for the fact that this whole view has a
+         negative bottom margin of 12 dp -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/separator" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/input_bar_background" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/medium_spacing"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/destructive" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/small_spacing"
+            android:text="00:00"
+            android:textSize="@dimen/small_font_size"
+            android:textColor="@color/text" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_keyboard_arrow_left_grey600_24dp"
+            android:layout_marginTop="1dp"
+            app:tint="@color/text"
+            android:alpha="0.6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="@string/conversation_input_panel__slide_to_cancel"
+            android:textSize="@dimen/very_small_font_size"
+            android:textColor="@color/text"
+            android:alpha="0.6" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="-8dp"
+        android:background="@drawable/circle_tintable"
+        android:backgroundTint="@color/destructive" >
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:tint="@color/white"
+            android:scaleType="centerInside"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_microphone" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

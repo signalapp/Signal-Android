@@ -230,18 +230,7 @@ class VisibleMessageView : LinearLayout {
 
     private fun onCancel(event: MotionEvent) {
         longPressCallback?.let { gestureHandler.removeCallbacks(it) }
-        animate()
-            .translationX(0.0f)
-            .setDuration(150)
-            .setUpdateListener {
-                postInvalidate() // Ensure onDraw(canvas:) is called
-            }
-            .start()
-        // Bit of a hack to keep the date break text view from moving
-        dateBreakTextView.animate()
-            .translationX(0.0f)
-            .setDuration(150)
-            .start()
+        resetPosition()
     }
 
     private fun onUp(event: MotionEvent) {
@@ -251,6 +240,10 @@ class VisibleMessageView : LinearLayout {
             longPressCallback?.let { gestureHandler.removeCallbacks(it) }
             onPress?.invoke()
         }
+        resetPosition()
+    }
+
+    private fun resetPosition() {
         animate()
             .translationX(0.0f)
             .setDuration(150)
@@ -260,9 +253,9 @@ class VisibleMessageView : LinearLayout {
             .start()
         // Bit of a hack to keep the date break text view from moving
         dateBreakTextView.animate()
-                .translationX(0.0f)
-                .setDuration(150)
-                .start()
+            .translationX(0.0f)
+            .setDuration(150)
+            .start()
     }
 
     private fun onLongPress() {

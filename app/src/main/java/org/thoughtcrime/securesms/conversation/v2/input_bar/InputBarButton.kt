@@ -6,7 +6,10 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.PointF
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
+import android.util.Log
 import android.view.Gravity
 import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
@@ -14,13 +17,22 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.annotation.DrawableRes
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.loki.views.GlowViewUtilities
 import org.thoughtcrime.securesms.loki.views.InputBarButtonImageViewContainer
+import java.util.*
+import kotlin.math.abs
 
 class InputBarButton : RelativeLayout {
+    private val gestureHandler = Handler(Looper.getMainLooper())
     private var isSendButton = false
     @DrawableRes private var iconID = 0
+    private var longPressCallback: Runnable? = null
+    private var onDownTimestamp = 0L
+
+    var onPress: (() -> Unit)? = null
+    var onLongPress: (() -> Unit)? = null
 
     companion object {
         val animationDuration = 250.toLong()
@@ -99,16 +111,37 @@ class InputBarButton : RelativeLayout {
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                expand()
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
-                } else {
-                    performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
-                }
-            }
-            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> { collapse() }
+            MotionEvent.ACTION_DOWN -> onDown(event)
+            MotionEvent.ACTION_UP -> onUp(event)
+            MotionEvent.ACTION_CANCEL -> onCancel(event)
         }
         return true
+    }
+
+    private fun onDown(event: MotionEvent) {
+        expand()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
+        } else {
+            performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+        }
+        longPressCallback?.let { gestureHandler.removeCallbacks(it) }
+        val newLongPressCallback = Runnable { onLongPress?.invoke() }
+        this.longPressCallback = newLongPressCallback
+        gestureHandler.postDelayed(newLongPressCallback, VisibleMessageView.longPressDurationThreshold)
+        onDownTimestamp = Date().time
+    }
+
+    private fun onCancel(event: MotionEvent) {
+        collapse()
+        longPressCallback?.let { gestureHandler.removeCallbacks(it) }
+    }
+
+    private fun onUp(event: MotionEvent) {
+        collapse()
+        if ((Date().time - onDownTimestamp) < VisibleMessageView.longPressDurationThreshold) {
+            longPressCallback?.let { gestureHandler.removeCallbacks(it) }
+            onPress?.invoke()
+        }
     }
 }

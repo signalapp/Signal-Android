@@ -18,4 +18,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
 
+    <org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarRecordingView
+        android:id="@+id/inputBarRecordingView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-12dp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true" />
+
 </RelativeLayout>
