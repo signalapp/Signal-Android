@@ -157,7 +157,7 @@ private class LinkDeviceActivityAdapter(private val activity: LinkDeviceActivity
             1 -> {
                 val result = ScanQRCodeWrapperFragment()
                 result.delegate = activity
-                result.message = "Navigate to Settings → Recovery Phrase on your other device to show your QR code."
+                result.message = activity.getString(R.string.activity_link_device_qr_message)
                 result
             }
             else -> throw IllegalStateException()
@@ -166,8 +166,8 @@ private class LinkDeviceActivityAdapter(private val activity: LinkDeviceActivity
 
     override fun getPageTitle(index: Int): CharSequence {
         return when (index) {
-            0 -> activity.getString(R.string.fragment_recovery_phrase_title)
-            1 -> activity.getString(R.string.activity_qr_code_view_scan_qr_code_tab_title)
+            0 -> activity.getString(R.string.activity_link_device_recovery_phrase)
+            1 -> activity.getString(R.string.activity_link_device_scan_qr_code)
             else -> throw IllegalStateException()
         }
     }

@@ -831,6 +831,9 @@
 
     <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
     <string name="activity_link_device_link_device">Link a Device</string>
+    <string name="activity_link_device_recovery_phrase">Recovery Phrase</string>
+    <string name="activity_link_device_scan_qr_code">Scan QR Code</string>
+    <string name="activity_link_device_qr_message">Navigate to Settings → Recovery Phrase on your other device to show your QR code.</string>
     <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
 
     <string name="activity_pn_mode_message_notifications">Message Notifications</string>
