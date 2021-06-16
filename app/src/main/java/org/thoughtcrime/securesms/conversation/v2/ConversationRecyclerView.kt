@@ -2,14 +2,16 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.VelocityTracker
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.loki.utilities.disableClipping
+import org.thoughtcrime.securesms.loki.utilities.toPx
 import kotlin.math.abs
 
 class ConversationRecyclerView : RecyclerView {
+    private val maxLongPressVelocityY = toPx(10, resources)
+    private val minSwipeVelocityX = toPx(10, resources)
     private var velocityTracker: VelocityTracker? = null
 
     constructor(context: Context) : super(context) { initialize() }
@@ -27,6 +29,8 @@ class ConversationRecyclerView : RecyclerView {
         val vy = velocityTracker.yVelocity
         // Only allow swipes to the left; allowing swipes to the right interferes with some back gestures
         if (vx > 0) { return super.onInterceptTouchEvent(e) }
+        // Distinguish between scrolling gestures and long presses
+        if (abs(vy) > maxLongPressVelocityY && abs(vx) < minSwipeVelocityX) { return super.onInterceptTouchEvent(e) }
         // Return false if abs(v.x) > abs(v.y) so that only swipes that are more horizontal than vertical
         // get passed on to the message view
         if (abs(vx) > abs(vy)) {

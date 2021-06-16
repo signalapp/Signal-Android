@@ -189,7 +189,8 @@ class VisibleMessageView : LinearLayout {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> onDown(event)
             MotionEvent.ACTION_MOVE -> onMove(event)
-            MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> onFinish(event)
+            MotionEvent.ACTION_CANCEL -> onCancel(event)
+            MotionEvent.ACTION_UP -> onUp(event)
         }
         return true
     }
@@ -227,7 +228,23 @@ class VisibleMessageView : LinearLayout {
         previousTranslationX = x
     }
 
-    private fun onFinish(event: MotionEvent) {
+    private fun onCancel(event: MotionEvent) {
+        longPressCallback?.let { gestureHandler.removeCallbacks(it) }
+        animate()
+            .translationX(0.0f)
+            .setDuration(150)
+            .setUpdateListener {
+                postInvalidate() // Ensure onDraw(canvas:) is called
+            }
+            .start()
+        // Bit of a hack to keep the date break text view from moving
+        dateBreakTextView.animate()
+            .translationX(0.0f)
+            .setDuration(150)
+            .start()
+    }
+
+    private fun onUp(event: MotionEvent) {
         if (abs(translationX) > VisibleMessageView.swipeToReplyThreshold) {
             onSwipeToReply?.invoke()
         } else if ((Date().time - onDownTimestamp) < VisibleMessageView.longPressDurationThreshold) {
