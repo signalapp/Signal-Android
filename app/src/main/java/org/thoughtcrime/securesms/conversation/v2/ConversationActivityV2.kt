@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2
 
+import android.animation.FloatEvaluator
+import android.animation.ValueAnimator
 import android.database.Cursor
 import android.os.Bundle
 import android.view.ActionMode
@@ -20,6 +22,7 @@ import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCa
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetView
 import org.thoughtcrime.securesms.mms.GlideApp
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate {
@@ -115,7 +118,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun showVoiceMessageUI() {
-        inputBarRecordingView.isVisible = true
+        inputBarRecordingView.show()
     }
     // endregion
 
