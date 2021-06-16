@@ -28,7 +28,7 @@ public class MediaPreviewViewModel extends ViewModel {
 
   public void setCursor(@NonNull Context context, @Nullable Cursor cursor, boolean leftIsRecent) {
     boolean firstLoad = (this.cursor == null) && (cursor != null);
-    if (this.cursor != null) {
+    if (this.cursor != null && !this.cursor.equals(cursor)) {
       this.cursor.close();
     }
     this.cursor       = cursor;
