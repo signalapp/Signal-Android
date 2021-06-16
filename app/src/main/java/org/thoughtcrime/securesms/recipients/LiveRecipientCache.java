@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Executor;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 public final class LiveRecipientCache {
 
@@ -40,42 +42,51 @@ public final class LiveRecipientCache {
   private final Executor                        executor;
   private final SQLiteDatabase                  db;
 
-  private volatile RecipientId localRecipientId;
-
-  private boolean warmedUp;
+  private final AtomicReference<RecipientId> localRecipientId;
+  private final AtomicBoolean                warmedUp;
 
   @SuppressLint("UseSparseArrays")
   public LiveRecipientCache(@NonNull Context context) {
     this.context           = context.getApplicationContext();
     this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     this.recipients        = new LRUCache<>(CACHE_MAX);
+    this.warmedUp          = new AtomicBoolean(false);
+    this.localRecipientId  = new AtomicReference<>(null);
     this.unknown           = new LiveRecipient(context, Recipient.UNKNOWN);
     this.db                = DatabaseFactory.getInstance(context).getRawDatabase();
     this.executor          = new FilteredExecutor(SignalExecutors.BOUNDED, () -> !db.isDbLockedByCurrentThread());
   }
 
   @AnyThread
-  synchronized @NonNull LiveRecipient getLive(@NonNull RecipientId id) {
+  @NonNull LiveRecipient getLive(@NonNull RecipientId id) {
     if (id.isUnknown()) return unknown;
 
-    LiveRecipient live = recipients.get(id);
+    LiveRecipient live;
+    boolean       needsResolve;
 
-    if (live == null) {
-      final LiveRecipient newLive = new LiveRecipient(context, new Recipient(id));
+    synchronized (recipients) {
+      live = recipients.get(id);
 
-      recipients.put(id, newLive);
+      if (live == null) {
+        live = new LiveRecipient(context, new Recipient(id));
+        recipients.put(id, live);
+        needsResolve = true;
+      } else {
+        needsResolve = false;
+      }
+    }
 
-      MissingRecipientException prettyStackTraceError = new MissingRecipientException(newLive.getId());
+    if (needsResolve) {
+      final LiveRecipient toResolve = live;
 
+      MissingRecipientException prettyStackTraceError = new MissingRecipientException(toResolve.getId());
       executor.execute(() -> {
         try {
-          newLive.resolve();
+          toResolve.resolve();
         } catch (MissingRecipientException e) {
           throw prettyStackTraceError;
         }
       });
-
-      live = newLive;
     }
 
     return live;
@@ -88,25 +99,33 @@ public final class LiveRecipientCache {
    * If the recipient you add is unresolved, this will enqueue a resolve on a background thread.
    */
   @AnyThread
-  public synchronized void addToCache(@NonNull Collection<Recipient> newRecipients) {
+  public void addToCache(@NonNull Collection<Recipient> newRecipients) {
     for (Recipient recipient : newRecipients) {
-      LiveRecipient live         = recipients.get(recipient.getId());
-      boolean       needsResolve = false;
+      LiveRecipient live;
+      boolean       needsResolve;
 
-      if (live == null) {
-        live = new LiveRecipient(context, recipient);
-        recipients.put(recipient.getId(), live);
-        needsResolve = recipient.isResolving();
-      } else if (live.get().isResolving() || !recipient.isResolving()) {
-        live.set(recipient);
-        needsResolve = recipient.isResolving();
+      synchronized (recipients) {
+        live = recipients.get(recipient.getId());
+
+        if (live == null) {
+          live = new LiveRecipient(context, recipient);
+          recipients.put(recipient.getId(), live);
+          needsResolve = recipient.isResolving();
+        } else if (live.get().isResolving() || !recipient.isResolving()) {
+          live.set(recipient);
+          needsResolve = recipient.isResolving();
+        } else {
+          needsResolve = false;
+        }
       }
 
       if (needsResolve) {
-        MissingRecipientException prettyStackTraceError = new MissingRecipientException(recipient.getId());
+        LiveRecipient toResolve = live;
+
+        MissingRecipientException prettyStackTraceError = new MissingRecipientException(toResolve.getId());
         executor.execute(() -> {
           try {
-            recipient.resolve();
+            toResolve.resolve();
           } catch (MissingRecipientException e) {
             throw prettyStackTraceError;
           }
@@ -116,32 +135,42 @@ public final class LiveRecipientCache {
   }
 
   @NonNull Recipient getSelf() {
-    if (localRecipientId == null) {
+    RecipientId selfId;
+
+    synchronized (localRecipientId) {
+      selfId = localRecipientId.get();
+    }
+
+    if (selfId == null) {
       UUID   localUuid = TextSecurePreferences.getLocalUuid(context);
       String localE164 = TextSecurePreferences.getLocalNumber(context);
 
       if (localUuid != null) {
-        localRecipientId = recipientDatabase.getByUuid(localUuid).or(recipientDatabase.getByE164(localE164)).orNull();
+        selfId = recipientDatabase.getByUuid(localUuid).or(recipientDatabase.getByE164(localE164)).orNull();
       } else if (localE164 != null) {
-        localRecipientId = recipientDatabase.getByE164(localE164).orNull();
+        selfId = recipientDatabase.getByE164(localE164).orNull();
       } else {
         throw new IllegalStateException("Tried to call getSelf() before local data was set!");
       }
 
-      if (localRecipientId == null) {
+      if (selfId == null) {
         throw new MissingRecipientException(null);
+      }
+
+      synchronized (localRecipientId) {
+        if (localRecipientId.get() == null) {
+          localRecipientId.set(selfId);
+        }
       }
     }
 
-    return getLive(localRecipientId).resolve();
+    return getLive(selfId).resolve();
   }
 
   @AnyThread
-  public synchronized void warmUp() {
-    if (warmedUp) {
+  public void warmUp() {
+    if (warmedUp.getAndSet(true)) {
       return;
-    } else {
-      warmedUp = true;
     }
 
     executor.execute(() -> {
@@ -164,12 +193,16 @@ public final class LiveRecipientCache {
   }
 
   @AnyThread
-  public synchronized void clearSelf() {
-    localRecipientId = null;
+  public void clearSelf() {
+    synchronized (localRecipientId) {
+      localRecipientId.set(null);
+    }
   }
 
   @AnyThread
-  public synchronized void clear() {
-    recipients.clear();
+  public void clear() {
+    synchronized (recipients) {
+      recipients.clear();
+    }
   }
 }
