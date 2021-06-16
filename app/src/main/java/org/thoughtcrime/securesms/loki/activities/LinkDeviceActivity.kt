@@ -22,17 +22,17 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import network.loki.messenger.R
+import org.session.libsession.utilities.KeyPairUtilities
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.utilities.KeyHelper
 import org.session.libsignal.crypto.MnemonicCodec
-import org.session.libsignal.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.Hex
+import org.session.libsignal.utilities.KeyHelper
 import org.session.libsignal.utilities.Log
+import org.session.libsignal.utilities.hexEncodedPublicKey
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
-import org.session.libsession.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
@@ -166,8 +166,8 @@ private class LinkDeviceActivityAdapter(private val activity: LinkDeviceActivity
 
     override fun getPageTitle(index: Int): CharSequence {
         return when (index) {
-            0 -> "Recovery Phrase"
-            1 -> "Scan QR Code"
+            0 -> activity.getString(R.string.fragment_recovery_phrase_title)
+            1 -> activity.getString(R.string.activity_qr_code_view_scan_qr_code_tab_title)
             else -> throw IllegalStateException()
         }
     }

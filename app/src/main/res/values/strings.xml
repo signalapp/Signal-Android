@@ -713,6 +713,7 @@
     <string name="activity_path_service_node_row_title">Service Node</string>
     <string name="activity_path_destination_row_title">Destination</string>
     <string name="activity_path_learn_more_button_title">Learn More</string>
+    <string name="activity_path_resolving_progress">Resolving…</string>
 
     <string name="activity_create_private_chat_title">New Session</string>
     <string name="activity_create_private_chat_enter_session_id_tab_title">Enter Session ID</string>
@@ -765,6 +766,8 @@
     <string name="activity_chat_settings_title">Chats</string>
 
     <string name="preferences_notifications_strategy_category_title">Notification Strategy</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_title">Use Fast Mode</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_summary">You’ll be notified of new messages reliably and immediately using Google’s notification servers.</string>
 
     <string name="fragment_device_list_bottom_sheet_change_name_button_title">Change name</string>
     <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Unlink device</string>
