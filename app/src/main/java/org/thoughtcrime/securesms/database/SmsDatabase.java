@@ -886,10 +886,13 @@ public class SmsDatabase extends MessageDatabase {
         contentValues.put(READ, 1);
       }
 
-      db.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(record.getId()));
-    }
+      SqlUtil.Query query   = SqlUtil.buildTrueUpdateQuery(ID_WHERE, SqlUtil.buildArgs(record.getId()), contentValues);
+      boolean       updated = db.update(TABLE_NAME, contentValues, query.getWhere(), query.getWhereArgs()) > 0;
 
-    notifyConversationListeners(threadId);
+      if (updated) {
+        notifyConversationListeners(threadId);
+      }
+    }
 
     return sameEraId;
   }

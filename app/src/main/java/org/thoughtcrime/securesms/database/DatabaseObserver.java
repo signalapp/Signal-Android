@@ -112,6 +112,18 @@ public final class DatabaseObserver {
     application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
   }
 
+  public void notifyVerboseConversationListeners(Set<Long> threadIds) {
+    executor.execute(() -> {
+      for (long threadId : threadIds) {
+        notifyMapped(verboseConversationObservers, threadId);
+      }
+    });
+
+    for (long threadId : threadIds) {
+      application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
+    }
+  }
+
   public void notifyVerboseConversationListeners(long threadId) {
     executor.execute(() -> {
       notifyMapped(verboseConversationObservers, threadId);

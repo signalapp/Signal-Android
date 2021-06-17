@@ -97,6 +97,8 @@ class ConversationDataSource implements PagedDataSource<ConversationMessage> {
 
     records = attachmentHelper.buildUpdatedModels(context, records);
 
+    stopwatch.split("attachment-models");
+
     List<ConversationMessage> messages = Stream.of(records)
                                                .map(m -> ConversationMessageFactory.createWithUnresolvedData(context, m, mentionHelper.getMentions(m.getId())))
                                                .toList();
