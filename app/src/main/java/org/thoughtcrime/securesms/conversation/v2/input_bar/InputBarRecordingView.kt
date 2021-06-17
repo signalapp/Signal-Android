@@ -4,7 +4,10 @@ import android.animation.FloatEvaluator
 import android.animation.IntEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
 import androidx.core.content.res.ResourcesCompat
@@ -14,8 +17,13 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.utilities.animateSizeChange
 import org.thoughtcrime.securesms.loki.utilities.disableClipping
 import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.util.DateUtils
+import java.util.*
+import kotlin.math.roundToLong
 
 class InputBarRecordingView : RelativeLayout {
+    private var startTimestamp = 0L
+    private val snHandler = Handler(Looper.getMainLooper())
 
     constructor(context: Context) : super(context) { initialize() }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize() }
@@ -27,6 +35,7 @@ class InputBarRecordingView : RelativeLayout {
     }
 
     fun show() {
+        startTimestamp = Date().time
         isVisible = true
         alpha = 0.0f
         val animation = ValueAnimator.ofObject(FloatEvaluator(), 0.0f, 1.0f)
@@ -38,6 +47,7 @@ class InputBarRecordingView : RelativeLayout {
         animateDotView()
         pulse()
         animateLockViewUp()
+        updateTimer()
     }
 
     private fun animateDotView() {
@@ -77,6 +87,13 @@ class InputBarRecordingView : RelativeLayout {
             lockView.layoutParams = layoutParams
         }
         animation.start()
+    }
+
+    private fun updateTimer() {
+        Log.d("Test", "${Date().time - startTimestamp}")
+        val duration = (Date().time - startTimestamp) / 1000L
+        recordingViewDurationTextView.text = DateUtils.formatElapsedTime(duration)
+        snHandler.postDelayed({ updateTimer() }, 500)
     }
 
     fun lock() {
