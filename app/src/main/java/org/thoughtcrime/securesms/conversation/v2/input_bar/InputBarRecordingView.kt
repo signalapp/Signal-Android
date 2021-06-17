@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2.input_bar
 
 import android.animation.FloatEvaluator
+import android.animation.IntEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
@@ -11,6 +12,7 @@ import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.utilities.animateSizeChange
 import org.thoughtcrime.securesms.loki.utilities.disableClipping
+import org.thoughtcrime.securesms.loki.utilities.toDp
 import org.thoughtcrime.securesms.loki.utilities.toPx
 
 class InputBarRecordingView : RelativeLayout {
@@ -35,6 +37,7 @@ class InputBarRecordingView : RelativeLayout {
         animation.start()
         animateDotView()
         pulse()
+        animateLockViewUp()
     }
 
     private fun animateDotView() {
@@ -57,6 +60,21 @@ class InputBarRecordingView : RelativeLayout {
         animation.addUpdateListener { animator ->
             pulseView.alpha = animator.animatedValue as Float
             if (animator.animatedFraction == 1.0f) { pulse() }
+        }
+        animation.start()
+    }
+
+    private fun animateLockViewUp() {
+        val startMarginBottom = toPx(32, resources)
+        val endMarginBottom = toPx(72, resources)
+        val layoutParams = lockView.layoutParams as LayoutParams
+        layoutParams.bottomMargin = startMarginBottom
+        lockView.layoutParams = layoutParams
+        val animation = ValueAnimator.ofObject(IntEvaluator(), startMarginBottom, endMarginBottom)
+        animation.duration = 250L
+        animation.addUpdateListener { animator ->
+            layoutParams.bottomMargin = animator.animatedValue as Int
+            lockView.layoutParams = layoutParams
         }
         animation.start()
     }

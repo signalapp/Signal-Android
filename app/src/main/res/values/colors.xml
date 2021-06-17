@@ -29,6 +29,8 @@
     <color name="message_selected">#000000</color>
     <color name="input_bar_background">#171717</color>
     <color name="input_bar_button_background">#0DFFFFFF</color>
+    <color name="input_bar_lock_view_background">#171717</color>
+    <color name="input_bar_lock_view_border">#99000000</color>
 
     <array name="profile_picture_placeholder_colors">
         <item>#5ff8b0</item>
