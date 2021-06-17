@@ -4,6 +4,7 @@ import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
 import android.content.res.Resources
 import android.database.Cursor
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.ActionMode
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import kotlinx.android.synthetic.main.activity_conversation_v2.view.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
 import kotlinx.android.synthetic.main.view_input_bar.view.*
+import kotlinx.android.synthetic.main.view_input_bar_recording.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
@@ -26,13 +28,19 @@ import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCa
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.loki.utilities.toDp
+import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
 import kotlin.math.abs
+import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate {
+    private val lockViewExpansionMargin by lazy { toDp(3, resources) }
+    private val lockViewHitMargin by lazy { toPx(40, resources) }
     private var threadID: Long = -1
     private var actionMode: ActionMode? = null
+    private var isLockViewExpanded = false
 
     // TODO: Selected message background color
     // TODO: Overflow menu background + text color
@@ -194,6 +202,45 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             chevronImageView.translationX = 0.0f
             slideToCancelTextView.translationX = 0.0f
         }
+        if (isValidLockViewLocation(event.rawX.roundToInt(), event.rawY.roundToInt())) {
+            if (!isLockViewExpanded) {
+                expandLockView()
+                isLockViewExpanded = true
+            }
+        } else {
+            if (isLockViewExpanded) {
+                collapseLockView()
+                isLockViewExpanded = false
+            }
+        }
+    }
+
+    private fun isValidLockViewLocation(x: Int, y: Int): Boolean {
+        val lockViewLocation = IntArray(2) { 0 }
+        lockView.getLocationOnScreen(lockViewLocation)
+        val hitRect = Rect(lockViewLocation[0] - lockViewHitMargin, 0,
+            lockViewLocation[0] + lockView.width + lockViewHitMargin, lockViewLocation[1] + lockView.height)
+        return hitRect.contains(x, y)
+    }
+
+    private fun expandLockView() {
+        val animation = ValueAnimator.ofObject(FloatEvaluator(), lockView.scaleX, 1.05f)
+        animation.duration = 250L
+        animation.addUpdateListener { animator ->
+            lockView.scaleX = animator.animatedValue as Float
+            lockView.scaleY = animator.animatedValue as Float
+        }
+        animation.start()
+    }
+
+    private fun collapseLockView() {
+        val animation = ValueAnimator.ofObject(FloatEvaluator(), lockView.scaleX, 1.0f)
+        animation.duration = 250L
+        animation.addUpdateListener { animator ->
+            lockView.scaleX = animator.animatedValue as Float
+            lockView.scaleY = animator.animatedValue as Float
+        }
+        animation.start()
     }
 
     override fun onMicrophoneButtonCancel(event: MotionEvent) {
