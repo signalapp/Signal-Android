@@ -159,11 +159,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     override fun toggleAttachmentOptions() {
         val targetAlpha = if (isShowingAttachmentOptions) 0.0f else 1.0f
         val allButtons = listOf( cameraButtonContainer, libraryButtonContainer, documentButtonContainer, gifButtonContainer)
+        val isReversed = isShowingAttachmentOptions // Run the animation in reverse
+        val count = allButtons.size
         allButtons.indices.forEach { index ->
             val view = allButtons[index]
             val animation = ValueAnimator.ofObject(FloatEvaluator(), view.alpha, targetAlpha)
             animation.duration = 250L
-            animation.startDelay = 50L * index.toLong()
+            animation.startDelay = if (isReversed) 50L * (count - index.toLong()) else 50L * index.toLong()
             animation.addUpdateListener { animator ->
                 view.alpha = animator.animatedValue as Float
             }
@@ -321,6 +323,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             }
             animation.start()
         }
+        inputBarRecordingView.hide()
     }
     // endregion
 }

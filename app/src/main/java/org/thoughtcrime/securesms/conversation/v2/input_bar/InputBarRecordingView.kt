@@ -41,6 +41,9 @@ class InputBarRecordingView : RelativeLayout {
     fun show() {
         startTimestamp = Date().time
         recordButtonOverlayImageView.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_microphone, context.theme))
+        inputBarCancelButton.alpha = 0.0f
+        inputBarMiddleContentContainer.alpha = 1.0f
+        lockView.alpha = 1.0f
         isVisible = true
         alpha = 0.0f
         val animation = ValueAnimator.ofObject(FloatEvaluator(), 0.0f, 1.0f)
