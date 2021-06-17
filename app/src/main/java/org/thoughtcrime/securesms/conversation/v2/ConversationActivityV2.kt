@@ -248,7 +248,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun onMicrophoneButtonUp(event: MotionEvent) {
-        resetVoiceMessageUI()
+        if (isValidLockViewLocation(event.rawX.roundToInt(), event.rawY.roundToInt())) {
+            inputBarRecordingView.lock()
+        } else {
+            resetVoiceMessageUI()
+        }
     }
 
     private fun resetVoiceMessageUI() {

@@ -7,12 +7,12 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.utilities.animateSizeChange
 import org.thoughtcrime.securesms.loki.utilities.disableClipping
-import org.thoughtcrime.securesms.loki.utilities.toDp
 import org.thoughtcrime.securesms.loki.utilities.toPx
 
 class InputBarRecordingView : RelativeLayout {
@@ -77,5 +77,22 @@ class InputBarRecordingView : RelativeLayout {
             lockView.layoutParams = layoutParams
         }
         animation.start()
+    }
+
+    fun lock() {
+        val fadeOutAnimation = ValueAnimator.ofObject(FloatEvaluator(), 1.0f, 0.0f)
+        fadeOutAnimation.duration = 250L
+        fadeOutAnimation.addUpdateListener { animator ->
+            inputBarMiddleContentContainer.alpha = animator.animatedValue as Float
+            lockView.alpha = animator.animatedValue as Float
+        }
+        fadeOutAnimation.start()
+        val fadeInAnimation = ValueAnimator.ofObject(FloatEvaluator(), 0.0f, 1.0f)
+        fadeInAnimation.duration = 250L
+        fadeInAnimation.addUpdateListener { animator ->
+            inputBarCancelButton.alpha = animator.animatedValue as Float
+        }
+        fadeInAnimation.start()
+        recordButtonOverlayImageView.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_up, context.theme))
     }
 }

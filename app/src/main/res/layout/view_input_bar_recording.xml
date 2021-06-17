@@ -79,6 +79,19 @@
 
         </LinearLayout>
 
+        <!-- The cancel button -->
+
+        <TextView
+            android:id="@+id/inputBarCancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:alpha="0"
+            android:text="@string/cancel"
+            android:textSize="@dimen/small_font_size"
+            android:textColor="@color/text"
+            android:textStyle="bold" />
+
         <!-- Separator -->
 
         <View
@@ -123,6 +136,7 @@
         android:backgroundTint="@color/destructive" >
 
         <ImageView
+            android:id="@+id/recordButtonOverlayImageView"
             android:layout_width="16dp"
             android:layout_height="16dp"
             app:tint="@color/white"
