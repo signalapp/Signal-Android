@@ -6,7 +6,6 @@ import android.os.Build
 import com.goterl.lazysodium.LazySodiumAndroid
 import com.goterl.lazysodium.SodiumAndroid
 import com.goterl.lazysodium.exceptions.SodiumException
-import com.goterl.lazysodium.interfaces.AEAD
 import com.goterl.lazysodium.interfaces.GenericHash
 import com.goterl.lazysodium.interfaces.PwHash
 import com.goterl.lazysodium.interfaces.SecretBox
@@ -292,6 +291,30 @@ object SnodeAPI {
                     val parameters = message.toJSON()
                     retryIfNeeded(maxRetryCount) {
                         invoke(Snode.Method.SendMessage, snode, destination, parameters)
+                    }
+                }.toSet()
+            }
+        }
+    }
+
+    /** Deletes all messages owned by the given pubkey on this SN and broadcasts the delete request to
+     *  all other swarm members.
+     *  Returns dict of:
+     *  - "swarms" dict mapping ed25519 pubkeys (in hex) of swarm members to dict values of:
+     *  - "failed" and other failure keys -- see `recursive`.
+     *  - "deleted": hashes of deleted messages.
+     *  - "signature": signature of ( PUBKEY_HEX || TIMESTAMP || DELETEDHASH[0] || ... || DELETEDHASH[N] ), signed
+     *  by the node's ed25519 pubkey.
+     */
+    fun deleteAllMessages(deleteMessage: SnodeDeleteMessage): Promise<Set<RawResponsePromise>, Exception> {
+        // considerations: timestamp off in retrying logic, not being able to re-sign with latest timestamp? do we just not retry this as it will be synchronous
+        val destination = if (useTestnet) deleteMessage.pubKey.removing05PrefixIfNeeded() else deleteMessage.pubKey
+        return retryIfNeeded(maxRetryCount) {
+            getTargetSnodes(destination).map { swarm ->
+                swarm.map { snode ->
+                    val parameters = deleteMessage.toJSON()
+                    retryIfNeeded(maxRetryCount) {
+                        invoke(Snode.Method.DeleteAll, snode, destination, parameters)
                     }
                 }.toSet()
             }
