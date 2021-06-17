@@ -89,6 +89,7 @@
   <string name="BlockUnblockDialog_unblock_s">Desbloquear a %1$s?</string>
   <string name="BlockUnblockDialog_block">Bloquear</string>
   <string name="BlockUnblockDialog_block_and_leave">Bloquear e saír</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Denunciar spam e bloquear</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Hoxe</string>
   <string name="BucketedThreadMedia_Yesterday">Onte</string>
@@ -164,6 +165,7 @@
   <string name="ConversationItem_error_network_not_delivered">Fallou o envío</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Recibida a mensaxe de intercambio de chaves; toca para continuar.</string>
   <string name="ConversationItem_group_action_left">%1$s abandonou o grupo.</string>
+  <string name="ConversationItem_send_paused">Envío en pausa</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Erro ao enviar, toca para volver a un modo non seguro</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Volver a SMS sen cifrar?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Volver a MMS sen cifrar?</string>
@@ -234,6 +236,10 @@
   <string name="ConversationActivity_join">Únete</string>
   <string name="ConversationActivity_full">Completo</string>
   <string name="ConversationActivity_error_sending_media">Erro ao enviar o multimedia</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Denunciado como spam e bloqueado.</string>
+  <string name="ConversationActivity_gifs_have_moved">Os GIFs marcharon</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Buscar GIFs xunto a emoji e adhesivos.</string>
+  <string name="ConversationActivity__gifs_are_now_here">Aquí están os GIFs.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaxe sen ler</item>
@@ -602,6 +608,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificacións</string>
   <string name="ManageGroupActivity_custom_notifications">Personalizar notificacións</string>
   <string name="ManageGroupActivity_mentions">Mencións</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Cor do chat e fondo da conversa</string>
   <string name="ManageGroupActivity_until_s">Ata %1$s</string>
   <string name="ManageGroupActivity_always">Sempre</string>
   <string name="ManageGroupActivity_off">Off</string>
@@ -629,6 +636,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">actualizar este grupo.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este é un Grupo MMS Inseguro. Para conversar privadamente, convida ós teus contactos a Signal.</string>
   <string name="ManageGroupActivity_invite_now">Convidar</string>
+  <string name="ManageGroupActivity_more">mais</string>
+  <string name="ManageGroupActivity_add_group_description">Engadir descrición do grupo…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notifíqueme as mencións</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Recibir notificacións cando sexa mencionado en chats silenciados?</string>
@@ -966,6 +975,9 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s cambiou o nome do grupo a \"%2$s\".</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">O nome do grupo cambiou a \"%1$s\".</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">Cambiaches a descrición do grupo</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s cambiou a descrición do grupo.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Cambiou a descrición do grupo.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Cambiaches o avatar do grupo.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s cambiou o avatar do grupo.</string>
@@ -1022,6 +1034,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Marcaches o teu número de seguranza con %s como verificado desde outro dispositivo</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Marcaches como sen verificar o teu número de seguranza con %s </string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Marcaches como sen verificar o teu número de seguranza con %s desde outro dispositivo</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Non se puido entregar a mensaxe de %s</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s iniciou unha chamada en grupo · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s está na chamada en grupo · %2$s</string>
@@ -1155,6 +1168,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Ti</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifica para seguir conversando</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Axuda a previr o spam en Signal, por favor completa a verificación.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Tras verificar poderás seguir conversando. Tódalas mensaxes en pausa serán enviadas automáticamente.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
@@ -1191,6 +1207,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Ninguén máis aquí</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s nesta chamada</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s e %2$s están nesta chamada</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s estase presentando</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s e %3$d máis están nesta chamada</item>
     <item quantity="other">%1$s, %2$s e %3$d máis están nesta chamada</item>
@@ -1208,6 +1225,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Non se pode recibir o audio e vídeo de %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Esto podería ser debido a que non verificaron o cambio no teu número de seguridade, hai un problema co seu dispositivo ou a que te bloquearon.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Despraza para ver a pantalla compartida</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Servidor proxy</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Enderezo do proxy</string>
@@ -1215,6 +1233,8 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Usar proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Conexión correcta ao proxy.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Fallou o envío</string>
+  <string name="RecaptchaProofActivity_complete_verification">Completa a verificación</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Elixe o teu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Debes especificar o teu
@@ -1334,6 +1354,7 @@
   <string name="SubmitDebugLogActivity_success">Correcto!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia este URL e engádeo ao teu informe de problemas ou correo de asistencia:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Compartir</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Este rexistro publicarase en liña para que os colaboradores poidan velo; podes examinalo e editalo antes de o enviar.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Información do dispositivo:</string>
@@ -1366,6 +1387,7 @@
   <string name="ThreadRecord_you_marked_verified">Marcaches como verificado</string>
   <string name="ThreadRecord_you_marked_unverified">Marcaches como sen verificar</string>
   <string name="ThreadRecord_message_could_not_be_processed">A mensaxe non se puido procesar</string>
+  <string name="ThreadRecord_delivery_issue">Problema co envío</string>
   <string name="ThreadRecord_message_request">Solicitude de mensaxe</string>
   <string name="ThreadRecord_photo">Fotografía</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1446,6 +1468,8 @@
   <string name="MessageNotifier_message_delivery_failed">Erro na entrega da mensaxe.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Erro ao entregar a mensaxe.</string>
   <string name="MessageNotifier_error_delivering_message">Erro entregando a mensaxe.</string>
+  <string name="MessageNotifier_message_delivery_paused">Entrega da mensaxe en pausa</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verifica para continuar utilizando Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Marcar todas como lidas</string>
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_turn_off_these_notifications">Desactivar estas notificacións</string>
@@ -1717,6 +1741,7 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal require configurar as MMS para enviar mensaxes a grupos e multimedia a través dos datos do teu provedor. O teu dispositivo non proporciona esta información, o cal en ocasións acontece con dispositivos bloqueados ou con configuracións moi restritivas.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar ficheiros multimedia e mensaxes a grupos, toca Aceptar e completa a configuración solicitada. Os axustes das MMS do teu provedor xeralmente pódense atopar buscando polo seu APN. Só necesitas facelo unha vez.</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Problema co envío</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Nome (obrigatorio)</string>
   <string name="CreateProfileActivity_last_name_optional">Apelido (optativo)</string>
@@ -1919,6 +1944,7 @@
   <string name="preferences__appearance">Aparencia</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__chat_wallpaper">Fondo de pantalla do chat</string>
+  <string name="preferences__chat_color_and_wallpaper">Cor do chat e fondo da conversa</string>
   <string name="preferences__disable_pin">Desactivar PIN</string>
   <string name="preferences__enable_pin">Activar PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se desactivas o PIN perderás todos os datos cando voltes a rexistrar Signal a menos que fagas unha copia de apoio e a restaures. Non podes activar Bloqueo do Rexistro se o PIN está desactivado.</string>

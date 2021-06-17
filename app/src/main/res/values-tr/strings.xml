@@ -93,6 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s engeli kaldırılsın mı?</string>
   <string name="BlockUnblockDialog_block">Engelle</string>
   <string name="BlockUnblockDialog_block_and_leave">Engelle ve Ayrıl</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">Gereksiz olarak bildir ve engelle</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">Bugün</string>
   <string name="BucketedThreadMedia_Yesterday">Dün</string>
@@ -239,6 +240,10 @@
   <string name="ConversationActivity_join">Katıl</string>
   <string name="ConversationActivity_full">Dolu</string>
   <string name="ConversationActivity_error_sending_media">İçerik gönderilemedi</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">Gereksiz olarak bildirildi ve engellendi</string>
+  <string name="ConversationActivity_gifs_have_moved">GIF\'ler taşındı</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIF\'leri emoji ve çıkartmaların yanında bulabilirsiniz.</string>
+  <string name="ConversationActivity__gifs_are_now_here">GIF\'ler artık burada.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d okunmamış ileti</item>
@@ -607,6 +612,7 @@
   <string name="ManageGroupActivity_mute_notifications">Bildirimleri sessize al</string>
   <string name="ManageGroupActivity_custom_notifications">Özel bildirimler</string>
   <string name="ManageGroupActivity_mentions">Bahsedilmeler</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Konuşma rengi ve arkaplan</string>
   <string name="ManageGroupActivity_until_s">%1$s tarihine kadar</string>
   <string name="ManageGroupActivity_always">Her zaman</string>
   <string name="ManageGroupActivity_off">Kapalı</string>
@@ -634,6 +640,7 @@
   <string name="ManageGroupActivity_upgrade_this_group">bu grubu yükseltin.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Bu şifresiz MMS Grubudur. Özel olarak konuşmak için kişilerinizi Signal\'e davet edin.</string>
   <string name="ManageGroupActivity_invite_now">Şimdi davet et</string>
+  <string name="ManageGroupActivity_more">dahası</string>
   <string name="ManageGroupActivity_add_group_description">Grup tanımı ekle…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Bahsedilmeleri bana bildir</string>
@@ -1032,6 +1039,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s ile olan güvenlik numaranızı başka bir cihazdan doğrulanmış olarak işaretlediniz.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s ile olan güvenlik numaranızı doğrulanmamış olarak işaretlediniz.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s ile olan güvenlik numaranızı başka bir cihazdan doğrulanmamış olarak işaretlediniz. </string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s tarafından gelen bir ileti teslim edilemedi</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s grup araması başlattı · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s grup görüşmesinde· %2$s</string>
@@ -1204,6 +1212,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Burada kimse yok</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s bu aramada</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ve %2$s bu aramada</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s sunuyor</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s, ve %3$d diğer kişi bu aramada</item>
     <item quantity="other">%1$s, %2$s, ve %3$d diğer kişi bu aramada</item>
@@ -1221,6 +1230,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s kişisinden ses ve görüntü alınamıyor</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Bunun sebebi, güvenlik numaranızın değişimini doğrulamamaları, cihazlarıyla ilgili bir sorun olması veya sizi engellemesi olabilir.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Ekran paylaşımını görmek için kaydırın</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Vekil sunucu</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Vekil adresi</string>
@@ -1347,6 +1357,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SubmitDebugLogActivity_success">Başarılı!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bu adresi kopyalayın ve sorun bildirinize veya destek epostasına ekleyin:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Paylaş</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Bu günlük katkıda bulunanların görmesi için herkese açık bir şekilde paylaşılacaktır. Yüklemeden önce inceleyip düzenleyebilirsiniz.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtre:</string>
   <string name="SupportEmailUtil_device_info">Cihaz bilgisi:</string>
@@ -1379,6 +1390,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ThreadRecord_you_marked_verified">Doğrulanmış olarak işaretlediniz.</string>
   <string name="ThreadRecord_you_marked_unverified">Doğrulanmamış olarak işaretlediniz.</string>
   <string name="ThreadRecord_message_could_not_be_processed">İleti işlenemedi</string>
+  <string name="ThreadRecord_delivery_issue">Teslim sıkıntısı</string>
   <string name="ThreadRecord_message_request">İleti İsteği</string>
   <string name="ThreadRecord_photo">Fotoğraf</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1621,6 +1633,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ortak bir grup yok. İstekleri dikkatlice gözden geçirin.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Bu grupta kişilerinizden kimse yok. İstekleri dikkatlice gözden geçirin.</string>
   <string name="ConversationUpdateItem_view">Görüntüle</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Kişiye ileti gönderdiğinizde kaybolan ileti süresi %1$s olarak ayarlanacaktır.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Oynat … Durdur</string>
   <string name="audio_view__download_accessibility_description">İndir</string>
@@ -1742,6 +1755,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal içerik ve grup iletilerini kablosuz operatörünüz aracılığıyla taşıyabilmesi için MMS ayarlarının yapılmasını gerektirir. Cihazınız bu bilgiyi sağlamamaktadır. Bu durum bazen kilitli veya diğer kısıtlı yapılandırılmış cihazlar için geçerli olabilmektedir.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">İçerik veya grup iletileri gönderebilmek için \'Tamam\' seçeneğine dokunup istenen ayarları tamamlayınız. Operatörünüzün MMS ayarları genellikle \'operatörünüz MMS\' araştırılarak bulunabilir. Bunu bir kez yapmanız gerekecektir.</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Teslim Sıkıntısı</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%s tarafından gönderilen bir ileti, çıkartma, tepki veya okundu bilgisi size teslim edilemedi. Size ayrı olarak veya grup içerisinden göndermeye çalışmış olabilirler.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%s tarafından gönderilen bir ileti, çıkartma, tepki veya okundu bilgisi size teslim edilemedi.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Ad (gerekli)</string>
   <string name="CreateProfileActivity_last_name_optional">Soyad (isteğe bağlı)</string>
@@ -1958,6 +1974,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__appearance">Görünüm</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__chat_wallpaper">Konuşma duvar kağıdı</string>
+  <string name="preferences__chat_color_and_wallpaper">Sohbet rengi ve arkaplan</string>
   <string name="preferences__disable_pin">PIN\'i devre dışı bırak</string>
   <string name="preferences__enable_pin">PIN\'i etkinleştir</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN\'i devre dışı bırakırsanız, elle yedekleyip geri yüklemediğiniz sürece Signal\'i yeniden kaydettiğinizde tüm verilerinizi kaybedersiniz. PIN devre dışı iken Kayıt Kilidini açamazsınız.</string>
@@ -2017,6 +2034,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_data_and_storage__calls">Aramalar</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Aramalarda daha az veri kullan</string>
   <string name="preferences_data_and_storage__never">Asla</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">Kablosuz ve mobil veri</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Yalnızca mobil veri</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Kötü ağ koşullarında daha az veri kullanmak arama kalitesini arttırabilir</string>
   <string name="preferences_notifications__messages">İletiler</string>
   <string name="preferences_notifications__events">Etkinlikler</string>
@@ -2041,6 +2060,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_off">Kapalı</string>
   <string name="preferences_on">Açık</string>
   <string name="preferences_proxy_address">Vekil adres</string>
+  <string name="preferences_only_use_a_proxy_if">Vekil sunucuyu yalnızca mobil veri veya kablosuz üzerinden Signal\'e bağlanamıyorsanız kullanın.</string>
   <string name="preferences_share">Paylaş</string>
   <string name="preferences_save">Kaydet</string>
   <string name="preferences_connecting_to_proxy">Vekil sunucuya bağlanılıyor…</string>
@@ -2122,9 +2142,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">“Bozukluk temizleme ücreti” sahip olduğunuz paralar bir işlemi tamamlamaya yetecek şekilde birleştirilemediğinde alınıyor. Temizleme ödeme göndermeye devam etmenizi sağlıyor.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Bu işlem için daha fazla ayrıntı yok</string>
   <string name="PaymentsDetailsFragment__sent_payment">Gönderilen ödeme</string>
-  <string name="PaymentsDetailsFragment__received_payment">Alınan ödeme</string>
+  <string name="PaymentsDetailsFragment__received_payment">Ödeme alındı</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">Ödeme tamamlandı %1$s </string>
-  <string name="PaymentsDetailsFragment__block_number">Numarayı engelle</string>
+  <string name="PaymentsDetailsFragment__block_number">Blok numarası</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Aktar</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Karekodu Tara</string>
@@ -2514,6 +2534,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Ayarları açmak için sol üstteki profil fotoğrafınıza dokunun</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">\"Hesap\" seçeneğine tıklayın</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Öncelikle \"Hesabı Aktar\" seçeneğine, ardından iki cihazda da \"Devam Et\" seçeneğine dokunun</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2724,6 +2745,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Paylaş</string>
   <string name="ShareActivity__send">Gönder</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Birden fazla konuşmayla paylaşım sadece Signal iletileri için destekleniyor.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Bazı kullanıcılara gönderilemedi</string>
@@ -2734,12 +2756,24 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ChatWallpaperActivity__chat_wallpaper">Konuşma duvar kağıdı</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Konuşma rengi</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Sohbet renklerini sıfırla</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Sohbet rengini sıfırla</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Sohbet rengi sıfırlansın mı?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Duvar kağıdı ayarla</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Karanlık görünüm arkaplanı karartsın</string>
   <string name="ChatWallpaperFragment__contact_name">Kişi adı</string>
   <string name="ChatWallpaperFragment__reset">Sıfırla</string>
   <string name="ChatWallpaperFragment__clear">Kaldır</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Duvar kağıdı önizlemesi</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Tüm sohbet renklerini değiştirmek ister misiniz?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Tüm arkaplanları değiştirmek ister misiniz?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Varsayılan renkleri sıfırla</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Tüm renkleri sıfırla</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Varsayılan arkaplanı sıfırla</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Tüm duvar kağıtlarını sıfırla</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Arkaplanları sıfırla</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Arkaplanı sıfırla</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Arkaplan sıfırlansın mı?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Fotoğraflardan seç</string>
   <string name="ChatWallpaperSelectionFragment__presets">Ön ayarlar</string>
@@ -2790,7 +2824,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Signal\'i yeniden kurduğunuzda Signal PIN\'ini doğruladığınızda bakiyeniz otomatik olarak kurtarılacaktır. Bakiyenizi ayrıca bir kurtarma parolası ile de geri alabilirsiniz. Kurtarma parolası %1$d kelimelik ve size özgü bir ifadedir. Bir yere yazın ve güvenli bir şekilde saklayın.</string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Kurtarma parolası %1$d kelimelik ve size özgü bir ifadedir. Bakiyenizi kurtarmak için bu parolayı kullanın.</string>
   <string name="PaymentsRecoveryStartFragment__start">Başlat</string>
-  <string name="PaymentsRecoveryStartFragment__enter_manually">Manuel olarak girin</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">Elle Girin</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Panodan yapıştır</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Kurtarma parolasını yapıştır</string>
@@ -2841,6 +2875,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Kişilerinizin veya sohbet ettiğiniz kişilerin hiçbiri bu grupta değil İstenmeyen iletileri önlemek için kabul etmeden önce istekleri dikkatlice gözden geçirin.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">İleti istekleri hakkında</string>
   <string name="GroupsInCommonMessageRequest__okay">Tamam</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Sohbet renginin önizlemesi</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Renk yalnızca size gözükür.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Grup tanımı</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2872,20 +2908,33 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="PrivacySettingsFragment__disappearing_messages">Kaybolan iletiler</string>
   <string name="PrivacySettingsFragment__app_security">Uygulama güvenliği</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Son uygulamalar görünümünde ve uygulama içinde ekran görüntüsü alınmasını engelle</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal iletileri ve aramaları, arama aktarma ve gizli gönderici</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Yeni sohbetler için varsayılan zamanlayıcı</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Tarafınızca başlatılan tüm yeni iletiler için varsayılan kaybolan ileti zamanlayıcısı ayarlayın.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Durum simgesi göster</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">İletiler gizli gönderici kullanılarak gönderildiğinde ileti detaylarında simge göster.</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Etkinleştirildiğinde, sizin tarafınızdan başlatılan yeni sohbetlerde gönderilen ve alınan yeni iletiler görüldükten sonra kaybolur.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Etkinleştirildiğinde, bu sohbette gönderilen ve alınan yeni iletiler görüldükten sonra kaybolur.</string>
   <string name="ExpireTimerSettingsFragment__off">Kapalı</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 hafta</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 hafta</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 gün</string>
   <string name="ExpireTimerSettingsFragment__8_hours">8 saat</string>
   <string name="ExpireTimerSettingsFragment__1_hour">1 saat</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 dakika</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 saniye</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">Özel zaman</string>
   <string name="ExpireTimerSettingsFragment__set">Ayarla</string>
   <string name="ExpireTimerSettingsFragment__save">Kaydet</string>
+  <string name="CustomExpireTimerSelectorView__seconds">saniye</string>
+  <string name="CustomExpireTimerSelectorView__minutes">dakika</string>
+  <string name="CustomExpireTimerSelectorView__hours">saat</string>
+  <string name="CustomExpireTimerSelectorView__days">gün</string>
+  <string name="CustomExpireTimerSelectorView__weeks">hafta</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">Destek merkezi</string>
   <string name="HelpSettingsFragment__contact_us">Bizimle iletişime geçin</string>
   <string name="HelpSettingsFragment__version">Sürüm</string>
   <string name="HelpSettingsFragment__debug_log">Hata ayıklama günlüğü</string>
@@ -2895,23 +2944,60 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Aramalar</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Otomatik</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Özel renkleri kullan</string>
   <string name="ChatColorSelectionFragment__chat_color">Konuşma rengi</string>
   <string name="ChatColorSelectionFragment__edit">Düzenle</string>
+  <string name="ChatColorSelectionFragment__duplicate">Kopyala</string>
   <string name="ChatColorSelectionFragment__delete">Sil</string>
+  <string name="ChatColorSelectionFragment__delete_color">Rengi sil</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Bu özel renk %1$d sohbette kullanılıyor. Silmek istiyor musunuz?</item>
+    <item quantity="other">Bu özel renk %1$d sohbette kullanılıyor. Tüm sohbetler için silmek istiyor musunuz?</item>
+  </plurals>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Düz</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Karışım</string>
+  <string name="CustomChatColorCreatorFragment__hue">Ton</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Doygunluk</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Kaydet</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Rengi düzenle</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Bu renk %1$d sohbette kullanılıyor. Değişiklikleri kaydetmek istiyor musunuz?</item>
+    <item quantity="other">Bu renk %1$d sohbette kullanılıyor. Tüm sohbetler için değişiklikleri kaydetmek istiyor musunuz?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Üst kenar seçici</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Alt kenar seçici</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Tepkileri özelleştir</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Emojiyi değiştirmek için dokunun</string>
   <string name="EditReactionsFragment__reset">Sıfırla</string>
   <string name="EditReactionsFragment_save">Kaydet</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Arkaplana bağlı otomatik olarak renk eşleştirir</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Renk karışımının yönünü değiştirmek için sürükleyin</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Yeni Sohbet Renkleri</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Sohbet renklerini size daha fazla seçenek vermek ve daha kolay okunması için değiştirdik.</string>
   <string name="ChatColorsMegaphone__appearance">Görünüm</string>
   <string name="ChatColorsMegaphone__not_now">Şimdi değil</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Emoji arayıcıyı aç</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Çıkartma arayıcıyı aç</string>
+  <string name="KeyboardPagerFragment_open_gif_search">GIF arayıcıyı aç</string>
   <string name="KeyboardPagerFragment_stickers">Çıkartmalar</string>
   <string name="KeyboardPagerFragment_backspace">Geri silme</string>
+  <string name="KeyboardPagerFragment_gifs">GIF\'ler</string>
+  <string name="KeyboardPagerFragment_search_emoji">Emoji ara</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Emojiye dön</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Arama girdisini temizle</string>
+  <string name="KeyboardPagerFragment_search_giphy">GIPHY\'de ara</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Çıkartma ara</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Sonuç bulunamadı</string>
+  <string name="EmojiSearchFragment__no_results_found">Sonuç bulunamadı</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Bilinmeyen zil sesi</string>
   <!--EOF-->
 </resources>

@@ -1040,6 +1040,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du har markeret dit sikkerhedsnummer med %s som verificeret fra en anden enhed</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du har markeret dit sikkerhedsnummer med %s som ubekræftet</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du har markeret dit sikkerhedsnummer med %s som ubekræftet fra en anden enhed</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">En besked fra %s kunne ikke leveres</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s startede en gruppesamtale · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er med i gruppesamtalen · %2$s</string>
@@ -1757,6 +1758,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">For at sende multimedie- og gruppebeskeder, tap \"OK\" og sæt de nødvendige indstillinger. MMS indstillingerne for din teleoperatør kan ofte findes ved at søge på \"din operatørs APN\". Dette skal kun gøres én gang</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Leveringsproblem</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">En besked, klistermærke, reaktion eller læsekvittering kunne ikke leveres til dig fra %s. De har muligvis forsøgt at sende det direkte til dig eller i en gruppe.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">En besked, klistermærke, reaktion eller læsekvittering kunne ikke leveres til dig fra %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Fornavn (krævet)</string>
   <string name="CreateProfileActivity_last_name_optional">Efternavn (frivilligt)</string>
@@ -2033,6 +2036,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_data_and_storage__calls">Opkald</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Brug færre data til opkald</string>
   <string name="preferences_data_and_storage__never">Aldrig</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi og mobildata</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Kun mobildata</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Brug af færre data kan forbedre opkald på dårlige netværk</string>
   <string name="preferences_notifications__messages">Beskeder</string>
   <string name="preferences_notifications__events">Begivenheder</string>
@@ -2057,6 +2062,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_off">Deaktiveret</string>
   <string name="preferences_on">Aktiveret</string>
   <string name="preferences_proxy_address">Proxy-adresse</string>
+  <string name="preferences_only_use_a_proxy_if">Brug kun en proxy, hvis du ikke er i stand til at oprette forbindelse til Signal på mobildata eller Wi-Fi.</string>
   <string name="preferences_share">Del</string>
   <string name="preferences_save">Gem</string>
   <string name="preferences_connecting_to_proxy">Forbinder til proxy…</string>
@@ -2741,6 +2747,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--ShareActivity-->
   <string name="ShareActivity__share">Del</string>
   <string name="ShareActivity__send">Send</string>
+  <string name="ShareActivity__comma_s">. %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Deling til flere chats understøttes kun til Signal-beskeder</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Det kunne ikke sendes til nogle brugere</string>

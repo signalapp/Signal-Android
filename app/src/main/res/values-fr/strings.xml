@@ -1208,6 +1208,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Il n’y a personne d’autre ici</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s est dans cet appel</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s et %2$s font partie de cet appel</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s est en présentation.</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s et %3$d autre personne font partie de cet appel</item>
     <item quantity="other">%1$s, %2$s et %3$d autres personnes font partie de cet appel</item>
@@ -1225,6 +1226,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Impossible de recevoir ni le son ni la vidéo de %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Cette personne n’a peut-être pas confirmé le changement de votre numéro de sécurité, il y a peut-être un problème avec son appareil ou elle vous a bloqué.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Balayez pour visualiser le partage d’écran</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Serveur mandataire</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Adresse du mandataire</string>
@@ -1232,6 +1234,7 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Utiliser un mandataire</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Connectée avec succès au mandataire.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Échec de l’envoi</string>
   <string name="RecaptchaProofActivity_complete_verification">Procéder à la confirmation</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Sélectionner votre pays</string>
@@ -1343,6 +1346,7 @@
   <string name="SubmitDebugLogActivity_success">C’est réussi !</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre relevé d’erreur ou à votre courriel de demande d’assistance :\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Partager</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Ce journal sera publié en ligne publiquement pour être consulté par les contributeurs. Vous pouvez l’examiner et l’éditer avant de le téléverser.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtre :</string>
   <string name="SupportEmailUtil_device_info">Renseignements sur l’appareil :</string>
@@ -2104,6 +2108,7 @@
   <string name="PaymentsDetailsFragment__sent_to_s">Envoyé à %1$s</string>
   <string name="PaymentsDetailsFragment__to">À</string>
   <string name="PaymentsDetailsFragment__from">De</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Aucun autre détail disponible pour cette transaction</string>
   <string name="PaymentsDetailsFragment__sent_payment">Paiement envoyé</string>
   <string name="PaymentsDetailsFragment__received_payment">Paiement reçu</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">Paiement effectué %1$s</string>
@@ -2478,6 +2483,7 @@
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transférer ou restaurer le compte</string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Transférer d’un appareil Android</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Vous avez besoin d’accéder à votre ancien appareil.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Restaurer depuis une sauvegarde</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Ouvrez Signal sur votre ancien téléphone Android</string>
@@ -2509,11 +2515,20 @@
   <string name="DeviceTransferSetup__error_connecting">Erreur de connexion</string>
   <string name="DeviceTransferSetup__retry">Réessayer</string>
   <string name="DeviceTransferSetup__verify_code">Code de confirmation</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Confirmiez que le code ci-dessous est le même sur chacun de vos appareils. Puis, touchez Continuer.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Les chiffres ne correspondent pas</string>
   <string name="DeviceTransferSetup__continue">Poursuivre</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Le nombre n’est pas le même</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Si les chiffres sur vos appareils ne correspondent pas, il est possible que vous vous soyez connecté au mauvais appareil. Pour résoudre ce problème, arrêtez le transfert et réessayez en gardant vos deux appareils à proximité.</string>
   <string name="DeviceTransferSetup__stop_transfer">Arrêter le transfert</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Impossible de découvrir l’ancien appareil</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Impossible de découvrir le nouvel appareil</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Assurez vous que les autorisations et services suivants sont activés :</string>
   <string name="DeviceTransferSetup__location_permission">Autorisation de localisation</string>
   <string name="DeviceTransferSetup__location_services">Services de localisation</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Sur l’écran du Wi-Fi Direct, supprimez tous les groupes mémorisés et annulé le lien de tout appareil invité ou connecté.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Écran Wi-Fi Direct</string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Essayez d’activer et de désactiver le Wi-Fi sur les deux appareils.</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Assurez-vous que les deux appareils soient en mode transfert.</string>
   <string name="DeviceTransferSetup__go_to_support_page">Accédez à la page d’assistance</string>
@@ -2524,11 +2539,13 @@
   <!--NewDeviceTransferFragment-->
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Transfert des données</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Gardez les deux appareils proches l’un de l’autre. N’éteignez ni l’un ni l’autre des appareils et gardez Signal ouvert. Les transferts sont chiffrés de bout en bout.</string>
   <string name="DeviceTransfer__d_messages_so_far">%1$d messages jusqu’à présent…</string>
   <string name="DeviceTransfer__cancel">Annuler</string>
   <string name="DeviceTransfer__try_again">Réessayer</string>
   <string name="DeviceTransfer__stop_transfer_question">Arrêter le transfert ?</string>
   <string name="DeviceTransfer__stop_transfer">Arrêter le transfert</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">La totalité de la progression du transfert sera perdue.</string>
   <string name="DeviceTransfer__transfer_failed">Échec du transfert</string>
   <string name="DeviceTransfer__unable_to_transfer">Impossible de transférer</string>
   <!--OldDeviceTransferInstructionsFragment-->
@@ -2561,6 +2578,7 @@
   <string name="DeviceToDeviceTransferService_status_service_connected">Transfert du compte…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Terminez l’inscription sur votre nouvel appareil</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Votre compte Signal a été transféré sur votre nouvel appareil, mais vous devez terminer l’inscription dessus pour continuer. Signal sera inactif sur cet appareil.</string>
   <string name="OldDeviceTransferLockedDialog__done">Terminé</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annuler et activer cette appareil</string>
   <!--AdvancedPreferenceFragment-->
@@ -2658,6 +2676,7 @@
   <string name="DeleteAccountFragment__delete_account">Supprimer le compte</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Supprimer les renseignements de votre compte et votre photo de profil</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Supprimer tous vos messages</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Supprimer %1$s de votre compte de paiements</string>
   <string name="DeleteAccountFragment__no_country_code">Aucun indicatif de pays n’a été indiqué</string>
   <string name="DeleteAccountFragment__no_number">Aucun numéro n’a été indiqué</string>
   <string name="DeleteAccountFragment__the_phone_number">Le numéro de téléphone que vous avez saisi ne correspond pas à celui de votre compte.</string>
@@ -2693,6 +2712,8 @@
   <string name="ChatWallpaperFragment__reset">Réinitialiser</string>
   <string name="ChatWallpaperFragment__clear">Réinitialiser</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Aperçu du fond d’écran</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Souhaitez-vous remplacer toutes les couleurs des conversations ?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Souhaitez-vous remplacer tous les fonds d’écran ?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">Réinitialiser les couleurs par défaut</string>
   <string name="ChatWallpaperFragment__reset_all_colors">Réinitialiser toutes les couleurs</string>
   <string name="ChatWallpaperFragment__reset_default_wallpaper">Réinitialiser le fond d’écran par défaut</string>
@@ -2722,11 +2743,14 @@
   <string name="payment_info_card_about_mobilecoin">À propos de MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin est une nouvelle monnaie numérique centrée sur protection des renseignements personnels.</string>
   <string name="payment_info_card_adding_funds">Ajout de fonds</string>
+  <string name="payment_info_card_cashing_out">Encaisser</string>
   <string name="payment_info_card_hide_this_card">Masquer cette carte ?</string>
   <string name="payment_info_card_hide">Cacher</string>
   <string name="payment_info_card_update_pin">Mettre le NIP à jour</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Désactiver le portefeuille</string>
   <string name="DeactivateWalletFragment__your_balance">Votre solde</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Il est recommandé de transférer vos fonds vers une autre adresse de portefeuille avant de désactiver les paiements. Si vous choisissez de ne pas transférer vos fonds maintenant, ils resteront dans votre portefeuille lié à Signal si vous réactivez les paiements.</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">Désactiver dans transférer</string>
   <string name="DeactivateWalletFragment__deactivate">Désactiver</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Désactiver sans transférer ?</string>
@@ -2734,6 +2758,7 @@
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Phrase de récupération</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Voir la phrase de récupération</string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Votre phrase de récupération est une phrase de %1$d mots qui vous est propre. Utilisez cette phrase pour restaurer votre solde.</string>
+  <string name="PaymentsRecoveryStartFragment__start">Commencer</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Entrer manuellement</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Coller depuis le presse-papiers</string>
   <!--PaymentsRecoveryPasteFragment-->
@@ -2741,6 +2766,7 @@
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Phrase de récupération</string>
   <string name="PaymentsRecoveryPasteFragment__next">Suivant</string>
   <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Phrase de récupération invalide</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Assurez vous d’avoir saisi %1$d mots puis réessayez.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Suivant</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Modifier</string>
@@ -2775,6 +2801,7 @@
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Pour effectuer un paiement à cet utilisateur, il doit accepter votre demande d’échange de messages. Envoyez-lui un message pour faire une demande d’échange de messages.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Envoyez un message</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Vous n’avez aucun groupe en commun avec cette personne. Examinez attentivement les demandes avant d’accepter pour éviter les messages indésirés.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">À propos des demandes d’échange de messages</string>
   <string name="GroupsInCommonMessageRequest__okay">Valider</string>
   <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Voici un aperçu de la couleur de la conversation.</string>
@@ -2785,6 +2812,7 @@
   <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
   <string name="QualitySelectorBottomSheetDialog__faster_less_data">Rapide, plus léger</string>
   <string name="QualitySelectorBottomSheetDialog__high">Élevée</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Lent, plus lourd</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Qualité d’image</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Invitez vos amis</string>

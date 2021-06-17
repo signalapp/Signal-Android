@@ -896,7 +896,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s inaktiverade försvinnande meddelanden.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du ställde in tidsgränsen för försvinnande meddelanden till %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ställde in tidsgränsen för försvinnande meddelanden till %2$s. </string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">Den försvinnande meddelandetidtagaren har ställts in till %1$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Tidsgränsen för försvinnande meddelanden har ställts in till %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Denna grupp uppdaterades till en Ny grupp.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunde inte läggas till i den Nya gruppen och har blivit inbjuden att gå med.</string>
   <string name="MessageRecord_chat_session_refreshed">Chattsessionen uppdaterad</string>
@@ -1951,8 +1951,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuella MMS-inställningar</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
-  <string name="preferences__mms_proxy_host">MMS Proxyvärd</string>
-  <string name="preferences__mms_proxy_port">MMS Proxyport</string>
+  <string name="preferences__mms_proxy_host">MMS-proxyvärd</string>
+  <string name="preferences__mms_proxy_port">MMS-proxyport</string>
   <string name="preferences__mmsc_username">MMSC Användarnamn</string>
   <string name="preferences__mmsc_password">MMSC Lösenord</string>
   <string name="preferences__sms_delivery_reports">SMS-leveransrapporter</string>
@@ -1975,7 +1975,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__enable_pin">Aktivera PIN-koden</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Om du inaktiverar PIN-koden kommer du att förlora alla data när du registrerar om Signal om du inte säkerhetskopierar och återställer manuellt. Du kan inte aktivera registreringslåset medan PIN-koden är inaktiverad.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-koden håller information lagrad hos Signal krypterad så att du bara kan komma åt den. Din profil, inställningar och kontakter kommer att återställas när du installerar om. Du behöver inte din PIN-kod för att öppna appen.</string>
-  <string name="preferences__system_default">Systemets standardinställning</string>
+  <string name="preferences__system_default">Systemets standard</string>
   <string name="preferences__language">Språk</string>
   <string name="preferences__signal_messages_and_calls">Signal-meddelanden och -samtal</string>
   <string name="preferences__advanced_pin_settings">Avancerade PIN-kodsinställningar</string>
@@ -2905,8 +2905,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PrivacySettingsFragment__app_security">Appsäkerhet</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blockera skärmdumpar i senaste-listan och appen</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-meddelanden och -samtal, vidarebefordra samtal och dold avsändare</string>
-  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standard tidtagare för nya chattar</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ställ in en standardtidtagare för försvinnande meddelanden för alla nya chattar som du startar.</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standard tidsgräns för nya chattar</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ställ in en standardtidsgräns för försvinnande meddelanden för alla nya chattar som du startar.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Visa statusikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Visa en ikon i meddelandedetaljer när de levererades med dold avsändare.</string>
@@ -2975,7 +2975,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Dra för att ändra lutningens riktning</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Nya chattfärger</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Vi ändrade chattfärger för att ge dig fler alternativ och göra chatt lättare att läsa.</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Vi ändrade chattfärger för att ge dig fler alternativ och göra chattar lättare att läsa.</string>
   <string name="ChatColorsMegaphone__appearance">Utseende</string>
   <string name="ChatColorsMegaphone__not_now">Inte nu</string>
   <!--KeyboardPagerFragment-->

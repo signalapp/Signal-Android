@@ -2915,8 +2915,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PrivacySettingsFragment__app_security">App-beveiliging</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bescherm je gesprekken tegen schermopnames door andere apps door Signals inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle omroepen omleiden en verzegelde afzender</string>
-  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard tijdspanne voor nieuwe gesprekken</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel een standaardtijdspanne in voor verlopende berichten voor alle nieuwe gesprekken die jij initieert.</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard-tijdspanne voor nieuwe gesprekken</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel een standaard-tijdspanne in voor verlopende berichten voor alle nieuwe gesprekken die jij zelf begint.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pictogram weergeven</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Laat in de berichtdetails een pictogram zien bij berichten die zijn afgeleverd met een verzegelde afzender</string>

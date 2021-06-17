@@ -2745,9 +2745,9 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">Papel de parede da conversa</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Cor da conversa</string>
-  <string name="ChatWallpaperFragment__reset_chat_colors">Remover as cores das conversas</string>
-  <string name="ChatWallpaperFragment__reset_chat_color">Remover a cor da conversa</string>
-  <string name="ChatWallpaperFragment__reset_chat_color_question">Remover a cor dessa conversa?</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Redefinir as cores das conversas</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Redefinir a cor da conversa</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Redefinir a cor dessa conversa?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Escolher o papel de parede</string>
   <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Escurecer o papel de parede no modo escuro</string>
   <string name="ChatWallpaperFragment__contact_name">Nome do contato</string>

@@ -988,6 +988,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">已在另一设备上将您与 %s 的安全码标记为已验证</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">已将您与 %s 的安全码标记为未验证</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">已在另一设备上将您与 %s 的安全码标记为未验证</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">来自 %s 消息无法送到</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s发起了群组通话  · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群通话中 · %2$s</string>
@@ -1331,6 +1332,7 @@
   <string name="ThreadRecord_you_marked_verified">已将您标识为已验证</string>
   <string name="ThreadRecord_you_marked_unverified">已将您标识为未验证</string>
   <string name="ThreadRecord_message_could_not_be_processed">无法处理消息</string>
+  <string name="ThreadRecord_delivery_issue">发送问题</string>
   <string name="ThreadRecord_message_request">通信请求</string>
   <string name="ThreadRecord_photo">图片</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1684,6 +1686,9 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">为了通过电信运营商发送媒体和群组消息，Signal 需要访问彩信设置。无法从你的设备获取相关信息。对于锁定设备或限制性配置的设备，有时存在这种情况。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">如需发送媒体和群组消息，点击“确定”并完成所需的设置。通常可搜索“运营商 APN”，来找到相应的彩信设置。该操作只需进行一次。</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">发送问题</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">来自 %s 的消息、贴纸、反应或已读回执，可能直接发送或在群组中发送给您，无法送达。</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">来自 %s 的消息、贴纸、反应或已读回执无法发送给您。</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">名字（必需）</string>
   <string name="CreateProfileActivity_last_name_optional">姓氏（可选）</string>
@@ -1959,6 +1964,8 @@
   <string name="preferences_data_and_storage__calls">通话</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">通话使用更少数据</string>
   <string name="preferences_data_and_storage__never">永不</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi 和移动数据</string>
+  <string name="preferences_data_and_storage__mobile_data_only">仅移动数据</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">网络较差时，使用更少数据可能改善通话</string>
   <string name="preferences_notifications__messages">消息</string>
   <string name="preferences_notifications__events">事件</string>
@@ -1983,6 +1990,7 @@
   <string name="preferences_off">关</string>
   <string name="preferences_on">开</string>
   <string name="preferences_proxy_address">代理地址</string>
+  <string name="preferences_only_use_a_proxy_if">仅在无法通过移动数据或 Wi-Fi 连接 Signal 时，使用代理。</string>
   <string name="preferences_share">分享</string>
   <string name="preferences_save">保存</string>
   <string name="preferences_connecting_to_proxy">正在连接代理…</string>
@@ -2658,6 +2666,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">分享</string>
   <string name="ShareActivity__send">发送</string>
+  <string name="ShareActivity__comma_s">，%1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">分享至多个聊天仅支持 Signal 消息。</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">无法发送给某些用户</string>

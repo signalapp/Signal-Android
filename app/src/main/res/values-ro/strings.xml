@@ -1445,6 +1445,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_you_marked_verified">Ați marcat ca și verificat</string>
   <string name="ThreadRecord_you_marked_unverified">Ați marcat ca și neverificat</string>
   <string name="ThreadRecord_message_could_not_be_processed">Mesajul nu a putut fi procesat</string>
+  <string name="ThreadRecord_delivery_issue">Problemă de livrare</string>
   <string name="ThreadRecord_message_request">Cerere mesaj</string>
   <string name="ThreadRecord_photo">Poză</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1820,6 +1821,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal are nevoie de setările MMS pentru a trimite media și mesaje pentru grupuri prin operatorul wireless. Acest dispozitiv nu oferă această informație, lucru care se poate întâmpla uneori pentru dispozitive blocate sau alte configurații restrictive.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pentru a putea trimite mesaje multimedia cât și mesaje într-un grup, apăsați \'OK\' și completați setările solicitate. Setările MMS pentru operatorul tău pot fi găsite cautând după \'APN operatorul tău\'. Această operațiune este necesară o singură dată.</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Problemă de livrare</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Prenume (obligatoriu)</string>
   <string name="CreateProfileActivity_last_name_optional">Nume (opțional)</string>
@@ -2098,6 +2100,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_data_and_storage__calls">Apeluri</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Reducerea consumului de date pentru apeluri</string>
   <string name="preferences_data_and_storage__never">Niciodată</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi și date mobile</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Doar date mobile</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Reducând consumul de date, se pot îmbunătăți apelurile în rețelele cu probleme</string>
   <string name="preferences_notifications__messages">Mesaje</string>
   <string name="preferences_notifications__events">Evenimente</string>
@@ -2122,6 +2126,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_off">Dezactivate</string>
   <string name="preferences_on">Activate</string>
   <string name="preferences_proxy_address">Adresă proxy</string>
+  <string name="preferences_only_use_a_proxy_if">Folosiți un proxy numai dacă nu vă puteți conecta la Signal pe date mobile sau Wi-Fi.</string>
   <string name="preferences_share">Distribuiți</string>
   <string name="preferences_save">Salvează</string>
   <string name="preferences_connecting_to_proxy">Se conectează la proxy…</string>
@@ -2794,6 +2799,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="payment_info_card_update_your_pin">Actualizați-vă PIN-ul</string>
   <string name="payment_info_card_update_pin">Actualizați PIN</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">Dezactivare portofel</string>
   <string name="DeactivateWalletFragment__your_balance">Soldul dvs.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frază de recuperare</string>
@@ -2926,8 +2932,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ChatColorGradientTool_top_edge_selector">Selector margine superioară</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Selector margine inferioară</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Personalizare reacții</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Atingeți pentru a înlocui un emoji</string>
   <string name="EditReactionsFragment__reset">Resetare</string>
   <string name="EditReactionsFragment_save">Salvează</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Potrivirea automată a culorii cu imaginea de fundal</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Trageți pentru a schimba direcția gradientului</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Noi culori de chat</string>
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Am schimbat culorile chat-ului pentru a vă oferi mai multe opțiuni și a face chaturile mai ușor de citit.</string>
@@ -2943,8 +2953,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="KeyboardPagerFragment_gifs">Gif-uri</string>
   <string name="KeyboardPagerFragment_search_emoji">Căutare emoji</string>
   <string name="KeyboardPagerfragment_back_to_emoji">Înapoi la emoji</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Ștergere căutarea introdusă</string>
   <string name="KeyboardPagerFragment_search_giphy">Căutare GIPHY</string>
   <!--StickerSearchDialogFragment-->
   <string name="StickerSearchDialogFragment_search_stickers">Căutare autocolante</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Nici un rezultat gasit</string>
+  <string name="EmojiSearchFragment__no_results_found">Nici un rezultat gasit</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Ton de apel necunoscut</string>
   <!--EOF-->
 </resources>

@@ -137,7 +137,7 @@
   <string name="CommunicationActions_no_browser_found">لم يتم العثور على متصفح للإنترنت.</string>
   <string name="CommunicationActions_send_email">إرسال رسالة إلكترونية</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">هناك مكالمة هاتفية جارية </string>
-  <string name="CommunicationActions_start_voice_call">بدأ مكالمة صوتية؟</string>
+  <string name="CommunicationActions_start_voice_call">بدء مكالمة صوتية ؟</string>
   <string name="CommunicationActions_cancel">إلغاء</string>
   <string name="CommunicationActions_call">اتصال</string>
   <string name="CommunicationActions_insecure_call">مكالمة غير آمنة</string>
@@ -174,7 +174,7 @@
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">تم استلام رسالة تبادل مفاتيح، أنقر للمتابعة.</string>
   <string name="ConversationItem_group_action_left">%1$s تَرك المجموعة.</string>
   <string name="ConversationItem_send_paused">الإرسال متوقف مؤقتا</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">فشل الإرسال، انقر للاستعاضة بارسال غير آمن</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">فشل الإرسال، المس للاستعاضة بإرسال غير آمن</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">الاستعاضة برسالة SMS غير مُعمَّاة؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">الاستعاضة برسالة وسائط متعددة غير مُعمَّاة؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">هذه الرسالة ستكون <b>غير</b> مٌعمَّاة لأن المستلم لم يعد مستخدم ‏Signal‏ .\n\nهل لديك الرغبة في إرسالها غير آمنة ؟</string>
@@ -378,7 +378,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">خطأ في اختيار صورة الملف الشخصي</string>
   <string name="CreateProfileActivity_problem_setting_profile">خطأ في إعداد الملف الشخصي</string>
   <string name="CreateProfileActivity_set_up_your_profile">إعداد الملف الشخصي</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">حسابك الشخصي مُعمَّى من طرف لطرف. وأن أي تغيير سيكون ظاهرا لجهات اتصالك، وذلك بعد أن قبولك طلب محادثتهم أو بعد انضمامك لمجموعة جديدة.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">إن حسابك الشخصي مُعمَّى من طرف لطرف. كما أن أي تغيير سيكون ظاهرا لجهات اتصالك، وذلك بعد قبولك طلب محادثتهم أو بعد انضمامك لمجموعة جديدة.</string>
   <string name="CreateProfileActivity_set_avatar_description">اختيار صورة ملفك الشخصي</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">الاستعادة مِن نسخة احتياطية؟</string>
@@ -784,7 +784,7 @@
   <string name="ManageProfileFragment_profile_name">اسم الحساب</string>
   <string name="ManageProfileFragment_username">اسم المستخدم</string>
   <string name="ManageProfileFragment_about">حول</string>
-  <string name="ManageProfileFragment_write_a_few_words_about_yourself">عليك بكتابة بضع كلمات عنك</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">يمكنك كتابة بضع كلمات عنك</string>
   <string name="ManageProfileFragment_your_name">اسمك</string>
   <string name="ManageProfileFragment_your_username">اسم المستخدم الخاص بك</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">فشل ضبط صورة حسابك</string>
@@ -1031,7 +1031,7 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">رسالة وسائط متعددة</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">تنزيل رسالة متعددة الوسائط </string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">خطأ في تنزيل رسالة متعددة الوسائط، انقر لاعادة المحاولة</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">خطأ في تنزيل رسالة متعددة الوسائط، المس لإعادة المحاولة</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">إرسال إلى %s</string>
   <string name="MediaPickerActivity__menu_open_camera">فتح الكاميرا</string>
@@ -1053,7 +1053,7 @@
     <item quantity="other">لا يمكنك مشاركة أكثر من %d عنصر. </item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">اختر المتلقّيين</string>
-  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">انقر هنا لجعل هذه الرسالة تختفي بعد أن تتم مشاهدتها.</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">المس هنا لجعل هذه الرسالة تختفي بعد أن تتم مشاهدتها.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">جميع الوسائط</string>
   <string name="MediaRepository__camera">الكاميرا</string>
@@ -1244,6 +1244,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">لقد قمت بالإشعار بأنك تحققت من رقم الأمان مع %s عن طريق جهاز آخر</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">لقد قمت بالإشعار بأنّ رقم الأمان مع %s لم يتم التحقّق منه</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">لقد قمت بالإشعار بأنّ رقم الأمان مع %s لم يتم التحقّق منه عن طريق جهاز آخر</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">تعذر توصيل رسالة من %s</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">قام العضو %1$s ببدء مكالمة جماعية · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">العضو %1$s موجود في المكالمة الجماعية · %2$s</string>
@@ -1498,7 +1499,7 @@
   <string name="RegistrationActivity_i_understand">فهمت</string>
   <string name="RegistrationActivity_play_services_error">خطأ في خدمات Play </string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">جاري تحديث خدمات Google Play  أو أنها غير موجودة مؤقتاً. يرجى المحاولة مجدداً. </string>
-  <string name="RegistrationActivity_terms_and_privacy">الشروط  &amp; وسياسة الخصوصية</string>
+  <string name="RegistrationActivity_terms_and_privacy">الشروط وسياسة الخصوصية</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">يحتاج Signal إلى إذن الوصول لجهات الاتصال والوسائط من أجل التواصل مع الأصدقا، وتبادل الرسائل وإجراء مكالمات آمنة.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">يحتاج Signal إلى إذن الوصول لجهات اتصالك والوسائط من أجل التواصل مع الأصدقاء، وتبادل الرسائل وإجراء مكالمات آمنة.</string>
   <string name="RegistrationActivity_rate_limited_to_service">لقد قمت بمحاولات كثيرة للتسجيل بهذا الرقم. الرجاء المحاولة لاحقاً.</string>
@@ -1567,7 +1568,7 @@
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">تم استلام رسالة تبادل مفاتيح تالفة.</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 تم استلام رسالة تبادل مفاتيح مع إصدارة بروتوكول غير صحيحة.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">تم استلام رسالة برقم سلامة جديد. انقر للمعالجة والعرض.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">تم استلام رسالة برقم الأمان جديد. المس للمعالجة والعرض.</string>
   <string name="SmsMessageRecord_secure_session_reset">لقد قمت بإعادة ضبط المحادثة الآمنة.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s أعاد ضبط المحادثة الآمنة.</string>
   <string name="SmsMessageRecord_duplicate_message">رسالة مكررة.</string>
@@ -1599,7 +1600,7 @@
   <string name="SubmitDebugLogActivity_success">تم بنجاح !</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">يُرجى نسخ هذا العنوان وإضافته إلى بلاغك أو إلى بريد الدعم :\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">شارك</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">سوف يُرسَل هذا السجل ثم يصبح مرئيا لعموم المساهمين في التطبيق لكي يتمكنوا من عرضه. قد يلزمك تفقده وتحرير قبل رفعه.</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">سيتم نشر هذا السّجل علناً حتى يتمكن المساهمون في التطبيق من الاطلاع عليه. يمكنك فحصه أو تعديله قبل رفعه.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">المُرشِّح :</string>
   <string name="SupportEmailUtil_device_info">معلومات الجهاز :</string>
@@ -1632,6 +1633,7 @@
   <string name="ThreadRecord_you_marked_verified">لقد قمت بالإشارة بالتحقّق </string>
   <string name="ThreadRecord_you_marked_unverified">لقد قمت بإلغاء التحقق</string>
   <string name="ThreadRecord_message_could_not_be_processed">لم يمكن معالجة الرسالة</string>
+  <string name="ThreadRecord_delivery_issue">مشاكل التوصيل</string>
   <string name="ThreadRecord_message_request">طلب التراسل</string>
   <string name="ThreadRecord_photo">صورة</string>
   <string name="ThreadRecord_gif">صورة متحركة</string>
@@ -1994,10 +1996,11 @@
     <item quantity="other">%d آخرون</item>
   </plurals>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs">البحث عن الصور المتحركة</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">لم نعثر على شيء</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">سيتم نشر هذا السّجل علناً حتى يتمكن المساهمون من مشاهدته. يُمكنك فحصه أو تعديله قبل تقديمه.</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">سيتم نشر هذا السّجل علناً حتى يتمكن المساهمون في التطبيق من الاطلاع عليه. يمكنك فحصه أو تعديله قبل إرساله.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">ألديك الرغبة في استيراد الرسائل النصية الموجودة إلى قاعدة بيانات Signal المُعمَّاة ؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">لن يتم تغيير قاعدة البيانات الأساسية بأي طريقة.</string>
@@ -2029,6 +2032,7 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">يتطلب Signal إعدادات الرّسائل متعدّدة الوسائط من أجل تسليم الملفّات المتعدّدة الوسائط  والمجموعات عبر مزوّد الخدمة اللاسلكيّة. جهارك لا يتيح هذه المعلومات، وهذا ما يحدث نادراً في الهواتف المقفولة أو ذات الإعدادات المقيدة.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">من اجل إرسال وسائط متعددة ورسائل إلى مجموعات أضغط على \"تم\" وأكمل الإعدادات المطلوبة. يمكن العثور على إعدادات رسائل الوسائط المتعددة الخاصة بمشغل شبكة الجوال الخاصة بك بالبحث عن \"أسم المشغل APN\". سوف تحتاج إلى القيام بهذه الخطوة مرة واحدة.</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">مشاكل التوصيل</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">الاسم الأول (مطلوب)</string>
   <string name="CreateProfileActivity_last_name_optional">الاسم الأخير (اختياري)</string>
@@ -2062,8 +2066,8 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>أدخل اسم أو رقم</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[إذا رغبت في التحقق من أمان التعمية مع %s، يجب مقارنة الرقم بالأعلى بالرقم الموجود في جهاز ذلك الشخص. أو يمكنك المسح التصويري للرمز الموجود في هاتفه، أو أن تطلب منه مسح رمزك. <a href="https://signal.org/redirect/safety-numbers">التعرف على المزيد</a>]]></string>
-  <string name="verify_display_fragment__tap_to_scan">انقر للمسح</string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[إذا رغبت بالتحقق من أمان التعمية مع %s، يجب مقارنة الأعداد بالأعلى مع الأعداد الموجودة في جهاز ذلك الشخص. بالمقابل، يكفي المسح الضوئي للرمز الموجود في هاتفه، أو الطلب منه المسح الضوئي لرمزك. <a href="https://signal.org/redirect/safety-numbers">لمعرفة المزيد</a>]]></string>
+  <string name="verify_display_fragment__tap_to_scan">المس للمسح</string>
   <string name="verify_display_fragment__loading">قيد التحميل…</string>
   <string name="verify_display_fragment__verified"> تمّ التحقق </string>
   <!--verify_identity-->
@@ -2265,8 +2269,8 @@
   <string name="preferences__incognito_keyboard">لوحة مفاتيح مستترة</string>
   <string name="preferences__read_receipts">قراءة وصولات القراءة</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">إن قمتِ بإلغاء تفعيل وصل قراءة الرسائل، فلن يمكنك كذلك رؤية وصل بأنّ الآخرين قاموا بقراءة  رسائلك.</string>
-  <string name="preferences__typing_indicators">مؤشرات الطباعة</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اذا تم الغاء تفعيل المؤشر على الطباعة، فلن يمكنك كذلك رؤية مؤشر عند قيام الآخرين بالطّباعة.</string>
+  <string name="preferences__typing_indicators">مؤشرات الكتابة</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">إذا تم إلغاء تفعيل المؤشر على الكتابة، فلن يمكنك كذلك رؤية المؤشر عند قيام الآخرين بالكتابة.</string>
   <string name="preferences__request_keyboard_to_disable">الطلب من لوحة المفاتيح عدم تعلم الجمل الجديدة.</string>
   <string name="preferences__this_setting_is_not_a_guarantee">إن هذا الإعداد غير مضمون، وقد تتجاهله لوحة مفاتيحك.</string>
   <string name="preferences_app_protection__blocked_users">المستخدمون المحظورون</string>
@@ -2308,6 +2312,8 @@
   <string name="preferences_data_and_storage__calls">المكالمات</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">استخدام بيانات أقل أثناء المكالمات</string>
   <string name="preferences_data_and_storage__never">أبدا</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi وبيانات المحمول</string>
+  <string name="preferences_data_and_storage__mobile_data_only">بيانات المحمول فقط</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">يُحسِّن استخدام بيانات أقل جودة المكالمات في الشبكات الضعيفة</string>
   <string name="preferences_notifications__messages">الرسائل</string>
   <string name="preferences_notifications__events">الأحداث</string>
@@ -2320,9 +2326,9 @@
   <string name="preferences_chats__message_text_size">حجم الخط في الرسائل</string>
   <string name="preferences_events__contact_joined_signal">انضمّت جهة الاتصال إلى Signal</string>
   <string name="preferences_notifications__priority">الأولوية</string>
-  <string name="preferences_communication__category_sealed_sender">المُرسل المجهول</string>
+  <string name="preferences_communication__category_sealed_sender">المُرسِل المختوم</string>
   <string name="preferences_communication__sealed_sender_display_indicators">عرض المؤشرات</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">عرض أيقونة الحالة عندما اختيار \"تفاصيل الرسالة\" لتلك الرسائل التى تمّ إيصالها باستخدام المرسل المجهول.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">عرض أيقونة الحالة عند اختيار \"تفاصيل الرسالة\" لتلك الرسائل التي تمّ إيصالها باستخدام المُرسِل المختوم.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">السماح من أي شخص</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">تفعيل استقبال الرّسائل من جهة غير معروفة أي ليست من ضمن جهات اتصالك أو لم تشاركها ملفّك الشخصي.</string>
   <string name="preferences_communication__sealed_sender_learn_more">لمعرفة المزيد</string>
@@ -2382,7 +2388,9 @@
   <string name="PaymentsHomeFragment__payments_deactivated">عُطلَت الدفوعات</string>
   <string name="PaymentsHomeFragment__payment_failed">فشلت الدفوعات</string>
   <string name="PaymentsHomeFragment__details">التفاصيل</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">يمكنك استخدام Signal لإرسال وتلقي MobileCoin. إن كل الدفوعات تخضع لشروط استخدام MobileCoin بما في ذلك محفظة MobileCoin. إن هذه الميزة تجريبية حاليا، لذا قد تحدث لك بعض المشاكل. كما أن الدفوعات وحسابك قد يكون عرضة للضياع، ولن يكون بالإمكان حينها استرجاعه. </string>
   <string name="PaymentsHomeFragment__activate">تفعيل</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">إظهار شروط التعامل بـ MobileCoin</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">إضافة مبالغ</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">عنوان محفظتك</string>
@@ -2779,7 +2787,18 @@
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">عليك بفتح Signal في هاتف أندرويد القديم</string>
   <string name="NewDeviceTransferInstructions__continue">الاِستِمرار</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">يجب لمس صورة حسابك في الأعلى على اليسار لفتح الإعدادات</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">ثم لمس « الحِساب »</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">يُرجى لمس « نقل الحِساب » ثم بعدها « الاستِمرار »</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">يجري إعداد الاتصال بجهاز أندرويد الجديد…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">يحتاج لبعض الوقت، سيصبح جاهزا قريبا</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">بانتظار اتصال جهاز أندرويد القديم…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">يحتاج Signal إلى إذن الوصول إلى الموقع لاكتشاف ثم الاتصال بجهاز أندرويد القديم.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">يحتاج Signal إلى أن تكون خدمات الموقع مُشغَّلة، لاكتشاف ثم الاتصال بجهاز أندرويد القديم.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">يحتاج Signal إلى أن يكون جهاز Wi-Fi مُشغَّلا، لاكتشاف ثم الاتصال بجهاز أندرويد القديم. يجب أن يكون جهاز Wi-Fi  مُشغَّلا فقط، فلا داعي لأن يكون متصلا بشبكة Wi-Fi.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">يحتاج Signal إلى إذن الوصول إلى الموقع للعثور على جهاز أندرويد الجديد لديك والاتصال به.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">يحتاج Signal إلى تفعيل خدمات الموقع للعثور على جهاز أندرويد الجديد لديك والاتصال به.</string>
@@ -2803,6 +2822,10 @@
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">نقل الحساب</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">يُرجى تنزيل Signal في جهاز أندرويد الجديد</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">بعدها، يكفي لمس « نقل أو استعادة الحساب »</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">يُرجى تحديد « نقل انطلاقا من جهاز أندرويد » عند ظهورها، ثم \"استمر\". يُرجى جعل الجهازين قريبين من بعضهما.</string>
   <string name="OldDeviceTransferInstructions__continue">الاِستِمرار</string>
   <!--OldDeviceTransferComplete-->
@@ -2942,7 +2965,7 @@
   <string name="ChatWallpaperFragment__reset_chat_color">إعادة تعيين اللون</string>
   <string name="ChatWallpaperFragment__reset_chat_color_question">أأعيد تعيين اللون ؟</string>
   <string name="ChatWallpaperFragment__set_wallpaper">ضبط الخلفية</string>
-  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">الوضع الداكن يعتم الخلفية</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">يعتم الوضع الداكن الخلفية</string>
   <string name="ChatWallpaperFragment__contact_name">اسم جهة الاتصال</string>
   <string name="ChatWallpaperFragment__reset">إعادة التعيين</string>
   <string name="ChatWallpaperFragment__clear">محو</string>
@@ -3018,6 +3041,8 @@
   <string name="CanNotSendPaymentDialog__send_a_message">إرسال رسالة</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">حسنا</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">إليك معاينة لون المحادثة.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">إن اللون يظهر عندك فقط.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">وصف المجموعة</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -3030,6 +3055,8 @@
   <string name="AppSettingsFragment__invite_your_friends">دعوة أصدقائك</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">الحِساب</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">سيُطلب منك مرات أقل بمرور الوقت</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">إنه يتطلب ‫رقم Signal التعريفي الشخصي‬ لتسجيل رقم هاتفك في Signal مرة أخرى</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">لوحة المفاتيح</string>
   <string name="ChatsSettingsFragment__enter_key_sends">مفتاح الدخول يقوم بالإرسال</string>
@@ -3038,8 +3065,8 @@
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">الرسائل</string>
   <string name="NotificationsSettingsFragment__calls">المكالمات</string>
-  <string name="NotificationsSettingsFragment__notify_when">اخطِرني مَتَى مَا…</string>
-  <string name="NotificationsSettingsFragment__contact_joins_signal">انضمت جهة اتصال لـ Signal</string>
+  <string name="NotificationsSettingsFragment__notify_when">أخبرني بـ.…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">انضمام جهة اتصال لـ Signal</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">محظورة</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d جهات اتصال</string>
@@ -3047,9 +3074,12 @@
   <string name="PrivacySettingsFragment__disappearing_messages">الرسائل المختفية</string>
   <string name="PrivacySettingsFragment__app_security">أمان التطبيق</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">منع لقطات الشاشة داخل التطبيق وفي قائمة الأحدث  </string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">محادثات ومكالمات Signal، مناوبة الاتصالات دوما، والمُرسِل المختوم</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">تحديد مدة افتراضية لمؤقت اختفاء الرسائل، لجميع المحادثات الجديدة التي قمت ببدئها.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">إظهار أيقونة الحالة</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">عند تفعيلها، سوف تختفي الرسائل الجديدة المُرسلَة أو المُستلَمة في هذه المحادثة، بعد رؤيتها.</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">عِند التَّفعيل، إنَّ الرسائِل الجديدَة المُرسلَة أو المُستلَمة فِي هَذِهِ المُحادثَة سَوف تَختَفي بَعدَ رؤيَتِها.</string>
   <string name="ExpireTimerSettingsFragment__off">مُعطَّل</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 أسابيع</string>
@@ -3059,7 +3089,7 @@
   <string name="ExpireTimerSettingsFragment__1_hour">ساعة واحدة</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">بعد 5 دقائق</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">بعد 30 ثانية</string>
-  <string name="ExpireTimerSettingsFragment__custom_time">تخصيص الوقت</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">تحديد المهلة</string>
   <string name="ExpireTimerSettingsFragment__set">تعيِّين</string>
   <string name="ExpireTimerSettingsFragment__save">حفظ</string>
   <string name="CustomExpireTimerSelectorView__seconds">ثوان</string>
@@ -3072,8 +3102,9 @@
   <string name="HelpSettingsFragment__contact_us">تواصل معنا</string>
   <string name="HelpSettingsFragment__version">اﻹصدار</string>
   <string name="HelpSettingsFragment__debug_log">سِجل التصحيح</string>
-  <string name="HelpSettingsFragment__terms_amp_privacy_policy">الشروط  &amp; وسياسة الخصوصية</string>
-  <string name="HelpFragment__licenced_under_the_gplv3">مُرخَّص بموجب « رخصة جْنُو العمومية، الإصدار الثالث »</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">الشروط وسياسة الخصوصية</string>
+  <string name="HelpFragment__copyright_signal_messenger">جميع الحقوق محفوظة لمِرسال Signal‬</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">بموجب « رخصة جْنُو العمومية، الإصدار الثالث »</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">المكالمات</string>
   <!--ChatColorSelectionFragment-->
@@ -3084,6 +3115,10 @@
   <string name="ChatColorSelectionFragment__delete">حذف  </string>
   <string name="ChatColorSelectionFragment__delete_color">حذف اللون</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">موحَّد</string>
+  <string name="CustomChatColorCreatorFragment__gradient">مُتدرِّج</string>
+  <string name="CustomChatColorCreatorFragment__hue">الصبغة</string>
+  <string name="CustomChatColorCreatorFragment__saturation">الصفاء</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">حفظ</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">تحرير الألوان</string>
@@ -3093,6 +3128,8 @@
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">المس لاستبدال الوجه المُعبِّر</string>
   <string name="EditReactionsFragment__reset">إعادة التعيين</string>
   <string name="EditReactionsFragment_save">حفظ</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">وافِق تلقائيا اللون مع الخلفية</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">اسحب لتغيير اتجاه التدرج</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">ألوان المحادثات الجديدة</string>
   <string name="ChatColorsMegaphone__appearance">المظهر</string>

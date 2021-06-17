@@ -1090,6 +1090,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Означили сте ваш сигурносни број са %s као проверен на другом уређају.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Означили сте ваш сигурносни број са %s као непроверен.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Означили сте ваш сигурносни број са %s као непроверен на другом уређају.</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Порука од %s није могла да се испоручи</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s покренуо/ла групни позив · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s је у групном позиву · %2$s</string>
@@ -1828,6 +1829,8 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Да бисте слали мултимедијалне и групне поруке тапните „У реду“ и попуните захтеване поставке. ММС поставке за вашег оператера углавном можете наћи претрагом „мој оператер APN“. Ово треба да урадите само једном.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Проблем у испоруци</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Порука, налепница, реакција, потврда о читању или медиј од %s није могло да се испоручи. Можда су то покушали да вам пошаљу директно или у групи.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Порука, налепница, реакција или потврда о читању од %s није вам достављена.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Име (потребно)</string>
   <string name="CreateProfileActivity_last_name_optional">Презиме (опционо)</string>
@@ -2105,6 +2108,8 @@
   <string name="preferences_data_and_storage__calls">Позиви</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Користите мање података за позиве</string>
   <string name="preferences_data_and_storage__never">Никад</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">ВиФи и мобилна мрежа</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Само мобилна мрежа</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Коришћење мање података може побољшати позиве на лошим мрежама</string>
   <string name="preferences_notifications__messages">Поруке</string>
   <string name="preferences_notifications__events">Догађаји</string>
@@ -2129,6 +2134,7 @@
   <string name="preferences_off">Искључено</string>
   <string name="preferences_on">Укључено</string>
   <string name="preferences_proxy_address">Адреса проксија</string>
+  <string name="preferences_only_use_a_proxy_if">Прокси користите само ако не можете да се повежете са Signal-ом на мобилној или Ви-Фи мрежи.</string>
   <string name="preferences_share">Поделите</string>
   <string name="preferences_save">Сачувај</string>
   <string name="preferences_connecting_to_proxy">Повезивање са проксијом…</string>
@@ -2823,6 +2829,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Поделите</string>
   <string name="ShareActivity__send">Пошаљи</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Дељење у више ћаскања је подржано само за Signal поруке</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Слање неким корисницима није успело</string>
@@ -3077,5 +3084,6 @@
   <string name="StickerSearchDialogFragment_search_stickers">Тражити налепнице</string>
   <string name="StickerSearchDialogFragment_no_results_found">Нема резултата</string>
   <string name="EmojiSearchFragment__no_results_found">Нема резултата</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Непозната мелодија звона</string>
   <!--EOF-->
 </resources>

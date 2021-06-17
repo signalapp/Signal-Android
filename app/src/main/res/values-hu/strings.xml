@@ -242,6 +242,9 @@
   <string name="ConversationActivity_full">Tele</string>
   <string name="ConversationActivity_error_sending_media">Hiba történt a médiafájl küldése során</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Kéretlen üzenetnek jelölve és tiltva.</string>
+  <string name="ConversationActivity_gifs_have_moved">A GIF-ek mozgatásra kerültek</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Keresd a GIF-eket az emojik és a matricák mellett.</string>
+  <string name="ConversationActivity__gifs_are_now_here">A GIF-ek most már itt vannak.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d olvasatlan üzenet</item>
@@ -610,6 +613,7 @@
   <string name="ManageGroupActivity_mute_notifications">Értesítések némítása</string>
   <string name="ManageGroupActivity_custom_notifications">Egyedi értesítések</string>
   <string name="ManageGroupActivity_mentions">Említések</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Csevegés szín és háttérkép</string>
   <string name="ManageGroupActivity_until_s">%1$s-ig</string>
   <string name="ManageGroupActivity_always">Végleg</string>
   <string name="ManageGroupActivity_off">Ki</string>
@@ -1226,6 +1230,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Sikertelen hang és kép fogadás %1$s irányából</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ennek oka lehet, hogy esetleg nem ellenőrizte le a biztonsági azonosítód megváltozását, készülék problémája van, vagy letiltott téged.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">Suhints a képernyőmegosztás nézethez</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proxy szerver</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Proxy cím</string>
@@ -1387,6 +1392,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_you_marked_verified">Megerősítettnek jelölted</string>
   <string name="ThreadRecord_you_marked_unverified">Megerősítetlennek jelölted</string>
   <string name="ThreadRecord_message_could_not_be_processed">Az üzenet nem dolgozható fel</string>
+  <string name="ThreadRecord_delivery_issue">Kézbesítési probléma</string>
   <string name="ThreadRecord_message_request">Kezdeményezett beszélgetés</string>
   <string name="ThreadRecord_photo">Kép</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1751,6 +1757,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">A Signal-nak szüksége van az MMS beállításokra annak érdekében, hogy a média- és csoportüzeneteket mobilszolgáltatódon keresztül kézbesíthesse. A készüléked nem teszi ezt az információt elérhetővé, ami néha igaz a zárolt eszközökre, és egyéb jelentősen korlátozott konfigurációkra.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Média és csoport üzenetek küldéséhez koppints az \'OK\'-ra és hajtsd végre a kért beállításokat. A szolgáltatód MMS beállításai általában fellelhetőek egy \'szolgáltatód neve APN\' kereséssel. Ezt csak egyszer kell megtenned.</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Kézbesítési probléma</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Keresztnév (kötelező)</string>
   <string name="CreateProfileActivity_last_name_optional">Vezetéknév (kötelező)</string>
@@ -1967,6 +1974,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__appearance">Megjelenés</string>
   <string name="preferences__theme">Téma</string>
   <string name="preferences__chat_wallpaper">Beszélgetés háttérkép</string>
+  <string name="preferences__chat_color_and_wallpaper">Csevegés szín és háttérkép</string>
   <string name="preferences__disable_pin">PIN letiltása</string>
   <string name="preferences__enable_pin">PIN engedélyezése</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN kódod letiltásával egy esetleges újraregisztráció során az összes Signal adatod el fog veszni, kivéve ha azokat előtte külön lemented majd visszatöltöd. Letiltott PIN kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string>
@@ -2026,6 +2034,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_data_and_storage__calls">Hívások</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Kevesebb adat használata hívásokhoz</string>
   <string name="preferences_data_and_storage__never">Soha</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi és mobil adat</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Csak mobil adat</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">A kevesebb adat használatának beállítása javíthatja a hívások minőségét gyenge hálózatokon</string>
   <string name="preferences_notifications__messages">Üzenetek</string>
   <string name="preferences_notifications__events">Események</string>
@@ -2734,6 +2744,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Megosztás</string>
   <string name="ShareActivity__send">Küldés</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">A több beszélgetésbe történő megosztás csak Signal üzenetek esetén támogatott</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Néhány felhasználónak nem sikerült a küldés</string>
@@ -2744,14 +2755,24 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ChatWallpaperActivity__chat_wallpaper">Beszélgetés háttérkép</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Beszélgetés színe</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Csevegésszínek alaphelyzetbe</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Csevegésszín alaphelyzetbe</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Csevegésszín alaphelyzetbe?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Háttérkép beállítása</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">A sötét téma elsötétíti a háttérképet is</string>
   <string name="ChatWallpaperFragment__contact_name">Kontakt neve</string>
   <string name="ChatWallpaperFragment__reset">Alaphelyzetbe állítás</string>
   <string name="ChatWallpaperFragment__clear">Törlés</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Háttérkép előnézete</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Felülírod az összes színbeállítást?</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Felülírod az összes háttérképet?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Gyári szín alaphelyzetbe</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Minden szín alaphelyzetbe</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Gyári háttérkép alaphelyzetbe</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Összes háttérkép alaphelyzetbe állítása</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Háttérképek alaphelyzetbe</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Háttérkép alaphelyzetbe</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Háttérkép alaphelyzetbe?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Választás fotók közül</string>
   <string name="ChatWallpaperSelectionFragment__presets">Gyári profilok</string>
@@ -2853,6 +2874,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Egy kontaktod, vagy beszélgetőpartnered sem tagja ennek a csoportnak. Ellenőrizd a kérelmet figyelmesen elfogadás előtt, hogy elkerüld a nem kívánt üzeneteket!</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Az csevegési felkérésekről</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Csevegési szín előnézete</string>
   <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Ezt a színbeállítást csak te látod.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Csoportleírás</string>
@@ -2920,10 +2942,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Hívások</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Auto</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Egyedi színek használata</string>
   <string name="ChatColorSelectionFragment__chat_color">Beszélgetés színe</string>
   <string name="ChatColorSelectionFragment__edit">Szerkesztés</string>
   <string name="ChatColorSelectionFragment__duplicate">Megkettőzés</string>
   <string name="ChatColorSelectionFragment__delete">Törlés</string>
+  <string name="ChatColorSelectionFragment__delete_color">Szín törlése</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Alap</string>
   <string name="CustomChatColorCreatorFragment__gradient">Gradiens</string>
@@ -2931,19 +2956,36 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="CustomChatColorCreatorFragment__saturation">Szaturáció</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Mentés</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Szín szerkesztése</string>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Felső él kiválasztó</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Alsó él kiválasztó</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Egyedi reakciók</string>
   <string name="EditReactionsFragment__reset">Alaphelyzetbe állítás</string>
   <string name="EditReactionsFragment_save">Mentés</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Háttérképhez passzoló automatikus színválasztás</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Húzd a színátmenet változtatásához</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Új csevegésszínek</string>
   <string name="ChatColorsMegaphone__appearance">Megjelenés</string>
   <string name="ChatColorsMegaphone__not_now">Később</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Emoji kereső megnyitása</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Matrica kereső megnyitása</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Gif kereső megnyitása</string>
   <string name="KeyboardPagerFragment_stickers">Matricák</string>
   <string name="KeyboardPagerFragment_backspace">Visszatörlés</string>
+  <string name="KeyboardPagerFragment_gifs">Gif-ek</string>
+  <string name="KeyboardPagerFragment_search_emoji">Emoji keresése</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Vissza az emojihoz</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Keresési bejegyzés törlése</string>
+  <string name="KeyboardPagerFragment_search_giphy">GIPHY keresés</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Matricák keresése</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Nincs találat</string>
+  <string name="EmojiSearchFragment__no_results_found">Nincs találat</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Ismeretlen csengőhang</string>
   <!--EOF-->
 </resources>

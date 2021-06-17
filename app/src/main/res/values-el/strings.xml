@@ -238,6 +238,9 @@
   <string name="ConversationActivity_full">Γεμάτο</string>
   <string name="ConversationActivity_error_sending_media">Σφάλμα στην αποστολή πολυμέσων</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Αναφέρθηκε ως ανεπιθύμητο και είναι σε φραγή</string>
+  <string name="ConversationActivity_gifs_have_moved">Τα GIF μεταφέρθηκαν</string>
+  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Μπορείς να βρεις τα GIF δίπλα στα emoji και τα αυτοκόλλητα.</string>
+  <string name="ConversationActivity__gifs_are_now_here">Τα GIF θα είναι πλέον εδώ.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d μη αναγνωσμένο μήνυμα</item>
@@ -1030,6 +1033,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Σημείωσες τον αριθμό ασφαλείας σου με τον/την %s ως επιβεβαιωμένο από άλλη συσκευή</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Σημείωσες τον αριθμό ασφαλείας σου με τον/την %s ως μη επιβεβαιωμένο</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Σημείωσες τον αριθμό ασφαλείας σου με τον/την %s ως μη επιβεβαιωμένο από άλλη συσκευή</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Ένα μήνυμα από τον/την %s δεν μπόρεσε να παραδοθεί</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">Ο/Η %1$s είναι στην ομαδική κλήση · %2$s</string>
@@ -1738,6 +1742,8 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Για να στείλεις μηνύματα πολυμέσων, πάτα \'ΟΚ\' και συμπλήρωσε τις ρυθμίσεις. Θα βρεις τις σωστές ρυθμίσεις MMS για τον πάροχό σου ψάχνοντας στο ίντερνετ για \"όνομα του παρόχου σου\" + APN. Αυτές οι ρυθμίσεις πρέπει να γίνουν μόνο μια φορά.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Θέμα κατά τη παράδοση</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Ένα μήνυμα, αυτοκόλλητο, αντίδραση ή αποδεικτικό ανάγνωσης δεν μπόρεσε να σου παραδοθεί από τον/την %s. Είτε προσπάθησαν να σου στείλουν απ\'ευθείας, είτε σε κάποια ομάδα.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Ένα μήνυμα, αυτοκόλλητο, αντίδραση ή αποδεικτικό ανάγνωσης δεν μπόρεσε να σου παραδοθεί από τον/την %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Όνομα (απαιτείται)</string>
   <string name="CreateProfileActivity_last_name_optional">Επώνυμο (προαιρετικό)</string>
@@ -2003,6 +2009,8 @@
   <string name="preferences_data_and_storage__calls">Κλήσεις</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Χρήση λιγότερων δεδομένων για τις κλήσεις</string>
   <string name="preferences_data_and_storage__never">Ποτέ</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi και δεδομένα κινητής</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Μόνο δεδομένα κινητής</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Η χρήση λιγότερων δεδομένων ίσως βελτιώσει τη ποιότητα των κλήσεων σε δίκτυα με κακή σύνδεση</string>
   <string name="preferences_notifications__messages">Μηνύματα</string>
   <string name="preferences_notifications__events">Συμβάντα</string>
@@ -2094,6 +2102,7 @@
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">Προσθήκη σημείωσης</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Σημείωση</string>
@@ -2836,7 +2845,20 @@
   <string name="ChatColorsMegaphone__not_now">Όχι τώρα</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Άνοιγμα αναζήτησης emoji</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Άνοιγμα αναζήτησης αυτοκολλήτων</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Άνοιγμα αναζήτησης GIF</string>
   <string name="KeyboardPagerFragment_stickers">Αυτοκόλλητα</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">GIF</string>
+  <string name="KeyboardPagerFragment_search_emoji">Αναζήτηση emoji</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Πίσω στα emoji</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Εκκαθάριση αναζήτησης</string>
+  <string name="KeyboardPagerFragment_search_giphy">Αναζήτηση στο GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Αναζήτηση αυτοκολλήτων</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Δε βρέθηκαν αποτελέσματα</string>
+  <string name="EmojiSearchFragment__no_results_found">Δε βρέθηκαν αποτελέσματα</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Άγνωστος ήχος κλήσης</string>
   <!--EOF-->
 </resources>
