@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="126dp">
+    android:layout_height="128dp">
 
     <!-- The fake input bar -->
 
@@ -84,10 +84,11 @@
 
         <TextView
             android:id="@+id/inputBarCancelButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:alpha="0"
+            android:gravity="center"
             android:text="@string/cancel"
             android:textSize="@dimen/small_font_size"
             android:textColor="@color/text"

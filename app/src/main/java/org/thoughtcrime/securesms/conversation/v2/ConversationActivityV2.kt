@@ -25,6 +25,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
+import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarRecordingViewDelegate
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -36,7 +37,7 @@ import kotlin.math.abs
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
-class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate {
+class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate, InputBarRecordingViewDelegate {
     private val lockViewHitMargin by lazy { toPx(40, resources) }
     private var threadID: Long = -1
     private var actionMode: ActionMode? = null
@@ -125,6 +126,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     private fun setUpInputBar() {
         inputBar.delegate = this
+        inputBarRecordingView.delegate = this
         // GIF button
         gifButtonContainer.addView(gifButton)
         gifButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
@@ -155,6 +157,24 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     override fun showVoiceMessageUI() {
         inputBarRecordingView.show()
+        inputBar.alpha = 0.0f
+        val animation = ValueAnimator.ofObject(FloatEvaluator(), 1.0f, 0.0f)
+        animation.duration = 250L
+        animation.addUpdateListener { animator ->
+            inputBar.alpha = animator.animatedValue as Float
+        }
+        animation.start()
+    }
+
+    override fun handleInputBarRecordingViewHidden() {
+        Log.d("Test", "Here")
+        inputBar.alpha = 1.0f
+        val animation = ValueAnimator.ofObject(FloatEvaluator(), 0.0f, 1.0f)
+        animation.duration = 250L
+        animation.addUpdateListener { animator ->
+            inputBar.alpha = animator.animatedValue as Float
+        }
+        animation.start()
     }
     // endregion
 
@@ -243,7 +263,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun expandLockView() {
-        val animation = ValueAnimator.ofObject(FloatEvaluator(), lockView.scaleX, 1.05f)
+        val animation = ValueAnimator.ofObject(FloatEvaluator(), lockView.scaleX, 1.10f)
         animation.duration = 250L
         animation.addUpdateListener { animator ->
             lockView.scaleX = animator.animatedValue as Float

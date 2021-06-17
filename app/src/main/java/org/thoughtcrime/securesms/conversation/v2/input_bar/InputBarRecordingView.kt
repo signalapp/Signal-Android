@@ -24,6 +24,9 @@ import kotlin.math.roundToLong
 class InputBarRecordingView : RelativeLayout {
     private var startTimestamp = 0L
     private val snHandler = Handler(Looper.getMainLooper())
+    private var dotViewAnimation: ValueAnimator? = null
+    private var pulseAnimation: ValueAnimator? = null
+    var delegate: InputBarRecordingViewDelegate? = null
 
     constructor(context: Context) : super(context) { initialize() }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize() }
@@ -32,10 +35,12 @@ class InputBarRecordingView : RelativeLayout {
     private fun initialize() {
         LayoutInflater.from(context).inflate(R.layout.view_input_bar_recording, this)
         inputBarMiddleContentContainer.disableClipping()
+        inputBarCancelButton.setOnClickListener { hide() }
     }
 
     fun show() {
         startTimestamp = Date().time
+        recordButtonOverlayImageView.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_microphone, context.theme))
         isVisible = true
         alpha = 0.0f
         val animation = ValueAnimator.ofObject(FloatEvaluator(), 0.0f, 1.0f)
@@ -50,8 +55,25 @@ class InputBarRecordingView : RelativeLayout {
         updateTimer()
     }
 
+    fun hide() {
+        alpha = 1.0f
+        val animation = ValueAnimator.ofObject(FloatEvaluator(), 1.0f, 0.0f)
+        animation.duration = 250L
+        animation.addUpdateListener { animator ->
+            alpha = animator.animatedValue as Float
+            if (animator.animatedFraction == 1.0f) {
+                isVisible = false
+                dotViewAnimation?.repeatCount = 0
+                pulseAnimation?.removeAllUpdateListeners()
+            }
+        }
+        animation.start()
+        delegate?.handleInputBarRecordingViewHidden()
+    }
+
     private fun animateDotView() {
         val animation = ValueAnimator.ofObject(FloatEvaluator(), 1.0f, 0.0f)
+        dotViewAnimation = animation
         animation.duration = 500L
         animation.addUpdateListener { animator ->
             dotView.alpha = animator.animatedValue as Float
@@ -66,10 +88,11 @@ class InputBarRecordingView : RelativeLayout {
         val expandedSize = toPx(104.0f, resources)
         pulseView.animateSizeChange(collapsedSize, expandedSize, 1000)
         val animation = ValueAnimator.ofObject(FloatEvaluator(), 0.5, 0.0f)
+        pulseAnimation = animation
         animation.duration = 1000L
         animation.addUpdateListener { animator ->
             pulseView.alpha = animator.animatedValue as Float
-            if (animator.animatedFraction == 1.0f) { pulse() }
+            if (animator.animatedFraction == 1.0f && isVisible) { pulse() }
         }
         animation.start()
     }
@@ -90,7 +113,6 @@ class InputBarRecordingView : RelativeLayout {
     }
 
     private fun updateTimer() {
-        Log.d("Test", "${Date().time - startTimestamp}")
         val duration = (Date().time - startTimestamp) / 1000L
         recordingViewDurationTextView.text = DateUtils.formatElapsedTime(duration)
         snHandler.postDelayed({ updateTimer() }, 500)
@@ -112,4 +134,9 @@ class InputBarRecordingView : RelativeLayout {
         fadeInAnimation.start()
         recordButtonOverlayImageView.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_up, context.theme))
     }
+}
+
+interface InputBarRecordingViewDelegate {
+
+    fun handleInputBarRecordingViewHidden()
 }
