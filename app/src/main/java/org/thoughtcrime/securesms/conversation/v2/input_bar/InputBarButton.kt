@@ -63,6 +63,9 @@ class InputBarButton : RelativeLayout {
         result.layoutParams = LayoutParams(size, size)
         result.setBackgroundResource(R.drawable.input_bar_button_background)
         result.mainColor = resources.getColorWithID(colorID, context.theme)
+        if (hasOpaqueBackground) {
+            result.strokeColor = resources.getColorWithID(R.color.input_bar_button_background_opaque_border, context.theme)
+        }
         result
     }
 

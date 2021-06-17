@@ -23,6 +23,7 @@
     <color name="input_bar_background">#FCFCFC</color>
     <color name="input_bar_button_background">#0D000000</color>
     <color name="input_bar_button_background_opaque">#EFEFEF</color>
+    <color name="input_bar_button_background_opaque_border">#33000000</color>
     <color name="input_bar_lock_view_background">#FCFCFC</color>
     <color name="input_bar_lock_view_border">#66000000</color>
 

@@ -6,16 +6,14 @@ import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
-import android.view.ViewOutlineProvider
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
-import androidx.appcompat.widget.AppCompatImageView
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.loki.utilities.toPx
+import kotlin.math.roundToInt
 
 interface GlowView {
     var mainColor: Int
@@ -162,13 +160,24 @@ class PathDotView : View, GlowView {
 
 class InputBarButtonImageViewContainer : RelativeLayout, GlowView {
     @ColorInt override var mainColor: Int = 0
-        set(newValue) { field = newValue; paint.color = newValue }
+        set(newValue) { field = newValue; fillPaint.color = newValue }
+    @ColorInt var strokeColor: Int = 0
+        set(newValue) { field = newValue; strokePaint.color = newValue }
     @ColorInt override var sessionShadowColor: Int = 0 // Unused
 
-    private val paint: Paint by lazy {
+    private val fillPaint: Paint by lazy {
         val result = Paint()
         result.style = Paint.Style.FILL
         result.isAntiAlias = true
+        result
+    }
+
+    private val strokePaint: Paint by lazy {
+        val result = Paint()
+        result.style = Paint.Style.STROKE
+        result.isAntiAlias = true
+        result.strokeWidth = 1.0f
+        result.alpha = (255 * 0.2f).roundToInt()
         result
     }
 
@@ -186,7 +195,10 @@ class InputBarButtonImageViewContainer : RelativeLayout, GlowView {
     override fun onDraw(c: Canvas) {
         val w = width.toFloat()
         val h = height.toFloat()
-        c.drawCircle(w / 2, h / 2, w / 2, paint)
+        c.drawCircle(w / 2, h / 2, w / 2, fillPaint)
+        if (strokeColor != 0) {
+            c.drawCircle(w / 2, h / 2, w / 2, strokePaint)
+        }
         super.onDraw(c)
     }
     // endregion
