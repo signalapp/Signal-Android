@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.v2.input_bar
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.widget.RelativeLayout
@@ -29,12 +30,11 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate {
         // Attachments button
         attachmentsButtonContainer.addView(attachmentsButton)
         attachmentsButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
+        attachmentsButton.onPress = { toggleAttachmentOptions() }
         // Microphone button
         microphoneOrSendButtonContainer.addView(microphoneButton)
         microphoneButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
-        microphoneButton.onLongPress = {
-            showVoiceMessageUI()
-        }
+        microphoneButton.onLongPress = { showVoiceMessageUI() }
         microphoneButton.onMove = { delegate?.onMicrophoneButtonMove(it) }
         microphoneButton.onCancel = { delegate?.onMicrophoneButtonCancel(it) }
         microphoneButton.onUp = { delegate?.onMicrophoneButtonUp(it) }
@@ -63,6 +63,10 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate {
         delegate?.inputBarHeightChanged(newHeight)
     }
 
+    private fun toggleAttachmentOptions() {
+        delegate?.toggleAttachmentOptions()
+    }
+
     private fun showVoiceMessageUI() {
         delegate?.showVoiceMessageUI()
     }
@@ -72,6 +76,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate {
 interface InputBarDelegate {
 
     fun inputBarHeightChanged(newValue: Int)
+    fun toggleAttachmentOptions()
     fun showVoiceMessageUI()
     fun onMicrophoneButtonMove(event: MotionEvent)
     fun onMicrophoneButtonCancel(event: MotionEvent)

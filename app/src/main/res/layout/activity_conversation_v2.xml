@@ -24,25 +24,29 @@
         <RelativeLayout
             android:id="@+id/gifButtonContainer"
             android:layout_width="@dimen/input_bar_button_expanded_size"
-            android:layout_height="@dimen/input_bar_button_expanded_size" />
+            android:layout_height="@dimen/input_bar_button_expanded_size"
+            android:alpha="0" />
 
         <RelativeLayout
             android:id="@+id/documentButtonContainer"
             android:layout_marginTop="8dp"
             android:layout_width="@dimen/input_bar_button_expanded_size"
-            android:layout_height="@dimen/input_bar_button_expanded_size" />
+            android:layout_height="@dimen/input_bar_button_expanded_size"
+            android:alpha="0" />
 
         <RelativeLayout
             android:id="@+id/libraryButtonContainer"
             android:layout_marginTop="8dp"
             android:layout_width="@dimen/input_bar_button_expanded_size"
-            android:layout_height="@dimen/input_bar_button_expanded_size" />
+            android:layout_height="@dimen/input_bar_button_expanded_size"
+            android:alpha="0" />
 
         <RelativeLayout
             android:id="@+id/cameraButtonContainer"
             android:layout_marginTop="8dp"
             android:layout_width="@dimen/input_bar_button_expanded_size"
-            android:layout_height="@dimen/input_bar_button_expanded_size" />
+            android:layout_height="@dimen/input_bar_button_expanded_size"
+            android:alpha="0" />
 
     </LinearLayout>
 

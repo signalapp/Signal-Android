@@ -42,6 +42,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private var threadID: Long = -1
     private var actionMode: ActionMode? = null
     private var isLockViewExpanded = false
+    private var isShowingAttachmentOptions = false
 
     // TODO: Selected message background color
     // TODO: Overflow menu background + text color
@@ -155,6 +156,22 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         conversationRecyclerView.layoutParams = recyclerViewLayoutParams
     }
 
+    override fun toggleAttachmentOptions() {
+        val targetAlpha = if (isShowingAttachmentOptions) 0.0f else 1.0f
+        val allButtons = listOf( cameraButtonContainer, libraryButtonContainer, documentButtonContainer, gifButtonContainer)
+        allButtons.indices.forEach { index ->
+            val view = allButtons[index]
+            val animation = ValueAnimator.ofObject(FloatEvaluator(), view.alpha, targetAlpha)
+            animation.duration = 250L
+            animation.startDelay = 50L * index.toLong()
+            animation.addUpdateListener { animator ->
+                view.alpha = animator.animatedValue as Float
+            }
+            animation.start()
+        }
+        isShowingAttachmentOptions = !isShowingAttachmentOptions
+    }
+
     override fun showVoiceMessageUI() {
         inputBarRecordingView.show()
         inputBar.alpha = 0.0f
@@ -167,7 +184,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun handleInputBarRecordingViewHidden() {
-        Log.d("Test", "Here")
         inputBar.alpha = 1.0f
         val animation = ValueAnimator.ofObject(FloatEvaluator(), 0.0f, 1.0f)
         animation.duration = 250L

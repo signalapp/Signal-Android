@@ -40,7 +40,8 @@ class InputBarButton : RelativeLayout {
     var onLongPress: (() -> Unit)? = null
 
     companion object {
-        val animationDuration = 250.toLong()
+        const val animationDuration = 250.toLong()
+        const val longPressDurationThreshold = 250L // ms
     }
 
     private val expandedImageViewPosition by lazy { PointF(0.0f, 0.0f) }
@@ -148,7 +149,7 @@ class InputBarButton : RelativeLayout {
         longPressCallback?.let { gestureHandler.removeCallbacks(it) }
         val newLongPressCallback = Runnable { onLongPress?.invoke() }
         this.longPressCallback = newLongPressCallback
-        gestureHandler.postDelayed(newLongPressCallback, VisibleMessageView.longPressDurationThreshold)
+        gestureHandler.postDelayed(newLongPressCallback, InputBarButton.longPressDurationThreshold)
         onDownTimestamp = Date().time
     }
 
@@ -165,7 +166,7 @@ class InputBarButton : RelativeLayout {
     private fun onUp(event: MotionEvent) {
         onUp?.invoke(event)
         collapse()
-        if ((Date().time - onDownTimestamp) < VisibleMessageView.longPressDurationThreshold) {
+        if ((Date().time - onDownTimestamp) < InputBarButton.longPressDurationThreshold) {
             longPressCallback?.let { gestureHandler.removeCallbacks(it) }
             onPress?.invoke()
         }
