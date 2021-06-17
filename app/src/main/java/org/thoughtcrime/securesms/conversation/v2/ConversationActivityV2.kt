@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.view_input_bar_recording.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
@@ -36,7 +37,6 @@ import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate {
-    private val lockViewExpansionMargin by lazy { toDp(3, resources) }
     private val lockViewHitMargin by lazy { toPx(40, resources) }
     private var threadID: Long = -1
     private var actionMode: ActionMode? = null
@@ -70,9 +70,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     private val glide by lazy { GlideApp.with(this) }
 
-    private val screenWidth by lazy {
-        Resources.getSystem().displayMetrics.widthPixels
-    }
+    private val screenWidth by lazy { Resources.getSystem().displayMetrics.widthPixels }
+
+    private val gifButton by lazy { InputBarButton(this, R.drawable.ic_gif_white_24dp, hasOpaqueBackground = true) }
+    private val documentButton by lazy { InputBarButton(this, R.drawable.ic_document_small_dark, hasOpaqueBackground = true) }
+    private val libraryButton by lazy { InputBarButton(this, R.drawable.ic_baseline_photo_library_24, hasOpaqueBackground = true) }
+    private val cameraButton by lazy { InputBarButton(this, R.drawable.ic_baseline_photo_camera_24, hasOpaqueBackground = true) }
 
     // region Settings
     companion object {
@@ -87,7 +90,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         threadID = intent.getLongExtra(THREAD_ID, -1)
         setUpRecyclerView()
         setUpToolBar()
-        inputBar.delegate = this
+        setUpInputBar()
     }
 
     private fun setUpRecyclerView() {
@@ -118,6 +121,22 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         conversationTitleView.text = thread.toShortString()
         profilePictureView.glide = glide
         profilePictureView.update(thread, threadID)
+    }
+
+    private fun setUpInputBar() {
+        inputBar.delegate = this
+        // GIF button
+        gifButtonContainer.addView(gifButton)
+        gifButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
+        // Document button
+        documentButtonContainer.addView(documentButton)
+        documentButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
+        // Library button
+        libraryButtonContainer.addView(libraryButton)
+        libraryButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
+        // Camera button
+        cameraButtonContainer.addView(cameraButton)
+        cameraButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {

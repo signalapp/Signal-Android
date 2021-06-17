@@ -27,6 +27,7 @@ import kotlin.math.abs
 class InputBarButton : RelativeLayout {
     private val gestureHandler = Handler(Looper.getMainLooper())
     private var isSendButton = false
+    private var hasOpaqueBackground = false
     @DrawableRes private var iconID = 0
     private var longPressCallback: Runnable? = null
     private var onDownTimestamp = 0L
@@ -43,7 +44,15 @@ class InputBarButton : RelativeLayout {
 
     private val expandedImageViewPosition by lazy { PointF(0.0f, 0.0f) }
     private val collapsedImageViewPosition by lazy { PointF((expandedSize - collapsedSize) / 2, (expandedSize - collapsedSize) / 2) }
-    private val defaultColorID by lazy { if (isSendButton) R.color.accent else R.color.input_bar_button_background }
+    private val colorID by lazy {
+        if (hasOpaqueBackground) {
+            R.color.input_bar_button_background_opaque
+        } else if (isSendButton) {
+            R.color.accent
+        } else {
+            R.color.input_bar_button_background
+        }
+    }
 
     val expandedSize by lazy { resources.getDimension(R.dimen.input_bar_button_expanded_size) }
     val collapsedSize by lazy { resources.getDimension(R.dimen.input_bar_button_collapsed_size) }
@@ -53,7 +62,7 @@ class InputBarButton : RelativeLayout {
         val size = collapsedSize.toInt()
         result.layoutParams = LayoutParams(size, size)
         result.setBackgroundResource(R.drawable.input_bar_button_background)
-        result.mainColor = resources.getColorWithID(defaultColorID, context.theme)
+        result.mainColor = resources.getColorWithID(colorID, context.theme)
         result
     }
 
@@ -72,9 +81,10 @@ class InputBarButton : RelativeLayout {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { throw IllegalAccessException("Use InputBarButton(context:iconID:) instead.") }
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { throw IllegalAccessException("Use InputBarButton(context:iconID:) instead.") }
 
-    constructor(context: Context, @DrawableRes iconID: Int, isSendButton: Boolean = false) : super(context) {
+    constructor(context: Context, @DrawableRes iconID: Int, isSendButton: Boolean = false, hasOpaqueBackground: Boolean = false) : super(context) {
         this.isSendButton = isSendButton
         this.iconID = iconID
+        this.hasOpaqueBackground = hasOpaqueBackground
         val size = resources.getDimension(R.dimen.input_bar_button_expanded_size).toInt()
         val layoutParams = LayoutParams(size, size)
         this.layoutParams = layoutParams
@@ -90,13 +100,13 @@ class InputBarButton : RelativeLayout {
     }
 
     fun expand() {
-        GlowViewUtilities.animateColorChange(context, imageViewContainer, defaultColorID, R.color.accent)
+        GlowViewUtilities.animateColorChange(context, imageViewContainer, colorID, R.color.accent)
         imageViewContainer.animateSizeChange(R.dimen.input_bar_button_collapsed_size, R.dimen.input_bar_button_expanded_size, animationDuration)
         animateImageViewContainerPositionChange(collapsedImageViewPosition, expandedImageViewPosition)
     }
 
     fun collapse() {
-        GlowViewUtilities.animateColorChange(context, imageViewContainer, R.color.accent, defaultColorID)
+        GlowViewUtilities.animateColorChange(context, imageViewContainer, R.color.accent, colorID)
         imageViewContainer.animateSizeChange(R.dimen.input_bar_button_expanded_size, R.dimen.input_bar_button_collapsed_size, animationDuration)
         animateImageViewContainerPositionChange(expandedImageViewPosition, collapsedImageViewPosition)
     }

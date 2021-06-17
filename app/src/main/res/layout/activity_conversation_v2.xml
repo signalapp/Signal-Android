@@ -12,6 +12,40 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/input_bar_height" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_spacing"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/gifButtonContainer"
+            android:layout_width="@dimen/input_bar_button_expanded_size"
+            android:layout_height="@dimen/input_bar_button_expanded_size" />
+
+        <RelativeLayout
+            android:id="@+id/documentButtonContainer"
+            android:layout_marginTop="8dp"
+            android:layout_width="@dimen/input_bar_button_expanded_size"
+            android:layout_height="@dimen/input_bar_button_expanded_size" />
+
+        <RelativeLayout
+            android:id="@+id/libraryButtonContainer"
+            android:layout_marginTop="8dp"
+            android:layout_width="@dimen/input_bar_button_expanded_size"
+            android:layout_height="@dimen/input_bar_button_expanded_size" />
+
+        <RelativeLayout
+            android:id="@+id/cameraButtonContainer"
+            android:layout_marginTop="8dp"
+            android:layout_width="@dimen/input_bar_button_expanded_size"
+            android:layout_height="@dimen/input_bar_button_expanded_size" />
+
+    </LinearLayout>
+
     <org.thoughtcrime.securesms.conversation.v2.input_bar.InputBar
         android:id="@+id/inputBar"
         android:layout_width="match_parent"
