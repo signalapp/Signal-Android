@@ -50,13 +50,16 @@
         <!-- The middle content (left arrow + slide to cancel) -->
 
         <LinearLayout
+            android:id="@+id/inputBarMiddleContentContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:paddingHorizontal="40dp"
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
             <ImageView
+                android:id="@+id/inputBarChevronImageView"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:src="@drawable/ic_keyboard_arrow_left_grey600_24dp"
@@ -65,6 +68,7 @@
                 android:alpha="0.6" />
 
             <TextView
+                android:id="@+id/inputBarSlideToCancelTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"

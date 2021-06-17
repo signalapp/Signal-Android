@@ -32,6 +32,9 @@ class InputBarButton : RelativeLayout {
     private var onDownTimestamp = 0L
 
     var onPress: (() -> Unit)? = null
+    var onMove: ((MotionEvent) -> Unit)? = null
+    var onCancel: ((MotionEvent) -> Unit)? = null
+    var onUp: ((MotionEvent) -> Unit)? = null
     var onLongPress: (() -> Unit)? = null
 
     companion object {
@@ -112,6 +115,7 @@ class InputBarButton : RelativeLayout {
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> onDown(event)
+            MotionEvent.ACTION_MOVE -> onMove(event)
             MotionEvent.ACTION_UP -> onUp(event)
             MotionEvent.ACTION_CANCEL -> onCancel(event)
         }
@@ -132,12 +136,18 @@ class InputBarButton : RelativeLayout {
         onDownTimestamp = Date().time
     }
 
+    private fun onMove(event: MotionEvent) {
+        onMove?.invoke(event)
+    }
+
     private fun onCancel(event: MotionEvent) {
+        onCancel?.invoke(event)
         collapse()
         longPressCallback?.let { gestureHandler.removeCallbacks(it) }
     }
 
     private fun onUp(event: MotionEvent) {
+        onUp?.invoke(event)
         collapse()
         if ((Date().time - onDownTimestamp) < VisibleMessageView.longPressDurationThreshold) {
             longPressCallback?.let { gestureHandler.removeCallbacks(it) }

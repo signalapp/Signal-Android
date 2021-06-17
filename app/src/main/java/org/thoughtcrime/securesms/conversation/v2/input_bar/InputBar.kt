@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.conversation.v2.input_bar
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.widget.RelativeLayout
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_input_bar.view.*
@@ -34,6 +35,9 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate {
         microphoneButton.onLongPress = {
             showVoiceMessageUI()
         }
+        microphoneButton.onMove = { delegate?.onMicrophoneButtonMove(it) }
+        microphoneButton.onCancel = { delegate?.onMicrophoneButtonCancel(it) }
+        microphoneButton.onUp = { delegate?.onMicrophoneButtonUp(it) }
         // Send button
         microphoneOrSendButtonContainer.addView(sendButton)
         sendButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
@@ -69,4 +73,7 @@ interface InputBarDelegate {
 
     fun inputBarHeightChanged(newValue: Int)
     fun showVoiceMessageUI()
+    fun onMicrophoneButtonMove(event: MotionEvent)
+    fun onMicrophoneButtonCancel(event: MotionEvent)
+    fun onMicrophoneButtonUp(event: MotionEvent)
 }

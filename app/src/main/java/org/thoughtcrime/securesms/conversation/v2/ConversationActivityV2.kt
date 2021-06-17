@@ -2,19 +2,23 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
+import android.content.res.Resources
 import android.database.Cursor
 import android.os.Bundle
+import android.util.Log
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
+import android.view.MotionEvent
 import android.widget.RelativeLayout
-import androidx.core.view.isVisible
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
+import kotlinx.android.synthetic.main.activity_conversation_v2.view.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
 import kotlinx.android.synthetic.main.view_input_bar.view.*
+import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -22,8 +26,9 @@ import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCa
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetView
 import org.thoughtcrime.securesms.mms.GlideApp
+import kotlin.math.abs
+import kotlin.math.sqrt
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate {
     private var threadID: Long = -1
@@ -56,6 +61,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private val glide by lazy { GlideApp.with(this) }
+
+    private val screenWidth by lazy {
+        Resources.getSystem().displayMetrics.widthPixels
+    }
 
     // region Settings
     companion object {
@@ -165,6 +174,46 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 actionMode.finish()
                 this.actionMode = null
             }
+        }
+    }
+
+    override fun onMicrophoneButtonMove(event: MotionEvent) {
+        val rawX = event.rawX
+        val chevronImageView = inputBarRecordingView.inputBarChevronImageView
+        val slideToCancelTextView = inputBarRecordingView.inputBarSlideToCancelTextView
+        if (rawX < screenWidth / 2) {
+            val translationX = rawX - screenWidth / 2
+            val sign = -1.0f
+            val chevronDamping = 4.0f
+            val labelDamping = 3.0f
+            val chevronX = (chevronDamping * (sqrt(abs(translationX)) / sqrt(chevronDamping))) * sign
+            val labelX = (labelDamping * (sqrt(abs(translationX)) / sqrt(labelDamping))) * sign
+            chevronImageView.translationX = chevronX
+            slideToCancelTextView.translationX = labelX
+        } else {
+            chevronImageView.translationX = 0.0f
+            slideToCancelTextView.translationX = 0.0f
+        }
+    }
+
+    override fun onMicrophoneButtonCancel(event: MotionEvent) {
+        resetVoiceMessageUI()
+    }
+
+    override fun onMicrophoneButtonUp(event: MotionEvent) {
+        resetVoiceMessageUI()
+    }
+
+    private fun resetVoiceMessageUI() {
+        val chevronImageView = inputBarRecordingView.inputBarChevronImageView
+        val slideToCancelTextView = inputBarRecordingView.inputBarSlideToCancelTextView
+        listOf( chevronImageView, slideToCancelTextView ).forEach { view ->
+            val animation = ValueAnimator.ofObject(FloatEvaluator(), view.translationX, 0.0f)
+            animation.duration = 250L
+            animation.addUpdateListener { animator ->
+                view.translationX = animator.animatedValue as Float
+            }
+            animation.start()
         }
     }
     // endregion
