@@ -23,6 +23,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.StorageAccountRestoreJob;
+import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.pin.PinRestoreRepository.TokenData;
@@ -30,10 +31,13 @@ import org.thoughtcrime.securesms.registration.service.CodeVerificationRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public final class RegistrationLockFragment extends BaseRegistrationFragment {
@@ -310,18 +314,28 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
   private void handleSuccessfulPinEntry() {
     SignalStore.pinValues().setKeyboardType(getPinEntryKeyboardType());
 
-    long startTime = System.currentTimeMillis();
     SimpleTask.run(() -> {
       SignalStore.onboarding().clearAll();
-      return ApplicationDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
-    }, result -> {
-      long elapsedTime = System.currentTimeMillis() - startTime;
 
-      if (result.isPresent()) {
-        Log.i(TAG, "Storage Service account restore completed: " + result.get().name() + ". (Took " + elapsedTime + " ms)");
-      } else {
-        Log.i(TAG, "Storage Service account restore failed to complete in the allotted time. (" + elapsedTime + " ms elapsed)");
+      Stopwatch stopwatch = new Stopwatch("RegistrationLockRestore");
+
+      ApplicationDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
+      stopwatch.split("AccountRestore");
+
+      ApplicationDependencies.getJobManager().runSynchronously(new StorageSyncJob(), TimeUnit.SECONDS.toMillis(10));
+      stopwatch.split("ContactRestore");
+
+      try {
+        FeatureFlags.refreshSync();
+      } catch (IOException e) {
+        Log.w(TAG, "Failed to refresh flags.", e);
       }
+      stopwatch.split("FeatureFlags");
+
+      stopwatch.stop(TAG);
+
+      return null;
+    }, none -> {
       cancelSpinning(pinButton);
       Navigation.findNavController(requireView()).navigate(RegistrationLockFragmentDirections.actionSuccessfulRegistration());
     });

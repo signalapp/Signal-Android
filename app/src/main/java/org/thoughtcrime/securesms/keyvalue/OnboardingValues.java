@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.util.LocaleFeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.Collections;
@@ -69,7 +70,7 @@ public final class OnboardingValues extends SignalStoreValues {
   }
 
   public boolean shouldShowSms(@NonNull Context context) {
-    return getBoolean(SHOW_SMS, false) && !Util.isDefaultSmsProvider(context) && PhoneNumberFormatter.getLocalCountryCode() != 91;
+    return getBoolean(SHOW_SMS, false) && !Util.isDefaultSmsProvider(context) && LocaleFeatureFlags.shouldSuggestSms();
   }
 
   public void setShowAppearance(boolean value) {

@@ -8,11 +8,15 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.mms.PushMediaConstraints;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Provide access to locale specific values within feature flags following the locale CSV-Colon format.
@@ -45,6 +49,16 @@ public final class LocaleFeatureFlags {
     int                  level         = getCountryValue(countryValues, Recipient.self().getE164().or(""), NOT_FOUND);
 
     return Optional.ofNullable(PushMediaConstraints.MediaConfig.forLevel(level));
+  }
+
+  /**
+   * Whether or not you should suggest SMS during onboarding.
+   */
+  public static boolean shouldSuggestSms() {
+    Set<String> blacklist   = new HashSet<>(Arrays.asList(FeatureFlags.suggestSmsBlacklist().split(",")));
+    String      countryCode = String.valueOf(PhoneNumberFormatter.getLocalCountryCode());
+
+    return !blacklist.contains(countryCode);
   }
 
   /**

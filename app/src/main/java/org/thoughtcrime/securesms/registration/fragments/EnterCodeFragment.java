@@ -31,9 +31,12 @@ import org.thoughtcrime.securesms.registration.service.RegistrationCodeRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -128,11 +131,22 @@ public final class EnterCodeFragment extends BaseRegistrationFragment
 
           @Override
           public void onSuccessfulRegistration() {
-            keyboard.displaySuccess().addListener(new AssertedSuccessListener<Boolean>() {
-              @Override
-              public void onSuccess(Boolean result) {
-                handleSuccessfulRegistration();
+            SimpleTask.run(() -> {
+              long startTime = System.currentTimeMillis();
+              try {
+                FeatureFlags.refreshSync();
+                Log.i(TAG, "Took " + (System.currentTimeMillis() - startTime) + " ms to get feature flags.");
+              } catch (IOException e) {
+                Log.w(TAG, "Failed to refresh flags after " + (System.currentTimeMillis() - startTime) + " ms.", e);
               }
+              return null;
+            }, none -> {
+              keyboard.displaySuccess().addListener(new AssertedSuccessListener<Boolean>() {
+                @Override
+                public void onSuccess(Boolean result) {
+                  handleSuccessfulRegistration();
+                }
+              });
             });
           }
 
