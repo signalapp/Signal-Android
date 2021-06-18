@@ -82,7 +82,7 @@ public final class MessageDecryptionUtil {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
         return DecryptionResult.forError(MessageState.INVALID_VERSION, toExceptionMetadata(e), jobs);
 
-      } catch (ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException | ProtocolNoSessionException e) {
+      } catch (ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException | ProtocolNoSessionException | ProtocolInvalidMessageException e) {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
         Recipient sender = Recipient.external(context, e.getSender());
 
@@ -99,7 +99,7 @@ public final class MessageDecryptionUtil {
       } catch (ProtocolDuplicateMessageException e) {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
         return DecryptionResult.forError(MessageState.DUPLICATE_MESSAGE, toExceptionMetadata(e), jobs);
-      } catch (InvalidMetadataVersionException | InvalidMetadataMessageException | ProtocolInvalidMessageException e) {
+      } catch (InvalidMetadataVersionException | InvalidMetadataMessageException e) {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
         return DecryptionResult.forNoop(jobs);
       } catch (SelfSendException e) {
