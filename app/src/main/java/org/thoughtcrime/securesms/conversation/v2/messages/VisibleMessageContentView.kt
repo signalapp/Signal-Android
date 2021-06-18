@@ -11,8 +11,6 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
-import androidx.core.view.setMargins
-import androidx.core.view.setPadding
 import kotlinx.android.synthetic.main.view_visible_message_content.view.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.ThemeUtil
@@ -29,19 +27,11 @@ class VisibleMessageContentView : LinearLayout {
     // TODO: Large emojis
 
     // region Lifecycle
-    constructor(context: Context) : super(context) {
-        setUpViewHierarchy()
-    }
+    constructor(context: Context) : super(context) { initialize() }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize() }
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        setUpViewHierarchy()
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        setUpViewHierarchy()
-    }
-
-    private fun setUpViewHierarchy() {
+    private fun initialize() {
         LayoutInflater.from(context).inflate(R.layout.view_visible_message_content, this)
     }
     // endregion

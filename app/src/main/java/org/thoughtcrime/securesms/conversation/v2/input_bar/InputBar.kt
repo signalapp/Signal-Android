@@ -84,7 +84,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate {
         inputBarAdditionalContentContainer.removeAllViews()
         val quoteView = QuoteView(context)
         inputBarAdditionalContentContainer.addView(quoteView)
-        quoteView.bind("", "", null, message.recipient)
+        quoteView.bind(message.individualRecipient.address.toString(), message.body, null, message.recipient)
         val newHeight = height + quoteView.getIntrinsicHeight()
         setHeight(newHeight)
     }

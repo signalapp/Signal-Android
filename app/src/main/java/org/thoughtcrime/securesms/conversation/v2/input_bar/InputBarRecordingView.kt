@@ -7,7 +7,6 @@ import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
 import androidx.core.content.res.ResourcesCompat
@@ -19,7 +18,6 @@ import org.thoughtcrime.securesms.loki.utilities.disableClipping
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.util.DateUtils
 import java.util.*
-import kotlin.math.roundToLong
 
 class InputBarRecordingView : RelativeLayout {
     private var startTimestamp = 0L
@@ -71,7 +69,7 @@ class InputBarRecordingView : RelativeLayout {
             }
         }
         animation.start()
-        delegate?.handleInputBarRecordingViewHidden()
+        delegate?.handleVoiceMessageUIHidden()
     }
 
     private fun animateDotView() {
@@ -141,5 +139,5 @@ class InputBarRecordingView : RelativeLayout {
 
 interface InputBarRecordingViewDelegate {
 
-    fun handleInputBarRecordingViewHidden()
+    fun handleVoiceMessageUIHidden()
 }

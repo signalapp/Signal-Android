@@ -53,17 +53,9 @@ class VisibleMessageView : LinearLayout {
     }
 
     // region Lifecycle
-    constructor(context: Context) : super(context) {
-        initialize()
-    }
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        initialize()
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        initialize()
-    }
+    constructor(context: Context) : super(context) { initialize() }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize() }
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
 
     private fun initialize() {
         LayoutInflater.from(context).inflate(R.layout.view_visible_message, this)

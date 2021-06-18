@@ -38,7 +38,7 @@ import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate, InputBarRecordingViewDelegate {
-    private val lockViewHitMargin by lazy { toPx(40, resources) }
+    private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private var threadID: Long = -1
     private var actionMode: ActionMode? = null
     private var isLockViewExpanded = false
@@ -72,9 +72,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private val glide by lazy { GlideApp.with(this) }
-
-    private val screenWidth by lazy { Resources.getSystem().displayMetrics.widthPixels }
-
+    private val lockViewHitMargin by lazy { toPx(40, resources) }
     private val gifButton by lazy { InputBarButton(this, R.drawable.ic_gif_white_24dp, hasOpaqueBackground = true, isGIFButton = true) }
     private val documentButton by lazy { InputBarButton(this, R.drawable.ic_document_small_dark, hasOpaqueBackground = true) }
     private val libraryButton by lazy { InputBarButton(this, R.drawable.ic_baseline_photo_library_24, hasOpaqueBackground = true) }
@@ -150,7 +148,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
     // endregion
 
-    // region Updating
+    // region Updating & Animation
     override fun inputBarHeightChanged(newValue: Int) {
         // Recycler view
         val recyclerViewLayoutParams = conversationRecyclerView.layoutParams as RelativeLayout.LayoutParams
@@ -170,7 +168,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun inputBarEditTextContentChanged(newContent: CharSequence) {
-        // TODO: Work this out further
+        // TODO: Implement the full mention show/hide logic
         if (newContent.contains("@")) {
             showMentionCandidates()
         } else {
@@ -235,7 +233,41 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         animation.start()
     }
 
-    override fun handleInputBarRecordingViewHidden() {
+    private fun expandVoiceMessageLockView() {
+        val animation = ValueAnimator.ofObject(FloatEvaluator(), lockView.scaleX, 1.10f)
+        animation.duration = 250L
+        animation.addUpdateListener { animator ->
+            lockView.scaleX = animator.animatedValue as Float
+            lockView.scaleY = animator.animatedValue as Float
+        }
+        animation.start()
+    }
+
+    private fun collapseVoiceMessageLockView() {
+        val animation = ValueAnimator.ofObject(FloatEvaluator(), lockView.scaleX, 1.0f)
+        animation.duration = 250L
+        animation.addUpdateListener { animator ->
+            lockView.scaleX = animator.animatedValue as Float
+            lockView.scaleY = animator.animatedValue as Float
+        }
+        animation.start()
+    }
+
+    private fun hideVoiceMessageUI() {
+        val chevronImageView = inputBarRecordingView.inputBarChevronImageView
+        val slideToCancelTextView = inputBarRecordingView.inputBarSlideToCancelTextView
+        listOf( chevronImageView, slideToCancelTextView ).forEach { view ->
+            val animation = ValueAnimator.ofObject(FloatEvaluator(), view.translationX, 0.0f)
+            animation.duration = 250L
+            animation.addUpdateListener { animator ->
+                view.translationX = animator.animatedValue as Float
+            }
+            animation.start()
+        }
+        inputBarRecordingView.hide()
+    }
+
+    override fun handleVoiceMessageUIHidden() {
         inputBar.alpha = 1.0f
         val animation = ValueAnimator.ofObject(FloatEvaluator(), 0.0f, 1.0f)
         animation.duration = 250L
@@ -311,14 +343,26 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         }
         if (isValidLockViewLocation(event.rawX.roundToInt(), event.rawY.roundToInt())) {
             if (!isLockViewExpanded) {
-                expandLockView()
+                expandVoiceMessageLockView()
                 isLockViewExpanded = true
             }
         } else {
             if (isLockViewExpanded) {
-                collapseLockView()
+                collapseVoiceMessageLockView()
                 isLockViewExpanded = false
             }
+        }
+    }
+
+    override fun onMicrophoneButtonCancel(event: MotionEvent) {
+        hideVoiceMessageUI()
+    }
+
+    override fun onMicrophoneButtonUp(event: MotionEvent) {
+        if (isValidLockViewLocation(event.rawX.roundToInt(), event.rawY.roundToInt())) {
+            inputBarRecordingView.lock()
+        } else {
+            hideVoiceMessageUI()
         }
     }
 
@@ -328,52 +372,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val hitRect = Rect(lockViewLocation[0] - lockViewHitMargin, 0,
             lockViewLocation[0] + lockView.width + lockViewHitMargin, lockViewLocation[1] + lockView.height)
         return hitRect.contains(x, y)
-    }
-
-    private fun expandLockView() {
-        val animation = ValueAnimator.ofObject(FloatEvaluator(), lockView.scaleX, 1.10f)
-        animation.duration = 250L
-        animation.addUpdateListener { animator ->
-            lockView.scaleX = animator.animatedValue as Float
-            lockView.scaleY = animator.animatedValue as Float
-        }
-        animation.start()
-    }
-
-    private fun collapseLockView() {
-        val animation = ValueAnimator.ofObject(FloatEvaluator(), lockView.scaleX, 1.0f)
-        animation.duration = 250L
-        animation.addUpdateListener { animator ->
-            lockView.scaleX = animator.animatedValue as Float
-            lockView.scaleY = animator.animatedValue as Float
-        }
-        animation.start()
-    }
-
-    override fun onMicrophoneButtonCancel(event: MotionEvent) {
-        resetVoiceMessageUI()
-    }
-
-    override fun onMicrophoneButtonUp(event: MotionEvent) {
-        if (isValidLockViewLocation(event.rawX.roundToInt(), event.rawY.roundToInt())) {
-            inputBarRecordingView.lock()
-        } else {
-            resetVoiceMessageUI()
-        }
-    }
-
-    private fun resetVoiceMessageUI() {
-        val chevronImageView = inputBarRecordingView.inputBarChevronImageView
-        val slideToCancelTextView = inputBarRecordingView.inputBarSlideToCancelTextView
-        listOf( chevronImageView, slideToCancelTextView ).forEach { view ->
-            val animation = ValueAnimator.ofObject(FloatEvaluator(), view.translationX, 0.0f)
-            animation.duration = 250L
-            animation.addUpdateListener { animator ->
-                view.translationX = animator.animatedValue as Float
-            }
-            animation.start()
-        }
-        inputBarRecordingView.hide()
     }
     // endregion
 }
