@@ -10,12 +10,14 @@ import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_input_bar.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.conversation.v2.messages.QuoteView
+import org.thoughtcrime.securesms.conversation.v2.messages.QuoteViewDelegate
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.loki.utilities.toDp
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import kotlin.math.max
 
-class InputBar : RelativeLayout, InputBarEditTextDelegate {
+class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
+    private val vMargin by lazy { toDp(4, resources) }
     var delegate: InputBarDelegate? = null
 
     private val attachmentsButton by lazy { InputBarButton(context, R.drawable.ic_plus_24) }
@@ -67,8 +69,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate {
     }
 
     override fun inputBarEditTextHeightChanged(newValue: Int) {
-        val vMargin = toDp(4, resources)
-        val newHeight = max(newValue + 2 * vMargin + inputBarAdditionalContentContainer.height, toPx(56, resources))
+        val newHeight = max(newValue + 2 * vMargin, toPx(56, resources)) + inputBarAdditionalContentContainer.height
         setHeight(newHeight)
     }
 
@@ -83,9 +84,16 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate {
     fun draftQuote(message: MessageRecord) {
         inputBarAdditionalContentContainer.removeAllViews()
         val quoteView = QuoteView(context)
+        quoteView.delegate = this
         inputBarAdditionalContentContainer.addView(quoteView)
         quoteView.bind(message.individualRecipient.address.toString(), message.body, null, message.recipient)
-        val newHeight = height + quoteView.getIntrinsicHeight()
+        val newHeight = max(inputBarEditText.height + 2 * vMargin, toPx(56, resources)) + quoteView.getIntrinsicHeight()
+        setHeight(newHeight)
+    }
+
+    override fun cancelQuoteDraft() {
+        inputBarAdditionalContentContainer.removeAllViews()
+        val newHeight = max(inputBarEditText.height + 2 * vMargin, toPx(56, resources))
         setHeight(newHeight)
     }
     // endregion

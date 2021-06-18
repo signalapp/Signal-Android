@@ -22,6 +22,7 @@ import kotlin.math.min
 class QuoteView : LinearLayout {
     private val screenWidth by lazy { Resources.getSystem().displayMetrics.widthPixels }
     private val vPadding by lazy { toPx(6, resources) }
+    var delegate: QuoteViewDelegate? = null
 
     enum class Mode { Regular, Draft }
 
@@ -32,6 +33,7 @@ class QuoteView : LinearLayout {
 
     private fun initialize() {
         LayoutInflater.from(context).inflate(R.layout.view_quote, this)
+        quoteViewCancelButton.setOnClickListener { delegate?.cancelQuoteDraft() }
     }
     // endregion
 
@@ -75,4 +77,9 @@ class QuoteView : LinearLayout {
         quoteViewAccentLine.layoutParams = accentLineLayoutParams
     }
     // endregion
+}
+
+interface QuoteViewDelegate {
+
+    fun cancelQuoteDraft()
 }
