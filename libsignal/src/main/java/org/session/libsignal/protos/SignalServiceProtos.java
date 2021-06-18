@@ -14104,6 +14104,16 @@ public final class SignalServiceProtos {
        * <code>repeated bytes admins = 5;</code>
        */
       com.google.protobuf.ByteString getAdmins(int index);
+
+      // optional uint32 expireTimer = 6;
+      /**
+       * <code>optional uint32 expireTimer = 6;</code>
+       */
+      boolean hasExpireTimer();
+      /**
+       * <code>optional uint32 expireTimer = 6;</code>
+       */
+      int getExpireTimer();
     }
     /**
      * Protobuf type {@code signalservice.ConfigurationMessage.ClosedGroup}
@@ -14193,6 +14203,11 @@ public final class SignalServiceProtos {
                   mutable_bitField0_ |= 0x00000010;
                 }
                 admins_.add(input.readBytes());
+                break;
+              }
+              case 48: {
+                bitField0_ |= 0x00000008;
+                expireTimer_ = input.readUInt32();
                 break;
               }
             }
@@ -14368,12 +14383,29 @@ public final class SignalServiceProtos {
         return admins_.get(index);
       }
 
+      // optional uint32 expireTimer = 6;
+      public static final int EXPIRETIMER_FIELD_NUMBER = 6;
+      private int expireTimer_;
+      /**
+       * <code>optional uint32 expireTimer = 6;</code>
+       */
+      public boolean hasExpireTimer() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional uint32 expireTimer = 6;</code>
+       */
+      public int getExpireTimer() {
+        return expireTimer_;
+      }
+
       private void initFields() {
         publicKey_ = com.google.protobuf.ByteString.EMPTY;
         name_ = "";
         encryptionKeyPair_ = org.session.libsignal.protos.SignalServiceProtos.KeyPair.getDefaultInstance();
         members_ = java.util.Collections.emptyList();
         admins_ = java.util.Collections.emptyList();
+        expireTimer_ = 0;
       }
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
@@ -14407,6 +14439,9 @@ public final class SignalServiceProtos {
         }
         for (int i = 0; i < admins_.size(); i++) {
           output.writeBytes(5, admins_.get(i));
+        }
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          output.writeUInt32(6, expireTimer_);
         }
         getUnknownFields().writeTo(output);
       }
@@ -14446,6 +14481,10 @@ public final class SignalServiceProtos {
           }
           size += dataSize;
           size += 1 * getAdminsList().size();
+        }
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeUInt32Size(6, expireTimer_);
         }
         size += getUnknownFields().getSerializedSize();
         memoizedSerializedSize = size;
@@ -14578,6 +14617,8 @@ public final class SignalServiceProtos {
           bitField0_ = (bitField0_ & ~0x00000008);
           admins_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000010);
+          expireTimer_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000020);
           return this;
         }
 
@@ -14632,6 +14673,10 @@ public final class SignalServiceProtos {
             bitField0_ = (bitField0_ & ~0x00000010);
           }
           result.admins_ = admins_;
+          if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+            to_bitField0_ |= 0x00000008;
+          }
+          result.expireTimer_ = expireTimer_;
           result.bitField0_ = to_bitField0_;
           onBuilt();
           return result;
@@ -14678,6 +14723,9 @@ public final class SignalServiceProtos {
               admins_.addAll(other.admins_);
             }
             onChanged();
+          }
+          if (other.hasExpireTimer()) {
+            setExpireTimer(other.getExpireTimer());
           }
           this.mergeUnknownFields(other.getUnknownFields());
           return this;
@@ -15079,6 +15127,39 @@ public final class SignalServiceProtos {
         public Builder clearAdmins() {
           admins_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000010);
+          onChanged();
+          return this;
+        }
+
+        // optional uint32 expireTimer = 6;
+        private int expireTimer_ ;
+        /**
+         * <code>optional uint32 expireTimer = 6;</code>
+         */
+        public boolean hasExpireTimer() {
+          return ((bitField0_ & 0x00000020) == 0x00000020);
+        }
+        /**
+         * <code>optional uint32 expireTimer = 6;</code>
+         */
+        public int getExpireTimer() {
+          return expireTimer_;
+        }
+        /**
+         * <code>optional uint32 expireTimer = 6;</code>
+         */
+        public Builder setExpireTimer(int value) {
+          bitField0_ |= 0x00000020;
+          expireTimer_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional uint32 expireTimer = 6;</code>
+         */
+        public Builder clearExpireTimer() {
+          bitField0_ = (bitField0_ & ~0x00000020);
+          expireTimer_ = 0;
           onChanged();
           return this;
         }
@@ -21328,35 +21409,36 @@ public final class SignalServiceProtos {
       "NEW\020\001\022\027\n\023ENCRYPTION_KEY_PAIR\020\003\022\017\n\013NAME_C" +
       "HANGE\020\004\022\021\n\rMEMBERS_ADDED\020\005\022\023\n\017MEMBERS_RE",
       "MOVED\020\006\022\017\n\013MEMBER_LEFT\020\007\"$\n\005Flags\022\033\n\027EXP" +
-      "IRATION_TIMER_UPDATE\020\002\"\316\003\n\024Configuration" +
+      "IRATION_TIMER_UPDATE\020\002\"\343\003\n\024Configuration" +
       "Message\022E\n\014closedGroups\030\001 \003(\0132/.signalse" +
       "rvice.ConfigurationMessage.ClosedGroup\022\022" +
       "\n\nopenGroups\030\002 \003(\t\022\023\n\013displayName\030\003 \001(\t\022" +
       "\026\n\016profilePicture\030\004 \001(\t\022\022\n\nprofileKey\030\005 " +
       "\001(\014\022=\n\010contacts\030\006 \003(\0132+.signalservice.Co" +
-      "nfigurationMessage.Contact\032\202\001\n\013ClosedGro" +
+      "nfigurationMessage.Contact\032\227\001\n\013ClosedGro" +
       "up\022\021\n\tpublicKey\030\001 \001(\014\022\014\n\004name\030\002 \001(\t\0221\n\021e" +
       "ncryptionKeyPair\030\003 \001(\0132\026.signalservice.K",
-      "eyPair\022\017\n\007members\030\004 \003(\014\022\016\n\006admins\030\005 \003(\014\032" +
-      "V\n\007Contact\022\021\n\tpublicKey\030\001 \002(\014\022\014\n\004name\030\002 " +
-      "\002(\t\022\026\n\016profilePicture\030\003 \001(\t\022\022\n\nprofileKe" +
-      "y\030\004 \001(\014\"u\n\016ReceiptMessage\0220\n\004type\030\001 \002(\0162" +
-      "\".signalservice.ReceiptMessage.Type\022\021\n\tt" +
-      "imestamp\030\002 \003(\004\"\036\n\004Type\022\014\n\010DELIVERY\020\000\022\010\n\004" +
-      "READ\020\001\"\354\001\n\021AttachmentPointer\022\n\n\002id\030\001 \002(\006" +
-      "\022\023\n\013contentType\030\002 \001(\t\022\013\n\003key\030\003 \001(\014\022\014\n\004si" +
-      "ze\030\004 \001(\r\022\021\n\tthumbnail\030\005 \001(\014\022\016\n\006digest\030\006 " +
-      "\001(\014\022\020\n\010fileName\030\007 \001(\t\022\r\n\005flags\030\010 \001(\r\022\r\n\005",
-      "width\030\t \001(\r\022\016\n\006height\030\n \001(\r\022\017\n\007caption\030\013" +
-      " \001(\t\022\013\n\003url\030e \001(\t\"\032\n\005Flags\022\021\n\rVOICE_MESS" +
-      "AGE\020\001\"\365\001\n\014GroupContext\022\n\n\002id\030\001 \001(\014\022.\n\004ty" +
-      "pe\030\002 \001(\0162 .signalservice.GroupContext.Ty" +
-      "pe\022\014\n\004name\030\003 \001(\t\022\017\n\007members\030\004 \003(\t\0220\n\006ava" +
-      "tar\030\005 \001(\0132 .signalservice.AttachmentPoin" +
-      "ter\022\016\n\006admins\030\006 \003(\t\"H\n\004Type\022\013\n\007UNKNOWN\020\000" +
-      "\022\n\n\006UPDATE\020\001\022\013\n\007DELIVER\020\002\022\010\n\004QUIT\020\003\022\020\n\014R" +
-      "EQUEST_INFO\020\004B3\n\034org.session.libsignal.p" +
-      "rotosB\023SignalServiceProtos"
+      "eyPair\022\017\n\007members\030\004 \003(\014\022\016\n\006admins\030\005 \003(\014\022" +
+      "\023\n\013expireTimer\030\006 \001(\r\032V\n\007Contact\022\021\n\tpubli" +
+      "cKey\030\001 \002(\014\022\014\n\004name\030\002 \002(\t\022\026\n\016profilePictu" +
+      "re\030\003 \001(\t\022\022\n\nprofileKey\030\004 \001(\014\"u\n\016ReceiptM" +
+      "essage\0220\n\004type\030\001 \002(\0162\".signalservice.Rec" +
+      "eiptMessage.Type\022\021\n\ttimestamp\030\002 \003(\004\"\036\n\004T" +
+      "ype\022\014\n\010DELIVERY\020\000\022\010\n\004READ\020\001\"\354\001\n\021Attachme" +
+      "ntPointer\022\n\n\002id\030\001 \002(\006\022\023\n\013contentType\030\002 \001" +
+      "(\t\022\013\n\003key\030\003 \001(\014\022\014\n\004size\030\004 \001(\r\022\021\n\tthumbna" +
+      "il\030\005 \001(\014\022\016\n\006digest\030\006 \001(\014\022\020\n\010fileName\030\007 \001",
+      "(\t\022\r\n\005flags\030\010 \001(\r\022\r\n\005width\030\t \001(\r\022\016\n\006heig" +
+      "ht\030\n \001(\r\022\017\n\007caption\030\013 \001(\t\022\013\n\003url\030e \001(\t\"\032" +
+      "\n\005Flags\022\021\n\rVOICE_MESSAGE\020\001\"\365\001\n\014GroupCont" +
+      "ext\022\n\n\002id\030\001 \001(\014\022.\n\004type\030\002 \001(\0162 .signalse" +
+      "rvice.GroupContext.Type\022\014\n\004name\030\003 \001(\t\022\017\n" +
+      "\007members\030\004 \003(\t\0220\n\006avatar\030\005 \001(\0132 .signals" +
+      "ervice.AttachmentPointer\022\016\n\006admins\030\006 \003(\t" +
+      "\"H\n\004Type\022\013\n\007UNKNOWN\020\000\022\n\n\006UPDATE\020\001\022\013\n\007DEL" +
+      "IVER\020\002\022\010\n\004QUIT\020\003\022\020\n\014REQUEST_INFO\020\004B3\n\034or" +
+      "g.session.libsignal.protosB\023SignalServic",
+      "eProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -21452,7 +21534,7 @@ public final class SignalServiceProtos {
           internal_static_signalservice_ConfigurationMessage_ClosedGroup_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_ConfigurationMessage_ClosedGroup_descriptor,
-              new java.lang.String[] { "PublicKey", "Name", "EncryptionKeyPair", "Members", "Admins", });
+              new java.lang.String[] { "PublicKey", "Name", "EncryptionKeyPair", "Members", "Admins", "ExpireTimer", });
           internal_static_signalservice_ConfigurationMessage_Contact_descriptor =
             internal_static_signalservice_ConfigurationMessage_descriptor.getNestedTypes().get(1);
           internal_static_signalservice_ConfigurationMessage_Contact_fieldAccessorTable = new

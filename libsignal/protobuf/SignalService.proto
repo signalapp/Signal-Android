@@ -161,6 +161,7 @@ message ConfigurationMessage {
     optional KeyPair encryptionKeyPair = 3;
     repeated bytes   members           = 4;
     repeated bytes   admins            = 5;
+    optional uint32  expireTimer       = 6;
   }
 
   message Contact {
