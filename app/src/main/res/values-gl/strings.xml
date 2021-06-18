@@ -1171,6 +1171,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifica para seguir conversando</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Axuda a previr o spam en Signal, por favor completa a verificación.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Tras verificar poderás seguir conversando. Tódalas mensaxes en pausa serán enviadas automáticamente.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Ti</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>

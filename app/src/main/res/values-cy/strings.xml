@@ -1294,6 +1294,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Gwiriwch i barhau sgwrsio</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">I helpu atal sothach ar Signal cwblhewch gwirio os gwelwch yn dda.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Ar ôl gwirio, gallwch barhau i sgwrsio. Bydd unrhyw negeseuon sydd wedi\'u oedi yn cael eu hanfon yn awtomatig.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Chi</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Rhwystro</string>
   <string name="RecipientPreferenceActivity_unblock">Dadrwystro</string>

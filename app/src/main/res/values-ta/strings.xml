@@ -1153,6 +1153,8 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">நீங்கள்</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <!--Recipient-->
+  <string name="Recipient_you">நீங்கள்</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">தடு</string>
   <string name="RecipientPreferenceActivity_unblock">தடுப்புநீக்க</string>

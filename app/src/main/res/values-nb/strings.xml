@@ -1168,6 +1168,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifiser for å fortsette å sende meldinger</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">For å hindre søppelpost på Signal ber vi deg fullføre verifiseringen.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Etter verifisering kan du fortsette med meldingene. Meldinger satt på pause vil automatisk bli sendt.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Deg</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokker</string>
   <string name="RecipientPreferenceActivity_unblock">Fjern blokkering</string>

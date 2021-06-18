@@ -926,6 +926,8 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">ਤੁਸੀਂ</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <!--Recipient-->
+  <string name="Recipient_you">ਤੁਸੀਂ</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ਬਲਾਕ</string>
   <string name="RecipientPreferenceActivity_unblock">ਅਨਬਲੌਕ ਕਰੋ</string>

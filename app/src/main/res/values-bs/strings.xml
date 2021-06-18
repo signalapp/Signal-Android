@@ -908,6 +908,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Unesite opis…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Prilog je uklonjen jer prekoračuje ograničenje veličine</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Prilog je uklonjen jer je nepoznate vrste</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Prilog je uklonjen jer prekoračuje ograničenje veličine ili je nepoznate vrste</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera je nedostupna.</string>
   <string name="MediaSendActivity_message_to_s">Poruka za %s</string>
   <string name="MediaSendActivity_message">Poruka</string>
@@ -1234,6 +1236,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Potvrdite da biste nastavili slanje poruka</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Radi sprečavanja neželjenih poruka na Signalu, molimo dovršite proces verifikacije.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Nakon verifikacije, možete nastaviti sa slanjem poruka. Pauzirane poruke automatski će se poslati.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Vi</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokiraj</string>
   <string name="RecipientPreferenceActivity_unblock">Deblokiraj</string>

@@ -1288,6 +1288,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Za nadaljevanje sporočanja se verificirajte</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Da bi preprečili nezaželeno pošto, prosimo dokončajte postopek verifikacije.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Po dokončanem postopku verifikacije lahko nadaljujete s sporočanjem. Vsa ustavljena sporočila bodo avtomatično poslana.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Vi</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokiraj</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokiraj</string>

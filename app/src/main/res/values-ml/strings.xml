@@ -1164,6 +1164,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">സന്ദേശ വിനിമയം തുടരാൻ പരിശോധിക്കുക</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal-ലെ സ്പാം തടയാൻ സഹായിക്കുന്നതിന്, ദയവായി പരിശോധന പൂർത്തിയാക്കുക.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">പരിശോധിച്ചുറപ്പിച്ച ശേഷം, നിങ്ങൾക്ക് സന്ദേശ വിനിമയം തുടരാം. താൽ‌ക്കാലികമായി നിർത്തിയ ഏതെങ്കിലും സന്ദേശങ്ങള്‍ സ്വപ്രേരിതമായി അയയ്‌ക്കും.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">നിങ്ങൾ</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">തടയുക</string>
   <string name="RecipientPreferenceActivity_unblock">തടഞ്ഞത് മാറ്റുക</string>

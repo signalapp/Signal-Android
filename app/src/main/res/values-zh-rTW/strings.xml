@@ -822,6 +822,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">新增標題…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">一個項目因為超過容量的限制而被移除</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">刪除了一個項目，因為它的類型未知</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">項目因超出大小限制或類型未知而被刪除</string>
   <string name="MediaSendActivity_camera_unavailable">相機無法使用。</string>
   <string name="MediaSendActivity_message_to_s">傳訊息給 %s</string>
   <string name="MediaSendActivity_message">訊息</string>
@@ -1117,6 +1119,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">驗證以繼續傳送訊息</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">為了協助防止Signal上的垃圾訊息，請完成驗證。</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">驗證後，你可以繼續進行訊息傳送。 任何暫停的訊息將自動傳送。</string>
+  <!--Recipient-->
+  <string name="Recipient_you">你</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">封鎖</string>
   <string name="RecipientPreferenceActivity_unblock">解除封鎖</string>

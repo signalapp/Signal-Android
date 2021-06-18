@@ -865,6 +865,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">افزودن یک زیرنویس…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">یک مورد به دلیل عدم رعایت محدودیت اندازه حذف شد</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">یک مورد به دلیل داشتن یک نوع ناشناخته حذف شد</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">یک مورد به دلیل عدم رعایت محدودیت اندازه یا داشتن نوع ناشناخته حذف شد</string>
   <string name="MediaSendActivity_camera_unavailable">دوربین در دسترس نیست.</string>
   <string name="MediaSendActivity_message_to_s">پیام به %s </string>
   <string name="MediaSendActivity_message">پیام</string>
@@ -1176,6 +1178,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">برای ادامهٔ پیام‌‌رسانی وارسی کنید</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">برای کمک به جلوگیری از هرزنگاری یا اسپم در سیگنال، لطفاً وارسی را کامل کنید.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">پس از وارسی کردن، می‌توانید به پیام‌رسانی ادامه دهید. هر پیام متوقف شده‌ای به صورت خودکار ارسال خواهد شد.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">شما</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">مسدود کردن</string>
   <string name="RecipientPreferenceActivity_unblock">رفع مسدودیت</string>

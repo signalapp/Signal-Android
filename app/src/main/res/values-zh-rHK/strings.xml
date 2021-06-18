@@ -1118,6 +1118,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">驗證以繼續傳訊</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">為協助防範 Signal 垃圾訊息，請先完成驗證。</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">完成驗證後，您將可繼續傳訊。暫止的訊息將會自動傳送。</string>
+  <!--Recipient-->
+  <string name="Recipient_you">您</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">封鎖</string>
   <string name="RecipientPreferenceActivity_unblock">解除封鎖</string>
@@ -1865,6 +1867,13 @@
   <string name="preferences__advanced">複雜設定</string>
   <string name="preferences__donate_to_signal">捐款給 Signal</string>
   <string name="preferences__privacy">私隱</string>
+  <string name="preferences__mms_user_agent">MMS 使用者代理</string>
+  <string name="preferences__advanced_mms_access_point_names">手動 MMS 設定</string>
+  <string name="preferences__mmsc_url">MMSC URL</string>
+  <string name="preferences__mms_proxy_host">MMS 代理伺服器主機</string>
+  <string name="preferences__mms_proxy_port">MMS 代理伺服器連接埠</string>
+  <string name="preferences__mmsc_username">MMSC 使用者名稱</string>
+  <string name="preferences__mmsc_password">MMSC 密碼</string>
   <string name="preferences__data_and_storage">數據與儲存空間</string>
   <string name="preferences__storage">儲存空間</string>
   <string name="preferences__payments">付款</string>
@@ -1896,6 +1905,7 @@
   <string name="preferences_chats__message_history">訊息歷程記錄</string>
   <string name="preferences_storage__storage_usage">儲存空間用量</string>
   <string name="preferences_storage__photos">相片</string>
+  <string name="preferences_storage__videos">影片</string>
   <string name="preferences_storage__files">檔案</string>
   <string name="preferences_storage__audio">音訊</string>
   <string name="preferences_storage__delete_older_messages">要刪除較舊的訊息嗎？</string>
@@ -1930,7 +1940,10 @@
   <string name="preferences_notifications__show">展示</string>
   <string name="preferences_notifications__calls">通話</string>
   <string name="preferences_notifications__ringtone">鈴聲</string>
+  <string name="preferences_chats__message_text_size">訊息字型大小</string>
   <string name="preferences_events__contact_joined_signal">聯絡人已加入 Signal</string>
+  <string name="preferences_notifications__priority">優先順序</string>
+  <string name="preferences_communication__category_sealed_sender">密封寄件人</string>
   <string name="preferences_communication__sealed_sender_learn_more">了解更多</string>
   <string name="preferences_setup_a_username">設立一個使用者名稱</string>
   <string name="preferences_proxy">代理伺服器</string>
@@ -2077,6 +2090,7 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
+  <string name="contact_selection_list__unknown_contact">撰寫新訊息給…</string>
   <string name="contact_selection_list__unknown_contact_block">封鎖使用者</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">新增至群組</string>
   <!--conversation_callable_insecure-->
@@ -2092,6 +2106,7 @@
   <string name="conversation_context__menu_resend_message">重新傳送訊息</string>
   <string name="conversation_context__menu_reply_to_message">回覆訊息</string>
   <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">選取多個項目</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">儲存附件</string>
   <!--conversation_expiring_off-->
@@ -2100,18 +2115,25 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">邀請</string>
   <!--conversation_list_batch-->
+  <string name="conversation_list_batch__menu_delete_selected">刪除已選</string>
   <string name="conversation_list_batch__menu_pin_selected">釘選已選</string>
   <string name="conversation_list_batch__menu_unpin_selected">取消釘選已選</string>
   <string name="conversation_list_batch__menu_select_all">全選</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">封存已選</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">解除封存已選</string>
   <string name="conversation_list_batch__menu_mark_as_read">標記為已讀</string>
   <string name="conversation_list_batch__menu_mark_as_unread">標記為未讀</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">設定捷徑</string>
   <string name="conversation_list_search_description">搜尋</string>
   <string name="conversation_list__pinned">已釘選</string>
   <string name="conversation_list__chats">聊天</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">您僅可釘選最多 %1$d 個聊天</string>
   <!--conversation_list_item_view-->
+  <string name="conversation_list_item_view__contact_photo_image">聯絡人照片影像</string>
+  <string name="conversation_list_item_view__archived">已封存</string>
   <!--conversation_list_fragment-->
+  <string name="conversation_list_fragment__fab_content_description">新的對話</string>
   <string name="conversation_list_fragment__open_camera_description">開啟相機</string>
   <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">未有任何聊天。\n找個好友傳訊以開始使用。</string>
   <!--conversation_secure_verified-->
@@ -2124,6 +2146,7 @@
   <string name="conversation__menu_group_settings">群組設定</string>
   <string name="conversation__menu_leave_group">退出群組</string>
   <string name="conversation__menu_view_all_media">所有媒體</string>
+  <string name="conversation__menu_conversation_settings">對話設定</string>
   <string name="conversation__menu_add_shortcut">新增至主畫面</string>
   <string name="conversation__menu_create_bubble">建立氣泡</string>
   <!--conversation_popup-->
@@ -2132,6 +2155,8 @@
   <string name="conversation_add_to_contacts__menu_add_to_contacts">新增至通訊錄</string>
   <!--conversation_group_options-->
   <string name="convesation_group_options__recipients_list">收件人清單</string>
+  <string name="conversation_group_options__conversation">對話</string>
+  <string name="conversation_group_options__broadcast">廣播</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_group">建立新群組</string>
   <string name="text_secure_normal__menu_settings">設定</string>
@@ -2140,7 +2165,13 @@
   <string name="text_secure_normal__invite_friends">邀請好友</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">複製至剪貼簿</string>
+  <string name="verify_display_fragment_context_menu__compare_with_clipboard">與剪貼簿比對</string>
   <!--reminder_header-->
+  <string name="reminder_header_sms_import_title">匯入系統短訊</string>
+  <string name="reminder_header_sms_import_text">輕觸以複製您電話中的短訊訊息到 Signal 的加密資料庫。</string>
+  <string name="reminder_header_push_title">啟用 Signal 訊息與通話</string>
+  <string name="reminder_header_push_text">讓您的通訊體驗更上一層樓。</string>
+  <string name="reminder_header_service_outage_text">Signal 出現技術問題。我們正努力搶修，儘快回復服務。</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">儲存</string>
@@ -2154,6 +2185,8 @@
   <!--redphone_audio_popup_menu-->
   <!--Insights-->
   <string name="Insights__percent">%</string>
+  <string name="InsightsDashboardFragment__not_enough_data">資料不足</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">開展一個對話</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">邀請更多聯絡人加入 Signal，以開始安全的溝通，並啟用嶄新的功能，超越未經加密短訊訊息的侷限。</string>
   <string name="InsightsDashboardFragment__cancel">取消</string>
   <string name="InsightsDashboardFragment__send">傳送</string>
@@ -2248,10 +2281,17 @@
   <string name="ResearchMegaphoneDialog_take_the_survey">參與問卷</string>
   <string name="ResearchMegaphoneDialog_no_thanks">不用了，謝謝</string>
   <!--transport_selection_list_item-->
+  <string name="transport_selection_list_item__transport_icon">運輸圖示</string>
   <string name="ConversationListFragment_loading">正在載入…</string>
   <string name="CallNotificationBuilder_connecting">正在連線……</string>
+  <string name="Permissions_permission_required">須要權限</string>
   <string name="Permissions_continue">請繼續</string>
   <string name="Permissions_not_now">現在不要</string>
+  <string name="conversation_activity__enable_signal_messages">啟用 SIGNAL 訊息</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">正在遷移 Signal 資料庫</string>
+  <string name="PushDecryptJob_new_locked_message">新的訊息已鎖定</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">解除鎖定以檢視佇列中訊息</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">備份密碼</string>
   <string name="backup_enable_dialog__folder">資料夾</string>
   <string name="registration_activity__restore_backup">備份還原</string>
   <string name="registration_activity__transfer_or_restore_account">轉移或還原帳號</string>
@@ -2277,11 +2317,13 @@
   <string name="BackupDialog_copied_to_clipboard">已複製至剪貼簿</string>
   <string name="BackupDialog_no_file_picker_available">無任何檔案挑選器可用。</string>
   <string name="BackupDialog_verify">驗證</string>
+  <string name="LocalBackupJob_creating_backup">正在建立備份…</string>
   <string name="LocalBackupJobApi29_backup_failed">備份失敗</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">您的備份目錄已被刪除或移動。</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">您的備份檔太大，無法在此磁碟機中儲存。</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">空間不足，無法儲存您的備份。</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">輕觸以管理備份。</string>
+  <string name="ProgressPreference_d_messages_so_far">目前為止 %d 則訊息</string>
   <string name="RegistrationActivity_wrong_number">號碼錯誤</string>
   <string name="RegistrationActivity_call_me_instead_available_in">請致電給我 \n （將於%1$02d：%2$02d 內可行）</string>
   <string name="RegistrationActivity_contact_signal_support">聯絡 Signal 支援</string>
@@ -2295,6 +2337,7 @@
   <string name="PhoneNumberPrivacy_nobody">沒有人</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">您的電話號碼將會給所有您傳訊的人和群組看見。</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">任何人只要在通訊錄中有您的電話號碼，將會在 Signal 中看見您是其中一個聯絡人。其他人將可在搜尋中找到您。</string>
+  <string name="preferences_app_protection__screen_lock">畫面鎖定</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN 碼</string>
   <string name="preferences_app_protection__create_a_pin">建立一個 PIN 碼</string>
   <string name="preferences_app_protection__change_your_pin">變更您的 PIN 碼</string>

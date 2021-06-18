@@ -1116,6 +1116,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">メッセージ送受信のため認証してください</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signalがスパムを回避するために、認証を完了していください。</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">認証後は、メッセージの送受信を再開できます。保留中のメッセージは、自動で送信されます。</string>
+  <!--Recipient-->
+  <string name="Recipient_you">あなた</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ブロックする</string>
   <string name="RecipientPreferenceActivity_unblock">ブロックを解除する</string>

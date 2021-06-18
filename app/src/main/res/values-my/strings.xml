@@ -1101,6 +1101,8 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">သင်</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <!--Recipient-->
+  <string name="Recipient_you">သင်</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ဘလော့ လုပ်မည်</string>
   <string name="RecipientPreferenceActivity_unblock">ဘလော့ဖြည်ပါ </string>

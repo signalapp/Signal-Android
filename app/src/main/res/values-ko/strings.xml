@@ -1100,6 +1100,8 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">나</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <!--Recipient-->
+  <string name="Recipient_you">나</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">차단</string>
   <string name="RecipientPreferenceActivity_unblock">차단 해제</string>

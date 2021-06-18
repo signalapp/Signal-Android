@@ -1112,6 +1112,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Hãy xác minh để tiếp tục nhắn tin.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Để giúp hạn chế spam trên Signal, vui lòng thực hiện xác minh.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Sau khi xác minh, bạn có thể tiếp tục nhắn tin. Những tin nhắn đang tạm dừng sẽ được tự động gửi.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Bạn</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Chặn</string>
   <string name="RecipientPreferenceActivity_unblock">Bỏ chặn</string>

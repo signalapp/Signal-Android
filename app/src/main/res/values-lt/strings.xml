@@ -951,6 +951,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Pridėti paaiškinimą…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Elementas buvo pašalintas, nes jis viršijo leidžiamą dydį</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Elementas buvo pašalintas, nes jis buvo nežinomo tipo</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Elementas buvo pašalintas, nes jis viršijo dydžio apribojimą arba buvo nežinomo tipo</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera neprieinama.</string>
   <string name="MediaSendActivity_message_to_s">Žinutė skirta %s</string>
   <string name="MediaSendActivity_message">Žinutė</string>
@@ -1292,6 +1294,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Patvirtinkite, norėdami tęsti susirašinėjimą</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Siekdami neleisti brukalo Signal programėlėje, prašome jūsų užbaigti patvirtinimą.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Po patvirtinimo galėsite tęsti susirašinėjimą. Visos pristabdytos žinutės bus automatiškai išsiųstos.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Jūs</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Užblokuoti</string>
   <string name="RecipientPreferenceActivity_unblock">Atblokuoti</string>

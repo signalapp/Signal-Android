@@ -1168,6 +1168,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifitseeri sõnumite saatmise jätmiseks</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Rämpspostituste vältimiseks täida palun verifitseerimine.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Pärast verifitseerimist saad sõnumite saatmist jätkata. Kõik peatatud sõnumid saadetakse automaatselt.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Sina</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokeeri</string>
   <string name="RecipientPreferenceActivity_unblock">Eemalda blokeering</string>

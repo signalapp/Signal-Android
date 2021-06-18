@@ -1230,6 +1230,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verificați pentru a continua conversația</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Pentru a ajuta la prevenirea spam-ului pe Signal, vă rugăm să completați verificarea.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">După verificare, puteți continua să trimiteți mesaje. Toate mesajele aflate în pauză vor fi trimise automat.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Dvs.</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blochează</string>
   <string name="RecipientPreferenceActivity_unblock">Deblochează</string>

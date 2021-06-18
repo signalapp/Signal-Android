@@ -1169,6 +1169,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Επιβεβαίωσε για να συνεχίσεις να συνομιλείς</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Για να περιορίσουμε το spam στο Signal, παρακαλούμε ολοκλήρωσε την επιβεβαίωση.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Αφού επιβεβαιώσεις, θα μπορέσεις να συνεχίσεις να στέλνεις μηνύματα. Όσα μηνύματα βρίσκονται σε αναμονή θα αποσταλλούν αυτόματα.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Εσύ</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Φραγή</string>
   <string name="RecipientPreferenceActivity_unblock">Κατάργηση φραγής</string>

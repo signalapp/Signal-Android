@@ -951,6 +951,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Добавить подпись…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Элемент был удален из-за превышения ограничения размера</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Элемент был убран из-за неизвестного типа</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Элемент был убран из-за превышения ограничения размера или из-за неизвестного типа</string>
   <string name="MediaSendActivity_camera_unavailable">Камера недоступна.</string>
   <string name="MediaSendActivity_message_to_s">Сообщение для %s</string>
   <string name="MediaSendActivity_message">Сообщение</string>
@@ -1291,6 +1293,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Пройдите проверку, чтобы продолжить общение</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Чтобы помочь предотвратить спам в Signal, пожалуйста, пройдите проверку.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">После проверки вы сможете продолжить общаться. Все приостановленные сообщения будут отправлены автоматически.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Вы</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Заблокировать</string>
   <string name="RecipientPreferenceActivity_unblock">Разблокировать</string>

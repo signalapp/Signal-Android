@@ -1176,6 +1176,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Sannreyna til að halda áfram samskiptum</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Til að koma í veg fyrir ruslsendingar í Signal skaltu ljúka sannvottun.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Eftir sannvottun geturðu haldið áfram samskiptum. Öll skilaboð sem bíða verða þá sjálfkrafa send.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Þú</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Loka á</string>
   <string name="RecipientPreferenceActivity_unblock">Opna á</string>

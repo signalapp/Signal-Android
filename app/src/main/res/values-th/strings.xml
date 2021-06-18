@@ -1116,6 +1116,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">ตรวจยืนยันเพื่อรับส่งข้อความต่อ</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">เพื่อช่วยป้องกันสแปมบน Signal โปรดตรวจยืนยันให้สำเร็จ</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">หลังตรวจยืนยัน คุณจะรับส่งข้อความได้ต่อ ข้อความใดๆ ที่หยุดอยู่ชั่วคราว จะถูกส่งโดยอัตโนมัติ</string>
+  <!--Recipient-->
+  <string name="Recipient_you">คุณ</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ปิดกั้น</string>
   <string name="RecipientPreferenceActivity_unblock">เลิกปิดกั้น</string>

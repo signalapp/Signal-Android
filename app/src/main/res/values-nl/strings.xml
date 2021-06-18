@@ -867,6 +867,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Voeg een bijschrift toe …</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Een of meer bijlagen zijn niet toegevoegd omdat die de bestandsgroottelimiet overschrijden</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Er is een item verwijderd omdat die van een onbekend type is</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Er is een item verwijderd omdat die de maximale bestandsgrootte overschrijft of omdat die van een onbekend type is</string>
   <string name="MediaSendActivity_camera_unavailable">Camera niet beschikbaar.</string>
   <string name="MediaSendActivity_message_to_s">Bericht aan %s</string>
   <string name="MediaSendActivity_message">Bericht</string>
@@ -1178,6 +1180,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Je moet je telefoonnummer verifiëren om door te kunnen gaan met het verzenden van berichten</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Om Signal te helpen spam te voorkomen is het nodig dat je je telefoonnummer verifieert.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Je kunt doorgaan met het verzenden van berichten nadat je je telefoonnummer hebt geverifieerd. Enig bericht waarvan verzending is gepauzeerd zal dan automatisch verzonden worden.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Jij</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokkeren</string>
   <string name="RecipientPreferenceActivity_unblock">Deblokkeren</string>

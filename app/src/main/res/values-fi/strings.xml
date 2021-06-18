@@ -1161,6 +1161,8 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Sinä</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <!--Recipient-->
+  <string name="Recipient_you">Sinä</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Estä</string>
   <string name="RecipientPreferenceActivity_unblock">Poista esto</string>

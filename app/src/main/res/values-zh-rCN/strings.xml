@@ -1118,6 +1118,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">验证以继续发送消息</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">为了防止 Signal 垃圾消息，请完成验证。</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">验证之后，可继续发送消息。任何暂停消息将自动发送。</string>
+  <!--Recipient-->
+  <string name="Recipient_you">您</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">屏蔽</string>
   <string name="RecipientPreferenceActivity_unblock">取消屏蔽</string>

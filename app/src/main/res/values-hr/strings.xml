@@ -1234,6 +1234,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Provjeri za nastavak razmjene poruka</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Da bismo spriječili neželjene poruke na Signalu, molimo dovršite provjeru.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Nakon provjere možete nastaviti s razmjenom poruka. Sve pauzirane poruke automatski će se poslati.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Vi</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokiraj</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokiraj</string>

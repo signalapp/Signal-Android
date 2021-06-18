@@ -1163,6 +1163,8 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">మీరు</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <!--Recipient-->
+  <string name="Recipient_you">మీరు</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">నిరోధించు</string>
   <string name="RecipientPreferenceActivity_unblock">అనుమతించు</string>

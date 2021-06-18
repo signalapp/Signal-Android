@@ -861,6 +861,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Ajouter une légende…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Un élément a été supprimé, car il dépassait la taille limite</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Un élément a été supprimé car il avait un type inconnu</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Un élément a été supprimé car il dépassait la taille limite ou avait un type inconnu.</string>
   <string name="MediaSendActivity_camera_unavailable">L’appareil photo n’est pas disponible</string>
   <string name="MediaSendActivity_message_to_s">Message à %s</string>
   <string name="MediaSendActivity_message">Message</string>
@@ -1172,6 +1174,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Confirmer pour continuer à communiquer</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Pour aider à prévenir le spam sur Signal, veuillez procéder à la confirmation.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Après la confirmation, vous pourrez continuer à communiquer. Tout les messages en attente seront automatiquement envoyés.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Vous</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bloquer</string>
   <string name="RecipientPreferenceActivity_unblock">Débloquer</string>
@@ -1650,7 +1654,9 @@
   <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Activer les notifications d’appels</string>
   <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Activer l’activité d’arrière-plan</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Tout semble en ordre maintenant !</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Pour recevoir les notifications d’appel, touchez ici et activez l’option « Afficher les notifications ».</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Paramètres</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Pour recevoir les notifications d’appel, touchez Réglages et activez l’option « Afficher les notifications ».</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Chargement des pays…</string>
   <string name="country_selection_fragment__search">Chercher</string>
@@ -1745,6 +1751,7 @@
   <string name="CreateProfileActivity__username">Nom d’utilisateur</string>
   <string name="CreateProfileActivity__create_a_username">Créer un nom d’utilisateur</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Les noms et les photos des groupes de messages multimédias personnalisés ne seront visibles que par vous.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Les descriptions de gruope seront visibles aux membres de ce groupe et aux personnes qui ont été invitées.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">À propos</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Écrivez quelques mots à votre sujet…</string>
@@ -2743,20 +2750,26 @@
   <string name="payment_info_card_about_mobilecoin">À propos de MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin est une nouvelle monnaie numérique centrée sur protection des renseignements personnels.</string>
   <string name="payment_info_card_adding_funds">Ajout de fonds</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Vous pouvez ajouter des fonds à utiliser dans Signal en envoyant des MobileCoin à l’adresse de votre portefeuille.</string>
   <string name="payment_info_card_cashing_out">Encaisser</string>
   <string name="payment_info_card_hide_this_card">Masquer cette carte ?</string>
   <string name="payment_info_card_hide">Cacher</string>
+  <string name="payment_info_card_update_your_pin">Mettez votre NIP à jour</string>
+  <string name="payment_info_card_with_a_high_balance">Si votre solde est élevé, vous pouvez opter pour un NIP alphanumérique afin de renforcer la protection de votre compte.</string>
   <string name="payment_info_card_update_pin">Mettre le NIP à jour</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Désactiver le portefeuille</string>
   <string name="DeactivateWalletFragment__your_balance">Votre solde</string>
   <string name="DeactivateWalletFragment__its_recommended_that_you">Il est recommandé de transférer vos fonds vers une autre adresse de portefeuille avant de désactiver les paiements. Si vous choisissez de ne pas transférer vos fonds maintenant, ils resteront dans votre portefeuille lié à Signal si vous réactivez les paiements.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Transférer le solde restant</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">Désactiver dans transférer</string>
   <string name="DeactivateWalletFragment__deactivate">Désactiver</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Désactiver sans transférer ?</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Erreur lors de la désactivation du portefeuille.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Phrase de récupération</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Voir la phrase de récupération</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Entrez la phrase de récupération</string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Votre phrase de récupération est une phrase de %1$d mots qui vous est propre. Utilisez cette phrase pour restaurer votre solde.</string>
   <string name="PaymentsRecoveryStartFragment__start">Commencer</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Entrer manuellement</string>
@@ -2770,7 +2783,10 @@
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Suivant</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Modifier</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Précédent</string>
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Votre phrase de récupération</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Notez les %1$d mots suivants dans l’ordre. Conservez votre liste dans un endroit sûr.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Assurez-vous d’avoir correctement saisi votre phrase.</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Ne faites pas de capture d’écran et ne l’envoyez pas par courriel.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Compte Paiements restauré.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Phrase de récupération invalide</string>
@@ -2785,6 +2801,7 @@
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Terminé</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Phrase de récupération confirmée</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Entrez la phrase de récupération</string>
   <string name="PaymentsRecoveryEntryFragment__enter_word_d">Saisissez le mot %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__word_d">Mot %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Suivant</string>
@@ -2838,10 +2855,12 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloquer les captures d’écran dans la liste des récents et dans l’appli</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Messages et appels Signal, toujours relayer les appels et expéditeur scellé</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Minuterie par défaut pour les nouvelles conversations</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Définissez une minuterie par défaut pour les messages éphémères pour toutes les nouvelles conversations que vous démarrez.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Afficher l’icône d’état</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Afficher une icône dans les détails des messages qui ont été remis avec l’option « expéditeur scellé ».</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Si cette option est activée, les nouveaux messages envoyés et reçus dans les nouvelles conversations disparaîtront après avoir été lus.</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Si cette option est activée, les nouveaux messages envoyés et reçus dans cette conversation disparaîtront après avoir été lus.</string>
   <string name="ExpireTimerSettingsFragment__off">Désactivé</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 semaines</string>
@@ -2917,6 +2936,7 @@
   <string name="KeyboardPagerFragment_backspace">Retour en arrière</string>
   <string name="KeyboardPagerFragment_gifs">GIF</string>
   <string name="KeyboardPagerFragment_search_emoji">Chercher un émoji</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Retour aux émojis</string>
   <string name="KeyboardPagerfragment_clear_search_entry">Effacer l’historique de recherche</string>
   <string name="KeyboardPagerFragment_search_giphy">Chercher dans GIPHY</string>
   <!--StickerSearchDialogFragment-->

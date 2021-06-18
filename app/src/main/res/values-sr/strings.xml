@@ -1234,6 +1234,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Верификујте да би се наставило преписивање</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Да бисте спречили спем у Signаl-у, испуните верификацију.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Након верификације, можете наставити са порукама. Било која паузирана порука ће аутоматски бити послана.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Ви</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Блокирај</string>
   <string name="RecipientPreferenceActivity_unblock">Одблокирај</string>

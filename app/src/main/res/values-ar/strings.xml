@@ -1409,6 +1409,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">تأكد لمواصلة التراسل</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">للتمكن من الوقاية من الإزعاج في Signal، يُرجى إتمام التحقق.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">بعد التحقق، يمكنك مواصلة التراسل. سوف تُرسَل تلقائيا كل رسالة متوقفة مؤقتا.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">أنت</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">حظر</string>
   <string name="RecipientPreferenceActivity_unblock">رفع الحظر</string>

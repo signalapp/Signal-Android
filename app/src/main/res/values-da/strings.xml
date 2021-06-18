@@ -1177,6 +1177,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Bekræft for at fortsætte beskedskrivning</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">For at hjælpe med at forhindre spam på Signal, skal du gennemføre bekræftelsen.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Efter bekræftelse kan du fortsætte med at sende beskeder. Alle beskeder, der er sat på pause, sendes automatisk.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Dig</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokér</string>
   <string name="RecipientPreferenceActivity_unblock">Fjern blokering</string>

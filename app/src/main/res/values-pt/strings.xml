@@ -865,6 +865,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Adicionar uma legenda…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Foi removido um item porque excedia o limite de tamanho</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Foi removido um item porque tinha um tipo desconhecido</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Foi removido um item porque excedia o limite de tamanho ou tinha um tipo desconhecido</string>
   <string name="MediaSendActivity_camera_unavailable">Câmara indisponível.</string>
   <string name="MediaSendActivity_message_to_s">Mensagem para %s</string>
   <string name="MediaSendActivity_message">Mensagem</string>
@@ -1175,6 +1177,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifique para continuar a conversar</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Para ajudar a prevenir o spam no Signal, termine a verificação.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Depois de verificar, pode continuar a conversar. Todas as mensagens em pausa serão enviadas.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Você</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Bloquear</string>
   <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>

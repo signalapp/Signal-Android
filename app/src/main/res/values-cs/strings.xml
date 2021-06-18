@@ -951,6 +951,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Přidat titulek…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Položka byla odebrána, protože překročila povolenou velikost.</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Položka byla odstraněna, protože měla neznámý typ.</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Položka byla odstraněna, protože překročila limit velikosti nebo měla neznámý typ.</string>
   <string name="MediaSendActivity_camera_unavailable">Fotoaparát není dostupný.</string>
   <string name="MediaSendActivity_message_to_s">Zpráva pro %s</string>
   <string name="MediaSendActivity_message">Zpráva</string>
@@ -1291,6 +1293,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Ověřte pro pokračování konverzace</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Dokončete prosím ověření, abyste pomohli s bojem proti spamu.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Po dokončení ověření můžete pokračovat v konverzacích. Všechny pozastavené zprávy budou automaticky odeslány po ověření.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Vy</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Zablokovat</string>
   <string name="RecipientPreferenceActivity_unblock">Odblokovat</string>

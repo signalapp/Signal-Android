@@ -1175,6 +1175,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifiera för att fortsätta skicka meddelanden</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">För att förhindra skräppost på Signal, vänligen slutför verifieringen.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Efter verifiering kan du fortsätta skicka meddelanden. Alla pausade meddelanden skickas automatiskt.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Du</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blockera</string>
   <string name="RecipientPreferenceActivity_unblock">Avblockera</string>

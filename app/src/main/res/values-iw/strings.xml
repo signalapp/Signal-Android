@@ -951,6 +951,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">הוסף כיתוב…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">פריט נמחק מאחר שהוא חרג ממגבלת הגודל</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">פריט הוסר מאחר שהוא סוג בלתי ידוע</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">פריט נמחק מאחר שהוא חרג ממגבלת הגודל או שהוא סוג בלתי ידוע</string>
   <string name="MediaSendActivity_camera_unavailable">המצלמה בלתי זמינה.</string>
   <string name="MediaSendActivity_message_to_s">שלח הודעה אל %s</string>
   <string name="MediaSendActivity_message">הודעה</string>
@@ -1292,6 +1294,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">וודא כדי להמשיך להתכתב</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">כדי לעזור למנוע זבל ב‏‏־Signal, אנא השלם וידוא.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">לאחר וידוא, אתה יכול להמשיך להתכתב. הודעות מושהות כלשהן יישלחו באופן אוטומטי.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">את/ה</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">חסום</string>
   <string name="RecipientPreferenceActivity_unblock">שחרר חסימה</string>

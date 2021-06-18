@@ -1145,6 +1145,8 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">आप</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <!--Recipient-->
+  <string name="Recipient_you">आप</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ब्लॉक</string>
   <string name="RecipientPreferenceActivity_unblock">अनब्लॉक करें</string>

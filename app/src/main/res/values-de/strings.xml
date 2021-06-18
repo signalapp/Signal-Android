@@ -865,6 +865,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Beschriftung hinzufügen …</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ein Anhang konnte nicht hinzugefügt werden, da er zu groß war</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Ein Anhang wurde entfernt, da er einen unbekannten Typ besaß</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Ein Anhang wurde entfernt, da er zu groß war oder einen unbekannten Typ besaß</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera nicht verfügbar.</string>
   <string name="MediaSendActivity_message_to_s">Nachricht an %s</string>
   <string name="MediaSendActivity_message">Nachricht</string>
@@ -1174,6 +1176,8 @@
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifizieren, um weiterhin zu kommunizieren</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Hilf dabei, Spam auf Signal zu verhindern, und schließe die Verifikation ab.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Nach abgeschlossener Verifikation kannst du wieder Nachrichten senden. Alle pausierten Nachrichten werden dann automatisch versendet.</string>
+  <!--Recipient-->
+  <string name="Recipient_you">Du</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blockieren</string>
   <string name="RecipientPreferenceActivity_unblock">Freigeben</string>

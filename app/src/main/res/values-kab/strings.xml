@@ -1161,6 +1161,8 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Kečč.Kemm</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <!--Recipient-->
+  <string name="Recipient_you">Kečč.Kemm</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Sewḥel</string>
   <string name="RecipientPreferenceActivity_unblock">Serreḥ</string>
