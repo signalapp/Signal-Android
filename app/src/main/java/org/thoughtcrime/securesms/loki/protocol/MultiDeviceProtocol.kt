@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
 import com.google.protobuf.ByteString
+import nl.komponents.kovenant.Promise
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
@@ -28,16 +29,17 @@ object MultiDeviceProtocol {
         TextSecurePreferences.setLastConfigurationSyncTime(context, now)
     }
 
-    fun forceSyncConfigurationNowIfNeeded(context: Context) {
-        val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return
+    fun forceSyncConfigurationNowIfNeeded(context: Context): Promise<Unit, Exception> {
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return Promise.ofSuccess(Unit)
         val contacts = ContactUtilities.getAllContacts(context).filter { recipient ->
             !recipient.isGroupRecipient && !recipient.isBlocked && !recipient.name.isNullOrEmpty() && !recipient.isLocalNumber && recipient.address.serialize().isNotEmpty()
         }.map { recipient ->
             ConfigurationMessage.Contact(recipient.address.serialize(), recipient.name!!, recipient.profileAvatar, recipient.profileKey)
         }
-        val configurationMessage = ConfigurationMessage.getCurrent(contacts) ?: return
-        MessageSender.send(configurationMessage, Destination.from(Address.fromSerialized(userPublicKey)))
+        val configurationMessage = ConfigurationMessage.getCurrent(contacts) ?: return Promise.ofSuccess(Unit)
+        val promise = MessageSender.send(configurationMessage, Destination.from(Address.fromSerialized(userPublicKey)))
         TextSecurePreferences.setLastConfigurationSyncTime(context, System.currentTimeMillis())
+        return promise
     }
 
 }

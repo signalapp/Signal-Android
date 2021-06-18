@@ -14,15 +14,15 @@ data class SnodeDeleteMessage(
      */
     val timestamp: Long,
     /**
-     * an Ed25519 signature of ( "delete_all" || timestamp ), signed by the ed25519
+     * a Base64-encoded signature of ( "delete_all" || timestamp ), signed by the pubKey
      */
     val signature: String,
 ) {
 
-    internal fun toJSON(): Map<String, String> {
+    internal fun toJSON(): Map<String, Any> {
         return mapOf(
-            "pubkey" to if (SnodeAPI.useTestnet) pubKey.removing05PrefixIfNeeded() else pubKey,
-            "timestamp" to timestamp.toString(),
+            "pubkey" to pubKey,
+            "timestamp" to timestamp,
             "signature" to signature
         )
     }

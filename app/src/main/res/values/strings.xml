@@ -755,6 +755,7 @@
     <string name="activity_settings_invite_button_title">Invite</string>
     <string name="activity_settings_recovery_phrase_button_title">Recovery Phrase</string>
     <string name="activity_settings_clear_all_data_button_title">Clear Data</string>
+    <string name="activity_settings_clear_all_data_and_network_button_title">Clear Data Including Network</string>
     <string name="activity_settings_help_translate_session">Help us Translate Session</string>
 
     <string name="activity_notification_settings_title">Notifications</string>

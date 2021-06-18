@@ -28,7 +28,6 @@ interface StorageProtocol {
 
     // General
     fun getUserPublicKey(): String?
-    fun getUserKeyPair(): Pair<String, ByteArray>?
     fun getUserX25519KeyPair(): ECKeyPair
     fun getUserDisplayName(): String?
     fun getUserProfileKey(): ByteArray?

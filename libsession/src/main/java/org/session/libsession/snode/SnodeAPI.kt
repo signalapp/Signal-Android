@@ -2,6 +2,7 @@
 
 package org.session.libsession.snode
 
+import android.content.Context
 import android.os.Build
 import com.goterl.lazysodium.LazySodiumAndroid
 import com.goterl.lazysodium.SodiumAndroid
@@ -9,18 +10,25 @@ import com.goterl.lazysodium.exceptions.SodiumException
 import com.goterl.lazysodium.interfaces.GenericHash
 import com.goterl.lazysodium.interfaces.PwHash
 import com.goterl.lazysodium.interfaces.SecretBox
+import com.goterl.lazysodium.interfaces.Sign
 import com.goterl.lazysodium.utils.Key
 import nl.komponents.kovenant.*
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.utilities.MessageWrapper
+import org.session.libsession.utilities.IdentityKeyUtil
+import org.session.libsession.utilities.KeyPairUtilities
 import org.session.libsignal.crypto.getRandomElement
 import org.session.libsignal.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
+import org.whispersystems.curve25519.Curve25519
+import java.nio.charset.Charset
 import java.security.SecureRandom
 import java.util.*
+import kotlin.Pair
 
 object SnodeAPI {
     private val sodium by lazy { LazySodiumAndroid(SodiumAndroid()) }
@@ -52,7 +60,7 @@ object SnodeAPI {
     private val targetSwarmSnodeCount = 2
     private val useOnionRequests = true
 
-    internal val useTestnet = false
+    internal val useTestnet = true
 
     // Error
     internal sealed class Error(val description: String) : Exception(description) {
@@ -283,6 +291,13 @@ object SnodeAPI {
         }
     }
 
+    fun getNetworkTime(snode: Snode): Promise<Pair<Snode,Long>, Exception> {
+        return invoke(Snode.Method.Info, snode, null, emptyMap()).map { rawResponse ->
+            val timestamp = rawResponse["timestamp"] as Long
+            snode to timestamp
+        }
+    }
+
     fun sendMessage(message: SnodeMessage): Promise<Set<RawResponsePromise>, Exception> {
         val destination = if (useTestnet) message.recipient.removing05PrefixIfNeeded() else message.recipient
         return retryIfNeeded(maxRetryCount) {
@@ -306,15 +321,30 @@ object SnodeAPI {
      *  - "signature": signature of ( PUBKEY_HEX || TIMESTAMP || DELETEDHASH[0] || ... || DELETEDHASH[N] ), signed
      *  by the node's ed25519 pubkey.
      */
-    fun deleteAllMessages(deleteMessage: SnodeDeleteMessage): Promise<Set<RawResponsePromise>, Exception> {
-        // considerations: timestamp off in retrying logic, not being able to re-sign with latest timestamp? do we just not retry this as it will be synchronous
-        val destination = if (useTestnet) deleteMessage.pubKey.removing05PrefixIfNeeded() else deleteMessage.pubKey
-        return retryIfNeeded(maxRetryCount) {
+    fun deleteAllMessages(context: Context): Promise<Set<RawResponsePromise>, Exception> {
+
+        return retryIfNeeded(1) {
+            // considerations: timestamp off in retrying logic, not being able to re-sign with latest timestamp? do we just not retry this as it will be synchronous
+            val ed = KeyPairUtilities.getUserED25519KeyPair(context) ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
+            val xPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey
+            val userKeyPair = MessagingModuleConfiguration.shared.storage.getUserX25519KeyPair()
+            val userPublicKey = MessagingModuleConfiguration.shared.storage.getUserPublicKey() ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
+
+            val destination = if (useTestnet) userPublicKey.removing05PrefixIfNeeded() else userPublicKey
+
             getTargetSnodes(destination).map { swarm ->
                 swarm.map { snode ->
-                    val parameters = deleteMessage.toJSON()
-                    retryIfNeeded(maxRetryCount) {
-                        invoke(Snode.Method.DeleteAll, snode, destination, parameters)
+                    retryIfNeeded(1) {
+                        getNetworkTime(snode).bind { (_, timestamp) ->
+                            val signature = ByteArray(Sign.BYTES)
+                            val data = Snode.Method.DeleteAll.rawValue.toByteArray() + timestamp.toString().toByteArray()
+                            val signed = sodium.cryptoSignDetached(signature, data, data.size.toLong(), xPrivateKey.serialize())
+                            val deleteMessage = SnodeDeleteMessage(userPublicKey, timestamp, Base64.encodeBytes(signature))
+                            val parameters = deleteMessage.toJSON()
+                            invoke(Snode.Method.DeleteAll, snode, destination, parameters).fail { e ->
+                                Log.e("Loki", "Failed to clear data",e)
+                            }
+                        }
                     }
                 }.toSet()
             }

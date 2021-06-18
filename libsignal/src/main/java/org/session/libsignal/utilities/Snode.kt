@@ -8,6 +8,7 @@ class Snode(val address: String, val port: Int, val publicKeySet: KeySet?) {
         GetMessages("retrieve"),
         SendMessage("store"),
         OxenDaemonRPCCall("oxend_request"),
+        Info("info"),
         DeleteAll("delete_all")
     }
 

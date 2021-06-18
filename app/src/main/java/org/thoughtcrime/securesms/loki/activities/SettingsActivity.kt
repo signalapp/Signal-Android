@@ -92,6 +92,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         helpTranslateButton.setOnClickListener { helpTranslate() }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
+        clearAllDataAndNetworkButton.setOnClickListener { clearAllDataIncludingNetwork() }
         versionTextView.text = String.format(getString(R.string.version_s), "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
     }
 
@@ -302,8 +303,13 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun clearAllData() {
-        ClearAllDataDialog().show(supportFragmentManager, "Clear All Data Dialog")
+        ClearAllDataDialog(deleteNetworkMessages = false).show(supportFragmentManager, "Clear All Data Dialog")
     }
+
+    private fun clearAllDataIncludingNetwork() {
+        ClearAllDataDialog(deleteNetworkMessages = true).show(supportFragmentManager, "Clear All Data Dialog")
+    }
+
     // endregion
 
     private inner class DisplayNameEditActionModeCallback: ActionMode.Callback {

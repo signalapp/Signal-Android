@@ -6,6 +6,7 @@ import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Base64.decode
 import org.session.libsignal.utilities.Log
+import org.session.libsignal.utilities.toHexString
 import org.whispersystems.curve25519.Curve25519
 
 data class OpenGroupMessageV2(
@@ -45,10 +46,10 @@ data class OpenGroupMessageV2(
 
     fun sign(): OpenGroupMessageV2? {
         if (base64EncodedData.isEmpty()) return null
-        val (publicKey, privateKey) = MessagingModuleConfiguration.shared.storage.getUserKeyPair() ?: return null
-        if (sender != publicKey) return null
+        val (publicKey, privateKey) = MessagingModuleConfiguration.shared.storage.getUserX25519KeyPair().let { it.publicKey to it.privateKey }
+        if (sender != publicKey.serialize().toHexString()) return null
         val signature = try {
-            curve.calculateSignature(privateKey, decode(base64EncodedData))
+            curve.calculateSignature(privateKey.serialize(), decode(base64EncodedData))
         } catch (e: Exception) {
             Log.w("Loki", "Couldn't sign open group message.", e)
             return null
