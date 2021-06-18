@@ -44,6 +44,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private var actionMode: ActionMode? = null
     private var isLockViewExpanded = false
     private var isShowingAttachmentOptions = false
+    private var mentionCandidatesView: MentionCandidatesView? = null
 
     // TODO: Selected message background color
     // TODO: Overflow menu background + text color
@@ -173,6 +174,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         // TODO: Work this out further
         if (newContent.contains("@")) {
             showMentionCandidates()
+        } else {
+            hideMentionCandidates()
         }
     }
 
@@ -182,7 +185,26 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         mentionCandidatesView.glide = glide
         inputBarAdditionalContentContainer.addView(mentionCandidatesView)
         val mentionCandidates = MentionsManager.getMentionCandidates("", threadID, thread.isOpenGroupRecipient)
+        this.mentionCandidatesView = mentionCandidatesView
         mentionCandidatesView.show(mentionCandidates, threadID)
+        mentionCandidatesView.alpha = 0.0f
+        val animation = ValueAnimator.ofObject(FloatEvaluator(), mentionCandidatesView.alpha, 1.0f)
+        animation.duration = 250L
+        animation.addUpdateListener { animator ->
+            mentionCandidatesView.alpha = animator.animatedValue as Float
+        }
+        animation.start()
+    }
+
+    private fun hideMentionCandidates() {
+        val mentionCandidatesView = mentionCandidatesView ?: return
+        val animation = ValueAnimator.ofObject(FloatEvaluator(), mentionCandidatesView.alpha, 0.0f)
+        animation.duration = 250L
+        animation.addUpdateListener { animator ->
+            mentionCandidatesView.alpha = animator.animatedValue as Float
+            if (animator.animatedFraction == 1.0f) { inputBarAdditionalContentContainer.removeAllViews() }
+        }
+        animation.start()
     }
 
     override fun toggleAttachmentOptions() {
