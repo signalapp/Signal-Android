@@ -6,13 +6,11 @@ import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.widget.RelativeLayout
-import androidx.core.view.marginBottom
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,15 +21,17 @@ import kotlinx.android.synthetic.main.view_input_bar.view.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
+import org.session.libsession.messaging.mentions.MentionsManager
+import org.session.libsession.messaging.mentions.MentionsManager.getMentionCandidates
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarRecordingViewDelegate
+import org.thoughtcrime.securesms.conversation.v2.input_bar.mentions.MentionCandidatesView
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.loki.utilities.toDp
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
 import kotlin.math.abs
@@ -152,15 +152,37 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // region Updating
     override fun inputBarHeightChanged(newValue: Int) {
+        // Recycler view
         val recyclerViewLayoutParams = conversationRecyclerView.layoutParams as RelativeLayout.LayoutParams
-        recyclerViewLayoutParams.bottomMargin = newValue
+        recyclerViewLayoutParams.bottomMargin = newValue + inputBarAdditionalContentContainer.height
         conversationRecyclerView.layoutParams = recyclerViewLayoutParams
+        // Input bar additional content container
+        val inputBarAdditionalContentContainerLayoutParams = inputBarAdditionalContentContainer.layoutParams as RelativeLayout.LayoutParams
+        inputBarAdditionalContentContainerLayoutParams.bottomMargin = newValue
+        inputBarAdditionalContentContainer.layoutParams = inputBarAdditionalContentContainerLayoutParams
+        // Attachment options
         val attachmentButtonHeight = inputBar.attachmentsButtonContainer.height
         val bottomMargin = (newValue - attachmentButtonHeight) / 2
         val margin = toPx(8, resources)
         val attachmentOptionsContainerLayoutParams = attachmentOptionsContainer.layoutParams as RelativeLayout.LayoutParams
         attachmentOptionsContainerLayoutParams.bottomMargin = bottomMargin + attachmentButtonHeight + margin
         attachmentOptionsContainer.layoutParams = attachmentOptionsContainerLayoutParams
+    }
+
+    override fun inputBarEditTextContentChanged(newContent: CharSequence) {
+        // TODO: Work this out further
+        if (newContent.contains("@")) {
+            showMentionCandidates()
+        }
+    }
+
+    private fun showMentionCandidates() {
+        inputBarAdditionalContentContainer.removeAllViews()
+        val mentionCandidatesView = MentionCandidatesView(this)
+        mentionCandidatesView.glide = glide
+        inputBarAdditionalContentContainer.addView(mentionCandidatesView)
+        val mentionCandidates = MentionsManager.getMentionCandidates("", threadID, thread.isOpenGroupRecipient)
+        mentionCandidatesView.show(mentionCandidates, threadID)
     }
 
     override fun toggleAttachmentOptions() {

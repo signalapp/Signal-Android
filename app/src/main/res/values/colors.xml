@@ -33,6 +33,8 @@
     <color name="input_bar_button_background_opaque_border">#33FFFFFF</color>
     <color name="input_bar_lock_view_background">#171717</color>
     <color name="input_bar_lock_view_border">#66FFFFFF</color>
+    <color name="mention_candidates_view_background">#171717</color>
+    <color name="mention_candidates_view_background_ripple">#0C0C0C</color>
 
     <array name="profile_picture_placeholder_colors">
         <item>#5ff8b0</item>

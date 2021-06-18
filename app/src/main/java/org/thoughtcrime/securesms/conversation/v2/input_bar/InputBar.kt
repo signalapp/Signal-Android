@@ -52,6 +52,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate {
     override fun inputBarEditTextContentChanged(text: CharSequence) {
         sendButton.isVisible = text.isNotEmpty()
         microphoneButton.isVisible = text.isEmpty()
+        delegate?.inputBarEditTextContentChanged(text)
     }
 
     override fun inputBarEditTextHeightChanged(newValue: Int) {
@@ -76,6 +77,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate {
 interface InputBarDelegate {
 
     fun inputBarHeightChanged(newValue: Int)
+    fun inputBarEditTextContentChanged(newContent: CharSequence)
     fun toggleAttachmentOptions()
     fun showVoiceMessageUI()
     fun onMicrophoneButtonMove(event: MotionEvent)

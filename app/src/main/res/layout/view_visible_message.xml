@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:textColor="@color/text"
-        android:textSize="@dimen/small_font_size"
+        android:textSize="@dimen/very_small_font_size"
         android:textStyle="bold"
         android:gravity="center" />
 
