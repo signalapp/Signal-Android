@@ -14,7 +14,7 @@ import org.session.libsession.messaging.mentions.Mention
 
 class MentionCandidatesView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : ListView(context, attrs, defStyleAttr) {
     private var candidates = listOf<Mention>()
-        set(newValue) { field = newValue; snAdapter.mentionCandidates = newValue }
+        set(newValue) { field = newValue; snAdapter.candidates = newValue }
     var glide: GlideRequests? = null
         set(newValue) { field = newValue; snAdapter.glide = newValue }
     var openGroupServer: String? = null
@@ -26,15 +26,15 @@ class MentionCandidatesView(context: Context, attrs: AttributeSet?, defStyleAttr
     private val snAdapter by lazy { Adapter(context) }
 
     private class Adapter(private val context: Context) : BaseAdapter() {
-        var mentionCandidates = listOf<Mention>()
+        var candidates = listOf<Mention>()
             set(newValue) { field = newValue; notifyDataSetChanged() }
         var glide: GlideRequests? = null
         var openGroupServer: String? = null
         var openGroupRoom: String? = null
 
-        override fun getCount(): Int { return mentionCandidates.count() }
+        override fun getCount(): Int { return candidates.count() }
         override fun getItemId(position: Int): Long { return position.toLong() }
-        override fun getItem(position: Int): Mention { return mentionCandidates[position] }
+        override fun getItem(position: Int): Mention { return candidates[position] }
 
         override fun getView(position: Int, cellToBeReused: View?, parent: ViewGroup): View {
             val cell = cellToBeReused as MentionCandidateView? ?: MentionCandidateView.inflate(LayoutInflater.from(context), parent)
@@ -53,21 +53,21 @@ class MentionCandidatesView(context: Context, attrs: AttributeSet?, defStyleAttr
     init {
         clipToOutline = true
         adapter = snAdapter
-        snAdapter.mentionCandidates = candidates
+        snAdapter.candidates = candidates
         setOnItemClickListener { _, _, position, _ ->
             onCandidateSelected?.invoke(candidates[position])
         }
     }
 
-    fun show(mentionCandidates: List<Mention>, threadID: Long) {
+    fun show(candidates: List<Mention>, threadID: Long) {
         val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
         if (openGroup != null) {
             openGroupServer = openGroup.server
             openGroupRoom = openGroup.room
         }
-        this.candidates = mentionCandidates
+        this.candidates = candidates
         val layoutParams = this.layoutParams as ViewGroup.LayoutParams
-        layoutParams.height = toPx(Math.min(mentionCandidates.count(), 4) * 44, resources)
+        layoutParams.height = toPx(Math.min(candidates.count(), 4) * 44, resources)
         this.layoutParams = layoutParams
     }
 

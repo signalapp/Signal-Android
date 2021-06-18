@@ -47,7 +47,7 @@ class VisibleMessageView : LinearLayout {
     var onLongPress: (() -> Unit)? = null
 
     companion object {
-        const val swipeToReplyThreshold = 90.0f // dp
+        const val swipeToReplyThreshold = 80.0f // dp
         const val longPressMovementTreshold = 10.0f // dp
         const val longPressDurationThreshold = 250L // ms
     }

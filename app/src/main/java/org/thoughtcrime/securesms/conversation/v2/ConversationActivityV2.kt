@@ -6,6 +6,7 @@ import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
@@ -160,7 +161,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         additionalContentContainer.layoutParams = additionalContentContainerLayoutParams
         // Attachment options
         val attachmentButtonHeight = inputBar.attachmentsButtonContainer.height
-        val bottomMargin = (newValue - inputBar.inputBarAdditionalContentContainer.height - attachmentButtonHeight) / 2
+        val bottomMargin = (newValue - inputBar.additionalContentHeight - attachmentButtonHeight) / 2
         val margin = toPx(8, resources)
         val attachmentOptionsContainerLayoutParams = attachmentOptionsContainer.layoutParams as RelativeLayout.LayoutParams
         attachmentOptionsContainerLayoutParams.bottomMargin = bottomMargin + attachmentButtonHeight + margin

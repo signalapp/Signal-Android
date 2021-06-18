@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_input_bar.view.*
@@ -19,6 +20,7 @@ import kotlin.math.max
 class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
     private val vMargin by lazy { toDp(4, resources) }
     var delegate: InputBarDelegate? = null
+    var additionalContentHeight = 0
 
     private val attachmentsButton by lazy { InputBarButton(context, R.drawable.ic_plus_24) }
     private val microphoneButton by lazy { InputBarButton(context, R.drawable.ic_microphone) }
@@ -87,13 +89,16 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
         quoteView.delegate = this
         inputBarAdditionalContentContainer.addView(quoteView)
         quoteView.bind(message.individualRecipient.address.toString(), message.body, null, message.recipient)
-        val newHeight = max(inputBarEditText.height + 2 * vMargin, toPx(56, resources)) + quoteView.getIntrinsicHeight()
+        val quoteViewIntrinsicHeight = quoteView.getIntrinsicHeight()
+        val newHeight = max(inputBarEditText.height + 2 * vMargin, toPx(56, resources)) + quoteViewIntrinsicHeight
+        additionalContentHeight = quoteViewIntrinsicHeight
         setHeight(newHeight)
     }
 
     override fun cancelQuoteDraft() {
         inputBarAdditionalContentContainer.removeAllViews()
         val newHeight = max(inputBarEditText.height + 2 * vMargin, toPx(56, resources))
+        additionalContentHeight = 0
         setHeight(newHeight)
     }
     // endregion
