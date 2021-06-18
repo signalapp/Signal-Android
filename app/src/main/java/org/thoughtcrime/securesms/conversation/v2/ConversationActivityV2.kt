@@ -12,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.widget.RelativeLayout
+import androidx.core.view.marginBottom
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -154,6 +155,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val recyclerViewLayoutParams = conversationRecyclerView.layoutParams as RelativeLayout.LayoutParams
         recyclerViewLayoutParams.bottomMargin = newValue
         conversationRecyclerView.layoutParams = recyclerViewLayoutParams
+        val attachmentButtonHeight = inputBar.attachmentsButtonContainer.height
+        val bottomMargin = (newValue - attachmentButtonHeight) / 2
+        val margin = toPx(8, resources)
+        val attachmentOptionsContainerLayoutParams = attachmentOptionsContainer.layoutParams as RelativeLayout.LayoutParams
+        attachmentOptionsContainerLayoutParams.bottomMargin = bottomMargin + attachmentButtonHeight + margin
+        attachmentOptionsContainer.layoutParams = attachmentOptionsContainerLayoutParams
     }
 
     override fun toggleAttachmentOptions() {

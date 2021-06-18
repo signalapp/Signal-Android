@@ -12,7 +12,14 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/input_bar_height" />
 
+    <org.thoughtcrime.securesms.conversation.v2.input_bar.InputBar
+        android:id="@+id/inputBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
     <LinearLayout
+        android:id="@+id/attachmentOptionsContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/small_spacing"
@@ -49,12 +56,6 @@
             android:alpha="0" />
 
     </LinearLayout>
-
-    <org.thoughtcrime.securesms.conversation.v2.input_bar.InputBar
-        android:id="@+id/inputBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
 
     <org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarRecordingView
         android:id="@+id/inputBarRecordingView"
