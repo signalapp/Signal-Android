@@ -19,7 +19,7 @@
         android:layout_alignParentBottom="true" />
 
     <FrameLayout
-        android:id="@+id/inputBarAdditionalContentContainer"
+        android:id="@+id/additionalContentContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

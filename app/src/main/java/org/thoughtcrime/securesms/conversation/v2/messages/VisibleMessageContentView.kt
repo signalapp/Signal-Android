@@ -63,7 +63,7 @@ class VisibleMessageContentView : LinearLayout {
             mainContainer.addView(linkPreviewView)
         } else if (message is MmsMessageRecord && message.quote != null) {
             val quoteView = QuoteView(context)
-            quoteView.bind(message)
+            quoteView.bind(message.individualRecipient.address.toString(), "iuasfhiausfh", null, message.recipient)
             mainContainer.addView(quoteView)
         } else if (message is MmsMessageRecord && message.slideDeck.audioSlide != null) {
             val voiceMessageView = VoiceMessageView(context)

@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.view_input_bar_recording.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.mentions.MentionsManager
-import org.session.libsession.messaging.mentions.MentionsManager.getMentionCandidates
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -155,15 +154,15 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     override fun inputBarHeightChanged(newValue: Int) {
         // Recycler view
         val recyclerViewLayoutParams = conversationRecyclerView.layoutParams as RelativeLayout.LayoutParams
-        recyclerViewLayoutParams.bottomMargin = newValue + inputBarAdditionalContentContainer.height
+        recyclerViewLayoutParams.bottomMargin = newValue + additionalContentContainer.height
         conversationRecyclerView.layoutParams = recyclerViewLayoutParams
-        // Input bar additional content container
-        val inputBarAdditionalContentContainerLayoutParams = inputBarAdditionalContentContainer.layoutParams as RelativeLayout.LayoutParams
-        inputBarAdditionalContentContainerLayoutParams.bottomMargin = newValue
-        inputBarAdditionalContentContainer.layoutParams = inputBarAdditionalContentContainerLayoutParams
+        // Additional content container
+        val additionalContentContainerLayoutParams = additionalContentContainer.layoutParams as RelativeLayout.LayoutParams
+        additionalContentContainerLayoutParams.bottomMargin = newValue
+        additionalContentContainer.layoutParams = additionalContentContainerLayoutParams
         // Attachment options
         val attachmentButtonHeight = inputBar.attachmentsButtonContainer.height
-        val bottomMargin = (newValue - attachmentButtonHeight) / 2
+        val bottomMargin = (newValue - inputBar.inputBarAdditionalContentContainer.height - attachmentButtonHeight) / 2
         val margin = toPx(8, resources)
         val attachmentOptionsContainerLayoutParams = attachmentOptionsContainer.layoutParams as RelativeLayout.LayoutParams
         attachmentOptionsContainerLayoutParams.bottomMargin = bottomMargin + attachmentButtonHeight + margin
@@ -180,10 +179,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun showMentionCandidates() {
-        inputBarAdditionalContentContainer.removeAllViews()
+        additionalContentContainer.removeAllViews()
         val mentionCandidatesView = MentionCandidatesView(this)
         mentionCandidatesView.glide = glide
-        inputBarAdditionalContentContainer.addView(mentionCandidatesView)
+        additionalContentContainer.addView(mentionCandidatesView)
         val mentionCandidates = MentionsManager.getMentionCandidates("", threadID, thread.isOpenGroupRecipient)
         this.mentionCandidatesView = mentionCandidatesView
         mentionCandidatesView.show(mentionCandidates, threadID)
@@ -202,7 +201,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         animation.duration = 250L
         animation.addUpdateListener { animator ->
             mentionCandidatesView.alpha = animator.animatedValue as Float
-            if (animator.animatedFraction == 1.0f) { inputBarAdditionalContentContainer.removeAllViews() }
+            if (animator.animatedFraction == 1.0f) { additionalContentContainer.removeAllViews() }
         }
         animation.start()
     }
@@ -269,7 +268,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // `position` is the adapter position; not the visual position
     private fun handleSwipeToReply(message: MessageRecord, position: Int) {
-
+        inputBar.draftQuote(message)
     }
 
     // `position` is the adapter position; not the visual position

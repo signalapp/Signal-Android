@@ -6,6 +6,7 @@ import android.text.StaticLayout
 import android.util.AttributeSet
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.AppCompatEditText
+import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import kotlin.math.max
 import kotlin.math.min
@@ -24,12 +25,7 @@ class InputBarEditText : AppCompatEditText {
     override fun onTextChanged(text: CharSequence, start: Int, lengthBefore: Int, lengthAfter: Int) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter)
         delegate?.inputBarEditTextContentChanged(text)
-        val builder = StaticLayout.Builder.obtain(text, 0, text.length, paint, width)
-            .setAlignment(Layout.Alignment.ALIGN_NORMAL)
-            .setLineSpacing(0.0f, 1.0f)
-            .setIncludePad(false)
-        val layout = builder.build()
-        val height = layout.height.toFloat()
+        val height = TextUtilities.getIntrinsicHeight(text, paint, width).toFloat()
         val constrainedHeight = min(max(height, snMinHeight), snMaxHeight)
         if (constrainedHeight.roundToInt() == this.height) { return }
         val layoutParams = this.layoutParams as? RelativeLayout.LayoutParams ?: return

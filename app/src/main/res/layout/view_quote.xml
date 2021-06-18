@@ -1,16 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center">
+    android:background="@color/input_bar_background"
+    android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
+    <View
+        android:id="@+id/quoteViewAccentLine"
+        android:layout_width="@dimen/accent_line_thickness"
+        android:layout_height="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:background="@color/text" />
+
+    <!-- The start margin below is the accent line thickness (4 dp) + small spacing (8 dp) -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/medium_font_size"
-        android:textColor="@color/text" />
+        android:layout_marginStart="12dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/quoteViewAuthorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spiderman"
+            android:textSize="@dimen/small_font_size"
+            android:textStyle="bold"
+            android:textColor="@color/text"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/quoteViewBodyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yo, I need your help here!"
+            android:textSize="@dimen/small_font_size"
+            android:textColor="@color/text"
+            android:maxLines="3"
+            android:ellipsize="end" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:padding="8dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_x_28" />
+
+</RelativeLayout>

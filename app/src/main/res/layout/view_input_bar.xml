@@ -12,6 +12,11 @@
         android:layout_height="1px"
         android:background="@color/separator" />
 
+    <FrameLayout
+        android:id="@+id/inputBarAdditionalContentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -9,6 +9,8 @@ import android.widget.RelativeLayout
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_input_bar.view.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.conversation.v2.messages.QuoteView
+import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.loki.utilities.toDp
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import kotlin.math.max
@@ -48,6 +50,15 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate {
     }
     // endregion
 
+    // region General
+    private fun setHeight(newHeight: Int) {
+        val layoutParams = inputBarLinearLayout.layoutParams as LayoutParams
+        layoutParams.height = newHeight
+        inputBarLinearLayout.layoutParams = layoutParams
+        delegate?.inputBarHeightChanged(newHeight)
+    }
+    // endregion
+
     // region Updating
     override fun inputBarEditTextContentChanged(text: CharSequence) {
         sendButton.isVisible = text.isNotEmpty()
@@ -57,11 +68,8 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate {
 
     override fun inputBarEditTextHeightChanged(newValue: Int) {
         val vMargin = toDp(4, resources)
-        val layoutParams = inputBarLinearLayout.layoutParams as LayoutParams
-        val newHeight = max(newValue + 2 * vMargin, toPx(56, resources))
-        layoutParams.height = newHeight
-        inputBarLinearLayout.layoutParams = layoutParams
-        delegate?.inputBarHeightChanged(newHeight)
+        val newHeight = max(newValue + 2 * vMargin + inputBarAdditionalContentContainer.height, toPx(56, resources))
+        setHeight(newHeight)
     }
 
     private fun toggleAttachmentOptions() {
@@ -70,6 +78,15 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate {
 
     private fun showVoiceMessageUI() {
         delegate?.showVoiceMessageUI()
+    }
+
+    fun draftQuote(message: MessageRecord) {
+        inputBarAdditionalContentContainer.removeAllViews()
+        val quoteView = QuoteView(context)
+        inputBarAdditionalContentContainer.addView(quoteView)
+        quoteView.bind("", "", null, message.recipient)
+        val newHeight = height + quoteView.getIntrinsicHeight()
+        setHeight(newHeight)
     }
     // endregion
 }
