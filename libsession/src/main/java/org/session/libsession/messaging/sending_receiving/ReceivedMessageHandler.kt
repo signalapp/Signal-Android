@@ -121,7 +121,7 @@ private fun handleConfigurationMessage(message: ConfigurationMessage) {
     for (closedGroup in message.closedGroups) {
         if (allClosedGroupPublicKeys.contains(closedGroup.publicKey)) continue
         handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, closedGroup.publicKey, closedGroup.name,
-            closedGroup.encryptionKeyPair!!, closedGroup.members, closedGroup.admins, message.sentTimestamp!!, 0)
+            closedGroup.encryptionKeyPair!!, closedGroup.members, closedGroup.admins, message.sentTimestamp!!, closedGroup.expireTimer)
     }
     val allV2OpenGroups = storage.getAllV2OpenGroups().map { it.value.joinURL }
     for (openGroup in message.openGroups) {
