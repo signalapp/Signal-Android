@@ -888,7 +888,7 @@ public class Recipient {
   }
 
   public boolean isForceSmsSelection() {
-    return forceSmsSelection;
+    return forceSmsSelection && hasSmsAddress();
   }
 
   public @NonNull Capability getGroupsV2Capability() {
