@@ -221,6 +221,9 @@ class VisibleMessageView : LinearLayout {
     }
 
     private fun onCancel(event: MotionEvent) {
+        if (abs(translationX) > VisibleMessageView.swipeToReplyThreshold) {
+            onSwipeToReply?.invoke()
+        }
         longPressCallback?.let { gestureHandler.removeCallbacks(it) }
         resetPosition()
     }

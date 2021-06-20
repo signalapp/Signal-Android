@@ -8,10 +8,7 @@ import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
-import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.recipients.Recipient
-import org.session.libsession.utilities.SSKEnvironment
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities.highlightMentions
@@ -23,19 +20,11 @@ class ConversationView : LinearLayout {
     var thread: ThreadRecord? = null
 
     // region Lifecycle
-    constructor(context: Context) : super(context) {
-        setUpViewHierarchy()
-    }
+    constructor(context: Context) : super(context) { initialize() }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize() }
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        setUpViewHierarchy()
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        setUpViewHierarchy()
-    }
-
-    private fun setUpViewHierarchy() {
+    private fun initialize() {
         LayoutInflater.from(context).inflate(R.layout.view_conversation, this)
     }
     // endregion
@@ -54,7 +43,7 @@ class ConversationView : LinearLayout {
         profilePictureView.glide = glide
         profilePictureView.update(thread.recipient, thread.threadId)
         val senderDisplayName = getUserDisplayName(thread.recipient) ?: thread.recipient.address.toString()
-        btnGroupNameDisplay.text = senderDisplayName
+        conversationViewDisplayNameTextView.text = senderDisplayName
         timestampTextView.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), thread.date)
         muteIndicatorImageView.visibility = if (thread.recipient.isMuted) VISIBLE else GONE
         val rawSnippet = thread.getDisplayBody(context)
