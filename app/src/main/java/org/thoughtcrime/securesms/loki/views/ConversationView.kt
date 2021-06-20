@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.loki.views
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.recipients.Recipient
@@ -17,6 +19,7 @@ import org.thoughtcrime.securesms.util.DateUtils
 import java.util.*
 
 class ConversationView : LinearLayout {
+    private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     var thread: ThreadRecord? = null
 
     // region Lifecycle
@@ -26,6 +29,7 @@ class ConversationView : LinearLayout {
 
     private fun initialize() {
         LayoutInflater.from(context).inflate(R.layout.view_conversation, this)
+        layoutParams = RecyclerView.LayoutParams(screenWidth, RecyclerView.LayoutParams.WRAP_CONTENT)
     }
     // endregion
 
