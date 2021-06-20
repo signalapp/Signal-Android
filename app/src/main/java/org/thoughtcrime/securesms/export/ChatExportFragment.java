@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.StorageUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
 import java.io.File;
@@ -37,6 +38,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+
 
 public class ChatExportFragment extends Fragment {
 
@@ -75,7 +78,6 @@ public class ChatExportFragment extends Fragment {
         return fragment;
     }
 
-    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
@@ -203,7 +205,9 @@ public class ChatExportFragment extends Fragment {
     }
 
     private void handleSaveMedia (
-            @NonNull Collection<ChatFormatter.MediaRecord> mediaRecords, HashMap<String, Uri> moreFiles, boolean currentSelectionViewer, String result) {
+            @NonNull Collection<ChatFormatter.MediaRecord> mediaRecords, HashMap<String, Uri> moreFiles,
+            boolean currentSelectionViewer,
+            String result) {
 
         final Context context = requireContext();
 
@@ -219,12 +223,17 @@ public class ChatExportFragment extends Fragment {
                 .withPermanentDenialDialog (context.getString (R.string.ChatExport_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
                 .onAnyDenied (() -> Toast.makeText (context, R.string.ChatExport_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show ())
                 .onAllGranted (() -> performSaveToDisk (context, mediaRecords, moreFiles, currentSelectionViewer, result))
-                .execute (), mediaRecords.size());
+                .execute (),
+                (mediaRecords.size() + otherFiles.size ()));
 
 
     }
 
-    private static void performSaveToDisk (@NonNull Context context, @NonNull Collection<ChatFormatter.MediaRecord> mediaRecords, HashMap<String, Uri> moreFiles, boolean hasViewer, String resultXML) {
+    private static void performSaveToDisk (@NonNull Context context,
+                                           @NonNull Collection<ChatFormatter.MediaRecord> mediaRecords,
+                                           HashMap<String, Uri> moreFiles,
+                                           boolean hasViewer,
+                                           String resultXML) {
 
         new ProgressDialogAsyncTask<Void, Void, List<ExportZipUtil.Attachment>> (context,
                 R.string.ChatExport_collecting_attachments,
@@ -234,18 +243,20 @@ public class ChatExportFragment extends Fragment {
             @RequiresApi(api = 26)
             @Override
             protected List<ExportZipUtil.Attachment> doInBackground(Void... params) {
-                if(!mediaRecords.isEmpty ()){
+                if(!Util.isEmpty (mediaRecords)){
                     for (ChatFormatter.MediaRecord mediaRecord : mediaRecords) {
                         assert mediaRecord.getAttachment () != null;
-                        if (mediaRecord.getAttachment().getUri() != null) {
-                            attachments.add(new ExportZipUtil.Attachment(mediaRecord.getAttachment().getUri(),
-                                    mediaRecord.getContentType(),
-                                    mediaRecord.getDate(),
-                                    mediaRecord.getAttachment().getFileName(),
+                        if (mediaRecord.getAttachment ().getUri () != null) {
+                            attachments.add (new ExportZipUtil.Attachment (mediaRecord.getAttachment ().getUri (),
+                                    mediaRecord.getContentType (),
+                                    mediaRecord.getDate (),
+                                    mediaRecord.getAttachment ().getFileName (),
                                     mediaRecord.getAttachment ().getSize ()));
                         }
-                        if (isCancelled()) break;
+                        if (isCancelled ()) break;
                     }
+                }
+                if(!Util.isEmpty (moreFiles.entrySet ())){
                     for(Map.Entry<String, Uri> e: moreFiles.entrySet ()){
                         if (e.getValue ()!= null) {
                             try {
@@ -260,7 +271,6 @@ public class ChatExportFragment extends Fragment {
                         }
                     }
                 }
-
                 return attachments;
             }
 
@@ -268,7 +278,8 @@ public class ChatExportFragment extends Fragment {
             protected void onPostExecute(List<ExportZipUtil.Attachment> attachments) {
                 super.onPostExecute(attachments);
                 try {
-                    zip = new ExportZipUtil (context, attachments.size(), existingThread, moreFiles, hasViewer, resultXML);
+                    zip = new ExportZipUtil (context, attachments.size(), existingThread, moreFiles);
+                    zip.startToExport (context, hasViewer, resultXML);
                 } catch (IOException e) {
                     e.printStackTrace ();
                     Log.w(TAG, e);

@@ -84,7 +84,11 @@
                   var this_quote = $(this);
                   content += "<section><p>"+printQuote(this_quote)+"<\/p><\/section>";
                 }
-                if (text.length != 0 && typeof text !== 'undefined' && text !== false){
+                if (link.length != 0 && typeof link !== 'undefined' && link !== false){
+                  var this_link = $(this);
+                  content += "<section><p>"+printLink(this_link)+"<\/p><\/section>";
+                }
+                else if (text.length != 0 && typeof text !== 'undefined' && text !== false){
                   type = $(this).find("text").find("type").text();
                   msg_type = $(this).find("text").find("msg_type").text();
                   if(msg_type.length !=0)
@@ -97,10 +101,6 @@
                 else if (shared_contact.length != 0 && typeof shared_contact !== 'undefined' && shared_contact !== false){
                   var this_content = $(this);
                   content += "<section><p>" + printSharedContact(this_content)+ "<\/p><\/section>";
-                }
-                else if (link.length != 0 && typeof link !== 'undefined' && link !== false){
-                  var this_link = $(this);
-                  content += "<section><p>"+printLink(this_link)+"<\/p><\/section>";
                 }
                 else if (type.length != 0 && typeof type !== 'undefined' && type !== false){
                   content += "<section><p>Type:" + type+ "; <\/p><\/section>";
@@ -202,7 +202,6 @@
           attachment_path = attachment_path.substring(1);
           content_type = $(this_link).find("link_preview").attr("content_type");
           if(link_preview.length!=0){
-
               return "<p><a  href='"+url+"'><div class='box'><img src='"+attachment_path+"' type='"+content_type+"'><\/img><br>"+ title +"<\/a><br>"+replace(description)+"<\/div><\/p>";
           }
         }
@@ -283,10 +282,16 @@
 
     <style>
       .content{
-          margin: auto;
-          max-width: inherit;
-          justify-content: center;
-          background-color: #086DD1;
+        display: inline-block;
+        position:absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        max-width: inherit;
+        justify-content: center;
+        background-color: #086DD1;
       }
       .header {
         color: white;
@@ -394,20 +399,16 @@
 
       img {
         margin-top: 1em;
-        border: 0px;
         width: inherit;
-
-    max-width:450px;
-    max-height:450px;
+        max-width:auto;
+        max-height:300px;
         background:transparent;
       }
       embed{
-
             max-width:300px;
             max-height:300px;
       }
       video{
-
             max-width:300px;
             max-height:300px;
       }
@@ -455,7 +456,7 @@
         border-radius: 15px;
         background-color: #23303D;
         padding: 10px;
-        width: inherit;
+        width: auto;
         height: auto;
         padding-bottom: 3em;
         display: inline-block;

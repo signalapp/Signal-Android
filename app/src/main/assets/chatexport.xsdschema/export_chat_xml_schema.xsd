@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      Created by @anlaji
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- Root element declaration============================================ -->
+    <xs:complexType name="chatExport">
+        <xs:all>
+            <xs:element name="chat">
+                <xs:annotation>
+                    <xs:documentation>
+                        This element includes information about participants of a single conversation,
+                        the structure of content of this single conversation and
+                        a time period that restricts it.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:all>
+                        <xs:element name="members" type="membersListType"/>
+                        <xs:element name="chat_records" type="conversationListType"/>
+                    </xs:all>
+                    <xs:attribute name="selected_time_period" type="xs:string" use="required"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="membersListType">
+        <xs:annotation>
+        <xs:documentation>
+            List of individuals who are part of the conversation. If it is a group, some data about it.
+        </xs:documentation>
+    </xs:annotation>
+        <xs:choice >
+            <xs:element name="group" type="groupType"/>
+            <xs:element name="contact" type="contactListType" />
+        </xs:choice>
+    </xs:complexType>
+
+
+    <xs:complexType name="groupType">
+        <xs:all>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="number_of_members" type="xs:int" />
+            <xs:element name="contact" type="contactListType" />
+        </xs:all>
+
+        <xs:attribute type="xs:string" name="id"/>
+    </xs:complexType>
+
+
+    <xs:complexType name="contactListType">
+        <xs:sequence>
+            <xs:element name="contact" type="contactType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="contactType"><xs:annotation>
+        <xs:documentation>
+            Personal data of the individual
+        </xs:documentation>
+    </xs:annotation>
+        <xs:all>
+            <xs:element name="profile_name" type="xs:string" minOccurs="0"/>
+            <xs:element name="relation" type="xs:string" minOccurs="0"/>
+            <xs:element name="about" type="xs:string" minOccurs="0"/>
+            <xs:element name="phone" type="xs:string" minOccurs="0"/>
+            <xs:element name="email" type="xs:string" minOccurs="0"/>
+        </xs:all>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="name" type="xs:string"/>
+    </xs:complexType>
+
+<!--    -->
+
+    <xs:complexType name="conversationListType">
+        <xs:annotation>
+            <xs:documentation>
+                Log entries of the days and the messages are sent in this day
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Log" type="logListType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="logListType">
+        <xs:annotation>
+           <xs:documentation>
+               List of entries for the founded messages
+            </xs:documentation>
+        </xs:annotation>
+            <xs:sequence>
+                <xs:element name="turn" type="turnListType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="turnListType">
+        <xs:annotation>
+            <xs:documentation>
+                Specifies the author and includes the output
+            </xs:documentation>
+        </xs:annotation>
+        <xs:all>
+            <xs:element name="message" type="messageType"/>
+        </xs:all>
+        <xs:attribute name="author" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="messageType">
+        <xs:annotation>
+            <xs:documentation>
+                Specifies the output details
+            </xs:documentation>
+        </xs:annotation>
+        <xs:all>
+            <xs:element name="body" type="bodyType"/>
+        </xs:all>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="time" type="xs:string"/>
+        <xs:attribute name="is_deleted" type="xs:boolean"/>
+        <xs:attribute name="status" type="xs:string"/>
+        <xs:attribute name="mismatched_identities" type="xs:string"/>
+        <xs:attribute name="expires_in" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="bodyType">
+        <xs:annotation>
+            <xs:documentation>
+                Specifies the output type of content
+            </xs:documentation>
+        </xs:annotation>
+        <xs:all>
+            <xs:element name="text" type="xs:string" minOccurs="0"/>
+            <xs:element name="shared_contact" type="sharedContactType" minOccurs="0"/>
+            <xs:element name="mention" type="mentionType" minOccurs="0"/>
+            <xs:element name="quote" type="quoteType" minOccurs="0"/>
+            <xs:element name="link" type="linkPreviewType" minOccurs="0"/>
+            <xs:element name="media_content" type="mediaContentType" minOccurs="0"/>
+            <xs:element name="reactions" type="reactionsType" minOccurs="0"/>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="reactionsType">
+        <xs:annotation>
+            <xs:documentation>
+                Registers reactions
+            </xs:documentation>
+        </xs:annotation>
+        <xs:all>
+            <xs:element name="author" type="xs:string"/>
+            <xs:element name="time" type="xs:string"/>
+            <xs:element name="emogi" type="xs:string"/>
+        </xs:all>
+        <xs:attribute name="author_id" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="mediaContentType">
+        <xs:annotation>
+            <xs:documentation>
+                Registers media content
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="attachment" type="attachmentType"
+                maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string"/>
+        <xs:attribute name="key" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="attachmentType">
+        <xs:all>
+            <xs:element  name="fast_preflight_id" type="xs:long" minOccurs="0"/>
+            <xs:element name="filename" type="xs:string" minOccurs="0"/>
+            <xs:element name="metadata">
+                <xs:complexType >
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                        <xs:element name="size" type="xs:string"/>
+                        <xs:element name="audio">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="duration_sec" type="xs:int"/>
+                                </xs:sequence>
+                                <xs:attribute name="content_type" type="xs:string"/>
+                                <xs:attribute name="is" type="xs:string"/>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="sticker">
+                            <xs:complexType mixed="true">
+                                <xs:sequence>
+                                    <xs:element name="is_borderless" type="xs:string"/>
+                                    <xs:element name="emoji" type="xs:string"/>
+                                </xs:sequence>
+                                <xs:attribute name="id" type="xs:byte"/>
+                                <xs:attribute name="content_type" type="xs:string"/>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="image">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="width" type="xs:short"/>
+                                    <xs:element name="height" type="xs:short"/>
+                                </xs:sequence>
+                                <xs:attribute name="content_type" type="xs:string"/>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="video">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="width" type="xs:short"/>
+                                    <xs:element name="height" type="xs:short"/>
+                                    <xs:element name="duration_sec" type="xs:int"/>
+                                    <xs:element name="caption" type="xs:string" minOccurs="0"/>
+                                </xs:sequence>
+                                <xs:attribute name="content_type" type="xs:string"/>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="document">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="name" type="xs:string"/>
+                                </xs:sequence>
+                                <xs:attribute name="content_type" type="xs:string"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="content_path" type="xs:string" minOccurs="0"/>
+        </xs:all>
+        <xs:attribute name="downloaded" type="xs:boolean" use="optional"/>
+    </xs:complexType>
+
+    <xs:complexType name="sharedContactType">
+        <xs:annotation>
+            <xs:documentation>
+                Maps information about the shared contact
+            </xs:documentation>
+        </xs:annotation>
+        <xs:all>
+            <xs:element name="display_name" type="xs:string"/>
+            <xs:element name="email" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="label" type="xs:string"/>
+                        <xs:element name="address" type="xs:string"/>
+                    </xs:sequence>
+                    <xs:attribute name="type" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="phone" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="label" type="xs:string"/>
+                        <xs:element name="number" type="xs:string"/>
+                    </xs:sequence>
+                    <xs:attribute name="type" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="postal_address" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="label" type="xs:string"/>
+                        <xs:element name="street" type="xs:string"/>
+                        <xs:element name="postal_code" type="xs:string"/>
+                        <xs:element name="neighborhood" type="xs:string"/>
+                        <xs:element name="po_box" type="xs:string"/>
+                        <xs:element name="city" type="xs:string"/>
+                        <xs:element name="country" type="xs:string"/>
+                    </xs:sequence>
+                    <xs:attribute name="type" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+
+    </xs:complexType>
+
+
+    <xs:complexType name="quoteType">
+        <xs:annotation>
+            <xs:documentation>
+                Registers quotes
+            </xs:documentation>
+        </xs:annotation><xs:sequence>
+        <xs:element name="author" type="xs:string"/>
+        <xs:element name="quote_text" type="xs:string"/>
+        <xs:element name="timestamp" type="xs:string"/>
+    </xs:sequence>
+        <xs:attribute name="id" type="xs:long"/>
+    </xs:complexType>
+
+    <xs:complexType name="mentionType">
+        <xs:annotation>
+            <xs:documentation>
+                Registers mentions
+            </xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+
+    <xs:complexType name="linkPreviewType">
+        <xs:annotation>
+            <xs:documentation>
+                Maps information about the link preview
+            </xs:documentation>
+        </xs:annotation>
+        <xs:all>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="url" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="date" type="xs:string" minOccurs="0"/>
+            <xs:element name="link_preview" minOccurs="0">
+                <xs:complexType>
+                    <xs:all>
+                        <xs:element name="filename" type="xs:string"/>
+                        <xs:element name="content_path" type="xs:string"/>
+                        <xs:element name="content_type" type="xs:string"/>
+                    </xs:all>
+                    <xs:attribute name="id" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+
+</xs:schema>
