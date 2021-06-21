@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
+import android.view.ViewOutlineProvider
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DrawableRes
@@ -62,7 +63,7 @@ class VisibleMessageContentView : LinearLayout {
             mainContainer.addView(bodyTextView)
         } else if (message is MmsMessageRecord && message.slideDeck.audioSlide != null) {
             val voiceMessageView = VoiceMessageView(context)
-            voiceMessageView.bind(message)
+            voiceMessageView.bind(message, background)
             mainContainer.addView(voiceMessageView)
         } else if (message is MmsMessageRecord && message.slideDeck.documentSlide != null) {
             val documentView = DocumentView(context)
