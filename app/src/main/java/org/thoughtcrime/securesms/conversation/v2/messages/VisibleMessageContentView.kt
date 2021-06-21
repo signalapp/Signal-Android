@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.loki.utilities.toPx
 import java.lang.IllegalStateException
 
 class VisibleMessageContentView : LinearLayout {
+    var onContentClick: (() -> Unit)? = null
 
     // TODO: Large emojis
 
@@ -50,6 +51,7 @@ class VisibleMessageContentView : LinearLayout {
         setBackground(background)
         // Body
         mainContainer.removeAllViews()
+        onContentClick = null
         if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
             val linkPreviewView = LinkPreviewView(context)
             linkPreviewView.bind(message)
@@ -66,6 +68,7 @@ class VisibleMessageContentView : LinearLayout {
             val voiceMessageView = VoiceMessageView(context)
             voiceMessageView.bind(message, background)
             mainContainer.addView(voiceMessageView)
+            onContentClick = { voiceMessageView.togglePlayback() }
         } else if (message is MmsMessageRecord && message.slideDeck.documentSlide != null) {
             val documentView = DocumentView(context)
             documentView.bind(message, getTextColor(message))

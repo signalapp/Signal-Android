@@ -31,7 +31,6 @@ class VoiceMessageView : LinearLayout {
 
     private fun initialize() {
         LayoutInflater.from(context).inflate(R.layout.view_voice_message, this)
-        setOnClickListener { togglePlayBack() }
         voiceMessageViewDurationTextView.text = String.format("%01d:%02d",
             TimeUnit.MILLISECONDS.toMinutes(mockDuration),
             TimeUnit.MILLISECONDS.toSeconds(mockDuration))
@@ -63,7 +62,7 @@ class VoiceMessageView : LinearLayout {
     // endregion
 
     // region Interaction
-    private fun togglePlayBack() {
+    fun togglePlayback() {
         mockIsPlaying = !mockIsPlaying
         val iconID = if (mockIsPlaying) R.drawable.exo_icon_pause else R.drawable.exo_icon_play
         voiceMessagePlaybackImageView.setImageResource(iconID)

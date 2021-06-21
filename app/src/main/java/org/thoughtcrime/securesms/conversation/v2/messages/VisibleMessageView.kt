@@ -257,5 +257,9 @@ class VisibleMessageView : LinearLayout {
         performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
         onLongPress?.invoke()
     }
+
+    fun onContentClick() {
+        messageContentView.onContentClick?.invoke()
+    }
     // endregion
 }

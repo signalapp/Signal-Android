@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarRecordingVie
 import org.thoughtcrime.securesms.conversation.v2.input_bar.mentions.MentionCandidatesView
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
+import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.loki.utilities.toPx
@@ -54,8 +55,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val adapter = ConversationAdapter(
             this,
             cursor,
-            onItemPress = { message, position ->
-                handlePress(message, position)
+            onItemPress = { message, position, view ->
+                handlePress(message, position, view)
             },
             onItemSwipeToReply = { message, position ->
                 handleSwipeToReply(message, position)
@@ -285,7 +286,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     // `position` is the adapter position; not the visual position
-    private fun handlePress(message: MessageRecord, position: Int) {
+    private fun handlePress(message: MessageRecord, position: Int, view: VisibleMessageView) {
         val actionMode = this.actionMode
         if (actionMode != null) {
             adapter.toggleSelection(message, position)
@@ -295,6 +296,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 actionMode.finish()
                 this.actionMode = null
             }
+        } else {
+            view.onContentClick()
         }
     }
 
