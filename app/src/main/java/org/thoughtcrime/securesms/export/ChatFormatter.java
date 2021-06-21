@@ -375,17 +375,13 @@ public class ChatFormatter {
                     addAttribute (link_preview, "id", mediaRecord.getAttachment ().getAttachmentId ().toString ());
                 if(mediaRecord.getAttachment ().getFileName ()!=null)
                     addElement (link_preview, "filename", mediaRecord.getAttachment ().getFileName ());
-                if(a.getUri ()!=null) {
-                    //addElement (link_preview, "content_path", getContentPath (a.getContentType (),a.getUploadTimestamp (),a.getUri ()));
+                if(a.getUri ()!=null)
                     addElement (link_preview, "content_path", getContentPath (mediaRecord.getContentType (), mediaRecord.getDate (), mediaRecord.getAttachment ().getUri ()));
-                }
-                if(a.getContentType ()!=null){
+                if(a.getContentType ()!=null)
                     addAttribute (link_preview, "content_type", a.getContentType ());
-                }
             }
-            if (Build.VERSION.SDK_INT >= 26) {
+            if (Build.VERSION.SDK_INT >= 26)
                 if(lp.getDate () > 0 )addElement (link, "date", DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale,lp.getDate ()));
-            }
         }
     }
 
@@ -492,7 +488,7 @@ public class ChatFormatter {
 
     private String getContentPath (String content_type, long timestamp,@NonNull Uri uri) {
         return ExportZipUtil.getMediaStoreContentPathForType (content_type) +
-                ExportZipUtil.generateOutputFileName (content_type, timestamp, uri.getPathSegments ().get (0));
+                ExportZipUtil.generateOutputFileName (content_type, timestamp, uri.getPathSegments ().get (uri.getPathSegments ().size ()-1));
     }
 
     private void createAttachmentElem (Element attachment, Slide s) {
@@ -521,7 +517,7 @@ public class ChatFormatter {
                     addElement (audio, "caption", String.valueOf (s.asAttachment ().getCaption ()));
                 MediaInput dataSource;
                 if (android.os.Build.VERSION.SDK_INT >= 23) {
-                    dataSource = DecryptableUriMediaInput.createForUri(context, Objects.requireNonNull (s.getUri ()));
+                    dataSource = DecryptableUriMediaInput.createForUri(context, s.getUri ());
                     addElement (audio, "duration_sec", String.valueOf (TimeUnit.SECONDS.convert((dataSource.createExtractor ().getTrackFormat (0).getLong(MediaFormat.KEY_DURATION)), TimeUnit.SECONDS)));
                 }
             } else if (s.hasVideo ()) {

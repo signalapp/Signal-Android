@@ -3110,7 +3110,7 @@
     <string name="date">date</string>
     <string name="ChatExportFragment__set_time_period">Time Period</string>
     <string name="ChatExportFragment__select_time_period">Select time period</string>
-    <string name="ExportChatsFragment__chatexport_info">Require to approve storage permission for exporting the conversation</string>
+    <string name="ExportChatsFragment__chatexport_info">Storage permission is required to export the chat.\nExporting a lot of messages can take some time. </string>
     <plurals name="ExportZip_adding_n_attachments">
         <item quantity="one">Adding all media to the Zip…</item>
         <item quantity="other">Adding %1$d attachments</item>

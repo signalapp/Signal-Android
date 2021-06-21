@@ -173,10 +173,10 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
     }
 
 
-    public static String generateOutputFileName (@NonNull String contentType, long date,@NonNull String uriPathSegment) {
+    public static String generateOutputFileName (@NonNull String contentType, long timestamp ,@NonNull String uriPathSegment) {
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton ();
         String extension = mimeTypeMap.getExtensionFromMimeType (contentType);
-        String base = "signal-" + dateFormatter.format (date) + uriPathSegment;
+        String base = "signal-" + dateFormatter.format (timestamp) + "-" + uriPathSegment;
         if (extension == null) extension = "attach";
 
         return base + "." + extension;
@@ -209,7 +209,7 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
     private String saveAttachment (Context context, Attachment attachment) throws IOException{
         String      contentType = Objects.requireNonNull(MediaUtil.getCorrectedMimeType(attachment.contentType));
         String      fileName ;
-        fileName = generateOutputFileName(contentType, attachment.date, attachment.uri.getPathSegments ().get (0));
+        fileName = generateOutputFileName(contentType, attachment.date, attachment.uri.getPathSegments ().get (attachment.uri.getPathSegments ().size ()-1));
 
         String           outputUri    = getMediaStoreContentPathForType(contentType);
         String           attachmentName     = createOutputPath( outputUri, fileName);
