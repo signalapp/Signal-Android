@@ -97,7 +97,7 @@ final class VideoThumbnailsExtractor {
 
         doExtract(extractor, decoder, outputSurface, outputWidthRotated, outputHeightRotated, duration, thumbnailCount, callback);
       }
-    } catch (IOException | TranscodingException e) {
+    } catch (IOException | TranscodingException | MediaCodec.CodecException e) {
       Log.w(TAG, e);
       callback.failed();
     } finally {
