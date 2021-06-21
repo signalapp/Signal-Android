@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="160dp"
+    android:layout_height="36dp"
     android:orientation="horizontal"
+    android:padding="@dimen/small_spacing"
     android:gravity="center">
 
+    <RelativeLayout
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/circle_tintable"
+        android:backgroundTint="@color/white">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/exo_icon_play"
+            android:layout_centerInParent="true"
+            app:tint="@color/black" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="84dp"
+        android:layout_height="1dp"
+        android:background="@color/white" />
+
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/medium_font_size"
-        android:textColor="@color/text" />
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:text="0:08"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/small_font_size"
+        android:background="@drawable/view_voice_message_duration_text_view_background"
+        android:backgroundTint="@color/white" />
 
 </LinearLayout>

@@ -11,26 +11,18 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 class VoiceMessageView : LinearLayout {
 
     // region Lifecycle
-    constructor(context: Context) : super(context) {
-        setUpViewHierarchy()
-    }
+    constructor(context: Context) : super(context) { initialize() }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize() }
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        setUpViewHierarchy()
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        setUpViewHierarchy()
-    }
-
-    private fun setUpViewHierarchy() {
+    private fun initialize() {
         LayoutInflater.from(context).inflate(R.layout.view_voice_message, this)
     }
     // endregion
 
     // region Updating
     fun bind(message: MessageRecord) {
-        textView.text = "I'm a voice message"
+
     }
 
     fun recycle() {

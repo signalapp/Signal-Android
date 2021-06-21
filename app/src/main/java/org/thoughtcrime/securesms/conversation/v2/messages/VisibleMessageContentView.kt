@@ -103,7 +103,7 @@ class VisibleMessageContentView : LinearLayout {
         val hPadding = toPx(12, resources)
         result.setPadding(hPadding, vPadding, hPadding, vPadding)
         result.text = message.body
-        result.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.medium_font_size))
+        result.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.small_font_size))
         val uiMode = UiModeUtilities.getUserSelectedUiMode(context)
         val colorID = if (message.isOutgoing) {
             if (uiMode == UiMode.NIGHT) R.color.black else R.color.white
