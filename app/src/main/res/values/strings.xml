@@ -845,4 +845,6 @@
     <string name="fragment_user_details_bottom_sheet_edit_text_hint">Enter a nickname</string>
     <string name="invalid_public_key">Invalid public key</string>
 
+    <string name="document">Document</string>
+
 </resources>

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.content.res.Resources
 import android.util.AttributeSet
 import android.util.Log
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
+import androidx.core.view.marginStart
 import kotlinx.android.synthetic.main.view_quote.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact
@@ -58,6 +60,7 @@ class QuoteView : LinearLayout {
 
     // region General
     fun getIntrinsicContentHeight(): Int {
+        if (quoteViewAttachmentPreviewContainer.isVisible) { return toPx(40, resources) }
         var result = 0
         val width = screenWidth
         var authorTextViewIntrinsicHeight = 0
@@ -95,11 +98,31 @@ class QuoteView : LinearLayout {
         // Body
         quoteViewBodyTextView.text = body
         quoteViewBodyTextView.setTextColor(getTextColor(isOutgoingMessage))
-        // Accent line
-        val accentLineLayoutParams = quoteViewAccentLine.layoutParams as RelativeLayout.LayoutParams
-        accentLineLayoutParams.height = getIntrinsicContentHeight()
-        quoteViewAccentLine.layoutParams = accentLineLayoutParams
-        quoteViewAccentLine.setBackgroundColor(getLineColor(isOutgoingMessage))
+        // Accent line / attachment preview
+        val hasAttachments = (attachments != null && attachments.asAttachments().isNotEmpty())
+        quoteViewAccentLine.isVisible = !hasAttachments
+        quoteViewAttachmentPreviewContainer.isVisible = hasAttachments
+        if (!hasAttachments) {
+            val accentLineLayoutParams = quoteViewAccentLine.layoutParams as RelativeLayout.LayoutParams
+            accentLineLayoutParams.height = getIntrinsicContentHeight()
+            quoteViewAccentLine.layoutParams = accentLineLayoutParams
+            quoteViewAccentLine.setBackgroundColor(getLineColor(isOutgoingMessage))
+        } else {
+            attachments!!
+            quoteViewAttachmentPreviewImageView.imageTintList = ColorStateList.valueOf(ResourcesCompat.getColor(resources, R.color.white, context.theme))
+            if (attachments.audioSlide != null) {
+                quoteViewAttachmentPreviewImageView.setImageResource(R.drawable.ic_microphone)
+                quoteViewBodyTextView.text = resources.getString(R.string.Slide_audio)
+            } else if (attachments.documentSlide != null) {
+                quoteViewAttachmentPreviewImageView.setImageResource(R.drawable.ic_document_large_light)
+                quoteViewBodyTextView.text = resources.getString(R.string.document)
+            }
+            // TODO: Link previews
+            // TODO: Images/video
+        }
+        val quoteViewMainContentContainerLayoutParams = quoteViewMainContentContainer.layoutParams as RelativeLayout.LayoutParams
+        quoteViewMainContentContainerLayoutParams.marginStart = if (!hasAttachments) toPx(16, resources) else toPx(48, resources)
+        quoteViewMainContentContainer.layoutParams = quoteViewMainContentContainerLayoutParams
     }
     // endregion
 

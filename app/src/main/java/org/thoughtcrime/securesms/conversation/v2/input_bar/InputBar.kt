@@ -13,8 +13,10 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.conversation.v2.messages.QuoteView
 import org.thoughtcrime.securesms.conversation.v2.messages.QuoteViewDelegate
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.toDp
 import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.mms.SlideDeck
 import kotlin.math.max
 
 class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
@@ -88,7 +90,8 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
         val quoteView = QuoteView(context, QuoteView.Mode.Draft)
         quoteView.delegate = this
         inputBarAdditionalContentContainer.addView(quoteView)
-        quoteView.bind(message.individualRecipient.address.toString(), message.body, null, message.recipient, true)
+        val attachments = (message as? MmsMessageRecord)?.slideDeck
+        quoteView.bind(message.individualRecipient.address.toString(), message.body, attachments, message.recipient, true)
         val quoteViewIntrinsicHeight = quoteView.getIntrinsicHeight()
         val newHeight = max(inputBarEditText.height + 2 * vMargin, toPx(56, resources)) + quoteViewIntrinsicHeight
         additionalContentHeight = quoteViewIntrinsicHeight
