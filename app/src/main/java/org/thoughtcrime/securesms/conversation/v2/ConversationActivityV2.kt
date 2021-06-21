@@ -64,7 +64,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 handleLongPress(message, position)
             }
         )
-        adapter.setHasStableIds(true)
         adapter
     }
 
