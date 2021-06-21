@@ -198,8 +198,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int AVATAR_COLORS                    = 101;
   private static final int EMOJI_SEARCH                     = 102;
   private static final int SENDER_KEY                       = 103;
+  private static final int MESSAGE_DUPE_INDEX               = 104;
 
-  private static final int    DATABASE_VERSION = 103;
+  private static final int    DATABASE_VERSION = 104;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1558,6 +1559,14 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
             db.update("groups", values, "group_id = ?", new String[] { groupId });
           }
         }
+      }
+
+      if (oldVersion < MESSAGE_DUPE_INDEX) {
+        db.execSQL("DROP INDEX sms_date_sent_index");
+        db.execSQL("CREATE INDEX sms_date_sent_index on sms(date_sent, address, thread_id)");
+
+        db.execSQL("DROP INDEX mms_date_sent_index");
+        db.execSQL("CREATE INDEX mms_date_sent_index on mms(date, address, thread_id)");
       }
 
       db.setTransactionSuccessful();
