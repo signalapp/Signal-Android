@@ -22,7 +22,7 @@ class ConversationUpdateTick(
     isResumed = true
 
     handler.removeCallbacksAndMessages(null)
-    handler.postDelayed(this::onTick, TIMEOUT)
+    onTick()
   }
 
   override fun onPause(owner: LifecycleOwner) {
