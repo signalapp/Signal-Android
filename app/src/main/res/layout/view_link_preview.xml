@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/thumbnailImageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
         android:scaleType="centerCrop" />
 
     <TextView

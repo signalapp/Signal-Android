@@ -55,7 +55,7 @@ class VisibleMessageContentView : LinearLayout {
         onContentClick = null
         if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
             val linkPreviewView = LinkPreviewView(context)
-            linkPreviewView.bind(message, glide)
+            linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster)
             mainContainer.addView(linkPreviewView)
             val bodyTextView = getBodyTextView(message)
             mainContainer.addView(bodyTextView)
