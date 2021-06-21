@@ -17,13 +17,14 @@
       app:navigationIcon="@drawable/ic_arrow_left_24"
       app:title="@string/EditAboutFragment_about" />
 
-  <ImageView
+  <androidx.appcompat.widget.AppCompatImageView
       android:id="@+id/edit_about_emoji"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="40dp"
+      android:layout_height="40dp"
       android:layout_marginStart="10dp"
-      android:padding="15dp"
+      android:padding="8dp"
       android:background="?selectableItemBackgroundBorderless"
+      android:scaleType="fitCenter"
       app:srcCompat="@drawable/ic_add_emoji"
       app:tint="@color/signal_text_secondary"
       app:layout_constraintTop_toTopOf="@id/edit_about_body"
@@ -46,7 +47,7 @@
       app:layout_constraintEnd_toStartOf="@id/edit_about_clear"
       app:emoji_forceCustom="true"/>
 
-  <ImageView
+  <androidx.appcompat.widget.AppCompatImageView
       android:id="@+id/edit_about_clear"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
