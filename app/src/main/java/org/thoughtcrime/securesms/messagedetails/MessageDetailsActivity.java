@@ -147,6 +147,7 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
 
     if (details.getConversationMessage().getMessageRecord().isOutgoing()) {
       addRecipients(list, RecipientHeader.NOT_SENT, details.getNotSent());
+      addRecipients(list, RecipientHeader.VIEWED, details.getViewed());
       addRecipients(list, RecipientHeader.READ, details.getRead());
       addRecipients(list, RecipientHeader.DELIVERED, details.getDelivered());
       addRecipients(list, RecipientHeader.SENT_TO, details.getSent());
