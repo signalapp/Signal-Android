@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 import android.content.Context
 import android.content.res.Resources
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -59,9 +60,12 @@ class QuoteView : LinearLayout {
     fun getIntrinsicContentHeight(): Int {
         var result = 0
         val width = screenWidth
-        val author = quoteViewAuthorTextView.text
-        val authorTextViewIntrinsicHeight = TextUtilities.getIntrinsicHeight(author, quoteViewAuthorTextView.paint, width)
-        result += authorTextViewIntrinsicHeight
+        var authorTextViewIntrinsicHeight = 0
+        if (quoteViewAuthorTextView.isVisible) {
+            val author = quoteViewAuthorTextView.text
+            authorTextViewIntrinsicHeight = TextUtilities.getIntrinsicHeight(author, quoteViewAuthorTextView.paint, width)
+            result += authorTextViewIntrinsicHeight
+        }
         val body = quoteViewBodyTextView.text
         val bodyTextViewIntrinsicHeight = TextUtilities.getIntrinsicHeight(body, quoteViewBodyTextView.paint, width)
         result += bodyTextViewIntrinsicHeight
