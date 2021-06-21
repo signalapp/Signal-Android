@@ -20,7 +20,7 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
 
     override val isSelfSendValid: Boolean = true
 
-    class ClosedGroup(var publicKey: String, var name: String, var encryptionKeyPair: ECKeyPair?, var members: List<String>, var admins: List<String>, var expireTimer: Int) {
+    class ClosedGroup(var publicKey: String, var name: String, var encryptionKeyPair: ECKeyPair?, var members: List<String>, var admins: List<String>, var expirationTimer: Int) {
         val isValid: Boolean get() = members.isNotEmpty() && admins.isNotEmpty()
 
         internal constructor() : this("", "", null, listOf(), listOf(), 0)
@@ -40,8 +40,8 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
                     DjbECPrivateKey(encryptionKeyPairAsProto.privateKey.toByteArray()))
                 val members = proto.membersList.map { it.toByteArray().toHexString() }
                 val admins = proto.adminsList.map { it.toByteArray().toHexString() }
-                val expireTimer = proto.expireTimer
-                return ClosedGroup(publicKey, name, encryptionKeyPair, members, admins, expireTimer)
+                val expirationTimer = proto.expirationTimer
+                return ClosedGroup(publicKey, name, encryptionKeyPair, members, admins, expirationTimer)
             }
         }
 
@@ -55,7 +55,7 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
             result.encryptionKeyPair = encryptionKeyPairAsProto.build()
             result.addAllMembers(members.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
             result.addAllAdmins(admins.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
-            result.expireTimer = expireTimer
+            result.expirationTimer = expirationTimer
             return result.build()
         }
     }

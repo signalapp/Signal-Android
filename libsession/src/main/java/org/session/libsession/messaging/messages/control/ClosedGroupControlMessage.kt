@@ -34,7 +34,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
             is Kind.New -> {
                 !kind.publicKey.isEmpty && kind.name.isNotEmpty() && kind.encryptionKeyPair?.publicKey != null
                     && kind.encryptionKeyPair?.privateKey != null && kind.members.isNotEmpty() && kind.admins.isNotEmpty()
-                    && kind.expireTimer >= 0
+                    && kind.expirationTimer >= 0
             }
             is Kind.EncryptionKeyPair -> true
             is Kind.NameChange -> kind.name.isNotEmpty()
@@ -45,7 +45,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
     }
 
     sealed class Kind {
-        class New(var publicKey: ByteString, var name: String, var encryptionKeyPair: ECKeyPair?, var members: List<ByteString>, var admins: List<ByteString>, var expireTimer: Int) : Kind() {
+        class New(var publicKey: ByteString, var name: String, var encryptionKeyPair: ECKeyPair?, var members: List<ByteString>, var admins: List<ByteString>, var expirationTimer: Int) : Kind() {
             internal constructor() : this(ByteString.EMPTY, "", null, listOf(), listOf(), 0)
         }
         /** An encryption key pair encrypted for each member individually.
@@ -89,11 +89,11 @@ class ClosedGroupControlMessage() : ControlMessage() {
                     val publicKey = closedGroupControlMessageProto.publicKey ?: return null
                     val name = closedGroupControlMessageProto.name ?: return null
                     val encryptionKeyPairAsProto = closedGroupControlMessageProto.encryptionKeyPair ?: return null
-                    val expireTimer = closedGroupControlMessageProto.expireTimer
+                    val expirationTimer = closedGroupControlMessageProto.expirationTimer
                     try {
                         val encryptionKeyPair = ECKeyPair(DjbECPublicKey(encryptionKeyPairAsProto.publicKey.toByteArray()),
                             DjbECPrivateKey(encryptionKeyPairAsProto.privateKey.toByteArray()))
-                        kind = Kind.New(publicKey, name, encryptionKeyPair, closedGroupControlMessageProto.membersList, closedGroupControlMessageProto.adminsList, expireTimer)
+                        kind = Kind.New(publicKey, name, encryptionKeyPair, closedGroupControlMessageProto.membersList, closedGroupControlMessageProto.adminsList, expirationTimer)
                     } catch (e: Exception) {
                         Log.w(TAG, "Couldn't parse key pair from proto: $encryptionKeyPairAsProto.")
                         return null
@@ -145,7 +145,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
                     closedGroupControlMessage.encryptionKeyPair = encryptionKeyPair.build()
                     closedGroupControlMessage.addAllMembers(kind.members)
                     closedGroupControlMessage.addAllAdmins(kind.admins)
-                    closedGroupControlMessage.expireTimer = kind.expireTimer
+                    closedGroupControlMessage.expirationTimer = kind.expirationTimer
                 }
                 is Kind.EncryptionKeyPair -> {
                     closedGroupControlMessage.type = DataMessage.ClosedGroupControlMessage.Type.ENCRYPTION_KEY_PAIR
