@@ -174,9 +174,6 @@ class ClosedGroupControlMessage() : ControlMessage() {
             // Group context
             setGroupContext(dataMessageProto)
             // Expiration timer
-            // TODO: We * want * expiration timer updates to be explicit. But currently Android will disable the expiration timer for a conversation
-            //       if it receives a message without the current expiration timer value attached to it...
-            dataMessageProto.expireTimer = Recipient.from(MessagingModuleConfiguration.shared.context, Address.fromSerialized(GroupUtil.doubleEncodeGroupID(recipient!!)), false).expireMessages
             contentProto.dataMessage = dataMessageProto.build()
             return contentProto.build()
         } catch (e: Exception) {
