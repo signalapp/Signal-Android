@@ -629,7 +629,7 @@ public class ConversationFragment extends LoggingFragment {
 
     this.recipient      = Recipient.live(conversationViewModel.getArgs().getRecipientId());
     this.threadId       = conversationViewModel.getArgs().getThreadId();
-    this.markReadHelper = new MarkReadHelper(threadId, requireContext());
+    this.markReadHelper = new MarkReadHelper(threadId, requireContext(), getViewLifecycleOwner());
 
     conversationViewModel.onConversationDataAvailable(recipient.getId(), threadId, startingPosition);
     messageCountsViewModel.setThreadId(threadId);
@@ -806,7 +806,7 @@ public class ConversationFragment extends LoggingFragment {
       snapToTopDataObserver.requestScrollPosition(0);
       conversationViewModel.onConversationDataAvailable(recipient.getId(), threadId, -1);
       messageCountsViewModel.setThreadId(threadId);
-      markReadHelper = new MarkReadHelper(threadId, requireContext());
+      markReadHelper = new MarkReadHelper(threadId, requireContext(), getViewLifecycleOwner());
       initializeListAdapter();
       initializeTypingObserver();
     }
