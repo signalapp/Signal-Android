@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
+import android.graphics.Canvas
 import android.graphics.Outline
 import android.graphics.Path
 import android.graphics.RectF
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
@@ -29,8 +31,9 @@ class LinkPreviewView : LinearLayout {
     // endregion
 
     // region Updating
-    fun bind(message: MmsMessageRecord, glide: GlideRequests, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {
-        mainLinkPreviewContainer.outlineProvider = getOutlineProvider(message.isOutgoing, isStartOfMessageCluster, isEndOfMessageCluster)
+    fun bind(message: MmsMessageRecord, glide: GlideRequests, background: Drawable) {
+        mainLinkPreviewContainer.background = background
+        mainLinkPreviewContainer.outlineProvider = ViewOutlineProvider.BACKGROUND
         mainLinkPreviewContainer.clipToOutline = true
         // Thumbnail
         val linkPreview = message.linkPreviews.first()
@@ -40,38 +43,12 @@ class LinkPreviewView : LinearLayout {
         // TODO: Properly use glide and the actual thumbnail
         // Title
         titleTextView.text = linkPreview.title
+        // Body
+        mainLinkPreviewContainer.addView(VisibleMessageContentView.getBodyTextView(context, message))
     }
 
     fun recycle() {
         // TODO: Implement
-    }
-    // endregion
-
-    // region Convenience
-    private fun getOutlineProvider(isOutgoing: Boolean, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean): ViewOutlineProvider {
-        return object : ViewOutlineProvider() {
-
-            override fun getOutline(view: View, outline: Outline) {
-                val path = Path()
-                val rect = RectF(0.0f, 0.0f, view.width.toFloat(), view.height.toFloat())
-                val topLeft = if (isOutgoing) {
-                    resources.getDimension(R.dimen.message_corner_radius)
-                } else {
-                    if (isStartOfMessageCluster) resources.getDimension(R.dimen.message_corner_radius) else resources.getDimension(R.dimen.message_corner_collapse_radius)
-                }
-                val topRight = if (isOutgoing) {
-                    if (isStartOfMessageCluster) resources.getDimension(R.dimen.message_corner_radius) else resources.getDimension(R.dimen.message_corner_collapse_radius)
-                } else {
-                    resources.getDimension(R.dimen.message_corner_radius)
-                }
-                path.addRoundRect(rect, floatArrayOf( topLeft, topLeft, topRight, topRight, 0.0f, 0.0f, 0.0f, 0.0f ), Path.Direction.CW)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    outline.setPath(path)
-                } else {
-                    @Suppress("DEPRECATION") outline.setConvexPath(path)
-                }
-            }
-        }
     }
     // endregion
 }

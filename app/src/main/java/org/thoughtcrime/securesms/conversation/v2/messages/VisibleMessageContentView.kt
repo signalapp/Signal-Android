@@ -55,16 +55,15 @@ class VisibleMessageContentView : LinearLayout {
         onContentClick = null
         if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
             val linkPreviewView = LinkPreviewView(context)
-            linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster)
+            linkPreviewView.bind(message, glide, background)
             mainContainer.addView(linkPreviewView)
-            val bodyTextView = getBodyTextView(message)
-            mainContainer.addView(bodyTextView)
+            // Body text view is inside the link preview for layout convenience
         } else if (message is MmsMessageRecord && message.quote != null) {
             val quote = message.quote!!
             val quoteView = QuoteView(context, QuoteView.Mode.Regular)
             quoteView.bind(quote.author.toString(), quote.text, quote.attachment, message.recipient, message.isOutgoing)
             mainContainer.addView(quoteView)
-            val bodyTextView = getBodyTextView(message)
+            val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
             ViewUtil.setPaddingTop(bodyTextView, 0)
             mainContainer.addView(bodyTextView)
         } else if (message is MmsMessageRecord && message.slideDeck.audioSlide != null) {
@@ -74,12 +73,12 @@ class VisibleMessageContentView : LinearLayout {
             onContentClick = { voiceMessageView.togglePlayback() }
         } else if (message is MmsMessageRecord && message.slideDeck.documentSlide != null) {
             val documentView = DocumentView(context)
-            documentView.bind(message, getTextColor(message))
+            documentView.bind(message, VisibleMessageContentView.getTextColor(context, message))
             mainContainer.addView(documentView)
         } else if (message is MmsMessageRecord && message.slideDeck.asAttachments().isNotEmpty()) {
             throw IllegalStateException("Not yet implemented; we may want to use Signal's album view here.")
         } else {
-            val bodyTextView = getBodyTextView(message)
+            val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
             mainContainer.addView(bodyTextView)
         }
     }
@@ -105,27 +104,30 @@ class VisibleMessageContentView : LinearLayout {
     // endregion
 
     // region Convenience
-    private fun getBodyTextView(message: MessageRecord): TextView {
-        val result = TextView(context)
-        val vPadding = resources.getDimension(R.dimen.small_spacing).toInt()
-        val hPadding = toPx(12, resources)
-        result.setPadding(hPadding, vPadding, hPadding, vPadding)
-        result.text = message.body
-        result.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.small_font_size))
-        val color = getTextColor(message)
-        result.setTextColor(color)
-        return result
-    }
+    companion object {
 
-    @ColorInt
-    private fun getTextColor(message: MessageRecord): Int {
-        val uiMode = UiModeUtilities.getUserSelectedUiMode(context)
-        val colorID = if (message.isOutgoing) {
-            if (uiMode == UiMode.NIGHT) R.color.black else R.color.white
-        } else {
-            if (uiMode == UiMode.NIGHT) R.color.white else R.color.black
+        fun getBodyTextView(context: Context, message: MessageRecord): TextView {
+            val result = TextView(context)
+            val vPadding = context.resources.getDimension(R.dimen.small_spacing).toInt()
+            val hPadding = toPx(12, context.resources)
+            result.setPadding(hPadding, vPadding, hPadding, vPadding)
+            result.text = message.body
+            result.setTextSize(TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(R.dimen.small_font_size))
+            val color = getTextColor(context, message)
+            result.setTextColor(color)
+            return result
         }
-        return resources.getColorWithID(colorID, context.theme)
+
+        @ColorInt
+        fun getTextColor(context: Context, message: MessageRecord): Int {
+            val uiMode = UiModeUtilities.getUserSelectedUiMode(context)
+            val colorID = if (message.isOutgoing) {
+                if (uiMode == UiMode.NIGHT) R.color.black else R.color.white
+            } else {
+                if (uiMode == UiMode.NIGHT) R.color.white else R.color.black
+            }
+            return context.resources.getColorWithID(colorID, context.theme)
+        }
     }
     // endregion
 }

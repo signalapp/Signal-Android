@@ -5,27 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:gravity="center">
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/thumbnailImageView"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:scaleType="centerCrop" />
-
-    <TextView
-        android:id="@+id/titleTextView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingStart="12dp"
-        android:gravity="center_vertical"
-        android:textSize="@dimen/small_font_size"
-        android:textStyle="bold"
-        tools:text="The Day The Dinosaurs Died - Minute by Minute"
-        android:maxLines="3"
-        android:ellipsize="end"
-        android:textColor="@color/text"
-        android:background="@color/link_preview_background" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/thumbnailImageView"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="12dp"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/small_font_size"
+            android:textStyle="bold"
+            tools:text="The Day The Dinosaurs Died - Minute by Minute"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:textColor="@color/text"
+            android:background="@color/link_preview_background" />
+
+    </LinearLayout>
 
 </LinearLayout>
