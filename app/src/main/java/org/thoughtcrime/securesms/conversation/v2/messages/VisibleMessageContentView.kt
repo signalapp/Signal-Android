@@ -14,6 +14,7 @@ import androidx.core.graphics.BlendModeCompat
 import kotlinx.android.synthetic.main.view_visible_message_content.view.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.ThemeUtil
+import org.session.libsession.utilities.ViewUtil
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.UiMode
@@ -52,9 +53,13 @@ class VisibleMessageContentView : LinearLayout {
             linkPreviewView.bind(message)
             mainContainer.addView(linkPreviewView)
         } else if (message is MmsMessageRecord && message.quote != null) {
-            val quoteView = QuoteView(context)
-            quoteView.bind(message.individualRecipient.address.toString(), "iuasfhiausfh", null, message.recipient)
+            val quote = message.quote!!
+            val quoteView = QuoteView(context, QuoteView.Mode.Regular)
+            quoteView.bind(quote.author.toString(), quote.text, quote.attachment, message.recipient, message.isOutgoing)
             mainContainer.addView(quoteView)
+            val bodyTextView = getBodyTextView(message)
+            ViewUtil.setPaddingTop(bodyTextView, 0)
+            mainContainer.addView(bodyTextView)
         } else if (message is MmsMessageRecord && message.slideDeck.audioSlide != null) {
             val voiceMessageView = VoiceMessageView(context)
             voiceMessageView.bind(message)

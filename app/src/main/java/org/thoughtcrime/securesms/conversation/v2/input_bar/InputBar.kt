@@ -85,10 +85,10 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
 
     fun draftQuote(message: MessageRecord) {
         inputBarAdditionalContentContainer.removeAllViews()
-        val quoteView = QuoteView(context)
+        val quoteView = QuoteView(context, QuoteView.Mode.Draft)
         quoteView.delegate = this
         inputBarAdditionalContentContainer.addView(quoteView)
-        quoteView.bind(message.individualRecipient.address.toString(), message.body, null, message.recipient)
+        quoteView.bind(message.individualRecipient.address.toString(), message.body, null, message.recipient, true)
         val quoteViewIntrinsicHeight = quoteView.getIntrinsicHeight()
         val newHeight = max(inputBarEditText.height + 2 * vMargin, toPx(56, resources)) + quoteViewIntrinsicHeight
         additionalContentHeight = quoteViewIntrinsicHeight
