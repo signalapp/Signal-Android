@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.ViewOutlineProvider
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
@@ -67,7 +68,7 @@ class VisibleMessageContentView : LinearLayout {
             mainContainer.addView(voiceMessageView)
         } else if (message is MmsMessageRecord && message.slideDeck.documentSlide != null) {
             val documentView = DocumentView(context)
-            documentView.bind(message)
+            documentView.bind(message, getTextColor(message))
             mainContainer.addView(documentView)
         } else if (message is MmsMessageRecord && message.slideDeck.asAttachments().isNotEmpty()) {
             throw IllegalStateException("Not yet implemented; we may want to use Signal's album view here.")
@@ -105,14 +106,20 @@ class VisibleMessageContentView : LinearLayout {
         result.setPadding(hPadding, vPadding, hPadding, vPadding)
         result.text = message.body
         result.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.small_font_size))
+        val color = getTextColor(message)
+        result.setTextColor(color)
+        return result
+    }
+
+    @ColorInt
+    private fun getTextColor(message: MessageRecord): Int {
         val uiMode = UiModeUtilities.getUserSelectedUiMode(context)
         val colorID = if (message.isOutgoing) {
             if (uiMode == UiMode.NIGHT) R.color.black else R.color.white
         } else {
             if (uiMode == UiMode.NIGHT) R.color.white else R.color.black
         }
-        result.setTextColor(resources.getColorWithID(colorID, context.theme))
-        return result
+        return resources.getColorWithID(colorID, context.theme)
     }
     // endregion
 }
