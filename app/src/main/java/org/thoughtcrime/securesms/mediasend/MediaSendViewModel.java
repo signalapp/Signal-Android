@@ -236,12 +236,8 @@ class MediaSendViewModel extends ViewModel {
     captionVisible = getSelectedMediaOrDefault().size() > 1 || (getSelectedMediaOrDefault().size() > 0 && getSelectedMediaOrDefault().get(0).getCaption().isPresent());
     buttonState    = (recipient != null) ? ButtonState.SEND : ButtonState.CONTINUE;
 
-    if (viewOnceState == ViewOnceState.GONE && viewOnceSupported()) {
-      viewOnceState = ViewOnceState.DISABLED;
-      showViewOnceTooltipIfNecessary(viewOnceState);
-    } else if (!viewOnceSupported()) {
-      viewOnceState = ViewOnceState.GONE;
-    }
+    updateViewOnceState();
+    showViewOnceTooltipIfNecessary(viewOnceState);
 
     railState      = !isSms && viewOnceState != ViewOnceState.ENABLED ? RailState.INTERACTIVE : RailState.GONE;
     composeVisible = viewOnceState != ViewOnceState.ENABLED;
@@ -590,6 +586,15 @@ class MediaSendViewModel extends ViewModel {
     return mediaConstraints;
   }
 
+  private void updateViewOnceState() {
+    if (viewOnceState == ViewOnceState.GONE && viewOnceSupported()) {
+      showViewOnceTooltipIfNecessary(viewOnceState);
+      viewOnceState = ViewOnceState.DISABLED;
+    } else if (!viewOnceSupported()) {
+      viewOnceState = ViewOnceState.GONE;
+    }
+  }
+
   private @NonNull List<Media> getSelectedMediaOrDefault() {
     return selectedMedia.getValue() == null ? Collections.emptyList()
                                             : selectedMedia.getValue();
@@ -612,6 +617,8 @@ class MediaSendViewModel extends ViewModel {
     int         selectionCount        = selectedMedia.size();
     ButtonState updatedButtonState    = buttonState == ButtonState.COUNT && selectionCount == 0 ? ButtonState.GONE : buttonState;
     boolean     updatedCaptionVisible = captionVisible && (selectedMedia.size() > 1 || (selectedMedia.size() > 0 && selectedMedia.get(0).getCaption().isPresent()));
+
+    updateViewOnceState();
 
     return new HudState(hudVisible, composeVisible, updatedCaptionVisible, selectionCount, updatedButtonState, railState, viewOnceState);
   }
