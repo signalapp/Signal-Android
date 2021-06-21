@@ -173,7 +173,6 @@ class ClosedGroupControlMessage() : ControlMessage() {
             dataMessageProto.closedGroupControlMessage = closedGroupControlMessage.build()
             // Group context
             setGroupContext(dataMessageProto)
-            // Expiration timer
             contentProto.dataMessage = dataMessageProto.build()
             return contentProto.build()
         } catch (e: Exception) {
