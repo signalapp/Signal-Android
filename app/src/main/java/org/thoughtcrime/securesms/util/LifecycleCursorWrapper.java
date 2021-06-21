@@ -8,8 +8,6 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
-import org.signal.core.util.concurrent.SignalExecutors;
-
 /**
  * Wraps a {@link Cursor} that will be closed automatically when the {@link Lifecycle.Event}.ON_DESTROY
  * is fired from the lifecycle this object is observing.
@@ -23,10 +21,5 @@ public class LifecycleCursorWrapper extends CursorWrapper implements DefaultLife
   @Override
   public void onDestroy(@NonNull LifecycleOwner owner) {
     close();
-  }
-
-  @Override
-  public void close() {
-    SignalExecutors.BOUNDED.execute(super::close);
   }
 }

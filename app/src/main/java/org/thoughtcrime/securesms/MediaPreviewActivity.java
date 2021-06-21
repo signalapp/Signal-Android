@@ -73,7 +73,6 @@ import org.thoughtcrime.securesms.sharing.ShareActivity;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
-import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.StorageUtil;
@@ -129,7 +128,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   private MediaDatabase.Sorting sorting;
   private FullscreenHelper      fullscreenHelper;
 
-  private @Nullable LifecycleCursorWrapper cursor = null;
+  private @Nullable Cursor cursor = null;
 
   public static @NonNull Intent intentFromMediaRecord(@NonNull Context context,
                                                       @NonNull MediaRecord mediaRecord,
@@ -249,7 +248,10 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
 
   @Override
   protected void onDestroy() {
-    cursor = null;
+    if (cursor != null) {
+      cursor.close();
+      cursor = null;
+    }
     super.onDestroy();
   }
 
@@ -547,11 +549,9 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
       }
 
       if (cursor != null) {
-        getLifecycle().removeObserver(cursor);
         cursor.close();
       }
-      cursor = new LifecycleCursorWrapper(Objects.requireNonNull(data.first));
-      getLifecycle().addObserver(cursor);
+      cursor = Objects.requireNonNull(data.first);
 
       int mediaPosition = Objects.requireNonNull(data.second);
 
