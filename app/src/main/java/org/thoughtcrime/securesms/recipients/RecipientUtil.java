@@ -294,7 +294,7 @@ public class RecipientUtil {
   @WorkerThread
   public static boolean setAndSendUniversalExpireTimerIfNecessary(@NonNull Context context, @NonNull Recipient recipient, long threadId) {
     int defaultTimer = SignalStore.settings().getUniversalExpireTimer();
-    if (defaultTimer == 0 || recipient.isGroup() || recipient.getExpireMessages() != 0) {
+    if (defaultTimer == 0 || recipient.isGroup() || recipient.getExpireMessages() != 0 || !recipient.isRegistered()) {
       return false;
     }
 
