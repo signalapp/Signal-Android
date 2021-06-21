@@ -312,41 +312,35 @@ object SnodeAPI {
         }
     }
 
-    /** Deletes all messages owned by the given pubkey on this SN and broadcasts the delete request to
-     *  all other swarm members.
-     *  Returns dict of:
-     *  - "swarms" dict mapping ed25519 pubkeys (in hex) of swarm members to dict values of:
-     *  - "failed" and other failure keys -- see `recursive`.
-     *  - "deleted": hashes of deleted messages.
-     *  - "signature": signature of ( PUBKEY_HEX || TIMESTAMP || DELETEDHASH[0] || ... || DELETEDHASH[N] ), signed
-     *  by the node's ed25519 pubkey.
-     */
     fun deleteAllMessages(context: Context): Promise<Set<RawResponsePromise>, Exception> {
 
-        return retryIfNeeded(1) {
+        return retryIfNeeded(maxRetryCount) {
             // considerations: timestamp off in retrying logic, not being able to re-sign with latest timestamp? do we just not retry this as it will be synchronous
-            val ed = KeyPairUtilities.getUserED25519KeyPair(context) ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
-            val xPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey
-            val userKeyPair = MessagingModuleConfiguration.shared.storage.getUserX25519KeyPair()
+            val userED25519KeyPair = KeyPairUtilities.getUserED25519KeyPair(context) ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
             val userPublicKey = MessagingModuleConfiguration.shared.storage.getUserPublicKey() ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
 
             val destination = if (useTestnet) userPublicKey.removing05PrefixIfNeeded() else userPublicKey
 
-            getTargetSnodes(destination).map { swarm ->
-                swarm.map { snode ->
-                    retryIfNeeded(1) {
+            getSwarm(destination).map { swarm ->
+                val promise = swarm.first().let { snode ->
+                    retryIfNeeded(maxRetryCount) {
                         getNetworkTime(snode).bind { (_, timestamp) ->
                             val signature = ByteArray(Sign.BYTES)
-                            val data = Snode.Method.DeleteAll.rawValue.toByteArray() + timestamp.toString().toByteArray()
-                            val signed = sodium.cryptoSignDetached(signature, data, data.size.toLong(), xPrivateKey.serialize())
-                            val deleteMessage = SnodeDeleteMessage(userPublicKey, timestamp, Base64.encodeBytes(signature))
-                            val parameters = deleteMessage.toJSON()
-                            invoke(Snode.Method.DeleteAll, snode, destination, parameters).fail { e ->
+                            val data = (Snode.Method.DeleteAll.rawValue + timestamp.toString()).toByteArray()
+                            sodium.cryptoSignDetached(signature, data, data.size.toLong(), userED25519KeyPair.secretKey.asBytes)
+                            val deleteMessageParams = mapOf(
+                                    "pubkey" to userPublicKey,
+                                    "pubkey_ed25519" to userED25519KeyPair.publicKey.asHexString,
+                                    "timestamp" to timestamp,
+                                    "signature" to Base64.encodeBytes(signature)
+                            )
+                            invoke(Snode.Method.DeleteAll, snode, destination, deleteMessageParams).map { rawResponse -> parseDeletions(timestamp, rawResponse) }.fail { e ->
                                 Log.e("Loki", "Failed to clear data",e)
                             }
                         }
                     }
-                }.toSet()
+                }
+                setOf(promise)
             }
         }
     }
@@ -433,6 +427,43 @@ object SnodeAPI {
             }
         }
     }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun parseDeletions(timestamp: Long, rawResponse: RawResponse): Map<String, Any> {
+        val swarms = rawResponse["swarms"] as? Map<String,Any> ?: return mapOf()
+        val swarmResponsesValid = swarms.mapNotNull { (nodePubKeyHex, rawMap) ->
+            val map = rawMap as? Map<String,Any> ?: return@mapNotNull null
+            /** Deletes all messages owned by the given pubkey on this SN and broadcasts the delete request to
+             *  all other swarm members.
+             *  Returns dict of:
+             *  - "swarms" dict mapping ed25519 pubkeys (in hex) of swarm members to dict values of:
+             *  - "failed" and other failure keys -- see `recursive`.
+             *  - "deleted": hashes of deleted messages.
+             *  - "signature": signature of ( PUBKEY_HEX || TIMESTAMP || DELETEDHASH[0] || ... || DELETEDHASH[N] ), signed
+             *  by the node's ed25519 pubkey.
+             */
+            // failure
+            val failed = map["failed"] as? Boolean ?: false
+            val code = map["code"] as? String
+            val reason = map["reason"] as? String
+
+            nodePubKeyHex to if (failed) {
+                // return error probs
+                false
+            } else {
+                // success
+                val deleted = map["deleted"] as List<String> // list of deleted hashes
+                Log.d("Loki", "node $nodePubKeyHex deleted ${deleted.size} messages")
+                val signature = map["signature"] as String
+                val nodePubKeyBytes = Hex.fromStringCondensed(nodePubKeyHex)
+                // signature of ( PUBKEY_HEX || TIMESTAMP || DELETEDHASH[0] || ... || DELETEDHASH[N] )
+                val message = (signature + timestamp + deleted.fold("") { a, v -> a+v }).toByteArray()
+                sodium.cryptoSignVerifyDetached(Base64.decode(signature), message, message.size, nodePubKeyBytes)
+            }
+        }
+        return swarmResponsesValid.toMap()
+    }
+
     // endregion
 
     // Error Handling

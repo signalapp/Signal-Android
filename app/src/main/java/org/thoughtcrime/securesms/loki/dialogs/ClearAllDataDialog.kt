@@ -76,29 +76,36 @@ class ClearAllDataDialog(val deleteNetworkMessages: Boolean) : DialogFragment() 
                         }
                     } catch (e: Exception) {
                         Log.e("Loki", "Failed to force sync", e)
+                        withContext(Dispatchers.Main) {
+                            updateUI(false)
+                        }
                     }
                 } else {
                     // finish
-                    val promises = SnodeAPI.deleteAllMessages(requireContext()).get()
+                    val promises = try {
+                        SnodeAPI.deleteAllMessages(requireContext()).get()
+                    } catch (e: Exception) {
+                        null
+                    }
 
-                    val rawResponses = promises.map {
+                    val rawResponses = promises?.map {
                         try {
                             it.get()
                         } catch (e: Exception) {
                             null
                         }
-                    }
+                    } ?: listOf(null)
                     // TODO: process the responses here
-                    if (rawResponses.any { it == null || it["failed"] as? Boolean == true }) {
-                        // didn't succeed (at least one)
-                        withContext(Dispatchers.Main) {
-                            updateUI(false)
-                        }
-                    } else {
+                    if (rawResponses.all { it != null }) {
                         // don't force sync because all the messages are deleted?
                         ApplicationContext.getInstance(context).clearAllData(false)
                         withContext(Dispatchers.Main) {
                             dismiss()
+                        }
+                    } else if (rawResponses.any { it == null || it["failed"] as? Boolean == true }) {
+                        // didn't succeed (at least one)
+                        withContext(Dispatchers.Main) {
+                            updateUI(false)
                         }
                     }
                 }
