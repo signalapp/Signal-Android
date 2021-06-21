@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/mainLinkPreviewContainer"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:gravity="center">
 
+    <ImageView
+        android:id="@+id/thumbnailImageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop" />
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/titleTextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/medium_font_size"
-        android:textColor="@color/text" />
+        android:layout_height="match_parent"
+        android:paddingStart="12dp"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/small_font_size"
+        android:textStyle="bold"
+        tools:text="The Day The Dinosaurs Died - Minute by Minute"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:textColor="@color/text"
+        android:background="@color/link_preview_background" />
 
 </LinearLayout>

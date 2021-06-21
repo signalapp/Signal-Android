@@ -110,6 +110,9 @@ class QuoteView : LinearLayout {
         } else {
             attachments!!
             quoteViewAttachmentPreviewImageView.imageTintList = ColorStateList.valueOf(ResourcesCompat.getColor(resources, R.color.white, context.theme))
+            val backgroundColorID = if (UiModeUtilities.isDayUiMode(context)) R.color.black else R.color.accent
+            val backgroundColor = ResourcesCompat.getColor(resources, backgroundColorID, context.theme)
+            quoteViewAttachmentPreviewContainer.backgroundTintList = ColorStateList.valueOf(backgroundColor)
             if (attachments.audioSlide != null) {
                 quoteViewAttachmentPreviewImageView.setImageResource(R.drawable.ic_microphone)
                 quoteViewBodyTextView.text = resources.getString(R.string.Slide_audio)

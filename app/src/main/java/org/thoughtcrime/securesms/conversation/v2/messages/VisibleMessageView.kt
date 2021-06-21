@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.loki.utilities.disableClipping
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.loki.utilities.toDp
 import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.DateUtils
 import java.util.*
 import kotlin.math.abs
@@ -66,7 +67,7 @@ class VisibleMessageView : LinearLayout {
     // endregion
 
     // region Updating
-    fun bind(message: MessageRecord, previous: MessageRecord?, next: MessageRecord?) {
+    fun bind(message: MessageRecord, previous: MessageRecord?, next: MessageRecord?, glide: GlideRequests) {
         val sender = message.individualRecipient
         val senderSessionID = sender.address.serialize()
         val threadID = message.threadId
@@ -113,7 +114,7 @@ class VisibleMessageView : LinearLayout {
         val gravity = if (message.isOutgoing) Gravity.RIGHT else Gravity.LEFT
         mainContainer.gravity = gravity or Gravity.BOTTOM
         // Populate content view
-        messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster)
+        messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide)
     }
 
     private fun setMessageSpacing(isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {

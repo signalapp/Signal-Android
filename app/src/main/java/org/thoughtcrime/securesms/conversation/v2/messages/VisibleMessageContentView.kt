@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.loki.utilities.UiMode
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.mms.GlideRequests
 import java.lang.IllegalStateException
 
 class VisibleMessageContentView : LinearLayout {
@@ -41,7 +42,7 @@ class VisibleMessageContentView : LinearLayout {
     // endregion
 
     // region Updating
-    fun bind(message: MessageRecord, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {
+    fun bind(message: MessageRecord, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean, glide: GlideRequests) {
         // Background
         val background = getBackground(message.isOutgoing, isStartOfMessageCluster, isEndOfMessageCluster)
         val colorID = if (message.isOutgoing) R.attr.message_sent_background_color else R.attr.message_received_background_color
@@ -54,8 +55,10 @@ class VisibleMessageContentView : LinearLayout {
         onContentClick = null
         if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
             val linkPreviewView = LinkPreviewView(context)
-            linkPreviewView.bind(message)
+            linkPreviewView.bind(message, glide)
             mainContainer.addView(linkPreviewView)
+            val bodyTextView = getBodyTextView(message)
+            mainContainer.addView(bodyTextView)
         } else if (message is MmsMessageRecord && message.quote != null) {
             val quote = message.quote!!
             val quoteView = QuoteView(context, QuoteView.Mode.Regular)

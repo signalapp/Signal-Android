@@ -28,6 +28,7 @@
     <color name="input_bar_lock_view_border">#66000000</color>
     <color name="mention_candidates_view_background">#FCFCFC</color>
     <color name="mention_candidates_view_background_ripple">#DFDFDF</color>
+    <color name="link_preview_background">#0F000000</color>
 
     <color name="default_background_start">#ffffff</color>
     <color name="default_background_end">#fcfcfc</color>

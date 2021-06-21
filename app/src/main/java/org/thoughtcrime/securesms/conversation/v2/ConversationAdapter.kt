@@ -14,10 +14,12 @@ import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
+import org.thoughtcrime.securesms.mms.GlideRequests
 import java.lang.IllegalStateException
 
 class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPress: (MessageRecord, Int, VisibleMessageView) -> Unit,
-    private val onItemSwipeToReply: (MessageRecord, Int) -> Unit, private val onItemLongPress: (MessageRecord, Int) -> Unit)
+    private val onItemSwipeToReply: (MessageRecord, Int) -> Unit, private val onItemLongPress: (MessageRecord, Int) -> Unit,
+    private val glide: GlideRequests)
     : CursorRecyclerViewAdapter<ViewHolder>(context, cursor) {
     private val messageDB = DatabaseFactory.getMmsSmsDatabase(context)
     var selectedItems = mutableSetOf<MessageRecord>()
@@ -69,7 +71,7 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 view.snIsSelected = isSelected
                 view.messageTimestampTextView.isVisible = isSelected
                 val position = viewHolder.adapterPosition
-                view.bind(message, getMessageBefore(position, cursor), getMessageAfter(position, cursor))
+                view.bind(message, getMessageBefore(position, cursor), getMessageAfter(position, cursor), glide)
                 view.onPress = { onItemPress(message, viewHolder.adapterPosition, view) }
                 view.onSwipeToReply = { onItemSwipeToReply(message, viewHolder.adapterPosition) }
                 view.onLongPress = { onItemLongPress(message, viewHolder.adapterPosition) }
