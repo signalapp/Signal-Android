@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.view_visible_message.view.*
 import kotlinx.android.synthetic.main.view_visible_message.view.profilePictureView
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact.ContactContext
+import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.ViewUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -79,15 +80,25 @@ class VisibleMessageView : LinearLayout {
         val thread = threadDB.getRecipientForThreadId(threadID)
         val contactDB = DatabaseFactory.getSessionContactDatabase(context)
         val isGroupThread = (thread?.isGroupRecipient == true)
+        val isStartOfMessageCluster = isStartOfMessageCluster(message, previous, isGroupThread)
+        val isEndOfMessageCluster = isEndOfMessageCluster(message, next, isGroupThread)
         // Show profile picture and sender name if this is a group thread AND
         // the message is incoming
         if (isGroupThread && !message.isOutgoing) {
-            profilePictureContainer.visibility = View.VISIBLE
+            thread!!
+            profilePictureContainer.visibility = if (isEndOfMessageCluster) View.VISIBLE else View.INVISIBLE
             profilePictureView.publicKey = senderSessionID
-            // TODO: Set glide on the profile picture view and update it
-            // TODO: Show crown if this is an open group and the user is a moderator; otherwise hide it
-            senderNameTextView.visibility = View.VISIBLE
-            val context = if (thread?.isOpenGroupRecipient == true) ContactContext.OPEN_GROUP else ContactContext.REGULAR
+            profilePictureView.glide = glide
+            profilePictureView.update()
+            if (thread.isOpenGroupRecipient) {
+                val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)!!
+                val isModerator = OpenGroupAPIV2.isUserModerator(senderSessionID, openGroup.room, openGroup.server)
+                moderatorIconImageView.visibility = if (isModerator) View.VISIBLE else View.INVISIBLE
+            } else {
+                moderatorIconImageView.visibility = View.INVISIBLE
+            }
+            senderNameTextView.isVisible = isStartOfMessageCluster
+            val context = if (thread.isOpenGroupRecipient) ContactContext.OPEN_GROUP else ContactContext.REGULAR
             senderNameTextView.text = contactDB.getContactWithSessionID(senderSessionID)?.displayName(context) ?: senderSessionID
         } else {
             profilePictureContainer.visibility = View.GONE
@@ -111,8 +122,6 @@ class VisibleMessageView : LinearLayout {
             else resources.getDimension(R.dimen.very_large_spacing).toInt()
         messageContentContainer.layoutParams = messageContentContainerLayoutParams
         // Set inter-message spacing
-        val isStartOfMessageCluster = isStartOfMessageCluster(message, previous, isGroupThread)
-        val isEndOfMessageCluster = isEndOfMessageCluster(message, next, isGroupThread)
         setMessageSpacing(isStartOfMessageCluster, isEndOfMessageCluster)
         // Gravity
         val gravity = if (message.isOutgoing) Gravity.RIGHT else Gravity.LEFT
