@@ -168,7 +168,7 @@ public class SearchRepository {
     }
 
     GroupDatabase.GroupRecord record;
-    try (GroupDatabase.Reader reader = DatabaseFactory.getGroupDatabase(context).getGroupsFilteredByTitle(query, true, false)) {
+    try (GroupDatabase.Reader reader = DatabaseFactory.getGroupDatabase(context).getGroupsFilteredByTitle(query, true, false, false)) {
       while ((record = reader.getNext()) != null) {
         recipientIds.add(record.getRecipientId());
       }

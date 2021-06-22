@@ -241,7 +241,7 @@ private static final String[] GROUP_PROJECTION = {
     return noMetadata && noMembers;
   }
 
-  public Reader getGroupsFilteredByTitle(String constraint, boolean includeInactive, boolean excludeV1) {
+  public Reader getGroupsFilteredByTitle(String constraint, boolean includeInactive, boolean excludeV1, boolean excludeMms) {
     String   query;
     String[] queryArgs;
 
@@ -255,6 +255,10 @@ private static final String[] GROUP_PROJECTION = {
 
     if (excludeV1) {
       query += " AND " + EXPECTED_V2_ID + " IS NULL";
+    }
+
+    if (excludeMms) {
+      query += " AND " + MMS + " = 0";
     }
 
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, query, queryArgs, null, null, TITLE + " COLLATE NOCASE ASC");
