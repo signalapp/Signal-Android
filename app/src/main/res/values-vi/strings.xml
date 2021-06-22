@@ -798,6 +798,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Đang tiến hành cuộc gọi Signal </string>
   <string name="NotificationBarManager__establishing_signal_call">Đang thiết lập cuộc gọi Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Cuộc gọi đến Signal</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Dừng dịch vụ gọi thoại Signal</string>
   <string name="NotificationBarManager__deny_call">Từ chối cuộc gọi</string>
   <string name="NotificationBarManager__answer_call">Trả lời cuộc gọi</string>
   <string name="NotificationBarManager__end_call">Kết thúc cuộc gọi.</string>
@@ -817,6 +818,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Thêm chú thích…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Một mục đã bị bỏ chọn vì quá kích cỡ giới hạn</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Một mục đã được loại bỏ vì không rõ định dạng</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Một mục đã được loại bỏ vì quá giới hạn kích cỡ hoặc không rõ định dạng</string>
   <string name="MediaSendActivity_camera_unavailable">Máy ảnh không khả dụng</string>
   <string name="MediaSendActivity_message_to_s">Tin nhắn đến %s</string>
   <string name="MediaSendActivity_message">Tin nhắn</string>
@@ -1321,6 +1324,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ThreadRecord_you_marked_verified">Bạn đã xác minh</string>
   <string name="ThreadRecord_you_marked_unverified">Bạn đã hủy xác minh</string>
   <string name="ThreadRecord_message_could_not_be_processed">Không thể xử lí tin nhắn</string>
+  <string name="ThreadRecord_delivery_issue">Lỗi chuyển tin nhắn</string>
   <string name="ThreadRecord_message_request">Yêu cầu gửi Tin nhắn</string>
   <string name="ThreadRecord_photo">Ảnh</string>
   <string name="ThreadRecord_gif">Ảnh GIF</string>
@@ -1587,7 +1591,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Bật thông báo cuộc gọi</string>
   <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Bật hoạt động dưới nền</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Mọi thứ có vẻ đã ổn!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Để bật thông báo cuộc gọi, hãy nhấn vào đây và bật \"Hiện thông báo.\"</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Cài đặt</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Để nhận thông báo cuộc gọi, hãy vào Cài đặt và bật \"Hiện thông báo.\"</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Đang tải các quốc gia…</string>
   <string name="country_selection_fragment__search">Tìm kiếm</string>

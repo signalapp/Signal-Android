@@ -203,7 +203,7 @@
   <string name="ConversationActivity_lets_switch_to_signal">メッセージアプリをSignalにしましょう %1$s</string>
   <string name="ConversationActivity_specify_recipient">連絡先を選択してください</string>
   <string name="ConversationActivity_unblock">ブロックを解除します</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">添付ファイルのサイズが上限を超えています。</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">添付ファイルのサイズが、送信するメッセージタイプに応じた制限を超えています。</string>
   <string name="ConversationActivity_unable_to_record_audio">録音できません！</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">メンバーではなくなったので、このグループにメッセージを送ることはできません。</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">このリンクを扱えるアプリがインストールされていません</string>
@@ -820,7 +820,9 @@
   <string name="MediaPickerActivity__menu_open_camera">カメラを開く</string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">キャプションを追加…</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">アイテムはサイズの上限を超えたため削除されました。</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">サイズ制限を超えたアイテムが削除されました。</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">タイプの不明なアイテムが削除されました。</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">サイズ制限を超えていたり、タイプの不明なアイテムが削除されました。</string>
   <string name="MediaSendActivity_camera_unavailable">カメラは利用できません。</string>
   <string name="MediaSendActivity_message_to_s">%s へのメッセージ</string>
   <string name="MediaSendActivity_message">メッセージ</string>

@@ -13,8 +13,8 @@
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal يېڭىلىنىۋاتىدۇ…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">نۆۋەتتىكى: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">سىز تېخى شىفىر بېكىتمىدىڭىز!</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">شىفىر چەكلەمدۇ؟</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">سىز تېخى ئىم ئىبارىسى بېكىتمىدىڭىز!</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">ئىم ئىبارىسى چەكلەمدۇ؟</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">بۇ Signal ۋە ئۇچۇر ئۇقتۇرۇش قۇلۇپىنى مەڭگۈ ئوچۇق قويىدۇ.</string>
   <string name="ApplicationPreferencesActivity_disable">چەكلە</string>
   <string name="ApplicationPreferencesActivity_unregistering">تىزىمدىن چىقىۋاتىدۇ</string>
@@ -348,12 +348,12 @@
   <string name="RestoreBackupFragment__not_now">ھازىر ئەمەس</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">سۆھبەتنى زاپاسلاپ</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">زاپاسلاش مەخپىي شىفىر بىلەن مەخپىيلەشتۈرۈلىدۇ ۋە ئۈسكۈنىڭىزدە ساقلىنىدۇ.</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">زاپاسلاش ئىم ئىبارىسى بىلەن مەخپىيلەشتۈرۈلىدۇ ۋە ئۈسكۈنىڭىزدە ساقلىنىدۇ.</string>
   <string name="BackupsPreferenceFragment__create_backup">زاپاسلاش</string>
   <string name="BackupsPreferenceFragment__last_backup">ئاخىرقى زاپاسلانغان ۋاقىت:%1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">زاپاسلاش قىسقۇچى</string>
-  <string name="BackupsPreferenceFragment__verify_backup_passphrase">زاپاسلاش پارولىنى دەلىللەڭ</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">زاپاسلاش پارولىڭىزنى سىناپ بېقىڭ ھەمدە ئۇنىڭ ماس كەلگەن-كەلمىگەنلىكىنى دەلىللەڭ</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">زاپاسلاش ئىم ئىبارىسىنى دەلىللەڭ</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">زاپاسلاش ئىم ئىبارىڭىزنى سىناپ بېقىڭ ھەمدە ئۇنىڭ ماس كەلگەن-كەلمىگەنلىكىنى دەلىللەڭ</string>
   <string name="BackupsPreferenceFragment__turn_on">ئاچ</string>
   <string name="BackupsPreferenceFragment__turn_off">تاقا</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">زاپاسلاشنى ئەسلىگە كەلتۈرۈش ئۈچۈن ، Signal بىر يېڭى نەشرىنى قاچىلاڭ. ئاندىن ئەپنى ئېچىپ «زاپاسلاشنى ئەسلىگە كەلتۈرۈش» نى چېكىڭ، ئاندىن زاپاس ھۆججىتىنى كۆرسىتىپ بېرىڭ.%1$s</string>
@@ -866,6 +866,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">بايان قوش…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">تۈر چەكتىن ئېشىپ كەتكەچكە چىقىرىۋېتىلدى</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">بىر تۈر چىقىرىۋېتىلدى چۈنكى ئۇنىڭ تىپى يوچۇن</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">بىر تۈر چىقىرىۋېتىلدى چۈنكى ئۇ چوڭلۇق چېكىدىن ئېشىپ كەتكەن ياكى تىپى يوچۇن</string>
   <string name="MediaSendActivity_camera_unavailable">كامېرانى ئىشلەتكىلى بولمايدۇ</string>
   <string name="MediaSendActivity_message_to_s">%s  غا ئۇچۇر يېزىش</string>
   <string name="MediaSendActivity_message">ئۇچۇر</string>
@@ -1093,9 +1095,9 @@
     <item quantity="other"> %d قوشۇمچە گۇرۇپپا</item>
   </plurals>
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">پارول ماس كەلمىدى!</string>
-  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">خاتا كونا پارول!</string>
-  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">يېڭى پارول كىرگۈزۈڭ!</string>
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">ئىم ئىبارىسى ماس كەلمىدى!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">كونا ئىم ئىبارىسى خاتا!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">يېڭى ئىم ئىبارىسى كىرگۈزۈڭ!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">بۇ ئۈسكۈنىنى باغلامسىز؟</string>
   <string name="DeviceProvisioningActivity_continue">داۋاملاشتۇرۇڭ</string>
@@ -1123,10 +1125,10 @@
     <item quantity="other">بۇ Signal نەشرىنىڭ ۋاقتى %d كۈندىن كېيىن توشىدۇ. ئەڭ يېڭى نەشرىگە يېڭىلاڭ.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_enter_passphrase">پارول كىرگۈزۈڭ</string>
+  <string name="PassphrasePromptActivity_enter_passphrase">ئىم ئىبارىسى كىرگۈزۈڭ</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal سىنبەلگىسى</string>
-  <string name="PassphrasePromptActivity_ok_button_content_description">پارولنى تاپشۇرۇڭ</string>
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">خاتا پارول!</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">ئىم ئىبارىسىنى تاپشۇرۇڭ</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">ئىناۋەتسىز ئىم ئىبارىسى!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Signal نى ئاجرىتىڭ</string>
   <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - قۇلۇپ ئېكرانى</string>
   <!--PlacePickerActivity-->
@@ -1559,9 +1561,9 @@
   <string name="WebRtcCallControls_answer_call_description">سۆزلەشكەن چاقىرىش</string>
   <string name="WebRtcCallControls_reject_call_description">رەت قىلغان چاقىرىش</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">كونا ئىم</string>
-  <string name="change_passphrase_activity__new_passphrase">يېڭى ئىم</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">يېڭى ئىم قايتا</string>
+  <string name="change_passphrase_activity__old_passphrase">كونا ئىم ئىبارىسى</string>
+  <string name="change_passphrase_activity__new_passphrase">يېڭى ئىم ئىبارىسى</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">يېڭى ئىم ئىبارىسى قايتا</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">ئات ياكى نومۇر كىرگۈزۈڭ</string>
   <string name="contact_selection_activity__invite_to_signal">Signal ئىشلىتىش تەكلىپى</string>
@@ -1821,9 +1823,9 @@
   <string name="message_details_recipient__failed_to_send">يوللانمىدى</string>
   <string name="message_details_recipient__new_safety_number">يېڭى بىخەتەرلىك نومۇرى</string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">ئىم قۇرۇش</string>
+  <string name="AndroidManifest__create_passphrase">ئىم ئىبارىسى قۇر</string>
   <string name="AndroidManifest__select_contacts">ئالاقەداش تاللاش</string>
-  <string name="AndroidManifest__change_passphrase">ئىم ئۆزگەرت</string>
+  <string name="AndroidManifest__change_passphrase">ئىم ئىبارىسى ئۆزگەرت</string>
   <string name="AndroidManifest__verify_safety_number">بىخەتەرلىك نومۇر دەلىللە</string>
   <string name="AndroidManifest__log_submit">سازلاش خاتىرە يوللا</string>
   <string name="AndroidManifest__media_preview">ۋاسىتە ئالدىن كۆرسەت</string>
@@ -1916,14 +1918,14 @@
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">سىز يوللىغان تور بېكەت ئۇلانمىسىدىن بىۋاسىتە ئالدىن كۆرسىتىش ھاسىللايدۇ.</string>
   <string name="preferences__choose_identity">بىرسىنى تاللاڭ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ئالاقەداشلار تىزىمىدىن بىرەيلەننى تاللاڭ.</string>
-  <string name="preferences__change_passphrase">ئىم ئۆزگەرت</string>
-  <string name="preferences__change_your_passphrase">ئىم ئۆزگەرتىڭ</string>
-  <string name="preferences__enable_passphrase">ئېكران قۇلۇپ ئىمنى قوزغىتىدۇ</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ئېكران ۋە ئۇقتۇرۇشلارنى ئىم بىلەن قۇلۇپلايدۇ</string>
+  <string name="preferences__change_passphrase">ئىم ئىبارىسى ئۆزگەرت</string>
+  <string name="preferences__change_your_passphrase">ئىم ئىبارىسى ئۆزگەرتىڭ</string>
+  <string name="preferences__enable_passphrase">ئېكران قۇلۇپ ئىم ئىبارىسىنى قوزغىتىدۇ</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ئېكران ۋە ئۇقتۇرۇشلارنى ئىم ئىبارىسى بىلەن قۇلۇپلايدۇ</string>
   <string name="preferences__screen_security">ئېكران بىخەتەرلىكى</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots"> يېقىندا ئىشلەتكەن ئەپ ۋە ئېكران كەسمىسىنى چەكلەيدۇ</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ئەگەر Signal ئىشلەتمىگەن ھالەتتە مۇئەييەن ۋاقىت تۇرسا، ئۆزلۈكىدىن قۇلۇپلىنىدۇ</string>
-  <string name="preferences__inactivity_timeout_passphrase">ئىشلەتمىگەندە ۋاقىت ھالقىش ئىم</string>
+  <string name="preferences__inactivity_timeout_passphrase">ئىشلەتمىگەندە ۋاقىت ھالقىش ئىم ئىبارىسى</string>
   <string name="preferences__inactivity_timeout_interval">ئىشلەتمىگەندە ۋاقىت ھالقىش ۋاقتى</string>
   <string name="preferences__notifications">ئۇقتۇرۇشلار</string>
   <string name="preferences__led_color">LED رەڭگى</string>
@@ -2437,11 +2439,11 @@
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ساندانىنى كۆچۈرۈش</string>
   <string name="PushDecryptJob_new_locked_message">يېڭى قۇلۇپلانغان ئۇچۇر</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">كۈتۈۋاتقان ئۇچۇرلار كۆرۈش قۇلۇپىنى ئېچىش</string>
-  <string name="enter_backup_passphrase_dialog__backup_passphrase">زاپاسلاش پارولى</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">زاپاس تاشقى ساقلىغۇچتا ساقلىنىدۇ ۋە تۆۋەندىكى پارول بىلەن مەخپىيلەشتۈرىلىدۇ. بىر زاپاسنى ئەسلىگە كەلتۈرۈش ئۈچۈن بۇ پارولىڭىز بولىشى كېرەك.</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">بىز زاپاسنى ئەسلىگە كەلتۈرۈش ئۈچۈن بۇ پارولىڭىز بولىشى كېرەك.</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">زاپاسلاش ئىم ئىبارىسى</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">زاپاس تاشقى ساقلىغۇچتا ساقلىنىدۇ ۋە تۆۋەندىكى ئىم ئىبارىسى بىلەن مەخپىيلەشتۈرىلىدۇ. بىر زاپاسنى ئەسلىگە كەلتۈرۈش ئۈچۈن بۇ ئىم ئىبارىڭىز بولۇشى كېرەك.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">بىز زاپاسنى ئەسلىگە كەلتۈرۈش ئۈچۈن بۇ ئىم ئىبارىڭىز بولۇشى كېرەك.</string>
   <string name="backup_enable_dialog__folder">ھۆججەت قىسقۇچ</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">بۇ پارولنى يېزۋالدىم. بۇ بولمىسا، مەن بىر زاپاسنى ئەسلىگە كەلتۈرەلمەيمەن.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">بۇ ئىم ئىبارىسىنى يېزىۋالدىم. بۇ بولمىسا، مەن بىر زاپاسنى ئەسلىگە كەلتۈرەلمەيمەن.</string>
   <string name="registration_activity__restore_backup">زاپاسنى ئەسلىگە كەلتۈرۈش</string>
   <string name="registration_activity__transfer_or_restore_account">ھېساباتنى يۆتكە ياكى ئەسلىگە كەلتۈر</string>
   <string name="registration_activity__transfer_account">ھېساباتنى يۆتكە</string>
@@ -2450,10 +2452,10 @@
   <string name="preferences_chats__backup_chats_to_external_storage">سۆھبەتلەرنى تاشقى ساقلىغۇچقا زاپاسلا</string>
   <string name="preferences_chats__transfer_account">ھېساباتنى يۆتكە</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">يېڭى بىر Android ئۈسكىنىسگە ھېساباتنى يۆتكە</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">زاپاسلاش پارولىنى كىرگۈزۈڭ</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">زاپاسلاش ئىم ئىبارىسىنى كىرگۈزۈڭ</string>
   <string name="RegistrationActivity_restore">ئەسلىگە كەلتۈرۈش</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal نىڭ يېڭى نەشرىدىن كەلگەن زاپاسلارنى ئەكىرگىلى بولمايدۇ</string>
-  <string name="RegistrationActivity_incorrect_backup_passphrase">خاتا زاپاسلاش پارولى</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">زاپاسلاش ئىم ئىبارىسى خاتا</string>
   <string name="RegistrationActivity_checking">تەكشۈرۈۋاتىدۇ…</string>
   <string name="RegistrationActivity_d_messages_so_far">ھازىرچە %d ئۇچۇر بار…</string>
   <string name="RegistrationActivity_restore_from_backup">زاپاستىن ئەسلىگە كەلتۈرەمسىز؟</string>
@@ -2470,10 +2472,10 @@
   <string name="BackupDialog_choose_folder">قىسقۇچ تاللاش</string>
   <string name="BackupDialog_copied_to_clipboard">كېسىش تاختىسىغا كۆچۈرۈش</string>
   <string name="BackupDialog_no_file_picker_available">ئىشلەتكۈدەك ھۆججەت تاللىغۇچى يوق.</string>
-  <string name="BackupDialog_enter_backup_passphrase_to_verify">دەلىللەش ئۈچۈن زاپاسلاش پارولىڭىزنى كىرگۈزۈڭ</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">دەلىللەش ئۈچۈن زاپاسلاش ئىم ئىبارىسىنى كىرگۈزۈڭ</string>
   <string name="BackupDialog_verify">دەلىللەش</string>
-  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">زاپاسلاش پارولىڭىزنى توغرا كىرگۈزدىڭىز</string>
-  <string name="BackupDialog_passphrase_was_not_correct">پارولىڭىز توغرا ئەمەس</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">زاپاسلاش ئىم ئىبارىسىنى توغرا كىرگۈزدىڭىز</string>
+  <string name="BackupDialog_passphrase_was_not_correct">ئىم ئىبارىسى توغرا ئەمەس</string>
   <string name="LocalBackupJob_creating_backup">زاپاسلىنىۋاتىدۇ…</string>
   <string name="LocalBackupJobApi29_backup_failed">زاپاسلاش مەغلۇپ بولدى</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">زاپاسلاش مۇندەرىجىڭىز ئۆچۈرۈلگەن ياكى يۆتكىۋېتىلگەن.</string>

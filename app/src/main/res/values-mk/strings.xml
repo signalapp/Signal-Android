@@ -1994,6 +1994,8 @@
   <string name="preferences_data_and_storage__calls">Повици</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Користи помалку податоци за повици</string>
   <string name="preferences_data_and_storage__never">Никогаш</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi и податоци преку мобилен</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Податоци само преку мобилен</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Користење на помалку податоци може да ги подобри повиците на лоши мрежи</string>
   <string name="preferences_notifications__messages">Пораки</string>
   <string name="preferences_notifications__events">Настани</string>
@@ -2678,7 +2680,12 @@
   <string name="ChatWallpaperFragment__reset">Ресетираj</string>
   <string name="ChatWallpaperFragment__clear">Исчисти</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Преглед на позадина</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Ресетирај ги сите бои</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Ресетирај на стандардна позадина</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Ресетирај ги сите позадини</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Ресетирај позадини</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Ресетирај позадина</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Да ја ресетирам позадината?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Избери од слики</string>
   <string name="ChatWallpaperSelectionFragment__presets">Стандардни</string>
@@ -2707,6 +2714,7 @@
   <string name="payment_info_card_update_pin">Ажурирај PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Деактивирај го паричникот</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">Префли го преостанатиот баланс</string>
   <string name="DeactivateWalletFragment__deactivate">Деактивирај</string>
   <string name="DeactivateWalletFragment__error_deactivating_wallet">Грешка при деактивирање на паричникот.</string>
   <!--PaymentsRecoveryStartFragment-->
@@ -2744,21 +2752,28 @@
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Опис на групата</string>
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">Стандардно</string>
   <string name="QualitySelectorBottomSheetDialog__high">Високо</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">Покани ги пријателите</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Сметка</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">Тастатура</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter испраќа пораки</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Користи како стандардна СМС апликација</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Пораки</string>
   <string name="NotificationsSettingsFragment__calls">Повици</string>
+  <string name="NotificationsSettingsFragment__notify_when">Извести кога…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">Кога контакт ќе се приклучи на Signal</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Блокирани</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d контакти</string>
+  <string name="PrivacySettingsFragment__messaging">Пораки</string>
   <string name="PrivacySettingsFragment__disappearing_messages">Пораки што исчезнуваат</string>
+  <string name="PrivacySettingsFragment__app_security">Безбедност на апликацијата</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокирај слики од екранот во листата на последни апликации и во самата апликација</string>
   <!--AdvancedPrivacySettingsFragment-->
   <!--ExpireTimerSettingsFragment-->
@@ -2790,22 +2805,36 @@
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">Повици</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">Автоматски</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">Користи сопствени бои</string>
   <string name="ChatColorSelectionFragment__chat_color">Боја на разговор</string>
   <string name="ChatColorSelectionFragment__edit">Измени</string>
   <string name="ChatColorSelectionFragment__delete">Избриши</string>
   <!--CustomChatColorCreatorFragment-->
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Зачувај</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">Уреди боја</string>
   <!--ChatColorGradientTool-->
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Прилагоди реакции</string>
   <string name="EditReactionsFragment__reset">Ресетираj</string>
   <string name="EditReactionsFragment_save">Зачувај</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Нови бои за разговори</string>
   <string name="ChatColorsMegaphone__appearance">Изглед</string>
   <string name="ChatColorsMegaphone__not_now">Не сега</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Емоџи</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Отвори пребарување на емоџи</string>
   <string name="KeyboardPagerFragment_stickers">Стикери</string>
+  <string name="KeyboardPagerFragment_gifs">Gif-ови</string>
+  <string name="KeyboardPagerFragment_search_emoji">Пребарувај емоџи</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Исчисти ги записите од барањето</string>
+  <string name="KeyboardPagerFragment_search_giphy">Пребарувај на GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Пребарувај стикери</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Не се пронајдени резултати</string>
+  <string name="EmojiSearchFragment__no_results_found">Не се пронајдени резултати</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">Непознат звук</string>
   <!--EOF-->
 </resources>

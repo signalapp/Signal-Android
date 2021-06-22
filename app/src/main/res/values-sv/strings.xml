@@ -865,6 +865,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Lägg till en bildtext…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ett objekt togs bort eftersom det överskred storleksgränsen</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Ett objekt togs bort eftersom det hade en okänd typ</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Ett objekt togs bort eftersom det översteg storleksgränsen eller hade en okänd typ</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera otillgänglig.</string>
   <string name="MediaSendActivity_message_to_s">Meddelande till %s</string>
   <string name="MediaSendActivity_message">Meddelande</string>

@@ -948,6 +948,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Dodajanje besedila …</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Predmet je bil odstranjen, ker je presegel omejitev velikosti.</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Predmet je bil odstranjen, ker je bil neznanega tipa</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Predmet je bil odstranjen, ker je presegel omejitev velikosti ali pa je bil neznanega tipa</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera ni dostopna.</string>
   <string name="MediaSendActivity_message_to_s">Sporočilo za uporabnika/co %s</string>
   <string name="MediaSendActivity_message">Sporočilo</string>
@@ -2932,7 +2934,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Privzet odštevalnik za nove pogovore</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Nastavite privzet čas poteka sporočil za vse nove pogovore, ki jih začnete sami.</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Prikaz statusno ikono</string>
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Prikaži statusno ikono</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Prikaz ikone v detajlih sporočil kadar so ta dostavljena s pomočjo zakritega pošiljatelja.</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Nova sporočila, poslana in prejeta v novih pogovorih, ki ste jih pričeli sami, bodo izginila, ko bodo videna s strani prejemnika.</string>
