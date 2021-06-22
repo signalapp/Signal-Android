@@ -6,7 +6,6 @@ import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
@@ -23,6 +22,7 @@ import kotlinx.android.synthetic.main.view_input_bar_recording.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.mentions.MentionsManager
+import org.session.libsession.utilities.Util
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -32,6 +32,8 @@ import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCa
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.DraftDatabase
+import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -95,6 +97,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         setUpRecyclerView()
         setUpToolBar()
         setUpInputBar()
+        restoreDraftIfNeeded()
     }
 
     private fun setUpRecyclerView() {
@@ -144,10 +147,23 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         cameraButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
     }
 
+    private fun restoreDraftIfNeeded() {
+        val draftDB = DatabaseFactory.getDraftDatabase(this)
+        val drafts = draftDB.getDrafts(threadID)
+        draftDB.clearDrafts(threadID)
+        val text = drafts.find { it.type == DraftDatabase.Draft.TEXT }?.value ?: return
+        inputBar.text = text
+    }
+
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, this) { onOptionsItemSelected(it) }
         super.onPrepareOptionsMenu(menu)
         return true
+    }
+
+    override fun onDestroy() {
+        saveDraft()
+        super.onDestroy()
     }
     // endregion
 
@@ -377,6 +393,17 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val hitRect = Rect(lockViewLocation[0] - lockViewHitMargin, 0,
             lockViewLocation[0] + lockView.width + lockViewHitMargin, lockViewLocation[1] + lockView.height)
         return hitRect.contains(x, y)
+    }
+    // endregion
+
+    // region General
+    private fun saveDraft() {
+        val text = inputBar.text.trim()
+        if (text.isEmpty()) { return }
+        val drafts = Drafts()
+        drafts.add(DraftDatabase.Draft(DraftDatabase.Draft.TEXT, text))
+        val draftDB = DatabaseFactory.getDraftDatabase(this)
+        draftDB.insertDrafts(threadID, drafts)
     }
     // endregion
 }

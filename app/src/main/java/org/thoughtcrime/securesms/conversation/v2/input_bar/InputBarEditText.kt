@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.conversation.v2.input_bar
 
 import android.content.Context
+import android.content.res.Resources
 import android.text.Layout
 import android.text.StaticLayout
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.AppCompatEditText
 import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities
@@ -13,6 +15,7 @@ import kotlin.math.min
 import kotlin.math.roundToInt
 
 class InputBarEditText : AppCompatEditText {
+    private val screenWidth get() = Resources.getSystem().displayMetrics.widthPixels
     var delegate: InputBarEditTextDelegate? = null
 
     private val snMinHeight = toPx(40.0f, resources)
@@ -25,6 +28,10 @@ class InputBarEditText : AppCompatEditText {
     override fun onTextChanged(text: CharSequence, start: Int, lengthBefore: Int, lengthAfter: Int) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter)
         delegate?.inputBarEditTextContentChanged(text)
+        // Calculate the width manually to get it right even before layout has happened (i.e.
+        // when restoring a draft)
+        val width = (screenWidth - 2 * toPx(64.0f, resources)).roundToInt()
+        if (width < 0) { return } // screenWidth initially evaluates to 0
         val height = TextUtilities.getIntrinsicHeight(text, paint, width).toFloat()
         val constrainedHeight = min(max(height, snMinHeight), snMaxHeight)
         if (constrainedHeight.roundToInt() == this.height) { return }

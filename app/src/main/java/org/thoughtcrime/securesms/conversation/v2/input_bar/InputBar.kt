@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2.input_bar
 
 import android.content.Context
+import android.text.Editable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,6 +24,10 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
     private val vMargin by lazy { toDp(4, resources) }
     var delegate: InputBarDelegate? = null
     var additionalContentHeight = 0
+
+    var text: String
+        get() { return inputBarEditText.text.toString() }
+        set(value) { inputBarEditText.setText(value) }
 
     private val attachmentsButton by lazy { InputBarButton(context, R.drawable.ic_plus_24) }
     private val microphoneButton by lazy { InputBarButton(context, R.drawable.ic_microphone) }
