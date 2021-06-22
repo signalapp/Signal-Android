@@ -10,16 +10,17 @@
 
     <ImageView
         android:id="@+id/iconImageView"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
         android:layout_marginBottom="@dimen/small_spacing" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/medium_font_size"
+        android:textSize="@dimen/very_small_font_size"
         android:textColor="@color/text"
+        android:textStyle="bold"
         android:gravity="center" />
 
 </LinearLayout>

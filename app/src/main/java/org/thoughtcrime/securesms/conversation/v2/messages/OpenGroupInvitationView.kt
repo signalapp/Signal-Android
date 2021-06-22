@@ -22,7 +22,7 @@ class OpenGroupInvitationView : LinearLayout {
     }
 
     fun bind(message: MessageRecord, @ColorInt textColor: Int) {
-        // FIXME: This is a really weird approach
+        // FIXME: This is a really weird approach...
         val umd = UpdateMessageData.fromJSON(message.body)!!
         val data = umd.kind as UpdateMessageData.Kind.OpenGroupInvitation
         val iconID = if (message.isOutgoing) R.drawable.ic_globe else R.drawable.ic_plus

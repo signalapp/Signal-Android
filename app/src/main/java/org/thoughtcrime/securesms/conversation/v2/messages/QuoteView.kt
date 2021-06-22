@@ -15,6 +15,7 @@ import androidx.core.view.marginStart
 import kotlinx.android.synthetic.main.view_quote.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact
+import org.session.libsession.messaging.utilities.UpdateMessageData
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -29,7 +30,6 @@ import kotlin.math.roundToInt
 
 class QuoteView : LinearLayout {
     private lateinit var mode: Mode
-    private val screenWidth by lazy { Resources.getSystem().displayMetrics.widthPixels }
     private val vPadding by lazy { toPx(6, resources) }
     var delegate: QuoteViewDelegate? = null
 
@@ -61,16 +61,16 @@ class QuoteView : LinearLayout {
     // region General
     fun getIntrinsicContentHeight(): Int {
         if (quoteViewAttachmentPreviewContainer.isVisible) { return toPx(40, resources) }
+        val maxContentWidth = quoteViewMainContentContainer.width
         var result = 0
-        val width = screenWidth
         var authorTextViewIntrinsicHeight = 0
         if (quoteViewAuthorTextView.isVisible) {
             val author = quoteViewAuthorTextView.text
-            authorTextViewIntrinsicHeight = TextUtilities.getIntrinsicHeight(author, quoteViewAuthorTextView.paint, width)
+            authorTextViewIntrinsicHeight = TextUtilities.getIntrinsicHeight(author, quoteViewAuthorTextView.paint, maxContentWidth)
             result += authorTextViewIntrinsicHeight
         }
         val body = quoteViewBodyTextView.text
-        val bodyTextViewIntrinsicHeight = TextUtilities.getIntrinsicHeight(body, quoteViewBodyTextView.paint, width)
+        val bodyTextViewIntrinsicHeight = TextUtilities.getIntrinsicHeight(body, quoteViewBodyTextView.paint, maxContentWidth)
         result += bodyTextViewIntrinsicHeight
         if (!quoteViewAuthorTextView.isVisible) {
             return min(max(result, toPx(32, resources)), toPx(54, resources))
@@ -96,7 +96,8 @@ class QuoteView : LinearLayout {
         }
         quoteViewAuthorTextView.isVisible = thread.isGroupRecipient
         // Body
-        quoteViewBodyTextView.text = body
+        val isOpenGroupInvitation = (body?.let { UpdateMessageData.fromJSON(it) } != null)
+        quoteViewBodyTextView.text = if (isOpenGroupInvitation) resources.getString(R.string.open_group_invitation_view__open_group_invitation) else body
         quoteViewBodyTextView.setTextColor(getTextColor(isOutgoingMessage))
         // Accent line / attachment preview
         val hasAttachments = (attachments != null && attachments.asAttachments().isNotEmpty())
