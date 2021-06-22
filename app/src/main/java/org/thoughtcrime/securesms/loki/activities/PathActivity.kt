@@ -7,7 +7,6 @@ import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
@@ -17,14 +16,15 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.ColorRes
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import kotlinx.android.synthetic.main.activity_path.*
 import network.loki.messenger.R
 import org.session.libsession.snode.OnionRequestAPI
+import org.session.libsignal.utilities.Snode
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.loki.views.GlowViewUtilities
 import org.thoughtcrime.securesms.loki.views.PathDotView
-import org.session.libsignal.utilities.Snode
 
 class PathActivity : PassphraseRequiredActionBarActivity() {
     private val broadcastReceivers = mutableListOf<BroadcastReceiver>()
@@ -148,9 +148,9 @@ class PathActivity : PassphraseRequiredActionBarActivity() {
     private fun getPathRow(snode: Snode, location: LineView.Location, dotAnimationStartDelay: Long, dotAnimationRepeatInterval: Long, isGuardSnode: Boolean): LinearLayout {
         val title = if (isGuardSnode) resources.getString(R.string.activity_path_guard_node_row_title) else resources.getString(R.string.activity_path_service_node_row_title)
         val subtitle = if (IP2Country.isInitialized) {
-            IP2Country.shared.countryNamesCache[snode.ip] ?: "Resolving..."
+            IP2Country.shared.countryNamesCache[snode.ip] ?: resources.getString(R.string.activity_path_resolving_progress)
         } else {
-            "Resolving..."
+            resources.getString(R.string.activity_path_resolving_progress)
         }
         return getPathRow(title, subtitle, location, dotAnimationStartDelay, dotAnimationRepeatInterval)
     }
