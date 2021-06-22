@@ -21,7 +21,7 @@
         android:textSize="@dimen/medium_font_size" />
 
     <TextView
-        android:id="@+id/seedTextView"
+        android:id="@+id/dialogDescriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
@@ -37,7 +37,6 @@
         android:orientation="horizontal">
 
         <Button
-            tools:visibility="gone"
             style="@style/Widget.Session.Button.Dialog.Unimportant"
             android:id="@+id/cancelButton"
             android:layout_width="0dp"
@@ -46,7 +45,6 @@
             android:text="@string/cancel" />
 
         <Button
-            tools:visibility="gone"
             style="@style/Widget.Session.Button.Dialog.Destructive"
             android:id="@+id/clearAllDataButton"
             android:layout_width="0dp"

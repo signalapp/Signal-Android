@@ -107,9 +107,9 @@ object SnodeAPI {
             val parameters = mapOf(
                     "method" to "get_n_service_nodes",
                     "params" to mapOf(
-                        "active_only" to true,
-                        "limit" to 256,
-                        "fields" to mapOf( "public_ip" to true, "storage_port" to true, "pubkey_x25519" to true, "pubkey_ed25519" to true )
+                            "active_only" to true,
+                            "limit" to 256,
+                            "fields" to mapOf("public_ip" to true, "storage_port" to true, "pubkey_x25519" to true, "pubkey_ed25519" to true)
                     )
             )
             val deferred = deferred<Snode, Exception>()
@@ -185,8 +185,8 @@ object SnodeAPI {
         val base64EncodedNameHash = Base64.encodeBytes(nameHash)
         // Ask 3 different snodes for the Session ID associated with the given name hash
         val parameters = mapOf(
-            "endpoint" to "ons_resolve",
-            "params" to mapOf( "type" to 0, "name_hash" to base64EncodedNameHash )
+                "endpoint" to "ons_resolve",
+                "params" to mapOf( "type" to 0, "name_hash" to base64EncodedNameHash )
         )
         val promises = (1..validationCount).map {
             getRandomSnode().bind { snode ->
@@ -293,7 +293,7 @@ object SnodeAPI {
 
     fun getNetworkTime(snode: Snode): Promise<Pair<Snode,Long>, Exception> {
         return invoke(Snode.Method.Info, snode, null, emptyMap()).map { rawResponse ->
-            val timestamp = rawResponse["timestamp"] as Long
+            val timestamp = rawResponse["timestamp"] as? Long ?: -1
             snode to timestamp
         }
     }
@@ -308,39 +308,6 @@ object SnodeAPI {
                         invoke(Snode.Method.SendMessage, snode, destination, parameters)
                     }
                 }.toSet()
-            }
-        }
-    }
-
-    fun deleteAllMessages(context: Context): Promise<Set<RawResponsePromise>, Exception> {
-
-        return retryIfNeeded(maxRetryCount) {
-            // considerations: timestamp off in retrying logic, not being able to re-sign with latest timestamp? do we just not retry this as it will be synchronous
-            val userED25519KeyPair = KeyPairUtilities.getUserED25519KeyPair(context) ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
-            val userPublicKey = MessagingModuleConfiguration.shared.storage.getUserPublicKey() ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
-
-            val destination = if (useTestnet) userPublicKey.removing05PrefixIfNeeded() else userPublicKey
-
-            getSwarm(destination).map { swarm ->
-                val promise = swarm.first().let { snode ->
-                    retryIfNeeded(maxRetryCount) {
-                        getNetworkTime(snode).bind { (_, timestamp) ->
-                            val signature = ByteArray(Sign.BYTES)
-                            val data = (Snode.Method.DeleteAll.rawValue + timestamp.toString()).toByteArray()
-                            sodium.cryptoSignDetached(signature, data, data.size.toLong(), userED25519KeyPair.secretKey.asBytes)
-                            val deleteMessageParams = mapOf(
-                                    "pubkey" to userPublicKey,
-                                    "pubkey_ed25519" to userED25519KeyPair.publicKey.asHexString,
-                                    "timestamp" to timestamp,
-                                    "signature" to Base64.encodeBytes(signature)
-                            )
-                            invoke(Snode.Method.DeleteAll, snode, destination, deleteMessageParams).map { rawResponse -> parseDeletions(timestamp, rawResponse) }.fail { e ->
-                                Log.e("Loki", "Failed to clear data",e)
-                            }
-                        }
-                    }
-                }
-                setOf(promise)
             }
         }
     }
@@ -367,6 +334,34 @@ object SnodeAPI {
         } else {
             Log.d("Loki", "Failed to parse snodes from: ${rawResponse.prettifiedDescription()}.")
             return listOf()
+        }
+    }
+
+    fun deleteAllMessages(context: Context): Promise<Map<String,Boolean>, Exception> {
+
+        return retryIfNeeded(maxRetryCount) {
+            // considerations: timestamp off in retrying logic, not being able to re-sign with latest timestamp? do we just not retry this as it will be synchronous
+            val userED25519KeyPair = KeyPairUtilities.getUserED25519KeyPair(context) ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
+            val userPublicKey = MessagingModuleConfiguration.shared.storage.getUserPublicKey() ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
+
+            getSingleTargetSnode(userPublicKey).bind { snode ->
+                retryIfNeeded(maxRetryCount) {
+                    getNetworkTime(snode).bind { (_, timestamp) ->
+                        val signature = ByteArray(Sign.BYTES)
+                        val data = (Snode.Method.DeleteAll.rawValue + timestamp.toString()).toByteArray()
+                        sodium.cryptoSignDetached(signature, data, data.size.toLong(), userED25519KeyPair.secretKey.asBytes)
+                        val deleteMessageParams = mapOf(
+                                "pubkey" to userPublicKey,
+                                "pubkey_ed25519" to userED25519KeyPair.publicKey.asHexString,
+                                "timestamp" to timestamp,
+                                "signature" to Base64.encodeBytes(signature)
+                        )
+                        invoke(Snode.Method.DeleteAll, snode, userPublicKey, deleteMessageParams).map { rawResponse -> parseDeletions(userPublicKey, timestamp, rawResponse) }.fail { e ->
+                            Log.e("Loki", "Failed to clear data", e)
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -429,10 +424,11 @@ object SnodeAPI {
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun parseDeletions(timestamp: Long, rawResponse: RawResponse): Map<String, Any> {
-        val swarms = rawResponse["swarms"] as? Map<String,Any> ?: return mapOf()
+    private fun parseDeletions(userPublicKey: String, timestamp: Long, rawResponse: RawResponse): Map<String, Boolean> {
+        val swarms = rawResponse["swarm"] as? Map<String, Any> ?: return mapOf()
         val swarmResponsesValid = swarms.mapNotNull { (nodePubKeyHex, rawMap) ->
-            val map = rawMap as? Map<String,Any> ?: return@mapNotNull null
+            val map = rawMap as? Map<String, Any> ?: return@mapNotNull null
+
             /** Deletes all messages owned by the given pubkey on this SN and broadcasts the delete request to
              *  all other swarm members.
              *  Returns dict of:
@@ -448,17 +444,16 @@ object SnodeAPI {
             val reason = map["reason"] as? String
 
             nodePubKeyHex to if (failed) {
-                // return error probs
+                Log.e("Loki", "Failed to delete all from $nodePubKeyHex with error code $code and reason $reason")
                 false
             } else {
                 // success
                 val deleted = map["deleted"] as List<String> // list of deleted hashes
-                Log.d("Loki", "node $nodePubKeyHex deleted ${deleted.size} messages")
                 val signature = map["signature"] as String
-                val nodePubKeyBytes = Hex.fromStringCondensed(nodePubKeyHex)
+                val nodePubKey = Key.fromHexString(nodePubKeyHex)
                 // signature of ( PUBKEY_HEX || TIMESTAMP || DELETEDHASH[0] || ... || DELETEDHASH[N] )
-                val message = (signature + timestamp + deleted.fold("") { a, v -> a+v }).toByteArray()
-                sodium.cryptoSignVerifyDetached(Base64.decode(signature), message, message.size, nodePubKeyBytes)
+                val message = (userPublicKey + timestamp.toString() + deleted.fold("") { a, v -> a + v }).toByteArray()
+                sodium.cryptoSignVerifyDetached(Base64.decode(signature), message, message.size, nodePubKey.asBytes)
             }
         }
         return swarmResponsesValid.toMap()

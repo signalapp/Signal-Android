@@ -23,18 +23,44 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import java.util.concurrent.Executors
 
-class ClearAllDataDialog(val deleteNetworkMessages: Boolean) : DialogFragment() {
+class ClearAllDataDialog : DialogFragment() {
+
+    enum class Steps {
+        INFO_PROMPT,
+        NETWORK_PROMPT,
+        DELETING
+    }
 
     var clearJob: Job? = null
         set(value) {
             field = value
         }
 
+    var step = Steps.INFO_PROMPT
+        set(value) {
+            field = value
+            updateUI()
+        }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(requireContext())
         val contentView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_clear_all_data, null)
-        contentView.cancelButton.setOnClickListener { dismiss() }
-        contentView.clearAllDataButton.setOnClickListener { clearAllData() }
+        contentView.cancelButton.setOnClickListener {
+            if (step == Steps.NETWORK_PROMPT) {
+                clearAllData(false)
+            } else {
+                dismiss()
+            }
+        }
+        contentView.clearAllDataButton.setOnClickListener {
+            when(step) {
+                Steps.INFO_PROMPT -> step = Steps.NETWORK_PROMPT
+                Steps.NETWORK_PROMPT -> {
+                    clearAllData(true)
+                }
+                Steps.DELETING -> { /* do nothing intentionally */ }
+            }
+        }
         builder.setView(contentView)
         builder.setCancelable(false)
         val result = builder.create()
@@ -42,70 +68,69 @@ class ClearAllDataDialog(val deleteNetworkMessages: Boolean) : DialogFragment() 
         return result
     }
 
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-    }
+    private fun updateUI() {
 
-    override fun onStart() {
-        super.onStart()
-        isCancelable = false
-        dialog?.setCanceledOnTouchOutside(false)
-    }
-
-    private fun updateUI(isLoading: Boolean) {
         dialog?.let { view ->
+
+            val isLoading = step == Steps.DELETING
+
+            when (step) {
+                Steps.INFO_PROMPT -> {
+                    view.dialogDescriptionText.setText(R.string.dialog_clear_all_data_explanation)
+                    view.cancelButton.setText(R.string.cancel)
+                }
+                else -> {
+                    view.dialogDescriptionText.setText(R.string.dialog_clear_all_data_network_explanation)
+                    view.cancelButton.setText(R.string.dialog_clear_all_data_local_only)
+                }
+            }
+
             view.cancelButton.isVisible = !isLoading
             view.clearAllDataButton.isVisible = !isLoading
             view.progressBar.isVisible = isLoading
+
+            view.setCanceledOnTouchOutside(!isLoading)
+            isCancelable = !isLoading
+
         }
     }
 
-    private fun clearAllData() {
+    private fun clearAllData(deleteNetworkMessages: Boolean) {
         if (KeyPairUtilities.hasV2KeyPair(requireContext())) {
             clearJob = lifecycleScope.launch(Dispatchers.IO) {
+                val previousStep = step
                 withContext(Dispatchers.Main) {
-                    updateUI(true)
+                    step = Steps.DELETING
                 }
 
                 if (!deleteNetworkMessages) {
                     try {
                         MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(requireContext()).get()
-                        ApplicationContext.getInstance(context).clearAllData(false)
-                        withContext(Dispatchers.Main) {
-                            dismiss()
-                        }
                     } catch (e: Exception) {
                         Log.e("Loki", "Failed to force sync", e)
-                        withContext(Dispatchers.Main) {
-                            updateUI(false)
-                        }
+                    }
+                    ApplicationContext.getInstance(context).clearAllData(false)
+                    withContext(Dispatchers.Main) {
+                        dismiss()
                     }
                 } else {
                     // finish
-                    val promises = try {
+                    val result = try {
                         SnodeAPI.deleteAllMessages(requireContext()).get()
                     } catch (e: Exception) {
                         null
                     }
 
-                    val rawResponses = promises?.map {
-                        try {
-                            it.get()
-                        } catch (e: Exception) {
-                            null
+                    if (result == null || result.values.any { !it } || result.isEmpty()) {
+                        // didn't succeed (at least one)
+                        withContext(Dispatchers.Main) {
+                            step = previousStep
                         }
-                    } ?: listOf(null)
-                    // TODO: process the responses here
-                    if (rawResponses.all { it != null }) {
+                    } else if (result.values.all { it }) {
                         // don't force sync because all the messages are deleted?
                         ApplicationContext.getInstance(context).clearAllData(false)
                         withContext(Dispatchers.Main) {
                             dismiss()
-                        }
-                    } else if (rawResponses.any { it == null || it["failed"] as? Boolean == true }) {
-                        // didn't succeed (at least one)
-                        withContext(Dispatchers.Main) {
-                            updateUI(false)
                         }
                     }
                 }

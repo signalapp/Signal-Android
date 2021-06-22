@@ -185,16 +185,6 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:text="@string/activity_settings_clear_all_data_button_title" />
-            <TextView
-                android:id="@+id/clearAllDataAndNetworkButton"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/setting_button_height"
-                android:background="@drawable/setting_button_background"
-                android:textColor="@color/destructive"
-                android:textSize="@dimen/medium_font_size"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/activity_settings_clear_all_data_and_network_button_title" />
 
             <View
                 android:layout_width="match_parent"
