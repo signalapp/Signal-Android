@@ -58,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="http://117.204.71.34"
+            android:layout_marginTop="2dp"
             android:textColor="@color/black"
             android:maxLines="1"
             android:ellipsize="end"

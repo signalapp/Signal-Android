@@ -63,31 +63,21 @@ public abstract class DisplayRecord {
     return body == null ? "" : body;
   }
   public abstract SpannableString getDisplayBody(@NonNull Context context);
-  public Recipient getRecipient() {
-    return recipient;
-  }
-  public long getDateSent() {
-    return dateSent;
-  }
-  public long getDateReceived() {
-    return dateReceived;
-  }
-  public long getThreadId() {
-    return threadId;
-  }
-  public int getDeliveryStatus() {
-    return deliveryStatus;
-  }
-  public int getDeliveryReceiptCount() {
-    return deliveryReceiptCount;
-  }
-  public int getReadReceiptCount() {
-    return readReceiptCount;
-  }
+  public Recipient getRecipient() { return recipient; }
+  public long getDateSent() { return dateSent; }
+  public long getDateReceived() { return dateReceived; }
+  public long getThreadId() { return threadId; }
+  public int getDeliveryStatus() { return deliveryStatus; }
+  public int getDeliveryReceiptCount() { return deliveryReceiptCount; }
+  public int getReadReceiptCount() { return readReceiptCount; }
 
   public boolean isDelivered() {
     return (deliveryStatus >= SmsDatabase.Status.STATUS_COMPLETE
       && deliveryStatus < SmsDatabase.Status.STATUS_PENDING) || deliveryReceiptCount > 0;
+  }
+
+  public boolean isSent() {
+    return !isFailed() && !isPending();
   }
 
   public boolean isFailed() {
