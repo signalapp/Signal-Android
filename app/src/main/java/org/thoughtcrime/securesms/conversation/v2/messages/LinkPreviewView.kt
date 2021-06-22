@@ -13,9 +13,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewOutlineProvider
 import android.widget.LinearLayout
+import androidx.core.content.res.ResourcesCompat
 import kotlinx.android.synthetic.main.view_link_preview.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
 import org.thoughtcrime.securesms.mms.GlideRequests
 
 class LinkPreviewView : LinearLayout {
@@ -43,6 +45,12 @@ class LinkPreviewView : LinearLayout {
         // TODO: Properly use glide and the actual thumbnail
         // Title
         titleTextView.text = linkPreview.title
+        val textColorID = if (message.isOutgoing && UiModeUtilities.isDayUiMode(context)) {
+            R.color.white
+        } else {
+            if (UiModeUtilities.isDayUiMode(context)) R.color.black else R.color.white
+        }
+        titleTextView.setTextColor(ResourcesCompat.getColor(resources, textColorID, context.theme))
         // Body
         mainLinkPreviewContainer.addView(VisibleMessageContentView.getBodyTextView(context, message))
     }

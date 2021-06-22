@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.ViewOutlineProvider
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.ColorInt
@@ -15,6 +14,8 @@ import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import kotlinx.android.synthetic.main.view_visible_message_content.view.*
 import network.loki.messenger.R
+import org.session.libsession.messaging.utilities.UpdateMessageData
+import org.session.libsession.messaging.utilities.UpdateMessageData.Companion.fromJSON
 import org.session.libsession.utilities.ThemeUtil
 import org.session.libsession.utilities.ViewUtil
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideRequests
-import java.lang.IllegalStateException
 
 class VisibleMessageContentView : LinearLayout {
     var onContentClick: (() -> Unit)? = null
@@ -77,6 +77,10 @@ class VisibleMessageContentView : LinearLayout {
             mainContainer.addView(documentView)
         } else if (message is MmsMessageRecord && message.slideDeck.asAttachments().isNotEmpty()) {
             throw IllegalStateException("Not yet implemented; we may want to use Signal's album view here.")
+        } else if (message.isOpenGroupInvitation) {
+            val openGroupInvitationView = OpenGroupInvitationView(context)
+            openGroupInvitationView.bind(message, VisibleMessageContentView.getTextColor(context, message))
+            mainContainer.addView(openGroupInvitationView)
         } else {
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
             mainContainer.addView(bodyTextView)
