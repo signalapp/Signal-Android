@@ -65,6 +65,9 @@ class VisibleMessageContentView : LinearLayout {
         } else if (message is MmsMessageRecord && message.quote != null) {
             val quote = message.quote!!
             val quoteView = QuoteView(context, QuoteView.Mode.Regular)
+            // The max content width is the max message bubble size - 2 times the horizontal padding - the
+            // quote view content area's start margin. This unfortunately has to be calculated manually
+            // here to get the layout right.
             val maxContentWidth = (maxWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - toPx(16, resources)).roundToInt()
             quoteView.bind(quote.author.toString(), quote.text, quote.attachment, thread,
                 message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation)
@@ -76,6 +79,8 @@ class VisibleMessageContentView : LinearLayout {
             val voiceMessageView = VoiceMessageView(context)
             voiceMessageView.bind(message, background)
             mainContainer.addView(voiceMessageView)
+            // We have to use onContentClick (rather than a click listener directly on the voice
+            // message view) so as to not interfere with all the other gestures.
             onContentClick = { voiceMessageView.togglePlayback() }
         } else if (message is MmsMessageRecord && message.slideDeck.documentSlide != null) {
             val documentView = DocumentView(context)

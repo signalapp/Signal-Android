@@ -29,6 +29,13 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
 
+// There's quite some calculation going on here. It's a bit complex so don't make changes
+// if you don't need to. If you do then test:
+// • Quoted text in both private chats and group chats
+// • Quoted images and videos in both private chats and group chats
+// • Quoted voice messages and documents in both private chats and group chats
+// • All of the above in both dark mode and light mode
+
 class QuoteView : LinearLayout {
     private lateinit var mode: Mode
     private val vPadding by lazy { toPx(6, resources) }
@@ -44,6 +51,8 @@ class QuoteView : LinearLayout {
     constructor(context: Context, mode: Mode) : super(context) {
         this.mode = mode
         LayoutInflater.from(context).inflate(R.layout.view_quote, this)
+        // Add padding here (not on mainQuoteViewContainer) to get a bit of a top inset while avoiding
+        // the clipping issue described in getIntrinsicHeight(maxContentWidth:).
         setPadding(0, toPx(6, resources), 0, 0)
         when (mode) {
             Mode.Draft -> quoteViewCancelButton.setOnClickListener { delegate?.cancelQuoteDraft() }
@@ -51,6 +60,7 @@ class QuoteView : LinearLayout {
                 quoteViewCancelButton.isVisible = false
                 mainQuoteViewContainer.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.transparent, context.theme))
                 val quoteViewMainContentContainerLayoutParams = quoteViewMainContentContainer.layoutParams as RelativeLayout.LayoutParams
+                // Since we're not showing the cancel button we can shorten the end margin
                 quoteViewMainContentContainerLayoutParams.marginEnd = resources.getDimension(R.dimen.medium_spacing).roundToInt()
                 quoteViewMainContentContainer.layoutParams = quoteViewMainContentContainerLayoutParams
             }
@@ -60,6 +70,7 @@ class QuoteView : LinearLayout {
 
     // region General
     fun getIntrinsicContentHeight(maxContentWidth: Int): Int {
+        // If we're showing an attachment thumbnail, just constrain to the height of that
         if (quoteViewAttachmentPreviewContainer.isVisible) { return toPx(40, resources) }
         var result = 0
         var authorTextViewIntrinsicHeight = 0
@@ -72,16 +83,24 @@ class QuoteView : LinearLayout {
         val bodyTextViewIntrinsicHeight = TextUtilities.getIntrinsicHeight(body, quoteViewBodyTextView.paint, maxContentWidth)
         result += bodyTextViewIntrinsicHeight
         if (!quoteViewAuthorTextView.isVisible) {
+            // We want to at least be as high as the cancel button, and no higher than 56 DP (that's
+            // approximately the height of 3 lines.
             return min(max(result, toPx(32, resources)), toPx(56, resources))
         } else {
+            // Because we're showing the author text view, we should have a height of at least 32 DP
+            // anyway, so there's no need to constrain to that. We constrain to a max height of 56 DP
+            // because that's approximately the height of the author text view + 2 lines of the body
+            // text view.
             return min(result, toPx(56, resources))
         }
     }
 
     fun getIntrinsicHeight(maxContentWidth: Int): Int {
-        var result = getIntrinsicContentHeight(maxContentWidth)
-        result += 2 * vPadding
-        return result
+        // The way all this works is that we just calculate the total height the quote view should be
+        // and then center everything inside vertically. This effectively means we're applying padding.
+        // Applying padding the regular way results in a clipping issue though due to a bug in
+        // RelativeLayout.
+        return getIntrinsicContentHeight(maxContentWidth) + 2 * vPadding
     }
     // endregion
 
@@ -89,14 +108,16 @@ class QuoteView : LinearLayout {
     fun bind(authorPublicKey: String, body: String?, attachments: SlideDeck?, thread: Recipient,
         isOutgoingMessage: Boolean, maxContentWidth: Int, isOpenGroupInvitation: Boolean) {
         val contactDB = DatabaseFactory.getSessionContactDatabase(context)
-        quoteViewBodyTextView.maxLines = 3
+        // Reduce the max body text view line count to 2 if this is a group thread because
+        // we'll be showing the author text view and we don't want the overall quote view height
+        // to get too big.
+        quoteViewBodyTextView.maxLines = if (thread.isGroupRecipient) 2 else 3
         // Author
         if (thread.isGroupRecipient) {
             val author = contactDB.getContactWithSessionID(authorPublicKey)
             val authorDisplayName = author?.displayName(Contact.contextForRecipient(thread)) ?: authorPublicKey
             quoteViewAuthorTextView.text = authorDisplayName
             quoteViewAuthorTextView.setTextColor(getTextColor(isOutgoingMessage))
-            quoteViewBodyTextView.maxLines = 2
         }
         quoteViewAuthorTextView.isVisible = thread.isGroupRecipient
         // Body
@@ -108,7 +129,7 @@ class QuoteView : LinearLayout {
         quoteViewAttachmentPreviewContainer.isVisible = hasAttachments
         if (!hasAttachments) {
             val accentLineLayoutParams = quoteViewAccentLine.layoutParams as RelativeLayout.LayoutParams
-            accentLineLayoutParams.height = getIntrinsicContentHeight(maxContentWidth)
+            accentLineLayoutParams.height = getIntrinsicContentHeight(maxContentWidth) // Match the intrinsic * content * height
             quoteViewAccentLine.layoutParams = accentLineLayoutParams
             quoteViewAccentLine.setBackgroundColor(getLineColor(isOutgoingMessage))
         } else {
@@ -129,6 +150,7 @@ class QuoteView : LinearLayout {
         }
         mainQuoteViewContainer.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, getIntrinsicHeight(maxContentWidth))
         val quoteViewMainContentContainerLayoutParams = quoteViewMainContentContainer.layoutParams as RelativeLayout.LayoutParams
+        // The start margin is different if we just show the accent line vs if we show an attachment thumbnail
         quoteViewMainContentContainerLayoutParams.marginStart = if (!hasAttachments) toPx(16, resources) else toPx(48, resources)
         quoteViewMainContentContainer.layoutParams = quoteViewMainContentContainerLayoutParams
     }

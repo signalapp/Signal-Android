@@ -29,7 +29,8 @@ class InputBarEditText : AppCompatEditText {
         super.onTextChanged(text, start, lengthBefore, lengthAfter)
         delegate?.inputBarEditTextContentChanged(text)
         // Calculate the width manually to get it right even before layout has happened (i.e.
-        // when restoring a draft)
+        // when restoring a draft). The 64 DP is the horizontal margin around the input bar
+        // edit text.
         val width = (screenWidth - 2 * toPx(64.0f, resources)).roundToInt()
         if (width < 0) { return } // screenWidth initially evaluates to 0
         val height = TextUtilities.getIntrinsicHeight(text, paint, width).toFloat()

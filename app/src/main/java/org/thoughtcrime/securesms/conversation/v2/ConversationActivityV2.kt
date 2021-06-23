@@ -160,7 +160,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         if (!isOxenHostedOpenGroup) { return }
         openGroupGuidelinesView.visibility = View.VISIBLE
         val recyclerViewLayoutParams = conversationRecyclerView.layoutParams as RelativeLayout.LayoutParams
-        recyclerViewLayoutParams.topMargin = toPx(57, resources)
+        recyclerViewLayoutParams.topMargin = toPx(57, resources) // The height of the open group guidelines view is hardcoded to this
         conversationRecyclerView.layoutParams = recyclerViewLayoutParams
     }
 
@@ -397,6 +397,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun isValidLockViewLocation(x: Int, y: Int): Boolean {
+        // We can be anywhere above the lock view and a bit to the side of it (at most `lockViewHitMargin`
+        // to the side)
         val lockViewLocation = IntArray(2) { 0 }
         lockView.getLocationOnScreen(lockViewLocation)
         val hitRect = Rect(lockViewLocation[0] - lockViewHitMargin, 0,
