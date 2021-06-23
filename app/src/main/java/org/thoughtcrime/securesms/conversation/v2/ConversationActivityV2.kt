@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.view_input_bar_recording.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.mentions.MentionsManager
-import org.session.libsession.utilities.Util
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -98,6 +98,16 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         setUpToolBar()
         setUpInputBar()
         restoreDraftIfNeeded()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(threadID)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(-1)
     }
 
     private fun setUpRecyclerView() {
