@@ -72,9 +72,9 @@ class QuoteView : LinearLayout {
         val bodyTextViewIntrinsicHeight = TextUtilities.getIntrinsicHeight(body, quoteViewBodyTextView.paint, maxContentWidth)
         result += bodyTextViewIntrinsicHeight
         if (!quoteViewAuthorTextView.isVisible) {
-            return min(max(result, toPx(32, resources)), toPx(60, resources))
+            return min(max(result, toPx(32, resources)), toPx(56, resources))
         } else {
-            return min(result, toPx(60, resources) + authorTextViewIntrinsicHeight)
+            return min(result, toPx(56, resources))
         }
     }
 
@@ -89,12 +89,14 @@ class QuoteView : LinearLayout {
     fun bind(authorPublicKey: String, body: String?, attachments: SlideDeck?, thread: Recipient,
         isOutgoingMessage: Boolean, maxContentWidth: Int, isOpenGroupInvitation: Boolean) {
         val contactDB = DatabaseFactory.getSessionContactDatabase(context)
+        quoteViewBodyTextView.maxLines = 3
         // Author
         if (thread.isGroupRecipient) {
             val author = contactDB.getContactWithSessionID(authorPublicKey)
             val authorDisplayName = author?.displayName(Contact.contextForRecipient(thread)) ?: authorPublicKey
             quoteViewAuthorTextView.text = authorDisplayName
             quoteViewAuthorTextView.setTextColor(getTextColor(isOutgoingMessage))
+            quoteViewBodyTextView.maxLines = 2
         }
         quoteViewAuthorTextView.isVisible = thread.isGroupRecipient
         // Body
