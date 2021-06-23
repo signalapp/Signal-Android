@@ -29,6 +29,8 @@
     <color name="mention_candidates_view_background">#FCFCFC</color>
     <color name="mention_candidates_view_background_ripple">#DFDFDF</color>
     <color name="link_preview_background">#0F000000</color>
+    <color name="scroll_to_bottom_button_background">#FCFCFC</color>
+    <color name="scroll_to_bottom_button_border">#99000000</color>
 
     <color name="default_background_start">#ffffff</color>
     <color name="default_background_end">#fcfcfc</color>

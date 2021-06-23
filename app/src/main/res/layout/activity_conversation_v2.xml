@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contentView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -69,6 +69,27 @@
             android:alpha="0" />
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/scrollToBottomButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="72dp"
+        android:alpha="0"
+        android:background="@drawable/view_scroll_to_bottom_button_background">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_chevron_up"
+            android:layout_centerInParent="true"
+            android:rotation="180"
+            app:tint="@color/text" />
+
+    </RelativeLayout>
 
     <org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarRecordingView
         android:id="@+id/inputBarRecordingView"

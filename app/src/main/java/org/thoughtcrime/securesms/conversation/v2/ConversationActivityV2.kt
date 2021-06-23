@@ -197,6 +197,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val attachmentOptionsContainerLayoutParams = attachmentOptionsContainer.layoutParams as RelativeLayout.LayoutParams
         attachmentOptionsContainerLayoutParams.bottomMargin = bottomMargin + attachmentButtonHeight + margin
         attachmentOptionsContainer.layoutParams = attachmentOptionsContainerLayoutParams
+        // Scroll to bottom button
+        val scrollToBottomButtonLayoutParams = scrollToBottomButton.layoutParams as RelativeLayout.LayoutParams
+        scrollToBottomButtonLayoutParams.bottomMargin = newValue + additionalContentContainer.height + toPx(12, resources)
+        scrollToBottomButton.layoutParams = scrollToBottomButtonLayoutParams
     }
 
     override fun inputBarEditTextContentChanged(newContent: CharSequence) {
@@ -313,7 +317,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val rawAlpha = (bottomOffset.toFloat() - scrollButtonNoVisibilityThreshold) /
             (scrollButtonFullVisibilityThreshold - scrollButtonNoVisibilityThreshold)
         val alpha = max(min(rawAlpha, 1.0f), 0.0f)
-        Log.d("Test", "$alpha")
+        scrollToBottomButton.alpha = alpha
     }
     // endregion
 
