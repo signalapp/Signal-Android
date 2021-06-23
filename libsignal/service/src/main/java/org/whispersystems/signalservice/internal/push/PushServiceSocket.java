@@ -2189,7 +2189,7 @@ public class PushServiceSocket {
   }
 
   public GroupHistory getGroupsV2GroupHistory(int fromVersion, GroupsV2AuthorizationString authorization)
-    throws IOException, InvalidProtocolBufferException
+    throws IOException
   {
     Response response = makeStorageRequestResponse(authorization.toString(),
                                                    String.format(Locale.US, GROUPSV2_GROUP_CHANGES, fromVersion),
@@ -2197,7 +2197,16 @@ public class PushServiceSocket {
                                                    null,
                                                    GROUPS_V2_GET_LOGS_HANDLER);
 
-    GroupChanges groupChanges = GroupChanges.parseFrom(readBodyBytes(response.body()));
+    if (response.body() == null) {
+      throw new PushNetworkException("No body!");
+    }
+
+    GroupChanges groupChanges;
+    try {
+      groupChanges = GroupChanges.parseFrom(response.body().byteStream());
+    } catch (IOException e) {
+      throw new PushNetworkException(e);
+    }
 
     if (response.code() == 206) {
       String                 contentRangeHeader = response.header("Content-Range");
