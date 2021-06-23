@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.loki.utilities.UiMode
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
+import org.thoughtcrime.securesms.loki.utilities.toDp
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.SlideDeck
 import kotlin.math.max
@@ -43,13 +44,12 @@ class QuoteView : LinearLayout {
     constructor(context: Context, mode: Mode) : super(context) {
         this.mode = mode
         LayoutInflater.from(context).inflate(R.layout.view_quote, this)
+        setPadding(0, toPx(6, resources), 0, 0)
         when (mode) {
             Mode.Draft -> quoteViewCancelButton.setOnClickListener { delegate?.cancelQuoteDraft() }
             Mode.Regular -> {
                 quoteViewCancelButton.isVisible = false
                 mainQuoteViewContainer.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.transparent, context.theme))
-                val hPadding = resources.getDimension(R.dimen.medium_spacing).roundToInt()
-                mainQuoteViewContainer.setPadding(hPadding, toPx(12, resources), hPadding, toPx(0, resources))
                 val quoteViewMainContentContainerLayoutParams = quoteViewMainContentContainer.layoutParams as RelativeLayout.LayoutParams
                 quoteViewMainContentContainerLayoutParams.marginEnd = resources.getDimension(R.dimen.medium_spacing).roundToInt()
                 quoteViewMainContentContainer.layoutParams = quoteViewMainContentContainerLayoutParams
@@ -59,9 +59,8 @@ class QuoteView : LinearLayout {
     // endregion
 
     // region General
-    fun getIntrinsicContentHeight(): Int {
+    fun getIntrinsicContentHeight(maxContentWidth: Int): Int {
         if (quoteViewAttachmentPreviewContainer.isVisible) { return toPx(40, resources) }
-        val maxContentWidth = quoteViewMainContentContainer.width
         var result = 0
         var authorTextViewIntrinsicHeight = 0
         if (quoteViewAuthorTextView.isVisible) {
@@ -73,19 +72,22 @@ class QuoteView : LinearLayout {
         val bodyTextViewIntrinsicHeight = TextUtilities.getIntrinsicHeight(body, quoteViewBodyTextView.paint, maxContentWidth)
         result += bodyTextViewIntrinsicHeight
         if (!quoteViewAuthorTextView.isVisible) {
-            return min(max(result, toPx(32, resources)), toPx(54, resources))
+            return min(max(result, toPx(32, resources)), toPx(60, resources))
         } else {
-            return min(result, toPx(54, resources) + authorTextViewIntrinsicHeight)
+            return min(result, toPx(60, resources) + authorTextViewIntrinsicHeight)
         }
     }
 
-    fun getIntrinsicHeight(): Int {
-        return getIntrinsicContentHeight() + 2 * vPadding
+    fun getIntrinsicHeight(maxContentWidth: Int): Int {
+        var result = getIntrinsicContentHeight(maxContentWidth)
+        result += 2 * vPadding
+        return result
     }
     // endregion
 
     // region Updating
-    fun bind(authorPublicKey: String, body: String?, attachments: SlideDeck?, thread: Recipient, isOutgoingMessage: Boolean) {
+    fun bind(authorPublicKey: String, body: String?, attachments: SlideDeck?, thread: Recipient,
+        isOutgoingMessage: Boolean, maxContentWidth: Int, isOpenGroupInvitation: Boolean) {
         val contactDB = DatabaseFactory.getSessionContactDatabase(context)
         // Author
         if (thread.isGroupRecipient) {
@@ -96,7 +98,6 @@ class QuoteView : LinearLayout {
         }
         quoteViewAuthorTextView.isVisible = thread.isGroupRecipient
         // Body
-        val isOpenGroupInvitation = (body?.let { UpdateMessageData.fromJSON(it) } != null)
         quoteViewBodyTextView.text = if (isOpenGroupInvitation) resources.getString(R.string.open_group_invitation_view__open_group_invitation) else body
         quoteViewBodyTextView.setTextColor(getTextColor(isOutgoingMessage))
         // Accent line / attachment preview
@@ -105,7 +106,7 @@ class QuoteView : LinearLayout {
         quoteViewAttachmentPreviewContainer.isVisible = hasAttachments
         if (!hasAttachments) {
             val accentLineLayoutParams = quoteViewAccentLine.layoutParams as RelativeLayout.LayoutParams
-            accentLineLayoutParams.height = getIntrinsicContentHeight()
+            accentLineLayoutParams.height = getIntrinsicContentHeight(maxContentWidth)
             quoteViewAccentLine.layoutParams = accentLineLayoutParams
             quoteViewAccentLine.setBackgroundColor(getLineColor(isOutgoingMessage))
         } else {
@@ -124,6 +125,7 @@ class QuoteView : LinearLayout {
             // TODO: Link previews
             // TODO: Images/video
         }
+        mainQuoteViewContainer.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, getIntrinsicHeight(maxContentWidth))
         val quoteViewMainContentContainerLayoutParams = quoteViewMainContentContainer.layoutParams as RelativeLayout.LayoutParams
         quoteViewMainContentContainerLayoutParams.marginStart = if (!hasAttachments) toPx(16, resources) else toPx(48, resources)
         quoteViewMainContentContainer.layoutParams = quoteViewMainContentContainerLayoutParams

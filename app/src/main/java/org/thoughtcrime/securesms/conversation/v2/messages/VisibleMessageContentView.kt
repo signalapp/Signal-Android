@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideRequests
+import kotlin.math.roundToInt
 
 class VisibleMessageContentView : LinearLayout {
     var onContentClick: (() -> Unit)? = null
@@ -42,7 +43,7 @@ class VisibleMessageContentView : LinearLayout {
     // endregion
 
     // region Updating
-    fun bind(message: MessageRecord, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean, glide: GlideRequests) {
+    fun bind(message: MessageRecord, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean, glide: GlideRequests, maxWidth: Int) {
         // Background
         val background = getBackground(message.isOutgoing, isStartOfMessageCluster, isEndOfMessageCluster)
         val colorID = if (message.isOutgoing) R.attr.message_sent_background_color else R.attr.message_received_background_color
@@ -61,7 +62,9 @@ class VisibleMessageContentView : LinearLayout {
         } else if (message is MmsMessageRecord && message.quote != null) {
             val quote = message.quote!!
             val quoteView = QuoteView(context, QuoteView.Mode.Regular)
-            quoteView.bind(quote.author.toString(), quote.text, quote.attachment, message.recipient, message.isOutgoing)
+            val maxContentWidth = (maxWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - toPx(16, resources)).roundToInt()
+            quoteView.bind(quote.author.toString(), quote.text, quote.attachment, message.recipient,
+                message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation)
             mainContainer.addView(quoteView)
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
             ViewUtil.setPaddingTop(bodyTextView, 0)

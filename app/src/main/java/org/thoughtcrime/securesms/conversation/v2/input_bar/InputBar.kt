@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2.input_bar
 
 import android.content.Context
+import android.content.res.Resources
 import android.text.Editable
 import android.util.AttributeSet
 import android.util.Log
@@ -10,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_input_bar.view.*
+import kotlinx.android.synthetic.main.view_quote.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.conversation.v2.messages.QuoteView
 import org.thoughtcrime.securesms.conversation.v2.messages.QuoteViewDelegate
@@ -19,8 +21,10 @@ import org.thoughtcrime.securesms.loki.utilities.toDp
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.SlideDeck
 import kotlin.math.max
+import kotlin.math.roundToInt
 
 class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
+    private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val vMargin by lazy { toDp(4, resources) }
     var delegate: InputBarDelegate? = null
     var additionalContentHeight = 0
@@ -96,8 +100,10 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
         quoteView.delegate = this
         inputBarAdditionalContentContainer.addView(quoteView)
         val attachments = (message as? MmsMessageRecord)?.slideDeck
-        quoteView.bind(message.individualRecipient.address.toString(), message.body, attachments, message.recipient, true)
-        val quoteViewIntrinsicHeight = quoteView.getIntrinsicHeight()
+        val maxContentWidth = (screenWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - toPx(16, resources) - toPx(30, resources)).roundToInt()
+        quoteView.bind(message.individualRecipient.address.toString(), message.body, attachments,
+            message.recipient, true, maxContentWidth, message.isOpenGroupInvitation)
+        val quoteViewIntrinsicHeight = quoteView.getIntrinsicHeight(maxContentWidth) + toPx(6, resources)
         val newHeight = max(inputBarEditText.height + 2 * vMargin, toPx(56, resources)) + quoteViewIntrinsicHeight
         additionalContentHeight = quoteViewIntrinsicHeight
         setHeight(newHeight)

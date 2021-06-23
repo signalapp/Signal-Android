@@ -6,9 +6,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/input_bar_background"
-    android:paddingHorizontal="@dimen/medium_spacing"
-    android:paddingVertical="6dp"
-    android:gravity="center_vertical">
+    android:paddingHorizontal="@dimen/medium_spacing">
 
     <View
         android:id="@+id/quoteViewAccentLine"

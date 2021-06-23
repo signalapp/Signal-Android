@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.Region
@@ -39,6 +40,7 @@ import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
 class VisibleMessageView : LinearLayout {
+    private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val swipeToReplyIcon = ContextCompat.getDrawable(context, R.drawable.ic_baseline_reply_24)!!.mutate()
     private val swipeToReplyIconRect = Rect()
     private var dx = 0.0f
@@ -138,7 +140,11 @@ class VisibleMessageView : LinearLayout {
             messageStatusImageView.isVisible = false
         }
         // Populate content view
-        messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide)
+        var maxWidth = screenWidth - messageContentContainerLayoutParams.leftMargin - messageContentContainerLayoutParams.rightMargin
+        if (profilePictureContainer.visibility != View.GONE) {
+            maxWidth -= profilePictureContainer.width
+        }
+        messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth)
     }
 
     private fun setMessageSpacing(isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {
