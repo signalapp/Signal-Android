@@ -79,15 +79,14 @@ class VisibleMessageView : LinearLayout {
         val senderSessionID = sender.address.serialize()
         val threadID = message.threadId
         val threadDB = DatabaseFactory.getThreadDatabase(context)
-        val thread = threadDB.getRecipientForThreadId(threadID)
+        val thread = threadDB.getRecipientForThreadId(threadID)!!
         val contactDB = DatabaseFactory.getSessionContactDatabase(context)
-        val isGroupThread = (thread?.isGroupRecipient == true)
+        val isGroupThread = thread.isGroupRecipient
         val isStartOfMessageCluster = isStartOfMessageCluster(message, previous, isGroupThread)
         val isEndOfMessageCluster = isEndOfMessageCluster(message, next, isGroupThread)
         // Show profile picture and sender name if this is a group thread AND
         // the message is incoming
         if (isGroupThread && !message.isOutgoing) {
-            thread!!
             profilePictureContainer.visibility = if (isEndOfMessageCluster) View.VISIBLE else View.INVISIBLE
             profilePictureView.publicKey = senderSessionID
             profilePictureView.glide = glide
@@ -139,12 +138,11 @@ class VisibleMessageView : LinearLayout {
         } else {
             messageStatusImageView.isVisible = false
         }
-        // Populate content view
+        // Calculate max message bubble width
         var maxWidth = screenWidth - messageContentContainerLayoutParams.leftMargin - messageContentContainerLayoutParams.rightMargin
-        if (profilePictureContainer.visibility != View.GONE) {
-            maxWidth -= profilePictureContainer.width
-        }
-        messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth)
+        if (profilePictureContainer.visibility != View.GONE) { maxWidth -= profilePictureContainer.width }
+        // Populate content view
+        messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth, thread)
     }
 
     private fun setMessageSpacing(isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {

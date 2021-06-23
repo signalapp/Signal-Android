@@ -6,11 +6,13 @@ import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.RelativeLayout
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import kotlinx.android.synthetic.main.activity_conversation_v2.view.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
@@ -35,11 +37,12 @@ import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
-import kotlin.math.abs
-import kotlin.math.roundToInt
-import kotlin.math.sqrt
+import kotlin.math.*
 
-class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate, InputBarRecordingViewDelegate {
+class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
+    InputBarRecordingViewDelegate, ConversationRecyclerViewDelegate {
+    private val scrollButtonFullVisibilityThreshold by lazy { toPx(120.0f, resources) }
+    private val scrollButtonNoVisibilityThreshold by lazy { toPx(20.0f, resources) }
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private var threadID: Long = -1
     private var actionMode: ActionMode? = null
@@ -113,6 +116,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         conversationRecyclerView.adapter = adapter
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
         conversationRecyclerView.layoutManager = layoutManager
+        conversationRecyclerView.delegate = this
         // Workaround for the fact that CursorRecyclerViewAdapter doesn't auto-update automatically (even though it says it will)
         LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -171,7 +175,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         if (!isOxenHostedOpenGroup) { return }
         openGroupGuidelinesView.visibility = View.VISIBLE
         val recyclerViewLayoutParams = conversationRecyclerView.layoutParams as RelativeLayout.LayoutParams
-        recyclerViewLayoutParams.topMargin = toPx(57, resources)
+        recyclerViewLayoutParams.topMargin = toPx(57, resources) // The height of the open group guidelines view is hardcoded to this
         conversationRecyclerView.layoutParams = recyclerViewLayoutParams
     }
 
@@ -315,6 +319,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         }
         animation.start()
     }
+
+    override fun handleConversationRecyclerViewBottomOffsetChanged(bottomOffset: Int) {
+        val rawAlpha = (bottomOffset.toFloat() - scrollButtonNoVisibilityThreshold) /
+            (scrollButtonFullVisibilityThreshold - scrollButtonNoVisibilityThreshold)
+        val alpha = max(min(rawAlpha, 1.0f), 0.0f)
+        Log.d("Test", "$alpha")
+    }
     // endregion
 
     // region Interaction
@@ -408,6 +419,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun isValidLockViewLocation(x: Int, y: Int): Boolean {
+        // We can be anywhere above the lock view and a bit to the side of it (at most `lockViewHitMargin`
+        // to the side)
         val lockViewLocation = IntArray(2) { 0 }
         lockView.getLocationOnScreen(lockViewLocation)
         val hitRect = Rect(lockViewLocation[0] - lockViewHitMargin, 0,

@@ -26,6 +26,7 @@ import kotlin.math.roundToInt
 class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val vMargin by lazy { toDp(4, resources) }
+    private val minHeight by lazy { toPx(56, resources) }
     var delegate: InputBarDelegate? = null
     var additionalContentHeight = 0
 
@@ -82,7 +83,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
     }
 
     override fun inputBarEditTextHeightChanged(newValue: Int) {
-        val newHeight = max(newValue + 2 * vMargin, toPx(56, resources)) + inputBarAdditionalContentContainer.height
+        val newHeight = max(newValue + 2 * vMargin, minHeight) + inputBarAdditionalContentContainer.height
         setHeight(newHeight)
     }
 
@@ -100,18 +101,23 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
         quoteView.delegate = this
         inputBarAdditionalContentContainer.addView(quoteView)
         val attachments = (message as? MmsMessageRecord)?.slideDeck
+        // The max content width is the screen width - 2 times the horizontal input bar padding - the
+        // quote view content area's start and end margins. This unfortunately has to be calculated manually
+        // here to get the layout right.
         val maxContentWidth = (screenWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - toPx(16, resources) - toPx(30, resources)).roundToInt()
         quoteView.bind(message.individualRecipient.address.toString(), message.body, attachments,
             message.recipient, true, maxContentWidth, message.isOpenGroupInvitation)
+        // The 6 DP below is the padding the quote view applies to itself, which isn't included in the
+        // intrinsic height calculation.
         val quoteViewIntrinsicHeight = quoteView.getIntrinsicHeight(maxContentWidth) + toPx(6, resources)
-        val newHeight = max(inputBarEditText.height + 2 * vMargin, toPx(56, resources)) + quoteViewIntrinsicHeight
+        val newHeight = max(inputBarEditText.height + 2 * vMargin, minHeight) + quoteViewIntrinsicHeight
         additionalContentHeight = quoteViewIntrinsicHeight
         setHeight(newHeight)
     }
 
     override fun cancelQuoteDraft() {
         inputBarAdditionalContentContainer.removeAllViews()
-        val newHeight = max(inputBarEditText.height + 2 * vMargin, toPx(56, resources))
+        val newHeight = max(inputBarEditText.height + 2 * vMargin, minHeight)
         additionalContentHeight = 0
         setHeight(newHeight)
     }
