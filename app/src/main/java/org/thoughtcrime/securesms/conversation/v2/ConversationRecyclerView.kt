@@ -25,17 +25,15 @@ class ConversationRecyclerView : RecyclerView {
     private fun initialize() {
         disableClipping()
         addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            private var maxScrollOffset = 0
+            private var bottomOffset = 0
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 // Do nothing
             }
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                val scrollOffset = recyclerView.computeVerticalScrollOffset()
-                maxScrollOffset = max(maxScrollOffset, scrollOffset)
-                val bottomOffset = (maxScrollOffset - scrollOffset)
-                delegate?.handleConversationRecyclerViewBottomOffsetChanged(bottomOffset)
+                bottomOffset += dy // FIXME: Not sure this is fully accurate, but it seems close enough
+                delegate?.handleConversationRecyclerViewBottomOffsetChanged(abs(bottomOffset))
             }
         })
     }

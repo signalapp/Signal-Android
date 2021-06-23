@@ -156,7 +156,7 @@
         android:gravity="center"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="14dp"
         android:layout_marginBottom="72dp"
         android:paddingVertical="8dp"
         android:background="@drawable/view_lock_background">
