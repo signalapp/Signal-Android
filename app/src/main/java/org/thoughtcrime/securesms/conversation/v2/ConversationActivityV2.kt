@@ -6,10 +6,7 @@ import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
 import android.os.Bundle
-import android.view.ActionMode
-import android.view.Menu
-import android.view.MenuItem
-import android.view.MotionEvent
+import android.view.*
 import android.widget.RelativeLayout
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
@@ -17,12 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import kotlinx.android.synthetic.main.activity_conversation_v2.view.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.view_input_bar.view.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.mentions.MentionsManager
-import org.session.libsession.utilities.Util
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -98,6 +95,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         setUpToolBar()
         setUpInputBar()
         restoreDraftIfNeeded()
+        addOpenGroupGuidelinesIfNeeded()
     }
 
     private fun setUpRecyclerView() {
@@ -153,6 +151,17 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         draftDB.clearDrafts(threadID)
         val text = drafts.find { it.type == DraftDatabase.Draft.TEXT }?.value ?: return
         inputBar.text = text
+    }
+
+    private fun addOpenGroupGuidelinesIfNeeded() {
+        val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID) ?: return
+        val isOxenHostedOpenGroup = openGroup.room == "session" || openGroup.room == "oxen"
+            || openGroup.room == "lokinet" || openGroup.room == "crypto"
+        if (!isOxenHostedOpenGroup) { return }
+        openGroupGuidelinesView.visibility = View.VISIBLE
+        val recyclerViewLayoutParams = conversationRecyclerView.layoutParams as RelativeLayout.LayoutParams
+        recyclerViewLayoutParams.topMargin = toPx(57, resources)
+        conversationRecyclerView.layoutParams = recyclerViewLayoutParams
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {

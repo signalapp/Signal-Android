@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <org.thoughtcrime.securesms.conversation.v2.OpenGroupGuidelinesView
+        android:id="@+id/openGroupGuidelinesView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
     <org.thoughtcrime.securesms.conversation.v2.ConversationRecyclerView
         android:id="@+id/conversationRecyclerView"
         android:layout_width="match_parent"

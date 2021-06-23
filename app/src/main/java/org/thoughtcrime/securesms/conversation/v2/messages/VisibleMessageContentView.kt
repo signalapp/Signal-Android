@@ -79,7 +79,9 @@ class VisibleMessageContentView : LinearLayout {
             documentView.bind(message, VisibleMessageContentView.getTextColor(context, message))
             mainContainer.addView(documentView)
         } else if (message is MmsMessageRecord && message.slideDeck.asAttachments().isNotEmpty()) {
-            throw IllegalStateException("Not yet implemented; we may want to use Signal's album view here.")
+            val dummyTextView = TextView(context)
+            dummyTextView.text = "asifuygaihsfo"
+            mainContainer.addView(dummyTextView)
         } else if (message.isOpenGroupInvitation) {
             val openGroupInvitationView = OpenGroupInvitationView(context)
             openGroupInvitationView.bind(message, VisibleMessageContentView.getTextColor(context, message))

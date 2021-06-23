@@ -31,8 +31,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text"
-                android:textSize="@dimen/small_font_size"
+                android:textSize="15dp"
                 android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:text="@string/open_group_guidelines_pinned_message" />
 
             <TextView
@@ -40,8 +42,9 @@
                 android:maxWidth="260dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text"
-                android:textSize="@dimen/small_font_size"
-                android:maxLines="2"
+                android:textSize="15dp"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:text="@string/open_group_guidelines_community_guidelines" />
 
         </LinearLayout>
@@ -58,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/small_button_height"
             android:layout_marginRight="12dp"
-            android:textSize="@dimen/small_font_size"
+            android:textSize="15dp"
             android:textStyle="normal"
             android:text="@string/open_group_guidelines_read" />
 
