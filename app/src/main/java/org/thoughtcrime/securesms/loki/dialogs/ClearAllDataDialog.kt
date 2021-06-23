@@ -78,10 +78,12 @@ class ClearAllDataDialog : DialogFragment() {
                 Steps.INFO_PROMPT -> {
                     view.dialogDescriptionText.setText(R.string.dialog_clear_all_data_explanation)
                     view.cancelButton.setText(R.string.cancel)
+                    view.clearAllDataButton.setText(R.string.delete)
                 }
                 else -> {
                     view.dialogDescriptionText.setText(R.string.dialog_clear_all_data_network_explanation)
                     view.cancelButton.setText(R.string.dialog_clear_all_data_local_only)
+                    view.clearAllDataButton.setText(R.string.dialog_clear_all_data_clear_network)
                 }
             }
 

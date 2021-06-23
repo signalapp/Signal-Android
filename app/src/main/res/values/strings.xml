@@ -780,6 +780,7 @@
     <string name="dialog_clear_all_data_explanation">This will permanently delete your messages, sessions, and contacts.</string>
     <string name="dialog_clear_all_data_network_explanation">Do you also want to clear all your data from the network?</string>
     <string name="dialog_clear_all_data_local_only">Delete Local Only</string>
+    <string name="dialog_clear_all_data_clear_network">Clear Network</string>
 
     <string name="activity_qr_code_title">QR Code</string>
     <string name="activity_qr_code_view_my_qr_code_tab_title">View My QR Code</string>
