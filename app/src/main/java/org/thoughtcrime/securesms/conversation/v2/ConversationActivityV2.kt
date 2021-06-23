@@ -99,6 +99,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         setUpInputBar()
         restoreDraftIfNeeded()
         addOpenGroupGuidelinesIfNeeded()
+        scrollToBottomButton.setOnClickListener { conversationRecyclerView.smoothScrollToPosition(0) }
     }
 
     private fun setUpRecyclerView() {
