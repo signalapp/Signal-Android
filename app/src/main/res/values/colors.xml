@@ -36,6 +36,8 @@
     <color name="mention_candidates_view_background">#171717</color>
     <color name="mention_candidates_view_background_ripple">#0C0C0C</color>
     <color name="link_preview_background">#000000</color>
+    <color name="scroll_to_bottom_button_background">#171717</color>
+    <color name="scroll_to_bottom_button_border">#99FFFFFF</color>
 
     <array name="profile_picture_placeholder_colors">
         <item>#5ff8b0</item>
