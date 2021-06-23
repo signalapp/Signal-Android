@@ -40,7 +40,7 @@ class LinkPreviewView : LinearLayout {
         // Thumbnail
         val linkPreview = message.linkPreviews.first()
         // TODO: Handle downloading state
-        val uri = linkPreview.thumbnail.get().dataUri!!
+        val uri = linkPreview.thumbnail.get().dataUri ?: return
         glide.load(uri).into(thumbnailImageView)
         // TODO: Properly use glide and the actual thumbnail
         // Title
