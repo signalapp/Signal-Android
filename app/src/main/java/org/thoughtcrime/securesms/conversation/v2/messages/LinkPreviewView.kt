@@ -52,7 +52,8 @@ class LinkPreviewView : LinearLayout {
         }
         titleTextView.setTextColor(ResourcesCompat.getColor(resources, textColorID, context.theme))
         // Body
-        mainLinkPreviewContainer.addView(VisibleMessageContentView.getBodyTextView(context, message))
+        val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
+        mainLinkPreviewContainer.addView(bodyTextView)
     }
 
     fun recycle() {

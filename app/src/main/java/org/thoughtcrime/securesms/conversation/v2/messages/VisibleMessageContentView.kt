@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
+import android.text.util.Linkify
 import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
@@ -132,6 +134,8 @@ class VisibleMessageContentView : LinearLayout {
             result.setTextSize(TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(R.dimen.small_font_size))
             val color = getTextColor(context, message)
             result.setTextColor(color)
+            result.setLinkTextColor(color)
+            Linkify.addLinks(result, Linkify.WEB_URLS)
             return result
         }
 
