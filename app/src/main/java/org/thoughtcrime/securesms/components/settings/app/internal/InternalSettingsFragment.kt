@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.concurrent.SignalExecutors
+import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
@@ -242,6 +243,31 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
           viewModel.setRemoveSenderKeyMinimum(!state.removeSenderKeyMinimium)
         }
       )
+
+      dividerPref()
+
+      sectionHeaderPref(R.string.preferences__internal_calling)
+
+      radioPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_calling_default),
+        summary = DSLSettingsText.from(BuildConfig.SIGNAL_SFU_URL),
+        isChecked = state.callingServer == BuildConfig.SIGNAL_SFU_URL,
+        onClick = {
+          viewModel.setInternalGroupCallingServer(null)
+        }
+      )
+
+      BuildConfig.SIGNAL_SFU_INTERNAL_NAMES.zip(BuildConfig.SIGNAL_SFU_INTERNAL_URLS)
+        .forEach { (name, server) ->
+          radioPref(
+            title = DSLSettingsText.from(requireContext().getString(R.string.preferences__internal_calling_s_server, name)),
+            summary = DSLSettingsText.from(server),
+            isChecked = state.callingServer == server,
+            onClick = {
+              viewModel.setInternalGroupCallingServer(server)
+            }
+          )
+        }
     }
   }
 

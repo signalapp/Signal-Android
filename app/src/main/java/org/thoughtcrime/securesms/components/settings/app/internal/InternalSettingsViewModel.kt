@@ -70,6 +70,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun setInternalGroupCallingServer(server: String?) {
+    preferenceDataStore.putString(InternalValues.CALLING_SERVER, server)
+    refresh()
+  }
+
   private fun refresh() {
     store.update { getState().copy(emojiVersion = it.emojiVersion) }
   }
@@ -83,6 +88,7 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     disableAutoMigrationInitiation = SignalStore.internalValues().disableGv1AutoMigrateInitiation(),
     disableAutoMigrationNotification = SignalStore.internalValues().disableGv1AutoMigrateNotification(),
     forceCensorship = SignalStore.internalValues().forcedCensorship(),
+    callingServer = SignalStore.internalValues().groupCallingServer(),
     useBuiltInEmojiSet = SignalStore.internalValues().forceBuiltInEmoji(),
     emojiVersion = null,
     removeSenderKeyMinimium = SignalStore.internalValues().removeSenderKeyMinimum()

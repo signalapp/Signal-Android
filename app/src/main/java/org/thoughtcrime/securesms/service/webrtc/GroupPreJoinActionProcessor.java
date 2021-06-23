@@ -10,7 +10,6 @@ import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.GroupCall;
 import org.signal.ringrtc.PeekInfo;
-import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
@@ -45,7 +44,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
     byte[]      groupId = currentState.getCallInfoState().getCallRecipient().requireGroupId().getDecodedId();
     GroupCall groupCall = webRtcInteractor.getCallManager().createGroupCall(groupId,
-                                                                            BuildConfig.SIGNAL_SFU_URL,
+                                                                            SignalStore.internalValues().groupCallingServer(),
                                                                             currentState.getVideoState().requireEglBase(),
                                                                             webRtcInteractor.getGroupCallObserver());
 
