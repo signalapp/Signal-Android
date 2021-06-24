@@ -15,6 +15,7 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
+import androidx.core.text.toSpannable
 import kotlinx.android.synthetic.main.view_visible_message_content.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.utilities.UpdateMessageData
@@ -25,10 +26,8 @@ import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.loki.utilities.UiMode
-import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
-import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.loki.utilities.*
+import org.thoughtcrime.securesms.loki.utilities.MentionUtilities.highlightMentions
 import org.thoughtcrime.securesms.mms.GlideRequests
 import kotlin.math.roundToInt
 
@@ -129,12 +128,14 @@ class VisibleMessageContentView : LinearLayout {
             val vPadding = context.resources.getDimension(R.dimen.small_spacing).toInt()
             val hPadding = toPx(12, context.resources)
             result.setPadding(hPadding, vPadding, hPadding, vPadding)
-            result.text = message.body
             result.setTextSize(TypedValue.COMPLEX_UNIT_PX, context.resources.getDimension(R.dimen.small_font_size))
             val color = getTextColor(context, message)
             result.setTextColor(color)
             result.setLinkTextColor(color)
-            Linkify.addLinks(result, Linkify.WEB_URLS)
+            var body = message.body.toSpannable()
+            Linkify.addLinks(body, Linkify.WEB_URLS)
+            body = MentionUtilities.highlightMentions(body, message.isOutgoing, message.threadId, context);
+            result.text = body
             return result
         }
 
