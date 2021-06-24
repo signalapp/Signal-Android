@@ -859,4 +859,8 @@
     <string name="dialog_join_open_group_title">Join %s?</string>
     <string name="dialog_join_open_group_explanation">Are you sure you want to join the %s open group?</string>
 
+    <string name="dialog_open_url_title">Open URL?</string>
+    <string name="dialog_open_url_explanation">Are you sure you want to open %s?</string>
+    <string name="open">Open</string>
+
 </resources>
