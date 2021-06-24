@@ -16,6 +16,7 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.work.ListenableWorker
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import kotlinx.android.synthetic.main.activity_conversation_v2.view.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
@@ -25,7 +26,9 @@ import kotlinx.android.synthetic.main.view_input_bar.view.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
+import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.mentions.MentionsManager
+import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
@@ -41,6 +44,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.loki.api.PublicChatInfoUpdateWorker
+import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.util.DateUtils
@@ -112,6 +117,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         updateUnreadCount()
         setUpTypingObserver()
         updateSubtitle()
+        getLatestOpenGroupInfoIfNeeded()
     }
 
     private fun setUpRecyclerView() {
@@ -188,6 +194,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             typingIndicatorViewContainer.setTypists(recipients)
             inputBarHeightChanged(inputBar.height)
         }
+    }
+
+    private fun getLatestOpenGroupInfoIfNeeded() {
+        val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID) ?: return
+        OpenGroupAPIV2.getMemberCount(openGroup.room, openGroup.server).successUi { updateSubtitle() }
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
