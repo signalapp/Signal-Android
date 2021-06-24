@@ -863,4 +863,8 @@
     <string name="dialog_open_url_explanation">Are you sure you want to open %s?</string>
     <string name="open">Open</string>
 
+    <string name="dialog_link_preview_title">Enable Link Previews?</string>
+    <string name="dialog_link_preview_explanation">Enabling link previews will show previews for URLs you send and receive. This can be useful, but Session will need to contact linked websites to generate previews. You can always disable link previews in Session\'s settings.</string>
+    <string name="dialog_link_preview_enable_button_title">Enable</string>
+
 </resources>
