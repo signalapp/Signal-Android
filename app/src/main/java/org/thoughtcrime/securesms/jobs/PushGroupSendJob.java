@@ -39,7 +39,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -330,7 +329,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                               .withExpiration(groupRecipient.getExpireMessages())
                                                                               .asGroupMessage(group)
                                                                               .build();
-          return GroupSendUtil.sendDataMessage(context, groupRecipient.requireGroupId().requireV2(), destinations, isRecipientUpdate, ContentHint.IMPLICIT, groupDataMessage);
+          return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId().requireV2(), destinations, isRecipientUpdate, ContentHint.IMPLICIT, messageId, true, groupDataMessage);
         } else {
           MessageGroupContext.GroupV1Properties properties = groupMessage.requireGroupV1Properties();
 
@@ -372,9 +371,11 @@ public final class PushGroupSendJob extends PushSendJob {
         Log.i(TAG, JobLogger.format(this, "Beginning message send."));
 
         if (groupRecipient.isPushV2Group()) {
-          return GroupSendUtil.sendDataMessage(context, groupRecipient.requireGroupId().requireV2(), destinations, isRecipientUpdate, ContentHint.RESENDABLE, groupMessage);
+          return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId().requireV2(), destinations, isRecipientUpdate, ContentHint.RESENDABLE, messageId, true, groupMessage);
         } else {
-          return messageSender.sendDataMessage(addresses, unidentifiedAccess, isRecipientUpdate, ContentHint.RESENDABLE, groupMessage);
+          List<SendMessageResult> results = messageSender.sendDataMessage(addresses, unidentifiedAccess, isRecipientUpdate, ContentHint.RESENDABLE, groupMessage);
+          DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(groupMessage.getTimestamp(), destinations, results, ContentHint.RESENDABLE, messageId, true);
+          return results;
         }
       }
     } catch (ServerRejectedException e) {

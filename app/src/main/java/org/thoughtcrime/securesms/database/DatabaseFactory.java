@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.helpers.ClassicOpenHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherMigrationHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.database.model.PendingRetryReceiptModel;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -70,6 +69,7 @@ public class DatabaseFactory {
   private final PaymentDatabase             paymentDatabase;
   private final ChatColorsDatabase          chatColorsDatabase;
   private final EmojiSearchDatabase         emojiSearchDatabase;
+  private final MessageSendLogDatabase      messageSendLogDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     if (instance == null) {
@@ -188,16 +188,20 @@ public class DatabaseFactory {
     return getInstance(context).paymentDatabase;
   }
 
+  public static ChatColorsDatabase getChatColorsDatabase(Context context) {
+    return getInstance(context).chatColorsDatabase;
+  }
+
   public static EmojiSearchDatabase getEmojiSearchDatabase(Context context) {
     return getInstance(context).emojiSearchDatabase;
   }
 
-  public static SQLiteDatabase getBackupDatabase(Context context) {
-    return getInstance(context).databaseHelper.getReadableDatabase().getSqlCipherDatabase();
+  public static MessageSendLogDatabase getMessageLogDatabase(Context context) {
+    return getInstance(context).messageSendLogDatabase;
   }
 
-  public static ChatColorsDatabase getChatColorsDatabase(Context context) {
-    return getInstance(context).chatColorsDatabase;
+  public static SQLiteDatabase getBackupDatabase(Context context) {
+    return getInstance(context).databaseHelper.getReadableDatabase().getSqlCipherDatabase();
   }
 
   public static void upgradeRestored(Context context, SQLiteDatabase database){
@@ -253,7 +257,8 @@ public class DatabaseFactory {
     this.mentionDatabase             = new MentionDatabase(context, databaseHelper);
     this.paymentDatabase             = new PaymentDatabase(context, databaseHelper);
     this.chatColorsDatabase          = new ChatColorsDatabase(context, databaseHelper);
-    this.emojiSearchDatabase         = new EmojiSearchDatabase(context, databaseHelper);
+    this.emojiSearchDatabase    = new EmojiSearchDatabase(context, databaseHelper);
+    this.messageSendLogDatabase = new MessageSendLogDatabase(context, databaseHelper);
   }
 
   public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,

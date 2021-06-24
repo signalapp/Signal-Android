@@ -960,6 +960,7 @@ public class ThreadDatabase extends Database {
 
     db.beginTransaction();
     try {
+      DatabaseFactory.getMessageLogDatabase(context).deleteAll();
       DatabaseFactory.getSmsDatabase(context).deleteAllThreads();
       DatabaseFactory.getMmsDatabase(context).deleteAllThreads();
       DatabaseFactory.getDraftDatabase(context).clearAllDrafts();

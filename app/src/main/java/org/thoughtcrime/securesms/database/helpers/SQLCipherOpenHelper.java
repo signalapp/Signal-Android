@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.MentionDatabase;
+import org.thoughtcrime.securesms.database.MessageSendLogDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.PaymentDatabase;
@@ -199,8 +200,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int EMOJI_SEARCH                     = 102;
   private static final int SENDER_KEY                       = 103;
   private static final int MESSAGE_DUPE_INDEX               = 104;
+  private static final int MESSAGE_LOG                      = 105;
 
-  private static final int    DATABASE_VERSION = 104;
+  private static final int    DATABASE_VERSION = 105;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -239,6 +241,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     db.execSQL(EmojiSearchDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE);
+    executeStatements(db, MessageSendLogDatabase.CREATE_TABLE);
 
     executeStatements(db, RecipientDatabase.CREATE_INDEXS);
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
@@ -252,6 +255,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     executeStatements(db, UnknownStorageIdDatabase.CREATE_INDEXES);
     executeStatements(db, MentionDatabase.CREATE_INDEXES);
     executeStatements(db, PaymentDatabase.CREATE_INDEXES);
+    executeStatements(db, MessageSendLogDatabase.CREATE_INDEXES);
+
+    executeStatements(db, MessageSendLogDatabase.CREATE_TRIGGERS);
 
     if (context.getDatabasePath(ClassicOpenHelper.NAME).exists()) {
       ClassicOpenHelper                      legacyHelper = new ClassicOpenHelper(context);
@@ -1567,6 +1573,29 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
 
         db.execSQL("DROP INDEX mms_date_sent_index");
         db.execSQL("CREATE INDEX mms_date_sent_index on mms(date, address, thread_id)");
+      }
+
+      if (oldVersion < MESSAGE_LOG) {
+        db.execSQL("CREATE TABLE message_send_log (_id INTEGER PRIMARY KEY, " +
+                                                  "date_sent INTEGER NOT NULL, " +
+                                                  "content BLOB NOT NULL, " +
+                                                  "related_message_id INTEGER DEFAULT -1, " +
+                                                  "is_related_message_mms INTEGER DEFAULT 0, " +
+                                                  "content_hint INTEGER NOT NULL, " +
+                                                  "group_id BLOB DEFAULT NULL)");
+
+        db.execSQL("CREATE INDEX message_log_date_sent_index ON message_send_log (date_sent)");
+        db.execSQL("CREATE INDEX message_log_related_message_index ON message_send_log (related_message_id, is_related_message_mms)");
+
+        db.execSQL("CREATE TRIGGER msl_sms_delete AFTER DELETE ON sms BEGIN DELETE FROM message_send_log WHERE related_message_id = old._id AND is_related_message_mms = 0; END");
+        db.execSQL("CREATE TRIGGER msl_mms_delete AFTER DELETE ON mms BEGIN DELETE FROM message_send_log WHERE related_message_id = old._id AND is_related_message_mms = 1; END");
+
+        db.execSQL("CREATE TABLE message_send_log_recipients (_id INTEGER PRIMARY KEY, " +
+                                                             "message_send_log_id INTEGER NOT NULL REFERENCES message_send_log (_id) ON DELETE CASCADE, " +
+                                                             "recipient_id INTEGER NOT NULL, " +
+                                                             "device INTEGER NOT NULL)");
+
+        db.execSQL("CREATE INDEX message_send_log_recipients_recipient_index ON message_send_log_recipients (recipient_id, device)");
       }
 
       db.setTransactionSuccessful();

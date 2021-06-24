@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum ContentHint {
-  /** This message has content, but you shouldn’t expect it to be re-sent to you. */
+  /** This message has content, but you shouldn't expect it to be re-sent to you. */
   DEFAULT(UnidentifiedSenderMessageContent.CONTENT_HINT_DEFAULT),
 
   /** You should expect to be able to have this content be re-sent to you. */

@@ -31,7 +31,6 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
@@ -219,24 +218,28 @@ public class ReactionSendJob extends BaseJob {
   private @NonNull List<Recipient> deliver(@NonNull Recipient conversationRecipient, @NonNull List<Recipient> destinations, @NonNull Recipient targetAuthor, long targetSentTimestamp)
       throws IOException, UntrustedIdentityException
   {
-    SignalServiceDataMessage.Builder dataMessage = SignalServiceDataMessage.newBuilder()
-                                                                           .withTimestamp(System.currentTimeMillis())
-                                                                           .withReaction(buildReaction(context, reaction, remove, targetAuthor, targetSentTimestamp));
+    SignalServiceDataMessage.Builder dataMessageBuilder = SignalServiceDataMessage.newBuilder()
+                                                                                  .withTimestamp(System.currentTimeMillis())
+                                                                                  .withReaction(buildReaction(context, reaction, remove, targetAuthor, targetSentTimestamp));
 
     if (conversationRecipient.isGroup()) {
-      GroupUtil.setDataMessageGroupContext(context, dataMessage, conversationRecipient.requireGroupId().requirePush());
+      GroupUtil.setDataMessageGroupContext(context, dataMessageBuilder, conversationRecipient.requireGroupId().requirePush());
     }
+
+    SignalServiceDataMessage dataMessage = dataMessageBuilder.build();
 
     List<SendMessageResult> results;
 
     if (conversationRecipient.isPushV2Group()) {
-      results = GroupSendUtil.sendDataMessage(context, conversationRecipient.requireGroupId().requireV2(), destinations, false, ContentHint.DEFAULT, dataMessage.build());
+      results = GroupSendUtil.sendResendableDataMessage(context, conversationRecipient.requireGroupId().requireV2(), destinations, false, ContentHint.RESENDABLE, messageId, isMms, dataMessageBuilder.build());
     } else {
       SignalServiceMessageSender             messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
       List<SignalServiceAddress>             addresses          = RecipientUtil.toSignalServiceAddressesFromResolved(context, destinations);
-      List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, destinations);;
+      List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, destinations);
 
-      results = messageSender.sendDataMessage(addresses, unidentifiedAccess, false, ContentHint.DEFAULT, dataMessage.build());
+      results = messageSender.sendDataMessage(addresses, unidentifiedAccess, false, ContentHint.RESENDABLE, dataMessage);
+
+      DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(dataMessage.getTimestamp(), destinations, results, ContentHint.RESENDABLE, messageId, isMms);
     }
 
     return GroupSendJobHelper.getCompletedSends(context, results);

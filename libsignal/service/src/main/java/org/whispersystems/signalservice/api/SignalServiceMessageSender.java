@@ -219,18 +219,16 @@ public class SignalServiceMessageSender {
    *
    * @param recipient The sender of the received message you're acknowledging.
    * @param message The read receipt to deliver.
-   * @throws IOException
-   * @throws UntrustedIdentityException
    */
-  public void sendReceipt(SignalServiceAddress recipient,
-                          Optional<UnidentifiedAccessPair> unidentifiedAccess,
-                          SignalServiceReceiptMessage message)
+  public SendMessageResult sendReceipt(SignalServiceAddress recipient,
+                                       Optional<UnidentifiedAccessPair> unidentifiedAccess,
+                                       SignalServiceReceiptMessage message)
       throws IOException, UntrustedIdentityException
   {
     Content         content         = createReceiptContent(message);
     EnvelopeContent envelopeContent = EnvelopeContent.encrypted(content, ContentHint.IMPLICIT, Optional.absent());
 
-    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), message.getWhen(), envelopeContent, false, null);
+    return sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), message.getWhen(), envelopeContent, false, null);
   }
 
   /**
@@ -254,8 +252,6 @@ public class SignalServiceMessageSender {
    *
    * @param recipient The destination
    * @param message The typing indicator to deliver
-   * @throws IOException
-   * @throws UntrustedIdentityException
    */
   public void sendTyping(SignalServiceAddress recipient,
                          Optional<UnidentifiedAccessPair> unidentifiedAccess,
@@ -403,6 +399,23 @@ public class SignalServiceMessageSender {
   }
 
   /**
+   * Resend a previously-sent message.
+   */
+  public SendMessageResult resendContent(SignalServiceAddress address,
+                                         Optional<UnidentifiedAccessPair> unidentifiedAccess,
+                                         long timestamp,
+                                         Content content,
+                                         ContentHint contentHint,
+                                         Optional<byte[]> groupId)
+      throws UntrustedIdentityException, IOException
+  {
+    EnvelopeContent              envelopeContent = EnvelopeContent.encrypted(content, contentHint, groupId);
+    Optional<UnidentifiedAccess> access          = unidentifiedAccess.isPresent() ? unidentifiedAccess.get().getTargetUnidentifiedAccess() : Optional.absent();
+
+    return sendMessage(address, access, timestamp, envelopeContent, false, null);
+  }
+
+  /**
    * Sends a {@link SignalServiceDataMessage} to a group using sender keys.
    */
   public List<SendMessageResult> sendGroupDataMessage(DistributionId             distributionId,
@@ -469,7 +482,7 @@ public class SignalServiceMessageSender {
     return results;
   }
 
-  public void sendSyncMessage(SignalServiceSyncMessage message, Optional<UnidentifiedAccessPair> unidentifiedAccess)
+  public SendMessageResult sendSyncMessage(SignalServiceSyncMessage message, Optional<UnidentifiedAccessPair> unidentifiedAccess)
       throws IOException, UntrustedIdentityException
   {
     Content content;
@@ -502,8 +515,7 @@ public class SignalServiceMessageSender {
     } else if (message.getKeys().isPresent()) {
       content = createMultiDeviceSyncKeysContent(message.getKeys().get());
     } else if (message.getVerified().isPresent()) {
-      sendVerifiedMessage(message.getVerified().get(), unidentifiedAccess);
-      return;
+      return sendVerifiedMessage(message.getVerified().get(), unidentifiedAccess);
     } else {
       throw new IOException("Unsupported sync message!");
     }
@@ -513,7 +525,7 @@ public class SignalServiceMessageSender {
 
     EnvelopeContent envelopeContent = EnvelopeContent.encrypted(content, ContentHint.IMPLICIT, Optional.absent());
 
-    sendMessage(localAddress, Optional.absent(), timestamp, envelopeContent, false, null);
+    return sendMessage(localAddress, Optional.absent(), timestamp, envelopeContent, false, null);
   }
 
   public void setSoTimeoutMillis(long soTimeoutMillis) {
@@ -631,7 +643,7 @@ public class SignalServiceMessageSender {
                                               attachment.getUploadTimestamp());
   }
 
-  private void sendVerifiedMessage(VerifiedMessage message, Optional<UnidentifiedAccessPair> unidentifiedAccess)
+  private SendMessageResult sendVerifiedMessage(VerifiedMessage message, Optional<UnidentifiedAccessPair> unidentifiedAccess)
       throws IOException, UntrustedIdentityException
   {
     byte[] nullMessageBody = DataMessage.newBuilder()
@@ -657,6 +669,8 @@ public class SignalServiceMessageSender {
 
       sendMessage(localAddress, Optional.absent(), message.getTimestamp(), syncMessageContent, false, null);
     }
+
+    return result;
   }
 
   public SendMessageResult sendNullMessage(SignalServiceAddress address, Optional<UnidentifiedAccessPair> unidentifiedAccess)
@@ -1016,9 +1030,10 @@ public class SignalServiceMessageSender {
 
   private Content createMultiDeviceSentTranscriptContent(SentTranscriptMessage transcript, Optional<UnidentifiedAccessPair> unidentifiedAccess) throws IOException {
     SignalServiceAddress address = transcript.getDestination().get();
-    SendMessageResult    result  = SendMessageResult.success(address, unidentifiedAccess.isPresent(), true, -1);
+    Content              content = createMessageContent(transcript.getMessage());
+    SendMessageResult    result  = SendMessageResult.success(address, Collections.emptyList(), unidentifiedAccess.isPresent(), true, -1, Optional.of(content));
 
-    return createMultiDeviceSentTranscriptContent(createMessageContent(transcript.getMessage()),
+    return createMultiDeviceSentTranscriptContent(content,
                                                   Optional.of(address),
                                                   transcript.getTimestamp(),
                                                   Collections.singletonList(result),
@@ -1613,7 +1628,7 @@ public class SignalServiceMessageSender {
         if (pipe.isPresent() && !unidentifiedAccess.isPresent()) {
           try {
             SendMessageResponse response = pipe.get().send(messages, Optional.absent()).get(10, TimeUnit.SECONDS);
-            return SendMessageResult.success(recipient, false, response.getNeedsSync() || isMultiDevice.get(), System.currentTimeMillis() - startTime);
+            return SendMessageResult.success(recipient, messages.getDevices(), false, response.getNeedsSync() || isMultiDevice.get(), System.currentTimeMillis() - startTime, content.getContent());
           } catch (IOException | ExecutionException | InterruptedException | TimeoutException e) {
             Log.w(TAG, e);
             Log.w(TAG, "[sendMessage] Pipe failed, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
@@ -1621,7 +1636,7 @@ public class SignalServiceMessageSender {
         } else if (unidentifiedPipe.isPresent() && unidentifiedAccess.isPresent()) {
           try {
             SendMessageResponse response = unidentifiedPipe.get().send(messages, unidentifiedAccess).get(10, TimeUnit.SECONDS);
-            return SendMessageResult.success(recipient, true, response.getNeedsSync() || isMultiDevice.get(), System.currentTimeMillis() - startTime);
+            return SendMessageResult.success(recipient, messages.getDevices(), true, response.getNeedsSync() || isMultiDevice.get(), System.currentTimeMillis() - startTime, content.getContent());
           } catch (IOException | ExecutionException | InterruptedException | TimeoutException e) {
             Log.w(TAG, e);
             Log.w(TAG, "[sendMessage] Unidentified pipe failed, falling back...");
@@ -1634,7 +1649,7 @@ public class SignalServiceMessageSender {
 
         SendMessageResponse response = socket.sendMessage(messages, unidentifiedAccess);
 
-        return SendMessageResult.success(recipient, unidentifiedAccess.isPresent(), response.getNeedsSync() || isMultiDevice.get(), System.currentTimeMillis() - startTime);
+        return SendMessageResult.success(recipient, messages.getDevices(), unidentifiedAccess.isPresent(), response.getNeedsSync() || isMultiDevice.get(), System.currentTimeMillis() - startTime, content.getContent());
 
       } catch (InvalidKeyException ike) {
         Log.w(TAG, ike);
@@ -1693,15 +1708,21 @@ public class SignalServiceMessageSender {
       accessByUuid.put(addressIterator.next().getUuid().get(), accessIterator.next());
     }
 
+    Map<SignalServiceAddress, List<Integer>> recipientDevices = recipients.stream().collect(Collectors.toMap(a -> a, a -> new LinkedList<>()));
+
     for (int i = 0; i < RETRY_COUNT; i++) {
       List<SignalProtocolAddress> destinations = new LinkedList<>();
 
       for (SignalServiceAddress recipient : recipients) {
+        List<Integer> devices = recipientDevices.get(recipient);
+
         destinations.add(new SignalProtocolAddress(recipient.getUuid().get().toString(), SignalServiceAddress.DEFAULT_DEVICE_ID));
+        devices.add(SignalServiceAddress.DEFAULT_DEVICE_ID);
 
         for (int deviceId : store.getSubDeviceSessions(recipient.getIdentifier())) {
           if (store.containsSession(new SignalProtocolAddress(recipient.getIdentifier(), deviceId))) {
             destinations.add(new SignalProtocolAddress(recipient.getUuid().get().toString(), deviceId));
+            devices.add(deviceId);
           }
         }
       }
@@ -1783,7 +1804,7 @@ public class SignalServiceMessageSender {
       if (pipe.isPresent()) {
         try {
           SendGroupMessageResponse response = pipe.get().sendToGroup(ciphertext, joinedUnidentifiedAccess, timestamp, online).get(10, TimeUnit.SECONDS);
-          return transformGroupResponseToMessageResults(recipients, response);
+          return transformGroupResponseToMessageResults(recipientDevices, response, content);
         } catch (IOException | ExecutionException | InterruptedException | TimeoutException e) {
           Log.w(TAG, "[sendGroupMessage] Pipe failed, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
         }
@@ -1793,7 +1814,7 @@ public class SignalServiceMessageSender {
 
       try {
         SendGroupMessageResponse response = socket.sendGroupMessage(ciphertext, joinedUnidentifiedAccess, timestamp, online);
-        return transformGroupResponseToMessageResults(recipients, response);
+        return transformGroupResponseToMessageResults(recipientDevices, response, content);
       } catch (GroupMismatchedDevicesException e) {
         Log.w(TAG, "[sendGroupMessage] Handling mismatched devices.", e);
         for (GroupMismatchedDevices mismatched : e.getMismatchedDevices()) {
@@ -1822,7 +1843,7 @@ public class SignalServiceMessageSender {
     throw new IOException("Failed to resolve conflicts after " + RETRY_COUNT + " attempts!");
   }
 
-  private List<SendMessageResult> transformGroupResponseToMessageResults(List<SignalServiceAddress> recipients, SendGroupMessageResponse response) {
+  private List<SendMessageResult> transformGroupResponseToMessageResults(Map<SignalServiceAddress, List<Integer>> recipients, SendGroupMessageResponse response, Content content) {
     Set<UUID> unregistered = response.getUnsentTargets();
 
     List<SendMessageResult> failures = unregistered.stream()
@@ -1830,12 +1851,14 @@ public class SignalServiceMessageSender {
                                                    .map(SendMessageResult::unregisteredFailure)
                                                    .collect(Collectors.toList());
 
-    List<SendMessageResult> success = recipients.stream()
+    List<SendMessageResult> success = recipients.keySet()
+                                                .stream()
                                                 .filter(r -> !unregistered.contains(r.getUuid().get()))
-                                                .map(a -> SendMessageResult.success(a, true, isMultiDevice.get(), -1))
+                                                .map(a -> SendMessageResult.success(a, recipients.get(a), true, isMultiDevice.get(), -1, Optional.of(content)))
                                                 .collect(Collectors.toList());
 
-    List<SendMessageResult> results = new LinkedList<>(success);
+    List<SendMessageResult> results = new ArrayList<>(success.size() + failures.size());
+    results.addAll(success);
     results.addAll(failures);
 
     return results;

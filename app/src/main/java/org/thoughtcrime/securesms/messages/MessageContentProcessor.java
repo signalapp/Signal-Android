@@ -24,10 +24,12 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
+import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MessageDatabase;
@@ -40,10 +42,10 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.MessageLogEntry;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -65,14 +67,15 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackSyncJob;
+import org.thoughtcrime.securesms.jobs.NullMessageSendJob;
 import org.thoughtcrime.securesms.jobs.PaymentLedgerUpdateJob;
 import org.thoughtcrime.securesms.jobs.PaymentTransactionCheckJob;
 import org.thoughtcrime.securesms.jobs.ProfileKeySendJob;
-import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
+import org.thoughtcrime.securesms.jobs.ResendMessageJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SenderKeyDistributionSendJob;
@@ -152,6 +155,7 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.payments.Money;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -241,7 +245,7 @@ public final class MessageContentProcessor {
         if (isGv2Message) {
           GroupId.V2 groupIdV2 = groupId.get().requireV2();
 
-          Optional<GroupDatabase.GroupRecord> possibleGv1 = groupDatabase.getGroupV1ByExpectedV2(groupIdV2);
+          Optional<GroupRecord> possibleGv1 = groupDatabase.getGroupV1ByExpectedV2(groupIdV2);
           if (possibleGv1.isPresent()) {
             GroupsV1MigrationUtil.performLocalMigration(context, possibleGv1.get().getId().requireV1());
           }
@@ -956,7 +960,7 @@ public final class MessageContentProcessor {
       GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
 
       if (message.getMessage().isGroupV2Message()) {
-        Optional<GroupDatabase.GroupRecord> possibleGv1 = groupDatabase.getGroupV1ByExpectedV2(GroupId.v2(message.getMessage().getGroupContext().get().getGroupV2().get().getMasterKey()));
+        Optional<GroupRecord> possibleGv1 = groupDatabase.getGroupV1ByExpectedV2(GroupId.v2(message.getMessage().getGroupContext().get().getGroupV2().get().getMasterKey()));
         if (possibleGv1.isPresent()) {
           GroupsV1MigrationUtil.performLocalMigration(context, possibleGv1.get().getId().requireV1());
         }
@@ -1611,6 +1615,7 @@ public final class MessageContentProcessor {
                                         .toList();
 
     DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCounts(ids, System.currentTimeMillis());
+    DatabaseFactory.getMessageLogDatabase(context).deleteEntriesForRecipient(message.getTimestamps(), sender.getId(), content.getSenderDevice());
   }
 
   @SuppressLint("DefaultLocale")
@@ -1680,76 +1685,142 @@ public final class MessageContentProcessor {
 
   private void handleRetryReceipt(@NonNull SignalServiceContent content, @NonNull DecryptionErrorMessage decryptionErrorMessage) {
     if (!FeatureFlags.senderKey()) {
-      Log.w(TAG, "Sender key not enabled, skipping retry receipt.");
+      warn(String.valueOf(content.getTimestamp()), "[RetryReceipt] Sender key not enabled, skipping retry receipt.");
       return;
     }
 
     Recipient requester     = Recipient.externalHighTrustPush(context, content.getSender());
     long      sentTimestamp = decryptionErrorMessage.getTimestamp();
 
+    warn(content.getTimestamp(), "[RetryReceipt] Received a retry receipt from " + requester.getId() + ", device " + decryptionErrorMessage.getDeviceId() + " for message with timestamp " + sentTimestamp + ".");
+
     if (!requester.hasUuid()) {
-      warn(String.valueOf(content.getTimestamp()), "[RetryReceipt] Requester " + requester.getId() + " somehow has no UUID! timestamp: " + sentTimestamp);
+      warn(content.getTimestamp(), "[RetryReceipt] Requester " + requester.getId() + " somehow has no UUID! timestamp: " + sentTimestamp);
       return;
     }
 
-    MessageRecord messageRecord = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(sentTimestamp, Recipient.self().getId());
+    MessageLogEntry messageLogEntry = DatabaseFactory.getMessageLogDatabase(context).getLogEntry(requester.getId(), content.getSenderDevice(), sentTimestamp);
 
-    if (messageRecord == null) {
-      warn(String.valueOf(content.getTimestamp()), "[RetryReceipt] Unable to find message for " + requester.getId() + " with timestamp " + sentTimestamp);
-      // TODO Send distribution message?
+    if (decryptionErrorMessage.getRatchetKey().isPresent()) {
+      handleIndividualRetryReceipt(requester, messageLogEntry, content, decryptionErrorMessage);
+    } else {
+      handleSenderKeyRetryReceipt(requester, messageLogEntry, content, decryptionErrorMessage);
+    }
+  }
+
+  private void handleSenderKeyRetryReceipt(@NonNull Recipient requester,
+                                           @Nullable MessageLogEntry messageLogEntry,
+                                           @NonNull SignalServiceContent content,
+                                           @NonNull DecryptionErrorMessage decryptionErrorMessage)
+  {
+    long          sentTimestamp  = decryptionErrorMessage.getTimestamp();
+    MessageRecord relatedMessage = findRetryReceiptRelatedMessage(context, messageLogEntry, sentTimestamp);
+
+    if (relatedMessage == null) {
+      warn(content.getTimestamp(), "[RetryReceipt-SK] The related message could not be found! There shouldn't be any sender key resends where we can't find the related message. Skipping.");
       return;
     }
 
-    Recipient threadRecipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(messageRecord.getThreadId());
-
+    Recipient threadRecipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(relatedMessage.getThreadId());
     if (threadRecipient == null) {
-      warn(String.valueOf(content.getTimestamp()), "[RetryReceipt] Unable to find a recipient for thread " + messageRecord.getThreadId());
+      warn(content.getTimestamp(), "[RetryReceipt-SK] Could not find a thread recipient! Skipping.");
       return;
     }
 
-    if (messageRecord.isMms()) {
-      log(String.valueOf(content.getTimestamp()), "[RetryReceipt] MMS " + messageRecord.getId());
-      MmsMessageRecord mms = (MmsMessageRecord) messageRecord;
+    if (!threadRecipient.isPushV2Group()) {
+      warn(content.getTimestamp(), "[RetryReceipt-SK] Thread recipient is not a v2 group! Skipping.");
+      return;
+    }
 
-      if (threadRecipient.isPushV2Group()) {
-        DistributionId        distributionId   = DatabaseFactory.getGroupDatabase(context).getOrCreateDistributionId(threadRecipient.requireGroupId().requireV2());
-        SignalProtocolAddress requesterAddress = new SignalProtocolAddress(requester.requireUuid().toString(), decryptionErrorMessage.getDeviceId());
+    DistributionId distributionId = DatabaseFactory.getGroupDatabase(context).getOrCreateDistributionId(threadRecipient.requireGroupId().requireV2());
 
-        DatabaseFactory.getSenderKeySharedDatabase(context).delete(distributionId, Collections.singleton(requesterAddress));
+    SignalProtocolAddress requesterAddress = new SignalProtocolAddress(requester.requireUuid().toString(), decryptionErrorMessage.getDeviceId());
+    DatabaseFactory.getSenderKeySharedDatabase(context).delete(distributionId, Collections.singleton(requesterAddress));
 
-        GroupReceiptDatabase  receiptDatabase          = DatabaseFactory.getGroupReceiptDatabase(context);
-        GroupReceiptInfo      receiptInfo              = receiptDatabase.getGroupReceiptInfo(mms.getId(), requester.getId());
-        boolean               needsDistributionMessage = true;
+    if (messageLogEntry != null) {
+      warn(content.getTimestamp(), "[RetryReceipt-SK] Found MSL entry for " + requester.getId() + " with timestamp " + sentTimestamp + ". Scheduling a resend.");
 
-        if (receiptInfo == null) {
-          warn(String.valueOf(content.getTimestamp()), "[RetryReceipt] Requester was never sent message " + mms.getId() + "! Cannot resend it.");
-        } else if (receiptInfo.getStatus() >= GroupReceiptDatabase.STATUS_DELIVERED) {
-          log(String.valueOf(content.getTimestamp()), "[RetryReceipt] The message was successfully delivered to the requester. Not resending.");
-        } else {
-          long messageAge = System.currentTimeMillis() - mms.getDateSent();
+      ApplicationDependencies.getJobManager().add(new ResendMessageJob(messageLogEntry.getRecipientId(),
+                                                                       messageLogEntry.getDateSent(),
+                                                                       messageLogEntry.getContent(),
+                                                                       messageLogEntry.getContentHint(),
+                                                                       threadRecipient.requireGroupId().requireV2(),
+                                                                       distributionId));
+    } else {
+      warn(content.getTimestamp(), "[RetryReceipt-SK] Unable to find MSL entry for " + requester.getId() + " with timestamp " + sentTimestamp + ".");
 
-          if (messageAge < FeatureFlags.retryRespondMaxAge()) {
-            log(String.valueOf(content.getTimestamp()), "[RetryReceipt] The message was successfully sent to the requester, but not delivered. Resending.");
+      if (!content.getGroupId().isPresent()) {
+        warn(content.getTimestamp(), "[RetryReceipt-SK] No groupId on the Content, so we cannot send them a SenderKeyDistributionMessage.");
+        return;
+      }
 
-            DatabaseFactory.getGroupReceiptDatabase(context).update(requester.getId(), mms.getId(), GroupReceiptDatabase.STATUS_UNDELIVERED, System.currentTimeMillis());
-            ApplicationDependencies.getJobManager().startChain(new SenderKeyDistributionSendJob(requester.getId(), threadRecipient.requireGroupId().requireV2()))
-                                   .then(new PushGroupSendJob(mms.getId(), threadRecipient.getId(), requester.getId(), false))
-                                   .enqueue();
+      GroupId groupId;
+      try {
+        groupId = GroupId.push(content.getGroupId().get());
+      } catch (BadGroupIdException e) {
+        warn(String.valueOf(content.getTimestamp()), "[RetryReceipt-SK] Bad groupId!");
+        return;
+      }
 
-            needsDistributionMessage = false;
-          } else {
-            warn(String.valueOf(content.getTimestamp()), "[RetryReceipt] The message was successfully sent to the requester, but not delivered. But it's " + messageAge + " ms old, so we're not resending.");
-          }
-        }
+      if (!groupId.isV2()) {
+        warn(String.valueOf(content.getTimestamp()), "[RetryReceipt-SK] Not a valid GV2 ID!");
+        return;
+      }
 
-        if (needsDistributionMessage && threadRecipient.getParticipants().contains(requester)) {
-          warn(String.valueOf(content.getTimestamp()), "[RetryReceipt] Requester is, however, in the group now. Sending distribution message.");
-          ApplicationDependencies.getJobManager().add(new SenderKeyDistributionSendJob(requester.getId(), threadRecipient.requireGroupId().requireV2()));
-        }
+      Optional<GroupRecord> groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(groupId);
+
+      if (!groupRecord.isPresent()) {
+        warn(content.getTimestamp(), "[RetryReceipt-SK] Could not find a record for the group!");
+        return;
+      }
+
+      if (!groupRecord.get().getMembers().contains(requester.getId())) {
+        warn(content.getTimestamp(), "[RetryReceipt-SK] The requester is not in the group, so we cannot send them a SenderKeyDistributionMessage.");
+        return;
+      }
+
+      warn(content.getTimestamp(), "[RetryReceipt-SK] The requester is in the group, so we'll send them a SenderKeyDistributionMessage.");
+      ApplicationDependencies.getJobManager().add(new SenderKeyDistributionSendJob(requester.getId(), groupRecord.get().getId().requireV2()));
+    }
+  }
+
+  private void handleIndividualRetryReceipt(@NonNull Recipient requester, @Nullable MessageLogEntry messageLogEntry, @NonNull SignalServiceContent content, @NonNull DecryptionErrorMessage decryptionErrorMessage) {
+    boolean archivedSession = false;
+
+    if (decryptionErrorMessage.getDeviceId() == SignalServiceAddress.DEFAULT_DEVICE_ID &&
+        decryptionErrorMessage.getRatchetKey().isPresent()                             &&
+        SessionUtil.ratchetKeyMatches(context, requester, content.getSenderDevice(), decryptionErrorMessage.getRatchetKey().get()))
+    {
+      warn(content.getTimestamp(), "[RetryReceipt-I] Ratchet key matches. Archiving the session.");
+      SessionUtil.archiveSession(context, requester.getId(), content.getSenderDevice());
+      archivedSession = true;
+    }
+
+    if (messageLogEntry != null) {
+      warn(content.getTimestamp(), "[RetryReceipt-I] Found an entry in the MSL. Resending.");
+      ApplicationDependencies.getJobManager().add(new ResendMessageJob(messageLogEntry.getRecipientId(),
+                                                                       messageLogEntry.getDateSent(),
+                                                                       messageLogEntry.getContent(),
+                                                                       messageLogEntry.getContentHint(),
+                                                                       null,
+                                                                       null));
+    } else if (archivedSession) {
+      warn(content.getTimestamp(), "[RetryReceipt-I] Could not find an entry in the MSL, but we archived the session, so we're sending a null message to complete the reset.");
+      ApplicationDependencies.getJobManager().add(new NullMessageSendJob(requester.getId()));
+    } else {
+      warn(content.getTimestamp(), "[RetryReceipt-I] Could not find an entry in the MSL. Skipping.");
+    }
+  }
+
+  private static @Nullable MessageRecord findRetryReceiptRelatedMessage(@NonNull Context context, @Nullable MessageLogEntry messageLogEntry, long sentTimestamp) {
+    if (messageLogEntry != null && messageLogEntry.hasRelatedMessage()) {
+      if (messageLogEntry.isRelatedMessageMms()) {
+        return DatabaseFactory.getMmsDatabase(context).getMessageRecordOrNull(messageLogEntry.getRelatedMessageId());
+      } else {
+        return DatabaseFactory.getSmsDatabase(context).getMessageRecordOrNull(messageLogEntry.getRelatedMessageId());
       }
     } else {
-      log(String.valueOf(content.getTimestamp()), "[RetryReceipt] SMS " + messageRecord.getId());
-      SmsMessageRecord sms = (SmsMessageRecord) messageRecord;
+      return DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(sentTimestamp, Recipient.self().getId());
     }
   }
 
@@ -2090,6 +2161,10 @@ public final class MessageContentProcessor {
 
   protected void warn(@NonNull String extra, @NonNull String message) {
     warn(extra, message, null);
+  }
+
+  protected void warn(long timestamp, @NonNull String message) {
+    warn(String.valueOf(timestamp), message);
   }
 
   protected void warn(@NonNull String message, @Nullable Throwable t) {

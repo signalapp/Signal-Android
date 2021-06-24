@@ -86,6 +86,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract Cursor getMessageCursor(long messageId);
   public abstract OutgoingMediaMessage getOutgoingMessage(long messageId) throws MmsException, NoSuchMessageException;
   public abstract MessageRecord getMessageRecord(long messageId) throws NoSuchMessageException;
+  public abstract @Nullable MessageRecord getMessageRecordOrNull(long messageId);
   public abstract Cursor getVerboseMessageCursor(long messageId);
   public abstract boolean hasReceivedAnyCallsSince(long threadId, long timestamp);
   public abstract @Nullable ViewOnceExpirationInfo getNearestExpiringViewOnceMessage();

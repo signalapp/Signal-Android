@@ -2,8 +2,13 @@ package org.whispersystems.signalservice.api.messages;
 
 
 import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content;
+
+import java.util.List;
 
 public class SendMessageResult {
 
@@ -14,8 +19,8 @@ public class SendMessageResult {
   private final IdentityFailure        identityFailure;
   private final ProofRequiredException proofRequiredFailure;
 
-  public static SendMessageResult success(SignalServiceAddress address, boolean unidentified, boolean needsSync, long duration) {
-    return new SendMessageResult(address, new Success(unidentified, needsSync, duration), false, false, null, null);
+  public static SendMessageResult success(SignalServiceAddress address, List<Integer> devices, boolean unidentified, boolean needsSync, long duration, Optional<Content> content) {
+    return new SendMessageResult(address, new Success(unidentified, needsSync, duration, content, devices), false, false, null, null);
   }
 
   public static SendMessageResult networkFailure(SignalServiceAddress address) {
@@ -78,14 +83,18 @@ public class SendMessageResult {
   }
 
   public static class Success {
-    private final boolean unidentified;
-    private final boolean needsSync;
-    private final long    duration;
+    private final boolean           unidentified;
+    private final boolean           needsSync;
+    private final long              duration;
+    private final Optional<Content> content;
+    private final List<Integer>     devices;
 
-    private Success(boolean unidentified, boolean needsSync, long duration) {
+    private Success(boolean unidentified, boolean needsSync, long duration, Optional<Content> content, List<Integer> devices) {
       this.unidentified = unidentified;
       this.needsSync    = needsSync;
       this.duration     = duration;
+      this.content      = content;
+      this.devices      = devices;
     }
 
     public boolean isUnidentified() {
@@ -98,6 +107,14 @@ public class SendMessageResult {
 
     public long getDuration() {
       return duration;
+    }
+
+    public Optional<Content> getContent() {
+      return content;
+    }
+
+    public List<Integer> getDevices() {
+      return devices;
     }
   }
 

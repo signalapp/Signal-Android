@@ -35,6 +35,7 @@ import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -58,18 +59,41 @@ public final class GroupSendUtil {
    * Handles all of the logic of sending to a group. Will do sender key sends and legacy 1:1 sends as-needed, and give you back a list of
    * {@link SendMessageResult}s just like we're used to.
    *
+   * Messages sent this way, if failed to be decrypted by the receiving party, can be requested to be resent.
+   *
+   * @param isRecipientUpdate True if you've already sent this message to some recipients in the past, otherwise false.
+   */
+  public static List<SendMessageResult> sendResendableDataMessage(@NonNull Context context,
+                                                                  @NonNull GroupId.V2 groupId,
+                                                                  @NonNull List<Recipient> allTargets,
+                                                                  boolean isRecipientUpdate,
+                                                                  ContentHint contentHint,
+                                                                  long relatedMessageId,
+                                                                  boolean isRelatedMessageMms,
+                                                                  @NonNull SignalServiceDataMessage message)
+      throws IOException, UntrustedIdentityException
+  {
+    return sendMessage(context, groupId, allTargets, isRecipientUpdate, DataSendOperation.resendable(message, contentHint, relatedMessageId, isRelatedMessageMms), null);
+  }
+
+  /**
+   * Handles all of the logic of sending to a group. Will do sender key sends and legacy 1:1 sends as-needed, and give you back a list of
+   * {@link SendMessageResult}s just like we're used to.
+   *
+   * Messages sent this way, if failed to be decrypted by the receiving party, can *not* be requested to be resent.
+   *
    * @param isRecipientUpdate True if you've already sent this message to some recipients in the past, otherwise false.
    */
   @WorkerThread
-  public static List<SendMessageResult> sendDataMessage(@NonNull Context context,
-                                                        @NonNull GroupId.V2 groupId,
-                                                        @NonNull List<Recipient> allTargets,
-                                                        boolean isRecipientUpdate,
-                                                        ContentHint contentHint,
-                                                        @NonNull SignalServiceDataMessage message)
+  public static List<SendMessageResult> sendUnresendableDataMessage(@NonNull Context context,
+                                                                    @NonNull GroupId.V2 groupId,
+                                                                    @NonNull List<Recipient> allTargets,
+                                                                    boolean isRecipientUpdate,
+                                                                    ContentHint contentHint,
+                                                                    @NonNull SignalServiceDataMessage message)
       throws IOException, UntrustedIdentityException
   {
-    return sendMessage(context, groupId, allTargets, isRecipientUpdate, new DataSendOperation(message, contentHint), null);
+    return sendMessage(context, groupId, allTargets, isRecipientUpdate, DataSendOperation.unresendable(message, contentHint), null);
   }
 
   /**
@@ -173,6 +197,9 @@ public final class GroupSendUtil {
     }
 
     if (cancelationSignal != null && cancelationSignal.isCanceled()) {
+      if (sendOperation.shouldIncludeInMessageLog()) {
+        DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(sendOperation.getSentTimestamp(), allTargets, allResults, sendOperation.getContentHint(), sendOperation.getRelatedMessageId(), sendOperation.isRelatedMessageMms());
+      }
       throw new CancelationException();
     }
 
@@ -189,6 +216,10 @@ public final class GroupSendUtil {
 
       int successCount = (int) results.stream().filter(SendMessageResult::isSuccess).count();
       Log.d(TAG, "Successfully using 1:1 to " + successCount + "/" + targets.size() + " legacy targets.");
+    }
+
+    if (sendOperation.shouldIncludeInMessageLog()) {
+      DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(sendOperation.getSentTimestamp(), allTargets, allResults, sendOperation.getContentHint(), sendOperation.getRelatedMessageId(), sendOperation.isRelatedMessageMms());
     }
 
     return allResults;
@@ -209,15 +240,35 @@ public final class GroupSendUtil {
                                                 boolean isRecipientUpdate,
                                                 @Nullable CancelationSignal cancelationSignal)
         throws IOException, UntrustedIdentityException;
+
+    @NonNull ContentHint getContentHint();
+    long getSentTimestamp();
+    boolean shouldIncludeInMessageLog();
+    long getRelatedMessageId();
+    boolean isRelatedMessageMms();
   }
 
   private static class DataSendOperation implements SendOperation {
     private final SignalServiceDataMessage message;
     private final ContentHint              contentHint;
+    private final long                     relatedMessageId;
+    private final boolean                  isRelatedMessageMms;
+    private final boolean                  resendable;
 
-    private DataSendOperation(@NonNull SignalServiceDataMessage message, @NonNull ContentHint contentHint) {
-      this.message     = message;
-      this.contentHint = contentHint;
+    public static DataSendOperation resendable(@NonNull SignalServiceDataMessage message, @NonNull ContentHint contentHint, long relatedMessageId, boolean isRelatedMessageMms) {
+      return new DataSendOperation(message, contentHint, true, relatedMessageId, isRelatedMessageMms);
+    }
+
+    public static DataSendOperation unresendable(@NonNull SignalServiceDataMessage message, @NonNull ContentHint contentHint) {
+      return new DataSendOperation(message, contentHint, false, -1, false);
+    }
+
+    private DataSendOperation(@NonNull SignalServiceDataMessage message, @NonNull ContentHint contentHint, boolean resendable, long relatedMessageId, boolean isRelatedMessageMms) {
+      this.message             = message;
+      this.contentHint         = contentHint;
+      this.resendable          = resendable;
+      this.relatedMessageId    = relatedMessageId;
+      this.isRelatedMessageMms = isRelatedMessageMms;
     }
 
     @Override
@@ -241,6 +292,31 @@ public final class GroupSendUtil {
     {
       return messageSender.sendDataMessage(targets, access, isRecipientUpdate, contentHint, message);
     }
+
+    @Override
+    public @NonNull ContentHint getContentHint() {
+      return contentHint;
+    }
+
+    @Override
+    public long getSentTimestamp() {
+      return message.getTimestamp();
+    }
+
+    @Override
+    public boolean shouldIncludeInMessageLog() {
+      return resendable;
+    }
+
+    @Override
+    public long getRelatedMessageId() {
+      return relatedMessageId;
+    }
+
+    @Override
+    public boolean isRelatedMessageMms() {
+      return isRelatedMessageMms;
+    }
   }
 
   private static class TypingSendOperation implements SendOperation {
@@ -260,7 +336,7 @@ public final class GroupSendUtil {
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException
     {
       messageSender.sendGroupTyping(distributionId, targets, access, message);
-      return targets.stream().map(a -> SendMessageResult.success(a, true, false, -1)).collect(Collectors.toList());
+      return targets.stream().map(a -> SendMessageResult.success(a, Collections.emptyList(), true, false, -1, Optional.absent())).collect(Collectors.toList());
     }
 
     @Override
@@ -272,7 +348,32 @@ public final class GroupSendUtil {
         throws IOException
     {
       messageSender.sendTyping(targets, access, message, cancelationSignal);
-      return targets.stream().map(a -> SendMessageResult.success(a, true, false, -1)).collect(Collectors.toList());
+      return targets.stream().map(a -> SendMessageResult.success(a, Collections.emptyList(), true, false, -1, Optional.absent())).collect(Collectors.toList());
+    }
+
+    @Override
+    public @NonNull ContentHint getContentHint() {
+      return ContentHint.IMPLICIT;
+    }
+
+    @Override
+    public long getSentTimestamp() {
+      return message.getTimestamp();
+    }
+
+    @Override
+    public boolean shouldIncludeInMessageLog() {
+      return false;
+    }
+
+    @Override
+    public long getRelatedMessageId() {
+      return -1;
+    }
+
+    @Override
+    public boolean isRelatedMessageMms() {
+      return false;
     }
   }
 

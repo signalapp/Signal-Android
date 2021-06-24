@@ -414,15 +414,25 @@ public class SmsDatabase extends MessageDatabase {
   public void markAsRemoteDelete(long id) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
-    ContentValues values = new ContentValues();
-    values.put(REMOTE_DELETED, 1);
-    values.putNull(BODY);
-    values.putNull(REACTIONS);
-    db.update(TABLE_NAME, values, ID_WHERE, new String[] { String.valueOf(id) });
+    long threadId;
 
-    long threadId = getThreadIdForMessage(id);
+    db.beginTransaction();
+    try {
+      ContentValues values = new ContentValues();
+      values.put(REMOTE_DELETED, 1);
+      values.putNull(BODY);
+      values.putNull(REACTIONS);
+      db.update(TABLE_NAME, values, ID_WHERE, new String[] { String.valueOf(id) });
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+      threadId = getThreadIdForMessage(id);
+
+      DatabaseFactory.getThreadDatabase(context).update(threadId, false);
+      DatabaseFactory.getMessageLogDatabase(context).deleteAllRelatedToMessage(id, false);
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
     notifyConversationListeners(threadId);
   }
 
@@ -1299,12 +1309,23 @@ public class SmsDatabase extends MessageDatabase {
   public boolean deleteMessage(long messageId) {
     Log.d(TAG, "deleteMessage(" + messageId + ")");
 
-    SQLiteDatabase db       = databaseHelper.getWritableDatabase();
-    long           threadId = getThreadIdForMessage(messageId);
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
-    db.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
+    long    threadId;
+    boolean threadDeleted;
 
-    boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false, true);
+    db.beginTransaction();
+    try {
+      threadId = getThreadIdForMessage(messageId);
+
+      db.delete(TABLE_NAME, ID_WHERE, new String[] { messageId + "" });
+
+      threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false, true);
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
 
     notifyConversationListeners(threadId);
     return threadDeleted;
@@ -1318,6 +1339,15 @@ public class SmsDatabase extends MessageDatabase {
   @Override
   public MessageRecord getMessageRecord(long messageId) throws NoSuchMessageException {
     return getSmsMessage(messageId);
+  }
+
+  @Override
+  public @Nullable MessageRecord getMessageRecordOrNull(long messageId) {
+    try {
+      return getSmsMessage(messageId);
+    } catch (NoSuchMessageException e) {
+      return null;
+    }
   }
 
   private boolean isDuplicate(IncomingTextMessage message, long threadId) {
@@ -1334,6 +1364,7 @@ public class SmsDatabase extends MessageDatabase {
   void deleteThread(long threadId) {
     Log.d(TAG, "deleteThread(" + threadId + ")");
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
     db.delete(TABLE_NAME, THREAD_ID + " = ?", new String[] {threadId+""});
   }
 

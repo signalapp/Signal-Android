@@ -40,11 +40,16 @@ public interface EnvelopeContent {
   int size();
 
   /**
+   * A content proto, if applicable.
+   */
+  Optional<Content> getContent();
+
+  /**
    * Wrap {@link Content} you plan on sending as an encrypted message.
    * This is the default. Consider anything else exceptional.
    */
   static EnvelopeContent encrypted(Content content, ContentHint contentHint, Optional<byte[]> groupId) {
-    return new Encrypted(content.toByteArray(), contentHint, groupId);
+    return new Encrypted(content, contentHint, groupId);
   }
 
   /**
@@ -56,14 +61,14 @@ public interface EnvelopeContent {
 
   class Encrypted implements EnvelopeContent {
 
-    private final byte[]           unpaddedMessage;
+    private final Content          content;
     private final ContentHint      contentHint;
     private final Optional<byte[]> groupId;
 
-    public Encrypted(byte[] unpaddedMessage, ContentHint contentHint, Optional<byte[]> groupId) {
-      this.unpaddedMessage = unpaddedMessage;
-      this.contentHint     = contentHint;
-      this.groupId         = groupId;
+    public Encrypted(Content content, ContentHint contentHint, Optional<byte[]> groupId) {
+      this.content     = content;
+      this.contentHint = contentHint;
+      this.groupId     = groupId;
     }
 
     @Override
@@ -74,7 +79,7 @@ public interface EnvelopeContent {
         throws UntrustedIdentityException, InvalidKeyException
     {
       PushTransportDetails             transportDetails = new PushTransportDetails();
-      CiphertextMessage                message          = sessionCipher.encrypt(transportDetails.getPaddedMessageBody(unpaddedMessage));
+      CiphertextMessage                message          = sessionCipher.encrypt(transportDetails.getPaddedMessageBody(content.toByteArray()));
       UnidentifiedSenderMessageContent messageContent   = new UnidentifiedSenderMessageContent(message,
                                                                                                senderCertificate,
                                                                                                contentHint.getType(),
@@ -90,7 +95,7 @@ public interface EnvelopeContent {
     @Override
     public OutgoingPushMessage processUnsealedSender(SignalSessionCipher sessionCipher, SignalProtocolAddress destination) throws UntrustedIdentityException {
       PushTransportDetails transportDetails     = new PushTransportDetails();
-      CiphertextMessage    message              = sessionCipher.encrypt(transportDetails.getPaddedMessageBody(unpaddedMessage));
+      CiphertextMessage    message              = sessionCipher.encrypt(transportDetails.getPaddedMessageBody(content.toByteArray()));
       int                  remoteRegistrationId = sessionCipher.getRemoteRegistrationId();
       String               body                 = Base64.encodeBytes(message.serialize());
 
@@ -107,7 +112,12 @@ public interface EnvelopeContent {
 
     @Override
     public int size() {
-      return unpaddedMessage.length;
+      return content.getSerializedSize();
+    }
+
+    @Override
+    public Optional<Content> getContent() {
+      return Optional.of(content);
     }
   }
 
@@ -151,6 +161,11 @@ public interface EnvelopeContent {
     @Override
     public int size() {
       return plaintextContent.getBody().length;
+    }
+
+    @Override
+    public Optional<Content> getContent() {
+      return Optional.absent();
     }
   }
 }
