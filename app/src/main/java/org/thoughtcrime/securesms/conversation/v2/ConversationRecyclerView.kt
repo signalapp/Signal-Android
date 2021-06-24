@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.VelocityTracker
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import org.thoughtcrime.securesms.loki.utilities.disableClipping
@@ -33,6 +34,8 @@ class ConversationRecyclerView : RecyclerView {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 bottomOffset += dy // FIXME: Not sure this is fully accurate, but it seems close enough
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                Log.d("Test", "${layoutManager.findFirstVisibleItemPosition()}")
                 delegate?.handleConversationRecyclerViewBottomOffsetChanged(abs(bottomOffset))
             }
         })

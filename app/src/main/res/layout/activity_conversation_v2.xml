@@ -73,21 +73,48 @@
     <RelativeLayout
         android:id="@+id/scrollToBottomButton"
         android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="12dp"
         android:layout_marginBottom="72dp"
-        android:alpha="0"
-        android:background="@drawable/view_scroll_to_bottom_button_background">
+        android:alpha="1">
 
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/ic_chevron_up"
-            android:layout_centerInParent="true"
-            android:rotation="180"
-            app:tint="@color/text" />
+        <RelativeLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/view_scroll_to_bottom_button_background">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_chevron_up"
+                android:layout_centerInParent="true"
+                android:rotation="180"
+                app:tint="@color/text" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/conversation_unread_count_indicator_background">
+
+            <TextView
+                android:id="@+id/unreadCountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="@dimen/very_small_font_size"
+                android:textColor="@color/text"
+                android:text="8" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

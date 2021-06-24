@@ -7,6 +7,7 @@ import android.database.Cursor
 import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.*
 import android.widget.RelativeLayout
 import androidx.loader.app.LoaderManager
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.conversation.v2.input_bar.mentions.MentionCand
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
+import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
@@ -100,6 +102,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         restoreDraftIfNeeded()
         addOpenGroupGuidelinesIfNeeded()
         scrollToBottomButton.setOnClickListener { conversationRecyclerView.smoothScrollToPosition(0) }
+        updateUnreadCount()
     }
 
     private fun setUpRecyclerView() {
@@ -319,6 +322,15 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             (scrollButtonFullVisibilityThreshold - scrollButtonNoVisibilityThreshold)
         val alpha = max(min(rawAlpha, 1.0f), 0.0f)
         scrollToBottomButton.alpha = alpha
+        updateUnreadCount()
+    }
+
+    private fun updateUnreadCount() {
+        val unreadCount = DatabaseFactory.getMmsSmsDatabase(this).getUnreadCount(threadID)
+        val formattedUnreadCount = if (unreadCount < 100) unreadCount.toString() else "99+"
+        unreadCountTextView.text = formattedUnreadCount
+        val textSize = if (unreadCount < 100) 12.0f else 9.0f
+        unreadCountTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize)
     }
     // endregion
 
