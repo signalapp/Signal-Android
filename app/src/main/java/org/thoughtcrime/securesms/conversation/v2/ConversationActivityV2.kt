@@ -32,10 +32,7 @@ import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.conversation.v2.dialogs.BlockedDialog
-import org.thoughtcrime.securesms.conversation.v2.dialogs.JoinOpenGroupDialog
-import org.thoughtcrime.securesms.conversation.v2.dialogs.LinkPreviewDialog
-import org.thoughtcrime.securesms.conversation.v2.dialogs.OpenURLDialog
+import org.thoughtcrime.securesms.conversation.v2.dialogs.*
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarRecordingViewDelegate
@@ -414,7 +411,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             // the view) so as to not interfere with all the other gestures. Do not add
             // onClickListeners directly to message content views.
             view.onContentClick()
-            LinkPreviewDialog().show(supportFragmentManager, "Blocked Dialog")
+            DownloadDialog(thread).show(supportFragmentManager, "Blocked Dialog")
         }
     }
 
