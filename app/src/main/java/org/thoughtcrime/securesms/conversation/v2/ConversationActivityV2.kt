@@ -224,11 +224,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         linkPreviewViewModel.linkPreviewState.observe(this, { previewState: LinkPreviewState? ->
             if (previewState == null) return@observe
             if (previewState.isLoading) {
-                Log.d("Test", "Loading link preview.")
-                // inputPanel.setLinkPreviewLoading()
+                inputBar.draftLinkPreview()
             } else {
-                Log.d("Test", "Setting link preview: " + previewState.linkPreview.isPresent)
-                // inputPanel.setLinkPreview(glideRequests, previewState.linkPreview)
+                inputBar.updateLinkPreviewDraft(glide, previewState.linkPreview.get())
             }
         })
     }

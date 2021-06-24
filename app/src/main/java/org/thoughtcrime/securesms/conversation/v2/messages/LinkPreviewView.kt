@@ -1,20 +1,12 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Outline
-import android.graphics.Path
-import android.graphics.RectF
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewOutlineProvider
 import android.widget.LinearLayout
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_link_preview.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord

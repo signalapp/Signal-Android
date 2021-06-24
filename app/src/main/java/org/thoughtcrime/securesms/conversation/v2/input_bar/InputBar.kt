@@ -2,24 +2,23 @@ package org.thoughtcrime.securesms.conversation.v2.input_bar
 
 import android.content.Context
 import android.content.res.Resources
-import android.text.Editable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_input_bar.view.*
 import kotlinx.android.synthetic.main.view_quote.view.*
 import network.loki.messenger.R
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
+import org.thoughtcrime.securesms.conversation.v2.components.LinkPreviewDraftView
 import org.thoughtcrime.securesms.conversation.v2.messages.QuoteView
 import org.thoughtcrime.securesms.conversation.v2.messages.QuoteViewDelegate
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.toDp
 import org.thoughtcrime.securesms.loki.utilities.toPx
-import org.thoughtcrime.securesms.mms.SlideDeck
+import org.thoughtcrime.securesms.mms.GlideRequests
 import kotlin.math.max
 import kotlin.math.roundToInt
 
@@ -27,6 +26,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val vMargin by lazy { toDp(4, resources) }
     private val minHeight by lazy { toPx(56, resources) }
+    private var linkPreviewDraftView: LinkPreviewDraftView? = null
     var delegate: InputBarDelegate? = null
     var additionalContentHeight = 0
 
@@ -96,6 +96,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
     }
 
     fun draftQuote(message: MessageRecord) {
+        linkPreviewDraftView = null
         inputBarAdditionalContentContainer.removeAllViews()
         val quoteView = QuoteView(context, QuoteView.Mode.Draft)
         quoteView.delegate = this
@@ -120,6 +121,22 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
         val newHeight = max(inputBarEditText.height + 2 * vMargin, minHeight)
         additionalContentHeight = 0
         setHeight(newHeight)
+    }
+
+    fun draftLinkPreview() {
+        val linkPreviewDraftHeight = toPx(88, resources)
+        inputBarAdditionalContentContainer.removeAllViews()
+        val linkPreviewDraftView = LinkPreviewDraftView(context)
+        this.linkPreviewDraftView = linkPreviewDraftView
+        inputBarAdditionalContentContainer.addView(linkPreviewDraftView)
+        val newHeight = max(inputBarEditText.height + 2 * vMargin, minHeight) + linkPreviewDraftHeight
+        additionalContentHeight = linkPreviewDraftHeight
+        setHeight(newHeight)
+    }
+
+    fun updateLinkPreviewDraft(glide: GlideRequests, linkPreview: LinkPreview) {
+        val linkPreviewDraftView = this.linkPreviewDraftView ?: return
+        linkPreviewDraftView.update(glide, linkPreview)
     }
     // endregion
 }
