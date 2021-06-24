@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.v2
+package org.thoughtcrime.securesms.conversation.v2.utilities
 
 import android.content.Context
 import android.graphics.Bitmap

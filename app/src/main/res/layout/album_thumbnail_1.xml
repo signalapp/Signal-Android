@@ -6,7 +6,7 @@
     android:layout_width="@dimen/media_bubble_default_dimens"
     android:layout_height="@dimen/media_bubble_default_dimens">
 
-    <org.thoughtcrime.securesms.components.v2.ThumbnailView
+    <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
         android:id="@+id/album_cell_1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.v2
+package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
 import android.graphics.Canvas
@@ -9,6 +9,7 @@ import android.widget.FrameLayout
 import kotlinx.android.synthetic.main.album_thumbnail_view.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.components.CornerMask
+import org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mms.GlideRequests
 
