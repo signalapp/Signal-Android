@@ -43,6 +43,8 @@ import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.util.DateUtils
+import java.util.*
 import kotlin.math.*
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
@@ -109,6 +111,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         scrollToBottomButton.setOnClickListener { conversationRecyclerView.smoothScrollToPosition(0) }
         updateUnreadCount()
         setUpTypingObserver()
+        updateSubtitle()
     }
 
     private fun setUpRecyclerView() {
@@ -351,6 +354,24 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         unreadCountTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize)
         unreadCountTextView.setTypeface(Typeface.DEFAULT, if (unreadCount < 100) Typeface.BOLD else Typeface.NORMAL)
         unreadCountIndicator.isVisible = (unreadCount != 0)
+    }
+
+    private fun updateSubtitle() {
+        muteIconImageView.isVisible = thread.isMuted
+        conversationSubtitleView.isVisible = true
+        if (thread.isMuted) {
+            conversationSubtitleView.text = getString(R.string.ConversationActivity_muted_until_date, DateUtils.getFormattedDateTime(thread.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()))
+        } else if (thread.isGroupRecipient) {
+            val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
+            if (openGroup != null) {
+                val userCount = DatabaseFactory.getLokiAPIDatabase(this).getUserCount(openGroup.room, openGroup.server) ?: 0
+                conversationSubtitleView.text = getString(R.string.ConversationActivity_member_count, userCount)
+            } else {
+                conversationSubtitleView.isVisible = false
+            }
+        } else {
+            conversationSubtitleView.isVisible = false
+        }
     }
     // endregion
 
