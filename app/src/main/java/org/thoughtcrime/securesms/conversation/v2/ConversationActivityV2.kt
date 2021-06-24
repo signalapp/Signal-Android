@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.view_input_bar_recording.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.successUi
+import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.recipients.Recipient
@@ -120,6 +121,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         setUpTypingObserver()
         updateSubtitle()
         getLatestOpenGroupInfoIfNeeded()
+        setUpBlockedBanner()
     }
 
     private fun setUpRecyclerView() {
@@ -201,6 +203,17 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private fun getLatestOpenGroupInfoIfNeeded() {
         val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID) ?: return
         OpenGroupAPIV2.getMemberCount(openGroup.room, openGroup.server).successUi { updateSubtitle() }
+    }
+
+    private fun setUpBlockedBanner() {
+        if (thread.isGroupRecipient) { return }
+        val contactDB = DatabaseFactory.getSessionContactDatabase(this)
+        val sessionID = thread.address.toString()
+        val contact = contactDB.getContactWithSessionID(sessionID)
+        val name = contact?.displayName(Contact.ContactContext.REGULAR) ?: sessionID
+        blockedBannerTextView.text = resources.getString(R.string.activity_conversation_blocked_banner_text, name)
+        blockedBanner.isVisible = thread.isBlocked
+        blockedBanner.setOnClickListener { unblock() }
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
@@ -491,6 +504,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val hitRect = Rect(lockViewLocation[0] - lockViewHitMargin, 0,
             lockViewLocation[0] + lockView.width + lockViewHitMargin, lockViewLocation[1] + lockView.height)
         return hitRect.contains(x, y)
+    }
+
+    private fun unblock() {
+        // TODO: Implement
     }
     // endregion
 

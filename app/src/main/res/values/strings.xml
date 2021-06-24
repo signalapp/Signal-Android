@@ -871,4 +871,5 @@
     <string name="dialog_download_explanation">Are you sure you want to download media sent by %s?</string>
     <string name="dialog_download_button_title">Download</string>
 
+    <string name="activity_conversation_blocked_banner_text">%s is blocked. Unblock them?</string>
 </resources>
