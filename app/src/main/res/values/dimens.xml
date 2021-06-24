@@ -183,4 +183,8 @@
     <dimen name="dsl_settings_gutter">16dp</dimen>
 
     <dimen name="chat_colors_preview_bubble_max_width">240dp</dimen>
+
+    <dimen name="conversation_settings_button_strip_spacing">16dp</dimen>
+    <dimen name="conversation_settings_button_strip_button_size">48dp</dimen>
+    <dimen name="conversation_settings_button_strip_button_padding">12dp</dimen>
 </resources>

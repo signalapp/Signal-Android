@@ -53,6 +53,8 @@
             <enum name="center_crop" value="0" />
             <enum name="fit_center" value="1" />
         </attr>
+        <!-- Color to overlay on top of image. This should be a transparent color so that the user can still see the original thumbnail underneath. -->
+        <attr name="transparent_overlay_color" format="color" />
     </declare-styleable>
 
     <declare-styleable name="DeliveryStatusView">

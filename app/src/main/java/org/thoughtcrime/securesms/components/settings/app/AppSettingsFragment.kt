@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
+import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.components.settings.PreferenceViewHolder
@@ -44,7 +45,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
       clickPref(
         title = DSLSettingsText.from(R.string.AccountSettingsFragment__account),
-        iconId = R.drawable.ic_profile_circle_24,
+        icon = DSLSettingsIcon.from(R.drawable.ic_profile_circle_24),
         onClick = {
           Navigation.findNavController(requireView()).navigate(R.id.action_appSettingsFragment_to_accountSettingsFragment)
         }
@@ -52,7 +53,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__linked_devices),
-        iconId = R.drawable.ic_linked_devices_24,
+        icon = DSLSettingsIcon.from(R.drawable.ic_linked_devices_24),
         onClick = {
           Navigation.findNavController(requireView()).navigate(R.id.action_appSettingsFragment_to_deviceActivity)
         }
@@ -72,7 +73,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__appearance),
-        iconId = R.drawable.ic_appearance_24,
+        icon = DSLSettingsIcon.from(R.drawable.ic_appearance_24),
         onClick = {
           Navigation.findNavController(requireView()).navigate(R.id.action_appSettingsFragment_to_appearanceSettingsFragment)
         }
@@ -80,7 +81,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences_chats__chats),
-        iconId = R.drawable.ic_message_tinted_bitmap_24,
+        icon = DSLSettingsIcon.from(R.drawable.ic_message_tinted_bitmap_24),
         onClick = {
           Navigation.findNavController(requireView()).navigate(R.id.action_appSettingsFragment_to_chatsSettingsFragment)
         }
@@ -88,7 +89,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__notifications),
-        iconId = R.drawable.ic_bell_24,
+        icon = DSLSettingsIcon.from(R.drawable.ic_bell_24),
         onClick = {
           Navigation.findNavController(requireView()).navigate(R.id.action_appSettingsFragment_to_notificationsSettingsFragment)
         }
@@ -96,7 +97,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__privacy),
-        iconId = R.drawable.ic_lock_24,
+        icon = DSLSettingsIcon.from(R.drawable.ic_lock_24),
         onClick = {
           Navigation.findNavController(requireView()).navigate(R.id.action_appSettingsFragment_to_privacySettingsFragment)
         }
@@ -104,7 +105,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__data_and_storage),
-        iconId = R.drawable.ic_archive_24dp,
+        icon = DSLSettingsIcon.from(R.drawable.ic_archive_24dp),
         onClick = {
           Navigation.findNavController(requireView()).navigate(R.id.action_appSettingsFragment_to_dataAndStorageSettingsFragment)
         }
@@ -114,7 +115,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__help),
-        iconId = R.drawable.ic_help_24,
+        icon = DSLSettingsIcon.from(R.drawable.ic_help_24),
         onClick = {
           Navigation.findNavController(requireView()).navigate(R.id.action_appSettingsFragment_to_helpSettingsFragment)
         }
@@ -122,7 +123,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
       clickPref(
         title = DSLSettingsText.from(R.string.AppSettingsFragment__invite_your_friends),
-        iconId = R.drawable.ic_invite_24,
+        icon = DSLSettingsIcon.from(R.drawable.ic_invite_24),
         onClick = {
           Navigation.findNavController(requireView()).navigate(R.id.action_appSettingsFragment_to_inviteActivity)
         }
@@ -130,7 +131,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
 
       externalLinkPref(
         title = DSLSettingsText.from(R.string.preferences__donate_to_signal),
-        iconId = R.drawable.ic_heart_24,
+        icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
         linkId = R.string.donate_url
       )
 

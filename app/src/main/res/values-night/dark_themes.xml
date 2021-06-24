@@ -19,4 +19,6 @@
     <style name="Signal.DayNight.WallpaperCropper" parent="Theme.Signal.WallpaperCropper" />
 
     <style name="Signal.DayNight.BottomSheet.Rounded" parent="Theme.Signal.RoundedBottomSheet" />
+
+    <style name="Signal.DayNight.ConversationSettings" parent="TextSecure.DarkNoActionBar.ConversationSettings" />
 </resources>

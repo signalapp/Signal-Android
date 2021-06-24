@@ -114,6 +114,8 @@
 
     <color name="recipient_contact_button_color">@color/core_grey_02</color>
 
+    <color name="recipient_bottom_sheet_button_strip_background_color">@color/signal_background_secondary</color>
+
     <color name="shared_contact_details_titlebar">@color/grey_400</color>
     <color name="shared_contact_item_button_color">@color/core_grey_02</color>
 

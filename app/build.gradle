@@ -11,6 +11,8 @@ apply plugin: 'witness'
 apply plugin: 'org.jlleitschuh.gradle.ktlint'
 apply from: 'translations.gradle'
 apply from: 'witness-verifications.gradle'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'app.cash.exhaustive'
 
 repositories {
     maven {
@@ -75,6 +77,7 @@ android {
     useLibrary 'org.apache.http.legacy'
 
     kotlinOptions {
+        jvmTarget = "1.8"
         freeCompilerArgs = ["-Xallow-result-return-type"]
     }
 

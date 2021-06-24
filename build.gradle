@@ -22,6 +22,7 @@ buildscript {
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.10'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:10.0.0"
+        classpath 'app.cash.exhaustive:exhaustive-gradle:0.1.1'
     }
 }
 

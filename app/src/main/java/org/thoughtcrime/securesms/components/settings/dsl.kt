@@ -1,12 +1,9 @@
 package org.thoughtcrime.securesms.components.settings
 
 import androidx.annotation.CallSuper
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import org.thoughtcrime.securesms.util.MappingModel
 import org.thoughtcrime.securesms.util.MappingModelList
-
-private const val UNSET = -1
 
 fun configure(init: DSLConfiguration.() -> Unit): DSLConfiguration {
   val configuration = DSLConfiguration()
@@ -23,13 +20,24 @@ class DSLConfiguration {
 
   fun radioListPref(
     title: DSLSettingsText,
-    @DrawableRes iconId: Int = UNSET,
+    icon: DSLSettingsIcon? = null,
+    dialogTitle: DSLSettingsText = title,
     isEnabled: Boolean = true,
     listItems: Array<String>,
     selected: Int,
+    confirmAction: Boolean = false,
     onSelected: (Int) -> Unit
   ) {
-    val preference = RadioListPreference(title, iconId, isEnabled, listItems, selected, onSelected)
+    val preference = RadioListPreference(
+      title = title,
+      icon = icon,
+      isEnabled = isEnabled,
+      dialogTitle = dialogTitle,
+      listItems = listItems,
+      selected = selected,
+      confirmAction = confirmAction,
+      onSelected = onSelected
+    )
     children.add(preference)
   }
 
@@ -47,12 +55,12 @@ class DSLConfiguration {
   fun switchPref(
     title: DSLSettingsText,
     summary: DSLSettingsText? = null,
-    @DrawableRes iconId: Int = UNSET,
+    icon: DSLSettingsIcon? = null,
     isEnabled: Boolean = true,
     isChecked: Boolean,
     onClick: () -> Unit
   ) {
-    val preference = SwitchPreference(title, summary, iconId, isEnabled, isChecked, onClick)
+    val preference = SwitchPreference(title, summary, icon, isEnabled, isChecked, onClick)
     children.add(preference)
   }
 
@@ -70,20 +78,20 @@ class DSLConfiguration {
   fun clickPref(
     title: DSLSettingsText,
     summary: DSLSettingsText? = null,
-    @DrawableRes iconId: Int = UNSET,
+    icon: DSLSettingsIcon? = null,
     isEnabled: Boolean = true,
     onClick: () -> Unit
   ) {
-    val preference = ClickPreference(title, summary, iconId, isEnabled, onClick)
+    val preference = ClickPreference(title, summary, icon, isEnabled, onClick)
     children.add(preference)
   }
 
   fun externalLinkPref(
     title: DSLSettingsText,
-    @DrawableRes iconId: Int = UNSET,
+    icon: DSLSettingsIcon? = null,
     @StringRes linkId: Int
   ) {
-    val preference = ExternalLinkPreference(title, iconId, linkId)
+    val preference = ExternalLinkPreference(title, icon, linkId)
     children.add(preference)
   }
 
@@ -116,8 +124,8 @@ class DSLConfiguration {
 abstract class PreferenceModel<T : PreferenceModel<T>>(
   open val title: DSLSettingsText? = null,
   open val summary: DSLSettingsText? = null,
-  @DrawableRes open val iconId: Int = UNSET,
-  open val isEnabled: Boolean = true
+  open val icon: DSLSettingsIcon? = null,
+  open val isEnabled: Boolean = true,
 ) : MappingModel<T> {
   override fun areItemsTheSame(newItem: T): Boolean {
     return when {
@@ -131,7 +139,7 @@ abstract class PreferenceModel<T : PreferenceModel<T>>(
   override fun areContentsTheSame(newItem: T): Boolean {
     return areItemsTheSame(newItem) &&
       newItem.summary == summary &&
-      newItem.iconId == iconId &&
+      newItem.icon == icon &&
       newItem.isEnabled == isEnabled
   }
 }
@@ -147,12 +155,14 @@ class DividerPreference : PreferenceModel<DividerPreference>() {
 
 class RadioListPreference(
   override val title: DSLSettingsText,
-  @DrawableRes override val iconId: Int = UNSET,
+  override val icon: DSLSettingsIcon? = null,
   override val isEnabled: Boolean,
+  val dialogTitle: DSLSettingsText = title,
   val listItems: Array<String>,
   val selected: Int,
-  val onSelected: (Int) -> Unit
-) : PreferenceModel<RadioListPreference>(title = title, iconId = iconId, isEnabled = isEnabled) {
+  val onSelected: (Int) -> Unit,
+  val confirmAction: Boolean = false
+) : PreferenceModel<RadioListPreference>() {
 
   override fun areContentsTheSame(newItem: RadioListPreference): Boolean {
     return super.areContentsTheSame(newItem) && listItems.contentEquals(newItem.listItems) && selected == newItem.selected
@@ -176,11 +186,11 @@ class MultiSelectListPreference(
 class SwitchPreference(
   override val title: DSLSettingsText,
   override val summary: DSLSettingsText? = null,
-  @DrawableRes override val iconId: Int = UNSET,
-  isEnabled: Boolean,
+  override val icon: DSLSettingsIcon? = null,
+  override val isEnabled: Boolean,
   val isChecked: Boolean,
   val onClick: () -> Unit
-) : PreferenceModel<SwitchPreference>(title = title, summary = summary, iconId = iconId, isEnabled = isEnabled) {
+) : PreferenceModel<SwitchPreference>() {
   override fun areContentsTheSame(newItem: SwitchPreference): Boolean {
     return super.areContentsTheSame(newItem) && isChecked == newItem.isChecked
   }
@@ -201,15 +211,15 @@ class RadioPreference(
 class ClickPreference(
   override val title: DSLSettingsText,
   override val summary: DSLSettingsText? = null,
-  @DrawableRes override val iconId: Int = UNSET,
-  isEnabled: Boolean = true,
+  override val icon: DSLSettingsIcon? = null,
+  override val isEnabled: Boolean = true,
   val onClick: () -> Unit
-) : PreferenceModel<ClickPreference>(title = title, summary = summary, iconId = iconId, isEnabled = isEnabled)
+) : PreferenceModel<ClickPreference>()
 
 class ExternalLinkPreference(
   override val title: DSLSettingsText,
-  @DrawableRes override val iconId: Int,
+  override val icon: DSLSettingsIcon?,
   @StringRes val linkId: Int
-) : PreferenceModel<ExternalLinkPreference>(title = title, iconId = iconId)
+) : PreferenceModel<ExternalLinkPreference>()
 
-class SectionHeaderPreference(override val title: DSLSettingsText) : PreferenceModel<SectionHeaderPreference>(title = title)
+class SectionHeaderPreference(override val title: DSLSettingsText) : PreferenceModel<SectionHeaderPreference>()

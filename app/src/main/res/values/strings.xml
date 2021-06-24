@@ -769,32 +769,11 @@
     <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
 
     <!-- ManageRecipientActivity -->
-    <string name="ManageRecipientActivity_add_to_system_contacts">Add to system contacts</string>
-    <string name="ManageRecipientActivity_this_person_is_in_your_contacts">This person is in your contacts</string>
-    <string name="ManageRecipientActivity_disappearing_messages">Disappearing messages</string>
-    <string name="ManageRecipientActivity_chat_color">Chat color</string>
-    <string name="ManageRecipientActivity_chat_wallpaper">Chat wallpaper</string>
-    <string name="ManageRecipientActivity_block">Block</string>
-    <string name="ManageRecipientActivity_unblock">Unblock</string>
-    <string name="ManageRecipientActivity_view_safety_number">View safety number</string>
-    <string name="ManageRecipientActivity_mute_notifications">Mute notifications</string>
-    <string name="ManageRecipientActivity_custom_notifications">Custom notifications</string>
-    <string name="ManageRecipientActivity_until_s">Until %1$s</string>
-    <string name="ManageRecipientActivity_always">Always</string>
-    <string name="ManageRecipientActivity_off">Off</string>
-    <string name="ManageRecipientActivity_on">On</string>
-    <string name="ManageRecipientActivity_add_to_a_group">Add to a group</string>
-    <string name="ManageRecipientActivity_view_all_groups">View all groups</string>
-    <string name="ManageRecipientActivity_see_all">See all</string>
     <string name="ManageRecipientActivity_no_groups_in_common">No groups in common</string>
     <plurals name="ManageRecipientActivity_d_groups_in_common">
         <item quantity="one">%d group in common</item>
         <item quantity="other">%d groups in common</item>
     </plurals>
-    <string name="ManageRecipientActivity_message_description">Message</string>
-    <string name="ManageRecipientActivity_voice_call_description">Voice call</string>
-    <string name="ManageRecipientActivity_insecure_voice_call_description">Insecure voice call</string>
-    <string name="ManageRecipientActivity_video_call_description">Video call</string>
 
     <plurals name="GroupMemberList_invited">
         <item quantity="one">%1$s invited 1 person</item>
@@ -3137,7 +3116,7 @@
     <string name="RecipientBottomSheet_add_to_a_group">Add to a group</string>
     <string name="RecipientBottomSheet_add_to_another_group">Add to another group</string>
     <string name="RecipientBottomSheet_view_safety_number">View safety number</string>
-    <string name="RecipientBottomSheet_make_group_admin">Make group admin</string>
+    <string name="RecipientBottomSheet_make_admin">Make admin</string>
     <string name="RecipientBottomSheet_remove_as_admin">Remove as admin</string>
     <string name="RecipientBottomSheet_remove_from_group">Remove from group</string>
     <string name="RecipientBottomSheet_message_description">Message</string>
@@ -3560,6 +3539,53 @@
     <string name="StickerSearchDialogFragment_no_results_found">No results found</string>
     <string name="EmojiSearchFragment__no_results_found">No results found</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Unknown ringtone</string>
+
+    <!-- ConversationSettingsFragment -->
+    <string name="ConversationSettingsFragment__send_message">Send message</string>
+    <string name="ConversationSettingsFragment__start_video_call">Start video call</string>
+    <string name="ConversationSettingsFragment__start_audio_call">Start audio call</string>
+    <string name="ConversationSettingsFragment__message">Message</string>
+    <string name="ConversationSettingsFragment__video">Video</string>
+    <string name="ConversationSettingsFragment__audio">Audio</string>
+    <string name="ConversationSettingsFragment__call">Call</string>
+    <string name="ConversationSettingsFragment__mute">Mute</string>
+    <string name="ConversationSettingsFragment__muted">Muted</string>
+    <string name="ConversationSettingsFragment__search">Search</string>
+    <string name="ConversationSettingsFragment__disappearing_messages">Disappearing messages</string>
+    <string name="ConversationSettingsFragment__sounds_and_notifications">Sounds &amp; notifications</string>
+    <string name="ConversationSettingsFragment__contact_details">Contact details</string>
+    <string name="ConversationSettingsFragment__view_safety_number">View safety number</string>
+    <string name="ConversationSettingsFragment__block">Block</string>
+    <string name="ConversationSettingsFragment__block_group">Block group</string>
+    <string name="ConversationSettingsFragment__unblock">Unblock</string>
+    <string name="ConversationSettingsFragment__unblock_group">Unblock group</string>
+    <string name="ConversationSettingsFragment__add_to_a_group">Add to a group</string>
+    <string name="ConversationSettingsFragment__see_all">See all</string>
+    <string name="ConversationSettingsFragment__add_members">Add members</string>
+    <string name="ConversationSettingsFragment__permissions">Permissions</string>
+    <string name="ConversationSettingsFragment__requests_and_invites">Requests &amp; invites</string>
+    <string name="ConversationSettingsFragment__group_link">Group link</string>
+    <string name="ConversationSettingsFragment__add_as_a_contact">Add as a contact</string>
+    <string name="ConversationSettingsFragment__unmute">Unmute</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversation muted until %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Conversation muted forever</string>
+
+    <!-- PermissionsSettingsFragment -->
+    <string name="PermissionsSettingsFragment__add_members">Add members</string>
+    <string name="PermissionsSettingsFragment__edit_group_info">Edit group info</string>
+    <string name="PermissionsSettingsFragment__all_members">All members</string>
+    <string name="PermissionsSettingsFragment__only_admins">Only admins</string>
+    <string name="PermissionsSettingsFragment__who_can_add_new_members">Who can add new members?</string>
+    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Who can edit this group\'s info?</string>
+
+    <!-- SoundsAndNotificationsSettingsFragment -->
+    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Mute notifications</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Not muted</string>
+    <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Muted until %1$s</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions">Mentions</string>
+    <string name="SoundsAndNotificationsSettingsFragment__always_notify">Always notify</string>
+    <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Do not notify</string>
+    <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Custom notifications</string>
 
     <!-- EOF -->
 

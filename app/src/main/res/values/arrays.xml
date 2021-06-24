@@ -392,4 +392,14 @@
         <item>@string/CustomExpireTimerSelectorView__weeks</item>
     </string-array>
 
+    <string-array name="PermissionsSettingsFragment__editor_labels">
+        <item>@string/PermissionsSettingsFragment__only_admins</item>
+        <item>@string/PermissionsSettingsFragment__all_members</item>
+    </string-array>
+
+    <string-array name="SoundsAndNotificationsSettingsFragment__mention_labels">
+        <item>@string/SoundsAndNotificationsSettingsFragment__always_notify</item>
+        <item>@string/SoundsAndNotificationsSettingsFragment__do_not_notify</item>
+    </string-array>
+    
 </resources>

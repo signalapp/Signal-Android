@@ -44,7 +44,6 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextWatcher;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -66,12 +65,12 @@ import android.widget.Toast;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
@@ -130,6 +129,7 @@ import org.thoughtcrime.securesms.components.reminder.Reminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
+import org.thoughtcrime.securesms.components.settings.conversation.ConversationSettingsActivity;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
@@ -142,7 +142,6 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationM
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
 import org.thoughtcrime.securesms.conversation.ui.groupcall.GroupCallViewModel;
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel;
-import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -174,7 +173,6 @@ import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
 import org.thoughtcrime.securesms.groups.ui.GroupErrors;
 import org.thoughtcrime.securesms.groups.ui.LeaveGroupDialog;
 import org.thoughtcrime.securesms.groups.ui.invitesandrequests.ManagePendingAndRequestingMembersActivity;
-import org.thoughtcrime.securesms.groups.ui.managegroup.ManageGroupActivity;
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInitiationBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationSuggestionsDialog;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
@@ -239,8 +237,8 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity;
-import org.thoughtcrime.securesms.recipients.ui.managerecipient.ManageRecipientActivity;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
+import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
@@ -338,6 +336,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private static final String TAG = Log.tag(ConversationActivity.class);
 
   private static final String STATE_REACT_WITH_ANY_PAGE = "STATE_REACT_WITH_ANY_PAGE";
+  private static final String STATE_HANDLED_INIT_SEARCH = "STATE_HANDLED_INIT_SEARCH";
+
+  private static final int REQUEST_CODE_SETTINGS = 1000;
 
   private static final int PICK_GALLERY        = 1;
   private static final int PICK_DOCUMENT       = 2;
@@ -496,13 +497,15 @@ public class ConversationActivity extends PassphraseRequiredActivity
       }
     });
     initializeInsightObserver();
+
+    handleStartWithSearchOpen();
   }
 
   @Override
   protected void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
     Log.i(TAG, "onNewIntent()");
-    
+
     if (isFinishing()) {
       Log.w(TAG, "Activity is finishing...");
       return;
@@ -549,6 +552,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
 
     searchNav.setVisibility(View.GONE);
+
+    handleStartWithSearchOpen();
   }
 
   @Override
@@ -771,6 +776,16 @@ public class ConversationActivity extends PassphraseRequiredActivity
       });
 
       break;
+    }
+  }
+
+  private void handleStartWithSearchOpen() {
+    if (viewModel.getArgs().isWithSearchOpen()) {
+      toolbar.postDelayed(() -> {
+        if (searchViewItem.expandActionView()) {
+          searchViewModel.onSearchOpened();
+        }
+      }, 500);
     }
   }
 
@@ -1178,8 +1193,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     if (isInMessageRequest()) return;
 
-    Intent intent = ManageRecipientActivity.newIntentFromConversation(this, recipient.getId());
-    startActivitySceneTransition(intent, titleView.findViewById(R.id.contact_photo_image), "avatar");
+    Intent intent = ConversationSettingsActivity.forRecipient(this, recipient.getId());
+    Bundle bundle = ConversationSettingsActivity.createTransitionBundle(this, titleView.findViewById(R.id.contact_photo_image), toolbar);
+
+    ActivityCompat.startActivity(this, intent, bundle);
   }
 
   private void handleUnmuteNotifications() {
@@ -1338,9 +1355,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private void handleManageGroup() {
-    startActivityForResult(ManageGroupActivity.newIntent(ConversationActivity.this, recipient.get().requireGroupId()),
-                           GROUP_EDIT,
-                           ManageGroupActivity.createTransitionBundle(this, titleView.findViewById(R.id.contact_photo_image)));
+    Intent intent = ConversationSettingsActivity.forGroup(this, recipient.get().requireGroupId());
+    Bundle bundle = ConversationSettingsActivity.createTransitionBundle(this, titleView.findViewById(R.id.contact_photo_image), toolbar);
+
+    ActivityCompat.startActivity(this, intent, bundle);
   }
 
   private void handleDistributionBroadcastEnabled(MenuItem item) {

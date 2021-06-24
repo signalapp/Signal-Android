@@ -430,7 +430,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
   ) : PreferenceModel<ValueClickPreference>(
     title = clickPreference.title,
     summary = clickPreference.summary,
-    iconId = clickPreference.iconId,
+    icon = clickPreference.icon,
     isEnabled = clickPreference.isEnabled
   ) {
     override fun areContentsTheSame(newItem: ValueClickPreference): Boolean {

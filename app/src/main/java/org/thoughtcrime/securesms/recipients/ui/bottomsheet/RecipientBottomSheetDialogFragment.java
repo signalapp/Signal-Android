@@ -25,6 +25,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon;
+import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -34,12 +36,15 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
+import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Objects;
+
+import kotlin.Unit;
 
 /**
  * A bottom sheet that shows some simple recipient details, as well as some actions (like calling,
@@ -57,10 +62,6 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private TextView                 fullName;
   private TextView                 about;
   private TextView                 usernameNumber;
-  private Button                   messageButton;
-  private Button                   secureCallButton;
-  private Button                   insecureCallButton;
-  private Button                   secureVideoCallButton;
   private Button                   blockButton;
   private Button                   unblockButton;
   private Button                   addContactButton;
@@ -71,6 +72,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private Button                   removeFromGroupButton;
   private ProgressBar              adminActionBusy;
   private View                     noteToSelfDescription;
+  private View                     buttonStrip;
 
   public static BottomSheetDialogFragment create(@NonNull RecipientId recipientId,
                                                  @Nullable GroupId groupId)
@@ -105,10 +107,6 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     fullName               = view.findViewById(R.id.rbs_full_name);
     about                  = view.findViewById(R.id.rbs_about);
     usernameNumber         = view.findViewById(R.id.rbs_username_number);
-    messageButton          = view.findViewById(R.id.rbs_message_button);
-    secureCallButton       = view.findViewById(R.id.rbs_secure_call_button);
-    insecureCallButton     = view.findViewById(R.id.rbs_insecure_call_button);
-    secureVideoCallButton  = view.findViewById(R.id.rbs_video_call_button);
     blockButton            = view.findViewById(R.id.rbs_block_button);
     unblockButton          = view.findViewById(R.id.rbs_unblock_button);
     addContactButton       = view.findViewById(R.id.rbs_add_contact_button);
@@ -119,6 +117,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     removeFromGroupButton  = view.findViewById(R.id.rbs_remove_from_group_button);
     adminActionBusy        = view.findViewById(R.id.rbs_admin_action_busy);
     noteToSelfDescription  = view.findViewById(R.id.rbs_note_to_self_description);
+    buttonStrip            = view.findViewById(R.id.button_strip);
 
     return view;
   }
@@ -192,10 +191,41 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
         unblockButton.setVisibility(View.GONE);
       }
 
-      messageButton.setVisibility(!recipient.isSelf() ? View.VISIBLE : View.GONE);
-      secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
-      insecureCallButton.setVisibility(!recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
-      secureVideoCallButton.setVisibility(recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
+      ButtonStripPreference.State  buttonStripState = new ButtonStripPreference.State(
+          /* isMessageAvailable = */ !recipient.isSelf(),
+          /* isVideoAvailable = */   recipient.isRegistered() && !recipient.isSelf(),
+          /* isAudioAvailable = */   !recipient.isSelf(),
+          /* isMuteAvailable = */    false,
+          /* isSearchAvailable = */  false,
+          /* isAudioSecure = */      recipient.isRegistered(),
+          /* isMuted = */            false
+      );
+
+      ButtonStripPreference.Model buttonStripModel = new ButtonStripPreference.Model(
+          buttonStripState,
+          DSLSettingsIcon.from(ContextUtil.requireDrawable(requireContext(), R.drawable.selectable_recipient_bottom_sheet_icon_button)),
+          () -> {
+            dismiss();
+            viewModel.onMessageClicked(requireActivity());
+            return Unit.INSTANCE;
+          },
+          () -> {
+            viewModel.onSecureVideoCallClicked(requireActivity());
+            return Unit.INSTANCE;
+          },
+          () -> {
+            if (buttonStripState.isAudioSecure()) {
+              viewModel.onSecureCallClicked(requireActivity());
+            } else {
+              viewModel.onInsecureCallClicked(requireActivity());
+            }
+            return Unit.INSTANCE;
+          },
+          () -> Unit.INSTANCE,
+          () -> Unit.INSTANCE
+      );
+
+      new ButtonStripPreference.ViewHolder(buttonStrip).bind(buttonStripModel);
 
       if (recipient.isSystemContact() || recipient.isGroup() || recipient.isSelf()) {
         addContactButton.setVisibility(View.GONE);
@@ -233,15 +263,6 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       dismiss();
       viewModel.onAvatarClicked(requireActivity());
     });
-
-    messageButton.setOnClickListener(view -> {
-      dismiss();
-      viewModel.onMessageClicked(requireActivity());
-    });
-
-    secureCallButton.setOnClickListener(view -> viewModel.onSecureCallClicked(requireActivity()));
-    insecureCallButton.setOnClickListener(view -> viewModel.onInsecureCallClicked(requireActivity()));
-    secureVideoCallButton.setOnClickListener(view -> viewModel.onSecureVideoCallClicked(requireActivity()));
 
     blockButton.setOnClickListener(view -> viewModel.onBlockClicked(requireActivity()));
     unblockButton.setOnClickListener(view -> viewModel.onUnblockClicked(requireActivity()));

@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.visible
 
 class DSLSettingsAdapter : MappingAdapter() {
   init {
@@ -42,13 +43,9 @@ abstract class PreferenceViewHolder<T : PreferenceModel<T>>(itemView: View) : Ma
       it.isEnabled = model.isEnabled
     }
 
-    if (model.iconId != -1) {
-      iconView.setImageResource(model.iconId)
-      iconView.visibility = View.VISIBLE
-    } else {
-      iconView.setImageDrawable(null)
-      iconView.visibility = View.GONE
-    }
+    val icon = model.icon?.resolve(context)
+    iconView.setImageDrawable(icon)
+    iconView.visible = icon != null
 
     val title = model.title?.resolve(context)
     if (title != null) {
@@ -93,13 +90,31 @@ class RadioListPreferenceViewHolder(itemView: View) : PreferenceViewHolder<Radio
     summaryView.text = model.listItems[model.selected]
 
     itemView.setOnClickListener {
-      MaterialAlertDialogBuilder(context)
-        .setTitle(model.title.resolve(context))
+      var selection = -1
+      val builder = MaterialAlertDialogBuilder(context)
+        .setTitle(model.dialogTitle.resolve(context))
         .setSingleChoiceItems(model.listItems, model.selected) { dialog, which ->
-          model.onSelected(which)
-          dialog.dismiss()
+          if (model.confirmAction) {
+            selection = which
+          } else {
+            model.onSelected(which)
+            dialog.dismiss()
+          }
         }
-        .show()
+
+      if (model.confirmAction) {
+        builder
+          .setPositiveButton(android.R.string.ok) { dialog, _ ->
+            model.onSelected(selection)
+            dialog.dismiss()
+          }
+          .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+            dialog.dismiss()
+          }
+          .show()
+      } else {
+        builder.show()
+      }
     }
   }
 }

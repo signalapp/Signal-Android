@@ -8,10 +8,11 @@ import androidx.navigation.fragment.NavHostFragment
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
+import org.thoughtcrime.securesms.util.DynamicTheme
 
 open class DSLSettingsActivity : PassphraseRequiredActivity() {
 
-  private val dynamicTheme = DynamicNoActionBarTheme()
+  protected open val dynamicTheme: DynamicTheme = DynamicNoActionBarTheme()
 
   protected lateinit var navController: NavController
     private set
