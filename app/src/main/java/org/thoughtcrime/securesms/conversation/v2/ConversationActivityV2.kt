@@ -33,6 +33,7 @@ import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.dialogs.BlockedDialog
+import org.thoughtcrime.securesms.conversation.v2.dialogs.JoinOpenGroupDialog
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarRecordingViewDelegate
@@ -411,7 +412,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             // the view) so as to not interfere with all the other gestures. Do not add
             // onClickListeners directly to message content views.
             view.onContentClick()
-            BlockedDialog(thread).show(supportFragmentManager, "Blocked Dialog")
+            val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)!!
+            JoinOpenGroupDialog(openGroup).show(supportFragmentManager, "Blocked Dialog")
         }
     }
 

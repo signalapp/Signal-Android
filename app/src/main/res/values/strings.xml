@@ -856,5 +856,7 @@
     <string name="dialog_blocked_title">Unblock %s?</string>
     <string name="dialog_blocked_explanation">Are you sure you want to unblock %s?</string>
 
+    <string name="dialog_join_open_group_title">Join %s?</string>
+    <string name="dialog_join_open_group_explanation">Are you sure you want to join the %s open group?</string>
 
 </resources>

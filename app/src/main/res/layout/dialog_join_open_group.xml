@@ -10,20 +10,20 @@
     android:padding="32dp">
 
     <TextView
-        android:id="@+id/blockedTitleTextView"
+        android:id="@+id/joinOpenGroupTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dialog_blocked_title"
+        android:text="@string/dialog_join_open_group_title"
         android:textColor="@color/text"
         android:textStyle="bold"
         android:textSize="@dimen/large_font_size" />
 
     <TextView
-        android:id="@+id/blockedExplanationTextView"
+        android:id="@+id/joinOpenGroupExplanationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="@string/dialog_blocked_explanation"
+        android:text="@string/dialog_join_open_group_explanation"
         android:paddingHorizontal="@dimen/medium_spacing"
         android:textColor="@color/text"
         android:textSize="@dimen/small_font_size"
@@ -45,12 +45,12 @@
 
         <Button
             style="@style/Widget.Session.Button.Dialog.Unimportant"
-            android:id="@+id/unblockButton"
+            android:id="@+id/joinButton"
             android:layout_width="0dp"
             android:layout_height="@dimen/small_button_height"
             android:layout_weight="1"
             android:layout_marginStart="@dimen/medium_spacing"
-            android:text="@string/ConversationActivity_unblock" />
+            android:text="@string/open_group_invitation_view__join_accessibility_description" />
 
     </LinearLayout>
 

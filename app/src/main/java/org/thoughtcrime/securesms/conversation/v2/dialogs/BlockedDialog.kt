@@ -7,6 +7,7 @@ import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.dialog_blocked.view.*
+import kotlinx.android.synthetic.main.dialog_blocked.view.cancelButton
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.recipients.Recipient
@@ -28,11 +29,12 @@ class BlockedDialog(private val recipient: Recipient) : BaseDialog() {
         val startIndex = explanation.indexOf(name)
         spannable.setSpan(StyleSpan(Typeface.BOLD), startIndex, startIndex + name.count(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         contentView.blockedExplanationTextView.text = spannable
+        contentView.cancelButton.setOnClickListener { dismiss() }
         contentView.unblockButton.setOnClickListener { unblock() }
         builder.setView(contentView)
     }
 
     private fun unblock() {
-        
+
     }
 }
