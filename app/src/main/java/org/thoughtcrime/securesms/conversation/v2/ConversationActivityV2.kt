@@ -229,6 +229,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // region Updating & Animation
     override fun inputBarHeightChanged(newValue: Int) {
+        @Suppress("NAME_SHADOWING") val newValue = max(newValue, resources.getDimension(R.dimen.input_bar_height).roundToInt())
         // 36 DP is the exact height of the typing indicator view. It's also exactly 18 * 2, and 18 is the large message
         // corner radius. This makes 36 DP look "correct" in the context of other messages on the screen.
         val typingIndicatorHeight = if (typingIndicatorViewContainer.isVisible) toPx(36, resources) else 0
