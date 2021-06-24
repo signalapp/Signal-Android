@@ -2,20 +2,16 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
 import android.database.Cursor
-import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import kotlinx.android.synthetic.main.view_visible_message.view.*
-import network.loki.messenger.R
 import org.thoughtcrime.securesms.conversation.v2.messages.ControlMessageView
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.mms.GlideRequests
-import java.lang.IllegalStateException
 
 class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPress: (MessageRecord, Int, VisibleMessageView) -> Unit,
     private val onItemSwipeToReply: (MessageRecord, Int) -> Unit, private val onItemLongPress: (MessageRecord, Int) -> Unit,
@@ -109,5 +105,16 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
     fun toggleSelection(message: MessageRecord, position: Int) {
         if (selectedItems.contains(message)) selectedItems.remove(message) else selectedItems.add(message)
         notifyItemChanged(position)
+    }
+
+    fun findLastSeenItemPosition(lastSeenTimestamp: Long): Int? {
+        val cursor = this.cursor
+        if (lastSeenTimestamp <= 0L || cursor == null || !isActiveCursor) return null
+        for (i in 0 until itemCount) {
+            cursor.moveToPosition(i)
+            val messageRecord = messageDB.readerFor(cursor).current
+            if (messageRecord.isOutgoing || messageRecord.dateReceived <= lastSeenTimestamp) { return i }
+        }
+        return null
     }
 }

@@ -125,6 +125,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         getLatestOpenGroupInfoIfNeeded()
         setUpBlockedBanner()
         setUpLinkPreviewObserver()
+        scrollToFirstUnreadMessage()
     }
 
     private fun setUpRecyclerView() {
@@ -235,6 +236,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 inputBar.cancelLinkPreviewDraft()
             }
         })
+    }
+
+    private fun scrollToFirstUnreadMessage() {
+        val lastSeenTimestamp = DatabaseFactory.getThreadDatabase(this).getLastSeenAndHasSent(threadID).first()
+        val lastSeenItemPosition = adapter.findLastSeenItemPosition(lastSeenTimestamp) ?: return
+        conversationRecyclerView.scrollToPosition(lastSeenItemPosition)
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
