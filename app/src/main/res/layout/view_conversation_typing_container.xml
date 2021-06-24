@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="12dp"
-    android:paddingEnd="8dp"
+    android:paddingStart="@dimen/medium_spacing"
     android:paddingBottom="@dimen/small_spacing"
     android:gravity="center_vertical">
 
@@ -20,7 +20,8 @@
         <org.thoughtcrime.securesms.conversation.v2.components.TypingIndicatorView
             android:id="@+id/typingIndicator"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:typingIndicator_tint="@color/text" />
 
     </FrameLayout>
 
