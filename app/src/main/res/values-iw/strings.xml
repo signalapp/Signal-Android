@@ -722,23 +722,23 @@
   <string name="ManageProfileFragment_your_username">שם המשתמש שלך</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">נכשל בהגדרת יצגן</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">הוסף לאנשי קשר של המערכת</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">איש זה נמצא באנשי הקשר שלך</string>
-  <string name="ManageRecipientActivity_disappearing_messages">הודעות נעלמות</string>
-  <string name="ManageRecipientActivity_chat_color">צבע התכתבות</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">טפט התכתבות</string>
-  <string name="ManageRecipientActivity_block">חסום</string>
-  <string name="ManageRecipientActivity_unblock">שחרר חסימה</string>
-  <string name="ManageRecipientActivity_view_safety_number">הצג מספר ביטחון</string>
-  <string name="ManageRecipientActivity_mute_notifications">השתק התראות</string>
-  <string name="ManageRecipientActivity_custom_notifications">התראות מותאמות אישית</string>
-  <string name="ManageRecipientActivity_until_s">עד %1$s</string>
-  <string name="ManageRecipientActivity_always">תמיד</string>
-  <string name="ManageRecipientActivity_off">כבוי</string>
-  <string name="ManageRecipientActivity_on">מופעל</string>
-  <string name="ManageRecipientActivity_add_to_a_group">הוסף אל קבוצה</string>
-  <string name="ManageRecipientActivity_view_all_groups">הצג את כל הקבוצות</string>
-  <string name="ManageRecipientActivity_see_all">ראה הכל</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">הוסף לאנשי קשר של המערכת</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">איש זה נמצא באנשי הקשר שלך</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">הודעות נעלמות</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">צבע התכתבות</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">טפט התכתבות</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">חסום</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">שחרר חסימה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">הצג מספר ביטחון</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">השתק התראות</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">התראות מותאמות אישית</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">עד %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">תמיד</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">כבוי</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">מופעל</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">הוסף אל קבוצה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">הצג את כל הקבוצות</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">ראה הכל</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">אין קבוצות במשותף</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">קבוצה %d במשותף</item>
@@ -746,10 +746,10 @@
     <item quantity="many">%d קבוצות במשותף</item>
     <item quantity="other">%d קבוצות במשותף</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">הודעה</string>
-  <string name="ManageRecipientActivity_voice_call_description">שיחה קולית</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">שיחת וידאו בלתי מאובטחת</string>
-  <string name="ManageRecipientActivity_video_call_description">שיחת וידאו</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">הודעה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">שיחה קולית</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">שיחת וידאו בלתי מאובטחת</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">שיחת וידאו</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s הזמין איש 1</item>
     <item quantity="two">%1$s הזמין %2$d אנשים</item>
@@ -1964,6 +1964,7 @@
   <string name="message_details_recipient_header__delivered_to">נמסרה אל</string>
   <string name="message_details_recipient_header__read_by">נקראה ע״י</string>
   <string name="message_details_recipient_header__not_sent">לא נשלחה</string>
+  <string name="message_details_recipient_header__viewed">נצפה ע״י</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">נכשל בשליחה</string>
   <string name="message_details_recipient__new_safety_number">מספר ביטחון חדש</string>
@@ -2810,7 +2811,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">הוסף אל קבוצה</string>
   <string name="RecipientBottomSheet_add_to_another_group">הוסף אל קבוצה אחרת</string>
   <string name="RecipientBottomSheet_view_safety_number">הצג מספר ביטחון</string>
-  <string name="RecipientBottomSheet_make_group_admin">עשה מנהלן קבוצה</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">עשה מנהלן קבוצה</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">הסר תפקיד מנהלן</string>
   <string name="RecipientBottomSheet_remove_from_group">הסר מהקבוצה</string>
   <string name="RecipientBottomSheet_message_description">הודעה</string>

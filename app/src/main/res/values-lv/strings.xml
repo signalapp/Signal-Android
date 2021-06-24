@@ -468,17 +468,17 @@
   <string name="ManageGroupActivity_legacy_group">Mantotā grupa</string>
   <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_disappearing_messages">Gaistošās ziņas</string>
-  <string name="ManageRecipientActivity_block">Bloķēt</string>
-  <string name="ManageRecipientActivity_unblock">Atbloķēt</string>
-  <string name="ManageRecipientActivity_view_safety_number">Skatīt drošības numuru</string>
-  <string name="ManageRecipientActivity_mute_notifications">Noklusināt paziņojumus</string>
-  <string name="ManageRecipientActivity_custom_notifications">Pielāgoti paziņojumi</string>
-  <string name="ManageRecipientActivity_until_s">Līdz %1$s</string>
-  <string name="ManageRecipientActivity_off">Izslēgts</string>
-  <string name="ManageRecipientActivity_on">Ieslēgts</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Gaistošās ziņas</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Bloķēt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Atbloķēt</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Skatīt drošības numuru</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Noklusināt paziņojumus</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Pielāgoti paziņojumi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Līdz %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Izslēgts</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Ieslēgts</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_edit_name_and_picture">Labot vārdu un attēlu</string> -->
-  <string name="ManageRecipientActivity_message_description">Ziņa</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Ziņa</string> -->
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Pielāgoti paziņojumi</string>
   <string name="CustomNotificationsDialogFragment__messages">Ziņas</string>
@@ -1936,7 +1936,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="RecipientBottomSheet_unblock">Atbloķēt</string>
   <string name="RecipientBottomSheet_add_to_contacts">Pievienot kontaktiem</string>
   <string name="RecipientBottomSheet_view_safety_number">Skatīt drošības numuru</string>
-  <string name="RecipientBottomSheet_make_group_admin">Izveidot grupas aministratoru</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Izveidot grupas aministratoru</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">Noņemt grupas administratoru</string>
   <string name="RecipientBottomSheet_remove_from_group">Noņemt no grupas</string>
   <string name="RecipientBottomSheet_message_description">Ziņa</string>

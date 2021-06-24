@@ -722,23 +722,23 @@
   <string name="ManageProfileFragment_your_username">Vaše uživatelské jméno</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Nepodařilo se nastavit avatar</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Přidat k systémovým kontaktům</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tato osoba je ve vašich kontaktech</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Mizející zprávy</string>
-  <string name="ManageRecipientActivity_chat_color">Barva konverzace</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Tapeta pro konverzaci</string>
-  <string name="ManageRecipientActivity_block">Zablokovat</string>
-  <string name="ManageRecipientActivity_unblock">Odblokovat</string>
-  <string name="ManageRecipientActivity_view_safety_number">Zobrazit bezpečnostní číslo</string>
-  <string name="ManageRecipientActivity_mute_notifications">Ztišit upozornění</string>
-  <string name="ManageRecipientActivity_custom_notifications">Vlastní oznámení</string>
-  <string name="ManageRecipientActivity_until_s">Do %1$s</string>
-  <string name="ManageRecipientActivity_always">Vždy</string>
-  <string name="ManageRecipientActivity_off">Vyp.</string>
-  <string name="ManageRecipientActivity_on">Zap.</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Přidat do skupiny</string>
-  <string name="ManageRecipientActivity_view_all_groups">Zobrazit všechny skupiny</string>
-  <string name="ManageRecipientActivity_see_all">Zobrazit vše</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Přidat k systémovým kontaktům</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tato osoba je ve vašich kontaktech</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Mizející zprávy</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Barva konverzace</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Tapeta pro konverzaci</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Zablokovat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Odblokovat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Zobrazit bezpečnostní číslo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Ztišit upozornění</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Vlastní oznámení</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Do %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Vždy</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Vyp.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Zap.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Přidat do skupiny</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Zobrazit všechny skupiny</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Zobrazit vše</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Žádné společné skupiny</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d společná skupina</item>
@@ -746,10 +746,10 @@
     <item quantity="many">%d společných skupin</item>
     <item quantity="other">%d společných skupin</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Zpráva</string>
-  <string name="ManageRecipientActivity_voice_call_description">Hlasový hovor</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Nezabezpečený hlasový hovor</string>
-  <string name="ManageRecipientActivity_video_call_description">Videohovor</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Zpráva</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Hlasový hovor</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Nezabezpečený hlasový hovor</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Videohovor</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s pozval jednu osobu</item>
     <item quantity="few">%1$s pozval %2$d osoby</item>
@@ -1963,6 +1963,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="message_details_recipient_header__delivered_to">Doručeno</string>
   <string name="message_details_recipient_header__read_by">Přečteno</string>
   <string name="message_details_recipient_header__not_sent">Neodesláno</string>
+  <string name="message_details_recipient_header__viewed">Zobrazil(a)</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Nepodařilo se odeslat</string>
   <string name="message_details_recipient__new_safety_number">Nové bezpečnostní číslo</string>
@@ -2809,7 +2810,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RecipientBottomSheet_add_to_a_group">Přidat do skupiny</string>
   <string name="RecipientBottomSheet_add_to_another_group">Přidat do jiné skupiny</string>
   <string name="RecipientBottomSheet_view_safety_number">Zobrazit bezpečnostní číslo</string>
-  <string name="RecipientBottomSheet_make_group_admin">Nastavit správce skupiny</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Nastavit správce skupiny</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">Odebrat oprávnění správce</string>
   <string name="RecipientBottomSheet_remove_from_group">Odebrat ze skupiny</string>
   <string name="RecipientBottomSheet_message_description">Zpráva</string>

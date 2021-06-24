@@ -722,23 +722,23 @@
   <string name="ManageProfileFragment_your_username">Jūsų naudotojo vardas</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Nepavyko nustatyti avataro</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Pridėti į sistemos adresatus</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Šis žmogus yra jūsų adresatų sąraše</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Išnykstančios žinutės</string>
-  <string name="ManageRecipientActivity_chat_color">Pokalbio spalva</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Pokalbio fonas</string>
-  <string name="ManageRecipientActivity_block">Užblokuoti</string>
-  <string name="ManageRecipientActivity_unblock">Atblokuoti</string>
-  <string name="ManageRecipientActivity_view_safety_number">Rodyti saugumo numerį</string>
-  <string name="ManageRecipientActivity_mute_notifications">Išjungti pranešimus</string>
-  <string name="ManageRecipientActivity_custom_notifications">Tinkinti pranešimai</string>
-  <string name="ManageRecipientActivity_until_s">Iki %1$s</string>
-  <string name="ManageRecipientActivity_always">Visada</string>
-  <string name="ManageRecipientActivity_off">Išjungta</string>
-  <string name="ManageRecipientActivity_on">Įjungta</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Pridėti į grupę</string>
-  <string name="ManageRecipientActivity_view_all_groups">Rodyti visas grupes</string>
-  <string name="ManageRecipientActivity_see_all">Rodyti visus</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Pridėti į sistemos adresatus</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Šis žmogus yra jūsų adresatų sąraše</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Išnykstančios žinutės</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Pokalbio spalva</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Pokalbio fonas</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Užblokuoti</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Atblokuoti</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Rodyti saugumo numerį</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Išjungti pranešimus</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Tinkinti pranešimai</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Iki %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Visada</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Išjungta</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Įjungta</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Pridėti į grupę</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Rodyti visas grupes</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Rodyti visus</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Nėra bendrų grupių</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d bendra grupė</item>
@@ -746,10 +746,10 @@
     <item quantity="many">%d bendrų grupių</item>
     <item quantity="other">%d bendra grupė</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Žinutė</string>
-  <string name="ManageRecipientActivity_voice_call_description">Balso skambutis</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Nesaugus balso skambutis</string>
-  <string name="ManageRecipientActivity_video_call_description">Vaizdo skambutis</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Žinutė</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Balso skambutis</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Nesaugus balso skambutis</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Vaizdo skambutis</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s pakvietė 1 žmogų</item>
     <item quantity="few">%1$s pakvietė %2$d žmones</item>
@@ -1964,6 +1964,7 @@
   <string name="message_details_recipient_header__delivered_to">Kam pristatyta</string>
   <string name="message_details_recipient_header__read_by">Perskaitė</string>
   <string name="message_details_recipient_header__not_sent">Neišsiųsta</string>
+  <string name="message_details_recipient_header__viewed">Peržiūrėjo</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Nepavyko išsiųsti</string>
   <string name="message_details_recipient__new_safety_number">Naujas saugumo numeris</string>
@@ -2810,7 +2811,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">Pridėti į grupę</string>
   <string name="RecipientBottomSheet_add_to_another_group">Pridėti į kitą grupę</string>
   <string name="RecipientBottomSheet_view_safety_number">Rodyti saugumo numerį</string>
-  <string name="RecipientBottomSheet_make_group_admin">Paskirti grupės administratoriumi</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Paskirti grupės administratoriumi</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">Pašalinti iš administratorių</string>
   <string name="RecipientBottomSheet_remove_from_group">Šalinti iš grupės</string>
   <string name="RecipientBottomSheet_message_description">Žinutė</string>

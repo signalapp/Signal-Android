@@ -585,21 +585,21 @@
   <string name="ManageProfileFragment_about">ಬಗ್ಗೆ</string>
   <string name="ManageProfileFragment_your_name">ನಿಮ್ಮ ಹೆಸರು</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
-  <string name="ManageRecipientActivity_block">ನಿರ್ಬಂಧಿಸಿ</string>
-  <string name="ManageRecipientActivity_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
-  <string name="ManageRecipientActivity_view_safety_number">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ನೋಡಿ</string>
-  <string name="ManageRecipientActivity_mute_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿ</string>
-  <string name="ManageRecipientActivity_custom_notifications">ಕಸ್ಟಮ್ ಅಧಿಸೂಚನೆಗಳು</string>
-  <string name="ManageRecipientActivity_until_s">%1$s ವರೆಗೆ</string>
-  <string name="ManageRecipientActivity_off">ಆಫ಼್</string>
-  <string name="ManageRecipientActivity_on">ಆನ್</string>
-  <string name="ManageRecipientActivity_add_to_a_group">ಗುಂಪಿಗೆ ಸೇರಿಸಿ</string>
-  <string name="ManageRecipientActivity_see_all">ಎಲ್ಲವನ್ನು ನೋಡಿ</string>
-  <string name="ManageRecipientActivity_message_description">ಸಂದೇಶ</string>
-  <string name="ManageRecipientActivity_voice_call_description">ಧ್ವನಿ ಕರೆ</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">ಅಸುರಕ್ಷಿತ ಧ್ವನಿ ಕರೆ</string>
-  <string name="ManageRecipientActivity_video_call_description">ವೀಡಿಯೋ ಕರೆ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">ನಿರ್ಬಂಧಿಸಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ನೋಡಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">ಕಸ್ಟಮ್ ಅಧಿಸೂಚನೆಗಳು</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">%1$s ವರೆಗೆ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">ಆಫ಼್</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">ಆನ್</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">ಗುಂಪಿಗೆ ಸೇರಿಸಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">ಎಲ್ಲವನ್ನು ನೋಡಿ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">ಸಂದೇಶ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">ಧ್ವನಿ ಕರೆ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">ಅಸುರಕ್ಷಿತ ಧ್ವನಿ ಕರೆ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">ವೀಡಿಯೋ ಕರೆ</string> -->
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">ಕಸ್ಟಮ್ ಅಧಿಸೂಚನೆಗಳು</string>
   <string name="CustomNotificationsDialogFragment__messages">ಸಂದೇಶಗಳು</string>
@@ -1859,7 +1859,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">ಗುಂಪಿಗೆ ಸೇರಿಸಿ</string>
   <string name="RecipientBottomSheet_add_to_another_group">ಮತ್ತೊಂದು ಗುಂಪಿಗೆ ಸೇರಿಸಿ</string>
   <string name="RecipientBottomSheet_view_safety_number">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ನೋಡಿ</string>
-  <string name="RecipientBottomSheet_make_group_admin">ಗುಂಪಿನ ಆಡ್ಮಿನ್‌ ಮಾಡಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">ಗುಂಪಿನ ಆಡ್ಮಿನ್‌ ಮಾಡಿ</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">ಅಡ್ಮಿನ್ ಆಗಿ ತೆಗೆಯಿರಿ</string>
   <string name="RecipientBottomSheet_remove_from_group">ಗುಂಪಿನಿಂದ ತೆಗೆಯಿರಿ</string>
   <string name="RecipientBottomSheet_message_description">ಸಂದೇಶ</string>

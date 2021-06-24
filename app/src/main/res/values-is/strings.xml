@@ -656,32 +656,32 @@
   <string name="ManageProfileFragment_your_username">Notandanafnið þitt</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Mistókst að stilla auðkennismynd</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Bæta við tengiliði kerfisins</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Þessi einstaklingur er í tengiliðaskránni þinni</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Sjálfeyðandi skilaboð</string>
-  <string name="ManageRecipientActivity_chat_color">Litur spjalls</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Bakgrunnsmynd spjalls</string>
-  <string name="ManageRecipientActivity_block">Loka á</string>
-  <string name="ManageRecipientActivity_unblock">Afbanna</string>
-  <string name="ManageRecipientActivity_view_safety_number">Skoða öryggisnúmer</string>
-  <string name="ManageRecipientActivity_mute_notifications">Þagga tilkynningar</string>
-  <string name="ManageRecipientActivity_custom_notifications">Sérsniðnar tilkynningar</string>
-  <string name="ManageRecipientActivity_until_s">Til %1$s</string>
-  <string name="ManageRecipientActivity_always">Alltaf</string>
-  <string name="ManageRecipientActivity_off">Af</string>
-  <string name="ManageRecipientActivity_on">Á</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Bæta við hóp</string>
-  <string name="ManageRecipientActivity_view_all_groups">Skoða alla hópa</string>
-  <string name="ManageRecipientActivity_see_all">Sjá allt</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Bæta við tengiliði kerfisins</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Þessi einstaklingur er í tengiliðaskránni þinni</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Sjálfeyðandi skilaboð</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Litur spjalls</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Bakgrunnsmynd spjalls</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Loka á</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Afbanna</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Skoða öryggisnúmer</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Þagga tilkynningar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Sérsniðnar tilkynningar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Til %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Alltaf</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Af</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Á</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Bæta við hóp</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Skoða alla hópa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Sjá allt</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Engir sameiginlegir hópar</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d sameiginlegur hópur</item>
     <item quantity="other">%d sameiginlegir hópar</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Skilaboð</string>
-  <string name="ManageRecipientActivity_voice_call_description">Raddsímtal</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Óöruggt raddsímtal</string>
-  <string name="ManageRecipientActivity_video_call_description">Myndsímtal</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Skilaboð</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Raddsímtal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Óöruggt raddsímtal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Myndsímtal</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s bauð 1 aðila</item>
     <item quantity="other">%1$s bauð %2$d aðilum</item>
@@ -865,6 +865,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Bættu við skýringatexta…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Atriði var fjarlægt þar sem það fór fram yfir stærðarmörk</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Atriði var fjarlægt þar sem það er af óþekktri gerð</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Atriði var fjarlægt þar sem það fór fram yfir stærðarmörk eða var af óþekktri gerð</string>
   <string name="MediaSendActivity_camera_unavailable">Myndavél ekki tiltæk.</string>
   <string name="MediaSendActivity_message_to_s">Skilaboð til %s</string>
   <string name="MediaSendActivity_message">Skilaboð</string>
@@ -1817,6 +1819,7 @@
   <string name="message_details_recipient_header__delivered_to">Afhent til</string>
   <string name="message_details_recipient_header__read_by">Lesið af</string>
   <string name="message_details_recipient_header__not_sent">Ekki sent</string>
+  <string name="message_details_recipient_header__viewed">Skoðað af</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Mistókst að senda</string>
   <string name="message_details_recipient__new_safety_number">Nýtt öryggisnúmer</string>
@@ -2650,7 +2653,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="RecipientBottomSheet_add_to_a_group">Bæta við hóp</string>
   <string name="RecipientBottomSheet_add_to_another_group">Bæta við annan hóp</string>
   <string name="RecipientBottomSheet_view_safety_number">Skoða öryggisnúmer</string>
-  <string name="RecipientBottomSheet_make_group_admin">Gera að stjórnanda hóps</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Gera að stjórnanda hóps</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">Fjarlæga stjórnunarréttindi</string>
   <string name="RecipientBottomSheet_remove_from_group">Fjarlægja úr hópi</string>
   <string name="RecipientBottomSheet_message_description">Skilaboð</string>

@@ -397,15 +397,15 @@
   <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_none">Wala</string> -->
   <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_disappearing_messages">Mga naglalahong mensahe</string>
-  <string name="ManageRecipientActivity_block">I-block</string>
-  <string name="ManageRecipientActivity_unblock">I-unblock</string>
-  <string name="ManageRecipientActivity_view_safety_number">Tingnan ang numerong pangkaligtasan</string>
-  <string name="ManageRecipientActivity_mute_notifications">Patahimikin ang mga notipikasyon</string>
-  <string name="ManageRecipientActivity_custom_notifications">Custom na mga notipikasyon</string>
-  <string name="ManageRecipientActivity_off">Off</string>
-  <string name="ManageRecipientActivity_on">On</string>
-  <string name="ManageRecipientActivity_message_description">Mensahe</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Mga naglalahong mensahe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">I-block</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">I-unblock</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Tingnan ang numerong pangkaligtasan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Patahimikin ang mga notipikasyon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Custom na mga notipikasyon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Off</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">On</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Mensahe</string> -->
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Custom na mga notipikasyon</string>
   <string name="CustomNotificationsDialogFragment__messages">Mga Mensahe</string>

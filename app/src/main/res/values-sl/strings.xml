@@ -719,23 +719,23 @@
   <string name="ManageProfileFragment_your_username">Vaše uporabniško ime</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Nastavitev avatarja ni uspela</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Dodaj k sistemskim stikom</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Uporabnik/ca je med vašimi stiki</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Izginjajoča sporočila</string>
-  <string name="ManageRecipientActivity_chat_color">Barva pogovora</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Ozadje pogovora</string>
-  <string name="ManageRecipientActivity_block">Blokiraj</string>
-  <string name="ManageRecipientActivity_unblock">Odblokiraj</string>
-  <string name="ManageRecipientActivity_view_safety_number">Pregled varnostnega števila</string>
-  <string name="ManageRecipientActivity_mute_notifications">Izklopi obvestila</string>
-  <string name="ManageRecipientActivity_custom_notifications">Obvestila po meri</string>
-  <string name="ManageRecipientActivity_until_s">Do %1$s</string>
-  <string name="ManageRecipientActivity_always">Za vedno</string>
-  <string name="ManageRecipientActivity_off">Izklopljena</string>
-  <string name="ManageRecipientActivity_on">Vklopljena</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Dodaj v skupino</string>
-  <string name="ManageRecipientActivity_view_all_groups">Prikaz vseh skupin</string>
-  <string name="ManageRecipientActivity_see_all">Prikaz vseh</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Dodaj k sistemskim stikom</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Uporabnik/ca je med vašimi stiki</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Izginjajoča sporočila</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Barva pogovora</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Ozadje pogovora</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blokiraj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Odblokiraj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Pregled varnostnega števila</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Izklopi obvestila</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Obvestila po meri</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Do %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Za vedno</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Izklopljena</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Vklopljena</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Dodaj v skupino</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Prikaz vseh skupin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Prikaz vseh</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Nobene skupne skupine</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d skupna skupina</item>
@@ -743,10 +743,10 @@
     <item quantity="few">%d skupne skupine</item>
     <item quantity="other">%d skupnih skupin</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Sporočilo</string>
-  <string name="ManageRecipientActivity_voice_call_description">Zvočni klic</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Nezavarovan zvočni klic</string>
-  <string name="ManageRecipientActivity_video_call_description">Video klic</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Sporočilo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Zvočni klic</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Nezavarovan zvočni klic</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Video klic</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">Uporabnik %1$s je povabil eno osebo</item>
     <item quantity="two">Uporabnik %1$s je povabil %2$d osebi</item>
@@ -1952,6 +1952,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="message_details_recipient_header__delivered_to">Dostavljeno uporabniku/ci</string>
   <string name="message_details_recipient_header__read_by">Prebral uporabnik/ca</string>
   <string name="message_details_recipient_header__not_sent">Neposlano</string>
+  <string name="message_details_recipient_header__viewed">Videli:</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Pošiljanje ni uspelo</string>
   <string name="message_details_recipient__new_safety_number">Novo varnostno število</string>
@@ -2719,7 +2720,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="RecipientBottomSheet_add_to_a_group">Dodaj v skupino</string>
   <string name="RecipientBottomSheet_add_to_another_group">Dodaj v drugo skupino</string>
   <string name="RecipientBottomSheet_view_safety_number">Pregled varnostnega števila</string>
-  <string name="RecipientBottomSheet_make_group_admin">Določi za skrbnika/co skupine</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Določi za skrbnika/co skupine</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">Odstrani kot skrbnika/co</string>
   <string name="RecipientBottomSheet_remove_from_group">Odstrani iz skupine</string>
   <string name="RecipientBottomSheet_message_description">Sporočilo</string>

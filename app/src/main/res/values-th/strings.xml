@@ -622,31 +622,31 @@
   <string name="ManageProfileFragment_your_username">ชื่อผู้ใช้ของคุณ</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">ล้มเหลวในการสร้างภาพประจำตัว</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">เพิ่มลงในรายชื่อผู้ติดต่อของระบบ</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">ผู้ใช้รายนี้อยู่ในรายชื่อผู้ติดต่อของคุณ</string>
-  <string name="ManageRecipientActivity_disappearing_messages">ข้อความที่ลบตัวเอง</string>
-  <string name="ManageRecipientActivity_chat_color">สีแชต</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">ภาพพื้นหลังของหน้าแชต</string>
-  <string name="ManageRecipientActivity_block">ปิดกั้น</string>
-  <string name="ManageRecipientActivity_unblock">เลิกปิดกั้น</string>
-  <string name="ManageRecipientActivity_view_safety_number">ดูหมายเลขความปลอดภัย</string>
-  <string name="ManageRecipientActivity_mute_notifications">ปิดการแจ้งเตือน</string>
-  <string name="ManageRecipientActivity_custom_notifications">การแจ้งเตือนที่กำหนดเอง</string>
-  <string name="ManageRecipientActivity_until_s">จนถึง %1$s</string>
-  <string name="ManageRecipientActivity_always">ตลอดเวลา</string>
-  <string name="ManageRecipientActivity_off">ปิด</string>
-  <string name="ManageRecipientActivity_on">เปิด</string>
-  <string name="ManageRecipientActivity_add_to_a_group">เพิ่มเข้ากลุ่ม</string>
-  <string name="ManageRecipientActivity_view_all_groups">ดูกลุ่มทั้งหมด</string>
-  <string name="ManageRecipientActivity_see_all">ดูทั้งหมด</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">เพิ่มลงในรายชื่อผู้ติดต่อของระบบ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">ผู้ใช้รายนี้อยู่ในรายชื่อผู้ติดต่อของคุณ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">ข้อความที่ลบตัวเอง</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">สีแชต</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">ภาพพื้นหลังของหน้าแชต</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">ปิดกั้น</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">เลิกปิดกั้น</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">ดูหมายเลขความปลอดภัย</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">ปิดการแจ้งเตือน</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">การแจ้งเตือนที่กำหนดเอง</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">จนถึง %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">ตลอดเวลา</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">ปิด</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">เปิด</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">เพิ่มเข้ากลุ่ม</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">ดูกลุ่มทั้งหมด</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">ดูทั้งหมด</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">ไม่มีกลุ่มร่วมกัน</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="other">%d กลุ่มร่วมกัน</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">ข้อความ</string>
-  <string name="ManageRecipientActivity_voice_call_description">โทรเสียง</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">โทรเสียงแบบไม่ปลอดภัย</string>
-  <string name="ManageRecipientActivity_video_call_description">โทรวิดีโอ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">ข้อความ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">โทรเสียง</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">โทรเสียงแบบไม่ปลอดภัย</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">โทรวิดีโอ</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="other">%1$s ได้เชิญ %2$d คน</item>
   </plurals>
@@ -1728,6 +1728,7 @@
   <string name="message_details_recipient_header__delivered_to">ส่งถึงแล้วที่</string>
   <string name="message_details_recipient_header__read_by">อ่านโดย</string>
   <string name="message_details_recipient_header__not_sent">ไม่ได้ส่ง</string>
+  <string name="message_details_recipient_header__viewed">เห็นโดย</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">การส่งล้มเหลว</string>
   <string name="message_details_recipient__new_safety_number">หมายเลขความปลอดภัยใหม่</string>
@@ -2520,7 +2521,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">เพิ่มเข้ากลุ่ม</string>
   <string name="RecipientBottomSheet_add_to_another_group">เพิ่มเข้าอีกกลุ่ม</string>
   <string name="RecipientBottomSheet_view_safety_number">ดูหมายเลขความปลอดภัย</string>
-  <string name="RecipientBottomSheet_make_group_admin">ตั้งเป็นผู้ดูแลกลุ่ม</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">ตั้งเป็นผู้ดูแลกลุ่ม</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">ปลดจากการเป็นผู้ดูแล</string>
   <string name="RecipientBottomSheet_remove_from_group">ลบจากกลุ่ม</string>
   <string name="RecipientBottomSheet_message_description">ข้อความ</string>

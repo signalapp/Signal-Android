@@ -362,15 +362,15 @@
   <string name="ManageGroupActivity_view_all_members">Tingali anggota sedaya</string>
   <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_none">Mboten enten</string> -->
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_disappearing_messages">Pesen ngical</string>
-  <string name="ManageRecipientActivity_block">Blokir</string>
-  <string name="ManageRecipientActivity_unblock">Uculaken blokiranipun</string>
-  <string name="ManageRecipientActivity_view_safety_number">Tingali nomer keamanan</string>
-  <string name="ManageRecipientActivity_mute_notifications">Bisuaken prungon</string>
-  <string name="ManageRecipientActivity_custom_notifications">Prungon kustom</string>
-  <string name="ManageRecipientActivity_off">Pejah</string>
-  <string name="ManageRecipientActivity_on">Gesang</string>
-  <string name="ManageRecipientActivity_message_description">Pesen</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Pesen ngical</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blokir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Uculaken blokiranipun</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Tingali nomer keamanan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Bisuaken prungon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Prungon kustom</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Pejah</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Gesang</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Pesen</string> -->
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Prungon kustom</string>
   <string name="CustomNotificationsDialogFragment__messages">Pesen</string>

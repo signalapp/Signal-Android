@@ -623,31 +623,31 @@
   <string name="ManageProfileFragment_your_username">你的使用者名稱</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">設定頭像失敗</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">加入系統聯絡人</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">這個人在你的聯絡人清單中</string>
-  <string name="ManageRecipientActivity_disappearing_messages">自動銷毀訊息</string>
-  <string name="ManageRecipientActivity_chat_color">聊天的顏色</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">聊天壁紙</string>
-  <string name="ManageRecipientActivity_block">封鎖</string>
-  <string name="ManageRecipientActivity_unblock">解除封鎖</string>
-  <string name="ManageRecipientActivity_view_safety_number">檢視安全碼</string>
-  <string name="ManageRecipientActivity_mute_notifications">將通知調整為靜音</string>
-  <string name="ManageRecipientActivity_custom_notifications">自訂通知</string>
-  <string name="ManageRecipientActivity_until_s">直到 %1$s</string>
-  <string name="ManageRecipientActivity_always">永遠</string>
-  <string name="ManageRecipientActivity_off">關</string>
-  <string name="ManageRecipientActivity_on">開</string>
-  <string name="ManageRecipientActivity_add_to_a_group">新增到群組</string>
-  <string name="ManageRecipientActivity_view_all_groups">檢視全部群組</string>
-  <string name="ManageRecipientActivity_see_all">查看全部</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">加入系統聯絡人</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">這個人在你的聯絡人清單中</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">自動銷毀訊息</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">聊天的顏色</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">聊天壁紙</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">封鎖</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">解除封鎖</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">檢視安全碼</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">將通知調整為靜音</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">自訂通知</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">直到 %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">永遠</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">關</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">開</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">新增到群組</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">檢視全部群組</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">查看全部</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">沒有共同的群組</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="other">%d 個共同的群組</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">訊息</string>
-  <string name="ManageRecipientActivity_voice_call_description">語音電話</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">不安全的語音電話</string>
-  <string name="ManageRecipientActivity_video_call_description">視訊電話</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">訊息</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">語音電話</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">不安全的語音電話</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">視訊電話</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="other">%1$s 邀請了 %2$d 人</item>
   </plurals>
@@ -1744,6 +1744,7 @@
   <string name="message_details_recipient_header__delivered_to">已送達</string>
   <string name="message_details_recipient_header__read_by">已讀取</string>
   <string name="message_details_recipient_header__not_sent">未傳送</string>
+  <string name="message_details_recipient_header__viewed">查看者</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">傳送失敗</string>
   <string name="message_details_recipient__new_safety_number">新的安全碼</string>
@@ -2566,7 +2567,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">新增到群組</string>
   <string name="RecipientBottomSheet_add_to_another_group">新增到另一個群組</string>
   <string name="RecipientBottomSheet_view_safety_number">檢視安全碼</string>
-  <string name="RecipientBottomSheet_make_group_admin">成為群組管理員</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">成為群組管理員</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">移除管理員身份</string>
   <string name="RecipientBottomSheet_remove_from_group">從群組中移除</string>
   <string name="RecipientBottomSheet_message_description">訊息</string>

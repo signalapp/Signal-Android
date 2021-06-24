@@ -722,23 +722,23 @@
   <string name="ManageProfileFragment_your_username">Ваше имя пользователя</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Не удалось установить аватар</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Добавить в системные контакты</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Этот человек есть в ваших контактах</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Исчезающие сообщения</string>
-  <string name="ManageRecipientActivity_chat_color">Цвет чата</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Обои чата</string>
-  <string name="ManageRecipientActivity_block">Заблокировать</string>
-  <string name="ManageRecipientActivity_unblock">Разблокировать</string>
-  <string name="ManageRecipientActivity_view_safety_number">Просмотреть код безопасности</string>
-  <string name="ManageRecipientActivity_mute_notifications">Отключить уведомления</string>
-  <string name="ManageRecipientActivity_custom_notifications">Индивидуальные уведомления</string>
-  <string name="ManageRecipientActivity_until_s">До %1$s</string>
-  <string name="ManageRecipientActivity_always">Всегда</string>
-  <string name="ManageRecipientActivity_off">Отключено</string>
-  <string name="ManageRecipientActivity_on">Включено</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Добавить в группу</string>
-  <string name="ManageRecipientActivity_view_all_groups">Просмотреть все группы</string>
-  <string name="ManageRecipientActivity_see_all">Просмотреть все</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Добавить в системные контакты</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Этот человек есть в ваших контактах</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Исчезающие сообщения</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Цвет чата</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Обои чата</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Заблокировать</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Разблокировать</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Просмотреть код безопасности</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Отключить уведомления</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Индивидуальные уведомления</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">До %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Всегда</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Отключено</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Включено</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Добавить в группу</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Просмотреть все группы</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Просмотреть все</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Нет общих групп</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d общая группа</item>
@@ -746,10 +746,10 @@
     <item quantity="many">%d общих групп</item>
     <item quantity="other">%d общих групп</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Написать сообщение</string>
-  <string name="ManageRecipientActivity_voice_call_description">Начать аудиозвонок</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Начать незащищённый аудиозвонок</string>
-  <string name="ManageRecipientActivity_video_call_description">Начать видеозвонок</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Написать сообщение</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Начать аудиозвонок</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Начать незащищённый аудиозвонок</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Начать видеозвонок</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s пригласил(-а) 1 человека</item>
     <item quantity="few">%1$s пригласил(-а) %2$d людей</item>
@@ -1957,6 +1957,7 @@
   <string name="message_details_recipient_header__delivered_to">Доставлено</string>
   <string name="message_details_recipient_header__read_by">Прочитано</string>
   <string name="message_details_recipient_header__not_sent">Не отправлено</string>
+  <string name="message_details_recipient_header__viewed">Просмотрено</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Не удалось отправить</string>
   <string name="message_details_recipient__new_safety_number">Новый код безопасности</string>
@@ -2803,7 +2804,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">Добавить в группу</string>
   <string name="RecipientBottomSheet_add_to_another_group">Добавить в другую группу</string>
   <string name="RecipientBottomSheet_view_safety_number">Просмотреть код безопасности</string>
-  <string name="RecipientBottomSheet_make_group_admin">Сделать администратором группы</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Сделать администратором группы</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">Удалить как администратора</string>
   <string name="RecipientBottomSheet_remove_from_group">Удалить из группы</string>
   <string name="RecipientBottomSheet_message_description">Написать сообщение</string>

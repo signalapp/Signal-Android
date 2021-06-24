@@ -539,28 +539,28 @@
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ទទួលបានការជូនដំណឹងនៅពេលដែលអ្នកត្រូវបានគេហៅនៅក្នុងការសន្ទនាស្ងាត់ ៗ ?</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_disappearing_messages">សារបាត់ទៅវិញ</string>
-  <string name="ManageRecipientActivity_chat_color">ពណ៌ការជជែក</string>
-  <string name="ManageRecipientActivity_block">រារាំង</string>
-  <string name="ManageRecipientActivity_unblock">បើកវិញ</string>
-  <string name="ManageRecipientActivity_view_safety_number">មើលលេខសុវត្ថិភាព</string>
-  <string name="ManageRecipientActivity_mute_notifications">បិទសំឡេងសារជូនដំណឹង</string>
-  <string name="ManageRecipientActivity_custom_notifications">សារជូនដំណឹងផ្សេង</string>
-  <string name="ManageRecipientActivity_until_s">រហូតដល់ %1$s</string>
-  <string name="ManageRecipientActivity_off">បិទ</string>
-  <string name="ManageRecipientActivity_on">បើក</string>
-  <string name="ManageRecipientActivity_add_to_a_group">បន្ថែមទៅក្រុមមួយ</string>
-  <string name="ManageRecipientActivity_view_all_groups">មើលក្រុមទាំងអស់</string>
-  <string name="ManageRecipientActivity_see_all">មើលទាំងអស់</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">សារបាត់ទៅវិញ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">ពណ៌ការជជែក</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">រារាំង</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">បើកវិញ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">មើលលេខសុវត្ថិភាព</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">បិទសំឡេងសារជូនដំណឹង</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">សារជូនដំណឹងផ្សេង</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">រហូតដល់ %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">បិទ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">បើក</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">បន្ថែមទៅក្រុមមួយ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">មើលក្រុមទាំងអស់</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">មើលទាំងអស់</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">គ្មានក្រុមរួម</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="other">%d ក្រុមរួម</item>
   </plurals>
   <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_edit_name_and_picture">កែប្រែឈ្មោះ និងរូបភាព</string> -->
-  <string name="ManageRecipientActivity_message_description">សារ</string>
-  <string name="ManageRecipientActivity_voice_call_description">ហៅជាសំឡេង</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">ហៅជាសំឡេងគ្មានសុវត្ថិភាព</string>
-  <string name="ManageRecipientActivity_video_call_description">ហៅជាវីដេអូ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">សារ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">ហៅជាសំឡេង</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">ហៅជាសំឡេងគ្មានសុវត្ថិភាព</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">ហៅជាវីដេអូ</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="other">%1$s បានអញ្ជើញមនុស្ស%2$d នាក់</item>
   </plurals>
@@ -2029,7 +2029,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">បន្ថែមទៅក្រុមមួយ</string>
   <string name="RecipientBottomSheet_add_to_another_group">បន្ថែមទៅក្រុមផ្សេង</string>
   <string name="RecipientBottomSheet_view_safety_number">មើលលេខសុវត្ថិភាព</string>
-  <string name="RecipientBottomSheet_make_group_admin">កំណត់អ្នកគ្រប់គ្រងក្រុម</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">កំណត់អ្នកគ្រប់គ្រងក្រុម</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">លុបអ្នកគ្រប់គ្រង</string>
   <string name="RecipientBottomSheet_remove_from_group">លុបចេញពីក្រុម</string>
   <string name="RecipientBottomSheet_message_description">សារ</string>

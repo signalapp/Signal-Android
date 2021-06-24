@@ -656,32 +656,32 @@
   <string name="ManageProfileFragment_your_username">Kullanıcı adınız</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avatar ayarlanamadı</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Sistem kişilerine ekle</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Kişileriniz arasında</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Kaybolan iletiler</string>
-  <string name="ManageRecipientActivity_chat_color">Konuşma rengi</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Konuşma duvar kağıdı</string>
-  <string name="ManageRecipientActivity_block">Engelle</string>
-  <string name="ManageRecipientActivity_unblock">Engeli kaldır</string>
-  <string name="ManageRecipientActivity_view_safety_number">Güvenlik numarasını görüntüle</string>
-  <string name="ManageRecipientActivity_mute_notifications">Bildirimleri sessize al</string>
-  <string name="ManageRecipientActivity_custom_notifications">Özel bildirimler</string>
-  <string name="ManageRecipientActivity_until_s">%1$s tarihine kadar</string>
-  <string name="ManageRecipientActivity_always">Her zaman</string>
-  <string name="ManageRecipientActivity_off">Kapalı</string>
-  <string name="ManageRecipientActivity_on">Açık</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Bir gruba ekle</string>
-  <string name="ManageRecipientActivity_view_all_groups">Tüm grupları görüntüle</string>
-  <string name="ManageRecipientActivity_see_all">Tümünü gör</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Sistem kişilerine ekle</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Kişileriniz arasında</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Kaybolan iletiler</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Konuşma rengi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Konuşma duvar kağıdı</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Engelle</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Engeli kaldır</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Güvenlik numarasını görüntüle</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Bildirimleri sessize al</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Özel bildirimler</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">%1$s tarihine kadar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Her zaman</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Kapalı</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Açık</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Bir gruba ekle</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Tüm grupları görüntüle</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Tümünü gör</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Ortak grubunuz yok</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d ortak grup</item>
     <item quantity="other">%d ortak grup</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">İleti</string>
-  <string name="ManageRecipientActivity_voice_call_description">Sesli arama</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Şifresiz sesli arama</string>
-  <string name="ManageRecipientActivity_video_call_description">Görüntülü arama</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">İleti</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Sesli arama</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Şifresiz sesli arama</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Görüntülü arama</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s, 1 kişiyi davet etti</item>
     <item quantity="other">%1$s, %2$d kişiyi davet etti</item>
@@ -865,6 +865,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Bir başlık ekleyin…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Boyut sınırını aştığı için bir öğe kaldırıldı.</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Bilinmeyen bir türe sahip olduğu için bir öğe kaldırıldı.</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Bilinmeyen bir türe sahip olduğu veya boyut sınırı aştığı için bir öğe kaldırıldı.</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera kullanılamıyor.</string>
   <string name="MediaSendActivity_message_to_s">%s kişisine ileti</string>
   <string name="MediaSendActivity_message">İleti</string>
@@ -1816,6 +1818,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="message_details_recipient_header__delivered_to">İletilen</string>
   <string name="message_details_recipient_header__read_by">Okuyan</string>
   <string name="message_details_recipient_header__not_sent">Gönderilemedi</string>
+  <string name="message_details_recipient_header__viewed">Görenler</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Gönderilemedi</string>
   <string name="message_details_recipient__new_safety_number">Yeni güvenlik numarası</string>
@@ -2646,7 +2649,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Bir gruba ekle</string>
   <string name="RecipientBottomSheet_add_to_another_group">Başka bir gruba ekle</string>
   <string name="RecipientBottomSheet_view_safety_number">Güvenlik numarasını görüntüle</string>
-  <string name="RecipientBottomSheet_make_group_admin">Grup yöneticisi yap</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Grup yöneticisi yap</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">Grup yöneticiliğinden çıkart</string>
   <string name="RecipientBottomSheet_remove_from_group">Gruptan çıkart</string>
   <string name="RecipientBottomSheet_message_description">İleti</string>

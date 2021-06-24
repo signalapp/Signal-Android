@@ -368,15 +368,15 @@
   <string name="ManageGroupActivity_view_all_members">Kalli dukkan membobi</string>
   <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_none">Babu.</string> -->
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_disappearing_messages">Sakwanni masu bacewa</string>
-  <string name="ManageRecipientActivity_block">Toshe</string>
-  <string name="ManageRecipientActivity_unblock">Bude</string>
-  <string name="ManageRecipientActivity_view_safety_number">Kalli lambar tsari</string>
-  <string name="ManageRecipientActivity_mute_notifications">Yi tsit da sanarwa</string>
-  <string name="ManageRecipientActivity_custom_notifications">Tanadadden sanarwa</string>
-  <string name="ManageRecipientActivity_off">Kashe</string>
-  <string name="ManageRecipientActivity_on">Kunna</string>
-  <string name="ManageRecipientActivity_message_description">Sako</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Sakwanni masu bacewa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Toshe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Bude</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Kalli lambar tsari</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Yi tsit da sanarwa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Tanadadden sanarwa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Kashe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Kunna</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Sako</string> -->
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Tanadadden sanarwa</string>
   <string name="CustomNotificationsDialogFragment__messages">Sakwanni</string>

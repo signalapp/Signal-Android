@@ -622,31 +622,31 @@
   <string name="ManageProfileFragment_your_username">あなたのユーザー名</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">アバターの設定に失敗しました</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">システムの連絡先に追加</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">このユーザーは連絡先に入っています</string>
-  <string name="ManageRecipientActivity_disappearing_messages">消えるメッセージ</string>
-  <string name="ManageRecipientActivity_chat_color">チャットの色</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">チャットの壁紙</string>
-  <string name="ManageRecipientActivity_block">ブロックする</string>
-  <string name="ManageRecipientActivity_unblock">ブロックを解除する</string>
-  <string name="ManageRecipientActivity_view_safety_number">安全番号を表示</string>
-  <string name="ManageRecipientActivity_mute_notifications">通知をミュート</string>
-  <string name="ManageRecipientActivity_custom_notifications">カスタム通知</string>
-  <string name="ManageRecipientActivity_until_s">%1$sまで</string>
-  <string name="ManageRecipientActivity_always">常時</string>
-  <string name="ManageRecipientActivity_off">オフ</string>
-  <string name="ManageRecipientActivity_on">オン</string>
-  <string name="ManageRecipientActivity_add_to_a_group">グループへ追加</string>
-  <string name="ManageRecipientActivity_view_all_groups">すべてのグループを表示</string>
-  <string name="ManageRecipientActivity_see_all">すべて表示</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">システムの連絡先に追加</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">このユーザーは連絡先に入っています</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">消えるメッセージ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">チャットの色</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">チャットの壁紙</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">ブロックする</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">ブロックを解除する</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">安全番号を表示</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">通知をミュート</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">カスタム通知</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">%1$sまで</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">常時</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">オフ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">オン</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">グループへ追加</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">すべてのグループを表示</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">すべて表示</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">共通のグループ なし</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="other">共通のグループ %d件</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">メッセージ</string>
-  <string name="ManageRecipientActivity_voice_call_description">音声通話</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">安全でない音声通話</string>
-  <string name="ManageRecipientActivity_video_call_description">ビデオ通話</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">メッセージ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">音声通話</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">安全でない音声通話</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">ビデオ通話</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="other">%1$s は%2$d人招待しました</item>
   </plurals>
@@ -1737,6 +1737,7 @@
   <string name="message_details_recipient_header__delivered_to">配信先</string>
   <string name="message_details_recipient_header__read_by">既読者</string>
   <string name="message_details_recipient_header__not_sent">未送信</string>
+  <string name="message_details_recipient_header__viewed">閲覧済み</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">送信に失敗しました</string>
   <string name="message_details_recipient__new_safety_number">新しい安全番号</string>
@@ -2507,7 +2508,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">グループへ追加</string>
   <string name="RecipientBottomSheet_add_to_another_group">他のグループに追加</string>
   <string name="RecipientBottomSheet_view_safety_number">安全番号を表示</string>
-  <string name="RecipientBottomSheet_make_group_admin">グループ管理者にする</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">グループ管理者にする</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">管理者から外す</string>
   <string name="RecipientBottomSheet_remove_from_group">グループから削除</string>
   <string name="RecipientBottomSheet_message_description">メッセージ</string>

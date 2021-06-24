@@ -368,15 +368,15 @@
   <string name="ManageGroupActivity_view_all_members">બધા સભ્યો જુઓ</string>
   <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_none">કંઈ નહીં</string> -->
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_disappearing_messages">અદૃશ્ય થઈ રહેલા મેસેજ</string>
-  <string name="ManageRecipientActivity_block">અવરોધિત કરો</string>
-  <string name="ManageRecipientActivity_unblock">અનાવરોધિત કરો</string>
-  <string name="ManageRecipientActivity_view_safety_number">સલામતી નંબર જુઓ</string>
-  <string name="ManageRecipientActivity_mute_notifications">સૂચનાઓ મ્યૂટ કરો</string>
-  <string name="ManageRecipientActivity_custom_notifications">કસ્ટમ સૂચના</string>
-  <string name="ManageRecipientActivity_off">બંધ</string>
-  <string name="ManageRecipientActivity_on">ચાલુ</string>
-  <string name="ManageRecipientActivity_message_description">મેસેજ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">અદૃશ્ય થઈ રહેલા મેસેજ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">અવરોધિત કરો</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">અનાવરોધિત કરો</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">સલામતી નંબર જુઓ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">સૂચનાઓ મ્યૂટ કરો</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">કસ્ટમ સૂચના</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">બંધ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">ચાલુ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">મેસેજ</string> -->
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">કસ્ટમ સૂચના</string>
   <string name="CustomNotificationsDialogFragment__messages">મેસેજ</string>

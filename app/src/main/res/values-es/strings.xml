@@ -656,32 +656,32 @@
   <string name="ManageProfileFragment_your_username">Alias (nombre de usuari@)</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Fallo al seleccionar foto de perfil</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Añadir a los contactos del sistema</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Esta persona está entre tus contactos</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Desaparición de mensajes</string>
-  <string name="ManageRecipientActivity_chat_color">Color del chat</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Fondo de chat</string>
-  <string name="ManageRecipientActivity_block">Bloquear</string>
-  <string name="ManageRecipientActivity_unblock">Desbloquear</string>
-  <string name="ManageRecipientActivity_view_safety_number">Ver cifras de seguridad</string>
-  <string name="ManageRecipientActivity_mute_notifications">Silenciar notificaciones</string>
-  <string name="ManageRecipientActivity_custom_notifications">Notificaciones personalizadas</string>
-  <string name="ManageRecipientActivity_until_s">Hasta %1$s</string>
-  <string name="ManageRecipientActivity_always">Para siempre</string>
-  <string name="ManageRecipientActivity_off">Inactivo</string>
-  <string name="ManageRecipientActivity_on">Activo</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Añadir a un grupo</string>
-  <string name="ManageRecipientActivity_view_all_groups">Ver todos los grupos</string>
-  <string name="ManageRecipientActivity_see_all">Ver todos</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Añadir a los contactos del sistema</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Esta persona está entre tus contactos</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Desaparición de mensajes</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Color del chat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Fondo de chat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Bloquear</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Desbloquear</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Ver cifras de seguridad</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Silenciar notificaciones</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Notificaciones personalizadas</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Hasta %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Para siempre</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Inactivo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Activo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Añadir a un grupo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Ver todos los grupos</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Ver todos</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">No hay grupos en común</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grupo en común</item>
     <item quantity="other">%d grupos en común</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Mensaje</string>
-  <string name="ManageRecipientActivity_voice_call_description">Llamada de voz</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Llamada no segura</string>
-  <string name="ManageRecipientActivity_video_call_description">Videollamada</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Mensaje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Llamada de voz</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Llamada no segura</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Videollamada</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">«%1$s» ha invitado a 1 persona</item>
     <item quantity="other">«%1$s» ha invitado a %2$d personas</item>
@@ -1460,7 +1460,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="KeyCachingService_passphrase_cached">Signal está desbloqueado</string>
   <string name="KeyCachingService_lock">Bloquear Signal</string>
   <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Tú</string>
+  <string name="MediaPreviewActivity_you">ti</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Formato de contenido incompatible</string>
   <string name="MediaPreviewActivity_draft">Borrador</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal necesita acceso al almacenamiento del teléfono para guardar adjuntos en la tarjeta SD. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Almacenamiento».</string>
@@ -1820,6 +1820,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="message_details_recipient_header__delivered_to">Entregado a</string>
   <string name="message_details_recipient_header__read_by">Leído por</string>
   <string name="message_details_recipient_header__not_sent">No enviado</string>
+  <string name="message_details_recipient_header__viewed">Visto por</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Fallo al enviar</string>
   <string name="message_details_recipient__new_safety_number">Nuevas cifras de seguridad</string>
@@ -2139,7 +2140,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PaymentsDetailsFragment__network_fee">Tasa de la red</string>
   <string name="PaymentsDetailsFragment__sent_by">Enviado por</string>
   <string name="PaymentsDetailsFragment__sent_to_s">Enviado a %1$s</string>
-  <string name="PaymentsDetailsFragment__you_on_s_at_s">Ti el %1$s a las %2$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">ti el %1$s a las %2$s</string>
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s el %2$s a las %3$s</string>
   <string name="PaymentsDetailsFragment__to">Para</string>
   <string name="PaymentsDetailsFragment__from">De</string>
@@ -2650,7 +2651,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="RecipientBottomSheet_add_to_a_group">Añadir a un grupo</string>
   <string name="RecipientBottomSheet_add_to_another_group">Añadir a otro grupo</string>
   <string name="RecipientBottomSheet_view_safety_number">Ver cifras de seguridad</string>
-  <string name="RecipientBottomSheet_make_group_admin">Promover a admin</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Promover a admin</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">Retirar permisos de admin</string>
   <string name="RecipientBottomSheet_remove_from_group">Expulsar del grupo</string>
   <string name="RecipientBottomSheet_message_description">Mensaje</string>

@@ -658,32 +658,32 @@
   <string name="ManageProfileFragment_your_username">Je gebruikersnaam</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Instellen van profielfoto is mislukt</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Aan systeem-contactenlijst toevoegen</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Deze persoon staat in je contactenlijst</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Verlopende berichten</string>
-  <string name="ManageRecipientActivity_chat_color">Gesprekskleur</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Gespreksachtergrond</string>
-  <string name="ManageRecipientActivity_block">Blokkeren</string>
-  <string name="ManageRecipientActivity_unblock">Deblokkeren</string>
-  <string name="ManageRecipientActivity_view_safety_number">Veiligheidsnummer weergeven</string>
-  <string name="ManageRecipientActivity_mute_notifications">Meldingen dempen</string>
-  <string name="ManageRecipientActivity_custom_notifications">Aangepaste meldingen</string>
-  <string name="ManageRecipientActivity_until_s">Tot %1$s</string>
-  <string name="ManageRecipientActivity_always">Voor altijd</string>
-  <string name="ManageRecipientActivity_off">Uit</string>
-  <string name="ManageRecipientActivity_on">Aan</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Aan een groep toevoegen</string>
-  <string name="ManageRecipientActivity_view_all_groups">Alle groepen weergeven</string>
-  <string name="ManageRecipientActivity_see_all">Alles weergeven</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Aan systeem-contactenlijst toevoegen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Deze persoon staat in je contactenlijst</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Verlopende berichten</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Gesprekskleur</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Gespreksachtergrond</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blokkeren</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Deblokkeren</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Veiligheidsnummer weergeven</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Meldingen dempen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Aangepaste meldingen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Tot %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Voor altijd</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Uit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Aan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Aan een groep toevoegen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Alle groepen weergeven</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Alles weergeven</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Geen gemeenschappelijke groepen</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d gemeenschappelijke groep</item>
     <item quantity="other">%d gemeenschappelijke groepen</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Bericht</string>
-  <string name="ManageRecipientActivity_voice_call_description">Spraakoproep</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Onbeveiligde spraakoproep</string>
-  <string name="ManageRecipientActivity_video_call_description">Video-oproep</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Bericht</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Spraakoproep</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Onbeveiligde spraakoproep</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Video-oproep</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s heeft 1 persoon uitgenodigd voor de groep</item>
     <item quantity="other">%1$s heeft %2$d personen uitgenodigd voor de groep</item>
@@ -1824,6 +1824,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="message_details_recipient_header__delivered_to">Afgeleverd aan</string>
   <string name="message_details_recipient_header__read_by">Gelezen door</string>
   <string name="message_details_recipient_header__not_sent">Niet verzonden</string>
+  <string name="message_details_recipient_header__viewed">Gezien door</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Verzenden mislukt</string>
   <string name="message_details_recipient__new_safety_number">Nieuw veiligheidsnummer</string>
@@ -2654,7 +2655,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="RecipientBottomSheet_add_to_a_group">Aan een groep toevoegen</string>
   <string name="RecipientBottomSheet_add_to_another_group">Aan nog een andere groep toevoegen</string>
   <string name="RecipientBottomSheet_view_safety_number">Veiligheidsnummer weergeven</string>
-  <string name="RecipientBottomSheet_make_group_admin">Groepsbeheerder maken</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Groepsbeheerder maken</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">Beheerdersbevoegdheden intrekken</string>
   <string name="RecipientBottomSheet_remove_from_group">Van de groep verwijderen</string>
   <string name="RecipientBottomSheet_message_description">Bericht</string>
@@ -2920,12 +2921,12 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bescherm je gesprekken tegen schermopnames door andere apps door Signals inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle omroepen omleiden en verzegelde afzender</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard-tijdspanne voor nieuwe gesprekken</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel een standaard-tijdspanne in voor verlopende berichten voor alle nieuwe gesprekken die jij zelf begint.</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel in dat elk bericht in gesprekken die jij zelf begint een bepaalde tijd nadat het is gezien voor iedereen moet worden gewist.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pictogram weergeven</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Laat in de berichtdetails een pictogram zien bij berichten die zijn afgeleverd met een verzegelde afzender</string>
   <!--ExpireTimerSettingsFragment-->
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Voor alle nieuwe gesprekken die jij zelf begint zullen berichten nadat ze zijn gezien en nadat de ingestelde tijd is verlopen iedereen gewist worden. – Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Voor alle nieuwe gesprekken die jij zelf begint zullen berichten nadat ze zijn gezien en nadat de ingestelde tijd is verlopen voor iedereen worden gewist. – Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Nieuwe berichten in dit gesprek zullen nadat ze zijn gezien en nadat de ingestelde tijd is verlopen voor iedereen gewist worden. – Gebruik dit niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
   <string name="ExpireTimerSettingsFragment__off">Uit</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 weken</string>

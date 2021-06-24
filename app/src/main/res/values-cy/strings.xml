@@ -724,23 +724,23 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageProfileFragment_your_username">Eich enw defnyddiwr</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Wedi methu gosod afatar</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Ychwanegu at gysylltiadau system</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Mae\'r person hwn yn eich cysylltiadau</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Negeseuon byrhoedlog</string>
-  <string name="ManageRecipientActivity_chat_color">Lliw\'r sgwrs</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Papur wal sgwrsio</string>
-  <string name="ManageRecipientActivity_block">Rhwystro</string>
-  <string name="ManageRecipientActivity_unblock">Dadrwystro</string>
-  <string name="ManageRecipientActivity_view_safety_number">Gweld rhif diogelwch</string>
-  <string name="ManageRecipientActivity_mute_notifications">Tewi hysbysiadau</string>
-  <string name="ManageRecipientActivity_custom_notifications">Hysbysiadau cyfaddas</string>
-  <string name="ManageRecipientActivity_until_s">Tan %1$s</string>
-  <string name="ManageRecipientActivity_always">Bob tro</string>
-  <string name="ManageRecipientActivity_off">I ffwrdd</string>
-  <string name="ManageRecipientActivity_on">Ymlaen</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Ychwanegu i grŵp</string>
-  <string name="ManageRecipientActivity_view_all_groups">Gweld pob grŵp</string>
-  <string name="ManageRecipientActivity_see_all">Gweld y cyfan</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Ychwanegu at gysylltiadau system</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Mae\'r person hwn yn eich cysylltiadau</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Negeseuon byrhoedlog</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Lliw\'r sgwrs</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Papur wal sgwrsio</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Rhwystro</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Dadrwystro</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Gweld rhif diogelwch</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Tewi hysbysiadau</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Hysbysiadau cyfaddas</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Tan %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Bob tro</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">I ffwrdd</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Ymlaen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Ychwanegu i grŵp</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Gweld pob grŵp</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Gweld y cyfan</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Dim grwpiau\'n gyffredin</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d  grwpiau\'n gyffredin</item>
@@ -748,10 +748,10 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">%d grwpiau\'n gyffredin</item>
     <item quantity="other">%d grwpiau\'n gyffredin</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Neges</string>
-  <string name="ManageRecipientActivity_voice_call_description">Galwad llais</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Galwad llais anniogel</string>
-  <string name="ManageRecipientActivity_video_call_description">Galwad fideo</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Neges</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Galwad llais</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Galwad llais anniogel</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Galwad fideo</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">Mae %1$s wedi gwahodd 1 person</item>
     <item quantity="two">Mae %1$s wedi gwahodd %2$d person</item>
@@ -953,6 +953,8 @@ Send neges heb ei ddiogelu?</string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Ychwanegu pennawd…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Cafodd eitem ei thynnu gan ei bod yn fwy na\'r maint mwyaf</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Cafodd eitem ei thynnu gan ei bod o fath anhysbys</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Cafodd eitem ei thynnu gan ei bod yn fwy na\'r maint mwyaf  neu roedd o fath anhysbys</string>
   <string name="MediaSendActivity_camera_unavailable">Camera ddim ar gael.</string>
   <string name="MediaSendActivity_message_to_s">Neges i %s</string>
   <string name="MediaSendActivity_message">Neges</string>
@@ -1964,6 +1966,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="message_details_recipient_header__delivered_to">Trosglwyddwyd at</string>
   <string name="message_details_recipient_header__read_by">`Darllenwyd gan</string>
   <string name="message_details_recipient_header__not_sent">Heb ei hanfon</string>
+  <string name="message_details_recipient_header__viewed">Gwelwyd gan</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Methwyd anfon</string>
   <string name="message_details_recipient__new_safety_number">Rhif diogelwch newydd</string>
@@ -2810,7 +2813,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RecipientBottomSheet_add_to_a_group">Ychwanegu i grŵp</string>
   <string name="RecipientBottomSheet_add_to_another_group">Ychwanegu i grŵp arall</string>
   <string name="RecipientBottomSheet_view_safety_number">Gweld rhif diogelwch</string>
-  <string name="RecipientBottomSheet_make_group_admin">Creu gweinyddwr grŵp</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Creu gweinyddwr grŵp</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">Tynnu fel gweinyddwr</string>
   <string name="RecipientBottomSheet_remove_from_group">Tynnu o\'r grŵp</string>
   <string name="RecipientBottomSheet_message_description">Neges</string>

@@ -656,32 +656,32 @@
   <string name="ManageProfileFragment_your_username">Dein Nutzername</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avatar konnte nicht festgelegt werden</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Zu Systemkontakten hinzufügen</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Diese Person ist in deinen Kontakten</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Verschwindende Nachrichten</string>
-  <string name="ManageRecipientActivity_chat_color">Farbe</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Hintergrund</string>
-  <string name="ManageRecipientActivity_block">Blockieren</string>
-  <string name="ManageRecipientActivity_unblock">Freigeben</string>
-  <string name="ManageRecipientActivity_view_safety_number">Sicherheitsnummer anzeigen</string>
-  <string name="ManageRecipientActivity_mute_notifications">Benachrichtigungen stummschalten</string>
-  <string name="ManageRecipientActivity_custom_notifications">Personalisierte Benachrichtigungen</string>
-  <string name="ManageRecipientActivity_until_s">Bis %1$s</string>
-  <string name="ManageRecipientActivity_always">Immer</string>
-  <string name="ManageRecipientActivity_off">Aus</string>
-  <string name="ManageRecipientActivity_on">Ein</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Zu einer Gruppe hinzufügen</string>
-  <string name="ManageRecipientActivity_view_all_groups">Alle Gruppen anzeigen</string>
-  <string name="ManageRecipientActivity_see_all">Alle anzeigen</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Zu Systemkontakten hinzufügen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Diese Person ist in deinen Kontakten</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Verschwindende Nachrichten</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Farbe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Hintergrund</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blockieren</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Freigeben</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Sicherheitsnummer anzeigen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Benachrichtigungen stummschalten</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Personalisierte Benachrichtigungen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Bis %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Immer</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Aus</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Ein</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Zu einer Gruppe hinzufügen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Alle Gruppen anzeigen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Alle anzeigen</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Keine gemeinsamen Gruppen</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d gemeinsame Gruppe</item>
     <item quantity="other">%d gemeinsame Gruppen</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Nachricht</string>
-  <string name="ManageRecipientActivity_voice_call_description">Sprachanruf</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Unverschlüsselter Sprachanruf</string>
-  <string name="ManageRecipientActivity_video_call_description">Videoanruf</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Nachricht</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Sprachanruf</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Unverschlüsselter Sprachanruf</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Videoanruf</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s hat 1 Person eingeladen</item>
     <item quantity="other">%1$s hat %2$d Personen eingeladen</item>
@@ -1809,6 +1809,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="message_details_recipient_header__delivered_to">Zugestellt an</string>
   <string name="message_details_recipient_header__read_by">Gelesen von</string>
   <string name="message_details_recipient_header__not_sent">Nicht gesendet</string>
+  <string name="message_details_recipient_header__viewed">Angesehen von</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Versand gescheitert</string>
   <string name="message_details_recipient__new_safety_number">Neue Sicherheitsnummer</string>
@@ -2639,7 +2640,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RecipientBottomSheet_add_to_a_group">Zu einer Gruppe hinzufügen</string>
   <string name="RecipientBottomSheet_add_to_another_group">Zu weiterer Gruppe hinzufügen</string>
   <string name="RecipientBottomSheet_view_safety_number">Sicherheitsnummer anzeigen</string>
-  <string name="RecipientBottomSheet_make_group_admin">Zum Gruppen-Admin machen</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Zum Gruppen-Admin machen</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">Als Admin entfernen</string>
   <string name="RecipientBottomSheet_remove_from_group">Aus Gruppe entfernen</string>
   <string name="RecipientBottomSheet_message_description">Nachricht</string>
@@ -2905,7 +2906,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bildschirmfotos in der Anwendung und der Liste der letzten Anwendungen blockieren</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-Nachrichten und -Anrufe, »Anrufe immer indirekt« und »Vertraulicher Absender«</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standardablaufzeit für neue Unterhaltungen</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Lege eine Standardablaufzeit für verschwindende Nachrichten für alle von dir begonnenen neuen Unterhaltungen fest.</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Lege eine Standardablaufzeit für verschwindende Nachrichten aller von dir begonnenen neuen Unterhaltungen fest.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Statussymbol anzeigen</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Symbol unter »Nachrichtendetails« anzeigen bei Nachrichten, die mittels »Vertraulicher Absender« zugestellt wurden</string>

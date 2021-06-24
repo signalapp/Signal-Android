@@ -379,15 +379,15 @@
   <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_none">کوئی نئیں</string> -->
   <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_disappearing_messages">غائب ہون آلے سنیہے</string>
-  <string name="ManageRecipientActivity_block">بلاک کرو</string>
-  <string name="ManageRecipientActivity_unblock">ان بلاک کرو</string>
-  <string name="ManageRecipientActivity_view_safety_number">سیفٹی نمبر ویکھو</string>
-  <string name="ManageRecipientActivity_mute_notifications">اطلاعواں خموش کرو</string>
-  <string name="ManageRecipientActivity_custom_notifications">حسب ضرورت اطلاعواں</string>
-  <string name="ManageRecipientActivity_off">آف</string>
-  <string name="ManageRecipientActivity_on">آن</string>
-  <string name="ManageRecipientActivity_message_description"> سنیہا</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">غائب ہون آلے سنیہے</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">بلاک کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">ان بلاک کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">سیفٹی نمبر ویکھو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">اطلاعواں خموش کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">حسب ضرورت اطلاعواں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">آف</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">آن</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description"> سنیہا</string> -->
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">حسب ضرورت اطلاعواں</string>
   <string name="CustomNotificationsDialogFragment__messages">سنیہے</string>

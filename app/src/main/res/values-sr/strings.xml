@@ -689,33 +689,33 @@
   <string name="ManageProfileFragment_your_username">Твоје корисничко име</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Неуспех постављења аватара</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Додај у системске контакте</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ова особа је у вашим контактима</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Самонестајуће поруке</string>
-  <string name="ManageRecipientActivity_chat_color">Боја ћаскања</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Позадина за ћаскање</string>
-  <string name="ManageRecipientActivity_block">Блокирај</string>
-  <string name="ManageRecipientActivity_unblock">Одблокирај</string>
-  <string name="ManageRecipientActivity_view_safety_number">Прикажи сигурносни број</string>
-  <string name="ManageRecipientActivity_mute_notifications">Утишај обавештења</string>
-  <string name="ManageRecipientActivity_custom_notifications">Прилагођена обавештења</string>
-  <string name="ManageRecipientActivity_until_s">До %1$s</string>
-  <string name="ManageRecipientActivity_always">Увек</string>
-  <string name="ManageRecipientActivity_off">Искључено</string>
-  <string name="ManageRecipientActivity_on">Укључено</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Додај у групу</string>
-  <string name="ManageRecipientActivity_view_all_groups">Види све групе</string>
-  <string name="ManageRecipientActivity_see_all">Погледај све</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Додај у системске контакте</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ова особа је у вашим контактима</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Самонестајуће поруке</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Боја ћаскања</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Позадина за ћаскање</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Блокирај</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Одблокирај</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Прикажи сигурносни број</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Утишај обавештења</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Прилагођена обавештења</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">До %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Увек</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Искључено</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Укључено</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Додај у групу</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Види све групе</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Погледај све</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Нема заједничких група</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d заједничка група</item>
     <item quantity="few">%d заједничке групе</item>
     <item quantity="other">%d заједничких група</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Порука</string>
-  <string name="ManageRecipientActivity_voice_call_description">Гласовни позив</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Несигуран гласовни позив</string>
-  <string name="ManageRecipientActivity_video_call_description">Видео позив</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Порука</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Гласовни позив</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Несигуран гласовни позив</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Видео позив</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s је позвао/ла једну особу</item>
     <item quantity="few">%1$s је позвао/ла %2$d особа</item>
@@ -908,6 +908,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Додај натпис</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Датотека је уклоњена јер је прекорачила дозвољену величину</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Датотека је уклоњена јер је имала непознати тип</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Датотека је уклоњена јер је прекорачила дозвољену величину или има непознати тип</string>
   <string name="MediaSendActivity_camera_unavailable">Камера није доступна.</string>
   <string name="MediaSendActivity_message_to_s">Порука за %s</string>
   <string name="MediaSendActivity_message">Порука</string>
@@ -1889,6 +1891,7 @@
   <string name="message_details_recipient_header__delivered_to">Достављено</string>
   <string name="message_details_recipient_header__read_by">Прочитао</string>
   <string name="message_details_recipient_header__not_sent">Није послато</string>
+  <string name="message_details_recipient_header__viewed">Погледао</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Неуспех слања</string>
   <string name="message_details_recipient__new_safety_number">Нова шифра преписке</string>
@@ -2728,7 +2731,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">Додај у групу</string>
   <string name="RecipientBottomSheet_add_to_another_group">Додај у другу групу</string>
   <string name="RecipientBottomSheet_view_safety_number">Прикажи сигурносни број</string>
-  <string name="RecipientBottomSheet_make_group_admin">Постави за администратора групе</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Постави за администратора групе</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">Одузми администраторске дозволе</string>
   <string name="RecipientBottomSheet_remove_from_group">Уклони из групе</string>
   <string name="RecipientBottomSheet_message_description">Порука</string>

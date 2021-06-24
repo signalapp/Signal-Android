@@ -657,32 +657,32 @@
   <string name="ManageProfileFragment_your_username">Dit brugernavn</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avataren kunne ikke opsættes</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_add_to_system_contacts">Tilføj til dine kontakter</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Personen findes i dine kontakter</string>
-  <string name="ManageRecipientActivity_disappearing_messages">Beskeder med tidsudløb</string>
-  <string name="ManageRecipientActivity_chat_color">Chatfarve</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Chatbaggrund</string>
-  <string name="ManageRecipientActivity_block">Blokér</string>
-  <string name="ManageRecipientActivity_unblock">Fjern blokering</string>
-  <string name="ManageRecipientActivity_view_safety_number">Vis sikkerhedsnummer</string>
-  <string name="ManageRecipientActivity_mute_notifications">Udsæt notifikationer</string>
-  <string name="ManageRecipientActivity_custom_notifications">Brugerdefinerede notifikationer</string>
-  <string name="ManageRecipientActivity_until_s">Indtil %1$s</string>
-  <string name="ManageRecipientActivity_always">Altid</string>
-  <string name="ManageRecipientActivity_off">Deaktiveret</string>
-  <string name="ManageRecipientActivity_on">Aktiveret</string>
-  <string name="ManageRecipientActivity_add_to_a_group">Tilføj til en gruppe</string>
-  <string name="ManageRecipientActivity_view_all_groups">Vis alle grupper</string>
-  <string name="ManageRecipientActivity_see_all">Se alle</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Tilføj til dine kontakter</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Personen findes i dine kontakter</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Beskeder med tidsudløb</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Chatfarve</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Chatbaggrund</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blokér</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Fjern blokering</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Vis sikkerhedsnummer</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Udsæt notifikationer</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Brugerdefinerede notifikationer</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Indtil %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Altid</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Deaktiveret</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Aktiveret</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Tilføj til en gruppe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Vis alle grupper</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Se alle</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Ingen grupper tilfælles</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d gruppe tilfælles</item>
     <item quantity="other">%d grupper tilfælles</item>
   </plurals>
-  <string name="ManageRecipientActivity_message_description">Besked</string>
-  <string name="ManageRecipientActivity_voice_call_description">Taleopkald</string>
-  <string name="ManageRecipientActivity_insecure_voice_call_description">Ukrypteret taleopkald</string>
-  <string name="ManageRecipientActivity_video_call_description">Videoopkald</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Besked</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Taleopkald</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Ukrypteret taleopkald</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Videoopkald</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s inviterede 1 person</item>
     <item quantity="other">%1$s inviterede %2$d personer</item>
@@ -866,6 +866,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Tilføj en billedtekst…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Et element blev fjernet, fordi det oversteg max. grænsen</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Et element blev fjernet, fordi det havde en ukendt type</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Et element blev fjernet, fordi det overskred størrelsesgrænsen eller havde en ukendt type</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera utilgængeligt</string>
   <string name="MediaSendActivity_message_to_s">Besked til %s</string>
   <string name="MediaSendActivity_message">Besked</string>
@@ -1818,6 +1820,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="message_details_recipient_header__delivered_to">Leveret til</string>
   <string name="message_details_recipient_header__read_by">Læst af</string>
   <string name="message_details_recipient_header__not_sent">Ikke sendt</string>
+  <string name="message_details_recipient_header__viewed">Set af</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Kunne ikke sendes</string>
   <string name="message_details_recipient__new_safety_number">Nyt sikkerhedsnummer</string>
@@ -2648,7 +2651,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="RecipientBottomSheet_add_to_a_group">Tilføj til en gruppe</string>
   <string name="RecipientBottomSheet_add_to_another_group">Tilføj til anden gruppe</string>
   <string name="RecipientBottomSheet_view_safety_number">Vis sikkerhedsnummer</string>
-  <string name="RecipientBottomSheet_make_group_admin">Gør til gruppeadministrator</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Gør til gruppeadministrator</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">Fjern som administrator</string>
   <string name="RecipientBottomSheet_remove_from_group">Fjern fra gruppe</string>
   <string name="RecipientBottomSheet_message_description">Besked</string>
