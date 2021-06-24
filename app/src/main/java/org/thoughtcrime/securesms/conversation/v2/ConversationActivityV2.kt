@@ -32,6 +32,7 @@ import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.conversation.v2.dialogs.BlockedDialog
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarRecordingViewDelegate
@@ -45,6 +46,7 @@ import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.loki.api.PublicChatInfoUpdateWorker
+import org.thoughtcrime.securesms.loki.dialogs.SeedDialog
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -409,6 +411,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             // the view) so as to not interfere with all the other gestures. Do not add
             // onClickListeners directly to message content views.
             view.onContentClick()
+            BlockedDialog(thread).show(supportFragmentManager, "Blocked Dialog")
         }
     }
 

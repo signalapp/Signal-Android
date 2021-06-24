@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <org.thoughtcrime.securesms.conversation.v2.OpenGroupGuidelinesView
+    <org.thoughtcrime.securesms.conversation.v2.components.OpenGroupGuidelinesView
         android:id="@+id/openGroupGuidelinesView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/input_bar_height" />
 
-    <org.thoughtcrime.securesms.conversation.v2.TypingIndicatorViewContainer
+    <org.thoughtcrime.securesms.conversation.v2.components.TypingIndicatorViewContainer
         android:id="@+id/typingIndicatorViewContainer"
         android:layout_width="match_parent"
         android:layout_height="36dp"

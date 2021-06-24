@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.conversation.v2
+package org.thoughtcrime.securesms.conversation.v2.components
 
 import android.content.Context
 import android.util.AttributeSet

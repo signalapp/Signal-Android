@@ -126,7 +126,7 @@
                         android:textColor="@color/text"
                         tools:text="Sorry, gotta go fight crime again" />
 
-                    <org.thoughtcrime.securesms.conversation.v2.TypingIndicatorView
+                    <org.thoughtcrime.securesms.conversation.v2.components.TypingIndicatorView
                         android:id="@+id/typingIndicatorView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

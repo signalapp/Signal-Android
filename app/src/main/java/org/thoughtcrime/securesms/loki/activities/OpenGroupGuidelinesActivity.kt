@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.conversation.v2
+package org.thoughtcrime.securesms.loki.activities
 
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_open_group_guidelines.*
