@@ -34,6 +34,6 @@ class DownloadDialog(private val recipient: Recipient) : BaseDialog() {
     }
 
     private fun trust() {
-
+        // TODO: Implement
     }
 }

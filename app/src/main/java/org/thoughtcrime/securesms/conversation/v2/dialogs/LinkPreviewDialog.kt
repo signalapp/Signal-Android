@@ -16,6 +16,6 @@ class LinkPreviewDialog() : BaseDialog() {
     }
 
     private fun enable() {
-
+        // TODO: Implement
     }
 }

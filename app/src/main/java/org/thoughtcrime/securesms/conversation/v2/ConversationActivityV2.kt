@@ -68,7 +68,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // TODO: Selected message background color
     // TODO: Overflow menu background + text color
-    // TODO: Typing indicators
 
     private val adapter by lazy {
         val cursor = DatabaseFactory.getMmsSmsDatabase(this).getConversation(threadID)

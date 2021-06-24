@@ -25,6 +25,6 @@ class OpenURLDialog(private val url: String) : BaseDialog() {
     }
 
     private fun open() {
-
+        // TODO: Implement
     }
 }

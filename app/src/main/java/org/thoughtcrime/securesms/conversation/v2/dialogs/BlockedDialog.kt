@@ -35,6 +35,6 @@ class BlockedDialog(private val recipient: Recipient) : BaseDialog() {
     }
 
     private fun unblock() {
-
+        // TODO: Implement
     }
 }

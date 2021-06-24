@@ -29,6 +29,6 @@ class JoinOpenGroupDialog(private val openGroup: OpenGroupV2) : BaseDialog() {
     }
 
     private fun join() {
-
+        // TODO: Implement
     }
 }

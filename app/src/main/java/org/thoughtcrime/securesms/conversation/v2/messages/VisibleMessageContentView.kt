@@ -35,8 +35,6 @@ import kotlin.math.roundToInt
 class VisibleMessageContentView : LinearLayout {
     var onContentClick: (() -> Unit)? = null
 
-    // TODO: Large emojis
-
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize() }
