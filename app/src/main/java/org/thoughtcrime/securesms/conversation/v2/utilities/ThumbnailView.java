@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.thoughtcrime.securesms.conversation.v2.utilities;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -24,6 +24,9 @@ import com.bumptech.glide.request.RequestOptions;
 
 import network.loki.messenger.R;
 
+import org.thoughtcrime.securesms.components.GlideBitmapListeningTarget;
+import org.thoughtcrime.securesms.components.GlideDrawableListeningTarget;
+import org.thoughtcrime.securesms.components.TransferControlView;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -94,10 +97,9 @@ public class ThumbnailView extends FrameLayout {
       bounds[MAX_WIDTH]  = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxWidth, 0);
       bounds[MIN_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_minHeight, 0);
       bounds[MAX_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxHeight, 0);
-      radius             = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_thumbnail_radius, getResources().getDimensionPixelSize(R.dimen.thumbnail_default_radius));
       typedArray.recycle();
     } else {
-      radius = getResources().getDimensionPixelSize(R.dimen.message_corner_collapse_radius);
+      radius = 0;
     }
   }
 
@@ -275,7 +277,7 @@ public class ThumbnailView extends FrameLayout {
 
     this.slide = slide;
 
-    this.captionIcon.setVisibility(slide.getCaption().isPresent() ? VISIBLE : GONE);
+    this.captionIcon.setVisibility(GONE);
 
     dimens[WIDTH]  = naturalWidth;
     dimens[HEIGHT] = naturalHeight;
@@ -398,6 +400,7 @@ public class ThumbnailView extends FrameLayout {
   }
 
   private class ThumbnailClickDispatcher implements View.OnClickListener {
+
     @Override
     public void onClick(View view) {
       if (thumbnailClickListener            != null &&
@@ -413,9 +416,9 @@ public class ThumbnailView extends FrameLayout {
   }
 
   private class DownloadClickDispatcher implements View.OnClickListener {
+
     @Override
     public void onClick(View view) {
-      Log.i(TAG, "onClick() for download button");
       if (downloadClickListener != null && slide != null) {
         downloadClickListener.onClick(view, Collections.singletonList(slide));
       } else {

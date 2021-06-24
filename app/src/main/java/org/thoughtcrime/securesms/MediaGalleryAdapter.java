@@ -26,7 +26,7 @@ import android.widget.TextView;
 import com.codewaves.stickyheadergrid.StickyHeaderGridAdapter;
 
 
-import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.BucketedThreadMediaLoader.BucketedThreadMedia;
 import org.thoughtcrime.securesms.mms.GlideRequests;

@@ -4,9 +4,11 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Typeface
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
@@ -37,13 +39,20 @@ class ConversationView : LinearLayout {
     fun bind(thread: ThreadRecord, isTyping: Boolean, glide: GlideRequests) {
         this.thread = thread
         populateUserPublicKeyCacheIfNeeded(thread.threadId, context) // FIXME: This is a bad place to do this
+        val unreadCount = thread.unreadCount
         if (thread.recipient.isBlocked) {
             accentView.setBackgroundResource(R.color.destructive)
             accentView.visibility = View.VISIBLE
         } else {
             accentView.setBackgroundResource(R.color.accent)
-            accentView.visibility = if (thread.unreadCount > 0) View.VISIBLE else View.INVISIBLE
+            accentView.visibility = if (unreadCount > 0) View.VISIBLE else View.INVISIBLE
         }
+        val formattedUnreadCount = if (unreadCount < 100) unreadCount.toString() else "99+"
+        unreadCountTextView.text = formattedUnreadCount
+        val textSize = if (unreadCount < 100) 12.0f else 9.0f
+        unreadCountTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize)
+        unreadCountTextView.setTypeface(Typeface.DEFAULT, if (unreadCount < 100) Typeface.BOLD else Typeface.NORMAL)
+        unreadCountIndicator.isVisible = (unreadCount != 0)
         profilePictureView.glide = glide
         profilePictureView.update(thread.recipient, thread.threadId)
         val senderDisplayName = getUserDisplayName(thread.recipient) ?: thread.recipient.address.toString()
@@ -53,7 +62,7 @@ class ConversationView : LinearLayout {
         val rawSnippet = thread.getDisplayBody(context)
         val snippet = highlightMentions(rawSnippet, thread.threadId, context)
         snippetTextView.text = snippet
-        snippetTextView.typeface = if (thread.unreadCount > 0) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
+        snippetTextView.typeface = if (unreadCount > 0) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
         snippetTextView.visibility = if (isTyping) View.GONE else View.VISIBLE
         if (isTyping) {
             typingIndicatorView.startAnimation()

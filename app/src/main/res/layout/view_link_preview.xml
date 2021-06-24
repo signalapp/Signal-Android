@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/mainLinkPreviewContainer"
+<LinearLayout android:id="@+id/mainLinkPreviewContainer"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,11 +13,24 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <ImageView
-            android:id="@+id/thumbnailImageView"
+        <RelativeLayout
             android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:scaleType="centerCrop" />
+            android:layout_height="96dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_link"
+                app:tint="@color/text" />
+
+            <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
+                android:id="@+id/thumbnailImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/titleTextView"

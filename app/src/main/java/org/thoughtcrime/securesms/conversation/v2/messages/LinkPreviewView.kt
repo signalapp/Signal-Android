@@ -1,16 +1,9 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Outline
-import android.graphics.Path
-import android.graphics.RectF
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewOutlineProvider
 import android.widget.LinearLayout
 import androidx.core.content.res.ResourcesCompat
@@ -19,6 +12,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
 import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.mms.ImageSlide
 
 class LinkPreviewView : LinearLayout {
 
@@ -39,10 +33,9 @@ class LinkPreviewView : LinearLayout {
         mainLinkPreviewContainer.clipToOutline = true
         // Thumbnail
         val linkPreview = message.linkPreviews.first()
-        // TODO: Handle downloading state
-        val uri = linkPreview.thumbnail.get().dataUri ?: return
-        glide.load(uri).into(thumbnailImageView)
-        // TODO: Properly use glide and the actual thumbnail
+        if (linkPreview.getThumbnail().isPresent) {
+            thumbnailImageView.setImageResource(glide, ImageSlide(context, linkPreview.getThumbnail().get()), false, false)
+        }
         // Title
         titleTextView.text = linkPreview.title
         val textColorID = if (message.isOutgoing && UiModeUtilities.isDayUiMode(context)) {

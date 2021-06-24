@@ -135,7 +135,7 @@
                 android:background="?android:dividerHorizontal"
                 android:elevation="1dp" />
 
-            <org.thoughtcrime.securesms.conversation.v2.OpenGroupGuidelinesView
+            <org.thoughtcrime.securesms.conversation.v2.components.OpenGroupGuidelinesView
                 android:id="@+id/open_group_guidelines_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

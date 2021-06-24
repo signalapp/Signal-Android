@@ -41,7 +41,7 @@ import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.loki.views.MessageAudioView;
 import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.RemovableEditableMediaView;
-import org.thoughtcrime.securesms.components.ThumbnailView;
+import org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView;
 import org.session.libsignal.utilities.NoExternalStorageException;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.session.libsignal.utilities.Log;

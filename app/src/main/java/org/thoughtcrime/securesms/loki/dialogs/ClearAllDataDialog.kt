@@ -12,18 +12,16 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.session.libsession.utilities.KeyPairUtilities
+import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
+import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
 
-class ClearAllDataDialog : DialogFragment() {
+class ClearAllDataDialog : BaseDialog() {
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val builder = AlertDialog.Builder(requireContext())
+    override fun setContentView(builder: AlertDialog.Builder) {
         val contentView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_clear_all_data, null)
         contentView.cancelButton.setOnClickListener { dismiss() }
         contentView.clearAllDataButton.setOnClickListener { clearAllData() }
         builder.setView(contentView)
-        val result = builder.create()
-        result.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        return result
     }
 
     private fun clearAllData() {

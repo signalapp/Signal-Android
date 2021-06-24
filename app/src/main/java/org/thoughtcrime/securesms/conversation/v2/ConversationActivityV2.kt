@@ -5,25 +5,35 @@ import android.animation.ValueAnimator
 import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.*
 import android.widget.RelativeLayout
+import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProviders
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import kotlinx.android.synthetic.main.activity_conversation_v2.view.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.view_conversation.view.*
 import kotlinx.android.synthetic.main.view_input_bar.view.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
+import nl.komponents.kovenant.ui.successUi
+import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.mentions.MentionsManager
+import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
+import org.session.libsession.utilities.TextSecurePreferences
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.conversation.v2.dialogs.*
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarRecordingViewDelegate
@@ -35,8 +45,13 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.util.DateUtils
+import java.util.*
 import kotlin.math.*
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
@@ -44,6 +59,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private val scrollButtonFullVisibilityThreshold by lazy { toPx(120.0f, resources) }
     private val scrollButtonNoVisibilityThreshold by lazy { toPx(20.0f, resources) }
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
+    private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
     private var actionMode: ActionMode? = null
     private var isLockViewExpanded = false
@@ -52,7 +68,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // TODO: Selected message background color
     // TODO: Overflow menu background + text color
-    // TODO: Typing indicators
 
     private val adapter by lazy {
         val cursor = DatabaseFactory.getMmsSmsDatabase(this).getConversation(threadID)
@@ -101,6 +116,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         restoreDraftIfNeeded()
         addOpenGroupGuidelinesIfNeeded()
         scrollToBottomButton.setOnClickListener { conversationRecyclerView.smoothScrollToPosition(0) }
+        updateUnreadCount()
+        setUpTypingObserver()
+        updateSubtitle()
+        getLatestOpenGroupInfoIfNeeded()
+        setUpBlockedBanner()
+        setUpLinkPreviewObserver()
     }
 
     override fun onResume() {
@@ -180,6 +201,47 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         conversationRecyclerView.layoutParams = recyclerViewLayoutParams
     }
 
+    private fun setUpTypingObserver() {
+        ApplicationContext.getInstance(this).typingStatusRepository.getTypists(threadID).observe(this) { state ->
+            val recipients = if (state != null) state.typists else listOf()
+            typingIndicatorViewContainer.isVisible = recipients.isNotEmpty()
+            typingIndicatorViewContainer.setTypists(recipients)
+            inputBarHeightChanged(inputBar.height)
+        }
+    }
+
+    private fun getLatestOpenGroupInfoIfNeeded() {
+        val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID) ?: return
+        OpenGroupAPIV2.getMemberCount(openGroup.room, openGroup.server).successUi { updateSubtitle() }
+    }
+
+    private fun setUpBlockedBanner() {
+        if (thread.isGroupRecipient) { return }
+        val contactDB = DatabaseFactory.getSessionContactDatabase(this)
+        val sessionID = thread.address.toString()
+        val contact = contactDB.getContactWithSessionID(sessionID)
+        val name = contact?.displayName(Contact.ContactContext.REGULAR) ?: sessionID
+        blockedBannerTextView.text = resources.getString(R.string.activity_conversation_blocked_banner_text, name)
+        blockedBanner.isVisible = thread.isBlocked
+        blockedBanner.setOnClickListener { unblock() }
+    }
+
+    private fun setUpLinkPreviewObserver() {
+        val linkPreviewViewModel = ViewModelProviders.of(this, LinkPreviewViewModel.Factory(LinkPreviewRepository(this)))[LinkPreviewViewModel::class.java]
+        this.linkPreviewViewModel = linkPreviewViewModel
+        if (!TextSecurePreferences.isLinkPreviewsEnabled(this)) {
+            linkPreviewViewModel.onUserCancel(); return
+        }
+        linkPreviewViewModel.linkPreviewState.observe(this, { previewState: LinkPreviewState? ->
+            if (previewState == null) return@observe
+            if (previewState.isLoading) {
+                inputBar.draftLinkPreview()
+            } else {
+                inputBar.updateLinkPreviewDraft(glide, previewState.linkPreview.get())
+            }
+        })
+    }
+
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, this) { onOptionsItemSelected(it) }
         super.onPrepareOptionsMenu(menu)
@@ -194,9 +256,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // region Updating & Animation
     override fun inputBarHeightChanged(newValue: Int) {
+        @Suppress("NAME_SHADOWING") val newValue = max(newValue, resources.getDimension(R.dimen.input_bar_height).roundToInt())
+        // 36 DP is the exact height of the typing indicator view. It's also exactly 18 * 2, and 18 is the large message
+        // corner radius. This makes 36 DP look "correct" in the context of other messages on the screen.
+        val typingIndicatorHeight = if (typingIndicatorViewContainer.isVisible) toPx(36, resources) else 0
         // Recycler view
         val recyclerViewLayoutParams = conversationRecyclerView.layoutParams as RelativeLayout.LayoutParams
-        recyclerViewLayoutParams.bottomMargin = newValue + additionalContentContainer.height
+        recyclerViewLayoutParams.bottomMargin = newValue + additionalContentContainer.height + typingIndicatorHeight
         conversationRecyclerView.layoutParams = recyclerViewLayoutParams
         // Additional content container
         val additionalContentContainerLayoutParams = additionalContentContainer.layoutParams as RelativeLayout.LayoutParams
@@ -216,6 +282,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun inputBarEditTextContentChanged(newContent: CharSequence) {
+        linkPreviewViewModel?.onTextChanged(this, inputBar.text, 0, 0)
         // TODO: Implement the full mention show/hide logic
         if (newContent.contains("@")) {
             showMentionCandidates()
@@ -330,6 +397,35 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             (scrollButtonFullVisibilityThreshold - scrollButtonNoVisibilityThreshold)
         val alpha = max(min(rawAlpha, 1.0f), 0.0f)
         scrollToBottomButton.alpha = alpha
+        updateUnreadCount()
+    }
+
+    private fun updateUnreadCount() {
+        val unreadCount = DatabaseFactory.getMmsSmsDatabase(this).getUnreadCount(threadID)
+        val formattedUnreadCount = if (unreadCount < 100) unreadCount.toString() else "99+"
+        unreadCountTextView.text = formattedUnreadCount
+        val textSize = if (unreadCount < 100) 12.0f else 9.0f
+        unreadCountTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize)
+        unreadCountTextView.setTypeface(Typeface.DEFAULT, if (unreadCount < 100) Typeface.BOLD else Typeface.NORMAL)
+        unreadCountIndicator.isVisible = (unreadCount != 0)
+    }
+
+    private fun updateSubtitle() {
+        muteIconImageView.isVisible = thread.isMuted
+        conversationSubtitleView.isVisible = true
+        if (thread.isMuted) {
+            conversationSubtitleView.text = getString(R.string.ConversationActivity_muted_until_date, DateUtils.getFormattedDateTime(thread.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()))
+        } else if (thread.isGroupRecipient) {
+            val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
+            if (openGroup != null) {
+                val userCount = DatabaseFactory.getLokiAPIDatabase(this).getUserCount(openGroup.room, openGroup.server) ?: 0
+                conversationSubtitleView.text = getString(R.string.ConversationActivity_member_count, userCount)
+            } else {
+                conversationSubtitleView.isVisible = false
+            }
+        } else {
+            conversationSubtitleView.isVisible = false
+        }
     }
     // endregion
 
@@ -351,6 +447,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 this.actionMode = null
             }
         } else {
+            // NOTE:
+            // We have to use onContentClick (rather than a click listener directly on
+            // the view) so as to not interfere with all the other gestures. Do not add
+            // onClickListeners directly to message content views.
             view.onContentClick()
         }
     }
@@ -431,6 +531,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val hitRect = Rect(lockViewLocation[0] - lockViewHitMargin, 0,
             lockViewLocation[0] + lockView.width + lockViewHitMargin, lockViewLocation[1] + lockView.height)
         return hitRect.contains(x, y)
+    }
+
+    private fun unblock() {
+        // TODO: Implement
     }
     // endregion
 

@@ -10,19 +10,21 @@
     android:padding="32dp">
 
     <TextView
+        android:id="@+id/openURLTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dialog_clear_all_data_title"
+        android:text="@string/dialog_open_url_title"
         android:textColor="@color/text"
         android:textStyle="bold"
-        android:textSize="@dimen/medium_font_size" />
+        android:textSize="@dimen/large_font_size" />
 
     <TextView
-        android:id="@+id/seedTextView"
+        android:id="@+id/openURLExplanationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="@string/dialog_clear_all_data_explanation"
+        android:text="@string/dialog_open_url_explanation"
+        android:paddingHorizontal="@dimen/medium_spacing"
         android:textColor="@color/text"
         android:textSize="@dimen/small_font_size"
         android:textAlignment="center" />
@@ -42,13 +44,13 @@
             android:text="@string/cancel" />
 
         <Button
-            style="@style/Widget.Session.Button.Dialog.Destructive"
-            android:id="@+id/clearAllDataButton"
+            style="@style/Widget.Session.Button.Dialog.Unimportant"
+            android:id="@+id/openURLButton"
             android:layout_width="0dp"
             android:layout_height="@dimen/small_button_height"
             android:layout_weight="1"
             android:layout_marginStart="@dimen/medium_spacing"
-            android:text="@string/delete" />
+            android:text="@string/open" />
 
     </LinearLayout>
 

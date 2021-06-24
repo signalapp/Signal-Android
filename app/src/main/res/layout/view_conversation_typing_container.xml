@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/medium_spacing"
+    android:paddingBottom="@dimen/small_spacing"
+    android:gravity="center_vertical">
+
+    <FrameLayout
+        android:id="@+id/typingIndicatorBubble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:background="@drawable/message_bubble_background_received_alone"
+        android:backgroundTint="?message_received_background_color">
+
+        <org.thoughtcrime.securesms.conversation.v2.components.TypingIndicatorView
+            android:id="@+id/typingIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:typingIndicator_tint="@color/text" />
+
+    </FrameLayout>
+
+</FrameLayout>
