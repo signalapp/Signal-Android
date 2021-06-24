@@ -22,6 +22,7 @@ import org.session.libsession.messaging.utilities.UpdateMessageData.Companion.fr
 import org.session.libsession.utilities.ThemeUtil
 import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.UiMode
@@ -126,7 +127,7 @@ class VisibleMessageContentView : LinearLayout {
     companion object {
 
         fun getBodyTextView(context: Context, message: MessageRecord): TextView {
-            val result = TextView(context)
+            val result = EmojiTextView(context)
             val vPadding = context.resources.getDimension(R.dimen.small_spacing).toInt()
             val hPadding = toPx(12, context.resources)
             result.setPadding(hPadding, vPadding, hPadding, vPadding)
