@@ -18,6 +18,14 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/input_bar_height" />
 
+    <org.thoughtcrime.securesms.conversation.v2.TypingIndicatorViewContainer
+        android:id="@+id/typingIndicatorViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="@dimen/input_bar_height"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true" />
+
     <org.thoughtcrime.securesms.conversation.v2.input_bar.InputBar
         android:id="@+id/inputBar"
         android:layout_width="match_parent"

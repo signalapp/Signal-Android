@@ -26,6 +26,8 @@ import kotlinx.android.synthetic.main.view_input_bar_recording.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.mentions.MentionsManager
+import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -106,6 +108,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         addOpenGroupGuidelinesIfNeeded()
         scrollToBottomButton.setOnClickListener { conversationRecyclerView.smoothScrollToPosition(0) }
         updateUnreadCount()
+        setUpTypingObserver()
     }
 
     private fun setUpRecyclerView() {
@@ -175,6 +178,15 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         conversationRecyclerView.layoutParams = recyclerViewLayoutParams
     }
 
+    private fun setUpTypingObserver() {
+        ApplicationContext.getInstance(this).typingStatusRepository.getTypists(threadID).observe(this) { state ->
+            val recipients = if (state != null) state.typists else listOf()
+            typingIndicatorViewContainer.isVisible = recipients.isNotEmpty()
+            typingIndicatorViewContainer.setTypists(recipients)
+            inputBarHeightChanged(inputBar.height)
+        }
+    }
+
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, this) { onOptionsItemSelected(it) }
         super.onPrepareOptionsMenu(menu)
@@ -189,9 +201,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // region Updating & Animation
     override fun inputBarHeightChanged(newValue: Int) {
+        // 36 DP is the exact height of the typing indicator view. It's also exactly 18 * 2, and 18 is the large message
+        // corner radius. This makes 36 DP look "correct" in the context of other messages on the screen.
+        val typingIndicatorHeight = if (typingIndicatorViewContainer.isVisible) toPx(36, resources) else 0
         // Recycler view
         val recyclerViewLayoutParams = conversationRecyclerView.layoutParams as RelativeLayout.LayoutParams
-        recyclerViewLayoutParams.bottomMargin = newValue + additionalContentContainer.height
+        recyclerViewLayoutParams.bottomMargin = newValue + additionalContentContainer.height + typingIndicatorHeight
         conversationRecyclerView.layoutParams = recyclerViewLayoutParams
         // Additional content container
         val additionalContentContainerLayoutParams = additionalContentContainer.layoutParams as RelativeLayout.LayoutParams

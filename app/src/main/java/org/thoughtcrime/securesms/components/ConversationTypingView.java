@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import org.thoughtcrime.securesms.conversation.v2.TypingIndicatorView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.ThemeUtil;
