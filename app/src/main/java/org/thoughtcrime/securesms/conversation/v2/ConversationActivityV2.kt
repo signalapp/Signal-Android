@@ -12,11 +12,10 @@ import android.util.TypedValue
 import android.view.*
 import android.widget.RelativeLayout
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProviders
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.work.ListenableWorker
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import kotlinx.android.synthetic.main.activity_conversation_v2.view.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
@@ -30,7 +29,7 @@ import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
-import org.session.libsession.utilities.recipients.Recipient
+import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.dialogs.*
@@ -41,14 +40,13 @@ import org.thoughtcrime.securesms.conversation.v2.input_bar.mentions.MentionCand
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
-import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.loki.api.PublicChatInfoUpdateWorker
-import org.thoughtcrime.securesms.loki.dialogs.SeedDialog
-import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.util.DateUtils
@@ -60,6 +58,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private val scrollButtonFullVisibilityThreshold by lazy { toPx(120.0f, resources) }
     private val scrollButtonNoVisibilityThreshold by lazy { toPx(20.0f, resources) }
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
+    private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
     private var actionMode: ActionMode? = null
     private var isLockViewExpanded = false
@@ -121,6 +120,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         updateSubtitle()
         getLatestOpenGroupInfoIfNeeded()
         setUpBlockedBanner()
+        setUpLinkPreviewObserver()
     }
 
     private fun setUpRecyclerView() {
@@ -215,6 +215,24 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         blockedBanner.setOnClickListener { unblock() }
     }
 
+    private fun setUpLinkPreviewObserver() {
+        val linkPreviewViewModel = ViewModelProviders.of(this, LinkPreviewViewModel.Factory(LinkPreviewRepository(this)))[LinkPreviewViewModel::class.java]
+        this.linkPreviewViewModel = linkPreviewViewModel
+        if (!TextSecurePreferences.isLinkPreviewsEnabled(this)) {
+            linkPreviewViewModel.onUserCancel(); return
+        }
+        linkPreviewViewModel.linkPreviewState.observe(this, { previewState: LinkPreviewState? ->
+            if (previewState == null) return@observe
+            if (previewState.isLoading) {
+                Log.d("Test", "Loading link preview.")
+                // inputPanel.setLinkPreviewLoading()
+            } else {
+                Log.d("Test", "Setting link preview: " + previewState.linkPreview.isPresent)
+                // inputPanel.setLinkPreview(glideRequests, previewState.linkPreview)
+            }
+        })
+    }
+
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, this) { onOptionsItemSelected(it) }
         super.onPrepareOptionsMenu(menu)
@@ -255,6 +273,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun inputBarEditTextContentChanged(newContent: CharSequence) {
+        linkPreviewViewModel?.onTextChanged(this, inputBar.text, 0, 0)
         // TODO: Implement the full mention show/hide logic
         if (newContent.contains("@")) {
             showMentionCandidates()
