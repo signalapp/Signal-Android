@@ -70,7 +70,7 @@ public class ThumbnailView extends FrameLayout {
   private SlidesClickedListener         downloadClickListener  = null;
   private Slide                         slide                  = null;
 
-  private int radius;
+  public int radius;
 
   public ThumbnailView(Context context) {
     this(context, null);

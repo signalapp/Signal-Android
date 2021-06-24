@@ -14,6 +14,7 @@ import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 import org.thoughtcrime.securesms.database.DatabaseFactory
 
+/** Shown upon sending a message to a user that's blocked. */
 class BlockedDialog(private val recipient: Recipient) : BaseDialog() {
 
     override fun setContentView(builder: AlertDialog.Builder) {

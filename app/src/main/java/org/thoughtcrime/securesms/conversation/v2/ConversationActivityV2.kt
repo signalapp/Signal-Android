@@ -52,6 +52,10 @@ import org.thoughtcrime.securesms.util.DateUtils
 import java.util.*
 import kotlin.math.*
 
+// Some things that seemingly belong to the input bar (e.g. the voice message recording UI) are actually
+// part of the conversation activity layout. This is just because it makes the layout a lot simpler. The
+// price we pay is a bit of back and forth between the input bar and the conversation activity.
+
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
     InputBarRecordingViewDelegate, ConversationRecyclerViewDelegate {
     private val scrollButtonFullVisibilityThreshold by lazy { toPx(120.0f, resources) }
@@ -120,6 +124,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         getLatestOpenGroupInfoIfNeeded()
         setUpBlockedBanner()
         setUpLinkPreviewObserver()
+        scrollToFirstUnreadMessage()
+        markAllAsRead()
     }
 
     override fun onResume() {
@@ -234,10 +240,18 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             if (previewState == null) return@observe
             if (previewState.isLoading) {
                 inputBar.draftLinkPreview()
-            } else {
+            } else if (previewState.linkPreview.isPresent) {
                 inputBar.updateLinkPreviewDraft(glide, previewState.linkPreview.get())
+            } else {
+                inputBar.cancelLinkPreviewDraft()
             }
         })
+    }
+
+    private fun scrollToFirstUnreadMessage() {
+        val lastSeenTimestamp = DatabaseFactory.getThreadDatabase(this).getLastSeenAndHasSent(threadID).first()
+        val lastSeenItemPosition = adapter.findLastSeenItemPosition(lastSeenTimestamp) ?: return
+        conversationRecyclerView.scrollToPosition(lastSeenItemPosition)
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
@@ -253,6 +267,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     // endregion
 
     // region Updating & Animation
+    private fun markAllAsRead() {
+        DatabaseFactory.getThreadDatabase(this).setRead(threadID, true)
+    }
+
     override fun inputBarHeightChanged(newValue: Int) {
         @Suppress("NAME_SHADOWING") val newValue = max(newValue, resources.getDimension(R.dimen.input_bar_height).roundToInt())
         // 36 DP is the exact height of the typing indicator view. It's also exactly 18 * 2, and 18 is the large message
