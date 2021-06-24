@@ -34,8 +34,6 @@ class ConversationRecyclerView : RecyclerView {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 bottomOffset += dy // FIXME: Not sure this is fully accurate, but it seems close enough
-                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                Log.d("Test", "${layoutManager.findFirstVisibleItemPosition()}")
                 delegate?.handleConversationRecyclerViewBottomOffsetChanged(abs(bottomOffset))
             }
         })

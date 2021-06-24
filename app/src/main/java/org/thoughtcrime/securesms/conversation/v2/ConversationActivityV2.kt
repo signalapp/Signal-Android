@@ -5,11 +5,13 @@ import android.animation.ValueAnimator
 import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.widget.RelativeLayout
+import androidx.core.view.isVisible
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import kotlinx.android.synthetic.main.activity_conversation_v2.view.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.view_conversation.view.*
 import kotlinx.android.synthetic.main.view_input_bar.view.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
@@ -331,6 +334,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         unreadCountTextView.text = formattedUnreadCount
         val textSize = if (unreadCount < 100) 12.0f else 9.0f
         unreadCountTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize)
+        unreadCountTextView.setTypeface(Typeface.DEFAULT, if (unreadCount < 100) Typeface.BOLD else Typeface.NORMAL)
+        unreadCountIndicator.isVisible = (unreadCount != 0)
     }
     // endregion
 
