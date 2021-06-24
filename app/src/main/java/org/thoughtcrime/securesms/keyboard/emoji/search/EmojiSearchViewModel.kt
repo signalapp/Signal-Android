@@ -17,7 +17,7 @@ class EmojiSearchViewModel(private val repository: EmojiSearchRepository) : View
   }
 
   fun onQueryChanged(query: String) {
-    repository.submitQuery(query, internalPageModel::postValue)
+    repository.submitQuery(query = query, includeRecents = true, consumer = internalPageModel::postValue)
   }
 
   class Factory(private val repository: EmojiSearchRepository) : ViewModelProvider.Factory {

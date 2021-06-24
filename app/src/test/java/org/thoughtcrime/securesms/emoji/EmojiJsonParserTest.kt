@@ -52,25 +52,25 @@ private const val SAMPLE_JSON_WITH_OBSOLETE = """
 """
 
 private val SAMPLE_JSON_WITHOUT_OBSOLETE_EXPECTED = listOf(
-  StaticEmojiPageModel(EmojiCategory.FOODS.icon, listOf(Emoji("\u0001"), Emoji("\u0002", "\u0003", "\u0004")), Uri.parse("file:///Foods")),
-  StaticEmojiPageModel(EmojiCategory.PLACES.icon, listOf(Emoji("\ud83c\udf0d"), Emoji("\u0003", "\u0004", "\u0005")), Uri.parse("file:///Places"))
+  StaticEmojiPageModel(EmojiCategory.FOODS, listOf(Emoji("\u0001"), Emoji("\u0002", "\u0003", "\u0004")), Uri.parse("file:///Foods")),
+  StaticEmojiPageModel(EmojiCategory.PLACES, listOf(Emoji("\ud83c\udf0d"), Emoji("\u0003", "\u0004", "\u0005")), Uri.parse("file:///Places"))
 )
 
 private val SAMPLE_JSON_WITH_OBSOLETE_EXPECTED_DISPLAY = listOf(
-  StaticEmojiPageModel(EmojiCategory.FOODS.icon, listOf(Emoji("\u0001"), Emoji("\u0002", "\u0003", "\u0004")), Uri.parse("file:///Foods")),
+  StaticEmojiPageModel(EmojiCategory.FOODS, listOf(Emoji("\u0001"), Emoji("\u0002", "\u0003", "\u0004")), Uri.parse("file:///Foods")),
   CompositeEmojiPageModel(
     EmojiCategory.PLACES.icon,
     listOf(
-      StaticEmojiPageModel(EmojiCategory.PLACES.icon, listOf(Emoji("\u0002"), Emoji("\u0003", "\u0004", "\u0005")), Uri.parse("file:///Places_1")),
-      StaticEmojiPageModel(EmojiCategory.PLACES.icon, listOf(Emoji("\u0003"), Emoji("\u0008", "\u0009", "\u0000")), Uri.parse("file:///Places_2"))
+      StaticEmojiPageModel(EmojiCategory.PLACES, listOf(Emoji("\u0002"), Emoji("\u0003", "\u0004", "\u0005")), Uri.parse("file:///Places_1")),
+      StaticEmojiPageModel(EmojiCategory.PLACES, listOf(Emoji("\u0003"), Emoji("\u0008", "\u0009", "\u0000")), Uri.parse("file:///Places_2"))
     )
   )
 )
 
 private val SAMPLE_JSON_WITH_OBSOLETE_EXPECTED_DATA = listOf(
-  StaticEmojiPageModel(EmojiCategory.FOODS.icon, listOf(Emoji("\u0001"), Emoji("\u0002", "\u0003", "\u0004")), Uri.parse("file:///Foods")),
-  StaticEmojiPageModel(EmojiCategory.PLACES.icon, listOf(Emoji("\u0002"), Emoji("\u0003", "\u0004", "\u0005")), Uri.parse("file:///Places_1")),
-  StaticEmojiPageModel(EmojiCategory.PLACES.icon, listOf(Emoji("\u0003"), Emoji("\u0008", "\u0009", "\u0000")), Uri.parse("file:///Places_2"))
+  StaticEmojiPageModel(EmojiCategory.FOODS, listOf(Emoji("\u0001"), Emoji("\u0002", "\u0003", "\u0004")), Uri.parse("file:///Foods")),
+  StaticEmojiPageModel(EmojiCategory.PLACES, listOf(Emoji("\u0002"), Emoji("\u0003", "\u0004", "\u0005")), Uri.parse("file:///Places_1")),
+  StaticEmojiPageModel(EmojiCategory.PLACES, listOf(Emoji("\u0003"), Emoji("\u0008", "\u0009", "\u0000")), Uri.parse("file:///Places_2"))
 )
 
 @RunWith(RobolectricTestRunner::class)

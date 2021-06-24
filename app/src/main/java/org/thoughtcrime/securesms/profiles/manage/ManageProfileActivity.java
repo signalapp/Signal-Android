@@ -66,10 +66,6 @@ public class ManageProfileActivity extends PassphraseRequiredActivity implements
   }
 
   @Override
-  public void onReactWithAnyEmojiPageChanged(int page) {
-  }
-
-  @Override
   public void onReactWithAnyEmojiSelected(@NonNull String emoji) {
     NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().getPrimaryNavigationFragment();
     Fragment        activeFragment  = navHostFragment.getChildFragmentManager().getPrimaryNavigationFragment();

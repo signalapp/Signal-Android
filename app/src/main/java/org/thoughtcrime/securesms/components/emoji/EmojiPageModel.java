@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 public interface EmojiPageModel {
+  String getKey();
   int getIconAttr();
   List<String> getEmoji();
   List<Emoji> getDisplayEmoji();

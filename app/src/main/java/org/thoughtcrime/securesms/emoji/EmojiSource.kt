@@ -152,7 +152,7 @@ data class EmojiMetrics(val rawHeight: Int, val rawWidth: Int, val perRow: Int)
 private fun getAssetsUri(name: String, format: String): Uri = Uri.parse("file:///android_asset/emoji/$name.$format")
 
 private val PAGE_EMOTICONS: EmojiPageModel = StaticEmojiPageModel(
-  EmojiCategory.EMOTICONS.icon,
+  EmojiCategory.EMOTICONS,
   arrayOf(
     ":-)", ";-)", "(-:", ":->", ":-D", "\\o/",
     ":-P", "B-)", ":-$", ":-*", "O:-)", "=-O",

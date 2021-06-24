@@ -20,7 +20,7 @@ class EmojiKeyboardPageViewModel : ViewModel() {
 
   val categories: LiveData<MappingModelList> = Transformations.map(internalSelectedKey) { selected ->
     MappingModelList().apply {
-      add(EmojiKeyboardPageCategoryMappingModel.RecentsMappingModel(selected == EmojiKeyboardPageCategoryMappingModel.RecentsMappingModel.KEY))
+      add(EmojiKeyboardPageCategoryMappingModel.RecentsMappingModel(selected == RecentEmojiPageModel.KEY))
 
       EmojiCategory.values().forEach {
         add(EmojiKeyboardPageCategoryMappingModel.EmojiCategoryMappingModel(it, it.key == selected))
@@ -41,7 +41,7 @@ class EmojiKeyboardPageViewModel : ViewModel() {
   }
 
   private fun getPageForCategory(mappingModel: EmojiKeyboardPageCategoryMappingModel): EmojiPageMappingModel {
-    val page = if (mappingModel.key == EmojiKeyboardPageCategoryMappingModel.RecentsMappingModel.KEY) {
+    val page = if (mappingModel.key == RecentEmojiPageModel.KEY) {
       RecentEmojiPageModel(ApplicationDependencies.getApplication(), EmojiKeyboardProvider.RECENT_STORAGE_KEY)
     } else {
       EmojiSource.latest.displayPages.first { it.iconAttr == mappingModel.iconId }
@@ -57,7 +57,7 @@ class EmojiKeyboardPageViewModel : ViewModel() {
   companion object {
     fun getStartingTab(): String {
       return if (RecentEmojiPageModel.hasRecents(ApplicationDependencies.getApplication(), EmojiKeyboardProvider.RECENT_STORAGE_KEY)) {
-        EmojiKeyboardPageCategoryMappingModel.RecentsMappingModel.KEY
+        RecentEmojiPageModel.KEY
       } else {
         EmojiCategory.PEOPLE.key
       }

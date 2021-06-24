@@ -122,9 +122,6 @@ class EditReactionsFragment : LoggingFragment(R.layout.edit_reactions_fragment),
     viewModel.setSelection(EditReactionsViewModel.NO_SELECTION)
   }
 
-  override fun onReactWithAnyEmojiPageChanged(page: Int) {
-  }
-
   override fun onReactWithAnyEmojiSelected(emoji: String) {
     viewModel.onEmojiSelected(emoji)
   }

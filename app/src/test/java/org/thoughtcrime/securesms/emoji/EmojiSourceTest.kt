@@ -20,6 +20,8 @@ class EmojiSourceTest {
 
   private class EmojiPageModelFake(private val displayE: List<Emoji>) : EmojiPageModel {
 
+    override fun getKey(): String = TODO("Not yet implemented")
+
     override fun getEmoji(): List<String> = displayE.map { it.variations }.flatten()
 
     override fun getDisplayEmoji(): List<Emoji> = displayE

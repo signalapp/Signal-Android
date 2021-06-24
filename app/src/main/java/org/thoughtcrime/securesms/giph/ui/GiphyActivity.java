@@ -59,7 +59,7 @@ public class GiphyActivity extends PassphraseRequiredActivity implements Keyboar
   private void initializeToolbar() {
     KeyboardPageSearchView searchView = findViewById(R.id.giphy_search_text);
     searchView.setCallbacks(this);
-    searchView.enableBackNavigation();
+    searchView.enableBackNavigation(true);
     ViewUtil.focusAndShowKeyboard(searchView);
   }
 

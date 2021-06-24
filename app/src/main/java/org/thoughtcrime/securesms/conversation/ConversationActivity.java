@@ -2337,7 +2337,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                                                                               messageRecord.isMms(),
                                                                               oldRecord));
     } else {
-      reactionDelegate.hideAllButMask();
+      reactionDelegate.hideForReactWithAny();
 
       ReactWithAnyEmojiBottomSheetDialogFragment.createForMessageRecord(messageRecord, reactWithAnyEmojiStartPage)
                                                 .show(getSupportFragmentManager(), "BOTTOM");
@@ -2347,11 +2347,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
   @Override
   public void onReactWithAnyEmojiDialogDismissed() {
     reactionDelegate.hideMask();
-  }
-
-  @Override
-  public void onReactWithAnyEmojiPageChanged(int page) {
-    reactWithAnyEmojiStartPage = page;
   }
 
   @Override

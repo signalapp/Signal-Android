@@ -71,9 +71,7 @@ class KeyboardPageSearchView @JvmOverloads constructor(
       }
     }
 
-    clearButton.setOnClickListener {
-      input.text.clear()
-    }
+    clearButton.setOnClickListener { clearQuery() }
 
     context.obtainStyledAttributes(attrs, R.styleable.KeyboardPageSearchView, 0, 0).use { typedArray ->
       val showAlways: Boolean = typedArray.getBoolean(R.styleable.KeyboardPageSearchView_show_always, false)
@@ -97,6 +95,7 @@ class KeyboardPageSearchView @JvmOverloads constructor(
       val iconTint = typedArray.getColorStateList(R.styleable.KeyboardPageSearchView_search_icon_tint) ?: ContextCompat.getColorStateList(context, R.color.signal_icon_tint_primary)
       ImageViewCompat.setImageTintList(navButton, iconTint)
       ImageViewCompat.setImageTintList(clearButton, iconTint)
+      input.setHintTextColor(iconTint)
 
       val clickOnly: Boolean = typedArray.getBoolean(R.styleable.KeyboardPageSearchView_click_only, false)
       if (clickOnly) {
@@ -109,10 +108,14 @@ class KeyboardPageSearchView @JvmOverloads constructor(
 
   fun showRequested(): Boolean = state == State.SHOW_REQUESTED
 
-  fun enableBackNavigation() {
-    navButton.setImageResource(R.drawable.ic_arrow_left_24)
-    navButton.setOnClickListener {
-      callbacks?.onNavigationClicked()
+  fun enableBackNavigation(enable: Boolean = true) {
+    navButton.setImageResource(if (enable) R.drawable.ic_arrow_left_24 else R.drawable.ic_search_24)
+    if (enable) {
+      navButton.setImageResource(R.drawable.ic_arrow_left_24)
+      navButton.setOnClickListener { callbacks?.onNavigationClicked() }
+    } else {
+      navButton.setImageResource(R.drawable.ic_search_24)
+      navButton.setOnClickListener(null)
     }
   }
 
@@ -166,6 +169,15 @@ class KeyboardPageSearchView @JvmOverloads constructor(
   fun presentForEmojiSearch() {
     ViewUtil.focusAndShowKeyboard(input)
     enableBackNavigation()
+  }
+
+  override fun clearFocus() {
+    super.clearFocus()
+    clearChildFocus(input)
+  }
+
+  fun clearQuery() {
+    input.text.clear()
   }
 
   interface Callbacks {

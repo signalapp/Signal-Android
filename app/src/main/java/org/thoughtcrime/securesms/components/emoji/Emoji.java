@@ -22,4 +22,8 @@ public class Emoji {
   public List<String> getVariations() {
     return variations;
   }
+
+  public boolean hasMultipleVariations() {
+    return variations.size() > 1;
+  }
 }

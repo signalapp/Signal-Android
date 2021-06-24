@@ -28,6 +28,7 @@ import java.util.List;
 public class RecentEmojiPageModel implements EmojiPageModel {
   private static final String TAG            = Log.tag(RecentEmojiPageModel.class);
   private static final int    EMOJI_LRU_SIZE = 50;
+  public static final  String KEY            = "Recents";
 
   private final SharedPreferences     prefs;
   private final String                preferenceName;
@@ -53,6 +54,11 @@ public class RecentEmojiPageModel implements EmojiPageModel {
       Log.w(TAG, e);
       return new LinkedHashSet<>();
     }
+  }
+
+  @Override
+  public String getKey() {
+    return KEY;
   }
 
   @Override public int getIconAttr() {
@@ -99,14 +105,5 @@ public class RecentEmojiPageModel implements EmojiPageModel {
         Log.w(TAG, e);
       }
     });
-  }
-
-  private String[] toReversePrimitiveArray(@NonNull LinkedHashSet<String> emojiSet) {
-    String[] emojis = new String[emojiSet.size()];
-    int i = emojiSet.size() - 1;
-    for (String emoji : emojiSet) {
-      emojis[i--] = emoji;
-    }
-    return emojis;
   }
 }

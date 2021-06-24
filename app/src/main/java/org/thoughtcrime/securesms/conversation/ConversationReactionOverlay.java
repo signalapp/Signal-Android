@@ -16,7 +16,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.RelativeLayout;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -228,8 +227,8 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     hideInternal(hideAnimatorSet, onHideListener);
   }
 
-  public void hideAllButMask() {
-    hideInternal(hideAllButMaskAnimatorSet, null);
+  public void hideForReactWithAny() {
+    hideInternal(hideAnimatorSet, null);
   }
 
   public void hideMask() {

@@ -74,7 +74,7 @@ object EmojiJsonParser {
       }
     }
 
-    return StaticEmojiPageModel(category.icon, pageList, uriFactory(pageName, format))
+    return StaticEmojiPageModel(category, pageList, uriFactory(pageName, format))
   }
 
   private fun mergeToDisplayPages(dataPages: List<EmojiPageModel>): List<EmojiPageModel> {
