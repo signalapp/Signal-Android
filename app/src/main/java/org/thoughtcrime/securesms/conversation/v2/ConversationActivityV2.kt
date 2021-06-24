@@ -423,7 +423,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             // the view) so as to not interfere with all the other gestures. Do not add
             // onClickListeners directly to message content views.
             view.onContentClick()
-            DownloadDialog(thread).show(supportFragmentManager, "Blocked Dialog")
         }
     }
 

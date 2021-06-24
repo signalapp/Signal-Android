@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 
 import org.session.libsession.utilities.ThemeUtil;
+import org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView;
 
 import network.loki.messenger.R;
 

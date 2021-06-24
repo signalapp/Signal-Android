@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 
+import org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
 import org.thoughtcrime.securesms.mms.Slide;
@@ -27,7 +28,7 @@ import network.loki.messenger.R;
 
 public class ConversationItemThumbnail extends FrameLayout {
 
-  private ThumbnailView          thumbnail;
+  private ThumbnailView thumbnail;
   private AlbumThumbnailView     album;
   private ImageView              shade;
   private ConversationItemFooter footer;

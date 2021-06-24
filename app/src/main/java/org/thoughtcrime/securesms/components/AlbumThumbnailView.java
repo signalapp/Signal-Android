@@ -11,6 +11,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import network.loki.messenger.R;
+
+import org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
 import org.thoughtcrime.securesms.mms.Slide;
