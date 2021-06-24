@@ -13,6 +13,8 @@ import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 import org.thoughtcrime.securesms.database.DatabaseFactory
 
+/** Shown when receiving media from a contact for the first time, to confirm that
+ * they are to be trusted and files sent by them are to be downloaded. */
 class DownloadDialog(private val recipient: Recipient) : BaseDialog() {
 
     override fun setContentView(builder: AlertDialog.Builder) {

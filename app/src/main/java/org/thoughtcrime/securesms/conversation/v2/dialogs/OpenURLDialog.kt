@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.dialog_open_url.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 
+/** Shown upon tapping a URL. */
 class OpenURLDialog(private val url: String) : BaseDialog() {
 
     override fun setContentView(builder: AlertDialog.Builder) {

@@ -53,6 +53,10 @@ import org.thoughtcrime.securesms.util.DateUtils
 import java.util.*
 import kotlin.math.*
 
+// Some things that seemingly belong to the input bar (e.g. the voice message recording UI) are actually
+// part of the conversation activity layout. This is just because it makes the layout a lot simpler. The
+// price we pay is a bit of back and forth between the input bar and the conversation activity.
+
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
     InputBarRecordingViewDelegate, ConversationRecyclerViewDelegate {
     private val scrollButtonFullVisibilityThreshold by lazy { toPx(120.0f, resources) }
@@ -225,8 +229,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             if (previewState == null) return@observe
             if (previewState.isLoading) {
                 inputBar.draftLinkPreview()
-            } else {
+            } else if (previewState.linkPreview.isPresent) {
                 inputBar.updateLinkPreviewDraft(glide, previewState.linkPreview.get())
+            } else {
+                inputBar.cancelLinkPreviewDraft()
             }
         })
     }

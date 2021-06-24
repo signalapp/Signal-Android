@@ -11,6 +11,7 @@ import network.loki.messenger.R
 import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 
+/** Shown upon tapping an open group invitation. */
 class JoinOpenGroupDialog(private val openGroup: OpenGroupV2) : BaseDialog() {
 
     override fun setContentView(builder: AlertDialog.Builder) {

@@ -6,6 +6,8 @@ import kotlinx.android.synthetic.main.dialog_link_preview.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 
+/** Shown the first time the user inputs a URL that could generate a link preview, to
+ * let them know that Session offers the ability to send and receive link previews. */
 class LinkPreviewDialog() : BaseDialog() {
 
     override fun setContentView(builder: AlertDialog.Builder) {

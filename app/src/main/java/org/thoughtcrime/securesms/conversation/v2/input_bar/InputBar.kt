@@ -96,6 +96,9 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         delegate?.showVoiceMessageUI()
     }
 
+    // Drafting quotes and drafting link previews is mutually exclusive, i.e. you can't draft
+    // a quote and a link preview at the same time.
+
     fun draftQuote(message: MessageRecord) {
         linkPreviewDraftView = null
         inputBarAdditionalContentContainer.removeAllViews()
