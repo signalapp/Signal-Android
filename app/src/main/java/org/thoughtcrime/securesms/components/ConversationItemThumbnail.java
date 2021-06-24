@@ -72,7 +72,6 @@ public class ConversationItemThumbnail extends FrameLayout {
     }
   }
 
-  @SuppressWarnings("SuspiciousNameCombination")
   @Override
   protected void dispatchDraw(Canvas canvas) {
     super.dispatchDraw(canvas);

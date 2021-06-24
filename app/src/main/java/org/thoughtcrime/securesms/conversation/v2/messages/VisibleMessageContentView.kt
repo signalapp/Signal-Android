@@ -1,11 +1,9 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.text.util.Linkify
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.LinearLayout
@@ -17,11 +15,10 @@ import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import kotlinx.android.synthetic.main.view_visible_message_content.view.*
 import network.loki.messenger.R
-import org.session.libsession.messaging.utilities.UpdateMessageData
-import org.session.libsession.messaging.utilities.UpdateMessageData.Companion.fromJSON
 import org.session.libsession.utilities.ThemeUtil
 import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.components.v2.AlbumThumbnailView
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.UiMode
@@ -89,9 +86,10 @@ class VisibleMessageContentView : LinearLayout {
             documentView.bind(message, VisibleMessageContentView.getTextColor(context, message))
             mainContainer.addView(documentView)
         } else if (message is MmsMessageRecord && message.slideDeck.asAttachments().isNotEmpty()) {
-            val dummyTextView = TextView(context)
-            dummyTextView.text = "asifuygaihsfo"
-            mainContainer.addView(dummyTextView)
+            val albumThumbnailView = AlbumThumbnailView(context)
+            mainContainer.addView(albumThumbnailView)
+            // isStart and isEnd of cluster needed for calculating the mask for full bubble image groups
+            albumThumbnailView.bind(glide, message, isStartOfMessageCluster, isEndOfMessageCluster)
         } else if (message.isOpenGroupInvitation) {
             val openGroupInvitationView = OpenGroupInvitationView(context)
             openGroupInvitationView.bind(message, VisibleMessageContentView.getTextColor(context, message))

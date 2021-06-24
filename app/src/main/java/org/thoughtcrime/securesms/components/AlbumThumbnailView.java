@@ -11,6 +11,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import network.loki.messenger.R;
+
+import org.thoughtcrime.securesms.components.v2.ThumbnailView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
 import org.thoughtcrime.securesms.mms.Slide;
@@ -149,7 +151,6 @@ public class AlbumThumbnailView extends FrameLayout {
   private void setSlide(@NonNull GlideRequests glideRequests, @NonNull Slide slide, @IdRes int id) {
     ThumbnailView cell = findViewById(id);
     cell.setImageResource(glideRequests, slide, false, false);
-    cell.setLoadIndicatorVisibile(slide.isInProgress());
     cell.setThumbnailClickListener(defaultThumbnailClickListener);
     cell.setOnLongClickListener(defaultLongClickListener);
   }
