@@ -53,8 +53,8 @@ public class AlbumThumbnailView extends FrameLayout {
   private void initialize() {
     inflate(getContext(), R.layout.album_thumbnail_view, this);
 
-    albumCellContainer = findViewById(R.id.album_cell_container);
-    transferControls   = new Stub<>(findViewById(R.id.album_transfer_controls_stub));
+    albumCellContainer = findViewById(R.id.albumCellContainer);
+    transferControls   = new Stub<>(findViewById(R.id.albumTransferControlsStub));
   }
 
   public void setSlides(@NonNull GlideRequests glideRequests, @NonNull List<Slide> slides, boolean showControls) {

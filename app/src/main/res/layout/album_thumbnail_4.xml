@@ -6,27 +6,27 @@
     android:layout_width="@dimen/album_total_width"
     android:layout_height="@dimen/album_4_total_height">
 
-    <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
+    <org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
         android:id="@+id/album_cell_1"
         android:layout_width="@dimen/album_4_cell_size"
         android:layout_height="@dimen/album_4_cell_size"
         app:thumbnail_radius="0dp"/>
 
-    <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
+    <org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
         android:id="@+id/album_cell_2"
         android:layout_width="@dimen/album_4_cell_size"
         android:layout_height="@dimen/album_4_cell_size"
         android:layout_gravity="right|end|top"
         app:thumbnail_radius="0dp"/>
 
-    <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
+    <org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
         android:id="@+id/album_cell_3"
         android:layout_width="@dimen/album_4_cell_size"
         android:layout_height="@dimen/album_4_cell_size"
         android:layout_gravity="left|start|bottom"
         app:thumbnail_radius="0dp"/>
 
-    <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
+    <org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
         android:id="@+id/album_cell_4"
         android:layout_width="@dimen/album_4_cell_size"
         android:layout_height="@dimen/album_4_cell_size"

@@ -3,11 +3,14 @@ package org.thoughtcrime.securesms.conversation.v2.utilities
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.thumbnail_view.view.*
@@ -15,14 +18,15 @@ import network.loki.messenger.R
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress
 import org.session.libsession.utilities.Util.equals
 import org.session.libsession.utilities.ViewUtil
+import org.session.libsignal.utilities.ListenableFuture
+import org.session.libsignal.utilities.SettableFuture
+import org.thoughtcrime.securesms.components.GlideBitmapListeningTarget
+import org.thoughtcrime.securesms.components.GlideDrawableListeningTarget
 import org.thoughtcrime.securesms.components.TransferControlView
+import org.thoughtcrime.securesms.mms.*
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
-import org.thoughtcrime.securesms.mms.GlideRequest
-import org.thoughtcrime.securesms.mms.GlideRequests
-import org.thoughtcrime.securesms.mms.Slide
-import org.thoughtcrime.securesms.mms.SlideClickListener
 
-class ThumbnailView: FrameLayout {
+open class KThumbnailView: FrameLayout {
 
     companion object {
         private const val WIDTH = 0
@@ -45,16 +49,19 @@ class ThumbnailView: FrameLayout {
     var thumbnailClickListener: SlideClickListener? = null
 
     private var slide: Slide? = null
+    private var radius: Int = 0
 
     private fun initialize(attrs: AttributeSet?) {
         inflate(context, R.layout.thumbnail_view, this)
         if (attrs != null) {
             val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.ThumbnailView, 0, 0)
 
-            dimensDelegate.setBounds(typedArray.getDimensionPixelSize(R.styleable.ConversationItemThumbnail_conversationThumbnail_minWidth, 0),
-                    typedArray.getDimensionPixelSize(R.styleable.ConversationItemThumbnail_conversationThumbnail_minHeight, 0),
-                    typedArray.getDimensionPixelSize(R.styleable.ConversationItemThumbnail_conversationThumbnail_maxWidth, 0),
-                    typedArray.getDimensionPixelSize(R.styleable.ConversationItemThumbnail_conversationThumbnail_maxHeight, 0))
+            dimensDelegate.setBounds(typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_minWidth, 0),
+                    typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_minHeight, 0),
+                    typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxWidth, 0),
+                    typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxHeight, 0))
+
+            radius = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_thumbnail_radius, 0)
 
             typedArray.recycle()
         }
@@ -82,13 +89,13 @@ class ThumbnailView: FrameLayout {
     // endregion
 
     // region Interaction
-    fun setImageResource(glide: GlideRequests, slide: Slide, showControls: Boolean, isPreview: Boolean) {
+    fun setImageResource(glide: GlideRequests, slide: Slide, showControls: Boolean, isPreview: Boolean): ListenableFuture<Boolean> {
         return setImageResource(glide, slide, showControls, isPreview, 0, 0)
     }
 
     fun setImageResource(glide: GlideRequests, slide: Slide,
                          showControls: Boolean, isPreview: Boolean,
-                         naturalWidth: Int, naturalHeight: Int) {
+                         naturalWidth: Int, naturalHeight: Int): ListenableFuture<Boolean> {
 
         val currentSlide = this.slide
 
@@ -104,7 +111,7 @@ class ThumbnailView: FrameLayout {
 
         if (equals(currentSlide, slide)) {
             // don't re-load slide
-            return
+            return SettableFuture(false)
         }
 
 
@@ -121,17 +128,21 @@ class ThumbnailView: FrameLayout {
         dimensDelegate.setDimens(naturalWidth, naturalHeight)
         invalidate()
 
+        val result = SettableFuture<Boolean>()
+
         when {
             slide.thumbnailUri != null -> {
-                buildThumbnailGlideRequest(glide, slide).into(image)
+                buildThumbnailGlideRequest(glide, slide).into(GlideDrawableListeningTarget(image, result))
             }
             slide.hasPlaceholder() -> {
-                buildPlaceholderGlideRequest(glide, slide).into(image)
+                buildPlaceholderGlideRequest(glide, slide).into(GlideBitmapListeningTarget(image, result))
             }
             else -> {
                 glide.clear(image)
+                result.set(false)
             }
         }
+        return result
     }
 
     fun buildThumbnailGlideRequest(glide: GlideRequests, slide: Slide): GlideRequest<Drawable> {
@@ -169,6 +180,45 @@ class ThumbnailView: FrameLayout {
                 }
                 .fitCenter()
     }
+
+    open fun clear(glideRequests: GlideRequests) {
+        glideRequests.clear(image)
+        transferControls.clear()
+        slide = null
+    }
+
+    fun showProgressSpinner() {
+        transferControls.showProgressSpinner()
+    }
+
+    fun setImageResource(glideRequests: GlideRequests, uri: Uri): ListenableFuture<Boolean> {
+        val future = SettableFuture<Boolean>()
+
+        transferControls.isVisible = false
+
+        var request: GlideRequest<Drawable> = glideRequests.load(DecryptableUri(uri))
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .transition(DrawableTransitionOptions.withCrossFade())
+
+        request = if (radius > 0) {
+            request.transforms(CenterCrop(), RoundedCorners(radius))
+        } else {
+            request.transforms(CenterCrop())
+        }
+
+        request.into(GlideDrawableListeningTarget(image, future))
+
+        return future
+    }
+
+    fun showDownloadText(showDownloadText: Boolean) {
+        transferControls.setShowDownloadText(showDownloadText)
+    }
+
+    fun setDownloadClickListener(listener: SlidesClickedListener) {
+
+    }
+
     // endregion
 
 }

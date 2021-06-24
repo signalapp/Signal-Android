@@ -19,7 +19,7 @@ import network.loki.messenger.R
 import org.session.libsession.utilities.ThemeUtil
 import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
-import org.thoughtcrime.securesms.components.v2.AlbumThumbnailView
+import org.thoughtcrime.securesms.conversation.v2.AlbumThumbnailView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -87,6 +87,7 @@ class VisibleMessageContentView : LinearLayout {
             val albumThumbnailView = AlbumThumbnailView(context)
             mainContainer.addView(albumThumbnailView)
             // isStart and isEnd of cluster needed for calculating the mask for full bubble image groups
+            // bind after add view because views are inflated and calculated during bind
             albumThumbnailView.bind(glide, message, isStartOfMessageCluster, isEndOfMessageCluster)
         } else if (message.isOpenGroupInvitation) {
             val openGroupInvitationView = OpenGroupInvitationView(context)

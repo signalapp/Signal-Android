@@ -6,9 +6,11 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.album_thumbnail_view.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.components.CornerMask
+import org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
 import org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mms.GlideRequests
@@ -20,13 +22,10 @@ class AlbumThumbnailView: FrameLayout {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize() }
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
 
-    private val albumCellContainer by lazy { album_cell_container }
-    private lateinit var cornerMask: CornerMask
+    private val cornerMask by lazy { CornerMask(this) }
 
     private fun initialize() {
         LayoutInflater.from(context).inflate(R.layout.album_thumbnail_view, this)
-        cornerMask = CornerMask(this)
-        cornerMask.setRadius(80)
     }
 
     override fun dispatchDraw(canvas: Canvas?) {
@@ -50,8 +49,10 @@ class AlbumThumbnailView: FrameLayout {
         LayoutInflater.from(context).inflate(layoutRes(slides.size), albumCellContainer)
         // iterate
         slides.take(5).forEachIndexed { position, slide ->
-            getThumbnailView(position).setImageResource(glideRequests, slide, showControls = false, isPreview = false)
+            val imageResource = getThumbnailView(position).setImageResource(glideRequests, slide, showControls = false, isPreview = false)
         }
+        albumCellBodyParent.isVisible = message.body.isNotEmpty()
+        albumCellBodyText.text = message.body
     }
 
     // endregion
@@ -66,12 +67,12 @@ class AlbumThumbnailView: FrameLayout {
         else -> R.layout.album_thumbnail_many// five or more
     }
 
-    fun getThumbnailView(position: Int): ThumbnailView = when (position) {
-        0 -> albumCellContainer.findViewById<ViewGroup>(R.id.album_cell_container).findViewById(R.id.album_cell_1)
-        1 -> albumCellContainer.findViewById<ViewGroup>(R.id.album_cell_container).findViewById(R.id.album_cell_2)
-        2 -> albumCellContainer.findViewById<ViewGroup>(R.id.album_cell_container).findViewById(R.id.album_cell_3)
-        3 -> albumCellContainer.findViewById<ViewGroup>(R.id.album_cell_container).findViewById(R.id.album_cell_4)
-        4 -> albumCellContainer.findViewById<ViewGroup>(R.id.album_cell_container).findViewById(R.id.album_cell_5)
+    fun getThumbnailView(position: Int): KThumbnailView = when (position) {
+        0 -> albumCellContainer.findViewById<ViewGroup>(R.id.albumCellContainer).findViewById(R.id.album_cell_1)
+        1 -> albumCellContainer.findViewById<ViewGroup>(R.id.albumCellContainer).findViewById(R.id.album_cell_2)
+        2 -> albumCellContainer.findViewById<ViewGroup>(R.id.albumCellContainer).findViewById(R.id.album_cell_3)
+        3 -> albumCellContainer.findViewById<ViewGroup>(R.id.albumCellContainer).findViewById(R.id.album_cell_4)
+        4 -> albumCellContainer.findViewById<ViewGroup>(R.id.albumCellContainer).findViewById(R.id.album_cell_5)
         else -> throw Exception("Can't get thumbnail view for non-existent thumbnail at position: $position")
     }
 

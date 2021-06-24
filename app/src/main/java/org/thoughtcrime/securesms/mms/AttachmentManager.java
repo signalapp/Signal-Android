@@ -83,7 +83,7 @@ public class AttachmentManager {
   private final @NonNull AttachmentListener         attachmentListener;
 
   private RemovableEditableMediaView removableMediaView;
-  private ThumbnailView              thumbnail;
+  private ThumbnailView thumbnail;
   private MessageAudioView audioView;
   private DocumentView               documentView;
 

@@ -7,7 +7,6 @@ import android.database.Cursor
 import android.graphics.Rect
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.widget.RelativeLayout
@@ -30,7 +29,6 @@ import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.TextSecurePreferences
-import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.dialogs.*
