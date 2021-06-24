@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.view_quote.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.thoughtcrime.securesms.conversation.v2.components.LinkPreviewDraftView
+import org.thoughtcrime.securesms.conversation.v2.components.LinkPreviewDraftViewDelegate
 import org.thoughtcrime.securesms.conversation.v2.messages.QuoteView
 import org.thoughtcrime.securesms.conversation.v2.messages.QuoteViewDelegate
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -22,7 +23,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import kotlin.math.max
 import kotlin.math.roundToInt
 
-class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
+class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, LinkPreviewDraftViewDelegate {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val vMargin by lazy { toDp(4, resources) }
     private val minHeight by lazy { toPx(56, resources) }
@@ -127,6 +128,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
         val linkPreviewDraftHeight = toPx(88, resources)
         inputBarAdditionalContentContainer.removeAllViews()
         val linkPreviewDraftView = LinkPreviewDraftView(context)
+        linkPreviewDraftView.delegate = this
         this.linkPreviewDraftView = linkPreviewDraftView
         inputBarAdditionalContentContainer.addView(linkPreviewDraftView)
         val newHeight = max(inputBarEditText.height + 2 * vMargin, minHeight) + linkPreviewDraftHeight
@@ -137,6 +139,13 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate {
     fun updateLinkPreviewDraft(glide: GlideRequests, linkPreview: LinkPreview) {
         val linkPreviewDraftView = this.linkPreviewDraftView ?: return
         linkPreviewDraftView.update(glide, linkPreview)
+    }
+
+    override fun cancelLinkPreviewDraft() {
+        inputBarAdditionalContentContainer.removeAllViews()
+        val newHeight = max(inputBarEditText.height + 2 * vMargin, minHeight)
+        additionalContentHeight = 0
+        setHeight(newHeight)
     }
     // endregion
 }

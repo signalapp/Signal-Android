@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.ImageSlide
 
 class LinkPreviewDraftView : LinearLayout {
+    var delegate: LinkPreviewDraftViewDelegate? = null
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
@@ -22,6 +23,7 @@ class LinkPreviewDraftView : LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.view_link_preview_draft, this)
         linkPreviewDraftContainer.isVisible = false
         thumbnailImageView.clipToOutline = true
+        linkPreviewDraftCancelButton.setOnClickListener { cancel() }
     }
     // endregion
 
@@ -35,4 +37,15 @@ class LinkPreviewDraftView : LinearLayout {
         linkPreviewDraftTitleTextView.text = linkPreview.title
     }
     // endregion
+
+    // region Interaction
+    private fun cancel() {
+        delegate?.cancelLinkPreviewDraft()
+    }
+    // endregion
+}
+
+interface LinkPreviewDraftViewDelegate {
+
+    fun cancelLinkPreviewDraft()
 }
