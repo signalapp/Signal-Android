@@ -372,6 +372,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 this.actionMode = null
             }
         } else {
+            // NOTE:
+            // We have to use onContentClick (rather than a click listener directly on
+            // the view) so as to not interfere with all the other gestures. Do not add
+            // onClickListeners directly to message content views.
             view.onContentClick()
         }
     }
