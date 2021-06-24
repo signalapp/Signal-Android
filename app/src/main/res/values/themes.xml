@@ -280,4 +280,9 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="Session.Dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">#120000FF</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
 </resources>

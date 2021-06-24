@@ -17,6 +17,7 @@ import org.session.libsession.utilities.IdentityKeyUtil
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.utilities.hexEncodedPrivateKey
+import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
 
 class SeedDialog : DialogFragment() {
 
@@ -40,6 +41,8 @@ class SeedDialog : DialogFragment() {
         builder.setView(contentView)
         val result = builder.create()
         result.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val isLightMode = UiModeUtilities.isDayUiMode(requireContext())
+        result.window?.setDimAmount(if (isLightMode) 0.1f else 0.75f)
         return result
     }
 
