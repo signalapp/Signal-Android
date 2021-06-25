@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
+import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -9,12 +10,15 @@ import android.widget.LinearLayout
 import androidx.core.content.res.ResourcesCompat
 import kotlinx.android.synthetic.main.view_link_preview.view.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.components.CornerMask
+import org.thoughtcrime.securesms.conversation.v2.utilities.MessageBubbleUtilities
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.ImageSlide
 
 class LinkPreviewView : LinearLayout {
+    private val cornerMask by lazy { CornerMask(this) }
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
@@ -27,7 +31,7 @@ class LinkPreviewView : LinearLayout {
     // endregion
 
     // region Updating
-    fun bind(message: MmsMessageRecord, glide: GlideRequests, background: Drawable) {
+    fun bind(message: MmsMessageRecord, glide: GlideRequests, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {
         mainLinkPreviewContainer.background = background
         mainLinkPreviewContainer.outlineProvider = ViewOutlineProvider.BACKGROUND
         mainLinkPreviewContainer.clipToOutline = true
@@ -48,6 +52,17 @@ class LinkPreviewView : LinearLayout {
         // Body
         val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
         mainLinkPreviewContainer.addView(bodyTextView)
+        // Corner radii
+        val cornerRadii = MessageBubbleUtilities.calculateRadii(context, isStartOfMessageCluster, isEndOfMessageCluster, message.isOutgoing)
+        cornerMask.setTopLeftRadius(cornerRadii[0])
+        cornerMask.setTopRightRadius(cornerRadii[1])
+        cornerMask.setBottomRightRadius(cornerRadii[2])
+        cornerMask.setBottomLeftRadius(cornerRadii[3])
+    }
+
+    override fun dispatchDraw(canvas: Canvas) {
+        super.dispatchDraw(canvas)
+        cornerMask.mask(canvas)
     }
 
     fun recycle() {

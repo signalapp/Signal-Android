@@ -59,7 +59,7 @@ class VisibleMessageContentView : LinearLayout {
         onContentClick = null
         if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
             val linkPreviewView = LinkPreviewView(context)
-            linkPreviewView.bind(message, glide, background)
+            linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster)
             mainContainer.addView(linkPreviewView)
             // Body text view is inside the link preview for layout convenience
         } else if (message is MmsMessageRecord && message.quote != null) {
@@ -77,7 +77,7 @@ class VisibleMessageContentView : LinearLayout {
             mainContainer.addView(bodyTextView)
         } else if (message is MmsMessageRecord && message.slideDeck.audioSlide != null) {
             val voiceMessageView = VoiceMessageView(context)
-            voiceMessageView.bind(message, background)
+            voiceMessageView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster)
             mainContainer.addView(voiceMessageView)
             // We have to use onContentClick (rather than a click listener directly on the voice
             // message view) so as to not interfere with all the other gestures.
