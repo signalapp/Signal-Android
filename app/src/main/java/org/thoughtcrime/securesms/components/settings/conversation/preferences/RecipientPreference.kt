@@ -29,7 +29,9 @@ object RecipientPreference {
     }
 
     override fun areContentsTheSame(newItem: Model): Boolean {
-      return super.areContentsTheSame(newItem) && recipient.hasSameContent(newItem.recipient)
+      return super.areContentsTheSame(newItem) &&
+        recipient.hasSameContent(newItem.recipient) &&
+        isAdmin == newItem.isAdmin
     }
   }
 
