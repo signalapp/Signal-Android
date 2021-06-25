@@ -715,8 +715,8 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       }
     }
 
-    override fun show() {
-      super.show()
+    override fun show(duration: Long) {
+      super.show(duration)
 
       toolbarAvatar
         .animate()
@@ -736,8 +736,8 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         .alpha(1f)
     }
 
-    override fun hide() {
-      super.hide()
+    override fun hide(duration: Long) {
+      super.hide(duration)
 
       toolbarAvatar
         .animate()

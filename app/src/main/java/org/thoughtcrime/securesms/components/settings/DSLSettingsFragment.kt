@@ -52,7 +52,7 @@ abstract class DSLSettingsFragment(
 
   override fun onResume() {
     super.onResume()
-    scrollAnimationHelper.onScrolled(recyclerView, 0, 0)
+    scrollAnimationHelper.setImmediateState(recyclerView)
   }
 
   protected open fun getOnScrollAnimationHelper(toolbarShadow: View): OnScrollAnimationHelper {
@@ -86,8 +86,20 @@ abstract class DSLSettingsFragment(
 
       when (newAnimationState) {
         AnimationState.NONE -> throw AssertionError()
-        AnimationState.HIDE -> hide()
-        AnimationState.SHOW -> show()
+        AnimationState.HIDE -> hide(duration)
+        AnimationState.SHOW -> show(duration)
+      }
+
+      lastAnimationState = newAnimationState
+    }
+
+    fun setImmediateState(recyclerView: RecyclerView) {
+      val newAnimationState = getAnimationState(recyclerView)
+
+      when (newAnimationState) {
+        AnimationState.NONE -> throw AssertionError()
+        AnimationState.HIDE -> hide(0L)
+        AnimationState.SHOW -> show(0L)
       }
 
       lastAnimationState = newAnimationState
@@ -97,9 +109,9 @@ abstract class DSLSettingsFragment(
       return if (recyclerView.canScrollVertically(-1)) AnimationState.SHOW else AnimationState.HIDE
     }
 
-    protected abstract fun show()
+    protected abstract fun show(duration: Long)
 
-    protected abstract fun hide()
+    protected abstract fun hide(duration: Long)
 
     enum class AnimationState {
       NONE,
@@ -110,13 +122,13 @@ abstract class DSLSettingsFragment(
 
   open class ToolbarShadowAnimationHelper(private val toolbarShadow: View) : OnScrollAnimationHelper() {
 
-    override fun show() {
+    override fun show(duration: Long) {
       toolbarShadow.animate()
         .setDuration(duration)
         .alpha(1f)
     }
 
-    override fun hide() {
+    override fun hide(duration: Long) {
       toolbarShadow.animate()
         .setDuration(duration)
         .alpha(0f)
