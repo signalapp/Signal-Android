@@ -2,14 +2,11 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
-import android.content.Context
 import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
 import android.graphics.Typeface
-import android.os.AsyncTask
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.widget.RelativeLayout
@@ -33,9 +30,9 @@ import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
 import org.thoughtcrime.securesms.conversation.v2.dialogs.*
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -51,7 +48,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
-import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.shouldSendReadReceipt
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
@@ -216,6 +212,14 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             typingIndicatorViewContainer.isVisible = recipients.isNotEmpty()
             typingIndicatorViewContainer.setTypists(recipients)
             inputBarHeightChanged(inputBar.height)
+        }
+        if (TextSecurePreferences.isTypingIndicatorsEnabled(this)) {
+            inputBar.inputBarEditText.addTextChangedListener(object : SimpleTextWatcher() {
+
+                override fun onTextChanged(text: String?) {
+                    ApplicationContext.getInstance(this@ConversationActivityV2).typingStatusSender.onTypingStarted(threadID)
+                }
+            })
         }
     }
 

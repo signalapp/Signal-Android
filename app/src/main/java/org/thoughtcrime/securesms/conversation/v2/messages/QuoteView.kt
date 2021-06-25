@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.text.toSpannable
 import androidx.core.view.isVisible
 import androidx.core.view.marginStart
 import kotlinx.android.synthetic.main.view_quote.view.*
@@ -20,10 +21,7 @@ import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.loki.utilities.UiMode
-import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
-import org.thoughtcrime.securesms.loki.utilities.toDp
-import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.mms.SlideDeck
 import kotlin.math.max
 import kotlin.math.min
@@ -106,7 +104,7 @@ class QuoteView : LinearLayout {
 
     // region Updating
     fun bind(authorPublicKey: String, body: String?, attachments: SlideDeck?, thread: Recipient,
-        isOutgoingMessage: Boolean, maxContentWidth: Int, isOpenGroupInvitation: Boolean) {
+        isOutgoingMessage: Boolean, maxContentWidth: Int, isOpenGroupInvitation: Boolean, threadID: Long) {
         val contactDB = DatabaseFactory.getSessionContactDatabase(context)
         // Reduce the max body text view line count to 2 if this is a group thread because
         // we'll be showing the author text view and we don't want the overall quote view height
@@ -121,7 +119,7 @@ class QuoteView : LinearLayout {
         }
         quoteViewAuthorTextView.isVisible = thread.isGroupRecipient
         // Body
-        quoteViewBodyTextView.text = if (isOpenGroupInvitation) resources.getString(R.string.open_group_invitation_view__open_group_invitation) else body
+        quoteViewBodyTextView.text = if (isOpenGroupInvitation) resources.getString(R.string.open_group_invitation_view__open_group_invitation) else MentionUtilities.highlightMentions((body ?: "").toSpannable(), threadID, context);
         quoteViewBodyTextView.setTextColor(getTextColor(isOutgoingMessage))
         // Accent line / attachment preview
         val hasAttachments = (attachments != null && attachments.asAttachments().isNotEmpty())

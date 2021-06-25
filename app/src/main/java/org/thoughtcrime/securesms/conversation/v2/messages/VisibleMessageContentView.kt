@@ -70,7 +70,7 @@ class VisibleMessageContentView : LinearLayout {
             // here to get the layout right.
             val maxContentWidth = (maxWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - toPx(16, resources)).roundToInt()
             quoteView.bind(quote.author.toString(), quote.text, quote.attachment, thread,
-                message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation)
+                message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation, message.threadId)
             mainContainer.addView(quoteView)
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
             ViewUtil.setPaddingTop(bodyTextView, 0)
