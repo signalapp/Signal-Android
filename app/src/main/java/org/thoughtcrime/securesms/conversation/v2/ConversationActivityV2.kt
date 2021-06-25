@@ -343,7 +343,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             val lastCharIndex = text.lastIndex
             val lastChar = text[lastCharIndex]
             // Check if there is whitespace before the '@' or the '@' is the first character
-
             val isCharacterBeforeLastWhiteSpaceOrStartOfLine: Boolean
             if (text.length == 1) {
                 isCharacterBeforeLastWhiteSpaceOrStartOfLine = true // Start of line
@@ -401,12 +400,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             animation.start()
         }
         isShowingMentionCandidatesView = false
-    }
-
-    private fun resetMentions() {
-        previousText = ""
-        currentMentionStartIndex = -1
-        mentions.clear()
     }
 
     override fun toggleAttachmentOptions() {
@@ -639,23 +632,23 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun send() {
+        // Create the message
         val message = VisibleMessage()
         message.sentTimestamp = System.currentTimeMillis()
         message.text = getMessageBody()
         val outgoingTextMessage = OutgoingTextMessage.from(message, thread)
-        ApplicationContext.getInstance(this).typingStatusSender.onTypingStopped(threadID)
-
-//        silentlySetComposeText("")
-//        val id: Long = fragment.stageOutgoingMessage(outgoingTextMessage)
-//
-//        if (initiating) {
-//            DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true)
-//        }
-//
-//        val allocatedThreadId: Long = getAllocatedThreadId(context)
-        message.id = DatabaseFactory.getSmsDatabase(this).insertMessageOutbox(threadID, outgoingTextMessage, false, message.sentTimestamp!!) { /**fragment.releaseOutgoingMessage(id)*/ }
-
+        // Clear the input bar
+        inputBar.text = ""
+        // Clear mentions
+        previousText = ""
+        currentMentionStartIndex = -1
+        mentions.clear()
+        // Put the message in the database
+        message.id = DatabaseFactory.getSmsDatabase(this).insertMessageOutbox(threadID, outgoingTextMessage, false, message.sentTimestamp!!) { }
+        // Send it
         MessageSender.send(message, thread.address)
+        // Send a typing stopped message
+        ApplicationContext.getInstance(this).typingStatusSender.onTypingStopped(threadID)
     }
     // endregion
 
