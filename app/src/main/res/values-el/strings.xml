@@ -652,32 +652,11 @@
   <string name="ManageProfileFragment_your_username">Το όνομα χρήστη σου</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Αποτυχία ορισμού εικόνας προφίλ</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Προσθήκη στις επαφές συστήματος</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Αυτό το άτομο είναι στις επαφές σου</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Μηνύματα που εξαφανίζονται</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Χρώμα συνομιλίας</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Ταπετσαρία συνομιλίας</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Φραγή</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Κατάργηση φραγής</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Προβολή αριθμού ασφαλείας</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Σίγαση ειδοποιήσεων</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Μέχρι %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Πάντα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Ανενεργό</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Ενεργό</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Προσθήκη σε μια ομάδα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Προβολή όλων των ομάδων</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Προβολή όλων</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Καμία κοινή ομάδα</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d κοινή ομάδα</item>
     <item quantity="other">%d κοινές ομάδες</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Μήνυμα</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Βιντεοκλήση</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Μη ασφαλής κλήση φωνής</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Βιντεοκλήση</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">Ο/Η %1$s προσκάλεσε 1 άτομο</item>
     <item quantity="other">Ο/Η %1$s προσκάλεσε %2$d άτομα</item>
@@ -1850,6 +1829,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Σύμβολα</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Σημαίες</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Δε βρέθηκαν αποτελέσματα</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Χρήση προκαθορισμένου</string>
   <string name="arrays__use_custom">Χρήση προσαρμοσμένου</string>
@@ -2563,7 +2543,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">Προσθήκη σε μια ομάδα</string>
   <string name="RecipientBottomSheet_add_to_another_group">Προσθήκη σε άλλη ομάδα</string>
   <string name="RecipientBottomSheet_view_safety_number">Προβολή αριθμού ασφαλείας</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Ορισμός ως διαχειριστή ομάδας</string> -->
+  <string name="RecipientBottomSheet_make_admin">Ορισμός ως διαχειριστή</string>
   <string name="RecipientBottomSheet_remove_as_admin">Αφαίρεση διαχειριστή</string>
   <string name="RecipientBottomSheet_remove_from_group">Αφαίρεση απ\' την ομάδα</string>
   <string name="RecipientBottomSheet_message_description">Μήνυμα</string>
@@ -2868,5 +2848,37 @@
   <string name="StickerSearchDialogFragment_no_results_found">Δε βρέθηκαν αποτελέσματα</string>
   <string name="EmojiSearchFragment__no_results_found">Δε βρέθηκαν αποτελέσματα</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Άγνωστος ήχος κλήσης</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">Μήνυμα</string>
+  <string name="ConversationSettingsFragment__video">Βίντεο</string>
+  <string name="ConversationSettingsFragment__audio">Αρχείο ήχου</string>
+  <string name="ConversationSettingsFragment__call">Κλήση</string>
+  <string name="ConversationSettingsFragment__mute">Σίγαση</string>
+  <string name="ConversationSettingsFragment__muted">Σε σίγαση</string>
+  <string name="ConversationSettingsFragment__search">Αναζήτηση</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Μηνύματα που εξαφανίζονται</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Προβολή αριθμού ασφαλείας</string>
+  <string name="ConversationSettingsFragment__block">Αποκλεισμός</string>
+  <string name="ConversationSettingsFragment__block_group">Φραγή ομάδας</string>
+  <string name="ConversationSettingsFragment__unblock">Κατάργηση αποκλεισμού</string>
+  <string name="ConversationSettingsFragment__unblock_group">Κατάργηση φραγής ομάδας</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Προσθήκη σε μια ομάδα</string>
+  <string name="ConversationSettingsFragment__see_all">Προβολή όλων</string>
+  <string name="ConversationSettingsFragment__add_members">Προσθήκη μελών</string>
+  <string name="ConversationSettingsFragment__permissions">Άδειες</string>
+  <string name="ConversationSettingsFragment__group_link">Σύνδεσμος ομάδας</string>
+  <string name="ConversationSettingsFragment__unmute">Αναίρεση σίγασης</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Προσθήκη μελών</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Επεξεργασία πληροφοριών ομάδας</string>
+  <string name="PermissionsSettingsFragment__all_members">Όλα τα μέλη</string>
+  <string name="PermissionsSettingsFragment__only_admins">Μόνο διαχειριστές</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Ποιοί μπορούν να προσθέσουν νέα μέλη;</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Ποιοί μπορούν να επεξεργαστούν τις πληροφορίες της ομάδας;</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Σίγαση ειδοποιήσεων</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Μη σιγασμένο</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Αναφορές</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Προσαρμογή ειδοποιήσεων</string>
   <!--EOF-->
 </resources>

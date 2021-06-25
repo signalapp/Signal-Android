@@ -649,32 +649,11 @@
   <string name="ManageProfileFragment_your_username">Sinu kasutajanimi</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Profiilipildi määramine ei õnnestunud</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Lisa süsteemi kontaktidesse</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">See isik on sinu kontaktides</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Kaduvad sõnumid</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Vestluse värv</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Vestluse taustapilt</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blokeeri</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Eemalda blokeering</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Näita turvanumbrit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Vaigista teavitused</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Kohandatud teavitused</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">kuni %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Alati</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Väljas</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Sees</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Lisa gruppi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Vaata kõiki gruppe</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Näita kõiki</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Ühised grupid puuduvad</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grupp on ühine</item>
     <item quantity="other">%d gruppi on ühised</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Sõnum</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Häälkõne</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Ebaturvaline häälkõne</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Videokõne</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s kutsus 1 isiku</item>
     <item quantity="other">%1$s kutsus %2$d isikut</item>
@@ -2535,7 +2514,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">Lisa gruppi</string>
   <string name="RecipientBottomSheet_add_to_another_group">Lisa muusse gruppi</string>
   <string name="RecipientBottomSheet_view_safety_number">Näita turvanumbrit</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Tee grupi administraatoriks</string> -->
+  <string name="RecipientBottomSheet_make_admin">Tee administraatoriks</string>
   <string name="RecipientBottomSheet_remove_as_admin">Eemaldada administraatoriõigused</string>
   <string name="RecipientBottomSheet_remove_from_group">Eemalda grupist</string>
   <string name="RecipientBottomSheet_message_description">Sõnum</string>
@@ -2806,5 +2785,37 @@
   <string name="KeyboardPagerFragment_stickers">Kleebised</string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>
   <!--StickerSearchDialogFragment-->
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">Sõnum</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Audio</string>
+  <string name="ConversationSettingsFragment__call">Helista</string>
+  <string name="ConversationSettingsFragment__mute">Vaigista</string>
+  <string name="ConversationSettingsFragment__muted">Vaigistatud</string>
+  <string name="ConversationSettingsFragment__search">Otsing</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Kaduvad sõnumid</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Näita turvanumbrit</string>
+  <string name="ConversationSettingsFragment__block">Blokeeri</string>
+  <string name="ConversationSettingsFragment__block_group">Blokeeri grupp</string>
+  <string name="ConversationSettingsFragment__unblock">Eemalda blokeering</string>
+  <string name="ConversationSettingsFragment__unblock_group">Eemalda grupi blokeering</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Lisa gruppi</string>
+  <string name="ConversationSettingsFragment__see_all">Näita kõiki</string>
+  <string name="ConversationSettingsFragment__add_members">Lisa liikmed</string>
+  <string name="ConversationSettingsFragment__permissions">Õigused</string>
+  <string name="ConversationSettingsFragment__group_link">Grupilink</string>
+  <string name="ConversationSettingsFragment__unmute">Eemalda vaigistus</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Lisa liikmed</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Muuda grupi infot</string>
+  <string name="PermissionsSettingsFragment__all_members">Kõik liikmed</string>
+  <string name="PermissionsSettingsFragment__only_admins">Ainult administraatorid</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Kes saavad uusi liikmeid lisada?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kes saab selle grupi infot muuta?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Vaigista teavitused</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Pole vaigistatud</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Mainimised</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Kohandatud teavitused</string>
   <!--EOF-->
 </resources>

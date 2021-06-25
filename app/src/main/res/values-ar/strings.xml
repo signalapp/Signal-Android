@@ -789,23 +789,6 @@
   <string name="ManageProfileFragment_your_username">اسم المستخدم الخاص بك</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">فشل ضبط صورة حسابك</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">إضافة إلى جهات اتصال النظام</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">هذا الشخص محفوظ في جهات اتصالك</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">الرسائل المختفية</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">لون المحادثة.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">خلفية المحادثة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">حظر</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">رفع الحظر</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">إظهار رقم الأمان</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">كتم الإشعارات</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">إشعارات مخصصة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">حتى %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">دائمًا</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">غير مُشغَّل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">مُشغَّل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">إضافة إلى مجموعة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">مشاهدة جميع المجموعات</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">مشاهدة الكل</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">لا توجد مجموعات مشتركة</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="zero">%d مجموعة مشتركة</item>
@@ -815,10 +798,6 @@
     <item quantity="many">%d مجموعة مشتركة</item>
     <item quantity="other">%d مجموعة مشتركة</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">رسالة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">مكالمة صوتية</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">مكالمة صوتية غير آمنة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">مكالمة بالصورة</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="zero">قام %1$s بدعوة %2$d أشخاص</item>
     <item quantity="one">دعا %1$s شخص</item>
@@ -2144,6 +2123,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">الرموز</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">الأعلام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">الرموز التعبيرية</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">لم يعثر على أي نتيجة</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">استخدم الافتراضي</string>
   <string name="arrays__use_custom">تخصيص</string>
@@ -2845,7 +2825,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">إضافة إلى مجموعة</string>
   <string name="RecipientBottomSheet_add_to_another_group">إضافة إلى مجموعة أخرى</string>
   <string name="RecipientBottomSheet_view_safety_number">إظهار رقم الأمان</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">اجعله مشرفاً للمجموعة</string> -->
+  <string name="RecipientBottomSheet_make_admin">اجعله مشرفا</string>
   <string name="RecipientBottomSheet_remove_as_admin">أزل عنه ميزة الإشراف</string>
   <string name="RecipientBottomSheet_remove_from_group">أزل من المجموعة</string>
   <string name="RecipientBottomSheet_message_description">رسالة</string>
@@ -3152,5 +3132,37 @@
   <string name="StickerSearchDialogFragment_no_results_found">لم يعثر على أي نتيجة</string>
   <string name="EmojiSearchFragment__no_results_found">لم يعثر على أي نتيجة</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">رنة مجهولة</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">رِسالَة</string>
+  <string name="ConversationSettingsFragment__video">مقاطع الڤيديو</string>
+  <string name="ConversationSettingsFragment__audio">الصوت</string>
+  <string name="ConversationSettingsFragment__call">اتصال</string>
+  <string name="ConversationSettingsFragment__mute">كتم</string>
+  <string name="ConversationSettingsFragment__muted">مكتوم</string>
+  <string name="ConversationSettingsFragment__search">البحث</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">الرسائل المختفية</string>
+  <string name="ConversationSettingsFragment__view_safety_number">عرض رقم الأمان</string>
+  <string name="ConversationSettingsFragment__block">حظر</string>
+  <string name="ConversationSettingsFragment__block_group">حظر المجموعة</string>
+  <string name="ConversationSettingsFragment__unblock">رفع الحظر</string>
+  <string name="ConversationSettingsFragment__unblock_group">ألغِ الحظر المجموعة</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">إضافة إلى مجموعة</string>
+  <string name="ConversationSettingsFragment__see_all">مشاهدة الكل</string>
+  <string name="ConversationSettingsFragment__add_members">إضافة أعضاء</string>
+  <string name="ConversationSettingsFragment__permissions">الصلاحيات</string>
+  <string name="ConversationSettingsFragment__group_link">وصلة المجموعة</string>
+  <string name="ConversationSettingsFragment__unmute">رَفع الكَتم</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">إضافة أعضاء</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">تعديل معلومات المجموعة</string>
+  <string name="PermissionsSettingsFragment__all_members">جميع الأعضاء</string>
+  <string name="PermissionsSettingsFragment__only_admins">للمشرفين فقط</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">من يمكنه إضافة أعضاء جدد ؟</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">من يمكنه تعديل معلومات هذه المجموعة ؟</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">كتم الإشعارات</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">لم يُكتم </string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">الذِّكر</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">إشعارات مخصصة</string>
   <!--EOF-->
 </resources>

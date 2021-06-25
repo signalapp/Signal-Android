@@ -719,23 +719,6 @@
   <string name="ManageProfileFragment_your_username">Vaše uporabniško ime</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Nastavitev avatarja ni uspela</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Dodaj k sistemskim stikom</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Uporabnik/ca je med vašimi stiki</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Izginjajoča sporočila</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Barva pogovora</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Ozadje pogovora</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blokiraj</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Odblokiraj</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Pregled varnostnega števila</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Izklopi obvestila</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Obvestila po meri</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Do %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Za vedno</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Izklopljena</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Vklopljena</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Dodaj v skupino</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Prikaz vseh skupin</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Prikaz vseh</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Nobene skupne skupine</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d skupna skupina</item>
@@ -743,10 +726,6 @@
     <item quantity="few">%d skupne skupine</item>
     <item quantity="other">%d skupnih skupin</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Sporočilo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Zvočni klic</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Nezavarovan zvočni klic</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Video klic</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">Uporabnik %1$s je povabil eno osebo</item>
     <item quantity="two">Uporabnik %1$s je povabil %2$d osebi</item>
@@ -2007,6 +1986,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simboli</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Zastave</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikoni</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ni rezultatov</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Uporabi prednastavljeno</string>
   <string name="arrays__use_custom">Uporabi po meri</string>
@@ -2720,7 +2700,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="RecipientBottomSheet_add_to_a_group">Dodaj v skupino</string>
   <string name="RecipientBottomSheet_add_to_another_group">Dodaj v drugo skupino</string>
   <string name="RecipientBottomSheet_view_safety_number">Pregled varnostnega števila</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Določi za skrbnika/co skupine</string> -->
+  <string name="RecipientBottomSheet_make_admin">Določi za skrbnika skupine</string>
   <string name="RecipientBottomSheet_remove_as_admin">Odstrani kot skrbnika/co</string>
   <string name="RecipientBottomSheet_remove_from_group">Odstrani iz skupine</string>
   <string name="RecipientBottomSheet_message_description">Sporočilo</string>
@@ -3026,5 +3006,49 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="StickerSearchDialogFragment_no_results_found">Ni rezultatov</string>
   <string name="EmojiSearchFragment__no_results_found">Ni rezultatov</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Neznano zvonenje</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Pošlji sporočilo</string>
+  <string name="ConversationSettingsFragment__start_video_call">Začni video klic</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Začni zvočni klic</string>
+  <string name="ConversationSettingsFragment__message">Sporočilo</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Zvok</string>
+  <string name="ConversationSettingsFragment__call">Kliči</string>
+  <string name="ConversationSettingsFragment__mute">Utišaj</string>
+  <string name="ConversationSettingsFragment__muted">Utišan</string>
+  <string name="ConversationSettingsFragment__search">Iskanje</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Izginjajoča sporočila</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Zvoki &amp; obvestila</string>
+  <string name="ConversationSettingsFragment__contact_details">Podrobnosti o stiku</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Pregled varnostnega števila</string>
+  <string name="ConversationSettingsFragment__block">Blokiraj</string>
+  <string name="ConversationSettingsFragment__block_group">Blokiraj skupino</string>
+  <string name="ConversationSettingsFragment__unblock">Odblokiraj</string>
+  <string name="ConversationSettingsFragment__unblock_group">Odblokiraj skupino</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Dodaj v skupino</string>
+  <string name="ConversationSettingsFragment__see_all">Prikaz vseh</string>
+  <string name="ConversationSettingsFragment__add_members">Dodaj člane/ice</string>
+  <string name="ConversationSettingsFragment__permissions">Dovoljenja</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Prošnje &amp; vabila</string>
+  <string name="ConversationSettingsFragment__group_link">Povezava do skupine</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Dodaj kot stik</string>
+  <string name="ConversationSettingsFragment__unmute">Prekini utišanje</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Pogovor utišan do %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Pogovor utišan za vedno</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Dodaj člane/ice</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Urejanje podatkov o skupini</string>
+  <string name="PermissionsSettingsFragment__all_members">Vsi člani</string>
+  <string name="PermissionsSettingsFragment__only_admins">Samo skrbniki/ce</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Kdo lahko dodaja nove člane?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kdo lahko ureja informacije o skupini</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Izklopi obvestila</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Neutišan</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Utišan do %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Omembe</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Vedno obveščaj</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ne obveščaj</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Obvestila po meri</string>
   <!--EOF-->
 </resources>

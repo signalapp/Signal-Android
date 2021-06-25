@@ -646,32 +646,11 @@
   <string name="ManageProfileFragment_your_username">ଆପଣଙ୍କ ବ୍ୟବହାରିକ ନାମ</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">ଅବତାର ସେଟ୍ କରିବାରେ ବିଫଳ</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">ସିଷ୍ଟମ୍ ଯୋଗାଯୋଗରେ ଯୋଡ଼ନ୍ତୁ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">ଏହି ବ୍ୟକ୍ତି ଆପଣଙ୍କ ଯୋଗାଯୋଗରେ ଅଛନ୍ତି</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">ଉଭାନ ହୋଇଯାଉଥିବା ବାର୍ତ୍ତାଗଡ଼ିକ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">ଚାଟ୍ ରଙ୍ଗ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">ବାର୍ତ୍ତା କାନ୍ଥଛବି</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">ବ୍ଲକ୍ କରନ୍ତୁ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">ଅଣବ୍ଲକ୍ କରନ୍ତୁ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">ସୁରକ୍ଷା ନମ୍ବର ଦେଖନ୍ତୁ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">ବିଜ୍ଞପ୍ତି ମ୍ୟୁଟ୍ କରନ୍ତୁ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">କଷ୍ଟମ୍ ବିଜ୍ଞପ୍ତି</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">%1$s ପର୍ଯ୍ୟନ୍ତ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">ସବୁବେଳେ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">ବନ୍ଦ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">ଚାଲୁ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">ଏକ ଗୋଷ୍ଠୀରେ ଯୋଡ଼ନ୍ତୁ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">ସମସ୍ତ ଗୋଷ୍ଠୀ ଦେଖନ୍ତୁ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">ସମସ୍ତ ଦେଖନ୍ତୁ</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">କୌଣସି ସମାନ ଗୋଷ୍ଠୀ ନାହିଁ</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%dଟିଏ ସମାନ ଗୋଷ୍ଠୀ ଅଛି</item>
     <item quantity="other">%dଟି ସମାନ ଗୋଷ୍ଠୀ ଅଛି</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">ବାର୍ତ୍ତା</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">ଭଏସ୍ କଲ୍</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">ଅସୁରକ୍ଷିତ ଭଏସ୍ କଲ୍</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">ଭିଡ଼ିଓ କଲ୍</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s ଜଣଙ୍କୁ ଆମନ୍ତ୍ରିତ କଲେ</item>
     <item quantity="other">%1$s,%2$dଜଣ ଲୋକଙ୍କୁ ଆମନ୍ତ୍ରିତ କଲେ</item>
@@ -2404,7 +2383,6 @@
   <string name="RecipientBottomSheet_add_to_a_group">ଏକ ଗୋଷ୍ଠୀରେ ଯୋଡ଼ନ୍ତୁ</string>
   <string name="RecipientBottomSheet_add_to_another_group">ଅନ୍ୟ ଏକ ଗୋଷ୍ଠୀରେ ଯୋଡ଼ନ୍ତୁ</string>
   <string name="RecipientBottomSheet_view_safety_number">ସୁରକ୍ଷା ନମ୍ବର ଦେଖନ୍ତୁ</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">ଗୋଷ୍ଠୀ ପରିଚାଳକ ବନାନ୍ତୁ</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">ପରିଚାଳକ ପଦବୀରୁ ହଟାନ୍ତୁ</string>
   <string name="RecipientBottomSheet_remove_from_group">ଗୋଷ୍ଠୀରୁ ହଟାନ୍ତୁ</string>
   <string name="RecipientBottomSheet_message_description">ବାର୍ତ୍ତା</string>
@@ -2611,5 +2589,34 @@
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_stickers">ଷ୍ଟିକର୍</string>
   <!--StickerSearchDialogFragment-->
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">ବାର୍ତ୍ତା</string>
+  <string name="ConversationSettingsFragment__video">ଭିଡ଼ିଓ</string>
+  <string name="ConversationSettingsFragment__audio">ଅଡ଼ିଓ</string>
+  <string name="ConversationSettingsFragment__call">କଲ୍</string>
+  <string name="ConversationSettingsFragment__mute">ନୀରବ</string>
+  <string name="ConversationSettingsFragment__search">ସନ୍ଧାନ କରନ୍ତୁ</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">ଉଭାନ ହୋଇଯାଉଥିବା ବାର୍ତ୍ତାଗଡ଼ିକ</string>
+  <string name="ConversationSettingsFragment__view_safety_number">ସୁରକ୍ଷା ନମ୍ବର ଦେଖନ୍ତୁ</string>
+  <string name="ConversationSettingsFragment__block">ବ୍ଲକ୍ କରନ୍ତୁ</string>
+  <string name="ConversationSettingsFragment__block_group">ଗୋଷ୍ଠୀ ବ୍ଲକ୍ କରନ୍ତୁ</string>
+  <string name="ConversationSettingsFragment__unblock">ଅଣବ୍ଲକ୍ କରନ୍ତୁ</string>
+  <string name="ConversationSettingsFragment__unblock_group">ଗୋଷ୍ଠୀ ଅଣବ୍ଲକ୍ କରନ୍ତୁ</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">ଏକ ଗୋଷ୍ଠୀରେ ଯୋଡ଼ନ୍ତୁ</string>
+  <string name="ConversationSettingsFragment__see_all">ସମସ୍ତ ଦେଖନ୍ତୁ</string>
+  <string name="ConversationSettingsFragment__add_members">ସଦସ୍ୟ ଯୋଡ଼ନ୍ତୁ</string>
+  <string name="ConversationSettingsFragment__group_link">ଗୋଷ୍ଠୀ ଲିଙ୍କ୍</string>
+  <string name="ConversationSettingsFragment__unmute">ନୀରବତା ଭାଙ୍ଗନ୍ତୁ</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">ସଦସ୍ୟ ଯୋଡ଼ନ୍ତୁ</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">ଗୋଷ୍ଠୀ ସୂଚନା ସମ୍ପାଦନ କରନ୍ତୁ</string>
+  <string name="PermissionsSettingsFragment__all_members">ସମସ୍ତ ସଦସ୍ୟ</string>
+  <string name="PermissionsSettingsFragment__only_admins">କେବଳ ବ୍ୟବସ୍ଥାପକମାନେ</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">ନୂତନ ସଦସ୍ୟ କିଏ ଯୋଡ଼ିପାରିବେ?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ଗୋଷ୍ଠୀ ସୂଚନା କିଏ ସମ୍ପାଦନ କରିପାରିବେ?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">ବିଜ୍ଞପ୍ତି ମ୍ୟୁଟ୍ କରନ୍ତୁ</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">ଉଲ୍ଲେଖ</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">କଷ୍ଟମ୍ ବିଜ୍ଞପ୍ତି</string>
   <!--EOF-->
 </resources>

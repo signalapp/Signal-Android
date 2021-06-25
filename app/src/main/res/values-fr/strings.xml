@@ -653,32 +653,11 @@
   <string name="ManageProfileFragment_your_username">Votre nom d’utilisateur</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Échec de définition de l’avatar</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Ajouter aux contacts du système </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Cette personne est dans vos contacts</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Messages éphémères</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Couleur de la conversation</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Fond d’écran de la conversation</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Bloquer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Débloquer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Afficher le numéro de sécurité</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Mettre les notifications en sourdine</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Notifications personnalisées</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Jusqu’à %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Toujours</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Désactivées</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Activées</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Ajouter à un groupe</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Visualiser tous les groupes</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Tout afficher</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Aucun groupe en commun</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d groupe en commun</item>
     <item quantity="other">%d groupes en commun</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Message</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Appel vocal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Appel vocal non sécurisé</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Appel vidéo</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s a invité une personne</item>
     <item quantity="other">%1$s a invité %2$d personnes</item>
@@ -1854,6 +1833,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboles</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Drapeaux</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Émoticônes</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Aucun résultat trouvé</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Valeur par défaut</string>
   <string name="arrays__use_custom">Personnalisé</string>
@@ -2598,7 +2578,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">Ajouter à un groupe</string>
   <string name="RecipientBottomSheet_add_to_another_group">Ajouter à un autre groupe</string>
   <string name="RecipientBottomSheet_view_safety_number">Afficher le numéro de sécurité</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Nommer administrateur du groupe</string> -->
+  <string name="RecipientBottomSheet_make_admin">Nommer administrateur</string>
   <string name="RecipientBottomSheet_remove_as_admin">Supprimer en tant qu’administrateur</string>
   <string name="RecipientBottomSheet_remove_from_group">Supprimer du groupe</string>
   <string name="RecipientBottomSheet_message_description">Message</string>
@@ -2944,5 +2924,37 @@
   <string name="StickerSearchDialogFragment_no_results_found">Aucun résultat trouvé</string>
   <string name="EmojiSearchFragment__no_results_found">Aucun résultat trouvé</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Sonnerie inconnue</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">Message</string>
+  <string name="ConversationSettingsFragment__video">Vidéo</string>
+  <string name="ConversationSettingsFragment__audio">Son</string>
+  <string name="ConversationSettingsFragment__call">Appeler</string>
+  <string name="ConversationSettingsFragment__mute">Sourdine</string>
+  <string name="ConversationSettingsFragment__muted">En sourdine</string>
+  <string name="ConversationSettingsFragment__search">Cherchez</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Messages éphémères</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Afficher le numéro de sécurité</string>
+  <string name="ConversationSettingsFragment__block">Bloquer</string>
+  <string name="ConversationSettingsFragment__block_group">Bloquer le groupe</string>
+  <string name="ConversationSettingsFragment__unblock">Débloquer</string>
+  <string name="ConversationSettingsFragment__unblock_group">Débloquer le groupe</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Ajouter à un groupe</string>
+  <string name="ConversationSettingsFragment__see_all">Tout afficher</string>
+  <string name="ConversationSettingsFragment__add_members">Ajouter des membres</string>
+  <string name="ConversationSettingsFragment__permissions">Autorisations</string>
+  <string name="ConversationSettingsFragment__group_link">Lien de groupe</string>
+  <string name="ConversationSettingsFragment__unmute">Réactiver les notifications</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Ajouter des membres</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Modifier les renseignements</string>
+  <string name="PermissionsSettingsFragment__all_members">Tous les membres</string>
+  <string name="PermissionsSettingsFragment__only_admins">Les administrateurs</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Qui peut ajouter de nouveaux membres ?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Qui peut modifier les renseignements de ce groupe ?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Mettre les notifications en sourdine</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Désactivée</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Mentions</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notifications personnalisées</string>
   <!--EOF-->
 </resources>

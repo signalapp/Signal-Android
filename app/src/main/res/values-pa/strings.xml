@@ -562,32 +562,11 @@
   <string name="ManageProfileFragment_your_name">ਤੁਹਾਡਾ ਨਾਮ</string>
   <string name="ManageProfileFragment_your_username">ਤੁਹਾਡਾ ਵਰਤੋਂਕਾਰ-ਨਾਂ</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">ਸਿਸਟਮ ਸੰਪਰਕਾਂ ਵਿੱਚ ਜੋੜੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">ਇਹ ਉਪਭੋਗਤਾ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਵਿੱਚ ਹੈ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">ਗੱਲਬਾਤ ਦਾ ਰੰਗ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">ਗੱਲਬਾਤ ਵਾਲਪੇਪਰ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">ਬਲੌਕ ਕਰੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">ਅਨਬਲੌਕ ਕਰੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਵੇਖੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">ਸੂਚਨਾਵਾਂ ਨੂੰ ਮਿਊਟ ਕਰੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">ਕਸਟਮ ਸੂਚਨਾਵਾਂ </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">%1$s ਤੱਕ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">ਹਮੇਸ਼ਾਂ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">ਬੰਦ </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">ਚਲਾਓ </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">ਸਮੂਹ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">ਸਾਰੇ ਸਮੂਹ ਵੇਖੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">ਸਾਰੇ ਵੇਖੋ</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">ਕੋਈ ਸਮੂਹ ਸਾਂਝੇ ਨਹੀਂ</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d ਸਮੂਹ ਸਾਂਝੇ ਹਨ</item>
     <item quantity="other">%d ਸਮੂਹ ਸਾਂਝੇ ਹਨ</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">ਸੁਨੇਹਾ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">ਵੌਇਸ ਕਾਲ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">ਅਸੁਰੱਖਿਅਤ ਵੌਇਸ ਕਾਲ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">ਵੀਡੀਓ ਕਾਲ</string> -->
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">ਕਸਟਮ ਸੂਚਨਾਵਾਂ </string>
   <string name="CustomNotificationsDialogFragment__messages">ਸੁਨੇਹੇ </string>
@@ -1556,6 +1535,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">ਚਿੰਨ੍ਹ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">ਝੰਡੇ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ਜਜ਼ਬਾਤੀ-ਆਈਕਾਨ</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਲੱਭੇ</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">ਡਿਫੌਲਟ ਵਰਤੋ</string>
   <string name="arrays__use_custom">ਕਸਟਮ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
@@ -2232,7 +2212,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">ਸਮੂਹ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="RecipientBottomSheet_add_to_another_group">ਹੋਰ ਗਰੁੱਪ ਵਿੱਚ ਜੋੜੋ</string>
   <string name="RecipientBottomSheet_view_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਵੇਖੋ</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">ਗਰੁੱਪ ਐਡਮਿਨ ਬਣਾਓ</string> -->
+  <string name="RecipientBottomSheet_make_admin">ਐਡਮਿਨ ਬਣਾਓ</string>
   <string name="RecipientBottomSheet_remove_as_admin">ਐਡਮਿਨ ਵਜੋਂ ਹਟਾਓ</string>
   <string name="RecipientBottomSheet_remove_from_group">ਗਰੁੱਪ ਵਿੱਚੋਂ ਹਟਾਓ</string>
   <string name="RecipientBottomSheet_message_description">ਸੁਨੇਹਾ</string>
@@ -2475,5 +2455,37 @@
   <string name="StickerSearchDialogFragment_search_stickers">ਸਟਿੱਕਰ ਖੋਜੋ</string>
   <string name="StickerSearchDialogFragment_no_results_found">ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਲੱਭੇ</string>
   <string name="EmojiSearchFragment__no_results_found">ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਲੱਭੇ</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">ਸੁਨੇਹਾ</string>
+  <string name="ConversationSettingsFragment__video">ਵੀਡੀਓ</string>
+  <string name="ConversationSettingsFragment__audio">ਆਡੀਓ</string>
+  <string name="ConversationSettingsFragment__call">ਕਾਲ</string>
+  <string name="ConversationSettingsFragment__mute">ਚੁੱਪ</string>
+  <string name="ConversationSettingsFragment__muted">ਚੁੱਪ ਕਰਾਏ</string>
+  <string name="ConversationSettingsFragment__search">ਖੋਜੋ</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ</string>
+  <string name="ConversationSettingsFragment__view_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਵੇਖੋ</string>
+  <string name="ConversationSettingsFragment__block">ਪਾਬੰਦੀ ਲਾਓ</string>
+  <string name="ConversationSettingsFragment__block_group">ਗਰੁੱਪ ਨੂੰ ਬਲੌਕ ਕਰੋ</string>
+  <string name="ConversationSettingsFragment__unblock">ਪਾਬੰਦੀ ਹਟਾਓ</string>
+  <string name="ConversationSettingsFragment__unblock_group">ਗਰੁੱਪ ਨੂੰ ਅਨਬਲੌਕ ਕਰੋ</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">ਸਮੂਹ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
+  <string name="ConversationSettingsFragment__see_all">ਸਾਰੇ ਵੇਖੋ</string>
+  <string name="ConversationSettingsFragment__add_members">ਮੈਂਬਰ ਜੋੜੋ</string>
+  <string name="ConversationSettingsFragment__permissions">ਇਜਾਜ਼ਤਾਂ</string>
+  <string name="ConversationSettingsFragment__group_link">ਸਮੂਹ ਲਿੰਕ</string>
+  <string name="ConversationSettingsFragment__unmute">ਅਨਮਿਊਟ ਕਰੋ</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">ਮੈਂਬਰ ਜੋੜੋ</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">ਸਮੂਹ ਜਾਣਕਾਰੀ ਸੋਧੋ</string>
+  <string name="PermissionsSettingsFragment__all_members">ਸਾਰੇ ਮੈਂਬਰ</string>
+  <string name="PermissionsSettingsFragment__only_admins">ਸਿਰਫ਼ ਐਡਮਿਨ</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">ਨਵੇਂ ਮੈਂਬਰ ਕੌਣ ਜੋੜ ਸਕਦਾ ਹੈ?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ਇਸ ਸਮੂਹ ਦੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕੌਣ ਸੰਪਾਦਿਤ ਕਰ ਸਕਦਾ ਹੈ?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">ਸੂਚਨਾਵਾਂ ਨੂੰ ਮਿਊਟ ਕਰੋ</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">ਚੁੱਪ ਨਹੀਂ</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">ਜ਼ਿਕਰ</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ਕਸਟਮ ਸੂਚਨਾਵਾਂ </string>
   <!--EOF-->
 </resources>

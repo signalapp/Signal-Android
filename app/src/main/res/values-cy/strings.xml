@@ -724,23 +724,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageProfileFragment_your_username">Eich enw defnyddiwr</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Wedi methu gosod afatar</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Ychwanegu at gysylltiadau system</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Mae\'r person hwn yn eich cysylltiadau</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Negeseuon byrhoedlog</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Lliw\'r sgwrs</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Papur wal sgwrsio</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Rhwystro</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Dadrwystro</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Gweld rhif diogelwch</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Tewi hysbysiadau</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Hysbysiadau cyfaddas</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Tan %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Bob tro</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">I ffwrdd</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Ymlaen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Ychwanegu i grŵp</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Gweld pob grŵp</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Gweld y cyfan</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Dim grwpiau\'n gyffredin</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d  grwpiau\'n gyffredin</item>
@@ -748,10 +731,6 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">%d grwpiau\'n gyffredin</item>
     <item quantity="other">%d grwpiau\'n gyffredin</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Neges</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Galwad llais</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Galwad llais anniogel</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Galwad fideo</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">Mae %1$s wedi gwahodd 1 person</item>
     <item quantity="two">Mae %1$s wedi gwahodd %2$d person</item>
@@ -2021,6 +2000,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symbolau</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Baneri</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticonau</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Heb ganfod canlyniadau</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Defnyddio\'r rhagosodedig</string>
   <string name="arrays__use_custom">Defnyddio cyfaddas</string>
@@ -2813,7 +2793,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RecipientBottomSheet_add_to_a_group">Ychwanegu i grŵp</string>
   <string name="RecipientBottomSheet_add_to_another_group">Ychwanegu i grŵp arall</string>
   <string name="RecipientBottomSheet_view_safety_number">Gweld rhif diogelwch</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Creu gweinyddwr grŵp</string> -->
+  <string name="RecipientBottomSheet_make_admin">Creu gweinyddwr</string>
   <string name="RecipientBottomSheet_remove_as_admin">Tynnu fel gweinyddwr</string>
   <string name="RecipientBottomSheet_remove_from_group">Tynnu o\'r grŵp</string>
   <string name="RecipientBottomSheet_message_description">Neges</string>
@@ -3176,5 +3156,49 @@ Send neges heb ei ddiogelu?</string>
   <string name="StickerSearchDialogFragment_no_results_found">Heb ganfod canlyniadau</string>
   <string name="EmojiSearchFragment__no_results_found">Heb ganfod canlyniadau</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Tôn canu anhysbys</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Anfon neges</string>
+  <string name="ConversationSettingsFragment__start_video_call">Cychwyn galwad fideo</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Cychwyn galwad sain</string>
+  <string name="ConversationSettingsFragment__message">Neges</string>
+  <string name="ConversationSettingsFragment__video">Fideo</string>
+  <string name="ConversationSettingsFragment__audio">Sain</string>
+  <string name="ConversationSettingsFragment__call">Galw</string>
+  <string name="ConversationSettingsFragment__mute">Tewi</string>
+  <string name="ConversationSettingsFragment__muted">Wedi Tewi</string>
+  <string name="ConversationSettingsFragment__search">Chwilio</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Negeseuon byrhoedlog</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Seiniau ac hysbysiadau</string>
+  <string name="ConversationSettingsFragment__contact_details">Manylion cyswllt</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Gweld rhif diogelwch</string>
+  <string name="ConversationSettingsFragment__block">Rhwystro</string>
+  <string name="ConversationSettingsFragment__block_group">Rhwystro\'r grŵp</string>
+  <string name="ConversationSettingsFragment__unblock">Dad-rwystro</string>
+  <string name="ConversationSettingsFragment__unblock_group">Dad-rwystro grŵp</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Ychwanegu i grŵp</string>
+  <string name="ConversationSettingsFragment__see_all">Gweld y cyfan</string>
+  <string name="ConversationSettingsFragment__add_members">Ychwanegu aelodau</string>
+  <string name="ConversationSettingsFragment__permissions">Caniatâd</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Ceisiadau a gwahoddiadau</string>
+  <string name="ConversationSettingsFragment__group_link">Dolen grŵp</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Ychwanegu fel cyswllt</string>
+  <string name="ConversationSettingsFragment__unmute">Dad-dewi</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Sgwrs wedi\'i dewi tan %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Sgwrs wedi\'i dewi am byth</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Ychwanegu aelodau</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Golygu manylion y grŵp</string>
+  <string name="PermissionsSettingsFragment__all_members">Pob aelod</string>
+  <string name="PermissionsSettingsFragment__only_admins">Dim ond gweinyddwyr</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Pwy all ychwanegu aelodau newydd?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Pwy all olygu manylion y grŵp hwn?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Tewi hysbysiadau</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Heb ei ddistewi</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Tawyd tan %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Crybwylliadau</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Hysbysu bob tro</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Peidio â hysbysu</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Hysbysiadau cyfaddas</string>
   <!--EOF-->
 </resources>

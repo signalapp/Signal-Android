@@ -722,23 +722,6 @@
   <string name="ManageProfileFragment_your_username">שם המשתמש שלך</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">נכשל בהגדרת יצגן</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">הוסף לאנשי קשר של המערכת</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">איש זה נמצא באנשי הקשר שלך</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">הודעות נעלמות</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">צבע התכתבות</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">טפט התכתבות</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">חסום</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">שחרר חסימה</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">הצג מספר ביטחון</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">השתק התראות</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">התראות מותאמות אישית</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">עד %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">תמיד</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">כבוי</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">מופעל</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">הוסף אל קבוצה</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">הצג את כל הקבוצות</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">ראה הכל</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">אין קבוצות במשותף</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">קבוצה %d במשותף</item>
@@ -746,10 +729,6 @@
     <item quantity="many">%d קבוצות במשותף</item>
     <item quantity="other">%d קבוצות במשותף</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">הודעה</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">שיחה קולית</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">שיחת וידאו בלתי מאובטחת</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">שיחת וידאו</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s הזמין איש 1</item>
     <item quantity="two">%1$s הזמין %2$d אנשים</item>
@@ -2019,6 +1998,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">סמלים</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">דגלים</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">רגשונים</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">תוצאות לא נמצאו</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">השתמש בברירת מחדל</string>
   <string name="arrays__use_custom">השתמש במותאם אישית</string>
@@ -2811,7 +2791,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">הוסף אל קבוצה</string>
   <string name="RecipientBottomSheet_add_to_another_group">הוסף אל קבוצה אחרת</string>
   <string name="RecipientBottomSheet_view_safety_number">הצג מספר ביטחון</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">עשה מנהלן קבוצה</string> -->
+  <string name="RecipientBottomSheet_make_admin">עשה מנהלן</string>
   <string name="RecipientBottomSheet_remove_as_admin">הסר תפקיד מנהלן</string>
   <string name="RecipientBottomSheet_remove_from_group">הסר מהקבוצה</string>
   <string name="RecipientBottomSheet_message_description">הודעה</string>
@@ -3174,5 +3154,37 @@
   <string name="StickerSearchDialogFragment_no_results_found">תוצאות לא נמצאו</string>
   <string name="EmojiSearchFragment__no_results_found">תוצאות לא נמצאו</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">צלצול בלתי ידוע</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">הודעה</string>
+  <string name="ConversationSettingsFragment__video">סרטון</string>
+  <string name="ConversationSettingsFragment__audio">שמע</string>
+  <string name="ConversationSettingsFragment__call">התקשר</string>
+  <string name="ConversationSettingsFragment__mute">השתק</string>
+  <string name="ConversationSettingsFragment__muted">מושתק</string>
+  <string name="ConversationSettingsFragment__search">חפש</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">הודעות נעלמות</string>
+  <string name="ConversationSettingsFragment__view_safety_number">הצג מספר ביטחון</string>
+  <string name="ConversationSettingsFragment__block">חוסם</string>
+  <string name="ConversationSettingsFragment__block_group">חסום קבוצה</string>
+  <string name="ConversationSettingsFragment__unblock">שחרר חסימה</string>
+  <string name="ConversationSettingsFragment__unblock_group">שחרר חסימת קבוצה</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">הוסף אל קבוצה</string>
+  <string name="ConversationSettingsFragment__see_all">ראה הכל</string>
+  <string name="ConversationSettingsFragment__add_members">הוסף חברי קבוצה</string>
+  <string name="ConversationSettingsFragment__permissions">הרשאות</string>
+  <string name="ConversationSettingsFragment__group_link">קישור קבוצה</string>
+  <string name="ConversationSettingsFragment__unmute">בטל השתקה</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">הוסף חברי קבוצה</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">ערוך מידע קבוצה</string>
+  <string name="PermissionsSettingsFragment__all_members">כל חברי הקבוצה</string>
+  <string name="PermissionsSettingsFragment__only_admins">רק מנהלנים</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">מי יכול להוסיף חברי קבוצה חדשים?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">מי יכול לערוך את המידע של קבוצה הזאת?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">השתק התראות</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">לא מושתק</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">אזכורים</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">התראות מותאמות אישית</string>
   <!--EOF-->
 </resources>

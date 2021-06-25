@@ -623,31 +623,10 @@
   <string name="ManageProfileFragment_your_username">您的使用者名稱</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">設定頭像失敗</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">新增至系統通訊錄</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">通訊錄中的聯絡人</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">限時訊息</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">聊天色彩</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">聊天背景</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">封鎖</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">解除封鎖</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">檢視安全碼</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">將通知設為靜音</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">自訂通知</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">直到 %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">總是</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">關閉</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">開啟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">新增至群組</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">檢視所有群組</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">查看全部</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">無共同群組</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="other">%d 個共同群組</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">訊息</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">語音通話</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">不安全的語音通話</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">視像通話</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="other">%1$s 已邀請 %2$d 人</item>
   </plurals>
@@ -1802,6 +1781,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">符號</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">旗幟</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">表情符號</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">查無結果</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">使用預設值</string>
   <string name="arrays__use_custom">使用自訂</string>
@@ -1902,8 +1882,8 @@
   <string name="preferences__keep_messages">保留訊息</string>
   <string name="preferences__clear_message_history">清除訊息歷程記錄</string>
   <string name="preferences__linked_devices">已連結的裝置</string>
-  <string name="preferences__light_theme">亮色</string>
-  <string name="preferences__dark_theme">暗色</string>
+  <string name="preferences__light_theme">淺色</string>
+  <string name="preferences__dark_theme">深色</string>
   <string name="preferences__appearance">外觀</string>
   <string name="preferences__theme">佈景主題</string>
   <string name="preferences__chat_wallpaper">聊天背景</string>
@@ -2570,7 +2550,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">新增至群組</string>
   <string name="RecipientBottomSheet_add_to_another_group">新增至另一個群組</string>
   <string name="RecipientBottomSheet_view_safety_number">檢視安全碼</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">設為群組管理員</string> -->
+  <string name="RecipientBottomSheet_make_admin">設為管理員</string>
   <string name="RecipientBottomSheet_remove_as_admin">撤銷管理員</string>
   <string name="RecipientBottomSheet_remove_from_group">從群組中移除</string>
   <string name="RecipientBottomSheet_message_description">訊息</string>
@@ -2921,5 +2901,49 @@
   <string name="StickerSearchDialogFragment_no_results_found">查無結果</string>
   <string name="EmojiSearchFragment__no_results_found">查無結果</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">未知的鈴聲</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">傳送訊息</string>
+  <string name="ConversationSettingsFragment__start_video_call">開始視像通話</string>
+  <string name="ConversationSettingsFragment__start_audio_call">開始語音通話</string>
+  <string name="ConversationSettingsFragment__message">訊息</string>
+  <string name="ConversationSettingsFragment__video">視像</string>
+  <string name="ConversationSettingsFragment__audio">語音</string>
+  <string name="ConversationSettingsFragment__call">撥號</string>
+  <string name="ConversationSettingsFragment__mute">靜音</string>
+  <string name="ConversationSettingsFragment__muted">已靜音</string>
+  <string name="ConversationSettingsFragment__search">搜尋</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">限時訊息</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">聲音與通知</string>
+  <string name="ConversationSettingsFragment__contact_details">聯絡人詳情</string>
+  <string name="ConversationSettingsFragment__view_safety_number">檢視安全碼</string>
+  <string name="ConversationSettingsFragment__block">封鎖</string>
+  <string name="ConversationSettingsFragment__block_group">封鎖群組</string>
+  <string name="ConversationSettingsFragment__unblock">解除封鎖</string>
+  <string name="ConversationSettingsFragment__unblock_group">解除封鎖群組</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">新增至群組</string>
+  <string name="ConversationSettingsFragment__see_all">查看全部</string>
+  <string name="ConversationSettingsFragment__add_members">新增成員</string>
+  <string name="ConversationSettingsFragment__permissions">權限</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">請求與邀請</string>
+  <string name="ConversationSettingsFragment__group_link">群組連結</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">新增為聯絡人</string>
+  <string name="ConversationSettingsFragment__unmute">取消靜音</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">對話已設為靜音，直到 %1$s 為止</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">對話已設為靜音，直到永遠</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">新增成員</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">編輯群組資訊</string>
+  <string name="PermissionsSettingsFragment__all_members">所有成員</string>
+  <string name="PermissionsSettingsFragment__only_admins">僅限管理員</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">誰可以加入新成員？</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">誰可以編輯此群組的資訊？</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">將通知設為靜音</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">非靜音</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">已靜音，直到 %1$s 為止</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">提及</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">總是通知</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">不要通知</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">自訂通知</string>
   <!--EOF-->
 </resources>

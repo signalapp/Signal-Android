@@ -660,32 +660,11 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageProfileFragment_your_username">Emri juaj i përdoruesit</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">S’u arrit të caktohej avatar</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Shtoje te kontakte sistemi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ky person gjendet në kontaktet tuaja</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Zhdukje mesazhesh</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Ngjyrë fjalosjeje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Sfond fjalosjesh</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Bllokoje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Zhbllokoje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Shihni numër sigurie</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Heshtoji njoftimet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Njoftime vetjake</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Deri më %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Përherë</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Off</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">On</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Shtoje te grup</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Shihni krejt grupet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Shihini krejt</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">S’ka grupe të përbashkët</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grup i përbashkët</item>
     <item quantity="other">%d grupe të përbashkët</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Mesazh</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Thirrje zanore</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Thirrje zanore jo e sigurt</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Thirrje video</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s ftoi 1 person</item>
     <item quantity="other">%1$s ftoi %2$d vetë</item>
@@ -1875,6 +1854,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simbole</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flamuj</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikone</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">S’u gjet përfundim</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Përdor parazgjedhje</string>
   <string name="arrays__use_custom">Përdor vetjake</string>
@@ -2655,7 +2635,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="RecipientBottomSheet_add_to_a_group">Shtoje te grup</string>
   <string name="RecipientBottomSheet_add_to_another_group">Shtojeni në grup tjetër</string>
   <string name="RecipientBottomSheet_view_safety_number">Shihni numër sigurie</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Bëje përgjegjës grupi</string> -->
+  <string name="RecipientBottomSheet_make_admin">Bëje përgjegjës</string>
   <string name="RecipientBottomSheet_remove_as_admin">Hiqe nga përgjegjës</string>
   <string name="RecipientBottomSheet_remove_from_group">Hiqe nga grup</string>
   <string name="RecipientBottomSheet_message_description">Mesazh</string>
@@ -3010,5 +2990,49 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="StickerSearchDialogFragment_no_results_found">S’u gjet përfundim</string>
   <string name="EmojiSearchFragment__no_results_found">S’u gjet përfundim</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Zile e panjohur</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Dërgoni mesazh</string>
+  <string name="ConversationSettingsFragment__start_video_call">Nisni thirrje video</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Nisni thirrje audio</string>
+  <string name="ConversationSettingsFragment__message">Mesazh</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Audio</string>
+  <string name="ConversationSettingsFragment__call">Thirrje</string>
+  <string name="ConversationSettingsFragment__mute">Heshtoje</string>
+  <string name="ConversationSettingsFragment__muted">Pa zë</string>
+  <string name="ConversationSettingsFragment__search">Kërko</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Zhdukje mesazhesh</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Tinguj &amp; njoftime</string>
+  <string name="ConversationSettingsFragment__contact_details">Hollësi kontakti</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Shihni numër sigurie</string>
+  <string name="ConversationSettingsFragment__block">Bllokoje</string>
+  <string name="ConversationSettingsFragment__block_group">Blloko grup</string>
+  <string name="ConversationSettingsFragment__unblock">Zhbllokoje</string>
+  <string name="ConversationSettingsFragment__unblock_group">Zhbllokoje grupin</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Shtoje te grup</string>
+  <string name="ConversationSettingsFragment__see_all">Shihini krejt</string>
+  <string name="ConversationSettingsFragment__add_members">Shtoni anëtarë</string>
+  <string name="ConversationSettingsFragment__permissions">Leje</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Kërkesa &amp; ftesa</string>
+  <string name="ConversationSettingsFragment__group_link">Lidhje grupi</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Shtojeni si kontakt</string>
+  <string name="ConversationSettingsFragment__unmute">Çheshtoji</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Bisedë e heshtuar deri më %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Bisedë e heshtuar përgjithmonë</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Shtoni anëtarë</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Përpunoni të dhëna grupi</string>
+  <string name="PermissionsSettingsFragment__all_members">Krejt anëtarët</string>
+  <string name="PermissionsSettingsFragment__only_admins">Vetëm përgjegjësit</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Cilët mund të shtojnë anëtarë të rinj?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Cilët mund të përpunojnë të dhënat mbi këtë grup?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Heshtoji njoftimet</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">S’është heshtuar</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Heshtuar deri më %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Përmendje</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Njofto përherë</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Mos njofto</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Njoftime vetjake</string>
   <!--EOF-->
 </resources>

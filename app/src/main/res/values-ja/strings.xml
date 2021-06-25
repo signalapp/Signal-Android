@@ -622,31 +622,10 @@
   <string name="ManageProfileFragment_your_username">あなたのユーザー名</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">アバターの設定に失敗しました</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">システムの連絡先に追加</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">このユーザーは連絡先に入っています</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">消えるメッセージ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">チャットの色</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">チャットの壁紙</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">ブロックする</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">ブロックを解除する</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">安全番号を表示</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">通知をミュート</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">カスタム通知</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">%1$sまで</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">常時</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">オフ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">オン</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">グループへ追加</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">すべてのグループを表示</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">すべて表示</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">共通のグループ なし</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="other">共通のグループ %d件</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">メッセージ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">音声通話</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">安全でない音声通話</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">ビデオ通話</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="other">%1$s は%2$d人招待しました</item>
   </plurals>
@@ -1792,6 +1771,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">記号</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">旗</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">顔文字</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">検索結果はありません</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">既定を使う</string>
   <string name="arrays__use_custom">カスタムを使う</string>
@@ -2508,7 +2488,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">グループへ追加</string>
   <string name="RecipientBottomSheet_add_to_another_group">他のグループに追加</string>
   <string name="RecipientBottomSheet_view_safety_number">安全番号を表示</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">グループ管理者にする</string> -->
+  <string name="RecipientBottomSheet_make_admin">管理者にする</string>
   <string name="RecipientBottomSheet_remove_as_admin">管理者から外す</string>
   <string name="RecipientBottomSheet_remove_from_group">グループから削除</string>
   <string name="RecipientBottomSheet_message_description">メッセージ</string>
@@ -2824,5 +2804,44 @@
   <string name="StickerSearchDialogFragment_no_results_found">検索結果はありません</string>
   <string name="EmojiSearchFragment__no_results_found">検索結果はありません</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">不明な着信音</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">メッセージを送信</string>
+  <string name="ConversationSettingsFragment__start_video_call">ビデオ通話を開始</string>
+  <string name="ConversationSettingsFragment__start_audio_call">音声通話を開始</string>
+  <string name="ConversationSettingsFragment__message">メッセージ</string>
+  <string name="ConversationSettingsFragment__video">動画</string>
+  <string name="ConversationSettingsFragment__audio">音声</string>
+  <string name="ConversationSettingsFragment__call">発信</string>
+  <string name="ConversationSettingsFragment__mute">ミュートする</string>
+  <string name="ConversationSettingsFragment__muted">ミュート中</string>
+  <string name="ConversationSettingsFragment__search">検索</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">消えるメッセージ</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">音と通知</string>
+  <string name="ConversationSettingsFragment__contact_details">連絡先の詳細</string>
+  <string name="ConversationSettingsFragment__view_safety_number">安全番号を表示</string>
+  <string name="ConversationSettingsFragment__block">ブロック</string>
+  <string name="ConversationSettingsFragment__block_group">グループをブロック</string>
+  <string name="ConversationSettingsFragment__unblock">ブロックを解除する</string>
+  <string name="ConversationSettingsFragment__unblock_group">グループのブロック解除</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">グループへ追加</string>
+  <string name="ConversationSettingsFragment__see_all">すべて表示</string>
+  <string name="ConversationSettingsFragment__add_members">メンバーを追加する</string>
+  <string name="ConversationSettingsFragment__permissions">アクセス許可</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">申請と招待</string>
+  <string name="ConversationSettingsFragment__group_link">グループリンク</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">連絡先に追加</string>
+  <string name="ConversationSettingsFragment__unmute">ミュートを解除</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">メンバーを追加する</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">グループの情報を編集</string>
+  <string name="PermissionsSettingsFragment__all_members">すべてのメンバー</string>
+  <string name="PermissionsSettingsFragment__only_admins">管理者のみ</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">メンバーを追加できる人は？</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">グループ情報を編集できる人は？</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">通知をミュート</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">ミュートしていません</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">メンション</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">カスタム通知</string>
   <!--EOF-->
 </resources>

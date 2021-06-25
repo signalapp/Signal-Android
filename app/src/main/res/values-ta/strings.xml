@@ -641,31 +641,11 @@
   <string name="ManageProfileFragment_your_username">உங்கள் பயனர்பெயர்</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">சித்தரிப்பு அமைப்பதில் தோல்வி</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">தொலைபேசி தொடர்புகளில் சேர்க்கவும்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">இந்த நபர் உங்கள் தொலைபேசி தொடர்புகளில் உள்ளார்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">காணாமல் போகும் செய்திகள்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">உரையாடல் நிறம்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">உரையாடல் பின்னணிப்படம்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">தடு </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">தடைநீக்கு </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">பாதுகாப்பு எண்ணைக் காண்பி</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">அறிவிப்பை ஒலியடக்கு</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">தனிப்பயன் அறிவிப்புகள்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">%1$s வரை</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">அணை</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">இயக்க</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">ஒரு குழுவில் சேர்க்கவும்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">எல்லா குழுக்களையும் காண்க</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">அனைத்தையும் பார்</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">பொதுவான குழுக்கள் எதுவும் இல்லை</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d பொதுவான குழுக்கள்</item>
     <item quantity="other">%d பொதுவான குழுக்கள்</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">செய்தி</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">குரல் அழைப்பு</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">பாதுகாப்பற்ற குரல் அழைப்பு </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">காணொளி அழைப்பு</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s இந்த மக்களை அழைத்தார்கள்</item>
     <item quantity="other">%1$s அவர்கள்  %2$d அழைத்தார்கள்</item>
@@ -2384,7 +2364,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">ஒரு குழுவில் சேர்க்கவும்</string>
   <string name="RecipientBottomSheet_add_to_another_group">மற்றொரு குழுவில் சேர்க்கவும்</string>
   <string name="RecipientBottomSheet_view_safety_number">பாதுகாப்பு எண்ணைக் காண்பி</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">குழு நிர்வாகியாக்கு</string> -->
+  <string name="RecipientBottomSheet_make_admin">நிர்வாகியை உருவாக்குங்கள்</string>
   <string name="RecipientBottomSheet_remove_as_admin">நிர்வாகி நிலையிலிருந்து அகற்று</string>
   <string name="RecipientBottomSheet_remove_from_group">குழுவிலிருந்து அகற்று</string>
   <string name="RecipientBottomSheet_message_description">செய்தி</string>
@@ -2600,5 +2580,37 @@
   <string name="KeyboardPagerFragment_emoji">உணர்வு படங்கள்</string>
   <string name="KeyboardPagerFragment_stickers">ஒட்டிகள்</string>
   <!--StickerSearchDialogFragment-->
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">செய்தி</string>
+  <string name="ConversationSettingsFragment__video">காணொளி</string>
+  <string name="ConversationSettingsFragment__audio">ஒலி</string>
+  <string name="ConversationSettingsFragment__call">அழைப்பு</string>
+  <string name="ConversationSettingsFragment__mute">முடக்கு</string>
+  <string name="ConversationSettingsFragment__muted">முடக்கியது</string>
+  <string name="ConversationSettingsFragment__search">தேடு </string>
+  <string name="ConversationSettingsFragment__disappearing_messages">காணாமல் போகும் செய்திகள்</string>
+  <string name="ConversationSettingsFragment__view_safety_number">பாதுகாப்பு எண்ணைக் காண்பி</string>
+  <string name="ConversationSettingsFragment__block">தடு </string>
+  <string name="ConversationSettingsFragment__block_group">குழுவைத் தடு</string>
+  <string name="ConversationSettingsFragment__unblock">தடைநீக்கு </string>
+  <string name="ConversationSettingsFragment__unblock_group">குழுவைத் தடைநீக்கு</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">ஒரு குழுவில் சேர்க்கவும்</string>
+  <string name="ConversationSettingsFragment__see_all">அனைத்தையும் பார்</string>
+  <string name="ConversationSettingsFragment__add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
+  <string name="ConversationSettingsFragment__permissions">அனுமதிகள்</string>
+  <string name="ConversationSettingsFragment__group_link">குழு இணைப்பு</string>
+  <string name="ConversationSettingsFragment__unmute">ஒலியடக்கை நீக்கு</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">குழு தகவலைத் திருத்தல்</string>
+  <string name="PermissionsSettingsFragment__all_members">அனைத்து உறுப்பினர்கள்</string>
+  <string name="PermissionsSettingsFragment__only_admins">நிர்வாகிகள் மட்டுமே</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">புதிய உறுப்பினர்களை யார் சேர்க்க முடியும்?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">இந்த குழுவின் தகவலை யார் திருத்தலாம்?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">அறிவிப்பை ஒலியடக்கு</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">முடக்கப்படவில்லை</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">பெயர் குறிப்பிடுவது</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
   <!--EOF-->
 </resources>

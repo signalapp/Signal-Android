@@ -656,32 +656,11 @@
   <string name="ManageProfileFragment_your_username">El nom d\'usuari</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Ha fallat establir l\'avatar.</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Afegeix als contactes del sistema</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Aquesta persona és als vostres contactes.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Missatges efímers</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Color de la conversa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Fons de la conversa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Bloca</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Desbloca</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Mostra el número de seguretat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Silencia les notificacions</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Notificacions personalitzades</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Fins a %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Sempre</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Inactiu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Actiu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Afegeix-lo a un grup</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Mostra tots els grups</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Mostra-ho tot</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">No hi ha grups en comú.</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grup en comú</item>
     <item quantity="other">%d grups en comú</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Missatge</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Trucada de veu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Trucada de veu no segura</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Trucada de vídeo</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s ha convidat 1 persona</item>
     <item quantity="other">%1$s ha convidat %2$d persones</item>
@@ -1869,6 +1848,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Símbols</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Banderes</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticona</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">No s\'ha trobat cap resultat.</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Per defecte</string>
   <string name="arrays__use_custom">Personalitzat</string>
@@ -2645,7 +2625,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RecipientBottomSheet_add_to_a_group">Afegeix-lo a un grup</string>
   <string name="RecipientBottomSheet_add_to_another_group">Afegeix-lo a un altre grup</string>
   <string name="RecipientBottomSheet_view_safety_number">Mostra el número de seguretat</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Fes adminstrador/a del grup</string> -->
+  <string name="RecipientBottomSheet_make_admin">Fes adminstrador</string>
   <string name="RecipientBottomSheet_remove_as_admin">Suprimeix com a administrador</string>
   <string name="RecipientBottomSheet_remove_from_group">Suprimeix del grup</string>
   <string name="RecipientBottomSheet_message_description">Missatge</string>
@@ -3000,5 +2980,37 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="StickerSearchDialogFragment_no_results_found">No s\'ha trobat cap resultat.</string>
   <string name="EmojiSearchFragment__no_results_found">No s\'ha trobat cap resultat.</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">To desconegut</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">Missatge</string>
+  <string name="ConversationSettingsFragment__video">Vídeo</string>
+  <string name="ConversationSettingsFragment__audio">Àudio</string>
+  <string name="ConversationSettingsFragment__call">Truca</string>
+  <string name="ConversationSettingsFragment__mute">Silenci</string>
+  <string name="ConversationSettingsFragment__muted">Silenciat</string>
+  <string name="ConversationSettingsFragment__search">Cerca</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Missatges efímers</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Mostra el número de seguretat</string>
+  <string name="ConversationSettingsFragment__block">Bloca</string>
+  <string name="ConversationSettingsFragment__block_group">Bloca el grup</string>
+  <string name="ConversationSettingsFragment__unblock">Desbloca</string>
+  <string name="ConversationSettingsFragment__unblock_group">Desbloca el grup</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Afegeix-lo a un grup</string>
+  <string name="ConversationSettingsFragment__see_all">Mostra-ho tot</string>
+  <string name="ConversationSettingsFragment__add_members">Afegeix-hi membres</string>
+  <string name="ConversationSettingsFragment__permissions">Permisos</string>
+  <string name="ConversationSettingsFragment__group_link">Enllaç del grup</string>
+  <string name="ConversationSettingsFragment__unmute">No la silenciïs</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Afegeix-hi membres</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Edita la informació del grup</string>
+  <string name="PermissionsSettingsFragment__all_members">Tots els membres</string>
+  <string name="PermissionsSettingsFragment__only_admins">Només els administradors</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Qui pot afegir membres nous?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Qui pot editar la informació del grup?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Silencia les notificacions</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">No silenciat</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Mencions</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificacions personalitzades</string>
   <!--EOF-->
 </resources>

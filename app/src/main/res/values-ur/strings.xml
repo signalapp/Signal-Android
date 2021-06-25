@@ -642,31 +642,11 @@
   <string name="ManageProfileFragment_your_username">اپکا اسم رکنیت</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">اوتار سیٹ کرنے میں ناکام</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">سسٹم رابطوں میں شامل کریں</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">یہ شخص آپ کے رابطوں میں ہے</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">پیغامات غائب ہو رہے ہیں</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">چیٹ کا رنگ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">چیٹ وال پیپر</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">بلاک</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">ان بلاک</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">حفاظتی نمبر دیکھیں</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">خاموش اطلاعات</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">اپنی مرضی کے مطابق اطلاعات</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">جب تک %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">بند کریں</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">چلائیں</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">کسی گروپ میں شامل کریں</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">تمام گروپ دیکھیں</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">تمام دیکھیں</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">مشترکہ طور پر کوئی گروپ نہیں</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d مشترکہ گروپ</item>
     <item quantity="other">%dمشترکہ گروپس</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">پیغام</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">آڈیو کال</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">غیر محفوظ آڈیو کال</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">ویڈیو کال</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s  نے 1 شخص کو مدعو کیا</item>
     <item quantity="other">%1$s نے %2$d لوگوں کو مدعو کیا</item>
@@ -2365,7 +2345,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">کسی گروپ میں شامل کریں</string>
   <string name="RecipientBottomSheet_add_to_another_group">کسی دوسرے گروپ میں شامل کریں</string>
   <string name="RecipientBottomSheet_view_safety_number">حفاظتی نمبر دیکھیں</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">گروپ منتظم بنائیں</string> -->
+  <string name="RecipientBottomSheet_make_admin">منتظم بنائیں</string>
   <string name="RecipientBottomSheet_remove_as_admin">منتظم کی حیثیت سے ہٹائیں</string>
   <string name="RecipientBottomSheet_remove_from_group">گروپ سے ہٹائیں</string>
   <string name="RecipientBottomSheet_message_description">پیغام</string>
@@ -2572,5 +2552,37 @@
   <string name="KeyboardPagerFragment_emoji">ایموجی</string>
   <string name="KeyboardPagerFragment_stickers">اسٹیکرز</string>
   <!--StickerSearchDialogFragment-->
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">پیغام</string>
+  <string name="ConversationSettingsFragment__video">وڈیو</string>
+  <string name="ConversationSettingsFragment__audio">آڈیو</string>
+  <string name="ConversationSettingsFragment__call">کال</string>
+  <string name="ConversationSettingsFragment__mute">خاموش</string>
+  <string name="ConversationSettingsFragment__muted">خاموش</string>
+  <string name="ConversationSettingsFragment__search">تلاش کریں</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
+  <string name="ConversationSettingsFragment__view_safety_number">حفاظتی نمبر دیکھیں</string>
+  <string name="ConversationSettingsFragment__block">بلاک</string>
+  <string name="ConversationSettingsFragment__block_group">مسدود گروپ</string>
+  <string name="ConversationSettingsFragment__unblock">ان بلاک</string>
+  <string name="ConversationSettingsFragment__unblock_group">غیر مسدود گروپ</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">کسی گروپ میں شامل کریں</string>
+  <string name="ConversationSettingsFragment__see_all">تمام دیکھیں</string>
+  <string name="ConversationSettingsFragment__add_members">ممبران شامل کریں</string>
+  <string name="ConversationSettingsFragment__permissions">اجازت</string>
+  <string name="ConversationSettingsFragment__group_link">گروپ لنک</string>
+  <string name="ConversationSettingsFragment__unmute">غیر خاموش</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">ممبران شامل کریں</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">گروپ کی معلومات میں ترمیم کریں</string>
+  <string name="PermissionsSettingsFragment__all_members">تمام ممبران</string>
+  <string name="PermissionsSettingsFragment__only_admins">صرف منتظمین</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">کون نئے ممبروں کو شامل کرسکتا ہے؟</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">کون اس گروپ کی معلومات میں ترمیم کرسکتا ہے؟</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">خاموش اطلاعات</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">غیر خاموش</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">ذکر</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
   <!--EOF-->
 </resources>

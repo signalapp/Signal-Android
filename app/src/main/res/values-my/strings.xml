@@ -614,31 +614,10 @@
   <string name="ManageProfileFragment_your_username">သင့်အသုံးပြုသူအမည်</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">ကိုယ်စားပြုရုပ်ပုံ တင်ရန်မအောင်မြင်ပါ</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">စနစ်အဆက်အသွယ်စာရင်း ထဲသို့ထည့်ပါ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">၎င်းပုဂ္ဂိုလ်သည် သင့်အဆက်အသွယ်စာရင်းထဲတွင် ရှိပါသည်</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">ပျောက်ကွယ်သွားသော မက်ဆေ့ချ်များ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">စကားပြောဆိုမှု၏ အရောင်</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">စကားပြောဆိုမှု၏ နောက်ခံပုံ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">ပိတ်ပယ်မယ်</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">ပြန်ဖွင့်မယ်</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">လုံခြုံရေးနံပါတ်ကိုကြည့်မယ်</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">အသိပေးချက်များကို ပိတ်မယ်</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">စိတ်ကြိုက်သတိပေးချက်များ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">%1$s အထိ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">အမြဲ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">ပိတ်ပါ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">ဖွင့်ပါ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">အဖွဲ့တစ်ခုသို့ ပေါင်းထည့်မယ်</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">အဖွဲ့များ အားလုံးကြည့်ရှုမယ်</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">အားလုံးကို ကြည့်မယ်</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">တူညီသော အဖွဲ့များ မရှိပါ</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="other">တူညီသော အဖွဲ့ %d ဖွဲ့</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">မက်ဆေ့ချ်</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">အသံခေါ်ဆိုမှု</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">မလုံခြုံသောအသံခေါ်ဆိုမှု</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">ဗီဒီယို ခေါ်ဆိုမှု</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="other">%1$s သည် %2$d ဦးကို ဖိတ်ကြားခဲ့သည်</item>
   </plurals>
@@ -2517,7 +2496,6 @@
   <string name="RecipientBottomSheet_add_to_a_group">အဖွဲ့တစ်ဖွဲ့ထဲသို့ ထည့်မယ်</string>
   <string name="RecipientBottomSheet_add_to_another_group">အခြား အဖွဲ့သို့ထည့်မယ်</string>
   <string name="RecipientBottomSheet_view_safety_number">လုံခြုံရေးနံပါတ်ကိုကြည့်မယ်</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">အဖွဲ့စီမံသူ အဖြစ်ခန့်မယ်</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">စီမံသူအဖြစ်မှ ဖယ်ရှားမယ်</string>
   <string name="RecipientBottomSheet_remove_from_group">အဖွဲ့မှ ဖယ်ရှားမယ်</string>
   <string name="RecipientBottomSheet_message_description">မက်ဆေ့ချ်</string>
@@ -2787,5 +2765,37 @@
   <string name="KeyboardPagerFragment_stickers">စတစ်ကာများ </string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>
   <!--StickerSearchDialogFragment-->
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">မက်ဆေ့ချ်</string>
+  <string name="ConversationSettingsFragment__video">ဗီဒီယို</string>
+  <string name="ConversationSettingsFragment__audio">အသံ</string>
+  <string name="ConversationSettingsFragment__call">ခေါ်ဆိုမယ်</string>
+  <string name="ConversationSettingsFragment__mute">အသံတိတ်ထားမည်</string>
+  <string name="ConversationSettingsFragment__muted">အသံပိတ်ထား</string>
+  <string name="ConversationSettingsFragment__search">ရှာဖွေမယ်</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">ပျောက်ကွယ်မည့် မက်ဆေ့ချ်များ</string>
+  <string name="ConversationSettingsFragment__view_safety_number">လုံခြုံရေးနံပါတ်ကိုကြည့်မယ်</string>
+  <string name="ConversationSettingsFragment__block">ပိတ်ပယ်မယ်</string>
+  <string name="ConversationSettingsFragment__block_group">အဖွဲ့ကိုပိတ်ပယ်မယ်</string>
+  <string name="ConversationSettingsFragment__unblock">ပြန်ဖွင့်မယ်</string>
+  <string name="ConversationSettingsFragment__unblock_group">အဖွဲ့ကိုပြန်ဖွင့်မယ်</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">အဖွဲ့တစ်ဖွဲ့ထဲသို့ ထည့်မယ်</string>
+  <string name="ConversationSettingsFragment__see_all">အားလုံးကို ကြည့်မယ်</string>
+  <string name="ConversationSettingsFragment__add_members">အဖွဲ့ဝင်များ ထည့်ပါ</string>
+  <string name="ConversationSettingsFragment__permissions">ခွင့်ပြုချက်များ</string>
+  <string name="ConversationSettingsFragment__group_link">Group link</string>
+  <string name="ConversationSettingsFragment__unmute">အသံပြန်ဖွင့်မယ်</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">အဖွဲ့ဝင်များ ထည့်ပါ</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">အုပ်စုအချက်အလက်ကိုတည်းဖြတ်ပါ</string>
+  <string name="PermissionsSettingsFragment__all_members">အဖွဲ့ဝင် အားလုံး</string>
+  <string name="PermissionsSettingsFragment__only_admins">အက်မင်များသာ</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">အသင်းဝင်အသစ်များကို မည်သူထပ်ထည့်လို့ရမလဲ?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ဤအဖွဲ့၏အချက်အလက်ကို မည်သူတည်းဖြတ်နိုင်သနည်း။</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">အသိပေးချက်များကို ပိတ်ပါ</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">အသံမပိတ်ပါ </string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">မန်းရှင်းများ</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">စိတ်ကြိုက်သတိပေးချက်များ</string>
   <!--EOF-->
 </resources>

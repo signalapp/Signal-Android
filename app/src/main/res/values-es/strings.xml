@@ -656,32 +656,11 @@
   <string name="ManageProfileFragment_your_username">Alias (nombre de usuari@)</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Fallo al seleccionar foto de perfil</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Añadir a los contactos del sistema</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Esta persona está entre tus contactos</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Desaparición de mensajes</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Color del chat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Fondo de chat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Bloquear</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Desbloquear</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Ver cifras de seguridad</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Silenciar notificaciones</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Notificaciones personalizadas</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Hasta %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Para siempre</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Inactivo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Activo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Añadir a un grupo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Ver todos los grupos</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Ver todos</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">No hay grupos en común</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grupo en común</item>
     <item quantity="other">%d grupos en común</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Mensaje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Llamada de voz</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Llamada no segura</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Videollamada</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">«%1$s» ha invitado a 1 persona</item>
     <item quantity="other">«%1$s» ha invitado a %2$d personas</item>
@@ -1875,6 +1854,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Símbolos</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Banderas</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticonos</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">No se encontraron resultados</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Usar predeterminado</string>
   <string name="arrays__use_custom">Usar personalizado</string>
@@ -2651,7 +2631,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="RecipientBottomSheet_add_to_a_group">Añadir a un grupo</string>
   <string name="RecipientBottomSheet_add_to_another_group">Añadir a otro grupo</string>
   <string name="RecipientBottomSheet_view_safety_number">Ver cifras de seguridad</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Promover a admin</string> -->
+  <string name="RecipientBottomSheet_make_admin">Promover a admin</string>
   <string name="RecipientBottomSheet_remove_as_admin">Retirar permisos de admin</string>
   <string name="RecipientBottomSheet_remove_from_group">Expulsar del grupo</string>
   <string name="RecipientBottomSheet_message_description">Mensaje</string>
@@ -3006,5 +2986,49 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="StickerSearchDialogFragment_no_results_found">No se encontraron resultados</string>
   <string name="EmojiSearchFragment__no_results_found">No se encontraron resultados</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Tono de llamada desconocido</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Enviar mensaje</string>
+  <string name="ConversationSettingsFragment__start_video_call">Iniciar videollamada</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Iniciar llamada</string>
+  <string name="ConversationSettingsFragment__message">Mensaje</string>
+  <string name="ConversationSettingsFragment__video">Vídeo</string>
+  <string name="ConversationSettingsFragment__audio">Audio</string>
+  <string name="ConversationSettingsFragment__call">Llamar</string>
+  <string name="ConversationSettingsFragment__mute">Silenciar</string>
+  <string name="ConversationSettingsFragment__muted">Silenciada</string>
+  <string name="ConversationSettingsFragment__search">Buscar</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Desaparición de mensajes</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Sonidos y notificaciones</string>
+  <string name="ConversationSettingsFragment__contact_details">Detalles personales</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Ver cifras de seguridad</string>
+  <string name="ConversationSettingsFragment__block">Bloquear</string>
+  <string name="ConversationSettingsFragment__block_group">Bloquear grupo</string>
+  <string name="ConversationSettingsFragment__unblock">Desbloquear</string>
+  <string name="ConversationSettingsFragment__unblock_group">Desbloquear grupo</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Añadir a un grupo</string>
+  <string name="ConversationSettingsFragment__see_all">Ver todos</string>
+  <string name="ConversationSettingsFragment__add_members">Añadir participantes</string>
+  <string name="ConversationSettingsFragment__permissions">Permisos</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Solicitudes e invitaciones</string>
+  <string name="ConversationSettingsFragment__group_link">Enlace al grupo</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Añadir como nuevo contacto</string>
+  <string name="ConversationSettingsFragment__unmute">No silenciar</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat silenciado hasta %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Chat silenciado para siempre</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Añadir participantes</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Editar detalles del grupo</string>
+  <string name="PermissionsSettingsFragment__all_members">Cualquiera</string>
+  <string name="PermissionsSettingsFragment__only_admins">Sólo admins</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">¿Quién puede añadir participantes?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">¿Quién puede modificar los detalles del grupo?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Silenciar notificaciones</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">No silenciado</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Silenciado hasta %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Menciones</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Notificar siempre</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">No notificar</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificaciones personalizadas</string>
   <!--EOF-->
 </resources>

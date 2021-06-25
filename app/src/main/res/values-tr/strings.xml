@@ -656,32 +656,11 @@
   <string name="ManageProfileFragment_your_username">Kullanıcı adınız</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avatar ayarlanamadı</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Sistem kişilerine ekle</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Kişileriniz arasında</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Kaybolan iletiler</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Konuşma rengi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Konuşma duvar kağıdı</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Engelle</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Engeli kaldır</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Güvenlik numarasını görüntüle</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Bildirimleri sessize al</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Özel bildirimler</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">%1$s tarihine kadar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Her zaman</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Kapalı</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Açık</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Bir gruba ekle</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Tüm grupları görüntüle</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Tümünü gör</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Ortak grubunuz yok</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d ortak grup</item>
     <item quantity="other">%d ortak grup</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">İleti</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Sesli arama</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Şifresiz sesli arama</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Görüntülü arama</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s, 1 kişiyi davet etti</item>
     <item quantity="other">%1$s, %2$d kişiyi davet etti</item>
@@ -1873,6 +1852,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Semboller</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bayraklar</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">His simgeleri</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Sonuç bulunamadı</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Varsayılanı kullan</string>
   <string name="arrays__use_custom">Özelleştirilmiş kullan</string>
@@ -2649,7 +2629,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Bir gruba ekle</string>
   <string name="RecipientBottomSheet_add_to_another_group">Başka bir gruba ekle</string>
   <string name="RecipientBottomSheet_view_safety_number">Güvenlik numarasını görüntüle</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Grup yöneticisi yap</string> -->
+  <string name="RecipientBottomSheet_make_admin">Yönetici Yap</string>
   <string name="RecipientBottomSheet_remove_as_admin">Grup yöneticiliğinden çıkart</string>
   <string name="RecipientBottomSheet_remove_from_group">Gruptan çıkart</string>
   <string name="RecipientBottomSheet_message_description">İleti</string>
@@ -3004,5 +2984,37 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="StickerSearchDialogFragment_no_results_found">Sonuç bulunamadı</string>
   <string name="EmojiSearchFragment__no_results_found">Sonuç bulunamadı</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Bilinmeyen zil sesi</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">İleti</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Ses</string>
+  <string name="ConversationSettingsFragment__call">Ara</string>
+  <string name="ConversationSettingsFragment__mute">Sessiz</string>
+  <string name="ConversationSettingsFragment__muted">Sessize Alındı</string>
+  <string name="ConversationSettingsFragment__search">Konuşmada Ara</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Kaybolan iletiler</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Güvenlik numarasını görüntüle</string>
+  <string name="ConversationSettingsFragment__block">Engelle</string>
+  <string name="ConversationSettingsFragment__block_group">Grubu engelle</string>
+  <string name="ConversationSettingsFragment__unblock">Engeli kaldır</string>
+  <string name="ConversationSettingsFragment__unblock_group">Grubun engelini kaldır</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Bir gruba ekle</string>
+  <string name="ConversationSettingsFragment__see_all">Tümünü gör</string>
+  <string name="ConversationSettingsFragment__add_members">Üye ekle</string>
+  <string name="ConversationSettingsFragment__permissions">İzinler</string>
+  <string name="ConversationSettingsFragment__group_link">Grup bağlantısı</string>
+  <string name="ConversationSettingsFragment__unmute">Sesi aç</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Üye ekle</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Grup bilgisini düzenle</string>
+  <string name="PermissionsSettingsFragment__all_members">Tüm üyeler</string>
+  <string name="PermissionsSettingsFragment__only_admins">Yalnızca yöneticiler</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Kimler yeni üye ekleyebilir?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kimler bu grubun bilgisini düzenleyebilir?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Bildirimleri sessize al</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Sessizleştirilmedi</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Bahsedilmeler</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Özel bildirimler</string>
   <!--EOF-->
 </resources>

@@ -686,33 +686,12 @@
   <string name="ManageProfileFragment_your_username">Numele dvs. de utilizator</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Eroare la setarea avatarului</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Adăugați la contactele de sistem</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Această persoană se află în lista dvs. de contacte</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Dispariție mesaje</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Culoare conversaţie</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Fundal conversații</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blochează</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Deblochează</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Afișează numărul de siguranță</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Notificări fără sunet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Notificări personalizate</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Până la %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Întotdeauna</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Dezactivate</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Activate</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Adaugaţi la un grup</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Vizualizați toate grupurile</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Vezi tot</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Nu există grupuri în comun</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grup în comun</item>
     <item quantity="few">%d grupuri în comun</item>
     <item quantity="other">%d grupuri în comun</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Mesaj</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Apel vocal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Apel vocal nesecurizat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Apel video</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s a invitat o persoană</item>
     <item quantity="few"> %1$s a invitat %2$d persoane</item>
@@ -1935,6 +1914,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Simboluri</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Steaguri</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticoane</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Nici un rezultat gasit</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Implicit</string>
   <string name="arrays__use_custom">Personalizat</string>
@@ -2648,7 +2628,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RecipientBottomSheet_add_to_a_group">Adaugaţi la un grup</string>
   <string name="RecipientBottomSheet_add_to_another_group">Adaugaţi la alt grup</string>
   <string name="RecipientBottomSheet_view_safety_number">Afișează numărul de siguranță</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Faceți administrator de grup</string> -->
   <string name="RecipientBottomSheet_remove_as_admin">Eliminați ca administrator</string>
   <string name="RecipientBottomSheet_remove_from_group">Eliminați din grup</string>
   <string name="RecipientBottomSheet_message_description">Mesaj</string>
@@ -2963,5 +2942,37 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="StickerSearchDialogFragment_no_results_found">Nici un rezultat gasit</string>
   <string name="EmojiSearchFragment__no_results_found">Nici un rezultat gasit</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Ton de apel necunoscut</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">Mesaj</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Audio</string>
+  <string name="ConversationSettingsFragment__call">Apelează</string>
+  <string name="ConversationSettingsFragment__mute">Silențios</string>
+  <string name="ConversationSettingsFragment__muted">Fără sunet</string>
+  <string name="ConversationSettingsFragment__search">Căutare</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Dispariție mesaje</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Afișează numărul de siguranță</string>
+  <string name="ConversationSettingsFragment__block">Blochează</string>
+  <string name="ConversationSettingsFragment__block_group">Blocați grupul</string>
+  <string name="ConversationSettingsFragment__unblock">Deblochează</string>
+  <string name="ConversationSettingsFragment__unblock_group">Deblocare grup</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Adaugaţi la un grup</string>
+  <string name="ConversationSettingsFragment__see_all">Vezi tot</string>
+  <string name="ConversationSettingsFragment__add_members">Adăugare membri</string>
+  <string name="ConversationSettingsFragment__permissions">Permisiuni</string>
+  <string name="ConversationSettingsFragment__group_link">Link grup</string>
+  <string name="ConversationSettingsFragment__unmute">Activare sunet notificări</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Adăugare membri</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Editare informații despre grup</string>
+  <string name="PermissionsSettingsFragment__all_members">Toți membri</string>
+  <string name="PermissionsSettingsFragment__only_admins">Doar administratorii</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Cine poate adăuga membri?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Cine poate edita informațiile grupului?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Notificări fără sunet</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nu este pe silențios</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Mențiuni</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificări personalizate</string>
   <!--EOF-->
 </resources>

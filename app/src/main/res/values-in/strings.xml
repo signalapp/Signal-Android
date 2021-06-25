@@ -614,31 +614,10 @@
   <string name="ManageProfileFragment_your_username">Nama pengguna Anda</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Gagal mengatur avatar</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Tambahkan ke kontak</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Orang ini ada di kontak Anda</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Penghilangan pesan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Warna percakapan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Gambar latar percakapan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blokir</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Buka blokir</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Lihat nomor keamanan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Senyapkan pemberitahuan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Notifikasi khusus</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Sampai %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Selalu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Mati</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Aktif</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Tambahkan ke grup</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Lihat semua grup</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Lihat semua</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Tidak ada grup yang sama</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="other">%d grup yang sama</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Pesan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Panggilan suara</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Panggilan suara tidak aman</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Panggilan video</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="other">%1$s telah mengundang %2$d orang</item>
   </plurals>
@@ -2310,7 +2289,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RecipientBottomSheet_add_to_a_group">Tambahkan ke grup</string>
   <string name="RecipientBottomSheet_add_to_another_group">Tambahkan ke grup lain</string>
   <string name="RecipientBottomSheet_view_safety_number">Lihat nomor keamanan</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Jadikan admin grup</string> -->
+  <string name="RecipientBottomSheet_make_admin">Jadikan admin</string>
   <string name="RecipientBottomSheet_remove_as_admin">Cabut dari admin</string>
   <string name="RecipientBottomSheet_remove_from_group">Keluarkan dari grup</string>
   <string name="RecipientBottomSheet_message_description">Pesan</string>
@@ -2519,5 +2498,37 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_stickers">Stiker</string>
   <!--StickerSearchDialogFragment-->
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">Pesan</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Audio</string>
+  <string name="ConversationSettingsFragment__call">Panggil</string>
+  <string name="ConversationSettingsFragment__mute">Senyap</string>
+  <string name="ConversationSettingsFragment__muted">Disenyapkan</string>
+  <string name="ConversationSettingsFragment__search">Cari</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Penghilangan pesan</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Lihat nomor keamanan</string>
+  <string name="ConversationSettingsFragment__block">Blokir</string>
+  <string name="ConversationSettingsFragment__block_group">Blokir grup</string>
+  <string name="ConversationSettingsFragment__unblock">Buka blokir</string>
+  <string name="ConversationSettingsFragment__unblock_group">Buka blokir grup</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Tambahkan ke grup</string>
+  <string name="ConversationSettingsFragment__see_all">Lihat semua</string>
+  <string name="ConversationSettingsFragment__add_members">Tambahkan anggota</string>
+  <string name="ConversationSettingsFragment__permissions">Perizinan</string>
+  <string name="ConversationSettingsFragment__group_link">Tautan grup</string>
+  <string name="ConversationSettingsFragment__unmute">Tidak Senyap</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Tambahkan anggota</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Sunting informasi grup</string>
+  <string name="PermissionsSettingsFragment__all_members">Semua anggota</string>
+  <string name="PermissionsSettingsFragment__only_admins">Khusus para admin</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Siapa yang dapat menambahkan anggota baru?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Siapa yang dapat menyunting informasi grup?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Senyapkan pemberitahuan</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Tidak Senyap</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Menyebut</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notifikasi khusus</string>
   <!--EOF-->
 </resources>

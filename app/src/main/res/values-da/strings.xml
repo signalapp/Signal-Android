@@ -657,32 +657,11 @@
   <string name="ManageProfileFragment_your_username">Dit brugernavn</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avataren kunne ikke opsættes</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Tilføj til dine kontakter</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Personen findes i dine kontakter</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Beskeder med tidsudløb</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Chatfarve</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Chatbaggrund</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blokér</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Fjern blokering</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Vis sikkerhedsnummer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Udsæt notifikationer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Brugerdefinerede notifikationer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Indtil %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Altid</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Deaktiveret</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Aktiveret</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Tilføj til en gruppe</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Vis alle grupper</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Se alle</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Ingen grupper tilfælles</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d gruppe tilfælles</item>
     <item quantity="other">%d grupper tilfælles</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Besked</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Taleopkald</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Ukrypteret taleopkald</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Videoopkald</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s inviterede 1 person</item>
     <item quantity="other">%1$s inviterede %2$d personer</item>
@@ -1875,6 +1854,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboler</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flag</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Humørikoner</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ingen fundne resultater</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Brug standard</string>
   <string name="arrays__use_custom">Brug tilpasset</string>
@@ -2651,7 +2631,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="RecipientBottomSheet_add_to_a_group">Tilføj til en gruppe</string>
   <string name="RecipientBottomSheet_add_to_another_group">Tilføj til anden gruppe</string>
   <string name="RecipientBottomSheet_view_safety_number">Vis sikkerhedsnummer</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Gør til gruppeadministrator</string> -->
+  <string name="RecipientBottomSheet_make_admin">Gør til administrator</string>
   <string name="RecipientBottomSheet_remove_as_admin">Fjern som administrator</string>
   <string name="RecipientBottomSheet_remove_from_group">Fjern fra gruppe</string>
   <string name="RecipientBottomSheet_message_description">Besked</string>
@@ -3006,5 +2986,37 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="StickerSearchDialogFragment_no_results_found">Ingen fundne resultater</string>
   <string name="EmojiSearchFragment__no_results_found">Ingen fundne resultater</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Ukendt ringetone</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">Besked</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Lyd</string>
+  <string name="ConversationSettingsFragment__call">Ring op </string>
+  <string name="ConversationSettingsFragment__mute">Déaktiver lyd</string>
+  <string name="ConversationSettingsFragment__muted">Udsat</string>
+  <string name="ConversationSettingsFragment__search">Søg</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Forsvindende beskeder</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Vis sikkerhedsnummer</string>
+  <string name="ConversationSettingsFragment__block">Blokér</string>
+  <string name="ConversationSettingsFragment__block_group">Blokér gruppe</string>
+  <string name="ConversationSettingsFragment__unblock">Fjern blokering</string>
+  <string name="ConversationSettingsFragment__unblock_group">Ophæv blokering af gruppe</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Tilføj til en gruppe</string>
+  <string name="ConversationSettingsFragment__see_all">Se alle</string>
+  <string name="ConversationSettingsFragment__add_members">Tilføj medlemmer</string>
+  <string name="ConversationSettingsFragment__permissions">Tilladelser</string>
+  <string name="ConversationSettingsFragment__group_link">Gruppelink</string>
+  <string name="ConversationSettingsFragment__unmute">Aktivér lyd</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Tilføj medlemmer</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Rediger gruppeinformation</string>
+  <string name="PermissionsSettingsFragment__all_members">Alle medlemmer</string>
+  <string name="PermissionsSettingsFragment__only_admins">Kun administratorer</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Hvem kan tilføje nye medlemmer?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Hvem kan redigere gruppens information?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Udsæt meddelelser</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ikke udsat</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Omtaler</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Brugerdefinerede notifikationer</string>
   <!--EOF-->
 </resources>

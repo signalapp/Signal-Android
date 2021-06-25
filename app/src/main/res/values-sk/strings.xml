@@ -722,23 +722,6 @@
   <string name="ManageProfileFragment_your_username">Vaše používateľské meno</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Nepodarilo sa nastaviť profilový obrázok</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Pridať do systémových kontaktov</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Táto osoba je vo vašich kontaktoch</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Miznúce správy</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Farba chatu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Pozadie chatu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blokovať</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Odblokovať</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Zobraziť bezpečnostné číslo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Stlmiť upozornenia</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Vlastné upozornenia</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Do %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Vždy</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Vypnuté</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Zapnuté</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Pridať do skupiny</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Zobraziť všetky skupiny</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Pozrieť všetky</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Žiadne spoločné skupiny</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d spoločná skupina</item>
@@ -746,10 +729,6 @@
     <item quantity="many">%d spoločných skupín</item>
     <item quantity="other">%d spoločných skupín</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Správa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Hlasový hovor</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Nezabezpečený hlasový hovor</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Videohovor</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s pozval 1 osobu</item>
     <item quantity="few">%1$s pozval %2$d osoby</item>
@@ -2018,6 +1997,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboly</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Vlajky</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikony</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Neboli nájdené žiadne výsledky</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Použiť predvolené</string>
   <string name="arrays__use_custom">Použiť vlastné</string>
@@ -2810,7 +2790,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="RecipientBottomSheet_add_to_a_group">Pridať do skupiny</string>
   <string name="RecipientBottomSheet_add_to_another_group">Pridať do ďalšej skupiny</string>
   <string name="RecipientBottomSheet_view_safety_number">Zobraziť bezpečnostné číslo</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Spraviť adminom skupiny</string> -->
+  <string name="RecipientBottomSheet_make_admin">Spraviť administrátorom</string>
   <string name="RecipientBottomSheet_remove_as_admin">Odstrániť ako admina</string>
   <string name="RecipientBottomSheet_remove_from_group">Odstrániť zo skupiny</string>
   <string name="RecipientBottomSheet_message_description">Správa</string>
@@ -3173,5 +3153,49 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="StickerSearchDialogFragment_no_results_found">Neboli nájdené žiadne výsledky</string>
   <string name="EmojiSearchFragment__no_results_found">Neboli nájdené žiadne výsledky</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Neznámy vyzváňací tón</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Poslať správu</string>
+  <string name="ConversationSettingsFragment__start_video_call">Začať videohovor</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Začať audiohovor</string>
+  <string name="ConversationSettingsFragment__message">Správa</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Zvuk</string>
+  <string name="ConversationSettingsFragment__call">Zavolať</string>
+  <string name="ConversationSettingsFragment__mute">Stlmiť</string>
+  <string name="ConversationSettingsFragment__muted">Stlmený/á</string>
+  <string name="ConversationSettingsFragment__search">Hľadať</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Miznúce správy</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Zvuky &amp; upozornenia</string>
+  <string name="ConversationSettingsFragment__contact_details">Údaje o kontakte</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Zobraziť bezpečnostné číslo</string>
+  <string name="ConversationSettingsFragment__block">Blokovať</string>
+  <string name="ConversationSettingsFragment__block_group">Blokovať skupinu</string>
+  <string name="ConversationSettingsFragment__unblock">Odblokovať</string>
+  <string name="ConversationSettingsFragment__unblock_group">Odblokovať skupinu</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Pridať do skupiny</string>
+  <string name="ConversationSettingsFragment__see_all">Pozrieť všetky</string>
+  <string name="ConversationSettingsFragment__add_members">Pridať členov</string>
+  <string name="ConversationSettingsFragment__permissions">Povolenia</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Žiadosti &amp; pozvánky</string>
+  <string name="ConversationSettingsFragment__group_link">Odkaz do skupiny</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Pridať ako kontakt</string>
+  <string name="ConversationSettingsFragment__unmute">Zrušiť stlmenie</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Konverzácia bola stlmená do %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Konverzácia bola navždy stlmená</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Pridať členov</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Upraviť informácie o skupine</string>
+  <string name="PermissionsSettingsFragment__all_members">Všetci členovia</string>
+  <string name="PermissionsSettingsFragment__only_admins">Iba správcovia</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Kto môže pridávať nových členov?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kto môže upraviť informácie o tejto skupine?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Stlmiť upozornenia</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nestlmené</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Stlmený do %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Spomenutia</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Vždy upozorniť</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Neinformovať</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Vlastné upozornenia</string>
   <!--EOF-->
 </resources>

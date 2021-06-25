@@ -643,31 +643,11 @@
   <string name="ManageProfileFragment_your_username">Zure erabiltzaile-izena</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Huts egin du zure irudia ezartzeak</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Gehitu sistemaren kontaktuetara</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Pertsona hau zure kontaktuetan dago</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Mezuen desagerpena</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Txat-aren kolorea</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Elkarrizketaren hormairudia</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blokeatu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Desblokeatu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Erakutsi segurtasun zenbakia </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Desaktibatu jakinarazpenak</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Jakinarazpen pertsonalizatuak</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">%1$s dataraino</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Desaktibatuta</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Aktibatuta</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Gehitu taldera</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Ikusi talde guztiak</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Ikusi denak</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Ez dago zuen artean komuna den talderik</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">Talde %d komuna zuen artean</item>
     <item quantity="other">%d talde komun zuen artean</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Mezua</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Ahots deia</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Ahots dei ez segurua</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Bideo deia</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s erabiltzaileak pertsona 1 gonbidatu du</item>
     <item quantity="other">%1$s erabiltzaileak %2$d pertsona gonbidatu ditu</item>
@@ -2388,7 +2368,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="RecipientBottomSheet_add_to_a_group">Gehitu taldera</string>
   <string name="RecipientBottomSheet_add_to_another_group">Gehitu beste talde batera</string>
   <string name="RecipientBottomSheet_view_safety_number">Erakutsi segurtasun zenbakia </string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Bilakatu talde administratzailea</string> -->
+  <string name="RecipientBottomSheet_make_admin">Bihurtu administratzaile</string>
   <string name="RecipientBottomSheet_remove_as_admin">Administratzaile gisa ezabatu</string>
   <string name="RecipientBottomSheet_remove_from_group">Ezabatu taldetik</string>
   <string name="RecipientBottomSheet_message_description">Mezua</string>
@@ -2597,5 +2577,37 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_stickers">Eranskailuak</string>
   <!--StickerSearchDialogFragment-->
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">Mezua</string>
+  <string name="ConversationSettingsFragment__video">Bideoa</string>
+  <string name="ConversationSettingsFragment__audio">Audioa</string>
+  <string name="ConversationSettingsFragment__call">Deitu</string>
+  <string name="ConversationSettingsFragment__mute">Isildu</string>
+  <string name="ConversationSettingsFragment__muted">Isildu</string>
+  <string name="ConversationSettingsFragment__search">Bilatu</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Mezuen desagerpena</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Erakutsi segurtasun zenbakia </string>
+  <string name="ConversationSettingsFragment__block">Blokeatu</string>
+  <string name="ConversationSettingsFragment__block_group">Blokeatu taldea</string>
+  <string name="ConversationSettingsFragment__unblock">Desblokeatu</string>
+  <string name="ConversationSettingsFragment__unblock_group">Desblokeatu taldea</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Gehitu taldera</string>
+  <string name="ConversationSettingsFragment__see_all">Ikusi denak</string>
+  <string name="ConversationSettingsFragment__add_members">Gehitu kideak</string>
+  <string name="ConversationSettingsFragment__permissions">Baimenak</string>
+  <string name="ConversationSettingsFragment__group_link">Talderako esteka</string>
+  <string name="ConversationSettingsFragment__unmute">Soinua aktibatu</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Gehitu kideak</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Editatu taldeari buruzko informazioa</string>
+  <string name="PermissionsSettingsFragment__all_members">Partaide guztiak</string>
+  <string name="PermissionsSettingsFragment__only_admins">Administratzaileak bakarrik</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Nork gehitu ditzake kide berriak?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Nork edita dezake talde honen informazioa?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Desaktibatu jakinarazpenak</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ez mututua</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Aipamenak</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Jakinarazpen pertsonalizatuak</string>
   <!--EOF-->
 </resources>

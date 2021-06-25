@@ -647,32 +647,11 @@
   <string name="ManageProfileFragment_your_username">Via uzantnomo</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">La difino de avataro malsukcesis</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Aldoni al sistemaj kontaktoj</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tiu persono estas en viaj kontaktoj.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Memviŝontaj mesaĝoj</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Koloro de interparolo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Interparola ekranfono</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Bloki</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Malbloki</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Montri sekurigan numeron</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Silentigi sciigojn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Propraj sciigoj</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Ĝis %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Ĉiam</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Malŝaltita</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Ŝaltita</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Aldoni al grupo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Vidi ĉiujn grupojn</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Vidu ĉiujn</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Neniu komuna grupo</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d komuna grupo</item>
     <item quantity="other">%d komunaj grupoj</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Mesaĝo</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Voĉ-alvoko</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Nesekura voĉ-alvoko</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Vid-alvoko</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s invitis 1 homon</item>
     <item quantity="other">%1$s invitis %2$d homojn</item>
@@ -2579,7 +2558,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RecipientBottomSheet_add_to_a_group">Aldoni al grupo</string>
   <string name="RecipientBottomSheet_add_to_another_group">Aldoni al plia grupo</string>
   <string name="RecipientBottomSheet_view_safety_number">Montri sekurigan numeron</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Estigi grupadministranton</string> -->
+  <string name="RecipientBottomSheet_make_admin">Estigi administranton</string>
   <string name="RecipientBottomSheet_remove_as_admin">Forigi kiel administranton</string>
   <string name="RecipientBottomSheet_remove_from_group">Forigi el la grupo</string>
   <string name="RecipientBottomSheet_message_description">Mesaĝo</string>
@@ -2792,5 +2771,35 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="KeyboardPagerFragment_emoji">Emoĝio</string>
   <string name="KeyboardPagerFragment_stickers">Glumarkoj</string>
   <!--StickerSearchDialogFragment-->
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">Mesaĝo</string>
+  <string name="ConversationSettingsFragment__video">Videaĵo</string>
+  <string name="ConversationSettingsFragment__audio">Sonaĵoj</string>
+  <string name="ConversationSettingsFragment__call">Alvoko</string>
+  <string name="ConversationSettingsFragment__mute">Silentigi</string>
+  <string name="ConversationSettingsFragment__search">Serĉi</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Memviŝontaj mesaĝoj</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Montri sekurigan numeron</string>
+  <string name="ConversationSettingsFragment__block">Bloki</string>
+  <string name="ConversationSettingsFragment__block_group">Bloki la grupon</string>
+  <string name="ConversationSettingsFragment__unblock">Malbloki</string>
+  <string name="ConversationSettingsFragment__unblock_group">Malbloki la grupon</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Aldoni al grupo</string>
+  <string name="ConversationSettingsFragment__see_all">Vidu ĉiujn</string>
+  <string name="ConversationSettingsFragment__add_members">Aldoni anojn</string>
+  <string name="ConversationSettingsFragment__permissions">Permesoj</string>
+  <string name="ConversationSettingsFragment__group_link">Grupligilo</string>
+  <string name="ConversationSettingsFragment__unmute">Malsilentigi</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Aldoni anojn</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Modifi grupinformon</string>
+  <string name="PermissionsSettingsFragment__all_members">Ĉiuj grupanoj</string>
+  <string name="PermissionsSettingsFragment__only_admins">Nur administrantoj</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Kiu povas aldoni novajn anojn?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kiu povas modifi tiun grupinformon?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Silentigi sciigojn</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Mencioj</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Propraj sciigoj</string>
   <!--EOF-->
 </resources>

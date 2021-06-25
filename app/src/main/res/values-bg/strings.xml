@@ -642,32 +642,11 @@
   <string name="ManageProfileFragment_your_username">Твойто Потребителско име</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Неуспешно задаване на аватар</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Добавяне към системните контакти</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Този човек е във вашите контакти</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Изчезващи съобщения</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Чат цвят</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Тапет на чатаТапет на чата</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Блокиране</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Отблокиране</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Преглеждане на числото за сигурност</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Тих режим за известия</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Персонализирани известия</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">До %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Винаги</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Деактивирано</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Активирано</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Добави в група</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Преглед на всички групи</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Виж всички</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Няма общи групи</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d обща група</item>
     <item quantity="other">%d общи групи</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Съобщение</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Гласово обаждане</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Некриптиран гласен разговор</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Видео обаждане</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s покани 1 човек</item>
     <item quantity="other">%1$s покани %2$d хора</item>
@@ -2371,7 +2350,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">Добави до група</string>
   <string name="RecipientBottomSheet_add_to_another_group">Добави в друга група</string>
   <string name="RecipientBottomSheet_view_safety_number">Преглеждане на числото за сигурност</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Направи администратор на групата</string> -->
+  <string name="RecipientBottomSheet_make_admin">Направи администратор</string>
   <string name="RecipientBottomSheet_remove_as_admin">Отстраняване като администратор</string>
   <string name="RecipientBottomSheet_remove_from_group">Отстраняване от групата</string>
   <string name="RecipientBottomSheet_message_description">Съобщение</string>
@@ -2577,5 +2556,37 @@
   <string name="KeyboardPagerFragment_emoji">Емоджи</string>
   <string name="KeyboardPagerFragment_stickers">Стикери</string>
   <!--StickerSearchDialogFragment-->
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">Съобщение</string>
+  <string name="ConversationSettingsFragment__video">Видео</string>
+  <string name="ConversationSettingsFragment__audio">Аудио</string>
+  <string name="ConversationSettingsFragment__call">Обаждане</string>
+  <string name="ConversationSettingsFragment__mute">Заглуши</string>
+  <string name="ConversationSettingsFragment__muted">Заглушен</string>
+  <string name="ConversationSettingsFragment__search">Търсене</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Изчезващи съобщения</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Преглеждане на числото за сигурност</string>
+  <string name="ConversationSettingsFragment__block">Блокирай</string>
+  <string name="ConversationSettingsFragment__block_group">Блокиране на групата</string>
+  <string name="ConversationSettingsFragment__unblock">Отблокиране</string>
+  <string name="ConversationSettingsFragment__unblock_group">Отблокиране на групата</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Добави в група</string>
+  <string name="ConversationSettingsFragment__see_all">Виж всички</string>
+  <string name="ConversationSettingsFragment__add_members">Добави членове</string>
+  <string name="ConversationSettingsFragment__permissions">Разрешения</string>
+  <string name="ConversationSettingsFragment__group_link">Връзка към групата</string>
+  <string name="ConversationSettingsFragment__unmute">Изключи тих режим</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Добави членове</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Редактиране на информация за групата</string>
+  <string name="PermissionsSettingsFragment__all_members">Всеки член</string>
+  <string name="PermissionsSettingsFragment__only_admins">Само администратори</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Кой може да добавя нови членове?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Кой може да редактира информацията на тази група?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Тих режим за известия</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Не е заглушен</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Споменавания</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Персонализирани известия</string>
   <!--EOF-->
 </resources>

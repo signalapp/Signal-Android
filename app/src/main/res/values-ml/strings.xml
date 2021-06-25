@@ -646,32 +646,11 @@
   <string name="ManageProfileFragment_your_username">നിങ്ങളുടെ ഉപയോക്തൃനാമം</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">അവതാർ സജ്ജമാക്കാന്‍ കഴിഞ്ഞില്ല</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">സിസ്റ്റം കോൺടാക്റ്റുകളിൽ ചേർക്കൂ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">ഈ വ്യക്തി നിങ്ങളുടെ കോണ്ടാക്ടുകളിലുണ്ട് </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">ചാറ്റ് നിറം</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">ചാറ്റ് വാൾപേപ്പർ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">തടയുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">തടഞ്ഞത് മാറ്റുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">സുരക്ഷാ നമ്പർ കാണുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">%1$s വരെ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">എല്ലായ്പ്പോഴും</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">ഓഫ്</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">ഓൺ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">ഒരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">എല്ലാ ഗ്രൂപ്പുകളും കാണുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">എല്ലാം കാണുക</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">സാമാന്യമായി ഗ്രൂപ്പുകളൊന്നുമില്ല</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">സാമാന്യമായി %d ഗ്രൂപ്പ് ഉണ്ട്</item>
     <item quantity="other">സാമാന്യമായി %d ഗ്രൂപ്പുകൾ ഉണ്ട്</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">സന്ദേശം</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">വോയ്സ് കോൾ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">സുരക്ഷിതമല്ലാത്ത വോയ്‌സ് കോൾ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">വീഡിയോ കോൾ</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s 1 പേരെ ക്ഷണിച്ചു</item>
     <item quantity="other">%1$s %2$d ആളുകളെ ക്ഷണിച്ചു</item>
@@ -1822,6 +1801,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">ചിഹ്നങ്ങൾ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">പതാകകൾ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ഇമോട്ടിക്കോണുകൾ</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ഫലങ്ങളൊന്നുമില്ല.</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">സ്ഥിരസ്ഥിതി ഉപയോഗിക്കുക</string>
   <string name="arrays__use_custom">ഇഷ്‌ടാനുസൃതം ഉപയോഗിക്കുക</string>
@@ -2438,7 +2418,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">ഒരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <string name="RecipientBottomSheet_add_to_another_group">മറ്റൊരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <string name="RecipientBottomSheet_view_safety_number">സുരക്ഷാ നമ്പർ കാണുക</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">ഗ്രൂപ്പ് അഡ്‌മിൻ ആക്കുക</string> -->
+  <string name="RecipientBottomSheet_make_admin">അഡ്‌മിൻ ആക്കുക</string>
   <string name="RecipientBottomSheet_remove_as_admin">അഡ്മിനായി നീക്കംചെയ്യൂ</string>
   <string name="RecipientBottomSheet_remove_from_group">ഗ്രൂപ്പിൽ നിന്ന് നീക്കംചെയ്യൂ</string>
   <string name="RecipientBottomSheet_message_description">സന്ദേശം</string>
@@ -2680,5 +2660,37 @@
   <!--StickerSearchDialogFragment-->
   <string name="StickerSearchDialogFragment_no_results_found">ഫലങ്ങളൊന്നുമില്ല.</string>
   <string name="EmojiSearchFragment__no_results_found">ഫലങ്ങളൊന്നുമില്ല.</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">സന്ദേശം</string>
+  <string name="ConversationSettingsFragment__video">വീഡിയോ</string>
+  <string name="ConversationSettingsFragment__audio">ശബ്ദം</string>
+  <string name="ConversationSettingsFragment__call">കോൾ ചെയ്യുക</string>
+  <string name="ConversationSettingsFragment__mute">നിശബ്ദമാക്കുക</string>
+  <string name="ConversationSettingsFragment__muted">നിശബ്ദമാക്കി</string>
+  <string name="ConversationSettingsFragment__search">തിരയുക</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
+  <string name="ConversationSettingsFragment__view_safety_number">സുരക്ഷാ നമ്പർ കാണുക</string>
+  <string name="ConversationSettingsFragment__block">തടയുക</string>
+  <string name="ConversationSettingsFragment__block_group">ഗ്രൂപ്പ് തടയുക</string>
+  <string name="ConversationSettingsFragment__unblock">തടഞ്ഞത് മാറ്റുക</string>
+  <string name="ConversationSettingsFragment__unblock_group">ഗ്രൂപ്പ് തടഞ്ഞത് മാറ്റുക</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">ഒരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
+  <string name="ConversationSettingsFragment__see_all">എല്ലാം കാണുക</string>
+  <string name="ConversationSettingsFragment__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
+  <string name="ConversationSettingsFragment__permissions">അനുമതികൾ</string>
+  <string name="ConversationSettingsFragment__group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക് </string>
+  <string name="ConversationSettingsFragment__unmute">ശബ്‌ദിപ്പിക്കുക</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">ഗ്രൂപ്പ് വിവരം തിരുത്തുക</string>
+  <string name="PermissionsSettingsFragment__all_members">എല്ലാ അംഗങ്ങളും</string>
+  <string name="PermissionsSettingsFragment__only_admins">അഡ്‌മിനുകൾ മാത്രം</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">ആർക്കാണ് പുതിയ അംഗങ്ങളെ ചേർക്കാൻ കഴിയുക?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ഈ ഗ്രൂപ്പിന്റെ വിവരങ്ങൾ ആർക്കാണ് എഡിറ്റുചെയ്യാൻ കഴിയുക?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">നിശബ്ദമാക്കിയിട്ടില്ല</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">സൂചനകൾ</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
   <!--EOF-->
 </resources>

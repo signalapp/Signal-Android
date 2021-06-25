@@ -648,32 +648,11 @@
   <string name="ManageProfileFragment_your_username">Käyttäjätunnuksesi</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Avatar-kuvan asettaminen epäonnistui</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Lisää yhteystietoihin</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tämä henkilö on yhteystiedoissasi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Katoavat viestit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Keskustelun väri</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Keskustelunäkymän taustakuva</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Estä</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Poista esto</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Näytä turvanumero</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Mykistä ilmoitukset</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Mukautetut ilmoitukset</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">%1$s asti</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Aina</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">pois päältä</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Päällä</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Lisää ryhmään</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Näytä kaikki ryhmät</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Näytä kaikki</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Ei yhteisiä ryhmiä</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d yhteinen ryhmä</item>
     <item quantity="other">%d yhteistä ryhmää</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Viesti</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Äänipuhelu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Salaamaton äänipuhelu</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Videopuhelu</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s kutsui 1 henkilön</item>
     <item quantity="other">%1$s kutsui %2$d henkilöä</item>
@@ -2581,7 +2560,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RecipientBottomSheet_add_to_a_group">Lisää ryhmään</string>
   <string name="RecipientBottomSheet_add_to_another_group">Lisää toiseen ryhmään</string>
   <string name="RecipientBottomSheet_view_safety_number">Näytä turvanumero</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Nimitä ryhmän ylläpitäjäksi</string> -->
+  <string name="RecipientBottomSheet_make_admin">Nimitä ylläpitäjäksi</string>
   <string name="RecipientBottomSheet_remove_as_admin">Poista ylläpitäjän oikeudet</string>
   <string name="RecipientBottomSheet_remove_from_group">Poista ryhmästä</string>
   <string name="RecipientBottomSheet_message_description">Viesti</string>
@@ -2839,5 +2818,37 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="KeyboardPagerFragment_emoji">Emojit</string>
   <string name="KeyboardPagerFragment_stickers">Tarrat</string>
   <!--StickerSearchDialogFragment-->
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">Viesti</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Ääni</string>
+  <string name="ConversationSettingsFragment__call">Soita</string>
+  <string name="ConversationSettingsFragment__mute">Mykistä</string>
+  <string name="ConversationSettingsFragment__muted">Mykistetty</string>
+  <string name="ConversationSettingsFragment__search">Haku</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Katoavat viestit</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Näytä turvanumero</string>
+  <string name="ConversationSettingsFragment__block">Estä</string>
+  <string name="ConversationSettingsFragment__block_group">Estä ryhmä</string>
+  <string name="ConversationSettingsFragment__unblock">Poista esto</string>
+  <string name="ConversationSettingsFragment__unblock_group">Poista ryhmän esto</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Lisää ryhmään</string>
+  <string name="ConversationSettingsFragment__see_all">Näytä kaikki</string>
+  <string name="ConversationSettingsFragment__add_members">Lisää jäseniä</string>
+  <string name="ConversationSettingsFragment__permissions">Käyttöoikeudet</string>
+  <string name="ConversationSettingsFragment__group_link">Ryhmälinkki</string>
+  <string name="ConversationSettingsFragment__unmute">Poista mykistys</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Lisää jäseniä</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Muokkaa ryhmän tietoja</string>
+  <string name="PermissionsSettingsFragment__all_members">Kaikki jäsenet</string>
+  <string name="PermissionsSettingsFragment__only_admins">Vain ylläpitäjät</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Ketkä voivat lisätä uusia jäseniä?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Ketkä voivat muokata tämän ryhmän tietoja?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Mykistä ilmoitukset</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ei mykistetty</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Maininnat</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Mukautetut ilmoitukset</string>
   <!--EOF-->
 </resources>

@@ -179,8 +179,8 @@
   <string name="ConversationItem_copied_text">%s naar klembord gekopieerd</string>
   <string name="ConversationItem_from_s">van %s</string>
   <string name="ConversationItem_to_s">via %s</string>
-  <string name="ConversationItem_read_more">  Meer lezen</string>
-  <string name="ConversationItem_download_more">  Download meer</string>
+  <string name="ConversationItem_read_more"> Meer lezen</string>
+  <string name="ConversationItem_download_more"> Meer downloaden</string>
   <string name="ConversationItem_pending">  In afwachting</string>
   <string name="ConversationItem_this_message_was_deleted">Dit bericht is gewist.</string>
   <string name="ConversationItem_you_deleted_this_message">Je hebt dit bericht gewist.</string>
@@ -328,7 +328,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Sommige contactpersonen kunnen geen lid worden van oude groepen.</string>
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Sommige contactpersonen kunnen geen lid worden van verouderde groepen.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profiel</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fout bij instellen van profielfoto</string>
@@ -433,7 +433,7 @@
   <string name="AddToGroupActivity_s_added_to_s">%1$s aan de groep “%2$s” toegevoegd.</string>
   <string name="AddToGroupActivity_add_to_group">Aan groep toevoegen</string>
   <string name="AddToGroupActivity_add_to_groups">Aan groepen toevoegen</string>
-  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan een oude groep.</string>
+  <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan een verouderde groep.</string>
   <string name="AddToGroupActivity_add">Toevoegen</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Kies een nieuwe beheerder</string>
@@ -454,8 +454,8 @@
   <string name="GroupManagement_invite_single_user">“%1$s” kan niet direct door jou worden toegevoegd aan de groep. In plaats daarvan heeft hij of zij een uitnodiging gekregen om lid te worden van de groep, en hij of zij zal geen berichten van de groep kunnen zien totdat hij of zij de uitnodiging heeft aanvaard.</string>
   <string name="GroupManagement_invite_multiple_users">Deze personen kunnen niet direct door jou aan de groep worden toegevoegd. In plaats daarvan hebben ze een uitnodiging gekregen om lid te worden van de groep, en ze zullen geen berichten van de groep kunnen zien totdat ze de uitnodiging hebben aanvaard.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
-  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Wat zijn ‘nieuwe’ groepen?</string>
-  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nieuwe groepen hebben functionaliteiten waaronder @vermeldingen en groepsbeheer en in de toekomst zullen er meer functionaliteiten aan worden toegevoegd.</string>
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Wat zijn ‘nieuwe-stijl’ groepen?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nieuwe-stijl groepen hebben functionaliteiten waaronder @vermeldingen en groepsbeheer en in de toekomst zullen er meer functionaliteiten aan worden toegevoegd.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Alle gespreksgeschiedenis en media van voor het omzetten zijn behouden gebleven.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Om weer lid te worden van deze groep zul je een uitnodiging moeten aanvaarden. Je zult geen berichten van deze groep ontvangen zolang je dat nog niet hebt gedaan.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
@@ -467,9 +467,9 @@
     <item quantity="other">Deze groepsleden zijn verwijderd uit de groep en kunnen niet opnieuw toetreden totdat ze Signal hebben bijgewerkt:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
-  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Omzetten naar nieuwe groep</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Omzetten naar nieuwe-stijl groep</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">Deze groep omzetten naar een nieuwe groep</string>
-  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Nieuwe groepen hebben functionaliteiten waaronder @vermeldingen en groepsbeheer en in de toekomst zullen er meer functionaliteiten aan worden toegevoegd.</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Nieuwe-stijl groepen hebben functionaliteiten waaronder @vermeldingen en groepsbeheer en in de toekomst zullen er meer functionaliteiten aan worden toegevoegd.</string>
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Alle gespreksgeschiedenis en media van voor het omzetten zullen behouden blijven.</string>
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Er is een netwerkfout opgetreden. Probeer het later opnieuw.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Omzetten is mislukt.</string>
@@ -478,13 +478,13 @@
     <item quantity="other">Deze groepsleden zullen een uitnodiging ontvangen om tot de groep toe te treden en ze zullen geen berichten ontvangen zolang ze die uitnodiging nog niet geaccepteerd hebben:</item>
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="one">Dit groepslid is niet in staat om tot nieuwe groepen toe te treden en wordt daarom verwijderd uit de groep:</item>
-    <item quantity="other">Deze groepsleden zijn niet in staat om tot nieuwe groepen toe te treden en worden daarom verwijderd uit de groep:</item>
+    <item quantity="one">Dit groepslid is niet in staat om tot nieuwe-stijl groepen toe te treden en wordt daarom verwijderd uit de groep:</item>
+    <item quantity="other">Deze groepsleden zijn niet in staat om tot nieuwe-stijl groepen toe te treden en worden daarom verwijderd uit de groep:</item>
   </plurals>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-    <item quantity="one">%1$d groepslid kon bij het omzetten van de groep in een nieuwe groep niet automatisch opnieuw worden toegevoegd. Wil je ze hem of haar nu alsnog toevoegen?</item>
-    <item quantity="other">%1$d groepsleden konden bij het omzetten van de groep in een nieuwe groep niet automatisch opnieuw worden toegevoegd. Wil je ze nu alsnog toevoegen?</item>
+    <item quantity="one">%1$d groepslid kon bij het omzetten van de groep in een nieuwe-stijl groep niet automatisch opnieuw worden toegevoegd. Wil je ze hem of haar nu alsnog toevoegen?</item>
+    <item quantity="other">%1$d groepsleden konden bij het omzetten van de groep in een nieuwe-stijl groep niet automatisch opnieuw worden toegevoegd. Wil je ze nu alsnog toevoegen?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">Groepslid toevoegen</item>
@@ -497,8 +497,8 @@
     <item quantity="other">Groepsleden toevoegen?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-    <item quantity="one">Dit groepslid kon bij het omzetten van een groep in een nieuwe groep niet automatisch worden toegevoegd.</item>
-    <item quantity="other">Deze groepsleden konden bij het omzetten van een groep in een nieuwe groep niet automatisch worden toegevoegd.</item>
+    <item quantity="one">Dit groepslid kon bij het omzetten van een groep in een nieuwe-stijl groep niet automatisch worden toegevoegd.</item>
+    <item quantity="other">Deze groepsleden konden bij het omzetten van een groep in een nieuwe-stijl groep niet automatisch worden toegevoegd.</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
     <item quantity="one">Groepslid toevoegen</item>
@@ -560,7 +560,7 @@
   <string name="RequestingMembersFragment_denied_s">“ %1$s” afgewezen</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Klaar</string>
-  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan oude groepen.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan verouderde groepen.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">%1$s toevoegen aan “%2$s”?</item>
     <item quantity="other">%3$d personen toevoegen aan “%2$s”?</item>
@@ -583,18 +583,18 @@
   <string name="AddGroupDetailsFragment__sms_contact">Sms-contactpersoon</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s van deze groep verwijderen?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
-    <item quantity="one">%d groepslid ondersteunt geen nieuwe groepen, dus deze groep wordt een oude groep.</item>
-    <item quantity="other">%d groepsleden ondersteunen geen nieuwe groepen, dus deze groep wordt een oude groep.</item>
+    <item quantity="one">%d groepslid ondersteunt geen nieuwe-stijl groepen, dus deze groep wordt een verouderde groep.</item>
+    <item quantity="other">%d groepsleden ondersteunen geen nieuwe-stijl groepen, dus deze groep wordt een verouderde groep.</item>
   </plurals>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
-    <item quantity="one">%d groepslid ondersteunt geen nieuwe groepen, dus de nieuwe groep kan niet worden aangemaakt.</item>
-    <item quantity="other">%d groepsleden ondersteunen geen nieuwe groepen, dus de nieuwe groep kan niet worden aangemaakt.</item>
+    <item quantity="one">%d groepslid ondersteunt geen nieuwe-stijl groepen, dus de nieuwe groep kan niet worden aangemaakt.</item>
+    <item quantity="other">%d groepsleden ondersteunen geen nieuwe-stijl groepen, dus de nieuwe groep kan niet worden aangemaakt.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Er zal een oude groep aangemaakt worden omdat “%1$s”een oude versie van Signal gebruikt. Je kunt een groep nieuwe stijl aanmaken met hem als lid nadat hij Signal bijgewerkt heeft, of hem voordat je de groep aanmaakt verwijderen.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Er zal een verouderde groep aangemaakt worden omdat “%1$s” een oude versie van Signal gebruikt. Je kunt een nieuwe-stijl groep aanmaken met hem als lid nadat hij Signal heeft bijgewerkt, of hem voordat je de groep aanmaakt verwijderen.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">Er zal een oude groep aangemaakt worden omdat %1$d lid een oude versie van Signal gebruikt. Je kunt een groep nieuwe stijl aanmaken met hem als lid nadat hij Signal bijgewerkt heeft, of hem voordat je de groep aanmaakt verwijderen.</item>
-    <item quantity="other">Er zal een oude groep aangemaakt worden omdat %1$d leden een oude versie van Signal gebruiken. Je kunt een groep nieuwe stijl aanmaken met hen als lid nadat ze Signal bijgewerkt hebben, of hen voordat je de groep aanmaakt verwijderen.</item>
+    <item quantity="one">Er zal een verouderde groep aangemaakt worden omdat %1$d lid een oude versie van Signal gebruikt. Je kunt een nieuwe-stijl groep aanmaken met hem als lid nadat hij Signal heeft bijgewerkt, of hem voordat je de groep aanmaakt verwijderen.</item>
+    <item quantity="other">Er zal een verouderde groep aangemaakt worden omdat %1$d leden een oude versie van Signal gebruiken. Je kunt een nieuwe-stijl groep aanmaken met hen als lid nadat ze Signal hebben bijgewerkt, of hen voordat je de groep aanmaakt verwijderen.</item>
   </plurals>
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">De nieuwe groep kon niet aangemaakt worden omdat “%1$s” een oude versie van Signal gebruikt. Je zult hem of haar moeten verwijderen om een nieuwe groep aan te kunnen maken.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
@@ -629,7 +629,7 @@
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Uitsluitend beheerders kunnen de beheerderstoestemming-vereiste om lid te mogen worden van de groep in- of uitschakelen.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Uitsluitend beheerders kunnen de groepsverwijzing vernieuwen.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
-  <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de nieuwe groepsgesprekken nog niet. Zij moeten Signal bijwerken.</string>
+  <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de vernieuwde groepsgesprekken nog niet. Zij moeten Signal bijwerken.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Bijwerken van de groep is mislukt</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Je bent geen lid van deze groep</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Het bijwerken van de groep is mislukt. Probeer het later opnieuw</string>
@@ -638,11 +638,11 @@
   <string name="ManageGroupActivity_legacy_group">Verouderde groep</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Dit is een verouderde groep. Om nieuwe functionaliteiten zoals groepsbeheer te kunnen gebruiken moet je een nieuwe groep aanmaken.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Dit is een verouderde groep; om nieuwe functionaliteiten te kunnen gebruiken zoals @vermeldigen en beheerders,</string>
-  <string name="ManageGroupActivity_legacy_group_too_large">Deze verouderde groep kan niet worden omgezet naar een nieuwe groep omdat die teveel leden bevat. Het maximum ledenaantal voor een groep is %1$d.</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Deze verouderde groep kan niet worden omgezet naar een nieuwe-stijl groep omdat het teveel leden bevat. Het maximum ledenaantal voor een groep is %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">moet je deze groep omzetten.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dit is een onbeveiligde mms-groep. Om beveiligde berichten uit te wisselen en om functionaliteiten te kunnen gebruiken zoals groepsnamen en groepsbeheer, moet je je contactpersonen uitnodigen om Signal berichtenapp te gebruiken.</string>
   <string name="ManageGroupActivity_invite_now">Nu uitnodigen</string>
-  <string name="ManageGroupActivity_more">meer</string>
+  <string name="ManageGroupActivity_more"> meer</string>
   <string name="ManageGroupActivity_add_group_description">Voeg een groepsomschrijving toe …</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meldingen bij naamsvermeldingen</string>
@@ -658,32 +658,11 @@
   <string name="ManageProfileFragment_your_username">Je gebruikersnaam</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Instellen van profielfoto is mislukt</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Aan systeem-contactenlijst toevoegen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Deze persoon staat in je contactenlijst</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Verlopende berichten</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Gesprekskleur</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Gespreksachtergrond</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blokkeren</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Deblokkeren</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Veiligheidsnummer weergeven</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Meldingen dempen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Aangepaste meldingen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Tot %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Voor altijd</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Uit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Aan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Aan een groep toevoegen</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Alle groepen weergeven</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Alles weergeven</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Geen gemeenschappelijke groepen</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d gemeenschappelijke groep</item>
     <item quantity="other">%d gemeenschappelijke groepen</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Bericht</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Spraakoproep</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Onbeveiligde spraakoproep</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Video-oproep</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s heeft 1 persoon uitgenodigd voor de groep</item>
     <item quantity="other">%1$s heeft %2$d personen uitgenodigd voor de groep</item>
@@ -839,7 +818,7 @@
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Signal vraagt je af en toe of je je pincode nog weet, zodat je je pincode goed onthoudt.</string>
   <string name="Megaphones_verify_pin">Pincode bevestigen</string>
   <string name="Megaphones_get_started">Maak een begin</string>
-  <string name="Megaphones_new_group">Nieuwe groep</string>
+  <string name="Megaphones_new_group">Nieuwe-stijl groep</string>
   <string name="Megaphones_invite_friends">Kennissen uitnodigen</string>
   <string name="Megaphones_use_sms">Sms gebruiken</string>
   <string name="Megaphones_appearance">Uiterlijk</string>
@@ -901,7 +880,7 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de tijdsspanne voor verlopende berichten op %1$s ingesteld.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de tijdsspanne voor verlopende berichten op %2$s ingesteld.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">De tijdsspanne voor verlopende berichten is op %1$s ingesteld.</string>
-  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Deze groep is omgezet in een nieuwe groep.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Deze groep is omgezet in een nieuwe-stijl groep.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Je kon niet toegevoegd worden aan de nieuwe groep en je hebt daarom een uitnodiging gekregen om opnieuw lid te worden.</string>
   <string name="MessageRecord_chat_session_refreshed">Gespreksessie vernieuwd</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
@@ -1572,7 +1551,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Typ naam of nummer</string>
   <string name="contact_selection_activity__invite_to_signal">Uitnodigen voor Signal</string>
-  <string name="contact_selection_activity__new_group">Nieuwe groep</string>
+  <string name="contact_selection_activity__new_group">Nieuwe groep aanmaken</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Ingevoerde tekst wissen</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Toetsenbord weergeven</string>
@@ -1879,6 +1858,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symbolen</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Vlaggen</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Geen emoji gevonden</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Gebruik systeemstandaard</string>
   <string name="arrays__use_custom">Gebruik eigen instelling</string>
@@ -2366,12 +2346,12 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">We introduceren pincodes</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signals servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam, -foto en -omschrijving, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signals ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
-  <string name="KbsSplashFragment__learn_more">Lees meer</string>
+  <string name="KbsSplashFragment__learn_more">Meer lezen</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registratievergrendeling = Pincode</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Registratievergrendeling heet vanaf nu ‘pincode’, en je kunt er meer mee doen. Je moet de pincode welke je tot nog toe gebruikte bijwerken.</string>
   <string name="KbsSplashFragment__update_pin">Pincode bijwerken</string>
   <string name="KbsSplashFragment__create_your_pin">Pincode aanmaken</string>
-  <string name="KbsSplashFragment__learn_more_about_pins">Lees meer over pincodes</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">Meer lezen over pincodes</string>
   <string name="KbsSplashFragment__disable_pin">Pincode uitschakelen</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Voer je Signal-pincode in</string>
@@ -2384,7 +2364,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="AccountLockedFragment__account_locked">Vergrendeld voor dit telefoonnummer</string>
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Om je privacy en beveiliging te beschermen is Signal vergrendeld voor dit telefoonnummer. Na %1$d dagen waarin Signal niet is met jouw telefoonnummer is gebruikt zul je je telefoonnummer opnieuw zonder je pincode kunnen registreren, maar als je zonder pincode opnieuw registreert zal alle inhoud worden gewist.</string>
   <string name="AccountLockedFragment__next">Volgende</string>
-  <string name="AccountLockedFragment__learn_more">Lees meer</string>
+  <string name="AccountLockedFragment__learn_more">Meer lezen</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Voer je pincode in</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Voer de pincode in welke je eerder hebt aangemaakt om informatie versleuteld op te slaan op Signals servers. Dit is niet dezelfde code als je sms-verificatiecode.</string>
@@ -2655,7 +2635,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="RecipientBottomSheet_add_to_a_group">Aan een groep toevoegen</string>
   <string name="RecipientBottomSheet_add_to_another_group">Aan nog een andere groep toevoegen</string>
   <string name="RecipientBottomSheet_view_safety_number">Veiligheidsnummer weergeven</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Groepsbeheerder maken</string> -->
+  <string name="RecipientBottomSheet_make_admin">Beheerder maken</string>
   <string name="RecipientBottomSheet_remove_as_admin">Beheerdersbevoegdheden intrekken</string>
   <string name="RecipientBottomSheet_remove_from_group">Van de groep verwijderen</string>
   <string name="RecipientBottomSheet_message_description">Bericht</string>
@@ -2671,8 +2651,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="GroupRecipientListItem_approve_description">Toestaan</string>
   <string name="GroupRecipientListItem_deny_description">Afwijzen</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
-  <string name="GroupsLearnMore_legacy_vs_new_groups">Verouderde groepen tegenover nieuwe groepen</string>
-  <string name="GroupsLearnMore_what_are_legacy_groups">Wat zijn oude groepen?</string>
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Verouderde groepen tegenover nieuwe-stijl groepen</string>
+  <string name="GroupsLearnMore_what_are_legacy_groups">Wat zijn verouderde groepen?</string>
   <string name="GroupsLearnMore_paragraph_1">Verouderde groepen zijn groepen waarin je geen gebruik kunt maken van nieuwe functionaliteiten zoals beheerders en meer gedetailleerde meldingen.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Kan ik een verouderde groep omzetten in een nieuwe groep?</string>
   <string name="GroupsLearnMore_paragraph_2">Verouderde groepen kunnen niet worden omgezet in nieuwe groepen, maar je kunt wel een nieuwe groep aanmaken met dezelfde leden mits ze allemaal de meeste recente versie van Signal gebruiken.</string>
@@ -2926,8 +2906,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pictogram weergeven</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Laat in de berichtdetails een pictogram zien bij berichten die zijn afgeleverd met een verzegelde afzender</string>
   <!--ExpireTimerSettingsFragment-->
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Voor alle nieuwe gesprekken die jij zelf begint zullen berichten nadat ze zijn gezien en nadat de ingestelde tijd is verlopen voor iedereen worden gewist. – Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Nieuwe berichten in dit gesprek zullen nadat ze zijn gezien en nadat de ingestelde tijd is verlopen voor iedereen gewist worden. – Gebruik dit niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Voor alle nieuwe gesprekken die jij zelf begint zullen berichten voor iedereen die ze heeft gezien nadat de ingestelde tijd is verlopen worden gewist. – Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Nieuwe berichten in dit gesprek zullen voor iedereen die ze heeft gezien nadat de ingestelde tijd is verlopen worden gewist. – Gebruik dit niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
   <string name="ExpireTimerSettingsFragment__off">Uit</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 weken</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
@@ -3010,5 +2990,49 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="StickerSearchDialogFragment_no_results_found">Geen sticker gevonden</string>
   <string name="EmojiSearchFragment__no_results_found">Geen emoji gevonden</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Onbekend geluid</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Bericht verzenden</string>
+  <string name="ConversationSettingsFragment__start_video_call">Video-oproep beginnen</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Audio-oproep beginnen</string>
+  <string name="ConversationSettingsFragment__message">Een bericht verzenden</string>
+  <string name="ConversationSettingsFragment__video">Video-oproep</string>
+  <string name="ConversationSettingsFragment__audio">Audio-oproep</string>
+  <string name="ConversationSettingsFragment__call">Bellen</string>
+  <string name="ConversationSettingsFragment__mute">Dempen</string>
+  <string name="ConversationSettingsFragment__muted">Gedempt</string>
+  <string name="ConversationSettingsFragment__search">Zoeken</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Verlopende berichten</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Geluiden &amp; meldingen</string>
+  <string name="ConversationSettingsFragment__contact_details">Details over deze contactpersoon</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Veiligheidsnummer weergeven</string>
+  <string name="ConversationSettingsFragment__block">Blokkeren</string>
+  <string name="ConversationSettingsFragment__block_group">Groep blokkeren en verlaten</string>
+  <string name="ConversationSettingsFragment__unblock">Deblokkeren</string>
+  <string name="ConversationSettingsFragment__unblock_group">Groep deblokkeren</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Aan een groep toevoegen</string>
+  <string name="ConversationSettingsFragment__see_all">Alles weergeven</string>
+  <string name="ConversationSettingsFragment__add_members">Groepsleden toevoegen</string>
+  <string name="ConversationSettingsFragment__permissions">Toestemmingen</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Verzoeken &amp; uitnodiging</string>
+  <string name="ConversationSettingsFragment__group_link">Groepsverwijzing voor deze groep</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Als contactpersoon toevoegen</string>
+  <string name="ConversationSettingsFragment__unmute">Niet langer dempen</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Gesprek dedempt tot %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Gesprek voor onbepaalde tijd gedempt</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Groepsleden toevoegen</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Groepsinformatie aanpassen</string>
+  <string name="PermissionsSettingsFragment__all_members">Alle groepsleden</string>
+  <string name="PermissionsSettingsFragment__only_admins">Uitsluitend beheerders</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Wie mag nieuwe leden toevoegen?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Wie mag de groepsinformatie aanpassen?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Meldingen dempen</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Niet gedempt</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Gedempt tot %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Vermeldingen</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Altijd een melding bij vermeldingen</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Geen meldingen over vermeldingen</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Aangepaste meldingen</string>
   <!--EOF-->
 </resources>

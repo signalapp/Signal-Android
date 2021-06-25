@@ -656,32 +656,11 @@
   <string name="ManageProfileFragment_your_username">نام کاربری شما</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">تنظیم عکس پروفایل ناموفق بود</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">افزودن به مخاطبین سیستم</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">این فرد در مخاطبین شماست</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">پیام‌های ناپدید شونده</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">رنگ گفتگو</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">کاغذدیواری گفتگو</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">مسدود کردن</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">رفع مسدودیت</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">مشاهدهٔ شمارهٔ امنیتی</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">بستن اعلان‌ها</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">اعلان‌ها‌ی سفارشی</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">تا %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">همیشه</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">خاموش</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">روشن</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">اضافه کردن به گروه</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">مشاهدهٔ همهٔ گروه‌ها</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">مشاهدهٔ همه</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">هیچ گروه مشترکی وجود ندارد</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d گروه مشترک</item>
     <item quantity="other">%d گروه مشترک</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">پیام</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">تماس صوتی</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">تماس صوتی ناامن</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">تماس تصویری</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s ۱ نفر را دعوت کرد</item>
     <item quantity="other">%1$s %2$d نفر را دعوت کرد</item>
@@ -1873,6 +1852,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">نمادها</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">پرچم‌ها</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">شکلک‌ها</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">هیچ نتیجه‌ای پیدا نشد</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">استفاده از پیش‌فرض سیستم</string>
   <string name="arrays__use_custom">استفاده از سفارشی</string>
@@ -2649,7 +2629,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">افزودن به گروه</string>
   <string name="RecipientBottomSheet_add_to_another_group">افزودن به گروهی دیگر</string>
   <string name="RecipientBottomSheet_view_safety_number">مشاهدهٔ شمارهٔ امنیتی</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">ارتقا به مدیر گروه</string> -->
+  <string name="RecipientBottomSheet_make_admin">ارتقا به مدیر</string>
   <string name="RecipientBottomSheet_remove_as_admin">حذف بعنوان مدیر</string>
   <string name="RecipientBottomSheet_remove_from_group">حذف از گروه</string>
   <string name="RecipientBottomSheet_message_description">پیام</string>
@@ -3004,5 +2984,49 @@
   <string name="StickerSearchDialogFragment_no_results_found">هیچ نتیجه‌ای پیدا نشد</string>
   <string name="EmojiSearchFragment__no_results_found">هیچ نتیجه‌ای پیدا نشد</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">صدای زنگ ناشناخته</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">ارسال پیام</string>
+  <string name="ConversationSettingsFragment__start_video_call">شروع تماس تصویری</string>
+  <string name="ConversationSettingsFragment__start_audio_call">شروع تماس صوتی</string>
+  <string name="ConversationSettingsFragment__message">پیام</string>
+  <string name="ConversationSettingsFragment__video">تصویری</string>
+  <string name="ConversationSettingsFragment__audio">صوتی</string>
+  <string name="ConversationSettingsFragment__call">تماس</string>
+  <string name="ConversationSettingsFragment__mute">بستن</string>
+  <string name="ConversationSettingsFragment__muted">بسته شد</string>
+  <string name="ConversationSettingsFragment__search">جستجو</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">پیام‌های ناپدید شونده</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">صداها و اعلان‌ها</string>
+  <string name="ConversationSettingsFragment__contact_details">جزئیات مخاطب</string>
+  <string name="ConversationSettingsFragment__view_safety_number">مشاهدهٔ شمارهٔ امنیتی</string>
+  <string name="ConversationSettingsFragment__block">مسدود کردن</string>
+  <string name="ConversationSettingsFragment__block_group">مسدود کردن گروه</string>
+  <string name="ConversationSettingsFragment__unblock">رفع مسدودیت</string>
+  <string name="ConversationSettingsFragment__unblock_group">رفع مسدودیت گروه</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">افزودن به گروه</string>
+  <string name="ConversationSettingsFragment__see_all">مشاهدهٔ همه</string>
+  <string name="ConversationSettingsFragment__add_members">افزودن اعضا</string>
+  <string name="ConversationSettingsFragment__permissions">مجوزها</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">درخواست‌ها و دعوت‌ها</string>
+  <string name="ConversationSettingsFragment__group_link">پیوند گروه</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">افزودن به صورت یک مخاطب</string>
+  <string name="ConversationSettingsFragment__unmute">باز کردن صدا</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">مکالمه تا %1$s بسته شد</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">مکالمه برای همیشه بسته شد</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">افزودن اعضا</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">ویرایش اطلاعات گروه</string>
+  <string name="PermissionsSettingsFragment__all_members">همهٔ اعضا</string>
+  <string name="PermissionsSettingsFragment__only_admins">فقط مدیران</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">چه کسی می‌تواند اعضای جدید اضافه کند؟</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">چه کسی می‌تواند اطلاعات این گروه را ویرایش کند؟</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">بستن اعلان‌ها</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">بسته شده نیست</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">بسته شد تا %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">اشاره‌ها</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">همیشه آگاه کن</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">آگاه نکن</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">اعلان‌ها‌ی سفارشی</string>
   <!--EOF-->
 </resources>

@@ -656,32 +656,11 @@
   <string name="ManageProfileFragment_your_username">Notandanafnið þitt</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Mistókst að stilla auðkennismynd</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Bæta við tengiliði kerfisins</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Þessi einstaklingur er í tengiliðaskránni þinni</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Sjálfeyðandi skilaboð</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Litur spjalls</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Bakgrunnsmynd spjalls</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Loka á</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Afbanna</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Skoða öryggisnúmer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Þagga tilkynningar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Sérsniðnar tilkynningar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Til %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Alltaf</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Af</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Á</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Bæta við hóp</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Skoða alla hópa</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Sjá allt</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Engir sameiginlegir hópar</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d sameiginlegur hópur</item>
     <item quantity="other">%d sameiginlegir hópar</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Skilaboð</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Raddsímtal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Óöruggt raddsímtal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Myndsímtal</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s bauð 1 aðila</item>
     <item quantity="other">%1$s bauð %2$d aðilum</item>
@@ -1874,6 +1853,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Tákn</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flögg</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Broskarlar</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ekkert fannst</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Nota sjálfgefið</string>
   <string name="arrays__use_custom">Nota sérsniðið</string>
@@ -2653,7 +2633,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="RecipientBottomSheet_add_to_a_group">Bæta við hóp</string>
   <string name="RecipientBottomSheet_add_to_another_group">Bæta við annan hóp</string>
   <string name="RecipientBottomSheet_view_safety_number">Skoða öryggisnúmer</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Gera að stjórnanda hóps</string> -->
+  <string name="RecipientBottomSheet_make_admin">Gera að stjórnanda</string>
   <string name="RecipientBottomSheet_remove_as_admin">Fjarlæga stjórnunarréttindi</string>
   <string name="RecipientBottomSheet_remove_from_group">Fjarlægja úr hópi</string>
   <string name="RecipientBottomSheet_message_description">Skilaboð</string>
@@ -3008,5 +2988,49 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="StickerSearchDialogFragment_no_results_found">Ekkert fannst</string>
   <string name="EmojiSearchFragment__no_results_found">Ekkert fannst</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Óþekktur hringitónn</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Senda skilaboð</string>
+  <string name="ConversationSettingsFragment__start_video_call">Hefja myndsímtal</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Hefja hljóðsímtal</string>
+  <string name="ConversationSettingsFragment__message">Skilaboð</string>
+  <string name="ConversationSettingsFragment__video">Myndskeið</string>
+  <string name="ConversationSettingsFragment__audio">Hljóð</string>
+  <string name="ConversationSettingsFragment__call">Símtal</string>
+  <string name="ConversationSettingsFragment__mute">Hljóð af</string>
+  <string name="ConversationSettingsFragment__muted">Þaggað niður</string>
+  <string name="ConversationSettingsFragment__search">Leita</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Sjálfeyðandi skilaboð</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Hljóð og tilkynningar</string>
+  <string name="ConversationSettingsFragment__contact_details">Nánar um tengilið</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Skoða öryggisnúmer</string>
+  <string name="ConversationSettingsFragment__block">Loka á</string>
+  <string name="ConversationSettingsFragment__block_group">Útiloka hóp</string>
+  <string name="ConversationSettingsFragment__unblock">Opna á</string>
+  <string name="ConversationSettingsFragment__unblock_group">Opna á hóp</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Bæta við hóp</string>
+  <string name="ConversationSettingsFragment__see_all">Sjá allt</string>
+  <string name="ConversationSettingsFragment__add_members">Bæta við meðlimum</string>
+  <string name="ConversationSettingsFragment__permissions">Heimildir</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Beiðnir og boð</string>
+  <string name="ConversationSettingsFragment__group_link">Tengill hóps</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Bæta í tengiliði</string>
+  <string name="ConversationSettingsFragment__unmute">Hljóð á</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Samtal þaggað til %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Samtal þaggað að eilífu</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Bæta við meðlimum</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Breyta upplýsingum hóps</string>
+  <string name="PermissionsSettingsFragment__all_members">Allir meðlimir</string>
+  <string name="PermissionsSettingsFragment__only_admins">Aðeins stjórnendur</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Hver getur bætt við nýjum meðlimum?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Hver getur breytt upplýsingum hóps?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Þagga tilkynningar</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ekki þaggað</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Þaggað til %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Tilvísanir</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Alltaf láta vita</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ekki láta vita</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Sérsniðnar tilkynningar</string>
   <!--EOF-->
 </resources>

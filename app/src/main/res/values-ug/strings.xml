@@ -657,32 +657,11 @@
   <string name="ManageProfileFragment_your_username">ئىشلەتكۈچى ئاتىڭىز</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">سىما تەڭشىيەلمىدى</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">سىستېما ئالاقەداشلارغا قوش</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">بۇ كىشى ئالاقەداشىڭىز</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">غايىب ئۇچۇرلار</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">سۆھبەت رەڭگى</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">سۆھبەت تام قەغەز</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">چەكلەش</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">قالدۇرۇش</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">بىخەتەر نومۇرنى كۆرسەت</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">ئۈنسىز ئۇقتۇرۇش</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">ئىختىيارىچە ئۇقتۇرۇش</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">%1$s غىچە</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">ھەمىشە</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">تاقاق</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">ئاچ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">گۇرۇپپىغا قوش</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">ھەممە گۇرۇپپىنى كۆرسەت</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">ھەممىنى كۆرسەت</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">ئورتاق گۇرۇپپا يوق</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d ئورتاق گۇرۇپپا</item>
     <item quantity="other">%d ئورتاق گۇرۇپپا</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">ئۇچۇر</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">ئۈن چاقىرىش</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">شىفىرلانمىغان ئۈن چاقىرىش</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">سىن چاقىرىش</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">1  كىشىنى %1$s تەكلىپ قىلدى</item>
     <item quantity="other">%2$d كىشىنى %1$sتەكلىپ قىلدى</item>
@@ -1874,6 +1853,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">بەلگە</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">بايراق</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ھېسسىيات ئىپادىلىرى</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ھېچقانداق نەتىجە تېپىلمىدى</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">كۆڭۈلدىكىنى ئىشلىتىش</string>
   <string name="arrays__use_custom">ئىختىيارىي ئىشلىتىش</string>
@@ -2650,7 +2630,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">گۇرۇپپىغا قوش</string>
   <string name="RecipientBottomSheet_add_to_another_group">يەنە بىر گۇرۇپپىغا قوش</string>
   <string name="RecipientBottomSheet_view_safety_number">بىخەتەر نومۇرنى كۆرەي</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">گۇرۇپپا باشلىقى قىل</string> -->
+  <string name="RecipientBottomSheet_make_admin">باشقۇرغۇچىغا تەڭشە</string>
   <string name="RecipientBottomSheet_remove_as_admin">گۇرۇپپا باشلىقلىقىدىن چىقار</string>
   <string name="RecipientBottomSheet_remove_from_group">گۇرۇپپىدىن چىقار</string>
   <string name="RecipientBottomSheet_message_description">ئۇچۇر</string>
@@ -3005,5 +2985,37 @@
   <string name="StickerSearchDialogFragment_no_results_found">ھېچقانداق نەتىجە تېپىلمىدى</string>
   <string name="EmojiSearchFragment__no_results_found">ھېچقانداق نەتىجە تېپىلمىدى</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">يوچۇن قوڭغۇراق ئاۋازى</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">ئۇچۇر</string>
+  <string name="ConversationSettingsFragment__video">سىن</string>
+  <string name="ConversationSettingsFragment__audio">ئۈن</string>
+  <string name="ConversationSettingsFragment__call">چاقىر</string>
+  <string name="ConversationSettingsFragment__mute">ئۈنسىز</string>
+  <string name="ConversationSettingsFragment__muted">ئۈنسىز</string>
+  <string name="ConversationSettingsFragment__search">ئىزدە</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">غايىب ئۇچۇرلار</string>
+  <string name="ConversationSettingsFragment__view_safety_number">بىخەتەرلىك نومۇرىنى كۆرسەت</string>
+  <string name="ConversationSettingsFragment__block">چەكلە</string>
+  <string name="ConversationSettingsFragment__block_group">گۇرۇپپىنى چەكلەڭ</string>
+  <string name="ConversationSettingsFragment__unblock">چەكلىمە</string>
+  <string name="ConversationSettingsFragment__unblock_group">گۇرۇپپىنى چەكلەشنى بىكار قىلىڭ</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">گۇرۇپپىغا قوش</string>
+  <string name="ConversationSettingsFragment__see_all">ھەممىنى كۆرسەت</string>
+  <string name="ConversationSettingsFragment__add_members">ئەزا قوشۇش</string>
+  <string name="ConversationSettingsFragment__permissions">ھوقۇقلار</string>
+  <string name="ConversationSettingsFragment__group_link">گۇرۇپپا ئۇلانمىسى</string>
+  <string name="ConversationSettingsFragment__unmute">ئۈنلۈك</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">ئەزا قوشۇش</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">گۇرۇپپا ئۇچۇرىنى تەھرىرلەڭ</string>
+  <string name="PermissionsSettingsFragment__all_members">ھەممە ئەزالار</string>
+  <string name="PermissionsSettingsFragment__only_admins">پەقەت باشقۇرغۇچىلار</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">كىم يېڭى ئەزا قوشالايدۇ؟</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">كىم بۇ گۇرۇپپىنىڭ ئۇچۇرلىرىنى تەھرىرلىيەلەيدۇ؟</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">ئۈنسىز ئۇقتۇرۇش</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">ئۈنسىز ئەمەس</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">تىلغا ئالغانلار</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ئىختىيارىچە ئۇقتۇرۇش</string>
   <!--EOF-->
 </resources>

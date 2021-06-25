@@ -657,32 +657,11 @@
   <string name="ManageProfileFragment_your_username">Felhasználóneved</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Nem sikerült beállítani a profilképet</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Hozzáadás a rendszer-kontaktokhoz</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ez a személy szerepel a kontakjaid közt</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Eltűnő üzenetek</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Beszélgetés színe</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Beszélgetés háttérkép</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Letiltás</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Tiltás feloldása</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Biztonsági szám megjelenítése</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Értesítések némítása</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Egyedi értesítések</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">%1$s-ig</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Végleg</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Ki</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Be</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Hozzáadás egy csoporthoz</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Összes csoport megtekintése</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Összes megtekintése</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Nincsenek közös csoportok</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d db közös csoport</item>
     <item quantity="other">%d db közös csoport</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Üzenet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Hanghívás</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Titkosítatlan hanghívás</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Videóhívás</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s meghívott 1 személyt</item>
     <item quantity="other">%1$s meghívott %2$d személyt</item>
@@ -1871,6 +1850,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Szimbólumok</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Zászlók</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikonok</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Nincs találat</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Alapértelmezett használata</string>
   <string name="arrays__use_custom">Egyéni használata</string>
@@ -2646,7 +2626,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="RecipientBottomSheet_add_to_a_group">Hozzáadás egy csoporthoz</string>
   <string name="RecipientBottomSheet_add_to_another_group">Hozzadás egy másik csoporthoz</string>
   <string name="RecipientBottomSheet_view_safety_number">Biztonsági szám megjelenítése</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Csoportadmin jogosultság megadása</string> -->
+  <string name="RecipientBottomSheet_make_admin">Admin jogosultság adás</string>
   <string name="RecipientBottomSheet_remove_as_admin">Admin jogosultság elvétele</string>
   <string name="RecipientBottomSheet_remove_from_group">Eltávolítás a csoportból</string>
   <string name="RecipientBottomSheet_message_description">Üzenet</string>
@@ -2990,5 +2970,37 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="StickerSearchDialogFragment_no_results_found">Nincs találat</string>
   <string name="EmojiSearchFragment__no_results_found">Nincs találat</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Ismeretlen csengőhang</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">Üzenet</string>
+  <string name="ConversationSettingsFragment__video">Videó</string>
+  <string name="ConversationSettingsFragment__audio">Hang</string>
+  <string name="ConversationSettingsFragment__call">Hívás</string>
+  <string name="ConversationSettingsFragment__mute">Némítás</string>
+  <string name="ConversationSettingsFragment__muted">Némítva</string>
+  <string name="ConversationSettingsFragment__search">Keresés</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Eltűnő üzenetek</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Biztonsági szám megjelenítése</string>
+  <string name="ConversationSettingsFragment__block">Letiltás</string>
+  <string name="ConversationSettingsFragment__block_group">Csoport letiltása</string>
+  <string name="ConversationSettingsFragment__unblock">Tiltás feloldása</string>
+  <string name="ConversationSettingsFragment__unblock_group">Csoport blokkolásának feloldása</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Hozzáadás egy csoporthoz</string>
+  <string name="ConversationSettingsFragment__see_all">Összes megtekintése</string>
+  <string name="ConversationSettingsFragment__add_members">Tagok hozzáadása</string>
+  <string name="ConversationSettingsFragment__permissions">Jogosultságok</string>
+  <string name="ConversationSettingsFragment__group_link">Csoporthivatkozás</string>
+  <string name="ConversationSettingsFragment__unmute">Némítás feloldása</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Tagok hozzáadása</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Csoportinfó szerkesztése</string>
+  <string name="PermissionsSettingsFragment__all_members">Összes tag</string>
+  <string name="PermissionsSettingsFragment__only_admins">Csak adminisztrátorok</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Ki vehet fel új tagokat?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Ki szerkesztheti a csoport adatait?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Értesítések némítása</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nincs némítva</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Említések</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Egyedi értesítések</string>
   <!--EOF-->
 </resources>

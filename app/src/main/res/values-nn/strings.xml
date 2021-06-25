@@ -661,32 +661,11 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageProfileFragment_your_username">Brukarnamnet ditt</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Klarte ikkje endra profilbilde</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Legg til i systemkontaktar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Denne personen er i kontaktlista di</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Forsvinnande meldingar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Samtalefarge</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Samtalebakgrunnsbilde</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blokker</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Fjern blokkering</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Vis tryggingsnummer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Ikkje vis varsel</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Eigendefinerte varsel</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Fram til %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Alltid</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Av</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">På</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Legg til i ei gruppe</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Vis alle grupper</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Vis alle</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Inga grupper felles</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d gruppe felles</item>
     <item quantity="other">%d grupper felles</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Melding</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Lydsamtale</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Usikra lydsamtale</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Videosamtale</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s inviterte person</item>
     <item quantity="other">%1$s inviterte %2$d personar</item>
@@ -1879,6 +1858,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symbol</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flagg</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikon</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ingen resultat</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Bruk standard</string>
   <string name="arrays__use_custom">Bruk sjølvvald</string>
@@ -2657,7 +2637,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Legg til i ei gruppe</string>
   <string name="RecipientBottomSheet_add_to_another_group">Legg til i ei anna gruppe</string>
   <string name="RecipientBottomSheet_view_safety_number">Vis tryggingsnummer</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Gjer til gruppeadministrator</string> -->
+  <string name="RecipientBottomSheet_make_admin">Gjer til administrator</string>
   <string name="RecipientBottomSheet_remove_as_admin">Fjern som administrator</string>
   <string name="RecipientBottomSheet_remove_from_group">Fjern frå gruppa</string>
   <string name="RecipientBottomSheet_message_description">Melding</string>
@@ -3012,5 +2992,49 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="StickerSearchDialogFragment_no_results_found">Ingen resultat</string>
   <string name="EmojiSearchFragment__no_results_found">Ingen resultat</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Ukjend ringelyd</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Send melding</string>
+  <string name="ConversationSettingsFragment__start_video_call">Start videosamtale</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Start lydsamtale</string>
+  <string name="ConversationSettingsFragment__message">Melding</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Lyd</string>
+  <string name="ConversationSettingsFragment__call">Ring</string>
+  <string name="ConversationSettingsFragment__mute">Demp</string>
+  <string name="ConversationSettingsFragment__muted">Dempa</string>
+  <string name="ConversationSettingsFragment__search">Søk</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Forsvinnande meldingar</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Lydar &amp; varsel</string>
+  <string name="ConversationSettingsFragment__contact_details">Kontaktdetaljar</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Vis tryggleiksnummer</string>
+  <string name="ConversationSettingsFragment__block">Blokker</string>
+  <string name="ConversationSettingsFragment__block_group">Blokker gruppa</string>
+  <string name="ConversationSettingsFragment__unblock">Fjern blokkering</string>
+  <string name="ConversationSettingsFragment__unblock_group">Ikkje blokker gruppe</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Legg til i ei gruppe</string>
+  <string name="ConversationSettingsFragment__see_all">Vis alle</string>
+  <string name="ConversationSettingsFragment__add_members">Legg til medlemmar</string>
+  <string name="ConversationSettingsFragment__permissions">Tillatingar</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Førespurnader &amp; invitasjonar</string>
+  <string name="ConversationSettingsFragment__group_link">Gruppelenke</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Legg til som kontakt</string>
+  <string name="ConversationSettingsFragment__unmute">Vis varsel</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Samtalen er dempa fram til %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Samtalen dempa for all framtid</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Legg til medlemmar</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Endra gruppeinfo</string>
+  <string name="PermissionsSettingsFragment__all_members">Alle medlemmar</string>
+  <string name="PermissionsSettingsFragment__only_admins">Berre administratorar</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Kven kan legga til nye medlemmar?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kven kan redigera infoen til denne gruppa?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Ikkje vis varsel</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ikkje dempa</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Dempa til %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Omtalar</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Alltid varsla</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ikkje varsla</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Eigendefinerte varsel</string>
   <!--EOF-->
 </resources>

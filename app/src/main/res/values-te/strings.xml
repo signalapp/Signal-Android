@@ -650,32 +650,11 @@
   <string name="ManageProfileFragment_your_username">మీ వినియోగదారు పేరు</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">అవతార్ సెట్ చేయడంలో విఫలమైంది</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">సిస్టమ్ పరిచయాలకు జోడించండి</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">ఈ వ్యక్తి మీ పరిచయాలలో ఉన్నారు</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">అదృశ్యమవుతున్న  సందేశాలు</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">మాటామంతీ రంగు </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">సంభాషణ వాల్పేపర్</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">నిరోధించు</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">అనుమతించు</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">భద్రతా సంఖ్యను వీక్షించండి</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">  ప్రకటనలను మ్యూట్లో ఉంచు</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">అనుకూల ప్రకటనలను</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">వరకు %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">ఎల్లప్పుడూ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">ఆఫ్</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">ఆన్</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">సమూహానికి జోడించండి</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">అన్ని సమూహాలను వీక్షించండి</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">అన్నింటిని చూడు</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">సాధారణమైన సమూహాలు లేవు</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d సమూహం ఉమ్మడిగా ఉంది</item>
     <item quantity="other">ఉమ్మడిగా %d సమూహాలు</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">సందేశం</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">వాయిస్ కాల్</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">అసురక్షిత వాయిస్ కాల్</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">వి</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$sఒక వ్యక్తిని ఆహ్వానించారు</item>
     <item quantity="other">%1$s%2$dవ్యక్తులను ఆహ్వానించారు</item>
@@ -2382,7 +2361,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">సమూహంకి కలపండి</string>
   <string name="RecipientBottomSheet_add_to_another_group">మరొక సమూహానికి జోడించండి</string>
   <string name="RecipientBottomSheet_view_safety_number">భద్రతా సంఖ్యను వీక్షించండి</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">సమూహ నిర్వాహకుడిని చేయండి</string> -->
+  <string name="RecipientBottomSheet_make_admin">నిర్వాహకుడిని చేయండి</string>
   <string name="RecipientBottomSheet_remove_as_admin">నిర్వాహకుడిగా తొలగించండి</string>
   <string name="RecipientBottomSheet_remove_from_group">సమూహం నుండి తొలగించండి</string>
   <string name="RecipientBottomSheet_message_description">సందేశం</string>
@@ -2596,5 +2575,37 @@
   <string name="KeyboardPagerFragment_emoji">ఎమోజి</string>
   <string name="KeyboardPagerFragment_stickers">స్టిక్కర్లు</string>
   <!--StickerSearchDialogFragment-->
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__message">సందేశం</string>
+  <string name="ConversationSettingsFragment__video">వీడియో</string>
+  <string name="ConversationSettingsFragment__audio">ఆడియో</string>
+  <string name="ConversationSettingsFragment__call">కాల్</string>
+  <string name="ConversationSettingsFragment__mute">నిశబ్ధం</string>
+  <string name="ConversationSettingsFragment__muted">మ్యూట్ చేయబడింది</string>
+  <string name="ConversationSettingsFragment__search">వెతకండి</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">అదృశ్యమవుతున్న  సందేశాలు</string>
+  <string name="ConversationSettingsFragment__view_safety_number">భద్రతా సంఖ్యను వీక్షించండి</string>
+  <string name="ConversationSettingsFragment__block">నిరోధించు</string>
+  <string name="ConversationSettingsFragment__block_group">బ్లాక్ సమూహం</string>
+  <string name="ConversationSettingsFragment__unblock">అనుమతించు</string>
+  <string name="ConversationSettingsFragment__unblock_group">సమూహాన్ని అన్‌బ్లాక్ చేయండి</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">సమూహంకి కలపండి</string>
+  <string name="ConversationSettingsFragment__see_all">అన్నింటిని చూడు</string>
+  <string name="ConversationSettingsFragment__add_members">సభ్యులను జోడించండి</string>
+  <string name="ConversationSettingsFragment__permissions">అనుమతులు</string>
+  <string name="ConversationSettingsFragment__group_link">సమూహ లింక్</string>
+  <string name="ConversationSettingsFragment__unmute">మ్యూట్ తీసివేయి</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">సభ్యులను జోడించండి</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">సమూహ వివరణను సవరించండి</string>
+  <string name="PermissionsSettingsFragment__all_members">సభ్యులందరు</string>
+  <string name="PermissionsSettingsFragment__only_admins">పరిపాలకులు మాత్రమే</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">కొత్త సభ్యులను ఎవరు చేర్చగలరు?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ఈ గుంపు వివరణను ఎవరు సవరించగలరు?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">  ప్రకటనలను మ్యూట్లో ఉంచు</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">మ్యూట్ చేయలేదు</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">ప్రస్తావనలు</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">అనుకూల ప్రకటనలను</string>
   <!--EOF-->
 </resources>

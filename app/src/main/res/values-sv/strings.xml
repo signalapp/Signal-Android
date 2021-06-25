@@ -656,32 +656,11 @@
   <string name="ManageProfileFragment_your_username">Ditt användarnamn</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Misslyckades med att ställa in avatar</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Lägg till i systemkontakter</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Denna person finns i dina kontakter</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Försvinnande meddelanden</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Chattfärg</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Chattbakgrund</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Blockera</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Avblockera</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Visa säkerhetsnummer</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Tysta aviseringar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Anpassade aviseringar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">Fram tills %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Alltid</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Av</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">På</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Lägg till i en grupp</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Visa alla grupper</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Se alla</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Inga gemensamma grupper</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grupp gemensamt</item>
     <item quantity="other">%d gemensamma grupper</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Meddelande</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Röstsamtal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Osäkert röstsamtal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Videosamtal</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s bjöd in 1 person</item>
     <item quantity="other">%1$s bjöd in %2$d personer</item>
@@ -1869,6 +1848,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboler</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flaggor</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Uttryckssymboler</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Inga resultat hittades</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Använd standardinställning</string>
   <string name="arrays__use_custom">Använd anpassad inställning</string>
@@ -2645,7 +2625,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Lägg till i en grupp</string>
   <string name="RecipientBottomSheet_add_to_another_group">Lägg till i en annan grupp</string>
   <string name="RecipientBottomSheet_view_safety_number">Visa säkerhetsnummer</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Gör till gruppadministratör</string> -->
+  <string name="RecipientBottomSheet_make_admin">Gör till administratör</string>
   <string name="RecipientBottomSheet_remove_as_admin">Ta bort som administratör</string>
   <string name="RecipientBottomSheet_remove_from_group">Ta bort från grupp</string>
   <string name="RecipientBottomSheet_message_description">Meddelande</string>
@@ -3000,5 +2980,49 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="StickerSearchDialogFragment_no_results_found">Inga resultat hittades</string>
   <string name="EmojiSearchFragment__no_results_found">Inga resultat hittades</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Okänd ringsignal</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Skicka meddelande</string>
+  <string name="ConversationSettingsFragment__start_video_call">Starta videosamtal</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Starta ljudsamtal</string>
+  <string name="ConversationSettingsFragment__message">Meddelande</string>
+  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__audio">Ljud</string>
+  <string name="ConversationSettingsFragment__call">Ring</string>
+  <string name="ConversationSettingsFragment__mute">Tysta</string>
+  <string name="ConversationSettingsFragment__muted">Tystad</string>
+  <string name="ConversationSettingsFragment__search">Sök</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Försvinnande meddelanden</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Ljud &amp; aviseringar</string>
+  <string name="ConversationSettingsFragment__contact_details">Kontaktdetaljer</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Visa säkerhetsnummer</string>
+  <string name="ConversationSettingsFragment__block">Blockera</string>
+  <string name="ConversationSettingsFragment__block_group">Blockera grupp</string>
+  <string name="ConversationSettingsFragment__unblock">Avblockera</string>
+  <string name="ConversationSettingsFragment__unblock_group">Avblockera grupp</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Lägg till i en grupp</string>
+  <string name="ConversationSettingsFragment__see_all">Se alla</string>
+  <string name="ConversationSettingsFragment__add_members">Lägg till medlemmar</string>
+  <string name="ConversationSettingsFragment__permissions">Behörigheter</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Förfrågningar &amp; inbjudningar</string>
+  <string name="ConversationSettingsFragment__group_link">Grupplänk</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Lägg till som en kontakt</string>
+  <string name="ConversationSettingsFragment__unmute">Ljud på</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Konversation tystad till %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Konversation tystad för alltid</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Lägg till medlemmar</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Redigera gruppinformation</string>
+  <string name="PermissionsSettingsFragment__all_members">Alla medlemmar</string>
+  <string name="PermissionsSettingsFragment__only_admins">Endast administratörer</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Vem kan lägga till nya medlemmar?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Vem kan redigera denna grupps information?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Tysta aviseringar</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Inte tystad</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Tystad till %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Omnämnanden</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Meddela alltid</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Meddela inte</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Anpassade aviseringar</string>
   <!--EOF-->
 </resources>

@@ -722,23 +722,6 @@
   <string name="ManageProfileFragment_your_username">Ваше имя пользователя</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Не удалось установить аватар</string>
   <!--ManageRecipientActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_system_contacts">Добавить в системные контакты</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Этот человек есть в ваших контактах</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_disappearing_messages">Исчезающие сообщения</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_color">Цвет чата</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_chat_wallpaper">Обои чата</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_block">Заблокировать</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_unblock">Разблокировать</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_safety_number">Просмотреть код безопасности</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_mute_notifications">Отключить уведомления</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_custom_notifications">Индивидуальные уведомления</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_until_s">До %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_always">Всегда</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_off">Отключено</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_on">Включено</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_add_to_a_group">Добавить в группу</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_view_all_groups">Просмотреть все группы</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_see_all">Просмотреть все</string> -->
   <string name="ManageRecipientActivity_no_groups_in_common">Нет общих групп</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d общая группа</item>
@@ -746,10 +729,6 @@
     <item quantity="many">%d общих групп</item>
     <item quantity="other">%d общих групп</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_message_description">Написать сообщение</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_voice_call_description">Начать аудиозвонок</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_insecure_voice_call_description">Начать незащищённый аудиозвонок</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_video_call_description">Начать видеозвонок</string> -->
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s пригласил(-а) 1 человека</item>
     <item quantity="few">%1$s пригласил(-а) %2$d людей</item>
@@ -2012,6 +1991,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Символы</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Флаги</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Смайлики</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Поиск не дал результатов</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Использовать настройку по умолчанию</string>
   <string name="arrays__use_custom">Использовать пользовательскую настройку</string>
@@ -2804,7 +2784,7 @@
   <string name="RecipientBottomSheet_add_to_a_group">Добавить в группу</string>
   <string name="RecipientBottomSheet_add_to_another_group">Добавить в другую группу</string>
   <string name="RecipientBottomSheet_view_safety_number">Просмотреть код безопасности</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientBottomSheet_make_group_admin">Сделать администратором группы</string> -->
+  <string name="RecipientBottomSheet_make_admin">Сделать администратором</string>
   <string name="RecipientBottomSheet_remove_as_admin">Удалить как администратора</string>
   <string name="RecipientBottomSheet_remove_from_group">Удалить из группы</string>
   <string name="RecipientBottomSheet_message_description">Написать сообщение</string>
@@ -3167,5 +3147,49 @@
   <string name="StickerSearchDialogFragment_no_results_found">Поиск не дал результатов</string>
   <string name="EmojiSearchFragment__no_results_found">Поиск не дал результатов</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Неизвестная мелодия</string>
+  <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Отправить сообщение</string>
+  <string name="ConversationSettingsFragment__start_video_call">Начать видеозвонок</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Начать аудиозвонок</string>
+  <string name="ConversationSettingsFragment__message">Сообщение</string>
+  <string name="ConversationSettingsFragment__video">Видео</string>
+  <string name="ConversationSettingsFragment__audio">Аудио</string>
+  <string name="ConversationSettingsFragment__call">Позвонить</string>
+  <string name="ConversationSettingsFragment__mute">Откл. звук</string>
+  <string name="ConversationSettingsFragment__muted">Без звука</string>
+  <string name="ConversationSettingsFragment__search">Поиск</string>
+  <string name="ConversationSettingsFragment__disappearing_messages">Исчезающие сообщения</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Звуки и уведомления</string>
+  <string name="ConversationSettingsFragment__contact_details">Информация контакта</string>
+  <string name="ConversationSettingsFragment__view_safety_number">Просмотреть код безопасности</string>
+  <string name="ConversationSettingsFragment__block">Заблокировать</string>
+  <string name="ConversationSettingsFragment__block_group">Заблокировать группу</string>
+  <string name="ConversationSettingsFragment__unblock">Разблокировать</string>
+  <string name="ConversationSettingsFragment__unblock_group">Разблокировать группу</string>
+  <string name="ConversationSettingsFragment__add_to_a_group">Добавить в группу</string>
+  <string name="ConversationSettingsFragment__see_all">Просмотреть все</string>
+  <string name="ConversationSettingsFragment__add_members">Добавить участников</string>
+  <string name="ConversationSettingsFragment__permissions">Разрешения</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Запросы и приглашения</string>
+  <string name="ConversationSettingsFragment__group_link">Ссылка на группу</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Добавить в контакты</string>
+  <string name="ConversationSettingsFragment__unmute">Включить звуки</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Звуки разговора отключены до %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Звуки разговора отключены навсегда</string>
+  <!--PermissionsSettingsFragment-->
+  <string name="PermissionsSettingsFragment__add_members">Добавлять участников</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Редактировать информацию</string>
+  <string name="PermissionsSettingsFragment__all_members">Все участники</string>
+  <string name="PermissionsSettingsFragment__only_admins">Только администраторы</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">Кто может добавлять новых участников?</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Кто может редактировать информацию группы?</string>
+  <!--SoundsAndNotificationsSettingsFragment-->
+  <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Отключить уведомления</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Звуки включены</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Звуки отключены до %1$s</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">Упоминания</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Всегда уведомлять</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Не уведомлять</string>
+  <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Пользовательские уведомления</string>
   <!--EOF-->
 </resources>
