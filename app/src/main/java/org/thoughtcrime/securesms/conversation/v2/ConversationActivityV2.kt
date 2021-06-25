@@ -34,11 +34,11 @@ import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
-import org.session.libsession.messaging.sending_receiving.MessageSender.send
 import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
+import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.conversation.v2.dialogs.*
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
 import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.mms.AttachmentManager
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.util.DateUtils
@@ -66,13 +67,14 @@ import kotlin.math.*
 // price we pay is a bit of back and forth between the input bar and the conversation activity.
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
-    InputBarRecordingViewDelegate {
+    InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
     private var actionMode: ActionMode? = null
     private var unreadCount = 0
     // Attachments
+    private val attachmentManager by lazy { AttachmentManager(this, this) }
     private var isLockViewExpanded = false
     private var isShowingAttachmentOptions = false
     // Mentions
@@ -121,6 +123,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     // region Settings
     companion object {
         const val THREAD_ID = "thread_id"
+        const val PICK_DOCUMENT = 2
+        const val TAKE_PHOTO = 7
+        const val PICK_GIF = 10
+        const val PICK_FROM_LIBRARY = 12
     }
     // endregion
 
@@ -188,15 +194,19 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         // GIF button
         gifButtonContainer.addView(gifButton)
         gifButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
+        gifButton.onUp = { showGIFPicker() }
         // Document button
         documentButtonContainer.addView(documentButton)
         documentButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
+        documentButton.onUp = { showDocumentPicker() }
         // Library button
         libraryButtonContainer.addView(libraryButton)
         libraryButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
+        libraryButton.onUp = { pickFromLibrary() }
         // Camera button
         cameraButtonContainer.addView(cameraButton)
         cameraButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
+        cameraButton.onUp = { showCamera() }
     }
 
     private fun restoreDraftIfNeeded() {
@@ -649,6 +659,26 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         MessageSender.send(message, thread.address)
         // Send a typing stopped message
         ApplicationContext.getInstance(this).typingStatusSender.onTypingStopped(threadID)
+    }
+
+    private fun showGIFPicker() {
+        AttachmentManager.selectGif(this, ConversationActivityV2.PICK_GIF)
+    }
+
+    private fun showDocumentPicker() {
+        AttachmentManager.selectDocument(this, ConversationActivityV2.PICK_DOCUMENT)
+    }
+
+    private fun pickFromLibrary() {
+        AttachmentManager.selectGallery(this, ConversationActivityV2.PICK_FROM_LIBRARY, thread, inputBar.text.trim())
+    }
+
+    private fun showCamera() {
+        attachmentManager.capturePhoto(this, ConversationActivityV2.TAKE_PHOTO)
+    }
+
+    override fun onAttachmentChanged() {
+
     }
     // endregion
 
