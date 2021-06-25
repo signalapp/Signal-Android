@@ -44,6 +44,7 @@
                 android:layout_marginStart="@dimen/small_spacing"
                 android:layout_width="@dimen/accent_line_thickness"
                 android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/small_spacing"
                 android:background="@color/accent"/>
             <TextView
                 android:maxLines="4"
