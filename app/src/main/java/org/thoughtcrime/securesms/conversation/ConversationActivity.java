@@ -336,7 +336,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private static final String TAG = Log.tag(ConversationActivity.class);
 
   private static final String STATE_REACT_WITH_ANY_PAGE = "STATE_REACT_WITH_ANY_PAGE";
-  private static final String STATE_HANDLED_INIT_SEARCH = "STATE_HANDLED_INIT_SEARCH";
+  private static final String STATE_IS_SEARCH_REQUESTED = "STATE_IS_SEARCH_REQUESTED";
 
   private static final int REQUEST_CODE_SETTINGS = 1000;
 
@@ -411,6 +411,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private boolean       isDefaultSms                  = true;
   private boolean       isMmsEnabled                  = true;
   private boolean       isSecurityInitialized         = false;
+  private boolean       isSearchRequested             = false;
 
   private volatile boolean screenInitialized = false;
 
@@ -439,6 +440,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
     new FullscreenHelper(this).showSystemUI();
 
     ConversationIntents.Args args = ConversationIntents.Args.from(getIntent());
+
+    isSearchRequested = args.isWithSearchOpen();
 
     reportShortcutLaunch(args.getRecipientId());
     setContentView(R.layout.conversation_activity);
@@ -497,8 +500,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
       }
     });
     initializeInsightObserver();
-
-    handleStartWithSearchOpen();
   }
 
   @Override
@@ -536,7 +537,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     setIntent(intent);
 
-    viewModel.setArgs(ConversationIntents.Args.from(intent));
+    ConversationIntents.Args args = ConversationIntents.Args.from(intent);
+    isSearchRequested = args.isWithSearchOpen();
+
+    viewModel.setArgs(args);
 
     reportShortcutLaunch(viewModel.getArgs().getRecipientId());
     initializeResources(viewModel.getArgs());
@@ -553,7 +557,11 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     searchNav.setVisibility(View.GONE);
 
-    handleStartWithSearchOpen();
+    if (args.isWithSearchOpen()) {
+      if (searchViewItem != null && searchViewItem.expandActionView()) {
+        searchViewModel.onSearchOpened();
+      }
+    }
   }
 
   @Override
@@ -686,7 +694,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       titleView.setTitle(glideRequests, recipientSnapshot);
       NotificationChannels.updateContactChannelName(this, recipientSnapshot);
       setBlockedUserState(recipientSnapshot, isSecureText, isDefaultSms);
-      supportInvalidateOptionsMenu();
+      invalidateOptionsMenu();
       break;
     case TAKE_PHOTO:
       handleImageFromDeviceCameraApp();
@@ -779,21 +787,12 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
   }
 
-  private void handleStartWithSearchOpen() {
-    if (viewModel.getArgs().isWithSearchOpen()) {
-      toolbar.postDelayed(() -> {
-        if (searchViewItem.expandActionView()) {
-          searchViewModel.onSearchOpened();
-        }
-      }, 500);
-    }
-  }
-
   @Override
   protected void onSaveInstanceState(@NonNull Bundle outState) {
     super.onSaveInstanceState(outState);
 
     outState.putInt(STATE_REACT_WITH_ANY_PAGE, reactWithAnyEmojiStartPage);
+    outState.putBoolean(STATE_IS_SEARCH_REQUESTED, isSearchRequested);
   }
 
   @Override
@@ -801,6 +800,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     super.onRestoreInstanceState(savedInstanceState);
 
     reactWithAnyEmojiStartPage = savedInstanceState.getInt(STATE_REACT_WITH_ANY_PAGE, -1);
+    isSearchRequested = savedInstanceState.getBoolean(STATE_IS_SEARCH_REQUESTED, false);
   }
 
   private void setVisibleThread(long threadId) {
@@ -1016,6 +1016,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       @Override
       public boolean onMenuItemActionCollapse(MenuItem item) {
         searchView.setOnQueryTextListener(null);
+        isSearchRequested = false;
         searchViewModel.onSearchClosed();
         searchNav.setVisibility(View.GONE);
         inputPanel.setVisibility(View.VISIBLE);
@@ -1026,8 +1027,21 @@ public class ConversationActivity extends PassphraseRequiredActivity
       }
     });
 
+    if (isSearchRequested) {
+      if (searchViewItem.expandActionView()) {
+          searchViewModel.onSearchOpened();
+        }
+    }
+
     super.onCreateOptionsMenu(menu);
     return true;
+  }
+
+  @Override
+  public void invalidateOptionsMenu() {
+    if (!isSearchRequested) {
+      super.invalidateOptionsMenu();
+    }
   }
 
   @Override
@@ -1544,7 +1558,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
 
     calculateCharactersRemaining();
-    supportInvalidateOptionsMenu();
+    invalidateOptionsMenu();
     setBlockedUserState(recipient.get(), isSecureText, isDefaultSms);
   }
 

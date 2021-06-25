@@ -701,17 +701,9 @@ class ConversationSettingsFragment : DSLSettingsFragment(
     override fun getAnimationState(recyclerView: RecyclerView): AnimationState {
       val layoutManager = recyclerView.layoutManager as LinearLayoutManager
 
-      // If first visible item position is 0
-      // If less than actionbarsize is visible
-      // SHOW
-      // else 
-      // HIDE
-      // else
-      // HIDE
-
       return if (layoutManager.findFirstVisibleItemPosition() == 0) {
         val firstChild = requireNotNull(layoutManager.getChildAt(0))
-        firstChild.getDrawingRect(rect)
+        firstChild.getLocalVisibleRect(rect)
 
         if (rect.height() <= actionBarSize) {
           AnimationState.SHOW
