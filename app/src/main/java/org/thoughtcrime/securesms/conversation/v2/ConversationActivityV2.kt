@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
@@ -51,14 +52,17 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.giph.ui.GiphyActivity
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
 import org.thoughtcrime.securesms.loki.utilities.toPx
-import org.thoughtcrime.securesms.mms.AttachmentManager
-import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.mediasend.Media
+import org.thoughtcrime.securesms.mediasend.MediaSendActivity
+import org.thoughtcrime.securesms.mms.*
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.MediaUtil
 import java.util.*
 import kotlin.math.*
 
@@ -679,6 +683,46 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     override fun onAttachmentChanged() {
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intent)
+        intent ?: return
+        when (requestCode) {
+            PICK_DOCUMENT -> {
+                val data = intent.data ?: return
+            }
+            TAKE_PHOTO -> {
+                val uri = attachmentManager.captureUri ?: return
+            }
+            PICK_GIF -> {
+                val data = intent.data ?: return
+                val type = AttachmentManager.MediaType.GIF
+                val width = intent.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0)
+                val height = intent.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0)
+            }
+            PICK_FROM_LIBRARY -> {
+                val message = intent.getStringExtra(MediaSendActivity.EXTRA_MESSAGE)
+                val media = intent.getParcelableArrayListExtra<Media>(MediaSendActivity.EXTRA_MEDIA) ?: return
+                val slideDeck = SlideDeck()
+                for (item in media) {
+                    when {
+                        MediaUtil.isVideoType(item.mimeType) -> {
+                            slideDeck.addSlide(VideoSlide(this, item.uri, 0, item.caption.orNull()))
+                        }
+                        MediaUtil.isGif(item.mimeType) -> {
+                            slideDeck.addSlide(GifSlide(this, item.uri, 0, item.width, item.height, item.caption.orNull()))
+                        }
+                        MediaUtil.isImageType(item.mimeType) -> {
+                            slideDeck.addSlide(ImageSlide(this, item.uri, 0, item.width, item.height, item.caption.orNull()))
+                        }
+                        else -> {
+                            Log.d("Loki", "Asked to send an unexpected media type: '" + item.mimeType + "'. Skipping.")
+                        }
+                    }
+                }
+            }
+        }
     }
     // endregion
 
