@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.text.util.Linkify
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.LinearLayout
@@ -88,7 +89,22 @@ class VisibleMessageContentView : LinearLayout {
             mainContainer.addView(albumThumbnailView)
             // isStart and isEnd of cluster needed for calculating the mask for full bubble image groups
             // bind after add view because views are inflated and calculated during bind
-            albumThumbnailView.bind(glide, message, isStartOfMessageCluster, isEndOfMessageCluster)
+            albumThumbnailView.bind(
+                    glideRequests = glide,
+                    message = message,
+                    isStart = isStartOfMessageCluster,
+                    isEnd = isEndOfMessageCluster,
+                    clickListener = { slide ->
+                        Log.d("Loki-UI","clicked to display the slide $slide")
+                    },
+                    downloadClickListener = { slide ->
+                        // trigger download of content?
+                        Log.d("Loki-UI","clicked to download the slide $slide")
+                    },
+                    readMoreListener = {
+                        Log.d("Loki-UI", "clicked to read more the message $message")
+                    }
+            )
         } else if (message.isOpenGroupInvitation) {
             val openGroupInvitationView = OpenGroupInvitationView(context)
             openGroupInvitationView.bind(message, VisibleMessageContentView.getTextColor(context, message))

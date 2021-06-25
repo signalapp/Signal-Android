@@ -1,26 +1,26 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import androidx.annotation.ColorInt;
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import network.loki.messenger.R;
+import androidx.annotation.ColorInt;
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView;
+import org.session.libsession.utilities.Stub;
+import org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
-import org.session.libsession.utilities.Stub;
 
 import java.util.List;
+
+import network.loki.messenger.R;
 
 public class AlbumThumbnailView extends FrameLayout {
 
@@ -149,7 +149,7 @@ public class AlbumThumbnailView extends FrameLayout {
   }
 
   private void setSlide(@NonNull GlideRequests glideRequests, @NonNull Slide slide, @IdRes int id) {
-    ThumbnailView cell = findViewById(id);
+    KThumbnailView cell = findViewById(id);
     cell.setImageResource(glideRequests, slide, false, false);
     cell.setThumbnailClickListener(defaultThumbnailClickListener);
     cell.setOnLongClickListener(defaultLongClickListener);

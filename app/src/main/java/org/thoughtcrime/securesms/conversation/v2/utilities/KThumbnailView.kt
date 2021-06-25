@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.AttributeSet
+import android.view.View
 import android.widget.FrameLayout
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
@@ -26,7 +27,7 @@ import org.thoughtcrime.securesms.components.TransferControlView
 import org.thoughtcrime.securesms.mms.*
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
 
-open class KThumbnailView: FrameLayout {
+open class KThumbnailView: FrameLayout, View.OnClickListener {
 
     companion object {
         private const val WIDTH = 0
@@ -65,9 +66,9 @@ open class KThumbnailView: FrameLayout {
 
             typedArray.recycle()
         }
+        setOnClickListener(this)
     }
 
-    // region Lifecycle
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val adjustedDimens = dimensDelegate.resourceSize()
         if (adjustedDimens[WIDTH] == 0 && adjustedDimens[HEIGHT] == 0) {
@@ -85,10 +86,16 @@ open class KThumbnailView: FrameLayout {
 
     private fun getDefaultWidth() = maxOf(layoutParams?.width ?: 0, 0)
     private fun getDefaultHeight() = maxOf(layoutParams?.height ?: 0, 0)
-
     // endregion
 
     // region Interaction
+
+    override fun onClick(v: View?) {
+        if (v === this) {
+            thumbnailClickListener?.onClick(v, slide)
+        }
+    }
+
     fun setImageResource(glide: GlideRequests, slide: Slide, showControls: Boolean, isPreview: Boolean): ListenableFuture<Boolean> {
         return setImageResource(glide, slide, showControls, isPreview, 0, 0)
     }
@@ -216,7 +223,11 @@ open class KThumbnailView: FrameLayout {
     }
 
     fun setDownloadClickListener(listener: SlidesClickedListener) {
-
+        transferControls.setDownloadClickListener {
+            slide?.let { slide ->
+                listener.onClick(it, listOf(slide))
+            }
+        }
     }
 
     // endregion
