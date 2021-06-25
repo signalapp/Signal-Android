@@ -30,7 +30,11 @@ import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.mentions.Mention
 import org.session.libsession.messaging.mentions.MentionsManager
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
+import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
+import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.session.libsession.messaging.sending_receiving.MessageSender.send
 import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
@@ -635,12 +639,28 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun send() {
+        val message = VisibleMessage()
+        message.sentTimestamp = System.currentTimeMillis()
+        message.text = getMessageBody()
+        val outgoingTextMessage = OutgoingTextMessage.from(message, thread)
+        ApplicationContext.getInstance(this).typingStatusSender.onTypingStopped(threadID)
 
+//        silentlySetComposeText("")
+//        val id: Long = fragment.stageOutgoingMessage(outgoingTextMessage)
+//
+//        if (initiating) {
+//            DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true)
+//        }
+//
+//        val allocatedThreadId: Long = getAllocatedThreadId(context)
+        message.id = DatabaseFactory.getSmsDatabase(this).insertMessageOutbox(threadID, outgoingTextMessage, false, message.sentTimestamp!!) { /**fragment.releaseOutgoingMessage(id)*/ }
+
+        MessageSender.send(message, thread.address)
     }
     // endregion
 
     // region General
-    private fun getMessageBody(): CharSequence {
+    private fun getMessageBody(): String {
         var result = inputBar.inputBarEditText.text?.trim() ?: ""
         for (mention in mentions) {
             try {
@@ -651,7 +671,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 Log.d("Loki", "Failed to process mention due to error: $exception")
             }
         }
-        return result
+        return result.toString()
     }
 
     private fun saveDraft() {
