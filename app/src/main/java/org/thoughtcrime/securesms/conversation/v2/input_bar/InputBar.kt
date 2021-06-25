@@ -61,6 +61,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         microphoneOrSendButtonContainer.addView(sendButton)
         sendButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
         sendButton.isVisible = false
+        sendButton.onUp = { delegate?.send() }
         // Edit text
         inputBarEditText.imeOptions = inputBarEditText.imeOptions or 16777216 // Always use incognito keyboard
         inputBarEditText.delegate = this
@@ -162,4 +163,5 @@ interface InputBarDelegate {
     fun onMicrophoneButtonMove(event: MotionEvent)
     fun onMicrophoneButtonCancel(event: MotionEvent)
     fun onMicrophoneButtonUp(event: MotionEvent)
+    fun send()
 }

@@ -7,6 +7,7 @@ import android.database.Cursor
 import android.graphics.Rect
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.widget.RelativeLayout
@@ -27,6 +28,7 @@ import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.contacts.Contact
+import org.session.libsession.messaging.mentions.Mention
 import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.TextSecurePreferences
@@ -65,10 +67,16 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
     private var actionMode: ActionMode? = null
+    private var unreadCount = 0
+    // Attachments
     private var isLockViewExpanded = false
     private var isShowingAttachmentOptions = false
+    // Mentions
+    private val mentions = mutableListOf<Mention>()
     private var mentionCandidatesView: MentionCandidatesView? = null
-    private var unreadCount = 0
+    private var previousText: CharSequence = ""
+    private var currentMentionStartIndex = -1
+    private var isShowingMentionCandidatesView = false
 
     private val layoutManager: LinearLayoutManager
         get() { return conversationRecyclerView.layoutManager as LinearLayoutManager }
@@ -294,9 +302,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         // 36 DP is the exact height of the typing indicator view. It's also exactly 18 * 2, and 18 is the large message
         // corner radius. This makes 36 DP look "correct" in the context of other messages on the screen.
         val typingIndicatorHeight = if (typingIndicatorViewContainer.isVisible) toPx(36, resources) else 0
+        // We * don't * want to move the recycler view up when showing the mention candidates view
+        val additionalContentContainerHeight = if (isShowingMentionCandidatesView) 0 else additionalContentContainer.height
         // Recycler view
         val recyclerViewLayoutParams = conversationRecyclerView.layoutParams as RelativeLayout.LayoutParams
-        recyclerViewLayoutParams.bottomMargin = newValue + additionalContentContainer.height + typingIndicatorHeight
+        recyclerViewLayoutParams.bottomMargin = newValue + additionalContentContainerHeight + typingIndicatorHeight
         conversationRecyclerView.layoutParams = recyclerViewLayoutParams
         // Additional content container
         val additionalContentContainerLayoutParams = additionalContentContainer.layoutParams as RelativeLayout.LayoutParams
@@ -317,40 +327,77 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     override fun inputBarEditTextContentChanged(newContent: CharSequence) {
         linkPreviewViewModel?.onTextChanged(this, inputBar.text, 0, 0)
-        // TODO: Implement the full mention show/hide logic
-        if (newContent.contains("@")) {
-            showMentionCandidates()
-        } else {
-            hideMentionCandidates()
-        }
+        showOrHideMentionCandidatesIfNeeded(newContent)
     }
 
-    private fun showMentionCandidates() {
-        additionalContentContainer.removeAllViews()
-        val mentionCandidatesView = MentionCandidatesView(this)
-        mentionCandidatesView.glide = glide
-        additionalContentContainer.addView(mentionCandidatesView)
-        val mentionCandidates = MentionsManager.getMentionCandidates("", threadID, thread.isOpenGroupRecipient)
-        this.mentionCandidatesView = mentionCandidatesView
-        mentionCandidatesView.show(mentionCandidates, threadID)
-        mentionCandidatesView.alpha = 0.0f
-        val animation = ValueAnimator.ofObject(FloatEvaluator(), mentionCandidatesView.alpha, 1.0f)
-        animation.duration = 250L
-        animation.addUpdateListener { animator ->
-            mentionCandidatesView.alpha = animator.animatedValue as Float
+    private fun showOrHideMentionCandidatesIfNeeded(text: CharSequence) {
+        val isBackspace = (text.length < previousText.length)
+        if (isBackspace) {
+            currentMentionStartIndex = -1
+            hideMentionCandidates()
+            val mentionsToRemove = mentions.filter { !text.contains(it.displayName) }
+            mentions.removeAll(mentionsToRemove)
         }
-        animation.start()
+        if (text.isNotEmpty()) {
+            if (currentMentionStartIndex > text.length) { resetMentions() } // Should never occur
+            val lastCharIndex = text.lastIndex
+            val lastChar = text[lastCharIndex]
+            val secondToLastChar = if (lastCharIndex > 0) text[lastCharIndex - 1] else ' '
+            if (lastChar == '@' && Character.isWhitespace(secondToLastChar)) {
+                currentMentionStartIndex = lastCharIndex
+                showOrUpdateMentionCandidatesIfNeeded()
+            } else if (Character.isWhitespace(lastChar)) {
+                currentMentionStartIndex = -1
+                hideMentionCandidates()
+            } else if (currentMentionStartIndex != -1) {
+                val query = text.substring(currentMentionStartIndex + 1) // + 1 to get rid of the "@"
+                showOrUpdateMentionCandidatesIfNeeded(query)
+            }
+        }
+        previousText = text
+    }
+
+    private fun showOrUpdateMentionCandidatesIfNeeded(query: String = "") {
+        if (!isShowingMentionCandidatesView) {
+            additionalContentContainer.removeAllViews()
+            val view = MentionCandidatesView(this)
+            view.glide = glide
+            additionalContentContainer.addView(view)
+            val candidates = MentionsManager.getMentionCandidates(query, threadID, thread.isOpenGroupRecipient)
+            this.mentionCandidatesView = view
+            view.show(candidates, threadID)
+            view.alpha = 0.0f
+            val animation = ValueAnimator.ofObject(FloatEvaluator(), view.alpha, 1.0f)
+            animation.duration = 250L
+            animation.addUpdateListener { animator ->
+                view.alpha = animator.animatedValue as Float
+            }
+            animation.start()
+        } else {
+            val candidates = MentionsManager.getMentionCandidates(query, threadID, thread.isOpenGroupRecipient)
+            this.mentionCandidatesView!!.setMentionCandidates(candidates)
+        }
+        isShowingMentionCandidatesView = true
     }
 
     private fun hideMentionCandidates() {
-        val mentionCandidatesView = mentionCandidatesView ?: return
-        val animation = ValueAnimator.ofObject(FloatEvaluator(), mentionCandidatesView.alpha, 0.0f)
-        animation.duration = 250L
-        animation.addUpdateListener { animator ->
-            mentionCandidatesView.alpha = animator.animatedValue as Float
-            if (animator.animatedFraction == 1.0f) { additionalContentContainer.removeAllViews() }
+        if (isShowingMentionCandidatesView) {
+            val mentionCandidatesView = mentionCandidatesView ?: return
+            val animation = ValueAnimator.ofObject(FloatEvaluator(), mentionCandidatesView.alpha, 0.0f)
+            animation.duration = 250L
+            animation.addUpdateListener { animator ->
+                mentionCandidatesView.alpha = animator.animatedValue as Float
+                if (animator.animatedFraction == 1.0f) { additionalContentContainer.removeAllViews() }
+            }
+            animation.start()
         }
-        animation.start()
+        isShowingMentionCandidatesView = false
+    }
+
+    private fun resetMentions() {
+        previousText = ""
+        currentMentionStartIndex = -1
+        mentions.clear()
     }
 
     override fun toggleAttachmentOptions() {
@@ -569,9 +616,27 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private fun unblock() {
         // TODO: Implement
     }
+
+    override fun send() {
+
+    }
     // endregion
 
     // region General
+    private fun getMessageBody(): CharSequence {
+        var result = inputBar.inputBarEditText.text?.trim() ?: ""
+        for (mention in mentions) {
+            try {
+                val startIndex = result.indexOf("@" + mention.displayName)
+                val endIndex = startIndex + mention.displayName.count() + 1 // + 1 to include the "@"
+                result = result.substring(0, startIndex) + "@" + mention.publicKey + result.substring(endIndex)
+            } catch (exception: Exception) {
+                Log.d("Loki", "Failed to process mention due to error: $exception")
+            }
+        }
+        return result
+    }
+
     private fun saveDraft() {
         val text = inputBar.text.trim()
         if (text.isEmpty()) { return }

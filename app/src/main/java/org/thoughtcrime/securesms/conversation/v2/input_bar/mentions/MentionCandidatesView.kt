@@ -65,6 +65,10 @@ class MentionCandidatesView(context: Context, attrs: AttributeSet?, defStyleAttr
             openGroupServer = openGroup.server
             openGroupRoom = openGroup.room
         }
+        setMentionCandidates(candidates)
+    }
+
+    fun setMentionCandidates(candidates: List<Mention>) {
         this.candidates = candidates
         val layoutParams = this.layoutParams as ViewGroup.LayoutParams
         layoutParams.height = toPx(Math.min(candidates.count(), 4) * 44, resources)
