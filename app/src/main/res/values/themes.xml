@@ -18,7 +18,7 @@
         <item name="android:colorBackground">@color/default_background_start</item>
         <item name="android:navigationBarColor">@color/compose_view_background</item>
 
-        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.DayNight</item>
         <item name="actionBarWidgetTheme">@null</item>
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
         <item name="actionBarStyle">@style/Widget.Session.ActionBar</item>
