@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.components.TransferControlView
 import org.thoughtcrime.securesms.mms.*
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
 
-open class KThumbnailView: FrameLayout, View.OnClickListener {
+open class KThumbnailView: FrameLayout {
 
     companion object {
         private const val WIDTH = 0
@@ -66,7 +66,6 @@ open class KThumbnailView: FrameLayout, View.OnClickListener {
 
             typedArray.recycle()
         }
-        setOnClickListener(this)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -89,13 +88,6 @@ open class KThumbnailView: FrameLayout, View.OnClickListener {
     // endregion
 
     // region Interaction
-
-    override fun onClick(v: View?) {
-        if (v === this) {
-            thumbnailClickListener?.onClick(v, slide)
-        }
-    }
-
     fun setImageResource(glide: GlideRequests, slide: Slide, showControls: Boolean, isPreview: Boolean): ListenableFuture<Boolean> {
         return setImageResource(glide, slide, showControls, isPreview, 0, 0)
     }

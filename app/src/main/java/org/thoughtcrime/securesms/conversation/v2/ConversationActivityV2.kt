@@ -76,8 +76,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val adapter = ConversationAdapter(
             this,
             cursor,
-            onItemPress = { message, position, view ->
-                handlePress(message, position, view)
+            onItemPress = { message, position, view, rect ->
+                handlePress(message, position, view, rect)
             },
             onItemSwipeToReply = { message, position ->
                 handleSwipeToReply(message, position)
@@ -452,7 +452,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     // `position` is the adapter position; not the visual position
-    private fun handlePress(message: MessageRecord, position: Int, view: VisibleMessageView) {
+    private fun handlePress(message: MessageRecord, position: Int, view: VisibleMessageView, hitRect: Rect) {
         val actionMode = this.actionMode
         if (actionMode != null) {
             adapter.toggleSelection(message, position)
@@ -467,7 +467,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             // We have to use onContentClick (rather than a click listener directly on
             // the view) so as to not interfere with all the other gestures. Do not add
             // onClickListeners directly to message content views.
-            view.onContentClick()
+            view.onContentClick(hitRect)
         }
     }
 

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
+import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.text.util.Linkify
 import android.util.AttributeSet
@@ -30,7 +31,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import kotlin.math.roundToInt
 
 class VisibleMessageContentView : LinearLayout {
-    var onContentClick: (() -> Unit)? = null
+    var onContentClick: ((Rect) -> Unit)? = null
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
@@ -93,18 +94,18 @@ class VisibleMessageContentView : LinearLayout {
                     glideRequests = glide,
                     message = message,
                     isStart = isStartOfMessageCluster,
-                    isEnd = isEndOfMessageCluster,
-                    clickListener = { slide ->
-                        Log.d("Loki-UI","clicked to display the slide $slide")
-                    },
-                    downloadClickListener = { slide ->
-                        // trigger download of content?
-                        Log.d("Loki-UI","clicked to download the slide $slide")
-                    },
-                    readMoreListener = {
-                        Log.d("Loki-UI", "clicked to read more the message $message")
-                    }
+                    isEnd = isEndOfMessageCluster
             )
+            onContentClick = {
+                when (val hitObject = albumThumbnailView.calculateHitObject(it)) {
+                    is AlbumThumbnailView.Hit.SlideHit -> Log.d("Loki-UI", "clicked display slide ${hitObject.slide}")// open the slide preview
+                    is AlbumThumbnailView.Hit.DownloadHit -> Log.d("Loki-UI", "clicked display download")
+                    AlbumThumbnailView.Hit.ReadMoreHit -> Log.d("Loki-UI", "clicked the read more display")
+                    else -> {
+                        Log.d("Loki-UI", "DIDN'T click anything important")
+                    }
+                }
+            }
         } else if (message.isOpenGroupInvitation) {
             val openGroupInvitationView = OpenGroupInvitationView(context)
             openGroupInvitationView.bind(message, VisibleMessageContentView.getTextColor(context, message))

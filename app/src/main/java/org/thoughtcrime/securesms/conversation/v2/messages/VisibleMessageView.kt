@@ -50,7 +50,7 @@ class VisibleMessageView : LinearLayout {
     private var onDownTimestamp = 0L
     var snIsSelected = false
         set(value) { field = value; handleIsSelectedChanged()}
-    var onPress: (() -> Unit)? = null
+    var onPress: ((x: Int, y: Int) -> Unit)? = null
     var onSwipeToReply: (() -> Unit)? = null
     var onLongPress: (() -> Unit)? = null
 
@@ -272,7 +272,7 @@ class VisibleMessageView : LinearLayout {
             onSwipeToReply?.invoke()
         } else if ((Date().time - onDownTimestamp) < VisibleMessageView.longPressDurationThreshold) {
             longPressCallback?.let { gestureHandler.removeCallbacks(it) }
-            onPress?.invoke()
+            onPress?.invoke(event.x.toInt(), event.y.toInt())
         }
         resetPosition()
     }
@@ -297,8 +297,8 @@ class VisibleMessageView : LinearLayout {
         onLongPress?.invoke()
     }
 
-    fun onContentClick() {
-        messageContentView.onContentClick?.invoke()
+    fun onContentClick(hitRect: Rect) {
+        messageContentView.onContentClick?.invoke(hitRect)
     }
     // endregion
 }

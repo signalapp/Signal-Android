@@ -2,11 +2,12 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.core.view.children
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.album_thumbnail_view.view.*
 import network.loki.messenger.R
@@ -15,24 +16,33 @@ import org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.Slide
-import org.thoughtcrime.securesms.mms.SlideClickListener
-import org.thoughtcrime.securesms.mms.SlidesClickedListener
 
-class AlbumThumbnailView: FrameLayout, SlideClickListener, SlidesClickedListener, View.OnClickListener {
+class AlbumThumbnailView : FrameLayout {
 
     // region Lifecycle
-    constructor(context: Context) : super(context) { initialize() }
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize() }
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
+    constructor(context: Context) : super(context) {
+        initialize()
+    }
 
-    private var slideClickListener: ((Slide) -> Unit)? = null
-    private var downloadClickListener: ((Slide) -> Unit)? = null
-    private var readMoreListener: (() -> Unit)? = null
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        initialize()
+    }
+
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        initialize()
+    }
+
     private val cornerMask by lazy { CornerMask(this) }
+    private var slides: List<Slide> = listOf()
+
+    sealed class Hit {
+        object ReadMoreHit : Hit()
+        data class SlideHit(val slide: Slide) : Hit()
+        data class DownloadHit(val slide: Slide) : Hit()
+    }
 
     private fun initialize() {
         LayoutInflater.from(context).inflate(R.layout.album_thumbnail_view, this)
-        albumCellBodyTextReadMore.setOnClickListener(this)
     }
 
     override fun dispatchDraw(canvas: Canvas?) {
@@ -44,36 +54,31 @@ class AlbumThumbnailView: FrameLayout, SlideClickListener, SlidesClickedListener
 
     // region Interaction
 
-    override fun onClick(v: View?) {
-        // clicked the view or one of its children
-        if (v === albumCellBodyTextReadMore) {
-            readMoreListener?.invoke()
+    fun calculateHitObject(hitRect: Rect): Hit? {
+        // Z-check in specific order
+        val testRect = Rect()
+        // test "Read More"
+        albumCellBodyTextReadMore.getHitRect(testRect)
+        if (Rect.intersects(hitRect, testRect)) {
+            return Hit.ReadMoreHit
         }
-    }
-
-    override fun onClick(v: View?, slide: Slide?) {
-        // slide thumbnail clicked
-        if (slide==null) return
-        slideClickListener?.invoke(slide)
-    }
-
-    override fun onClick(v: View?, slides: MutableList<Slide>?) {
-        // slide download clicked
-        if (slides.isNullOrEmpty()) return
-        slides.firstOrNull().let { slide ->
-            if (slide == null) return@let
-            downloadClickListener?.invoke(slide)
+        // test each album child
+        albumCellContainer.findViewById<ViewGroup>(R.id.album_thumbnail_root)?.children?.forEachIndexed { index, child ->
+            child.getHitRect(testRect)
+            if (Rect.intersects(hitRect, testRect)) {
+                // hit intersects with this particular child
+                slides.getOrNull(index)?.let { slide ->
+                    return Hit.SlideHit(slide)
+                }
+            }
         }
+        return null
     }
 
     fun bind(glideRequests: GlideRequests, message: MmsMessageRecord,
-             clickListener: (Slide)->Unit, downloadClickListener: (Slide)->Unit, readMoreListener: ()->Unit,
              isStart: Boolean, isEnd: Boolean) {
-        this.slideClickListener = clickListener
-        this.downloadClickListener = downloadClickListener
-        this.readMoreListener = readMoreListener
         // TODO: optimize for same size
-        val slides = message.slideDeck.thumbnailSlides
+        slides = message.slideDeck.thumbnailSlides
         if (slides.isEmpty()) {
             // this should never be encountered because it's checked by parent
             return
@@ -84,16 +89,15 @@ class AlbumThumbnailView: FrameLayout, SlideClickListener, SlidesClickedListener
         // iterate
         slides.take(5).forEachIndexed { position, slide ->
             val thumbnailView = getThumbnailView(position)
-            thumbnailView.thumbnailClickListener = this
             thumbnailView.setImageResource(glideRequests, slide, showControls = false, isPreview = false)
-            thumbnailView.setDownloadClickListener(this)
         }
         albumCellBodyParent.isVisible = message.body.isNotEmpty()
         albumCellBodyText.text = message.body
         post {
             // post to await layout of text
             albumCellBodyText.layout?.let { layout ->
-                val maxEllipsis = (0 until layout.lineCount).maxByOrNull { lineNum -> layout.getEllipsisCount(lineNum) } ?: 0
+                val maxEllipsis = (0 until layout.lineCount).maxByOrNull { lineNum -> layout.getEllipsisCount(lineNum) }
+                        ?: 0
                 // show read more text if at least one line is ellipsized
                 albumCellBodyTextReadMore.isVisible = maxEllipsis > 0
             }
