@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.whispersystems.libsignal.util.guava.Optional
 import java.io.IOException
 
 private val TAG = Log.tag(ConversationSettingsRepository::class.java)
@@ -32,8 +33,12 @@ class ConversationSettingsRepository(
 ) {
 
   @WorkerThread
-  fun getThreadMedia(threadId: Long): Cursor {
-    return DatabaseFactory.getMediaDatabase(context).getGalleryMediaForThread(threadId, MediaDatabase.Sorting.Newest)
+  fun getThreadMedia(threadId: Long): Optional<Cursor> {
+    return if (threadId <= 0) {
+      Optional.absent()
+    } else {
+      Optional.of(DatabaseFactory.getMediaDatabase(context).getGalleryMediaForThread(threadId, MediaDatabase.Sorting.Newest))
+    }
   }
 
   fun getThreadId(recipientId: RecipientId, consumer: (Long) -> Unit) {

@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SingleLiveEvent
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.livedata.Store
+import org.whispersystems.libsignal.util.guava.Optional
 
 sealed class ConversationSettingsViewModel(
   private val repository: ConversationSettingsRepository,
@@ -47,16 +48,19 @@ sealed class ConversationSettingsViewModel(
     val threadId: LiveData<Long> = Transformations.distinctUntilChanged(Transformations.map(state) { it.threadId })
     val updater: LiveData<Long> = LiveDataUtil.combineLatest(threadId, sharedMediaUpdateTrigger) { tId, _ -> tId }
 
-    val sharedMedia: LiveData<Cursor> = LiveDataUtil.mapAsync(SignalExecutors.BOUNDED, updater) { tId ->
+    val sharedMedia: LiveData<Optional<Cursor>> = LiveDataUtil.mapAsync(SignalExecutors.BOUNDED, updater) { tId ->
       repository.getThreadMedia(tId)
     }
 
     store.update(sharedMedia) { cursor, state ->
       if (!cleared) {
-        openedMediaCursors.add(cursor)
-        state.copy(sharedMedia = cursor)
+        if (cursor.isPresent) {
+          openedMediaCursors.add(cursor.get())
+        }
+
+        state.copy(sharedMedia = cursor.orNull(), sharedMediaLoaded = true)
       } else {
-        cursor.ensureClosed()
+        cursor.orNull().ensureClosed()
         state.copy(sharedMedia = null)
       }
     }

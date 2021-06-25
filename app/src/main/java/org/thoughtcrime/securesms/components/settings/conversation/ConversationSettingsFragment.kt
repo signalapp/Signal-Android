@@ -202,11 +202,11 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         }
       }
 
-      adapter.submitList(getConfiguration(state).toMappingModelList())
-
-      if (state.isLoaded) {
-        (requireView().parent as? ViewGroup)?.doOnPreDraw {
-          callback.onContentWillRender()
+      adapter.submitList(getConfiguration(state).toMappingModelList()) {
+        if (state.isLoaded) {
+          (requireView().parent as? ViewGroup)?.doOnPreDraw {
+            callback.onContentWillRender()
+          }
         }
       }
     }

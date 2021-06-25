@@ -15,10 +15,11 @@ data class ConversationSettingsState(
   val disappearingMessagesLifespan: Int = 0,
   val canModifyBlockedState: Boolean = false,
   val sharedMedia: Cursor? = null,
+  private val sharedMediaLoaded: Boolean = false,
   private val specificSettingsState: SpecificSettingsState,
 ) {
 
-  val isLoaded: Boolean = recipient != Recipient.UNKNOWN && sharedMedia != null && specificSettingsState.isLoaded
+  val isLoaded: Boolean = recipient != Recipient.UNKNOWN && sharedMediaLoaded && specificSettingsState.isLoaded
 
   fun withRecipientSettingsState(consumer: (SpecificSettingsState.RecipientSettingsState) -> Unit) {
     if (specificSettingsState is SpecificSettingsState.RecipientSettingsState) {
