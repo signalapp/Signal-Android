@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.mediaoverview;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -96,8 +98,8 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
 
     boolean allThreads = threadId == MediaDatabase.ALL_THREADS;
 
+    tabLayout.addOnTabSelectedListener(new OnTabSelectedListener());
     fillTabLayoutIfFits(tabLayout);
-
     tabLayout.setupWithViewPager(viewPager);
     viewPager.setAdapter(new MediaOverviewPagerAdapter(getSupportFragmentManager()));
 
@@ -281,6 +283,42 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
     @Override
     public CharSequence getPageTitle(int position) {
       return pages.get(position).second();
+    }
+  }
+
+  private static final class OnTabSelectedListener implements TabLayout.OnTabSelectedListener {
+
+    private final Typeface tabUnselected = Typeface.create("sans-serif", Typeface.NORMAL);
+    private final Typeface tabSelected   = Typeface.create("sans-serif-medium", Typeface.NORMAL);
+
+    @Override
+    public void onTabSelected(@NonNull TabLayout.Tab tab) {
+      View view = getCustomView(tab);
+      TextView title = view.findViewById(android.R.id.text1);
+      title.setTypeface(tabSelected);
+      title.setTextColor(ContextCompat.getColor(view.getContext(), R.color.signal_inverse_primary));
+    }
+
+    @Override
+    public void onTabUnselected(@NonNull TabLayout.Tab tab) {
+      View view = getCustomView(tab);
+      TextView title = view.findViewById(android.R.id.text1);
+      title.setTypeface(tabUnselected);
+      title.setTextColor(ContextCompat.getColor(view.getContext(), R.color.signal_text_secondary));
+    }
+
+    @Override
+    public void onTabReselected(@NonNull TabLayout.Tab tab) {
+      // Intentionally Blank.
+    }
+
+    private @NonNull View getCustomView(@NonNull TabLayout.Tab tab) {
+      View customView = tab.getCustomView();
+      if (customView == null) {
+        tab.setCustomView(R.layout.custom_tab_layout_text);
+      }
+
+      return tab.getCustomView();
     }
   }
 }

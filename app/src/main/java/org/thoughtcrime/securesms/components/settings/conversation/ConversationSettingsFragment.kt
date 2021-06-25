@@ -371,7 +371,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__chat_color_and_wallpaper),
-        icon = DSLSettingsIcon.from(R.drawable.ic_wallpaper_24),
+        icon = DSLSettingsIcon.from(R.drawable.ic_color_24),
         onClick = {
           startActivity(ChatWallpaperActivity.createIntent(requireContext(), state.recipient.id))
         }

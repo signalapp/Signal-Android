@@ -20,6 +20,8 @@
     <color name="signal_text_secondary">@color/core_grey_25</color>
     <color name="signal_text_selected">@color/core_white</color>
 
+    <color name="signal_text_hint">@color/core_grey_15</color>
+
     <color name="signal_text_toolbar_title">@color/transparent_white_90</color>
     <color name="signal_text_toolbar_subtitle">@color/transparent_white_80</color>
 

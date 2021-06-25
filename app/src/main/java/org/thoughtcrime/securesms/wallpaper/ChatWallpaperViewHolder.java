@@ -20,14 +20,12 @@ class ChatWallpaperViewHolder extends MappingViewHolder<ChatWallpaperSelectionMa
 
   private final AspectRatioFrameLayout frame;
   private final ImageView              preview;
-  private final View                   dimmer;
   private final EventListener          eventListener;
 
   public ChatWallpaperViewHolder(@NonNull View itemView, @Nullable EventListener eventListener, @Nullable DisplayMetrics windowDisplayMetrics) {
     super(itemView);
     this.frame         = itemView.findViewById(R.id.chat_wallpaper_preview_frame);
     this.preview       = itemView.findViewById(R.id.chat_wallpaper_preview);
-    this.dimmer        = itemView.findViewById(R.id.chat_wallpaper_dim);
     this.eventListener = eventListener;
 
     if (windowDisplayMetrics != null) {
@@ -41,7 +39,7 @@ class ChatWallpaperViewHolder extends MappingViewHolder<ChatWallpaperSelectionMa
   public void bind(@NonNull ChatWallpaperSelectionMappingModel model) {
     model.loadInto(preview);
 
-    ChatWallpaperDimLevelUtil.applyDimLevelForNightMode(dimmer, model.getWallpaper());
+    preview.setColorFilter(ChatWallpaperDimLevelUtil.getDimColorFilterForNightMode(context, model.getWallpaper()));
 
     if (eventListener != null) {
       preview.setOnClickListener(unused -> {

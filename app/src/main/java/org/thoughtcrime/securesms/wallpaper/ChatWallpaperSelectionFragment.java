@@ -51,7 +51,6 @@ public class ChatWallpaperSelectionFragment extends Fragment {
     });
 
     recyclerView.setAdapter(adapter);
-    recyclerView.addItemDecoration(new ChatWallpaperAlignmentDecoration());
 
     viewModel = ViewModelProviders.of(requireActivity()).get(ChatWallpaperViewModel.class);
     viewModel.getWallpapers().observe(getViewLifecycleOwner(), adapter::submitList);
