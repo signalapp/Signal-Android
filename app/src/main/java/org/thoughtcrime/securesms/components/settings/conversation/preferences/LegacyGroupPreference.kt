@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.conversation.preferences
 
 import android.view.View
+import androidx.core.content.ContextCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.util.FeatureFlags
@@ -31,6 +32,8 @@ object LegacyGroupPreference {
 
     override fun bind(model: Model) {
       itemView.visibility = View.VISIBLE
+
+      groupInfoText.setLinkColor(ContextCompat.getColor(context, R.color.signal_text_primary))
 
       when (model.state) {
         State.LEARN_MORE -> {

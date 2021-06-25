@@ -50,11 +50,6 @@ abstract class DSLSettingsFragment(
     bindAdapter(adapter)
   }
 
-  override fun onResume() {
-    super.onResume()
-    scrollAnimationHelper.setImmediateState(recyclerView)
-  }
-
   protected open fun getOnScrollAnimationHelper(toolbarShadow: View): OnScrollAnimationHelper {
     return ToolbarShadowAnimationHelper(toolbarShadow)
   }
@@ -81,6 +76,11 @@ abstract class DSLSettingsFragment(
       val newAnimationState = getAnimationState(recyclerView)
 
       if (newAnimationState == lastAnimationState) {
+        return
+      }
+
+      if (lastAnimationState == AnimationState.NONE) {
+        setImmediateState(recyclerView)
         return
       }
 

@@ -6,10 +6,7 @@
     android:layout_marginStart="@dimen/dsl_settings_gutter"
     android:layout_marginTop="12dp"
     android:layout_marginEnd="@dimen/dsl_settings_gutter"
-    android:background="@drawable/round_background"
-    android:paddingStart="12dp"
-    android:paddingTop="10dp"
-    android:paddingEnd="12dp"
-    android:paddingBottom="10dp"
-    android:textAppearance="@style/TextAppearance.Signal.Subtitle"
+    android:text="@string/ManageGroupActivity_legacy_group_upgrade"
+    android:textAlignment="center"
+    android:textAppearance="@style/Signal.Text.Body"
     android:textColor="@color/signal_text_secondary" />
