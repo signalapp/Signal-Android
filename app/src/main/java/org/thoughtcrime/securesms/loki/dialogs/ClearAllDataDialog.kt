@@ -48,7 +48,7 @@ class ClearAllDataDialog : DialogFragment() {
         contentView.cancelButton.setOnClickListener {
             if (step == Steps.NETWORK_PROMPT) {
                 clearAllData(false)
-            } else {
+            } else if (step != Steps.DELETING) {
                 dismiss()
             }
         }
