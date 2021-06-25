@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public final class JobSpec {
@@ -128,7 +129,7 @@ public final class JobSpec {
   @SuppressLint("DefaultLocale")
   @Override
   public @NonNull String toString() {
-    return String.format("id: JOB::%s | factoryKey: %s | queueKey: %s | createTime: %d | nextRunAttemptTime: %d | runAttempt: %d | maxAttempts: %d | lifespan: %d | isRunning: %b | memoryOnly: %b",
+    return String.format(Locale.US, "id: JOB::%s | factoryKey: %s | queueKey: %s | createTime: %d | nextRunAttemptTime: %d | runAttempt: %d | maxAttempts: %d | lifespan: %d | isRunning: %b | memoryOnly: %b",
                          id, factoryKey, queueKey, createTime, nextRunAttemptTime, runAttempt, maxAttempts, lifespan, isRunning, memoryOnly);
   }
 }
