@@ -294,4 +294,12 @@
         <attr name="search_hint" format="string|reference" />
         <attr name="click_only" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="TopShadowBehavior">
+        <attr name="app_bar_layout_id" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="BottomShadowBehavior">
+        <attr name="bottom_bar_id" format="reference" />
+    </declare-styleable>
 </resources>

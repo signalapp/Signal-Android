@@ -6,28 +6,36 @@ import android.view.KeyEvent
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
+import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE
+import com.google.android.material.appbar.AppBarLayout
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider
+import org.thoughtcrime.securesms.components.emoji.EmojiPageView
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter
+import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.EmojiHeader
 import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.MappingModel
+import java.util.Optional
 
 private val DELETE_KEY_EVENT: KeyEvent = KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL)
 
 class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fragment), EmojiKeyboardProvider.EmojiEventListener, EmojiPageViewGridAdapter.VariationSelectorListener {
 
   private lateinit var viewModel: EmojiKeyboardPageViewModel
-  private lateinit var emojiPager: ViewPager2
+  private lateinit var emojiPageView: EmojiPageView
   private lateinit var searchView: View
   private lateinit var emojiCategoriesRecycler: RecyclerView
   private lateinit var backspaceView: View
   private lateinit var eventListener: EmojiKeyboardProvider.EmojiEventListener
   private lateinit var callback: Callback
-  private lateinit var pagesAdapter: EmojiKeyboardPageAdapter
   private lateinit var categoriesAdapter: EmojiKeyboardPageCategoriesAdapter
   private lateinit var searchBar: KeyboardPageSearchView
+  private lateinit var appBarLayout: AppBarLayout
+
+  private val categoryUpdateOnScroll = UpdateCategorySelectionOnScroll()
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
@@ -37,33 +45,28 @@ class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fr
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    emojiPager = view.findViewById(R.id.emoji_pager)
+    emojiPageView = view.findViewById(R.id.emoji_page_view)
+    emojiPageView.initialize(this, this, true)
+    emojiPageView.addOnScrollListener(categoryUpdateOnScroll)
+
     searchView = view.findViewById(R.id.emoji_search)
     searchBar = view.findViewById(R.id.emoji_keyboard_search_text)
     emojiCategoriesRecycler = view.findViewById(R.id.emoji_categories_recycler)
     backspaceView = view.findViewById(R.id.emoji_backspace)
+    appBarLayout = view.findViewById(R.id.emoji_keyboard_search_appbar)
   }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
 
-    viewModel = ViewModelProviders.of(requireActivity()).get(EmojiKeyboardPageViewModel::class.java)
-
-    pagesAdapter = EmojiKeyboardPageAdapter(this, this)
+    viewModel = ViewModelProviders.of(requireActivity(), EmojiKeyboardPageViewModel.Factory(requireContext()))
+      .get(EmojiKeyboardPageViewModel::class.java)
 
     categoriesAdapter = EmojiKeyboardPageCategoriesAdapter { key ->
+      scrollTo(key)
       viewModel.onKeySelected(key)
-
-      val page = pagesAdapter.currentList.indexOfFirst {
-        (it as EmojiPageMappingModel).key == key
-      }
-
-      if (emojiPager.currentItem != page) {
-        emojiPager.currentItem = page
-      }
     }
 
-    emojiPager.adapter = pagesAdapter
     emojiCategoriesRecycler.adapter = categoriesAdapter
 
     searchBar.callbacks = EmojiKeyboardPageSearchViewCallbacks()
@@ -75,22 +78,24 @@ class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fr
     backspaceView.setOnClickListener { eventListener.onKeyEvent(DELETE_KEY_EVENT) }
 
     viewModel.categories.observe(viewLifecycleOwner) { categories ->
-      categoriesAdapter.submitList(categories)
+      categoriesAdapter.submitList(categories) {
+        (emojiCategoriesRecycler.parent as View).invalidate()
+        emojiCategoriesRecycler.parent.requestLayout()
+      }
     }
 
     viewModel.pages.observe(viewLifecycleOwner) { pages ->
-      val registerPageCallback: Boolean = pagesAdapter.currentList.isEmpty() && pages.isNotEmpty()
-      pagesAdapter.submitList(pages) { updatePagerPosition(registerPageCallback) }
+      emojiPageView.setList(pages)
     }
 
-    viewModel.selectedKey.observe(viewLifecycleOwner) { updateCategoryTab() }
+    viewModel.selectedKey.observe(viewLifecycleOwner) { updateCategoryTab(it) }
 
     eventListener = findListener() ?: throw AssertionError("No emoji listener found")
   }
 
-  private fun updateCategoryTab() {
+  private fun updateCategoryTab(key: String) {
     emojiCategoriesRecycler.post {
-      val index: Int = categoriesAdapter.currentList.indexOfFirst { (it as? EmojiKeyboardPageCategoryMappingModel)?.key == viewModel.selectedKey.value }
+      val index: Int = categoriesAdapter.indexOfFirst(EmojiKeyboardPageCategoryMappingModel::class.java) { it.key == key }
 
       if (index != -1) {
         emojiCategoriesRecycler.smoothScrollToPosition(index)
@@ -98,17 +103,14 @@ class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fr
     }
   }
 
-  private fun updatePagerPosition(registerPageCallback: Boolean) {
-    val page = pagesAdapter.currentList.indexOfFirst {
-      (it as EmojiPageMappingModel).key == viewModel.selectedKey.value
-    }
-
-    if (emojiPager.currentItem != page && page != -1) {
-      emojiPager.setCurrentItem(page, false)
-    }
-
-    if (registerPageCallback) {
-      emojiPager.registerOnPageChangeCallback(PageChanged(pagesAdapter))
+  private fun scrollTo(key: String) {
+    emojiPageView.adapter?.let { adapter ->
+      val index = adapter.indexOfFirst(EmojiHeader::class.java) { it.key == key }
+      if (index != -1) {
+        appBarLayout.setExpanded(false, true)
+        categoryUpdateOnScroll.startAutoScrolling()
+        emojiPageView.smoothScrollToPositionTop(index)
+      }
     }
   }
 
@@ -122,20 +124,43 @@ class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fr
     eventListener.onKeyEvent(keyEvent)
   }
 
-  override fun onVariationSelectorStateChanged(open: Boolean) {
-    emojiPager.isUserInputEnabled = !open
-  }
-
-  private inner class PageChanged(private val adapter: EmojiKeyboardPageAdapter) : ViewPager2.OnPageChangeCallback() {
-    override fun onPageSelected(position: Int) {
-      val mappingModel: EmojiPageMappingModel = adapter.currentList[position] as EmojiPageMappingModel
-      viewModel.onKeySelected(mappingModel.key)
-    }
-  }
+  override fun onVariationSelectorStateChanged(open: Boolean) = Unit
 
   private inner class EmojiKeyboardPageSearchViewCallbacks : KeyboardPageSearchView.Callbacks {
     override fun onClicked() {
       callback.openEmojiSearch()
+    }
+  }
+
+  private inner class UpdateCategorySelectionOnScroll : RecyclerView.OnScrollListener() {
+
+    private var doneScrolling: Boolean = true
+
+    fun startAutoScrolling() {
+      doneScrolling = false
+    }
+
+    @Override
+    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+      if (newState == SCROLL_STATE_IDLE && !doneScrolling) {
+        doneScrolling = true
+        onScrolled(recyclerView, 0, 0)
+      }
+    }
+
+    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+      if (recyclerView.layoutManager == null || !doneScrolling) {
+        return
+      }
+
+      emojiPageView.adapter?.let { adapter ->
+        val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+        val index = layoutManager.findFirstCompletelyVisibleItemPosition()
+        val item: Optional<MappingModel<*>> = adapter.getModel(index)
+        if (item.isPresent && item.get() is EmojiPageViewGridAdapter.HasKey) {
+          viewModel.onKeySelected((item.get() as EmojiPageViewGridAdapter.HasKey).key)
+        }
+      }
     }
   }
 
