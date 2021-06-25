@@ -68,6 +68,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private var isLockViewExpanded = false
     private var isShowingAttachmentOptions = false
     private var mentionCandidatesView: MentionCandidatesView? = null
+    private var unreadCount = 0
+
+    private val layoutManager: LinearLayoutManager
+        get() { return conversationRecyclerView.layoutManager as LinearLayoutManager }
 
     // TODO: Selected message background color
     // TODO: Overflow menu background + text color
@@ -119,7 +123,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         restoreDraftIfNeeded()
         addOpenGroupGuidelinesIfNeeded()
         scrollToBottomButton.setOnClickListener { conversationRecyclerView.smoothScrollToPosition(0) }
-        updateUnreadCount()
+        unreadCount = DatabaseFactory.getMmsSmsDatabase(this).getUnreadCount(threadID)
+        updateUnreadCountIndicator()
         setUpTypingObserver()
         updateSubtitle()
         getLatestOpenGroupInfoIfNeeded()
@@ -404,11 +409,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             (scrollButtonFullVisibilityThreshold - scrollButtonNoVisibilityThreshold)
         val alpha = max(min(rawAlpha, 1.0f), 0.0f)
         scrollToBottomButton.alpha = alpha
-        updateUnreadCount()
+        unreadCount = layoutManager.findFirstVisibleItemPosition()
+        updateUnreadCountIndicator()
     }
 
-    private fun updateUnreadCount() {
-        val unreadCount = DatabaseFactory.getMmsSmsDatabase(this).getUnreadCount(threadID)
+    private fun updateUnreadCountIndicator() {
         val formattedUnreadCount = if (unreadCount < 100) unreadCount.toString() else "99+"
         unreadCountTextView.text = formattedUnreadCount
         val textSize = if (unreadCount < 100) 12.0f else 9.0f
