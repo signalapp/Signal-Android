@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.TextView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
@@ -33,7 +34,7 @@ object BioTextPreference {
 
     override fun getSubhead1Text(): String? = recipient.combinedAboutAndEmoji
 
-    override fun getSubhead2Text(): String? = recipient.e164.orNull()
+    override fun getSubhead2Text(): String? = recipient.e164.transform(PhoneNumberFormatter::prettyPrint).orNull()
 
     override fun areContentsTheSame(newItem: RecipientModel): Boolean {
       return super.areContentsTheSame(newItem) && newItem.recipient.hasSameContent(recipient)

@@ -6,5 +6,5 @@
             <padding android:right="8dp" android:bottom="8dp" android:left="8dp" android:top="8dp" />
         </shape>
     </item>
-    <item android:drawable="@drawable/ic_chevron_down_20" />
+    <item android:drawable="@drawable/ic_chevron_down_icon_20" />
 </layer-list>
