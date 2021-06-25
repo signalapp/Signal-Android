@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.NoSessionException;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -203,7 +204,7 @@ public final class GroupSendUtil {
       throw new CancelationException();
     }
 
-    if (legacyTargets.size() > 0) {
+    if (legacyTargets.size() > 0 || TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Need to do " + legacyTargets.size() + " legacy sends.");
 
       List<SignalServiceAddress>             targets         = legacyTargets.stream().map(r -> recipients.getAddress(r.getId())).collect(Collectors.toList());
