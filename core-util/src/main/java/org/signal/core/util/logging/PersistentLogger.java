@@ -38,23 +38,25 @@ public final class PersistentLogger extends Log.Logger {
 
   private static final String           LOG_DIRECTORY   = "log";
   private static final String           FILENAME_PREFIX = "log-";
-  private static final int              MAX_LOG_FILES   = 7;
-  private static final int              MAX_LOG_SIZE    = 300 * 1024;
   private static final SimpleDateFormat DATE_FORMAT     = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS zzz", Locale.US);
 
   private final Context  context;
   private final Executor executor;
   private final byte[]   secret;
   private final String   logTag;
+  private final int      maxLogFiles;
+  private final long     maxLogFileSize;
 
   private LogFile.Writer writer;
 
-  private ThreadLocal<String> cachedThreadString;
+  private final ThreadLocal<String> cachedThreadString;
 
-  public PersistentLogger(@NonNull Context context, @NonNull byte[] secret, @NonNull String logTag) {
+  public PersistentLogger(@NonNull Context context, @NonNull byte[] secret, @NonNull String logTag, int maxLogFiles, long maxLogFileSize) {
     this.context            = context.getApplicationContext();
     this.secret             = secret;
     this.logTag             = logTag;
+    this.maxLogFiles        = maxLogFiles;
+    this.maxLogFileSize     = maxLogFileSize;
     this.cachedThreadString = new ThreadLocal<>();
     this.executor           = Executors.newSingleThreadExecutor(r -> {
       Thread thread = new Thread(r, "signal-PersistentLogger");
@@ -176,7 +178,7 @@ public final class PersistentLogger extends Log.Logger {
           return;
         }
 
-        if (writer.getLogSize() >= MAX_LOG_SIZE) {
+        if (writer.getLogSize() >= maxLogFileSize) {
           writer.close();
           writer = new LogFile.Writer(secret, createNewLogFile());
           trimLogFilesOverMax();
@@ -196,8 +198,8 @@ public final class PersistentLogger extends Log.Logger {
 
   private void trimLogFilesOverMax() throws IOException {
     File[] logs = getSortedLogFiles();
-    if (logs.length > MAX_LOG_FILES) {
-      for (int i = MAX_LOG_FILES; i < logs.length; i++) {
+    if (logs.length > maxLogFiles) {
+      for (int i = maxLogFiles; i < logs.length; i++) {
         logs[i].delete();
       }
     }
