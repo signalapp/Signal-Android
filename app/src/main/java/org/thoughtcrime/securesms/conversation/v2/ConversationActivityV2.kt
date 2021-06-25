@@ -302,11 +302,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         // 36 DP is the exact height of the typing indicator view. It's also exactly 18 * 2, and 18 is the large message
         // corner radius. This makes 36 DP look "correct" in the context of other messages on the screen.
         val typingIndicatorHeight = if (typingIndicatorViewContainer.isVisible) toPx(36, resources) else 0
-        // We * don't * want to move the recycler view up when showing the mention candidates view
-        val additionalContentContainerHeight = if (isShowingMentionCandidatesView) 0 else additionalContentContainer.height
         // Recycler view
         val recyclerViewLayoutParams = conversationRecyclerView.layoutParams as RelativeLayout.LayoutParams
-        recyclerViewLayoutParams.bottomMargin = newValue + additionalContentContainerHeight + typingIndicatorHeight
+        recyclerViewLayoutParams.bottomMargin = newValue + typingIndicatorHeight
         conversationRecyclerView.layoutParams = recyclerViewLayoutParams
         // Additional content container
         val additionalContentContainerLayoutParams = additionalContentContainer.layoutParams as RelativeLayout.LayoutParams
@@ -331,22 +329,28 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun showOrHideMentionCandidatesIfNeeded(text: CharSequence) {
-        val isBackspace = (text.length < previousText.length)
-        if (isBackspace) {
+        if (text.length < previousText.length) {
             currentMentionStartIndex = -1
             hideMentionCandidates()
             val mentionsToRemove = mentions.filter { !text.contains(it.displayName) }
             mentions.removeAll(mentionsToRemove)
         }
         if (text.isNotEmpty()) {
-            if (currentMentionStartIndex > text.length) { resetMentions() } // Should never occur
             val lastCharIndex = text.lastIndex
             val lastChar = text[lastCharIndex]
-            val secondToLastChar = if (lastCharIndex > 0) text[lastCharIndex - 1] else ' '
-            if (lastChar == '@' && Character.isWhitespace(secondToLastChar)) {
+            // Check if there is whitespace before the '@' or the '@' is the first character
+
+            val isCharacterBeforeLastWhiteSpaceOrStartOfLine: Boolean
+            if (text.length == 1) {
+                isCharacterBeforeLastWhiteSpaceOrStartOfLine = true // Start of line
+            } else {
+                val charBeforeLast = text[lastCharIndex - 1]
+                isCharacterBeforeLastWhiteSpaceOrStartOfLine = Character.isWhitespace(charBeforeLast)
+            }
+            if (lastChar == '@' && isCharacterBeforeLastWhiteSpaceOrStartOfLine) {
                 currentMentionStartIndex = lastCharIndex
                 showOrUpdateMentionCandidatesIfNeeded()
-            } else if (Character.isWhitespace(lastChar)) {
+            } else if (Character.isWhitespace(lastChar) || lastChar == '@') { // the lastCharacter == "@" is to check for @@
                 currentMentionStartIndex = -1
                 hideMentionCandidates()
             } else if (currentMentionStartIndex != -1) {
@@ -362,6 +366,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             additionalContentContainer.removeAllViews()
             val view = MentionCandidatesView(this)
             view.glide = glide
+            view.onCandidateSelected = { handleMentionSelected(it) }
             additionalContentContainer.addView(view)
             val candidates = MentionsManager.getMentionCandidates(query, threadID, thread.isOpenGroupRecipient)
             this.mentionCandidatesView = view
@@ -615,6 +620,18 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     private fun unblock() {
         // TODO: Implement
+    }
+
+    private fun handleMentionSelected(mention: Mention) {
+        if (currentMentionStartIndex == -1) { return }
+        mentions.add(mention)
+        val previousText = inputBar.text
+        val newText = previousText.substring(0, currentMentionStartIndex) + "@" + mention.displayName + " "
+        inputBar.text = newText
+        inputBar.inputBarEditText.setSelection(newText.length)
+        currentMentionStartIndex = -1
+        hideMentionCandidates()
+        this.previousText = newText
     }
 
     override fun send() {
