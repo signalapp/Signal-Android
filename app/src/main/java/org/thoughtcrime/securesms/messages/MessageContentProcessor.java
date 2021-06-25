@@ -155,7 +155,6 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.payments.Money;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -243,21 +242,7 @@ public final class MessageContentProcessor {
         boolean                  isGv2Message   = groupId.isPresent() && groupId.get().isV2();
 
         if (isGv2Message) {
-          GroupId.V2 groupIdV2 = groupId.get().requireV2();
-
-          Optional<GroupRecord> possibleGv1 = groupDatabase.getGroupV1ByExpectedV2(groupIdV2);
-          if (possibleGv1.isPresent()) {
-            GroupsV1MigrationUtil.performLocalMigration(context, possibleGv1.get().getId().requireV1());
-          }
-
-          if (!updateGv2GroupFromServerOrP2PChange(content, message.getGroupContext().get().getGroupV2().get())) {
-            log(String.valueOf(content.getTimestamp()), "Ignoring GV2 message for group we are not currently in " + groupIdV2);
-            return;
-          }
-
-          Recipient sender = Recipient.externalPush(context, content.getSender());
-          if (!groupDatabase.isCurrentMember(groupIdV2, sender.getId())) {
-            log(String.valueOf(content.getTimestamp()), "Ignoring GV2 message from member not in group " + groupIdV2);
+          if (handleGv2PreProcessing(groupId.orNull().requireV2(), content, content.getDataMessage().get().getGroupContext().get().getGroupV2().get())) {
             return;
           }
         }
@@ -395,8 +380,35 @@ public final class MessageContentProcessor {
                            .enqueue();
   }
 
-  private static @Nullable
-  SignalServiceGroupContext getGroupContextIfPresent(@NonNull SignalServiceContent content) {
+  /**
+   * @return True if the content should be ignored, otherwise false.
+   */
+  private boolean handleGv2PreProcessing(GroupId.V2 groupId, SignalServiceContent content, SignalServiceGroupV2 groupV2)
+      throws IOException, GroupChangeBusyException
+  {
+    GroupDatabase         groupDatabase = DatabaseFactory.getGroupDatabase(context);
+    Optional<GroupRecord> possibleGv1   = groupDatabase.getGroupV1ByExpectedV2(groupId);
+
+    if (possibleGv1.isPresent()) {
+      GroupsV1MigrationUtil.performLocalMigration(context, possibleGv1.get().getId().requireV1());
+    }
+
+    if (!updateGv2GroupFromServerOrP2PChange(content, groupV2)) {
+      log(String.valueOf(content.getTimestamp()), "Ignoring GV2 message for group we are not currently in " + groupId);
+      return true;
+    }
+
+    Recipient sender = Recipient.externalPush(context, content.getSender());
+    if (!groupDatabase.isCurrentMember(groupId, sender.getId())) {
+      log(String.valueOf(content.getTimestamp()), "Ignoring GV2 message from member not in group " + groupId);
+      return true;
+    }
+
+    return false;
+  }
+
+
+  private static @Nullable SignalServiceGroupContext getGroupContextIfPresent(@NonNull SignalServiceContent content) {
     if (content.getDataMessage().isPresent() && content.getDataMessage().get().getGroupContext().isPresent()) {
       return content.getDataMessage().get().getGroupContext().get();
     } else if (content.getSyncMessage().isPresent()                 &&
@@ -678,10 +690,13 @@ public final class MessageContentProcessor {
       if (groupV1.getType() != SignalServiceGroup.Type.REQUEST_INFO) {
         ApplicationDependencies.getJobManager().add(new RequestGroupInfoJob(Recipient.externalHighTrustPush(context, content.getSender()).getId(), GroupId.v1(groupV1.getGroupId())));
       } else {
-        warn(String.valueOf(content.getTimestamp()), "Received a REQUEST_INFO message for a group we don't know about. Ignoring.");
+        warn(content.getTimestamp(), "Received a REQUEST_INFO message for a group we don't know about. Ignoring.");
       }
+    } else if (group.getGroupV2().isPresent()) {
+      warn(content.getTimestamp(), "Received a GV2 message for a group we have no knowledge of -- attempting to fix this state.");
+      DatabaseFactory.getGroupDatabase(context).fixMissingMasterKey(group.getGroupV2().get().getMasterKey());
     } else {
-      warn(String.valueOf(content.getTimestamp()), "Received a message for a group we don't know about without a GV1 context. Ignoring.");
+      warn(content.getTimestamp(), "Received a message for a group we don't know about without a group context. Ignoring.");
     }
   }
 
@@ -870,7 +885,7 @@ public final class MessageContentProcessor {
         StorageSyncHelper.scheduleSyncForDataChange();
         break;
       default:
-        Log.w(TAG, "Received a fetch message for an unknown type.");
+        warn(TAG, "Received a fetch message for an unknown type.");
     }
   }
 
@@ -929,7 +944,7 @@ public final class MessageContentProcessor {
 
     Optional<MobileCoinPublicAddress> address = outgoingPaymentMessage.getAddress().transform(MobileCoinPublicAddress::fromBytes);
     if (!address.isPresent() && recipientId == null) {
-      Log.i(TAG, "Inserting defrag");
+      log("Inserting defrag");
       address     = Optional.of(ApplicationDependencies.getPayments().getWallet().getMobileCoinPublicAddress());
       recipientId = Recipient.self().getId();
     }
@@ -960,9 +975,9 @@ public final class MessageContentProcessor {
       GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
 
       if (message.getMessage().isGroupV2Message()) {
-        Optional<GroupRecord> possibleGv1 = groupDatabase.getGroupV1ByExpectedV2(GroupId.v2(message.getMessage().getGroupContext().get().getGroupV2().get().getMasterKey()));
-        if (possibleGv1.isPresent()) {
-          GroupsV1MigrationUtil.performLocalMigration(context, possibleGv1.get().getId().requireV1());
+        GroupId.V2 groupId = GroupId.v2(message.getMessage().getGroupContext().get().getGroupV2().get().getMasterKey());
+        if (handleGv2PreProcessing(groupId, content, message.getMessage().getGroupContext().get().getGroupV2().get())) {
+          return;
         }
       }
 
@@ -981,7 +996,7 @@ public final class MessageContentProcessor {
       } else if (Build.VERSION.SDK_INT > 19 && message.getMessage().getGroupCallUpdate().isPresent()) {
         handleGroupCallUpdateMessage(content, message.getMessage(), GroupUtil.idFromGroupContext(message.getMessage().getGroupContext()));
       } else if (message.getMessage().isEmptyGroupV2Message()) {
-        // Do nothing
+        warn(content.getTimestamp(), "Empty GV2 message! Doing nothing.");
       } else if (message.getMessage().isExpirationUpdate()) {
         threadId = handleSynchronizeSentExpirationUpdate(message);
       } else if (message.getMessage().getReaction().isPresent()) {
@@ -1013,7 +1028,7 @@ public final class MessageContentProcessor {
       }
 
       if (SignalStore.rateLimit().needsRecaptcha()) {
-        Log.i(TAG, "Got a sent transcript while in reCAPTCHA mode. Assuming we're good to message again.");
+        log(content.getTimestamp(), "Got a sent transcript while in reCAPTCHA mode. Assuming we're good to message again.");
         RateLimitUtil.retryAllRateLimitedMessages(context);
       }
 
@@ -2148,6 +2163,10 @@ public final class MessageContentProcessor {
 
   protected void log(@NonNull String message) {
     Log.i(TAG, message);
+  }
+
+  protected void log(long timestamp, @NonNull String message) {
+    log(String.valueOf(timestamp), message);
   }
 
   protected void log(@NonNull String extra, @NonNull String message) {

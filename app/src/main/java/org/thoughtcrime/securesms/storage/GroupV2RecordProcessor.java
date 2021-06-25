@@ -26,6 +26,7 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
 
   private final Context                     context;
   private final RecipientDatabase           recipientDatabase;
+  private final GroupDatabase               groupDatabase;
   private final Map<GroupId.V2, GroupId.V1> gv1GroupsByExpectedGv2Id;
 
   public GroupV2RecordProcessor(@NonNull Context context) {
@@ -35,6 +36,7 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
   GroupV2RecordProcessor(@NonNull Context context, @NonNull RecipientDatabase recipientDatabase, @NonNull GroupDatabase groupDatabase) {
     this.context                  = context;
     this.recipientDatabase        = recipientDatabase;
+    this.groupDatabase            = groupDatabase;
     this.gv1GroupsByExpectedGv2Id = groupDatabase.getAllExpectedV2Ids();
   }
 
@@ -54,7 +56,8 @@ public final class GroupV2RecordProcessor extends DefaultStorageRecordProcessor<
                         if (settings.getSyncExtras().getGroupMasterKey() != null) {
                           return StorageSyncModels.localToRemoteRecord(settings);
                         } else {
-                          Log.w(TAG, "No local master key. Assuming it matches remote since the groupIds match.");
+                          Log.w(TAG, "No local master key. Assuming it matches remote since the groupIds match. Enqueuing a fetch to fix the bad state.");
+                          groupDatabase.fixMissingMasterKey(record.getMasterKeyOrThrow());
                           return StorageSyncModels.localToRemoteRecord(settings, record.getMasterKeyOrThrow());
                         }
                       })
