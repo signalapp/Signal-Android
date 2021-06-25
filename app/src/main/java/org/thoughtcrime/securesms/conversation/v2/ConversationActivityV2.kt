@@ -2,6 +2,9 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
@@ -46,6 +49,9 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
+import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
+import org.thoughtcrime.securesms.loki.utilities.push
+import org.thoughtcrime.securesms.loki.utilities.show
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.util.DateUtils
@@ -57,7 +63,7 @@ import kotlin.math.*
 // price we pay is a bit of back and forth between the input bar and the conversation activity.
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
-    InputBarRecordingViewDelegate, ConversationRecyclerViewDelegate {
+    InputBarRecordingViewDelegate, ConversationRecyclerViewDelegate, ActivityDispatcher {
     private val scrollButtonFullVisibilityThreshold by lazy { toPx(120.0f, resources) }
     private val scrollButtonNoVisibilityThreshold by lazy { toPx(20.0f, resources) }
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
@@ -76,8 +82,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val adapter = ConversationAdapter(
             this,
             cursor,
-            onItemPress = { message, position, view, rect ->
-                handlePress(message, position, view, rect)
+            onItemPress = { message, position, view, rawRect ->
+                handlePress(message, position, view, rawRect)
             },
             onItemSwipeToReply = { message, position ->
                 handleSwipeToReply(message, position)
@@ -136,6 +142,18 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     override fun onPause() {
         super.onPause()
         ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(-1)
+    }
+
+    override fun getSystemService(name: String): Any? {
+        if (name == ActivityDispatcher.SERVICE) {
+            return this
+        }
+        return super.getSystemService(name)
+    }
+
+    override fun dispatchIntent(body: (Context) -> Intent) {
+        val intent = body(this)
+        push(intent, false)
     }
 
     private fun setUpRecyclerView() {
@@ -452,7 +470,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     // `position` is the adapter position; not the visual position
-    private fun handlePress(message: MessageRecord, position: Int, view: VisibleMessageView, hitRect: Rect) {
+    private fun handlePress(message: MessageRecord, position: Int, view: VisibleMessageView, rawRect: Rect) {
         val actionMode = this.actionMode
         if (actionMode != null) {
             adapter.toggleSelection(message, position)
@@ -467,7 +485,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             // We have to use onContentClick (rather than a click listener directly on
             // the view) so as to not interfere with all the other gestures. Do not add
             // onClickListeners directly to message content views.
-            view.onContentClick(hitRect)
+            view.onContentClick(rawRect)
         }
     }
 

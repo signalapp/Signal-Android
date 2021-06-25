@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import kotlin.math.roundToInt
 
 class VisibleMessageContentView : LinearLayout {
-    var onContentClick: ((Rect) -> Unit)? = null
+    var onContentClick: ((rawRect: Rect) -> Unit)? = null
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
@@ -96,16 +96,7 @@ class VisibleMessageContentView : LinearLayout {
                     isStart = isStartOfMessageCluster,
                     isEnd = isEndOfMessageCluster
             )
-            onContentClick = {
-                when (val hitObject = albumThumbnailView.calculateHitObject(it)) {
-                    is AlbumThumbnailView.Hit.SlideHit -> Log.d("Loki-UI", "clicked display slide ${hitObject.slide}")// open the slide preview
-                    is AlbumThumbnailView.Hit.DownloadHit -> Log.d("Loki-UI", "clicked display download")
-                    AlbumThumbnailView.Hit.ReadMoreHit -> Log.d("Loki-UI", "clicked the read more display")
-                    else -> {
-                        Log.d("Loki-UI", "DIDN'T click anything important")
-                    }
-                }
-            }
+            onContentClick = { albumThumbnailView.calculateHitObject(it, message) }
         } else if (message.isOpenGroupInvitation) {
             val openGroupInvitationView = OpenGroupInvitationView(context)
             openGroupInvitationView.bind(message, VisibleMessageContentView.getTextColor(context, message))

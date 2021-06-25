@@ -69,7 +69,7 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 view.messageTimestampTextView.isVisible = isSelected
                 val position = viewHolder.adapterPosition
                 view.bind(message, getMessageBefore(position, cursor), getMessageAfter(position, cursor), glide)
-                view.onPress = { x, y -> onItemPress(message, viewHolder.adapterPosition, view, Rect(x,y,x,y)) }
+                view.onPress = { rawX, rawY -> onItemPress(message, viewHolder.adapterPosition, view, Rect(rawX, rawY, rawX, rawY)) }
                 view.onSwipeToReply = { onItemSwipeToReply(message, viewHolder.adapterPosition) }
                 view.onLongPress = { onItemLongPress(message, viewHolder.adapterPosition) }
             }

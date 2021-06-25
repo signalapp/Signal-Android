@@ -1,6 +1,10 @@
 package org.thoughtcrime.securesms.loki.utilities
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -52,4 +56,13 @@ fun AppCompatActivity.show(intent: Intent, isForResult: Boolean = false) {
         startActivity(intent)
     }
     overridePendingTransition(R.anim.slide_from_bottom, R.anim.fade_scale_out)
+}
+
+interface ActivityDispatcher {
+    companion object {
+        const val SERVICE = "ActivityDispatcher_SERVICE"
+        @SuppressLint("WrongConstant")
+        fun get(context: Context) = context.getSystemService(SERVICE) as? ActivityDispatcher
+    }
+    fun dispatchIntent(body: (Context)->Intent)
 }

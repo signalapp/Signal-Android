@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.util.AttributeSet
@@ -11,9 +12,12 @@ import androidx.core.view.children
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.album_thumbnail_view.view.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.MediaPreviewActivity
 import org.thoughtcrime.securesms.components.CornerMask
 import org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
+import org.thoughtcrime.securesms.longmessage.LongMessageActivity
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.Slide
 
@@ -35,12 +39,6 @@ class AlbumThumbnailView : FrameLayout {
     private val cornerMask by lazy { CornerMask(this) }
     private var slides: List<Slide> = listOf()
 
-    sealed class Hit {
-        object ReadMoreHit : Hit()
-        data class SlideHit(val slide: Slide) : Hit()
-        data class DownloadHit(val slide: Slide) : Hit()
-    }
-
     private fun initialize() {
         LayoutInflater.from(context).inflate(R.layout.album_thumbnail_view, this)
     }
@@ -54,25 +52,42 @@ class AlbumThumbnailView : FrameLayout {
 
     // region Interaction
 
-    fun calculateHitObject(hitRect: Rect): Hit? {
+    fun calculateHitObject(rawRect: Rect, mms: MmsMessageRecord) {
         // Z-check in specific order
         val testRect = Rect()
         // test "Read More"
-        albumCellBodyTextReadMore.getHitRect(testRect)
-        if (Rect.intersects(hitRect, testRect)) {
-            return Hit.ReadMoreHit
+        albumCellBodyTextReadMore.getGlobalVisibleRect(testRect)
+        if (Rect.intersects(rawRect, testRect)) {
+            // dispatch to activity view
+            ActivityDispatcher.get(context)?.dispatchIntent { context ->
+                LongMessageActivity.getIntent(context, mms.recipient.address, mms.getId(), true)
+            }
+            return
         }
         // test each album child
         albumCellContainer.findViewById<ViewGroup>(R.id.album_thumbnail_root)?.children?.forEachIndexed { index, child ->
-            child.getHitRect(testRect)
-            if (Rect.intersects(hitRect, testRect)) {
+            child.getGlobalVisibleRect(testRect)
+            if (Rect.intersects(rawRect, testRect)) {
                 // hit intersects with this particular child
                 slides.getOrNull(index)?.let { slide ->
-                    return Hit.SlideHit(slide)
+                    // dispatch to view image
+                    if (MediaPreviewActivity.isContentTypeSupported(slide.contentType) && slide.uri != null) {
+                    ActivityDispatcher.get(context)?.dispatchIntent { context ->
+                            Intent(context, MediaPreviewActivity::class.java).apply {
+                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                setDataAndType(slide.uri, slide.contentType)
+                                putExtra(MediaPreviewActivity.ADDRESS_EXTRA, mms.recipient.address)
+                                putExtra(MediaPreviewActivity.OUTGOING_EXTRA, mms.isOutgoing)
+                                putExtra(MediaPreviewActivity.DATE_EXTRA, mms.timestamp)
+                                putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().size)
+                                putExtra(MediaPreviewActivity.CAPTION_EXTRA, slide.caption.orNull())
+                                putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, false)
+                            }
+                        }
+                    }
                 }
             }
         }
-        return null
     }
 
     fun bind(glideRequests: GlideRequests, message: MmsMessageRecord,
