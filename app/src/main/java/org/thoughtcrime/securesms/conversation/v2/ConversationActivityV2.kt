@@ -2,12 +2,13 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
+import android.content.Context
 import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
 import android.graphics.Typeface
+import android.os.AsyncTask
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.widget.RelativeLayout
@@ -30,6 +31,7 @@ import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.dialogs.*
@@ -47,8 +49,10 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
+import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.shouldSendReadReceipt
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.util.DateUtils
 import java.util.*
 import kotlin.math.*
@@ -130,7 +134,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         getLatestOpenGroupInfoIfNeeded()
         setUpBlockedBanner()
         setUpLinkPreviewObserver()
-        scrollToFirstUnreadMessage()
+        scrollToFirstUnreadMessageIfNeeded()
         markAllAsRead()
     }
 
@@ -244,9 +248,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         })
     }
 
-    private fun scrollToFirstUnreadMessage() {
+    private fun scrollToFirstUnreadMessageIfNeeded() {
         val lastSeenTimestamp = DatabaseFactory.getThreadDatabase(this).getLastSeenAndHasSent(threadID).first()
         val lastSeenItemPosition = adapter.findLastSeenItemPosition(lastSeenTimestamp) ?: return
+        if (lastSeenItemPosition <= 3) { return }
         conversationRecyclerView.scrollToPosition(lastSeenItemPosition)
     }
 
@@ -264,7 +269,15 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // region Updating & Animation
     private fun markAllAsRead() {
-        DatabaseFactory.getThreadDatabase(this).setRead(threadID, true)
+        val messages = DatabaseFactory.getThreadDatabase(this).setRead(threadID, true)
+        if (thread.isGroupRecipient) {
+            for (message in messages) {
+                MarkReadReceiver.scheduleDeletion(this, message.expirationInfo)
+            }
+        } else {
+            MarkReadReceiver.process(this, messages)
+        }
+        ApplicationContext.getInstance(this).messageNotifier.updateNotification(this)
     }
 
     override fun inputBarHeightChanged(newValue: Int) {
