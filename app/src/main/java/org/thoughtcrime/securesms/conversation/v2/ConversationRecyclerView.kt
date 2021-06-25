@@ -17,7 +17,6 @@ class ConversationRecyclerView : RecyclerView {
     private val maxLongPressVelocityY = toPx(10, resources)
     private val minSwipeVelocityX = toPx(10, resources)
     private var velocityTracker: VelocityTracker? = null
-    var delegate: ConversationRecyclerViewDelegate? = null
 
     constructor(context: Context) : super(context) { initialize() }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize() }
@@ -25,18 +24,6 @@ class ConversationRecyclerView : RecyclerView {
 
     private fun initialize() {
         disableClipping()
-        addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            private var bottomOffset = 0
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                // Do nothing
-            }
-
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                bottomOffset += dy // FIXME: Not sure this is fully accurate, but it seems close enough
-                delegate?.handleConversationRecyclerViewBottomOffsetChanged(abs(bottomOffset))
-            }
-        })
     }
 
     override fun onInterceptTouchEvent(e: MotionEvent): Boolean {
@@ -65,9 +52,4 @@ class ConversationRecyclerView : RecyclerView {
         velocityTracker?.addMovement(e)
         return super.dispatchTouchEvent(e)
     }
-}
-
-interface ConversationRecyclerViewDelegate {
-
-    fun handleConversationRecyclerViewBottomOffsetChanged(bottomOffset: Int)
 }

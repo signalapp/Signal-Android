@@ -9,6 +9,7 @@ import android.graphics.Rect
 import android.graphics.Typeface
 import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.widget.RelativeLayout
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import kotlinx.android.synthetic.main.activity_conversation_v2.view.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
@@ -62,9 +64,7 @@ import kotlin.math.*
 // price we pay is a bit of back and forth between the input bar and the conversation activity.
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
-    InputBarRecordingViewDelegate, ConversationRecyclerViewDelegate {
-    private val scrollButtonFullVisibilityThreshold by lazy { toPx(120.0f, resources) }
-    private val scrollButtonNoVisibilityThreshold by lazy { toPx(20.0f, resources) }
+    InputBarRecordingViewDelegate {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
@@ -142,7 +142,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         conversationRecyclerView.adapter = adapter
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
         conversationRecyclerView.layoutManager = layoutManager
-        conversationRecyclerView.delegate = this
         // Workaround for the fact that CursorRecyclerViewAdapter doesn't auto-update automatically (even though it says it will)
         LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -156,6 +155,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
             override fun onLoaderReset(cursor: Loader<Cursor>) {
                 adapter.changeCursor(null)
+            }
+        })
+        conversationRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                handleRecyclerViewScrolled()
             }
         })
     }
@@ -417,12 +422,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         animation.start()
     }
 
-    override fun handleConversationRecyclerViewBottomOffsetChanged(bottomOffset: Int) {
-        val rawAlpha = (bottomOffset.toFloat() - scrollButtonNoVisibilityThreshold) /
-            (scrollButtonFullVisibilityThreshold - scrollButtonNoVisibilityThreshold)
-        val alpha = max(min(rawAlpha, 1.0f), 0.0f)
+    private fun handleRecyclerViewScrolled() {
+        val position = layoutManager.findFirstCompletelyVisibleItemPosition()
+        val alpha = if (position > 0) 1.0f else 0.0f
         scrollToBottomButton.alpha = alpha
-        unreadCount = layoutManager.findFirstVisibleItemPosition()
+        unreadCount = min(unreadCount, layoutManager.findFirstVisibleItemPosition())
         updateUnreadCountIndicator()
     }
 
