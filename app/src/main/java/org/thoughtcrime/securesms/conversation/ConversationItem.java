@@ -54,6 +54,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
+import androidx.core.text.util.LinkifyCompat;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.annimon.stream.Collectors;
@@ -1067,7 +1068,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                                   boolean shouldLinkifyAllLinks)
   {
     int     linkPattern = Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS;
-    boolean hasLinks    = Linkify.addLinks(messageBody, shouldLinkifyAllLinks ? linkPattern : 0);
+    boolean hasLinks    = LinkifyCompat.addLinks(messageBody, shouldLinkifyAllLinks ? linkPattern : 0);
 
     if (hasLinks) {
       Stream.of(messageBody.getSpans(0, messageBody.length(), URLSpan.class))

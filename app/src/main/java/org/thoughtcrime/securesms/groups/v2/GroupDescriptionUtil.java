@@ -13,6 +13,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.text.util.LinkifyCompat;
 
 import com.annimon.stream.Stream;
 
@@ -38,7 +39,7 @@ public final class GroupDescriptionUtil {
 
     if (linkify) {
       int     linkPattern = Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS;
-      boolean hasLinks    = Linkify.addLinks(descriptionSpannable, linkPattern);
+      boolean hasLinks    = LinkifyCompat.addLinks(descriptionSpannable, linkPattern);
 
       if (hasLinks) {
         Stream.of(descriptionSpannable.getSpans(0, descriptionSpannable.length(), URLSpan.class))
