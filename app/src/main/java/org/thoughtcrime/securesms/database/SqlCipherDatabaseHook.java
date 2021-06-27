@@ -20,6 +20,7 @@ public class SqlCipherDatabaseHook implements SQLiteDatabaseHook {
     db.rawExecSQL("PRAGMA cipher_memory_security = OFF;");
     db.rawExecSQL("PRAGMA kdf_iter = '1';");
     db.rawExecSQL("PRAGMA cipher_page_size = 4096;");
+    db.enableWriteAheadLogging();
     db.setForeignKeyConstraintsEnabled(true);
   }
 }
