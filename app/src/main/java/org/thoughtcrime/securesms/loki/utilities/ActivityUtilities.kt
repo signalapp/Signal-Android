@@ -64,5 +64,5 @@ interface ActivityDispatcher {
         @SuppressLint("WrongConstant")
         fun get(context: Context) = context.getSystemService(SERVICE) as? ActivityDispatcher
     }
-    fun dispatchIntent(body: (Context)->Intent)
+    fun dispatchIntent(body: (Context)->Intent?)
 }

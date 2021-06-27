@@ -151,8 +151,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         return super.getSystemService(name)
     }
 
-    override fun dispatchIntent(body: (Context) -> Intent) {
-        val intent = body(this)
+    override fun dispatchIntent(body: (Context) -> Intent?) {
+        val intent = body(this) ?: return
         push(intent, false)
     }
 

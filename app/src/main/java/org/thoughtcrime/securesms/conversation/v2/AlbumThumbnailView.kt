@@ -38,6 +38,7 @@ class AlbumThumbnailView : FrameLayout {
 
     private val cornerMask by lazy { CornerMask(this) }
     private var slides: List<Slide> = listOf()
+    private var slideSize: Int = 0
 
     private fun initialize() {
         LayoutInflater.from(context).inflate(R.layout.album_thumbnail_view, this)
@@ -69,22 +70,9 @@ class AlbumThumbnailView : FrameLayout {
             child.getGlobalVisibleRect(testRect)
             if (Rect.intersects(rawRect, testRect)) {
                 // hit intersects with this particular child
-                slides.getOrNull(index)?.let { slide ->
-                    // dispatch to view image
-                    if (MediaPreviewActivity.isContentTypeSupported(slide.contentType) && slide.uri != null) {
-                    ActivityDispatcher.get(context)?.dispatchIntent { context ->
-                            Intent(context, MediaPreviewActivity::class.java).apply {
-                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                                setDataAndType(slide.uri, slide.contentType)
-                                putExtra(MediaPreviewActivity.ADDRESS_EXTRA, mms.recipient.address)
-                                putExtra(MediaPreviewActivity.OUTGOING_EXTRA, mms.isOutgoing)
-                                putExtra(MediaPreviewActivity.DATE_EXTRA, mms.timestamp)
-                                putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().size)
-                                putExtra(MediaPreviewActivity.CAPTION_EXTRA, slide.caption.orNull())
-                                putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, false)
-                            }
-                        }
-                    }
+                val slide = slides.getOrNull(index) ?: return
+                ActivityDispatcher.get(context)?.dispatchIntent { context ->
+                    MediaPreviewActivity.getPreviewIntent(context, slide, mms)
                 }
             }
         }
@@ -92,16 +80,20 @@ class AlbumThumbnailView : FrameLayout {
 
     fun bind(glideRequests: GlideRequests, message: MmsMessageRecord,
              isStart: Boolean, isEnd: Boolean) {
-        // TODO: optimize for same size
         slides = message.slideDeck.thumbnailSlides
         if (slides.isEmpty()) {
             // this should never be encountered because it's checked by parent
             return
         }
         calculateRadius(isStart, isEnd, message.isOutgoing)
-        albumCellContainer.removeAllViews()
-        LayoutInflater.from(context).inflate(layoutRes(slides.size), albumCellContainer)
-        // iterate
+
+        // recreate cell views if different size to what we have already (for recycling)
+        if (slides.size != this.slideSize) {
+            albumCellContainer.removeAllViews()
+            LayoutInflater.from(context).inflate(layoutRes(slides.size), albumCellContainer)
+            this.slideSize = slides.size
+        }
+        // iterate binding
         slides.take(5).forEachIndexed { position, slide ->
             val thumbnailView = getThumbnailView(position)
             thumbnailView.setImageResource(glideRequests, slide, showControls = false, isPreview = false)

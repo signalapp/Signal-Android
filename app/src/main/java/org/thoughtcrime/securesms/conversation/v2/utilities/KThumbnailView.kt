@@ -186,10 +186,6 @@ open class KThumbnailView: FrameLayout {
         slide = null
     }
 
-    fun showProgressSpinner() {
-        transferControls.showProgressSpinner()
-    }
-
     fun setImageResource(glideRequests: GlideRequests, uri: Uri): ListenableFuture<Boolean> {
         val future = SettableFuture<Boolean>()
 
@@ -208,18 +204,6 @@ open class KThumbnailView: FrameLayout {
         request.into(GlideDrawableListeningTarget(image, future))
 
         return future
-    }
-
-    fun showDownloadText(showDownloadText: Boolean) {
-        transferControls.setShowDownloadText(showDownloadText)
-    }
-
-    fun setDownloadClickListener(listener: SlidesClickedListener) {
-        transferControls.setDownloadClickListener {
-            slide?.let { slide ->
-                listener.onClick(it, listOf(slide))
-            }
-        }
     }
 
     // endregion
