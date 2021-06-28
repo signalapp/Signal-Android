@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.mms;
+package org.thoughtcrime.securesms.conversation.v2.utilities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -23,29 +23,31 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.text.TextUtils;
 import android.util.Pair;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.MediaPreviewActivity;
-import org.thoughtcrime.securesms.loki.views.MessageAudioView;
-import org.thoughtcrime.securesms.components.DocumentView;
-import org.thoughtcrime.securesms.components.RemovableEditableMediaView;
-import org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView;
 import org.session.libsignal.utilities.NoExternalStorageException;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
+import org.thoughtcrime.securesms.mms.AudioSlide;
+import org.thoughtcrime.securesms.mms.DocumentSlide;
+import org.thoughtcrime.securesms.mms.GifSlide;
+import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.mms.ImageSlide;
+import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.session.libsignal.utilities.ExternalStorageUtil;
@@ -53,13 +55,8 @@ import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsignal.utilities.guava.Optional;
 
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsession.utilities.ThemeUtil;
-import org.session.libsession.utilities.ViewUtil;
-import org.session.libsession.utilities.Stub;
 import org.session.libsignal.utilities.ListenableFuture;
-import org.session.libsignal.utilities.ListenableFuture.Listener;
 import org.session.libsignal.utilities.SettableFuture;
 
 import java.io.File;
@@ -67,7 +64,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import network.loki.messenger.R;
 
@@ -244,7 +240,8 @@ public class AttachmentManager {
     return result;
   }
 
-  public @NonNull SlideDeck buildSlideDeck() {
+  public @NonNull
+  SlideDeck buildSlideDeck() {
     SlideDeck deck = new SlideDeck();
     if (slide.isPresent()) deck.addSlide(slide.get());
     return deck;

@@ -8,8 +8,9 @@ import android.database.Cursor
 import android.graphics.Rect
 import android.graphics.Typeface
 import android.net.Uri
-import android.os.Bundle
+import android.os.*
 import android.util.Log
+import android.util.Pair
 import android.util.TypedValue
 import android.view.*
 import android.widget.RelativeLayout
@@ -39,10 +40,15 @@ import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
+import org.session.libsession.utilities.MediaTypes
+import org.session.libsession.utilities.ServiceUtil
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.concurrent.AssertedSuccessListener
 import org.session.libsignal.utilities.ListenableFuture
+import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.audio.AudioRecorder
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
 import org.thoughtcrime.securesms.conversation.v2.dialogs.*
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
@@ -52,6 +58,7 @@ import org.thoughtcrime.securesms.conversation.v2.input_bar.mentions.MentionCand
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
+import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
@@ -65,6 +72,7 @@ import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity
 import org.thoughtcrime.securesms.mms.*
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
+import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.util.*
@@ -83,6 +91,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private var actionMode: ActionMode? = null
     private var unreadCount = 0
     // Attachments
+    private val audioRecorder = AudioRecorder(this)
+    private val stopAudioHandler = Handler(Looper.getMainLooper())
+    private val stopVoiceMessageRecordingTask = Runnable { stopVoiceMessageRecording() }
     private val attachmentManager by lazy { AttachmentManager(this, this) }
     private var isLockViewExpanded = false
     private var isShowingAttachmentOptions = false
@@ -621,6 +632,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             inputBarRecordingView.lock()
         } else {
             hideVoiceMessageUI()
+            stopVoiceMessageRecording()
         }
     }
 
@@ -712,7 +724,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun onAttachmentChanged() {
-        // TODO: Do we need to do something here?
+        // Do nothing
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
@@ -776,6 +788,31 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     private fun prepMediaForSending(uri: Uri, type: AttachmentManager.MediaType, width: Int?, height: Int?): ListenableFuture<Boolean> {
         return attachmentManager.setMedia(glide, uri, type, MediaConstraints.getPushMediaConstraints(), width ?: 0, height ?: 0)
+    }
+
+    override fun startRecordingVoiceMessage() {
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        audioRecorder.startRecording()
+        stopAudioHandler.postDelayed(stopVoiceMessageRecordingTask, 60000) // Limit voice messages to 1 minute each
+    }
+
+    fun stopVoiceMessageRecording() {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        val future = audioRecorder.stopRecording()
+        stopAudioHandler.removeCallbacks(stopVoiceMessageRecordingTask)
+        future.addListener(object : ListenableFuture.Listener<Pair<Uri?, Long?>> {
+
+            override fun onSuccess(result: Pair<Uri?, Long?>) {
+                val audioSlide = AudioSlide(this@ConversationActivityV2, result.first, result.second!!, MediaTypes.AUDIO_AAC, true)
+                val slideDeck = SlideDeck()
+                slideDeck.addSlide(audioSlide)
+                sendAttachments(slideDeck.asAttachments(), null)
+            }
+
+            override fun onFailure(e: ExecutionException) {
+                Toast.makeText(this@ConversationActivityV2, R.string.ConversationActivity_unable_to_record_audio, Toast.LENGTH_LONG).show()
+            }
+        })
     }
     // endregion
 
