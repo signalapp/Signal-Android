@@ -23,14 +23,14 @@
         android:visibility="gone" />
 
     <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:id="@+id/thumbnail_load_indicator"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_gravity="center"
+        android:progressTint="@color/accent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:indeterminate="true"
         android:visibility="gone"
-        android:indeterminateTint="@android:color/white"
-        android:indeterminateTintMode="src_in"
         tools:visibility="visible" />
 
     <FrameLayout
