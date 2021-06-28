@@ -44,7 +44,6 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity {
   private static final int MAX_DISPLAY_LENGTH = 64 * 1024;
 
   private TextView textBody;
-  private ConversationItemFooter footerText;
 
   private LongMessageViewModel viewModel;
 
@@ -61,7 +60,6 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity {
     super.onCreate(savedInstanceState, ready);
     setContentView(R.layout.longmessage_activity);
     textBody = findViewById(R.id.longmessage_text);
-    footerText = findViewById(R.id.longmessage_footer);
 
     initViewModel(getIntent().getLongExtra(KEY_MESSAGE_ID, -1), getIntent().getBooleanExtra(KEY_IS_MMS, false));
   }
@@ -105,7 +103,7 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity {
       SpannableString styledBody  = linkifyMessageBody(new SpannableString(trimmedBody));
 
       textBody.setText(styledBody);
-      footerText.setMessageRecord(message.get().getMessageRecord(), Locale.getDefault());
+      textBody.setMovementMethod(LinkMovementMethod.getInstance());
     });
   }
 

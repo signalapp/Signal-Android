@@ -11,13 +11,9 @@
         android:padding="16dp">
 
         <TextView
+            android:textSize="@dimen/text_size"
             android:id="@+id/longmessage_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <org.thoughtcrime.securesms.components.ConversationItemFooter
-            android:id="@+id/longmessage_footer"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
