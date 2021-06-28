@@ -23,6 +23,7 @@ import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.audio.AudioAttributes;
@@ -282,6 +283,16 @@ public class AudioSlidePlayer implements SensorEventListener {
       return new Pair<>((double) mediaPlayer.getCurrentPosition() / (double) mediaPlayer.getDuration(),
                         (int) mediaPlayer.getCurrentPosition());
     }
+  }
+
+  public float getPlaybackSpeed() {
+    if (mediaPlayer == null) { return 1.0f; }
+    return mediaPlayer.getPlaybackParameters().speed;
+  }
+
+  public void setPlaybackSpeed(float speed) {
+    if (mediaPlayer == null) { return; }
+    mediaPlayer.setPlaybackParameters(new PlaybackParameters(speed));
   }
 
   private void notifyOnStart() {

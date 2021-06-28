@@ -105,7 +105,8 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
     }
 
     fun handleDoubleTap() {
-        Log.d("Test", "handleDoubleTap()")
+        val player = this.player ?: return
+        player.playbackSpeed = if (player.playbackSpeed == 1.0f) 1.5f else 1.0f
     }
     // endregion
 }
