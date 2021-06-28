@@ -1,12 +1,9 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.text.util.Linkify
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.LinearLayout
@@ -19,8 +16,6 @@ import androidx.core.graphics.BlendModeCompat
 import androidx.core.text.toSpannable
 import kotlinx.android.synthetic.main.view_visible_message_content.view.*
 import network.loki.messenger.R
-import org.session.libsession.messaging.utilities.UpdateMessageData
-import org.session.libsession.messaging.utilities.UpdateMessageData.Companion.fromJSON
 import org.session.libsession.utilities.ThemeUtil
 import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
@@ -28,7 +23,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.*
-import org.thoughtcrime.securesms.loki.utilities.MentionUtilities.highlightMentions
 import org.thoughtcrime.securesms.mms.GlideRequests
 import kotlin.math.roundToInt
 

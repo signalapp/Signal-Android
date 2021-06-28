@@ -13,7 +13,6 @@ import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.RecipientDatabase
 
 /** Shown upon sending a message to a user that's blocked. */
 class BlockedDialog(private val recipient: Recipient) : BaseDialog() {

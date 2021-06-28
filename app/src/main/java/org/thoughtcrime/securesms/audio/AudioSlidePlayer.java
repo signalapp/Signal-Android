@@ -105,7 +105,7 @@ public class AudioSlidePlayer implements SensorEventListener {
   private void play(final double progress, boolean earpiece) throws IOException {
     if (this.mediaPlayer != null) return;
 
-    LoadControl loadControl = new DefaultLoadControl.Builder().setBufferDurationsMs(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE).createDefaultLoadControl();
+    LoadControl loadControl    = new DefaultLoadControl.Builder().setBufferDurationsMs(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE).createDefaultLoadControl();
     this.mediaPlayer           = ExoPlayerFactory.newSimpleInstance(context, new DefaultRenderersFactory(context), new DefaultTrackSelector(), loadControl);
     this.audioAttachmentServer = new AttachmentServer(context, slide.asAttachment());
     this.startTime             = System.currentTimeMillis();
@@ -267,8 +267,17 @@ public class AudioSlidePlayer implements SensorEventListener {
     return slide;
   }
 
+  public Long getDuration() {
+    if (mediaPlayer == null) { return 0L; }
+    return mediaPlayer.getDuration();
+  }
 
-  private Pair<Double, Integer> getProgress() {
+  public Double getProgress() {
+    if (mediaPlayer == null) { return 0.0; }
+    return (double) mediaPlayer.getCurrentPosition() / (double) mediaPlayer.getDuration();
+  }
+
+  private Pair<Double, Integer> getProgressTuple() {
     if (mediaPlayer == null || mediaPlayer.getCurrentPosition() <= 0 || mediaPlayer.getDuration() <= 0) {
       return new Pair<>(0D, 0);
     } else {
@@ -383,7 +392,7 @@ public class AudioSlidePlayer implements SensorEventListener {
         return;
       }
 
-      Pair<Double, Integer> progress = player.getProgress();
+      Pair<Double, Integer> progress = player.getProgressTuple();
       player.notifyOnProgress(progress.first, progress.second);
       sendEmptyMessageDelayed(0, 50);
     }

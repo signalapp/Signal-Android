@@ -37,7 +37,7 @@ class ControlMessageView : LinearLayout {
     }
 
     fun recycle() {
-        // TODO: Implement
+
     }
     // endregion
 }
