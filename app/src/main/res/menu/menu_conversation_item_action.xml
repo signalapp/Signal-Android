@@ -33,11 +33,6 @@
         app:showAsAction="never" />
 
     <item
-        android:title="@string/conversation_context__menu_message_details"
-        android:id="@+id/menu_context_details"
-        app:showAsAction="never" />
-
-    <item
         android:title="@string/conversation_context__menu_ban_user"
         android:id="@+id/menu_context_ban_user"
         app:showAsAction="never" />

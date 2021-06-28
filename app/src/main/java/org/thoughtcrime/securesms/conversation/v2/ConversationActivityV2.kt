@@ -1,7 +1,11 @@
 package org.thoughtcrime.securesms.conversation.v2
 
+import android.Manifest
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.res.Resources
 import android.database.Cursor
@@ -21,6 +25,7 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.annimon.stream.Stream
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import kotlinx.android.synthetic.main.activity_conversation_v2.view.*
 import kotlinx.android.synthetic.main.activity_conversation_v2_action_bar.*
@@ -34,11 +39,14 @@ import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.mentions.Mention
 import org.session.libsession.messaging.mentions.MentionsManager
+import org.session.libsession.messaging.messages.control.DataExtractionNotification
+import org.session.libsession.messaging.messages.control.DataExtractionNotification.Kind.MediaSaved
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.session.libsession.messaging.sending_receiving.MessageSender.send
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
@@ -55,6 +63,7 @@ import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarRecordingViewDelegate
 import org.thoughtcrime.securesms.conversation.v2.input_bar.mentions.MentionCandidatesView
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
+import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallbackDelegate
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
 import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager
@@ -72,8 +81,10 @@ import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity
 import org.thoughtcrime.securesms.mms.*
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
+import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.SaveAttachmentTask
 import java.util.*
 import java.util.concurrent.ExecutionException
 import kotlin.math.*
@@ -83,7 +94,7 @@ import kotlin.math.*
 // price we pay is a bit of back and forth between the input bar and the conversation activity.
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
-    InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener {
+    InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ConversationActionModeCallbackDelegate {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
@@ -552,6 +563,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         if (actionMode != null) {
             adapter.toggleSelection(message, position)
             val actionModeCallback = ConversationActionModeCallback(adapter, threadID, this)
+            actionModeCallback.delegate = this
             actionModeCallback.updateActionModeMenu(actionMode.menu)
             if (adapter.selectedItems.isEmpty()) {
                 actionMode.finish()
@@ -575,6 +587,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private fun handleLongPress(message: MessageRecord, position: Int) {
         val actionMode = this.actionMode
         val actionModeCallback = ConversationActionModeCallback(adapter, threadID, this)
+        actionModeCallback.delegate = this
         if (actionMode == null) { // Nothing should be selected if this is the case
             adapter.toggleSelection(message, position)
             this.actionMode = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -655,7 +668,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun unblock() {
-        // TODO: Implement
+        if (!thread.isContactRecipient) { return }
+        DatabaseFactory.getRecipientDatabase(this).setBlocked(thread, false)
     }
 
     private fun handleMentionSelected(mention: Mention) {
@@ -845,6 +859,75 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         audioRecorder.stopRecording()
         stopAudioHandler.removeCallbacks(stopVoiceMessageRecordingTask)
+    }
+
+    override fun deleteMessage(messages: Set<MessageRecord>) {
+        // TODO: Implement
+    }
+
+    override fun banUser(messages: Set<MessageRecord>) {
+        // TODO: Implement
+    }
+
+    override fun copyMessage(messages: Set<MessageRecord>) {
+        // TODO: Implement
+    }
+
+    override fun copySessionID(messages: Set<MessageRecord>) {
+        val sessionID = messages.first().individualRecipient.address.toString()
+        val clip = ClipData.newPlainText("Session ID", sessionID)
+        val manager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+        manager.setPrimaryClip(clip)
+        Toast.makeText(this, R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
+        actionMode?.finish()
+        actionMode = null
+    }
+
+    override fun resendMessage(messages: Set<MessageRecord>) {
+        // TODO: Implement
+    }
+
+    override fun saveAttachment(messages: Set<MessageRecord>) {
+        val message = messages.first() as MmsMessageRecord
+        SaveAttachmentTask.showWarningDialog(this, { dialog: DialogInterface?, which: Int ->
+            Permissions.with(this)
+                .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .maxSdkVersion(Build.VERSION_CODES.P)
+                .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
+                .onAnyDenied { Toast.makeText(this@ConversationActivityV2, R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show() }
+                .onAllGranted {
+                    val attachments: List<SaveAttachmentTask.Attachment?> = Stream.of<Slide>(message.slideDeck.slides)
+                        .filter { s: Slide -> s.uri != null && (s.hasImage() || s.hasVideo() || s.hasAudio() || s.hasDocument()) }
+                        .map { s: Slide -> SaveAttachmentTask.Attachment(s.uri!!, s.contentType, message.dateReceived, s.fileName.orNull()) }
+                        .toList()
+                    if (attachments.isNotEmpty()) {
+                        val saveTask = SaveAttachmentTask(this)
+                        saveTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, *attachments.toTypedArray())
+                        if (!message.isOutgoing) {
+                            sendMediaSavedNotification()
+                        }
+                        return@onAllGranted
+                    }
+                    Toast.makeText(this,
+                        resources.getQuantityString(R.plurals.ConversationFragment_error_while_saving_attachments_to_sd_card, 1),
+                        Toast.LENGTH_LONG).show()
+                }
+                .execute()
+        })
+    }
+
+    override fun reply(messages: Set<MessageRecord>) {
+        inputBar.draftQuote(messages.first())
+        actionMode?.finish()
+        actionMode = null
+    }
+
+    private fun sendMediaSavedNotification() {
+        if (thread.isGroupRecipient) { return }
+        val timestamp = System.currentTimeMillis()
+        val kind = DataExtractionNotification.Kind.MediaSaved(timestamp)
+        val message = DataExtractionNotification(kind)
+        MessageSender.send(message, thread.address)
     }
     // endregion
 
