@@ -7,6 +7,7 @@ import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
 import android.graphics.Typeface
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -31,15 +32,16 @@ import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.mentions.Mention
 import org.session.libsession.messaging.mentions.MentionsManager
+import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
-import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.conversation.v2.dialogs.*
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -645,7 +647,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         this.previousText = newText
     }
 
-    override fun send() {
+    override fun sendMessage() {
         // Create the message
         val message = VisibleMessage()
         message.sentTimestamp = System.currentTimeMillis()
@@ -661,6 +663,31 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         message.id = DatabaseFactory.getSmsDatabase(this).insertMessageOutbox(threadID, outgoingTextMessage, false, message.sentTimestamp!!) { }
         // Send it
         MessageSender.send(message, thread.address)
+        // Send a typing stopped message
+        ApplicationContext.getInstance(this).typingStatusSender.onTypingStopped(threadID)
+    }
+
+    private fun sendAttachments(attachments: List<Attachment>, body: String?) {
+        // TODO: Quotes & link previews
+        // Create the message
+        val message = VisibleMessage()
+        message.sentTimestamp = System.currentTimeMillis()
+        message.text = body
+        val outgoingTextMessage = OutgoingMediaMessage.from(message, thread, attachments, null, null)
+        // Clear the input bar
+        inputBar.text = ""
+        // Clear mentions
+        previousText = ""
+        currentMentionStartIndex = -1
+        mentions.clear()
+        // Reset the attachment manager
+        attachmentManager.clear(glide, false)
+        //
+        
+        // Put the message in the database
+        message.id = DatabaseFactory.getMmsDatabase(this).insertMessageOutbox(outgoingTextMessage, threadID, false) { }
+        // Send it
+        MessageSender.send(message, thread.address, attachments, null, null)
         // Send a typing stopped message
         ApplicationContext.getInstance(this).typingStatusSender.onTypingStopped(threadID)
     }
@@ -690,19 +717,22 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         intent ?: return
         when (requestCode) {
             PICK_DOCUMENT -> {
-                val data = intent.data ?: return
+                val uri = intent.data ?: return
+                prepMediaForSending(uri, AttachmentManager.MediaType.DOCUMENT)
             }
             TAKE_PHOTO -> {
                 val uri = attachmentManager.captureUri ?: return
+                prepMediaForSending(uri, AttachmentManager.MediaType.IMAGE)
             }
             PICK_GIF -> {
-                val data = intent.data ?: return
+                val uri = intent.data ?: return
                 val type = AttachmentManager.MediaType.GIF
                 val width = intent.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0)
                 val height = intent.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0)
+                prepMediaForSending(uri, type, width, height)
             }
             PICK_FROM_LIBRARY -> {
-                val message = intent.getStringExtra(MediaSendActivity.EXTRA_MESSAGE)
+                val body = intent.getStringExtra(MediaSendActivity.EXTRA_MESSAGE)
                 val media = intent.getParcelableArrayListExtra<Media>(MediaSendActivity.EXTRA_MEDIA) ?: return
                 val slideDeck = SlideDeck()
                 for (item in media) {
@@ -721,8 +751,17 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                         }
                     }
                 }
+                sendAttachments(slideDeck.asAttachments(), body)
             }
         }
+    }
+
+    private fun prepMediaForSending(uri: Uri, type: AttachmentManager.MediaType) {
+        prepMediaForSending(uri, type, null, null)
+    }
+
+    private fun prepMediaForSending(uri: Uri, type: AttachmentManager.MediaType, width: Int?, height: Int?) {
+        attachmentManager.setMedia(glide, uri, type, MediaConstraints.getPushMediaConstraints(), width ?: 0, height ?: 0)
     }
     // endregion
 

@@ -8,7 +8,6 @@ import android.view.MotionEvent
 import android.widget.RelativeLayout
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_input_bar.view.*
-import kotlinx.android.synthetic.main.view_quote.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.thoughtcrime.securesms.conversation.v2.components.LinkPreviewDraftView
@@ -61,7 +60,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         microphoneOrSendButtonContainer.addView(sendButton)
         sendButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
         sendButton.isVisible = false
-        sendButton.onUp = { delegate?.send() }
+        sendButton.onUp = { delegate?.sendMessage() }
         // Edit text
         inputBarEditText.imeOptions = inputBarEditText.imeOptions or 16777216 // Always use incognito keyboard
         inputBarEditText.delegate = this
@@ -163,5 +162,5 @@ interface InputBarDelegate {
     fun onMicrophoneButtonMove(event: MotionEvent)
     fun onMicrophoneButtonCancel(event: MotionEvent)
     fun onMicrophoneButtonUp(event: MotionEvent)
-    fun send()
+    fun sendMessage()
 }
