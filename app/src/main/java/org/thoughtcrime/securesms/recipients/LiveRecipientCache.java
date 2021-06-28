@@ -100,7 +100,7 @@ public final class LiveRecipientCache {
    */
   @AnyThread
   public void addToCache(@NonNull Collection<Recipient> newRecipients) {
-    for (Recipient recipient : newRecipients) {
+    newRecipients.stream().filter(this::isValidForCache).forEach(recipient -> {
       LiveRecipient live;
       boolean       needsResolve;
 
@@ -131,7 +131,7 @@ public final class LiveRecipientCache {
           }
         });
       }
-    }
+    });
   }
 
   @NonNull Recipient getSelf() {
@@ -204,5 +204,9 @@ public final class LiveRecipientCache {
     synchronized (recipients) {
       recipients.clear();
     }
+  }
+
+  private boolean isValidForCache(@NonNull Recipient recipient) {
+    return !recipient.getId().isUnknown() && (recipient.hasServiceIdentifier() || recipient.getGroupId().isPresent() || recipient.hasSmsAddress());
   }
 }
