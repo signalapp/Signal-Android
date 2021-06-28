@@ -184,8 +184,6 @@ public class AudioSlidePlayer implements SensorEventListener {
       public void onPlayerError(ExoPlaybackException error) {
         Log.w(TAG, "MediaPlayer Error: " + error);
 
-        Toast.makeText(context, R.string.AudioSlidePlayer_error_playing_audio, Toast.LENGTH_SHORT).show();
-
         synchronized (AudioSlidePlayer.this) {
           mediaPlayer = null;
 
