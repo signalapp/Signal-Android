@@ -2,9 +2,7 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.content.Intent
 import android.content.res.Resources
 import android.database.Cursor
@@ -45,7 +43,6 @@ import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.utilities.MediaTypes
-import org.session.libsession.utilities.ServiceUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.ListenableFuture
 import org.thoughtcrime.securesms.ApplicationContext
@@ -71,13 +68,11 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
 import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
 import org.thoughtcrime.securesms.loki.utilities.push
-import org.thoughtcrime.securesms.loki.utilities.show
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity
 import org.thoughtcrime.securesms.mms.*
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
-import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.util.*

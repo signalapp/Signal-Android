@@ -43,8 +43,8 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity {
 
   private static final int MAX_DISPLAY_LENGTH = 64 * 1024;
 
-  private Stub<ViewGroup> sentBubble;
-  private Stub<ViewGroup> receivedBubble;
+  private TextView textBody;
+  private ConversationItemFooter footerText;
 
   private LongMessageViewModel viewModel;
 
@@ -60,9 +60,8 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity {
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     super.onCreate(savedInstanceState, ready);
     setContentView(R.layout.longmessage_activity);
-
-    sentBubble     = new Stub<>(findViewById(R.id.longmessage_sent_stub));
-    receivedBubble = new Stub<>(findViewById(R.id.longmessage_received_stub));
+    textBody = findViewById(R.id.longmessage_text);
+    footerText = findViewById(R.id.longmessage_footer);
 
     initViewModel(getIntent().getLongExtra(KEY_MESSAGE_ID, -1), getIntent().getBooleanExtra(KEY_IS_MMS, false));
   }
@@ -102,27 +101,11 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity {
         getSupportActionBar().setTitle(getString(R.string.LongMessageActivity_message_from_s, name));
       }
 
-      ViewGroup bubble;
-
-      if (message.get().getMessageRecord().isOutgoing()) {
-        bubble = sentBubble.get();
-        bubble.getBackground().setColorFilter(ThemeUtil.getThemedColor(this, R.attr.message_sent_background_color), PorterDuff.Mode.MULTIPLY);
-      } else {
-        bubble = receivedBubble.get();
-        bubble.getBackground().setColorFilter(ThemeUtil.getThemedColor(this, R.attr.message_received_background_color), PorterDuff.Mode.MULTIPLY);
-      }
-
-      TextView               text   = bubble.findViewById(R.id.longmessage_text);
-      ConversationItemFooter footer = bubble.findViewById(R.id.longmessage_footer);
-
       String          trimmedBody = getTrimmedBody(message.get().getFullBody());
       SpannableString styledBody  = linkifyMessageBody(new SpannableString(trimmedBody));
 
-      bubble.setVisibility(View.VISIBLE);
-      text.setText(styledBody);
-      text.setMovementMethod(LinkMovementMethod.getInstance());
-      text.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(this));
-      footer.setMessageRecord(message.get().getMessageRecord(), Locale.getDefault());
+      textBody.setText(styledBody);
+      footerText.setMessageRecord(message.get().getMessageRecord(), Locale.getDefault());
     });
   }
 
