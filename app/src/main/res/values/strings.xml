@@ -3588,6 +3588,9 @@
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Do not notify</string>
     <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Custom notifications</string>
 
+    <!-- StickerKeyboard -->
+    <string name="StickerKeyboard__recently_used">Recently used</string>
+
     <!-- EOF -->
 
 </resources>

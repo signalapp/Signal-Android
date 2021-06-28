@@ -30,6 +30,7 @@ public final class DatabaseObserver {
   private final Map<UUID, Set<Observer>> paymentObservers;
   private final Set<Observer>            allPaymentsObservers;
   private final Set<Observer>            chatColorsObservers;
+  private final Set<Observer>            stickerPackObservers;
 
   public DatabaseObserver(Application application) {
     this.application                  = application;
@@ -40,6 +41,7 @@ public final class DatabaseObserver {
     this.paymentObservers             = new HashMap<>();
     this.allPaymentsObservers         = new HashSet<>();
     this.chatColorsObservers          = new HashSet<>();
+    this.stickerPackObservers         = new HashSet<>();
   }
 
   public void registerConversationListObserver(@NonNull Observer listener) {
@@ -78,6 +80,12 @@ public final class DatabaseObserver {
     });
   }
 
+  public void registerStickerPackObserver(@NonNull Observer listener) {
+    executor.execute(() -> {
+      stickerPackObservers.add(listener);
+    });
+  }
+
   public void unregisterObserver(@NonNull Observer listener) {
     executor.execute(() -> {
       conversationListObservers.remove(listener);
@@ -85,6 +93,7 @@ public final class DatabaseObserver {
       unregisterMapped(verboseConversationObservers, listener);
       unregisterMapped(paymentObservers, listener);
       chatColorsObservers.remove(listener);
+      stickerPackObservers.remove(listener);
     });
   }
 
@@ -157,6 +166,12 @@ public final class DatabaseObserver {
       for (Observer chatColorsObserver : chatColorsObservers) {
         chatColorsObserver.onChanged();
       }
+    });
+  }
+
+  public void notifyStickerPackObservers() {
+    executor.execute(() -> {
+      notifySet(stickerPackObservers);
     });
   }
 

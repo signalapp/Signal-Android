@@ -76,6 +76,7 @@ public abstract class Database {
   }
 
   protected void notifyStickerPackListeners() {
+    ApplicationDependencies.getDatabaseObserver().notifyStickerPackObservers();
     context.getContentResolver().notifyChange(DatabaseContentProviders.StickerPack.CONTENT_URI, null);
   }
 
