@@ -42,7 +42,7 @@ open class KThumbnailView: FrameLayout {
     private val image by lazy { thumbnail_image }
     private val playOverlay by lazy { play_overlay }
     private val captionIcon by lazy { thumbnail_caption_icon }
-    val loadIndicator: ProgressBar by lazy { thumbnail_load_indicator }
+    val loadIndicator: View by lazy { thumbnail_load_indicator }
     private val transferControls by lazy { ViewUtil.inflateStub<TransferControlView>(this, R.id.transfer_controls_stub) }
 
     private val dimensDelegate = ThumbnailDimensDelegate()

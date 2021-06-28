@@ -22,14 +22,11 @@
         android:src="@drawable/ic_caption_28"
         android:visibility="gone" />
 
-    <ProgressBar
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+    <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailProgressBar
         android:id="@+id/thumbnail_load_indicator"
-        android:progressTint="@color/accent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/accent_line_thickness"
         android:layout_gravity="bottom"
-        android:indeterminate="true"
         android:visibility="gone"
         tools:visibility="visible" />
 

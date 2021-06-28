@@ -35,7 +35,7 @@
             />
         <LinearLayout
             android:id="@+id/albumCellBodyTextParent"
-            android:padding="@dimen/small_spacing"
+            android:paddingHorizontal="@dimen/small_spacing"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/albumCellBodyTextReadMore"
