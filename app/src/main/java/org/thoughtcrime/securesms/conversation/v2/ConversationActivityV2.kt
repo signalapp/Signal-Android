@@ -40,8 +40,9 @@ import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
+import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.utilities.MediaTypes
-import org.session.libsession.utilities.ServiceUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.ListenableFuture
 import org.thoughtcrime.securesms.ApplicationContext
@@ -61,6 +62,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
@@ -670,6 +672,14 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun sendMessage() {
+        if (inputBar.linkPreview != null || inputBar.quote != null) {
+            sendAttachments(listOf(), getMessageBody(), inputBar.quote, inputBar.linkPreview)
+        } else {
+            sendTextOnlyMessage()
+        }
+    }
+
+    private fun sendTextOnlyMessage() {
         // Create the message
         val message = VisibleMessage()
         message.sentTimestamp = System.currentTimeMillis()
@@ -689,13 +699,16 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         ApplicationContext.getInstance(this).typingStatusSender.onTypingStopped(threadID)
     }
 
-    private fun sendAttachments(attachments: List<Attachment>, body: String?) {
-        // TODO: Quotes & link previews
+    private fun sendAttachments(attachments: List<Attachment>, body: String?, quotedMessage: MessageRecord? = null, linkPreview: LinkPreview? = null) {
         // Create the message
         val message = VisibleMessage()
         message.sentTimestamp = System.currentTimeMillis()
         message.text = body
-        val outgoingTextMessage = OutgoingMediaMessage.from(message, thread, attachments, null, null)
+        val quote = quotedMessage?.let {
+            val quotedAttachments = (it as? MmsMessageRecord)?.slideDeck?.asAttachments() ?: listOf()
+            QuoteModel(it.dateSent, it.individualRecipient.address, it.body, false, quotedAttachments)
+        }
+        val outgoingTextMessage = OutgoingMediaMessage.from(message, thread, attachments, quote, linkPreview)
         // Clear the input bar
         inputBar.text = ""
         // Clear mentions
@@ -709,7 +722,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         // Put the message in the database
         message.id = DatabaseFactory.getMmsDatabase(this).insertMessageOutbox(outgoingTextMessage, threadID, false) { }
         // Send it
-        MessageSender.send(message, thread.address, attachments, null, null)
+        MessageSender.send(message, thread.address, attachments, quote, linkPreview)
         // Send a typing stopped message
         ApplicationContext.getInstance(this).typingStatusSender.onTypingStopped(threadID)
     }
