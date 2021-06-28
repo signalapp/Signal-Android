@@ -71,6 +71,9 @@ class AlbumThumbnailView : FrameLayout {
             if (Rect.intersects(rawRect, testRect)) {
                 // hit intersects with this particular child
                 val slide = slides.getOrNull(index) ?: return
+                // only open to downloaded images
+                if (slide.isInProgress || slide.isPendingDownload) return
+
                 ActivityDispatcher.get(context)?.dispatchIntent { context ->
                     MediaPreviewActivity.getPreviewIntent(context, slide, mms)
                 }
