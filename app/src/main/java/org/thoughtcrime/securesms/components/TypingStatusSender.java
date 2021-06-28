@@ -79,8 +79,7 @@ public class TypingStatusSender {
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     Recipient recipient = threadDatabase.getRecipientForThreadId(threadId);
     if (recipient == null) { return; }
-    // Loki - Check whether we want to send a typing indicator to this user
-    if (recipient != null && !SessionMetaProtocol.shouldSendTypingIndicator(recipient.getAddress())) { return; }
+    if (!SessionMetaProtocol.shouldSendTypingIndicator(recipient.getAddress())) { return; }
     TypingIndicator typingIndicator;
     if (typingStarted) {
       typingIndicator = new TypingIndicator(TypingIndicator.Kind.STARTED);

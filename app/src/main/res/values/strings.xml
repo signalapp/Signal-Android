@@ -872,4 +872,6 @@
     <string name="dialog_download_button_title">Download</string>
 
     <string name="activity_conversation_blocked_banner_text">%s is blocked. Unblock them?</string>
+
+    <string name="activity_conversation_attachment_prep_failed">Failed to prepare attachment for sending.</string>
 </resources>

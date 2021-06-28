@@ -134,10 +134,14 @@ class InputBarRecordingView : RelativeLayout {
         }
         fadeInAnimation.start()
         recordButtonOverlayImageView.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_up, context.theme))
+        recordButtonOverlay.setOnClickListener { delegate?.sendVoiceMessage() }
+        inputBarCancelButton.setOnClickListener { delegate?.cancelVoiceMessage() }
     }
 }
 
 interface InputBarRecordingViewDelegate {
 
     fun handleVoiceMessageUIHidden()
+    fun sendVoiceMessage()
+    fun cancelVoiceMessage()
 }

@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
 import android.graphics.Rect
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.text.util.Linkify
 import android.util.AttributeSet
@@ -58,7 +60,7 @@ class VisibleMessageContentView : LinearLayout {
         onContentClick = null
         if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
             val linkPreviewView = LinkPreviewView(context)
-            linkPreviewView.bind(message, glide, background)
+            linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster)
             mainContainer.addView(linkPreviewView)
             // Body text view is inside the link preview for layout convenience
         } else if (message is MmsMessageRecord && message.quote != null) {
@@ -69,14 +71,14 @@ class VisibleMessageContentView : LinearLayout {
             // here to get the layout right.
             val maxContentWidth = (maxWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - toPx(16, resources)).roundToInt()
             quoteView.bind(quote.author.toString(), quote.text, quote.attachment, thread,
-                message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation)
+                message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation, message.threadId)
             mainContainer.addView(quoteView)
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
             ViewUtil.setPaddingTop(bodyTextView, 0)
             mainContainer.addView(bodyTextView)
         } else if (message is MmsMessageRecord && message.slideDeck.audioSlide != null) {
             val voiceMessageView = VoiceMessageView(context)
-            voiceMessageView.bind(message, background)
+            voiceMessageView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster)
             mainContainer.addView(voiceMessageView)
             // We have to use onContentClick (rather than a click listener directly on the voice
             // message view) so as to not interfere with all the other gestures.
@@ -148,11 +150,11 @@ class VisibleMessageContentView : LinearLayout {
 
         @ColorInt
         fun getTextColor(context: Context, message: MessageRecord): Int {
-            val uiMode = UiModeUtilities.getUserSelectedUiMode(context)
+            val isDayUiMode = UiModeUtilities.isDayUiMode(context)
             val colorID = if (message.isOutgoing) {
-                if (uiMode == UiMode.NIGHT) R.color.black else R.color.white
+                if (isDayUiMode) R.color.white else R.color.black
             } else {
-                if (uiMode == UiMode.NIGHT) R.color.white else R.color.black
+                if (isDayUiMode) R.color.black else R.color.white
             }
             return context.resources.getColorWithID(colorID, context.theme)
         }

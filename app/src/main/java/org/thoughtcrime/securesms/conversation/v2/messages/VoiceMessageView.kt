@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
+import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.os.Handler
 import android.os.Looper
@@ -12,12 +13,15 @@ import android.widget.RelativeLayout
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_voice_message.view.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.components.CornerMask
+import org.thoughtcrime.securesms.conversation.v2.utilities.MessageBubbleUtilities
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 
 class VoiceMessageView : LinearLayout {
     private val snHandler = Handler(Looper.getMainLooper())
+    private val cornerMask by lazy { CornerMask(this) }
     private var runnable: Runnable? = null
     private var mockIsPlaying = false
     private var mockProgress = 0L
@@ -38,12 +42,14 @@ class VoiceMessageView : LinearLayout {
     // endregion
 
     // region Updating
-    fun bind(message: MmsMessageRecord, background: Drawable) {
+    fun bind(message: MmsMessageRecord, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {
         val audio = message.slideDeck.audioSlide!!
         voiceMessageViewLoader.isVisible = audio.isPendingDownload
-        mainVoiceMessageViewContainer.background = background
-        mainVoiceMessageViewContainer.outlineProvider = ViewOutlineProvider.BACKGROUND
-        mainVoiceMessageViewContainer.clipToOutline = true
+        val cornerRadii = MessageBubbleUtilities.calculateRadii(context, isStartOfMessageCluster, isEndOfMessageCluster, message.isOutgoing)
+        cornerMask.setTopLeftRadius(cornerRadii[0])
+        cornerMask.setTopRightRadius(cornerRadii[1])
+        cornerMask.setBottomRightRadius(cornerRadii[2])
+        cornerMask.setBottomLeftRadius(cornerRadii[3])
     }
 
     private fun handleProgressChanged() {
@@ -54,6 +60,11 @@ class VoiceMessageView : LinearLayout {
         val fraction = mockProgress.toFloat() / mockDuration.toFloat()
         layoutParams.width = (width.toFloat() * fraction).roundToInt()
         progressView.layoutParams = layoutParams
+    }
+
+    override fun dispatchDraw(canvas: Canvas) {
+        super.dispatchDraw(canvas)
+        cornerMask.mask(canvas)
     }
 
     fun recycle() {
