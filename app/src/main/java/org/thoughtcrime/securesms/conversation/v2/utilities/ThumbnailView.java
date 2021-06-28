@@ -97,6 +97,7 @@ public class ThumbnailView extends FrameLayout {
       bounds[MAX_WIDTH]  = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxWidth, 0);
       bounds[MIN_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_minHeight, 0);
       bounds[MAX_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxHeight, 0);
+      radius = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_thumbnail_radius, 0);
       typedArray.recycle();
     } else {
       radius = 0;
