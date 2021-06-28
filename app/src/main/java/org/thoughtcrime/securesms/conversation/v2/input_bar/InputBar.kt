@@ -152,6 +152,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     }
 
     override fun cancelLinkPreviewDraft() {
+        if (quote != null) { return }
         linkPreview = null
         inputBarAdditionalContentContainer.removeAllViews()
         val newHeight = max(inputBarEditText.height + 2 * vMargin, minHeight)
