@@ -884,6 +884,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Adaugă un titlu…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Un element a fost eliminat pentru că depășește limita de mărime</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Un element a fost eliminat pentru că a avut un format necunoscut</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Un element a fost eliminat pentru că a depășit limita de mărime sau a avut un format necunoscut</string>
   <string name="MediaSendActivity_camera_unavailable">Cameră indisponibilă.</string>
   <string name="MediaSendActivity_message_to_s">Mesaj către %s</string>
   <string name="MediaSendActivity_message">Mesaj</string>
@@ -1066,6 +1068,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Ați marcat numărul tău de siguranță cu %s ca și verificat de pe alt dispozitiv</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Ați marcat numărul tău de siguranță cu %s ca și neverificat</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Ați marcat numărul tău de siguranță cu %s ca și neverificat de pe alt dispozitiv</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Un mesaj de la %s nu a putut fi livrat</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s a început un apel de grup · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s este în apelul de grup · %2$s</string>
@@ -1803,6 +1806,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pentru a putea trimite mesaje multimedia cât și mesaje într-un grup, apăsați \'OK\' și completați setările solicitate. Setările MMS pentru operatorul tău pot fi găsite cautând după \'APN operatorul tău\'. Această operațiune este necesară o singură dată.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Problemă de livrare</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Un mesaj, autocolant, reacție sau confirmare de citire nu a putut fi livrată către tine de la %s. Este posibil să fi încercat să trimită direct sau într-un grup.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Un mesaj, autocolant, reacție sau confirmare de citire nu a putut fi livrată către tine de la %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Prenume (obligatoriu)</string>
   <string name="CreateProfileActivity_last_name_optional">Nume (opțional)</string>
@@ -2136,6 +2141,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsHomeFragment__recovery_phrase">Frază de recuperare</string>
   <string name="PaymentsHomeFragment__help">Ajutor</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__deactivate">Dezactivare</string>
   <string name="PaymentsHomeFragment__continue">Continuă</string>
   <string name="PaymentsHomeFragment__payment_failed">Plata a eșuat</string>
   <string name="PaymentsHomeFragment__details">Detalii</string>
@@ -2628,6 +2634,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RecipientBottomSheet_add_to_a_group">Adaugaţi la un grup</string>
   <string name="RecipientBottomSheet_add_to_another_group">Adaugaţi la alt grup</string>
   <string name="RecipientBottomSheet_view_safety_number">Afișează numărul de siguranță</string>
+  <string name="RecipientBottomSheet_make_admin">Faceți administrator</string>
   <string name="RecipientBottomSheet_remove_as_admin">Eliminați ca administrator</string>
   <string name="RecipientBottomSheet_remove_from_group">Eliminați din grup</string>
   <string name="RecipientBottomSheet_message_description">Mesaj</string>
@@ -2729,6 +2736,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ShareActivity-->
   <string name="ShareActivity__share">Distribuiți</string>
   <string name="ShareActivity__send">Trimiteți</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Distribuirea la conversații multiple este disponibilă doar pentru mesaje Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Trimiterea către unii utilizatori nu a reușit</string>
@@ -2783,6 +2791,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Dezactivare portofel</string>
   <string name="DeactivateWalletFragment__your_balance">Soldul dvs.</string>
+  <string name="DeactivateWalletFragment__deactivate">Dezactivare</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frază de recuperare</string>
   <string name="PaymentsRecoveryStartFragment__start">Start</string>
@@ -2791,10 +2800,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Frază de recuperare</string>
   <string name="PaymentsRecoveryPasteFragment__next">Următorul</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Frază de recuperare invalidă</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Următorul</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Editează</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Înapoi</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Frază de recuperare invalidă</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Copiere în clipboard?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Copy</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
@@ -2943,6 +2954,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="EmojiSearchFragment__no_results_found">Nici un rezultat gasit</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Ton de apel necunoscut</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Trimite mesaj</string>
+  <string name="ConversationSettingsFragment__start_video_call">Începeți un apel video</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Începeți un apel audio</string>
   <string name="ConversationSettingsFragment__message">Mesaj</string>
   <string name="ConversationSettingsFragment__video">Video</string>
   <string name="ConversationSettingsFragment__audio">Audio</string>
@@ -2951,6 +2965,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConversationSettingsFragment__muted">Fără sunet</string>
   <string name="ConversationSettingsFragment__search">Căutare</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Dispariție mesaje</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Sunete și notificări</string>
+  <string name="ConversationSettingsFragment__contact_details">Detalii contact</string>
   <string name="ConversationSettingsFragment__view_safety_number">Afișează numărul de siguranță</string>
   <string name="ConversationSettingsFragment__block">Blochează</string>
   <string name="ConversationSettingsFragment__block_group">Blocați grupul</string>
@@ -2960,8 +2976,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConversationSettingsFragment__see_all">Vezi tot</string>
   <string name="ConversationSettingsFragment__add_members">Adăugare membri</string>
   <string name="ConversationSettingsFragment__permissions">Permisiuni</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Solicitări și invitații</string>
   <string name="ConversationSettingsFragment__group_link">Link grup</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Adaugă ca și contact</string>
   <string name="ConversationSettingsFragment__unmute">Activare sunet notificări</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversaţia este acum silenţiosă până la %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Conversația este silenţiosă pentru totdeauna</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Adăugare membri</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Editare informații despre grup</string>
@@ -2972,7 +2992,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Notificări fără sunet</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nu este pe silențios</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Silențios până la %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Mențiuni</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Notifică întotdeauna</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Nu mă anunța</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificări personalizate</string>
   <!--EOF-->
 </resources>

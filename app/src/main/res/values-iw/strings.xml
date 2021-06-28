@@ -3155,6 +3155,9 @@
   <string name="EmojiSearchFragment__no_results_found">תוצאות לא נמצאו</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">צלצול בלתי ידוע</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">שלח הודעה</string>
+  <string name="ConversationSettingsFragment__start_video_call">התחל שיחת וידאו</string>
+  <string name="ConversationSettingsFragment__start_audio_call">התחל שיחת שמע</string>
   <string name="ConversationSettingsFragment__message">הודעה</string>
   <string name="ConversationSettingsFragment__video">סרטון</string>
   <string name="ConversationSettingsFragment__audio">שמע</string>
@@ -3163,6 +3166,8 @@
   <string name="ConversationSettingsFragment__muted">מושתק</string>
   <string name="ConversationSettingsFragment__search">חפש</string>
   <string name="ConversationSettingsFragment__disappearing_messages">הודעות נעלמות</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">צלילים והתראות</string>
+  <string name="ConversationSettingsFragment__contact_details">פרטי איש קשר</string>
   <string name="ConversationSettingsFragment__view_safety_number">הצג מספר ביטחון</string>
   <string name="ConversationSettingsFragment__block">חוסם</string>
   <string name="ConversationSettingsFragment__block_group">חסום קבוצה</string>
@@ -3172,8 +3177,12 @@
   <string name="ConversationSettingsFragment__see_all">ראה הכל</string>
   <string name="ConversationSettingsFragment__add_members">הוסף חברי קבוצה</string>
   <string name="ConversationSettingsFragment__permissions">הרשאות</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">בקשות והזמנות</string>
   <string name="ConversationSettingsFragment__group_link">קישור קבוצה</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">הוסף כאיש קשר</string>
   <string name="ConversationSettingsFragment__unmute">בטל השתקה</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">שיחות מושתקות עד %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">שיחות מושתקות לתמיד</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">הוסף חברי קבוצה</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ערוך מידע קבוצה</string>
@@ -3184,7 +3193,10 @@
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">השתק התראות</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">לא מושתק</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">מושתק עד %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">אזכורים</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">יידע תמיד</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">אל תיידע</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">התראות מותאמות אישית</string>
   <!--EOF-->
 </resources>

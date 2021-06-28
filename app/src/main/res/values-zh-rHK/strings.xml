@@ -87,12 +87,12 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">您將無法再接收來自此群組的訊息或更新，而且成員也無法再把您加入此群組。</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">群組成員將無法再把您加入此群組。</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">群組成員將能夠再把您加入此群組。</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">您將能夠再相互傳送訊息和通話，您的名稱和照片也會與其分享。</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">您將能夠再互相傳送訊息和通話，您的名稱和照片也會與對方分享。</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">已封鎖的人將無法撥打或傳送訊息給您。</string>
   <string name="BlockUnblockDialog_unblock_s">要解除封鎖 %1$s 嗎？</string>
   <string name="BlockUnblockDialog_block">封鎖</string>
   <string name="BlockUnblockDialog_block_and_leave">封鎖並退出</string>
-  <string name="BlockUnblockDialog_report_spam_and_block">檢舉垃圾訊息並封鎖</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">舉報垃圾訊息並封鎖</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">今天</string>
   <string name="BucketedThreadMedia_Yesterday">昨天</string>
@@ -138,8 +138,8 @@
   <string name="CommunicationActions_insecure_call">不安全的通話</string>
   <string name="CommunicationActions_carrier_charges_may_apply">電訊商可能會收費。您正撥打的號碼未有在 Signal 上註冊，因此通話將透過您的流動電訊公司打出，而非經由互聯網接通。</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">你與%1$s的安全碼已經發生變更。這表示可能有人嘗試擷取你們的對話，或只是%2$s重新安裝了Signal。</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">你可能需要與這個聯絡人驗證安全碼。</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">您與 %1$s 之間的安全碼已變更。這可能代表有人正嘗試截取您的通訊，又或者不過是 %2$s 已重新安裝 Signal。</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您不妨與此聯絡人驗證一下安全碼。</string>
   <string name="ConfirmIdentityDialog_accept">接受</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">最近的聊天</string>
@@ -208,7 +208,7 @@
   <string name="ConversationActivity_unable_to_record_audio">無法錄製音訊！</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">您無法向此群組傳送訊息，因為您已不再是成員。</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">您的裝置上沒有應用程式可處理此連結。</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">您的請求已被傳送至群組管理員。在他們採取行動時會通知你。</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">您欲加入群組的請求已傳送至此群組的管理員。一經處理，將會通知您。</string>
   <string name="ConversationActivity_cancel_request">取消請求</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">如要傳送語音訊息，請允許Signal存取您的咪高峰。</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal需要存取咪高峰來傳送語音訊息，但您已經永久拒絕。請前往應用程式設定功能表，按「權限」，然後開啟「咪高峰」。</string>
@@ -239,7 +239,7 @@
   <string name="ConversationActivity_join">加入</string>
   <string name="ConversationActivity_full">已滿</string>
   <string name="ConversationActivity_error_sending_media">傳送媒體時發生錯誤</string>
-  <string name="ConversationActivity__reported_as_spam_and_blocked">已檢舉垃圾訊息並封鎖。</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">已舉報垃圾訊息並封鎖。</string>
   <string name="ConversationActivity_gifs_have_moved">GIF 已搬遷</string>
   <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIF 已歸於表情符號和貼圖旁邊，敬請查看。</string>
   <string name="ConversationActivity__gifs_are_now_here">GIF 新居於此。</string>
@@ -322,7 +322,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">設定個人資料照片時發生錯誤</string>
   <string name="CreateProfileActivity_problem_setting_profile">設定個人資料時發生問題</string>
   <string name="CreateProfileActivity_set_up_your_profile">設定您的個人資料</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">您的個人資料經端對端加密。當您進行或接受新的對話時，或是加入新的群組，您的個人資料 (連同您其後所作的變更) 將會被您的聯絡人看見。</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">您的個人資料經端對端加密。您的個人資料 (連同您其後所作的變更) 將會供您的聯絡人看見，亦會在您開展或接受新的對話，又或加入新的群組時，向別人展示。</string>
   <string name="CreateProfileActivity_set_avatar_description">設定頭像</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">要從備份還原嗎？</string>
@@ -1618,7 +1618,7 @@
   </plurals>
   <string name="expiration_days_abbreviated">%d 天</string>
   <plurals name="expiration_weeks">
-    <item quantity="other">%d 週</item>
+    <item quantity="other">%d 星期</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%d 週</string>
   <string name="expiration_combined">%1$s %2$s</string>
@@ -1680,15 +1680,15 @@
   <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">此群組中的成員，以及獲邀加入群組的人，將會見到群組描述。</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">關於</string>
-  <string name="EditAboutFragment_write_a_few_words_about_yourself">三言兩語自我介紹一下…</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">錯折中行過 尚有點忘我…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">☝️息尚存</string>
   <string name="EditAboutFragment_encrypted">清風不識字</string>
-  <string name="EditAboutFragment_be_kind">年輕怎麼就是錯 誰不解䆁就恨我</string>
+  <string name="EditAboutFragment_be_kind">抬頭尚有天空 埋頭尚有智慧</string>
   <string name="EditAboutFragment_coffee_lover">無盛世 無亂世 坐在咖啡店</string>
   <string name="EditAboutFragment_free_to_chat">即使要蒙著我嘴 我亦可高呼</string>
   <string name="EditAboutFragment_taking_a_break">人間有味是清歡</string>
-  <string name="EditAboutFragment_working_on_something_new">標準有新嘗試 摩打有新電池</string>
+  <string name="EditAboutFragment_working_on_something_new">新世紀 我請你要有準備</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group">編輯群組</string>
   <string name="EditProfileFragment__group_name">群組名稱</string>
@@ -2822,8 +2822,8 @@
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">啟用時，在您開展的新聊天中所傳送和接收的新訊息，待看過後將會依限時消失。</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">啟用時，在此聊天中所傳送和接收的新訊息，待看過後將會依限時消失。</string>
   <string name="ExpireTimerSettingsFragment__off">關閉</string>
-  <string name="ExpireTimerSettingsFragment__4_weeks">4 週</string>
-  <string name="ExpireTimerSettingsFragment__1_week">1 週</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 星期</string>
+  <string name="ExpireTimerSettingsFragment__1_week">1 星期</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 天</string>
   <string name="ExpireTimerSettingsFragment__8_hours">8 小時</string>
   <string name="ExpireTimerSettingsFragment__1_hour">1 小時</string>
@@ -2836,7 +2836,7 @@
   <string name="CustomExpireTimerSelectorView__minutes">分鐘</string>
   <string name="CustomExpireTimerSelectorView__hours">小時</string>
   <string name="CustomExpireTimerSelectorView__days">天</string>
-  <string name="CustomExpireTimerSelectorView__weeks">週</string>
+  <string name="CustomExpireTimerSelectorView__weeks">星期</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__support_center">支援中心</string>
   <string name="HelpSettingsFragment__contact_us">聯絡我們</string>

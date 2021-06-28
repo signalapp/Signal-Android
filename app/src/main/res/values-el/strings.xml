@@ -2849,6 +2849,9 @@
   <string name="EmojiSearchFragment__no_results_found">Δε βρέθηκαν αποτελέσματα</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Άγνωστος ήχος κλήσης</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Αποστολή μηνύματος</string>
+  <string name="ConversationSettingsFragment__start_video_call">Έναρξη βιντεοκλήσης</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Έναρξη κλήσης ήχου</string>
   <string name="ConversationSettingsFragment__message">Μήνυμα</string>
   <string name="ConversationSettingsFragment__video">Βίντεο</string>
   <string name="ConversationSettingsFragment__audio">Αρχείο ήχου</string>
@@ -2857,6 +2860,8 @@
   <string name="ConversationSettingsFragment__muted">Σε σίγαση</string>
   <string name="ConversationSettingsFragment__search">Αναζήτηση</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Μηνύματα που εξαφανίζονται</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Ήχοι &amp; ειδοποιήσεις</string>
+  <string name="ConversationSettingsFragment__contact_details">Λεπτομέρειες επαφής</string>
   <string name="ConversationSettingsFragment__view_safety_number">Προβολή αριθμού ασφαλείας</string>
   <string name="ConversationSettingsFragment__block">Αποκλεισμός</string>
   <string name="ConversationSettingsFragment__block_group">Φραγή ομάδας</string>
@@ -2866,8 +2871,12 @@
   <string name="ConversationSettingsFragment__see_all">Προβολή όλων</string>
   <string name="ConversationSettingsFragment__add_members">Προσθήκη μελών</string>
   <string name="ConversationSettingsFragment__permissions">Άδειες</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Αιτήματα &amp; προσκλήσεις</string>
   <string name="ConversationSettingsFragment__group_link">Σύνδεσμος ομάδας</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Προσθήκη ως επαφή</string>
   <string name="ConversationSettingsFragment__unmute">Αναίρεση σίγασης</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Η συνομιλία είναι σε σίγαση έως %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Η συνομιλία είνα σε σίγαση για πάντα</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Προσθήκη μελών</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Επεξεργασία πληροφοριών ομάδας</string>
@@ -2878,6 +2887,7 @@
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Σίγαση ειδοποιήσεων</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Μη σιγασμένο</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Σε σίγαση έως %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Αναφορές</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Προσαρμογή ειδοποιήσεων</string>
   <!--EOF-->

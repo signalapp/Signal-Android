@@ -2812,7 +2812,7 @@
   <string name="ConversationSettingsFragment__video">動画</string>
   <string name="ConversationSettingsFragment__audio">音声</string>
   <string name="ConversationSettingsFragment__call">発信</string>
-  <string name="ConversationSettingsFragment__mute">ミュートする</string>
+  <string name="ConversationSettingsFragment__mute">ミュート</string>
   <string name="ConversationSettingsFragment__muted">ミュート中</string>
   <string name="ConversationSettingsFragment__search">検索</string>
   <string name="ConversationSettingsFragment__disappearing_messages">消えるメッセージ</string>
@@ -2821,19 +2821,21 @@
   <string name="ConversationSettingsFragment__view_safety_number">安全番号を表示</string>
   <string name="ConversationSettingsFragment__block">ブロック</string>
   <string name="ConversationSettingsFragment__block_group">グループをブロック</string>
-  <string name="ConversationSettingsFragment__unblock">ブロックを解除する</string>
-  <string name="ConversationSettingsFragment__unblock_group">グループのブロック解除</string>
+  <string name="ConversationSettingsFragment__unblock">ブロックを解除</string>
+  <string name="ConversationSettingsFragment__unblock_group">グループのブロックを解除</string>
   <string name="ConversationSettingsFragment__add_to_a_group">グループへ追加</string>
   <string name="ConversationSettingsFragment__see_all">すべて表示</string>
-  <string name="ConversationSettingsFragment__add_members">メンバーを追加する</string>
+  <string name="ConversationSettingsFragment__add_members">メンバーの追加</string>
   <string name="ConversationSettingsFragment__permissions">アクセス許可</string>
   <string name="ConversationSettingsFragment__requests_and_invites">申請と招待</string>
   <string name="ConversationSettingsFragment__group_link">グループリンク</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">連絡先に追加</string>
   <string name="ConversationSettingsFragment__unmute">ミュートを解除</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">チャットは%1$sまでミュートされます</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">チャットは常にミュートされます</string>
   <!--PermissionsSettingsFragment-->
-  <string name="PermissionsSettingsFragment__add_members">メンバーを追加する</string>
-  <string name="PermissionsSettingsFragment__edit_group_info">グループの情報を編集</string>
+  <string name="PermissionsSettingsFragment__add_members">メンバーの追加</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">グループ情報を編集</string>
   <string name="PermissionsSettingsFragment__all_members">すべてのメンバー</string>
   <string name="PermissionsSettingsFragment__only_admins">管理者のみ</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">メンバーを追加できる人は？</string>
@@ -2841,7 +2843,10 @@
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">通知をミュート</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">ミュートしていません</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">%1$sまでミュート中</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">メンション</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">常に通知する</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">通知しない</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">カスタム通知</string>
   <!--EOF-->
 </resources>

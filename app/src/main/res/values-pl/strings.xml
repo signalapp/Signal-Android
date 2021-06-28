@@ -3155,7 +3155,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConversationSettingsFragment__audio">Audio</string>
   <string name="ConversationSettingsFragment__call">Zadzwoń</string>
   <string name="ConversationSettingsFragment__mute">Wycisz</string>
-  <string name="ConversationSettingsFragment__muted">Wyciszony</string>
+  <string name="ConversationSettingsFragment__muted">Wyciszono</string>
   <string name="ConversationSettingsFragment__search">Szukaj</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Znikające wiadomości</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">Dźwięki i powiadomienia</string>
@@ -3166,7 +3166,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConversationSettingsFragment__unblock">Odblokuj</string>
   <string name="ConversationSettingsFragment__unblock_group">Odblokuj grupę</string>
   <string name="ConversationSettingsFragment__add_to_a_group">Dodaj do grupy</string>
-  <string name="ConversationSettingsFragment__see_all">Zobacz wszystkie</string>
+  <string name="ConversationSettingsFragment__see_all">Zobacz wszystkich</string>
   <string name="ConversationSettingsFragment__add_members">Dodaj członków</string>
   <string name="ConversationSettingsFragment__permissions">Uprawnienia</string>
   <string name="ConversationSettingsFragment__requests_and_invites">Prośby o przyjęcie i zaproszenia</string>

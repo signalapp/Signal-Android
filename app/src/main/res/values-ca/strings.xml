@@ -2981,6 +2981,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="EmojiSearchFragment__no_results_found">No s\'ha trobat cap resultat.</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">To desconegut</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Envia el missatge</string>
+  <string name="ConversationSettingsFragment__start_video_call">Inicia una trucada de vídeo</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Inicia una trucada d\'àudio</string>
   <string name="ConversationSettingsFragment__message">Missatge</string>
   <string name="ConversationSettingsFragment__video">Vídeo</string>
   <string name="ConversationSettingsFragment__audio">Àudio</string>
@@ -2989,6 +2992,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationSettingsFragment__muted">Silenciat</string>
   <string name="ConversationSettingsFragment__search">Cerca</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Missatges efímers</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Sons i notificacions</string>
+  <string name="ConversationSettingsFragment__contact_details">Detalls del contacte</string>
   <string name="ConversationSettingsFragment__view_safety_number">Mostra el número de seguretat</string>
   <string name="ConversationSettingsFragment__block">Bloca</string>
   <string name="ConversationSettingsFragment__block_group">Bloca el grup</string>
@@ -2998,8 +3003,12 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationSettingsFragment__see_all">Mostra-ho tot</string>
   <string name="ConversationSettingsFragment__add_members">Afegeix-hi membres</string>
   <string name="ConversationSettingsFragment__permissions">Permisos</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Sol·licituds i invitacions</string>
   <string name="ConversationSettingsFragment__group_link">Enllaç del grup</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Afegeix com a contacte</string>
   <string name="ConversationSettingsFragment__unmute">No la silenciïs</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversa silenciada fins %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Conversa silenciada per sempre</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Afegeix-hi membres</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Edita la informació del grup</string>
@@ -3010,7 +3019,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Silencia les notificacions</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">No silenciat</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Silenciat fins %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Mencions</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Notifica-m\'ho sempre</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">No m\'ho notifiquis mai</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificacions personalitzades</string>
   <!--EOF-->
 </resources>

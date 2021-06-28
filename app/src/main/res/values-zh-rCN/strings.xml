@@ -1745,7 +1745,7 @@
   <string name="AndroidManifest_archived_conversations">已存档对话</string>
   <string name="AndroidManifest_remove_photo">删除图片</string>
   <!--Message Requests Megaphone-->
-  <string name="MessageRequestsMegaphone__message_requests">通信请求</string>
+  <string name="MessageRequestsMegaphone__message_requests">消息请求</string>
   <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">用户现在可以选择接受一个新的对话，配置文件名可以让人们知道谁在给他们发信息。</string>
   <string name="MessageRequestsMegaphone__add_profile_name">添加用户名</string>
   <!--HelpFragment-->
@@ -2097,7 +2097,7 @@
   <string name="CreatePaymentFragment__add_note">添加备注</string>
   <string name="CreatePaymentFragment__conversions_are_just_estimates">转换仅为估计，可能并不准确。</string>
   <!--EditNoteFragment-->
-  <string name="EditNoteFragment_note">注释</string>
+  <string name="EditNoteFragment_note">备注</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">确认付款</string>
   <string name="ConfirmPayment__network_fee">网络费</string>
@@ -2149,8 +2149,8 @@
   <string name="conversation_insecure__invite">邀请</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">删除已选</string>
-  <string name="conversation_list_batch__menu_pin_selected">已选标记</string>
-  <string name="conversation_list_batch__menu_unpin_selected">已选取消标记</string>
+  <string name="conversation_list_batch__menu_pin_selected">置顶已选</string>
+  <string name="conversation_list_batch__menu_unpin_selected">取消置顶已选</string>
   <string name="conversation_list_batch__menu_select_all">选择全部</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">存档已选择</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">取消存档已选择项目</string>
@@ -2159,9 +2159,9 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">设置快捷方式</string>
   <string name="conversation_list_search_description">搜索</string>
-  <string name="conversation_list__pinned">已标记</string>
+  <string name="conversation_list__pinned">已置顶</string>
   <string name="conversation_list__chats">聊天</string>
-  <string name="conversation_list__you_can_only_pin_up_to_d_chats">您最多只能标记%1$d个对话。</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">您最多只能置顶%1$d个对话。</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">联系人图片</string>
   <string name="conversation_list_item_view__archived">已存档</string>

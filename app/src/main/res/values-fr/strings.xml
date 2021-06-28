@@ -609,7 +609,7 @@
   <string name="ManageGroupActivity_mute_notifications">Notifications en sourdine</string>
   <string name="ManageGroupActivity_custom_notifications">Notifications personnalisées</string>
   <string name="ManageGroupActivity_mentions">Mentions</string>
-  <string name="ManageGroupActivity_chat_color_and_wallpaper">Couleur et fond d’écran des conversations</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Couleur et fond d’écran de la conversation</string>
   <string name="ManageGroupActivity_until_s">Jusqu’à %1$s</string>
   <string name="ManageGroupActivity_always">Toujours</string>
   <string name="ManageGroupActivity_off">Désactivé</string>
@@ -1730,7 +1730,7 @@
   <string name="CreateProfileActivity__username">Nom d’utilisateur</string>
   <string name="CreateProfileActivity__create_a_username">Créer un nom d’utilisateur</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Les noms et les photos des groupes de messages multimédias personnalisés ne seront visibles que par vous.</string>
-  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Les descriptions de gruope seront visibles aux membres de ce groupe et aux personnes qui ont été invitées.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Les descriptions de groupe seront visibles aux membres de ce groupe et aux personnes qui ont été invitées.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">À propos</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Écrivez quelques mots à votre sujet…</string>
@@ -2136,6 +2136,7 @@
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">Confirmer le paiement</string>
   <string name="ConfirmPayment__network_fee">Frais de réseau</string>
+  <string name="ConfirmPayment__error_getting_fee">Erreur dans l’obtention des frais</string>
   <string name="ConfirmPayment__estimated_s">%1$s estimés</string>
   <string name="ConfirmPayment__to">À</string>
   <string name="ConfirmPayment__total_amount">Montant total</string>
@@ -2144,6 +2145,7 @@
   <string name="ConfirmPayment__processing_payment">Traitement du paiement…</string>
   <string name="ConfirmPayment__payment_complete">Paiement effectué</string>
   <string name="ConfirmPayment__payment_failed">Échec du paiement</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Le traitement du paiement va se poursuivre</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Destinataire invalide</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Cette personne n’a pas activé les paiements</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -2472,6 +2474,7 @@
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Transférer d’un appareil Android</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Vous avez besoin d’accéder à votre ancien appareil.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Restaurer depuis une sauvegarde</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restaurez vos messages d’une sauvegarde locale. Si vous ne les restaurez pas maintenant, vous ne pourrez pas le faire plus tard.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Ouvrez Signal sur votre ancien téléphone Android</string>
   <string name="NewDeviceTransferInstructions__continue">Poursuivre</string>
@@ -2569,6 +2572,7 @@
   <string name="OldDeviceTransferLockedDialog__done">Terminé</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Annuler et activer cette appareil</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Transférer le solde de MOB ?</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">Ne pas transférer</string>
   <string name="AdvancedPreferenceFragment__transfer">Transférer</string>
   <!--RecipientBottomSheet-->
@@ -2799,6 +2803,7 @@
   <string name="CanNotSendPaymentDialog__send_a_message">Envoyez un message</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Vous n’avez aucun groupe en commun avec cette personne. Examinez attentivement les demandes avant d’accepter pour éviter les messages indésirés.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Aucun de vos contacts ou des personnes avec lesquelles vous discutez n’est dans ce groupe. Examinez attentivement les demandes avant d’accepter pour éviter les messages indésirés.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">À propos des demandes d’échange de messages</string>
   <string name="GroupsInCommonMessageRequest__okay">Valider</string>
   <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Voici un aperçu de la couleur de la conversation.</string>
@@ -2925,14 +2930,19 @@
   <string name="EmojiSearchFragment__no_results_found">Aucun résultat trouvé</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Sonnerie inconnue</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Envoyer un message</string>
+  <string name="ConversationSettingsFragment__start_video_call">Lancer un appel vidéo</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Lancer un appel audio</string>
   <string name="ConversationSettingsFragment__message">Message</string>
   <string name="ConversationSettingsFragment__video">Vidéo</string>
   <string name="ConversationSettingsFragment__audio">Son</string>
   <string name="ConversationSettingsFragment__call">Appeler</string>
   <string name="ConversationSettingsFragment__mute">Sourdine</string>
   <string name="ConversationSettingsFragment__muted">En sourdine</string>
-  <string name="ConversationSettingsFragment__search">Cherchez</string>
+  <string name="ConversationSettingsFragment__search">Chercher</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Messages éphémères</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Sons et notifications</string>
+  <string name="ConversationSettingsFragment__contact_details">Détails du contact</string>
   <string name="ConversationSettingsFragment__view_safety_number">Afficher le numéro de sécurité</string>
   <string name="ConversationSettingsFragment__block">Bloquer</string>
   <string name="ConversationSettingsFragment__block_group">Bloquer le groupe</string>
@@ -2942,8 +2952,11 @@
   <string name="ConversationSettingsFragment__see_all">Tout afficher</string>
   <string name="ConversationSettingsFragment__add_members">Ajouter des membres</string>
   <string name="ConversationSettingsFragment__permissions">Autorisations</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Demandes d’ajout et invitations</string>
   <string name="ConversationSettingsFragment__group_link">Lien de groupe</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Ajouter comme contact</string>
   <string name="ConversationSettingsFragment__unmute">Réactiver les notifications</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Conversation en sourdine pour toujours</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Ajouter des membres</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Modifier les renseignements</string>
@@ -2955,6 +2968,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Mettre les notifications en sourdine</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Désactivée</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Mentions</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Toujours m’avertir</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ne pas m’avertir</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notifications personnalisées</string>
   <!--EOF-->
 </resources>
