@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms.mediaoverview;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,19 +26,19 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.tabs.TabLayout;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
+import org.thoughtcrime.securesms.components.ControllableTabLayout;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.MediaDatabase.Sorting;
@@ -51,6 +50,7 @@ import org.whispersystems.libsignal.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Activity for displaying media attachments in-app
@@ -62,7 +62,7 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   private Toolbar                toolbar;
-  private TabLayout              tabLayout;
+  private ControllableTabLayout  tabLayout;
   private ViewPager              viewPager;
   private TextView               sortOrder;
   private View                   sortOrderArrow;
@@ -98,6 +98,7 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
 
     boolean allThreads = threadId == MediaDatabase.ALL_THREADS;
 
+    tabLayout.setNewTabListener(new NewTabListener());
     tabLayout.addOnTabSelectedListener(new OnTabSelectedListener());
     fillTabLayoutIfFits(tabLayout);
     tabLayout.setupWithViewPager(viewPager);
@@ -221,7 +222,7 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
   }
 
   private void showSortOrderDialog(View v) {
-    new AlertDialog.Builder(MediaOverviewActivity.this)
+    new MaterialAlertDialogBuilder(MediaOverviewActivity.this)
       .setTitle(R.string.MediaOverviewActivity_Sort_by)
       .setSingleChoiceItems(R.array.MediaOverviewActivity_Sort_by,
         currentSorting.ordinal(),
@@ -286,39 +287,33 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
     }
   }
 
-  private static final class OnTabSelectedListener implements TabLayout.OnTabSelectedListener {
+  private static final class NewTabListener implements ControllableTabLayout.NewTabListener {
+    @Override
+    public void onNewTab(@NonNull TabLayout.Tab tab) {
+      View customView = tab.getCustomView();
+      if (customView == null) {
+        tab.setCustomView(R.layout.media_overview_tab_item);
+      }
+    }
+  }
 
-    private final Typeface tabUnselected = Typeface.create("sans-serif", Typeface.NORMAL);
-    private final Typeface tabSelected   = Typeface.create("sans-serif-medium", Typeface.NORMAL);
+  private static final class OnTabSelectedListener implements TabLayout.OnTabSelectedListener {
 
     @Override
     public void onTabSelected(@NonNull TabLayout.Tab tab) {
-      View view = getCustomView(tab);
-      TextView title = view.findViewById(android.R.id.text1);
-      title.setTypeface(tabSelected);
-      title.setTextColor(ContextCompat.getColor(view.getContext(), R.color.signal_inverse_primary));
+      MediaOverviewTabItem view = (MediaOverviewTabItem) Objects.requireNonNull(tab.getCustomView());
+      view.select();
     }
 
     @Override
     public void onTabUnselected(@NonNull TabLayout.Tab tab) {
-      View view = getCustomView(tab);
-      TextView title = view.findViewById(android.R.id.text1);
-      title.setTypeface(tabUnselected);
-      title.setTextColor(ContextCompat.getColor(view.getContext(), R.color.signal_text_secondary));
+      MediaOverviewTabItem view = (MediaOverviewTabItem) Objects.requireNonNull(tab.getCustomView());
+      view.unselect();
     }
 
     @Override
     public void onTabReselected(@NonNull TabLayout.Tab tab) {
       // Intentionally Blank.
-    }
-
-    private @NonNull View getCustomView(@NonNull TabLayout.Tab tab) {
-      View customView = tab.getCustomView();
-      if (customView == null) {
-        tab.setCustomView(R.layout.custom_tab_layout_text);
-      }
-
-      return tab.getCustomView();
     }
   }
 }
