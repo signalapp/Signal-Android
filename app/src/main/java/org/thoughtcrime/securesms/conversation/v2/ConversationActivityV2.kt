@@ -672,6 +672,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun sendMessage() {
+        if (thread.isContactRecipient && thread.isBlocked) {
+            BlockedDialog(thread).show(supportFragmentManager, "Blocked Dialog")
+            return
+        }
         if (inputBar.linkPreview != null || inputBar.quote != null) {
             sendAttachments(listOf(), getMessageBody(), inputBar.quote, inputBar.linkPreview)
         } else {
