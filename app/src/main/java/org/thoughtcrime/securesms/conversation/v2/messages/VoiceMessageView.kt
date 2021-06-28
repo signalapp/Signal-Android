@@ -28,7 +28,9 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
     private val cornerMask by lazy { CornerMask(this) }
     private var isPlaying = false
     private var progress = 0.0
+    private var duration = 0L
     private var player: AudioSlidePlayer? = null
+    private var isPreparing = false
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
@@ -48,12 +50,8 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
         val audio = message.slideDeck.audioSlide!!
         val player = AudioSlidePlayer.createFor(context, audio, this)
         this.player = player
+        isPreparing = true
         player.play(0.0)
-        val duration = player.duration
-        player.stop()
-        voiceMessageViewDurationTextView.text = String.format("%01d:%02d",
-            TimeUnit.MILLISECONDS.toMinutes(duration),
-            TimeUnit.MILLISECONDS.toSeconds(duration))
         voiceMessageViewLoader.isVisible = audio.isPendingDownload
         val cornerRadii = MessageBubbleUtilities.calculateRadii(context, isStartOfMessageCluster, isEndOfMessageCluster, message.isOutgoing)
         cornerMask.setTopLeftRadius(cornerRadii[0])
@@ -62,16 +60,33 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
         cornerMask.setBottomLeftRadius(cornerRadii[3])
     }
 
-    override fun onPlayerStart(player: AudioSlidePlayer) { }
+    override fun onPlayerStart(player: AudioSlidePlayer) {
+        if (!isPreparing) { return }
+        isPreparing = false
+        duration = player.duration
+        voiceMessageViewDurationTextView.text = String.format("%01d:%02d",
+            TimeUnit.MILLISECONDS.toMinutes(duration),
+            TimeUnit.MILLISECONDS.toSeconds(duration))
+        player.stop()
+    }
 
-    override fun onPlayerProgress(player: AudioSlidePlayer, progress: Double, duration: Long) {
+    override fun onPlayerProgress(player: AudioSlidePlayer, progress: Double, unused: Long) {
+        if (progress == 1.0) {
+            togglePlayback()
+            handleProgressChanged(0.0)
+        } else {
+            handleProgressChanged(progress)
+        }
+    }
+
+    private fun handleProgressChanged(progress: Double) {
+        this.progress = progress
         voiceMessageViewDurationTextView.text = String.format("%01d:%02d",
             TimeUnit.MILLISECONDS.toMinutes(duration - (progress * duration.toDouble()).roundToLong()),
             TimeUnit.MILLISECONDS.toSeconds(duration - (progress * duration.toDouble()).roundToLong()))
         val layoutParams = progressView.layoutParams as RelativeLayout.LayoutParams
         layoutParams.width = (width.toFloat() * progress.toFloat()).roundToInt()
         progressView.layoutParams = layoutParams
-        this.progress = progress
     }
 
     override fun onPlayerStop(player: AudioSlidePlayer) { }
@@ -89,7 +104,7 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
         val iconID = if (isPlaying) R.drawable.exo_icon_pause else R.drawable.exo_icon_play
         voiceMessagePlaybackImageView.setImageResource(iconID)
         if (isPlaying) {
-            player.play(player.progress)
+            player.play(progress)
         } else {
             player.stop()
         }

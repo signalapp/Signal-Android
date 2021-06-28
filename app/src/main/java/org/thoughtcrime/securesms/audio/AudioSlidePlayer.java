@@ -103,7 +103,7 @@ public class AudioSlidePlayer implements SensorEventListener {
   }
 
   private void play(final double progress, boolean earpiece) throws IOException {
-    if (this.mediaPlayer != null) return;
+    if (this.mediaPlayer != null) { stop(); }
 
     LoadControl loadControl    = new DefaultLoadControl.Builder().setBufferDurationsMs(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE).createDefaultLoadControl();
     this.mediaPlayer           = ExoPlayerFactory.newSimpleInstance(context, new DefaultRenderersFactory(context), new DefaultTrackSelector(), loadControl);
