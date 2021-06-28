@@ -11,9 +11,10 @@ import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.EmojiHeader
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
+import org.thoughtcrime.securesms.components.emoji.parsing.EmojiTree
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.emoji.EmojiCategory
-import org.thoughtcrime.securesms.emoji.EmojiSource
+import org.thoughtcrime.securesms.emoji.EmojiSource.Companion.latest
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageCategoryMappingModel.EmojiCategoryMappingModel
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
 import org.thoughtcrime.securesms.util.MappingModel
@@ -68,16 +69,6 @@ class EmojiKeyboardPageViewModel(repository: EmojiKeyboardPageRepository) : View
     internalSelectedKey.value = key
   }
 
-  private fun getPageForCategory(mappingModel: EmojiKeyboardPageCategoryMappingModel): EmojiPageMappingModel {
-    val page = if (mappingModel.key == RecentEmojiPageModel.KEY) {
-      RecentEmojiPageModel(ApplicationDependencies.getApplication(), EmojiKeyboardProvider.RECENT_STORAGE_KEY)
-    } else {
-      EmojiSource.latest.displayPages.first { it.iconAttr == mappingModel.iconId }
-    }
-
-    return EmojiPageMappingModel(mappingModel.key, page)
-  }
-
   fun addToRecents(emoji: String) {
     RecentEmojiPageModel(ApplicationDependencies.getApplication(), EmojiKeyboardProvider.RECENT_STORAGE_KEY).onCodePointSelected(emoji)
   }
@@ -103,9 +94,15 @@ class EmojiKeyboardPageViewModel(repository: EmojiKeyboardPageRepository) : View
 }
 
 private fun EmojiPageModel.toMappingModels(): List<MappingModel<*>> {
-  return if (EmojiCategory.EMOTICONS.key == key) {
-    displayEmoji.map { EmojiPageViewGridAdapter.EmojiTextModel(key, it) }
-  } else {
-    displayEmoji.map { EmojiPageViewGridAdapter.EmojiModel(key, it) }
+  val emojiTree: EmojiTree = latest.emojiTree
+
+  return displayEmoji.map {
+    val isTextEmoji = EmojiCategory.EMOTICONS.key == key || (RecentEmojiPageModel.KEY == key && emojiTree.getEmoji(it.value, 0, it.value.length) == null)
+
+    if (isTextEmoji) {
+      EmojiPageViewGridAdapter.EmojiTextModel(key, it)
+    } else {
+      EmojiPageViewGridAdapter.EmojiModel(key, it)
+    }
   }
 }
