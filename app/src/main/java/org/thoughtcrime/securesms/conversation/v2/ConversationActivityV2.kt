@@ -717,7 +717,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         super.onActivityResult(requestCode, resultCode, intent)
-        intent ?: return
         val mediaPreppedListener = object : ListenableFuture.Listener<Boolean> {
 
             override fun onSuccess(result: Boolean?) {
@@ -730,7 +729,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         }
         when (requestCode) {
             PICK_DOCUMENT -> {
-                val uri = intent.data ?: return
+                val uri = intent?.data ?: return
                 prepMediaForSending(uri, AttachmentManager.MediaType.DOCUMENT).addListener(mediaPreppedListener)
             }
             TAKE_PHOTO -> {
@@ -738,6 +737,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 prepMediaForSending(uri, AttachmentManager.MediaType.IMAGE).addListener(mediaPreppedListener)
             }
             PICK_GIF -> {
+                intent ?: return
                 val uri = intent.data ?: return
                 val type = AttachmentManager.MediaType.GIF
                 val width = intent.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0)
@@ -745,6 +745,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 prepMediaForSending(uri, type, width, height).addListener(mediaPreppedListener)
             }
             PICK_FROM_LIBRARY -> {
+                intent ?: return
                 val body = intent.getStringExtra(MediaSendActivity.EXTRA_MESSAGE)
                 val media = intent.getParcelableArrayListExtra<Media>(MediaSendActivity.EXTRA_MEDIA) ?: return
                 val slideDeck = SlideDeck()

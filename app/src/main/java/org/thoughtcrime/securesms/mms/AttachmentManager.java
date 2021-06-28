@@ -256,25 +256,14 @@ public class AttachmentManager {
 
   public static void selectGallery(Activity activity, int requestCode, @NonNull Recipient recipient, @NonNull String body) {
     Permissions.with(activity)
-               .request(Manifest.permission.READ_EXTERNAL_STORAGE)
-               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
-               .onAllGranted(() -> activity.startActivityForResult(MediaSendActivity.buildGalleryIntent(activity, recipient, body), requestCode))
-               .execute();
+        .request(Manifest.permission.READ_EXTERNAL_STORAGE)
+        .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
+        .onAllGranted(() -> activity.startActivityForResult(MediaSendActivity.buildGalleryIntent(activity, recipient, body), requestCode))
+        .execute();
   }
 
   public static void selectAudio(Activity activity, int requestCode) {
     selectMediaType(activity, "audio/*", null, requestCode);
-  }
-
-  public static void selectContactInfo(Activity activity, int requestCode) {
-    Permissions.with(activity)
-               .request(Manifest.permission.WRITE_CONTACTS)
-               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information))
-               .onAllGranted(() -> {
-                 Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-                 activity.startActivityForResult(intent, requestCode);
-               })
-               .execute();
   }
 
   public static void selectGif(Activity activity, int requestCode) {
@@ -293,28 +282,25 @@ public class AttachmentManager {
 
   public void capturePhoto(Activity activity, int requestCode) {
     Permissions.with(activity)
-            .request(Manifest.permission.CAMERA)
-            .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied))
-            .onAllGranted(() -> {
-              try {
-                File captureFile = File.createTempFile(
-                        "conversation-capture",
-                        ".jpg",
-                        ExternalStorageUtil.getImageDir(activity));
-                Uri captureUri = FileProviderUtil.getUriFor(context, captureFile);
-                Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                captureIntent.putExtra(EXTRA_OUTPUT, captureUri);
-                captureIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
-                  Log.d(TAG, "captureUri path is " + captureUri.getPath());
-                  this.captureUri = captureUri;
-                  activity.startActivityForResult(captureIntent, requestCode);
-                }
-              } catch (IOException | NoExternalStorageException e) {
-                throw new RuntimeException("Error creating image capture intent.", e);
-              }
-            })
-            .execute();
+        .request(Manifest.permission.CAMERA)
+        .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied))
+        .onAllGranted(() -> {
+          try {
+            File captureFile = File.createTempFile("conversation-capture", ".jpg", ExternalStorageUtil.getImageDir(activity));
+            Uri captureUri = FileProviderUtil.getUriFor(context, captureFile);
+            Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            captureIntent.putExtra(EXTRA_OUTPUT, captureUri);
+            captureIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
+              Log.d(TAG, "captureUri path is " + captureUri.getPath());
+              this.captureUri = captureUri;
+              activity.startActivityForResult(captureIntent, requestCode);
+            }
+          } catch (IOException | NoExternalStorageException e) {
+            throw new RuntimeException("Error creating image capture intent.", e);
+          }
+        })
+        .execute();
   }
 
   private static void selectMediaType(Activity activity, @NonNull String type, @Nullable String[] extraMimeType, int requestCode) {
@@ -392,6 +378,5 @@ public class AttachmentManager {
 
       return DOCUMENT;
     }
-
   }
 }

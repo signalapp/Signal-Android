@@ -1424,7 +1424,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       case AttachmentTypeSelector.ADD_SOUND:
         AttachmentManager.selectAudio(this, PICK_AUDIO); break;
       case AttachmentTypeSelector.ADD_CONTACT_INFO:
-        AttachmentManager.selectContactInfo(this, PICK_CONTACT); break;
+        break;
       case AttachmentTypeSelector.ADD_LOCATION:
         break;
       case AttachmentTypeSelector.TAKE_PHOTO:
