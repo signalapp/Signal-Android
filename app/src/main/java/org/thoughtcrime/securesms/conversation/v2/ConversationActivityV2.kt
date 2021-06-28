@@ -13,6 +13,7 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
 import androidx.loader.app.LoaderManager
@@ -39,6 +40,7 @@ import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsignal.utilities.ListenableFuture
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
@@ -66,6 +68,7 @@ import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.util.*
+import java.util.concurrent.ExecutionException
 import kotlin.math.*
 
 // Some things that seemingly belong to the input bar (e.g. the voice message recording UI) are actually
@@ -681,9 +684,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         currentMentionStartIndex = -1
         mentions.clear()
         // Reset the attachment manager
-        attachmentManager.clear(glide, false)
-        //
-        
+        attachmentManager.clear()
+        // Reset attachments button if needed
+        if (isShowingAttachmentOptions) { toggleAttachmentOptions() }
         // Put the message in the database
         message.id = DatabaseFactory.getMmsDatabase(this).insertMessageOutbox(outgoingTextMessage, threadID, false) { }
         // Send it
@@ -709,27 +712,37 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun onAttachmentChanged() {
-
+        // TODO: Do we need to do something here?
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         super.onActivityResult(requestCode, resultCode, intent)
         intent ?: return
+        val mediaPreppedListener = object : ListenableFuture.Listener<Boolean> {
+
+            override fun onSuccess(result: Boolean?) {
+                sendAttachments(attachmentManager.buildSlideDeck().asAttachments(), null)
+            }
+
+            override fun onFailure(e: ExecutionException?) {
+                Toast.makeText(this@ConversationActivityV2, R.string.activity_conversation_attachment_prep_failed, Toast.LENGTH_LONG).show()
+            }
+        }
         when (requestCode) {
             PICK_DOCUMENT -> {
                 val uri = intent.data ?: return
-                prepMediaForSending(uri, AttachmentManager.MediaType.DOCUMENT)
+                prepMediaForSending(uri, AttachmentManager.MediaType.DOCUMENT).addListener(mediaPreppedListener)
             }
             TAKE_PHOTO -> {
                 val uri = attachmentManager.captureUri ?: return
-                prepMediaForSending(uri, AttachmentManager.MediaType.IMAGE)
+                prepMediaForSending(uri, AttachmentManager.MediaType.IMAGE).addListener(mediaPreppedListener)
             }
             PICK_GIF -> {
                 val uri = intent.data ?: return
                 val type = AttachmentManager.MediaType.GIF
                 val width = intent.getIntExtra(GiphyActivity.EXTRA_WIDTH, 0)
                 val height = intent.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0)
-                prepMediaForSending(uri, type, width, height)
+                prepMediaForSending(uri, type, width, height).addListener(mediaPreppedListener)
             }
             PICK_FROM_LIBRARY -> {
                 val body = intent.getStringExtra(MediaSendActivity.EXTRA_MESSAGE)
@@ -756,12 +769,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         }
     }
 
-    private fun prepMediaForSending(uri: Uri, type: AttachmentManager.MediaType) {
-        prepMediaForSending(uri, type, null, null)
+    private fun prepMediaForSending(uri: Uri, type: AttachmentManager.MediaType): ListenableFuture<Boolean> {
+        return prepMediaForSending(uri, type, null, null)
     }
 
-    private fun prepMediaForSending(uri: Uri, type: AttachmentManager.MediaType, width: Int?, height: Int?) {
-        attachmentManager.setMedia(glide, uri, type, MediaConstraints.getPushMediaConstraints(), width ?: 0, height ?: 0)
+    private fun prepMediaForSending(uri: Uri, type: AttachmentManager.MediaType, width: Int?, height: Int?): ListenableFuture<Boolean> {
+        return attachmentManager.setMedia(glide, uri, type, MediaConstraints.getPushMediaConstraints(), width ?: 0, height ?: 0)
     }
     // endregion
 

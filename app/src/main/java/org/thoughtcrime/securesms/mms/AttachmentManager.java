@@ -73,19 +73,12 @@ import network.loki.messenger.R;
 
 import static android.provider.MediaStore.EXTRA_OUTPUT;
 
-
 public class AttachmentManager {
 
   private final static String TAG = AttachmentManager.class.getSimpleName();
 
   private final @NonNull Context                    context;
-  private final @NonNull Stub<View>                 attachmentViewStub;
   private final @NonNull AttachmentListener         attachmentListener;
-
-  private RemovableEditableMediaView removableMediaView;
-  private ThumbnailView              thumbnail;
-  private MessageAudioView audioView;
-  private DocumentView               documentView;
 
   private @NonNull  List<Uri>       garbage = new LinkedList<>();
   private @NonNull  Optional<Slide> slide   = Optional.absent();
@@ -94,51 +87,12 @@ public class AttachmentManager {
   public AttachmentManager(@NonNull Activity activity, @NonNull AttachmentListener listener) {
     this.context            = activity;
     this.attachmentListener = listener;
-    this.attachmentViewStub = ViewUtil.findStubById(activity, R.id.attachment_editor_stub);
   }
 
-  private void inflateStub() {
-    if (!attachmentViewStub.resolved()) {
-      View root = attachmentViewStub.get();
-
-      this.thumbnail          = ViewUtil.findById(root, R.id.attachment_thumbnail);
-      this.audioView          = ViewUtil.findById(root, R.id.attachment_audio);
-      this.documentView       = ViewUtil.findById(root, R.id.attachment_document);
-      this.removableMediaView = ViewUtil.findById(root, R.id.removable_media_view);
-
-      removableMediaView.setRemoveClickListener(new RemoveButtonListener());
-      thumbnail.setOnClickListener(new ThumbnailClickListener());
-      documentView.getBackground().setColorFilter(ThemeUtil.getThemedColor(context, R.attr.conversation_item_bubble_background), PorterDuff.Mode.MULTIPLY);
-    }
-  }
-
-  public void clear(@NonNull GlideRequests glideRequests, boolean animate) {
-    if (attachmentViewStub.resolved()) {
-
-      if (animate) {
-        ViewUtil.fadeOut(attachmentViewStub.get(), 200).addListener(new Listener<Boolean>() {
-          @Override
-          public void onSuccess(Boolean result) {
-            thumbnail.clear(glideRequests);
-            attachmentViewStub.get().setVisibility(View.GONE);
-            attachmentListener.onAttachmentChanged();
-          }
-
-          @Override
-          public void onFailure(ExecutionException e) {
-          }
-        });
-      } else {
-        thumbnail.clear(glideRequests);
-        attachmentViewStub.get().setVisibility(View.GONE);
-        attachmentListener.onAttachmentChanged();
-      }
-
-      markGarbage(getSlideUri());
-      slide = Optional.absent();
-
-      audioView.cleanup();
-    }
+  public void clear() {
+    markGarbage(getSlideUri());
+    slide = Optional.absent();
+    attachmentListener.onAttachmentChanged();
   }
 
   public void cleanup() {
@@ -190,16 +144,12 @@ public class AttachmentManager {
                                                      final int width,
                                                      final int height)
   {
-    inflateStub();
-
     final SettableFuture<Boolean> result = new SettableFuture<>();
 
     new AsyncTask<Void, Void, Slide>() {
       @Override
       protected void onPreExecute() {
-        thumbnail.clear(glideRequests);
-        thumbnail.showProgressSpinner();
-        attachmentViewStub.get().setVisibility(View.VISIBLE);
+
       }
 
       @Override
@@ -222,35 +172,12 @@ public class AttachmentManager {
       @Override
       protected void onPostExecute(@Nullable final Slide slide) {
         if (slide == null) {
-          attachmentViewStub.get().setVisibility(View.GONE);
-          Toast.makeText(context,
-                         R.string.ConversationActivity_sorry_there_was_an_error_setting_your_attachment,
-                         Toast.LENGTH_SHORT).show();
           result.set(false);
         } else if (!areConstraintsSatisfied(context, slide, constraints)) {
-          attachmentViewStub.get().setVisibility(View.GONE);
-          Toast.makeText(context,
-                         R.string.ConversationActivity_attachment_exceeds_size_limits,
-                         Toast.LENGTH_SHORT).show();
           result.set(false);
         } else {
           setSlide(slide);
-          attachmentViewStub.get().setVisibility(View.VISIBLE);
-
-          if (slide.hasAudio()) {
-            audioView.setAudio((AudioSlide) slide, false);
-            removableMediaView.display(audioView, false);
-            result.set(true);
-          } else if (slide.hasDocument()) {
-            documentView.setDocument((DocumentSlide) slide, false);
-            removableMediaView.display(documentView, false);
-            result.set(true);
-          } else {
-            Attachment attachment = slide.asAttachment();
-            result.deferTo(thumbnail.setImageResource(glideRequests, slide, false, true, attachment.getWidth(), attachment.getHeight()));
-            removableMediaView.display(thumbnail, mediaType == MediaType.IMAGE);
-          }
-
+          result.set(true);
           attachmentListener.onAttachmentChanged();
         }
       }
@@ -317,10 +244,6 @@ public class AttachmentManager {
     return result;
   }
 
-  public boolean isAttachmentPresent() {
-    return attachmentViewStub.resolved() && attachmentViewStub.get().getVisibility() == View.VISIBLE;
-  }
-
   public @NonNull SlideDeck buildSlideDeck() {
     SlideDeck deck = new SlideDeck();
     if (slide.isPresent()) deck.addSlide(slide.get());
@@ -352,22 +275,6 @@ public class AttachmentManager {
                  activity.startActivityForResult(intent, requestCode);
                })
                .execute();
-  }
-
-  public static void selectLocation(Activity activity, int requestCode) {
-    /* Loki - Enable again once we have location sharing
-    Permissions.with(activity)
-               .request(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-               .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location))
-               .onAllGranted(() -> {
-                 try {
-                   activity.startActivityForResult(new PlacePicker.IntentBuilder().build(activity), requestCode);
-                 } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
-                   Log.w(TAG, e);
-                 }
-               })
-               .execute();
-     */
   }
 
   public static void selectGif(Activity activity, int requestCode) {
@@ -443,34 +350,6 @@ public class AttachmentManager {
    return slide == null                                          ||
           constraints.isSatisfied(context, slide.asAttachment()) ||
           constraints.canResize(slide.asAttachment());
-  }
-
-  private void previewImageDraft(final @NonNull Slide slide) {
-    if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType()) && slide.getUri() != null) {
-      Intent intent = new Intent(context, MediaPreviewActivity.class);
-      intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-      intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().getSize());
-      intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, slide.getCaption().orNull());
-      intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, true);
-      intent.setDataAndType(slide.getUri(), slide.getContentType());
-
-      context.startActivity(intent);
-    }
-  }
-
-  private class ThumbnailClickListener implements View.OnClickListener {
-    @Override
-    public void onClick(View v) {
-      if (slide.isPresent()) previewImageDraft(slide.get());
-    }
-  }
-
-  private class RemoveButtonListener implements View.OnClickListener {
-    @Override
-    public void onClick(View v) {
-      cleanup();
-      clear(GlideApp.with(context.getApplicationContext()), true);
-    }
   }
 
   public interface AttachmentListener {
