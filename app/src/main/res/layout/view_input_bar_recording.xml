@@ -128,6 +128,7 @@
     <!-- The actual record button overlay -->
 
     <RelativeLayout
+        android:id="@+id/recordButtonOverlay"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentEnd="true"

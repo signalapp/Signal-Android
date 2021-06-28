@@ -52,10 +52,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         // Microphone button
         microphoneOrSendButtonContainer.addView(microphoneButton)
         microphoneButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
-        microphoneButton.onLongPress = {
-            showVoiceMessageUI()
-            startRecordingVoiceMessage()
-        }
+        microphoneButton.onLongPress = { startRecordingVoiceMessage() }
         microphoneButton.onMove = { delegate?.onMicrophoneButtonMove(it) }
         microphoneButton.onCancel = { delegate?.onMicrophoneButtonCancel(it) }
         microphoneButton.onUp = { delegate?.onMicrophoneButtonUp(it) }
@@ -93,10 +90,6 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
 
     private fun toggleAttachmentOptions() {
         delegate?.toggleAttachmentOptions()
-    }
-
-    private fun showVoiceMessageUI() {
-        delegate?.showVoiceMessageUI()
     }
 
     private fun startRecordingVoiceMessage() {

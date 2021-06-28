@@ -43,9 +43,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.utilities.MediaTypes
 import org.session.libsession.utilities.ServiceUtil
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.concurrent.AssertedSuccessListener
 import org.session.libsignal.utilities.ListenableFuture
-import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.audio.AudioRecorder
@@ -93,7 +91,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     // Attachments
     private val audioRecorder = AudioRecorder(this)
     private val stopAudioHandler = Handler(Looper.getMainLooper())
-    private val stopVoiceMessageRecordingTask = Runnable { stopVoiceMessageRecording() }
+    private val stopVoiceMessageRecordingTask = Runnable { sendVoiceMessage() }
     private val attachmentManager by lazy { AttachmentManager(this, this) }
     private var isLockViewExpanded = false
     private var isShowingAttachmentOptions = false
@@ -628,11 +626,20 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun onMicrophoneButtonUp(event: MotionEvent) {
-        if (isValidLockViewLocation(event.rawX.roundToInt(), event.rawY.roundToInt())) {
+        val x = event.rawX.roundToInt()
+        val y = event.rawY.roundToInt()
+        if (isValidLockViewLocation(x, y)) {
             inputBarRecordingView.lock()
         } else {
-            hideVoiceMessageUI()
-            stopVoiceMessageRecording()
+            val recordButtonOverlay = inputBarRecordingView.recordButtonOverlay
+            val location = IntArray(2) { 0 }
+            recordButtonOverlay.getLocationOnScreen(location)
+            val hitRect = Rect(location[0], location[1], location[0] + recordButtonOverlay.width, location[1] + recordButtonOverlay.height)
+            if (hitRect.contains(x, y)) {
+                sendVoiceMessage()
+            } else {
+                cancelVoiceMessage()
+            }
         }
     }
 
@@ -791,12 +798,14 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun startRecordingVoiceMessage() {
+        showVoiceMessageUI()
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         audioRecorder.startRecording()
         stopAudioHandler.postDelayed(stopVoiceMessageRecordingTask, 60000) // Limit voice messages to 1 minute each
     }
 
-    fun stopVoiceMessageRecording() {
+    override fun sendVoiceMessage() {
+        hideVoiceMessageUI()
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         val future = audioRecorder.stopRecording()
         stopAudioHandler.removeCallbacks(stopVoiceMessageRecordingTask)
@@ -813,6 +822,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 Toast.makeText(this@ConversationActivityV2, R.string.ConversationActivity_unable_to_record_audio, Toast.LENGTH_LONG).show()
             }
         })
+    }
+
+    override fun cancelVoiceMessage() {
+        hideVoiceMessageUI()
+        window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        audioRecorder.stopRecording()
+        stopAudioHandler.removeCallbacks(stopVoiceMessageRecordingTask)
     }
     // endregion
 
