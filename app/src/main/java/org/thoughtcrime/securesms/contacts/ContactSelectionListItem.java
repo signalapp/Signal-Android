@@ -189,7 +189,11 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
 
   @Override
   public void onRecipientChanged(@NonNull Recipient recipient) {
-    contactPhotoImage.setAvatar(glideRequests, recipient, false);
-    setText(recipient, contactType, contactName, contactNumber, contactLabel, contactAbout);
+    if (this.recipient != null && this.recipient.getId().equals(recipient.getId())) {
+      contactPhotoImage.setAvatar(glideRequests, recipient, false);
+      setText(recipient, contactType, contactName, contactNumber, contactLabel, contactAbout);
+    } else {
+      Log.w(TAG, "Bad change! Local recipient doesn't match. Ignoring. Local: " + (this.recipient == null ? "null" : this.recipient.getId()) + ", Changed: " + recipient.getId());
+    }
   }
 }
