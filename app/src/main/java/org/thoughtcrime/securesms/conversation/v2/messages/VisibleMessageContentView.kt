@@ -28,6 +28,7 @@ import kotlin.math.roundToInt
 
 class VisibleMessageContentView : LinearLayout {
     var onContentClick: (() -> Unit)? = null
+    var onContentDoubleTap: (() -> Unit)? = null
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
@@ -52,6 +53,7 @@ class VisibleMessageContentView : LinearLayout {
         // Body
         mainContainer.removeAllViews()
         onContentClick = null
+        onContentDoubleTap = null
         if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
             val linkPreviewView = LinkPreviewView(context)
             linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster)
@@ -77,6 +79,7 @@ class VisibleMessageContentView : LinearLayout {
             // We have to use onContentClick (rather than a click listener directly on the voice
             // message view) so as to not interfere with all the other gestures.
             onContentClick = { voiceMessageView.togglePlayback() }
+            onContentDoubleTap = { voiceMessageView.handleDoubleTap() }
         } else if (message is MmsMessageRecord && message.slideDeck.documentSlide != null) {
             val documentView = DocumentView(context)
             documentView.bind(message, VisibleMessageContentView.getTextColor(context, message))

@@ -2,24 +2,18 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.drawable.Drawable
-import android.os.Handler
-import android.os.Looper
 import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.view.ViewOutlineProvider
+import android.util.Log
+import android.view.*
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_voice_message.view.*
 import network.loki.messenger.R
-import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer
 import org.thoughtcrime.securesms.components.CornerMask
 import org.thoughtcrime.securesms.conversation.v2.utilities.MessageBubbleUtilities
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.mms.AudioSlide
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
@@ -108,6 +102,10 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
         } else {
             player.stop()
         }
+    }
+
+    fun handleDoubleTap() {
+        Log.d("Test", "handleDoubleTap()")
     }
     // endregion
 }

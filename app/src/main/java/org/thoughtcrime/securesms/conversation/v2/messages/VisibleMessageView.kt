@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
+import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
@@ -40,8 +41,10 @@ class VisibleMessageView : LinearLayout {
     private var dx = 0.0f
     private var previousTranslationX = 0.0f
     private val gestureHandler = Handler(Looper.getMainLooper())
+    private var pressCallback: Runnable? = null
     private var longPressCallback: Runnable? = null
     private var onDownTimestamp = 0L
+    private var onDoubleTap: (() -> Unit)? = null
     var snIsSelected = false
         set(value) { field = value; handleIsSelectedChanged()}
     var onPress: (() -> Unit)? = null
@@ -52,6 +55,7 @@ class VisibleMessageView : LinearLayout {
         const val swipeToReplyThreshold = 80.0f // dp
         const val longPressMovementTreshold = 10.0f // dp
         const val longPressDurationThreshold = 250L // ms
+        const val maxDoubleTapInterval = 200L
     }
 
     // region Lifecycle
@@ -137,6 +141,7 @@ class VisibleMessageView : LinearLayout {
         if (profilePictureContainer.visibility != View.GONE) { maxWidth -= profilePictureContainer.width }
         // Populate content view
         messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth, thread)
+        onDoubleTap = { messageContentView.onContentDoubleTap?.invoke() }
     }
 
     private fun setMessageSpacing(isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {
@@ -266,7 +271,18 @@ class VisibleMessageView : LinearLayout {
             onSwipeToReply?.invoke()
         } else if ((Date().time - onDownTimestamp) < VisibleMessageView.longPressDurationThreshold) {
             longPressCallback?.let { gestureHandler.removeCallbacks(it) }
-            onPress?.invoke()
+            val pressCallback = this.pressCallback
+            if (pressCallback != null) {
+                // If we're here and pressCallback isn't null, it means that we tapped again within
+                // maxDoubleTapInterval ms and we should count this as a double tap
+                gestureHandler.removeCallbacks(pressCallback)
+                this.pressCallback = null
+                onDoubleTap?.invoke()
+            } else {
+                val newPressCallback = Runnable { onPress() }
+                this.pressCallback = newPressCallback
+                gestureHandler.postDelayed(newPressCallback, VisibleMessageView.maxDoubleTapInterval)
+            }
         }
         resetPosition()
     }
@@ -289,6 +305,11 @@ class VisibleMessageView : LinearLayout {
     private fun onLongPress() {
         performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
         onLongPress?.invoke()
+    }
+
+    private fun onPress() {
+        onPress?.invoke()
+        pressCallback = null
     }
 
     fun onContentClick() {
