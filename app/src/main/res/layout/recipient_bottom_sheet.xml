@@ -96,6 +96,7 @@
             tools:visibility="visible" />
 
         <LinearLayout
+            android:id="@+id/interactions_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -190,6 +191,18 @@
                 android:text="@string/RecipientBottomSheet_add_to_contacts"
                 android:visibility="gone"
                 app:drawableStartCompat="@drawable/ic_plus_24"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/rbs_contact_details_button"
+                style="@style/Widget.Signal.Button.TextButton.Drawable"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/ConversationSettingsFragment__contact_details"
+                android:visibility="gone"
+                app:drawableStartCompat="@drawable/ic_profile_circle_24"
                 tools:visibility="visible" />
 
             <Button

@@ -432,6 +432,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         customPref(
           SharedMediaPreference.Model(
             mediaCursor = state.sharedMedia,
+            mediaIds = state.sharedMediaIds,
             onMediaRecordClick = { mediaRecord, isLtr ->
               startActivityForResult(
                 MediaPreviewActivity.intentFromMediaRecord(requireContext(), mediaRecord, isLtr),

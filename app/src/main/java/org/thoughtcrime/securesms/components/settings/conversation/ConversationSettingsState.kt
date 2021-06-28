@@ -15,6 +15,7 @@ data class ConversationSettingsState(
   val disappearingMessagesLifespan: Int = 0,
   val canModifyBlockedState: Boolean = false,
   val sharedMedia: Cursor? = null,
+  val sharedMediaIds: List<Long> = listOf(),
   private val sharedMediaLoaded: Boolean = false,
   private val specificSettingsState: SpecificSettingsState,
 ) {

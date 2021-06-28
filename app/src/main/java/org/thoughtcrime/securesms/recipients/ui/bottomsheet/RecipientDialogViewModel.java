@@ -195,7 +195,7 @@ final class RecipientDialogViewModel extends ViewModel {
                    .show();
   }
 
-  void onAddedToContacts() {
+  void refreshRecipient() {
     recipientDialogRepository.refreshRecipient();
   }
 

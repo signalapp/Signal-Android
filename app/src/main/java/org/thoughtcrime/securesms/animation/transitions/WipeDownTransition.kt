@@ -11,6 +11,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.core.animation.addListener
 import androidx.fragment.app.FragmentContainerView
 
 private const val BOUNDS = "signal.wipedowntransition.bottom"
@@ -51,6 +52,12 @@ class WipeDownTransition(context: Context, attrs: AttributeSet?) : Transition(co
     val startBottom: Rect = startValues.values[BOUNDS] as? Rect ?: Rect().apply { view.getLocalVisibleRect(this) }
     val endBottom: Rect = endValues.values[BOUNDS] as? Rect ?: Rect().apply { view.getLocalVisibleRect(this) }
 
-    return ObjectAnimator.ofObject(view, "clipBounds", RectEvaluator(), startBottom, endBottom)
+    return ObjectAnimator.ofObject(view, "clipBounds", RectEvaluator(), startBottom, endBottom).apply {
+      addListener(
+        onEnd = {
+          view.clipBounds = null
+        }
+      )
+    }
   }
 }

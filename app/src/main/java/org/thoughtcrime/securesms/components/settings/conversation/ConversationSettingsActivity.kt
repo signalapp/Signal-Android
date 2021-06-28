@@ -31,7 +31,7 @@ class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettings
 
   override fun finish() {
     super.finish()
-    overridePendingTransition(0, R.anim.fade_out)
+    overridePendingTransition(0, R.anim.slide_fade_to_bottom)
   }
 
   companion object {

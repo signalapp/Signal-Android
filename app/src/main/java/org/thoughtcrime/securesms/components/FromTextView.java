@@ -72,8 +72,8 @@ public class FromTextView extends EmojiTextView {
 
     setText(builder);
 
-    if      (recipient.isBlocked()) setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_block_grey600_18dp, 0, 0, 0);
-    else if (recipient.isMuted())   setCompoundDrawablesWithIntrinsicBounds(getMuted(), null, null, null);
+    if      (recipient.isBlocked()) setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_block_grey600_18dp, 0, 0, 0);
+    else if (recipient.isMuted())   setCompoundDrawablesRelativeWithIntrinsicBounds(getMuted(), null, null, null);
     else                            setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
   }
 

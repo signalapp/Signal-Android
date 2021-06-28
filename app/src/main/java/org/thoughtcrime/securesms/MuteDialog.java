@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import java.util.concurrent.TimeUnit;
 
 public class MuteDialog extends AlertDialog {
@@ -29,7 +31,7 @@ public class MuteDialog extends AlertDialog {
   }
 
   public static void show(final Context context, final @NonNull MuteSelectionListener listener, @Nullable Runnable cancelListener) {
-    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(context);
     builder.setTitle(R.string.MuteDialog_mute_notifications);
     builder.setItems(R.array.mute_durations, new DialogInterface.OnClickListener() {
       @Override

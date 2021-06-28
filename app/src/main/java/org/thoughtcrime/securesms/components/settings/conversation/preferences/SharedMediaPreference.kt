@@ -22,10 +22,16 @@ object SharedMediaPreference {
 
   class Model(
     val mediaCursor: Cursor,
+    val mediaIds: List<Long>,
     val onMediaRecordClick: (MediaDatabase.MediaRecord, Boolean) -> Unit
   ) : PreferenceModel<Model>() {
     override fun areItemsTheSame(newItem: Model): Boolean {
-      return newItem.mediaCursor == mediaCursor
+      return true
+    }
+
+    override fun areContentsTheSame(newItem: Model): Boolean {
+      return super.areContentsTheSame(newItem) &&
+        mediaIds == newItem.mediaIds
     }
   }
 

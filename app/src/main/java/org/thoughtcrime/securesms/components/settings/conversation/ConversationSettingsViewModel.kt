@@ -10,12 +10,14 @@ import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.LegacyGroupPreference
+import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.LiveGroup
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
+import org.thoughtcrime.securesms.util.CursorUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SingleLiveEvent
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
@@ -58,7 +60,19 @@ sealed class ConversationSettingsViewModel(
           openedMediaCursors.add(cursor.get())
         }
 
-        state.copy(sharedMedia = cursor.orNull(), sharedMediaLoaded = true)
+        val ids: List<Long> = cursor.transform<List<Long>> {
+          val result = mutableListOf<Long>()
+          while (it.moveToNext()) {
+            result.add(CursorUtil.requireLong(it, AttachmentDatabase.ROW_ID))
+          }
+          result
+        }.or(listOf())
+
+        state.copy(
+          sharedMedia = cursor.orNull(),
+          sharedMediaIds = ids,
+          sharedMediaLoaded = true
+        )
       } else {
         cursor.orNull().ensureClosed()
         state.copy(sharedMedia = null)
@@ -125,7 +139,7 @@ sealed class ConversationSettingsViewModel(
             isAudioAvailable = !recipient.isGroup && !recipient.isSelf,
             isAudioSecure = recipient.registered == RecipientDatabase.RegisteredState.REGISTERED,
             isMuted = recipient.isMuted,
-            isMuteAvailable = true,
+            isMuteAvailable = !recipient.isSelf,
             isSearchAvailable = true
           ),
           disappearingMessagesLifespan = recipient.expireMessages,

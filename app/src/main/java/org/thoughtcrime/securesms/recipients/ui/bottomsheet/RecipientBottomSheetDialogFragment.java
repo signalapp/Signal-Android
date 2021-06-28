@@ -52,7 +52,7 @@ import kotlin.Unit;
  */
 public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
-  public static final int REQUEST_CODE_ADD_CONTACT = 1111;
+  public static final int REQUEST_CODE_SYSTEM_CONTACT_SHEET = 1111;
 
   private static final String ARGS_RECIPIENT_ID = "RECIPIENT_ID";
   private static final String ARGS_GROUP_ID     = "GROUP_ID";
@@ -65,6 +65,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private Button                   blockButton;
   private Button                   unblockButton;
   private Button                   addContactButton;
+  private Button                   contactDetailsButton;
   private Button                   addToGroupButton;
   private Button                   viewSafetyNumberButton;
   private Button                   makeGroupAdminButton;
@@ -73,6 +74,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private ProgressBar              adminActionBusy;
   private View                     noteToSelfDescription;
   private View                     buttonStrip;
+  private View                     interactionsContainer;
 
   public static BottomSheetDialogFragment create(@NonNull RecipientId recipientId,
                                                  @Nullable GroupId groupId)
@@ -110,6 +112,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     blockButton            = view.findViewById(R.id.rbs_block_button);
     unblockButton          = view.findViewById(R.id.rbs_unblock_button);
     addContactButton       = view.findViewById(R.id.rbs_add_contact_button);
+    contactDetailsButton   = view.findViewById(R.id.rbs_contact_details_button);
     addToGroupButton       = view.findViewById(R.id.rbs_add_to_group_button);
     viewSafetyNumberButton = view.findViewById(R.id.rbs_view_safety_number_button);
     makeGroupAdminButton   = view.findViewById(R.id.rbs_make_group_admin_button);
@@ -118,6 +121,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     adminActionBusy        = view.findViewById(R.id.rbs_admin_action_busy);
     noteToSelfDescription  = view.findViewById(R.id.rbs_note_to_self_description);
     buttonStrip            = view.findViewById(R.id.button_strip);
+    interactionsContainer  = view.findViewById(R.id.interactions_container);
 
     return view;
   }
@@ -135,6 +139,8 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
     viewModel = ViewModelProviders.of(this, factory).get(RecipientDialogViewModel.class);
 
     viewModel.getRecipient().observe(getViewLifecycleOwner(), recipient -> {
+      interactionsContainer.setVisibility(recipient.isSelf() ? View.GONE : View.VISIBLE);
+
       avatar.setFallbackPhotoProvider(new Recipient.FallbackPhotoProvider() {
         @Override
         public @NonNull FallbackContactPhoto getPhotoForLocalNumber() {
@@ -232,8 +238,17 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
       } else {
         addContactButton.setVisibility(View.VISIBLE);
         addContactButton.setOnClickListener(v -> {
-          startActivityForResult(RecipientExporter.export(recipient).asAddContactIntent(), REQUEST_CODE_ADD_CONTACT);
+          startActivityForResult(RecipientExporter.export(recipient).asAddContactIntent(), REQUEST_CODE_SYSTEM_CONTACT_SHEET);
         });
+      }
+
+      if (recipient.isSystemContact() && !recipient.isGroup() && !recipient.isSelf()) {
+        contactDetailsButton.setVisibility(View.VISIBLE);
+        contactDetailsButton.setOnClickListener(v -> {
+          startActivityForResult(new Intent(Intent.ACTION_VIEW, recipient.getContactUri()), REQUEST_CODE_SYSTEM_CONTACT_SHEET);
+        });
+      } else {
+        contactDetailsButton.setVisibility(View.GONE);
       }
     });
 
@@ -288,8 +303,8 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_ADD_CONTACT) {
-      viewModel.onAddedToContacts();
+    if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_SYSTEM_CONTACT_SHEET) {
+      viewModel.refreshRecipient();
     }
   }
 
