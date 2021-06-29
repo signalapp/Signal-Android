@@ -313,9 +313,5 @@ class VisibleMessageView : LinearLayout {
         onPress?.invoke(rawX, rawY)
         pressCallback = null
     }
-
-    fun onContentClick() {
-        messageContentView.onContentClick?.invoke()
-    }
     // endregion
 }
