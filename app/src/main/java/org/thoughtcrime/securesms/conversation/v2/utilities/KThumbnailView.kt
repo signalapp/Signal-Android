@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.components.GlideBitmapListeningTarget
 import org.thoughtcrime.securesms.components.GlideDrawableListeningTarget
 import org.thoughtcrime.securesms.mms.*
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
+import org.thoughtcrime.securesms.util.MediaUtil
 
 open class KThumbnailView: FrameLayout {
 

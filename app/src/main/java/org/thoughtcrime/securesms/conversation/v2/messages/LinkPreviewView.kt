@@ -1,23 +1,20 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Canvas
-import android.graphics.drawable.Drawable
-import android.net.Uri
+import android.graphics.Rect
+import android.text.method.LinkMovementMethod
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.ViewOutlineProvider
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_link_preview.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.components.CornerMask
 import org.thoughtcrime.securesms.conversation.v2.dialogs.OpenURLDialog
 import org.thoughtcrime.securesms.conversation.v2.utilities.MessageBubbleUtilities
-import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
 import org.thoughtcrime.securesms.mms.GlideRequests
@@ -44,7 +41,8 @@ class LinkPreviewView : LinearLayout {
         // Thumbnail
         if (linkPreview.getThumbnail().isPresent) {
             // This internally fetches the thumbnail
-            thumbnailImageView.setImageResource(glide, ImageSlide(context, linkPreview.getThumbnail().get()), false, false)
+            thumbnailImageView.setImageResource(glide, ImageSlide(context, linkPreview.getThumbnail().get()), isPreview = false)
+            thumbnailImageView.loadIndicator.isVisible = false
         }
         // Title
         titleTextView.text = linkPreview.title
@@ -56,6 +54,7 @@ class LinkPreviewView : LinearLayout {
         titleTextView.setTextColor(ResourcesCompat.getColor(resources, textColorID, context.theme))
         // Body
         val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
+        bodyTextView.movementMethod = LinkMovementMethod.getInstance()
         mainLinkPreviewContainer.addView(bodyTextView)
         // Corner radii
         val cornerRadii = MessageBubbleUtilities.calculateRadii(context, isStartOfMessageCluster, isEndOfMessageCluster, message.isOutgoing)
@@ -72,6 +71,14 @@ class LinkPreviewView : LinearLayout {
     // endregion
 
     // region Interaction
+    fun calculateHit(hitRect: Rect) {
+        val previewRect = Rect()
+        mainLinkPreviewParent.getGlobalVisibleRect(previewRect)
+        if (previewRect.contains(hitRect)) {
+            openURL()
+        }
+    }
+
     fun openURL() {
         val url = this.url ?: return
         val activity = context as AppCompatActivity
