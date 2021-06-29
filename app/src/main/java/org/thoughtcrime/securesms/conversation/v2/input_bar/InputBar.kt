@@ -8,7 +8,6 @@ import android.view.MotionEvent
 import android.widget.RelativeLayout
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_input_bar.view.*
-import kotlinx.android.synthetic.main.view_quote.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.thoughtcrime.securesms.conversation.v2.components.LinkPreviewDraftView
@@ -30,6 +29,8 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     private var linkPreviewDraftView: LinkPreviewDraftView? = null
     var delegate: InputBarDelegate? = null
     var additionalContentHeight = 0
+    var quote: MessageRecord? = null
+    var linkPreview: LinkPreview? = null
 
     var text: String
         get() { return inputBarEditText.text.toString() }
@@ -53,7 +54,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         // Microphone button
         microphoneOrSendButtonContainer.addView(microphoneButton)
         microphoneButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
-        microphoneButton.onLongPress = { showVoiceMessageUI() }
+        microphoneButton.onLongPress = { startRecordingVoiceMessage() }
         microphoneButton.onMove = { delegate?.onMicrophoneButtonMove(it) }
         microphoneButton.onCancel = { delegate?.onMicrophoneButtonCancel(it) }
         microphoneButton.onUp = { delegate?.onMicrophoneButtonUp(it) }
@@ -61,7 +62,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         microphoneOrSendButtonContainer.addView(sendButton)
         sendButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
         sendButton.isVisible = false
-        sendButton.onUp = { delegate?.send() }
+        sendButton.onUp = { delegate?.sendMessage() }
         // Edit text
         inputBarEditText.imeOptions = inputBarEditText.imeOptions or 16777216 // Always use incognito keyboard
         inputBarEditText.delegate = this
@@ -93,14 +94,16 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         delegate?.toggleAttachmentOptions()
     }
 
-    private fun showVoiceMessageUI() {
-        delegate?.showVoiceMessageUI()
+    private fun startRecordingVoiceMessage() {
+        delegate?.startRecordingVoiceMessage()
     }
 
     // Drafting quotes and drafting link previews is mutually exclusive, i.e. you can't draft
     // a quote and a link preview at the same time.
 
-    fun draftQuote(message: MessageRecord) {
+    fun draftQuote(message: MessageRecord, glide: GlideRequests) {
+        quote = message
+        linkPreview = null
         linkPreviewDraftView = null
         inputBarAdditionalContentContainer.removeAllViews()
         val quoteView = QuoteView(context, QuoteView.Mode.Draft)
@@ -112,7 +115,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         // here to get the layout right.
         val maxContentWidth = (screenWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - toPx(16, resources) - toPx(30, resources)).roundToInt()
         quoteView.bind(message.individualRecipient.address.toString(), message.body, attachments,
-            message.recipient, true, maxContentWidth, message.isOpenGroupInvitation, message.threadId)
+            message.recipient, true, maxContentWidth, message.isOpenGroupInvitation, message.threadId, glide)
         // The 6 DP below is the padding the quote view applies to itself, which isn't included in the
         // intrinsic height calculation.
         val quoteViewIntrinsicHeight = quoteView.getIntrinsicHeight(maxContentWidth) + toPx(6, resources)
@@ -122,6 +125,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     }
 
     override fun cancelQuoteDraft() {
+        quote = null
         inputBarAdditionalContentContainer.removeAllViews()
         val newHeight = max(inputBarEditText.height + 2 * vMargin, minHeight)
         additionalContentHeight = 0
@@ -129,6 +133,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     }
 
     fun draftLinkPreview() {
+        quote = null
         val linkPreviewDraftHeight = toPx(88, resources)
         inputBarAdditionalContentContainer.removeAllViews()
         val linkPreviewDraftView = LinkPreviewDraftView(context)
@@ -141,11 +146,14 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     }
 
     fun updateLinkPreviewDraft(glide: GlideRequests, linkPreview: LinkPreview) {
+        this.linkPreview = linkPreview
         val linkPreviewDraftView = this.linkPreviewDraftView ?: return
         linkPreviewDraftView.update(glide, linkPreview)
     }
 
     override fun cancelLinkPreviewDraft() {
+        if (quote != null) { return }
+        linkPreview = null
         inputBarAdditionalContentContainer.removeAllViews()
         val newHeight = max(inputBarEditText.height + 2 * vMargin, minHeight)
         additionalContentHeight = 0
@@ -160,8 +168,9 @@ interface InputBarDelegate {
     fun inputBarEditTextContentChanged(newContent: CharSequence)
     fun toggleAttachmentOptions()
     fun showVoiceMessageUI()
+    fun startRecordingVoiceMessage()
     fun onMicrophoneButtonMove(event: MotionEvent)
     fun onMicrophoneButtonCancel(event: MotionEvent)
     fun onMicrophoneButtonUp(event: MotionEvent)
-    fun send()
+    fun sendMessage()
 }

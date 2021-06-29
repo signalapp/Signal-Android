@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
+import android.content.ContentResolver
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Resources
@@ -13,6 +14,8 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.text.toSpannable
 import androidx.core.view.isVisible
 import androidx.core.view.marginStart
+import com.google.android.exoplayer2.util.MimeTypes
+import kotlinx.android.synthetic.main.view_link_preview.view.*
 import kotlinx.android.synthetic.main.view_quote.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact
@@ -22,7 +25,10 @@ import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.loki.utilities.*
+import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.mms.SlideDeck
+import org.thoughtcrime.securesms.util.MediaUtil
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -104,7 +110,7 @@ class QuoteView : LinearLayout {
 
     // region Updating
     fun bind(authorPublicKey: String, body: String?, attachments: SlideDeck?, thread: Recipient,
-        isOutgoingMessage: Boolean, maxContentWidth: Int, isOpenGroupInvitation: Boolean, threadID: Long) {
+        isOutgoingMessage: Boolean, maxContentWidth: Int, isOpenGroupInvitation: Boolean, threadID: Long, glide: GlideRequests) {
         val contactDB = DatabaseFactory.getSessionContactDatabase(context)
         // Reduce the max body text view line count to 2 if this is a group thread because
         // we'll be showing the author text view and we don't want the overall quote view height
@@ -136,15 +142,24 @@ class QuoteView : LinearLayout {
             val backgroundColorID = if (UiModeUtilities.isDayUiMode(context)) R.color.black else R.color.accent
             val backgroundColor = ResourcesCompat.getColor(resources, backgroundColorID, context.theme)
             quoteViewAttachmentPreviewContainer.backgroundTintList = ColorStateList.valueOf(backgroundColor)
+            quoteViewAttachmentPreviewImageView.isVisible = false
+            quoteViewAttachmentThumbnailImageView.isVisible = false
             if (attachments.audioSlide != null) {
                 quoteViewAttachmentPreviewImageView.setImageResource(R.drawable.ic_microphone)
+                quoteViewAttachmentPreviewImageView.isVisible = true
                 quoteViewBodyTextView.text = resources.getString(R.string.Slide_audio)
             } else if (attachments.documentSlide != null) {
                 quoteViewAttachmentPreviewImageView.setImageResource(R.drawable.ic_document_large_light)
+                quoteViewAttachmentPreviewImageView.isVisible = true
                 quoteViewBodyTextView.text = resources.getString(R.string.document)
+            } else if (attachments.thumbnailSlide != null) {
+                val slide = attachments.thumbnailSlide!!
+                // This internally fetches the thumbnail
+                quoteViewAttachmentThumbnailImageView.radius = toPx(4, resources)
+                quoteViewAttachmentThumbnailImageView.setImageResource(glide, slide, false, false)
+                quoteViewAttachmentThumbnailImageView.isVisible = true
+                quoteViewBodyTextView.text = if (MediaUtil.isVideo(slide.asAttachment())) resources.getString(R.string.Slide_video) else resources.getString(R.string.Slide_image)
             }
-            // TODO: Link previews
-            // TODO: Images/video
         }
         mainQuoteViewContainer.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, getIntrinsicHeight(maxContentWidth))
         val quoteViewMainContentContainerLayoutParams = quoteViewMainContentContainer.layoutParams as RelativeLayout.LayoutParams

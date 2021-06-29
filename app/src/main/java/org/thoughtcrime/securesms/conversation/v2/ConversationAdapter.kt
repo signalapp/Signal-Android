@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
 import android.database.Cursor
+import android.graphics.Rect
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -13,7 +14,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.mms.GlideRequests
 
-class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPress: (MessageRecord, Int, VisibleMessageView) -> Unit,
+class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPress: (MessageRecord, Int, VisibleMessageView, Rect) -> Unit,
     private val onItemSwipeToReply: (MessageRecord, Int) -> Unit, private val onItemLongPress: (MessageRecord, Int) -> Unit,
     private val glide: GlideRequests)
     : CursorRecyclerViewAdapter<ViewHolder>(context, cursor) {
@@ -69,7 +70,7 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 view.messageTimestampTextView.isVisible = isSelected
                 val position = viewHolder.adapterPosition
                 view.bind(message, getMessageBefore(position, cursor), getMessageAfter(position, cursor), glide, searchQuery)
-                view.onPress = { onItemPress(message, viewHolder.adapterPosition, view) }
+                view.onPress = { rawX, rawY -> onItemPress(message, viewHolder.adapterPosition, view, Rect(rawX, rawY, rawX, rawY)) }
                 view.onSwipeToReply = { onItemSwipeToReply(message, viewHolder.adapterPosition) }
                 view.onLongPress = { onItemLongPress(message, viewHolder.adapterPosition) }
             }

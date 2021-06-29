@@ -62,7 +62,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted">فشل الإرسال، انقر للرد الغير آمن</string>
     <string name="ConversationItem_unable_to_open_media">لم يتم العثور على تطبيق قادر على فتح الملف.</string>
     <string name="ConversationItem_copied_text">تم نسخ %s</string>
-    <string name="ConversationItem_read_more">&#160; إقرأ المزيد</string>
+    <string name="ConversationItem_read_more">إقرأ المزيد</string>
     <string name="ConversationItem_download_more">&#160; تنزيل المزيد</string>
     <string name="ConversationItem_pending">&#160; في الإنتظار</string>
     <!-- ConversationActivity -->

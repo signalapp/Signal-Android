@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
@@ -11,6 +12,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.core.content.res.ResourcesCompat
@@ -22,6 +24,7 @@ import network.loki.messenger.R
 import org.session.libsession.utilities.ThemeUtil
 import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.conversation.v2.components.AlbumThumbnailView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -33,7 +36,8 @@ import java.util.*
 import kotlin.math.roundToInt
 
 class VisibleMessageContentView : LinearLayout {
-    var onContentClick: (() -> Unit)? = null
+    var onContentClick: ((rawRect: Rect) -> Unit)? = null
+    var onContentDoubleTap: (() -> Unit)? = null
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
@@ -58,10 +62,12 @@ class VisibleMessageContentView : LinearLayout {
         // Body
         mainContainer.removeAllViews()
         onContentClick = null
+        onContentDoubleTap = null
         if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
             val linkPreviewView = LinkPreviewView(context)
             linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster, searchQuery)
             mainContainer.addView(linkPreviewView)
+            onContentClick = { linkPreviewView.openURL() }
             // Body text view is inside the link preview for layout convenience
         } else if (message is MmsMessageRecord && message.quote != null) {
             val quote = message.quote!!
@@ -71,7 +77,7 @@ class VisibleMessageContentView : LinearLayout {
             // here to get the layout right.
             val maxContentWidth = (maxWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - toPx(16, resources)).roundToInt()
             quoteView.bind(quote.author.toString(), quote.text, quote.attachment, thread,
-                message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation, message.threadId)
+                message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation, message.threadId, glide)
             mainContainer.addView(quoteView)
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message, searchQuery)
             ViewUtil.setPaddingTop(bodyTextView, 0)
@@ -83,21 +89,32 @@ class VisibleMessageContentView : LinearLayout {
             // We have to use onContentClick (rather than a click listener directly on the voice
             // message view) so as to not interfere with all the other gestures.
             onContentClick = { voiceMessageView.togglePlayback() }
+            onContentDoubleTap = { voiceMessageView.handleDoubleTap() }
         } else if (message is MmsMessageRecord && message.slideDeck.documentSlide != null) {
             val documentView = DocumentView(context)
             documentView.bind(message, VisibleMessageContentView.getTextColor(context, message))
             mainContainer.addView(documentView)
         } else if (message is MmsMessageRecord && message.slideDeck.asAttachments().isNotEmpty()) {
-            val dummyTextView = TextView(context)
-            dummyTextView.text = "asifuygaihsfo"
-            mainContainer.addView(dummyTextView)
+            val albumThumbnailView = AlbumThumbnailView(context)
+            mainContainer.addView(albumThumbnailView)
+            // isStart and isEnd of cluster needed for calculating the mask for full bubble image groups
+            // bind after add view because views are inflated and calculated during bind
+            albumThumbnailView.bind(
+                glideRequests = glide,
+                message = message,
+                isStart = isStartOfMessageCluster,
+                isEnd = isEndOfMessageCluster
+            )
+            onContentClick = { albumThumbnailView.calculateHitObject(it, message) }
         } else if (message.isOpenGroupInvitation) {
             val openGroupInvitationView = OpenGroupInvitationView(context)
             openGroupInvitationView.bind(message, VisibleMessageContentView.getTextColor(context, message))
             mainContainer.addView(openGroupInvitationView)
+            onContentClick = { openGroupInvitationView.joinOpenGroup() }
         } else {
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message, searchQuery)
             mainContainer.addView(bodyTextView)
+            onContentClick = { openURLIfNeeded(message) }
         }
     }
 
@@ -118,6 +135,12 @@ class VisibleMessageContentView : LinearLayout {
 
     fun recycle() {
         mainContainer.removeAllViews()
+    }
+    // endregion
+
+    // region Interaction
+    private fun openURLIfNeeded(message: MessageRecord) {
+        Toast.makeText(context, "Not yet implemented", Toast.LENGTH_LONG).show()
     }
     // endregion
 

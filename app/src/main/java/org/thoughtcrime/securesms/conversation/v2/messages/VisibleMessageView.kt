@@ -4,21 +4,15 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Rect
-import android.graphics.Region
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
-import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
-import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.withClip
 import androidx.core.view.isVisible
-import kotlinx.android.synthetic.main.view_conversation.view.*
 import kotlinx.android.synthetic.main.view_visible_message.view.*
 import kotlinx.android.synthetic.main.view_visible_message.view.profilePictureView
 import network.loki.messenger.R
@@ -27,7 +21,6 @@ import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.ViewUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.loki.utilities.disableClipping
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.loki.utilities.toDp
 import org.thoughtcrime.securesms.loki.utilities.toPx
@@ -46,11 +39,13 @@ class VisibleMessageView : LinearLayout {
     private var dx = 0.0f
     private var previousTranslationX = 0.0f
     private val gestureHandler = Handler(Looper.getMainLooper())
+    private var pressCallback: Runnable? = null
     private var longPressCallback: Runnable? = null
     private var onDownTimestamp = 0L
+    private var onDoubleTap: (() -> Unit)? = null
     var snIsSelected = false
         set(value) { field = value; handleIsSelectedChanged()}
-    var onPress: (() -> Unit)? = null
+    var onPress: ((rawX: Int, rawY: Int) -> Unit)? = null
     var onSwipeToReply: (() -> Unit)? = null
     var onLongPress: (() -> Unit)? = null
 
@@ -58,6 +53,7 @@ class VisibleMessageView : LinearLayout {
         const val swipeToReplyThreshold = 80.0f // dp
         const val longPressMovementTreshold = 10.0f // dp
         const val longPressDurationThreshold = 250L // ms
+        const val maxDoubleTapInterval = 200L
     }
 
     // region Lifecycle
@@ -143,6 +139,7 @@ class VisibleMessageView : LinearLayout {
         if (profilePictureContainer.visibility != View.GONE) { maxWidth -= profilePictureContainer.width }
         // Populate content view
         messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth, thread, searchQuery)
+        onDoubleTap = { messageContentView.onContentDoubleTap?.invoke() }
     }
 
     private fun setMessageSpacing(isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {
@@ -195,7 +192,7 @@ class VisibleMessageView : LinearLayout {
             val spacing = context.resources.getDimensionPixelSize(R.dimen.small_spacing)
             val threshold = VisibleMessageView.swipeToReplyThreshold
             val iconSize = toPx(24, context.resources)
-            val bottomVOffset = paddingBottom + (messageContentView.height - iconSize) / 2
+            val bottomVOffset = paddingBottom + messageStatusImageView.height + (messageContentView.height - iconSize) / 2
             swipeToReplyIconRect.left = messageContentContainer.right + spacing
             swipeToReplyIconRect.top = height - bottomVOffset - iconSize
             swipeToReplyIconRect.right = messageContentContainer.right + iconSize + spacing
@@ -272,7 +269,18 @@ class VisibleMessageView : LinearLayout {
             onSwipeToReply?.invoke()
         } else if ((Date().time - onDownTimestamp) < VisibleMessageView.longPressDurationThreshold) {
             longPressCallback?.let { gestureHandler.removeCallbacks(it) }
-            onPress?.invoke()
+            val pressCallback = this.pressCallback
+            if (pressCallback != null) {
+                // If we're here and pressCallback isn't null, it means that we tapped again within
+                // maxDoubleTapInterval ms and we should count this as a double tap
+                gestureHandler.removeCallbacks(pressCallback)
+                this.pressCallback = null
+                onDoubleTap?.invoke()
+            } else {
+                val newPressCallback = Runnable { onPress(event.rawX.toInt(), event.rawY.toInt()) }
+                this.pressCallback = newPressCallback
+                gestureHandler.postDelayed(newPressCallback, VisibleMessageView.maxDoubleTapInterval)
+            }
         }
         resetPosition()
     }
@@ -297,8 +305,13 @@ class VisibleMessageView : LinearLayout {
         onLongPress?.invoke()
     }
 
-    fun onContentClick() {
-        messageContentView.onContentClick?.invoke()
+    fun onContentClick(rawRect: Rect) {
+        messageContentView.onContentClick?.invoke(rawRect)
+    }
+
+    private fun onPress(rawX: Int, rawY: Int) {
+        onPress?.invoke(rawX, rawY)
+        pressCallback = null
     }
     // endregion
 }

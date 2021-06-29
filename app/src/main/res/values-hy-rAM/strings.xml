@@ -54,7 +54,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted">Չի ուղարկվում, սեղմեք անապահով այլընտրանքի համար</string>
     <string name="ConversationItem_unable_to_open_media">Չհաջողվեց գտնել հավելված, որը ճանաչում է այս մեդիայի տեսակը։</string>
     <string name="ConversationItem_copied_text">«%s»֊ը պատճենվել է</string>
-    <string name="ConversationItem_read_more">&#160; Տեսնել Ավելին</string>
+    <string name="ConversationItem_read_more">Տեսնել Ավելին</string>
     <string name="ConversationItem_download_more">&#160; Բեռնել Ավելին</string>
     <string name="ConversationItem_pending">&#160; Հերթագրված է</string>
     <!-- ConversationActivity -->

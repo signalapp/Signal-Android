@@ -22,15 +22,12 @@
         android:src="@drawable/ic_caption_28"
         android:visibility="gone" />
 
-    <ProgressBar
+    <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailProgressBar
         android:id="@+id/thumbnail_load_indicator"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_gravity="center"
-        android:indeterminate="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/accent_line_thickness"
+        android:layout_gravity="bottom"
         android:visibility="gone"
-        android:indeterminateTint="@android:color/white"
-        android:indeterminateTintMode="src_in"
         tools:visibility="visible" />
 
     <FrameLayout

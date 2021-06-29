@@ -102,7 +102,6 @@ import org.session.libsession.utilities.recipients.RecipientModifiedListener;
 import org.session.libsession.utilities.ExpirationUtil;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.MediaTypes;
-import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsession.utilities.ServiceUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
@@ -165,8 +164,8 @@ import org.thoughtcrime.securesms.loki.views.MentionCandidateSelectionView;
 import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
-import org.thoughtcrime.securesms.mms.AttachmentManager;
-import org.thoughtcrime.securesms.mms.AttachmentManager.MediaType;
+import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager;
+import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager.MediaType;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -422,9 +421,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return;
     }
 
-    if (!org.thoughtcrime.securesms.util.Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent()) {
+    if (!org.thoughtcrime.securesms.util.Util.isEmpty(composeText)) {
       saveDraft();
-      attachmentManager.clear(glideRequests, false);
+      attachmentManager.clear();
       silentlySetComposeText("");
     }
 
@@ -1424,9 +1423,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       case AttachmentTypeSelector.ADD_SOUND:
         AttachmentManager.selectAudio(this, PICK_AUDIO); break;
       case AttachmentTypeSelector.ADD_CONTACT_INFO:
-        AttachmentManager.selectContactInfo(this, PICK_CONTACT); break;
+        break;
       case AttachmentTypeSelector.ADD_LOCATION:
-        AttachmentManager.selectLocation(this, PICK_LOCATION); break;
+        break;
       case AttachmentTypeSelector.TAKE_PHOTO:
         attachmentManager.capturePhoto(this, TAKE_PHOTO); break;
       case AttachmentTypeSelector.ADD_GIF:
@@ -1620,7 +1619,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private String getMessage() throws InvalidMessageException {
     String result = composeText.getTextTrimmed();
-    if (result.length() < 1 && !attachmentManager.isAttachmentPresent()) throw new InvalidMessageException();
+    if (result.length() < 1) throw new InvalidMessageException();
     for (Mention mention : mentions) {
       try {
         int startIndex = result.indexOf("@" + mention.getDisplayName());
@@ -1723,7 +1722,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       String          message        = getMessage();
       boolean         initiating     = threadId == -1;
       boolean         needsSplit     = message.length() > characterCalculator.calculateCharacters(message).maxPrimaryMessageSize;
-      boolean         isMediaMessage = attachmentManager.isAttachmentPresent()        ||
+      boolean         isMediaMessage = false        ||
 //                                       recipient.isGroupRecipient()                   ||
               inputPanel.getQuote().isPresent()              ||
               linkPreviewViewModel.hasLinkPreview()          ||
@@ -1785,7 +1784,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     ApplicationContext.getInstance(context).getTypingStatusSender().onTypingStopped(threadId);
 
     inputPanel.clearQuote();
-    attachmentManager.clear(glideRequests, false);
+    attachmentManager.clear();
     silentlySetComposeText("");
 
     final long id = fragment.stageOutgoingMessage(outgoingMessage);
@@ -1859,7 +1858,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return;
     }
 
-    if (composeText.getText().length() == 0 && !attachmentManager.isAttachmentPresent()) {
+    if (composeText.getText().length() == 0) {
       buttonToggle.display(attachButton);
       quickAttachmentToggle.show();
       inlineAttachmentToggle.hide();
@@ -1867,7 +1866,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       buttonToggle.display(sendButton);
       quickAttachmentToggle.hide();
 
-      if (!attachmentManager.isAttachmentPresent() && !linkPreviewViewModel.hasLinkPreview()) {
+      if (!linkPreviewViewModel.hasLinkPreview()) {
         inlineAttachmentToggle.show();
       } else {
         inlineAttachmentToggle.hide();
@@ -1876,7 +1875,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateLinkPreviewState() {
-    if (TextSecurePreferences.isLinkPreviewsEnabled(this) && !attachmentManager.isAttachmentPresent()) {
+    if (TextSecurePreferences.isLinkPreviewsEnabled(this)) {
       linkPreviewViewModel.onEnabled();
       linkPreviewViewModel.onTextChanged(this, composeText.getTextTrimmed(), composeText.getSelectionStart(), composeText.getSelectionEnd());
     } else {
