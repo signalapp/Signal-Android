@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingModel
 import org.thoughtcrime.securesms.util.MappingViewHolder
 
-class StickerPackListAdapter(private val glideRequests: GlideRequests, private val allowApngAnimation: Boolean, private val onTabSelected: (StickerPack) -> Unit) : MappingAdapter() {
+class KeyboardStickerPackListAdapter(private val glideRequests: GlideRequests, private val allowApngAnimation: Boolean, private val onTabSelected: (StickerPack) -> Unit) : MappingAdapter() {
 
   init {
     registerFactory(StickerPack::class.java, LayoutFactory(::StickerPackViewHolder, R.layout.keyboard_pager_category_icon))

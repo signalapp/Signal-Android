@@ -18,11 +18,11 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel;
-import org.thoughtcrime.securesms.stickers.StickerKeyboardProvider;
+import org.thoughtcrime.securesms.stickers.StickerEventListener;
 import org.thoughtcrime.securesms.stickers.StickerManagementActivity;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public final class ImageEditorStickerSelectActivity extends AppCompatActivity implements StickerKeyboardProvider.StickerEventListener, MediaKeyboard.MediaKeyboardListener {
+public final class ImageEditorStickerSelectActivity extends AppCompatActivity implements StickerEventListener, MediaKeyboard.MediaKeyboardListener {
 
   @Override
   protected void attachBaseContext(@NonNull Context newBase) {

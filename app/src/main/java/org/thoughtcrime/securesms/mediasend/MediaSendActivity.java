@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.SendButton;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
-import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
+import org.thoughtcrime.securesms.components.emoji.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
@@ -104,18 +104,18 @@ import java.util.Set;
  * It will return the {@link Media} that the user decided to send.
  */
 public class MediaSendActivity extends PassphraseRequiredActivity implements MediaPickerFolderFragment.Controller,
-                                                                                      MediaPickerItemFragment.Controller,
-                                                                                      ImageEditorFragment.Controller,
-                                                                                      MediaSendVideoFragment.Controller,
-                                                                                      CameraFragment.Controller,
-                                                                                      CameraContactSelectionFragment.Controller,
-                                                                                      ViewTreeObserver.OnGlobalLayoutListener,
-                                                                                      MediaRailAdapter.RailItemListener,
-                                                                                      InputAwareLayout.OnKeyboardShownListener,
-                                                                                      InputAwareLayout.OnKeyboardHiddenListener,
-                                                                                      EmojiKeyboardProvider.EmojiEventListener,
-                                                                                      EmojiKeyboardPageFragment.Callback,
-                                                                                      EmojiSearchFragment.Callback
+                                                                             MediaPickerItemFragment.Controller,
+                                                                             ImageEditorFragment.Controller,
+                                                                             MediaSendVideoFragment.Controller,
+                                                                             CameraFragment.Controller,
+                                                                             CameraContactSelectionFragment.Controller,
+                                                                             ViewTreeObserver.OnGlobalLayoutListener,
+                                                                             MediaRailAdapter.RailItemListener,
+                                                                             InputAwareLayout.OnKeyboardShownListener,
+                                                                             InputAwareLayout.OnKeyboardHiddenListener,
+                                                                             EmojiEventListener,
+                                                                             EmojiKeyboardPageFragment.Callback,
+                                                                             EmojiSearchFragment.Callback
 {
   private static final String TAG = Log.tag(MediaSendActivity.class);
 

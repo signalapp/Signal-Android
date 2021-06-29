@@ -4,12 +4,12 @@ import android.content.Context
 import android.net.Uri
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.components.emoji.Emoji
-import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.EmojiSearchDatabase
 import org.thoughtcrime.securesms.emoji.EmojiSource
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.util.function.Consumer
 
 private const val MINIMUM_QUERY_THRESHOLD = 1
@@ -21,7 +21,7 @@ class EmojiSearchRepository(private val context: Context) {
 
   fun submitQuery(query: String, includeRecents: Boolean, limit: Int = EMOJI_SEARCH_LIMIT, consumer: Consumer<EmojiPageModel>) {
     if (query.length < MINIMUM_QUERY_THRESHOLD && includeRecents) {
-      consumer.accept(RecentEmojiPageModel(context, EmojiKeyboardProvider.RECENT_STORAGE_KEY))
+      consumer.accept(RecentEmojiPageModel(context, TextSecurePreferences.RECENT_STORAGE_KEY))
     } else {
       SignalExecutors.SERIAL.execute {
         val emoji: List<String> = emojiSearchDatabase.query(query, limit)

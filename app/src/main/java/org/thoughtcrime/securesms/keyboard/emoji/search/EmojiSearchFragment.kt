@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
-import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider
+import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
@@ -36,7 +36,7 @@ class EmojiSearchFragment : Fragment(R.layout.emoji_search_fragment), EmojiPageV
     viewModel = ViewModelProviders.of(this, factory)[EmojiSearchViewModel::class.java]
 
     val keyboardAwareLinearLayout: KeyboardAwareLinearLayout = view.findViewById(R.id.kb_aware_layout)
-    val eventListener: EmojiKeyboardProvider.EmojiEventListener = requireNotNull(findListener())
+    val eventListener: EmojiEventListener = requireNotNull(findListener())
     val searchBar: KeyboardPageSearchView = view.findViewById(R.id.emoji_search_view)
     val resultsContainer: FrameLayout = view.findViewById(R.id.emoji_search_results_container)
     val noResults: TextView = view.findViewById(R.id.emoji_search_empty)

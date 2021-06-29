@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.EmojiHeader
@@ -19,6 +18,7 @@ import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageCategoryMappin
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
 import org.thoughtcrime.securesms.util.MappingModel
 import org.thoughtcrime.securesms.util.MappingModelList
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 
 class EmojiKeyboardPageViewModel(repository: EmojiKeyboardPageRepository) : ViewModel() {
@@ -70,12 +70,12 @@ class EmojiKeyboardPageViewModel(repository: EmojiKeyboardPageRepository) : View
   }
 
   fun addToRecents(emoji: String) {
-    RecentEmojiPageModel(ApplicationDependencies.getApplication(), EmojiKeyboardProvider.RECENT_STORAGE_KEY).onCodePointSelected(emoji)
+    RecentEmojiPageModel(ApplicationDependencies.getApplication(), TextSecurePreferences.RECENT_STORAGE_KEY).onCodePointSelected(emoji)
   }
 
   companion object {
     fun getStartingTab(): String {
-      return if (RecentEmojiPageModel.hasRecents(ApplicationDependencies.getApplication(), EmojiKeyboardProvider.RECENT_STORAGE_KEY)) {
+      return if (RecentEmojiPageModel.hasRecents(ApplicationDependencies.getApplication(), TextSecurePreferences.RECENT_STORAGE_KEY)) {
         RecentEmojiPageModel.KEY
       } else {
         EmojiCategory.PEOPLE.key

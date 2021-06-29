@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE
 import com.google.android.material.appbar.AppBarLayout
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider
+import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.EmojiHeader
@@ -22,14 +22,14 @@ import java.util.Optional
 
 private val DELETE_KEY_EVENT: KeyEvent = KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL)
 
-class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fragment), EmojiKeyboardProvider.EmojiEventListener, EmojiPageViewGridAdapter.VariationSelectorListener {
+class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fragment), EmojiEventListener, EmojiPageViewGridAdapter.VariationSelectorListener {
 
   private lateinit var viewModel: EmojiKeyboardPageViewModel
   private lateinit var emojiPageView: EmojiPageView
   private lateinit var searchView: View
   private lateinit var emojiCategoriesRecycler: RecyclerView
   private lateinit var backspaceView: View
-  private lateinit var eventListener: EmojiKeyboardProvider.EmojiEventListener
+  private lateinit var eventListener: EmojiEventListener
   private lateinit var callback: Callback
   private lateinit var categoriesAdapter: EmojiKeyboardPageCategoriesAdapter
   private lateinit var searchBar: KeyboardPageSearchView

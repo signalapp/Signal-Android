@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.keyboard.sticker
 
-import android.content.res.Configuration
-import android.graphics.Point
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,25 +11,23 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
 import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.mms.GlideApp
-import org.thoughtcrime.securesms.stickers.StickerKeyboardPageAdapter
-import org.thoughtcrime.securesms.stickers.StickerKeyboardProvider
+import org.thoughtcrime.securesms.stickers.StickerEventListener
 import org.thoughtcrime.securesms.util.DeviceProperties
 import org.thoughtcrime.securesms.util.ViewUtil
 
 /**
  * Search dialog for finding stickers.
  */
-class StickerSearchDialogFragment : DialogFragment(), StickerKeyboardPageAdapter.EventListener {
+class StickerSearchDialogFragment : DialogFragment(), KeyboardStickerListAdapter.EventListener, View.OnLayoutChangeListener {
 
   private lateinit var search: KeyboardPageSearchView
   private lateinit var list: RecyclerView
   private lateinit var noResults: View
 
-  private lateinit var adapter: StickerKeyboardPageAdapter
+  private lateinit var adapter: KeyboardStickerListAdapter
   private lateinit var layoutManager: GridLayoutManager
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,19 +45,17 @@ class StickerSearchDialogFragment : DialogFragment(), StickerKeyboardPageAdapter
     list = view.findViewById(R.id.sticker_search_list)
     noResults = view.findViewById(R.id.sticker_search_no_results)
 
-    adapter = StickerKeyboardPageAdapter(GlideApp.with(this), this, DeviceProperties.shouldAllowApngStickerAnimation(requireContext()))
+    adapter = KeyboardStickerListAdapter(GlideApp.with(this), this, DeviceProperties.shouldAllowApngStickerAnimation(requireContext()))
     layoutManager = GridLayoutManager(requireContext(), 2)
 
     list.layoutManager = layoutManager
     list.adapter = adapter
 
-    onScreenWidthChanged(getScreenWidth())
-
     val viewModel: StickerSearchViewModel = ViewModelProviders.of(this, StickerSearchViewModel.Factory(requireContext())).get(StickerSearchViewModel::class.java)
 
-    viewModel.searchResults.observe(viewLifecycleOwner) { stickerRecords ->
-      adapter.setStickers(stickerRecords, calculateStickerSize(getScreenWidth()))
-      noResults.visibility = if (stickerRecords.isEmpty()) View.VISIBLE else View.GONE
+    viewModel.searchResults.observe(viewLifecycleOwner) { stickers ->
+      adapter.submitList(stickers)
+      noResults.visibility = if (stickers.isEmpty()) View.VISIBLE else View.GONE
     }
 
     search.enableBackNavigation()
@@ -77,22 +71,12 @@ class StickerSearchDialogFragment : DialogFragment(), StickerKeyboardPageAdapter
     }
 
     search.requestFocus()
+
+    view.addOnLayoutChangeListener(this)
   }
 
-  override fun onConfigurationChanged(newConfig: Configuration) {
-    super.onConfigurationChanged(newConfig)
-    onScreenWidthChanged(getScreenWidth())
-  }
-
-  private fun onScreenWidthChanged(@Px newWidth: Int) {
-    layoutManager.spanCount = calculateColumnCount(newWidth)
-    adapter.setStickerSize(calculateStickerSize(newWidth))
-  }
-
-  private fun getScreenWidth(): Int {
-    val size = Point()
-    requireActivity().windowManager.defaultDisplay.getSize(size)
-    return size.x
+  override fun onLayoutChange(v: View?, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
+    layoutManager.spanCount = calculateColumnCount(view?.width ?: 0)
   }
 
   private fun calculateColumnCount(@Px screenWidth: Int): Int {
@@ -101,23 +85,17 @@ class StickerSearchDialogFragment : DialogFragment(), StickerKeyboardPageAdapter
     return ((screenWidth - modifier) / divisor).toInt()
   }
 
-  private fun calculateStickerSize(@Px screenWidth: Int): Int {
-    val multiplier = resources.getDimensionPixelOffset(R.dimen.sticker_page_item_multiplier).toFloat()
-    val columnCount = calculateColumnCount(screenWidth)
-    return ((screenWidth - (columnCount + 1) * multiplier) / columnCount).toInt()
+  override fun onStickerClicked(sticker: KeyboardStickerListAdapter.Sticker) {
+    ViewUtil.hideKeyboard(requireContext(), requireView())
+    findListener<StickerEventListener>()?.onStickerSelected(sticker.stickerRecord)
+    dismissAllowingStateLoss()
   }
+
+  override fun onStickerLongClicked(sticker: KeyboardStickerListAdapter.Sticker) = Unit
 
   companion object {
     fun show(fragmentManager: FragmentManager) {
       StickerSearchDialogFragment().show(fragmentManager, "TAG")
     }
   }
-
-  override fun onStickerClicked(sticker: StickerRecord) {
-    ViewUtil.hideKeyboard(requireContext(), requireView())
-    findListener<StickerKeyboardProvider.StickerEventListener>()?.onStickerSelected(sticker)
-    dismissAllowingStateLoss()
-  }
-
-  override fun onStickerLongClicked(targetView: View) = Unit
 }
