@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.conversation.v2.menus
 
+import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.os.AsyncTask
@@ -16,23 +18,32 @@ import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.pm.ShortcutInfoCompat
+import androidx.core.content.pm.ShortcutManagerCompat
+import androidx.core.graphics.drawable.IconCompat
 import network.loki.messenger.R
+import org.session.libsession.avatars.ContactPhoto
+import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.leave
 import org.session.libsession.utilities.ExpirationUtil
 import org.session.libsession.utilities.GroupUtil.doubleDecodeGroupID
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.recipients.Recipient
+import org.session.libsignal.utilities.Log
+import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.utilities.toHexString
-import org.thoughtcrime.securesms.MuteDialog
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.*
+import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity
 import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity.Companion.groupIDKey
 import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
+import org.thoughtcrime.securesms.util.BitmapUtil
 import java.io.IOException
+import java.lang.ref.WeakReference
 
 object ConversationMenuHelper {
     
@@ -81,16 +92,15 @@ object ConversationMenuHelper {
         } else {
             inflater.inflate(R.menu.menu_conversation_unmuted, menu)
         }
-        // TODO: Implement search
     }
 
     fun onOptionItemSelected(context: Context, item: MenuItem, thread: Recipient): Boolean {
         when (item.itemId) {
-            R.id.menu_view_all_media -> { }
-            R.id.menu_search -> { }
-            R.id.menu_add_shortcut -> { }
-            R.id.menu_expiring_messages -> { }
-            R.id.menu_expiring_messages_off -> { }
+            R.id.menu_view_all_media -> { showAllMedia(context, thread) }
+            R.id.menu_search -> { search(context) }
+            R.id.menu_add_shortcut -> { addShortcut(context, thread) }
+            R.id.menu_expiring_messages -> { showExpiringMessagesDialog(context, thread) }
+            R.id.menu_expiring_messages_off -> { showExpiringMessagesDialog(context, thread) }
             R.id.menu_unblock -> { unblock(context, thread) }
             R.id.menu_block -> { block(context, thread) }
             R.id.menu_copy_session_id -> { copySessionID(context, thread) }
@@ -101,6 +111,73 @@ object ConversationMenuHelper {
             R.id.menu_mute_notifications -> { mute(context, thread) }
         }
         return true
+    }
+
+    private fun showAllMedia(context: Context, thread: Recipient) {
+        val intent = Intent(context, MediaOverviewActivity::class.java)
+        intent.putExtra(MediaOverviewActivity.ADDRESS_EXTRA, thread.address)
+        val activity = context as AppCompatActivity
+        activity.startActivity(intent)
+    }
+
+    private fun search(context: Context) {
+        Toast.makeText(context, "Not yet implemented", Toast.LENGTH_LONG).show() // TODO: Implement
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private fun addShortcut(context: Context, thread: Recipient) {
+        object : AsyncTask<Void?, Void?, IconCompat?>() {
+
+            override fun doInBackground(vararg params: Void?): IconCompat? {
+                var icon: IconCompat? = null
+                val contactPhoto = thread.contactPhoto
+                if (contactPhoto != null) {
+                    try {
+                        var bitmap = BitmapFactory.decodeStream(contactPhoto.openInputStream(context))
+                        bitmap = BitmapUtil.createScaledBitmap(bitmap, 300, 300)
+                        icon = IconCompat.createWithAdaptiveBitmap(bitmap)
+                    } catch (e: IOException) {
+                        // Do nothing
+                    }
+                }
+                if (icon == null) {
+                    icon = IconCompat.createWithResource(context, if (thread.isGroupRecipient) R.mipmap.ic_group_shortcut else R.mipmap.ic_person_shortcut)
+                }
+                return icon
+            }
+
+            override fun onPostExecute(icon: IconCompat?) {
+                val name = Optional.fromNullable<String>(thread.name)
+                    .or(Optional.fromNullable<String>(thread.profileName))
+                    .or(thread.toShortString())
+                val shortcutInfo = ShortcutInfoCompat.Builder(context, thread.address.serialize() + '-' + System.currentTimeMillis())
+                    .setShortLabel(name)
+                    .setIcon(icon)
+                    .setIntent(ShortcutLauncherActivity.createIntent(context, thread.address))
+                    .build()
+                if (ShortcutManagerCompat.requestPinShortcut(context, shortcutInfo, null)) {
+                    Toast.makeText(context, context.resources.getString(R.string.ConversationActivity_added_to_home_screen), Toast.LENGTH_LONG).show()
+                }
+            }
+        }.execute()
+    }
+
+    private fun showExpiringMessagesDialog(context: Context, thread: Recipient) {
+        if (thread.isClosedGroupRecipient) {
+            val group = DatabaseFactory.getGroupDatabase(context).getGroup(thread.address.toGroupString()).orNull()
+            if (group?.isActive == false) { return }
+        }
+        ExpirationDialog.show(context, thread.expireMessages, ExpirationDialog.OnClickListener { expirationTime: Int ->
+            DatabaseFactory.getRecipientDatabase(context).setExpireMessages(thread, expirationTime)
+            val message = ExpirationTimerUpdate(expirationTime)
+            message.recipient = thread.address.serialize()
+            message.sentTimestamp = System.currentTimeMillis()
+            val expiringMessageManager = ApplicationContext.getInstance(context).expiringMessageManager
+            expiringMessageManager.setExpirationTimer(message)
+            MessageSender.send(message, thread.address)
+            val activity = context as AppCompatActivity
+            activity.invalidateOptionsMenu()
+        })
     }
 
     private fun unblock(context: Context, thread: Recipient) {
