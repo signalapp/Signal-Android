@@ -27,10 +27,6 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
         get() = result
 
     fun onQueryUpdated(query: String, threadId: Long) {
-        if (firstSearch && query.length < 2) {
-            result.postValue(SearchResult(CursorList.emptyList(), 0))
-            return
-        }
         if (query == activeQuery) {
             return
         }
