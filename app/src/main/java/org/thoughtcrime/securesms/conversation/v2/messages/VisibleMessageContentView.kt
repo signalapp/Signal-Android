@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.text.style.BackgroundColorSpan
+import android.text.style.ForegroundColorSpan
 import android.text.util.Linkify
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.LinearLayout
@@ -19,8 +19,6 @@ import androidx.core.graphics.BlendModeCompat
 import androidx.core.text.toSpannable
 import kotlinx.android.synthetic.main.view_visible_message_content.view.*
 import network.loki.messenger.R
-import org.session.libsession.messaging.utilities.UpdateMessageData
-import org.session.libsession.messaging.utilities.UpdateMessageData.Companion.fromJSON
 import org.session.libsession.utilities.ThemeUtil
 import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
@@ -28,8 +26,10 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.*
-import org.thoughtcrime.securesms.loki.utilities.MentionUtilities.highlightMentions
 import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.util.SearchUtil
+import org.thoughtcrime.securesms.util.SearchUtil.StyleFactory
+import java.util.*
 import kotlin.math.roundToInt
 
 class VisibleMessageContentView : LinearLayout {
@@ -47,7 +47,7 @@ class VisibleMessageContentView : LinearLayout {
 
     // region Updating
     fun bind(message: MessageRecord, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean,
-        glide: GlideRequests, maxWidth: Int, thread: Recipient) {
+        glide: GlideRequests, maxWidth: Int, thread: Recipient, searchQuery: String?) {
         // Background
         val background = getBackground(message.isOutgoing, isStartOfMessageCluster, isEndOfMessageCluster)
         val colorID = if (message.isOutgoing) R.attr.message_sent_background_color else R.attr.message_received_background_color
@@ -60,7 +60,7 @@ class VisibleMessageContentView : LinearLayout {
         onContentClick = null
         if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
             val linkPreviewView = LinkPreviewView(context)
-            linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster)
+            linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster, searchQuery)
             mainContainer.addView(linkPreviewView)
             // Body text view is inside the link preview for layout convenience
         } else if (message is MmsMessageRecord && message.quote != null) {
@@ -73,7 +73,7 @@ class VisibleMessageContentView : LinearLayout {
             quoteView.bind(quote.author.toString(), quote.text, quote.attachment, thread,
                 message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation, message.threadId)
             mainContainer.addView(quoteView)
-            val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
+            val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message, searchQuery)
             ViewUtil.setPaddingTop(bodyTextView, 0)
             mainContainer.addView(bodyTextView)
         } else if (message is MmsMessageRecord && message.slideDeck.audioSlide != null) {
@@ -96,7 +96,7 @@ class VisibleMessageContentView : LinearLayout {
             openGroupInvitationView.bind(message, VisibleMessageContentView.getTextColor(context, message))
             mainContainer.addView(openGroupInvitationView)
         } else {
-            val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
+            val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message, searchQuery)
             mainContainer.addView(bodyTextView)
         }
     }
@@ -124,7 +124,7 @@ class VisibleMessageContentView : LinearLayout {
     // region Convenience
     companion object {
 
-        fun getBodyTextView(context: Context, message: MessageRecord): TextView {
+        fun getBodyTextView(context: Context, message: MessageRecord, searchQuery: String?): TextView {
             val result = EmojiTextView(context)
             val vPadding = context.resources.getDimension(R.dimen.small_spacing).toInt()
             val hPadding = toPx(12, context.resources)
@@ -136,6 +136,8 @@ class VisibleMessageContentView : LinearLayout {
             var body = message.body.toSpannable()
             Linkify.addLinks(body, Linkify.WEB_URLS)
             body = MentionUtilities.highlightMentions(body, message.isOutgoing, message.threadId, context);
+            body = SearchUtil.getHighlightedSpan(Locale.getDefault(), StyleFactory { BackgroundColorSpan(Color.WHITE) }, body, searchQuery)
+            body = SearchUtil.getHighlightedSpan(Locale.getDefault(), StyleFactory { ForegroundColorSpan(Color.BLACK) }, body, searchQuery)
             result.text = body
             return result
         }

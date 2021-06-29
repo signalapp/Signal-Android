@@ -19,6 +19,7 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
     : CursorRecyclerViewAdapter<ViewHolder>(context, cursor) {
     private val messageDB = DatabaseFactory.getMmsSmsDatabase(context)
     var selectedItems = mutableSetOf<MessageRecord>()
+    private var searchQuery: String? = null
 
     sealed class ViewType(val rawValue: Int) {
         object Visible : ViewType(0)
@@ -67,7 +68,7 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 view.snIsSelected = isSelected
                 view.messageTimestampTextView.isVisible = isSelected
                 val position = viewHolder.adapterPosition
-                view.bind(message, getMessageBefore(position, cursor), getMessageAfter(position, cursor), glide)
+                view.bind(message, getMessageBefore(position, cursor), getMessageAfter(position, cursor), glide, searchQuery)
                 view.onPress = { onItemPress(message, viewHolder.adapterPosition, view) }
                 view.onSwipeToReply = { onItemSwipeToReply(message, viewHolder.adapterPosition) }
                 view.onLongPress = { onItemLongPress(message, viewHolder.adapterPosition) }
@@ -116,5 +117,10 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
             if (messageRecord.isOutgoing || messageRecord.dateReceived <= lastSeenTimestamp) { return i }
         }
         return null
+    }
+
+    fun onSearchQueryUpdated(query: String?) {
+        this.searchQuery = query
+        notifyDataSetChanged()
     }
 }

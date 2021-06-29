@@ -74,7 +74,7 @@ class VisibleMessageView : LinearLayout {
     // endregion
 
     // region Updating
-    fun bind(message: MessageRecord, previous: MessageRecord?, next: MessageRecord?, glide: GlideRequests) {
+    fun bind(message: MessageRecord, previous: MessageRecord?, next: MessageRecord?, glide: GlideRequests, searchQuery: String?) {
         val sender = message.individualRecipient
         val senderSessionID = sender.address.serialize()
         val threadID = message.threadId
@@ -142,7 +142,7 @@ class VisibleMessageView : LinearLayout {
         var maxWidth = screenWidth - messageContentContainerLayoutParams.leftMargin - messageContentContainerLayoutParams.rightMargin
         if (profilePictureContainer.visibility != View.GONE) { maxWidth -= profilePictureContainer.width }
         // Populate content view
-        messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth, thread)
+        messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth, thread, searchQuery)
     }
 
     private fun setMessageSpacing(isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {
