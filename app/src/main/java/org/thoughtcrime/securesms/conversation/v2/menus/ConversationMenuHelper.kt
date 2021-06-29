@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
+import android.os.AsyncTask
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -17,18 +18,19 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import network.loki.messenger.R
 import org.session.libsession.messaging.sending_receiving.MessageSender
-import org.session.libsession.messaging.sending_receiving.MessageSender.explicitLeave
 import org.session.libsession.messaging.sending_receiving.leave
 import org.session.libsession.utilities.ExpirationUtil
 import org.session.libsession.utilities.GroupUtil.doubleDecodeGroupID
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.TextSecurePreferences.getLocalNumber
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.toHexString
+import org.thoughtcrime.securesms.MuteDialog
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity
 import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity.Companion.groupIDKey
+import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import java.io.IOException
 
@@ -94,9 +96,9 @@ object ConversationMenuHelper {
             R.id.menu_copy_session_id -> { copySessionID(context, thread) }
             R.id.menu_edit_group -> { editClosedGroup(context, thread) }
             R.id.menu_leave_group -> { leaveClosedGroup(context, thread) }
-            R.id.menu_invite_to_open_group -> { }
-            R.id.menu_unmute_notifications -> { }
-            R.id.menu_mute_notifications -> { }
+            R.id.menu_invite_to_open_group -> { inviteContacts(context, thread) }
+            R.id.menu_unmute_notifications -> { unmute(context, thread) }
+            R.id.menu_mute_notifications -> { mute(context, thread) }
         }
         return true
     }
@@ -185,5 +187,24 @@ object ConversationMenuHelper {
         }
         builder.setNegativeButton(R.string.no, null)
         builder.show()
+    }
+
+    private fun inviteContacts(context: Context, thread: Recipient) {
+        if (!thread.isOpenGroupRecipient) { return }
+        val intent = Intent(context, SelectContactsActivity::class.java)
+        val activity = context as AppCompatActivity
+        activity.startActivityForResult(intent, ConversationActivityV2.INVITE_CONTACTS)
+    }
+
+    private fun unmute(context: Context, thread: Recipient) {
+        thread.setMuted(0)
+        DatabaseFactory.getRecipientDatabase(context).setMuted(thread, 0)
+    }
+
+    private fun mute(context: Context, thread: Recipient) {
+        MuteDialog.show(context) { until: Long ->
+            thread.setMuted(until)
+            DatabaseFactory.getRecipientDatabase(context).setMuted(thread, until)
+        }
     }
 }
