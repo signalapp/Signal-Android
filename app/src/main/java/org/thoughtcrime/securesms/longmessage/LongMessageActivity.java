@@ -2,36 +2,20 @@ package org.thoughtcrime.securesms.longmessage;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
-import android.text.style.URLSpan;
-import android.text.util.Linkify;
-import android.util.TypedValue;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.annimon.stream.Stream;
-
-import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import org.thoughtcrime.securesms.components.ConversationItemFooter;
-import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
-
 import org.session.libsession.utilities.Address;
-import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsession.utilities.ThemeUtil;
 import org.session.libsession.utilities.Util;
-import org.session.libsession.utilities.Stub;
-
-import java.util.Locale;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
+import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
 
 import network.loki.messenger.R;
 
@@ -90,19 +74,18 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity {
         return;
       }
 
-
       if (message.get().getMessageRecord().isOutgoing()) {
         getSupportActionBar().setTitle(getString(R.string.LongMessageActivity_your_message));
       } else {
         Recipient recipient = message.get().getMessageRecord().getRecipient();
-        String    name      = Util.getFirstNonEmpty(recipient.getName(), recipient.getProfileName(), recipient.getAddress().serialize()) ;
+        String    name      = Util.getFirstNonEmpty(recipient.getName(), recipient.getProfileName(), recipient.getAddress().serialize());
         getSupportActionBar().setTitle(getString(R.string.LongMessageActivity_message_from_s, name));
       }
 
-      String          trimmedBody = getTrimmedBody(message.get().getFullBody());
-      SpannableString styledBody  = linkifyMessageBody(new SpannableString(trimmedBody));
+      String trimmedBody = getTrimmedBody(message.get().getFullBody());
+      String mentionBody = MentionUtilities.highlightMentions(trimmedBody, message.get().getMessageRecord().getThreadId(), this);
 
-      textBody.setText(styledBody);
+      textBody.setText(mentionBody);
       textBody.setMovementMethod(LinkMovementMethod.getInstance());
     });
   }
@@ -112,15 +95,4 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity {
                                                : text.substring(0, MAX_DISPLAY_LENGTH);
   }
 
-  private SpannableString linkifyMessageBody(SpannableString messageBody) {
-    int     linkPattern = Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS;
-    boolean hasLinks    = Linkify.addLinks(messageBody, linkPattern);
-
-    if (hasLinks) {
-      Stream.of(messageBody.getSpans(0, messageBody.length(), URLSpan.class))
-            .filterNot(url -> LinkPreviewUtil.isLegalUrl(url.getURL()))
-            .forEach(messageBody::removeSpan);
-    }
-    return messageBody;
-  }
 }
