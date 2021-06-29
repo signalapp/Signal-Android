@@ -64,9 +64,5 @@ class LinkPreviewView : LinearLayout {
         super.dispatchDraw(canvas)
         cornerMask.mask(canvas)
     }
-
-    fun recycle() {
-        // TODO: Implement
-    }
     // endregion
 }

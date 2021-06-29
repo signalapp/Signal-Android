@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.text.util.Linkify
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.LinearLayout
@@ -28,12 +27,12 @@ import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.*
-import org.thoughtcrime.securesms.loki.utilities.MentionUtilities.highlightMentions
 import org.thoughtcrime.securesms.mms.GlideRequests
 import kotlin.math.roundToInt
 
 class VisibleMessageContentView : LinearLayout {
     var onContentClick: ((rawRect: Rect) -> Unit)? = null
+    var onContentDoubleTap: (() -> Unit)? = null
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
@@ -58,6 +57,7 @@ class VisibleMessageContentView : LinearLayout {
         // Body
         mainContainer.removeAllViews()
         onContentClick = null
+        onContentDoubleTap = null
         if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
             val linkPreviewView = LinkPreviewView(context)
             linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster)
@@ -83,6 +83,7 @@ class VisibleMessageContentView : LinearLayout {
             // We have to use onContentClick (rather than a click listener directly on the voice
             // message view) so as to not interfere with all the other gestures.
             onContentClick = { voiceMessageView.togglePlayback() }
+            onContentDoubleTap = { voiceMessageView.handleDoubleTap() }
         } else if (message is MmsMessageRecord && message.slideDeck.documentSlide != null) {
             val documentView = DocumentView(context)
             documentView.bind(message, VisibleMessageContentView.getTextColor(context, message))

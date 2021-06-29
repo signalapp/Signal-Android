@@ -30,9 +30,5 @@ class DocumentView : LinearLayout {
         documentTitleTextView.setTextColor(textColor)
         documentViewIconImageView.imageTintList = ColorStateList.valueOf(textColor)
     }
-
-    fun recycle() {
-        // TODO: Implement
-    }
     // endregion
 }

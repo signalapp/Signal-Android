@@ -29,6 +29,8 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     private var linkPreviewDraftView: LinkPreviewDraftView? = null
     var delegate: InputBarDelegate? = null
     var additionalContentHeight = 0
+    var quote: MessageRecord? = null
+    var linkPreview: LinkPreview? = null
 
     var text: String
         get() { return inputBarEditText.text.toString() }
@@ -100,6 +102,8 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     // a quote and a link preview at the same time.
 
     fun draftQuote(message: MessageRecord) {
+        quote = message
+        linkPreview = null
         linkPreviewDraftView = null
         inputBarAdditionalContentContainer.removeAllViews()
         val quoteView = QuoteView(context, QuoteView.Mode.Draft)
@@ -121,6 +125,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     }
 
     override fun cancelQuoteDraft() {
+        quote = null
         inputBarAdditionalContentContainer.removeAllViews()
         val newHeight = max(inputBarEditText.height + 2 * vMargin, minHeight)
         additionalContentHeight = 0
@@ -128,6 +133,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     }
 
     fun draftLinkPreview() {
+        quote = null
         val linkPreviewDraftHeight = toPx(88, resources)
         inputBarAdditionalContentContainer.removeAllViews()
         val linkPreviewDraftView = LinkPreviewDraftView(context)
@@ -140,11 +146,14 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     }
 
     fun updateLinkPreviewDraft(glide: GlideRequests, linkPreview: LinkPreview) {
+        this.linkPreview = linkPreview
         val linkPreviewDraftView = this.linkPreviewDraftView ?: return
         linkPreviewDraftView.update(glide, linkPreview)
     }
 
     override fun cancelLinkPreviewDraft() {
+        if (quote != null) { return }
+        linkPreview = null
         inputBarAdditionalContentContainer.removeAllViews()
         val newHeight = max(inputBarEditText.height + 2 * vMargin, minHeight)
         additionalContentHeight = 0

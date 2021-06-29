@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.v2.menus
 
 import android.content.Context
+import android.util.Log
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
@@ -10,9 +11,11 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.conversation.v2.ConversationAdapter
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.MessageRecord
 
 class ConversationActionModeCallback(private val adapter: ConversationAdapter, private val threadID: Long,
     private val context: Context) : ActionMode.Callback {
+    var delegate: ConversationActionModeCallbackDelegate? = null
 
     override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
         val inflater = mode.menuInflater
@@ -44,8 +47,6 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
             if (selectedUsers.size > 1) { return false }
             return OpenGroupAPIV2.isUserModerator(userPublicKey, openGroup.room, openGroup.server)
         }
-        // Message info
-        menu.findItem(R.id.menu_context_details).isVisible = (selectedItems.size == 1)
         // Delete message
         menu.findItem(R.id.menu_context_delete_message).isVisible = userCanDeleteSelectedItems()
         // Ban user
@@ -70,6 +71,16 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
     }
 
     override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
+        val selectedItems = adapter.selectedItems
+        when (item.itemId) {
+            R.id.menu_context_delete_message -> delegate?.deleteMessage(selectedItems)
+            R.id.menu_context_ban_user -> delegate?.banUser(selectedItems)
+            R.id.menu_context_copy -> delegate?.copyMessage(selectedItems)
+            R.id.menu_context_copy_public_key -> delegate?.copySessionID(selectedItems)
+            R.id.menu_context_resend -> delegate?.resendMessage(selectedItems)
+            R.id.menu_context_save_attachment -> delegate?.saveAttachment(selectedItems)
+            R.id.menu_context_reply -> delegate?.reply(selectedItems)
+        }
         return true
     }
 
@@ -77,4 +88,15 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
         adapter.selectedItems.clear()
         adapter.notifyDataSetChanged()
     }
+}
+
+interface ConversationActionModeCallbackDelegate {
+
+    fun deleteMessage(messages: Set<MessageRecord>)
+    fun banUser(messages: Set<MessageRecord>)
+    fun copyMessage(messages: Set<MessageRecord>)
+    fun copySessionID(messages: Set<MessageRecord>)
+    fun resendMessage(messages: Set<MessageRecord>)
+    fun saveAttachment(messages: Set<MessageRecord>)
+    fun reply(messages: Set<MessageRecord>)
 }

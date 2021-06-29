@@ -36,6 +36,7 @@ class BlockedDialog(private val recipient: Recipient) : BaseDialog() {
     }
 
     private fun unblock() {
-        // TODO: Implement
+        DatabaseFactory.getRecipientDatabase(requireContext()).setBlocked(recipient, false)
+        dismiss()
     }
 }
