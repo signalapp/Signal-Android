@@ -54,7 +54,6 @@ class AlbumThumbnailView : FrameLayout {
         super.dispatchDraw(canvas)
         cornerMask.mask(canvas)
     }
-
     // endregion
 
     // region Interaction
