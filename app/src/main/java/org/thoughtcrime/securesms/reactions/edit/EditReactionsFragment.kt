@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.reactions.edit
 
 import android.animation.ObjectAnimator
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -8,6 +9,7 @@ import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.transition.ChangeBounds
 import androidx.transition.Transition
@@ -44,6 +46,7 @@ class EditReactionsFragment : LoggingFragment(R.layout.edit_reactions_fragment),
     toolbar.setNavigationOnClickListener {
       requireActivity().onBackPressed()
     }
+    configureToolbar()
 
     reactionViews = listOf(
       view.findViewById(R.id.reaction_1),
@@ -84,6 +87,23 @@ class EditReactionsFragment : LoggingFragment(R.layout.edit_reactions_fragment),
     }
 
     view.setOnClickListener { viewModel.setSelection(EditReactionsViewModel.NO_SELECTION) }
+  }
+
+  private fun configureToolbar() {
+    if (Build.VERSION.SDK_INT == 19) {
+      updateToolbarTopMargin(ViewUtil.getStatusBarHeight(toolbar))
+    } else {
+      ViewCompat.setOnApplyWindowInsetsListener(toolbar) { _, insets ->
+        updateToolbarTopMargin(insets.systemWindowInsetTop)
+        insets
+      }
+    }
+  }
+
+  private fun updateToolbarTopMargin(topMargin: Int) {
+    val layoutParams = toolbar.layoutParams as ConstraintLayout.LayoutParams
+    layoutParams.topMargin = topMargin
+    toolbar.layoutParams = layoutParams
   }
 
   private fun select(emojiImageView: EmojiImageView) {

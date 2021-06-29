@@ -10,6 +10,8 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
@@ -56,6 +58,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
   private static final String ARG_MESSAGE_ID = "arg_message_id";
   private static final String ARG_IS_MMS     = "arg_is_mms";
   private static final String ARG_START_PAGE = "arg_start_page";
+  private static final String ARG_SHADOWS    = "arg_shadows";
   private static final String ARG_RECENT_KEY = "arg_recent_key";
   private static final String ARG_EDIT       = "arg_edit";
 
@@ -102,6 +105,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
     args.putLong(ARG_MESSAGE_ID, -1);
     args.putBoolean(ARG_IS_MMS, false);
     args.putInt(ARG_START_PAGE, -1);
+    args.putBoolean(ARG_SHADOWS, false);
     args.putString(ARG_RECENT_KEY, REACTION_STORAGE_KEY);
     fragment.setArguments(args);
 
@@ -150,6 +154,14 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
       @Override
       public void onSlide(@NonNull View bottomSheet, float slideOffset) { }
     });
+
+    boolean shadows = requireArguments().getBoolean(ARG_SHADOWS, true);
+    if (!shadows) {
+      Window window = dialog.getWindow();
+      if (window != null) {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+      }
+    }
 
     return dialog;
   }
