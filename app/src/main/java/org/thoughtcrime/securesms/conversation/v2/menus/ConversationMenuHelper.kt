@@ -6,17 +6,26 @@ import android.graphics.PorterDuffColorFilter
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
+import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.activity_conversation_v2.*
+import kotlinx.android.synthetic.main.session_logo_action_bar_content.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.ExpirationUtil
 import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.components.ConversationSearchBottomBar
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
+import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 
 object ConversationMenuHelper {
     
-    fun onPrepareOptionsMenu(menu: Menu, inflater: MenuInflater, thread: Recipient, context: Context, onOptionsItemSelected: (MenuItem) -> Unit) {
+    fun onPrepareOptionsMenu(menu: Menu, inflater: MenuInflater, thread: Recipient, threadId: Long, context: Context, onOptionsItemSelected: (MenuItem) -> Unit) {
         // Prepare
         menu.clear()
         val isOpenGroup = thread.isOpenGroupRecipient
@@ -61,6 +70,51 @@ object ConversationMenuHelper {
         } else {
             inflater.inflate(R.menu.menu_conversation_unmuted, menu)
         }
-        // TODO: Implement search
+        // Search
+        val searchViewItem = menu.findItem(R.id.menu_search)
+        val searchView = searchViewItem.actionView as SearchView
+        val searchViewModel:SearchViewModel  = ViewModelProvider(context as ConversationActivityV2).get(SearchViewModel::class.java)
+        val queryListener = object : OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                searchViewModel.onQueryUpdated(query, threadId)
+                context.searchBottomBar.showLoading()
+                context.onSearchQueryUpdated(query)
+                return true
+            }
+
+            override fun onQueryTextChange(query: String): Boolean {
+                searchViewModel.onQueryUpdated(query, threadId)
+                context.searchBottomBar.showLoading()
+                context.onSearchQueryUpdated(query)
+                return true
+            }
+        }
+        searchViewItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+                searchView.setOnQueryTextListener(queryListener)
+                searchViewModel.onSearchOpened()
+                context.searchBottomBar.visibility = View.VISIBLE
+                context.searchBottomBar.setData(0, 0)
+                context.inputBar.visibility = View.GONE
+                context.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                for (i in 0 until menu.size()) {
+                    if (menu.getItem(i) != searchViewItem) {
+                        menu.getItem(i).isVisible = false
+                    }
+                }
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+                searchView.setOnQueryTextListener(null)
+                searchViewModel.onSearchClosed()
+                context.searchBottomBar.visibility = View.GONE
+                context.inputBar.visibility = View.VISIBLE
+                context.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                context.onSearchQueryUpdated(null)
+                context.invalidateOptionsMenu()
+                return true
+            }
+        })
     }
 }

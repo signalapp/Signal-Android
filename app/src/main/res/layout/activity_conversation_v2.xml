@@ -34,6 +34,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
 
+    <org.thoughtcrime.securesms.conversation.v2.search.SearchBottomBar
+        android:id="@+id/searchBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+
     <FrameLayout
         android:id="@+id/additionalContentContainer"
         android:layout_width="match_parent"

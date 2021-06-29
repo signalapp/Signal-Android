@@ -39,7 +39,6 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
-import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.conversation.v2.dialogs.*
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -291,7 +290,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, this) { onOptionsItemSelected(it) }
+        ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, threadID, this) { onOptionsItemSelected(it) }
         super.onPrepareOptionsMenu(menu)
         return true
     }
@@ -749,5 +748,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val draftDB = DatabaseFactory.getDraftDatabase(this)
         draftDB.insertDrafts(threadID, drafts)
     }
+    // endregion
+
+    // region Search
+    fun onSearchQueryUpdated(query: String?) {
+        adapter.onSearchQueryUpdated(query)
+    }
+
     // endregion
 }
