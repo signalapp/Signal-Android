@@ -604,6 +604,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // region Interaction
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            return false
+        }
         return ConversationMenuHelper.onOptionItemSelected(this, item, thread)
     }
 

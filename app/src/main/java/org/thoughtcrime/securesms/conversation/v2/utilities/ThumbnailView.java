@@ -57,7 +57,6 @@ public class ThumbnailView extends FrameLayout {
 
   private ImageView       image;
   private View            playOverlay;
-  private View            captionIcon;
   private View            loadIndicator;
   private OnClickListener parentClickListener;
 
@@ -87,7 +86,6 @@ public class ThumbnailView extends FrameLayout {
 
     this.image          = findViewById(R.id.thumbnail_image);
     this.playOverlay    = findViewById(R.id.play_overlay);
-    this.captionIcon    = findViewById(R.id.thumbnail_caption_icon);
     this.loadIndicator  = findViewById(R.id.thumbnail_load_indicator);
     super.setOnClickListener(new ThumbnailClickDispatcher());
 
@@ -277,8 +275,6 @@ public class ThumbnailView extends FrameLayout {
                slide.asAttachment().getFastPreflightId());
 
     this.slide = slide;
-
-    this.captionIcon.setVisibility(GONE);
 
     dimens[WIDTH]  = naturalWidth;
     dimens[HEIGHT] = naturalHeight;
