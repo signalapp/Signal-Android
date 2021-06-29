@@ -9,14 +9,16 @@ import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.dialog_join_open_group.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.open_groups.OpenGroupV2
+import org.session.libsession.utilities.OpenGroupUrlParser
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
+import org.thoughtcrime.securesms.loki.api.OpenGroupManager
+import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 
 /** Shown upon tapping an open group invitation. */
-class JoinOpenGroupDialog(private val openGroup: OpenGroupV2) : BaseDialog() {
+class JoinOpenGroupDialog(private val name: String, private val url: String) : BaseDialog() {
 
     override fun setContentView(builder: AlertDialog.Builder) {
         val contentView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_join_open_group, null)
-        val name = openGroup.name
         val title = resources.getString(R.string.dialog_join_open_group_title, name)
         contentView.joinOpenGroupTitleTextView.text = title
         val explanation = resources.getString(R.string.dialog_join_open_group_explanation, name)
@@ -30,6 +32,9 @@ class JoinOpenGroupDialog(private val openGroup: OpenGroupV2) : BaseDialog() {
     }
 
     private fun join() {
-        // TODO: Implement
+        val openGroup = OpenGroupUrlParser.parseUrl(url)
+        OpenGroupManager.add(openGroup.server, openGroup.room, openGroup.serverPublicKey, requireContext())
+        MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(requireContext())
+        dismiss()
     }
 }

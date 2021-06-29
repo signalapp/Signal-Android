@@ -9,6 +9,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.core.content.res.ResourcesCompat
@@ -60,6 +61,7 @@ class VisibleMessageContentView : LinearLayout {
             val linkPreviewView = LinkPreviewView(context)
             linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster)
             mainContainer.addView(linkPreviewView)
+            onContentClick = { linkPreviewView.openURL() }
             // Body text view is inside the link preview for layout convenience
         } else if (message is MmsMessageRecord && message.quote != null) {
             val quote = message.quote!!
@@ -102,9 +104,11 @@ class VisibleMessageContentView : LinearLayout {
             val openGroupInvitationView = OpenGroupInvitationView(context)
             openGroupInvitationView.bind(message, VisibleMessageContentView.getTextColor(context, message))
             mainContainer.addView(openGroupInvitationView)
+            onContentClick = { openGroupInvitationView.joinOpenGroup() }
         } else {
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
             mainContainer.addView(bodyTextView)
+            onContentClick = { openURLIfNeeded(message) }
         }
     }
 
@@ -125,6 +129,12 @@ class VisibleMessageContentView : LinearLayout {
 
     fun recycle() {
         mainContainer.removeAllViews()
+    }
+    // endregion
+
+    // region Interaction
+    private fun openURLIfNeeded(message: MessageRecord) {
+        Toast.makeText(context, "Not yet implemented", Toast.LENGTH_LONG).show()
     }
     // endregion
 

@@ -1,10 +1,13 @@
 package org.thoughtcrime.securesms.conversation.v2.dialogs
 
+import android.content.Intent
 import android.graphics.Typeface
+import android.net.Uri
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.dialog_open_url.view.*
 import network.loki.messenger.R
@@ -26,6 +29,12 @@ class OpenURLDialog(private val url: String) : BaseDialog() {
     }
 
     private fun open() {
-        // TODO: Implement
+        try {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            requireContext().startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(context, R.string.invalid_url, Toast.LENGTH_SHORT).show()
+        }
+        dismiss()
     }
 }
