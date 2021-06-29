@@ -14,14 +14,6 @@
         android:scaleType="fitCenter"
         android:contentDescription="@string/conversation_item__mms_image_description" />
 
-    <ImageView
-        android:id="@+id/thumbnail_caption_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:src="@drawable/ic_caption_28"
-        android:visibility="gone" />
-
     <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailProgressBar
         android:id="@+id/thumbnail_load_indicator"
         android:layout_width="match_parent"
