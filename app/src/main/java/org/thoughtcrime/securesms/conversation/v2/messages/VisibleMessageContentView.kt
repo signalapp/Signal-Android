@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 import android.content.Context
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
+import android.text.method.LinkMovementMethod
 import android.text.style.ReplacementSpan
 import android.text.style.URLSpan
 import android.text.util.Linkify
@@ -171,6 +172,7 @@ class VisibleMessageContentView : LinearLayout {
 
             body = MentionUtilities.highlightMentions(body, message.isOutgoing, message.threadId, context);
             result.text = body
+            result.movementMethod = LinkMovementMethod.getInstance()
             return result
         }
 
