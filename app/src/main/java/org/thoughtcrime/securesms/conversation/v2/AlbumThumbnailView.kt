@@ -8,8 +8,10 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.core.view.children
 import androidx.core.view.isVisible
+import kotlinx.android.synthetic.main.album_thumbnail_many.view.*
 import kotlinx.android.synthetic.main.album_thumbnail_view.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.MediaPreviewActivity
@@ -22,6 +24,10 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.Slide
 
 class AlbumThumbnailView : FrameLayout {
+
+    companion object {
+        const val MAX_ALBUM_DISPLAY_SIZE = 5
+    }
 
     // region Lifecycle
     constructor(context: Context) : super(context) {
@@ -94,6 +100,12 @@ class AlbumThumbnailView : FrameLayout {
         if (slides.size != this.slideSize) {
             albumCellContainer.removeAllViews()
             LayoutInflater.from(context).inflate(layoutRes(slides.size), albumCellContainer)
+            val overflowed = slides.size > MAX_ALBUM_DISPLAY_SIZE
+            albumCellContainer.findViewById<TextView>(R.id.album_cell_overflow_text)?.let { overflowText ->
+                // overflowText will be null if !overflowed
+                overflowText.isVisible = overflowed // more than max album size
+                overflowText.text = context.getString(R.string.AlbumThumbnailView_plus, slides.size - MAX_ALBUM_DISPLAY_SIZE)
+            }
             this.slideSize = slides.size
         }
         // iterate binding

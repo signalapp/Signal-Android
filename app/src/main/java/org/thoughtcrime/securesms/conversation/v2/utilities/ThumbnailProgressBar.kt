@@ -19,7 +19,7 @@ import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
 import network.loki.messenger.R
 import kotlin.math.sin
 
-class ThumbnailProgressBar: View, ValueAnimator.AnimatorUpdateListener {
+class ThumbnailProgressBar: View {
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
@@ -38,11 +38,6 @@ class ThumbnailProgressBar: View, ValueAnimator.AnimatorUpdateListener {
 
     private val objectRect = Rect()
     private val drawingRect = Rect()
-
-    override fun onAnimationUpdate(animation: ValueAnimator?) {
-        if (animation == null || !isAttachedToWindow) return
-        invalidate()
-    }
 
     override fun dispatchDraw(canvas: Canvas?) {
         if (canvas == null) return
