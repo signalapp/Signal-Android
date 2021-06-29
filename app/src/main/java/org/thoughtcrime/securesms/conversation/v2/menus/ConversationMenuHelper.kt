@@ -167,7 +167,7 @@ object ConversationMenuHelper {
             val group = DatabaseFactory.getGroupDatabase(context).getGroup(thread.address.toGroupString()).orNull()
             if (group?.isActive == false) { return }
         }
-        ExpirationDialog.show(context, thread.expireMessages, ExpirationDialog.OnClickListener { expirationTime: Int ->
+        ExpirationDialog.show(context, thread.expireMessages) { expirationTime: Int ->
             DatabaseFactory.getRecipientDatabase(context).setExpireMessages(thread, expirationTime)
             val message = ExpirationTimerUpdate(expirationTime)
             message.recipient = thread.address.serialize()
@@ -177,7 +177,7 @@ object ConversationMenuHelper {
             MessageSender.send(message, thread.address)
             val activity = context as AppCompatActivity
             activity.invalidateOptionsMenu()
-        })
+        }
     }
 
     private fun unblock(context: Context, thread: Recipient) {
