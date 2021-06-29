@@ -779,4 +779,12 @@ object TextSecurePreferences {
     fun setLastOpenDate(context: Context) {
         setLongPreference(context, LAST_OPEN_DATE, System.currentTimeMillis())
     }
+
+    fun hasSeenLinkPreviewSuggestionDialog(context: Context): Boolean {
+        return getBooleanPreference(context, "has_seen_link_preview_suggestion_dialog", false)
+    }
+
+    fun setHasSeenLinkPreviewSuggestionDialog(context: Context) {
+        setBooleanPreference(context, "has_seen_link_preview_suggestion_dialog", true)
+    }
 }

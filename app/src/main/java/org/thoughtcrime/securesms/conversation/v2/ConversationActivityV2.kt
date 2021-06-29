@@ -82,6 +82,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
 import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
@@ -98,6 +99,7 @@ import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentTask
+import org.w3c.dom.Text
 import java.util.*
 import java.util.concurrent.ExecutionException
 import kotlin.math.*
@@ -402,8 +404,19 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun inputBarEditTextContentChanged(newContent: CharSequence) {
-        linkPreviewViewModel?.onTextChanged(this, inputBar.text, 0, 0)
+        if (TextSecurePreferences.isLinkPreviewsEnabled(this)) {
+            linkPreviewViewModel?.onTextChanged(this, inputBar.text, 0, 0)
+        }
         showOrHideMentionCandidatesIfNeeded(newContent)
+        if (LinkPreviewUtil.findWhitelistedUrls(newContent.toString()).isNotEmpty()
+            && !TextSecurePreferences.isLinkPreviewsEnabled(this) && !TextSecurePreferences.hasSeenLinkPreviewSuggestionDialog(this)) {
+            LinkPreviewDialog {
+                setUpLinkPreviewObserver()
+                linkPreviewViewModel?.onEnabled()
+                linkPreviewViewModel?.onTextChanged(this, inputBar.text, 0, 0)
+            }.show(supportFragmentManager, "Link Preview Dialog")
+            TextSecurePreferences.setHasSeenLinkPreviewSuggestionDialog(this)
+        }
     }
 
     private fun showOrHideMentionCandidatesIfNeeded(text: CharSequence) {
