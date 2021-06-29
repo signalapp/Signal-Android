@@ -99,9 +99,6 @@ object ConversationMenuHelper {
         val searchViewModel = (context as ConversationActivityV2).getSearchViewModel()!!
         val queryListener = object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                searchViewModel.onQueryUpdated(query, threadId)
-                context.searchBottomBar.showLoading()
-                context.onSearchQueryUpdated(query)
                 return true
             }
 
