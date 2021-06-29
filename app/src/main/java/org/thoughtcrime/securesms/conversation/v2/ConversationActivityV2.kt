@@ -37,10 +37,13 @@ import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.concurrent.SimpleTask
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
+import org.thoughtcrime.securesms.conversation.ConversationFragment
 import org.thoughtcrime.securesms.conversation.v2.dialogs.*
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -764,9 +767,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         searchViewModel.searchResults.observe(this, Observer { result: SearchViewModel.SearchResult? ->
             if (result == null) return@Observer
             if (result.getResults().isNotEmpty()) {
-                conversationRecyclerView.scrollToPosition(result.position)
-                val messageResult = result.getResults()[result.position]
-//                fragment.jumpToMessage(messageResult.messageRecipient.address, messageResult.receivedTimestampMs, Runnable { searchViewModel.onMissingResult() })
+                result.getResults()[result.position]?.let {
+                    jumpToMessage(it.messageRecipient.address, it.receivedTimestampMs, Runnable { searchViewModel.onMissingResult() })
+                }
             }
             this.searchBottomBar.setData(result.position, result.getResults().size)
         })
@@ -786,6 +789,20 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     override fun onSearchMoveDownPressed() {
         this.searchViewModel?.onMoveDown()
+    }
+
+    private fun jumpToMessage(author: Address, timestamp: Long, onMessageNotFound: Runnable?) {
+        SimpleTask.run(lifecycle, {
+            DatabaseFactory.getMmsSmsDatabase(this).getMessagePositionInConversation(threadID, timestamp, author)
+        }) { p: Int -> moveToMessagePosition(p, onMessageNotFound) }
+    }
+
+    private fun moveToMessagePosition(position: Int, onMessageNotFound: Runnable?) {
+        if (position >= 0) {
+            conversationRecyclerView.scrollToPosition(position)
+        } else {
+            onMessageNotFound?.run()
+        }
     }
     // endregion
 }

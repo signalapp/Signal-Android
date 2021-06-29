@@ -36,7 +36,7 @@ class SearchBottomBar : LinearLayout {
         if (count > 0) {
             searchPosition.text = resources.getString(R.string.ConversationActivity_search_position, position + 1, count)
         } else {
-            searchPosition.setText(R.string.ConversationActivity_no_results)
+            searchPosition.text = ""
         }
         setViewEnabled(searchUp, position < count - 1)
         setViewEnabled(searchDown, position > 0)
