@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.conversation.v2
 import android.Manifest
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
+import android.content.Context
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Intent
@@ -10,6 +11,7 @@ import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
 import android.graphics.Typeface
+import android.os.Bundle
 import android.net.Uri
 import android.os.*
 import android.text.TextUtils
@@ -81,6 +83,8 @@ import org.thoughtcrime.securesms.giph.ui.GiphyActivity
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
+import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
+import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity
 import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity.Companion.selectedContactsKey
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities
@@ -102,7 +106,8 @@ import kotlin.math.*
 // price we pay is a bit of back and forth between the input bar and the conversation activity.
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
-    InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ConversationActionModeCallbackDelegate {
+    InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ActivityDispatcher,
+        ConversationActionModeCallbackDelegate {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
@@ -130,8 +135,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val adapter = ConversationAdapter(
             this,
             cursor,
-            onItemPress = { message, position, view ->
-                handlePress(message, position, view)
+            onItemPress = { message, position, view, rawRect ->
+                handlePress(message, position, view, rawRect)
             },
             onItemSwipeToReply = { message, position ->
                 handleSwipeToReply(message, position)
@@ -186,6 +191,28 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         setUpLinkPreviewObserver()
         scrollToFirstUnreadMessageIfNeeded()
         markAllAsRead()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(threadID)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(-1)
+    }
+
+    override fun getSystemService(name: String): Any? {
+        if (name == ActivityDispatcher.SERVICE) {
+            return this
+        }
+        return super.getSystemService(name)
+    }
+
+    override fun dispatchIntent(body: (Context) -> Intent?) {
+        val intent = body(this) ?: return
+        push(intent, false)
     }
 
     private fun setUpRecyclerView() {
@@ -563,7 +590,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     // `position` is the adapter position; not the visual position
-    private fun handlePress(message: MessageRecord, position: Int, view: VisibleMessageView) {
+    private fun handlePress(message: MessageRecord, position: Int, view: VisibleMessageView, rawRect: Rect) {
         val actionMode = this.actionMode
         if (actionMode != null) {
             adapter.toggleSelection(message, position)
@@ -579,7 +606,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             // We have to use onContentClick (rather than a click listener directly on
             // the view) so as to not interfere with all the other gestures. Do not add
             // onClickListeners directly to message content views.
-            view.onContentClick()
+            view.onContentClick(rawRect)
         }
     }
 

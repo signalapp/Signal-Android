@@ -9,12 +9,10 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
-import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import kotlinx.android.synthetic.main.view_conversation.view.*
 import kotlinx.android.synthetic.main.view_visible_message.view.*
 import kotlinx.android.synthetic.main.view_visible_message.view.profilePictureView
 import network.loki.messenger.R
@@ -47,7 +45,7 @@ class VisibleMessageView : LinearLayout {
     private var onDoubleTap: (() -> Unit)? = null
     var snIsSelected = false
         set(value) { field = value; handleIsSelectedChanged()}
-    var onPress: (() -> Unit)? = null
+    var onPress: ((rawX: Int, rawY: Int) -> Unit)? = null
     var onSwipeToReply: (() -> Unit)? = null
     var onLongPress: (() -> Unit)? = null
 
@@ -279,7 +277,7 @@ class VisibleMessageView : LinearLayout {
                 this.pressCallback = null
                 onDoubleTap?.invoke()
             } else {
-                val newPressCallback = Runnable { onPress() }
+                val newPressCallback = Runnable { onPress(event.rawX.toInt(), event.rawY.toInt()) }
                 this.pressCallback = newPressCallback
                 gestureHandler.postDelayed(newPressCallback, VisibleMessageView.maxDoubleTapInterval)
             }
@@ -307,13 +305,13 @@ class VisibleMessageView : LinearLayout {
         onLongPress?.invoke()
     }
 
-    private fun onPress() {
-        onPress?.invoke()
-        pressCallback = null
+    fun onContentClick(rawRect: Rect) {
+        messageContentView.onContentClick?.invoke(rawRect)
     }
 
-    fun onContentClick() {
-        messageContentView.onContentClick?.invoke()
+    private fun onPress(rawX: Int, rawY: Int) {
+        onPress?.invoke(rawX, rawY)
+        pressCallback = null
     }
     // endregion
 }

@@ -7,13 +7,13 @@
     android:layout_width="@dimen/album_total_width"
     android:layout_height="@dimen/album_2_total_height">
 
-    <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
+    <org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
         android:id="@+id/album_cell_1"
         android:layout_width="@dimen/album_2_cell_width"
         android:layout_height="@dimen/album_2_total_height"
         app:thumbnail_radius="0dp"/>
 
-    <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
+    <org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
         android:id="@+id/album_cell_2"
         android:layout_width="@dimen/album_2_cell_width"
         android:layout_height="@dimen/album_2_total_height"

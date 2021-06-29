@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
 import android.content.Context
+import android.graphics.Rect
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.text.util.Linkify
 import android.util.AttributeSet
@@ -19,6 +22,7 @@ import network.loki.messenger.R
 import org.session.libsession.utilities.ThemeUtil
 import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.conversation.v2.AlbumThumbnailView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -27,7 +31,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import kotlin.math.roundToInt
 
 class VisibleMessageContentView : LinearLayout {
-    var onContentClick: (() -> Unit)? = null
+    var onContentClick: ((rawRect: Rect) -> Unit)? = null
     var onContentDoubleTap: (() -> Unit)? = null
 
     // region Lifecycle
@@ -85,9 +89,17 @@ class VisibleMessageContentView : LinearLayout {
             documentView.bind(message, VisibleMessageContentView.getTextColor(context, message))
             mainContainer.addView(documentView)
         } else if (message is MmsMessageRecord && message.slideDeck.asAttachments().isNotEmpty()) {
-            val dummyTextView = TextView(context)
-            dummyTextView.text = "asifuygaihsfo"
-            mainContainer.addView(dummyTextView)
+            val albumThumbnailView = AlbumThumbnailView(context)
+            mainContainer.addView(albumThumbnailView)
+            // isStart and isEnd of cluster needed for calculating the mask for full bubble image groups
+            // bind after add view because views are inflated and calculated during bind
+            albumThumbnailView.bind(
+                    glideRequests = glide,
+                    message = message,
+                    isStart = isStartOfMessageCluster,
+                    isEnd = isEndOfMessageCluster
+            )
+            onContentClick = { albumThumbnailView.calculateHitObject(it, message) }
         } else if (message.isOpenGroupInvitation) {
             val openGroupInvitationView = OpenGroupInvitationView(context)
             openGroupInvitationView.bind(message, VisibleMessageContentView.getTextColor(context, message))

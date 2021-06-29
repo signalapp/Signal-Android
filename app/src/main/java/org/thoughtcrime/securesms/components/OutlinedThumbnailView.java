@@ -29,7 +29,6 @@ public class OutlinedThumbnailView extends ThumbnailView {
     outliner   = new Outliner();
 
     outliner.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.conversation_item_image_outline_color));
-    setRadius(0);
     setWillNotDraw(false);
   }
 
