@@ -47,14 +47,18 @@ import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.messages.control.DataExtractionNotification
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
+import org.session.libsession.messaging.messages.visible.OpenGroupInvitation
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.session.libsession.messaging.sending_receiving.MessageSender.send
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
+import org.session.libsession.utilities.Address.Companion.fromSerialized
 import org.session.libsession.utilities.MediaTypes
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.ListenableFuture
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
@@ -81,6 +85,8 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
 import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
 import org.thoughtcrime.securesms.loki.utilities.push
+import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity
+import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity.Companion.selectedContactsKey
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mediasend.Media
@@ -161,6 +167,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         const val TAKE_PHOTO = 7
         const val PICK_GIF = 10
         const val PICK_FROM_LIBRARY = 12
+        const val INVITE_CONTACTS = 124
     }
     // endregion
 
@@ -579,8 +586,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // region Interaction
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // TODO: Implement
-        return super.onOptionsItemSelected(item)
+        return ConversationMenuHelper.onOptionItemSelected(this, item, thread)
     }
 
     // `position` is the adapter position; not the visual position
@@ -845,6 +851,25 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                     }
                 }
                 sendAttachments(slideDeck.asAttachments(), body)
+            }
+            INVITE_CONTACTS -> {
+                if (!thread.isOpenGroupRecipient) { return }
+                val extras = intent?.extras ?: return
+                if (!intent.hasExtra(SelectContactsActivity.selectedContactsKey)) { return }
+                val selectedContacts = extras.getStringArray(selectedContactsKey)!!
+                val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
+                for (contact in selectedContacts) {
+                    val recipient = Recipient.from(this, fromSerialized(contact), true)
+                    val message = VisibleMessage()
+                    message.sentTimestamp = System.currentTimeMillis()
+                    val openGroupInvitation = OpenGroupInvitation()
+                    openGroupInvitation.name = openGroup!!.name
+                    openGroupInvitation.url = openGroup!!.joinURL
+                    message.openGroupInvitation = openGroupInvitation
+                    val outgoingTextMessage = OutgoingTextMessage.fromOpenGroupInvitation(openGroupInvitation, recipient, message.sentTimestamp)
+                    DatabaseFactory.getSmsDatabase(this).insertMessageOutbox(-1, outgoingTextMessage, message.sentTimestamp!!)
+                    MessageSender.send(message, recipient.address)
+                }
             }
         }
     }
