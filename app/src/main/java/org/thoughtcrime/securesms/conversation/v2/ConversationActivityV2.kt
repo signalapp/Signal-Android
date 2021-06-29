@@ -13,6 +13,8 @@ import android.util.TypedValue
 import android.view.*
 import android.widget.RelativeLayout
 import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
@@ -47,6 +49,8 @@ import org.thoughtcrime.securesms.conversation.v2.input_bar.mentions.MentionCand
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
+import org.thoughtcrime.securesms.conversation.v2.search.SearchBottomBar
+import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
@@ -70,8 +74,9 @@ import kotlin.math.*
 // price we pay is a bit of back and forth between the input bar and the conversation activity.
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
-    InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener {
+    InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, SearchBottomBar.EventListener {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
+    private var searchViewModel: SearchViewModel? = null
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
     private var actionMode: ActionMode? = null
@@ -151,6 +156,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         getLatestOpenGroupInfoIfNeeded()
         setUpBlockedBanner()
         setUpLinkPreviewObserver()
+        searchBottomBar.setEventListener(this)
+        setUpSearchResultObserver()
         scrollToFirstUnreadMessageIfNeeded()
         markAllAsRead()
     }
@@ -751,9 +758,34 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     // endregion
 
     // region Search
+    private fun setUpSearchResultObserver() {
+        val searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+        this.searchViewModel = searchViewModel
+        searchViewModel.searchResults.observe(this, Observer { result: SearchViewModel.SearchResult? ->
+            if (result == null) return@Observer
+            if (result.getResults().isNotEmpty()) {
+                conversationRecyclerView.scrollToPosition(result.position)
+                val messageResult = result.getResults()[result.position]
+//                fragment.jumpToMessage(messageResult.messageRecipient.address, messageResult.receivedTimestampMs, Runnable { searchViewModel.onMissingResult() })
+            }
+            this.searchBottomBar.setData(result.position, result.getResults().size)
+        })
+    }
+
+    fun getSearchViewModel(): SearchViewModel? {
+        return this.searchViewModel
+    }
+
     fun onSearchQueryUpdated(query: String?) {
         adapter.onSearchQueryUpdated(query)
     }
 
+    override fun onSearchMoveUpPressed() {
+        this.searchViewModel?.onMoveUp()
+    }
+
+    override fun onSearchMoveDownPressed() {
+        this.searchViewModel?.onMoveDown()
+    }
     // endregion
 }

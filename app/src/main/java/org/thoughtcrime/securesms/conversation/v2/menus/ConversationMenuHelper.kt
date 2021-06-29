@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.session_logo_action_bar_content.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.ExpirationUtil
 import org.session.libsession.utilities.recipients.Recipient
-import org.thoughtcrime.securesms.components.ConversationSearchBottomBar
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
@@ -73,7 +72,7 @@ object ConversationMenuHelper {
         // Search
         val searchViewItem = menu.findItem(R.id.menu_search)
         val searchView = searchViewItem.actionView as SearchView
-        val searchViewModel:SearchViewModel  = ViewModelProvider(context as ConversationActivityV2).get(SearchViewModel::class.java)
+        val searchViewModel = (context as ConversationActivityV2).getSearchViewModel()!!
         val queryListener = object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 searchViewModel.onQueryUpdated(query, threadId)
