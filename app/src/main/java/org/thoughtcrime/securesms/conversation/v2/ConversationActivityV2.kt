@@ -56,7 +56,6 @@ import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.concurrent.SimpleTask
-import org.session.libsession.messaging.sending_receiving.MessageSender.send
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
@@ -105,7 +104,6 @@ import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentTask
-import org.w3c.dom.Text
 import java.util.*
 import java.util.concurrent.ExecutionException
 import kotlin.math.*
@@ -270,18 +268,22 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         gifButtonContainer.addView(gifButton)
         gifButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
         gifButton.onUp = { showGIFPicker() }
+        gifButton.snIsEnabled = false
         // Document button
         documentButtonContainer.addView(documentButton)
         documentButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
         documentButton.onUp = { showDocumentPicker() }
+        documentButton.snIsEnabled = false
         // Library button
         libraryButtonContainer.addView(libraryButton)
         libraryButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
         libraryButton.onUp = { pickFromLibrary() }
+        libraryButton.snIsEnabled = false
         // Camera button
         cameraButtonContainer.addView(cameraButton)
         cameraButton.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
         cameraButton.onUp = { showCamera() }
+        cameraButton.snIsEnabled = false
     }
 
     private fun restoreDraftIfNeeded() {
@@ -500,11 +502,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     override fun toggleAttachmentOptions() {
         val targetAlpha = if (isShowingAttachmentOptions) 0.0f else 1.0f
-        val allButtons = listOf( cameraButtonContainer, libraryButtonContainer, documentButtonContainer, gifButtonContainer)
+        val allButtonContainers = listOf( cameraButtonContainer, libraryButtonContainer, documentButtonContainer, gifButtonContainer)
         val isReversed = isShowingAttachmentOptions // Run the animation in reverse
-        val count = allButtons.size
-        allButtons.indices.forEach { index ->
-            val view = allButtons[index]
+        val count = allButtonContainers.size
+        allButtonContainers.indices.forEach { index ->
+            val view = allButtonContainers[index]
             val animation = ValueAnimator.ofObject(FloatEvaluator(), view.alpha, targetAlpha)
             animation.duration = 250L
             animation.startDelay = if (isReversed) 50L * (count - index.toLong()) else 50L * index.toLong()
@@ -514,6 +516,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             animation.start()
         }
         isShowingAttachmentOptions = !isShowingAttachmentOptions
+        val allButtons = listOf( cameraButton, libraryButton, documentButton, gifButton )
+        allButtons.forEach { it.snIsEnabled = isShowingAttachmentOptions }
     }
 
     override fun showVoiceMessageUI() {

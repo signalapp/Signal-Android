@@ -32,7 +32,7 @@ class InputBarButton : RelativeLayout {
     @DrawableRes private var iconID = 0
     private var longPressCallback: Runnable? = null
     private var onDownTimestamp = 0L
-
+    var snIsEnabled = true
     var onPress: (() -> Unit)? = null
     var onMove: ((MotionEvent) -> Unit)? = null
     var onCancel: ((MotionEvent) -> Unit)? = null
@@ -130,6 +130,7 @@ class InputBarButton : RelativeLayout {
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
+        if (!snIsEnabled) { return false }
         when (event.action) {
             MotionEvent.ACTION_DOWN -> onDown(event)
             MotionEvent.ACTION_MOVE -> onMove(event)
