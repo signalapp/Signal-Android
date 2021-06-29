@@ -7,7 +7,6 @@ import android.net.Uri
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -18,12 +17,10 @@ import kotlinx.android.synthetic.main.thumbnail_view.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress
 import org.session.libsession.utilities.Util.equals
-import org.session.libsession.utilities.ViewUtil
 import org.session.libsignal.utilities.ListenableFuture
 import org.session.libsignal.utilities.SettableFuture
 import org.thoughtcrime.securesms.components.GlideBitmapListeningTarget
 import org.thoughtcrime.securesms.components.GlideDrawableListeningTarget
-import org.thoughtcrime.securesms.components.TransferControlView
 import org.thoughtcrime.securesms.mms.*
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
 
@@ -43,7 +40,6 @@ open class KThumbnailView: FrameLayout {
     private val playOverlay by lazy { play_overlay }
     private val captionIcon by lazy { thumbnail_caption_icon }
     val loadIndicator: View by lazy { thumbnail_load_indicator }
-    private val transferControls by lazy { ViewUtil.inflateStub<TransferControlView>(this, R.id.transfer_controls_stub) }
 
     private val dimensDelegate = ThumbnailDimensDelegate()
 
@@ -88,22 +84,15 @@ open class KThumbnailView: FrameLayout {
     // endregion
 
     // region Interaction
-    fun setImageResource(glide: GlideRequests, slide: Slide, showControls: Boolean, isPreview: Boolean): ListenableFuture<Boolean> {
-        return setImageResource(glide, slide, showControls, isPreview, 0, 0)
+    fun setImageResource(glide: GlideRequests, slide: Slide, isPreview: Boolean): ListenableFuture<Boolean> {
+        return setImageResource(glide, slide, isPreview, 0, 0)
     }
 
     fun setImageResource(glide: GlideRequests, slide: Slide,
-                         showControls: Boolean, isPreview: Boolean,
-                         naturalWidth: Int, naturalHeight: Int): ListenableFuture<Boolean> {
+                         isPreview: Boolean, naturalWidth: Int,
+                         naturalHeight: Int): ListenableFuture<Boolean> {
 
         val currentSlide = this.slide
-
-        if (showControls) {
-            transferControls.setSlide(slide)
-//            transferControls.setDownloadClickListener() TODO: re-add this
-        } else {
-            transferControls.isVisible = false
-        }
 
         playOverlay.isVisible = (slide.thumbnailUri != null && slide.hasPlayOverlay() &&
                 (slide.transferState == AttachmentTransferProgress.TRANSFER_PROGRESS_DONE || isPreview))
@@ -182,14 +171,11 @@ open class KThumbnailView: FrameLayout {
 
     open fun clear(glideRequests: GlideRequests) {
         glideRequests.clear(image)
-        transferControls.clear()
         slide = null
     }
 
     fun setImageResource(glideRequests: GlideRequests, uri: Uri): ListenableFuture<Boolean> {
         val future = SettableFuture<Boolean>()
-
-        transferControls.isVisible = false
 
         var request: GlideRequest<Drawable> = glideRequests.load(DecryptableUri(uri))
                 .diskCacheStrategy(DiskCacheStrategy.NONE)

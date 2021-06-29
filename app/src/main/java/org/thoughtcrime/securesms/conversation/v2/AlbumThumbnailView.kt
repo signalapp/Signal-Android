@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.util.AttributeSet
@@ -11,7 +10,6 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.view.children
 import androidx.core.view.isVisible
-import kotlinx.android.synthetic.main.album_thumbnail_many.view.*
 import kotlinx.android.synthetic.main.album_thumbnail_view.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.MediaPreviewActivity
@@ -110,7 +108,7 @@ class AlbumThumbnailView : FrameLayout {
         // iterate binding
         slides.take(5).forEachIndexed { position, slide ->
             val thumbnailView = getThumbnailView(position)
-            thumbnailView.setImageResource(glideRequests, slide, showControls = false, isPreview = false)
+            thumbnailView.setImageResource(glideRequests, slide, isPreview = false)
         }
         albumCellBodyParent.isVisible = message.body.isNotEmpty()
         albumCellBodyText.text = message.body
