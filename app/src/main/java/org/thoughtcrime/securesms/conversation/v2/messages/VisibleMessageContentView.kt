@@ -99,7 +99,7 @@ class VisibleMessageContentView : LinearLayout {
             onContentDoubleTap = { voiceMessageView.handleDoubleTap() }
         } else if (message is MmsMessageRecord && message.slideDeck.documentSlide != null) {
             val documentView = DocumentView(context)
-            documentView.bind(message, getTextColor(context, message))
+            documentView.bind(message, VisibleMessageContentView.getTextColor(context, message))
             mainContainer.addView(documentView)
         } else if (message is MmsMessageRecord && message.slideDeck.asAttachments().isNotEmpty()) {
             val albumThumbnailView = AlbumThumbnailView(context)
@@ -115,11 +115,11 @@ class VisibleMessageContentView : LinearLayout {
             onContentClick = { albumThumbnailView.calculateHitObject(it, message) }
         } else if (message.isOpenGroupInvitation) {
             val openGroupInvitationView = OpenGroupInvitationView(context)
-            openGroupInvitationView.bind(message, getTextColor(context, message))
+            openGroupInvitationView.bind(message, VisibleMessageContentView.getTextColor(context, message))
             mainContainer.addView(openGroupInvitationView)
             onContentClick = { openGroupInvitationView.joinOpenGroup() }
         } else {
-            val bodyTextView = getBodyTextView(context, message, searchQuery)
+            val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message, searchQuery)
             mainContainer.addView(bodyTextView)
         }
     }
