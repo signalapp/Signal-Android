@@ -433,11 +433,12 @@ object OnionRequestAPI {
     internal fun sendOnionRequest(method: Snode.Method, parameters: Map<*, *>, snode: Snode, publicKey: String? = null): Promise<Map<*, *>, Exception> {
         val payload = mapOf( "method" to method.rawValue, "params" to parameters )
         return sendOnionRequest(Destination.Snode(snode), payload).recover { exception ->
-            val httpRequestFailedException = exception as? HTTP.HTTPRequestFailedException
-            if (httpRequestFailedException != null) {
-                val error = SnodeAPI.handleSnodeError(httpRequestFailedException.statusCode, httpRequestFailedException.json, snode, publicKey)
-                if (error != null) { throw error }
+            val error = when (exception) {
+                is HTTP.HTTPRequestFailedException -> SnodeAPI.handleSnodeError(exception.statusCode, exception.json, snode, publicKey)
+                is HTTPRequestFailedAtDestinationException -> SnodeAPI.handleSnodeError(exception.statusCode, exception.json, snode, publicKey)
+                else -> null
             }
+            if (error != null) { throw error }
             throw exception
         }
     }

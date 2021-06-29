@@ -7,6 +7,7 @@ import nl.komponents.kovenant.functional.map
 import okhttp3.MediaType
 import okhttp3.Request
 import okhttp3.RequestBody
+import org.session.libsession.messaging.jobs.Job.Companion.MAX_BUFFER_SIZE
 
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
 import org.session.libsession.messaging.utilities.Data
@@ -64,7 +65,7 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
         val kryo = Kryo()
         kryo.isRegistrationRequired = false
         val serializedMessage = ByteArray(4096)
-        val output = Output(serializedMessage)
+        val output = Output(serializedMessage, MAX_BUFFER_SIZE)
         kryo.writeObject(output, message)
         output.close()
         return Data.Builder()
