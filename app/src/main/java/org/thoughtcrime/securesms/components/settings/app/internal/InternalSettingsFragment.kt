@@ -244,6 +244,15 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_delay_resends),
+        summary = DSLSettingsText.from(R.string.preferences__internal_delay_resending_messages_in_response_to_retry_receipts),
+        isChecked = state.delayResends,
+        onClick = {
+          viewModel.setDelayResends(!state.delayResends)
+        }
+      )
+
       dividerPref()
 
       sectionHeaderPref(R.string.preferences__internal_calling)

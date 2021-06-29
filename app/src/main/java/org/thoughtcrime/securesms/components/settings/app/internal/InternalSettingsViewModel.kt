@@ -70,6 +70,11 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
+  fun setDelayResends(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.DELAY_RESENDS, enabled)
+    refresh()
+  }
+
   fun setInternalGroupCallingServer(server: String?) {
     preferenceDataStore.putString(InternalValues.CALLING_SERVER, server)
     refresh()
@@ -91,7 +96,8 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     callingServer = SignalStore.internalValues().groupCallingServer(),
     useBuiltInEmojiSet = SignalStore.internalValues().forceBuiltInEmoji(),
     emojiVersion = null,
-    removeSenderKeyMinimium = SignalStore.internalValues().removeSenderKeyMinimum()
+    removeSenderKeyMinimium = SignalStore.internalValues().removeSenderKeyMinimum(),
+    delayResends = SignalStore.internalValues().delayResends()
   )
 
   class Factory(private val repository: InternalSettingsRepository) : ViewModelProvider.Factory {

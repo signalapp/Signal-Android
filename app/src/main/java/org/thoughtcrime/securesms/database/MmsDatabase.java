@@ -1342,7 +1342,7 @@ public class MmsDatabase extends MessageDatabase {
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(CONTENT_LOCATION, contentLocation);
     contentValues.put(STATUS, Status.DOWNLOAD_INITIALIZED);
-    contentValues.put(DATE_RECEIVED, retrieved.isPushMessage() ? System.currentTimeMillis() : generatePduCompatTimestamp());
+    contentValues.put(DATE_RECEIVED, retrieved.isPushMessage() ? retrieved.getReceivedTimeMillis() : generatePduCompatTimestamp(retrieved.getReceivedTimeMillis()));
     contentValues.put(PART_COUNT, retrieved.getAttachments().size());
     contentValues.put(SUBSCRIPTION_ID, retrieved.getSubscriptionId());
     contentValues.put(EXPIRES_IN, retrieved.getExpiresIn());
@@ -1448,7 +1448,7 @@ public class MmsDatabase extends MessageDatabase {
     contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE);
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(STATUS, Status.DOWNLOAD_INITIALIZED);
-    contentValues.put(DATE_RECEIVED, generatePduCompatTimestamp());
+    contentValues.put(DATE_RECEIVED, generatePduCompatTimestamp(System.currentTimeMillis()));
     contentValues.put(READ, Util.isDefaultSmsProvider(context) ? 0 : 1);
     contentValues.put(SUBSCRIPTION_ID, subscriptionId);
 
@@ -2174,8 +2174,7 @@ public class MmsDatabase extends MessageDatabase {
     }
   }
 
-  private long generatePduCompatTimestamp() {
-    final long time = System.currentTimeMillis();
+  private long generatePduCompatTimestamp(long time) {
     return time - (time % 1000);
   }
 }

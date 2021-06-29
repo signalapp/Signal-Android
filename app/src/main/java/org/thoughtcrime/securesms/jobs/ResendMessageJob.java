@@ -6,26 +6,34 @@ import androidx.annotation.Nullable;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.crypto.storage.SignalSenderKeyStore;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.SenderKeyDistributionMessage;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
+import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * Resends a previously-sent message in response to receiving a retry receipt.
@@ -35,6 +43,8 @@ import java.util.concurrent.TimeUnit;
 public class ResendMessageJob extends BaseJob {
 
   public static final String KEY = "ResendMessageJob";
+
+  private static final String TAG = Log.tag(ResendMessageJob.class);
 
   private final RecipientId    recipientId;
   private final long           sentTimestamp;
@@ -50,7 +60,6 @@ public class ResendMessageJob extends BaseJob {
   private static final String KEY_GROUP_ID        = "group_id";
   private static final String KEY_DISTRIBUTION_ID = "distribution_id";
 
-  // TODO [greyson] Maybe just pass in the MessageLogEntry?
   public ResendMessageJob(@NonNull RecipientId recipientId,
                           long sentTimestamp,
                           @NonNull Content content,
@@ -108,6 +117,11 @@ public class ResendMessageJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
+    if (SignalStore.internalValues().delayResends()) {
+      Log.w(TAG, "Delaying resend by 10 sec because of an internal preference.");
+      ThreadUtil.sleep(10000);
+    }
+
     SignalServiceMessageSender       messageSender = ApplicationDependencies.getSignalServiceMessageSender();
     Recipient                        recipient     = Recipient.resolved(recipientId);
     SignalServiceAddress             address       = RecipientUtil.toSignalServiceAddress(context, recipient);
@@ -121,7 +135,17 @@ public class ResendMessageJob extends BaseJob {
       contentToSend = contentToSend.toBuilder().setSenderKeyDistributionMessage(distributionBytes).build();
     }
 
-    messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.fromNullable(groupId).transform(GroupId::getDecodedId));
+    SendMessageResult result = messageSender.resendContent(address, access, sentTimestamp, contentToSend, contentHint, Optional.fromNullable(groupId).transform(GroupId::getDecodedId));
+
+    if (result.isSuccess() && distributionId != null) {
+      List<SignalProtocolAddress> addresses = result.getSuccess()
+                                                    .getDevices()
+                                                    .stream()
+                                                    .map(device -> new SignalProtocolAddress(recipient.requireServiceId(), device))
+                                                    .collect(Collectors.toList());
+
+      new SignalSenderKeyStore(context).markSenderKeySharedWith(distributionId, addresses);
+    }
   }
 
   @Override

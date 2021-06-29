@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.crypto.storage.SignalSenderKeyStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -14,16 +15,19 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
+import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.SenderKeyDistributionMessage;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
+import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * Sends a {@link SenderKeyDistributionMessage} to a target recipient.
@@ -92,7 +96,17 @@ public final class SenderKeyDistributionSendJob extends BaseJob {
     SenderKeyDistributionMessage           message        = messageSender.getOrCreateNewGroupSession(distributionId);
     List<Optional<UnidentifiedAccessPair>> access         = UnidentifiedAccessUtil.getAccessFor(context, Collections.singletonList(recipient));
 
-    messageSender.sendSenderKeyDistributionMessage(address, access, message, groupId.getDecodedId());
+    SendMessageResult result = messageSender.sendSenderKeyDistributionMessage(address, access, message, groupId.getDecodedId()).get(0);
+
+    if (result.isSuccess()) {
+      List<SignalProtocolAddress> addresses = result.getSuccess()
+                                                    .getDevices()
+                                                    .stream()
+                                                    .map(device -> new SignalProtocolAddress(recipient.requireServiceId(), device))
+                                                    .collect(Collectors.toList());
+
+      new SignalSenderKeyStore(context).markSenderKeySharedWith(distributionId, addresses);
+    }
   }
 
   @Override

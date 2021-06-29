@@ -1753,7 +1753,7 @@ public class SignalServiceMessageSender {
                                                       .collect(Collectors.toList());
 
         Set<String>                successUuids     = successes.stream().map(a -> a.getUuid().get().toString()).collect(Collectors.toSet());
-        Set<SignalProtocolAddress> successAddresses = destinations.stream().filter(a -> successUuids.contains(a.getName())).collect(Collectors.toSet());;
+        Set<SignalProtocolAddress> successAddresses = destinations.stream().filter(a -> successUuids.contains(a.getName())).collect(Collectors.toSet());
 
         store.markSenderKeySharedWith(distributionId, successAddresses);
 

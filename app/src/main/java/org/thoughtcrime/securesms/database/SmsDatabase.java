@@ -1115,7 +1115,7 @@ public class SmsDatabase extends MessageDatabase {
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, message.getSender().serialize());
     values.put(ADDRESS_DEVICE_ID,  message.getSenderDeviceId());
-    values.put(DATE_RECEIVED, System.currentTimeMillis());
+    values.put(DATE_RECEIVED, message.getReceivedTimestampMillis());
     values.put(DATE_SENT, message.getSentTimestampMillis());
     values.put(DATE_SERVER, message.getServerTimestampMillis());
     values.put(PROTOCOL, message.getProtocol());

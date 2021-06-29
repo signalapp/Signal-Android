@@ -159,8 +159,8 @@ public class IncomingMessageProcessor {
     }
 
     private void processReceipt(@NonNull SignalServiceEnvelope envelope) {
-      Log.i(TAG, "Received server receipt for " + envelope.getTimestamp());
       Recipient sender = Recipient.externalHighTrustPush(context, envelope.getSourceAddress());
+      Log.i(TAG, "Received server receipt. Sender: " + sender.getId() + ", Device: " + envelope.getSourceDevice() + ", Timestamp: " + envelope.getTimestamp());
 
       mmsSmsDatabase.incrementDeliveryReceiptCount(new SyncMessageId(sender.getId(), envelope.getTimestamp()), System.currentTimeMillis());
       DatabaseFactory.getMessageLogDatabase(context).deleteEntryForRecipient(envelope.getTimestamp(), sender.getId(), envelope.getSourceDevice());

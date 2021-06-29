@@ -2459,6 +2459,8 @@
     <string name="preferences__internal_click_to_delete_all_sharing_state" translatable="false">Click to delete all sharing state</string>
     <string name="preferences__internal_remove_two_person_minimum" translatable="false">Remove 2 person minimum</string>
     <string name="preferences__internal_remove_the_requirement_that_you_need" translatable="false">Remove the requirement that you  need at least 2 recipients to use sender key.</string>
+    <string name="preferences__internal_delay_resends" translatable="false">Delay resends</string>
+    <string name="preferences__internal_delay_resending_messages_in_response_to_retry_receipts" translatable="false">Delay resending messages in response to retry receipts by 10 seconds.</string>
     <string name="preferences__internal_calling" translatable="false">Group call server</string>
     <string name="preferences__internal_calling_default" translatable="false">Default</string>
     <string name="preferences__internal_calling_s_server" translatable="false">%1$s server</string>

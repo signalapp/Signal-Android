@@ -188,6 +188,10 @@ public final class GroupSendUtil {
 
         int successCount = (int) results.stream().filter(SendMessageResult::isSuccess).count();
         Log.d(TAG, "Successfully sent using sender key to " + successCount + "/" + targets.size() + " sender key targets.");
+
+        if (sendOperation.shouldIncludeInMessageLog()) {
+          DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(sendOperation.getSentTimestamp(), senderKeyTargets, results, sendOperation.getContentHint(), sendOperation.getRelatedMessageId(), sendOperation.isRelatedMessageMms());
+        }
       } catch (NoSessionException e) {
         Log.w(TAG, "No session. Falling back to legacy sends.", e);
         legacyTargets.addAll(senderKeyTargets);
@@ -198,9 +202,6 @@ public final class GroupSendUtil {
     }
 
     if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-      if (sendOperation.shouldIncludeInMessageLog()) {
-        DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(sendOperation.getSentTimestamp(), allTargets, allResults, sendOperation.getContentHint(), sendOperation.getRelatedMessageId(), sendOperation.isRelatedMessageMms());
-      }
       throw new CancelationException();
     }
 
@@ -217,10 +218,10 @@ public final class GroupSendUtil {
 
       int successCount = (int) results.stream().filter(SendMessageResult::isSuccess).count();
       Log.d(TAG, "Successfully using 1:1 to " + successCount + "/" + targets.size() + " legacy targets.");
-    }
 
-    if (sendOperation.shouldIncludeInMessageLog()) {
-      DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(sendOperation.getSentTimestamp(), allTargets, allResults, sendOperation.getContentHint(), sendOperation.getRelatedMessageId(), sendOperation.isRelatedMessageMms());
+      if (sendOperation.shouldIncludeInMessageLog()) {
+        DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(sendOperation.getSentTimestamp(), legacyTargets, results, sendOperation.getContentHint(), sendOperation.getRelatedMessageId(), sendOperation.isRelatedMessageMms());
+      }
     }
 
     return allResults;
