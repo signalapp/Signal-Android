@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/searchBottomBarConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="@dimen/input_bar_height"
@@ -58,9 +58,10 @@
             style="@style/SpinKitView.DoubleBounce"
             android:id="@+id/searchProgressWheel"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:padding="8dp"
             android:background="@color/compose_view_background"
+            app:SpinKit_Color="?android:textColorPrimary"
             android:visibility="gone"/>
 
     </RelativeLayout>
