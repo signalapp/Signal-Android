@@ -6,18 +6,21 @@ import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
+import android.text.method.LinkMovementMethod
+import android.text.style.URLSpan
 import android.text.util.Linkify
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
+import androidx.core.text.getSpans
 import androidx.core.text.toSpannable
 import kotlinx.android.synthetic.main.view_visible_message_content.view.*
 import network.loki.messenger.R
@@ -26,6 +29,8 @@ import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.components.AlbumThumbnailView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
+import org.thoughtcrime.securesms.conversation.v2.dialogs.OpenURLDialog
+import org.thoughtcrime.securesms.conversation.v2.utilities.ModalURLSpan
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -67,7 +72,9 @@ class VisibleMessageContentView : LinearLayout {
             val linkPreviewView = LinkPreviewView(context)
             linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster, searchQuery)
             mainContainer.addView(linkPreviewView)
-            onContentClick = { linkPreviewView.openURL() }
+            onContentClick = { rect ->
+                linkPreviewView.calculateHit(rect)
+            }
             // Body text view is inside the link preview for layout convenience
         } else if (message is MmsMessageRecord && message.quote != null) {
             val quote = message.quote!!
@@ -92,7 +99,7 @@ class VisibleMessageContentView : LinearLayout {
             onContentDoubleTap = { voiceMessageView.handleDoubleTap() }
         } else if (message is MmsMessageRecord && message.slideDeck.documentSlide != null) {
             val documentView = DocumentView(context)
-            documentView.bind(message, VisibleMessageContentView.getTextColor(context, message))
+            documentView.bind(message, getTextColor(context, message))
             mainContainer.addView(documentView)
         } else if (message is MmsMessageRecord && message.slideDeck.asAttachments().isNotEmpty()) {
             val albumThumbnailView = AlbumThumbnailView(context)
@@ -108,13 +115,12 @@ class VisibleMessageContentView : LinearLayout {
             onContentClick = { albumThumbnailView.calculateHitObject(it, message) }
         } else if (message.isOpenGroupInvitation) {
             val openGroupInvitationView = OpenGroupInvitationView(context)
-            openGroupInvitationView.bind(message, VisibleMessageContentView.getTextColor(context, message))
+            openGroupInvitationView.bind(message, getTextColor(context, message))
             mainContainer.addView(openGroupInvitationView)
             onContentClick = { openGroupInvitationView.joinOpenGroup() }
         } else {
-            val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message, searchQuery)
+            val bodyTextView = getBodyTextView(context, message, searchQuery)
             mainContainer.addView(bodyTextView)
-            onContentClick = { openURLIfNeeded(message) }
         }
     }
 
@@ -138,12 +144,6 @@ class VisibleMessageContentView : LinearLayout {
     }
     // endregion
 
-    // region Interaction
-    private fun openURLIfNeeded(message: MessageRecord) {
-        Toast.makeText(context, "Not yet implemented", Toast.LENGTH_LONG).show()
-    }
-    // endregion
-
     // region Convenience
     companion object {
 
@@ -158,10 +158,25 @@ class VisibleMessageContentView : LinearLayout {
             result.setLinkTextColor(color)
             var body = message.body.toSpannable()
             Linkify.addLinks(body, Linkify.WEB_URLS)
+
+            // replace URLSpans with ModalURLSpans
+            body.getSpans<URLSpan>(0, body.length).toList().forEach { urlSpan ->
+                val replacementSpan = ModalURLSpan(urlSpan.url) { url ->
+                    val activity = context as AppCompatActivity
+                    OpenURLDialog(url).show(activity.supportFragmentManager, "Open URL Dialog")
+                }
+                val start = body.getSpanStart(urlSpan)
+                val end = body.getSpanEnd(urlSpan)
+                val flags = body.getSpanFlags(urlSpan)
+                body.removeSpan(urlSpan)
+                body.setSpan(replacementSpan, start, end, flags)
+            }
+
             body = MentionUtilities.highlightMentions(body, message.isOutgoing, message.threadId, context);
             body = SearchUtil.getHighlightedSpan(Locale.getDefault(), StyleFactory { BackgroundColorSpan(Color.WHITE) }, body, searchQuery)
             body = SearchUtil.getHighlightedSpan(Locale.getDefault(), StyleFactory { ForegroundColorSpan(Color.BLACK) }, body, searchQuery)
             result.text = body
+            result.movementMethod = LinkMovementMethod.getInstance()
             return result
         }
 

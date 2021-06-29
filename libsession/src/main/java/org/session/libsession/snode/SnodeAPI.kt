@@ -290,9 +290,7 @@ object SnodeAPI {
             getTargetSnodes(destination).map { swarm ->
                 swarm.map { snode ->
                     val parameters = message.toJSON()
-                    retryIfNeeded(maxRetryCount) {
-                        invoke(Snode.Method.SendMessage, snode, destination, parameters)
-                    }
+                    invoke(Snode.Method.SendMessage, snode, destination, parameters)
                 }.toSet()
             }
         }

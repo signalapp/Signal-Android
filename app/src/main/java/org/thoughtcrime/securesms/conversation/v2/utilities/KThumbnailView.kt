@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.components.GlideBitmapListeningTarget
 import org.thoughtcrime.securesms.components.GlideDrawableListeningTarget
 import org.thoughtcrime.securesms.mms.*
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
+import org.thoughtcrime.securesms.util.MediaUtil
 
 open class KThumbnailView: FrameLayout {
 
@@ -38,7 +39,6 @@ open class KThumbnailView: FrameLayout {
 
     private val image by lazy { thumbnail_image }
     private val playOverlay by lazy { play_overlay }
-    private val captionIcon by lazy { thumbnail_caption_icon }
     val loadIndicator: View by lazy { thumbnail_load_indicator }
 
     private val dimensDelegate = ThumbnailDimensDelegate()
@@ -110,7 +110,6 @@ open class KThumbnailView: FrameLayout {
 
         this.slide = slide
 
-        captionIcon.isVisible = slide.caption.isPresent
         loadIndicator.isVisible = slide.isInProgress
 
         dimensDelegate.setDimens(naturalWidth, naturalHeight)
