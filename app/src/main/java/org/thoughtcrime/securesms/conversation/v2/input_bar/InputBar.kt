@@ -101,7 +101,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     // Drafting quotes and drafting link previews is mutually exclusive, i.e. you can't draft
     // a quote and a link preview at the same time.
 
-    fun draftQuote(message: MessageRecord) {
+    fun draftQuote(message: MessageRecord, glide: GlideRequests) {
         quote = message
         linkPreview = null
         linkPreviewDraftView = null
@@ -115,7 +115,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         // here to get the layout right.
         val maxContentWidth = (screenWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - toPx(16, resources) - toPx(30, resources)).roundToInt()
         quoteView.bind(message.individualRecipient.address.toString(), message.body, attachments,
-            message.recipient, true, maxContentWidth, message.isOpenGroupInvitation, message.threadId)
+            message.recipient, true, maxContentWidth, message.isOpenGroupInvitation, message.threadId, glide)
         // The 6 DP below is the padding the quote view applies to itself, which isn't included in the
         // intrinsic height calculation.
         val quoteViewIntrinsicHeight = quoteView.getIntrinsicHeight(maxContentWidth) + toPx(6, resources)

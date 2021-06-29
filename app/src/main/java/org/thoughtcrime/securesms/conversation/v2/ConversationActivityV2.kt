@@ -612,7 +612,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // `position` is the adapter position; not the visual position
     private fun handleSwipeToReply(message: MessageRecord, position: Int) {
-        inputBar.draftQuote(message)
+        inputBar.draftQuote(message, glide)
     }
 
     // `position` is the adapter position; not the visual position
@@ -1047,7 +1047,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun reply(messages: Set<MessageRecord>) {
-        inputBar.draftQuote(messages.first())
+        inputBar.draftQuote(messages.first(), glide)
         endActionMode()
     }
 

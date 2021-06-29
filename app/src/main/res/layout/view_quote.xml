@@ -32,6 +32,13 @@
             android:scaleType="centerInside"
             android:src="@drawable/ic_microphone" />
 
+        <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
+            android:id="@+id/quoteViewAttachmentThumbnailImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:visibility="gone" />
+
     </RelativeLayout>
 
     <LinearLayout
