@@ -1,14 +1,17 @@
 package org.thoughtcrime.securesms.components.settings.conversation.preferences
 
+import android.content.ClipData
 import android.content.Context
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.MappingViewHolder
+import org.thoughtcrime.securesms.util.ServiceUtil
 
 /**
  * Renders name, description, about, etc. for a given group or recipient.
@@ -70,7 +73,7 @@ object BioTextPreference {
 
     private val headline: TextView = itemView.findViewById(R.id.bio_preference_headline)
     private val subhead1: TextView = itemView.findViewById(R.id.bio_preference_subhead_1)
-    private val subhead2: TextView = itemView.findViewById(R.id.bio_preference_subhead_2)
+    protected val subhead2: TextView = itemView.findViewById(R.id.bio_preference_subhead_2)
 
     override fun bind(model: T) {
       headline.text = model.getHeadlineText(context)
@@ -87,6 +90,23 @@ object BioTextPreference {
     }
   }
 
-  private class RecipientViewHolder(itemView: View) : BioTextViewHolder<RecipientModel>(itemView)
+  private class RecipientViewHolder(itemView: View) : BioTextViewHolder<RecipientModel>(itemView) {
+    override fun bind(model: RecipientModel) {
+      super.bind(model)
+
+      val phoneNumber = model.getSubhead2Text()
+      if (!phoneNumber.isNullOrEmpty()) {
+        subhead2.setOnLongClickListener {
+          val clipboardManager = ServiceUtil.getClipboardManager(context)
+          clipboardManager.setPrimaryClip(ClipData.newPlainText(context.getString(R.string.ConversationSettingsFragment__phone_number), subhead2.text.toString()))
+          Toast.makeText(context, R.string.ConversationSettingsFragment__copied_phone_number_to_clipboard, Toast.LENGTH_SHORT).show()
+          true
+        }
+      } else {
+        subhead2.setOnLongClickListener(null)
+      }
+    }
+  }
+
   private class GroupViewHolder(itemView: View) : BioTextViewHolder<GroupModel>(itemView)
 }

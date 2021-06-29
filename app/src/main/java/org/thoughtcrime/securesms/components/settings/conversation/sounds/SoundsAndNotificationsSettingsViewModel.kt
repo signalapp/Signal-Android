@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.livedata.Store
@@ -23,7 +24,8 @@ class SoundsAndNotificationsSettingsViewModel(
         recipientId = recipientId,
         muteUntil = recipient.muteUntil,
         mentionSetting = recipient.mentionSetting,
-        hasMentionsSupport = recipient.isPushV2Group
+        hasMentionsSupport = recipient.isPushV2Group,
+        hasCustomNotificationSettings = recipient.notificationChannel != null || !NotificationChannels.supported()
       )
     }
   }
