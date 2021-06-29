@@ -52,6 +52,7 @@ public final class SenderKeyDistributionSendJob extends BaseJob {
                                              .addConstraint(NetworkConstraint.KEY)
                                              .setLifespan(TimeUnit.DAYS.toMillis(1))
                                              .setMaxAttempts(Parameters.UNLIMITED)
+                                             .setMaxInstancesForQueue(1)
                                              .build());
   }
 

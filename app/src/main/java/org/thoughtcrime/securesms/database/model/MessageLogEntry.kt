@@ -12,10 +12,9 @@ data class MessageLogEntry(
   val dateSent: Long,
   val content: SignalServiceProtos.Content,
   val contentHint: ContentHint,
-  val relatedMessageId: Long,
-  val isRelatedMessageMms: Boolean,
+  val relatedMessages: List<MessageId>
 ) {
   val hasRelatedMessage: Boolean
     @JvmName("hasRelatedMessage")
-    get() = relatedMessageId > 0
+    get() = relatedMessages.isNotEmpty()
 }

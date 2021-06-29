@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageLogEntry;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
@@ -1795,9 +1796,10 @@ public final class MessageContentProcessor {
       return;
     }
 
-    DistributionId distributionId = DatabaseFactory.getGroupDatabase(context).getOrCreateDistributionId(threadRecipient.requireGroupId().requireV2());
-
+    GroupId.V2            groupId          = threadRecipient.requireGroupId().requireV2();
+    DistributionId        distributionId   = DatabaseFactory.getGroupDatabase(context).getOrCreateDistributionId(groupId);
     SignalProtocolAddress requesterAddress = new SignalProtocolAddress(requester.requireUuid().toString(), decryptionErrorMessage.getDeviceId());
+
     DatabaseFactory.getSenderKeySharedDatabase(context).delete(distributionId, Collections.singleton(requesterAddress));
 
     if (messageLogEntry != null) {
@@ -1807,28 +1809,10 @@ public final class MessageContentProcessor {
                                                                        messageLogEntry.getDateSent(),
                                                                        messageLogEntry.getContent(),
                                                                        messageLogEntry.getContentHint(),
-                                                                       threadRecipient.requireGroupId().requireV2(),
+                                                                       groupId,
                                                                        distributionId));
     } else {
       warn(content.getTimestamp(), "[RetryReceipt-SK] Unable to find MSL entry for " + requester.getId() + " with timestamp " + sentTimestamp + ".");
-
-      if (!content.getGroupId().isPresent()) {
-        warn(content.getTimestamp(), "[RetryReceipt-SK] No groupId on the Content, so we cannot send them a SenderKeyDistributionMessage.");
-        return;
-      }
-
-      GroupId groupId;
-      try {
-        groupId = GroupId.push(content.getGroupId().get());
-      } catch (BadGroupIdException e) {
-        warn(String.valueOf(content.getTimestamp()), "[RetryReceipt-SK] Bad groupId!");
-        return;
-      }
-
-      if (!groupId.isV2()) {
-        warn(String.valueOf(content.getTimestamp()), "[RetryReceipt-SK] Not a valid GV2 ID!");
-        return;
-      }
 
       Optional<GroupRecord> groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(groupId);
 
@@ -1875,12 +1859,14 @@ public final class MessageContentProcessor {
     }
   }
 
-  private static @Nullable MessageRecord findRetryReceiptRelatedMessage(@NonNull Context context, @Nullable MessageLogEntry messageLogEntry, long sentTimestamp) {
+  private @Nullable MessageRecord findRetryReceiptRelatedMessage(@NonNull Context context, @Nullable MessageLogEntry messageLogEntry, long sentTimestamp) {
     if (messageLogEntry != null && messageLogEntry.hasRelatedMessage()) {
-      if (messageLogEntry.isRelatedMessageMms()) {
-        return DatabaseFactory.getMmsDatabase(context).getMessageRecordOrNull(messageLogEntry.getRelatedMessageId());
+      MessageId relatedMessage = messageLogEntry.getRelatedMessages().get(0);
+
+      if (relatedMessage.isMms()) {
+        return DatabaseFactory.getMmsDatabase(context).getMessageRecordOrNull(relatedMessage.getId());
       } else {
-        return DatabaseFactory.getSmsDatabase(context).getMessageRecordOrNull(messageLogEntry.getRelatedMessageId());
+        return DatabaseFactory.getSmsDatabase(context).getMessageRecordOrNull(relatedMessage.getId());
       }
     } else {
       return DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(sentTimestamp, Recipient.self().getId());

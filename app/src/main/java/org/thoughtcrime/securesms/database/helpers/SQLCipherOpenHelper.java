@@ -201,8 +201,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int SENDER_KEY                       = 103;
   private static final int MESSAGE_DUPE_INDEX               = 104;
   private static final int MESSAGE_LOG                      = 105;
+  private static final int MESSAGE_LOG_2                    = 106;
 
-  private static final int    DATABASE_VERSION = 105;
+  private static final int    DATABASE_VERSION = 106;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1596,6 +1597,41 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
                                                              "device INTEGER NOT NULL)");
 
         db.execSQL("CREATE INDEX message_send_log_recipients_recipient_index ON message_send_log_recipients (recipient_id, device)");
+      }
+
+      if (oldVersion < MESSAGE_LOG_2) {
+        db.execSQL("DROP TABLE message_send_log");
+        db.execSQL("DROP INDEX IF EXISTS message_log_date_sent_index");
+        db.execSQL("DROP INDEX IF EXISTS message_log_related_message_index");
+        db.execSQL("DROP TRIGGER msl_sms_delete");
+        db.execSQL("DROP TRIGGER msl_mms_delete");
+        db.execSQL("DROP TABLE message_send_log_recipients");
+        db.execSQL("DROP INDEX IF EXISTS message_send_log_recipients_recipient_index");
+
+        db.execSQL("CREATE TABLE msl_payload (_id INTEGER PRIMARY KEY, " +
+                                             "date_sent INTEGER NOT NULL, " +
+                                             "content BLOB NOT NULL, " +
+                                             "content_hint INTEGER NOT NULL)");
+
+        db.execSQL("CREATE INDEX msl_payload_date_sent_index ON msl_payload (date_sent)");
+
+        db.execSQL("CREATE TABLE msl_recipient (_id INTEGER PRIMARY KEY, " +
+                                               "payload_id INTEGER NOT NULL REFERENCES msl_payload (_id) ON DELETE CASCADE, " +
+                                               "recipient_id INTEGER NOT NULL, " +
+                                               "device INTEGER NOT NULL)");
+
+        db.execSQL("CREATE INDEX msl_recipient_recipient_index ON msl_recipient (recipient_id, device, payload_id)");
+        db.execSQL("CREATE INDEX msl_recipient_payload_index ON msl_recipient (payload_id)");
+
+        db.execSQL("CREATE TABLE msl_message (_id INTEGER PRIMARY KEY, " +
+                                             "payload_id INTEGER NOT NULL REFERENCES msl_payload (_id) ON DELETE CASCADE, " +
+                                             "message_id INTEGER NOT NULL, " +
+                                             "is_mms INTEGER NOT NULL)");
+
+        db.execSQL("CREATE INDEX msl_message_message_index ON msl_message (message_id, is_mms, payload_id)");
+
+        db.execSQL("CREATE TRIGGER msl_sms_delete AFTER DELETE ON sms BEGIN DELETE FROM msl_payload WHERE _id IN (SELECT payload_id FROM msl_message WHERE message_id = old._id AND is_mms = 0); END");
+        db.execSQL("CREATE TRIGGER msl_mms_delete AFTER DELETE ON mms BEGIN DELETE FROM msl_payload WHERE _id IN (SELECT payload_id FROM msl_message WHERE message_id = old._id AND is_mms = 1); END");
       }
 
       db.setTransactionSuccessful();
