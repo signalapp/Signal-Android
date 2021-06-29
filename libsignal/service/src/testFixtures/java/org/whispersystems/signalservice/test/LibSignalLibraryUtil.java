@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.testutil;
+package org.whispersystems.signalservice.test;
 
 import org.signal.client.internal.Native;
 

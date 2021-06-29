@@ -11,8 +11,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
-import static org.thoughtcrime.securesms.testutil.LibSignalLibraryUtil.assumeLibSignalSupportedOnOS;
 import static org.thoughtcrime.securesms.testutil.ZkGroupLibraryUtil.assumeZkGroupSupportedOnOS;
+import static org.whispersystems.signalservice.test.LibSignalLibraryUtil.assumeLibSignalSupportedOnOS;
 
 @RunWith(Parameterized.class)
 public final class GroupId_v1_v2_migration_derivation_Test {

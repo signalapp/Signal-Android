@@ -1,4 +1,5 @@
 apply plugin: 'java-library'
+apply plugin: 'java-test-fixtures'
 apply plugin: 'com.google.protobuf'
 apply plugin: 'maven'
 apply plugin: 'signing'
@@ -16,6 +17,10 @@ repositories {
     mavenLocal()
 }
 
+configurations {
+    ideaTestFixturesImplementation { extendsFrom testFixturesImplementation; canBeConsumed false; canBeResolved true }
+}
+
 dependencies {
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
     api 'com.googlecode.libphonenumber:libphonenumber:8.12.17'
@@ -30,6 +35,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.assertj:assertj-core:3.11.1'
     testImplementation 'org.conscrypt:conscrypt-openjdk-uber:2.0.0'
+
+    testFixturesImplementation 'org.whispersystems:signal-client-java:0.8.1'
+    testFixturesImplementation 'junit:junit:4.12'
 }
 
 dependencyVerification {
@@ -60,6 +68,7 @@ protobuf {
 idea {
     module {
         generatedSourceDirs += file("${protobuf.generatedFilesBaseDir}/main/java")
+        scopes.COMPILE.plus += [configurations.ideaTestFixturesImplementation]
     }
 }
 

@@ -12,8 +12,7 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.thoughtcrime.securesms.testutil.LibSignalLibraryUtil.assumeLibSignalSupportedOnOS;
+import static org.whispersystems.signalservice.test.LibSignalLibraryUtil.assumeLibSignalSupportedOnOS;
 
 public final class MobileCoinPublicAddressProfileUtilTest {
 

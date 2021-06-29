@@ -3,7 +3,6 @@ package org.signal.devicetransfer;
 import androidx.annotation.NonNull;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.signal.devicetransfer.DeviceTransferAuthentication.Client;
 import org.signal.devicetransfer.DeviceTransferAuthentication.DeviceTransferAuthenticationException;
@@ -13,14 +12,17 @@ import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.whispersystems.signalservice.test.LibSignalLibraryUtil.assumeLibSignalSupportedOnOS;
 
 public class DeviceTransferAuthenticationTest {
 
-  private static byte[] certificate;
-  private static byte[] badCertificate;
+  private byte[] certificate;
+  private byte[] badCertificate;
 
-  @BeforeClass
-  public static void setup() throws KeyGenerationFailedException {
+  @Before
+  public void ensureNativeSupported() throws KeyGenerationFailedException {
+    assumeLibSignalSupportedOnOS();
+
     certificate    = SelfSignedIdentity.create().getX509Encoded();
     badCertificate = SelfSignedIdentity.create().getX509Encoded();
   }
