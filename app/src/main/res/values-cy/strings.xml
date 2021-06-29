@@ -3200,5 +3200,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Hysbysu bob tro</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Peidio â hysbysu</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Hysbysiadau cyfaddas</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

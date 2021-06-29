@@ -3018,5 +3018,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ikke udsat</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Omtaler</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Brugerdefinerede notifikationer</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

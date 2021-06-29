@@ -2971,5 +2971,7 @@
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Toujours m’avertir</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ne pas m’avertir</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notifications personnalisées</string>
+  <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Récemment utilisés</string>
   <!--EOF-->
 </resources>

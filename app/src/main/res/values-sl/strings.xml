@@ -3050,5 +3050,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Vedno obveščaj</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ne obveščaj</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Obvestila po meri</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

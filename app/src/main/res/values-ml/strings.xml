@@ -2692,5 +2692,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">നിശബ്ദമാക്കിയിട്ടില്ല</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">സൂചനകൾ</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

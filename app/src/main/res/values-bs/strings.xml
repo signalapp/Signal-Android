@@ -3119,5 +3119,6 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Uvijek obavijesti</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ne obavještavaj</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Podešavanje obavještenja</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

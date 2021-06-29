@@ -2532,5 +2532,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">म्युट नहीं है</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">मेंछन</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">कस्टम अधिसूचनाएं</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

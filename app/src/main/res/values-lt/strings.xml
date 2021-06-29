@@ -3198,5 +3198,7 @@
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Visada pranešti</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Nepranešti</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Tinkinti pranešimai</string>
+  <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Paskiausi</string>
   <!--EOF-->
 </resources>

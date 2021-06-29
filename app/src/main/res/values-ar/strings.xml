@@ -3164,5 +3164,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">لم يُكتم </string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">الذِّكر</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">إشعارات مخصصة</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

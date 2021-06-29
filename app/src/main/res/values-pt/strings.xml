@@ -3029,5 +3029,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Notificar sempre</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Não notificar</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificações personalizadas</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

@@ -2848,5 +2848,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">常に通知する</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">通知しない</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">カスタム通知</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

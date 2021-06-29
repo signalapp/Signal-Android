@@ -2612,5 +2612,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">முடக்கப்படவில்லை</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">பெயர் குறிப்பிடுவது</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

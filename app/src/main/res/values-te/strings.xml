@@ -2607,5 +2607,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">మ్యూట్ చేయలేదు</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">ప్రస్తావనలు</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">అనుకూల ప్రకటనలను</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

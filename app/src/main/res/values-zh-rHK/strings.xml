@@ -2945,5 +2945,7 @@
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">總是通知</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">不要通知</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">自訂通知</string>
+  <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">最近使用</string>
   <!--EOF-->
 </resources>

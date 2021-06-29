@@ -2850,5 +2850,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ei mykistetty</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Maininnat</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Mukautetut ilmoitukset</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

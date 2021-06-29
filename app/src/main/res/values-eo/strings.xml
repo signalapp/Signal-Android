@@ -2801,5 +2801,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Silentigi sciigojn</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Mencioj</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Propraj sciigoj</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

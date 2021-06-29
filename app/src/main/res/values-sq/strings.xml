@@ -3034,5 +3034,6 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Njofto përherë</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Mos njofto</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Njoftime vetjake</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

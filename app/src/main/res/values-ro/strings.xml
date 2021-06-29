@@ -2997,5 +2997,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Notifică întotdeauna</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Nu mă anunța</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificări personalizate</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

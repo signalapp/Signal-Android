@@ -337,31 +337,31 @@
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Je profielnaam, -foto en -omschrijving zijn alleen zichtbaar voor personen die zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuw gesprek initieert, personen van wie je een gespreksverzoek aanvaardt en alle leden van een groep waarvan jij lid bent. Signal-profielen worden net als berichten eind-tot-eind-versleuteld uitgewisseld, daarom kunnen zelfs Signals ontwikkelaars je profielnaam, -foto en -omschrijving nooit zien.</string>
   <string name="CreateProfileActivity_set_avatar_description">Profielfoto instellen</string>
   <!--ChooseBackupFragment-->
-  <string name="ChooseBackupFragment__restore_from_backup">Back-up-gegevens terugzetten?</string>
-  <string name="ChooseBackupFragment__restore_your_messages_and_media">Je hebt nu de gelegenheid om berichten en media uit een back-up-bestand terug te zetten. Let op: Als je de back-up-gegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-up-bestand kan alleen tijdens de installatie van de Signal-app.</string>
-  <string name="ChooseBackupFragment__icon_content_description">Back-up-gegevens terugzetten pictogram</string>
-  <string name="ChooseBackupFragment__choose_backup">Back-up-bestand kiezen</string>
+  <string name="ChooseBackupFragment__restore_from_backup">Back-upgegevens terugzetten?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Je hebt nu de gelegenheid om berichten en media uit een back-upbestand terug te zetten. Let op: Als je de back-upgegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app.</string>
+  <string name="ChooseBackupFragment__icon_content_description">Back-upgegevens terugzetten pictogram</string>
+  <string name="ChooseBackupFragment__choose_backup">Back-upbestand kiezen</string>
   <string name="ChooseBackupFragment__learn_more">Meer leren hierover</string>
   <!--RestoreBackupFragment-->
-  <string name="RestoreBackupFragment__restore_complete">Gegevens herstellen vanuit een back-up-bestand is voltooid</string>
-  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Om back-up-bestanden te blijven maken, kies een directory waar je back-up-bestanden vanaf nu in wilt opslaan.</string>
+  <string name="RestoreBackupFragment__restore_complete">Gegevens herstellen vanuit een back-upbestand is voltooid</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Om back-upbestanden te blijven maken, kies een directory waar je back-upbestanden vanaf nu in wilt opslaan.</string>
   <string name="RestoreBackupFragment__choose_folder">Map kiezen</string>
   <string name="RestoreBackupFragment__not_now">Niet nu</string>
   <!--BackupsPreferenceFragment-->
-  <string name="BackupsPreferenceFragment__chat_backups">Back-up-bestanden maken</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Back-up-bestanden worden versleuteld met een wachtwoord en worden alleen offline op je eigen apparaat opgeslagen. Als je het maken van back-up-bestanden inschakelt maakt Signal automatisch elke dag een nieuw back-up-bestand van al je gesprekken en media. Alleen de twee meest recente geslaagde back-up-bestanden blijven bewaard, oudere back-up-bestanden worden overschreven.</string>
-  <string name="BackupsPreferenceFragment__create_backup">Nu een back-up-bestand maken</string>
-  <string name="BackupsPreferenceFragment__last_backup">Meest recente back-up-bestand: %1$s</string>
-  <string name="BackupsPreferenceFragment__backup_folder">Back-up-directory</string>
-  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Back-up-wachtwoord verifiëren</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test je back-up-wachtwoord om na te gaan of je het juiste wachtwoord onthouden hebt</string>
+  <string name="BackupsPreferenceFragment__chat_backups">Back-upbestanden maken</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Back-upbestanden worden versleuteld met een wachtwoord en worden alleen offline op je eigen apparaat opgeslagen. Als je het maken van back-upbestanden inschakelt maakt Signal automatisch elke dag een nieuw back-upbestand van al je gesprekken en media. Alleen de twee meest recente geslaagde back-upbestanden blijven bewaard, oudere back-upbestanden worden overschreven.</string>
+  <string name="BackupsPreferenceFragment__create_backup">Nu een back-upbestand maken</string>
+  <string name="BackupsPreferenceFragment__last_backup">Meest recente back-upbestand: %1$s</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Back-updirectory</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">Back-upwachtwoord verifiëren</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test je back-upwachtwoord om na te gaan of je het juiste wachtwoord onthouden hebt</string>
   <string name="BackupsPreferenceFragment__turn_on">Inschakelen</string>
   <string name="BackupsPreferenceFragment__turn_off">Uitschakelen</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">Om je gegevens uit een bestaand back-up-bestand terug te plaatsen moet je Signal opnieuw installeren. Open dan de net geïnstalleerde Signal app en tik op “Back-up-gegevens terugzetten”. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Om je gegevens uit een bestaand back-upbestand terug te plaatsen moet je Signal opnieuw installeren. Open dan de net geïnstalleerde Signal app en tik op “Back-upgegevens terugzetten”. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Meer leren hierover</string>
   <string name="BackupsPreferenceFragment__in_progress">Wordt nu uitgevoerd …</string>
   <string name="BackupsPreferenceFragment__d_so_far">Tot nu toe %1$d …</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de externe opslagruimte om back-up-bestanden te kunnen maken, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de externe opslagruimte om back-upbestanden te kunnen maken, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Zelf ingesteld: %s</string>
   <string name="CustomDefaultPreference_using_default">Standaard in gebruik: %s</string>
@@ -1141,7 +1141,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Waarschuwing</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je ze handmatig herstelt vanuit een back-up-bestand. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je ze handmatig herstelt vanuit een back-upbestand. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
   <string name="PinOptOutDialog_disable_pin">Pincode uitschakelen</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Beoordeel deze app</string>
@@ -1968,7 +1968,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__chat_color_and_wallpaper">Gesprekskleur &amp; -achtergrond</string>
   <string name="preferences__disable_pin">Pincode uitschakelen</string>
   <string name="preferences__enable_pin">Pincode inschakelen</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je ze handmatig herstelt vanuit een back-up-bestand. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je ze handmatig herstelt vanuit een back-upbestand. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Met een pincode wordt informatie versleuteld opgeslagen op Signals servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam, -foto en -omschrijving, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signals ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
   <string name="preferences__system_default">Systeemstandaard</string>
   <string name="preferences__language">Taal</string>
@@ -2425,49 +2425,49 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-databank wordt gemigreerd</string>
   <string name="PushDecryptJob_new_locked_message">Nieuw vergrendeld bericht</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ontgrendel om je berichten te lezen</string>
-  <string name="enter_backup_passphrase_dialog__backup_passphrase">Back-up-wachtwoord</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Back-up-bestanden worden opgeslagen op het externe opslaggeheugen en versleuteld met het wachtwoord hieronder. Je hebt dit wachtwoord nodig om de back-up-gegevens terug te zetten.</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">Je hebt in de toekomst dit wachtwoord nodig om je gegevens vanuit een back-up-bestand te kunnen herstellen.</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Back-upwachtwoord</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Back-upbestanden worden opgeslagen op het externe opslaggeheugen en versleuteld met het wachtwoord hieronder. Je hebt dit wachtwoord nodig om de back-upgegevens terug te zetten.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Je hebt in de toekomst dit wachtwoord nodig om je gegevens vanuit een back-upbestand te kunnen herstellen.</string>
   <string name="backup_enable_dialog__folder">Opslaglocatie</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ik heb dit wachtwoord opgeschreven. Zonder dit wachtwoord kan ik deze back-up-bestanden niet gebruiken om gegevens terug te zetten.</string>
-  <string name="registration_activity__restore_backup">Back-up-gegevens terugzetten</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ik heb dit wachtwoord opgeschreven. Zonder dit wachtwoord kan ik deze back-upbestanden niet gebruiken om gegevens terug te zetten.</string>
+  <string name="registration_activity__restore_backup">Back-upgegevens terugzetten</string>
   <string name="registration_activity__transfer_or_restore_account">Signalgegevens herstellen of overzetten</string>
   <string name="registration_activity__transfer_account">Alle Signalgegevens overzetten</string>
   <string name="registration_activity__skip">Overslaan</string>
-  <string name="preferences_chats__chat_backups">Back-up-bestanden maken</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Laat Signal versleutelde back-up-bestanden maken van gesprekken en media</string>
+  <string name="preferences_chats__chat_backups">Back-upbestanden maken</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Laat Signal versleutelde back-upbestanden maken van gesprekken en media</string>
   <string name="preferences_chats__transfer_account">Alle Signalgegevens overzetten</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">Alle Signalgegevens overzetten naar een nieuw Android-apparaat</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">Voer back-up-wachtwoord in</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">Voer back-upwachtwoord in</string>
   <string name="RegistrationActivity_restore">Herstellen</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Kan geen back-up-bestanden importeren welke gemaakt zijn door nieuwere versies van Signal</string>
-  <string name="RegistrationActivity_incorrect_backup_passphrase">Verkeerd back-up-wachtwoord</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Kan geen back-upbestanden importeren welke gemaakt zijn door nieuwere versies van Signal</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">Verkeerd back-upwachtwoord</string>
   <string name="RegistrationActivity_checking">Aan het controleren …</string>
   <string name="RegistrationActivity_d_messages_so_far">%d berichten tot nu toe …</string>
-  <string name="RegistrationActivity_restore_from_backup">Back-up-gegevens terugzetten?</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Je hebt nu de gelegenheid om berichten en media uit een back-up-bestand terug te zetten. Let op: Als je de back-up-gegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-up-bestand kan alleen tijdens de installatie van de Signal-app.</string>
-  <string name="RegistrationActivity_backup_size_s">Back-up-bestandgrootte: %s</string>
-  <string name="RegistrationActivity_backup_timestamp_s">Back-up-bestandtijdstip: %s</string>
-  <string name="BackupDialog_enable_local_backups">Signal back-up-bestanden laten maken?</string>
-  <string name="BackupDialog_enable_backups">Back-up-bestanden inschakelen</string>
+  <string name="RegistrationActivity_restore_from_backup">Back-upgegevens terugzetten?</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Je hebt nu de gelegenheid om berichten en media uit een back-upbestand terug te zetten. Let op: Als je de back-upgegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app.</string>
+  <string name="RegistrationActivity_backup_size_s">Back-upbestand-grootte: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Back-upbestand-tijdstip: %s</string>
+  <string name="BackupDialog_enable_local_backups">Signal back-upbestanden laten maken?</string>
+  <string name="BackupDialog_enable_backups">Back-upbestanden inschakelen</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Verklaar dat je het begrijpt door het selectievakje aan te vinken.</string>
-  <string name="BackupDialog_delete_backups">Alle back-up-bestanden wissen?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je Signal niet langer back-up-bestanden wilt laten maken, dan zal Signal ook alle bestaande back-up-bestanden in /Signal/Backups wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
-  <string name="BackupDialog_delete_backups_statement">Back-up-bestanden wissen</string>
-  <string name="BackupDialog_to_enable_backups_choose_a_folder">Kies een opslaglocatie om het maken van back-up-bestanden te kunnen inschakelen.</string>
+  <string name="BackupDialog_delete_backups">Alle back-upbestanden wissen?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je Signal niet langer back-upbestanden wilt laten maken, dan zal Signal ook alle bestaande back-upbestanden in /Signal/Backups wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
+  <string name="BackupDialog_delete_backups_statement">Back-upbestanden wissen</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Kies een opslaglocatie om het maken van back-upbestanden te kunnen inschakelen.</string>
   <string name="BackupDialog_choose_folder">Kies een map</string>
   <string name="BackupDialog_copied_to_clipboard">Gekopieerd naar klembord</string>
   <string name="BackupDialog_no_file_picker_available">Er is geen bestandskiezer beschikbaar.</string>
-  <string name="BackupDialog_enter_backup_passphrase_to_verify">Voer je back-up-wachtwoord in om deze te verifiëren</string>
+  <string name="BackupDialog_enter_backup_passphrase_to_verify">Voer je back-upwachtwoord in om deze te verifiëren</string>
   <string name="BackupDialog_verify">Verifiëren</string>
-  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Je hebt het juiste back-up-wachtwoord ingevoerd</string>
-  <string name="BackupDialog_passphrase_was_not_correct">Je hebt niet het juiste back-up-wachtwoord ingevoerd.</string>
-  <string name="LocalBackupJob_creating_backup">Back-up-bestand aan het maken …</string>
-  <string name="LocalBackupJobApi29_backup_failed">Het maken van een back-up-bestand is mislukt</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Je hebt het juiste back-upwachtwoord ingevoerd</string>
+  <string name="BackupDialog_passphrase_was_not_correct">Je hebt niet het juiste back-upwachtwoord ingevoerd.</string>
+  <string name="LocalBackupJob_creating_backup">Back-upbestand aan het maken …</string>
+  <string name="LocalBackupJobApi29_backup_failed">Het maken van een back-upbestand is mislukt</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Je back-up directory is verwijderd of verplaatst.</string>
-  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Je back-up-bestand is te groot om op dit volume op te slaan.</string>
-  <string name="LocalBackupJobApi29_there_is_not_enough_space">Er is niet genoeg opslagruimte op je back-up-bestand op te slaan.</string>
-  <string name="LocalBackupJobApi29_tap_to_manage_backups">Tik hier om het maken van back-up-bestanden in te stellen.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Je back-upbestand is te groot om op dit volume op te slaan.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Er is niet genoeg opslagruimte op je back-upbestand op te slaan.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">Tik hier om het maken van back-upbestanden in te stellen.</string>
   <string name="ProgressPreference_d_messages_so_far">%d berichten tot nu toe</string>
   <string name="RegistrationActivity_wrong_number">Verkeerd nummer</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Bel me \n (beschikbaar over %1$02d:%2$02d)</string>
@@ -2517,8 +2517,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Overzetten vanaf een Android-apparaat</string>
   <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Hiermee zet je all je instellingen, je profielinformatie en al je berichten over vanuit je oude Android apparaat. Je kunt dit alleen doen als je je oude apparaat nog kunt gebruiken.</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Je kunt dit alleen doen als je je oude apparaat nog kunt gebruiken.</string>
-  <string name="TransferOrRestoreFragment__restore_from_backup">Gegevens vanuit een back-up-bestand terugzetten</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Je hebt nu de gelegenheid om berichten uit een back-up-bestand terug te zetten. Let op: Als je de back-up-gegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-up-bestand kan alleen tijdens de installatie van de Signal-app.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Gegevens vanuit een back-upbestand terugzetten</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Je hebt nu de gelegenheid om berichten uit een back-upbestand terug te zetten. Let op: Als je de back-upgegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Open Signal op je oude apparaat</string>
   <string name="NewDeviceTransferInstructions__continue">Doorgaan</string>
@@ -2535,16 +2535,16 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Om je oude Android apparaat te kunnen detecteren en om er verbinding mee te maken heeft de Signal-app een machtiging nodig om je locatie te lezen.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Om je oude Android apparaat te kunnen detecteren en om er verbinding mee te maken is het nodig dat locatiebepaling op dit apparaat is ingeschakeld.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal heeft wifi op je apparaat nodig om verbinding te maken met je oude Android apparaat. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
-  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, het lijkt er op dat dit apparaat geen ondersteuning biedt voor wifi-direct. Signal heeft wifi-direct nodig om je oude Android-apparaat te detecteren en om er verbinding mee te maken. Je kunt nog wel je gegevens overzetten door op je oude Android-apparaat in Signal een back-up-bestand te maken en vervolgens vanuit dat back-up-bestand te herstellen op je nieuwe Android-apparaat.</string>
-  <string name="NewDeviceTransferSetup__restore_a_backup">Back-up-gegevens terugzetten</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, het lijkt er op dat dit apparaat geen ondersteuning biedt voor wifi-direct. Signal heeft wifi-direct nodig om je oude Android-apparaat te detecteren en om er verbinding mee te maken. Je kunt nog wel je gegevens overzetten door op je oude Android-apparaat in Signal een back-upbestand te maken en vervolgens vanuit dat back-upbestand te herstellen op je nieuwe Android-apparaat.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Back-upgegevens terugzetten</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Er is een onverwachte fout opgetreden bij het proberen verbinding te maken met je oude Android-apparaat.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Er wordt gezocht naar je nieuwe Android-apparaat …</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Om je nieuwe Android apparaat te kunnen detecteren en om er verbinding mee te maken heeft de Signal-app een machtiging nodig om je locatie te lezen.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Om je nieuwe Android apparaat te kunnen detecteren en om er verbinding mee te maken is het nodig dat locatiebepaling op dit apparaat is ingeschakeld.</string>
   <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal heeft wifi op je apparaat nodig om verbinding te maken met je nieuwe Android apparaat. Wifi moet zijn ingeschakeld, maar je hoeft niet verbonden te zijn met een wifi-netwerk.</string>
-  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, het lijkt er op dat dit apparaat geen ondersteuning biedt voor wifi-direct. Signal heeft wifi-direct nodig om je nieuwe Android-apparaat te detecteren en om er verbinding mee te maken. Je kunt nog wel je gegevens overzetten door op je oude Android-apparaat in Signal een back-up-bestand te maken en vervolgens vanuit dat back-up-bestand te herstellen op je nieuwe Android-apparaat.</string>
-  <string name="OldDeviceTransferSetup__create_a_backup">Een back-up-bestand maken</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, het lijkt er op dat dit apparaat geen ondersteuning biedt voor wifi-direct. Signal heeft wifi-direct nodig om je nieuwe Android-apparaat te detecteren en om er verbinding mee te maken. Je kunt nog wel je gegevens overzetten door op je oude Android-apparaat in Signal een back-upbestand te maken en vervolgens vanuit dat back-upbestand te herstellen op je nieuwe Android-apparaat.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Een back-upbestand maken</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Er is een onverwachte fout opgetreden bij het proberen verbinding te maken met je nieuwe Android-apparaat.</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Kan de wifi-instellingen niet openen. Zet handmatig je wifi aan.</string>
@@ -2813,7 +2813,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Herstel-zin weergeven</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Vul je herstel-zin in</string>
   <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Je krediet wordt automatisch hersteld wanneer je Signal opnieuw installeert en je Signal-pincode invult. Je kunt je krediet ook herstellen middels een unieke herstel-zin, die bestaat uit %1$d woorden. Schrijf die zin op en bewaar hem op een veilige plaats.</string>
-  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">De herstel-zin is voor iedereen uniek en bestaat uit %1$d woorden. Je kunt deze zin gebruiken om je krediet te herstellen als je toegang verloren hebt.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">De herstel-zin is voor iedereen uniek en bestaat uit %1$d woorden. Je kunt deze zin gebruiken om je krediet te herstellen als je toegang hebt verloren.</string>
   <string name="PaymentsRecoveryStartFragment__start">Beginnen</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Handmatig invullen</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Plakken uit klembord</string>
@@ -3034,5 +3034,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Altijd een melding bij vermeldingen</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Geen meldingen over vermeldingen</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Aangepaste meldingen</string>
+  <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Recentelijk gebruikt</string>
   <!--EOF-->
 </resources>

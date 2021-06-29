@@ -3017,5 +3017,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">ئۈنسىز ئەمەس</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">تىلغا ئالغانلار</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ئىختىيارىچە ئۇقتۇرۇش</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

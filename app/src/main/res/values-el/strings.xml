@@ -2890,5 +2890,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Σε σίγαση έως %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Αναφορές</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Προσαρμογή ειδοποιήσεων</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

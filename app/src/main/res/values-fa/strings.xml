@@ -1842,7 +1842,7 @@
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
-  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">اخیراً استفاده شده</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">به‌تازگی استفاده شده</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">لبخندها و آدم‌ها</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">طبیعت</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">غذا</string>
@@ -2695,7 +2695,7 @@
   <string name="ReviewCard__update_contact">به‌روزرسانی مخاطب</string>
   <string name="ReviewCard__block">مسدود کردن</string>
   <string name="ReviewCard__delete">حذف</string>
-  <string name="ReviewCard__recently_changed">اخیراً نام پروفایل خود را از %1$s به %2$s تغییر داد</string>
+  <string name="ReviewCard__recently_changed">به‌تازگی نام پروفایل خود را از %1$s به %2$s تغییر داد</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s به تماس پیوست</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s و %2$s پیوستند</string>
@@ -3028,5 +3028,7 @@
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">همیشه آگاه کن</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">آگاه نکن</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">اعلان‌ها‌ی سفارشی</string>
+  <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">به‌تازگی استفاده شده</string>
   <!--EOF-->
 </resources>

@@ -3198,5 +3198,7 @@
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">יידע תמיד</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">אל תיידע</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">התראות מותאמות אישית</string>
+  <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">בשימוש לאחרונה</string>
   <!--EOF-->
 </resources>

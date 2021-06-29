@@ -3019,5 +3019,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Immer benachrichtigen</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Nicht benachrichtigen</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Personalisierte Benachrichtigungen</string>
+  <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Zuletzt verwendet</string>
   <!--EOF-->
 </resources>

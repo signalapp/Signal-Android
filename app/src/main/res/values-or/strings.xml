@@ -2618,5 +2618,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">ବିଜ୍ଞପ୍ତି ମ୍ୟୁଟ୍ କରନ୍ତୁ</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">ଉଲ୍ଲେଖ</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">କଷ୍ଟମ୍ ବିଜ୍ଞପ୍ତି</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

@@ -2599,5 +2599,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Không tắt thông báo</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Nhắc tên</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Thông báo tuỳ chỉnh</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

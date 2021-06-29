@@ -2589,5 +2589,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">म्यूट केलेले नाही</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">उल्लेख</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">सानुकूल सूचना</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

@@ -3002,5 +3002,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nincs némítva</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Említések</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Egyedi értesítések</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

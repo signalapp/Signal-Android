@@ -3024,5 +3024,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Meddela alltid</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Meddela inte</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Anpassade aviseringar</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

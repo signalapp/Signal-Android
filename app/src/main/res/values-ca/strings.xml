@@ -3024,5 +3024,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Notifica-m\'ho sempre</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">No m\'ho notifiquis mai</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificacions personalitzades</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

@@ -3036,5 +3036,6 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Alltid varsla</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ikkje varsla</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Eigendefinerte varsel</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

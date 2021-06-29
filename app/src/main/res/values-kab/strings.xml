@@ -2720,5 +2720,6 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ur igugem ara</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Tibdarin</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Sagen ilɣa</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

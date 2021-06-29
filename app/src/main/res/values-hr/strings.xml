@@ -3097,5 +3097,6 @@ broj telefona</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nije utišano</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Spominjanja</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Prilagođene obavijesti</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

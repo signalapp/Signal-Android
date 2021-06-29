@@ -2487,5 +2487,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">ਚੁੱਪ ਨਹੀਂ</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">ਜ਼ਿਕਰ</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ਕਸਟਮ ਸੂਚਨਾਵਾਂ </string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

@@ -2723,5 +2723,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Sen silenciar</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Mencións</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Personalizar notificacións</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

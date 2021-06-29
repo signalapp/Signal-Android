@@ -2847,5 +2847,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Звукот не е исклучен</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Спомнувања</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Прилагодени известувања</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

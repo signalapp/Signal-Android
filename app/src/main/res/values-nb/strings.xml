@@ -2912,5 +2912,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ikke i stillemodus</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Omtaler</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Egendefinerte varsler</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

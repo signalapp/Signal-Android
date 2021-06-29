@@ -2831,5 +2831,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">ไม่ปิดเสียง</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">การกล่าวถึง</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">การแจ้งเตือนที่กำหนดเอง</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

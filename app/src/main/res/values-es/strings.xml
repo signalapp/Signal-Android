@@ -3030,5 +3030,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Notificar siempre</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">No notificar</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificaciones personalizadas</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

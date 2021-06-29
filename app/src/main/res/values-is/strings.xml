@@ -3032,5 +3032,6 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Alltaf láta vita</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ekki láta vita</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Sérsniðnar tilkynningar</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

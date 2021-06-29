@@ -2797,5 +2797,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">အသံမပိတ်ပါ </string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">မန်းရှင်းများ</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">စိတ်ကြိုက်သတိပေးချက်များ</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

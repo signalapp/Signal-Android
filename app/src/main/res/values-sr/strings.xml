@@ -3102,5 +3102,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Није утишано</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Помињања</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Прилагођена обавештења</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

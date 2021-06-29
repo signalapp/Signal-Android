@@ -2588,5 +2588,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Не е заглушен</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Споменавания</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Персонализирани известия</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

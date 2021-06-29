@@ -2588,5 +2588,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">알림 꺼지지 않음</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">언급</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">맞춤형 알림</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

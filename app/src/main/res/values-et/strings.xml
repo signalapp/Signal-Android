@@ -2817,5 +2817,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Pole vaigistatud</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Mainimised</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Kohandatud teavitused</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

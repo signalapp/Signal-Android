@@ -2530,5 +2530,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Tidak Senyap</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Menyebut</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notifikasi khusus</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

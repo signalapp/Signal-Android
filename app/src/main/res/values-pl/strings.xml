@@ -396,7 +396,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Przeglądanie galerii wymaga uprawnień dostępu do pamięci.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Teraz</string>
-  <string name="DateUtils_minutes_ago">%dm</string>
+  <string name="DateUtils_minutes_ago">%d min</string>
   <string name="DateUtils_today">Dzisiaj</string>
   <string name="DateUtils_yesterday">Wczoraj</string>
   <!--DecryptionFailedDialog-->
@@ -1805,9 +1805,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
     <item quantity="one">%d godzina</item>
-    <item quantity="few">%d godz.</item>
-    <item quantity="many">%d godz.</item>
-    <item quantity="other">%d godz.</item>
+    <item quantity="few">%d godziny</item>
+    <item quantity="many">%d godzin</item>
+    <item quantity="other">%d godziny</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%dg</string>
   <plurals name="expiration_days">
@@ -3190,5 +3190,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Zawsze powiadamiaj</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Nie powiadamiaj</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Niestandardowe powiadomienia</string>
+  <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Ostatnio używane</string>
   <!--EOF-->
 </resources>

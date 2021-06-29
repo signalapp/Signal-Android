@@ -198,8 +198,8 @@
   <string name="ConversationActivity_added_to_home_screen">已添加到主屏幕</string>
   <string name="ConversationActivity_calls_not_supported">呼叫不支持</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">该设备看起来不支持拨号操作。</string>
-  <string name="ConversationActivity_transport_insecure_sms">不安全的短信</string>
-  <string name="ConversationActivity_transport_insecure_mms">不安全的彩信</string>
+  <string name="ConversationActivity_transport_insecure_sms">不安全短信</string>
+  <string name="ConversationActivity_transport_insecure_mms">不安全彩信</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">用 Signal 来聊天吧 %1$s</string>
   <string name="ConversationActivity_specify_recipient">请选择联系人</string>
@@ -325,13 +325,13 @@
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">您的个人资料已通过端对端加密。当您发起、接受新对话以及加入新新群组时，相关用户将能看到您的个人资料及更新。</string>
   <string name="CreateProfileActivity_set_avatar_description">设置头像</string>
   <!--ChooseBackupFragment-->
-  <string name="ChooseBackupFragment__restore_from_backup">是否从备份进行恢复？</string>
+  <string name="ChooseBackupFragment__restore_from_backup">是否从备份进行还原？</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">从本地备份还原消息和媒体。如果现在不进行还原，以后将无法还原。</string>
-  <string name="ChooseBackupFragment__icon_content_description">通过备份图标进行恢复</string>
+  <string name="ChooseBackupFragment__icon_content_description">通过备份图标进行还原</string>
   <string name="ChooseBackupFragment__choose_backup">选择备份</string>
   <string name="ChooseBackupFragment__learn_more">了解更多</string>
   <!--RestoreBackupFragment-->
-  <string name="RestoreBackupFragment__restore_complete">恢复完成</string>
+  <string name="RestoreBackupFragment__restore_complete">还原完成</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">请选择文件以进行备份，新的备份将保存到该位置。</string>
   <string name="RestoreBackupFragment__choose_folder">选择文件夹</string>
   <string name="RestoreBackupFragment__not_now">稍后再说</string>
@@ -339,13 +339,13 @@
   <string name="BackupsPreferenceFragment__chat_backups">聊天备份</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">备份通过密码加密并保存在您的设备上。</string>
   <string name="BackupsPreferenceFragment__create_backup">创建备份</string>
-  <string name="BackupsPreferenceFragment__last_backup">上一次备份：%1$s</string>
+  <string name="BackupsPreferenceFragment__last_backup">上次备份：%1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">备份文件夹</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">验证备份密码</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">测试备份密码并验证是否匹配</string>
   <string name="BackupsPreferenceFragment__turn_on">开启</string>
   <string name="BackupsPreferenceFragment__turn_off">关闭</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">如需恢复备份，请重新安装 Signal，然后打开该应用并点击“恢复备份”，接着打开备份文件。%1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">如需还原备份，请重新安装 Signal，然后打开该应用并点击“还原备份”，接着打开备份文件。%1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">了解更多</string>
   <string name="BackupsPreferenceFragment__in_progress">正在进行…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d 到目前为止…</string>
@@ -425,7 +425,7 @@
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">选择新的管理员。</string>
   <string name="ChooseNewAdminActivity_done">完成</string>
-  <string name="ChooseNewAdminActivity_you_left">您退出了“%1$s”。</string>
+  <string name="ChooseNewAdminActivity_you_left">您已离开“%1$s”。</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">您</string>
   <!--GV2 access levels-->
@@ -492,7 +492,7 @@
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">您将无法在这个群聊里面发送和接收消息。</string>
   <string name="LeaveGroupDialog_leave">离开群组</string>
   <string name="LeaveGroupDialog_choose_new_admin">选择新的管理员。</string>
-  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">在你退出群组前，你必须为群组选择一名新的管理员。</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">在离开群组之前，必须选择至少一位新的管理员。</string>
   <string name="LeaveGroupDialog_choose_admin">选择管理员</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">关闭</string>
@@ -580,7 +580,7 @@
   <string name="ManageGroupActivity_mute_notifications">静音通知</string>
   <string name="ManageGroupActivity_custom_notifications">自定义通知</string>
   <string name="ManageGroupActivity_mentions">提及我</string>
-  <string name="ManageGroupActivity_chat_color_and_wallpaper">聊天颜色 &amp; 墙纸</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">聊天颜色与墙纸</string>
   <string name="ManageGroupActivity_until_s">直到 %1$s</string>
   <string name="ManageGroupActivity_always">总是</string>
   <string name="ManageGroupActivity_off">关</string>
@@ -820,7 +820,7 @@
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">未知</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">收到来自旧版本 Signal 的加密消息，该版本已不再支持。请提醒发送人升级至最新版本并重发该消息。</string>
-  <string name="MessageRecord_left_group">您已经退出该群组。</string>
+  <string name="MessageRecord_left_group">您已离开该群组。</string>
   <string name="MessageRecord_you_updated_group">您已更新该群组</string>
   <string name="MessageRecord_the_group_was_updated">群组已更新。</string>
   <string name="MessageRecord_you_called_date">你曾致电 · %1$s</string>
@@ -861,8 +861,8 @@
   <string name="MessageRecord_you_removed_s">您移除了 %1$s。</string>
   <string name="MessageRecord_s_removed_s">%1$s 移除了 %2$s。</string>
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s 已将您移出群组。</string>
-  <string name="MessageRecord_you_left_the_group">您退出了群组。</string>
-  <string name="MessageRecord_s_left_the_group">%1$s 退出了群组。</string>
+  <string name="MessageRecord_you_left_the_group">您已离开该群组。</string>
+  <string name="MessageRecord_s_left_the_group">%1$s 已离开该群组。</string>
   <string name="MessageRecord_you_are_no_longer_in_the_group">您已不在群组中。</string>
   <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s 已不在群组中。</string>
   <!--GV2 role change-->
@@ -1081,7 +1081,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">新建 PIN 码</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">警告</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 Signal 时全部数据将丢失，除非使用手动备份并恢复。PIN 禁用时，无法启用注册锁定。</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 Signal 时全部数据将丢失，除非使用手动备份并还原。PIN 禁用时，无法启用注册锁定。</string>
   <string name="PinOptOutDialog_disable_pin">禁用 PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">对此应用评分</string>
@@ -1293,7 +1293,7 @@
   <string name="SupportEmailUtil_locale">语言环境：</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">群组已更新</string>
-  <string name="ThreadRecord_left_the_group">已退出该群组</string>
+  <string name="ThreadRecord_left_the_group">已离开该群组</string>
   <string name="ThreadRecord_secure_session_reset">安全会话已重置。</string>
   <string name="ThreadRecord_draft">草稿：</string>
   <string name="ThreadRecord_called">您呼叫</string>
@@ -1889,11 +1889,11 @@
   <string name="preferences__appearance">外观</string>
   <string name="preferences__theme">主题</string>
   <string name="preferences__chat_wallpaper">聊天墙纸</string>
-  <string name="preferences__chat_color_and_wallpaper">聊天颜色 &amp; 墙纸</string>
+  <string name="preferences__chat_color_and_wallpaper">聊天颜色与墙纸</string>
   <string name="preferences__disable_pin">禁用 PIN</string>
   <string name="preferences__enable_pin">启用 PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 Signal 时全部数据将丢失，除非使用手动备份并恢复。PIN 禁用时，无法启用注册锁定。</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN 用于加密 Signal 存储的信息，这样只有你可以访问。重装之后，可恢复你的个人资料、设置和联系人。打开 Signal 无需使用 PIN。</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 Signal 时全部数据将丢失，除非使用手动备份并还原。PIN 禁用时，无法启用注册锁定。</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN 用于加密 Signal 存储的信息，这样只有你可以访问。重装之后，可还原你的个人资料、设置和联系人。打开 Signal 无需使用 PIN。</string>
   <string name="preferences__system_default">系统默认</string>
   <string name="preferences__language">语言</string>
   <string name="preferences__signal_messages_and_calls">Signal 消息和通话</string>
@@ -2267,7 +2267,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">正在创建 PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">新推出 PIN 密码功能</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN 用于加密 Signal 存储的信息，只有您可以访问。借此可在您重装后恢复个人资料、设置和联系人。打开 Signal 无需使用 PIN。</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN 用于加密 Signal 存储的信息，只有您可以访问。借此可在您重装后还原个人资料、设置和联系人。打开 Signal 无需使用 PIN。</string>
   <string name="KbsSplashFragment__learn_more">了解更多</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">注册锁定 = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">注册锁定现在改名为 PIN，功能更强大，马上更新。</string>
@@ -2343,11 +2343,11 @@
   <string name="PushDecryptJob_new_locked_message">新的锁定消息</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">解锁查看待处理消息</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">备份密码</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">备份将保存至外部存储，并使用以下密码加密。备份恢复时需使用该密码。</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">为了恢复备份，必须提供密码。</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">备份将保存至外部存储，并使用以下密码加密。备份还原时需使用该密码。</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">为了还原备份，必须提供密码。</string>
   <string name="backup_enable_dialog__folder">文件夹</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">我也记下该密码。没有密码，将无法恢复备份。</string>
-  <string name="registration_activity__restore_backup">恢复备份</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">我已记下该密码。没有密码，将无法还原备份。</string>
+  <string name="registration_activity__restore_backup">还原备份</string>
   <string name="registration_activity__transfer_or_restore_account">转移或还原帐户</string>
   <string name="registration_activity__transfer_account">转移帐户</string>
   <string name="registration_activity__skip">跳过</string>
@@ -2356,12 +2356,12 @@
   <string name="preferences_chats__transfer_account">转移帐户</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">转移帐户至新的 Android 设备</string>
   <string name="RegistrationActivity_enter_backup_passphrase">输入备份密码</string>
-  <string name="RegistrationActivity_restore">恢复</string>
+  <string name="RegistrationActivity_restore">还原</string>
   <string name="RegistrationActivity_backup_failure_downgrade">无法从较新版本的 Signal 导入备份</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">备份密码错误</string>
   <string name="RegistrationActivity_checking">正在检查…</string>
   <string name="RegistrationActivity_d_messages_so_far">已处理 %d 条消息…</string>
-  <string name="RegistrationActivity_restore_from_backup">是否从备份进行恢复？</string>
+  <string name="RegistrationActivity_restore_from_backup">是否从备份进行还原？</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">从本地备份还原消息和媒体。如果现在不进行还原，以后将无法还原。</string>
   <string name="RegistrationActivity_backup_size_s">备份大小：%s</string>
   <string name="RegistrationActivity_backup_timestamp_s">备份时间戳：%s</string>
@@ -2406,7 +2406,7 @@
   <string name="preferences_app_protection__create_a_pin">创建 PIN 码</string>
   <string name="preferences_app_protection__change_your_pin">更改 PIN 码</string>
   <string name="preferences_app_protection__pin_reminders">PIN 码提醒</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 用于加密 Signal 存储的信息，这样只有你可以访问。重装 Signal 之后，可恢复你的个人资料、设置和联系人。</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 用于加密 Signal 存储的信息，这样只有你可以访问。重装 Signal 之后，可还原你的个人资料、设置和联系人。</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">再次使用电话号码注册 Signal 时，要求输入 PIN，这样提供了更多安全性。</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">PIN 无法恢复，提醒有助于记住它。提醒频率将逐渐降低。</string>
   <string name="preferences_app_protection__turn_off">关闭</string>
@@ -2947,5 +2947,7 @@
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">总是通知</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">不通知</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">自定义通知</string>
+  <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">最近使用</string>
   <!--EOF-->
 </resources>

@@ -3191,5 +3191,7 @@
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Всегда уведомлять</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Не уведомлять</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Пользовательские уведомления</string>
+  <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Недавно использованные</string>
   <!--EOF-->
 </resources>

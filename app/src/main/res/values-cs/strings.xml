@@ -3197,5 +3197,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Vždy poslat notifikaci</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Neupozorňovat</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Vlastní oznámení</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

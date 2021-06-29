@@ -2584,5 +2584,6 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">غیر خاموش</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">ذکر</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>

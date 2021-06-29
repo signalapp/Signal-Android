@@ -2609,5 +2609,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ez mututua</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Aipamenak</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Jakinarazpen pertsonalizatuak</string>
+  <!--StickerKeyboard-->
   <!--EOF-->
 </resources>
