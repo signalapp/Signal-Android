@@ -117,7 +117,7 @@ class VisibleMessageContentView : LinearLayout {
             mainContainer.addView(openGroupInvitationView)
             onContentClick = { openGroupInvitationView.joinOpenGroup() }
         } else {
-            val bodyTextView = getBodyTextView(context, message)
+            val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
             mainContainer.addView(bodyTextView)
         }
     }
