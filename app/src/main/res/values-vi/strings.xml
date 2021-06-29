@@ -52,7 +52,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted">Send failed, tap for unsecured fallback</string>
     <string name="ConversationItem_unable_to_open_media">Không tìm thấy ứng dụng để mở dữ liệu truyền thông này.</string>
     <string name="ConversationItem_copied_text">Đã sao chép %s</string>
-    <string name="ConversationItem_read_more">&#160; Read More</string>
+    <string name="ConversationItem_read_more">Read More</string>
     <string name="ConversationItem_download_more">&#160; Tải thêm</string>
     <string name="ConversationItem_pending">&#160; Đang chờ</string>
     <!-- ConversationActivity -->

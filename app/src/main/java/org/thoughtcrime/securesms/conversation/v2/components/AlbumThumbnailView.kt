@@ -12,6 +12,7 @@ import androidx.core.view.children
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.album_thumbnail_view.view.*
 import network.loki.messenger.R
+import org.session.libsession.utilities.ViewUtil
 import org.thoughtcrime.securesms.MediaPreviewActivity
 import org.thoughtcrime.securesms.components.CornerMask
 import org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
@@ -20,6 +21,7 @@ import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.Slide
+import kotlin.math.roundToInt
 
 class AlbumThumbnailView : FrameLayout {
 
@@ -118,6 +120,7 @@ class AlbumThumbnailView : FrameLayout {
                 val maxEllipsis = (0 until layout.lineCount).maxByOrNull { lineNum -> layout.getEllipsisCount(lineNum) }
                         ?: 0
                 // show read more text if at least one line is ellipsized
+                ViewUtil.setPaddingTop(albumCellBodyTextParent, if (maxEllipsis > 0) resources.getDimension(R.dimen.small_spacing).roundToInt() else resources.getDimension(R.dimen.medium_spacing).roundToInt())
                 albumCellBodyTextReadMore.isVisible = maxEllipsis > 0
             }
         }

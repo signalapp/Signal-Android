@@ -64,7 +64,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted">Send failed, tap for unsecured fallback</string>
     <string name="ConversationItem_unable_to_open_media">Can\'t find an app able to open this media.</string>
     <string name="ConversationItem_copied_text">Copied %s</string>
-    <string name="ConversationItem_read_more">&#160; Read More</string>
+    <string name="ConversationItem_read_more">Read More</string>
     <string name="ConversationItem_download_more">&#160; Download More</string>
     <string name="ConversationItem_pending">&#160; Pending</string>
 
