@@ -60,6 +60,7 @@ import org.session.libsession.utilities.MediaTypes
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.ListenableFuture
+import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.audio.AudioRecorder
@@ -818,6 +819,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 prepMediaForSending(uri, AttachmentManager.MediaType.DOCUMENT).addListener(mediaPreppedListener)
             }
             TAKE_PHOTO -> {
+                if (resultCode != RESULT_OK) { return }
                 val uri = attachmentManager.captureUri ?: return
                 prepMediaForSending(uri, AttachmentManager.MediaType.IMAGE).addListener(mediaPreppedListener)
             }
@@ -941,11 +943,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                         }
                 }
             } else {
-                for (message in messages) {
-                    if (message.isMms) {
-                        DatabaseFactory.getMmsDatabase(this@ConversationActivityV2).delete(message.id)
-                    } else {
-                        DatabaseFactory.getSmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
+                ThreadUtils.queue {
+                    for (message in messages) {
+                        if (message.isMms) {
+                            DatabaseFactory.getMmsDatabase(this@ConversationActivityV2).delete(message.id)
+                        } else {
+                            DatabaseFactory.getSmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
+                        }
                     }
                 }
             }
