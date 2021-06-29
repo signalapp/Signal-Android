@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.conversation.v2.menus
 
 import android.content.Context
-import android.util.Log
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
@@ -73,9 +72,9 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
     override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
         val selectedItems = adapter.selectedItems
         when (item.itemId) {
-            R.id.menu_context_delete_message -> delegate?.deleteMessage(selectedItems)
+            R.id.menu_context_delete_message -> delegate?.deleteMessages(selectedItems)
             R.id.menu_context_ban_user -> delegate?.banUser(selectedItems)
-            R.id.menu_context_copy -> delegate?.copyMessage(selectedItems)
+            R.id.menu_context_copy -> delegate?.copyMessages(selectedItems)
             R.id.menu_context_copy_public_key -> delegate?.copySessionID(selectedItems)
             R.id.menu_context_resend -> delegate?.resendMessage(selectedItems)
             R.id.menu_context_save_attachment -> delegate?.saveAttachment(selectedItems)
@@ -92,9 +91,9 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
 
 interface ConversationActionModeCallbackDelegate {
 
-    fun deleteMessage(messages: Set<MessageRecord>)
+    fun deleteMessages(messages: Set<MessageRecord>)
     fun banUser(messages: Set<MessageRecord>)
-    fun copyMessage(messages: Set<MessageRecord>)
+    fun copyMessages(messages: Set<MessageRecord>)
     fun copySessionID(messages: Set<MessageRecord>)
     fun resendMessage(messages: Set<MessageRecord>)
     fun saveAttachment(messages: Set<MessageRecord>)
