@@ -552,8 +552,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // region Interaction
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // TODO: Implement
-        return super.onOptionsItemSelected(item)
+        return ConversationMenuHelper.onOptionItemSelected(this, item, thread)
     }
 
     // `position` is the adapter position; not the visual position
