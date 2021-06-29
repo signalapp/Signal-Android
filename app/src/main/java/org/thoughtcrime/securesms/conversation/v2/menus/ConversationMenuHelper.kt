@@ -96,7 +96,6 @@ object ConversationMenuHelper {
                 context.searchBottomBar.visibility = View.VISIBLE
                 context.searchBottomBar.setData(0, 0)
                 context.inputBar.visibility = View.GONE
-                context.supportActionBar?.setDisplayHomeAsUpEnabled(false)
                 for (i in 0 until menu.size()) {
                     if (menu.getItem(i) != searchViewItem) {
                         menu.getItem(i).isVisible = false
@@ -110,7 +109,6 @@ object ConversationMenuHelper {
                 searchViewModel.onSearchClosed()
                 context.searchBottomBar.visibility = View.GONE
                 context.inputBar.visibility = View.VISIBLE
-                context.supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 context.onSearchQueryUpdated(null)
                 context.invalidateOptionsMenu()
                 return true
