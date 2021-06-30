@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.util.InsetItemDecoration
 import org.thoughtcrime.securesms.util.ViewUtil
 
 private val EDGE_LENGTH: Int = ViewUtil.dpToPx(7)
-private val HORIZONTAL_INSET: Int = ViewUtil.dpToPx(11)
+private val HORIZONTAL_INSET: Int = ViewUtil.dpToPx(8)
 private val VERTICAL_INSET: Int = ViewUtil.dpToPx(8)
 
 /**

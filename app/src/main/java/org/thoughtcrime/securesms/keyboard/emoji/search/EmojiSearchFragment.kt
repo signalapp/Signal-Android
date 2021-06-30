@@ -40,17 +40,25 @@ class EmojiSearchFragment : Fragment(R.layout.emoji_search_fragment), EmojiPageV
     val searchBar: KeyboardPageSearchView = view.findViewById(R.id.emoji_search_view)
     val resultsContainer: FrameLayout = view.findViewById(R.id.emoji_search_results_container)
     val noResults: TextView = view.findViewById(R.id.emoji_search_empty)
-    val emojiPageView = EmojiPageView(requireContext(), eventListener, this, true, LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false), R.layout.emoji_search_result_display_item)
+    val emojiPageView = EmojiPageView(
+      requireContext(),
+      eventListener,
+      this,
+      true,
+      LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false),
+      R.layout.emoji_display_item_list,
+      R.layout.emoji_text_display_item_list
+    )
 
     resultsContainer.addView(emojiPageView)
 
     searchBar.presentForEmojiSearch()
     searchBar.callbacks = SearchCallbacks()
 
-    viewModel.pageModel.observe(viewLifecycleOwner) { pageModel ->
-      emojiPageView.setModel(pageModel)
+    viewModel.emojiList.observe(viewLifecycleOwner) { results ->
+      emojiPageView.setList(results.emojiList)
 
-      if (pageModel.emoji.isNotEmpty() || pageModel.iconAttr == R.attr.emoji_category_recent) {
+      if (results.emojiList.isNotEmpty() || results.isRecents) {
         emojiPageView.visibility = View.VISIBLE
         noResults.visibility = View.GONE
       } else {
