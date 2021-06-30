@@ -75,6 +75,7 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onVoiceNotePause(@NonNull Uri uri);
     void onVoiceNotePlay(@NonNull Uri uri, long messageId, double position);
     void onVoiceNoteSeekTo(@NonNull Uri uri, double position);
+    void onVoiceNotePlaybackSpeedChanged(@NonNull Uri uri, float speed);
     void onGroupMigrationLearnMoreClicked(@NonNull GroupMigrationMembershipChange membershipChange);
     void onChatSessionRefreshLearnMoreClicked();
     void onBadDecryptLearnMoreClicked(@NonNull RecipientId author);

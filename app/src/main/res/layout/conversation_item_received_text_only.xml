@@ -121,7 +121,7 @@
             android:alpha="0.7"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:gravity="start"
+            app:footer_mode="incoming"
             app:footer_icon_color="@color/signal_icon_tint_secondary"
             app:footer_reveal_dot_color="@color/signal_icon_tint_secondary"
             app:footer_text_color="@color/signal_text_secondary" />
@@ -135,8 +135,8 @@
             android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:gravity="start"
             android:visibility="gone"
+            app:footer_mode="incoming"
             app:footer_icon_color="@color/signal_icon_tint_secondary"
             app:footer_reveal_dot_color="@color/signal_icon_tint_secondary"
             app:footer_text_color="@color/signal_text_secondary" />

@@ -401,5 +401,16 @@
         <item>@string/SoundsAndNotificationsSettingsFragment__always_notify</item>
         <item>@string/SoundsAndNotificationsSettingsFragment__do_not_notify</item>
     </string-array>
-    
+
+    <integer-array name="PlaybackSpeedToggleTextView__speeds">
+        <item>100</item>
+        <item>200</item>
+        <item>50</item>
+    </integer-array>
+    <string-array name="PlaybackSpeedToggleTextView__speed_labels">
+        <item>@string/PlaybackSpeedToggleTextView__1x</item>
+        <item>@string/PlaybackSpeedToggleTextView__2x</item>
+        <item>@string/PlaybackSpeedToggleTextView__p5x</item>
+    </string-array>
+
 </resources>

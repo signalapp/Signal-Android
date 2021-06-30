@@ -1595,6 +1595,11 @@ public class ConversationFragment extends LoggingFragment {
     }
 
     @Override
+    public void onVoiceNotePlaybackSpeedChanged(@NonNull Uri uri, float speed) {
+      voiceNoteMediaController.setPlaybackSpeed(uri, speed);
+    }
+
+    @Override
     public void onRegisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver) {
       voiceNoteMediaController.getVoiceNotePlaybackState().observe(getViewLifecycleOwner(), onPlaybackStartObserver);
     }

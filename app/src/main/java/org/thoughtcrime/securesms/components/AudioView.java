@@ -110,7 +110,7 @@ public final class AudioView extends FrameLayout {
       this.waveFormUnplayedBarsColor = typedArray.getColor(R.styleable.AudioView_waveformUnplayedBarsColor, Color.WHITE);
       this.waveFormThumbTint         = typedArray.getColor(R.styleable.AudioView_waveformThumbTint, Color.WHITE);
 
-      progressAndPlay.getBackground().setColorFilter(typedArray.getColor(R.styleable.AudioView_progressAndPlayTint, Color.BLACK), PorterDuff.Mode.SRC_IN);
+      setProgressAndPlayBackgroundTint(typedArray.getColor(R.styleable.AudioView_progressAndPlayTint, Color.BLACK));
     } finally {
       if (typedArray != null) {
         typedArray.recycle();
@@ -128,6 +128,10 @@ public final class AudioView extends FrameLayout {
   protected void onDetachedFromWindow() {
     super.onDetachedFromWindow();
     EventBus.getDefault().unregister(this);
+  }
+
+  public void setProgressAndPlayBackgroundTint(@ColorInt int color) {
+    progressAndPlay.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_IN);
   }
 
   public Observer<VoiceNotePlaybackState> getPlaybackStateObserver() {
@@ -215,6 +219,7 @@ public final class AudioView extends FrameLayout {
     onProgress(voiceNotePlaybackState.getUri(),
                (double) voiceNotePlaybackState.getPlayheadPositionMillis() / voiceNotePlaybackState.getTrackDuration(),
                voiceNotePlaybackState.getPlayheadPositionMillis());
+    onSpeedChanged(voiceNotePlaybackState.getUri(), voiceNotePlaybackState.getSpeed());
   }
 
   private void onDuration(@NonNull Uri uri, long durationMillis) {
@@ -272,6 +277,10 @@ public final class AudioView extends FrameLayout {
     } else {
       backwardsCounter++;
     }
+  }
+
+  private void onSpeedChanged(@NonNull Uri uri, float speed) {
+    callbacks.onSpeedChanged(speed, isTarget(uri));
   }
 
   private boolean isTarget(@NonNull Uri uri) {
@@ -451,6 +460,8 @@ public final class AudioView extends FrameLayout {
       if (callbacks != null) {
         if (wasPlaying) {
           callbacks.onSeekTo(audioSlide.getUri(), getProgress());
+        } else {
+          callbacks.onProgressUpdated(durationMillis, Math.round(durationMillis * getProgress()));
         }
       }
     }
@@ -475,6 +486,7 @@ public final class AudioView extends FrameLayout {
     void onPause(@NonNull Uri audioUri);
     void onSeekTo(@NonNull Uri audioUri, double progress);
     void onStopAndReset(@NonNull Uri audioUri);
+    void onSpeedChanged(float speed, boolean isPlaying);
     void onProgressUpdated(long durationMillis, long playheadMillis);
   }
 }

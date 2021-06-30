@@ -170,6 +170,15 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
     }
   }
 
+  public void setPlaybackSpeed(@NonNull Uri audioSlideUri, float playbackSpeed) {
+    if (isCurrentTrack(audioSlideUri)) {
+      Bundle bundle = new Bundle();
+      bundle.putFloat(VoiceNotePlaybackService.ACTION_NEXT_PLAYBACK_SPEED, playbackSpeed);
+
+      getMediaController().sendCommand(VoiceNotePlaybackService.ACTION_NEXT_PLAYBACK_SPEED, bundle, null);
+    }
+  }
+
   private boolean isCurrentTrack(@NonNull Uri uri) {
     MediaMetadataCompat metadataCompat = getMediaController().getMetadata();
 
@@ -235,6 +244,8 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
         VoiceNotePlaybackState previousState = voiceNotePlaybackState.getValue();
         long                   position      = mediaController.getPlaybackState().getPosition();
         long                   duration      = mediaMetadataCompat.getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
+        Bundle                 extras        = mediaController.getExtras();
+        float                  speed         = extras != null ? extras.getFloat(VoiceNotePlaybackService.ACTION_NEXT_PLAYBACK_SPEED, 1f) : 1f;
 
         if (previousState != null && Objects.equals(mediaUri, previousState.getUri())) {
           if (position < 0 && previousState.getPlayheadPositionMillis() >= 0) {
@@ -247,7 +258,7 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
         }
 
         if (duration > 0 && position >= 0 && position <= duration) {
-          voiceNotePlaybackState.postValue(new VoiceNotePlaybackState(mediaUri, position, duration, autoReset));
+          voiceNotePlaybackState.postValue(new VoiceNotePlaybackState(mediaUri, position, duration, autoReset, speed));
         }
 
         sendEmptyMessageDelayed(0, 50);

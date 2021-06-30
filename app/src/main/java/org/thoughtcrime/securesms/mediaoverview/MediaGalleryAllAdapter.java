@@ -577,6 +577,10 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     }
 
     @Override
+    public void onSpeedChanged(float speed, boolean isPlaying) {
+    }
+
+    @Override
     public void onProgressUpdated(long durationMillis, long playheadMillis) {
     }
   }

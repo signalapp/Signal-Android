@@ -3595,6 +3595,11 @@
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">Recently used</string>
 
+    <!-- PlaybackSpeedToggleTextView -->
+    <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+    <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+    <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+
     <!-- EOF -->
 
 </resources>

@@ -170,6 +170,10 @@
         <attr name="footer_text_color" format="color" />
         <attr name="footer_icon_color" format="color" />
         <attr name="footer_reveal_dot_color" format="color" />
+        <attr name="footer_mode" format="enum">
+            <enum name="outgoing" value="0" />
+            <enum name="incoming" value="1" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="ConversationItemThumbnail">

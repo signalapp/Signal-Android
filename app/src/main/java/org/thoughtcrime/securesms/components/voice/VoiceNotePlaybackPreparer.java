@@ -46,11 +46,12 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
   public static final Uri NEXT_URI = Uri.parse("file:///android_asset/sounds/state-change_confirm-down.ogg");
   public static final Uri END_URI  = Uri.parse("file:///android_asset/sounds/state-change_confirm-up.ogg");
 
-  private final Context                     context;
-  private final SimpleExoPlayer             player;
+  private final Context                      context;
+  private final SimpleExoPlayer              player;
   private final VoiceNoteQueueDataAdapter    queueDataAdapter;
   private final AttachmentMediaSourceFactory mediaSourceFactory;
-  private final ConcatenatingMediaSource     dataSource;
+  private final ConcatenatingMediaSource    dataSource;
+  private final VoiceNotePlaybackParameters voiceNotePlaybackParameters;
 
   private boolean canLoadMore;
   private Uri     latestUri = Uri.EMPTY;
@@ -58,13 +59,15 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
   VoiceNotePlaybackPreparer(@NonNull Context context,
                             @NonNull SimpleExoPlayer player,
                             @NonNull VoiceNoteQueueDataAdapter queueDataAdapter,
-                            @NonNull AttachmentMediaSourceFactory mediaSourceFactory)
+                            @NonNull AttachmentMediaSourceFactory mediaSourceFactory,
+                            @NonNull VoiceNotePlaybackParameters voiceNotePlaybackParameters)
   {
     this.context            = context;
     this.player             = player;
     this.queueDataAdapter   = queueDataAdapter;
     this.mediaSourceFactory = mediaSourceFactory;
-    this.dataSource         = new ConcatenatingMediaSource();
+    this.dataSource                  = new ConcatenatingMediaSource();
+    this.voiceNotePlaybackParameters = voiceNotePlaybackParameters;
   }
 
   @Override
@@ -119,7 +122,10 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
                          @Override
                          public void onTimelineChanged(Timeline timeline, @Nullable Object manifest, int reason) {
                            if (timeline.getWindowCount() >= window) {
+                             player.setPlayWhenReady(false);
+                             player.setPlaybackParameters(voiceNotePlaybackParameters.getParameters());
                              player.seekTo(window, (long) (player.getDuration() * progress));
+                             player.setPlayWhenReady(true);
                              player.removeListener(this);
                            }
                          }

@@ -72,7 +72,7 @@
             android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:gravity="end"
+            app:footer_mode="outgoing"
             app:footer_icon_color="@color/conversation_item_sent_text_secondary_color"
             app:footer_reveal_dot_color="@color/conversation_item_sent_text_secondary_color"
             app:footer_text_color="@color/conversation_item_sent_text_secondary_color" />
@@ -86,8 +86,8 @@
             android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:gravity="end"
             android:visibility="gone"
+            app:footer_mode="outgoing"
             app:footer_icon_color="@color/signal_icon_tint_secondary"
             app:footer_reveal_dot_color="@color/signal_icon_tint_secondary"
             app:footer_text_color="@color/signal_text_secondary" />

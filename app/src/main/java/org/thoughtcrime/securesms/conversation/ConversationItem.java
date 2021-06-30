@@ -42,6 +42,7 @@ import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -61,6 +62,7 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.google.android.exoplayer2.source.MediaSource;
 
+import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.ConfirmIdentityDialog;
@@ -76,6 +78,7 @@ import org.thoughtcrime.securesms.components.ConversationItemThumbnail;
 import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.LinkPreviewView;
 import org.thoughtcrime.securesms.components.Outliner;
+import org.thoughtcrime.securesms.components.PlaybackSpeedToggleTextView;
 import org.thoughtcrime.securesms.components.QuoteView;
 import org.thoughtcrime.securesms.components.SharedContactView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
@@ -119,7 +122,6 @@ import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.Projection;
@@ -203,15 +205,16 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private int defaultBubbleColorForWallpaper;
   private int measureCalls;
 
-  private final PassthroughClickListener        passthroughClickListener    = new PassthroughClickListener();
-  private final AttachmentDownloadClickListener downloadClickListener       = new AttachmentDownloadClickListener();
-  private final SlideClickPassthroughListener   singleDownloadClickListener = new SlideClickPassthroughListener(downloadClickListener);
-  private final SharedContactEventListener      sharedContactEventListener  = new SharedContactEventListener();
-  private final SharedContactClickListener      sharedContactClickListener  = new SharedContactClickListener();
-  private final LinkPreviewClickListener        linkPreviewClickListener    = new LinkPreviewClickListener();
-  private final ViewOnceMessageClickListener    revealableClickListener     = new ViewOnceMessageClickListener();
-  private final UrlClickListener                urlClickListener            = new UrlClickListener();
-  private final Rect                            thumbnailMaskingRect        = new Rect();
+  private final PassthroughClickListener        passthroughClickListener     = new PassthroughClickListener();
+  private final AttachmentDownloadClickListener downloadClickListener        = new AttachmentDownloadClickListener();
+  private final SlideClickPassthroughListener   singleDownloadClickListener  = new SlideClickPassthroughListener(downloadClickListener);
+  private final SharedContactEventListener      sharedContactEventListener   = new SharedContactEventListener();
+  private final SharedContactClickListener      sharedContactClickListener   = new SharedContactClickListener();
+  private final LinkPreviewClickListener        linkPreviewClickListener     = new LinkPreviewClickListener();
+  private final ViewOnceMessageClickListener    revealableClickListener      = new ViewOnceMessageClickListener();
+  private final UrlClickListener                urlClickListener             = new UrlClickListener();
+  private final Rect                            thumbnailMaskingRect         = new Rect();
+  private final TouchDelegateChangedListener    touchDelegateChangedListener = new TouchDelegateChangedListener();
 
   private final Context context;
 
@@ -268,6 +271,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     bodyText.setOnLongClickListener(passthroughClickListener);
     bodyText.setOnClickListener(passthroughClickListener);
+    footer.setOnTouchDelegateChangedListener(touchDelegateChangedListener);
   }
 
   @Override
@@ -407,6 +411,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   public void onRecipientChanged(@NonNull Recipient modified) {
     if (conversationRecipient.getId().equals(modified.getId())) {
       setBubbleState(messageRecord, modified, modified.hasWallpaper(), colorizer);
+
+      if (audioViewStub.resolved()) {
+        setAudioViewTint(messageRecord);
+      }
     }
 
     if (recipient.getId().equals(modified.getId())) {
@@ -519,13 +527,15 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private void setAudioViewTint(MessageRecord messageRecord) {
     if (hasAudio(messageRecord)) {
       if (!messageRecord.isOutgoing()) {
-        if (DynamicTheme.isDarkTheme(context)) {
-          audioViewStub.get().setTint(Color.WHITE);
+        audioViewStub.get().setTint(getContext().getResources().getColor(R.color.conversation_item_incoming_audio_foreground_tint));
+        if (hasWallpaper) {
+          audioViewStub.get().setProgressAndPlayBackgroundTint(getContext().getResources().getColor(R.color.conversation_item_incoming_audio_play_pause_background_tint_wallpaper));
         } else {
-          audioViewStub.get().setTint(getContext().getResources().getColor(R.color.core_grey_60));
+          audioViewStub.get().setProgressAndPlayBackgroundTint(getContext().getResources().getColor(R.color.conversation_item_incoming_audio_play_pause_background_tint_normal));
         }
       } else {
         audioViewStub.get().setTint(Color.WHITE);
+        audioViewStub.get().setProgressAndPlayBackgroundTint(getContext().getResources().getColor(R.color.transparent_white_20));
       }
     }
   }
@@ -741,6 +751,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       eventListener.onUnregisterVoiceNoteCallbacks(audioViewStub.get().getPlaybackStateObserver());
     }
 
+    footer.setPlaybackSpeedListener(null);
+
     if (isViewOnceMessage(messageRecord) && !messageRecord.isRemoteDelete()) {
       revealableStub.get().setVisibility(VISIBLE);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
@@ -823,7 +835,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
       if (revealableStub.resolved())     revealableStub.get().setVisibility(View.GONE);
 
-      audioViewStub.get().setAudio(Objects.requireNonNull(((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide()), new AudioViewCallbacks(), showControls, false);
+      audioViewStub.get().setAudio(Objects.requireNonNull(((MediaMmsMessageRecord) messageRecord).getSlideDeck().getAudioSlide()), new AudioViewCallbacks(), showControls, true);
       audioViewStub.get().setDownloadClickListener(singleDownloadClickListener);
       audioViewStub.get().setOnLongClickListener(passthroughClickListener);
 
@@ -837,6 +849,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
+      footer.setPlaybackSpeedListener(new AudioPlaybackSpeedToggleListener());
       footer.setVisibility(VISIBLE);
     } else if (hasDocument(messageRecord)) {
       documentViewStub.get().setVisibility(View.VISIBLE);
@@ -1804,6 +1817,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
+  private final class TouchDelegateChangedListener implements ConversationItemFooter.OnTouchDelegateChangedListener {
+    @Override
+    public void onTouchDelegateChanged(@NonNull @NotNull Rect delegateRect, @NonNull @NotNull View delegateView) {
+      offsetDescendantRectToMyCoords(footer, delegateRect);
+      setTouchDelegate(new TouchDelegate(delegateRect, delegateView));
+    }
+  }
+
   private final class UrlClickListener implements UrlClickHandler {
 
     @Override
@@ -1829,6 +1850,22 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     @Override
     public void updateDrawState(@NonNull TextPaint ds) { }
+  }
+
+  private final class AudioPlaybackSpeedToggleListener implements PlaybackSpeedToggleTextView.PlaybackSpeedListener {
+    @Override
+    public void onPlaybackSpeedChanged(float speed) {
+      if (eventListener == null || !audioViewStub.resolved()) {
+        return;
+      }
+
+      Uri uri = audioViewStub.get().getAudioSlideUri();
+      if (uri == null) {
+        return;
+      }
+
+      eventListener.onVoiceNotePlaybackSpeedChanged(uri, speed);
+    }
   }
 
   private final class AudioViewCallbacks implements AudioView.Callbacks {
@@ -1857,6 +1894,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     @Override
     public void onStopAndReset(@NonNull Uri audioUri) {
       throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void onSpeedChanged(float speed, boolean isPlaying) {
+      footer.setAudioPlaybackSpeed(speed, isPlaying);
     }
 
     @Override
