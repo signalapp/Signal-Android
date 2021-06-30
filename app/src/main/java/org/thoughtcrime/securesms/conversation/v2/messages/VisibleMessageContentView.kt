@@ -89,10 +89,10 @@ class VisibleMessageContentView : LinearLayout {
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
             ViewUtil.setPaddingTop(bodyTextView, 0)
             mainContainer.addView(bodyTextView)
-            onContentClick = { rect ->
+            onContentClick = { event ->
                 val r = Rect()
                 quoteView.getGlobalVisibleRect(r)
-                if (r.contains(rect)) {
+                if (r.contains(event.rawX.roundToInt(), event.rawY.roundToInt())) {
                     delegate?.scrollToMessageIfPossible(quote.id)
                 }
             }
