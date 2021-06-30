@@ -318,13 +318,11 @@ object ConversationMenuHelper {
     }
 
     private fun unmute(context: Context, thread: Recipient) {
-        thread.setMuted(0)
         DatabaseFactory.getRecipientDatabase(context).setMuted(thread, 0)
     }
 
     private fun mute(context: Context, thread: Recipient) {
         MuteDialog.show(context) { until: Long ->
-            thread.setMuted(until)
             DatabaseFactory.getRecipientDatabase(context).setMuted(thread, until)
         }
     }

@@ -22,6 +22,8 @@ import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import androidx.core.text.getSpans
 import androidx.core.text.toSpannable
+import androidx.core.text.util.LinkifyCompat
+import kotlinx.android.synthetic.main.view_link_preview.view.*
 import kotlinx.android.synthetic.main.view_visible_message_content.view.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.ThemeUtil
@@ -43,6 +45,7 @@ import kotlin.math.roundToInt
 class VisibleMessageContentView : LinearLayout {
     var onContentClick: ((rawRect: Rect) -> Unit)? = null
     var onContentDoubleTap: (() -> Unit)? = null
+    var delegate: VisibleMessageContentViewDelegate? = null
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
@@ -89,6 +92,13 @@ class VisibleMessageContentView : LinearLayout {
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message, searchQuery)
             ViewUtil.setPaddingTop(bodyTextView, 0)
             mainContainer.addView(bodyTextView)
+            onContentClick = { rect ->
+                val r = Rect()
+                quoteView.getGlobalVisibleRect(r)
+                if (r.contains(rect)) {
+                    delegate?.scrollToMessageIfPossible(quote.id)
+                }
+            }
         } else if (message is MmsMessageRecord && message.slideDeck.audioSlide != null) {
             val voiceMessageView = VoiceMessageView(context)
             voiceMessageView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster)
@@ -192,4 +202,9 @@ class VisibleMessageContentView : LinearLayout {
         }
     }
     // endregion
+}
+
+interface VisibleMessageContentViewDelegate {
+
+    fun scrollToMessageIfPossible(timestamp: Long)
 }

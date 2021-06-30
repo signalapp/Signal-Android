@@ -61,6 +61,7 @@ import org.session.libsession.utilities.MediaTypes
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.concurrent.SimpleTask
 import org.session.libsession.utilities.recipients.Recipient
+import org.session.libsession.utilities.recipients.RecipientModifiedListener
 import org.session.libsignal.utilities.ListenableFuture
 import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.ApplicationContext
@@ -75,6 +76,7 @@ import org.thoughtcrime.securesms.conversation.v2.input_bar.mentions.MentionCand
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallbackDelegate
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
+import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentViewDelegate
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
 import org.thoughtcrime.securesms.conversation.v2.search.SearchBottomBar
 import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
@@ -113,7 +115,8 @@ import kotlin.math.*
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
         InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ActivityDispatcher,
-        ConversationActionModeCallbackDelegate, SearchBottomBar.EventListener {
+        ConversationActionModeCallbackDelegate, VisibleMessageContentViewDelegate, RecipientModifiedListener,
+        SearchBottomBar.EventListener {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
@@ -136,6 +139,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     var searchViewModel: SearchViewModel? = null
     var searchViewItem: MenuItem? = null
 
+    private val isScrolledToBottom: Boolean
+        get() {
+            val position = layoutManager.findFirstCompletelyVisibleItemPosition()
+            return position == 0
+        }
+
     private val layoutManager: LinearLayoutManager
         get() { return conversationRecyclerView.layoutManager as LinearLayoutManager }
 
@@ -155,6 +164,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             },
             glide
         )
+        adapter.visibleMessageContentViewDelegate = this
         adapter
     }
 
@@ -194,6 +204,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         unreadCount = DatabaseFactory.getMmsSmsDatabase(this).getUnreadCount(threadID)
         updateUnreadCountIndicator()
         setUpTypingObserver()
+        setUpRecipientObserver()
         updateSubtitle()
         getLatestOpenGroupInfoIfNeeded()
         setUpBlockedBanner()
@@ -309,7 +320,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private fun setUpTypingObserver() {
         ApplicationContext.getInstance(this).typingStatusRepository.getTypists(threadID).observe(this) { state ->
             val recipients = if (state != null) state.typists else listOf()
-            typingIndicatorViewContainer.isVisible = recipients.isNotEmpty()
+            // FIXME: Also checking isScrolledToBottom is a quick fix for an issue where the
+            //        typing indicator overlays the recycler view when scrolled up
+            typingIndicatorViewContainer.isVisible = recipients.isNotEmpty() && isScrolledToBottom
             typingIndicatorViewContainer.setTypists(recipients)
             inputBarHeightChanged(inputBar.height)
         }
@@ -321,6 +334,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 }
             })
         }
+    }
+
+    private fun setUpRecipientObserver() {
+        thread.addListener(this)
     }
 
     private fun getLatestOpenGroupInfoIfNeeded() {
@@ -376,7 +393,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
     // endregion
 
-    // region Updating & Animation
+    override fun onModified(recipient: Recipient) {
+        if (thread.isContactRecipient) {
+            blockedBanner.isVisible = thread.isBlocked
+        }
+        updateSubtitle()
+    }
+
     private fun markAllAsRead() {
         val messages = DatabaseFactory.getThreadDatabase(this).setRead(threadID, true)
         if (thread.isGroupRecipient) {
@@ -577,8 +600,15 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun handleRecyclerViewScrolled() {
-        val position = layoutManager.findFirstCompletelyVisibleItemPosition()
-        val alpha = if (position > 0) 1.0f else 0.0f
+        val alpha = if (!isScrolledToBottom) 1.0f else 0.0f
+        // FIXME: Checking isScrolledToBottom is a quick fix for an issue where the
+        //        typing indicator overlays the recycler view when scrolled up
+        val wasTypingIndicatorVisibleBefore = typingIndicatorViewContainer.isVisible
+        typingIndicatorViewContainer.isVisible = wasTypingIndicatorVisibleBefore && isScrolledToBottom
+        val isTypingIndicatorVisibleAfter = typingIndicatorViewContainer.isVisible
+        if (isTypingIndicatorVisibleAfter != wasTypingIndicatorVisibleBefore) {
+            inputBarHeightChanged(inputBar.height)
+        }
         scrollToBottomButton.alpha = alpha
         unreadCount = min(unreadCount, layoutManager.findFirstVisibleItemPosition())
         updateUnreadCountIndicator()
@@ -746,6 +776,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         currentMentionStartIndex = -1
         hideMentionCandidates()
         this.previousText = newText
+    }
+
+    override fun scrollToMessageIfPossible(timestamp: Long) {
+        val lastSeenItemPosition = adapter.getItemPositionForTimestamp(timestamp) ?: return
+        conversationRecyclerView.scrollToPosition(lastSeenItemPosition)
     }
 
     override fun sendMessage() {
@@ -916,10 +951,18 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun startRecordingVoiceMessage() {
-        showVoiceMessageUI()
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        audioRecorder.startRecording()
-        stopAudioHandler.postDelayed(stopVoiceMessageRecordingTask, 60000) // Limit voice messages to 1 minute each
+        if (Permissions.hasAll(this, Manifest.permission.RECORD_AUDIO)) {
+            showVoiceMessageUI()
+            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+            audioRecorder.startRecording()
+            stopAudioHandler.postDelayed(stopVoiceMessageRecordingTask, 60000) // Limit voice messages to 1 minute each
+        } else {
+            Permissions.with(this)
+                .request(Manifest.permission.RECORD_AUDIO)
+                .withRationaleDialog(getString(R.string.ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone), R.drawable.ic_baseline_mic_48)
+                .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages))
+                .execute()
+        }
     }
 
     override fun sendVoiceMessage() {

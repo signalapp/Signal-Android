@@ -6,10 +6,12 @@ import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.dialog_join_open_group.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.session.libsession.utilities.OpenGroupUrlParser
+import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 import org.thoughtcrime.securesms.loki.api.OpenGroupManager
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
@@ -33,8 +35,11 @@ class JoinOpenGroupDialog(private val name: String, private val url: String) : B
 
     private fun join() {
         val openGroup = OpenGroupUrlParser.parseUrl(url)
-        OpenGroupManager.add(openGroup.server, openGroup.room, openGroup.serverPublicKey, requireContext())
-        MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(requireContext())
+        val activity = requireContext() as AppCompatActivity
+        ThreadUtils.queue {
+            OpenGroupManager.add(openGroup.server, openGroup.room, openGroup.serverPublicKey, activity)
+            MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(activity)
+        }
         dismiss()
     }
 }
