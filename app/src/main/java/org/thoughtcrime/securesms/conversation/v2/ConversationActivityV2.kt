@@ -201,6 +201,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         setUpLinkPreviewObserver()
         scrollToFirstUnreadMessageIfNeeded()
         markAllAsRead()
+        showOrHideInputIfNeeded()
     }
 
     override fun onResume() {
@@ -381,12 +382,25 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
     // endregion
 
+    // region Animation & Updating
     override fun onModified(recipient: Recipient) {
         runOnUiThread {
             if (thread.isContactRecipient) {
                 blockedBanner.isVisible = thread.isBlocked
             }
             updateSubtitle()
+            showOrHideInputIfNeeded()
+        }
+    }
+
+    private fun showOrHideInputIfNeeded() {
+        if (thread.isClosedGroupRecipient) {
+            val group = DatabaseFactory.getGroupDatabase(this).getGroup(thread.address.toGroupString()).orNull()
+            val isActive = (group?.isActive == true)
+            Log.d("Test", "isActive: $isActive")
+            inputBar.showInput = isActive
+        } else {
+            inputBar.showInput = true
         }
     }
 
