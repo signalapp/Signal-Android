@@ -11,6 +11,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -33,6 +34,7 @@ import org.thoughtcrime.securesms.conversation.v2.components.AlbumThumbnailView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.conversation.v2.dialogs.OpenURLDialog
 import org.thoughtcrime.securesms.conversation.v2.utilities.ModalURLSpan
+import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities.getIntersectedModalSpans
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -40,7 +42,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import kotlin.math.roundToInt
 
 class VisibleMessageContentView : LinearLayout {
-    var onContentClick: ((rawRect: Rect) -> Unit)? = null
+    var onContentClick: ((event: MotionEvent) -> Unit)? = null
     var onContentDoubleTap: (() -> Unit)? = null
     var delegate: VisibleMessageContentViewDelegate? = null
 
@@ -72,9 +74,7 @@ class VisibleMessageContentView : LinearLayout {
             val linkPreviewView = LinkPreviewView(context)
             linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster)
             mainContainer.addView(linkPreviewView)
-            onContentClick = { rect ->
-                linkPreviewView.calculateHit(rect)
-            }
+            onContentClick = { event -> linkPreviewView.calculateHit(event) }
             // Body text view is inside the link preview for layout convenience
         } else if (message is MmsMessageRecord && message.quote != null) {
             val quote = message.quote!!
@@ -119,7 +119,9 @@ class VisibleMessageContentView : LinearLayout {
                 isStart = isStartOfMessageCluster,
                 isEnd = isEndOfMessageCluster
             )
-            onContentClick = { albumThumbnailView.calculateHitObject(it, message) }
+            onContentClick = { event ->
+                albumThumbnailView.calculateHitObject(event, message, thread)
+            }
         } else if (message.isOpenGroupInvitation) {
             val openGroupInvitationView = OpenGroupInvitationView(context)
             openGroupInvitationView.bind(message, VisibleMessageContentView.getTextColor(context, message))
@@ -128,6 +130,12 @@ class VisibleMessageContentView : LinearLayout {
         } else {
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message)
             mainContainer.addView(bodyTextView)
+            onContentClick = { event ->
+                // intersectedModalSpans should only be a list of one item
+                bodyTextView.getIntersectedModalSpans(event).forEach { span ->
+                    span.onClick(bodyTextView)
+                }
+            }
         }
     }
 
@@ -179,7 +187,7 @@ class VisibleMessageContentView : LinearLayout {
                 body.setSpan(replacementSpan, start, end, flags)
             }
 
-            body = MentionUtilities.highlightMentions(body, message.isOutgoing, message.threadId, context);
+            body = MentionUtilities.highlightMentions(body, message.isOutgoing, message.threadId, context)
             result.text = body
             return result
         }
