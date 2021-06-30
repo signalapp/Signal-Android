@@ -26,6 +26,7 @@ import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.util.FileProviderUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.PublicKeyValidation
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import java.io.File
 import java.io.FileOutputStream
 
@@ -53,12 +54,12 @@ class QRCodeActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperF
     fun createPrivateChatIfPossible(hexEncodedPublicKey: String) {
         if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) { return Toast.makeText(this, R.string.invalid_session_id, Toast.LENGTH_SHORT).show() }
         val recipient = Recipient.from(this, Address.fromSerialized(hexEncodedPublicKey), false)
-        val intent = Intent(this, ConversationActivity::class.java)
+        val intent = Intent(this, ConversationActivityV2::class.java)
         intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
         intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA))
         intent.setDataAndType(getIntent().data, getIntent().type)
         val existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient)
-        intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread)
+        intent.putExtra(ConversationActivityV2.THREAD_ID, existingThread)
         intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, DistributionTypes.DEFAULT)
         startActivity(intent)
         finish()
