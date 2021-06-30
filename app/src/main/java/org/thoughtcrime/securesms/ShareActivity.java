@@ -39,6 +39,7 @@ import org.session.libsession.utilities.DistributionTypes;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.session.libsession.utilities.Address;
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListFragment;
@@ -215,9 +216,9 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void createConversation(long threadId, Address address, int distributionType) {
-    final Intent intent = getBaseShareIntent(ConversationActivity.class);
+    final Intent intent = getBaseShareIntent(ConversationActivityV2.class);
     intent.putExtra(ConversationActivity.ADDRESS_EXTRA, address);
-    intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
+    intent.putExtra(ConversationActivityV2.THREAD_ID, threadId);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
 
     isPassingAlongMedia = true;

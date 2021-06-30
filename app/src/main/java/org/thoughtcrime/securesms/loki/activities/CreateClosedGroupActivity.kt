@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 
 //TODO Refactor to avoid using kotlinx.android.synthetic
 class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
@@ -135,8 +136,8 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
 
 // region Convenience
 private fun openConversationActivity(context: Context, threadId: Long, recipient: Recipient) {
-    val intent = Intent(context, ConversationActivity::class.java)
-    intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId)
+    val intent = Intent(context, ConversationActivityV2::class.java)
+    intent.putExtra(ConversationActivityV2.THREAD_ID, threadId)
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, DistributionTypes.DEFAULT)
     intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
     context.startActivity(intent)
