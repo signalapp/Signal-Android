@@ -254,7 +254,6 @@ object ConversationMenuHelper {
             try {
                 if (isClosedGroup) {
                     MessageSender.leave(groupPublicKey!!, true)
-                    // TODO: Disable input?
                 } else {
                     Toast.makeText(context, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show()
                 }
