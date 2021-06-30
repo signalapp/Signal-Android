@@ -40,6 +40,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob;
@@ -256,7 +257,8 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
         if (markedMessageInfo != null) {
           ApplicationDependencies.getJobManager().add(new SendViewedReceiptJob(markedMessageInfo.getThreadId(),
                                                                                recipientId,
-                                                                               markedMessageInfo.getSyncMessageId().getTimetamp()));
+                                                                               markedMessageInfo.getSyncMessageId().getTimetamp(),
+                                                                               new MessageId(messageId, true)));
           MultiDeviceViewedUpdateJob.enqueue(Collections.singletonList(markedMessageInfo.getSyncMessageId()));
         }
       });

@@ -155,12 +155,7 @@ final class MessageRequestRepository {
         List<MessageDatabase.MarkedMessageInfo> viewedInfos = DatabaseFactory.getMmsDatabase(context)
                                                                              .getViewedIncomingMessages(threadId);
 
-        ApplicationDependencies.getJobManager()
-                               .add(new SendViewedReceiptJob(threadId,
-                                                             liveRecipient.getId(),
-                                                             Stream.of(viewedInfos)
-                                                                   .map(info -> info.getSyncMessageId().getTimetamp())
-                                                                   .toList()));
+        SendViewedReceiptJob.enqueue(threadId, liveRecipient.getId(), viewedInfos);
 
         if (TextSecurePreferences.isMultiDevice(context)) {
           ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(liveRecipient.getId()));

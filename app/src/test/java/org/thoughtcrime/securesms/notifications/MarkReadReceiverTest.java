@@ -13,6 +13,7 @@ import org.mockito.stubbing.Answer;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -94,7 +95,8 @@ public class MarkReadReceiverTest {
 
   private MessageDatabase.MarkedMessageInfo createMarkedMessageInfo(long threadId, @NonNull RecipientId recipientId) {
     return new MessageDatabase.MarkedMessageInfo(threadId,
-                                                   new MessageDatabase.SyncMessageId(recipientId, 0),
-                                                   new MessageDatabase.ExpirationInfo(0, 0, 0, false));
+                                                 new MessageDatabase.SyncMessageId(recipientId, 0),
+                                                 new MessageId(1, true),
+                                                 new MessageDatabase.ExpirationInfo(0, 0, 0, false));
   }
 }

@@ -151,6 +151,15 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SQLC
     }
   }
 
+  fun insertIfPossible(recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageIds: List<MessageId>) {
+    if (!FeatureFlags.senderKey()) return
+
+    if (sendMessageResult.isSuccess && sendMessageResult.success.content.isPresent) {
+      val recipientDevice = listOf(RecipientDevice(recipientId, sendMessageResult.success.devices))
+      insert(recipientDevice, sentTimestamp, sendMessageResult.success.content.get(), contentHint, messageIds)
+    }
+  }
+
   fun insertIfPossible(sentTimestamp: Long, possibleRecipients: List<Recipient>, results: List<SendMessageResult>, contentHint: ContentHint, relatedMessageId: Long, isRelatedMessageMms: Boolean) {
     if (!FeatureFlags.senderKey()) return
 

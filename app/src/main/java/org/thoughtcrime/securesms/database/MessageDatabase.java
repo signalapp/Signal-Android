@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -682,11 +683,13 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
 
     private final long           threadId;
     private final SyncMessageId  syncMessageId;
+    private final MessageId      messageId;
     private final ExpirationInfo expirationInfo;
 
-    public MarkedMessageInfo(long threadId, SyncMessageId syncMessageId, ExpirationInfo expirationInfo) {
+    public MarkedMessageInfo(long threadId, @NonNull SyncMessageId syncMessageId, @NonNull MessageId messageId, @Nullable ExpirationInfo expirationInfo) {
       this.threadId       = threadId;
       this.syncMessageId  = syncMessageId;
+      this.messageId      = messageId;
       this.expirationInfo = expirationInfo;
     }
 
@@ -694,11 +697,15 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
       return threadId;
     }
 
-    public SyncMessageId getSyncMessageId() {
+    public @NonNull SyncMessageId getSyncMessageId() {
       return syncMessageId;
     }
 
-    public ExpirationInfo getExpirationInfo() {
+    public @NonNull MessageId getMessageId() {
+      return messageId;
+    }
+
+    public @Nullable ExpirationInfo getExpirationInfo() {
       return expirationInfo;
     }
   }

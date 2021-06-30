@@ -187,7 +187,7 @@ class ConversationSettingsRepository(
   }
 
   fun disableProfileSharingForInternalUser(recipientId: RecipientId) {
-    Preconditions.checkArgument(FeatureFlags.internalUser(), "Internal users only!");
+    Preconditions.checkArgument(FeatureFlags.internalUser(), "Internal users only!")
 
     SignalExecutors.BOUNDED.execute {
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipientId, false)
@@ -195,7 +195,7 @@ class ConversationSettingsRepository(
   }
 
   fun deleteSessionForInternalUser(recipientId: RecipientId) {
-    Preconditions.checkArgument(FeatureFlags.internalUser(), "Internal users only!");
+    Preconditions.checkArgument(FeatureFlags.internalUser(), "Internal users only!")
 
     SignalExecutors.BOUNDED.execute {
       DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipientId)
