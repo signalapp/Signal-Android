@@ -411,7 +411,6 @@ public class SmsDatabase extends MessagingDatabase {
 
       notifyConversationListeners(threadId);
 
-
       return Optional.of(new InsertResult(messageId, threadId));
     }
   }

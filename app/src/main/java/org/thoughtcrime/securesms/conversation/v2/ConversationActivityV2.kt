@@ -382,10 +382,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     // endregion
 
     override fun onModified(recipient: Recipient) {
-        if (thread.isContactRecipient) {
-            blockedBanner.isVisible = thread.isBlocked
+        runOnUiThread {
+            if (thread.isContactRecipient) {
+                blockedBanner.isVisible = thread.isBlocked
+            }
+            updateSubtitle()
         }
-        updateSubtitle()
     }
 
     private fun markAllAsRead() {
