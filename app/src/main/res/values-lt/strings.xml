@@ -3183,6 +3183,8 @@
   <string name="ConversationSettingsFragment__unmute">Įjungti pranešimus</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Pokalbio pranešimai išjungti iki %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Pokalbio pranešimai išjungti visam laikui</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefono numeris nukopijuotas į iškarpinę.</string>
+  <string name="ConversationSettingsFragment__phone_number">Telefono numeris</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Pridėti narius</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Taisyti grupės informaciją</string>

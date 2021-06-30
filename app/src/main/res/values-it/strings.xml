@@ -3015,6 +3015,8 @@
   <string name="ConversationSettingsFragment__unmute">Non silenziare</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversazione silenziata fino a %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Conversazione silenziata per sempre</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numero di telefono copiato negli appunti.</string>
+  <string name="ConversationSettingsFragment__phone_number">Numero di telefono</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Aggiungi membri</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Modifica informazioni gruppo</string>

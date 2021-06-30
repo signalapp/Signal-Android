@@ -3017,6 +3017,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ConversationSettingsFragment__unmute">Hljóð á</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Samtal þaggað til %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Samtal þaggað að eilífu</string>
+  <string name="ConversationSettingsFragment__phone_number">Símanúmer</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Bæta við meðlimum</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Breyta upplýsingum hóps</string>

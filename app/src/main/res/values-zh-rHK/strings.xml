@@ -2930,6 +2930,8 @@
   <string name="ConversationSettingsFragment__unmute">取消靜音</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">對話已設為靜音，直到 %1$s 為止</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">對話已設為靜音，直到永遠</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">電話號碼已複製至剪貼簿。</string>
+  <string name="ConversationSettingsFragment__phone_number">電話號碼</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">新增成員</string>
   <string name="PermissionsSettingsFragment__edit_group_info">編輯群組資訊</string>

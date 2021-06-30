@@ -2576,6 +2576,7 @@
   <string name="ConversationSettingsFragment__permissions">권한</string>
   <string name="ConversationSettingsFragment__group_link">그룹 링크</string>
   <string name="ConversationSettingsFragment__unmute">알림 켜기</string>
+  <string name="ConversationSettingsFragment__phone_number">전화번호</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">멤버 추가</string>
   <string name="PermissionsSettingsFragment__edit_group_info">그룹 정보 수정</string>

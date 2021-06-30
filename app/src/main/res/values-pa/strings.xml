@@ -2475,6 +2475,7 @@
   <string name="ConversationSettingsFragment__permissions">ਇਜਾਜ਼ਤਾਂ</string>
   <string name="ConversationSettingsFragment__group_link">ਸਮੂਹ ਲਿੰਕ</string>
   <string name="ConversationSettingsFragment__unmute">ਅਨਮਿਊਟ ਕਰੋ</string>
+  <string name="ConversationSettingsFragment__phone_number">ਫੋਨ ਨੰਬਰ</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">ਮੈਂਬਰ ਜੋੜੋ</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ਸਮੂਹ ਜਾਣਕਾਰੀ ਸੋਧੋ</string>

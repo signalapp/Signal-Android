@@ -2714,6 +2714,7 @@
   <string name="PaymentsRecoveryEntryFragment__word_d">Λέξη %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Επόμενο</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Το πρόχειρο εκκαθαρίστηκε.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Εμφάνιση</string>
   <!--UnreadPayments-->
@@ -2877,6 +2878,7 @@
   <string name="ConversationSettingsFragment__unmute">Αναίρεση σίγασης</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Η συνομιλία είναι σε σίγαση έως %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Η συνομιλία είνα σε σίγαση για πάντα</string>
+  <string name="ConversationSettingsFragment__phone_number">Αριθμός τηλεφώνου</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Προσθήκη μελών</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Επεξεργασία πληροφοριών ομάδας</string>

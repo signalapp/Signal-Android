@@ -3085,6 +3085,7 @@ broj telefona</string>
   <string name="ConversationSettingsFragment__permissions">Dozvole</string>
   <string name="ConversationSettingsFragment__group_link">Poveznica grupe</string>
   <string name="ConversationSettingsFragment__unmute">Uključi zvuk</string>
+  <string name="ConversationSettingsFragment__phone_number">Broj telefona</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Dodaj članove</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Uredi detalje o grupi</string>

@@ -3183,6 +3183,8 @@
   <string name="ConversationSettingsFragment__unmute">בטל השתקה</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">שיחות מושתקות עד %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">שיחות מושתקות לתמיד</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">מספר טלפון הועתק אל לוח הגזירה.</string>
+  <string name="ConversationSettingsFragment__phone_number">מספר טלפון</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">הוסף חברי קבוצה</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ערוך מידע קבוצה</string>

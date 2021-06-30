@@ -2680,6 +2680,7 @@
   <string name="ConversationSettingsFragment__permissions">അനുമതികൾ</string>
   <string name="ConversationSettingsFragment__group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക് </string>
   <string name="ConversationSettingsFragment__unmute">ശബ്‌ദിപ്പിക്കുക</string>
+  <string name="ConversationSettingsFragment__phone_number">ഫോൺ നമ്പർ</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ഗ്രൂപ്പ് വിവരം തിരുത്തുക</string>

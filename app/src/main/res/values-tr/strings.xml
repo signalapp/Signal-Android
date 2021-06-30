@@ -3004,6 +3004,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConversationSettingsFragment__permissions">İzinler</string>
   <string name="ConversationSettingsFragment__group_link">Grup bağlantısı</string>
   <string name="ConversationSettingsFragment__unmute">Sesi aç</string>
+  <string name="ConversationSettingsFragment__phone_number">Telefon numarası</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Üye ekle</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Grup bilgisini düzenle</string>

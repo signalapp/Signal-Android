@@ -2518,6 +2518,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ConversationSettingsFragment__permissions">Perizinan</string>
   <string name="ConversationSettingsFragment__group_link">Tautan grup</string>
   <string name="ConversationSettingsFragment__unmute">Tidak Senyap</string>
+  <string name="ConversationSettingsFragment__phone_number">Nomor telepon</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Tambahkan anggota</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Sunting informasi grup</string>

@@ -2957,6 +2957,7 @@
   <string name="ConversationSettingsFragment__add_as_a_contact">Ajouter comme contact</string>
   <string name="ConversationSettingsFragment__unmute">Réactiver les notifications</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Conversation en sourdine pour toujours</string>
+  <string name="ConversationSettingsFragment__phone_number">Numéro de téléphone</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Ajouter des membres</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Modifier les renseignements</string>

@@ -3004,6 +3004,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConversationSettingsFragment__unmute">Stummschaltung aufheben</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Unterhaltung stummgeschaltet bis %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Unterhaltung dauerhaft stummgeschaltet</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Rufnummer in Zwischenablage kopiert.</string>
+  <string name="ConversationSettingsFragment__phone_number">Rufnummer</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Mitglieder hinzufügen</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Gruppendetails bearbeiten</string>

@@ -3015,6 +3015,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConversationSettingsFragment__unmute">No silenciar</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Chat silenciado hasta %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Chat silenciado para siempre</string>
+  <string name="ConversationSettingsFragment__phone_number">Número de teléfono</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Añadir participantes</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Editar detalles del grupo</string>

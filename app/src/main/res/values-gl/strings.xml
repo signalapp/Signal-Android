@@ -2711,6 +2711,7 @@
   <string name="ConversationSettingsFragment__permissions">Permisos</string>
   <string name="ConversationSettingsFragment__group_link">Ligazón do grupo</string>
   <string name="ConversationSettingsFragment__unmute">Activar o son</string>
+  <string name="ConversationSettingsFragment__phone_number">Número de teléfono</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Engadir membros</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Editar a info do grupo</string>

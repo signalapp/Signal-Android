@@ -3021,6 +3021,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="ConversationSettingsFragment__unmute">Vis varsel</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Samtalen er dempa fram til %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Samtalen dempa for all framtid</string>
+  <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Legg til medlemmar</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Endra gruppeinfo</string>

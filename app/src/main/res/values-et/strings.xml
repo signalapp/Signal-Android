@@ -2805,6 +2805,7 @@
   <string name="ConversationSettingsFragment__permissions">Õigused</string>
   <string name="ConversationSettingsFragment__group_link">Grupilink</string>
   <string name="ConversationSettingsFragment__unmute">Eemalda vaigistus</string>
+  <string name="ConversationSettingsFragment__phone_number">Telefoninumber</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Lisa liikmed</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Muuda grupi infot</string>

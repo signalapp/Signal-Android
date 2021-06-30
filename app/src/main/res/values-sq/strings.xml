@@ -3019,6 +3019,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ConversationSettingsFragment__unmute">Çheshtoji</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Bisedë e heshtuar deri më %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Bisedë e heshtuar përgjithmonë</string>
+  <string name="ConversationSettingsFragment__phone_number">Numër telefoni</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Shtoni anëtarë</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Përpunoni të dhëna grupi</string>

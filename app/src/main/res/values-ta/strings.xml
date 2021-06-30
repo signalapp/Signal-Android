@@ -2600,6 +2600,7 @@
   <string name="ConversationSettingsFragment__permissions">அனுமதிகள்</string>
   <string name="ConversationSettingsFragment__group_link">குழு இணைப்பு</string>
   <string name="ConversationSettingsFragment__unmute">ஒலியடக்கை நீக்கு</string>
+  <string name="ConversationSettingsFragment__phone_number">தொலைபேசி எண்</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
   <string name="PermissionsSettingsFragment__edit_group_info">குழு தகவலைத் திருத்தல்</string>

@@ -2587,6 +2587,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ConversationSettingsFragment__permissions">Quyền</string>
   <string name="ConversationSettingsFragment__group_link">Đường dẫn nhóm</string>
   <string name="ConversationSettingsFragment__unmute">Tắt tạm im</string>
+  <string name="ConversationSettingsFragment__phone_number">Số điện thoại</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Thêm thành viên</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Sửa thông tin nhóm</string>

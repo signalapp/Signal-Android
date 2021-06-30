@@ -3182,6 +3182,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ConversationSettingsFragment__unmute">Nahlas</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Konverzace ztlumena do %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Konverzace ztlumena navždy</string>
+  <string name="ConversationSettingsFragment__phone_number">Telefonní číslo</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Přidat členy</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Upravit informace o skupině</string>

@@ -3176,6 +3176,8 @@
   <string name="ConversationSettingsFragment__unmute">Включить звуки</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Звуки разговора отключены до %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Звуки разговора отключены навсегда</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Номер телефона был скопирован в буфер обмена.</string>
+  <string name="ConversationSettingsFragment__phone_number">Номер телефона</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Добавлять участников</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Редактировать информацию</string>

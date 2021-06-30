@@ -2833,6 +2833,7 @@
   <string name="ConversationSettingsFragment__unmute">ミュートを解除</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">チャットは%1$sまでミュートされます</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">チャットは常にミュートされます</string>
+  <string name="ConversationSettingsFragment__phone_number">電話番号</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">メンバーの追加</string>
   <string name="PermissionsSettingsFragment__edit_group_info">グループ情報を編集</string>

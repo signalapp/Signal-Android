@@ -2577,6 +2577,7 @@
   <string name="ConversationSettingsFragment__permissions">परवानग्या</string>
   <string name="ConversationSettingsFragment__group_link">गट लिंक</string>
   <string name="ConversationSettingsFragment__unmute">अनम्यूट करा</string>
+  <string name="ConversationSettingsFragment__phone_number">फोन नंबर</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">सदस्य जोडा</string>
   <string name="PermissionsSettingsFragment__edit_group_info">गट माहिती संपादित करा</string>

@@ -2595,6 +2595,7 @@
   <string name="ConversationSettingsFragment__permissions">అనుమతులు</string>
   <string name="ConversationSettingsFragment__group_link">సమూహ లింక్</string>
   <string name="ConversationSettingsFragment__unmute">మ్యూట్ తీసివేయి</string>
+  <string name="ConversationSettingsFragment__phone_number">ఫోను నంబరు</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">సభ్యులను జోడించండి</string>
   <string name="PermissionsSettingsFragment__edit_group_info">సమూహ వివరణను సవరించండి</string>

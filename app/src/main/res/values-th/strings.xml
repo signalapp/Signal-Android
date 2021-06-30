@@ -2819,6 +2819,7 @@
   <string name="ConversationSettingsFragment__permissions">สิทธิ์</string>
   <string name="ConversationSettingsFragment__group_link">ลิงก์กลุ่ม</string>
   <string name="ConversationSettingsFragment__unmute">เปิดเสียง</string>
+  <string name="ConversationSettingsFragment__phone_number">หมายเลขโทรศัพท์</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">เพิ่มสมาชิก</string>
   <string name="PermissionsSettingsFragment__edit_group_info">แก้ไขข้อมูลกลุ่ม</string>

@@ -3166,7 +3166,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConversationSettingsFragment__unblock">Odblokuj</string>
   <string name="ConversationSettingsFragment__unblock_group">Odblokuj grupę</string>
   <string name="ConversationSettingsFragment__add_to_a_group">Dodaj do grupy</string>
-  <string name="ConversationSettingsFragment__see_all">Zobacz wszystkich</string>
+  <string name="ConversationSettingsFragment__see_all">Zobacz wszystko</string>
   <string name="ConversationSettingsFragment__add_members">Dodaj członków</string>
   <string name="ConversationSettingsFragment__permissions">Uprawnienia</string>
   <string name="ConversationSettingsFragment__requests_and_invites">Prośby o przyjęcie i zaproszenia</string>
@@ -3175,6 +3175,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConversationSettingsFragment__unmute">Cofnij wyciszenie</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Rozmowa wyciszona do %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Rozmowa wyciszona na zawsze</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Skopiowano numer telefonu do schowka.</string>
+  <string name="ConversationSettingsFragment__phone_number">Numer telefonu</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Dodaj członków</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Edytuj informacje o grupie</string>

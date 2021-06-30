@@ -2572,6 +2572,7 @@
   <string name="ConversationSettingsFragment__permissions">اجازت</string>
   <string name="ConversationSettingsFragment__group_link">گروپ لنک</string>
   <string name="ConversationSettingsFragment__unmute">غیر خاموش</string>
+  <string name="ConversationSettingsFragment__phone_number">فون نمبر</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">ممبران شامل کریں</string>
   <string name="PermissionsSettingsFragment__edit_group_info">گروپ کی معلومات میں ترمیم کریں</string>

@@ -2607,6 +2607,7 @@
   <string name="ConversationSettingsFragment__add_members">ସଦସ୍ୟ ଯୋଡ଼ନ୍ତୁ</string>
   <string name="ConversationSettingsFragment__group_link">ଗୋଷ୍ଠୀ ଲିଙ୍କ୍</string>
   <string name="ConversationSettingsFragment__unmute">ନୀରବତା ଭାଙ୍ଗନ୍ତୁ</string>
+  <string name="ConversationSettingsFragment__phone_number">ଫୋନ୍ ନମ୍ବର</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">ସଦସ୍ୟ ଯୋଡ଼ନ୍ତୁ</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ଗୋଷ୍ଠୀ ସୂଚନା ସମ୍ପାଦନ କରନ୍ତୁ</string>

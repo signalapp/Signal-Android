@@ -3104,6 +3104,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ConversationSettingsFragment__unmute">Isključi stišavanje</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Konverzacije stišane do %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Konverzacije zastalno stišane</string>
+  <string name="ConversationSettingsFragment__phone_number">Broj telefona</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Uvrštavanje članova</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Izmjene informacija o grupi</string>

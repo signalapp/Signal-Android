@@ -3013,6 +3013,7 @@
   <string name="ConversationSettingsFragment__unmute">باز کردن صدا</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">مکالمه تا %1$s بسته شد</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">مکالمه برای همیشه بسته شد</string>
+  <string name="ConversationSettingsFragment__phone_number">شماره‌تلفن</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">افزودن اعضا</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ویرایش اطلاعات گروه</string>

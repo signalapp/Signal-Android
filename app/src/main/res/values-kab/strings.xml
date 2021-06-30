@@ -2708,6 +2708,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="ConversationSettingsFragment__add_members">Rnu iɛeggalen</string>
   <string name="ConversationSettingsFragment__group_link">Aseɣwen n ugraw</string>
   <string name="ConversationSettingsFragment__unmute">Err imesli</string>
+  <string name="ConversationSettingsFragment__phone_number">Uṭṭun n tilifun</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Rnu iɛeggalen</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Ẓreg talɣut n ugraw</string>

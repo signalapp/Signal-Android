@@ -2576,6 +2576,7 @@
   <string name="ConversationSettingsFragment__permissions">Разрешения</string>
   <string name="ConversationSettingsFragment__group_link">Връзка към групата</string>
   <string name="ConversationSettingsFragment__unmute">Изключи тих режим</string>
+  <string name="ConversationSettingsFragment__phone_number">Телефонен номер</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Добави членове</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Редактиране на информация за групата</string>

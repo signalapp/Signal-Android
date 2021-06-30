@@ -2900,6 +2900,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConversationSettingsFragment__permissions">Tillatelser</string>
   <string name="ConversationSettingsFragment__group_link">Gruppelenke</string>
   <string name="ConversationSettingsFragment__unmute">Slå lyd på</string>
+  <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Legg til medlemmer</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Rediger gruppe info</string>

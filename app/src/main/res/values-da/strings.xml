@@ -3006,6 +3006,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ConversationSettingsFragment__permissions">Tilladelser</string>
   <string name="ConversationSettingsFragment__group_link">Gruppelink</string>
   <string name="ConversationSettingsFragment__unmute">Aktivér lyd</string>
+  <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Tilføj medlemmer</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Rediger gruppeinformation</string>

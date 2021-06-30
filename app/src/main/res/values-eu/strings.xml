@@ -2597,6 +2597,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ConversationSettingsFragment__permissions">Baimenak</string>
   <string name="ConversationSettingsFragment__group_link">Talderako esteka</string>
   <string name="ConversationSettingsFragment__unmute">Soinua aktibatu</string>
+  <string name="ConversationSettingsFragment__phone_number">Telefono zenbakia</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Gehitu kideak</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Editatu taldeari buruzko informazioa</string>

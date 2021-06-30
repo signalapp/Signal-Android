@@ -3182,6 +3182,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ConversationSettingsFragment__unmute">Zrušiť stlmenie</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Konverzácia bola stlmená do %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Konverzácia bola navždy stlmená</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefónne číslo skopírované do schránky.</string>
+  <string name="ConversationSettingsFragment__phone_number">Telefónne číslo</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Pridať členov</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Upraviť informácie o skupine</string>
@@ -3198,5 +3200,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Neinformovať</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Vlastné upozornenia</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Nedávno použité</string>
   <!--EOF-->
 </resources>

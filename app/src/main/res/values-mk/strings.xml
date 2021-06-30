@@ -2835,6 +2835,7 @@
   <string name="ConversationSettingsFragment__permissions">Дозволи</string>
   <string name="ConversationSettingsFragment__group_link">Групен линк</string>
   <string name="ConversationSettingsFragment__unmute">Вклучи известувања</string>
+  <string name="ConversationSettingsFragment__phone_number">Телефонски број</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Додај членови</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Уреди инфо за група</string>

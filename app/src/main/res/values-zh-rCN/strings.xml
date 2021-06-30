@@ -26,8 +26,8 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">点击修改默认短信应用</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">已禁用短信</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">点击将 Signal 设置为默认短信应用</string>
-  <string name="ApplicationPreferencesActivity_on">开</string>
-  <string name="ApplicationPreferencesActivity_On">开</string>
+  <string name="ApplicationPreferencesActivity_on">开启</string>
+  <string name="ApplicationPreferencesActivity_On">开启</string>
   <string name="ApplicationPreferencesActivity_off">关</string>
   <string name="ApplicationPreferencesActivity_Off">关</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">短信：%1$s，彩信：%2$s</string>
@@ -584,7 +584,7 @@
   <string name="ManageGroupActivity_until_s">直到 %1$s</string>
   <string name="ManageGroupActivity_always">总是</string>
   <string name="ManageGroupActivity_off">关</string>
-  <string name="ManageGroupActivity_on">开</string>
+  <string name="ManageGroupActivity_on">开启</string>
   <string name="ManageGroupActivity_view_all_members">查看全部成员</string>
   <string name="ManageGroupActivity_see_all">查看全部</string>
   <plurals name="ManageGroupActivity_added">
@@ -1890,9 +1890,9 @@
   <string name="preferences__theme">主题</string>
   <string name="preferences__chat_wallpaper">聊天墙纸</string>
   <string name="preferences__chat_color_and_wallpaper">聊天颜色与墙纸</string>
-  <string name="preferences__disable_pin">禁用 PIN</string>
-  <string name="preferences__enable_pin">启用 PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 Signal 时全部数据将丢失，除非使用手动备份并还原。PIN 禁用时，无法启用注册锁定。</string>
+  <string name="preferences__disable_pin">禁用 PIN 码</string>
+  <string name="preferences__enable_pin">启用 PIN 码</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN 码，重新注册 Signal 时全部数据将丢失，除非使用手动备份并还原。PIN 码禁用时，无法启用注册锁定。</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN 用于加密 Signal 存储的信息，这样只有你可以访问。重装之后，可还原你的个人资料、设置和联系人。打开 Signal 无需使用 PIN。</string>
   <string name="preferences__system_default">系统默认</string>
   <string name="preferences__language">语言</string>
@@ -1973,7 +1973,7 @@
   <string name="preferences_proxy">代理</string>
   <string name="preferences_use_proxy">使用代理</string>
   <string name="preferences_off">关</string>
-  <string name="preferences_on">开</string>
+  <string name="preferences_on">开启</string>
   <string name="preferences_proxy_address">代理地址</string>
   <string name="preferences_only_use_a_proxy_if">仅在无法通过移动数据或 Wi-Fi 连接 Signal 时，使用代理。</string>
   <string name="preferences_share">分享</string>
@@ -2801,7 +2801,7 @@
   <string name="ChatsSettingsFragment__keyboard">键盘</string>
   <string name="ChatsSettingsFragment__enter_key_sends">按回车发送</string>
   <!--SmsSettingsFragment-->
-  <string name="SmsSettingsFragment__use_as_default_sms_app">设置为默认短信应用</string>
+  <string name="SmsSettingsFragment__use_as_default_sms_app">用作默认短信应用</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">消息</string>
   <string name="NotificationsSettingsFragment__calls">通话</string>
@@ -2932,6 +2932,8 @@
   <string name="ConversationSettingsFragment__unmute">取消静音</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">静音对话直到 %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">已永久静音对话</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">已复制手机号码至剪贴板。</string>
+  <string name="ConversationSettingsFragment__phone_number">手机号码</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">添加成员</string>
   <string name="PermissionsSettingsFragment__edit_group_info">编辑群组信息</string>

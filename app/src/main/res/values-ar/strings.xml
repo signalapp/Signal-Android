@@ -3152,6 +3152,7 @@
   <string name="ConversationSettingsFragment__permissions">الصلاحيات</string>
   <string name="ConversationSettingsFragment__group_link">وصلة المجموعة</string>
   <string name="ConversationSettingsFragment__unmute">رَفع الكَتم</string>
+  <string name="ConversationSettingsFragment__phone_number">رقم الهاتف</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">إضافة أعضاء</string>
   <string name="PermissionsSettingsFragment__edit_group_info">تعديل معلومات المجموعة</string>

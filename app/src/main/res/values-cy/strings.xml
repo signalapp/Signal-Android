@@ -3185,6 +3185,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationSettingsFragment__unmute">Dad-dewi</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Sgwrs wedi\'i dewi tan %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Sgwrs wedi\'i dewi am byth</string>
+  <string name="ConversationSettingsFragment__phone_number">Rhif ffôn</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Ychwanegu aelodau</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Golygu manylion y grŵp</string>

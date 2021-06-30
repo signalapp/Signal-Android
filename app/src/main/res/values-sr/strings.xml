@@ -3090,6 +3090,7 @@
   <string name="ConversationSettingsFragment__permissions">Дозволе</string>
   <string name="ConversationSettingsFragment__group_link">Веза до групе</string>
   <string name="ConversationSettingsFragment__unmute">Укључи обавештења</string>
+  <string name="ConversationSettingsFragment__phone_number">Број телефона</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Додај чланове</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Уреди информације о групи</string>
