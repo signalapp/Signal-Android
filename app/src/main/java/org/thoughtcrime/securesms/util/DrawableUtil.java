@@ -11,7 +11,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 public final class DrawableUtil {
 
   private static final int SHORTCUT_INFO_BITMAP_SIZE  = ViewUtil.dpToPx(108);
-  private static final int SHORTCUT_INFO_WRAPPED_SIZE = ViewUtil.dpToPx(72);
+  public  static final int SHORTCUT_INFO_WRAPPED_SIZE = ViewUtil.dpToPx(72);
   private static final int SHORTCUT_INFO_PADDING      = (SHORTCUT_INFO_BITMAP_SIZE - SHORTCUT_INFO_WRAPPED_SIZE) / 2;
 
   private DrawableUtil() {}
