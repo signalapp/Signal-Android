@@ -3,22 +3,27 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Canvas
+import android.graphics.ColorFilter
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
+import android.os.AsyncTask
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
 import android.view.*
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_visible_message.view.*
-import kotlinx.android.synthetic.main.view_visible_message.view.profilePictureView
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact.ContactContext
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.ViewUtil
+import org.session.libsignal.utilities.ThreadUtils
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
@@ -135,6 +140,8 @@ class VisibleMessageView : LinearLayout {
         } else {
             messageStatusImageView.isVisible = false
         }
+        // Expiration timer
+        updateExpirationTimer(message)
         // Calculate max message bubble width
         var maxWidth = screenWidth - messageContentContainerLayoutParams.leftMargin - messageContentContainerLayoutParams.rightMargin
         if (profilePictureContainer.visibility != View.GONE) { maxWidth -= profilePictureContainer.width }
@@ -178,6 +185,37 @@ class VisibleMessageView : LinearLayout {
             message.isPending -> return R.drawable.ic_circle_dot_dot_dot
             message.isRead -> return R.drawable.ic_filled_circle_check
             else -> return R.drawable.ic_circle_check
+        }
+    }
+
+    private fun updateExpirationTimer(message: MessageRecord) {
+        val expirationTimerViewLayoutParams = expirationTimerView.layoutParams as RelativeLayout.LayoutParams
+        val ruleToAdd = if (message.isOutgoing) RelativeLayout.ALIGN_PARENT_START else RelativeLayout.ALIGN_PARENT_END
+        val ruleToRemove = if (message.isOutgoing) RelativeLayout.ALIGN_PARENT_END else RelativeLayout.ALIGN_PARENT_START
+        expirationTimerViewLayoutParams.removeRule(ruleToRemove)
+        expirationTimerViewLayoutParams.addRule(ruleToAdd)
+        expirationTimerView.layoutParams = expirationTimerViewLayoutParams
+        if (message.expiresIn > 0 && !message.isPending) {
+            expirationTimerView.setColorFilter(ResourcesCompat.getColor(resources, R.color.text, context.theme))
+            expirationTimerView.isVisible = true
+            expirationTimerView.setPercentComplete(0.0f)
+            if (message.expireStarted > 0) {
+                expirationTimerView.setExpirationTime(message.expireStarted, message.expiresIn)
+                expirationTimerView.startAnimation()
+                if (message.expireStarted + message.expiresIn <= System.currentTimeMillis()) {
+                    ApplicationContext.getInstance(context).expiringMessageManager.checkSchedule()
+                }
+            } else if (!message.isOutgoing && !message.isMediaPending) {
+                ThreadUtils.queue {
+                    val expirationManager = ApplicationContext.getInstance(context).expiringMessageManager
+                    val id = message.getId()
+                    val mms = message.isMms
+                    if (mms) DatabaseFactory.getMmsDatabase(context).markExpireStarted(id) else DatabaseFactory.getSmsDatabase(context).markExpireStarted(id)
+                    expirationManager.scheduleDeletion(id, mms, message.expiresIn)
+                }
+            }
+        } else {
+            expirationTimerView.isVisible = false
         }
     }
 
