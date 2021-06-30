@@ -1006,13 +1006,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                         }
                 }
             } else {
-                ThreadUtils.queue {
-                    for (message in messages) {
-                        if (message.isMms) {
-                            DatabaseFactory.getMmsDatabase(this@ConversationActivityV2).delete(message.id)
-                        } else {
-                            DatabaseFactory.getSmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
-                        }
+                for (message in messages) {
+                    if (message.isMms) {
+                        DatabaseFactory.getMmsDatabase(this@ConversationActivityV2).delete(message.id)
+                    } else {
+                        DatabaseFactory.getSmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
                     }
                 }
             }
