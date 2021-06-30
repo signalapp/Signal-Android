@@ -34,7 +34,7 @@ public class CommunicationActions {
       @Override
       protected void onPostExecute(Long threadId) {
         Intent intent = new Intent(context, ConversationActivityV2.class);
-        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
+        intent.putExtra(ConversationActivityV2.ADDRESS, recipient.getAddress());
         intent.putExtra(ConversationActivityV2.THREAD_ID, threadId);
         intent.putExtra(ConversationActivity.TIMING_EXTRA, System.currentTimeMillis());
 

@@ -70,7 +70,7 @@ public class NotificationItem {
   public PendingIntent getPendingIntent(Context context) {
     Intent     intent           = new Intent(context, ConversationActivityV2.class);
     Recipient  notifyRecipients = threadRecipient != null ? threadRecipient : conversationRecipient;
-    if (notifyRecipients != null) intent.putExtra(ConversationActivity.ADDRESS_EXTRA, notifyRecipients.getAddress());
+    if (notifyRecipients != null) intent.putExtra(ConversationActivityV2.ADDRESS, notifyRecipients.getAddress());
 
     intent.putExtra(ConversationActivityV2.THREAD_ID, threadId);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));

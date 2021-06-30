@@ -182,6 +182,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     // region Settings
     companion object {
         const val THREAD_ID = "thread_id"
+        const val ADDRESS = "address"
         const val PICK_DOCUMENT = 2
         const val TAKE_PHOTO = 7
         const val PICK_GIF = 10
@@ -194,7 +195,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
         setContentView(R.layout.activity_conversation_v2)
-        threadID = intent.getLongExtra(THREAD_ID, -1)
+        var threadID = intent.getLongExtra(THREAD_ID, -1L)
+        if (threadID == -1L) {
+            val address = intent.getParcelableExtra<Address>(ADDRESS) ?: return finish()
+            val recipient = Recipient.from(this, address, false)
+            threadID = DatabaseFactory.getThreadDatabase(this).getOrCreateThreadIdFor(recipient)
+        }
+        this.threadID = threadID
         setUpRecyclerView()
         setUpToolBar()
         setUpInputBar()

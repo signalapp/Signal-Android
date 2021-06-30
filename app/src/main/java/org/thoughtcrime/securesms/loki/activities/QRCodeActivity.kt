@@ -55,7 +55,7 @@ class QRCodeActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperF
         if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) { return Toast.makeText(this, R.string.invalid_session_id, Toast.LENGTH_SHORT).show() }
         val recipient = Recipient.from(this, Address.fromSerialized(hexEncodedPublicKey), false)
         val intent = Intent(this, ConversationActivityV2::class.java)
-        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
+        intent.putExtra(ConversationActivityV2.ADDRESS, recipient.address)
         intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA))
         intent.setDataAndType(getIntent().data, getIntent().type)
         val existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient)

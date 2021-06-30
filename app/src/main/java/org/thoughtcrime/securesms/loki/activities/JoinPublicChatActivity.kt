@@ -131,7 +131,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
         val intent = Intent(context, ConversationActivityV2::class.java)
         intent.putExtra(ConversationActivityV2.THREAD_ID, threadId)
         intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, DistributionTypes.DEFAULT)
-        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
+        intent.putExtra(ConversationActivityV2.ADDRESS, recipient.address)
         context.startActivity(intent)
     }
     // endregion

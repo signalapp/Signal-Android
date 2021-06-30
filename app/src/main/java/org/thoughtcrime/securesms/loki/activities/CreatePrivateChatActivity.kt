@@ -113,7 +113,7 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
     private fun createPrivateChat(hexEncodedPublicKey: String) {
         val recipient = Recipient.from(this, Address.fromSerialized(hexEncodedPublicKey), false)
         val intent = Intent(this, ConversationActivityV2::class.java)
-        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
+        intent.putExtra(ConversationActivityV2.ADDRESS, recipient.address)
         intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA))
         intent.setDataAndType(getIntent().data, getIntent().type)
         val existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient)

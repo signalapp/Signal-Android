@@ -117,7 +117,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
       sendInThreadNotification(context, recipient);
     } else {
       Intent intent = new Intent(context, ConversationActivityV2.class);
-      intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
+      intent.putExtra(ConversationActivityV2.ADDRESS, recipient.getAddress());
       intent.putExtra(ConversationActivityV2.THREAD_ID, threadId);
       intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 
