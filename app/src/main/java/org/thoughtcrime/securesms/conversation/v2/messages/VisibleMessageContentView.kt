@@ -186,7 +186,6 @@ class VisibleMessageContentView : LinearLayout {
             body = SearchUtil.getHighlightedSpan(Locale.getDefault(), StyleFactory { BackgroundColorSpan(Color.WHITE) }, body, searchQuery)
             body = SearchUtil.getHighlightedSpan(Locale.getDefault(), StyleFactory { ForegroundColorSpan(Color.BLACK) }, body, searchQuery)
             result.text = body
-            result.movementMethod = LinkMovementMethod.getInstance()
             return result
         }
 

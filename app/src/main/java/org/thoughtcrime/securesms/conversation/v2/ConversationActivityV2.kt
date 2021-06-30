@@ -213,6 +213,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         setUpSearchResultObserver()
         scrollToFirstUnreadMessageIfNeeded()
         markAllAsRead()
+        showOrHideInputIfNeeded()
     }
 
     override fun onResume() {
@@ -393,11 +394,26 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
     // endregion
 
+    // region Animation & Updating
     override fun onModified(recipient: Recipient) {
-        if (thread.isContactRecipient) {
-            blockedBanner.isVisible = thread.isBlocked
+        runOnUiThread {
+            if (thread.isContactRecipient) {
+                blockedBanner.isVisible = thread.isBlocked
+            }
+            updateSubtitle()
+            showOrHideInputIfNeeded()
         }
-        updateSubtitle()
+    }
+
+    private fun showOrHideInputIfNeeded() {
+        if (thread.isClosedGroupRecipient) {
+            val group = DatabaseFactory.getGroupDatabase(this).getGroup(thread.address.toGroupString()).orNull()
+            val isActive = (group?.isActive == true)
+            Log.d("Test", "isActive: $isActive")
+            inputBar.showInput = isActive
+        } else {
+            inputBar.showInput = true
+        }
     }
 
     private fun markAllAsRead() {
@@ -1017,13 +1033,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                         }
                 }
             } else {
-                ThreadUtils.queue {
-                    for (message in messages) {
-                        if (message.isMms) {
-                            DatabaseFactory.getMmsDatabase(this@ConversationActivityV2).delete(message.id)
-                        } else {
-                            DatabaseFactory.getSmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
-                        }
+                for (message in messages) {
+                    if (message.isMms) {
+                        DatabaseFactory.getMmsDatabase(this@ConversationActivityV2).delete(message.id)
+                    } else {
+                        DatabaseFactory.getSmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
                     }
                 }
             }
