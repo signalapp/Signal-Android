@@ -45,7 +45,7 @@ class VisibleMessageView : LinearLayout {
     private var onDoubleTap: (() -> Unit)? = null
     var snIsSelected = false
         set(value) { field = value; handleIsSelectedChanged()}
-    var onPress: ((rawX: Int, rawY: Int) -> Unit)? = null
+    var onPress: ((event: MotionEvent) -> Unit)? = null
     var onSwipeToReply: (() -> Unit)? = null
     var onLongPress: (() -> Unit)? = null
 
@@ -277,7 +277,7 @@ class VisibleMessageView : LinearLayout {
                 this.pressCallback = null
                 onDoubleTap?.invoke()
             } else {
-                val newPressCallback = Runnable { onPress(event.rawX.toInt(), event.rawY.toInt()) }
+                val newPressCallback = Runnable { onPress(event) }
                 this.pressCallback = newPressCallback
                 gestureHandler.postDelayed(newPressCallback, VisibleMessageView.maxDoubleTapInterval)
             }
@@ -305,12 +305,12 @@ class VisibleMessageView : LinearLayout {
         onLongPress?.invoke()
     }
 
-    fun onContentClick(rawRect: Rect) {
-        messageContentView.onContentClick?.invoke(rawRect)
+    fun onContentClick(event: MotionEvent) {
+        messageContentView.onContentClick?.invoke(event)
     }
 
-    private fun onPress(rawX: Int, rawY: Int) {
-        onPress?.invoke(rawX, rawY)
+    private fun onPress(event: MotionEvent) {
+        onPress?.invoke(event)
         pressCallback = null
     }
     // endregion
