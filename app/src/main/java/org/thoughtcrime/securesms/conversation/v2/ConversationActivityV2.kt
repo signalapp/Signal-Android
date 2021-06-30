@@ -3,15 +3,14 @@ package org.thoughtcrime.securesms.conversation.v2
 import android.Manifest
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
-import android.content.Context
 import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
 import android.graphics.Typeface
-import android.os.Bundle
 import android.net.Uri
 import android.os.*
 import android.text.TextUtils
@@ -53,14 +52,14 @@ import org.session.libsession.messaging.messages.visible.OpenGroupInvitation
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
-import org.session.libsession.utilities.Address
-import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.concurrent.SimpleTask
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.Address.Companion.fromSerialized
 import org.session.libsession.utilities.MediaTypes
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.concurrent.SimpleTask
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.ListenableFuture
 import org.session.libsignal.utilities.ThreadUtils
@@ -90,11 +89,11 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
-import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
-import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity
 import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity.Companion.selectedContactsKey
+import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities
+import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity
@@ -116,7 +115,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ActivityDispatcher,
         ConversationActionModeCallbackDelegate, SearchBottomBar.EventListener {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
-    private var searchViewModel: SearchViewModel? = null
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
     private var actionMode: ActionMode? = null
@@ -134,6 +132,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private var previousText: CharSequence = ""
     private var currentMentionStartIndex = -1
     private var isShowingMentionCandidatesView = false
+    // Search
+    var searchViewModel: SearchViewModel? = null
+    var searchViewItem: MenuItem? = null
 
     private val layoutManager: LinearLayoutManager
         get() { return conversationRecyclerView.layoutManager as LinearLayoutManager }
@@ -650,6 +651,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val actionMode = this.actionMode
         val actionModeCallback = ConversationActionModeCallback(adapter, threadID, this)
         actionModeCallback.delegate = this
+        searchViewItem?.collapseActionView()
         if (actionMode == null) { // Nothing should be selected if this is the case
             adapter.toggleSelection(message, position)
             this.actionMode = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -1136,10 +1138,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             }
             this.searchBottomBar.setData(result.position, result.getResults().size)
         })
-    }
-
-    fun getSearchViewModel(): SearchViewModel? {
-        return this.searchViewModel
     }
 
     fun onSearchQueryUpdated(query: String?) {

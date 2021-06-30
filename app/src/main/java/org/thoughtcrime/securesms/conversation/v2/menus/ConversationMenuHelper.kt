@@ -95,8 +95,9 @@ object ConversationMenuHelper {
 
         // Search
         val searchViewItem = menu.findItem(R.id.menu_search)
+        (context as ConversationActivityV2).searchViewItem = searchViewItem
         val searchView = searchViewItem.actionView as SearchView
-        val searchViewModel = (context as ConversationActivityV2).getSearchViewModel()!!
+        val searchViewModel = context.searchViewModel!!
         val queryListener = object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return true
@@ -163,7 +164,7 @@ object ConversationMenuHelper {
     }
 
     private fun search(context: Context) {
-        val searchViewModel = (context as ConversationActivityV2).getSearchViewModel()!!
+        val searchViewModel = (context as ConversationActivityV2).searchViewModel!!
         searchViewModel.onSearchOpened()
     }
 
