@@ -129,6 +129,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private var currentMentionStartIndex = -1
     private var isShowingMentionCandidatesView = false
 
+    private val isScrolledToBottom: Boolean
+        get() {
+            val position = layoutManager.findFirstCompletelyVisibleItemPosition()
+            return position == 0
+        }
+
     private val layoutManager: LinearLayoutManager
         get() { return conversationRecyclerView.layoutManager as LinearLayoutManager }
 
@@ -302,7 +308,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private fun setUpTypingObserver() {
         ApplicationContext.getInstance(this).typingStatusRepository.getTypists(threadID).observe(this) { state ->
             val recipients = if (state != null) state.typists else listOf()
-            typingIndicatorViewContainer.isVisible = recipients.isNotEmpty()
+            // FIXME: Also checking isScrolledToBottom is a quick fix for an issue where the
+            //        typing indicator overlays the recycler view when scrolled up
+            typingIndicatorViewContainer.isVisible = recipients.isNotEmpty() && isScrolledToBottom
             typingIndicatorViewContainer.setTypists(recipients)
             inputBarHeightChanged(inputBar.height)
         }
@@ -580,8 +588,15 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun handleRecyclerViewScrolled() {
-        val position = layoutManager.findFirstCompletelyVisibleItemPosition()
-        val alpha = if (position > 0) 1.0f else 0.0f
+        val alpha = if (!isScrolledToBottom) 1.0f else 0.0f
+        // FIXME: Checking isScrolledToBottom is a quick fix for an issue where the
+        //        typing indicator overlays the recycler view when scrolled up
+        val wasTypingIndicatorVisibleBefore = typingIndicatorViewContainer.isVisible
+        typingIndicatorViewContainer.isVisible = wasTypingIndicatorVisibleBefore && isScrolledToBottom
+        val isTypingIndicatorVisibleAfter = typingIndicatorViewContainer.isVisible
+        if (isTypingIndicatorVisibleAfter != wasTypingIndicatorVisibleBefore) {
+            inputBarHeightChanged(inputBar.height)
+        }
         scrollToBottomButton.alpha = alpha
         unreadCount = min(unreadCount, layoutManager.findFirstVisibleItemPosition())
         updateUnreadCountIndicator()
