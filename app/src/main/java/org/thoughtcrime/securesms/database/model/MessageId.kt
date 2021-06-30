@@ -7,4 +7,16 @@ package org.thoughtcrime.securesms.database.model
 data class MessageId(
   val id: Long,
   @get:JvmName("isMms") val mms: Boolean
-)
+) {
+  fun serialize(): String {
+    return "$id|$mms"
+  }
+
+  companion object {
+    @JvmStatic
+    fun deserialize(serialized: String): MessageId {
+      val parts: List<String> = serialized.split("|")
+      return MessageId(parts[0].toLong(), parts[1].toBoolean())
+    }
+  }
+}

@@ -2453,6 +2453,7 @@
     <string name="preferences__internal_delete_all_dynamic_shortcuts" translatable="false">Delete all dynamic shortcuts</string>
     <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts" translatable="false">Click to delete all dynamic shortcuts</string>
     <string name="preferences__internal_disable_profile_sharing" translatable="false">Disable Profile Sharing</string>
+    <string name="preferences__internal_delete_session" translatable="false">Delete Session</string>
     <string name="preferences__internal_sender_key" translatable="false">Sender Key</string>
     <string name="preferences__internal_clear_all_state" translatable="false">Clear all state</string>
     <string name="preferences__internal_click_to_delete_all_sender_key_state" translatable="false">Click to delete all sender key state</string>

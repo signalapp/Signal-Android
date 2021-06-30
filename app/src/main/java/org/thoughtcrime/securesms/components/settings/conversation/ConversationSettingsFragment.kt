@@ -300,6 +300,9 @@ class ConversationSettingsFragment : DSLSettingsFragment(
               recipient = state.recipient,
               onDisableProfileSharingClick = {
                 viewModel.disableProfileSharing()
+              },
+              onDeleteSessionClick = {
+                viewModel.deleteSession()
               }
             )
           )

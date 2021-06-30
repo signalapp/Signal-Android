@@ -19,7 +19,8 @@ object InternalPreference {
 
   class Model(
     private val recipient: Recipient,
-    val onDisableProfileSharingClick: () -> Unit
+    val onDisableProfileSharingClick: () -> Unit,
+    val onDeleteSessionClick: () -> Unit
   ) : PreferenceModel<Model>() {
 
     val body: String get() {
@@ -58,10 +59,12 @@ object InternalPreference {
 
     private val body: TextView = itemView.findViewById(R.id.internal_preference_body)
     private val disableProfileSharing: View = itemView.findViewById(R.id.internal_disable_profile_sharing)
+    private val deleteSession: View = itemView.findViewById(R.id.internal_delete_session)
 
     override fun bind(model: Model) {
       body.text = model.body
       disableProfileSharing.setOnClickListener { model.onDisableProfileSharingClick() }
+      deleteSession.setOnClickListener { model.onDeleteSessionClick() }
     }
   }
 }

@@ -131,7 +131,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract List<MarkedMessageInfo> setEntireThreadRead(long threadId);
   public abstract List<MarkedMessageInfo> setMessagesReadSince(long threadId, long timestamp);
   public abstract List<MarkedMessageInfo> setAllMessagesRead();
-  public abstract Pair<Long, Long> updateBundleMessageBody(long messageId, String body);
+  public abstract InsertResult updateBundleMessageBody(long messageId, String body);
   public abstract @NonNull List<MarkedMessageInfo> getViewedIncomingMessages(long threadId);
   public abstract @Nullable MarkedMessageInfo setIncomingMessageViewed(long messageId);
   public abstract @NonNull List<MarkedMessageInfo> setIncomingMessagesViewed(@NonNull List<Long> messageIds);

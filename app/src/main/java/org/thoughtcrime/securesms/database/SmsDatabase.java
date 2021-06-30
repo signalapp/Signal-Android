@@ -664,7 +664,7 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public Pair<Long, Long> updateBundleMessageBody(long messageId, String body) {
+  public InsertResult updateBundleMessageBody(long messageId, String body) {
     long type = Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT;
     return updateMessageBodyAndType(messageId, body, Types.TOTAL_MASK, type);
   }
@@ -684,7 +684,7 @@ public class SmsDatabase extends MessageDatabase {
     return Collections.emptyList();
   }
 
-  private Pair<Long, Long> updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {
+  private InsertResult updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME + " SET " + BODY + " = ?, " +
                    TYPE + " = (" + TYPE + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + ") " +
@@ -697,7 +697,7 @@ public class SmsDatabase extends MessageDatabase {
     notifyConversationListeners(threadId);
     notifyConversationListListeners();
 
-    return new Pair<>(messageId, threadId);
+    return new InsertResult(messageId, threadId);
   }
 
   @Override

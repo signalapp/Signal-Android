@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.libsignal.util.guava.Optional
+import org.whispersystems.libsignal.util.guava.Preconditions
 import java.io.IOException
 
 private val TAG = Log.tag(ConversationSettingsRepository::class.java)
@@ -185,9 +186,19 @@ class ConversationSettingsRepository(
     }
   }
 
-  fun disableProfileSharing(recipientId: RecipientId) {
+  fun disableProfileSharingForInternalUser(recipientId: RecipientId) {
+    Preconditions.checkArgument(FeatureFlags.internalUser(), "Internal users only!");
+
     SignalExecutors.BOUNDED.execute {
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipientId, false)
+    }
+  }
+
+  fun deleteSessionForInternalUser(recipientId: RecipientId) {
+    Preconditions.checkArgument(FeatureFlags.internalUser(), "Internal users only!");
+
+    SignalExecutors.BOUNDED.execute {
+      DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipientId)
     }
   }
 

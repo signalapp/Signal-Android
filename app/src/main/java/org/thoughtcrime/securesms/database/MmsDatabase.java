@@ -380,7 +380,7 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public Pair<Long, Long> updateBundleMessageBody(long messageId, String body) {
+  public InsertResult updateBundleMessageBody(long messageId, String body) {
     throw new UnsupportedOperationException();
   }
 

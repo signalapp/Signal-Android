@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -176,11 +177,11 @@ public class PushTextSendJob extends PushSendJob {
         SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, textSecureMessage, syncAccess);
 
         SendMessageResult result = messageSender.sendSyncMessage(syncMessage, syncAccess);
-        DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(messageRecipient.getId(), message.getDateSent(), result, ContentHint.RESENDABLE, messageId, false);
+        DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(messageRecipient.getId(), message.getDateSent(), result, ContentHint.RESENDABLE, new MessageId(messageId, false));
         return syncAccess.isPresent();
       } else {
         SendMessageResult result = messageSender.sendDataMessage(address, unidentifiedAccess, ContentHint.RESENDABLE, textSecureMessage);
-        DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(messageRecipient.getId(), message.getDateSent(), result, ContentHint.RESENDABLE, messageId, false);
+        DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(messageRecipient.getId(), message.getDateSent(), result, ContentHint.RESENDABLE, new MessageId(messageId, false));
         return result.getSuccess().isUnidentified();
       }
     } catch (UnregisteredUserException e) {

@@ -253,15 +253,17 @@ public final class MessageContentProcessor {
           }
         }
 
+        MessageId messageId = null;
+
         if      (isInvalidMessage(message))                                               handleInvalidMessage(content.getSender(), content.getSenderDevice(), groupId, content.getTimestamp(), smsMessageId);
-        else if (message.isEndSession())                                                  handleEndSessionMessage(content, smsMessageId);
+        else if (message.isEndSession())                                                  messageId = handleEndSessionMessage(content, smsMessageId);
         else if (message.isGroupV1Update())                                               handleGroupV1Message(content, message, smsMessageId, groupId.get().requireV1(), receivedTime);
-        else if (message.isExpirationUpdate())                                            handleExpirationUpdate(content, message, smsMessageId, groupId, receivedTime);
-        else if (message.getReaction().isPresent())                                       handleReaction(content, message);
-        else if (message.getRemoteDelete().isPresent())                                   handleRemoteDelete(content, message);
+        else if (message.isExpirationUpdate())                                            messageId = handleExpirationUpdate(content, message, smsMessageId, groupId, receivedTime);
+        else if (message.getReaction().isPresent())                                       messageId = handleReaction(content, message);
+        else if (message.getRemoteDelete().isPresent())                                   messageId = handleRemoteDelete(content, message);
         else if (message.getPayment().isPresent())                                        handlePayment(content, message);
-        else if (isMediaMessage)                                                          handleMediaMessage(content, message, smsMessageId, receivedTime);
-        else if (message.getBody().isPresent())                                           handleTextMessage(content, message, smsMessageId, groupId, receivedTime);
+        else if (isMediaMessage)                                                          messageId = handleMediaMessage(content, message, smsMessageId, receivedTime);
+        else if (message.getBody().isPresent())                                           messageId = handleTextMessage(content, message, smsMessageId, groupId, receivedTime);
         else if (Build.VERSION.SDK_INT > 19 && message.getGroupCallUpdate().isPresent())  handleGroupCallUpdateMessage(content, message, groupId);
 
         if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {
@@ -272,9 +274,9 @@ public final class MessageContentProcessor {
           handleProfileKey(content, message.getProfileKey().get());
         }
 
-        if (content.isNeedsReceipt()) {
-          handleNeedsDeliveryReceipt(content, message);
-        } else {
+        if (content.isNeedsReceipt() && messageId != null) {
+          handleNeedsDeliveryReceipt(content, message, messageId);
+        } else if (!content.isNeedsReceipt()) {
           Recipient sender = getMessageDestination(content, message);
 
           if (RecipientUtil.shouldHaveProfileKey(context, sender)) {
@@ -643,8 +645,8 @@ public final class MessageContentProcessor {
     GroupCallPeekJob.enqueue(groupRecipientId);
   }
 
-  private void handleEndSessionMessage(@NonNull SignalServiceContent content,
-                                       @NonNull Optional<Long>       smsMessageId)
+  private @Nullable MessageId handleEndSessionMessage(@NonNull SignalServiceContent content,
+                                                      @NonNull Optional<Long>       smsMessageId)
   {
     MessageDatabase     smsDatabase         = DatabaseFactory.getSmsDatabase(context);
     IncomingTextMessage incomingTextMessage = new IncomingTextMessage(Recipient.externalHighTrustPush(context, content.getSender()).getId(),
@@ -658,25 +660,27 @@ public final class MessageContentProcessor {
                                                                       content.isNeedsReceipt(),
                                                                       content.getServerUuid());
 
-    Long threadId;
+    Optional<InsertResult> insertResult;
 
     if (!smsMessageId.isPresent()) {
       IncomingEndSessionMessage incomingEndSessionMessage = new IncomingEndSessionMessage(incomingTextMessage);
-      Optional<InsertResult>    insertResult              = smsDatabase.insertMessageInbox(incomingEndSessionMessage);
 
-      if (insertResult.isPresent()) threadId = insertResult.get().getThreadId();
-      else                          threadId = null;
+      insertResult = smsDatabase.insertMessageInbox(incomingEndSessionMessage);
     } else {
       smsDatabase.markAsEndSession(smsMessageId.get());
-      threadId = smsDatabase.getThreadIdForMessage(smsMessageId.get());
+      insertResult = Optional.of(new InsertResult(smsMessageId.get(), smsDatabase.getThreadIdForMessage(smsMessageId.get())));
     }
 
-    if (threadId != null) {
+    if (insertResult.isPresent()) {
       SessionStore sessionStore = new TextSecureSessionStore(context);
       sessionStore.deleteAllSessions(content.getSender().getIdentifier());
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, threadId);
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
+
+      return new MessageId(insertResult.get().getMessageId(), true);
+    } else {
+      return null;
     }
   }
 
@@ -742,16 +746,16 @@ public final class MessageContentProcessor {
     }
   }
 
-  private void handleExpirationUpdate(@NonNull SignalServiceContent content,
-                                      @NonNull SignalServiceDataMessage message,
-                                      @NonNull Optional<Long> smsMessageId,
-                                      @NonNull Optional<GroupId> groupId,
-                                      long receivedTime)
+  private @Nullable MessageId handleExpirationUpdate(@NonNull SignalServiceContent content,
+                                                     @NonNull SignalServiceDataMessage message,
+                                                     @NonNull Optional<Long> smsMessageId,
+                                                     @NonNull Optional<GroupId> groupId,
+                                                     long receivedTime)
       throws StorageFailedException, BadGroupIdException
   {
     if (groupId.isPresent() && groupId.get().isV2()) {
       warn(String.valueOf(content.getTimestamp()), "Expiration update received for GV2. Ignoring.");
-      return;
+      return null;
     }
 
     int                                 expiresInSeconds = message.getExpiresInSeconds();
@@ -760,7 +764,7 @@ public final class MessageContentProcessor {
 
     if (recipient.getExpireMessages() == expiresInSeconds) {
       log(String.valueOf(content.getTimestamp()), "No change in message expiry for group. Ignoring.");
-      return;
+      return null;
     }
 
     try {
@@ -785,24 +789,30 @@ public final class MessageContentProcessor {
                                                                    Optional.absent(),
                                                                    content.getServerUuid());
 
-      database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
+      Optional<InsertResult> insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
       DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient.getId(), expiresInSeconds);
 
       if (smsMessageId.isPresent()) {
         DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
       }
+
+      if (insertResult.isPresent()) {
+        return new MessageId(insertResult.get().getMessageId(), true);
+      }
     } catch (MmsException e) {
       throw new StorageFailedException(e, content.getSender().getIdentifier(), content.getSenderDevice());
     }
+
+    return null;
   }
 
-  private void handleReaction(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
+  private @Nullable MessageId handleReaction(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
     SignalServiceDataMessage.Reaction reaction = message.getReaction().get();
 
     if (!EmojiUtil.isEmoji(reaction.getEmoji())) {
       Log.w(TAG, "Reaction text is not a valid emoji! Ignoring the message.");
-      return;
+      return null;
     }
 
     Recipient     reactionAuthor = Recipient.externalHighTrustPush(context, content.getSender());
@@ -812,31 +822,31 @@ public final class MessageContentProcessor {
     if (targetMessage == null) {
       warn(String.valueOf(content.getTimestamp()), "[handleReaction] Could not find matching message! Putting it in the early message cache. timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
       ApplicationDependencies.getEarlyMessageCache().store(targetAuthor.getId(), reaction.getTargetSentTimestamp(), content);
-      return;
+      return null;
     }
 
     if (targetMessage.isRemoteDelete()) {
       warn(String.valueOf(content.getTimestamp()), "[handleReaction] Found a matching message, but it's flagged as remotely deleted. timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
-      return;
+      return null;
     }
 
     ThreadRecord targetThread = DatabaseFactory.getThreadDatabase(context).getThreadRecord(targetMessage.getThreadId());
 
     if (targetThread == null) {
       warn(String.valueOf(content.getTimestamp()), "[handleReaction] Could not find a thread for the message! timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
-      return;
+      return null;
     }
 
     Recipient threadRecipient = targetThread.getRecipient().resolve();
 
     if (threadRecipient.isGroup() && !threadRecipient.getParticipants().contains(reactionAuthor)) {
       warn(String.valueOf(content.getTimestamp()), "[handleReaction] Reaction author is not in the group! timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
-      return;
+      return null;
     }
 
     if (!threadRecipient.isGroup() && !reactionAuthor.equals(threadRecipient) && !reactionAuthor.isSelf()) {
       warn(String.valueOf(content.getTimestamp()), "[handleReaction] Reaction author is not a part of the 1:1 thread! timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
-      return;
+      return null;
     }
 
     MessageDatabase db = targetMessage.isMms() ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
@@ -849,9 +859,11 @@ public final class MessageContentProcessor {
       db.addReaction(targetMessage.getId(), reactionRecord);
       ApplicationDependencies.getMessageNotifier().updateNotification(context, targetMessage.getThreadId(), false);
     }
+
+    return new MessageId(targetMessage.getId(), targetMessage.isMms());
   }
 
-  private void handleRemoteDelete(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
+  private @Nullable MessageId handleRemoteDelete(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
     SignalServiceDataMessage.RemoteDelete delete = message.getRemoteDelete().get();
 
     Recipient     sender        = Recipient.externalHighTrustPush(context, content.getSender());
@@ -861,12 +873,15 @@ public final class MessageContentProcessor {
       MessageDatabase db = targetMessage.isMms() ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
       db.markAsRemoteDelete(targetMessage.getId());
       ApplicationDependencies.getMessageNotifier().updateNotification(context, targetMessage.getThreadId(), false);
+      return new MessageId(targetMessage.getId(), targetMessage.isMms());
     } else if (targetMessage == null) {
       warn(String.valueOf(content.getTimestamp()), "[handleRemoteDelete] Could not find matching message! timestamp: " + delete.getTargetSentTimestamp() + "  author: " + sender.getId());
       ApplicationDependencies.getEarlyMessageCache().store(sender.getId(), delete.getTargetSentTimestamp(), content);
+      return null;
     } else {
       warn(String.valueOf(content.getTimestamp()), String.format(Locale.ENGLISH, "[handleRemoteDelete] Invalid remote delete! deleteTime: %d, targetTime: %d, deleteAuthor: %s, targetAuthor: %s",
           content.getServerReceivedTimestamp(), targetMessage.getServerTimestamp(), sender.getId(), targetMessage.getRecipient().getId()));
+      return null;
     }
   }
 
@@ -1192,10 +1207,10 @@ public final class MessageContentProcessor {
     messageNotifier.updateNotification(context);
   }
 
-  private void handleMediaMessage(@NonNull SignalServiceContent content,
-                                  @NonNull SignalServiceDataMessage message,
-                                  @NonNull Optional<Long> smsMessageId,
-                                  long receivedTime)
+  private @Nullable MessageId handleMediaMessage(@NonNull SignalServiceContent content,
+                                                @NonNull SignalServiceDataMessage message,
+                                                @NonNull Optional<Long> smsMessageId,
+                                                long receivedTime)
       throws StorageFailedException, BadGroupIdException
   {
     notifyTypingStoppedFromIncomingMessage(getMessageDestination(content, message), content.getSender(), content.getSenderDevice());
@@ -1263,6 +1278,10 @@ public final class MessageContentProcessor {
       if (message.isViewOnce()) {
         ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
       }
+
+      return new MessageId(insertResult.get().getMessageId(), true);
+    } else {
+      return null;
     }
   }
 
@@ -1416,11 +1435,11 @@ public final class MessageContentProcessor {
     receiptDatabase.setUnidentified(unidentifiedStatus, messageId);
   }
 
-  private void handleTextMessage(@NonNull SignalServiceContent content,
-                                 @NonNull SignalServiceDataMessage message,
-                                 @NonNull Optional<Long> smsMessageId,
-                                 @NonNull Optional<GroupId> groupId,
-                                 long receivedTime)
+  private @Nullable MessageId handleTextMessage(@NonNull SignalServiceContent content,
+                                                @NonNull SignalServiceDataMessage message,
+                                                @NonNull Optional<Long> smsMessageId,
+                                                @NonNull Optional<GroupId> groupId,
+                                                long receivedTime)
       throws StorageFailedException, BadGroupIdException
   {
     MessageDatabase database  = DatabaseFactory.getSmsDatabase(context);
@@ -1431,10 +1450,10 @@ public final class MessageContentProcessor {
       handleExpirationUpdate(content, message, Optional.absent(), groupId, receivedTime);
     }
 
-    Long threadId;
+    Optional<InsertResult> insertResult;
 
     if (smsMessageId.isPresent() && !message.getGroupContext().isPresent()) {
-      threadId = database.updateBundleMessageBody(smsMessageId.get(), body).second();
+      insertResult = Optional.of(database.updateBundleMessageBody(smsMessageId.get(), body));
     } else {
       notifyTypingStoppedFromIncomingMessage(recipient, content.getSender(), content.getSenderDevice());
 
@@ -1450,16 +1469,16 @@ public final class MessageContentProcessor {
                                                                 content.getServerUuid());
 
       textMessage = new IncomingEncryptedMessage(textMessage, body);
-      Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
-
-      if (insertResult.isPresent()) threadId = insertResult.get().getThreadId();
-      else                          threadId = null;
+      insertResult = database.insertMessageInbox(textMessage);
 
       if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
     }
 
-    if (threadId != null) {
-      ApplicationDependencies.getMessageNotifier().updateNotification(context, threadId);
+    if (insertResult.isPresent()) {
+      ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
+      return new MessageId(insertResult.get().getMessageId(), false);
+    } else {
+      return null;
     }
   }
 
@@ -1638,9 +1657,10 @@ public final class MessageContentProcessor {
   }
 
   private void handleNeedsDeliveryReceipt(@NonNull SignalServiceContent content,
-                                          @NonNull SignalServiceDataMessage message)
+                                          @NonNull SignalServiceDataMessage message,
+                                          @NonNull MessageId messageId)
   {
-    ApplicationDependencies.getJobManager().add(new SendDeliveryReceiptJob(RecipientId.fromHighTrust(content.getSender()), message.getTimestamp()));
+    ApplicationDependencies.getJobManager().add(new SendDeliveryReceiptJob(RecipientId.fromHighTrust(content.getSender()), message.getTimestamp(), messageId));
   }
 
   private void handleViewedReceipt(@NonNull SignalServiceContent content,
