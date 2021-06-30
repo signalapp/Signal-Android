@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.v2.input_bar
 
 import android.content.Context
 import android.content.res.Resources
+import android.text.InputType
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -65,6 +66,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         sendButton.onUp = { delegate?.sendMessage() }
         // Edit text
         inputBarEditText.imeOptions = inputBarEditText.imeOptions or 16777216 // Always use incognito keyboard
+        inputBarEditText.inputType = inputBarEditText.inputType or InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
         inputBarEditText.delegate = this
     }
     // endregion
