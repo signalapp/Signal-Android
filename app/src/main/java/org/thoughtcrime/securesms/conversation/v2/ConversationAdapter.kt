@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import kotlinx.android.synthetic.main.view_visible_message.view.*
 import org.thoughtcrime.securesms.conversation.v2.messages.ControlMessageView
+import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentViewDelegate
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -20,6 +21,7 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
     : CursorRecyclerViewAdapter<ViewHolder>(context, cursor) {
     private val messageDB = DatabaseFactory.getMmsSmsDatabase(context)
     var selectedItems = mutableSetOf<MessageRecord>()
+    var visibleMessageContentViewDelegate: VisibleMessageContentViewDelegate? = null
 
     sealed class ViewType(val rawValue: Int) {
         object Visible : ViewType(0)
@@ -72,6 +74,7 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 view.onPress = { rawX, rawY -> onItemPress(message, viewHolder.adapterPosition, view, Rect(rawX, rawY, rawX, rawY)) }
                 view.onSwipeToReply = { onItemSwipeToReply(message, viewHolder.adapterPosition) }
                 view.onLongPress = { onItemLongPress(message, viewHolder.adapterPosition) }
+                view.contentViewDelegate = visibleMessageContentViewDelegate
             }
             is ControlMessageViewHolder -> viewHolder.view.bind(message)
         }
@@ -113,8 +116,19 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
         if (lastSeenTimestamp <= 0L || cursor == null || !isActiveCursor) return null
         for (i in 0 until itemCount) {
             cursor.moveToPosition(i)
-            val messageRecord = messageDB.readerFor(cursor).current
-            if (messageRecord.isOutgoing || messageRecord.dateReceived <= lastSeenTimestamp) { return i }
+            val message = messageDB.readerFor(cursor).current
+            if (message.isOutgoing || message.dateReceived <= lastSeenTimestamp) { return i }
+        }
+        return null
+    }
+
+    fun getItemPositionForTimestamp(timestamp: Long): Int? {
+        val cursor = this.cursor
+        if (timestamp <= 0L || cursor == null || !isActiveCursor) return null
+        for (i in 0 until itemCount) {
+            cursor.moveToPosition(i)
+            val message = messageDB.readerFor(cursor).current
+            if (message.dateSent == timestamp) { return i }
         }
         return null
     }

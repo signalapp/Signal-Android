@@ -3,15 +3,14 @@ package org.thoughtcrime.securesms.conversation.v2
 import android.Manifest
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
-import android.content.Context
 import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
 import android.graphics.Typeface
-import android.os.Bundle
 import android.net.Uri
 import android.os.*
 import android.text.TextUtils
@@ -72,6 +71,7 @@ import org.thoughtcrime.securesms.conversation.v2.input_bar.mentions.MentionCand
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallbackDelegate
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
+import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentViewDelegate
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
 import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -84,11 +84,11 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
-import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
-import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity
 import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity.Companion.selectedContactsKey
+import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities
+import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity
@@ -108,7 +108,7 @@ import kotlin.math.*
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
     InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ActivityDispatcher,
-        ConversationActionModeCallbackDelegate {
+    ConversationActionModeCallbackDelegate, VisibleMessageContentViewDelegate {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
@@ -147,6 +147,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             },
             glide
         )
+        adapter.visibleMessageContentViewDelegate = this
         adapter
     }
 
@@ -737,6 +738,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         this.previousText = newText
     }
 
+    override fun scrollToMessageIfPossible(timestamp: Long) {
+        val lastSeenItemPosition = adapter.getItemPositionForTimestamp(timestamp) ?: return
+        conversationRecyclerView.scrollToPosition(lastSeenItemPosition)
+    }
+
     override fun sendMessage() {
         if (thread.isContactRecipient && thread.isBlocked) {
             BlockedDialog(thread).show(supportFragmentManager, "Blocked Dialog")
@@ -905,10 +911,18 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun startRecordingVoiceMessage() {
-        showVoiceMessageUI()
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        audioRecorder.startRecording()
-        stopAudioHandler.postDelayed(stopVoiceMessageRecordingTask, 60000) // Limit voice messages to 1 minute each
+        if (Permissions.hasAll(this, Manifest.permission.RECORD_AUDIO)) {
+            showVoiceMessageUI()
+            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+            audioRecorder.startRecording()
+            stopAudioHandler.postDelayed(stopVoiceMessageRecordingTask, 60000) // Limit voice messages to 1 minute each
+        } else {
+            Permissions.with(this)
+                .request(Manifest.permission.RECORD_AUDIO)
+                .withRationaleDialog(getString(R.string.ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone), R.drawable.ic_baseline_mic_48)
+                .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages))
+                .execute()
+        }
     }
 
     override fun sendVoiceMessage() {

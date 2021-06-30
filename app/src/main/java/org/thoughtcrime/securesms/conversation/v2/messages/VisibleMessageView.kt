@@ -48,6 +48,7 @@ class VisibleMessageView : LinearLayout {
     var onPress: ((rawX: Int, rawY: Int) -> Unit)? = null
     var onSwipeToReply: (() -> Unit)? = null
     var onLongPress: (() -> Unit)? = null
+    var contentViewDelegate: VisibleMessageContentViewDelegate? = null
 
     companion object {
         const val swipeToReplyThreshold = 80.0f // dp
@@ -139,6 +140,7 @@ class VisibleMessageView : LinearLayout {
         if (profilePictureContainer.visibility != View.GONE) { maxWidth -= profilePictureContainer.width }
         // Populate content view
         messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth, thread)
+        messageContentView.delegate = contentViewDelegate
         onDoubleTap = { messageContentView.onContentDoubleTap?.invoke() }
     }
 
@@ -239,6 +241,7 @@ class VisibleMessageView : LinearLayout {
         } else {
             longPressCallback?.let { gestureHandler.removeCallbacks(it) }
         }
+        if (translationX > 0) { return } // Only allow swipes to the left
         // The idea here is to asymptotically approach a maximum drag distance
         val damping = 50.0f
         val sign = -1.0f

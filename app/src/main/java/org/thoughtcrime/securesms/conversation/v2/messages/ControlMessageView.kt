@@ -32,6 +32,9 @@ class ControlMessageView : LinearLayout {
         if (message.isExpirationTimerUpdate) {
             iconImageView.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_timer, context.theme))
             iconImageView.visibility = View.VISIBLE
+        } else if (message.isMediaSavedNotification) {
+            iconImageView.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_file_download_white_36dp, context.theme))
+            iconImageView.visibility = View.VISIBLE
         }
         textView.text = message.getDisplayBody(context)
     }
