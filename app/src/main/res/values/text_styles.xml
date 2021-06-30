@@ -50,7 +50,6 @@
         <item name="android:letterSpacing" tools:ignore="NewApi">0.03</item>
     </style>
 
-
     <style name="Signal.Text.Caption.MessageSent">
         <item name="android:textColor">@color/signal_text_secondary</item>
         <item name="android:shadowRadius">0</item>

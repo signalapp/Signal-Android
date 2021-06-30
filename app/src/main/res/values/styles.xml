@@ -533,7 +533,7 @@
         <item name="boxCornerRadiusTopStart">10dp</item>
         <item name="boxStrokeWidth">0dp</item>
         <item name="boxStrokeWidthFocused">0dp</item>
-        <item name="hintTextAppearance">@style/Signal.Text.Caption</item>
+        <item name="hintTextColor">@color/signal_accent_primary</item>
         <item name="android:textColorHint">@color/signal_text_hint</item>
     </style>
 </resources>

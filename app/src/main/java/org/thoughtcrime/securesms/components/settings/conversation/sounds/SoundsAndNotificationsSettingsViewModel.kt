@@ -22,7 +22,7 @@ class SoundsAndNotificationsSettingsViewModel(
     store.update(Recipient.live(recipientId).liveData) { recipient, state ->
       state.copy(
         recipientId = recipientId,
-        muteUntil = recipient.muteUntil,
+        muteUntil = if (recipient.isMuted) recipient.muteUntil else 0L,
         mentionSetting = recipient.mentionSetting,
         hasMentionsSupport = recipient.isPushV2Group,
         hasCustomNotificationSettings = recipient.notificationChannel != null || !NotificationChannels.supported()
