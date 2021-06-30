@@ -63,11 +63,13 @@ import org.session.libsession.utilities.concurrent.SimpleTask
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.recipients.RecipientModifiedListener
 import org.session.libsignal.utilities.ListenableFuture
-import org.session.libsignal.utilities.ThreadUtils
+import org.session.libsignal.utilities.SettableFuture
+import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.audio.AudioRecorder
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
+import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.conversation.v2.dialogs.*
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -181,8 +183,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // region Settings
     companion object {
+        // Extras
         const val THREAD_ID = "thread_id"
         const val ADDRESS = "address"
+        // Request codes
         const val PICK_DOCUMENT = 2
         const val TAKE_PHOTO = 7
         const val PICK_GIF = 10
@@ -307,6 +311,27 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun restoreDraftIfNeeded() {
+        val mediaURI = intent.data
+        val mediaType = AttachmentManager.MediaType.from(intent.type)
+        if (mediaURI != null && mediaType != null) {
+            if (AttachmentManager.MediaType.IMAGE == mediaType || AttachmentManager.MediaType.GIF == mediaType || AttachmentManager.MediaType.VIDEO == mediaType) {
+                val media = Media(mediaURI, MediaUtil.getMimeType(this, mediaURI)!!, 0, 0, 0, 0, Optional.absent(), Optional.absent())
+                startActivityForResult(MediaSendActivity.buildEditorIntent(this, listOf( media ), thread, ""), ConversationActivityV2.PICK_FROM_LIBRARY)
+                return
+            } else {
+                prepMediaForSending(mediaURI, mediaType).addListener(object : ListenableFuture.Listener<Boolean> {
+
+                    override fun onSuccess(result: Boolean?) {
+                        sendAttachments(attachmentManager.buildSlideDeck().asAttachments(), null)
+                    }
+
+                    override fun onFailure(e: ExecutionException?) {
+                        Toast.makeText(this@ConversationActivityV2, R.string.activity_conversation_attachment_prep_failed, Toast.LENGTH_LONG).show()
+                    }
+                })
+                return
+            }
+        }
         val draftDB = DatabaseFactory.getDraftDatabase(this)
         val drafts = draftDB.getDrafts(threadID)
         draftDB.clearDrafts(threadID)
