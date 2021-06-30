@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.thoughtcrime.securesms.conversation.v2.components;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -118,5 +118,4 @@ public class ExpirationTimerView extends androidx.appcompat.widget.AppCompatImag
       Util.runOnMainDelayed(this, timerView.calculateAnimationDelay(timerView.startedAt, timerView.expiresIn));
     }
   }
-
 }
