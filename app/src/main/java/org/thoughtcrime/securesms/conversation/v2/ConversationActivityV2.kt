@@ -22,6 +22,8 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
@@ -53,9 +55,11 @@ import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.Address.Companion.fromSerialized
 import org.session.libsession.utilities.MediaTypes
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.concurrent.SimpleTask
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.recipients.RecipientModifiedListener
 import org.session.libsignal.utilities.ListenableFuture
@@ -74,6 +78,8 @@ import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCa
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentViewDelegate
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
+import org.thoughtcrime.securesms.conversation.v2.search.SearchBottomBar
+import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
 import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
@@ -108,8 +114,9 @@ import kotlin.math.*
 // price we pay is a bit of back and forth between the input bar and the conversation activity.
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
-    InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ActivityDispatcher,
-    ConversationActionModeCallbackDelegate, VisibleMessageContentViewDelegate, RecipientModifiedListener {
+        InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ActivityDispatcher,
+        ConversationActionModeCallbackDelegate, VisibleMessageContentViewDelegate, RecipientModifiedListener,
+        SearchBottomBar.EventListener {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
@@ -128,6 +135,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private var previousText: CharSequence = ""
     private var currentMentionStartIndex = -1
     private var isShowingMentionCandidatesView = false
+    // Search
+    var searchViewModel: SearchViewModel? = null
+    var searchViewItem: MenuItem? = null
 
     private val isScrolledToBottom: Boolean
         get() {
@@ -199,6 +209,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         getLatestOpenGroupInfoIfNeeded()
         setUpBlockedBanner()
         setUpLinkPreviewObserver()
+        searchBottomBar.setEventListener(this)
+        setUpSearchResultObserver()
         scrollToFirstUnreadMessageIfNeeded()
         markAllAsRead()
         showOrHideInputIfNeeded()
@@ -371,7 +383,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, this) { onOptionsItemSelected(it) }
+        ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, threadID, this) { onOptionsItemSelected(it) }
         super.onPrepareOptionsMenu(menu)
         return true
     }
@@ -685,6 +697,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val actionMode = this.actionMode
         val actionModeCallback = ConversationActionModeCallback(adapter, threadID, this)
         actionModeCallback.delegate = this
+        searchViewItem?.collapseActionView()
         if (actionMode == null) { // Nothing should be selected if this is the case
             adapter.toggleSelection(message, position)
             this.actionMode = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -1166,6 +1179,48 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         drafts.add(DraftDatabase.Draft(DraftDatabase.Draft.TEXT, text))
         val draftDB = DatabaseFactory.getDraftDatabase(this)
         draftDB.insertDrafts(threadID, drafts)
+    }
+    // endregion
+
+    // region Search
+    private fun setUpSearchResultObserver() {
+        val searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+        this.searchViewModel = searchViewModel
+        searchViewModel.searchResults.observe(this, Observer { result: SearchViewModel.SearchResult? ->
+            if (result == null) return@Observer
+            if (result.getResults().isNotEmpty()) {
+                result.getResults()[result.position]?.let {
+                    jumpToMessage(it.messageRecipient.address, it.receivedTimestampMs, Runnable { searchViewModel.onMissingResult() })
+                }
+            }
+            this.searchBottomBar.setData(result.position, result.getResults().size)
+        })
+    }
+
+    fun onSearchQueryUpdated(query: String?) {
+        adapter.onSearchQueryUpdated(query)
+    }
+
+    override fun onSearchMoveUpPressed() {
+        this.searchViewModel?.onMoveUp()
+    }
+
+    override fun onSearchMoveDownPressed() {
+        this.searchViewModel?.onMoveDown()
+    }
+
+    private fun jumpToMessage(author: Address, timestamp: Long, onMessageNotFound: Runnable?) {
+        SimpleTask.run(lifecycle, {
+            DatabaseFactory.getMmsSmsDatabase(this).getMessagePositionInConversation(threadID, timestamp, author)
+        }) { p: Int -> moveToMessagePosition(p, onMessageNotFound) }
+    }
+
+    private fun moveToMessagePosition(position: Int, onMessageNotFound: Runnable?) {
+        if (position >= 0) {
+            conversationRecyclerView.scrollToPosition(position)
+        } else {
+            onMessageNotFound?.run()
+        }
     }
     // endregion
 }

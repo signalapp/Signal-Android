@@ -12,17 +12,20 @@ import android.os.AsyncTask
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
+import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import network.loki.messenger.R
-import org.session.libsession.avatars.ContactPhoto
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.leave
@@ -30,11 +33,9 @@ import org.session.libsession.utilities.ExpirationUtil
 import org.session.libsession.utilities.GroupUtil.doubleDecodeGroupID
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.recipients.Recipient
-import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.utilities.toHexString
 import org.thoughtcrime.securesms.*
-import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity
@@ -43,11 +44,10 @@ import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.util.BitmapUtil
 import java.io.IOException
-import java.lang.ref.WeakReference
 
 object ConversationMenuHelper {
     
-    fun onPrepareOptionsMenu(menu: Menu, inflater: MenuInflater, thread: Recipient, context: Context, onOptionsItemSelected: (MenuItem) -> Unit) {
+    fun onPrepareOptionsMenu(menu: Menu, inflater: MenuInflater, thread: Recipient, threadId: Long, context: Context, onOptionsItemSelected: (MenuItem) -> Unit) {
         // Prepare
         menu.clear()
         val isOpenGroup = thread.isOpenGroupRecipient
@@ -92,6 +92,49 @@ object ConversationMenuHelper {
         } else {
             inflater.inflate(R.menu.menu_conversation_unmuted, menu)
         }
+
+        // Search
+        val searchViewItem = menu.findItem(R.id.menu_search)
+        (context as ConversationActivityV2).searchViewItem = searchViewItem
+        val searchView = searchViewItem.actionView as SearchView
+        val searchViewModel = context.searchViewModel!!
+        val queryListener = object : OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(query: String): Boolean {
+                searchViewModel.onQueryUpdated(query, threadId)
+                context.searchBottomBar.showLoading()
+                context.onSearchQueryUpdated(query)
+                return true
+            }
+        }
+        searchViewItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+                searchView.setOnQueryTextListener(queryListener)
+                searchViewModel.onSearchOpened()
+                context.searchBottomBar.visibility = View.VISIBLE
+                context.searchBottomBar.setData(0, 0)
+                context.inputBar.visibility = View.GONE
+                for (i in 0 until menu.size()) {
+                    if (menu.getItem(i) != searchViewItem) {
+                        menu.getItem(i).isVisible = false
+                    }
+                }
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
+                searchView.setOnQueryTextListener(null)
+                searchViewModel.onSearchClosed()
+                context.searchBottomBar.visibility = View.GONE
+                context.inputBar.visibility = View.VISIBLE
+                context.onSearchQueryUpdated(null)
+                context.invalidateOptionsMenu()
+                return true
+            }
+        })
     }
 
     fun onOptionItemSelected(context: Context, item: MenuItem, thread: Recipient): Boolean {
@@ -121,7 +164,8 @@ object ConversationMenuHelper {
     }
 
     private fun search(context: Context) {
-        Toast.makeText(context, "Not yet implemented", Toast.LENGTH_LONG).show() // TODO: Implement
+        val searchViewModel = (context as ConversationActivityV2).searchViewModel!!
+        searchViewModel.onSearchOpened()
     }
 
     @SuppressLint("StaticFieldLeak")
