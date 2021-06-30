@@ -17,14 +17,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.ColorInt
-import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.SearchView.OnQueryTextListener
-import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
+import kotlinx.android.synthetic.main.activity_conversation_v2.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.sending_receiving.MessageSender
@@ -33,10 +33,10 @@ import org.session.libsession.utilities.ExpirationUtil
 import org.session.libsession.utilities.GroupUtil.doubleDecodeGroupID
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.recipients.Recipient
-import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.utilities.toHexString
 import org.thoughtcrime.securesms.*
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity
 import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity.Companion.groupIDKey
@@ -163,7 +163,8 @@ object ConversationMenuHelper {
     }
 
     private fun search(context: Context) {
-        Toast.makeText(context, "Not yet implemented", Toast.LENGTH_LONG).show() // TODO: Implement
+        val searchViewModel = (context as ConversationActivityV2).getSearchViewModel()!!
+        searchViewModel.onSearchOpened()
     }
 
     @SuppressLint("StaticFieldLeak")

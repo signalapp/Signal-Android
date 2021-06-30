@@ -60,6 +60,7 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
 
     fun onSearchClosed() {
         searchOpen = false
+        activeQuery = null
         debouncer.clear()
         result.close()
     }
