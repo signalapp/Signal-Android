@@ -118,13 +118,13 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   private int restartItem = -1;
 
-  public static Intent getPreviewIntent(Context context, Slide slide, MmsMessageRecord mms) {
+  public static Intent getPreviewIntent(Context context, Slide slide, MmsMessageRecord mms, Recipient threadRecipient) {
     Intent previewIntent = null;
     if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType()) && slide.getUri() != null) {
       previewIntent = new Intent(context, MediaPreviewActivity.class);
       previewIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
               .setDataAndType(slide.getUri(), slide.getContentType())
-              .putExtra(ADDRESS_EXTRA, mms.getRecipient().getAddress())
+              .putExtra(ADDRESS_EXTRA, threadRecipient.getAddress())
               .putExtra(OUTGOING_EXTRA, mms.isOutgoing())
               .putExtra(DATE_EXTRA, mms.getTimestamp())
               .putExtra(SIZE_EXTRA, slide.asAttachment().getSize())

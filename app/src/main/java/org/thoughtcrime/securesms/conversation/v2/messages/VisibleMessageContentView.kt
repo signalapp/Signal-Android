@@ -12,6 +12,7 @@ import android.text.util.Linkify
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.ColorInt
@@ -33,6 +34,7 @@ import org.thoughtcrime.securesms.conversation.v2.components.AlbumThumbnailView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.conversation.v2.dialogs.OpenURLDialog
 import org.thoughtcrime.securesms.conversation.v2.utilities.ModalURLSpan
+import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities.getIntersectedModalSpans
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -43,7 +45,7 @@ import java.util.*
 import kotlin.math.roundToInt
 
 class VisibleMessageContentView : LinearLayout {
-    var onContentClick: ((rawRect: Rect) -> Unit)? = null
+    var onContentClick: ((event: MotionEvent) -> Unit)? = null
     var onContentDoubleTap: (() -> Unit)? = null
     var delegate: VisibleMessageContentViewDelegate? = null
 
@@ -75,9 +77,7 @@ class VisibleMessageContentView : LinearLayout {
             val linkPreviewView = LinkPreviewView(context)
             linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster, searchQuery)
             mainContainer.addView(linkPreviewView)
-            onContentClick = { rect ->
-                linkPreviewView.calculateHit(rect)
-            }
+            onContentClick = { event -> linkPreviewView.calculateHit(event) }
             // Body text view is inside the link preview for layout convenience
         } else if (message is MmsMessageRecord && message.quote != null) {
             val quote = message.quote!!
@@ -92,10 +92,10 @@ class VisibleMessageContentView : LinearLayout {
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message, searchQuery)
             ViewUtil.setPaddingTop(bodyTextView, 0)
             mainContainer.addView(bodyTextView)
-            onContentClick = { rect ->
+            onContentClick = { event ->
                 val r = Rect()
                 quoteView.getGlobalVisibleRect(r)
-                if (r.contains(rect)) {
+                if (r.contains(event.rawX.roundToInt(), event.rawY.roundToInt())) {
                     delegate?.scrollToMessageIfPossible(quote.id)
                 }
             }
@@ -122,7 +122,9 @@ class VisibleMessageContentView : LinearLayout {
                 isStart = isStartOfMessageCluster,
                 isEnd = isEndOfMessageCluster
             )
-            onContentClick = { albumThumbnailView.calculateHitObject(it, message) }
+            onContentClick = { event ->
+                albumThumbnailView.calculateHitObject(event, message, thread)
+            }
         } else if (message.isOpenGroupInvitation) {
             val openGroupInvitationView = OpenGroupInvitationView(context)
             openGroupInvitationView.bind(message, VisibleMessageContentView.getTextColor(context, message))
@@ -131,6 +133,12 @@ class VisibleMessageContentView : LinearLayout {
         } else {
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message, searchQuery)
             mainContainer.addView(bodyTextView)
+            onContentClick = { event ->
+                // intersectedModalSpans should only be a list of one item
+                bodyTextView.getIntersectedModalSpans(event).forEach { span ->
+                    span.onClick(bodyTextView)
+                }
+            }
         }
     }
 
@@ -181,10 +189,11 @@ class VisibleMessageContentView : LinearLayout {
                 body.removeSpan(urlSpan)
                 body.setSpan(replacementSpan, start, end, flags)
             }
-
-            body = MentionUtilities.highlightMentions(body, message.isOutgoing, message.threadId, context);
+            
+            body = MentionUtilities.highlightMentions(body, message.isOutgoing, message.threadId, context)
             body = SearchUtil.getHighlightedSpan(Locale.getDefault(), StyleFactory { BackgroundColorSpan(Color.WHITE) }, body, searchQuery)
             body = SearchUtil.getHighlightedSpan(Locale.getDefault(), StyleFactory { ForegroundColorSpan(Color.BLACK) }, body, searchQuery)
+
             result.text = body
             return result
         }

@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -13,6 +14,7 @@ import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.album_thumbnail_view.view.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.ViewUtil
+import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.MediaPreviewActivity
 import org.thoughtcrime.securesms.components.CornerMask
 import org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
@@ -58,12 +60,15 @@ class AlbumThumbnailView : FrameLayout {
 
     // region Interaction
 
-    fun calculateHitObject(rawRect: Rect, mms: MmsMessageRecord) {
+    fun calculateHitObject(event: MotionEvent, mms: MmsMessageRecord, threadRecipient: Recipient) {
+        val rawXInt = event.rawX.toInt()
+        val rawYInt = event.rawY.toInt()
+        val eventRect = Rect(rawXInt, rawYInt, rawXInt, rawYInt)
         // Z-check in specific order
         val testRect = Rect()
         // test "Read More"
         albumCellBodyTextReadMore.getGlobalVisibleRect(testRect)
-        if (Rect.intersects(rawRect, testRect)) {
+        if (testRect.contains(eventRect)) {
             // dispatch to activity view
             ActivityDispatcher.get(context)?.dispatchIntent { context ->
                 LongMessageActivity.getIntent(context, mms.recipient.address, mms.getId(), true)
@@ -73,14 +78,14 @@ class AlbumThumbnailView : FrameLayout {
         // test each album child
         albumCellContainer.findViewById<ViewGroup>(R.id.album_thumbnail_root)?.children?.forEachIndexed { index, child ->
             child.getGlobalVisibleRect(testRect)
-            if (Rect.intersects(rawRect, testRect)) {
+            if (testRect.contains(eventRect)) {
                 // hit intersects with this particular child
                 val slide = slides.getOrNull(index) ?: return
                 // only open to downloaded images
                 if (slide.isInProgress) return
 
                 ActivityDispatcher.get(context)?.dispatchIntent { context ->
-                    MediaPreviewActivity.getPreviewIntent(context, slide, mms)
+                    MediaPreviewActivity.getPreviewIntent(context, slide, mms, threadRecipient)
                 }
             }
         }
