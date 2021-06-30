@@ -181,7 +181,6 @@ class VisibleMessageContentView : LinearLayout {
 
             body = MentionUtilities.highlightMentions(body, message.isOutgoing, message.threadId, context);
             result.text = body
-            result.movementMethod = LinkMovementMethod.getInstance()
             return result
         }
 
