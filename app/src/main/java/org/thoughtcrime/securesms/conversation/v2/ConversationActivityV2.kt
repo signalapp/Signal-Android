@@ -57,6 +57,7 @@ import org.session.libsession.utilities.Address.Companion.fromSerialized
 import org.session.libsession.utilities.MediaTypes
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.recipients.Recipient
+import org.session.libsession.utilities.recipients.RecipientModifiedListener
 import org.session.libsignal.utilities.ListenableFuture
 import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.ApplicationContext
@@ -108,7 +109,7 @@ import kotlin.math.*
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
     InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ActivityDispatcher,
-    ConversationActionModeCallbackDelegate, VisibleMessageContentViewDelegate {
+    ConversationActionModeCallbackDelegate, VisibleMessageContentViewDelegate, RecipientModifiedListener {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
@@ -187,6 +188,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         unreadCount = DatabaseFactory.getMmsSmsDatabase(this).getUnreadCount(threadID)
         updateUnreadCountIndicator()
         setUpTypingObserver()
+        setUpRecipientObserver()
         updateSubtitle()
         getLatestOpenGroupInfoIfNeeded()
         setUpBlockedBanner()
@@ -314,6 +316,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         }
     }
 
+    private fun setUpRecipientObserver() {
+        thread.addListener(this)
+    }
+
     private fun getLatestOpenGroupInfoIfNeeded() {
         val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID) ?: return
         OpenGroupAPIV2.getMemberCount(openGroup.room, openGroup.server).successUi { updateSubtitle() }
@@ -367,7 +373,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
     // endregion
 
-    // region Updating & Animation
+    override fun onModified(recipient: Recipient) {
+        if (thread.isContactRecipient) {
+            blockedBanner.isVisible = thread.isBlocked
+        }
+        updateSubtitle()
+    }
+
     private fun markAllAsRead() {
         val messages = DatabaseFactory.getThreadDatabase(this).setRead(threadID, true)
         if (thread.isGroupRecipient) {
