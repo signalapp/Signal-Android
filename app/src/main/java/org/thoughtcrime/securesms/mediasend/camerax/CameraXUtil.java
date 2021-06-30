@@ -131,13 +131,17 @@ public class CameraXUtil {
   }
 
   public static int getIdealResolution(int displayWidth, int displayHeight) {
-    int maxDisplay = Math.max(displayWidth, displayHeight);
-    return Math.max(maxDisplay, 1920);
+    //The maximum available resolution that you can select for an ImageAnalysis is 1080p.
+    // that is 1920×1080 in 16:9 or 1440×1080 in 4:3
+    //so the resolution here is max 1080
+    //see https://developer.android.com/training/camerax/configuration
+    int minDisplay = Math.min(displayWidth, displayHeight);
+    return Math.min(minDisplay, 1080);
   }
 
   @TargetApi(21)
-  public static @NonNull Size buildResolutionForRatio(int longDimension, @NonNull Rational ratio, boolean isPortrait) {
-    int shortDimension = longDimension * ratio.getDenominator() / ratio.getNumerator();
+  public static @NonNull Size buildResolutionForRatio(int shortDimension, @NonNull Rational ratio, boolean isPortrait) {
+    int longDimension = shortDimension * ratio.getNumerator() / ratio.getDenominator();
 
     if (isPortrait) {
       return new Size(shortDimension, longDimension);
