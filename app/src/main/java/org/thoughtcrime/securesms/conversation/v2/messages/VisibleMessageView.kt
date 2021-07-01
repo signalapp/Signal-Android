@@ -3,10 +3,8 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Canvas
-import android.graphics.ColorFilter
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
-import android.os.AsyncTask
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -17,8 +15,6 @@ import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
-import androidx.core.view.marginLeft
-import androidx.core.view.marginRight
 import kotlinx.android.synthetic.main.view_visible_message.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact.ContactContext
@@ -119,20 +115,20 @@ class VisibleMessageView : LinearLayout {
         // Timestamp
         messageTimestampTextView.text = DateUtils.getExtendedRelativeTimeSpanString(context, Locale.getDefault(), message.timestamp)
         // Margins
-        val leftPadding: Int
+        val startPadding: Int
         if (isGroupThread) {
-            leftPadding = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt() else 0
+            startPadding = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt() else 0
         } else {
-            leftPadding = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt()
+            startPadding = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt()
                 else resources.getDimension(R.dimen.medium_spacing).toInt()
         }
-        val rightPadding = if (message.isOutgoing) resources.getDimension(R.dimen.medium_spacing).toInt()
+        val endPadding = if (message.isOutgoing) resources.getDimension(R.dimen.medium_spacing).toInt()
             else resources.getDimension(R.dimen.very_large_spacing).toInt()
-        messageContentContainer.setPaddingRelative(leftPadding, 0, rightPadding, 0)
+        messageContentContainer.setPaddingRelative(startPadding, 0, endPadding, 0)
         // Set inter-message spacing
         setMessageSpacing(isStartOfMessageCluster, isEndOfMessageCluster)
         // Gravity
-        val gravity = if (message.isOutgoing) Gravity.RIGHT else Gravity.LEFT
+        val gravity = if (message.isOutgoing) Gravity.END else Gravity.START
         mainContainer.gravity = gravity or Gravity.BOTTOM
         // Message status indicator
         val iconID = getMessageStatusImage(message)
@@ -148,7 +144,7 @@ class VisibleMessageView : LinearLayout {
         // Expiration timer
         updateExpirationTimer(message)
         // Calculate max message bubble width
-        var maxWidth = screenWidth - leftPadding - rightPadding
+        var maxWidth = screenWidth - startPadding - endPadding
         if (profilePictureContainer.visibility != View.GONE) { maxWidth -= profilePictureContainer.width }
         // Populate content view
         messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth, thread, searchQuery)
