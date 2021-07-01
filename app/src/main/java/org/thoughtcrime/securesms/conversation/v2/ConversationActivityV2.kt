@@ -455,7 +455,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         if (thread.isClosedGroupRecipient) {
             val group = DatabaseFactory.getGroupDatabase(this).getGroup(thread.address.toGroupString()).orNull()
             val isActive = (group?.isActive == true)
-            Log.d("Test", "isActive: $isActive")
             inputBar.showInput = isActive
         } else {
             inputBar.showInput = true
@@ -735,7 +734,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // `position` is the adapter position; not the visual position
     private fun handleSwipeToReply(message: MessageRecord, position: Int) {
-        inputBar.draftQuote(message, glide)
+        inputBar.draftQuote(thread, message, glide)
     }
 
     // `position` is the adapter position; not the visual position
@@ -1226,7 +1225,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun reply(messages: Set<MessageRecord>) {
-        inputBar.draftQuote(messages.first(), glide)
+        inputBar.draftQuote(thread, messages.first(), glide)
         endActionMode()
     }
 

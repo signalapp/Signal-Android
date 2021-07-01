@@ -11,6 +11,8 @@ import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_input_bar.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.components.LinkPreviewDraftView
 import org.thoughtcrime.securesms.conversation.v2.components.LinkPreviewDraftViewDelegate
 import org.thoughtcrime.securesms.conversation.v2.messages.QuoteView
@@ -105,7 +107,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     // Drafting quotes and drafting link previews is mutually exclusive, i.e. you can't draft
     // a quote and a link preview at the same time.
 
-    fun draftQuote(message: MessageRecord, glide: GlideRequests) {
+    fun draftQuote(thread: Recipient, message: MessageRecord, glide: GlideRequests) {
         quote = message
         linkPreview = null
         linkPreviewDraftView = null
@@ -118,8 +120,9 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         // quote view content area's start and end margins. This unfortunately has to be calculated manually
         // here to get the layout right.
         val maxContentWidth = (screenWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - toPx(16, resources) - toPx(30, resources)).roundToInt()
-        quoteView.bind(message.individualRecipient.address.toString(), message.body, attachments,
-            message.recipient, true, maxContentWidth, message.isOpenGroupInvitation, message.threadId, glide)
+        val sender = if (message.isOutgoing) TextSecurePreferences.getLocalNumber(context)!! else message.individualRecipient.address.serialize()
+        quoteView.bind(sender, message.body, attachments,
+            thread, true, maxContentWidth, message.isOpenGroupInvitation, message.threadId, glide)
         // The 6 DP below is the padding the quote view applies to itself, which isn't included in the
         // intrinsic height calculation.
         val quoteViewIntrinsicHeight = quoteView.getIntrinsicHeight(maxContentWidth) + toPx(6, resources)

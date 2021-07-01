@@ -3,10 +3,8 @@ package org.thoughtcrime.securesms.conversation.v2.messages
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Canvas
-import android.graphics.ColorFilter
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
-import android.os.AsyncTask
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -26,6 +24,7 @@ import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.loki.utilities.disableClipping
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.loki.utilities.toDp
 import org.thoughtcrime.securesms.loki.utilities.toPx
@@ -72,6 +71,8 @@ class VisibleMessageView : LinearLayout {
         layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         isHapticFeedbackEnabled = true
         setWillNotDraw(false)
+        expirationTimerViewContainer.disableClipping()
+        messageContentContainer.disableClipping()
     }
     // endregion
 
@@ -114,20 +115,20 @@ class VisibleMessageView : LinearLayout {
         // Timestamp
         messageTimestampTextView.text = DateUtils.getExtendedRelativeTimeSpanString(context, Locale.getDefault(), message.timestamp)
         // Margins
-        val messageContentContainerLayoutParams = messageContentContainer.layoutParams as LinearLayout.LayoutParams
+        val startPadding: Int
         if (isGroupThread) {
-            messageContentContainerLayoutParams.leftMargin = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt() else 0
+            startPadding = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt() else 0
         } else {
-            messageContentContainerLayoutParams.leftMargin = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt()
+            startPadding = if (message.isOutgoing) resources.getDimension(R.dimen.very_large_spacing).toInt()
                 else resources.getDimension(R.dimen.medium_spacing).toInt()
         }
-        messageContentContainerLayoutParams.rightMargin = if (message.isOutgoing) resources.getDimension(R.dimen.medium_spacing).toInt()
+        val endPadding = if (message.isOutgoing) resources.getDimension(R.dimen.medium_spacing).toInt()
             else resources.getDimension(R.dimen.very_large_spacing).toInt()
-        messageContentContainer.layoutParams = messageContentContainerLayoutParams
+        messageContentContainer.setPaddingRelative(startPadding, 0, endPadding, 0)
         // Set inter-message spacing
         setMessageSpacing(isStartOfMessageCluster, isEndOfMessageCluster)
         // Gravity
-        val gravity = if (message.isOutgoing) Gravity.RIGHT else Gravity.LEFT
+        val gravity = if (message.isOutgoing) Gravity.END else Gravity.START
         mainContainer.gravity = gravity or Gravity.BOTTOM
         // Message status indicator
         val (iconID, iconColor) = getMessageStatusImage(message)
@@ -147,7 +148,7 @@ class VisibleMessageView : LinearLayout {
         // Expiration timer
         updateExpirationTimer(message)
         // Calculate max message bubble width
-        var maxWidth = screenWidth - messageContentContainerLayoutParams.leftMargin - messageContentContainerLayoutParams.rightMargin
+        var maxWidth = screenWidth - startPadding - endPadding
         if (profilePictureContainer.visibility != View.GONE) { maxWidth -= profilePictureContainer.width }
         // Populate content view
         messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth, thread, searchQuery)
@@ -198,6 +199,9 @@ class VisibleMessageView : LinearLayout {
         val ruleToRemove = if (message.isOutgoing) RelativeLayout.ALIGN_PARENT_END else RelativeLayout.ALIGN_PARENT_START
         expirationTimerViewLayoutParams.removeRule(ruleToRemove)
         expirationTimerViewLayoutParams.addRule(ruleToAdd)
+        val expirationTimerViewSize = toPx(12, resources)
+        expirationTimerViewLayoutParams.marginStart = -(messageContentContainer.paddingStart / 2 + expirationTimerViewSize / 2)
+        expirationTimerViewLayoutParams.marginEnd = -(messageContentContainer.paddingEnd / 2 + expirationTimerViewSize / 2)
         expirationTimerView.layoutParams = expirationTimerViewLayoutParams
         if (message.expiresIn > 0 && !message.isPending) {
             expirationTimerView.setColorFilter(ResourcesCompat.getColor(resources, R.color.text, context.theme))
@@ -232,14 +236,14 @@ class VisibleMessageView : LinearLayout {
     }
 
     override fun onDraw(canvas: Canvas) {
-        if (translationX < 0) {
+        if (translationX < 0 && !expirationTimerView.isVisible) {
             val spacing = context.resources.getDimensionPixelSize(R.dimen.small_spacing)
             val threshold = VisibleMessageView.swipeToReplyThreshold
             val iconSize = toPx(24, context.resources)
             val bottomVOffset = paddingBottom + messageStatusImageView.height + (messageContentView.height - iconSize) / 2
-            swipeToReplyIconRect.left = messageContentContainer.right + spacing
+            swipeToReplyIconRect.left = messageContentContainer.right - messageContentContainer.paddingEnd + spacing
             swipeToReplyIconRect.top = height - bottomVOffset - iconSize
-            swipeToReplyIconRect.right = messageContentContainer.right + iconSize + spacing
+            swipeToReplyIconRect.right = messageContentContainer.right - messageContentContainer.paddingEnd + iconSize + spacing
             swipeToReplyIconRect.bottom = height - bottomVOffset
             swipeToReplyIcon.bounds = swipeToReplyIconRect
             swipeToReplyIcon.alpha = (255.0f * (min(abs(translationX), threshold) / threshold)).roundToInt()
