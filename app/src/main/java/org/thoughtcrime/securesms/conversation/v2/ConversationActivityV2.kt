@@ -18,8 +18,10 @@ import android.util.Log
 import android.util.Pair
 import android.util.TypedValue
 import android.view.*
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.annotation.DimenRes
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
@@ -281,6 +283,14 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         actionBar.setCustomView(R.layout.activity_conversation_v2_action_bar)
         actionBar.setDisplayShowCustomEnabled(true)
         conversationTitleView.text = thread.toShortString()
+        @DimenRes val sizeID: Int
+        if (thread.isClosedGroupRecipient) {
+            sizeID = R.dimen.medium_profile_picture_size
+        } else {
+            sizeID = R.dimen.small_profile_picture_size
+        }
+        val size = resources.getDimension(sizeID).roundToInt()
+        profilePictureView.layoutParams = LinearLayout.LayoutParams(size, size)
         profilePictureView.glide = glide
         profilePictureView.update(thread, threadID)
     }
