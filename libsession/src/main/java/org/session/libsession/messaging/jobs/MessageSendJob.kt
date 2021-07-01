@@ -22,7 +22,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
     override var id: String? = null
     override var failureCount: Int = 0
 
-    override val maxFailureCount: Int = 10
+    override val maxFailureCount: Int = 2
 
     companion object {
         val TAG = MessageSendJob::class.simpleName

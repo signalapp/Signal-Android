@@ -45,7 +45,9 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
         val player = AudioSlidePlayer.createFor(context, audio, this)
         this.player = player
         isPreparing = true
-        player.play(0.0)
+        if (!audio.isPendingDownload && !audio.isInProgress) {
+            player.play(0.0)
+        }
         voiceMessageViewLoader.isVisible = audio.isPendingDownload
         val cornerRadii = MessageBubbleUtilities.calculateRadii(context, isStartOfMessageCluster, isEndOfMessageCluster, message.isOutgoing)
         cornerMask.setTopLeftRadius(cornerRadii[0])
