@@ -1,15 +1,22 @@
 package org.session.libsession.messaging.jobs
 
+import android.content.ContentResolver
+import android.media.MediaDataSource
+import android.media.MediaExtractor
 import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
 import org.session.libsession.messaging.utilities.Data
+import org.session.libsession.utilities.DecodedAudio
 import org.session.libsession.utilities.DownloadUtilities
+import org.session.libsession.utilities.FileUtils
+import org.session.libsession.utilities.InputStreamMediaDataSource
 import org.session.libsignal.streams.AttachmentCipherInputStream
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Log
 import java.io.File
+import java.io.FileDescriptor
 import java.io.FileInputStream
 
 class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long) : Job {
@@ -67,6 +74,15 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
                 }
                 FileInputStream(tempFile)
             }
+
+            if (attachment.contentType.startsWith("audio/")) {
+                // process the duration
+                InputStreamMediaDataSource(inputStream).use { mediaDataSource ->
+                    val durationMs = (DecodedAudio.create(mediaDataSource).totalDuration / 1000.0).toLong()
+                    messageDataProvider.updateAudioAttachmentDuration(attachment.attachmentId, durationMs)
+                }
+            }
+
             messageDataProvider.insertAttachment(databaseMessageID, attachment.attachmentId, inputStream)
             tempFile.delete()
             handleSuccess()

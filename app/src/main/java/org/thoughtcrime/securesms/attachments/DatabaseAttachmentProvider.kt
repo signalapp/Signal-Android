@@ -97,6 +97,14 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         attachmentDatabase.insertAttachmentsForPlaceholder(messageId, attachmentId, stream)
     }
 
+    override fun updateAudioAttachmentDuration(attachmentId: AttachmentId, durationMs: Long) {
+        DatabaseFactory.getAttachmentDatabase(context).setAttachmentAudioExtras(DatabaseAttachmentAudioExtras(
+                attachmentId = attachmentId,
+                visualSamples = byteArrayOf(),
+                durationMs = durationMs
+        ))
+    }
+
     override fun isOutgoingMessage(timestamp: Long): Boolean {
         val smsDatabase = DatabaseFactory.getSmsDatabase(context)
         val mmsDatabase = DatabaseFactory.getMmsDatabase(context)

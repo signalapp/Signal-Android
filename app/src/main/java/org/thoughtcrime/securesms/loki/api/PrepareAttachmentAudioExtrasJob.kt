@@ -9,10 +9,11 @@ import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachmentAudioExtras
+import org.session.libsession.utilities.DecodedAudio
+import org.session.libsession.utilities.InputStreamMediaDataSource
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.BaseJob
-import org.thoughtcrime.securesms.loki.utilities.DecodedAudio
 import org.thoughtcrime.securesms.mms.PartAuthority
 import java.io.InputStream
 import java.lang.IllegalStateException
@@ -133,35 +134,4 @@ class PrepareAttachmentAudioExtrasJob : BaseJob {
 
     /** Gets dispatched once the audio extras have been updated. */
     data class AudioExtrasUpdatedEvent(val attachmentId: AttachmentId)
-
-    @RequiresApi(Build.VERSION_CODES.M)
-    private class InputStreamMediaDataSource: MediaDataSource {
-
-        private val data: ByteArray
-
-        constructor(inputStream: InputStream): super() {
-            this.data = inputStream.readBytes()
-        }
-
-        override fun readAt(position: Long, buffer: ByteArray, offset: Int, size: Int): Int {
-            val length: Int = data.size
-            if (position >= length) {
-                return -1 // -1 indicates EOF
-            }
-            var actualSize = size
-            if (position + size > length) {
-                actualSize -= (position + size - length).toInt()
-            }
-            System.arraycopy(data, position.toInt(), buffer, offset, actualSize)
-            return actualSize
-        }
-
-        override fun getSize(): Long {
-            return data.size.toLong()
-        }
-
-        override fun close() {
-            // We don't need to close the wrapped stream.
-        }
-    }
 }

@@ -10,9 +10,11 @@ import android.widget.RelativeLayout
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_voice_message.view.*
 import network.loki.messenger.R
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer
 import org.thoughtcrime.securesms.components.CornerMask
 import org.thoughtcrime.securesms.conversation.v2.utilities.MessageBubbleUtilities
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
@@ -44,27 +46,29 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
         val audio = message.slideDeck.audioSlide!!
         val player = AudioSlidePlayer.createFor(context, audio, this)
         this.player = player
-        isPreparing = true
-        if (!audio.isPendingDownload && !audio.isInProgress) {
-            player.play(0.0)
-        }
         voiceMessageViewLoader.isVisible = audio.isPendingDownload
         val cornerRadii = MessageBubbleUtilities.calculateRadii(context, isStartOfMessageCluster, isEndOfMessageCluster, message.isOutgoing)
         cornerMask.setTopLeftRadius(cornerRadii[0])
         cornerMask.setTopRightRadius(cornerRadii[1])
         cornerMask.setBottomRightRadius(cornerRadii[2])
         cornerMask.setBottomLeftRadius(cornerRadii[3])
+
+        // only process audio if downloaded
+        if (audio.isPendingDownload || audio.isInProgress) return
+
+        (audio.asAttachment() as? DatabaseAttachment)?.let { attachment ->
+            DatabaseFactory.getAttachmentDatabase(context).getAttachmentAudioExtras(attachment.attachmentId)?.let { audioExtras ->
+                if (audioExtras.durationMs > 0) {
+                    voiceMessageViewDurationTextView.visibility = View.VISIBLE
+                    voiceMessageViewDurationTextView.text = String.format("%02d:%02d",
+                            TimeUnit.MILLISECONDS.toMinutes(audioExtras.durationMs),
+                            TimeUnit.MILLISECONDS.toSeconds(audioExtras.durationMs))
+                }
+            }
+        }
     }
 
-    override fun onPlayerStart(player: AudioSlidePlayer) {
-        if (!isPreparing) { return }
-        isPreparing = false
-        duration = player.duration
-        voiceMessageViewDurationTextView.text = String.format("%01d:%02d",
-            TimeUnit.MILLISECONDS.toMinutes(duration),
-            TimeUnit.MILLISECONDS.toSeconds(duration))
-        player.stop()
-    }
+    override fun onPlayerStart(player: AudioSlidePlayer) {}
 
     override fun onPlayerProgress(player: AudioSlidePlayer, progress: Double, unused: Long) {
         if (progress == 1.0) {
