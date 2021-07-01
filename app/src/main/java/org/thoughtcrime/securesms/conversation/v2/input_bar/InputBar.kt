@@ -32,6 +32,8 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     var additionalContentHeight = 0
     var quote: MessageRecord? = null
     var linkPreview: LinkPreview? = null
+    var showInput: Boolean = true
+        set(value) { field = value; showOrHideInputIfNeeded() }
 
     var text: String
         get() { return inputBarEditText.text.toString() }
@@ -160,6 +162,19 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         val newHeight = max(inputBarEditText.height + 2 * vMargin, minHeight)
         additionalContentHeight = 0
         setHeight(newHeight)
+    }
+
+    private fun showOrHideInputIfNeeded() {
+        if (showInput) {
+            setOf( inputBarEditText, attachmentsButton ).forEach { it.isVisible = true }
+            microphoneButton.isVisible = text.isEmpty()
+            sendButton.isVisible = text.isNotEmpty()
+        } else {
+            cancelQuoteDraft()
+            cancelLinkPreviewDraft()
+            val views = setOf( inputBarEditText, attachmentsButton, microphoneButton, sendButton )
+            views.forEach { it.isVisible = false }
+        }
     }
     // endregion
 }

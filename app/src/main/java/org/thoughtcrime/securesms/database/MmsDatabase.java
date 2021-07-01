@@ -57,6 +57,7 @@ import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.recipients.RecipientFormattingException;
 import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.ThreadUtils;
 import org.session.libsignal.utilities.guava.Optional;
 import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
@@ -881,9 +882,9 @@ public class MmsDatabase extends MessagingDatabase {
   }
 
   public boolean delete(long messageId) {
-    long               threadId           = getThreadIdForMessage(messageId);
+    long threadId = getThreadIdForMessage(messageId);
     AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
-    attachmentDatabase.deleteAttachmentsForMessage(messageId);
+    ThreadUtils.queue(() -> attachmentDatabase.deleteAttachmentsForMessage(messageId));
 
     GroupReceiptDatabase groupReceiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
     groupReceiptDatabase.deleteRowsForMessage(messageId);

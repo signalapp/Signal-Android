@@ -30,6 +30,7 @@ import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.PublicKeyValidation
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
@@ -111,12 +112,12 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
 
     private fun createPrivateChat(hexEncodedPublicKey: String) {
         val recipient = Recipient.from(this, Address.fromSerialized(hexEncodedPublicKey), false)
-        val intent = Intent(this, ConversationActivity::class.java)
-        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
+        val intent = Intent(this, ConversationActivityV2::class.java)
+        intent.putExtra(ConversationActivityV2.ADDRESS, recipient.address)
         intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA))
         intent.setDataAndType(getIntent().data, getIntent().type)
         val existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient)
-        intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread)
+        intent.putExtra(ConversationActivityV2.THREAD_ID, existingThread)
         intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, DistributionTypes.DEFAULT)
         startActivity(intent)
         finish()

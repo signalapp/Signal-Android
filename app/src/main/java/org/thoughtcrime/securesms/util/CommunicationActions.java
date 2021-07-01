@@ -14,6 +14,7 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import network.loki.messenger.R;
 
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.session.libsession.utilities.recipients.Recipient;
 
@@ -32,9 +33,9 @@ public class CommunicationActions {
 
       @Override
       protected void onPostExecute(Long threadId) {
-        Intent intent = new Intent(context, ConversationActivity.class);
-        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
-        intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
+        Intent intent = new Intent(context, ConversationActivityV2.class);
+        intent.putExtra(ConversationActivityV2.ADDRESS, recipient.getAddress());
+        intent.putExtra(ConversationActivityV2.THREAD_ID, threadId);
         intent.putExtra(ConversationActivity.TIMING_EXTRA, System.currentTimeMillis());
 
         if (!TextUtils.isEmpty(text)) {

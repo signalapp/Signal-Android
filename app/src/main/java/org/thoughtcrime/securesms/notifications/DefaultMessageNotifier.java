@@ -49,6 +49,7 @@ import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -115,9 +116,9 @@ public class DefaultMessageNotifier implements MessageNotifier {
     if (visibleThread == threadId) {
       sendInThreadNotification(context, recipient);
     } else {
-      Intent intent = new Intent(context, ConversationActivity.class);
-      intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
-      intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
+      Intent intent = new Intent(context, ConversationActivityV2.class);
+      intent.putExtra(ConversationActivityV2.ADDRESS, recipient.getAddress());
+      intent.putExtra(ConversationActivityV2.THREAD_ID, threadId);
       intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 
       FailedNotificationBuilder builder = new FailedNotificationBuilder(context, TextSecurePreferences.getNotificationPrivacy(context), intent);

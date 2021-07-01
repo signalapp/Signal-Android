@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/menu_badge_icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:layout_gravity="center"
         android:src="@drawable/ic_timer"
         android:background="@color/transparent"

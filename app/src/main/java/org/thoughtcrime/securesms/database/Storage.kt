@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.database
 
-import android.app.job.JobScheduler
 import android.content.Context
 import android.net.Uri
 import org.session.libsession.database.StorageProtocol
@@ -106,7 +105,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             }
             else -> Optional.absent()
         }
-        val pointerAttachments = attachments.mapNotNull {
+        val pointers = attachments.mapNotNull {
             it.toSignalAttachment()
         }
         val targetAddress = if (isUserSender && !message.syncTarget.isNullOrEmpty()) {
@@ -122,7 +121,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             val linkPreviews: Optional<List<LinkPreview>> = if (linkPreview.isEmpty()) Optional.absent() else Optional.of(linkPreview.mapNotNull { it!! })
             val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
             val insertResult = if (message.sender == getUserPublicKey()) {
-                val mediaMessage = OutgoingMediaMessage.from(message, targetRecipient, pointerAttachments, quote.orNull(), linkPreviews.orNull()?.firstOrNull())
+                val mediaMessage = OutgoingMediaMessage.from(message, targetRecipient, pointers, quote.orNull(), linkPreviews.orNull()?.firstOrNull())
                 mmsDatabase.insertSecureDecryptedMessageOutbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)
             } else {
                 // It seems like we have replaced SignalServiceAttachment with SessionServiceAttachment

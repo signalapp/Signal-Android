@@ -18,10 +18,14 @@ import android.util.Log
 import android.util.Pair
 import android.util.TypedValue
 import android.view.*
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.annotation.DimenRes
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
@@ -57,16 +61,21 @@ import org.session.libsession.messaging.sending_receiving.link_preview.LinkPrevi
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.utilities.UpdateMessageData
 import org.session.libsession.messaging.utilities.UpdateMessageData.Companion.fromJSON
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.Address.Companion.fromSerialized
 import org.session.libsession.utilities.MediaTypes
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.concurrent.SimpleTask
 import org.session.libsession.utilities.recipients.Recipient
+import org.session.libsession.utilities.recipients.RecipientModifiedListener
 import org.session.libsignal.utilities.ListenableFuture
-import org.session.libsignal.utilities.ThreadUtils
+import org.session.libsignal.utilities.SettableFuture
+import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.audio.AudioRecorder
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
+import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.conversation.v2.dialogs.*
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -75,7 +84,10 @@ import org.thoughtcrime.securesms.conversation.v2.input_bar.mentions.MentionCand
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallbackDelegate
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
+import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentViewDelegate
 import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
+import org.thoughtcrime.securesms.conversation.v2.search.SearchBottomBar
+import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
 import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
@@ -110,8 +122,9 @@ import kotlin.math.*
 // price we pay is a bit of back and forth between the input bar and the conversation activity.
 
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
-    InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ActivityDispatcher,
-        ConversationActionModeCallbackDelegate {
+        InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ActivityDispatcher,
+        ConversationActionModeCallbackDelegate, VisibleMessageContentViewDelegate, RecipientModifiedListener,
+        SearchBottomBar.EventListener {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
@@ -130,6 +143,15 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private var previousText: CharSequence = ""
     private var currentMentionStartIndex = -1
     private var isShowingMentionCandidatesView = false
+    // Search
+    var searchViewModel: SearchViewModel? = null
+    var searchViewItem: MenuItem? = null
+
+    private val isScrolledToBottom: Boolean
+        get() {
+            val position = layoutManager.findFirstCompletelyVisibleItemPosition()
+            return position == 0
+        }
 
     private val layoutManager: LinearLayoutManager
         get() { return conversationRecyclerView.layoutManager as LinearLayoutManager }
@@ -150,6 +172,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             },
             glide
         )
+        adapter.visibleMessageContentViewDelegate = this
         adapter
     }
 
@@ -166,7 +189,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     // region Settings
     companion object {
+        // Extras
         const val THREAD_ID = "thread_id"
+        const val ADDRESS = "address"
+        // Request codes
         const val PICK_DOCUMENT = 2
         const val TAKE_PHOTO = 7
         const val PICK_GIF = 10
@@ -179,7 +205,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
         setContentView(R.layout.activity_conversation_v2)
-        threadID = intent.getLongExtra(THREAD_ID, -1)
+        var threadID = intent.getLongExtra(THREAD_ID, -1L)
+        if (threadID == -1L) {
+            val address = intent.getParcelableExtra<Address>(ADDRESS) ?: return finish()
+            val recipient = Recipient.from(this, address, false)
+            threadID = DatabaseFactory.getThreadDatabase(this).getOrCreateThreadIdFor(recipient)
+        }
+        this.threadID = threadID
         setUpRecyclerView()
         setUpToolBar()
         setUpInputBar()
@@ -189,12 +221,16 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         unreadCount = DatabaseFactory.getMmsSmsDatabase(this).getUnreadCount(threadID)
         updateUnreadCountIndicator()
         setUpTypingObserver()
+        setUpRecipientObserver()
         updateSubtitle()
         getLatestOpenGroupInfoIfNeeded()
         setUpBlockedBanner()
         setUpLinkPreviewObserver()
+        searchBottomBar.setEventListener(this)
+        setUpSearchResultObserver()
         scrollToFirstUnreadMessageIfNeeded()
         markAllAsRead()
+        showOrHideInputIfNeeded()
     }
 
     override fun onResume() {
@@ -251,6 +287,14 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         actionBar.setCustomView(R.layout.activity_conversation_v2_action_bar)
         actionBar.setDisplayShowCustomEnabled(true)
         conversationTitleView.text = thread.toShortString()
+        @DimenRes val sizeID: Int
+        if (thread.isClosedGroupRecipient) {
+            sizeID = R.dimen.medium_profile_picture_size
+        } else {
+            sizeID = R.dimen.small_profile_picture_size
+        }
+        val size = resources.getDimension(sizeID).roundToInt()
+        profilePictureView.layoutParams = LinearLayout.LayoutParams(size, size)
         profilePictureView.glide = glide
         profilePictureView.update(thread, threadID)
     }
@@ -281,6 +325,27 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun restoreDraftIfNeeded() {
+        val mediaURI = intent.data
+        val mediaType = AttachmentManager.MediaType.from(intent.type)
+        if (mediaURI != null && mediaType != null) {
+            if (AttachmentManager.MediaType.IMAGE == mediaType || AttachmentManager.MediaType.GIF == mediaType || AttachmentManager.MediaType.VIDEO == mediaType) {
+                val media = Media(mediaURI, MediaUtil.getMimeType(this, mediaURI)!!, 0, 0, 0, 0, Optional.absent(), Optional.absent())
+                startActivityForResult(MediaSendActivity.buildEditorIntent(this, listOf( media ), thread, ""), ConversationActivityV2.PICK_FROM_LIBRARY)
+                return
+            } else {
+                prepMediaForSending(mediaURI, mediaType).addListener(object : ListenableFuture.Listener<Boolean> {
+
+                    override fun onSuccess(result: Boolean?) {
+                        sendAttachments(attachmentManager.buildSlideDeck().asAttachments(), null)
+                    }
+
+                    override fun onFailure(e: ExecutionException?) {
+                        Toast.makeText(this@ConversationActivityV2, R.string.activity_conversation_attachment_prep_failed, Toast.LENGTH_LONG).show()
+                    }
+                })
+                return
+            }
+        }
         val draftDB = DatabaseFactory.getDraftDatabase(this)
         val drafts = draftDB.getDrafts(threadID)
         draftDB.clearDrafts(threadID)
@@ -302,7 +367,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     private fun setUpTypingObserver() {
         ApplicationContext.getInstance(this).typingStatusRepository.getTypists(threadID).observe(this) { state ->
             val recipients = if (state != null) state.typists else listOf()
-            typingIndicatorViewContainer.isVisible = recipients.isNotEmpty()
+            // FIXME: Also checking isScrolledToBottom is a quick fix for an issue where the
+            //        typing indicator overlays the recycler view when scrolled up
+            typingIndicatorViewContainer.isVisible = recipients.isNotEmpty() && isScrolledToBottom
             typingIndicatorViewContainer.setTypists(recipients)
             inputBarHeightChanged(inputBar.height)
         }
@@ -314,6 +381,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 }
             })
         }
+    }
+
+    private fun setUpRecipientObserver() {
+        thread.addListener(this)
     }
 
     private fun getLatestOpenGroupInfoIfNeeded() {
@@ -358,7 +429,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, this) { onOptionsItemSelected(it) }
+        ConversationMenuHelper.onPrepareOptionsMenu(menu, menuInflater, thread, threadID, this) { onOptionsItemSelected(it) }
         super.onPrepareOptionsMenu(menu)
         return true
     }
@@ -369,7 +440,28 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
     // endregion
 
-    // region Updating & Animation
+    // region Animation & Updating
+    override fun onModified(recipient: Recipient) {
+        runOnUiThread {
+            if (thread.isContactRecipient) {
+                blockedBanner.isVisible = thread.isBlocked
+            }
+            updateSubtitle()
+            showOrHideInputIfNeeded()
+        }
+    }
+
+    private fun showOrHideInputIfNeeded() {
+        if (thread.isClosedGroupRecipient) {
+            val group = DatabaseFactory.getGroupDatabase(this).getGroup(thread.address.toGroupString()).orNull()
+            val isActive = (group?.isActive == true)
+            Log.d("Test", "isActive: $isActive")
+            inputBar.showInput = isActive
+        } else {
+            inputBar.showInput = true
+        }
+    }
+
     private fun markAllAsRead() {
         val messages = DatabaseFactory.getThreadDatabase(this).setRead(threadID, true)
         if (thread.isGroupRecipient) {
@@ -570,8 +662,15 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun handleRecyclerViewScrolled() {
-        val position = layoutManager.findFirstCompletelyVisibleItemPosition()
-        val alpha = if (position > 0) 1.0f else 0.0f
+        val alpha = if (!isScrolledToBottom) 1.0f else 0.0f
+        // FIXME: Checking isScrolledToBottom is a quick fix for an issue where the
+        //        typing indicator overlays the recycler view when scrolled up
+        val wasTypingIndicatorVisibleBefore = typingIndicatorViewContainer.isVisible
+        typingIndicatorViewContainer.isVisible = wasTypingIndicatorVisibleBefore && isScrolledToBottom
+        val isTypingIndicatorVisibleAfter = typingIndicatorViewContainer.isVisible
+        if (isTypingIndicatorVisibleAfter != wasTypingIndicatorVisibleBefore) {
+            inputBarHeightChanged(inputBar.height)
+        }
         scrollToBottomButton.alpha = alpha
         unreadCount = min(unreadCount, layoutManager.findFirstVisibleItemPosition())
         updateUnreadCountIndicator()
@@ -644,6 +743,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val actionMode = this.actionMode
         val actionModeCallback = ConversationActionModeCallback(adapter, threadID, this)
         actionModeCallback.delegate = this
+        searchViewItem?.collapseActionView()
         if (actionMode == null) { // Nothing should be selected if this is the case
             adapter.toggleSelection(message, position)
             this.actionMode = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -738,6 +838,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         currentMentionStartIndex = -1
         hideMentionCandidates()
         this.previousText = newText
+    }
+
+    override fun scrollToMessageIfPossible(timestamp: Long) {
+        val lastSeenItemPosition = adapter.getItemPositionForTimestamp(timestamp) ?: return
+        conversationRecyclerView.scrollToPosition(lastSeenItemPosition)
     }
 
     override fun sendMessage() {
@@ -908,10 +1013,18 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun startRecordingVoiceMessage() {
-        showVoiceMessageUI()
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        audioRecorder.startRecording()
-        stopAudioHandler.postDelayed(stopVoiceMessageRecordingTask, 60000) // Limit voice messages to 1 minute each
+        if (Permissions.hasAll(this, Manifest.permission.RECORD_AUDIO)) {
+            showVoiceMessageUI()
+            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+            audioRecorder.startRecording()
+            stopAudioHandler.postDelayed(stopVoiceMessageRecordingTask, 60000) // Limit voice messages to 1 minute each
+        } else {
+            Permissions.with(this)
+                .request(Manifest.permission.RECORD_AUDIO)
+                .withRationaleDialog(getString(R.string.ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone), R.drawable.ic_baseline_mic_48)
+                .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages))
+                .execute()
+        }
     }
 
     override fun sendVoiceMessage() {
@@ -966,13 +1079,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                         }
                 }
             } else {
-                ThreadUtils.queue {
-                    for (message in messages) {
-                        if (message.isMms) {
-                            DatabaseFactory.getMmsDatabase(this@ConversationActivityV2).delete(message.id)
-                        } else {
-                            DatabaseFactory.getSmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
-                        }
+                for (message in messages) {
+                    if (message.isMms) {
+                        DatabaseFactory.getMmsDatabase(this@ConversationActivityV2).delete(message.id)
+                    } else {
+                        DatabaseFactory.getSmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
                     }
                 }
             }
@@ -1155,6 +1266,48 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         drafts.add(DraftDatabase.Draft(DraftDatabase.Draft.TEXT, text))
         val draftDB = DatabaseFactory.getDraftDatabase(this)
         draftDB.insertDrafts(threadID, drafts)
+    }
+    // endregion
+
+    // region Search
+    private fun setUpSearchResultObserver() {
+        val searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+        this.searchViewModel = searchViewModel
+        searchViewModel.searchResults.observe(this, Observer { result: SearchViewModel.SearchResult? ->
+            if (result == null) return@Observer
+            if (result.getResults().isNotEmpty()) {
+                result.getResults()[result.position]?.let {
+                    jumpToMessage(it.messageRecipient.address, it.receivedTimestampMs, Runnable { searchViewModel.onMissingResult() })
+                }
+            }
+            this.searchBottomBar.setData(result.position, result.getResults().size)
+        })
+    }
+
+    fun onSearchQueryUpdated(query: String?) {
+        adapter.onSearchQueryUpdated(query)
+    }
+
+    override fun onSearchMoveUpPressed() {
+        this.searchViewModel?.onMoveUp()
+    }
+
+    override fun onSearchMoveDownPressed() {
+        this.searchViewModel?.onMoveDown()
+    }
+
+    private fun jumpToMessage(author: Address, timestamp: Long, onMessageNotFound: Runnable?) {
+        SimpleTask.run(lifecycle, {
+            DatabaseFactory.getMmsSmsDatabase(this).getMessagePositionInConversation(threadID, timestamp, author)
+        }) { p: Int -> moveToMessagePosition(p, onMessageNotFound) }
+    }
+
+    private fun moveToMessagePosition(position: Int, onMessageNotFound: Runnable?) {
+        if (position >= 0) {
+            conversationRecyclerView.scrollToPosition(position)
+        } else {
+            onMessageNotFound?.run()
+        }
     }
     // endregion
 }
