@@ -451,7 +451,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         if (thread.isClosedGroupRecipient) {
             val group = DatabaseFactory.getGroupDatabase(this).getGroup(thread.address.toGroupString()).orNull()
             val isActive = (group?.isActive == true)
-            Log.d("Test", "isActive: $isActive")
             inputBar.showInput = isActive
         } else {
             inputBar.showInput = true
