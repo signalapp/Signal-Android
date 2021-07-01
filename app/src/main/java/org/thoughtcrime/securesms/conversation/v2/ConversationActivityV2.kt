@@ -1182,11 +1182,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 }
                 message.addSignalAttachments(mmsMessageRecord.slideDeck.asAttachments())
             }
-            val sentTimestamp = message.sentTimestamp
-            val sender = MessagingModuleConfiguration.shared.storage.getUserPublicKey()
-            if (sentTimestamp != null && sender != null) {
-                MessagingModuleConfiguration.shared.storage.markAsSending(sentTimestamp, sender)
-            }
             MessageSender.send(message, recipient.address)
         }
         endActionMode()

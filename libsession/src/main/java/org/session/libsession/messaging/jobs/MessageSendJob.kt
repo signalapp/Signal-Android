@@ -36,6 +36,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
     override fun execute() {
         val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
         val message = message as? VisibleMessage
+        val storage = MessagingModuleConfiguration.shared.storage
         if (message != null) {
             if (!messageDataProvider.isOutgoingMessage(message.sentTimestamp!!)) return // The message has been deleted
             val attachmentIDs = mutableListOf<Long>()
@@ -45,7 +46,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
             val attachments = attachmentIDs.mapNotNull { messageDataProvider.getDatabaseAttachment(it) }
             val attachmentsToUpload = attachments.filter { it.url.isNullOrEmpty() }
             attachmentsToUpload.forEach {
-                if (MessagingModuleConfiguration.shared.storage.getAttachmentUploadJob(it.attachmentId.rowId) != null) {
+                if (storage.getAttachmentUploadJob(it.attachmentId.rowId) != null) {
                     // Wait for it to finish
                 } else {
                     val job = AttachmentUploadJob(it.attachmentId.rowId, message.threadID!!.toString(), message, id!!)
@@ -56,6 +57,11 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
                 this.handleFailure(AwaitingAttachmentUploadException)
                 return
             } // Wait for all attachments to upload before continuing
+        }
+        val sentTimestamp = this.message.sentTimestamp
+        val sender = storage.getUserPublicKey()
+        if (sentTimestamp != null && sender != null) {
+            storage.markAsSending(sentTimestamp, sender)
         }
         val promise = MessageSender.send(this.message, this.destination).success {
             this.handleSuccess()
