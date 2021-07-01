@@ -232,7 +232,7 @@ public final class MessageContentProcessor {
       }
 
       RecipientId              senderId     = RecipientId.fromHighTrust(content.getSender());
-      PendingRetryReceiptModel pending      = DatabaseFactory.getPendingRetryReceiptDatabase(context).get(senderId, content.getTimestamp());
+      PendingRetryReceiptModel pending      = ApplicationDependencies.getPendingRetryReceiptCache().get(senderId, content.getTimestamp());
       long                     receivedTime = handlePendingRetry(pending, content);
 
       log(String.valueOf(content.getTimestamp()), "Beginning message processing.");
@@ -350,7 +350,7 @@ public final class MessageContentProcessor {
 
       if (pending != null) {
         warn(content.getTimestamp(), "Pending retry was processed. Deleting.");
-        DatabaseFactory.getPendingRetryReceiptDatabase(context).delete(pending.getId());
+        ApplicationDependencies.getPendingRetryReceiptCache().delete(pending);
       }
     } catch (StorageFailedException e) {
       warn(String.valueOf(content.getTimestamp()), e);

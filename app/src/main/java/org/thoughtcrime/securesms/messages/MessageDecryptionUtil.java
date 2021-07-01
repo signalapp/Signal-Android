@@ -147,7 +147,7 @@ public final class MessageDecryptionUtil {
         break;
       case RESENDABLE:
         Log.w(TAG, "[" + envelope.getTimestamp() + "] Inserting into pending retries store because it's " + contentHint);
-        DatabaseFactory.getPendingRetryReceiptDatabase(context).insert(sender.getId(), senderDevice, envelope.getTimestamp(), receivedTimestamp, threadId);
+        ApplicationDependencies.getPendingRetryReceiptCache().insert(sender.getId(), senderDevice, envelope.getTimestamp(), receivedTimestamp, threadId);
         ApplicationDependencies.getPendingRetryReceiptManager().scheduleIfNecessary();
         break;
       case IMPLICIT:
