@@ -8,6 +8,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.view_conversation.view.*
@@ -73,7 +74,11 @@ class ConversationView : LinearLayout {
         statusIndicatorImageView.visibility = View.VISIBLE
         when {
             !thread.isOutgoing -> statusIndicatorImageView.visibility = View.GONE
-            thread.isFailed -> statusIndicatorImageView.setImageResource(R.drawable.ic_error)
+            thread.isFailed -> {
+                val drawable = ContextCompat.getDrawable(context, R.drawable.ic_error)?.mutate()
+                drawable?.setTint(ContextCompat.getColor(context,R.color.destructive))
+                statusIndicatorImageView.setImageDrawable(drawable)
+            }
             thread.isPending -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_dot_dot_dot)
             thread.isRead -> statusIndicatorImageView.setImageResource(R.drawable.ic_filled_circle_check)
             else -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_check)

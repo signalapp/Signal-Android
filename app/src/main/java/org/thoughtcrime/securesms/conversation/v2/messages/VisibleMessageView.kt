@@ -14,7 +14,6 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_visible_message.view.*
-import kotlinx.android.synthetic.main.view_visible_message.view.profilePictureView
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact.ContactContext
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
@@ -124,9 +123,13 @@ class VisibleMessageView : LinearLayout {
         val gravity = if (message.isOutgoing) Gravity.RIGHT else Gravity.LEFT
         mainContainer.gravity = gravity or Gravity.BOTTOM
         // Message status indicator
-        val iconID = getMessageStatusImage(message)
+        val (iconID, iconColor) = getMessageStatusImage(message)
         if (iconID != null) {
-            messageStatusImageView.setImageResource(iconID)
+            val drawable = ContextCompat.getDrawable(context, iconID)?.mutate()
+            if (iconColor != null) {
+                drawable?.setTint(iconColor)
+            }
+            messageStatusImageView.setImageDrawable(drawable)
         }
         if (message.isOutgoing) {
             val lastMessageID = DatabaseFactory.getMmsSmsDatabase(context).getLastMessageID(message.threadId)
@@ -169,13 +172,13 @@ class VisibleMessageView : LinearLayout {
         }
     }
 
-    private fun getMessageStatusImage(message: MessageRecord): Int? {
-        when {
-            !message.isOutgoing -> return null
-            message.isFailed -> return R.drawable.ic_error
-            message.isPending -> return R.drawable.ic_circle_dot_dot_dot
-            message.isRead -> return R.drawable.ic_filled_circle_check
-            else -> return R.drawable.ic_circle_check
+    private fun getMessageStatusImage(message: MessageRecord): Pair<Int?,Int?> {
+        return when {
+            !message.isOutgoing -> null to null
+            message.isFailed -> R.drawable.ic_error to resources.getColor(R.color.destructive, context.theme)
+            message.isPending -> R.drawable.ic_circle_dot_dot_dot to null
+            message.isRead -> R.drawable.ic_filled_circle_check to null
+            else -> R.drawable.ic_circle_check to null
         }
     }
 

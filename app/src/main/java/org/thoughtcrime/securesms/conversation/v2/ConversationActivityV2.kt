@@ -3,15 +3,14 @@ package org.thoughtcrime.securesms.conversation.v2
 import android.Manifest
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
-import android.content.Context
 import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.database.Cursor
 import android.graphics.Rect
 import android.graphics.Typeface
-import android.os.Bundle
 import android.net.Uri
 import android.os.*
 import android.text.TextUtils
@@ -47,13 +46,17 @@ import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.messages.control.DataExtractionNotification
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
+import org.session.libsession.messaging.messages.visible.LinkPreview.Companion.from
 import org.session.libsession.messaging.messages.visible.OpenGroupInvitation
+import org.session.libsession.messaging.messages.visible.Quote.Companion.from
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
+import org.session.libsession.messaging.utilities.UpdateMessageData
+import org.session.libsession.messaging.utilities.UpdateMessageData.Companion.fromJSON
 import org.session.libsession.utilities.Address.Companion.fromSerialized
 import org.session.libsession.utilities.MediaTypes
 import org.session.libsession.utilities.TextSecurePreferences
@@ -84,11 +87,11 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
-import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
-import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity
 import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity.Companion.selectedContactsKey
+import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities
+import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity
@@ -1034,7 +1037,48 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun resendMessage(messages: Set<MessageRecord>) {
-        // TODO: Implement
+        messages.forEach { messageRecord ->
+            val recipient: Recipient = messageRecord.recipient
+            val message = VisibleMessage()
+            message.id = messageRecord.getId()
+            if (messageRecord.isOpenGroupInvitation) {
+                val openGroupInvitation = OpenGroupInvitation()
+                fromJSON(messageRecord.body)?.let { updateMessageData ->
+                    val kind = updateMessageData.kind
+                    if (kind is UpdateMessageData.Kind.OpenGroupInvitation) {
+                        openGroupInvitation.name = kind.groupName
+                        openGroupInvitation.url = kind.groupUrl
+                    }
+                }
+                message.openGroupInvitation = openGroupInvitation
+            } else {
+                message.text = messageRecord.body
+            }
+            message.sentTimestamp = messageRecord.timestamp
+            if (recipient.isGroupRecipient) {
+                message.groupPublicKey = recipient.address.toGroupString()
+            } else {
+                message.recipient = messageRecord.recipient.address.serialize()
+            }
+            message.threadID = messageRecord.threadId
+            if (messageRecord.isMms) {
+                val mmsMessageRecord = messageRecord as MmsMessageRecord
+                if (mmsMessageRecord.linkPreviews.isNotEmpty()) {
+                    message.linkPreview = from(mmsMessageRecord.linkPreviews[0])
+                }
+                if (mmsMessageRecord.quote != null) {
+                    message.quote = from(mmsMessageRecord.quote!!.quoteModel)
+                }
+                message.addSignalAttachments(mmsMessageRecord.slideDeck.asAttachments())
+            }
+            val sentTimestamp = message.sentTimestamp
+            val sender = MessagingModuleConfiguration.shared.storage.getUserPublicKey()
+            if (sentTimestamp != null && sender != null) {
+                MessagingModuleConfiguration.shared.storage.markAsSending(sentTimestamp, sender)
+            }
+            MessageSender.send(message, recipient.address)
+        }
+        endActionMode()
     }
 
     override fun saveAttachment(messages: Set<MessageRecord>) {
