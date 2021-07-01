@@ -115,7 +115,7 @@ class AlbumThumbnailView : FrameLayout {
         // iterate binding
         slides.take(5).forEachIndexed { position, slide ->
             val thumbnailView = getThumbnailView(position)
-            thumbnailView.setImageResource(glideRequests, slide, isPreview = false)
+            thumbnailView.setImageResource(glideRequests, slide, isPreview = false, mms = message)
         }
         albumCellBodyParent.isVisible = message.body.isNotEmpty()
         albumCellBodyText.text = message.body

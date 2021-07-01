@@ -21,9 +21,9 @@ import org.session.libsignal.utilities.ListenableFuture
 import org.session.libsignal.utilities.SettableFuture
 import org.thoughtcrime.securesms.components.GlideBitmapListeningTarget
 import org.thoughtcrime.securesms.components.GlideDrawableListeningTarget
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mms.*
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
-import org.thoughtcrime.securesms.util.MediaUtil
 
 open class KThumbnailView: FrameLayout {
 
@@ -42,8 +42,6 @@ open class KThumbnailView: FrameLayout {
     val loadIndicator: View by lazy { thumbnail_load_indicator }
 
     private val dimensDelegate = ThumbnailDimensDelegate()
-
-    var thumbnailClickListener: SlideClickListener? = null
 
     private var slide: Slide? = null
     private var radius: Int = 0
@@ -84,13 +82,13 @@ open class KThumbnailView: FrameLayout {
     // endregion
 
     // region Interaction
-    fun setImageResource(glide: GlideRequests, slide: Slide, isPreview: Boolean): ListenableFuture<Boolean> {
-        return setImageResource(glide, slide, isPreview, 0, 0)
+    fun setImageResource(glide: GlideRequests, slide: Slide, isPreview: Boolean, mms: MmsMessageRecord): ListenableFuture<Boolean> {
+        return setImageResource(glide, slide, isPreview, 0, 0, mms)
     }
 
     fun setImageResource(glide: GlideRequests, slide: Slide,
                          isPreview: Boolean, naturalWidth: Int,
-                         naturalHeight: Int): ListenableFuture<Boolean> {
+                         naturalHeight: Int, mms: MmsMessageRecord): ListenableFuture<Boolean> {
 
         val currentSlide = this.slide
 
@@ -110,7 +108,7 @@ open class KThumbnailView: FrameLayout {
 
         this.slide = slide
 
-        loadIndicator.isVisible = slide.isInProgress
+        loadIndicator.isVisible = slide.isInProgress && !mms.isFailed
 
         dimensDelegate.setDimens(naturalWidth, naturalHeight)
         invalidate()
