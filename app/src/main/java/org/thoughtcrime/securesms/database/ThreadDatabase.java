@@ -582,7 +582,7 @@ public class ThreadDatabase extends Database {
   }
 
   private @Nullable Uri getAttachmentUriFor(MessageRecord record) {
-    if (!record.isMms() || record.isMmsNotification() || record.isGroupAction()) return null;
+    if (!record.isMms() || record.isMmsNotification()) return null;
 
     SlideDeck slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
     Slide     thumbnail = slideDeck.getThumbnailSlide();

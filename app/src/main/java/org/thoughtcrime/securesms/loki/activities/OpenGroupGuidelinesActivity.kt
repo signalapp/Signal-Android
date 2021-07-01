@@ -7,7 +7,6 @@ import org.thoughtcrime.securesms.BaseActionBarActivity
 
 class OpenGroupGuidelinesActivity : BaseActionBarActivity() {
 
-    // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_open_group_guidelines)
@@ -49,5 +48,4 @@ class OpenGroupGuidelinesActivity : BaseActionBarActivity() {
         Trust only those with an admin crown in chat. No admin will ever DM you first. No admin will ever message you for Oxen coins.
         """.trimIndent()
     }
-    // endregion
 }

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.thoughtcrime.securesms.conversation.v2.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,17 +13,13 @@ import android.widget.LinearLayout;
 import network.loki.messenger.R;
 
 public class TypingIndicatorView extends LinearLayout {
+  private boolean isActive;
+  private long    startTime;
 
-  private static final long DURATION   = 300;
-  private static final long PRE_DELAY  = 500;
-  private static final long POST_DELAY = 500;
   private static final long  CYCLE_DURATION = 1500;
   private static final long  DOT_DURATION   = 600;
   private static final float MIN_ALPHA      = 0.4f;
   private static final float MIN_SCALE      = 0.75f;
-
-  private boolean isActive;
-  private long    startTime;
 
   private View dot1;
   private View dot2;
@@ -40,7 +36,7 @@ public class TypingIndicatorView extends LinearLayout {
   }
 
   private void initialize(@Nullable AttributeSet attrs) {
-    inflate(getContext(), R.layout.typing_indicator_view, this);
+    inflate(getContext(), R.layout.view_typing_indicator, this);
 
     setWillNotDraw(false);
 

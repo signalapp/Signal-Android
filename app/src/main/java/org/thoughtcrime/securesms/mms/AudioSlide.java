@@ -31,7 +31,6 @@ import org.session.libsession.utilities.MediaTypes;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.util.ResUtil;
 
-
 public class AudioSlide extends Slide {
 
   public AudioSlide(Context context, Uri uri, long dataSize, boolean voiceNote) {

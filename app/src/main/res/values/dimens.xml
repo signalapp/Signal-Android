@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Session -->
-
     <!-- Font Sizes -->
     <dimen name="very_small_font_size">12sp</dimen>
     <dimen name="small_font_size">15sp</dimen>
@@ -38,6 +36,9 @@
     <dimen name="path_row_height">56dp</dimen>
     <dimen name="path_row_dot_size">8dp</dimen>
     <dimen name="path_row_expanded_dot_size">16dp</dimen>
+    <dimen name="input_bar_height">56dp</dimen>
+    <dimen name="input_bar_button_collapsed_size">40dp</dimen>
+    <dimen name="input_bar_button_expanded_size">48dp</dimen>
 
     <!-- Distances -->
     <dimen name="small_spacing">8dp</dimen>
@@ -47,8 +48,6 @@
     <dimen name="massive_spacing">64dp</dimen>
     <dimen name="new_conversation_button_bottom_offset">56dp</dimen>
     <dimen name="onboarding_button_bottom_offset">40dp</dimen>
-
-    <!-- Session -->
 
     <dimen name="emoji_drawer_size">32sp</dimen>
     <dimen name="min_keyboard_size">50dp</dimen>
@@ -72,7 +71,7 @@
     <dimen name="album_5_cell_size_big">104dp</dimen>
     <dimen name="album_5_cell_size_small">69dp</dimen>
 
-    <dimen name="message_corner_radius">10dp</dimen>
+    <dimen name="message_corner_radius">18dp</dimen>
     <dimen name="message_corner_collapse_radius">4dp</dimen>
     <dimen name="message_bubble_corner_radius">2dp</dimen>
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>

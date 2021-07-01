@@ -26,7 +26,7 @@
             android:textAllCaps="true"
             tools:text="30 mins"/>
 
-        <org.thoughtcrime.securesms.components.ExpirationTimerView
+        <org.thoughtcrime.securesms.conversation.v2.components.ExpirationTimerView
             android:id="@+id/footer_expiration_timer"
             android:layout_gravity="center_vertical|end"
             android:layout_marginStart="6dp"

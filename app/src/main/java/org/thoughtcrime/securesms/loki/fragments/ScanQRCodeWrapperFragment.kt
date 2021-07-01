@@ -31,7 +31,7 @@ class ScanQRCodeWrapperFragment : Fragment(), ScanQRCodePlaceholderFragmentDeleg
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         super.setUserVisibleHint(isVisibleToUser)
-         enabled = isVisibleToUser
+        enabled = isVisibleToUser
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -87,5 +87,6 @@ class ScanQRCodeWrapperFragment : Fragment(), ScanQRCodePlaceholderFragmentDeleg
 }
 
 interface ScanQRCodeWrapperFragmentDelegate {
+
     fun handleQRCodeScanned(string: String)
 }

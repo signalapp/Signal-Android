@@ -54,7 +54,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted">imefeli kutuma, gusa kwa isiyo salama ili kuanguka nyuma</string>
     <string name="ConversationItem_unable_to_open_media">Haiwezi kupata programu inayoweza kufungua media hii.</string>
     <string name="ConversationItem_copied_text">nakala 1%s</string>
-    <string name="ConversationItem_read_more">&#160; Read More</string>
+    <string name="ConversationItem_read_more">Read More</string>
     <string name="ConversationItem_download_more">&#160; Download More</string>
     <string name="ConversationItem_pending">&#160; Pending</string>
     <!-- ConversationActivity -->

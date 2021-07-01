@@ -1,24 +1,26 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import androidx.annotation.ColorInt;
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import network.loki.messenger.R;
-import org.thoughtcrime.securesms.mms.GlideRequests;
+import androidx.annotation.ColorInt;
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import org.session.libsession.utilities.Stub;
+import org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
-import org.session.libsession.utilities.Stub;
 
 import java.util.List;
+
+import network.loki.messenger.R;
 
 public class AlbumThumbnailView extends FrameLayout {
 
@@ -51,8 +53,8 @@ public class AlbumThumbnailView extends FrameLayout {
   private void initialize() {
     inflate(getContext(), R.layout.album_thumbnail_view, this);
 
-    albumCellContainer = findViewById(R.id.album_cell_container);
-    transferControls   = new Stub<>(findViewById(R.id.album_transfer_controls_stub));
+    albumCellContainer = findViewById(R.id.albumCellContainer);
+    transferControls   = new Stub<>(findViewById(R.id.albumTransferControlsStub));
   }
 
   public void setSlides(@NonNull GlideRequests glideRequests, @NonNull List<Slide> slides, boolean showControls) {
@@ -147,10 +149,5 @@ public class AlbumThumbnailView extends FrameLayout {
   }
 
   private void setSlide(@NonNull GlideRequests glideRequests, @NonNull Slide slide, @IdRes int id) {
-    ThumbnailView cell = findViewById(id);
-    cell.setImageResource(glideRequests, slide, false, false);
-    cell.setLoadIndicatorVisibile(slide.isInProgress());
-    cell.setThumbnailClickListener(defaultThumbnailClickListener);
-    cell.setOnLongClickListener(defaultLongClickListener);
   }
 }

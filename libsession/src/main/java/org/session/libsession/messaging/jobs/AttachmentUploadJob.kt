@@ -122,7 +122,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     private fun handleFailure(e: Exception) {
         Log.w(TAG, "Attachment upload failed due to error: $this.")
         delegate?.handleJobFailed(this, e)
-        if (failureCount + 1 == maxFailureCount) {
+        if (failureCount + 1 >= maxFailureCount) {
             failAssociatedMessageSendJob(e)
         }
     }

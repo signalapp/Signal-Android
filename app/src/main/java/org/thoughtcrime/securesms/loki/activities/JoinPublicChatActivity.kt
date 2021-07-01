@@ -33,6 +33,7 @@ import org.session.libsignal.utilities.PublicKeyValidation
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.api.OpenGroupManager
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
@@ -40,6 +41,7 @@ import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelega
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.viewmodel.DefaultGroupsViewModel
 import org.thoughtcrime.securesms.loki.viewmodel.State
+import java.util.*
 
 class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = JoinPublicChatActivityAdapter(this)
@@ -126,10 +128,10 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
 
     // region Convenience
     private fun openConversationActivity(context: Context, threadId: Long, recipient: Recipient) {
-        val intent = Intent(context, ConversationActivity::class.java)
-        intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId)
+        val intent = Intent(context, ConversationActivityV2::class.java)
+        intent.putExtra(ConversationActivityV2.THREAD_ID, threadId)
         intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, DistributionTypes.DEFAULT)
-        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
+        intent.putExtra(ConversationActivityV2.ADDRESS, recipient.address)
         context.startActivity(intent)
     }
     // endregion
@@ -179,6 +181,7 @@ class EnterChatURLFragment : Fragment() {
         joinPublicChatButton.setOnClickListener { joinPublicChatIfPossible() }
         viewModel.defaultRooms.observe(viewLifecycleOwner) { state ->
             defaultRoomsContainer.isVisible = state is State.Success
+            defaultRoomsLoaderContainer.isVisible = state is State.Loading
             defaultRoomsLoader.isVisible = state is State.Loading
             when (state) {
                 State.Loading -> {
@@ -210,7 +213,6 @@ class EnterChatURLFragment : Fragment() {
             chip.setOnClickListener {
                 (requireActivity() as JoinPublicChatActivity).joinPublicChatIfPossible(defaultGroup.joinURL)
             }
-
             defaultRoomsGridLayout.addView(chip)
         }
         if ((groups.size and 1) != 0) { // This checks that the number of rooms is even
@@ -222,7 +224,7 @@ class EnterChatURLFragment : Fragment() {
     private fun joinPublicChatIfPossible() {
         val inputMethodManager = requireContext().getSystemService(BaseActionBarActivity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(chatURLEditText.windowToken, 0)
-        val chatURL = chatURLEditText.text.trim().toString().toLowerCase()
+        val chatURL = chatURLEditText.text.trim().toString().toLowerCase(Locale.US)
         (requireActivity() as JoinPublicChatActivity).joinPublicChatIfPossible(chatURL)
     }
     // endregion

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="@string/ConversationActivity_invite_to_open_group"
+        android:id="@+id/menu_invite_to_open_group" />
+
+</menu>

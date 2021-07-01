@@ -11,7 +11,6 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
@@ -19,9 +18,7 @@ import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsignal.utilities.guava.Optional;
 
-
 public class EmojiTextView extends AppCompatTextView {
-
   private final boolean scaleEmojis;
 
   private static final char ELLIPSIS = '…';
@@ -46,14 +43,9 @@ public class EmojiTextView extends AppCompatTextView {
   public EmojiTextView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
 
-    TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.EmojiTextView, 0, 0);
-    scaleEmojis = a.getBoolean(R.styleable.EmojiTextView_scaleEmojis, false);
-    maxLength   = a.getInteger(R.styleable.EmojiTextView_emoji_maxLength, -1);
-    a.recycle();
-
-    a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.textSize});
-    originalFontSize = a.getDimensionPixelSize(0, 0);
-    a.recycle();
+    scaleEmojis = true;
+    maxLength   = 1000;
+    originalFontSize = getResources().getDimension(R.dimen.small_font_size);
   }
 
   @Override public void setText(@Nullable CharSequence text, BufferType type) {
@@ -182,8 +174,11 @@ public class EmojiTextView extends AppCompatTextView {
 
   @Override
   public void invalidateDrawable(@NonNull Drawable drawable) {
-    if (drawable instanceof EmojiDrawable) invalidate();
-    else                                   super.invalidateDrawable(drawable);
+    if (drawable instanceof EmojiDrawable) {
+      invalidate();
+    } else {
+      super.invalidateDrawable(drawable);
+    }
   }
 
   @Override

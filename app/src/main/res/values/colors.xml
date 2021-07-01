@@ -1,7 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-
-    <!-- Session -->
     <color name="accent">#00F782</color>
     <color name="accent_alpha50">#8000F782</color>
     <color name="text">#FFFFFF</color>
@@ -28,6 +26,19 @@
     <color name="pn_option_border">#212121</color>
     <color name="paths_building">#FFCE3A</color>
     <color name="open_group_chip_color">#0DFFFFFF</color>
+    <color name="message_selected">#000000</color>
+    <color name="input_bar_background">#171717</color>
+    <color name="input_bar_button_background">#0DFFFFFF</color>
+    <color name="input_bar_button_background_opaque">#232323</color>
+    <color name="input_bar_button_background_opaque_border">#33FFFFFF</color>
+    <color name="input_bar_lock_view_background">#171717</color>
+    <color name="input_bar_lock_view_border">#66FFFFFF</color>
+    <color name="mention_candidates_view_background">#171717</color>
+    <color name="mention_candidates_view_background_ripple">#0C0C0C</color>
+    <color name="link_preview_background">#000000</color>
+    <color name="scroll_to_bottom_button_background">#171717</color>
+    <color name="scroll_to_bottom_button_border">#99FFFFFF</color>
+    <color name="conversation_unread_count_indicator_background">#303030</color>
 
     <array name="profile_picture_placeholder_colors">
         <item>#5ff8b0</item>
@@ -35,11 +46,8 @@
         <item>#f3c615</item>
         <item>#fcac5a</item>
     </array>
-    <!-- Session -->
 
-    <!-- Loki -->
     <color name="loki_darkest_gray">#0a0a0a</color>
-    <!-- Loki -->
 
     <color name="signal_primary">@color/accent</color>
     <color name="signal_primary_dark">@color/accent</color>
@@ -85,5 +93,4 @@
 
     <color name="default_background_start">#121212</color>
     <color name="default_background_end">#171717</color>
-
 </resources>

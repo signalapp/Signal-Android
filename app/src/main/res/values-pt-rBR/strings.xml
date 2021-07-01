@@ -54,7 +54,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted">Falha no envio, toque para fallback inseguro</string>
     <string name="ConversationItem_unable_to_open_media">Não é possível encontrar um app para abrir esta mídia.</string>
     <string name="ConversationItem_copied_text">Copiou %s</string>
-    <string name="ConversationItem_read_more">&#160; Ler Mais</string>
+    <string name="ConversationItem_read_more">Ler Mais</string>
     <string name="ConversationItem_download_more">&#160; Fazer Download de Mais</string>
     <string name="ConversationItem_pending">&#160; Pendendo</string>
     <!-- ConversationActivity -->

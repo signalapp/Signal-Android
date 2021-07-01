@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.util.AttributeSet;
@@ -15,17 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.session.libsession.messaging.sending_receiving.data_extraction.DataExtractionNotificationInfoMessage;
+import org.session.libsession.utilities.ExpirationUtil;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.RecipientModifiedListener;
+import org.session.libsignal.utilities.guava.Optional;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.session.libsignal.utilities.guava.Optional;
-
-import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsession.utilities.recipients.RecipientModifiedListener;
-import org.session.libsession.utilities.ExpirationUtil;
-import org.session.libsession.utilities.Util;
 
 import java.util.Locale;
 import java.util.Set;
@@ -101,18 +99,10 @@ public class ConversationUpdateItem extends LinearLayout
 
     this.sender.addListener(this);
 
-    if      (messageRecord.isGroupAction())            setGroupRecord(messageRecord);
-    else if (messageRecord.isCallLog())                setCallRecord(messageRecord);
-    else if (messageRecord.isJoined())                 setJoinedRecord(messageRecord);
+    if (messageRecord.isCallLog())                setCallRecord(messageRecord);
     else if (messageRecord.isExpirationTimerUpdate())  setTimerRecord(messageRecord);
-    else if (messageRecord.isScreenshotExtraction())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.SCREENSHOT);
-    else if (messageRecord.isMediaSavedExtraction())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED);
-    else if (messageRecord.isEndSession())             setEndSessionRecord(messageRecord);
-    else if (messageRecord.isIdentityUpdate())         setIdentityRecord(messageRecord);
-    else if (messageRecord.isIdentityVerified() ||
-             messageRecord.isIdentityDefault())        setIdentityVerifyUpdate(messageRecord);
-    else if (messageRecord.isLokiSessionRestoreSent()) setTextMessageRecord(messageRecord);
-    else if (messageRecord.isLokiSessionRestoreDone()) setTextMessageRecord(messageRecord);
+    else if (messageRecord.isScreenshotNotification())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.SCREENSHOT);
+    else if (messageRecord.isMediaSavedNotification())   setDataExtractionRecord(messageRecord, DataExtractionNotificationInfoMessage.Kind.MEDIA_SAVED);
     else                                               throw new AssertionError("Neither group nor log nor joined.");
 
     if (batchSelected.contains(messageRecord)) setSelected(true);
@@ -166,58 +156,6 @@ public class ConversationUpdateItem extends LinearLayout
     date.setVisibility(GONE);
   }
 
-  private void setIdentityRecord(final MessageRecord messageRecord) {
-    icon.setImageResource(R.drawable.ic_security_white_24dp);
-    icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
-    body.setText(messageRecord.getDisplayBody(getContext()));
-
-    title.setVisibility(GONE);
-    body.setVisibility(VISIBLE);
-    date.setVisibility(GONE);
-  }
-
-  private void setIdentityVerifyUpdate(final MessageRecord messageRecord) {
-    if (messageRecord.isIdentityVerified()) icon.setImageResource(R.drawable.ic_check_white_24dp);
-    else                                    icon.setImageResource(R.drawable.ic_info_outline_white_24dp);
-
-    icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
-    body.setText(messageRecord.getDisplayBody(getContext()));
-
-    title.setVisibility(GONE);
-    body.setVisibility(VISIBLE);
-    date.setVisibility(GONE);
-  }
-
-  private void setGroupRecord(MessageRecord messageRecord) {
-    icon.setImageResource(R.drawable.ic_group_grey600_24dp);
-    icon.clearColorFilter();
-    body.setText(messageRecord.getDisplayBody(getContext()));
-
-    title.setVisibility(GONE);
-    body.setVisibility(VISIBLE);
-    date.setVisibility(GONE);
-  }
-
-  private void setJoinedRecord(MessageRecord messageRecord) {
-    icon.setImageResource(R.drawable.ic_favorite_grey600_24dp);
-    icon.clearColorFilter();
-    body.setText(messageRecord.getDisplayBody(getContext()));
-
-    title.setVisibility(GONE);
-    body.setVisibility(VISIBLE);
-    date.setVisibility(GONE);
-  }
-
-  private void setEndSessionRecord(MessageRecord messageRecord) {
-    icon.setImageResource(R.drawable.ic_refresh_white_24dp);
-    icon.setColorFilter(new PorterDuffColorFilter(Color.parseColor("#757575"), PorterDuff.Mode.MULTIPLY));
-    body.setText(messageRecord.getDisplayBody(getContext()));
-
-    title.setVisibility(GONE);
-    body.setVisibility(VISIBLE);
-    date.setVisibility(GONE);
-  }
-
   private  void setTextMessageRecord(MessageRecord messageRecord) {
     body.setText(messageRecord.getDisplayBody(getContext()));
 
@@ -254,36 +192,7 @@ public class ConversationUpdateItem extends LinearLayout
 
     @Override
     public void onClick(View v) {
-      if ((!messageRecord.isIdentityUpdate()  &&
-           !messageRecord.isIdentityDefault() &&
-           !messageRecord.isIdentityVerified()) ||
-          !batchSelected.isEmpty())
-      {
-        if (parent != null) parent.onClick(v);
-        return;
-      }
 
-      final Recipient sender = ConversationUpdateItem.this.sender;
-
-//      IdentityUtil.getRemoteIdentityKey(getContext(), sender).addListener(new ListenableFuture.Listener<Optional<IdentityRecord>>() {
-//        @Override
-//        public void onSuccess(Optional<IdentityRecord> result) {
-//          if (result.isPresent()) {
-//            Intent intent = new Intent(getContext(), VerifyIdentityActivity.class);
-//            intent.putExtra(VerifyIdentityActivity.ADDRESS_EXTRA, sender.getAddress());
-//            intent.putExtra(VerifyIdentityActivity.IDENTITY_EXTRA, new IdentityKeyParcelable(result.get().getIdentityKey()));
-//            intent.putExtra(VerifyIdentityActivity.VERIFIED_EXTRA, result.get().getVerifiedStatus() == IdentityDatabase.VerifiedStatus.VERIFIED);
-//
-//            getContext().startActivity(intent);
-//          }
-//        }
-//
-//        @Override
-//        public void onFailure(ExecutionException e) {
-//          Log.w(TAG, e);
-//        }
-//      });
     }
   }
-
 }

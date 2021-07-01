@@ -23,6 +23,7 @@ import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.audio.AudioAttributes;
@@ -103,9 +104,9 @@ public class AudioSlidePlayer implements SensorEventListener {
   }
 
   private void play(final double progress, boolean earpiece) throws IOException {
-    if (this.mediaPlayer != null) return;
+    if (this.mediaPlayer != null) { stop(); }
 
-    LoadControl loadControl = new DefaultLoadControl.Builder().setBufferDurationsMs(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE).createDefaultLoadControl();
+    LoadControl loadControl    = new DefaultLoadControl.Builder().setBufferDurationsMs(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE).createDefaultLoadControl();
     this.mediaPlayer           = ExoPlayerFactory.newSimpleInstance(context, new DefaultRenderersFactory(context), new DefaultTrackSelector(), loadControl);
     this.audioAttachmentServer = new AttachmentServer(context, slide.asAttachment());
     this.startTime             = System.currentTimeMillis();
@@ -183,8 +184,6 @@ public class AudioSlidePlayer implements SensorEventListener {
       @Override
       public void onPlayerError(ExoPlaybackException error) {
         Log.w(TAG, "MediaPlayer Error: " + error);
-
-        Toast.makeText(context, R.string.AudioSlidePlayer_error_playing_audio, Toast.LENGTH_SHORT).show();
 
         synchronized (AudioSlidePlayer.this) {
           mediaPlayer = null;
@@ -267,14 +266,33 @@ public class AudioSlidePlayer implements SensorEventListener {
     return slide;
   }
 
+  public Long getDuration() {
+    if (mediaPlayer == null) { return 0L; }
+    return mediaPlayer.getDuration();
+  }
 
-  private Pair<Double, Integer> getProgress() {
+  public Double getProgress() {
+    if (mediaPlayer == null) { return 0.0; }
+    return (double) mediaPlayer.getCurrentPosition() / (double) mediaPlayer.getDuration();
+  }
+
+  private Pair<Double, Integer> getProgressTuple() {
     if (mediaPlayer == null || mediaPlayer.getCurrentPosition() <= 0 || mediaPlayer.getDuration() <= 0) {
       return new Pair<>(0D, 0);
     } else {
       return new Pair<>((double) mediaPlayer.getCurrentPosition() / (double) mediaPlayer.getDuration(),
                         (int) mediaPlayer.getCurrentPosition());
     }
+  }
+
+  public float getPlaybackSpeed() {
+    if (mediaPlayer == null) { return 1.0f; }
+    return mediaPlayer.getPlaybackParameters().speed;
+  }
+
+  public void setPlaybackSpeed(float speed) {
+    if (mediaPlayer == null) { return; }
+    mediaPlayer.setPlaybackParameters(new PlaybackParameters(speed));
   }
 
   private void notifyOnStart() {
@@ -383,7 +401,7 @@ public class AudioSlidePlayer implements SensorEventListener {
         return;
       }
 
-      Pair<Double, Integer> progress = player.getProgress();
+      Pair<Double, Integer> progress = player.getProgressTuple();
       player.notifyOnProgress(progress.first, progress.second);
       sendEmptyMessageDelayed(0, 50);
     }

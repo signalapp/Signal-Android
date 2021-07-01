@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 
 import org.session.libsession.utilities.ThemeUtil;
+import org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView;
 
 import network.loki.messenger.R;
 
@@ -28,7 +29,6 @@ public class OutlinedThumbnailView extends ThumbnailView {
     outliner   = new Outliner();
 
     outliner.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.conversation_item_image_outline_color));
-    setRadius(0);
     setWillNotDraw(false);
   }
 

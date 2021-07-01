@@ -351,10 +351,7 @@ public class ConversationFragment extends Fragment
     }
 
     for (MessageRecord messageRecord : messageRecords) {
-      if (messageRecord.isGroupAction() || messageRecord.isCallLog() ||
-          messageRecord.isJoined() || messageRecord.isExpirationTimerUpdate() ||
-          messageRecord.isEndSession() || messageRecord.isIdentityUpdate() ||
-          messageRecord.isIdentityVerified() || messageRecord.isIdentityDefault() || messageRecord.isLokiSessionRestoreSent() || messageRecord.isLokiSessionRestoreDone())
+      if (messageRecord.isCallLog() || messageRecord.isExpirationTimerUpdate())
       {
         actionMessage = true;
       }
@@ -385,8 +382,7 @@ public class ConversationFragment extends Fragment
 
       menu.findItem(R.id.menu_context_reply).setVisible(!actionMessage             &&
                                                         !messageRecord.isPending() &&
-                                                        !messageRecord.isFailed()  &&
-                                                        messageRecord.isSecure());
+                                                        !messageRecord.isFailed());
     }
 
     menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && hasText);
@@ -626,7 +622,7 @@ public class ConversationFragment extends Fragment
     intent.putExtra(MessageDetailsActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(MessageDetailsActivity.TYPE_EXTRA, message.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
     intent.putExtra(MessageDetailsActivity.ADDRESS_EXTRA, recipient.getAddress());
-    intent.putExtra(MessageDetailsActivity.IS_PUSH_GROUP_EXTRA, recipient.isGroupRecipient() && message.isPush());
+    intent.putExtra(MessageDetailsActivity.IS_PUSH_GROUP_EXTRA, recipient.isGroupRecipient());
     startActivity(intent);
   }
 

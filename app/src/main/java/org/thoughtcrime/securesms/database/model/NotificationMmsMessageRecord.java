@@ -17,19 +17,17 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.text.SpannableString;
-
-import network.loki.messenger.R;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase.Status;
+import androidx.annotation.NonNull;
 import org.session.libsession.utilities.IdentityKeyMismatch;
 import org.session.libsession.utilities.NetworkFailure;
-import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.session.libsession.utilities.recipients.Recipient;
-
+import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase.Status;
+import org.thoughtcrime.securesms.mms.SlideDeck;
 import java.util.Collections;
 import java.util.LinkedList;
+import network.loki.messenger.R;
 
 /**
  * Represents the message record model for MMS messages that are
@@ -40,7 +38,6 @@ import java.util.LinkedList;
  */
 
 public class NotificationMmsMessageRecord extends MmsMessageRecord {
-
   private final byte[] contentLocation;
   private final long   messageSize;
   private final long   expiry;
@@ -48,16 +45,16 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
   private final byte[] transactionId;
 
   public NotificationMmsMessageRecord(long id, Recipient conversationRecipient,
-                                      Recipient individualRecipient, int recipientDeviceId,
-                                      long dateSent, long dateReceived, int deliveryReceiptCount,
-                                      long threadId, byte[] contentLocation, long messageSize,
-                                      long expiry, int status, byte[] transactionId, long mailbox,
-                                      int subscriptionId, SlideDeck slideDeck, int readReceiptCount)
+    Recipient individualRecipient,
+    long dateSent, long dateReceived, int deliveryReceiptCount,
+    long threadId, byte[] contentLocation, long messageSize,
+    long expiry, int status, byte[] transactionId, long mailbox,
+    SlideDeck slideDeck, int readReceiptCount)
   {
-    super(id, "", conversationRecipient, individualRecipient, recipientDeviceId,
-          dateSent, dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox,
-          new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>(), subscriptionId,
-          0, 0, slideDeck, readReceiptCount, null, Collections.emptyList(), Collections.emptyList(), false);
+    super(id, "", conversationRecipient, individualRecipient,
+      dateSent, dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox,
+      new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>(),
+      0, 0, slideDeck, readReceiptCount, null, Collections.emptyList(), Collections.emptyList(), false);
 
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;
@@ -69,30 +66,21 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
   public byte[] getTransactionId() {
     return transactionId;
   }
-
   public int getStatus() {
     return this.status;
   }
-
   public byte[] getContentLocation() {
     return contentLocation;
   }
-
   public long getMessageSize() {
     return (messageSize + 1023) / 1024;
   }
-
   public long getExpiration() {
     return expiry * 1000;
   }
 
   @Override
   public boolean isOutgoing() {
-    return false;
-  }
-
-  @Override
-  public boolean isSecure() {
     return false;
   }
 

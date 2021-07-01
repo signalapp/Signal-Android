@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="12dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <RelativeLayout
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/circle_tintable"
+        android:backgroundTint="@color/accent">
+
+        <ImageView
+            android:id="@+id/openGroupInvitationIconImageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_plus"
+            android:layout_centerInParent="true"
+            app:tint="@color/white" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:paddingEnd="2dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/openGroupTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Lokinet"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="@dimen/large_font_size" />
+
+        <TextView
+            android:id="@+id/openGroupJoinMessageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/open_group_invitation_view__open_group_invitation"
+            android:textColor="@color/black"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="@dimen/small_font_size" />
+
+        <TextView
+            android:id="@+id/openGroupURLTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="http://117.204.71.34"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/black"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="@dimen/very_small_font_size" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainVoiceMessageViewContainer"
+    android:layout_width="160dp"
+    android:layout_height="36dp">
+
+    <View
+        android:id="@+id/progressView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:background="@color/black"
+        android:alpha="0.2" />
+
+    <View
+        android:layout_width="84dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="28dp"
+        android:layout_centerVertical="true"
+        android:background="@color/white" />
+
+    <RelativeLayout
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/white">
+
+            <ImageView
+                android:id="@+id/voiceMessagePlaybackImageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/exo_icon_play"
+                android:layout_centerInParent="true"
+                app:tint="@color/black" />
+
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/voiceMessageViewLoader"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/white" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/voiceMessageViewDurationTextView"
+        android:layout_width="40dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/small_spacing"
+        android:gravity="center"
+        android:text="0:08"
+        android:textColor="@color/black"
+        android:textSize="@dimen/small_font_size"
+        android:background="@drawable/view_voice_message_duration_text_view_background"
+        android:backgroundTint="@color/white" />
+
+</RelativeLayout>

@@ -103,7 +103,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
           TextSecurePreferences.setScreenLockTimeout(getContext(), 0);
         } else {
           long timeoutSeconds = TimeUnit.MILLISECONDS.toSeconds(duration);
-//          long timeoutSeconds = Math.max(TimeUnit.MILLISECONDS.toSeconds(duration), 60);
           TextSecurePreferences.setScreenLockTimeout(getContext(), timeoutSeconds);
         }
 
@@ -117,7 +116,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   private class ReadReceiptToggleListener implements Preference.OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-      boolean enabled = (boolean)newValue;
       return true;
     }
   }
@@ -138,21 +136,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   private class LinkPreviewToggleListener implements Preference.OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-      boolean enabled = (boolean)newValue;
-
-      if (enabled) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setTitle("Enable Link Previews?");
-        builder.setMessage("You will not have full metadata protection when sending or receiving link previews.");
-        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
-        builder.setNegativeButton("Cancel", (dialog, which) -> {
-          TextSecurePreferences.setLinkPreviewsEnabled(requireContext(), false);
-          ((SwitchPreferenceCompat)AppProtectionPreferenceFragment.this.findPreference(TextSecurePreferences.LINK_PREVIEWS)).setChecked(false);
-          dialog.dismiss();
-        });
-        builder.create().show();
-      }
-
       return true;
     }
   }

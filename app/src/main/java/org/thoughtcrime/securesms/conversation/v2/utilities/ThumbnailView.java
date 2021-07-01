@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.thoughtcrime.securesms.conversation.v2.utilities;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -24,6 +24,9 @@ import com.bumptech.glide.request.RequestOptions;
 
 import network.loki.messenger.R;
 
+import org.thoughtcrime.securesms.components.GlideBitmapListeningTarget;
+import org.thoughtcrime.securesms.components.GlideDrawableListeningTarget;
+import org.thoughtcrime.securesms.components.TransferControlView;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -54,7 +57,6 @@ public class ThumbnailView extends FrameLayout {
 
   private ImageView       image;
   private View            playOverlay;
-  private View            captionIcon;
   private View            loadIndicator;
   private OnClickListener parentClickListener;
 
@@ -67,7 +69,7 @@ public class ThumbnailView extends FrameLayout {
   private SlidesClickedListener         downloadClickListener  = null;
   private Slide                         slide                  = null;
 
-  private int radius;
+  public int radius;
 
   public ThumbnailView(Context context) {
     this(context, null);
@@ -84,7 +86,6 @@ public class ThumbnailView extends FrameLayout {
 
     this.image          = findViewById(R.id.thumbnail_image);
     this.playOverlay    = findViewById(R.id.play_overlay);
-    this.captionIcon    = findViewById(R.id.thumbnail_caption_icon);
     this.loadIndicator  = findViewById(R.id.thumbnail_load_indicator);
     super.setOnClickListener(new ThumbnailClickDispatcher());
 
@@ -94,10 +95,10 @@ public class ThumbnailView extends FrameLayout {
       bounds[MAX_WIDTH]  = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxWidth, 0);
       bounds[MIN_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_minHeight, 0);
       bounds[MAX_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxHeight, 0);
-      radius             = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_thumbnail_radius, getResources().getDimensionPixelSize(R.dimen.thumbnail_default_radius));
+      radius = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_thumbnail_radius, 0);
       typedArray.recycle();
     } else {
-      radius = getResources().getDimensionPixelSize(R.dimen.message_corner_collapse_radius);
+      radius = 0;
     }
   }
 
@@ -275,8 +276,6 @@ public class ThumbnailView extends FrameLayout {
 
     this.slide = slide;
 
-    this.captionIcon.setVisibility(slide.getCaption().isPresent() ? VISIBLE : GONE);
-
     dimens[WIDTH]  = naturalWidth;
     dimens[HEIGHT] = naturalHeight;
     invalidate();
@@ -398,6 +397,7 @@ public class ThumbnailView extends FrameLayout {
   }
 
   private class ThumbnailClickDispatcher implements View.OnClickListener {
+
     @Override
     public void onClick(View view) {
       if (thumbnailClickListener            != null &&
@@ -413,9 +413,9 @@ public class ThumbnailView extends FrameLayout {
   }
 
   private class DownloadClickDispatcher implements View.OnClickListener {
+
     @Override
     public void onClick(View view) {
-      Log.i(TAG, "onClick() for download button");
       if (downloadClickListener != null && slide != null) {
         downloadClickListener.onClick(view, Collections.singletonList(slide));
       } else {

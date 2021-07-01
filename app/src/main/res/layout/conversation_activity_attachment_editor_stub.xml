@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center">
 
-        <org.thoughtcrime.securesms.components.ThumbnailView
+        <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
                 android:id="@+id/attachment_thumbnail"
                 android:layout_width="230dp"
                 android:layout_height="150dp"

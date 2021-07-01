@@ -73,22 +73,14 @@ public class ThreadRecord extends DisplayRecord {
   @Override
   public SpannableString getDisplayBody(@NonNull Context context) {
     Recipient recipient = getRecipient();
-    if (isGroupUpdate() || isGroupUpdateMessage()) {
+    if (isGroupUpdateMessage()) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_group_updated));
-    } else if (isGroupQuit()) {
-      return emphasisAdded(context.getString(R.string.ThreadRecord_left_the_group));
     } else if (isOpenGroupInvitation()) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_open_group_invitation));
-    } else if (isKeyExchange()) {
-      return emphasisAdded(context.getString(R.string.ConversationListItem_key_exchange_message));
     } else if (SmsDatabase.Types.isFailedDecryptType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
     } else if (SmsDatabase.Types.isNoRemoteSessionType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
-    } else if (isLokiSessionRestoreSent()) {
-      return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset));
-    } else if (isLokiSessionRestoreDone()) {
-      return emphasisAdded(context.getString(R.string.view_reset_secure_session_done_message));
     } else if (SmsDatabase.Types.isEndSessionType(type)) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_secure_session_reset));
     } else if (MmsSmsColumns.Types.isLegacyType(type)) {

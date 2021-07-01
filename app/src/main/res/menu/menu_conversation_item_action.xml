@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="@string/conversation_context__menu_reply_to_message"
+        android:id="@+id/menu_context_reply"
+        android:icon="?menu_reply_icon"
+        app:showAsAction="always" />
+
+    <item
+        android:title="@string/conversation_context_image__save_attachment"
+        android:id="@+id/menu_context_save_attachment"
+        android:icon="?menu_save_icon"
+        app:showAsAction="always" />
+
+    <item
+        android:title="@string/conversation_context__menu_delete_message"
+        android:id="@+id/menu_context_delete_message"
+        android:icon="?menu_trash_icon"
+        app:showAsAction="always" />
+
+    <item
+        android:title="@string/conversation_context__menu_copy_text"
+        android:id="@+id/menu_context_copy"
+        android:icon="?menu_copy_icon"
+        app:showAsAction="always" />
+
+    <item
+        android:title="@string/conversation_context__menu_resend_message"
+        android:id="@+id/menu_context_resend"
+        app:showAsAction="never" />
+
+    <item
+        android:title="@string/conversation_context__menu_ban_user"
+        android:id="@+id/menu_context_ban_user"
+        app:showAsAction="never" />
+
+    <item
+        android:title="@string/activity_conversation_copy_public_key_button_title"
+        android:id="@+id/menu_context_copy_public_key"
+        app:showAsAction="never" />
+
+</menu>

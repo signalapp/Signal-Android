@@ -14,6 +14,7 @@ import android.view.WindowManager;
 
 import org.session.libsignal.utilities.Log;
 import org.session.libsignal.utilities.ListenableFuture;
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
 
 import java.util.concurrent.ExecutionException;
 
@@ -80,9 +81,9 @@ public class ConversationPopupActivity extends ConversationActivity {
           @Override
           public void onSuccess(Long result) {
             ActivityOptionsCompat transition = ActivityOptionsCompat.makeScaleUpAnimation(getWindow().getDecorView(), 0, 0, getWindow().getAttributes().width, getWindow().getAttributes().height);
-            Intent intent = new Intent(ConversationPopupActivity.this, ConversationActivity.class);
-            intent.putExtra(ConversationActivity.ADDRESS_EXTRA, getRecipient().getAddress());
-            intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, result);
+            Intent intent = new Intent(ConversationPopupActivity.this, ConversationActivityV2.class);
+            intent.putExtra(ConversationActivityV2.ADDRESS, getRecipient().getAddress());
+            intent.putExtra(ConversationActivityV2.THREAD_ID, result);
 
             if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
               startActivity(intent, transition.toBundle());

@@ -64,10 +64,12 @@ import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.components.MediaView;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.PagingMediaLoader;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewViewModel;
 import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -115,6 +117,22 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   private ViewPagerListener     viewPagerListener;
 
   private int restartItem = -1;
+
+  public static Intent getPreviewIntent(Context context, Slide slide, MmsMessageRecord mms, Recipient threadRecipient) {
+    Intent previewIntent = null;
+    if (MediaPreviewActivity.isContentTypeSupported(slide.getContentType()) && slide.getUri() != null) {
+      previewIntent = new Intent(context, MediaPreviewActivity.class);
+      previewIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+              .setDataAndType(slide.getUri(), slide.getContentType())
+              .putExtra(ADDRESS_EXTRA, threadRecipient.getAddress())
+              .putExtra(OUTGOING_EXTRA, mms.isOutgoing())
+              .putExtra(DATE_EXTRA, mms.getTimestamp())
+              .putExtra(SIZE_EXTRA, slide.asAttachment().getSize())
+              .putExtra(CAPTION_EXTRA, slide.getCaption().orNull())
+              .putExtra(LEFT_IS_RECENT_EXTRA, false);
+    }
+    return previewIntent;
+  }
 
 
   @SuppressWarnings("ConstantConditions")

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="88dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingHorizontal="@dimen/medium_spacing">
+
+    <RelativeLayout
+        android:id="@+id/linkPreviewDraftContainer"
+        android:layout_width="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_link"
+                app:tint="@color/text" />
+
+            <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
+                android:id="@+id/thumbnailImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/linkPreviewDraftTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="80dp"
+            android:paddingEnd="30dp"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/small_font_size"
+            android:textStyle="bold"
+            tools:text="The Day The Dinosaurs Died - Minute by Minute"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:textColor="@color/text" />
+
+        <ImageView
+            android:id="@+id/linkPreviewDraftCancelButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="6dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_close_white_48dp"
+            app:tint="@color/text" />
+
+    </RelativeLayout>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/linkPreviewDraftLoader"
+        style="@style/SpinKitView.Large.ThreeBounce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:SpinKit_Color="@color/text"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

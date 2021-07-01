@@ -81,7 +81,6 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
     for (Address address : addressMap.keySet()) {
       List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
-      // Loki - Check whether we want to send a read receipt to this user
       if (!SessionMetaProtocol.shouldSendReadReceipt(address)) { continue; }
       ReadReceipt readReceipt = new ReadReceipt(timestamps);
       readReceipt.setSentTimestamp(System.currentTimeMillis());
