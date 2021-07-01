@@ -27,6 +27,7 @@ import org.session.libsignal.utilities.KeyHelper
 import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.loki.api.OpenGroupManager
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
@@ -300,6 +301,19 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         } else {
             val smsDatabase = DatabaseFactory.getSmsDatabase(context)
             smsDatabase.markAsSent(messageRecord.getId(), true)
+        }
+    }
+
+    override fun markAsSending(timestamp: Long, author: String) {
+        val database = DatabaseFactory.getMmsSmsDatabase(context)
+        val messageRecord = database.getMessageFor(timestamp, author) ?: return
+        if (messageRecord.isMms) {
+            val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
+            mmsDatabase.markAsSending(messageRecord.getId())
+        } else {
+            val smsDatabase = DatabaseFactory.getSmsDatabase(context)
+            smsDatabase.markAsSending(messageRecord.getId())
+            messageRecord.isPending
         }
     }
 

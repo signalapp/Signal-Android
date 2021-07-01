@@ -149,9 +149,5 @@ public class AlbumThumbnailView extends FrameLayout {
   }
 
   private void setSlide(@NonNull GlideRequests glideRequests, @NonNull Slide slide, @IdRes int id) {
-    KThumbnailView cell = findViewById(id);
-    cell.setImageResource(glideRequests, slide, false);
-    cell.setThumbnailClickListener(defaultThumbnailClickListener);
-    cell.setOnLongClickListener(defaultLongClickListener);
   }
 }
