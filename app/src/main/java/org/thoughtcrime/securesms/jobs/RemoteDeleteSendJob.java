@@ -193,7 +193,7 @@ public class RemoteDeleteSendJob extends BaseJob {
                                                                                    new MessageId(messageId, isMms),
                                                                                    dataMessage);
 
-    return GroupSendJobHelper.getCompletedSends(context, results);
+    return GroupSendJobHelper.getCompletedSends(destinations, results);
   }
 
   public static class Factory implements Job.Factory<RemoteDeleteSendJob> {

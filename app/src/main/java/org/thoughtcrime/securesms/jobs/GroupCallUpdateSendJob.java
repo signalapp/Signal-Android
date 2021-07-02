@@ -166,7 +166,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
                                                                                 ContentHint.DEFAULT,
                                                                                 dataMessage.build());
 
-    return GroupSendJobHelper.getCompletedSends(context, results);
+    return GroupSendJobHelper.getCompletedSends(destinations, results);
   }
 
   public static class Factory implements Job.Factory<GroupCallUpdateSendJob> {

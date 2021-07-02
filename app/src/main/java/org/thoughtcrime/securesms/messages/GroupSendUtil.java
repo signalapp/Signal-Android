@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.NoSessionException;
@@ -410,23 +411,12 @@ public final class GroupSendUtil {
 
     private final Map<RecipientId, Optional<UnidentifiedAccessPair>> accessById;
     private final Map<RecipientId, SignalServiceAddress>             addressById;
-    private final Map<UUID, RecipientId>                             idByUuid;
-    private final Map<String, RecipientId>                           idByE164;
+    private final RecipientAccessList                                accessList;
 
     RecipientData(@NonNull Context context, @NonNull List<Recipient> recipients) throws IOException {
       this.accessById  = UnidentifiedAccessUtil.getAccessMapFor(context, recipients);
       this.addressById = mapAddresses(context, recipients);
-      this.idByUuid    = new HashMap<>(recipients.size());
-      this.idByE164    = new HashMap<>(recipients.size());
-
-      for (Recipient recipient : recipients) {
-        if (recipient.hasUuid()) {
-          idByUuid.put(recipient.requireUuid(), recipient.getId());
-        }
-        if (recipient.hasE164()) {
-          idByE164.put(recipient.requireE164(), recipient.getId());
-        }
-      }
+      this.accessList  = new RecipientAccessList(recipients);
     }
 
     @NonNull SignalServiceAddress getAddress(@NonNull RecipientId id) {
@@ -442,13 +432,7 @@ public final class GroupSendUtil {
     }
 
     @NonNull RecipientId requireRecipientId(@NonNull SignalServiceAddress address) {
-      if (address.getUuid().isPresent() && idByUuid.containsKey(address.getUuid().get())) {
-        return Objects.requireNonNull(idByUuid.get(address.getUuid().get()));
-      } else if (address.getNumber().isPresent() && idByE164.containsKey(address.getNumber().get())) {
-        return Objects.requireNonNull(idByE164.get(address.getNumber().get()));
-      } else {
-        throw new IllegalStateException();
-      }
+      return accessList.requireIdByAddress(address);
     }
 
     private static @NonNull Map<RecipientId, SignalServiceAddress> mapAddresses(@NonNull Context context, @NonNull List<Recipient> recipients) throws IOException {

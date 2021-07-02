@@ -242,7 +242,7 @@ public class ReactionSendJob extends BaseJob {
                                                                                    new MessageId(messageId, isMms),
                                                                                    dataMessage);
 
-    return GroupSendJobHelper.getCompletedSends(context, results);
+    return GroupSendJobHelper.getCompletedSends(destinations, results);
   }
 
   private static SignalServiceDataMessage.Reaction buildReaction(@NonNull Context context,

@@ -9,11 +9,11 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.CursorUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.RecipientAccessList
 import org.thoughtcrime.securesms.util.SqlUtil
 import org.whispersystems.signalservice.api.crypto.ContentHint
 import org.whispersystems.signalservice.api.messages.SendMessageResult
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
-import java.util.UUID
 
 /**
  * Stores a 24-hr buffer of all outgoing messages. Used for the retry logic required for sender key.
@@ -176,19 +176,12 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SQLC
   fun insertIfPossible(sentTimestamp: Long, possibleRecipients: List<Recipient>, results: List<SendMessageResult>, contentHint: ContentHint, messageId: MessageId): Long {
     if (!FeatureFlags.senderKey()) return -1
 
-    val recipientsByUuid: Map<UUID, Recipient> = possibleRecipients.filter(Recipient::hasUuid).associateBy(Recipient::requireUuid, { it })
-    val recipientsByE164: Map<String, Recipient> = possibleRecipients.filter(Recipient::hasE164).associateBy(Recipient::requireE164, { it })
+    val accessList = RecipientAccessList(possibleRecipients)
 
     val recipientDevices: List<RecipientDevice> = results
       .filter { it.isSuccess && it.success.content.isPresent }
       .map { result ->
-        val recipient: Recipient =
-          if (result.address.uuid.isPresent) {
-            recipientsByUuid[result.address.uuid.get()]!!
-          } else {
-            recipientsByE164[result.address.number.get()]!!
-          }
-
+        val recipient: Recipient = accessList.requireByAddress(result.address)
         RecipientDevice(recipient.id, result.success.devices)
       }
 
