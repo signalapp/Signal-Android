@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -107,7 +108,7 @@ public class ProfileKeySendJob extends BaseJob {
     }
 
     List<Recipient> destinations = Stream.of(recipients).map(Recipient::resolved).toList();
-    List<Recipient> completions  = deliver(conversationRecipient, destinations);
+    List<Recipient> completions  = deliver(destinations);
 
     for (Recipient completion : completions) {
       recipients.remove(completion.getId());
@@ -147,20 +148,13 @@ public class ProfileKeySendJob extends BaseJob {
 
   }
 
-  private List<Recipient> deliver(@NonNull Recipient conversationRecipient, @NonNull List<Recipient> destinations) throws IOException, UntrustedIdentityException {
-    SignalServiceMessageSender             messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-    List<SignalServiceAddress>             addresses          = RecipientUtil.toSignalServiceAddressesFromResolved(context, destinations);
-    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, destinations);
-    SignalServiceDataMessage.Builder       dataMessage        = SignalServiceDataMessage.newBuilder()
-                                                                                        .asProfileKeyUpdate(true)
-                                                                                        .withTimestamp(System.currentTimeMillis())
-                                                                                        .withProfileKey(Recipient.self().resolve().getProfileKey());
+  private List<Recipient> deliver(@NonNull List<Recipient> destinations) throws IOException, UntrustedIdentityException {
+    SignalServiceDataMessage.Builder dataMessage = SignalServiceDataMessage.newBuilder()
+                                                                           .asProfileKeyUpdate(true)
+                                                                           .withTimestamp(System.currentTimeMillis())
+                                                                           .withProfileKey(Recipient.self().resolve().getProfileKey());
 
-    if (conversationRecipient.isGroup()) {
-      dataMessage.asGroupMessage(new SignalServiceGroup(conversationRecipient.requireGroupId().getDecodedId()));
-    }
-
-    List<SendMessageResult> results = messageSender.sendDataMessage(addresses, unidentifiedAccess, false, ContentHint.IMPLICIT, dataMessage.build());
+    List<SendMessageResult> results = GroupSendUtil.sendUnresendableDataMessage(context, null, destinations, false, ContentHint.IMPLICIT, dataMessage.build());
 
     return GroupSendJobHelper.getCompletedSends(context, results);
   }

@@ -9,8 +9,10 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -151,18 +153,18 @@ public class GroupCallUpdateSendJob extends BaseJob {
   private @NonNull List<Recipient> deliver(@NonNull Recipient conversationRecipient, @NonNull List<Recipient> destinations)
       throws IOException, UntrustedIdentityException
   {
-    SignalServiceMessageSender             messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-    List<SignalServiceAddress>             addresses          = RecipientUtil.toSignalServiceAddressesFromResolved(context, destinations);
-    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, destinations);;
-    SignalServiceDataMessage.Builder       dataMessage        = SignalServiceDataMessage.newBuilder()
-                                                                                        .withTimestamp(System.currentTimeMillis())
-                                                                                        .withGroupCallUpdate(new SignalServiceDataMessage.GroupCallUpdate(eraId));
+    SignalServiceDataMessage.Builder dataMessage = SignalServiceDataMessage.newBuilder()
+                                                                           .withTimestamp(System.currentTimeMillis())
+                                                                           .withGroupCallUpdate(new SignalServiceDataMessage.GroupCallUpdate(eraId));
 
-    if (conversationRecipient.isGroup()) {
-      GroupUtil.setDataMessageGroupContext(context, dataMessage, conversationRecipient.requireGroupId().requirePush());
-    }
+    GroupUtil.setDataMessageGroupContext(context, dataMessage, conversationRecipient.requireGroupId().requirePush());
 
-    List<SendMessageResult> results = messageSender.sendDataMessage(addresses, unidentifiedAccess, false, ContentHint.DEFAULT, dataMessage.build());
+    List<SendMessageResult> results = GroupSendUtil.sendUnresendableDataMessage(context,
+                                                                                conversationRecipient.requireGroupId().requireV2(),
+                                                                                destinations,
+                                                                                false,
+                                                                                ContentHint.DEFAULT,
+                                                                                dataMessage.build());
 
     return GroupSendJobHelper.getCompletedSends(context, results);
   }

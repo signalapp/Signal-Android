@@ -148,26 +148,33 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SQLC
     )
   }
 
-  fun insertIfPossible(recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageId: MessageId) {
-    if (!FeatureFlags.senderKey()) return
+  /** @return The ID of the inserted entry, or -1 if none was inserted. Can be used with [addRecipientToExistingEntryIfPossible] */
+  fun insertIfPossible(recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageId: MessageId): Long {
+    if (!FeatureFlags.senderKey()) return -1
 
     if (sendMessageResult.isSuccess && sendMessageResult.success.content.isPresent) {
       val recipientDevice = listOf(RecipientDevice(recipientId, sendMessageResult.success.devices))
-      insert(recipientDevice, sentTimestamp, sendMessageResult.success.content.get(), contentHint, listOf(messageId))
+      return insert(recipientDevice, sentTimestamp, sendMessageResult.success.content.get(), contentHint, listOf(messageId))
     }
+
+    return -1
   }
 
-  fun insertIfPossible(recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageIds: List<MessageId>) {
-    if (!FeatureFlags.senderKey()) return
+  /** @return The ID of the inserted entry, or -1 if none was inserted. Can be used with [addRecipientToExistingEntryIfPossible] */
+  fun insertIfPossible(recipientId: RecipientId, sentTimestamp: Long, sendMessageResult: SendMessageResult, contentHint: ContentHint, messageIds: List<MessageId>): Long {
+    if (!FeatureFlags.senderKey()) return -1
 
     if (sendMessageResult.isSuccess && sendMessageResult.success.content.isPresent) {
       val recipientDevice = listOf(RecipientDevice(recipientId, sendMessageResult.success.devices))
-      insert(recipientDevice, sentTimestamp, sendMessageResult.success.content.get(), contentHint, messageIds)
+      return insert(recipientDevice, sentTimestamp, sendMessageResult.success.content.get(), contentHint, messageIds)
     }
+
+    return -1
   }
 
-  fun insertIfPossible(sentTimestamp: Long, possibleRecipients: List<Recipient>, results: List<SendMessageResult>, contentHint: ContentHint, relatedMessageId: Long, isRelatedMessageMms: Boolean) {
-    if (!FeatureFlags.senderKey()) return
+  /** @return The ID of the inserted entry, or -1 if none was inserted. Can be used with [addRecipientToExistingEntryIfPossible] */
+  fun insertIfPossible(sentTimestamp: Long, possibleRecipients: List<Recipient>, results: List<SendMessageResult>, contentHint: ContentHint, messageId: MessageId): Long {
+    if (!FeatureFlags.senderKey()) return -1
 
     val recipientsByUuid: Map<UUID, Recipient> = possibleRecipients.filter(Recipient::hasUuid).associateBy(Recipient::requireUuid, { it })
     val recipientsByE164: Map<String, Recipient> = possibleRecipients.filter(Recipient::hasE164).associateBy(Recipient::requireE164, { it })
@@ -185,12 +192,40 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SQLC
         RecipientDevice(recipient.id, result.success.devices)
       }
 
+    if (recipientDevices.isEmpty()) {
+      return -1
+    }
+
     val content: SignalServiceProtos.Content = results.first { it.isSuccess && it.success.content.isPresent }.success.content.get()
 
-    insert(recipientDevices, sentTimestamp, content, contentHint, listOf(MessageId(relatedMessageId, isRelatedMessageMms)))
+    return insert(recipientDevices, sentTimestamp, content, contentHint, listOf(messageId))
   }
 
-  private fun insert(recipients: List<RecipientDevice>, dateSent: Long, content: SignalServiceProtos.Content, contentHint: ContentHint, messageIds: List<MessageId>) {
+  fun addRecipientToExistingEntryIfPossible(payloadId: Long, recipientId: RecipientId, sendMessageResult: SendMessageResult) {
+    if (!FeatureFlags.senderKey()) return
+
+    if (sendMessageResult.isSuccess && sendMessageResult.success.content.isPresent) {
+      val db = databaseHelper.writableDatabase
+
+      db.beginTransaction()
+      try {
+        sendMessageResult.success.devices.forEach { device ->
+          val recipientValues = ContentValues().apply {
+            put(RecipientTable.PAYLOAD_ID, payloadId)
+            put(RecipientTable.RECIPIENT_ID, recipientId.serialize())
+            put(RecipientTable.DEVICE, device)
+          }
+
+          db.insert(RecipientTable.TABLE_NAME, null, recipientValues)
+        }
+        db.setTransactionSuccessful()
+      } finally {
+        db.endTransaction()
+      }
+    }
+  }
+
+  private fun insert(recipients: List<RecipientDevice>, dateSent: Long, content: SignalServiceProtos.Content, contentHint: ContentHint, messageIds: List<MessageId>): Long {
     val db = databaseHelper.writableDatabase
 
     db.beginTransaction()
@@ -226,6 +261,8 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SQLC
       }
 
       db.setTransactionSuccessful()
+
+      return payloadId
     } finally {
       db.endTransaction()
     }

@@ -89,7 +89,6 @@ public final class JobManagerFactories {
       put(GroupCallPeekWorkerJob.KEY,                new GroupCallPeekWorkerJob.Factory());
       put(GroupV2UpdateSelfProfileKeyJob.KEY,        new GroupV2UpdateSelfProfileKeyJob.Factory());
       put(KbsEnclaveMigrationWorkerJob.KEY,          new KbsEnclaveMigrationWorkerJob.Factory());
-      put(LeaveGroupJob.KEY,                         new LeaveGroupJob.Factory());
       put(LocalBackupJob.KEY,                        new LocalBackupJob.Factory());
       put(LocalBackupJobApi29.KEY,                   new LocalBackupJobApi29.Factory());
       put(MarkerJob.KEY,                             new MarkerJob.Factory());
@@ -205,6 +204,7 @@ public final class JobManagerFactories {
       put("StorageKeyRotationMigrationJob",          new PassingMigrationJob.Factory());
       put("StorageSyncJob",                          new StorageSyncJob.Factory());
       put("WakeGroupV2Job",                          new FailingJob.Factory());
+      put("LeaveGroupJob",                           new FailingJob.Factory());
     }};
   }
 

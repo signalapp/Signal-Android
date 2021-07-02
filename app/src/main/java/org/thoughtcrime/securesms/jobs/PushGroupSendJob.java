@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -292,8 +293,6 @@ public final class PushGroupSendJob extends PushSendJob {
     try {
       rotateSenderCertificateIfNecessary();
 
-      GroupDatabase                              groupDatabase      = DatabaseFactory.getGroupDatabase(context);
-      SignalServiceMessageSender                 messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
       GroupId.Push                               groupId            = groupRecipient.requireGroupId().requirePush();
       Optional<byte[]>                           profileKey         = getProfileKey(groupRecipient);
       Optional<Quote>                            quote              = getQuoteFor(message);
@@ -301,13 +300,10 @@ public final class PushGroupSendJob extends PushSendJob {
       List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
       List<Preview>                              previews           = getPreviewsFor(message);
       List<SignalServiceDataMessage.Mention>     mentions           = getMentionsFor(message.getMentions());
-      List<SignalServiceAddress>                 addresses          = RecipientUtil.toSignalServiceAddressesFromResolved(context, destinations);
       List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
       boolean                                    isRecipientUpdate  = Stream.of(DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageId))
                                                                             .anyMatch(info -> info.getStatus() > GroupReceiptDatabase.STATUS_UNDELIVERED);
-
-      List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, destinations);
 
       if (message.isGroup()) {
         OutgoingGroupUpdateMessage groupMessage = (OutgoingGroupUpdateMessage) message;
@@ -329,25 +325,9 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                               .withExpiration(groupRecipient.getExpireMessages())
                                                                               .asGroupMessage(group)
                                                                               .build();
-          return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId().requireV2(), destinations, isRecipientUpdate, ContentHint.IMPLICIT, messageId, true, groupDataMessage);
+          return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId().requireV2(), destinations, isRecipientUpdate, ContentHint.IMPLICIT, new MessageId(messageId, true), groupDataMessage);
         } else {
-          MessageGroupContext.GroupV1Properties properties = groupMessage.requireGroupV1Properties();
-
-          GroupContext               groupContext     = properties.getGroupContext();
-          SignalServiceAttachment    avatar           = attachmentPointers.isEmpty() ? null : attachmentPointers.get(0);
-          SignalServiceGroup.Type    type             = properties.isQuit() ? SignalServiceGroup.Type.QUIT : SignalServiceGroup.Type.UPDATE;
-          List<SignalServiceAddress> members          = Stream.of(groupContext.getMembersE164List())
-                                                              .map(e164 -> new SignalServiceAddress(null, e164))
-                                                              .toList();
-          SignalServiceGroup         group            = new SignalServiceGroup(type, groupId.getDecodedId(), groupContext.getName(), members, avatar);
-          SignalServiceDataMessage   groupDataMessage = SignalServiceDataMessage.newBuilder()
-                                                                                .withTimestamp(message.getSentTimeMillis())
-                                                                                .withExpiration(message.getRecipient().getExpireMessages())
-                                                                                .asGroupMessage(group)
-                                                                                .build();
-
-          Log.i(TAG, JobLogger.format(this, "Beginning update send."));
-          return messageSender.sendDataMessage(addresses, unidentifiedAccess, isRecipientUpdate, ContentHint.IMPLICIT, groupDataMessage);
+          throw new UndeliverableMessageException("Messages can no longer be sent to V1 groups!");
         }
       } else {
         SignalServiceDataMessage.Builder builder = SignalServiceDataMessage.newBuilder()
@@ -370,13 +350,13 @@ public final class PushGroupSendJob extends PushSendJob {
 
         Log.i(TAG, JobLogger.format(this, "Beginning message send."));
 
-        if (groupRecipient.isPushV2Group()) {
-          return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId().requireV2(), destinations, isRecipientUpdate, ContentHint.RESENDABLE, messageId, true, groupMessage);
-        } else {
-          List<SendMessageResult> results = messageSender.sendDataMessage(addresses, unidentifiedAccess, isRecipientUpdate, ContentHint.RESENDABLE, groupMessage);
-          DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(groupMessage.getTimestamp(), destinations, results, ContentHint.RESENDABLE, messageId, true);
-          return results;
-        }
+        return GroupSendUtil.sendResendableDataMessage(context,
+                                                       groupRecipient.getGroupId().transform(GroupId::requireV2).orNull(),
+                                                       destinations,
+                                                       isRecipientUpdate,
+                                                       ContentHint.RESENDABLE,
+                                                       new MessageId(messageId, true),
+                                                       groupMessage);
       }
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);

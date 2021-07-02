@@ -287,8 +287,8 @@ public final class MessageContentProcessor {
               ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob(false))
                                                      .then(GroupV2UpdateSelfProfileKeyJob.withQueueLimits(groupId.get().requireV2()))
                                                      .enqueue();
-            } else if (!sender.isPushV2Group()) {
-              Log.i(TAG, "Message was to a 1:1 or GV1 chat. Ensuring this user has our profile key.");
+            } else if (!sender.isGroup()) {
+              Log.i(TAG, "Message was to a 1:1. Ensuring this user has our profile key.");
               ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob(false))
                                      .then(ProfileKeySendJob.create(context, DatabaseFactory.getThreadDatabase(context).getThreadIdFor(sender), true))
                                      .enqueue();

@@ -17,10 +17,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
-import org.thoughtcrime.securesms.jobs.LeaveGroupJob;
-import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -187,51 +184,12 @@ final class GroupManagerV1 {
 
   @WorkerThread
   static boolean leaveGroup(@NonNull Context context, @NonNull GroupId.V1 groupId) {
-    Recipient                            groupRecipient = Recipient.externalGroupExact(context, groupId);
-    long                                 threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
-    Optional<OutgoingGroupUpdateMessage> leaveMessage   = createGroupLeaveMessage(context, groupId, groupRecipient);
-
-    if (threadId != -1 && leaveMessage.isPresent()) {
-      try {
-        long id = DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(leaveMessage.get(), threadId, false, null);
-        DatabaseFactory.getMmsDatabase(context).markAsSent(id, true);
-      } catch (MmsException e) {
-        Log.w(TAG, "Failed to insert leave message.", e);
-      }
-      ApplicationDependencies.getJobManager().add(LeaveGroupJob.create(groupRecipient));
-
-      GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
-      groupDatabase.setActive(groupId, false);
-      groupDatabase.remove(groupId, Recipient.self().getId());
-      return true;
-    } else {
-      Log.i(TAG, "Group was already inactive. Skipping.");
-      return false;
-    }
+    return false;
   }
 
   @WorkerThread
   static boolean silentLeaveGroup(@NonNull Context context, @NonNull GroupId.V1 groupId) {
-    if (DatabaseFactory.getGroupDatabase(context).isActive(groupId)) {
-      Recipient                            groupRecipient = Recipient.externalGroupExact(context, groupId);
-      long                                 threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
-      Optional<OutgoingGroupUpdateMessage> leaveMessage   = createGroupLeaveMessage(context, groupId, groupRecipient);
-
-      if (threadId != -1 && leaveMessage.isPresent()) {
-        ApplicationDependencies.getJobManager().add(LeaveGroupJob.create(groupRecipient));
-
-        GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
-        groupDatabase.setActive(groupId, false);
-        groupDatabase.remove(groupId, Recipient.self().getId());
-        return true;
-      } else {
-        Log.w(TAG, "Failed to leave group.");
-        return false;
-      }
-    } else {
-      Log.i(TAG, "Group was already inactive. Skipping.");
-      return true;
-    }
+    return false;
   }
 
   @WorkerThread
