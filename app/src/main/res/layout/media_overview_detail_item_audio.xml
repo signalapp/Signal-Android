@@ -20,7 +20,7 @@
             app:autoRewind="true"
             app:foregroundTintColor="@color/core_ultramarine"
             app:progressAndPlayTint="@android:color/transparent"
-            app:small="true" />
+            app:audioView_mode="small" />
 
     </FrameLayout>
 

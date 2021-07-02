@@ -72,8 +72,12 @@
         <attr name="waveformPlayedBarsColor" format="color" />
         <attr name="waveformUnplayedBarsColor" format="color" />
         <attr name="progressAndPlayTint" format="color" />
-        <attr name="small" format="boolean" />
         <attr name="autoRewind" format="boolean" />
+        <attr name="audioView_mode" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="small" value="1" />
+            <enum name="draft" value="2" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="CircleColorImageView">

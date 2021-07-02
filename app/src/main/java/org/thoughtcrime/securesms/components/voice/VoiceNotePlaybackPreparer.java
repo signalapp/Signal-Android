@@ -23,6 +23,8 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -95,6 +97,7 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
     Log.d(TAG, "onPrepareFromUri: " + uri);
 
     long    messageId      = extras.getLong(VoiceNoteMediaController.EXTRA_MESSAGE_ID);
+    long    threadId       = extras.getLong(VoiceNoteMediaController.EXTRA_THREAD_ID);
     double  progress       = extras.getDouble(VoiceNoteMediaController.EXTRA_PROGRESS, 0);
     boolean singlePlayback = extras.getBoolean(VoiceNoteMediaController.EXTRA_PLAY_SINGLE, false);
 
@@ -104,7 +107,11 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
     SimpleTask.run(EXECUTOR,
                    () -> {
                      if (singlePlayback) {
-                       return loadMediaDescriptionForSinglePlayback(messageId);
+                       if (messageId != -1) {
+                         return loadMediaDescriptionForSinglePlayback(messageId);
+                       } else {
+                         return loadMediaDescriptionForDraftPlayback(threadId, uri);
+                       }
                      } else {
                        return loadMediaDescriptionsForConsecutivePlayback(messageId);
                      }
@@ -260,6 +267,10 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
       Log.w(TAG, "Could not find message.", e);
       return Collections.emptyList();
     }
+  }
+
+  private @NonNull List<MediaDescriptionCompat> loadMediaDescriptionForDraftPlayback(long threadId, @NonNull Uri draftUri) {
+    return Collections.singletonList(VoiceNoteMediaDescriptionCompatFactory.buildMediaDescription(context, threadId, draftUri));
   }
 
   @WorkerThread

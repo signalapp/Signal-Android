@@ -45,6 +45,10 @@ public final class AudioView extends FrameLayout {
 
   private static final String TAG = Log.tag(AudioView.class);
 
+  private static final int MODE_NORMAL = 0;
+  private static final int MODE_SMALL  = 1;
+  private static final int MODE_DRAFT  = 2;
+
   private static final int FORWARDS =  1;
   private static final int REVERSE  = -1;
 
@@ -87,10 +91,23 @@ public final class AudioView extends FrameLayout {
     try {
       typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.AudioView, 0, 0);
 
-      smallView  = typedArray.getBoolean(R.styleable.AudioView_small, false);
+      int mode   = typedArray.getInteger(R.styleable.AudioView_audioView_mode, MODE_NORMAL);
+      smallView  = mode == MODE_SMALL;
       autoRewind = typedArray.getBoolean(R.styleable.AudioView_autoRewind, false);
 
-      inflate(context, smallView ? R.layout.audio_view_small : R.layout.audio_view, this);
+      switch (mode) {
+        case MODE_NORMAL:
+          inflate(context, R.layout.audio_view, this);
+          break;
+        case MODE_SMALL:
+          inflate(context, R.layout.audio_view_small, this);
+          break;
+        case MODE_DRAFT:
+          inflate(context, R.layout.audio_view_draft, this);
+          break;
+        default:
+          throw new IllegalStateException("Unsupported mode: " + mode);
+      }
 
       this.controlToggle   = findViewById(R.id.control_toggle);
       this.playPauseButton = findViewById(R.id.play);
@@ -280,7 +297,9 @@ public final class AudioView extends FrameLayout {
   }
 
   private void onSpeedChanged(@NonNull Uri uri, float speed) {
-    callbacks.onSpeedChanged(speed, isTarget(uri));
+    if (callbacks != null) {
+      callbacks.onSpeedChanged(speed, isTarget(uri));
+    }
   }
 
   private boolean isTarget(@NonNull Uri uri) {
