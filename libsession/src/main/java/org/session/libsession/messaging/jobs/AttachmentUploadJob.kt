@@ -141,12 +141,12 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         kryo.isRegistrationRequired = false
         val serializedMessage = ByteArray(4096)
         val output = Output(serializedMessage)
-        kryo.writeObject(output, message)
+        kryo.writeClassAndObject(output, message)
         output.close()
         return Data.Builder()
             .putLong(ATTACHMENT_ID_KEY, attachmentID)
             .putString(THREAD_ID_KEY, threadID)
-            .putByteArray(MESSAGE_KEY, serializedMessage)
+            .putByteArray(MESSAGE_KEY, output.toBytes())
             .putString(MESSAGE_SEND_JOB_ID_KEY, messageSendJobID)
             .build()
     }
@@ -157,18 +157,24 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
 
     class Factory: Job.Factory<AttachmentUploadJob> {
 
-        override fun create(data: Data): AttachmentUploadJob {
+        override fun create(data: Data): AttachmentUploadJob? {
             val serializedMessage = data.getByteArray(MESSAGE_KEY)
             val kryo = Kryo()
             kryo.isRegistrationRequired = false
             val input = Input(serializedMessage)
-            val message = kryo.readObject(input, Message::class.java)
+            val message: Message
+            try {
+                message = kryo.readClassAndObject(input) as Message
+            } catch (e: Exception) {
+                Log.e("Loki","Couldn't serialize the AttachmentUploadJob", e)
+                return null
+            }
             input.close()
             return AttachmentUploadJob(
-                data.getLong(ATTACHMENT_ID_KEY),
-                data.getString(THREAD_ID_KEY)!!,
-                message,
-                data.getString(MESSAGE_SEND_JOB_ID_KEY)!!
+                    data.getLong(ATTACHMENT_ID_KEY),
+                    data.getString(THREAD_ID_KEY)!!,
+                    message,
+                    data.getString(MESSAGE_SEND_JOB_ID_KEY)!!
             )
         }
     }
