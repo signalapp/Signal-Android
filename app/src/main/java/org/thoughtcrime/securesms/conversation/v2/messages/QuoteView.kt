@@ -136,8 +136,7 @@ class QuoteView : LinearLayout {
             accentLineLayoutParams.height = getIntrinsicContentHeight(maxContentWidth) // Match the intrinsic * content * height
             quoteViewAccentLine.layoutParams = accentLineLayoutParams
             quoteViewAccentLine.setBackgroundColor(getLineColor(isOutgoingMessage))
-        } else {
-            attachments!!
+        } else if (attachments != null) {
             quoteViewAttachmentPreviewImageView.imageTintList = ColorStateList.valueOf(ResourcesCompat.getColor(resources, R.color.white, context.theme))
             val backgroundColorID = if (UiModeUtilities.isDayUiMode(context)) R.color.black else R.color.accent
             val backgroundColor = ResourcesCompat.getColor(resources, backgroundColorID, context.theme)

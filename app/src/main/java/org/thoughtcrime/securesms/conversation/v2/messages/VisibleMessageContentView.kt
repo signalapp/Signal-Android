@@ -86,7 +86,12 @@ class VisibleMessageContentView : LinearLayout {
             // quote view content area's start margin. This unfortunately has to be calculated manually
             // here to get the layout right.
             val maxContentWidth = (maxWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - toPx(16, resources)).roundToInt()
-            quoteView.bind(quote.author.toString(), quote.text, quote.attachment, thread,
+            val quoteText = if (quote.isOriginalMissing) {
+                context.getString(R.string.QuoteView_original_missing)
+            } else {
+                quote.text
+            }
+            quoteView.bind(quote.author.toString(), quoteText, quote.attachment, thread,
                 message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation, message.threadId, glide)
             mainContainer.addView(quoteView)
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message, searchQuery)

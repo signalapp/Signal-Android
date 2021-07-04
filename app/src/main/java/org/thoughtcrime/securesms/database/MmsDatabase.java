@@ -63,6 +63,7 @@ import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -881,6 +882,20 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
+  public void deleteQuotedFromMessages(MessageRecord toDeleteRecord) {
+    String query = THREAD_ID + " = ?";
+    Cursor threadMmsCursor = rawQuery(query, new String[]{String.valueOf(toDeleteRecord.getThreadId())});
+    Reader reader = readerFor(threadMmsCursor);
+    MmsMessageRecord messageRecord;
+
+    while ((messageRecord = (MmsMessageRecord) reader.getNext()) != null) {
+      if (messageRecord.getQuote() != null && toDeleteRecord.getDateSent() == messageRecord.getQuote().getId()) {
+        setQuoteMissing(messageRecord.getId());
+      }
+    }
+    reader.close();
+  }
+
   public boolean delete(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
     AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
@@ -889,6 +904,12 @@ public class MmsDatabase extends MessagingDatabase {
     GroupReceiptDatabase groupReceiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
     groupReceiptDatabase.deleteRowsForMessage(messageId);
 
+    MessageRecord toDelete;
+    try (Cursor messageCursor = getMessage(messageId)) {
+      toDelete = readerFor(messageCursor).getNext();
+    }
+
+    deleteQuotedFromMessages(toDelete);
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
     boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false);
@@ -1064,6 +1085,14 @@ public class MmsDatabase extends MessagingDatabase {
 
   public OutgoingMessageReader readerFor(OutgoingMediaMessage message, long threadId) {
     return new OutgoingMessageReader(message, threadId);
+  }
+
+  public int setQuoteMissing(long messageId) {
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(QUOTE_MISSING, 1);
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    int rows = database.update(TABLE_NAME, contentValues, ID + " = ?", new String[]{ String.valueOf(messageId) });
+    return rows;
   }
 
   public static class Status {
