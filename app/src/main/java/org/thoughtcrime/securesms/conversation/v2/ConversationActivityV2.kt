@@ -885,7 +885,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         message.text = body
         val quote = quotedMessage?.let {
             val quotedAttachments = (it as? MmsMessageRecord)?.slideDeck?.asAttachments() ?: listOf()
-            QuoteModel(it.dateSent, it.individualRecipient.address, it.body, false, quotedAttachments)
+            val sender = if (it.isOutgoing) fromSerialized(TextSecurePreferences.getLocalNumber(this)!!) else it.individualRecipient.address
+            QuoteModel(it.dateSent, sender, it.body, false, quotedAttachments)
         }
         val outgoingTextMessage = OutgoingMediaMessage.from(message, thread, attachments, quote, linkPreview)
         // Clear the input bar
