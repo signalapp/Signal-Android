@@ -92,7 +92,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
     }
 
     private fun handleSuccess() {
-        Log.w(AttachmentUploadJob.TAG, "Attachment downloaded successfully.")
+        Log.w("AttachmentDownloadJob", "Attachment downloaded successfully.")
         delegate?.handleJobSucceeded(this)
     }
 
