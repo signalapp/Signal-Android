@@ -73,55 +73,55 @@ public class ExpirationUtilTest {
 
   @Test
   public void shouldFormatAsBreakdown_whenLargerThanWeek() {
-    assertEquals("1 week 1 day",
+    assertEquals("1 week",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_WEEK + SECONDS_IN_DAY));
 
-    assertEquals("1 week 1 hour",
+    assertEquals("1 week",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_WEEK + SECONDS_IN_HOUR));
 
-    assertEquals("1 week 1 minute",
+    assertEquals("1 week",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_WEEK + SECONDS_IN_MINUTE));
 
-    assertEquals("1 week 1 second",
+    assertEquals("1 week",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_WEEK + 1));
 
-    assertEquals("1 week 1 day 1 hour",
+    assertEquals("1 week",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_WEEK + SECONDS_IN_DAY + SECONDS_IN_HOUR));
 
-    assertEquals("1 week 1 day 1 hour 1 minute",
+    assertEquals("1 week",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_WEEK + SECONDS_IN_DAY + SECONDS_IN_HOUR + SECONDS_IN_MINUTE));
 
-    assertEquals("1 week 1 day 1 hour 1 minute 1 second",
+    assertEquals("1 week",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_WEEK + SECONDS_IN_DAY + SECONDS_IN_HOUR + SECONDS_IN_MINUTE + 1));
 
-    assertEquals("1 week 1 hour 1 minute",
+    assertEquals("1 week",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_WEEK + SECONDS_IN_HOUR + SECONDS_IN_MINUTE));
 
-    assertEquals("1 week 1 hour 1 minute 1 second",
+    assertEquals("1 week",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_WEEK + SECONDS_IN_HOUR + SECONDS_IN_MINUTE + 1));
 
-    assertEquals("1 week 1 minute 1 second",
+    assertEquals("1 week",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_WEEK + SECONDS_IN_MINUTE + 1));
   }
 
   @Test
   public void shouldFormatAsBreakdown_whenLargerThanDay() {
-    assertEquals("1 day 1 hour",
+    assertEquals("1 day",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_DAY + SECONDS_IN_HOUR));
 
-    assertEquals("1 day 1 minute",
+    assertEquals("1 day",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_DAY + SECONDS_IN_MINUTE));
 
-    assertEquals("1 day 1 second",
+    assertEquals("1 day",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_DAY + 1));
   }
 
   @Test
   public void shouldFormatAsBreakdown_whenLargerThanHour() {
-    assertEquals("1 hour 1 minute",
+    assertEquals("1 hour",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_HOUR + SECONDS_IN_MINUTE));
 
-    assertEquals("1 hour 1 second",
+    assertEquals("1 hour",
                  ExpirationUtil.getExpirationDisplayValue(context, SECONDS_IN_HOUR + 1));
   }
 
