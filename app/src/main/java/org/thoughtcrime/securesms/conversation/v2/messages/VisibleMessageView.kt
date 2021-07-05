@@ -195,13 +195,14 @@ class VisibleMessageView : LinearLayout {
 
     private fun updateExpirationTimer(message: MessageRecord) {
         val expirationTimerViewLayoutParams = expirationTimerView.layoutParams as RelativeLayout.LayoutParams
-        val ruleToAdd = if (message.isOutgoing) RelativeLayout.ALIGN_PARENT_START else RelativeLayout.ALIGN_PARENT_END
-        val ruleToRemove = if (message.isOutgoing) RelativeLayout.ALIGN_PARENT_END else RelativeLayout.ALIGN_PARENT_START
+        val ruleToAdd = if (message.isOutgoing) RelativeLayout.ALIGN_START else RelativeLayout.ALIGN_END
+        val ruleToRemove = if (message.isOutgoing) RelativeLayout.ALIGN_END else RelativeLayout.ALIGN_START
         expirationTimerViewLayoutParams.removeRule(ruleToRemove)
-        expirationTimerViewLayoutParams.addRule(ruleToAdd)
+        expirationTimerViewLayoutParams.addRule(ruleToAdd, R.id.messageContentView)
         val expirationTimerViewSize = toPx(12, resources)
-        expirationTimerViewLayoutParams.marginStart = -(messageContentContainer.paddingStart / 2 + expirationTimerViewSize / 2)
-        expirationTimerViewLayoutParams.marginEnd = -(messageContentContainer.paddingEnd / 2 + expirationTimerViewSize / 2)
+        val smallSpacing = resources.getDimension(R.dimen.small_spacing).roundToInt()
+        expirationTimerViewLayoutParams.marginStart = if (message.isOutgoing) -(smallSpacing + expirationTimerViewSize) else 0
+        expirationTimerViewLayoutParams.marginEnd = if (message.isOutgoing) 0 else -(smallSpacing + expirationTimerViewSize)
         expirationTimerView.layoutParams = expirationTimerViewLayoutParams
         if (message.expiresIn > 0 && !message.isPending) {
             expirationTimerView.setColorFilter(ResourcesCompat.getColor(resources, R.color.text, context.theme))
