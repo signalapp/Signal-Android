@@ -92,7 +92,8 @@ class VisibleMessageContentView : LinearLayout {
                 quote.text
             }
             quoteView.bind(quote.author.toString(), quoteText, quote.attachment, thread,
-                message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation, message.threadId, glide)
+                message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation, message.threadId,
+                quote.isOriginalMissing, glide)
             mainContainer.addView(quoteView)
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message, searchQuery)
             ViewUtil.setPaddingTop(bodyTextView, 0)

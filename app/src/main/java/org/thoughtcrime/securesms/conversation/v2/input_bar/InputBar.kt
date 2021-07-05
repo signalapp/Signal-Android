@@ -122,7 +122,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         val maxContentWidth = (screenWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - toPx(16, resources) - toPx(30, resources)).roundToInt()
         val sender = if (message.isOutgoing) TextSecurePreferences.getLocalNumber(context)!! else message.individualRecipient.address.serialize()
         quoteView.bind(sender, message.body, attachments,
-            thread, true, maxContentWidth, message.isOpenGroupInvitation, message.threadId, glide)
+            thread, true, maxContentWidth, message.isOpenGroupInvitation, message.threadId, false, glide)
         // The 6 DP below is the padding the quote view applies to itself, which isn't included in the
         // intrinsic height calculation.
         val quoteViewIntrinsicHeight = quoteView.getIntrinsicHeight(maxContentWidth) + toPx(6, resources)

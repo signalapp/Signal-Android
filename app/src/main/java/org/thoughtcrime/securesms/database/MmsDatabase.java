@@ -1090,7 +1090,7 @@ public class MmsDatabase extends MessagingDatabase {
   public int setQuoteMissing(long messageId) {
     ContentValues contentValues = new ContentValues();
     contentValues.put(QUOTE_MISSING, 1);
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
     int rows = database.update(TABLE_NAME, contentValues, ID + " = ?", new String[]{ String.valueOf(messageId) });
     return rows;
   }

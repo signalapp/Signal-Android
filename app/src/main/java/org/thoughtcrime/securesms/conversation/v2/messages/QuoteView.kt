@@ -110,7 +110,8 @@ class QuoteView : LinearLayout {
 
     // region Updating
     fun bind(authorPublicKey: String, body: String?, attachments: SlideDeck?, thread: Recipient,
-        isOutgoingMessage: Boolean, maxContentWidth: Int, isOpenGroupInvitation: Boolean, threadID: Long, glide: GlideRequests) {
+        isOutgoingMessage: Boolean, maxContentWidth: Int, isOpenGroupInvitation: Boolean, threadID: Long,
+        isOriginalMissing: Boolean, glide: GlideRequests) {
         val contactDB = DatabaseFactory.getSessionContactDatabase(context)
         // Reduce the max body text view line count to 2 if this is a group thread because
         // we'll be showing the author text view and we don't want the overall quote view height
@@ -128,7 +129,7 @@ class QuoteView : LinearLayout {
         quoteViewBodyTextView.text = if (isOpenGroupInvitation) resources.getString(R.string.open_group_invitation_view__open_group_invitation) else MentionUtilities.highlightMentions((body ?: "").toSpannable(), threadID, context);
         quoteViewBodyTextView.setTextColor(getTextColor(isOutgoingMessage))
         // Accent line / attachment preview
-        val hasAttachments = (attachments != null && attachments.asAttachments().isNotEmpty())
+        val hasAttachments = (attachments != null && attachments.asAttachments().isNotEmpty()) && !isOriginalMissing
         quoteViewAccentLine.isVisible = !hasAttachments
         quoteViewAttachmentPreviewContainer.isVisible = hasAttachments
         if (!hasAttachments) {
