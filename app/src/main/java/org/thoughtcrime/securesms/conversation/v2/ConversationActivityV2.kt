@@ -1032,10 +1032,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         val future = audioRecorder.stopRecording()
         stopAudioHandler.removeCallbacks(stopVoiceMessageRecordingTask)
-        future.addListener(object : ListenableFuture.Listener<Pair<Uri?, Long?>> {
+        future.addListener(object : ListenableFuture.Listener<Pair<Uri, Long>> {
 
-            override fun onSuccess(result: Pair<Uri?, Long?>) {
-                val audioSlide = AudioSlide(this@ConversationActivityV2, result.first, result.second!!, MediaTypes.AUDIO_AAC, true)
+            override fun onSuccess(result: Pair<Uri, Long>) {
+                val audioSlide = AudioSlide(this@ConversationActivityV2, result.first, result.second, MediaTypes.AUDIO_AAC, true)
                 val slideDeck = SlideDeck()
                 slideDeck.addSlide(audioSlide)
                 sendAttachments(slideDeck.asAttachments(), null)

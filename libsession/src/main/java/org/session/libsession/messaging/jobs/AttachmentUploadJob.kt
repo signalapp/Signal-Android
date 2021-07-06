@@ -11,6 +11,8 @@ import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.utilities.Data
+import org.session.libsession.utilities.DecodedAudio
+import org.session.libsession.utilities.InputStreamMediaDataSource
 import org.session.libsession.utilities.UploadResult
 import org.session.libsignal.streams.AttachmentCipherOutputStream
 import org.session.libsignal.messages.SignalServiceAttachmentStream
@@ -108,7 +110,22 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     private fun handleSuccess(attachment: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: UploadResult) {
         Log.d(TAG, "Attachment uploaded successfully.")
         delegate?.handleJobSucceeded(this)
-        MessagingModuleConfiguration.shared.messageDataProvider.handleSuccessfulAttachmentUpload(attachmentID, attachment, attachmentKey, uploadResult)
+        val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
+        messageDataProvider.handleSuccessfulAttachmentUpload(attachmentID, attachment, attachmentKey, uploadResult)
+        if (attachment.contentType.startsWith("audio/")) {
+            // process the duration
+            try {
+                val inputStream = messageDataProvider.getAttachmentStream(attachmentID)!!.inputStream!!
+                InputStreamMediaDataSource(inputStream).use { mediaDataSource ->
+                    val durationMs = (DecodedAudio.create(mediaDataSource).totalDuration / 1000.0).toLong()
+                    messageDataProvider.getDatabaseAttachment(attachmentID)?.attachmentId?.let { attachmentId ->
+                        messageDataProvider.updateAudioAttachmentDuration(attachmentId, durationMs)
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("Loki", "Couldn't process audio attachment", e)
+            }
+        }
         MessagingModuleConfiguration.shared.storage.resumeMessageSendJobIfNeeded(messageSendJobID)
     }
 

@@ -59,8 +59,9 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
         (audio.asAttachment() as? DatabaseAttachment)?.let { attachment ->
             DatabaseFactory.getAttachmentDatabase(context).getAttachmentAudioExtras(attachment.attachmentId)?.let { audioExtras ->
                 if (audioExtras.durationMs > 0) {
+                    duration = audioExtras.durationMs
                     voiceMessageViewDurationTextView.visibility = View.VISIBLE
-                    voiceMessageViewDurationTextView.text = String.format("%02d:%02d",
+                    voiceMessageViewDurationTextView.text = String.format("%01d:%02d",
                             TimeUnit.MILLISECONDS.toMinutes(audioExtras.durationMs),
                             TimeUnit.MILLISECONDS.toSeconds(audioExtras.durationMs))
                 }
