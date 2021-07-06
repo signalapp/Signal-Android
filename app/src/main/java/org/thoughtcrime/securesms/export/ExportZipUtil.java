@@ -45,7 +45,7 @@ import java.util.zip.ZipOutputStream;
  *
  * @author  @anlaji
  * @version 1.0
- * @since   2021-06-20
+ * @since   2021-07-07
  */
 public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachment, Void, Pair<Integer, String>> {
 
@@ -70,14 +70,13 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
     private static final String FILENAME_FORMAT = "/%s-%s_signalChatExport";
 
     @SuppressLint("SimpleDateFormat")
-    static SimpleDateFormat dateFormatter = new SimpleDateFormat ("yyyy-MM-dd-HHmmss");
+    static SimpleDateFormat dateFormatter = new SimpleDateFormat ("yyyy-MM-dd-HH-mm-ss-SSS");
 
 
     private final WeakReference<Context> contextReference;
 
     private final int attachmentCount;
     HashMap<String, Uri> otherFiles;
-    private final File zipFile;
     private final ZipOutputStream out;
 
 
@@ -92,9 +91,45 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
         this.contextReference = new WeakReference<> (context);
         this.attachmentCount = count;
         this.otherFiles = otherFiles;
-        this.zipFile = instantiateZipFile (threadId);
-        this.out = getZipOutputStream ();
+        this.out = getZipOutputStream (threadId);
     }
+
+    public ZipOutputStream getZipOutputStream(long threadId) throws IOException {
+       String zipPath = "";
+       File zipFile = instantiateZipFile(threadId);
+       if (zipFile.exists()) {
+           throw new IOException("Export zip file already exists?");
+       }
+       if(zipFile != null)
+           zipPath = zipFile.getAbsolutePath();
+        try {
+            FileOutputStream dest = new FileOutputStream(zipPath+"/");
+            return new ZipOutputStream(new BufferedOutputStream(dest));
+        } catch (IOException e) {
+            throw new IOException("Chat export file had an error.\"");
+        }
+    }
+
+    private File instantiateZipFile (long threadId) {
+        File root = new File(getExternalPathToSaveZip ());
+        String fileName = createFileName(threadId);
+        return new File(root.getAbsolutePath () + "/" + fileName + ".zip");
+    }
+
+    private String getExternalPathToSaveZip () {
+        File storage = Environment.getExternalStoragePublicDirectory(STORAGE_DIRECTORY);
+        return storage.getAbsolutePath ();
+    }
+
+    private String createFileName (long threadId) {
+        String groupName = DatabaseFactory.getThreadDatabase (getContext ()).getRecipientForThreadId (threadId).getDisplayName (getContext ());
+        groupName = groupName.replaceAll("[^a-zA-Z0-9.\\-]", "_");
+        return String.format(FILENAME_FORMAT,
+                dateFormatter.format (new Date()),
+                groupName);
+    }
+
+
 
     void startToExport(Context context, boolean hasViewer, String data) throws IOException {
         addXMLFile (XML_FILENAME, data);
@@ -105,33 +140,6 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
         addFile (HTML_VIEWER_NAME, context.getAssets().open(HTML_VIEWER_PATH));
         addFile (HTML_VIEWER_JQUERY_NAME, context.getAssets().open(HTML_VIEWER_JQUERY_PATH));
         addFile (HTML_VIEWER_ICON_NAME, context.getAssets().open(HTML_VIEWER_ICON_PATH));
-    }
-
-    private String getExternalPathToSaveZip () {
-        File storage = Environment.getExternalStoragePublicDirectory(STORAGE_DIRECTORY);
-        return storage.getAbsolutePath ();
-    }
-
-    private File instantiateZipFile (long threadId) {
-        File root = new File(getExternalPathToSaveZip ());
-        String groupName = DatabaseFactory.getThreadDatabase (getContext ()).getRecipientForThreadId (threadId).getDisplayName (getContext ());
-        groupName = groupName.replaceAll("[^a-zA-Z0-9.\\-]", "_");
-        String fileName = String.format(FILENAME_FORMAT,
-                dateFormatter.format (new Date()),
-                groupName);
-        return new File(root.getAbsolutePath () + "/" + fileName + ".zip");
-    }
-
-    public ZipOutputStream getZipOutputStream() throws IOException {
-        try {
-            String zipPath = "";
-            if(zipFile != null)
-                zipPath = zipFile.getPath ();
-            FileOutputStream dest = new FileOutputStream(zipPath+"/");
-            return new ZipOutputStream(new BufferedOutputStream(dest));
-        } catch (IOException e) {
-            throw new IOException("Chat export file had an error.\"");
-        }
     }
 
     public @NonNull
@@ -240,6 +248,8 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
 
         return result;
     }
+
+
 
     @Override
     protected Pair<Integer, String> doInBackground(ExportZipUtil.Attachment... attachments) {
