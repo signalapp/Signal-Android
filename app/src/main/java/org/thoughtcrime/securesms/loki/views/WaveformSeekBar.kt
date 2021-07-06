@@ -14,7 +14,7 @@ import android.view.ViewConfiguration
 import android.view.animation.DecelerateInterpolator
 import androidx.core.math.MathUtils
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.loki.utilities.byteToNormalizedFloat
+import org.session.libsession.utilities.byteToNormalizedFloat
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min

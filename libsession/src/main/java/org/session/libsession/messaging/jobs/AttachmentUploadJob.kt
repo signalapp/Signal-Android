@@ -11,6 +11,8 @@ import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.utilities.Data
+import org.session.libsession.utilities.DecodedAudio
+import org.session.libsession.utilities.InputStreamMediaDataSource
 import org.session.libsession.utilities.UploadResult
 import org.session.libsignal.streams.AttachmentCipherOutputStream
 import org.session.libsignal.messages.SignalServiceAttachmentStream
@@ -108,7 +110,22 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     private fun handleSuccess(attachment: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: UploadResult) {
         Log.d(TAG, "Attachment uploaded successfully.")
         delegate?.handleJobSucceeded(this)
-        MessagingModuleConfiguration.shared.messageDataProvider.handleSuccessfulAttachmentUpload(attachmentID, attachment, attachmentKey, uploadResult)
+        val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
+        messageDataProvider.handleSuccessfulAttachmentUpload(attachmentID, attachment, attachmentKey, uploadResult)
+        if (attachment.contentType.startsWith("audio/")) {
+            // process the duration
+            try {
+                val inputStream = messageDataProvider.getAttachmentStream(attachmentID)!!.inputStream!!
+                InputStreamMediaDataSource(inputStream).use { mediaDataSource ->
+                    val durationMs = (DecodedAudio.create(mediaDataSource).totalDuration / 1000.0).toLong()
+                    messageDataProvider.getDatabaseAttachment(attachmentID)?.attachmentId?.let { attachmentId ->
+                        messageDataProvider.updateAudioAttachmentDuration(attachmentId, durationMs)
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("Loki", "Couldn't process audio attachment", e)
+            }
+        }
         MessagingModuleConfiguration.shared.storage.resumeMessageSendJobIfNeeded(messageSendJobID)
     }
 
@@ -140,13 +157,13 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         val kryo = Kryo()
         kryo.isRegistrationRequired = false
         val serializedMessage = ByteArray(4096)
-        val output = Output(serializedMessage)
-        kryo.writeObject(output, message)
+        val output = Output(serializedMessage, Job.MAX_BUFFER_SIZE)
+        kryo.writeClassAndObject(output, message)
         output.close()
         return Data.Builder()
             .putLong(ATTACHMENT_ID_KEY, attachmentID)
             .putString(THREAD_ID_KEY, threadID)
-            .putByteArray(MESSAGE_KEY, serializedMessage)
+            .putByteArray(MESSAGE_KEY, output.toBytes())
             .putString(MESSAGE_SEND_JOB_ID_KEY, messageSendJobID)
             .build()
     }
@@ -157,18 +174,24 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
 
     class Factory: Job.Factory<AttachmentUploadJob> {
 
-        override fun create(data: Data): AttachmentUploadJob {
+        override fun create(data: Data): AttachmentUploadJob? {
             val serializedMessage = data.getByteArray(MESSAGE_KEY)
             val kryo = Kryo()
             kryo.isRegistrationRequired = false
             val input = Input(serializedMessage)
-            val message = kryo.readObject(input, Message::class.java)
+            val message: Message
+            try {
+                message = kryo.readClassAndObject(input) as Message
+            } catch (e: Exception) {
+                Log.e("Loki","Couldn't serialize the AttachmentUploadJob", e)
+                return null
+            }
             input.close()
             return AttachmentUploadJob(
-                data.getLong(ATTACHMENT_ID_KEY),
-                data.getString(THREAD_ID_KEY)!!,
-                message,
-                data.getString(MESSAGE_SEND_JOB_ID_KEY)!!
+                    data.getLong(ATTACHMENT_ID_KEY),
+                    data.getString(THREAD_ID_KEY)!!,
+                    message,
+                    data.getString(MESSAGE_SEND_JOB_ID_KEY)!!
             )
         }
     }
