@@ -78,7 +78,7 @@ public final class FeatureFlags {
   private static final String MEDIA_QUALITY_LEVELS              = "android.mediaQuality.levels";
   private static final String RETRY_RECEIPT_LIFESPAN            = "android.retryReceiptLifespan";
   private static final String RETRY_RESPOND_MAX_AGE             = "android.retryRespondMaxAge";
-  private static final String SENDER_KEY                        = "android.senderKey.2";
+  private static final String SENDER_KEY                        = "android.senderKey.3";
   private static final String SUGGEST_SMS_BLACKLIST             = "android.suggestSmsBlacklist";
 
   /**
