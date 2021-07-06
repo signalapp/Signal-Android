@@ -1,9 +1,13 @@
 package org.thoughtcrime.securesms.messages;
 
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.metadata.InvalidMetadataMessageException;
@@ -18,6 +22,7 @@ import org.signal.libsignal.metadata.ProtocolLegacyMessageException;
 import org.signal.libsignal.metadata.ProtocolNoSessionException;
 import org.signal.libsignal.metadata.ProtocolUntrustedIdentityException;
 import org.signal.libsignal.metadata.SelfSendException;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
@@ -29,8 +34,11 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.AutomaticSessionResetJob;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.jobs.SendRetryReceiptJob;
+import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.ExceptionMetadata;
 import org.thoughtcrime.securesms.messages.MessageContentProcessor.MessageState;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -88,6 +96,7 @@ public final class MessageDecryptionUtil {
 
         if (sender.supportsMessageRetries() && Recipient.self().supportsMessageRetries() && FeatureFlags.senderKey()) {
           jobs.add(handleRetry(context, sender, envelope, e));
+          postInternalErrorNotification(context);
         } else {
           jobs.add(new AutomaticSessionResetJob(sender.getId(), e.getSenderDevice(), envelope.getTimestamp()));
         }
@@ -198,6 +207,19 @@ public final class MessageDecryptionUtil {
 
     return new ExceptionMetadata(sender, e.getSenderDevice());
   }
+
+  private static void postInternalErrorNotification(@NonNull Context context) {
+    if (!FeatureFlags.internalUser()) return;
+
+    NotificationManagerCompat.from(context).notify(NotificationIds.INTERNAL_ERROR,
+                                                   new NotificationCompat.Builder(context, NotificationChannels.FAILURES)
+                                                                         .setSmallIcon(R.drawable.ic_notification)
+                                                                         .setContentTitle(context.getString(R.string.MessageDecryptionUtil_failed_to_decrypt_message))
+                                                                         .setContentText(context.getString(R.string.MessageDecryptionUtil_tap_to_send_a_debug_log))
+                                                                         .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, SubmitDebugLogActivity.class), 0))
+                                                                         .build());
+  }
+
 
   private static class NoSenderException extends Exception {}
 

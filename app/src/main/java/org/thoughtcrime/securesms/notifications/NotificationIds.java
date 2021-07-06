@@ -9,6 +9,8 @@ public final class NotificationIds {
   public static final int SMS_IMPORT_COMPLETE         = 31337;
   public static final int PRE_REGISTRATION_SMS        = 5050;
   public static final int THREAD                      = 50000;
+  public static final int INTERNAL_ERROR              = 258069;
+  public static final int LEGACY_SQLCIPHER_MIGRATION  = 494949;
   public static final int USER_NOTIFICATION_MIGRATION = 525600;
   public static final int DEVICE_TRANSFER             = 625420;
 

@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.messages.MessageContentProcessor.MessageState;
 import org.thoughtcrime.securesms.messages.MessageDecryptionUtil;
 import org.thoughtcrime.securesms.messages.MessageDecryptionUtil.DecryptionResult;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
@@ -118,7 +119,7 @@ public final class PushDecryptMessageJob extends BaseJob {
   }
 
   private void postMigrationNotification() {
-    NotificationManagerCompat.from(context).notify(494949,
+    NotificationManagerCompat.from(context).notify(NotificationIds.LEGACY_SQLCIPHER_MIGRATION,
                                                    new NotificationCompat.Builder(context, NotificationChannels.getMessagesChannel(context))
                                                                          .setSmallIcon(R.drawable.ic_notification)
                                                                          .setPriority(NotificationCompat.PRIORITY_HIGH)
