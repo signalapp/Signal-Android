@@ -178,6 +178,8 @@ public final class AudioWaveForm {
       boolean               sawInputEOS     = false;
       boolean               sawOutputEOS    = false;
       int                   noOutputCounter = 0;
+      final long            barFactorUs     = (totalDurationUs / (BAR_COUNT * SAMPLES_PER_BAR)) + 1;
+      long                  barTimeUs       = barFactorUs / 2;
 
       while (!sawOutputEOS && noOutputCounter < 50) {
         noOutputCounter++;
@@ -185,6 +187,8 @@ public final class AudioWaveForm {
           int inputBufIndex = codec.dequeueInputBuffer(kTimeOutUs);
           if (inputBufIndex >= 0) {
             ByteBuffer dstBuf             = codecInputBuffers[inputBufIndex];
+                                            extractor.seekTo(barTimeUs, MediaExtractor.SEEK_TO_NEXT_SYNC);
+                       barTimeUs         += barFactorUs;
             int        sampleSize         = extractor.readSampleData(dstBuf, 0);
             long       presentationTimeUs = 0;
 
@@ -195,6 +199,10 @@ public final class AudioWaveForm {
               presentationTimeUs = extractor.getSampleTime();
             }
 
+            if (barTimeUs > totalDurationUs) {
+              sawInputEOS = true;
+            }
+
             codec.queueInputBuffer(
               inputBufIndex,
               0,
@@ -202,17 +210,6 @@ public final class AudioWaveForm {
               presentationTimeUs,
               sawInputEOS ? MediaCodec.BUFFER_FLAG_END_OF_STREAM : 0);
 
-            if (!sawInputEOS) {
-              int barSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
-              sawInputEOS = !extractor.advance();
-              int nextBarSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
-              while (!sawInputEOS && nextBarSampleIndex == barSampleIndex) {
-                sawInputEOS = !extractor.advance();
-                if (!sawInputEOS) {
-                  nextBarSampleIndex = (int) (SAMPLES_PER_BAR * (wave.length * extractor.getSampleTime()) / totalDurationUs);
-                }
-              }
-            }
           }
         }
 
