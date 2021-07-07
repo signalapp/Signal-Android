@@ -14,7 +14,6 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_link_device.*
-import kotlinx.android.synthetic.main.conversation_activity.*
 import kotlinx.android.synthetic.main.fragment_recovery_phrase.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
