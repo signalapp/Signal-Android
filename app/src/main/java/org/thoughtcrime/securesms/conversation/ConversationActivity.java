@@ -2660,6 +2660,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
           threadDatabase.update(threadId, false);
         }
 
+        if (drafts.isEmpty()) {
+          draftDatabase.clearDrafts(threadId);
+        }
+
         return threadId;
       }
 

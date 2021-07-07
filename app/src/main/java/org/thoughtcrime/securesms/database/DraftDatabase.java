@@ -8,6 +8,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.CursorUtil;
@@ -18,6 +19,8 @@ import java.util.List;
 import java.util.Set;
 
 public class DraftDatabase extends Database {
+
+  private static final String TAG = Log.tag(DraftDatabase.class);
 
           static final String TABLE_NAME  = "drafts";
   public  static final String ID          = "_id";
@@ -42,7 +45,8 @@ public class DraftDatabase extends Database {
     try {
       db.beginTransaction();
 
-      db.delete(TABLE_NAME, THREAD_ID + " = ?", SqlUtil.buildArgs(threadId));
+      int deletedRowCount = db.delete(TABLE_NAME, THREAD_ID + " = ?", SqlUtil.buildArgs(threadId));
+      Log.d(TAG, "[replaceDrafts] Deleted " + deletedRowCount + " rows for thread " + threadId);
 
       for (Draft draft : drafts) {
         ContentValues values = new ContentValues(3);
@@ -61,7 +65,8 @@ public class DraftDatabase extends Database {
 
   public void clearDrafts(long threadId) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    db.delete(TABLE_NAME, THREAD_ID + " = ?", new String[] {threadId+""});
+    int deletedRowCount = db.delete(TABLE_NAME, THREAD_ID + " = ?", SqlUtil.buildArgs(threadId));
+    Log.d(TAG, "[clearDrafts] Deleted " + deletedRowCount + " rows for thread " + threadId);
   }
 
   void clearDrafts(Set<Long> threadIds) {
