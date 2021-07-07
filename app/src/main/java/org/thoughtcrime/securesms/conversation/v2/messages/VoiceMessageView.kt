@@ -25,6 +25,8 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
     private var duration = 0L
     private var player: AudioSlidePlayer? = null
     private var isPreparing = false
+    var delegate: VisibleMessageContentViewDelegate? = null
+    var index = 0
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
@@ -70,6 +72,7 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
         if (progress == 1.0) {
             togglePlayback()
             handleProgressChanged(0.0)
+            delegate?.playNextAudioIfPossible(index)
         } else {
             handleProgressChanged(progress)
         }
@@ -111,4 +114,9 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
         player.playbackSpeed = if (player.playbackSpeed == 1.0f) 1.5f else 1.0f
     }
     // endregion
+}
+
+interface VoiceMessageViewDelegate {
+
+    fun playNextAudioIfPossible(current: Int)
 }
