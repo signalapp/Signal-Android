@@ -7,11 +7,10 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
-import org.thoughtcrime.securesms.conversation.ConversationPopupActivity;
 import org.session.libsignal.utilities.Log;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.recipients.Recipient.*;
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
 
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -167,9 +166,9 @@ public class NotificationState {
   public PendingIntent getQuickReplyIntent(Context context, Recipient recipient) {
     if (threads.size() != 1) throw new AssertionError("We only support replies to single thread notifications! " + threads.size());
 
-    Intent     intent           = new Intent(context, ConversationPopupActivity.class);
-    intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
-    intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, (long)threads.toArray()[0]);
+    Intent     intent           = new Intent(context, ConversationActivityV2.class);
+    intent.putExtra(ConversationActivityV2.ADDRESS, recipient.getAddress());
+    intent.putExtra(ConversationActivityV2.THREAD_ID, (long)threads.toArray()[0]);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
 
     return PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);

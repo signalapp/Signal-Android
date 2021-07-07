@@ -11,7 +11,7 @@ import android.widget.TextView;
 import network.loki.messenger.R;
 
 /**
- * Bottom navigation bar shown in the {@link org.thoughtcrime.securesms.conversation.ConversationActivity}
+ * Bottom navigation bar shown in the ConversationActivity
  * when the user is searching within a conversation. Shows details about the results and allows the
  * user to move between them.
  */

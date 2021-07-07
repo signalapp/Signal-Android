@@ -207,18 +207,6 @@
         </activity-alias>
 
         <activity
-            android:name="org.thoughtcrime.securesms.conversation.ConversationActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.TextSecure.DayNight.NoActionBar"
-            android:parentActivityName="org.thoughtcrime.securesms.loki.activities.HomeActivity"
-            android:windowSoftInputMode="stateUnchanged">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.thoughtcrime.securesms.loki.activities.HomeActivity" />
-        </activity>
-        <activity
             android:name="org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2"
             android:screenOrientation="portrait"
             android:parentActivityName="org.thoughtcrime.securesms.loki.activities.HomeActivity"
@@ -235,21 +223,6 @@
             android:name="org.thoughtcrime.securesms.longmessage.LongMessageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.TextSecure.DayNight" />
-        <activity
-            android:name="org.thoughtcrime.securesms.conversation.ConversationPopupActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:excludeFromRecents="true"
-            android:launchMode="singleTask"
-            android:taskAffinity=""
-            android:windowSoftInputMode="stateVisible" />
-        <activity
-            android:name="org.thoughtcrime.securesms.MessageDetailsActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:label="Message Details"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.TextSecure.DayNight"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="org.thoughtcrime.securesms.DatabaseUpgradeActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
