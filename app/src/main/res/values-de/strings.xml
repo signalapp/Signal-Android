@@ -1152,7 +1152,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">Du</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
-  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifizieren, um weiterhin zu kommunizieren</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verifizieren zum Senden weiterer Nachrichten</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Hilf dabei, Spam auf Signal zu verhindern, und schließe die Verifikation ab.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">Nach abgeschlossener Verifikation kannst du wieder Nachrichten senden. Alle pausierten Nachrichten werden dann automatisch versendet.</string>
   <!--Recipient-->
@@ -1446,7 +1446,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_failed_to_deliver_message">Nachricht konnte nicht zugestellt werden.</string>
   <string name="MessageNotifier_error_delivering_message">Fehler beim Zustellen der Nachricht</string>
   <string name="MessageNotifier_message_delivery_paused">Nachrichtenzustellung pausiert.</string>
-  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verifizieren, um weiterhin auf Signal Nachrichten zu senden.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verifizieren zum Senden weiterer Nachrichten auf Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Alle gelesen</string>
   <string name="MessageNotifier_mark_read">Gelesen</string>
   <string name="MessageNotifier_turn_off_these_notifications">Diese Benachrichtigungen ausschalten</string>
@@ -2125,7 +2125,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PaymentsTransferFragment__transfer">Überweisen</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR-Code einscannen</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">An: Wallet-Adresse scannen oder eingeben</string>
-  <string name="PaymentsTransferFragment__you_can_transfer">Du kannst MobileCoin übertragen, indem du eine Überweisung an die von der Handelsplattform angegebene Wallet-Adresse ausführst. Die Wallet-Adresse ist eine Folge von Zahlen und Buchstaben, die sich gewöhnlicherweise unterhalb des QR-Codes befindet.</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Du kannst MobileCoin übertragen, indem du eine Überweisung an die von der Handelsplattform angegebene Wallet-Adresse ausführst. Die Wallet-Adresse ist eine Folge von Zahlen und Buchstaben, die sich meistens unterhalb des QR-Codes befindet.</string>
   <string name="PaymentsTransferFragment__next">Weiter</string>
   <string name="PaymentsTransferFragment__invalid_address">Ungültige Adresse</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">Überprüfe die Wallet-Adresse, an die du überweisen möchtest, und versuche es erneut. </string>
@@ -2136,7 +2136,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PaymentsTransferFragment__settings">Einstellungen</string>
   <!--PaymentsTransferQrScanFragment-->
   <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Adress-QR-Code einscannen</string>
-  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scanne des Adress-QR-Code des Empfängers</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scanne den Adress-QR-Code des Empfängers</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Anfrage</string>
   <string name="CreatePaymentFragment__pay">Bezahlen</string>
@@ -2781,7 +2781,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="payment_info_card_your_recovery_phrase_gives_you">Deine Wiederherstellungsphrase gibt dir eine weitere Möglichkeit, dein Zahlungskonto wiederherzustellen.</string>
   <string name="payment_info_card_record_your_phrase">Notiere deine Phrase</string>
   <string name="payment_info_card_update_your_pin">Aktualisiere deine PIN</string>
-  <string name="payment_info_card_with_a_high_balance">Bei einem hohen Kontostand sollest du eventuell auf eine alphanumerische PIN wechseln, um den Schutz deines Kontos zu erhöhen.</string>
+  <string name="payment_info_card_with_a_high_balance">Bei einem hohen Kontostand sollest du zum erhöhten Schutz deines Kontos eventuell zu einer alphanumerischen PIN wechseln.</string>
   <string name="payment_info_card_update_pin">PIN aktualisieren</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Wallet deaktivieren</string>
@@ -2797,8 +2797,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Wiederherstellungsphrase</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Wiederherstellungsphrase anzeigen</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Wiederherstellungsphrase eingeben</string>
-  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Dein Kontostand wird beim erneuten Installieren von Signal automatisch wiederhergestellt, falls du deine Signal-PIN bestätigst. Weiterhin kannst du deinen Kontostand durch Verwenden einer Wiederherstellungsphrase wiederherstellen; einer aus %1$d Wörtern bestehenden, einzigartigen Phrase. Notiere sie und bewahre sie an einem sicheren Ort auf.</string>
-  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Deine Wiederherstellungsphrase ist ein nur für dich geltender Satz mit %1$d Wörtern. Verwende sie, um deinen Kontostand wiederherzustellen.</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Dein Kontostand wird beim erneuten Installieren von Signal automatisch wiederhergestellt, falls du deine Signal-PIN bestätigst. Weiterhin kannst du deinen Kontostand durch Verwenden einer Wiederherstellungsphrase wiederherstellen, einer aus %1$d Wörtern bestehenden, einzigartigen Phrase. Notiere sie und bewahre sie an einem sicheren Ort auf.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Deine Wiederherstellungsphrase ist ein einzigartiger Satz mit %1$d Wörtern. Verwende sie, um deinen Kontostand wiederherzustellen.</string>
   <string name="PaymentsRecoveryStartFragment__start">Starten</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Manuell eingeben</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Von Zwischenablage einfügen</string>
@@ -2806,7 +2806,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Wiederherstellungsphrase einfügen</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Wiederherstellungsphrase</string>
   <string name="PaymentsRecoveryPasteFragment__next">Weiter</string>
-  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Ungültige Wiederherstellungsphrase.</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Ungültige Wiederherstellungsphrase</string>
   <string name="PaymentsRecoveryPasteFragment__make_sure">Vergewissere dich, dass du %1$d Wörter eingegeben hast, und versuche es erneut.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Weiter</string>
@@ -2865,7 +2865,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="AppSettingsFragment__invite_your_friends">Freunde einladen</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konto</string>
-  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">PIN-Erinnerungen werden seltener angezeigt, wenn du die PIN richtig eingibst</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">PIN-Erinnerungen werden mit der Zeit seltener angezeigt</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal-PIN erforderlich machen, sobald du deine Rufnummer erneut bei Signal registrierst</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
@@ -3000,7 +3000,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConversationSettingsFragment__permissions">Berechtigungen</string>
   <string name="ConversationSettingsFragment__requests_and_invites">Anfragen &amp; Einladungen</string>
   <string name="ConversationSettingsFragment__group_link">Gruppen-Link</string>
-  <string name="ConversationSettingsFragment__add_as_a_contact">Zu Kontakten hinzufügen</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Als Kontakt hinzufügen</string>
   <string name="ConversationSettingsFragment__unmute">Stummschaltung aufheben</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Unterhaltung stummgeschaltet bis %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Unterhaltung dauerhaft stummgeschaltet</string>

@@ -2753,7 +2753,7 @@
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Phrase de récupération</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Voir la phrase de récupération</string>
-  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Entrez la phrase de récupération</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Saisissez la phrase de récupération</string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Votre phrase de récupération est une phrase de %1$d mots qui vous est propre. Utilisez cette phrase pour restaurer votre solde.</string>
   <string name="PaymentsRecoveryStartFragment__start">Commencer</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Entrer manuellement</string>
@@ -2785,7 +2785,7 @@
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Terminé</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Phrase de récupération confirmée</string>
   <!--PaymentsRecoveryEntryFragment-->
-  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Entrez la phrase de récupération</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Saisissez la phrase de récupération</string>
   <string name="PaymentsRecoveryEntryFragment__enter_word_d">Saisissez le mot %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__word_d">Mot %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Suivant</string>
@@ -2821,6 +2821,7 @@
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Compte</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">On vous le demandera moins souvent au fil du temps</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Exige votre NIP Signal pour réinscrire votre numéro de téléphone avec Signal</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Clavier</string>
   <string name="ChatsSettingsFragment__enter_key_sends">La touche Entrée envoie</string>
@@ -2956,7 +2957,9 @@
   <string name="ConversationSettingsFragment__group_link">Lien de groupe</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">Ajouter comme contact</string>
   <string name="ConversationSettingsFragment__unmute">Réactiver les notifications</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversation en sourdine jusqu’à %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Conversation en sourdine pour toujours</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numéro de téléphone copié dans le presse-papier.</string>
   <string name="ConversationSettingsFragment__phone_number">Numéro de téléphone</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Ajouter des membres</string>
@@ -2968,6 +2971,7 @@
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Mettre les notifications en sourdine</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Désactivée</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">En sourdine jusqu’à %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Mentions</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Toujours m’avertir</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ne pas m’avertir</string>

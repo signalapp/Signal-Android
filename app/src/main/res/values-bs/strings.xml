@@ -3083,7 +3083,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ConversationSettingsFragment__video">Videozapisi</string>
   <string name="ConversationSettingsFragment__audio">Audiozapisi</string>
   <string name="ConversationSettingsFragment__call">Nazovi</string>
-  <string name="ConversationSettingsFragment__mute">Utišaj</string>
+  <string name="ConversationSettingsFragment__mute">Stišaj</string>
   <string name="ConversationSettingsFragment__muted">Stišano</string>
   <string name="ConversationSettingsFragment__search">Traži</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Nestajuće poruke</string>
@@ -3104,6 +3104,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ConversationSettingsFragment__unmute">Isključi stišavanje</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Konverzacije stišane do %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Konverzacije zastalno stišane</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonski broj kopiran je u međuspremnik.</string>
   <string name="ConversationSettingsFragment__phone_number">Broj telefona</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Uvrštavanje članova</string>
@@ -3114,12 +3115,13 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Ko može mijenjati informacije o ovoj grupi?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Stišaj obavještenja</string>
-  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nije utišano</string>
+  <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nije stišano</string>
   <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Stišano do %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Spomen</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Uvijek obavijesti</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ne obavještavaj</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Podešavanje obavještenja</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Nedavno korištene</string>
   <!--EOF-->
 </resources>

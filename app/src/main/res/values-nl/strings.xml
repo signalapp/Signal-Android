@@ -2025,7 +2025,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_data_and_storage__calls">Oproepen</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Minder dataoverdracht bij oproepen</string>
   <string name="preferences_data_and_storage__never">Nooit</string>
-  <string name="preferences_data_and_storage__wifi_and_mobile_data">Bij wifi en mobie-dataoverdracht</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">Bij zowel wifi als mobiele-dataoverdracht</string>
   <string name="preferences_data_and_storage__mobile_data_only">Alleen bij mobiele-dataoverdracht</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Gebruik maken van minder dataoverdracht bij oproepen kan de kwaliteit van oproepen verbeteren</string>
   <string name="preferences_notifications__messages">Berichten</string>
@@ -2087,7 +2087,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PaymentsHomeFragment__deactivate_payments">Overschrijvingen uitschakelen</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Herstel-zin</string>
   <string name="PaymentsHomeFragment__help">Hulp</string>
-  <string name="PaymentsHomeFragment__coin_cleanup_fee">Afrondingskosten</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">Samenvoegingskosten</string>
   <string name="PaymentsHomeFragment__sent_payment">Verzonden overschrijving</string>
   <string name="PaymentsHomeFragment__received_payment">Ontvangen overschijving</string>
   <string name="PaymentsHomeFragment__processing_payment">Overschrijving aan het verwerken</string>
@@ -2129,8 +2129,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PaymentsDetailsFragment__to">Naar</string>
   <string name="PaymentsDetailsFragment__from">Van</string>
   <string name="PaymentsDetailsFragment__information">Overschrijvingsdetails waaronder de hoeveelheid en het tijdstip van de betaling zijn onderdeel van het kasboek van MobileCoin.</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Afrondingskosten</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_information">Er worden “afrondingskosten” in rekening gebracht wanneer de munten die je bezit niet kunnen worden samengevoegd om een overschrijving te voltooien. Door deze afrondingskosten kunnen je toch overschrijvingen blijven doen.</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Samenvoegingskosten</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">Er worden “samenvoegingskosten” in rekening gebracht wanneer de munten die je bezit niet kunnen worden samengevoegd to de nieuwe gewenste overschrijving. Door deze samenvoegingskosten kunnen je toch een nieuwe overschrijvingen maken.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Er is geen verdere informatie beschikbaar over deze overschrijving</string>
   <string name="PaymentsDetailsFragment__sent_payment">Overschrijving verzenden</string>
   <string name="PaymentsDetailsFragment__received_payment">Ontvangen overschrijving</string>
@@ -2994,7 +2994,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationSettingsFragment__send_message">Bericht verzenden</string>
   <string name="ConversationSettingsFragment__start_video_call">Video-oproep beginnen</string>
   <string name="ConversationSettingsFragment__start_audio_call">Audio-oproep beginnen</string>
-  <string name="ConversationSettingsFragment__message">Een bericht verzenden</string>
+  <string name="ConversationSettingsFragment__message">Bericht verzenden</string>
   <string name="ConversationSettingsFragment__video">Video-oproep</string>
   <string name="ConversationSettingsFragment__audio">Audio-oproep</string>
   <string name="ConversationSettingsFragment__call">Bellen</string>

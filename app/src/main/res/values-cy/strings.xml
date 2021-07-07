@@ -3185,6 +3185,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationSettingsFragment__unmute">Dad-dewi</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Sgwrs wedi\'i dewi tan %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Sgwrs wedi\'i dewi am byth</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Wedi copïo’r rhif ffôn i\'r clipfwrdd</string>
   <string name="ConversationSettingsFragment__phone_number">Rhif ffôn</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Ychwanegu aelodau</string>
@@ -3202,5 +3203,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Peidio â hysbysu</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Hysbysiadau cyfaddas</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Defnyddiwyd yn ddiweddar</string>
   <!--EOF-->
 </resources>

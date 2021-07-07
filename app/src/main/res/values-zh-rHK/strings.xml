@@ -136,7 +136,7 @@
   <string name="CommunicationActions_cancel">取消</string>
   <string name="CommunicationActions_call">通話</string>
   <string name="CommunicationActions_insecure_call">不安全的通話</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">電訊商可能會收費。您正撥打的號碼未有在 Signal 上註冊，因此通話將透過您的流動電訊公司打出，而非經由互聯網接通。</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">流動網絡商或會收取相關費用。您正撥打的號碼未有在 Signal 上註冊，因此通話將透過您的流動電訊公司打出，而非經由互聯網連接。</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">您與 %1$s 之間的安全碼已變更。這可能代表有人正嘗試截取您的通訊，又或者不過是 %2$s 已重新安裝 Signal。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您不妨與此聯絡人驗證一下安全碼。</string>
@@ -618,7 +618,7 @@
   <string name="ManageProfileFragment_profile_name">個人資料名稱</string>
   <string name="ManageProfileFragment_username">使用者名稱</string>
   <string name="ManageProfileFragment_about">關於</string>
-  <string name="ManageProfileFragment_write_a_few_words_about_yourself">寫幾句話自我介紹一下</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">不妨寫句話自我介紹一下</string>
   <string name="ManageProfileFragment_your_name">您的名稱</string>
   <string name="ManageProfileFragment_your_username">您的使用者名稱</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">設定頭像失敗</string>

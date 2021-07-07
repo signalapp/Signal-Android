@@ -1838,7 +1838,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Detta meddelande</string>
-  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Senaste använda</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nyligen använda</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Humörsymboler &amp; personer</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natur</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Mat</string>
@@ -3009,6 +3009,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationSettingsFragment__unmute">Ljud på</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Konversation tystad till %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Konversation tystad för alltid</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Kopierat telefonnummer till urklipp.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Lägg till medlemmar</string>
@@ -3026,5 +3027,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Meddela inte</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Anpassade aviseringar</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Nyligen använda</string>
   <!--EOF-->
 </resources>

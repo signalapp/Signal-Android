@@ -2982,6 +2982,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConversationSettingsFragment__unmute">Activare sunet notificări</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversaţia este acum silenţiosă până la %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Conversația este silenţiosă pentru totdeauna</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numărul de telefon a fost copiat în clipboard.</string>
   <string name="ConversationSettingsFragment__phone_number">Număr de telefon</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Adăugare membri</string>
@@ -2999,5 +3000,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Nu mă anunța</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificări personalizate</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Utilizate recent</string>
   <!--EOF-->
 </resources>

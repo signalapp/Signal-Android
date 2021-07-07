@@ -215,11 +215,11 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">لا يوجد تطبيق لمعالجة هذا الرابط على جهازك.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">تم إرسال طلبك للانضمام إلى المشرفين على المجموعة. سيتم تنبيهك عند اتخاذهم الإجراء المناسب لهم.</string>
   <string name="ConversationActivity_cancel_request">إلغاء الطلب</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">لإرسال الرسائل الصوتية، يرجى السماح ل Signal بالوصول إلى المايكروفون.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">يحتاج Signal إلى إذن الوصول إلى الميكروفون لإرسال الرسائل الصوتية، ولكن تم إيقاف الإذن على نحو دائم. الرّجاء زيارة إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الميكروفون\".</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">يحتاج Signal إلى أذونات الميكروفون والكاميرا من أجل الاتصال بـ%s ولكن تم إيقافهم على نحو دائم. الرجاء زيارة إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الميكروفون\" و\"الكاميرا\".</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">لإلتقاط الصور والفيديوهات، الرجاء السماح لSignal بالوصول إلي الكاميرا.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">يحتاج Signal إلى إذن الوصول إلى الكاميرا من أجل التقاط صور وفيديو، ولكن تم إيقاف الإذن على نحو دائم. الرجاء زيارة إعدادات التطبيق ثم اختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">لإرسال الرسائل الصوتية، يرجى السماح لـ Signal بالوصول إلى الميكروفون.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">يحتاج Signal إلى إذن الوصول إلى الميكروفون لإرسال الرسائل الصوتية، ولكن تم إيقاف الإذن على نحو دائم. الرّجاء الاطلاع على إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الميكروفون\".</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">يحتاج Signal إلى إذنَي الوصول إلى الميكروفون والكاميرا من أجل الاتصال بـ%s ولكن تم إيقافهما على نحو دائم. الرجاء الاطلاع على إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الميكروفون\" و\"الكاميرا\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">لالتقاط الصور والفيديوهات، الرجاء السماح لـ Signal بالوصول إلي الكاميرا.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">يحتاج Signal إلى إذن الوصول إلى الكاميرا من أجل التقاط صور وفيديو، ولكن تم إيقاف الإذن على نحو دائم. الرجاء الاطلاع على إعدادات التطبيق ثم اختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">يحتاج Signal إلي إذن الوصول إلى الكاميرا لالتقاط صور أو تسجيل فيديو</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">يرجى تفعيل الإذن للميكروفون للتمكّن من التقاط الصوت في الفيديو.</string>
   <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">يحتاج Signal إلى أذونات الوصول إلى الميكروفون لتسجيل الفيديو، لكنه لم يمنح الإذن. الرجاء الذهاب إلى إعدادات التطبيق ثم اختيار \"الأذونات\"  وتفعيل \"الميكروفون\" و \"الكاميرا\".</string>
@@ -927,7 +927,7 @@
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">الوسائط</string>
   <string name="MediaOverviewActivity_Files">الملفات</string>
-  <string name="MediaOverviewActivity_Audio">الصوتية</string>
+  <string name="MediaOverviewActivity_Audio">الصوتيات</string>
   <string name="MediaOverviewActivity_All">الجميع</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="zero">لا يوجد عنصر مختار</item>
@@ -1894,6 +1894,7 @@
   <string name="safety_number_change_dialog__view">إظهار</string>
   <string name="safety_number_change_dialog__previous_verified">سبق التحقق منه</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">لقد فُعلَت إشعارات المكالمات</string>
   <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">تفعيل إشعارات المكالمات</string>
   <string name="EnableCallNotificationSettingsDialog__enable_background_activity">تفعيل نشاط الخلفية</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">يبدو أن كل شيء جيد الآن !</string>
@@ -2069,6 +2070,7 @@
   <string name="message_details_recipient_header__delivered_to">سُلمَت إلى</string>
   <string name="message_details_recipient_header__read_by">قُرأَت من قبل</string>
   <string name="message_details_recipient_header__not_sent">لم تُرسَل</string>
+  <string name="message_details_recipient_header__viewed">اطلع عليها</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">فشل الإرسال</string>
   <string name="message_details_recipient__new_safety_number">رقم الأمان جديد</string>
@@ -2259,7 +2261,7 @@
   <string name="preferences_chats__when_using_mobile_data">عند استخدام بيانات الجوّال</string>
   <string name="preferences_chats__when_using_wifi">عند استخدام واي فاي</string>
   <string name="preferences_chats__when_roaming">عند استخدام التجوال</string>
-  <string name="preferences_chats__media_auto_download">تنزلي تلقائي للوسائط</string>
+  <string name="preferences_chats__media_auto_download">التنزيل التلقائي للوسائط</string>
   <string name="preferences_chats__message_history">محفوظات الرسائل</string>
   <string name="preferences_storage__storage_usage">استخدام سعة التخزين</string>
   <string name="preferences_storage__photos">الصور</string>
@@ -2394,6 +2396,7 @@
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">الطلب</string>
   <string name="CreatePaymentFragment__pay">دَفع</string>
+  <string name="CreatePaymentFragment__toggle_content_description">تبديل</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2404,6 +2407,7 @@
   <string name="CreatePaymentFragment__8">8</string>
   <string name="CreatePaymentFragment__9">9</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__add_note">إضافة ملاحظة</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">مُلاحظة</string>
   <!--ConfirmPaymentFragment-->
@@ -2580,7 +2584,7 @@
   <string name="KbsSplashFragment__learn_more_about_pins">معرفة المزيد عن الأرقام التعريفية الشخصية</string>
   <string name="KbsSplashFragment__disable_pin">إلغاء الرقم التعريفي الشخصي</string>
   <!--KBS Reminder Dialog-->
-  <string name="KbsReminderDialog__enter_your_signal_pin">أدخل الرقم التعريفي الشخصي ل Signal</string>
+  <string name="KbsReminderDialog__enter_your_signal_pin">أدخل رقم Signal التعريفي الشخصي</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">لمساعدتك على حفظ  رقم التعريف الشخصي الخاص بك سنطلب منك إعادة إدخاله من حين لآخر. مع مرور الوقت سنطلبه منك مرات أقل.</string>
   <string name="KbsReminderDialog__skip">تخطّي</string>
   <string name="KbsReminderDialog__submit">تقديم</string>
@@ -2731,7 +2735,7 @@
   <string name="preferences_app_protection__screen_lock">قفل الشاشة</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">منع الوصول إلى Signal عبر قفل الشاشة أو بصمة الإصبع</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">نفاذ مهلة قفل الشاشة</string>
-  <string name="preferences_app_protection__signal_pin">الرقم التعريفي الشخصي ل Signal</string>
+  <string name="preferences_app_protection__signal_pin">رقم Signal التعريفي الشخصي</string>
   <string name="preferences_app_protection__create_a_pin">إنشاء رقم تعريفي شخصي</string>
   <string name="preferences_app_protection__change_your_pin">غيِّر رقمك التعريف الشخصي</string>
   <string name="preferences_app_protection__pin_reminders">تذكيرات الرقم التعريفي الشخصي</string>
@@ -2791,6 +2795,8 @@
   <string name="DeviceTransferSetup__the_numbers_do_not_match">الأعداد غير متوافقة</string>
   <string name="DeviceTransferSetup__continue">الاِستِمرار</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">إن العدد ليس هو ذاته</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">تعذر العثور على الجهاز القديم</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">تعذر العثور على الجهاز الجديد</string>
   <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">يُرجى التحقق من أن التصريحات والخدمات التالية مُفعَّلة :</string>
   <string name="DeviceTransferSetup__location_permission">إذن الوصول للموقع</string>
   <string name="DeviceTransferSetup__location_services">خدمات الموقع</string>
@@ -3057,6 +3063,7 @@
   <string name="PrivacySettingsFragment__app_security">أمان التطبيق</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">منع لقطات الشاشة داخل التطبيق وفي قائمة الأحدث  </string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">محادثات ومكالمات Signal، مناوبة الاتصالات دوما، والمُرسِل المختوم</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">المهلة الافتراضية للمحادثات الجديدة</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">تحديد مدة افتراضية لمؤقت اختفاء الرسائل، لجميع المحادثات الجديدة التي قمت ببدئها.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">إظهار أيقونة الحالة</string>
@@ -3133,6 +3140,9 @@
   <string name="EmojiSearchFragment__no_results_found">لم يعثر على أي نتيجة</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">رنة مجهولة</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">إرسال الرسالة</string>
+  <string name="ConversationSettingsFragment__start_video_call">بدء مكالمة بالصورة</string>
+  <string name="ConversationSettingsFragment__start_audio_call">بدء مكالمة صوتية</string>
   <string name="ConversationSettingsFragment__message">رِسالَة</string>
   <string name="ConversationSettingsFragment__video">مقاطع الڤيديو</string>
   <string name="ConversationSettingsFragment__audio">الصوت</string>
@@ -3141,6 +3151,8 @@
   <string name="ConversationSettingsFragment__muted">مكتوم</string>
   <string name="ConversationSettingsFragment__search">البحث</string>
   <string name="ConversationSettingsFragment__disappearing_messages">الرسائل المختفية</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">الأصوات والإشعارات</string>
+  <string name="ConversationSettingsFragment__contact_details">تفاصيل جهة الاتصال</string>
   <string name="ConversationSettingsFragment__view_safety_number">عرض رقم الأمان</string>
   <string name="ConversationSettingsFragment__block">حظر</string>
   <string name="ConversationSettingsFragment__block_group">حظر المجموعة</string>
@@ -3152,6 +3164,8 @@
   <string name="ConversationSettingsFragment__permissions">الصلاحيات</string>
   <string name="ConversationSettingsFragment__group_link">وصلة المجموعة</string>
   <string name="ConversationSettingsFragment__unmute">رَفع الكَتم</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">كُتمَت المحادثة للأبد</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">لقد نُسخ رقم الهاتف إلى الحافظة.</string>
   <string name="ConversationSettingsFragment__phone_number">رقم الهاتف</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">إضافة أعضاء</string>

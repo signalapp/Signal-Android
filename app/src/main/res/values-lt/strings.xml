@@ -3159,11 +3159,11 @@
   <string name="ConversationSettingsFragment__start_video_call">Pradėti vaizdo skambutį</string>
   <string name="ConversationSettingsFragment__start_audio_call">Pradėti garso skambutį</string>
   <string name="ConversationSettingsFragment__message">Žinutė</string>
-  <string name="ConversationSettingsFragment__video">Vaizdo įrašas</string>
-  <string name="ConversationSettingsFragment__audio">Garsas</string>
+  <string name="ConversationSettingsFragment__video">Vaizdo skambutis</string>
+  <string name="ConversationSettingsFragment__audio">Garso skambutis</string>
   <string name="ConversationSettingsFragment__call">Skambinti</string>
-  <string name="ConversationSettingsFragment__mute">Nutildyti</string>
-  <string name="ConversationSettingsFragment__muted">Nutildyta(-s)</string>
+  <string name="ConversationSettingsFragment__mute">Išjungti pranešimus</string>
+  <string name="ConversationSettingsFragment__muted">Pranešimai išjungti</string>
   <string name="ConversationSettingsFragment__search">Ieškoti</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Išnykstančios žinutės</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">Garsai ir pranešimai</string>
