@@ -34,7 +34,7 @@
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/recipient_name"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="start|center_vertical"
@@ -51,7 +51,7 @@
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/recipient_about"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
@@ -71,7 +71,7 @@
     <TextView
         android:id="@+id/admin"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:gravity="start|center_vertical"
         android:text="@string/GroupRecipientListItem_admin"
