@@ -113,7 +113,7 @@ class VoiceNotePlayerView @JvmOverloads constructor(
       animateToggleToPause()
     }
 
-    infoView.text = context.getString(R.string.VoiceNotePlayerView__s_dot_s, state.name, formatDuration(state.playbackDuration))
+    infoView.text = context.getString(R.string.VoiceNotePlayerView__s_dot_s, state.name, formatDuration(state.playbackDuration - state.playbackPosition))
     speedView.setCurrentSpeed(state.playbackSpeed)
   }
 
