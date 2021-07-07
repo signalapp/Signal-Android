@@ -44,8 +44,8 @@ import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAt
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachmentAudioExtras;
 import org.session.libsession.utilities.MediaTypes;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsignal.utilities.ExternalStorageUtil;
+import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
@@ -820,7 +820,7 @@ public class AttachmentDatabase extends Database {
    * @return true if the update operation was successful.
    */
   @Synchronized
-  public boolean setAttachmentAudioExtras(@NonNull DatabaseAttachmentAudioExtras extras) {
+  public boolean setAttachmentAudioExtras(@NonNull DatabaseAttachmentAudioExtras extras, long threadId) {
     ContentValues values = new ContentValues();
     values.put(AUDIO_VISUAL_SAMPLES, extras.getVisualSamples());
     values.put(AUDIO_DURATION, extras.getDurationMs());
@@ -830,7 +830,20 @@ public class AttachmentDatabase extends Database {
       PART_ID_WHERE + " AND " + PART_AUDIO_ONLY_WHERE,
       extras.getAttachmentId().toStrings());
 
+    if (threadId >= 0) {
+      notifyConversationListeners(threadId);
+    }
+
     return alteredRows > 0;
+  }
+
+  /**
+   * Updates audio extra columns for the "audio/*" mime type attachments only.
+   * @return true if the update operation was successful.
+   */
+  @Synchronized
+  public boolean setAttachmentAudioExtras(@NonNull DatabaseAttachmentAudioExtras extras) {
+    return setAttachmentAudioExtras(extras, -1); // -1 for no update
   }
 
   @VisibleForTesting

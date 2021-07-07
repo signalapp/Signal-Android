@@ -4,7 +4,8 @@ import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.core.view.isVisible
@@ -23,6 +24,10 @@ import kotlin.math.roundToLong
 class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
     private val cornerMask by lazy { CornerMask(this) }
     private var isPlaying = false
+    set(value) {
+        field = value
+        renderIcon()
+    }
     private var progress = 0.0
     private var duration = 0L
     private var player: AudioSlidePlayer? = null
@@ -44,8 +49,6 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
     // region Updating
     fun bind(message: MmsMessageRecord, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {
         val audio = message.slideDeck.audioSlide!!
-        val player = AudioSlidePlayer.createFor(context, audio, this)
-        this.player = player
         voiceMessageViewLoader.isVisible = audio.isPendingDownload
         val cornerRadii = MessageBubbleUtilities.calculateRadii(context, isStartOfMessageCluster, isEndOfMessageCluster, message.isOutgoing)
         cornerMask.setTopLeftRadius(cornerRadii[0])
@@ -54,7 +57,13 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
         cornerMask.setBottomLeftRadius(cornerRadii[3])
 
         // only process audio if downloaded
-        if (audio.isPendingDownload || audio.isInProgress) return
+        if (audio.isPendingDownload || audio.isInProgress) {
+            this.player = null
+            return
+        }
+
+        val player = AudioSlidePlayer.createFor(context, audio, this)
+        this.player = player
 
         (audio.asAttachment() as? DatabaseAttachment)?.let { attachment ->
             DatabaseFactory.getAttachmentDatabase(context).getAttachmentAudioExtras(attachment.attachmentId)?.let { audioExtras ->
@@ -90,20 +99,27 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
         progressView.layoutParams = layoutParams
     }
 
-    override fun onPlayerStop(player: AudioSlidePlayer) { }
+    override fun onPlayerStop(player: AudioSlidePlayer) {
+        Log.d("Loki", "Player stopped")
+        isPlaying = false
+    }
 
     override fun dispatchDraw(canvas: Canvas) {
         super.dispatchDraw(canvas)
         cornerMask.mask(canvas)
     }
+
+    private fun renderIcon() {
+        val iconID = if (isPlaying) R.drawable.exo_icon_pause else R.drawable.exo_icon_play
+        voiceMessagePlaybackImageView.setImageResource(iconID)
+    }
+
     // endregion
 
     // region Interaction
     fun togglePlayback() {
         val player = this.player ?: return
         isPlaying = !isPlaying
-        val iconID = if (isPlaying) R.drawable.exo_icon_pause else R.drawable.exo_icon_play
-        voiceMessagePlaybackImageView.setImageResource(iconID)
         if (isPlaying) {
             player.play(progress)
         } else {
