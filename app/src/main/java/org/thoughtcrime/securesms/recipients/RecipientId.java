@@ -95,7 +95,9 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
     RecipientId recipientId = RecipientIdCache.INSTANCE.get(uuid, e164);
 
     if (recipientId == null) {
-      recipientId = Recipient.externalPush(ApplicationDependencies.getApplication(), uuid, e164, highTrust).getId();
+      Recipient recipient = Recipient.externalPush(ApplicationDependencies.getApplication(), uuid, e164, highTrust);
+      RecipientIdCache.INSTANCE.put(recipient);
+      recipientId = recipient.getId();
     }
 
     return recipientId;
