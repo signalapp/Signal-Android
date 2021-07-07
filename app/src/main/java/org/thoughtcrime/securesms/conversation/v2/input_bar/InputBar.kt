@@ -38,7 +38,7 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
         set(value) { field = value; showOrHideInputIfNeeded() }
 
     var text: String
-        get() { return inputBarEditText.text.toString() }
+        get() { return inputBarEditText.text?.toString() ?: "" }
         set(value) { inputBarEditText.setText(value) }
 
     private val attachmentsButton by lazy { InputBarButton(context, R.drawable.ic_plus_24) }
