@@ -20,7 +20,6 @@
     <dimen name="large_profile_picture_size">76dp</dimen>
     <dimen name="conversation_view_status_indicator_size">14dp</dimen>
     <dimen name="border_thickness">1dp</dimen>
-    <dimen name="profile_picture_border_thickness">1dp</dimen>
     <dimen name="new_conversation_button_collapsed_size">60dp</dimen>
     <dimen name="new_conversation_button_expanded_size">72dp</dimen>
     <dimen name="tab_bar_height">36dp</dimen>
@@ -76,8 +75,6 @@
     <dimen name="message_bubble_corner_radius">2dp</dimen>
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
     <dimen name="message_bubble_horizontal_padding">@dimen/medium_spacing</dimen>
-    <dimen name="message_bubble_top_padding">@dimen/medium_spacing</dimen>
-    <dimen name="message_bubble_collapsed_footer_padding">@dimen/small_spacing</dimen>
     <dimen name="message_bubble_bottom_padding">@dimen/medium_spacing</dimen>
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
     <dimen name="media_bubble_edit_button_size">24dp</dimen>
@@ -86,7 +83,6 @@
     <dimen name="media_bubble_max_width">240dp</dimen>
     <dimen name="media_bubble_min_height">100dp</dimen>
     <dimen name="media_bubble_max_height">320dp</dimen>
-    <dimen name="media_bubble_sticker_dimens">128dp</dimen>
 
     <dimen name="media_picker_folder_width">175dp</dimen>
     <dimen name="media_picker_item_width">85dp</dimen>
@@ -99,18 +95,13 @@
     <dimen name="thumbnail_default_radius">4dp</dimen>
 
     <dimen name="conversation_compose_height">40dp</dimen>
-    <dimen name="conversation_individual_left_gutter">@dimen/large_spacing</dimen>
-    <dimen name="conversation_group_left_gutter">60dp</dimen>
     <dimen name="conversation_vertical_message_spacing_default">8dp</dimen>
     <dimen name="conversation_vertical_message_spacing_collapse">1dp</dimen>
-
-    <dimen name="conversation_item_avatar_size">36dp</dimen>
 
     <dimen name="quote_corner_radius_bottom">2dp</dimen>
     <dimen name="quote_corner_radius_preview">16dp</dimen>
 
     <integer name="media_overview_cols">3</integer>
-    <dimen name="message_details_table_row_pad">10dp</dimen>
 
     <dimen name="contact_selection_actions_tap_area">10dp</dimen>
 

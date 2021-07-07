@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.utilities
+package org.session.libsession.utilities
 
 import android.media.AudioFormat
 import android.media.MediaCodec
@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi
 
 import java.io.FileDescriptor
 import java.io.IOException
+import java.io.InputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.ShortBuffer
@@ -365,4 +366,34 @@ inline fun byteToNormalizedFloat(value: Byte): Float {
 /** Turns a [0..1] float into a signed byte. */
 inline fun normalizedFloatToByte(value: Float): Byte {
     return (255f * value - 128f).roundToInt().toByte()
+}
+
+class InputStreamMediaDataSource: MediaDataSource {
+
+    private val data: ByteArray
+
+    constructor(inputStream: InputStream): super() {
+        this.data = inputStream.readBytes()
+    }
+
+    override fun readAt(position: Long, buffer: ByteArray, offset: Int, size: Int): Int {
+        val length: Int = data.size
+        if (position >= length) {
+            return -1 // -1 indicates EOF
+        }
+        var actualSize = size
+        if (position + size > length) {
+            actualSize -= (position + size - length).toInt()
+        }
+        System.arraycopy(data, position.toInt(), buffer, offset, actualSize)
+        return actualSize
+    }
+
+    override fun getSize(): Long {
+        return data.size.toLong()
+    }
+
+    override fun close() {
+        // We don't need to close the wrapped stream.
+    }
 }

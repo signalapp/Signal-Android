@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_qr_code.*
 import kotlinx.android.synthetic.main.fragment_view_my_qr_code.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.conversation.ConversationActivity
+
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.DistributionTypes
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -56,11 +56,9 @@ class QRCodeActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperF
         val recipient = Recipient.from(this, Address.fromSerialized(hexEncodedPublicKey), false)
         val intent = Intent(this, ConversationActivityV2::class.java)
         intent.putExtra(ConversationActivityV2.ADDRESS, recipient.address)
-        intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA))
         intent.setDataAndType(getIntent().data, getIntent().type)
         val existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient)
         intent.putExtra(ConversationActivityV2.THREAD_ID, existingThread)
-        intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, DistributionTypes.DEFAULT)
         startActivity(intent)
         finish()
     }

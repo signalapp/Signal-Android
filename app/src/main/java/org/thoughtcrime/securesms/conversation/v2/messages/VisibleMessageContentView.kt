@@ -82,12 +82,18 @@ class VisibleMessageContentView : LinearLayout {
         } else if (message is MmsMessageRecord && message.quote != null) {
             val quote = message.quote!!
             val quoteView = QuoteView(context, QuoteView.Mode.Regular)
-            // The max content width is the max message bubble size - 2 times the horizontal padding - the
-            // quote view content area's start margin. This unfortunately has to be calculated manually
+            // The max content width is the max message bubble size - 2 times the horizontal padding - 2
+            // times the horizontal margin. This unfortunately has to be calculated manually
             // here to get the layout right.
-            val maxContentWidth = (maxWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - toPx(16, resources)).roundToInt()
-            quoteView.bind(quote.author.toString(), quote.text, quote.attachment, thread,
-                message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation, message.threadId, glide)
+            val maxContentWidth = (maxWidth - 2 * resources.getDimension(R.dimen.medium_spacing) - 2 * toPx(16, resources)).roundToInt()
+            val quoteText = if (quote.isOriginalMissing) {
+                context.getString(R.string.QuoteView_original_missing)
+            } else {
+                quote.text
+            }
+            quoteView.bind(quote.author.toString(), quoteText, quote.attachment, thread,
+                message.isOutgoing, maxContentWidth, message.isOpenGroupInvitation, message.threadId,
+                quote.isOriginalMissing, glide)
             mainContainer.addView(quoteView)
             val bodyTextView = VisibleMessageContentView.getBodyTextView(context, message, searchQuery)
             ViewUtil.setPaddingTop(bodyTextView, 0)

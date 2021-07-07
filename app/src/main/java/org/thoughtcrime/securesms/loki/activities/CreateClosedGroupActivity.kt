@@ -17,7 +17,7 @@ import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.groupSizeLimit
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.conversation.ConversationActivity
+
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.DistributionTypes
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -138,7 +138,6 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
 private fun openConversationActivity(context: Context, threadId: Long, recipient: Recipient) {
     val intent = Intent(context, ConversationActivityV2::class.java)
     intent.putExtra(ConversationActivityV2.THREAD_ID, threadId)
-    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, DistributionTypes.DEFAULT)
     intent.putExtra(ConversationActivityV2.ADDRESS, recipient.address)
     context.startActivity(intent)
 }

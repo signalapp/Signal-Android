@@ -213,11 +213,6 @@
         <item name="android:textSize">@dimen/small_font_size</item>
     </style>
 
-    <style name="Button.Primary" parent="Base.Widget.AppCompat.Button.Colored">
-        <item name="colorAccent">@color/signal_primary</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
-
     <!-- RedPhone -->
 
     <!-- Buttons in the main "button row" of the in-call onscreen touch UI. -->

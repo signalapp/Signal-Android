@@ -27,7 +27,6 @@ import org.session.libsignal.utilities.KeyHelper
 import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.loki.api.OpenGroupManager
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
@@ -190,7 +189,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun resumeMessageSendJobIfNeeded(messageSendJobID: String) {
         val job = DatabaseFactory.getSessionJobDatabase(context).getMessageSendJob(messageSendJobID) ?: return
-        JobQueue.shared.add(job)
+        JobQueue.shared.resumePendingSendMessage(job)
     }
 
     override fun isJobCanceled(job: Job): Boolean {

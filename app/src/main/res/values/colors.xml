@@ -5,9 +5,7 @@
     <color name="text">#FFFFFF</color>
     <color name="destructive">#FF453A</color>
     <color name="unimportant">#D8D8D8</color>
-    <color name="profile_picture_border">#23FFFFFF</color>
     <color name="profile_picture_background">#353535</color>
-    <color name="border">#979797</color>
     <color name="cell_background">#1B1B1B</color>
     <color name="cell_selected">#0C0C0C</color>
     <color name="action_bar_background">#171717</color>
@@ -51,7 +49,6 @@
 
     <color name="signal_primary">@color/accent</color>
     <color name="signal_primary_dark">@color/accent</color>
-    <color name="signal_primary_alpha_focus">#882090ea</color>
 
     <color name="textsecure_primary">@color/signal_primary</color>
     <color name="textsecure_primary_dark">@color/signal_primary_dark</color>
@@ -75,8 +72,6 @@
     <color name="transparent_white_30">#30ffffff</color>
     <color name="transparent_white_40">#40ffffff</color>
     <color name="transparent_white_aa">#aaffffff</color>
-
-    <color name="conversation_compose_divider">#32000000</color>
 
     <color name="action_mode_status_bar">@color/gray65</color>
     <color name="touch_highlight">#22000000</color>

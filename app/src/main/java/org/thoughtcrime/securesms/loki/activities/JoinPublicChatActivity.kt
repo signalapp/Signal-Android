@@ -32,7 +32,7 @@ import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.PublicKeyValidation
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.conversation.ConversationActivity
+
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.api.OpenGroupManager
@@ -130,7 +130,6 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
     private fun openConversationActivity(context: Context, threadId: Long, recipient: Recipient) {
         val intent = Intent(context, ConversationActivityV2::class.java)
         intent.putExtra(ConversationActivityV2.THREAD_ID, threadId)
-        intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, DistributionTypes.DEFAULT)
         intent.putExtra(ConversationActivityV2.ADDRESS, recipient.address)
         context.startActivity(intent)
     }

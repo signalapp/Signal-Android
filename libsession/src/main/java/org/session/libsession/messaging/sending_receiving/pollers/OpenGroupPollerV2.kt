@@ -94,7 +94,9 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
         if (actualMax > 0) {
             storage.setLastMessageServerID(room, server, actualMax)
         }
-        JobQueue.shared.add(TrimThreadJob(threadId))
+        if (messages.isNotEmpty()) {
+            JobQueue.shared.add(TrimThreadJob(threadId))
+        }
     }
 
     private fun handleDeletedMessages(room: String, openGroupID: String, deletions: List<OpenGroupAPIV2.MessageDeletion>) {

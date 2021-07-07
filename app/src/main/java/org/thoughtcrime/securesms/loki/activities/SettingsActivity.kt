@@ -27,14 +27,12 @@ import nl.komponents.kovenant.ui.alwaysUi
 import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.avatars.AvatarHelper
 import org.session.libsession.utilities.Address
+import org.session.libsession.utilities.ProfileKeyUtil
 import org.session.libsession.utilities.ProfilePictureUtilities
 import org.session.libsession.utilities.SSKEnvironment.ProfileManagerProtocol
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.ProfileKeyUtil
-import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.avatar.AvatarSelection
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.dialogs.ChangeUiModeDialog
 import org.thoughtcrime.securesms.loki.dialogs.ClearAllDataDialog
 import org.thoughtcrime.securesms.loki.dialogs.SeedDialog
@@ -260,7 +258,8 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         intent.action = Intent.ACTION_SEND
         intent.putExtra(Intent.EXTRA_TEXT, hexEncodedPublicKey)
         intent.type = "text/plain"
-        startActivity(intent)
+        val chooser = Intent.createChooser(intent, getString(R.string.share))
+        startActivity(chooser)
     }
 
     private fun showPrivacySettings() {
@@ -284,7 +283,8 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         val invitation = "Hey, I've been using Session to chat with complete privacy and security. Come join me! Download it at https://getsession.org/. My Session ID is $hexEncodedPublicKey!"
         intent.putExtra(Intent.EXTRA_TEXT, invitation)
         intent.type = "text/plain"
-        startActivity(intent)
+        val chooser = Intent.createChooser(intent, getString(R.string.activity_settings_invite_button_title))
+        startActivity(chooser)
     }
 
     private fun helpTranslate() {

@@ -78,7 +78,7 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.audio.AudioRecorder
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
-import org.thoughtcrime.securesms.conversation.ConversationActivity
+
 import org.thoughtcrime.securesms.conversation.v2.dialogs.*
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -902,7 +902,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         message.text = body
         val quote = quotedMessage?.let {
             val quotedAttachments = (it as? MmsMessageRecord)?.slideDeck?.asAttachments() ?: listOf()
-            QuoteModel(it.dateSent, it.individualRecipient.address, it.body, false, quotedAttachments)
+            val sender = if (it.isOutgoing) fromSerialized(TextSecurePreferences.getLocalNumber(this)!!) else it.individualRecipient.address
+            QuoteModel(it.dateSent, sender, it.body, false, quotedAttachments)
         }
         val outgoingTextMessage = OutgoingMediaMessage.from(message, thread, attachments, quote, linkPreview)
         // Clear the input bar
@@ -1048,10 +1049,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         val future = audioRecorder.stopRecording()
         stopAudioHandler.removeCallbacks(stopVoiceMessageRecordingTask)
-        future.addListener(object : ListenableFuture.Listener<Pair<Uri?, Long?>> {
+        future.addListener(object : ListenableFuture.Listener<Pair<Uri, Long>> {
 
-            override fun onSuccess(result: Pair<Uri?, Long?>) {
-                val audioSlide = AudioSlide(this@ConversationActivityV2, result.first, result.second!!, MediaTypes.AUDIO_AAC, true)
+            override fun onSuccess(result: Pair<Uri, Long>) {
+                val audioSlide = AudioSlide(this@ConversationActivityV2, result.first, result.second, MediaTypes.AUDIO_AAC, true)
                 val slideDeck = SlideDeck()
                 slideDeck.addSlide(audioSlide)
                 sendAttachments(slideDeck.asAttachments(), null)
