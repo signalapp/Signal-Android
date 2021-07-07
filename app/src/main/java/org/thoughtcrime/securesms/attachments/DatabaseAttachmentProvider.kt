@@ -107,7 +107,7 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
             attachmentId = attachmentId,
             visualSamples = byteArrayOf(),
             durationMs = durationMs
-        ))
+        ), threadId)
     }
 
     override fun isOutgoingMessage(timestamp: Long): Boolean {
