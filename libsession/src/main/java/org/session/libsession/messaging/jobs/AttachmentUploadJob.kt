@@ -14,15 +14,11 @@ import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.utilities.DecodedAudio
 import org.session.libsession.utilities.InputStreamMediaDataSource
 import org.session.libsession.utilities.UploadResult
-import org.session.libsignal.streams.AttachmentCipherOutputStream
 import org.session.libsignal.messages.SignalServiceAttachmentStream
-import org.session.libsignal.streams.PaddingInputStream
-import org.session.libsignal.utilities.PushAttachmentData
-import org.session.libsignal.streams.AttachmentCipherOutputStreamFactory
-import org.session.libsignal.streams.DigestingRequestBody
-import org.session.libsignal.utilities.Util
-import org.session.libsignal.streams.PlaintextOutputStreamFactory
+import org.session.libsignal.streams.*
 import org.session.libsignal.utilities.Log
+import org.session.libsignal.utilities.PushAttachmentData
+import org.session.libsignal.utilities.Util
 
 class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val message: Message, val messageSendJobID: String) : Job {
     override var delegate: JobDelegate? = null
@@ -119,7 +115,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
                 InputStreamMediaDataSource(inputStream).use { mediaDataSource ->
                     val durationMs = (DecodedAudio.create(mediaDataSource).totalDuration / 1000.0).toLong()
                     messageDataProvider.getDatabaseAttachment(attachmentID)?.attachmentId?.let { attachmentId ->
-                        messageDataProvider.updateAudioAttachmentDuration(attachmentId, durationMs)
+                        messageDataProvider.updateAudioAttachmentDuration(attachmentId, durationMs, threadID.toLong())
                     }
                 }
             } catch (e: Exception) {

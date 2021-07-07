@@ -20,7 +20,7 @@ interface MessageDataProvider {
     fun getSignalAttachmentPointer(attachmentId: Long): SignalServiceAttachmentPointer?
     fun setAttachmentState(attachmentState: AttachmentState, attachmentId: Long, messageID: Long)
     fun insertAttachment(messageId: Long, attachmentId: AttachmentId, stream : InputStream)
-    fun updateAudioAttachmentDuration(attachmentId: AttachmentId, durationMs: Long)
+    fun updateAudioAttachmentDuration(attachmentId: AttachmentId, durationMs: Long, threadId: Long)
     fun isOutgoingMessage(timestamp: Long): Boolean
     fun handleSuccessfulAttachmentUpload(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: UploadResult)
     fun handleFailedAttachmentUpload(attachmentId: Long)

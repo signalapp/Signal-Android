@@ -1,8 +1,5 @@
 package org.session.libsession.messaging.jobs
 
-import android.content.ContentResolver
-import android.media.MediaDataSource
-import android.media.MediaExtractor
 import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
@@ -78,7 +75,11 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
                     try {
                         InputStreamMediaDataSource(getInputStream(tempFile, attachment)).use { mediaDataSource ->
                             val durationMs = (DecodedAudio.create(mediaDataSource).totalDuration / 1000.0).toLong()
-                            messageDataProvider.updateAudioAttachmentDuration(attachment.attachmentId, durationMs)
+                            messageDataProvider.updateAudioAttachmentDuration(
+                                attachment.attachmentId,
+                                durationMs,
+                                threadID
+                            )
                         }
                     } catch (e: Exception) {
                         Log.e("Loki", "Couldn't process audio attachment", e)
