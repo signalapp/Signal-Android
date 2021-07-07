@@ -54,7 +54,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted">Fallo al enviar. Toca para enviar sin cifrar</string>
     <string name="ConversationItem_unable_to_open_media">No se pudo encontrar la aplicación para mostrar este contenido.</string>
     <string name="ConversationItem_copied_text">%s copiado(s)</string>
-    <string name="ConversationItem_read_more">  Leer más</string>
+    <string name="ConversationItem_read_more">Leer Más</string>
     <string name="ConversationItem_download_more">  Descargar más</string>
     <string name="ConversationItem_pending">  Pendiente</string>
     <!-- ConversationActivity -->
@@ -261,7 +261,7 @@ de intercambio de claves!</string>
     <string name="MediaPreviewActivity_you">Tú</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Formato de contenido incompatible</string>
     <string name="MediaPreviewActivity_draft">Borrador</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session necesita acceso al almacenamiento del teléfono para guardar adjuntos si éste es externo. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Almacenamiento».</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session needs storage access in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">No se puede guardar en una unidad de almacenamiento externo si Session no tiene acceso</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">¿Eliminar mensaje?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Este mensaje se eliminará permanentemente.</string>
@@ -600,12 +600,14 @@ de intercambio de claves!</string>
     <string name="activity_path_service_node_row_title">Nodo de Servicio</string>
     <string name="activity_path_destination_row_title">Destino</string>
     <string name="activity_path_learn_more_button_title">Saber Más</string>
+    <string name="activity_path_resolving_progress">Resolviendo…</string>
     <string name="activity_create_private_chat_title">Nueva Session</string>
     <string name="activity_create_private_chat_enter_session_id_tab_title">Session ID</string>
     <string name="activity_create_private_chat_scan_qr_code_tab_title">Escanear código QR</string>
     <string name="activity_create_private_chat_scan_qr_code_explanation">Escanea el código QR de un usuario para empezar una sesión. Los códigos QR se pueden encontrar tocando el icono del código QR en los ajustes de la cuenta.</string>
-    <string name="fragment_enter_public_key_edit_text_hint">Ingresa la ID de Session del destinatario</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Introduzca el ID de Session o el nombre ONS</string>
     <string name="fragment_enter_public_key_explanation">Los usuarios pueden compartir su ID de Session yendo a los ajustes de su cuenta y pulsando en Compartir ID de Session o compartiendo su código QR</string>
+    <string name="fragment_enter_public_key_error_message">Por favor, comprueba el ID de Session o el nombre ONS e inténtela de nuevo.</string>
     <string name="fragment_scan_qr_code_camera_access_explanation">Session necesita acceso a la cámara para escanear códigos QR</string>
     <string name="fragment_scan_qr_code_grant_camera_access_button_title">Permitir acceso a cámara</string>
     <string name="activity_create_closed_group_title">Nuevo grupo cerrado</string>
@@ -640,6 +642,8 @@ de intercambio de claves!</string>
     <string name="activity_privacy_settings_title">Privacidad</string>
     <string name="activity_chat_settings_title">Chats</string>
     <string name="preferences_notifications_strategy_category_title">Estrategia de notificación</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_title">Usar Modo Rápido</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_summary">Se te notificará de nuevos mensajes de forma fiable e inmediata usando los servidores de notificaciones de Google.</string>
     <string name="fragment_device_list_bottom_sheet_change_name_button_title">Cambiar nombre</string>
     <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Desvincular dispositivo</string>
     <string name="dialog_seed_title">Tu frase de recuperación</string>
@@ -685,6 +689,9 @@ de intercambio de claves!</string>
     <string name="activity_backup_restore_passphrase">Clave de acceso de 30 dígitos</string>
     <string name="activity_link_device_skip_prompt">Esto está tomando un tiempo, ¿te gustaría saltarlo?</string>
     <string name="activity_link_device_link_device">Vincular un Dispositivo</string>
+    <string name="activity_link_device_recovery_phrase">Frase de Recuperación</string>
+    <string name="activity_link_device_scan_qr_code">Escanear Código QR</string>
+    <string name="activity_link_device_qr_message">Navega a Ajustes → Frase de Recuperación en tu otro dispositivo para mostrar tu código QR.</string>
     <string name="activity_join_public_chat_join_rooms">O únete a uno de estos…</string>
     <string name="activity_pn_mode_message_notifications">Notificaciones de Mensajes</string>
     <string name="activity_pn_mode_explanation">Hay dos maneras en las que Session puede notificarle de nuevos mensajes.</string>
@@ -697,4 +704,20 @@ de intercambio de claves!</string>
     <string name="activity_prompt_passphrase_tap_to_unlock">Toca para Desbloquear</string>
     <string name="fragment_user_details_bottom_sheet_edit_text_hint">Escriba un apodo</string>
     <string name="invalid_public_key">Clave pública no válida</string>
+    <string name="document">Documento</string>
+    <string name="dialog_blocked_title">¿Desbloquear a %s?</string>
+    <string name="dialog_blocked_explanation">¿Estás seguro de que quieres desbloquear a %s?</string>
+    <string name="dialog_join_open_group_title">¿Unirse a %s?</string>
+    <string name="dialog_join_open_group_explanation">¿Estás seguro de que quieres unirte al grupo abierto %s?</string>
+    <string name="dialog_open_url_title">¿Abrir URL?</string>
+    <string name="dialog_open_url_explanation">¿Estás seguro de que quieres abrir %s?</string>
+    <string name="open">Abrir</string>
+    <string name="dialog_link_preview_title">¿Habilitar Previsualización de Enlaces?</string>
+    <string name="dialog_link_preview_explanation">Activar la vista previa de enlaces mostrará las vistas previas de las URL que envíes y recibas. Esto puede ser útil, pero Session tendrá que ponerse en contacto con los sitios web enlazados para generar vistas previas. Siempre puedes desactivar las vistas previas de enlaces en la configuración de Session.</string>
+    <string name="dialog_link_preview_enable_button_title">Activar</string>
+    <string name="dialog_download_title">¿Confiar en %s?</string>
+    <string name="dialog_download_explanation">¿Estás seguro que quieres descargar el medio enviado por %s?</string>
+    <string name="dialog_download_button_title">Descargar</string>
+    <string name="activity_conversation_blocked_banner_text">%s is blocked. Unblock them?</string>
+    <string name="activity_conversation_attachment_prep_failed">Failed to prepare attachment for sending.</string>
 </resources>
