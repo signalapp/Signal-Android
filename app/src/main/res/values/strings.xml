@@ -3606,6 +3606,9 @@
     <string name="PlaybackSpeedToggleTextView__1x">1x</string>
     <string name="PlaybackSpeedToggleTextView__2x">2x</string>
 
+    <!-- VoiceNotePlayerView -->
+    <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+
     <!-- EOF -->
 
 </resources>

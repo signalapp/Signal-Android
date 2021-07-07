@@ -152,4 +152,7 @@
     <color name="react_with_any_search_background">@color/core_grey_05</color>
     <color name="react_with_any_search_hint">@color/core_grey_60</color>
     <color name="react_with_any_customize_background">@color/core_white</color>
+
+    <color name="voice_note_player_view_background">@color/core_grey_02</color>
+    <color name="voice_note_player_speed_background_tint">@color/transparent_black_08</color>
 </resources>

@@ -27,6 +27,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -57,6 +58,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -89,11 +92,11 @@ import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
+import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView;
 import org.thoughtcrime.securesms.conversation.ConversationFragment;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
-import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.search.MessageResult;
-import org.thoughtcrime.securesms.search.SearchResult;
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPayments;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
@@ -119,6 +122,9 @@ import org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsPar
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.search.MessageResult;
+import org.thoughtcrime.securesms.search.SearchResult;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
@@ -188,11 +194,24 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private SnapToTopDataObserver             snapToTopDataObserver;
   private Drawable                          archiveDrawable;
   private AppForegroundObserver.Listener    appForegroundObserver;
+  private VoiceNoteMediaControllerOwner     mediaControllerOwner;
+  private Stub<VoiceNotePlayerView>         voiceNotePlayerViewStub;
 
   private Stopwatch startupStopwatch;
 
   public static ConversationListFragment newInstance() {
     return new ConversationListFragment();
+  }
+
+  @Override
+  public void onAttach(@NonNull Context context) {
+    super.onAttach(context);
+
+    if (context instanceof VoiceNoteMediaControllerOwner) {
+      mediaControllerOwner = (VoiceNoteMediaControllerOwner) context;
+    } else {
+      throw new ClassCastException("Expected context to be a Listener");
+    }
   }
 
   @Override
@@ -223,6 +242,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     searchToolbar           = new Stub<>(view.findViewById(R.id.search_toolbar));
     megaphoneContainer      = new Stub<>(view.findViewById(R.id.megaphone_container));
     paymentNotificationView = new Stub<>(view.findViewById(R.id.payments_notification));
+    voiceNotePlayerViewStub = new Stub<>(view.findViewById(R.id.voice_note_player));
 
     Toolbar toolbar = getToolbar(view);
     toolbar.setVisibility(View.VISIBLE);
@@ -257,6 +277,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     initializeListAdapters();
     initializeTypingObserver();
     initializeSearchListener();
+    initializeVoiceNotePlayer();
 
     RatingManager.showRatingDialogIfNecessary(requireContext());
 
@@ -504,6 +525,21 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           setAdapter(defaultAdapter);
         }
       });
+    });
+  }
+
+  private void initializeVoiceNotePlayer() {
+    mediaControllerOwner.getVoiceNoteMediaController().getVoiceNotePlayerViewState().observe(getViewLifecycleOwner(), state -> {
+      if (state.isPresent()) {
+        if (!voiceNotePlayerViewStub.resolved()) {
+          voiceNotePlayerViewStub.get().setListener(new VoiceNotePlayerViewListener());
+        }
+
+        voiceNotePlayerViewStub.get().setState(state.get());
+        voiceNotePlayerViewStub.get().show();
+      } else if (voiceNotePlayerViewStub.resolved()) {
+        voiceNotePlayerViewStub.get().hide();
+      }
     });
   }
 
@@ -1280,6 +1316,36 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           ViewUtil.fadeOut(toolbarShadow, 250);
         }
       }
+    }
+  }
+
+  private final class VoiceNotePlayerViewListener implements VoiceNotePlayerView.Listener {
+
+    @Override
+    public void onCloseRequested(@NonNull Uri uri) {
+      if (voiceNotePlayerViewStub.resolved()) {
+        mediaControllerOwner.getVoiceNoteMediaController().stopPlaybackAndReset(uri);
+      }
+    }
+
+    @Override
+    public void onSpeedChangeRequested(@NonNull Uri uri, float speed) {
+      mediaControllerOwner.getVoiceNoteMediaController().setPlaybackSpeed(uri, speed);
+    }
+
+    @Override
+    public void onPlay(@NonNull Uri uri, long messageId, double position) {
+      mediaControllerOwner.getVoiceNoteMediaController().startSinglePlayback(uri, messageId, position);
+    }
+
+    @Override
+    public void onPause(@NonNull Uri uri) {
+      mediaControllerOwner.getVoiceNoteMediaController().pausePlayback(uri);
+    }
+
+    @Override
+    public void onNavigateToMessage(long threadId, @NonNull RecipientId threadRecipientId, @NonNull RecipientId senderId, long messageSentAt, long messagePositionInThread) {
+      MainNavigator.get(requireActivity()).goToConversation(threadRecipientId, threadId, ThreadDatabase.DistributionTypes.DEFAULT, (int) messagePositionInThread);
     }
   }
 }

@@ -135,6 +135,7 @@ import org.thoughtcrime.securesms.components.settings.conversation.ConversationS
 import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
+import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
@@ -380,6 +381,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private   MenuItem                     searchViewItem;
   private   MessageRequestsBottomView    messageRequestBottomView;
   private   ConversationReactionDelegate reactionDelegate;
+  private   Stub<VoiceNotePlayerView>    voiceNotePlayerViewStub;
 
   private   AttachmentManager        attachmentManager;
   private   AudioRecorder            audioRecorder;
@@ -2011,6 +2013,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     mentionsSuggestions      = ViewUtil.findStubById(this, R.id.conversation_mention_suggestions_stub);
     wallpaper                = findViewById(R.id.conversation_wallpaper);
     wallpaperDim             = findViewById(R.id.conversation_wallpaper_dim);
+    voiceNotePlayerViewStub  = ViewUtil.findStubById(this, R.id.voice_note_player_stub);
 
     ImageButton quickCameraToggle      = findViewById(R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = findViewById(R.id.inline_attachment_button);
@@ -2080,6 +2083,18 @@ public class ConversationActivity extends PassphraseRequiredActivity
     reactionDelegate.setOnReactionSelectedListener(this);
 
     joinGroupCallButton.setOnClickListener(v -> handleVideo(getRecipient()));
+
+    voiceNoteMediaController.getVoiceNotePlayerViewState().observe(this, state -> {
+      if (state.isPresent()) {
+        if (!voiceNotePlayerViewStub.resolved()) {
+          voiceNotePlayerViewStub.get().setListener(new VoiceNotePlayerViewListener());
+        }
+        voiceNotePlayerViewStub.get().show();
+        voiceNotePlayerViewStub.get().setState(state.get());
+      } else if (voiceNotePlayerViewStub.resolved()) {
+        voiceNotePlayerViewStub.get().hide();
+      }
+    });
   }
 
   private void updateWallpaper(@Nullable ChatWallpaper chatWallpaper) {
@@ -3980,6 +3995,39 @@ public class ConversationActivity extends PassphraseRequiredActivity
       } else {
         Log.e(TAG, "Failed to restore a quote from a draft. No matching message record.");
         future.set(false);
+      }
+    }
+  }
+
+  private final class VoiceNotePlayerViewListener implements VoiceNotePlayerView.Listener {
+    @Override
+    public void onCloseRequested(@NonNull Uri uri) {
+      voiceNoteMediaController.stopPlaybackAndReset(uri);
+    }
+
+    @Override
+    public void onSpeedChangeRequested(@NonNull Uri uri, float speed) {
+      voiceNoteMediaController.setPlaybackSpeed(uri, speed);
+    }
+
+    @Override
+    public void onPlay(@NonNull Uri uri, long messageId, double position) {
+      voiceNoteMediaController.startSinglePlayback(uri, messageId, position);
+    }
+
+    @Override
+    public void onPause(@NonNull Uri uri) {
+      voiceNoteMediaController.pausePlayback(uri);
+    }
+
+    @Override
+    public void onNavigateToMessage(long threadId, @NonNull RecipientId threadRecipientId, @NonNull RecipientId senderId, long messageTimestamp, long messagePositionInThread) {
+      if (threadId != ConversationActivity.this.threadId) {
+        startActivity(ConversationIntents.createBuilder(ConversationActivity.this, threadRecipientId, threadId)
+                                         .withStartingPosition((int) messagePositionInThread)
+                                         .build());
+      } else {
+        fragment.jumpToMessage(senderId, messageTimestamp, () -> { });
       }
     }
   }

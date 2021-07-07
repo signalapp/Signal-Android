@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.media.MediaDescriptionCompat;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
@@ -33,6 +34,7 @@ class VoiceNoteMediaDescriptionCompatFactory {
   public static final String EXTRA_THREAD_ID               = "voice.note.extra.THREAD_ID";
   public static final String EXTRA_COLOR                   = "voice.note.extra.COLOR";
   public static final String EXTRA_MESSAGE_ID              = "voice.note.extra.MESSAGE_ID";
+  public static final String EXTRA_MESSAGE_TIMESTAMP       = "voice.note.extra.MESSAGE_TIMESTAMP";
 
   private static final String TAG = Log.tag(VoiceNoteMediaDescriptionCompatFactory.class);
 
@@ -110,19 +112,11 @@ class VoiceNoteMediaDescriptionCompatFactory {
     extras.putLong(EXTRA_THREAD_ID, threadId);
     extras.putLong(EXTRA_COLOR, threadRecipient.getChatColors().asSingleColor());
     extras.putLong(EXTRA_MESSAGE_ID, messageId);
+    extras.putLong(EXTRA_MESSAGE_TIMESTAMP, dateReceived);
 
     NotificationPrivacyPreference preference = SignalStore.settings().getMessageNotificationsPrivacy();
 
-    String title;
-    if (preference.isDisplayContact() && threadRecipient.isGroup()) {
-      title = context.getString(R.string.VoiceNoteMediaDescriptionCompatFactory__s_to_s,
-                                sender.getDisplayName(context),
-                                threadRecipient.getDisplayName(context));
-    } else if (preference.isDisplayContact()) {
-      title = sender.getDisplayName(context);
-    } else {
-      title = context.getString(R.string.MessageNotifier_signal_message);
-    }
+    String title = getTitle(context, sender, threadRecipient, preference);
 
     String subtitle = null;
     if (preference.isDisplayContact()) {
@@ -139,4 +133,22 @@ class VoiceNoteMediaDescriptionCompatFactory {
                                      .build();
   }
 
+  public static @NonNull String getTitle(@NonNull Context context, @NonNull Recipient sender, @NonNull Recipient threadRecipient, @Nullable NotificationPrivacyPreference notificationPrivacyPreference) {
+    NotificationPrivacyPreference preference;
+    if (notificationPrivacyPreference == null) {
+      preference = new NotificationPrivacyPreference("all");
+    } else {
+      preference = notificationPrivacyPreference;
+    }
+
+    if (preference.isDisplayContact() && threadRecipient.isGroup()) {
+      return context.getString(R.string.VoiceNoteMediaDescriptionCompatFactory__s_to_s,
+                               sender.getDisplayName(context),
+                               threadRecipient.getDisplayName(context));
+    } else if (preference.isDisplayContact()) {
+      return sender.getDisplayName(context);
+    } else {
+      return context.getString(R.string.MessageNotifier_signal_message);
+    }
+  }
 }

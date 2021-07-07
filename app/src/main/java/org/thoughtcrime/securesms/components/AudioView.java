@@ -232,11 +232,11 @@ public final class AudioView extends FrameLayout {
 
   private void onPlaybackState(@NonNull VoiceNotePlaybackState voiceNotePlaybackState) {
     onDuration(voiceNotePlaybackState.getUri(), voiceNotePlaybackState.getTrackDuration());
-    onStart(voiceNotePlaybackState.getUri(), voiceNotePlaybackState.isAutoReset());
     onProgress(voiceNotePlaybackState.getUri(),
                (double) voiceNotePlaybackState.getPlayheadPositionMillis() / voiceNotePlaybackState.getTrackDuration(),
                voiceNotePlaybackState.getPlayheadPositionMillis());
     onSpeedChanged(voiceNotePlaybackState.getUri(), voiceNotePlaybackState.getSpeed());
+    onStart(voiceNotePlaybackState.getUri(), voiceNotePlaybackState.isPlaying(), voiceNotePlaybackState.isAutoReset());
   }
 
   private void onDuration(@NonNull Uri uri, long durationMillis) {
@@ -245,8 +245,8 @@ public final class AudioView extends FrameLayout {
     }
   }
 
-  private void onStart(@NonNull Uri uri, boolean autoReset) {
-    if (!isTarget(uri)) {
+  private void onStart(@NonNull Uri uri, boolean statePlaying, boolean autoReset) {
+    if (!isTarget(uri) || !statePlaying) {
       if (hasAudioUri()) {
         onStop(audioSlide.getUri(), autoReset);
       }

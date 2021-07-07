@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.voice;
 
 import android.content.ComponentName;
 import android.media.AudioManager;
+import android.media.session.PlaybackState;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,19 +10,28 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
 import android.support.v4.media.MediaBrowserCompat;
+import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.DefaultValueLiveData;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Objects;
 
@@ -42,10 +52,11 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
 
   private static final String TAG = Log.tag(VoiceNoteMediaController.class);
 
-  private MediaBrowserCompat                      mediaBrowser;
-  private AppCompatActivity                       activity;
-  private ProgressEventHandler                    progressEventHandler;
-  private MutableLiveData<VoiceNotePlaybackState> voiceNotePlaybackState = new MutableLiveData<>(VoiceNotePlaybackState.NONE);
+  private MediaBrowserCompat                            mediaBrowser;
+  private AppCompatActivity                             activity;
+  private ProgressEventHandler                          progressEventHandler;
+  private MutableLiveData<VoiceNotePlaybackState>       voiceNotePlaybackState = new MutableLiveData<>(VoiceNotePlaybackState.NONE);
+  private LiveData<Optional<VoiceNotePlayerView.State>> voiceNotePlayerViewState;
 
   private final MediaControllerCompatCallback mediaControllerCompatCallback = new MediaControllerCompatCallback();
 
@@ -57,10 +68,42 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
                                                null);
 
     activity.getLifecycle().addObserver(this);
+
+    voiceNotePlayerViewState = Transformations.switchMap(voiceNotePlaybackState, playbackState -> {
+      if (playbackState.getClipType() instanceof VoiceNotePlaybackState.ClipType.Message) {
+        VoiceNotePlaybackState.ClipType.Message message         = (VoiceNotePlaybackState.ClipType.Message) playbackState.getClipType();
+        LiveRecipient                           sender          = Recipient.live(message.getSenderId());
+        LiveRecipient                           threadRecipient = Recipient.live(message.getThreadRecipientId());
+        LiveData<String>                        name            = LiveDataUtil.combineLatest(sender.getLiveDataResolved(),
+                                                                                             threadRecipient.getLiveDataResolved(),
+                                                                                             (s, t) -> VoiceNoteMediaDescriptionCompatFactory.getTitle(activity, s, t, null));
+
+        return Transformations.map(name, displayName -> Optional.of(
+            new VoiceNotePlayerView.State(
+                playbackState.getUri(),
+                message.getMessageId(),
+                message.getThreadId(),
+                !playbackState.isPlaying(),
+                message.getSenderId(),
+                message.getThreadRecipientId(),
+                message.getMessagePosition(),
+                message.getTimestamp(),
+                displayName,
+                playbackState.getPlayheadPositionMillis(),
+                playbackState.getTrackDuration(),
+                playbackState.getSpeed())));
+      } else {
+        return new DefaultValueLiveData<>(Optional.absent());
+      }
+    });
   }
 
   public LiveData<VoiceNotePlaybackState> getVoiceNotePlaybackState() {
     return voiceNotePlaybackState;
+  }
+
+  public LiveData<Optional<VoiceNotePlayerView.State>> getVoiceNotePlayerViewState() {
+    return voiceNotePlayerViewState;
   }
 
   @Override
@@ -92,6 +135,14 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
   private static boolean isPlayerActive(@NonNull PlaybackStateCompat playbackStateCompat) {
     return playbackStateCompat.getState() == PlaybackStateCompat.STATE_BUFFERING ||
            playbackStateCompat.getState() == PlaybackStateCompat.STATE_PLAYING;
+  }
+
+  private static boolean isPlayerPaused(@NonNull PlaybackStateCompat playbackStateCompat) {
+    return playbackStateCompat.getState() == PlaybackStateCompat.STATE_PAUSED;
+  }
+
+  private static boolean isPlayerStopped(@NonNull PlaybackStateCompat playbackStateCompat) {
+    return playbackStateCompat.getState() <= PlaybackStateCompat.STATE_STOPPED;
   }
 
   private @NonNull MediaControllerCompat getMediaController() {
@@ -215,10 +266,122 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
 
         mediaController.registerCallback(mediaControllerCompatCallback);
 
+        if (Objects.equals(voiceNotePlaybackState.getValue(), VoiceNotePlaybackState.NONE)) {
+          MediaMetadataCompat mediaMetadataCompat = mediaController.getMetadata();
+          if (canExtractPlaybackInformationFromMetadata(mediaMetadataCompat)) {
+            VoiceNotePlaybackState newState = extractStateFromMetadata(mediaController, mediaMetadataCompat, null);
+
+            if (newState != null) {
+              voiceNotePlaybackState.postValue(newState);
+            }
+          }
+        }
+
         mediaControllerCompatCallback.onPlaybackStateChanged(mediaController.getPlaybackState());
       } catch (RemoteException e) {
         Log.w(TAG, "onConnected: Failed to set media controller", e);
       }
+    }
+  }
+
+  private static boolean canExtractPlaybackInformationFromMetadata(@Nullable MediaMetadataCompat mediaMetadataCompat) {
+    return mediaMetadataCompat != null                  &&
+           mediaMetadataCompat.getDescription() != null &&
+           mediaMetadataCompat.getDescription().getMediaUri() != null;
+  }
+
+  private static @Nullable VoiceNotePlaybackState extractStateFromMetadata(@NonNull MediaControllerCompat mediaController,
+                                                                           @NonNull MediaMetadataCompat mediaMetadataCompat,
+                                                                           @Nullable VoiceNotePlaybackState previousState)
+  {
+    Uri     mediaUri  = Objects.requireNonNull(mediaMetadataCompat.getDescription().getMediaUri());
+    boolean autoReset = Objects.equals(mediaUri, VoiceNotePlaybackPreparer.NEXT_URI) || Objects.equals(mediaUri, VoiceNotePlaybackPreparer.END_URI);
+    long    position  = mediaController.getPlaybackState().getPosition();
+    long    duration  = mediaMetadataCompat.getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
+    Bundle  extras    = mediaController.getExtras();
+    float   speed     = extras != null ? extras.getFloat(VoiceNotePlaybackService.ACTION_NEXT_PLAYBACK_SPEED, 1f) : 1f;
+
+    if (previousState != null && Objects.equals(mediaUri, previousState.getUri())) {
+      if (position < 0 && previousState.getPlayheadPositionMillis() >= 0) {
+        position = previousState.getPlayheadPositionMillis();
+      }
+
+      if (duration <= 0 && previousState.getTrackDuration() > 0) {
+        duration = previousState.getTrackDuration();
+      }
+    }
+
+    if (duration > 0 && position >= 0 && position <= duration) {
+      return new VoiceNotePlaybackState(mediaUri,
+                                        position,
+                                        duration,
+                                        autoReset,
+                                        speed,
+                                        isPlayerActive(mediaController.getPlaybackState()),
+                                        getClipType(mediaMetadataCompat.getBundle()));
+    } else {
+      return null;
+    }
+  }
+
+  private static @Nullable VoiceNotePlaybackState constructPlaybackState(@NonNull MediaControllerCompat mediaController,
+                                                                         @Nullable VoiceNotePlaybackState previousState)
+  {
+    MediaMetadataCompat mediaMetadataCompat = mediaController.getMetadata();
+    if (isPlayerActive(mediaController.getPlaybackState()) &&
+        canExtractPlaybackInformationFromMetadata(mediaMetadataCompat))
+    {
+      return extractStateFromMetadata(mediaController, mediaMetadataCompat, previousState);
+    } else if (isPlayerPaused(mediaController.getPlaybackState()) &&
+               mediaMetadataCompat != null)
+    {
+      long position = mediaController.getPlaybackState().getPosition();
+      long duration = mediaMetadataCompat.getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
+
+      if (previousState != null && position < duration) {
+        return previousState.asPaused();
+      } else {
+        return VoiceNotePlaybackState.NONE;
+      }
+    } else {
+      return VoiceNotePlaybackState.NONE;
+    }
+  }
+
+  private static @NonNull VoiceNotePlaybackState.ClipType getClipType(@Nullable Bundle mediaExtras) {
+    long        messageId         = -1L;
+    RecipientId senderId          = RecipientId.UNKNOWN;
+    long        messagePosition   = -1L;
+    long        threadId          = -1L;
+    RecipientId threadRecipientId = RecipientId.UNKNOWN;
+    long        timestamp         = -1L;
+
+    if (mediaExtras != null) {
+      messageId       = mediaExtras.getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_MESSAGE_ID, -1L);
+      messagePosition = mediaExtras.getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_MESSAGE_POSITION, -1L);
+      threadId        = mediaExtras.getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_THREAD_ID, -1L);
+      timestamp       = mediaExtras.getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_MESSAGE_TIMESTAMP, -1L);
+
+      String serializedSenderId = mediaExtras.getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_INDIVIDUAL_RECIPIENT_ID);
+      if (serializedSenderId != null) {
+        senderId = RecipientId.from(serializedSenderId);
+      }
+
+      String serializedThreadRecipientId = mediaExtras.getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_THREAD_RECIPIENT_ID);
+      if (serializedThreadRecipientId != null) {
+        threadRecipientId = RecipientId.from(serializedThreadRecipientId);
+      }
+    }
+
+    if (messageId != -1L) {
+      return new VoiceNotePlaybackState.ClipType.Message(messageId,
+                                                         senderId,
+                                                         threadRecipientId,
+                                                         messagePosition,
+                                                         threadId,
+                                                         timestamp);
+    } else {
+      return VoiceNotePlaybackState.ClipType.Draft.INSTANCE;
     }
   }
 
@@ -238,38 +401,14 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
 
     @Override
     public void handleMessage(@NonNull Message msg) {
-      MediaMetadataCompat mediaMetadataCompat = mediaController.getMetadata();
-      if (isPlayerActive(mediaController.getPlaybackState()) &&
-          mediaMetadataCompat != null                        &&
-          mediaMetadataCompat.getDescription() != null       &&
-          mediaMetadataCompat.getDescription().getMediaUri() != null)
-      {
+      VoiceNotePlaybackState newPlaybackState = constructPlaybackState(mediaController, voiceNotePlaybackState.getValue());
 
-        Uri                    mediaUri      = Objects.requireNonNull(mediaMetadataCompat.getDescription().getMediaUri());
-        boolean                autoReset     = Objects.equals(mediaUri, VoiceNotePlaybackPreparer.NEXT_URI) || Objects.equals(mediaUri, VoiceNotePlaybackPreparer.END_URI);
-        VoiceNotePlaybackState previousState = voiceNotePlaybackState.getValue();
-        long                   position      = mediaController.getPlaybackState().getPosition();
-        long                   duration      = mediaMetadataCompat.getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
-        Bundle                 extras        = mediaController.getExtras();
-        float                  speed         = extras != null ? extras.getFloat(VoiceNotePlaybackService.ACTION_NEXT_PLAYBACK_SPEED, 1f) : 1f;
+      if (newPlaybackState != null) {
+        voiceNotePlaybackState.postValue(newPlaybackState);
+      }
 
-        if (previousState != null && Objects.equals(mediaUri, previousState.getUri())) {
-          if (position < 0 && previousState.getPlayheadPositionMillis() >= 0) {
-            position = previousState.getPlayheadPositionMillis();
-          }
-
-          if (duration <= 0 && previousState.getTrackDuration() > 0) {
-            duration = previousState.getTrackDuration();
-          }
-        }
-
-        if (duration > 0 && position >= 0 && position <= duration) {
-          voiceNotePlaybackState.postValue(new VoiceNotePlaybackState(mediaUri, position, duration, autoReset, speed));
-        }
-
+      if (isPlayerActive(mediaController.getPlaybackState())) {
         sendEmptyMessageDelayed(0, 50);
-      } else {
-        voiceNotePlaybackState.postValue(VoiceNotePlaybackState.NONE);
       }
     }
   }
@@ -281,6 +420,10 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
         notifyProgressEventHandler();
       } else {
         clearProgressEventHandler();
+
+        if (isPlayerStopped(state)) {
+          voiceNotePlaybackState.postValue(VoiceNotePlaybackState.NONE);
+        }
       }
     }
   }

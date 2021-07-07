@@ -9,11 +9,19 @@
     android:layout_height="match_parent"
     android:background="?android:windowBackground">
 
+  <ViewStub
+      android:id="@+id/voice_note_player"
+      android:inflatedId="@+id/voice_note_player"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout="@layout/voice_note_player_stub"
+      app:layout_constraintTop_toBottomOf="@id/toolbar_barrier" />
+
   <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
       android:layout_height="?attr/actionBarSize"
-      android:background="@null"
+      android:background="@color/signal_background_primary"
       android:minHeight="?attr/actionBarSize"
       android:theme="?attr/actionBarStyle"
       android:visibility="gone"
@@ -174,7 +182,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       app:barrierDirection="bottom"
-      app:constraint_referenced_ids="reminder,payments_notification" />
+      app:constraint_referenced_ids="reminder,payments_notification,voice_note_player" />
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/list"
