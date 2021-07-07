@@ -11,7 +11,7 @@ import androidx.core.app.TaskStackBuilder;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
+
 import network.loki.messenger.R;
 
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
@@ -36,11 +36,6 @@ public class CommunicationActions {
         Intent intent = new Intent(context, ConversationActivityV2.class);
         intent.putExtra(ConversationActivityV2.ADDRESS, recipient.getAddress());
         intent.putExtra(ConversationActivityV2.THREAD_ID, threadId);
-        intent.putExtra(ConversationActivity.TIMING_EXTRA, System.currentTimeMillis());
-
-        if (!TextUtils.isEmpty(text)) {
-          intent.putExtra(ConversationActivity.TEXT_EXTRA, text);
-        }
 
         if (backStack != null) {
           backStack.addNextIntent(intent);

@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms.util;
 import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.text.TextUtils;

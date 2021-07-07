@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.TaskStackBuilder;
 
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
+
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.session.libsession.utilities.recipients.Recipient;
