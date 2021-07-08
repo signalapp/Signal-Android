@@ -191,6 +191,7 @@ class EnterPublicKeyFragment : Fragment() {
     }
 
     private fun handleIsKeyboardShowingChanged() {
+        val optionalContentContainer = optionalContentContainer ?: return
         optionalContentContainer.isVisible = !isKeyboardShowing
     }
 

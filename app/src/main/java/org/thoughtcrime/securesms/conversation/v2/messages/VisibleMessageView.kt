@@ -83,7 +83,7 @@ class VisibleMessageView : LinearLayout {
         val senderSessionID = sender.address.serialize()
         val threadID = message.threadId
         val threadDB = DatabaseFactory.getThreadDatabase(context)
-        val thread = threadDB.getRecipientForThreadId(threadID)!!
+        val thread = threadDB.getRecipientForThreadId(threadID) ?: return
         val contactDB = DatabaseFactory.getSessionContactDatabase(context)
         val isGroupThread = thread.isGroupRecipient
         val isStartOfMessageCluster = isStartOfMessageCluster(message, previous, isGroupThread)
