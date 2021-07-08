@@ -32,8 +32,8 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
     private var duration = 0L
     private var player: AudioSlidePlayer? = null
     private var isPreparing = false
-    var delegate: VisibleMessageContentViewDelegate? = null
-    var index = 0
+    var delegate: VoiceMessageViewDelegate? = null
+    var index = -1
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }

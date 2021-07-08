@@ -847,8 +847,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun playNextAudioIfPossible(current: Int) {
-        if (current < conversationRecyclerView.childCount) {
-            val nextVisibleMessageView = conversationRecyclerView[current + 1] as? VisibleMessageView
+        if (current > 0) {
+            val nextVisibleMessageView = conversationRecyclerView[current - 1] as? VisibleMessageView
             nextVisibleMessageView?.let { visibleMessageView ->
                 visibleMessageView.messageContentView.mainContainer.children.forEach { child ->
                     val nextVoiceMessageView = child as? VoiceMessageView

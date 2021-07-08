@@ -32,6 +32,7 @@ import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.components.AlbumThumbnailView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.conversation.v2.dialogs.OpenURLDialog
 import org.thoughtcrime.securesms.conversation.v2.utilities.ModalURLSpan
 import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities.getIntersectedModalSpans
@@ -48,6 +49,7 @@ class VisibleMessageContentView : LinearLayout {
     var onContentClick: ((event: MotionEvent) -> Unit)? = null
     var onContentDoubleTap: (() -> Unit)? = null
     var delegate: VisibleMessageContentViewDelegate? = null
+    var viewHolderIndex: Int = -1
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
@@ -107,9 +109,10 @@ class VisibleMessageContentView : LinearLayout {
             }
         } else if (message is MmsMessageRecord && message.slideDeck.audioSlide != null) {
             val voiceMessageView = VoiceMessageView(context)
+            voiceMessageView.index = viewHolderIndex
+            voiceMessageView.delegate = context as? ConversationActivityV2
             voiceMessageView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster)
             mainContainer.addView(voiceMessageView)
-            voiceMessageView.delegate = delegate
             // We have to use onContentClick (rather than a click listener directly on the voice
             // message view) so as to not interfere with all the other gestures.
             onContentClick = { voiceMessageView.togglePlayback() }
