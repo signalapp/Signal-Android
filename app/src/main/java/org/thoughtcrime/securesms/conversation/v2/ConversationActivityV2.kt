@@ -1260,7 +1260,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun saveDraft() {
-        val text = inputBar.text.trim()
+        val text = inputBar?.text?.trim() ?: return
         if (text.isEmpty()) { return }
         val drafts = Drafts()
         drafts.add(DraftDatabase.Draft(DraftDatabase.Draft.TEXT, text))

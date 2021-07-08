@@ -883,6 +883,7 @@ public class MmsDatabase extends MessagingDatabase {
   }
 
   public void deleteQuotedFromMessages(MessageRecord toDeleteRecord) {
+    if (toDeleteRecord == null) { return; }
     String query = THREAD_ID + " = ?";
     Cursor threadMmsCursor = rawQuery(query, new String[]{String.valueOf(toDeleteRecord.getThreadId())});
     Reader reader = readerFor(threadMmsCursor);
