@@ -24,7 +24,6 @@ class LandingActivity : BaseActionBarActivity() {
         findViewById<View>(R.id.restoreButton).setOnClickListener { restore() }
         findViewById<View>(R.id.linkButton).setOnClickListener { link() }
         IdentityKeyUtil.generateIdentityKeyPair(this)
-        TextSecurePreferences.setLastExperienceVersionCode(this, Util.getCanonicalVersionCode())
         TextSecurePreferences.setPasswordDisabled(this, true)
         TextSecurePreferences.setReadReceiptsEnabled(this, true)
         TextSecurePreferences.setTypingIndicatorsEnabled(this, true)

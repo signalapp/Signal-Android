@@ -188,7 +188,6 @@ class BackupRestoreViewModel(application: Application): AndroidViewModel(applica
                 TextSecurePreferences.setRestorationTime(context, System.currentTimeMillis())
                 TextSecurePreferences.setHasViewedSeed(context, true)
                 TextSecurePreferences.setHasSeenWelcomeScreen(context, true)
-                val application = ApplicationContext.getInstance(context)
 
                 BackupRestoreResult.SUCCESS
             } catch (e: DatabaseDowngradeException) {

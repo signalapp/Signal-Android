@@ -187,27 +187,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         Log.i(TAG, "App is now visible.");
         KeyCachingService.onAppForegrounded(this);
 
-        boolean hasPerformedContactMigration = TextSecurePreferences.INSTANCE.hasPerformedContactMigration(this);
-        if (!hasPerformedContactMigration) {
-            TextSecurePreferences.INSTANCE.setPerformedContactMigration(this);
-            Set<Recipient> allContacts = ContactUtilities.getAllContacts(this);
-            SessionContactDatabase contactDB = DatabaseFactory.getSessionContactDatabase(this);
-            LokiUserDatabase userDB = DatabaseFactory.getLokiUserDatabase(this);
-            for (Recipient recipient : allContacts) {
-                if (recipient.isGroupRecipient()) { continue; }
-                String sessionID = recipient.getAddress().serialize();
-                Contact contact = contactDB.getContactWithSessionID(sessionID);
-                if (contact == null) {
-                    contact = new Contact(sessionID);
-                    String name = userDB.getDisplayName(sessionID);
-                    contact.setName(name);
-                    contact.setProfilePictureURL(recipient.getProfileAvatar());
-                    contact.setProfilePictureEncryptionKey(recipient.getProfileKey());
-                    contact.setTrusted(true);
-                }
-                contactDB.setContact(contact);
-            }
-        }
         if (poller != null) {
             poller.setCaughtUp(false);
         }
@@ -493,7 +472,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         boolean isUsingFCM = TextSecurePreferences.isUsingFCM(this);
         TextSecurePreferences.clearAll(this);
         if (isMigratingToV2KeyPair) {
-            TextSecurePreferences.setIsMigratingKeyPair(this, true);
             TextSecurePreferences.setIsUsingFCM(this, isUsingFCM);
             TextSecurePreferences.setProfileName(this, displayName);
         }
