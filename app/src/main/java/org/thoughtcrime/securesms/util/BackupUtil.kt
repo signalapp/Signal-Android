@@ -118,7 +118,7 @@ object BackupUtil {
         if (timestamp == null) {
             return context.getString(R.string.BackupUtil_never)
         }
-        return DateUtils.getExtendedRelativeTimeSpanString(context, locale, timestamp.time)
+        return DateUtils.getDisplayFormattedTimeSpanString(context, locale, timestamp.time)
     }
 
     @JvmStatic

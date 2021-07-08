@@ -58,7 +58,7 @@ class ConversationView : LinearLayout {
         profilePictureView.update(thread.recipient, thread.threadId)
         val senderDisplayName = getUserDisplayName(thread.recipient) ?: thread.recipient.address.toString()
         conversationViewDisplayNameTextView.text = senderDisplayName
-        timestampTextView.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), thread.date)
+        timestampTextView.text = DateUtils.getDisplayFormattedTimeSpanString(context, Locale.getDefault(), thread.date)
         muteIndicatorImageView.visibility = if (thread.recipient.isMuted) VISIBLE else GONE
         val rawSnippet = thread.getDisplayBody(context)
         val snippet = highlightMentions(rawSnippet, thread.threadId, context)

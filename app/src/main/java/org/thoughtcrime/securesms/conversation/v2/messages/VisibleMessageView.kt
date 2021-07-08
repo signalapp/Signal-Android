@@ -110,11 +110,11 @@ class VisibleMessageView : LinearLayout {
             senderNameTextView.visibility = View.GONE
         }
         // Date break
-        val showDateBreak = (previous == null || !DateUtils.isSameDay(message.timestamp, previous.timestamp))
+        val showDateBreak = (previous == null || !DateUtils.isSameHour(message.timestamp, previous.timestamp))
         dateBreakTextView.isVisible = showDateBreak
-        dateBreakTextView.text = if (showDateBreak) DateUtils.getRelativeDate(context, Locale.getDefault(), message.timestamp) else ""
+        dateBreakTextView.text = if (showDateBreak) DateUtils.getDisplayFormattedTimeSpanString(context, Locale.getDefault(), message.timestamp) else ""
         // Timestamp
-        messageTimestampTextView.text = DateUtils.getExtendedRelativeTimeSpanString(context, Locale.getDefault(), message.timestamp)
+        messageTimestampTextView.text = DateUtils.getDisplayFormattedTimeSpanString(context, Locale.getDefault(), message.timestamp)
         // Margins
         val startPadding: Int
         if (isGroupThread) {
@@ -177,10 +177,10 @@ class VisibleMessageView : LinearLayout {
 
     private fun isEndOfMessageCluster(current: MessageRecord, next: MessageRecord?, isGroupThread: Boolean): Boolean {
         return if (isGroupThread) {
-            next == null || next.isUpdate || !DateUtils.isSameDay(current.timestamp, next.timestamp)
+            next == null || next.isUpdate || !DateUtils.isSameHour(current.timestamp, next.timestamp)
                 || current.recipient.address != next.recipient.address
         } else {
-            next == null || next.isUpdate || !DateUtils.isSameDay(current.timestamp, next.timestamp)
+            next == null || next.isUpdate || !DateUtils.isSameHour(current.timestamp, next.timestamp)
                 || current.isOutgoing != next.isOutgoing
         }
     }
