@@ -116,6 +116,7 @@ object OpenGroupManager {
         val lokiThreadDB = DatabaseFactory.getLokiThreadDatabase(context)
         lokiThreadDB.removeOpenGroupChat(threadID)
         ThreadUtils.queue {
+            threadDB.deleteConversation(threadID) // Must be invoked on a background thread
             GroupManager.deleteGroup(groupID, context) // Must be invoked on a background thread
         }
     }

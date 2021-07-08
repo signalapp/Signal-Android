@@ -214,6 +214,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             threadID = DatabaseFactory.getThreadDatabase(this).getOrCreateThreadIdFor(recipient)
         }
         this.threadID = threadID
+        val thread = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadID)
+        if (thread == null) {
+            Toast.makeText(this, "This thread has been deleted.", Toast.LENGTH_LONG).show()
+            return finish()
+        }
         setUpRecyclerView()
         setUpToolBar()
         setUpInputBar()
@@ -233,6 +238,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         scrollToFirstUnreadMessageIfNeeded()
         markAllAsRead()
         showOrHideInputIfNeeded()
+        if (this.thread.isOpenGroupRecipient) {
+            val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
+            if (openGroup == null) {
+                Toast.makeText(this, "This thread has been deleted.", Toast.LENGTH_LONG).show()
+                return finish()
+            }
+        }
     }
 
     override fun onResume() {

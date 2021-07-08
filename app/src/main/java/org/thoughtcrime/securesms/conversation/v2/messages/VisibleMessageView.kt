@@ -96,7 +96,7 @@ class VisibleMessageView : LinearLayout {
             profilePictureView.glide = glide
             profilePictureView.update()
             if (thread.isOpenGroupRecipient) {
-                val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)!!
+                val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID) ?: return
                 val isModerator = OpenGroupAPIV2.isUserModerator(senderSessionID, openGroup.room, openGroup.server)
                 moderatorIconImageView.visibility = if (isModerator) View.VISIBLE else View.INVISIBLE
             } else {

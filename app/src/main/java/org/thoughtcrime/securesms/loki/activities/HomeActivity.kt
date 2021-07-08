@@ -154,16 +154,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
             }
         }
         EventBus.getDefault().register(this@HomeActivity)
-        testDateFormatting()
-    }
-
-    private fun testDateFormatting() {
-        val timestamp = Date().time
-        Log.d("Test", getString(R.string.DateUtils_just_now))
-        Log.d("Test", DateUtils.getFormattedDateTime(timestamp, DateUtils.getHourFormat(this), Locale.getDefault()))
-        Log.d("Test", DateUtils.getFormattedDateTime(timestamp, "EEE " + DateUtils.getHourFormat(this), Locale.getDefault()))
-        Log.d("Test", DateUtils.getFormattedDateTime(timestamp, "MMM d " + DateUtils.getHourFormat(this), Locale.getDefault()))
-        Log.d("Test", DateUtils.getFormattedDateTime(timestamp, "MMM d " + DateUtils.getHourFormat(this) + ", yyyy", Locale.getDefault()))
     }
 
     override fun onResume() {
