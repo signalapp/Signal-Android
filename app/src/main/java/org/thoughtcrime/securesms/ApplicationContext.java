@@ -27,6 +27,7 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDexApplication;
+
 import org.conscrypt.Conscrypt;
 import org.session.libsession.avatars.AvatarHelper;
 import org.session.libsession.messaging.MessagingModuleConfiguration;
@@ -47,6 +48,7 @@ import org.session.libsignal.utilities.Log;
 import org.session.libsignal.utilities.ThreadUtils;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
+import org.thoughtcrime.securesms.crypto.KeyPairUtilities;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
@@ -84,12 +86,14 @@ import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.security.Security;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import dagger.ObjectGraph;
 import kotlin.Unit;
 import kotlinx.coroutines.Job;
@@ -154,8 +158,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         conversationListNotificationHandler = new Handler(Looper.getMainLooper());
         LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
         MessagingModuleConfiguration.Companion.configure(this,
-            DatabaseFactory.getStorage(this),
-            DatabaseFactory.getAttachmentProvider(this));
+                DatabaseFactory.getStorage(this),
+                DatabaseFactory.getAttachmentProvider(this),
+                ()-> KeyPairUtilities.INSTANCE.getUserED25519KeyPair(this)
+        );
         SnodeModule.Companion.configure(apiDB, broadcaster);
         String userPublicKey = TextSecurePreferences.getLocalNumber(this);
         if (userPublicKey != null) {

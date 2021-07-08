@@ -4,15 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import network.loki.messenger.R
+import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.session.libsession.utilities.IdentityKeyUtil
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.views.FakeChatView
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.Util
-
-import org.session.libsession.utilities.TextSecurePreferences
 
 class LandingActivity : BaseActionBarActivity() {
 

@@ -1,4 +1,4 @@
-package org.session.libsession.utilities
+package org.thoughtcrime.securesms.crypto
 
 import android.content.Context
 import com.goterl.lazysodium.LazySodiumAndroid

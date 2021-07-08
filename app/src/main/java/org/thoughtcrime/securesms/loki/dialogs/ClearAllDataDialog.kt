@@ -4,14 +4,14 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.DialogFragment
-import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.dialog_clear_all_data.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.crypto.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
-import org.session.libsession.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
 

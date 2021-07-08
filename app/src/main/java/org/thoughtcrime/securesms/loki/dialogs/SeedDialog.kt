@@ -8,10 +8,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.dialog_seed.view.*
 import network.loki.messenger.R
-import org.session.libsession.utilities.IdentityKeyUtil
-import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.utilities.hexEncodedPrivateKey
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 
 class SeedDialog : BaseDialog() {
