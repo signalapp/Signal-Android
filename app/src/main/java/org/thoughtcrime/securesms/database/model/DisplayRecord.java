@@ -17,12 +17,13 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.text.SpannableString;
 
+import androidx.annotation.NonNull;
+
+import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.session.libsession.utilities.recipients.Recipient;
 
 /**
  * The base class for all message record models.  Encapsulates basic data
@@ -33,9 +34,7 @@ import org.session.libsession.utilities.recipients.Recipient;
  */
 
 public abstract class DisplayRecord {
-
   protected final long type;
-
   private final Recipient  recipient;
   private final long       dateSent;
   private final long       dateReceived;
@@ -46,8 +45,8 @@ public abstract class DisplayRecord {
   private final int        readReceiptCount;
 
   DisplayRecord(String body, Recipient recipient, long dateSent,
-                long dateReceived, long threadId, int deliveryStatus, int deliveryReceiptCount,
-                long type, int readReceiptCount)
+    long dateReceived, long threadId, int deliveryStatus, int deliveryReceiptCount,
+    long type, int readReceiptCount)
   {
     this.threadId             = threadId;
     this.recipient            = recipient;
@@ -63,138 +62,63 @@ public abstract class DisplayRecord {
   public @NonNull String getBody() {
     return body == null ? "" : body;
   }
+  public abstract SpannableString getDisplayBody(@NonNull Context context);
+  public Recipient getRecipient() { return recipient; }
+  public long getDateSent() { return dateSent; }
+  public long getDateReceived() { return dateReceived; }
+  public long getThreadId() { return threadId; }
+  public int getDeliveryStatus() { return deliveryStatus; }
+  public int getDeliveryReceiptCount() { return deliveryReceiptCount; }
+  public int getReadReceiptCount() { return readReceiptCount; }
+
+  public boolean isDelivered() {
+    return (deliveryStatus >= SmsDatabase.Status.STATUS_COMPLETE
+      && deliveryStatus < SmsDatabase.Status.STATUS_PENDING) || deliveryReceiptCount > 0;
+  }
+
+  public boolean isSent() {
+    return !isFailed() && !isPending();
+  }
 
   public boolean isFailed() {
-    return
-        MmsSmsColumns.Types.isFailedMessageType(type)            ||
-        MmsSmsColumns.Types.isPendingSecureSmsFallbackType(type) ||
-        deliveryStatus >= SmsDatabase.Status.STATUS_FAILED;
+    return MmsSmsColumns.Types.isFailedMessageType(type)
+      || MmsSmsColumns.Types.isPendingSecureSmsFallbackType(type)
+      || deliveryStatus >= SmsDatabase.Status.STATUS_FAILED;
   }
 
   public boolean isPending() {
-    return MmsSmsColumns.Types.isPendingMessageType(type) &&
-           !MmsSmsColumns.Types.isIdentityVerified(type)  &&
-           !MmsSmsColumns.Types.isIdentityDefault(type);
+    return MmsSmsColumns.Types.isPendingMessageType(type)
+      && !MmsSmsColumns.Types.isIdentityVerified(type)
+      && !MmsSmsColumns.Types.isIdentityDefault(type);
   }
+
+  public boolean isRead() { return readReceiptCount > 0; }
 
   public boolean isOutgoing() {
     return MmsSmsColumns.Types.isOutgoingMessageType(type);
   }
-
-  public abstract SpannableString getDisplayBody(@NonNull Context context);
-
-  public Recipient getRecipient() {
-    return recipient;
-  }
-
-  public long getDateSent() {
-    return dateSent;
-  }
-
-  public long getDateReceived() {
-    return dateReceived;
-  }
-
-  public long getThreadId() {
-    return threadId;
-  }
-
-  public boolean isKeyExchange() {
-    return SmsDatabase.Types.isKeyExchangeType(type);
-  }
-
-  public boolean isEndSession() { return SmsDatabase.Types.isEndSessionType(type); }
-
-  public boolean isLokiSessionRestoreSent() { return SmsDatabase.Types.isLokiSessionRestoreSentType(type); }
-
-  public boolean isLokiSessionRestoreDone() { return SmsDatabase.Types.isLokiSessionRestoreDoneType(type); }
-
-  // TODO isGroupUpdate and isGroupQuit are kept for compatibility with old update messages, they can be removed later on
-  public boolean isGroupUpdate() {
-    return SmsDatabase.Types.isGroupUpdate(type);
-  }
-
-  public boolean isGroupQuit() {
-    return SmsDatabase.Types.isGroupQuit(type);
-  }
-
   public boolean isGroupUpdateMessage() {
     return SmsDatabase.Types.isGroupUpdateMessage(type);
   }
-
-  //TODO isGroupAction can be replaced by isGroupUpdateMessage in the code when the 2 functions above are removed
-  public boolean isGroupAction() {
-    return isGroupUpdate() || isGroupQuit() || isGroupUpdateMessage();
-  }
-
-  public boolean isExpirationTimerUpdate() {
-    return SmsDatabase.Types.isExpirationTimerUpdate(type);
-  }
-
-  // Data extraction
-
-  public boolean isMediaSavedExtraction() {
-    return MmsSmsColumns.Types.isMediaSavedExtraction(type);
-  }
-
-  public boolean isScreenshotExtraction() {
-    return MmsSmsColumns.Types.isScreenshotExtraction(type);
-  }
-
-  public boolean isDataExtraction() {
-    return isMediaSavedExtraction() || isScreenshotExtraction();
-  }
-
-  public boolean isOpenGroupInvitation() {
-    return MmsSmsColumns.Types.isOpenGroupInvitation(type);
-  }
-
+  public boolean isExpirationTimerUpdate() { return SmsDatabase.Types.isExpirationTimerUpdate(type); }
+  public boolean isMediaSavedNotification() { return MmsSmsColumns.Types.isMediaSavedExtraction(type); }
+  public boolean isScreenshotNotification() { return MmsSmsColumns.Types.isScreenshotExtraction(type); }
+  public boolean isDataExtractionNotification() { return isMediaSavedNotification() || isScreenshotNotification(); }
+  public boolean isOpenGroupInvitation() { return MmsSmsColumns.Types.isOpenGroupInvitation(type); }
   public boolean isCallLog() {
     return SmsDatabase.Types.isCallLog(type);
   }
-
-  public boolean isJoined() {
-    return SmsDatabase.Types.isJoinedType(type);
-  }
-
   public boolean isIncomingCall() {
     return SmsDatabase.Types.isIncomingCall(type);
   }
-
   public boolean isOutgoingCall() {
     return SmsDatabase.Types.isOutgoingCall(type);
   }
-
   public boolean isMissedCall() {
     return SmsDatabase.Types.isMissedCall(type);
   }
 
-  public boolean isVerificationStatusChange() {
-    return SmsDatabase.Types.isIdentityDefault(type) || SmsDatabase.Types.isIdentityVerified(type);
-  }
-
-  public int getDeliveryStatus() {
-    return deliveryStatus;
-  }
-
-  public int getDeliveryReceiptCount() {
-    return deliveryReceiptCount;
-  }
-
-  public int getReadReceiptCount() {
-    return readReceiptCount;
-  }
-
-  public boolean isDelivered() {
-    return (deliveryStatus >= SmsDatabase.Status.STATUS_COMPLETE &&
-            deliveryStatus < SmsDatabase.Status.STATUS_PENDING) || deliveryReceiptCount > 0;
-  }
-
-  public boolean isRemoteRead() {
-    return readReceiptCount > 0;
-  }
-
-  public boolean isPendingInsecureSmsFallback() {
-    return SmsDatabase.Types.isPendingInsecureSmsFallbackType(type);
+  public boolean isControlMessage() {
+    return isGroupUpdateMessage() || isExpirationTimerUpdate() || isDataExtractionNotification();
   }
 }

@@ -11,8 +11,10 @@ import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPollerV2
 import org.session.libsession.utilities.Address
+import org.session.libsession.utilities.Address.Companion.fromSerialized
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.crypto.ecc.Curve
 import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.utilities.guava.Optional
@@ -50,7 +52,7 @@ fun MessageSender.create(name: String, members: Collection<String>): Promise<Str
             null, null, LinkedList(admins.map { Address.fromSerialized(it) }), System.currentTimeMillis())
         storage.setProfileSharing(Address.fromSerialized(groupID), true)
         // Send a closed group update message to all members individually
-        val closedGroupUpdateKind = ClosedGroupControlMessage.Kind.New(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), name, encryptionKeyPair, membersAsData, adminsAsData)
+        val closedGroupUpdateKind = ClosedGroupControlMessage.Kind.New(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), name, encryptionKeyPair, membersAsData, adminsAsData, 0)
         val sentTime = System.currentTimeMillis()
         for (member in members) {
             val closedGroupControlMessage = ClosedGroupControlMessage(closedGroupUpdateKind)
@@ -131,6 +133,8 @@ fun MessageSender.addMembers(groupPublicKey: String, membersToAdd: List<String>)
         Log.d("Loki", "Can't add members to nonexistent closed group.")
         throw Error.NoThread
     }
+    val recipient = Recipient.from(context, fromSerialized(groupID), false)
+    val expireTimer = recipient.expireMessages
     if (membersToAdd.isEmpty()) {
         Log.d("Loki", "Invalid closed group update.")
         throw Error.InvalidClosedGroupUpdate
@@ -155,9 +159,15 @@ fun MessageSender.addMembers(groupPublicKey: String, membersToAdd: List<String>)
     send(closedGroupControlMessage, Address.fromSerialized(groupID))
     // Send closed group update messages to any new members individually
     for (member in membersToAdd) {
-        val closedGroupNewKind = ClosedGroupControlMessage.Kind.New(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), name, encryptionKeyPair, membersAsData, adminsAsData)
+        val closedGroupNewKind = ClosedGroupControlMessage.Kind.New(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), name, encryptionKeyPair, membersAsData, adminsAsData, expireTimer)
         val closedGroupControlMessage = ClosedGroupControlMessage(closedGroupNewKind)
-        closedGroupControlMessage.sentTimestamp = sentTime
+        // It's important that the sent timestamp of this message is greater than the sent timestamp
+        // of the `MembersAdded` message above. The reason is that upon receiving this `New` message,
+        // the recipient will update the closed group formation timestamp and ignore any closed group
+        // updates from before that timestamp. By setting the timestamp of the message below to a value
+        // greater than that of the `MembersAdded` message, we ensure that newly added members ignore
+        // the `MembersAdded` message.
+        closedGroupControlMessage.sentTimestamp = System.currentTimeMillis()
         send(closedGroupControlMessage, Address.fromSerialized(member))
     }
     // Notify the user

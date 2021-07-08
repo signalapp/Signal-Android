@@ -37,8 +37,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import org.session.libsession.utilities.DistributionTypes;
 import org.thoughtcrime.securesms.components.SearchToolbar;
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
+
 import org.session.libsession.utilities.Address;
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListFragment;
@@ -215,10 +216,9 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void createConversation(long threadId, Address address, int distributionType) {
-    final Intent intent = getBaseShareIntent(ConversationActivity.class);
-    intent.putExtra(ConversationActivity.ADDRESS_EXTRA, address);
-    intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
-    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
+    final Intent intent = getBaseShareIntent(ConversationActivityV2.class);
+    intent.putExtra(ConversationActivityV2.ADDRESS, address);
+    intent.putExtra(ConversationActivityV2.THREAD_ID, threadId);
 
     isPassingAlongMedia = true;
     startActivity(intent);
@@ -226,11 +226,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   private Intent getBaseShareIntent(final @NonNull Class<?> target) {
     final Intent           intent       = new Intent(this, target);
-    final String           textExtra    = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-    final ArrayList<Media> mediaExtra   = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
-
-    intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
-    intent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaExtra);
 
     if (resolvedExtra != null) intent.setDataAndType(resolvedExtra, mimeType);
 

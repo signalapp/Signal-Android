@@ -2,7 +2,7 @@ syntax = "proto2";
 
 package signalservice;
 
-option java_package = "org.session.libsignal.service.internal.push";
+option java_package = "org.session.libsignal.protos";
 option java_outer_classname = "SignalServiceProtos";
 
 message Envelope {
@@ -112,7 +112,7 @@ message DataMessage {
   message ClosedGroupControlMessage {
 
     enum Type {
-      NEW                         = 1; // publicKey, name, encryptionKeyPair, members, admins
+      NEW                         = 1; // publicKey, name, encryptionKeyPair, members, admins, expireTimer
       ENCRYPTION_KEY_PAIR         = 3; // publicKey, wrappers
       NAME_CHANGE                 = 4; // name
       MEMBERS_ADDED               = 5; // members
@@ -135,6 +135,7 @@ message DataMessage {
     repeated bytes          members           = 5;
     repeated bytes          admins            = 6;
     repeated KeyPairWrapper wrappers          = 7;
+    optional uint32         expirationTimer   = 8;
   }
 
   optional string                    body                      = 1;
@@ -160,6 +161,7 @@ message ConfigurationMessage {
     optional KeyPair encryptionKeyPair = 3;
     repeated bytes   members           = 4;
     repeated bytes   admins            = 5;
+    optional uint32  expirationTimer   = 6;
   }
 
   message Contact {

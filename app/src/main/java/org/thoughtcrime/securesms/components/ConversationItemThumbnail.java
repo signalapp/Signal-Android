@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 
+import org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
 import org.thoughtcrime.securesms.mms.Slide;
@@ -27,7 +28,7 @@ import network.loki.messenger.R;
 
 public class ConversationItemThumbnail extends FrameLayout {
 
-  private ThumbnailView          thumbnail;
+  private ThumbnailView thumbnail;
   private AlbumThumbnailView     album;
   private ImageView              shade;
   private ConversationItemFooter footer;
@@ -64,15 +65,10 @@ public class ConversationItemThumbnail extends FrameLayout {
 
     if (attrs != null) {
       TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.ConversationItemThumbnail, 0, 0);
-      thumbnail.setBounds(typedArray.getDimensionPixelSize(R.styleable.ConversationItemThumbnail_conversationThumbnail_minWidth, 0),
-                          typedArray.getDimensionPixelSize(R.styleable.ConversationItemThumbnail_conversationThumbnail_maxWidth, 0),
-                          typedArray.getDimensionPixelSize(R.styleable.ConversationItemThumbnail_conversationThumbnail_minHeight, 0),
-                          typedArray.getDimensionPixelSize(R.styleable.ConversationItemThumbnail_conversationThumbnail_maxHeight, 0));
       typedArray.recycle();
     }
   }
 
-  @SuppressWarnings("SuspiciousNameCombination")
   @Override
   protected void dispatchDraw(Canvas canvas) {
     super.dispatchDraw(canvas);

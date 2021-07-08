@@ -21,9 +21,13 @@ val View.hitRect: Rect
     }
 
 fun View.animateSizeChange(@DimenRes startSizeID: Int, @DimenRes endSizeID: Int, animationDuration: Long = 250) {
-    val layoutParams = this.layoutParams
     val startSize = resources.getDimension(startSizeID)
     val endSize = resources.getDimension(endSizeID)
+    animateSizeChange(startSize, endSize)
+}
+
+fun View.animateSizeChange(startSize: Float, endSize: Float, animationDuration: Long = 250) {
+    val layoutParams = this.layoutParams
     val animation = ValueAnimator.ofObject(FloatEvaluator(), startSize, endSize)
     animation.duration = animationDuration
     animation.addUpdateListener { animator ->

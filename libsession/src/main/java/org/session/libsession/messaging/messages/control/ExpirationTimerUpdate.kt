@@ -33,7 +33,7 @@ class ExpirationTimerUpdate() : ControlMessage() {
         }
     }
 
-    internal constructor(duration: Int) : this() {
+    constructor(duration: Int) : this() {
         this.syncTarget = null
         this.duration = duration
     }

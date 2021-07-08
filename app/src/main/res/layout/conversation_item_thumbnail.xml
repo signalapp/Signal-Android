@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <org.thoughtcrime.securesms.components.ThumbnailView
+    <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
         android:id="@+id/conversation_thumbnail_image"
         android:layout_width="@dimen/media_bubble_default_dimens"
         android:layout_height="@dimen/media_bubble_default_dimens"

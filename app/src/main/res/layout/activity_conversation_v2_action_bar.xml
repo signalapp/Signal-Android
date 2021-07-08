@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:gravity="center_vertical">
+
+    <org.thoughtcrime.securesms.loki.views.ProfilePictureView
+        android:id="@+id/profilePictureView"
+        android:layout_width="@dimen/medium_profile_picture_size"
+        android:layout_height="@dimen/medium_profile_picture_size" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-2dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/conversationTitleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="-4dp"
+            android:text="Elon"
+            android:textColor="@color/text"
+            android:textStyle="bold"
+            android:textSize="@dimen/very_large_font_size"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/muteIconImageView"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginEnd="4dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_outline_notifications_off_24"
+                app:tint="@color/text"
+                android:alpha="0.6"
+                android:visibility="gone"
+                tools:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/conversationSubtitleView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Muted"
+                android:textColor="@color/text"
+                android:alpha="0.6"
+                android:textSize="@dimen/very_small_font_size"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

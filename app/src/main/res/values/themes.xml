@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Session -->
-
-    <!-- Due to historical reasons the base theme is dark and the light one
-    is implemented using "notnight" type of resources. -->
+    <!-- The base theme is dark and the light one is implemented using "notnight" resources. -->
     <style name="Base.Theme.Session" parent="@style/Theme.AppCompat.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
@@ -21,7 +18,7 @@
         <item name="android:colorBackground">@color/default_background_start</item>
         <item name="android:navigationBarColor">@color/compose_view_background</item>
 
-        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.DayNight</item>
         <item name="actionBarWidgetTheme">@null</item>
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.DayNight.ActionBar</item>
         <item name="actionBarStyle">@style/Widget.Session.ActionBar</item>
@@ -63,8 +60,8 @@
         <item name="home_gradient_start">#00000000</item>
         <item name="home_gradient_end">#FF000000</item>
 
-        <item name="message_received_background_color">#222325</item>
-        <item name="message_sent_background_color">#3F4146</item>
+        <item name="message_received_background_color">#2D2D2D</item>
+        <item name="message_sent_background_color">#00E97B</item>
 
         <item name="menu_accept_icon">@drawable/ic_baseline_done_24</item>
         <item name="menu_trash_icon">@drawable/ic_baseline_delete_24</item>
@@ -113,7 +110,7 @@
     which doesn't have support for light theme
     (like some old Signal screens or third-party libs with white only icons)
     -->
-    <!-- TODO Refactor this to use color resources -->
+    <!-- TODO: Refactor this to use color resources -->
     <style name="Base.Theme.Session.ForceDark" parent="Theme.Session.DayNight">
         <item name="colorPrimary">#171717</item>
         <item name="android:textColorPrimary">#FFFFFF</item>
@@ -147,11 +144,6 @@
         <item name="bottomSheetStyle">@style/Widget.Session.BottomSheetDialog</item>
     </style>
 
-    <!-- Session -->
-
-
-
-    <!--  Original Signal dark theme  -->
     <style name="Base.Theme.TextSecure" parent="@style/Theme.Session.DayNight">
 
         <item name="windowActionModeOverlay">true</item>

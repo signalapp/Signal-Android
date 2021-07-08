@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/album_thumbnail_root"
+    android:layout_width="@dimen/media_bubble_default_dimens"
+    android:layout_height="@dimen/media_bubble_default_dimens">
+
+    <org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
+        android:id="@+id/album_cell_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:minWidth="@dimen/media_bubble_min_width"
+        app:maxWidth="@dimen/media_bubble_max_width"
+        app:minHeight="@dimen/media_bubble_min_height"
+        app:maxHeight="@dimen/media_bubble_max_height"
+        app:thumbnail_radius="1dp"/>
+
+</FrameLayout>

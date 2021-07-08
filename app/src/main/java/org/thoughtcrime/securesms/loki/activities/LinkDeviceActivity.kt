@@ -14,7 +14,6 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_link_device.*
-import kotlinx.android.synthetic.main.conversation_activity.*
 import kotlinx.android.synthetic.main.fragment_recovery_phrase.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -157,7 +156,7 @@ private class LinkDeviceActivityAdapter(private val activity: LinkDeviceActivity
             1 -> {
                 val result = ScanQRCodeWrapperFragment()
                 result.delegate = activity
-                result.message = "Navigate to Settings → Recovery Phrase on your other device to show your QR code."
+                result.message = activity.getString(R.string.activity_link_device_qr_message)
                 result
             }
             else -> throw IllegalStateException()
@@ -166,8 +165,8 @@ private class LinkDeviceActivityAdapter(private val activity: LinkDeviceActivity
 
     override fun getPageTitle(index: Int): CharSequence {
         return when (index) {
-            0 -> "Recovery Phrase"
-            1 -> "Scan QR Code"
+            0 -> activity.getString(R.string.activity_link_device_recovery_phrase)
+            1 -> activity.getString(R.string.activity_link_device_scan_qr_code)
             else -> throw IllegalStateException()
         }
     }

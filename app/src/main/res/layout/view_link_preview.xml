@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/mainLinkPreviewContainer"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/mainLinkPreviewParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <RelativeLayout
+            android:layout_width="96dp"
+            android:layout_height="96dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_link"
+                app:tint="@color/text" />
+
+            <org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
+                android:id="@+id/thumbnailImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="12dp"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/small_font_size"
+            android:textStyle="bold"
+            tools:text="The Day The Dinosaurs Died - Minute by Minute"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:textColor="@color/text"
+            android:background="@color/link_preview_background" />
+
+    </LinearLayout>
+
+</LinearLayout>

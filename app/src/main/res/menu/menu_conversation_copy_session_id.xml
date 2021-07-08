@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="@string/activity_conversation_menu_copy_session_id"
+        android:id="@+id/menu_copy_session_id"
+        android:icon="@drawable/ic_content_copy_white_24dp" />
+
+</menu>

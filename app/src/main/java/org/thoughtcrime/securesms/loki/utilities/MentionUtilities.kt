@@ -7,6 +7,7 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.util.Range
+import androidx.core.content.res.ResourcesCompat
 import network.loki.messenger.R
 import nl.komponents.kovenant.combine.Tuple2
 import org.session.libsession.messaging.contacts.Contact
@@ -23,7 +24,7 @@ object MentionUtilities {
 
     @JvmStatic
     fun highlightMentions(text: CharSequence, isOutgoingMessage: Boolean, threadID: Long, context: Context): SpannableString {
-        var text = text
+        @Suppress("NAME_SHADOWING") var text = text
         val threadDB = DatabaseFactory.getThreadDatabase(context)
         val isOpenGroup = threadDB.getRecipientForThreadId(threadID)?.isOpenGroupRecipient ?: false
         val pattern = Pattern.compile("@[0-9a-fA-F]*")
@@ -38,7 +39,7 @@ object MentionUtilities {
                     TextSecurePreferences.getProfileName(context)
                 } else {
                     val contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(publicKey)
-                    val context = if (isOpenGroup) Contact.ContactContext.OPEN_GROUP else Contact.ContactContext.REGULAR
+                    @Suppress("NAME_SHADOWING") val context = if (isOpenGroup) Contact.ContactContext.OPEN_GROUP else Contact.ContactContext.REGULAR
                     contact?.displayName(context)
                 }
                 if (userDisplayName != null) {
@@ -54,10 +55,15 @@ object MentionUtilities {
             }
         }
         val result = SpannableString(text)
+        val isLightMode = UiModeUtilities.isDayUiMode(context)
         for (mention in mentions) {
-            val isLightMode = UiModeUtilities.isDayUiMode(context)
-            val colorID = if (isLightMode && isOutgoingMessage) R.color.black else R.color.accent
-            result.setSpan(ForegroundColorSpan(context.resources.getColorWithID(colorID, context.theme)), mention.first.lower, mention.first.upper, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            val colorID = if (isOutgoingMessage) {
+                if (isLightMode) R.color.white else R.color.black
+            } else {
+                R.color.accent
+            }
+            val color = ResourcesCompat.getColor(context.resources, colorID, context.theme)
+            result.setSpan(ForegroundColorSpan(color), mention.first.lower, mention.first.upper, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             result.setSpan(StyleSpan(Typeface.BOLD), mention.first.lower, mention.first.upper, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
         return result

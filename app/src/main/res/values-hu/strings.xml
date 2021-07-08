@@ -54,7 +54,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted">Sikertelen küldés, koppints a titkosítatlan üzenetküldéshez</string>
     <string name="ConversationItem_unable_to_open_media">Nem található olyan alkalmazás, ami képes lenne megnyitni ezt a médiafájlt.</string>
     <string name="ConversationItem_copied_text">%s másolva</string>
-    <string name="ConversationItem_read_more"> Tovább</string>
+    <string name="ConversationItem_read_more">Read More</string>
     <string name="ConversationItem_download_more"> További letöltése</string>
     <string name="ConversationItem_pending"> Függőben</string>
     <!-- ConversationActivity -->
@@ -263,7 +263,7 @@
     <string name="MediaPreviewActivity_you">Te</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Nem támogatott médiatípus</string>
     <string name="MediaPreviewActivity_draft">Piszkozat</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">A Session-nak szüksége van a Tárhely engedélyre ahhoz, hogy külső tárolóra menthessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Tárhely\"-t.</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session needs storage access in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nem lehet engedély nélkül menteni a külső tárolóra</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Törlöd az üzenetet?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Ez véglegesen törölni fogja ezt az üzenetet.</string>
@@ -490,7 +490,7 @@
     <string name="conversation_context__menu_message_details">Üzenet részletei</string>
     <string name="conversation_context__menu_copy_text">Szöveg másolása</string>
     <string name="conversation_context__menu_delete_message">Üzenet törlése</string>
-    <string name="conversation_context__menu_ban_user">Ban user</string>
+    <string name="conversation_context__menu_ban_user">Felhasználó kitiltása</string>
     <string name="conversation_context__menu_resend_message">Üzenet újraküldése</string>
     <string name="conversation_context__menu_reply_to_message">Válasz az üzenetre</string>
     <!-- conversation_context_image -->
@@ -550,7 +550,7 @@
     <string name="preferences_app_protection__screen_lock_inactivity_timeout">Képernyő lezárása ennyi tétlenséget követően</string>
     <string name="AppProtectionPreferenceFragment_none">Egyik sem</string>
     <!-- Conversation activity -->
-    <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
+    <string name="activity_conversation_copy_public_key_button_title">Nyilvános kulcs másolása</string>
     <!-- Session -->
     <string name="continue_2">Folytatás</string>
     <string name="copy">Másolás</string>
@@ -561,18 +561,18 @@
     <string name="invalid_session_id">Érvénytelen Session azonosító</string>
     <string name="cancel">Mégse</string>
     <string name="your_session_id">Az ön Session azonosítója</string>
-    <string name="activity_landing_title_2">Your Session begins here...</string>
+    <string name="activity_landing_title_2">Az ön Session-ja itt kezdődik...</string>
     <string name="activity_landing_register_button_title">Session azonosító létrehozása</string>
     <string name="activity_landing_restore_button_title">Continue Your Session</string>
-    <string name="view_fake_chat_bubble_1">What\'s Session?</string>
-    <string name="view_fake_chat_bubble_2">It\'s a decentralized, encrypted messaging app</string>
-    <string name="view_fake_chat_bubble_3">So it doesn\'t collect my personal information or my conversation metadata? How does it work?</string>
-    <string name="view_fake_chat_bubble_4">Using a combination of advanced anonymous routing and end-to-end encryption technologies.</string>
-    <string name="view_fake_chat_bubble_5">Friends don\'t let friends use compromised messengers. You\'re welcome.</string>
+    <string name="view_fake_chat_bubble_1">Mi az a Session?</string>
+    <string name="view_fake_chat_bubble_2">Ez egy decentralizált, titkosított üzenetküldő alkalmazás</string>
+    <string name="view_fake_chat_bubble_3">Tehát nem gyűjti a személyes adataimat vagy a beszélgetés metaadatait? Hogyan működik?</string>
+    <string name="view_fake_chat_bubble_4">Fejlett névtelen útválasztási és end-to-end titkosítási technológiák kombinációjának használata.</string>
+    <string name="view_fake_chat_bubble_5">A barátok nem engedik, hogy a barátok kompromittált hírnököket használjanak. Szívesen.</string>
     <string name="activity_register_title">Say hello to your Session ID</string>
     <string name="activity_register_explanation">Your Session ID is the unique address people can use to contact you on Session. With no connection to your real identity, your Session ID is totally anonymous and private by design.</string>
     <string name="activity_restore_title">Restore your account</string>
-    <string name="activity_restore_explanation">Enter the recovery phrase that was given to you when you signed up to restore your account.</string>
+    <string name="activity_restore_explanation">Írja be azt a helyreállítási kifejezést, amelyet a fiók visszaállításához regisztrálásakor kapott.</string>
     <string name="activity_restore_seed_edit_text_hint">Enter your recovery phrase</string>
     <string name="activity_display_name_title_2">Válassza ki a megjelenítendő nevet</string>
     <string name="activity_display_name_explanation">Ez lesz az ön neve, amikor használja a Session alkalmazást. Ez lehet a valódi neve, álneve, vagy bármi más, ami tetszik.</string>
@@ -584,14 +584,14 @@
     <string name="activity_home_empty_state_message">You don\'t have any contacts yet</string>
     <string name="activity_home_empty_state_button_title">Start a Session</string>
     <string name="activity_home_leave_group_dialog_message">Are you sure you want to leave this group?</string>
-    <string name="activity_home_leaving_group_failed_message">"Couldn't leave group"</string>
+    <string name="activity_home_leaving_group_failed_message">"Nem sikerült kilépni a csoportból"</string>
     <string name="activity_home_delete_conversation_dialog_message">Are you sure you want to delete this conversation?</string>
     <string name="activity_home_conversation_deleted_message">Conversation deleted</string>
     <string name="activity_seed_title">Your Recovery Phrase</string>
     <string name="activity_seed_title_2">Meet your recovery phrase</string>
-    <string name="activity_seed_explanation">Your recovery phrase is the master key to your Session ID — you can use it to restore your Session ID if you lose access to your device. Store your recovery phrase in a safe place, and don\'t give it to anyone.</string>
+    <string name="activity_seed_explanation">A helyreállítási kifejezés a Session azonosító főkulcsa - használhatja a Session azonosító visszaállítására, ha elveszíti a hozzáférését eszközéhez. Tárolja helyreállítási mondatát biztonságos helyen, és ne adja át senkinek.</string>
     <string name="activity_seed_reveal_button_title">Hold to reveal</string>
-    <string name="view_seed_reminder_title">You\'re almost finished! 80%</string>
+    <string name="view_seed_reminder_title">Már majdnem kész! 80%</string>
     <string name="view_seed_reminder_subtitle_1">Secure your account by saving your recovery phrase</string>
     <string name="view_seed_reminder_subtitle_2">Tap and hold the redacted words to reveal your recovery phrase, then store it safely to secure your Session ID.</string>
     <string name="view_seed_reminder_subtitle_3">Make sure to store your recovery phrase in a safe place</string>
@@ -602,12 +602,14 @@
     <string name="activity_path_service_node_row_title">Service Node</string>
     <string name="activity_path_destination_row_title">Destination</string>
     <string name="activity_path_learn_more_button_title">Learn More</string>
+    <string name="activity_path_resolving_progress">Resolving…</string>
     <string name="activity_create_private_chat_title">New Session</string>
     <string name="activity_create_private_chat_enter_session_id_tab_title">Enter Session ID</string>
     <string name="activity_create_private_chat_scan_qr_code_tab_title">Scan QR Code</string>
     <string name="activity_create_private_chat_scan_qr_code_explanation">Scan a user\'s QR code to start a session. QR codes can be found by tapping the QR code icon in account settings.</string>
-    <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID of recipient</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID or ONS name</string>
     <string name="fragment_enter_public_key_explanation">Users can share their Session ID by going into their account settings and tapping \"Share Session ID\", or by sharing their QR code.</string>
+    <string name="fragment_enter_public_key_error_message">Please check the Session ID or ONS name and try again.</string>
     <string name="fragment_scan_qr_code_camera_access_explanation">Session needs camera access to scan QR codes</string>
     <string name="fragment_scan_qr_code_grant_camera_access_button_title">Grant Camera Access</string>
     <string name="activity_create_closed_group_title">New Closed Group</string>
@@ -642,6 +644,8 @@
     <string name="activity_privacy_settings_title">Adatvédelem</string>
     <string name="activity_chat_settings_title">Beszélgetések</string>
     <string name="preferences_notifications_strategy_category_title">Notification Strategy</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_title">Use Fast Mode</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_summary">You’ll be notified of new messages reliably and immediately using Google’s notification servers.</string>
     <string name="fragment_device_list_bottom_sheet_change_name_button_title">Név módosítása</string>
     <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Unlink device</string>
     <string name="dialog_seed_title">Your Recovery Phrase</string>
@@ -687,6 +691,9 @@
     <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
     <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
     <string name="activity_link_device_link_device">Link a Device</string>
+    <string name="activity_link_device_recovery_phrase">Recovery Phrase</string>
+    <string name="activity_link_device_scan_qr_code">Scan QR Code</string>
+    <string name="activity_link_device_qr_message">Navigate to Settings → Recovery Phrase on your other device to show your QR code.</string>
     <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
     <string name="activity_pn_mode_message_notifications">Message Notifications</string>
     <string name="activity_pn_mode_explanation">There are two ways Session can notify you of new messages.</string>
@@ -699,4 +706,20 @@
     <string name="activity_prompt_passphrase_tap_to_unlock">Koppintson a feloldáshoz</string>
     <string name="fragment_user_details_bottom_sheet_edit_text_hint">Írjon be egy becenevet</string>
     <string name="invalid_public_key">Érvénytelen nyilvános kulcs</string>
+    <string name="document">Document</string>
+    <string name="dialog_blocked_title">Unblock %s?</string>
+    <string name="dialog_blocked_explanation">Are you sure you want to unblock %s?</string>
+    <string name="dialog_join_open_group_title">Join %s?</string>
+    <string name="dialog_join_open_group_explanation">Are you sure you want to join the %s open group?</string>
+    <string name="dialog_open_url_title">Open URL?</string>
+    <string name="dialog_open_url_explanation">Are you sure you want to open %s?</string>
+    <string name="open">Open</string>
+    <string name="dialog_link_preview_title">Enable Link Previews?</string>
+    <string name="dialog_link_preview_explanation">Enabling link previews will show previews for URLs you send and receive. This can be useful, but Session will need to contact linked websites to generate previews. You can always disable link previews in Session\'s settings.</string>
+    <string name="dialog_link_preview_enable_button_title">Enable</string>
+    <string name="dialog_download_title">Trust %s?</string>
+    <string name="dialog_download_explanation">Are you sure you want to download media sent by %s?</string>
+    <string name="dialog_download_button_title">Download</string>
+    <string name="activity_conversation_blocked_banner_text">%s is blocked. Unblock them?</string>
+    <string name="activity_conversation_attachment_prep_failed">Failed to prepare attachment for sending.</string>
 </resources>

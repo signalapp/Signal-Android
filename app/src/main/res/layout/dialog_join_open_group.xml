@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_dialog_background_inset"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:elevation="4dp"
+    android:padding="32dp">
+
+    <TextView
+        android:id="@+id/joinOpenGroupTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_join_open_group_title"
+        android:textColor="@color/text"
+        android:textStyle="bold"
+        android:textSize="@dimen/large_font_size" />
+
+    <TextView
+        android:id="@+id/joinOpenGroupExplanationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:text="@string/dialog_join_open_group_explanation"
+        android:paddingHorizontal="@dimen/medium_spacing"
+        android:textColor="@color/text"
+        android:textSize="@dimen/small_font_size"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/Widget.Session.Button.Dialog.Unimportant"
+            android:id="@+id/cancelButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/small_button_height"
+            android:layout_weight="1"
+            android:text="@string/cancel" />
+
+        <Button
+            style="@style/Widget.Session.Button.Dialog.Unimportant"
+            android:id="@+id/joinButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/small_button_height"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/medium_spacing"
+            android:text="@string/open_group_invitation_view__join_accessibility_description" />
+
+    </LinearLayout>
+
+</LinearLayout>

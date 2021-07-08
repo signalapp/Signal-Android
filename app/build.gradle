@@ -143,8 +143,8 @@ dependencies {
     testImplementation 'org.robolectric:shadows-multidex:4.2'
 }
 
-def canonicalVersionCode = 182
-def canonicalVersionName = "1.10.13"
+def canonicalVersionCode = 193
+def canonicalVersionName = "1.11.2"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,
@@ -194,8 +194,8 @@ android {
         versionCode canonicalVersionCode * postFixSize
         versionName canonicalVersionName
 
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdkVersion androidMinimumSdkVersion
+        targetSdkVersion androidCompileSdkVersion
 
         multiDexEnabled = true
 

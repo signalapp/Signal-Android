@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -40,18 +41,46 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
 
-                <TextView
-                    android:id="@+id/btnGroupNameDisplay"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textAlignment="viewStart"
-                    android:textSize="@dimen/medium_font_size"
-                    android:textStyle="bold"
-                    android:textColor="@color/text"
-                    tools:text="I'm a very long display name. What are you going to do about it?" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/conversationViewDisplayNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textAlignment="viewStart"
+                        android:textSize="@dimen/medium_font_size"
+                        android:textStyle="bold"
+                        android:textColor="@color/text"
+                        tools:text="I'm a very long display name. What are you going to do about it?" />
+
+                    <RelativeLayout
+                        android:id="@+id/unreadCountIndicator"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="4dp"
+                        android:background="@drawable/circle_tintable"
+                        android:backgroundTint="@color/conversation_unread_count_indicator_background">
+
+                        <TextView
+                            android:id="@+id/unreadCountTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:textSize="@dimen/very_small_font_size"
+                            android:textColor="@color/text"
+                            android:textStyle="bold"
+                            android:text="8" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/timestampTextView"
@@ -97,7 +126,7 @@
                         android:textColor="@color/text"
                         tools:text="Sorry, gotta go fight crime again" />
 
-                    <org.thoughtcrime.securesms.components.TypingIndicatorView
+                    <org.thoughtcrime.securesms.conversation.v2.components.TypingIndicatorView
                         android:id="@+id/typingIndicatorView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -115,13 +144,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="@dimen/medium_spacing"
-            android:background="?android:dividerHorizontal" />
 
     </FrameLayout>
 

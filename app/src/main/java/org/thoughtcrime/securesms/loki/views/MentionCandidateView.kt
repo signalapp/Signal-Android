@@ -30,7 +30,7 @@ class MentionCandidateView(context: Context, attrs: AttributeSet?, defStyleAttr:
     }
 
     private fun update() {
-        btnGroupNameDisplay.text = mentionCandidate.displayName
+        mentionCandidateNameTextView.text = mentionCandidate.displayName
         profilePictureView.publicKey = mentionCandidate.publicKey
         profilePictureView.displayName = mentionCandidate.displayName
         profilePictureView.additionalPublicKey = null

@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_qr_code.*
 import kotlinx.android.synthetic.main.fragment_view_my_qr_code.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.conversation.ConversationActivity
+
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.DistributionTypes
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -26,6 +26,7 @@ import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.util.FileProviderUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.PublicKeyValidation
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import java.io.File
 import java.io.FileOutputStream
 
@@ -53,13 +54,11 @@ class QRCodeActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperF
     fun createPrivateChatIfPossible(hexEncodedPublicKey: String) {
         if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) { return Toast.makeText(this, R.string.invalid_session_id, Toast.LENGTH_SHORT).show() }
         val recipient = Recipient.from(this, Address.fromSerialized(hexEncodedPublicKey), false)
-        val intent = Intent(this, ConversationActivity::class.java)
-        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
-        intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA))
+        val intent = Intent(this, ConversationActivityV2::class.java)
+        intent.putExtra(ConversationActivityV2.ADDRESS, recipient.address)
         intent.setDataAndType(getIntent().data, getIntent().type)
         val existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient)
-        intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread)
-        intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, DistributionTypes.DEFAULT)
+        intent.putExtra(ConversationActivityV2.THREAD_ID, existingThread)
         startActivity(intent)
         finish()
     }

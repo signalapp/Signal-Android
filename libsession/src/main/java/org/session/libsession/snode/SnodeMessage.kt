@@ -8,7 +8,7 @@ data class SnodeMessage(
      */
     val recipient: String,
     /**
-     * The content of the message.
+     * The base64 encoded content of the message.
      */
     val data: String,
     /**

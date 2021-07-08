@@ -74,7 +74,7 @@ public class LinkPreviewViewModel extends ViewModel {
         activeRequest = null;
       }
 
-      if (!link.isPresent() || !isCursorPositionValid(text, link.get(), cursorStart, cursorEnd)) {
+      if (!link.isPresent()) {
         activeUrl = null;
         linkPreviewState.setValue(LinkPreviewState.forEmpty());
         return;

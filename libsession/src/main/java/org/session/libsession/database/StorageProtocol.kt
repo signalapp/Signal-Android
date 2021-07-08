@@ -89,6 +89,7 @@ interface StorageProtocol {
     fun persistAttachments(messageID: Long, attachments: List<Attachment>): List<Long>
     fun getAttachmentsForMessage(messageID: Long): List<DatabaseAttachment>
     fun getMessageIdInDatabase(timestamp: Long, author: String): Long? // TODO: This is a weird name
+    fun markAsSending(timestamp: Long, author: String)
     fun markAsSent(timestamp: Long, author: String)
     fun markUnidentified(timestamp: Long, author: String)
     fun setErrorMessage(timestamp: Long, author: String, error: Exception)
@@ -115,6 +116,8 @@ interface StorageProtocol {
     fun isClosedGroup(publicKey: String): Boolean
     fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair>
     fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair?
+    fun updateFormationTimestamp(groupID: String, formationTimestamp: Long)
+    fun setExpirationTimer(groupID: String, duration: Int)
 
     // Groups
     fun getAllGroups(): List<GroupRecord>

@@ -77,11 +77,7 @@ class Contact(val sessionID: String) {
     companion object {
 
         fun contextForRecipient(recipient: Recipient): ContactContext {
-            return if (recipient.isOpenGroupRecipient) {
-                ContactContext.OPEN_GROUP
-            } else {
-                ContactContext.REGULAR
-            }
+            return if (recipient.isOpenGroupRecipient) ContactContext.OPEN_GROUP else ContactContext.REGULAR
         }
     }
 }

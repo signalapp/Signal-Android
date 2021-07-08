@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="18dp"/>
+    <stroke android:color="@color/input_bar_lock_view_border" android:width="1px" />
+    <solid android:color="@color/input_bar_lock_view_background" />
+</shape>

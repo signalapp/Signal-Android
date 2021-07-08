@@ -31,23 +31,12 @@ class ProfilePictureView : RelativeLayout {
     private val profilePicturesCache = mutableMapOf<String, String?>()
 
     // region Lifecycle
-    constructor(context: Context) : super(context) {
-        setUpViewHierarchy()
-    }
+    constructor(context: Context) : super(context) { initialize() }
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) { initialize() }
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) { initialize() }
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) { initialize() }
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        setUpViewHierarchy()
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        setUpViewHierarchy()
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes) {
-        setUpViewHierarchy()
-    }
-
-    private fun setUpViewHierarchy() {
+    private fun initialize() {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val contentView = inflater.inflate(R.layout.view_profile_picture, null)
         addView(contentView)
