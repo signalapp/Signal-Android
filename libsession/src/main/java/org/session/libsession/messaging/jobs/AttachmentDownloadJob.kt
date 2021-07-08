@@ -3,6 +3,7 @@ package org.session.libsession.messaging.jobs
 import okhttp3.HttpUrl
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsession.messaging.utilities.Data
@@ -41,10 +42,14 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
     override fun execute() {
         val storage = MessagingModuleConfiguration.shared.storage
         val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
-        val handleFailure: (java.lang.Exception) -> Unit = { exception ->
+        val handleFailure: (java.lang.Exception, attachmentId: AttachmentId?) -> Unit = { exception, attachment ->
             if (exception == Error.NoAttachment
                     || (exception is OnionRequestAPI.HTTPRequestFailedAtDestinationException && exception.statusCode == 400)) {
-                messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
+                attachment?.let { id ->
+                    messageDataProvider.setAttachmentState(AttachmentState.FAILED, id, databaseMessageID)
+                } ?: run {
+                    messageDataProvider.setAttachmentState(AttachmentState.FAILED, AttachmentId(attachmentID,0), databaseMessageID)
+                }
                 this.handlePermanentFailure(exception)
             } else {
                 this.handleFailure(exception)
@@ -53,8 +58,8 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
         var tempFile: File? = null
         try {
             val attachment = messageDataProvider.getDatabaseAttachment(attachmentID)
-                ?: return handleFailure(Error.NoAttachment)
-            messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachmentID, this.databaseMessageID)
+                ?: return handleFailure(Error.NoAttachment, null)
+            messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachment.attachmentId, this.databaseMessageID)
             tempFile = createTempFile()
             val threadID = storage.getThreadIdForMms(databaseMessageID)
             val openGroupV2 = storage.getV2OpenGroup(threadID)

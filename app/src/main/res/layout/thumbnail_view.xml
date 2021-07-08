@@ -22,6 +22,15 @@
         android:visibility="gone"
         tools:visibility="visible" />
 
+    <ImageView
+        android:src="@drawable/ic_download_circle_filled_48"
+        android:id="@+id/thumbnail_download_icon"
+        android:layout_width="@dimen/medium_button_height"
+        android:layout_height="@dimen/medium_button_height"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        />
+
     <FrameLayout
         android:id="@+id/play_overlay"
         android:layout_width="48dp"
@@ -29,8 +38,7 @@
         android:background="@drawable/circle_white"
         android:layout_gravity="center"
         android:longClickable="false"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="19dp"

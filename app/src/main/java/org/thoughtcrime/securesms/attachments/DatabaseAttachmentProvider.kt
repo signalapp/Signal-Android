@@ -60,9 +60,9 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         return databaseAttachment.toSignalAttachmentPointer()
     }
 
-    override fun setAttachmentState(attachmentState: AttachmentState, attachmentId: Long, messageID: Long) {
+    override fun setAttachmentState(attachmentState: AttachmentState, attachmentId: AttachmentId, messageID: Long) {
         val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
-        attachmentDatabase.setTransferState(messageID, AttachmentId(attachmentId, 0), attachmentState.value)
+        attachmentDatabase.setTransferState(messageID, attachmentId, attachmentState.value)
     }
 
     override fun getMessageForQuote(timestamp: Long, author: Address): Pair<Long, Boolean>? {

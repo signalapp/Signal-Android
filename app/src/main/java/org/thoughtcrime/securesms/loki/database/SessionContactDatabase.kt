@@ -47,6 +47,14 @@ class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Da
         }.toSet()
     }
 
+    fun setContactIsTrusted(contact: Contact, isTrusted: Boolean) {
+        val database = databaseHelper.writableDatabase
+        val contentValues = ContentValues(1)
+        contentValues.put(Companion.isTrusted, if (isTrusted) 1 else 0)
+        database.insertOrUpdate(sessionContactTable, contentValues, "$sessionID = ?", arrayOf( contact.sessionID ))
+        notifyConversationListListeners()
+    }
+
     fun setContact(contact: Contact) {
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(8)
