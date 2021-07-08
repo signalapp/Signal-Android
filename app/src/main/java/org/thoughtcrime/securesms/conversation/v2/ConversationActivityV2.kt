@@ -23,6 +23,8 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.annotation.DimenRes
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.children
+import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -40,6 +42,7 @@ import kotlinx.android.synthetic.main.view_conversation.view.*
 import kotlinx.android.synthetic.main.view_input_bar.view.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
+import kotlinx.android.synthetic.main.view_visible_message.view.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
@@ -84,8 +87,7 @@ import org.thoughtcrime.securesms.conversation.v2.input_bar.mentions.MentionCand
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallbackDelegate
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
-import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentViewDelegate
-import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
+import org.thoughtcrime.securesms.conversation.v2.messages.*
 import org.thoughtcrime.securesms.conversation.v2.search.SearchBottomBar
 import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
 import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager
@@ -124,7 +126,7 @@ import kotlin.math.*
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
         InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ActivityDispatcher,
         ConversationActionModeCallbackDelegate, VisibleMessageContentViewDelegate, RecipientModifiedListener,
-        SearchBottomBar.EventListener {
+        SearchBottomBar.EventListener, VoiceMessageViewDelegate {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
@@ -842,6 +844,21 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     override fun scrollToMessageIfPossible(timestamp: Long) {
         val lastSeenItemPosition = adapter.getItemPositionForTimestamp(timestamp) ?: return
         conversationRecyclerView.scrollToPosition(lastSeenItemPosition)
+    }
+
+    override fun playNextAudioIfPossible(current: Int) {
+        if (current > 0) {
+            val nextVisibleMessageView = conversationRecyclerView[current - 1] as? VisibleMessageView
+            nextVisibleMessageView?.let { visibleMessageView ->
+                visibleMessageView.messageContentView.mainContainer.children.forEach { child ->
+                    val nextVoiceMessageView = child as? VoiceMessageView
+                    nextVoiceMessageView?.let { voiceMessageView ->
+                        voiceMessageView.togglePlayback()
+                        return@forEach
+                    }
+                }
+            }
+        }
     }
 
     override fun sendMessage() {
