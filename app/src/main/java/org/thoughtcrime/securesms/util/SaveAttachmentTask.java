@@ -184,6 +184,11 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     String   extension = fileParts[1];
     String   mimeType  = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
 
+    if (MediaUtil.isOctetStream(mimeType) && MediaUtil.isImageVideoOrAudioType(contentType)) {
+      Log.d(TAG, "MimeTypeMap returned octet stream for media, changing to provided content type [" + contentType + "] instead.");
+      mimeType = contentType;
+    }
+
     ContentValues contentValues = new ContentValues();
     contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
     contentValues.put(MediaStore.MediaColumns.MIME_TYPE, mimeType);
