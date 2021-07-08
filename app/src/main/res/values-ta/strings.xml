@@ -843,6 +843,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">அனைத்து ஊடகங்களும்</string>
   <string name="MediaRepository__camera">புகைப்பட கருவி</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">தெரியாத</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ஆதரவில்லா Signal-இன் பழைய பதிப்பைப் பயன்படுத்தி மறையாக்கப்பட்ட செய்தி பெறப்பட்டது. தயவுசெய்து அனுப்புநரிடம் மிகச் சமீபத்திய பதிப்பைப் புதுப்பித்து, செய்தியை மீண்டும் அனுப்பச் சொல்லுங்கள்.</string>
@@ -2614,5 +2615,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__mentions">பெயர் குறிப்பிடுவது</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

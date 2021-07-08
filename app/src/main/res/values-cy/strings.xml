@@ -951,6 +951,7 @@ Send neges heb ei ddiogelu?</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Pob cyfrwng</string>
   <string name="MediaRepository__camera">Camera</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Anhysbys</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Wedi derbyn neges wedi\'i hamgryptio gan ddefnyddio hen fersiwn o Signal nad yw bellach yn cael ei gefnogi. Gofynnwch i\'r anfonwr ddiweddaru i\'r fersiwn ddiweddaraf ac ail-anfon y neges.</string>
@@ -3204,5 +3205,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Hysbysiadau cyfaddas</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Defnyddiwyd yn ddiweddar</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

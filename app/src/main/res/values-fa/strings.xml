@@ -861,6 +861,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">همهٔ رسانه‌ها</string>
   <string name="MediaRepository__camera">دوربین</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">ناشناخته</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">یک پیام رمزگذاری شده با استفاده از نسخه‌ای قدیمی از سیگنال که دیگر پشتیبانی نمی‌شود برایتان ارسال شده است. لطفاً از فرستنده بخواهید تا به آخرین نسخه به‌روزرسانی کند و آن پیام را دوباره ارسال کند.</string>
@@ -3032,5 +3033,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">اعلان‌ها‌ی سفارشی</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">به‌تازگی استفاده شده</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

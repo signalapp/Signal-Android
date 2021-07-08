@@ -54,6 +54,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(vaizdo įrašas)</string>
   <string name="DraftDatabase_Draft_location_snippet">(vieta)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(atsakymas)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Balso žinutė)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerija</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -949,6 +950,9 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Visa medija</string>
   <string name="MediaRepository__camera">Kamera</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Nepavyko iššifruoti žinutės</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Bakstelėkite norėdami siųsti derinimo žurnalą</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Nežinoma</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Gauta žinutė buvo užšifruota, naudojant seną Signal versiją, kuri daugiau nebepalaikoma. Paprašykite siuntėjo atnaujinti savo programėlę į naujausią versiją ir iš naujo išsiųsti žinutę.</string>
@@ -3202,5 +3206,11 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Tinkinti pranešimai</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Paskiausi</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">0,5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

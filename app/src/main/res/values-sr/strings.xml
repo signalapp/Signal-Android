@@ -53,6 +53,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(видео)</string>
   <string name="DraftDatabase_Draft_location_snippet">(локација)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(одговор)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Гласовна порука)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Галерија</string>
   <string name="AttachmentKeyboard_gif">ГИФ</string>
@@ -905,6 +906,9 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Сви медији</string>
   <string name="MediaRepository__camera">Камера</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Грешка при дешифровању поруке</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Кликните да пошаљете извештај грешака</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Непознато</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Примљена је порука шифрована старим издањем Signal-a које више није подржано. Замолите пошиљаоца да надогради на најновије издање и поново пошаље поруку.</string>
@@ -3071,6 +3075,9 @@
   <string name="EmojiSearchFragment__no_results_found">Нема резултата</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Непозната мелодија звона</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Пошаљите поруку</string>
+  <string name="ConversationSettingsFragment__start_video_call">Започните видео позив</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Започните гласовни позив</string>
   <string name="ConversationSettingsFragment__message">Порука</string>
   <string name="ConversationSettingsFragment__video">Видео запис</string>
   <string name="ConversationSettingsFragment__audio">Звучни запис</string>
@@ -3079,6 +3086,8 @@
   <string name="ConversationSettingsFragment__muted">Утишано</string>
   <string name="ConversationSettingsFragment__search">Претрага</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Самонестајуће поруке</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Звук и обавештења</string>
+  <string name="ConversationSettingsFragment__contact_details">Детаљи контакта</string>
   <string name="ConversationSettingsFragment__view_safety_number">Прикажи сигурносни број</string>
   <string name="ConversationSettingsFragment__block">Блокирај</string>
   <string name="ConversationSettingsFragment__block_group">Блокирај групу</string>
@@ -3088,8 +3097,13 @@
   <string name="ConversationSettingsFragment__see_all">Погледај све</string>
   <string name="ConversationSettingsFragment__add_members">Додај чланове</string>
   <string name="ConversationSettingsFragment__permissions">Дозволе</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Захтеви и позивнице</string>
   <string name="ConversationSettingsFragment__group_link">Веза до групе</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Додај у контакте</string>
   <string name="ConversationSettingsFragment__unmute">Укључи обавештења</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Преписка је утишана до %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Преписка је заувек утишана</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Број телефона је копиран у оставу.</string>
   <string name="ConversationSettingsFragment__phone_number">Број телефона</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Додај чланове</string>
@@ -3101,8 +3115,18 @@
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Утишај обавештења</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Није утишано</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Утишано до %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Помињања</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Увек обавести</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Немој обавештавати</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Прилагођена обавештења</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Недавно коришћено</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

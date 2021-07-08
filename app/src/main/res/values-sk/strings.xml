@@ -949,6 +949,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Všetky médiá</string>
   <string name="MediaRepository__camera">Fotoaparát</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Neznámy</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prijatá správa je šifrovaná starou verziou Signalu, ktorá už nie je podporovaná. Prosím požiadajte odosielateľa o aktualizáciu na najnovšiu verziu a opätovné odoslanie správy.</string>
@@ -3201,5 +3202,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Vlastné upozornenia</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Nedávno použité</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
   <!--EOF-->
 </resources>

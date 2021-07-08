@@ -866,6 +866,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">All media</string>
   <string name="MediaRepository__camera">Kamera</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Ukjend</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottok ei melding som er kryptert med ein gammal versjon av Signal som ikkje lenger vert støtta. Be avsendaren om å oppdatera til nyaste versjon og senda meldinga på nytt.</string>
@@ -3038,5 +3039,8 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ikkje varsla</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Eigendefinerte varsel</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

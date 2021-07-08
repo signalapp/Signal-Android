@@ -860,6 +860,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Összes médiafájl</string>
   <string name="MediaRepository__camera">Kamera</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Ismeretlen</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Egy olyan üzenet érkezett, amely a Signal egy régebbi, már nem támogatott verziójával lett titkosítva. Kérd meg a feladót, hogy frissítsen a legfrissebb verzióra, majd küldje el újra az üzenetet!</string>
@@ -3004,5 +3005,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Említések</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Egyedi értesítések</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

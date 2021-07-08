@@ -851,6 +851,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Akk imidyaten</string>
   <string name="MediaRepository__camera">Amḍiq n taɣdeft</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Arussin</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Yettwarmes-d izen yettwawgelhen s useqdec n lqem aqbur n Signal dayen ur nettusefrak ara. Ttxil-k·m suter deg umazan ad ileqqem ɣer lqem akk aneggaru syen ad yales tuzna n yizen.</string>
@@ -2722,5 +2723,8 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Tibdarin</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Sagen ilɣa</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

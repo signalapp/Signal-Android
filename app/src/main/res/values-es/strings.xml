@@ -861,6 +861,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Archivos adjuntos</string>
   <string name="MediaRepository__camera">Cámara</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Desconocid@</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Has recibido un mensaje cifrado con una versión de Signal antigua que ya no está disponible. Por favor, solicita a esta persona a actualizar a la versión más reciente y a reenviar el mensaje.</string>
@@ -3034,5 +3035,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificaciones personalizadas</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Usados recientemente</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

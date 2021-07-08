@@ -49,6 +49,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(vidéo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(position)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(réponse)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Message vocal)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerie</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -857,6 +858,8 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tous les médias</string>
   <string name="MediaRepository__camera">Appareil photo</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Touchez pour envoyer un journal de débogage</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Inconnu</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vous avez reçu un message chiffré avec une ancienne version de Signal qui n’est plus prise en charge. Veuillez demander à l’expéditeur de mettre Signal à jour vers la version la plus récente et de renvoyer le message.</string>
@@ -1779,6 +1782,7 @@
   <string name="message_details_recipient_header__delivered_to">Remis à</string>
   <string name="message_details_recipient_header__read_by">Lu par</string>
   <string name="message_details_recipient_header__not_sent">N’a pas été envoyé</string>
+  <string name="message_details_recipient_header__viewed">Vu par</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Échec d’envoi</string>
   <string name="message_details_recipient__new_safety_number">Nouveau numéro de sécurité</string>
@@ -2504,6 +2508,7 @@
   <string name="DeviceTransferSetup__turn_on_wifi">Activer le Wi-Fi</string>
   <string name="DeviceTransferSetup__error_connecting">Erreur de connexion</string>
   <string name="DeviceTransferSetup__retry">Réessayer</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Envoyer les journaux de débogage</string>
   <string name="DeviceTransferSetup__verify_code">Code de confirmation</string>
   <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Confirmiez que le code ci-dessous est le même sur chacun de vos appareils. Puis, touchez Continuer.</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Les chiffres ne correspondent pas</string>
@@ -2978,5 +2983,11 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notifications personnalisées</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Récemment utilisés</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">0,5 x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1 x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2 x</string>
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

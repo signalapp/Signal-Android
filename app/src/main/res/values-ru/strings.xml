@@ -54,6 +54,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(видео)</string>
   <string name="DraftDatabase_Draft_location_snippet">(место)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(ответ)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Голосовое сообщение)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Галерея</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -949,6 +950,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Все медиа</string>
   <string name="MediaRepository__camera">Камера</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Неизвестный</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Полученное сообщение зашифровано в старой версии Signal, которая больше не поддерживается. Пожалуйста, попросите отправителя обновиться до последней версии и заново отправить сообщение.</string>
@@ -3195,5 +3197,11 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Пользовательские уведомления</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Недавно использованные</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">0.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

@@ -854,6 +854,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Ficheiros multimedia</string>
   <string name="MediaRepository__camera">Cámara</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Descoñecido</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Recibiuse unha mensaxe cifrada a través dunha versión antiga de Signal que xa non ten soporte. Por favor, pídelle ao remitente que actualice a súa versión e volva enviar a mensaxe.</string>
@@ -2725,5 +2726,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Mencións</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Personalizar notificacións</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

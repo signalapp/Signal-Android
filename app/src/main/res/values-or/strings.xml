@@ -848,6 +848,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">ସମସ୍ତ ମିଡ଼ିଆ</string>
   <string name="MediaRepository__camera">କ୍ୟାମେରା</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">ଅଜଣା</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal ର ପୁରୁଣା ସଂସ୍କରଣ ବ୍ୟବହାର କରି ଏନକ୍ରିପ୍ଟ ହୋଇଥିବା ଏକ ବାର୍ତ୍ତା ଗ୍ରହଣ କଲା ଯାହା ଆଉ ସମର୍ଥିତ ନୁହେଁ | ଦୟାକରି ପ୍ରେରକଙ୍କୁ ସାମ୍ପ୍ରତିକ ସଂସ୍କରଣକୁ ଅଦ୍ୟତନ କରିବାକୁ ଏବଂ ବାର୍ତ୍ତା ପଠାଇବାକୁ କୁହନ୍ତୁ</string>
@@ -2620,5 +2621,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__mentions">ଉଲ୍ଲେଖ</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">କଷ୍ଟମ୍ ବିଜ୍ଞପ୍ତି</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
   <!--EOF-->
 </resources>

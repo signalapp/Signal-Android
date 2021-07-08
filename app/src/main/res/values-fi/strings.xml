@@ -859,6 +859,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Kaikki media</string>
   <string name="MediaRepository__camera">Kamera</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Tuntematon</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vastaanotettiin viesti, joka on salattu Signalin vanhalla versiolla, jota ei enää tueta. Pyydä lähettäjää päivittämään uusimpaan versioon ja lähettämään viesti uudelleen.</string>
@@ -2989,5 +2990,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Mukautetut ilmoitukset</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Äskettäin käytetyt</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

@@ -861,6 +861,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tot el contingut</string>
   <string name="MediaRepository__camera">Càmera</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Desconegut</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">S\'ha rebut un missatge encriptat amb una versió antiga del Signal que ja no s\'admet. Digueu-li a l\'emissor que l\'actualitzi a la versió més recent i torni a enviar el missatge.</string>
@@ -3028,5 +3029,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificacions personalitzades</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Usat recentment</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

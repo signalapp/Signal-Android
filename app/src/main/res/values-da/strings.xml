@@ -862,6 +862,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle mediefiler</string>
   <string name="MediaRepository__camera">Kamera</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Ukendt</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Modtog en besked krypteret med en ældre version af Signal, der ikke længere understøttes. Bed venligst afsenderen om at opgradere til den nyeste version og sende beskeden igen.</string>
@@ -3020,5 +3021,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Omtaler</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Brugerdefinerede notifikationer</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s - %2$s</string>
   <!--EOF-->
 </resources>

@@ -52,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(locatie)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(citaat)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Audiobericht)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerij</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -863,6 +864,9 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle media</string>
   <string name="MediaRepository__camera">Camera</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Ontsleutelen van bericht is mislukt</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Tik hier op een foutopsporingslog te uploaden</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Gebruiker niet bekend</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling van een Signal-versie die niet langer ondersteund wordt. Vraag de afzender om bij te werken naar de meest recente versie en het bericht opnieuw te verzenden.</string>
@@ -3038,5 +3042,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Aangepaste meldingen</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Recentelijk gebruikt</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

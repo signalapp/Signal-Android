@@ -52,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(Video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(Standort)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(Antwort)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Sprachnachricht)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerie</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -861,6 +862,9 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Medienübersicht</string>
   <string name="MediaRepository__camera">Kamera</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Nachricht konnte nicht entschlüsselt werden</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Tippe um ein Diagnoseprotokoll zu senden</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Unbekannt</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Eine empfangene Nachricht wurde mit einer alten, nicht mehr unterstützten Version von Signal verschlüsselt. Bitte den Absender, Signal auf die neueste Version zu aktualisieren und die Nachricht erneut zu senden.</string>
@@ -3023,5 +3027,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Personalisierte Benachrichtigungen</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Zuletzt verwendet</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

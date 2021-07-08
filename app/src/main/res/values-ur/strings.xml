@@ -844,6 +844,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">تمام میڈیا</string>
   <string name="MediaRepository__camera">کیمرہ</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">نامعلوم</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal کے پرانے ورژن کا استعمال کرتے ہوئے خفیہ کردہ ایک پیغام موصول ہوا جو اب تعاون یافتہ نہیں ہے۔ براہ کرم بھیجنے والے کو حالیہ ورژن میں اپ گریڈ کرنے کو کہے اور پیغام کو دوبارہ بھیجیں۔</string>
@@ -2586,5 +2587,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__mentions">ذکر</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

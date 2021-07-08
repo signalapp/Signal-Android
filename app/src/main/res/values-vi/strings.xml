@@ -813,6 +813,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tất cả tập tin đa phương tiện</string>
   <string name="MediaRepository__camera">Máy ảnh</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Vô danh</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Đã nhận một tin nhắn được mã hóa bởi phiên bản Signal cũ và không còn được hỗ trợ. Hãy nhắc người gửi cập nhật phiên bản mới nhất và gửi lại tin nhắn.</string>
@@ -2601,5 +2602,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Nhắc tên</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Thông báo tuỳ chỉnh</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

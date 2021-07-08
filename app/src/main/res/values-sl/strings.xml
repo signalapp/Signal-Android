@@ -946,6 +946,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Vsa večpredstavnostna sporočila</string>
   <string name="MediaRepository__camera">Kamera</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Neznano</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prejeli ste sporočilo, šifrirano z različico aplikacije Signal, ki ni več podprta. Prosite pošiljatelja, naj posodobi Signal na najnovejšo različico.</string>
@@ -3052,5 +3053,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ne obveščaj</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Obvestila po meri</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

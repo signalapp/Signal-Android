@@ -817,6 +817,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">全部媒体</string>
   <string name="MediaRepository__camera">相机</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">未知</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">收到来自旧版本 Signal 的加密消息，该版本已不再支持。请提醒发送人升级至最新版本并重发该消息。</string>
@@ -2951,5 +2952,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">自定义通知</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">最近使用</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

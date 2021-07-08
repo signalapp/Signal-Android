@@ -851,6 +851,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Цела медија</string>
   <string name="MediaRepository__camera">Камера</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Непознато</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Добивте порака која е енкриптирана користејќи стара верзија на Signal која веќе не е поддржана. Ве молиме побајте од праќачот пораката да ја апдејтира апликацијата на најновата верзија и пак да ја препрати пораката.</string>
@@ -2849,5 +2850,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Спомнувања</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Прилагодени известувања</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

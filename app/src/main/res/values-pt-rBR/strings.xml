@@ -52,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(local)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(resposta)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Mensagem de voz)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeria</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -861,6 +862,9 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Todas as mídias</string>
   <string name="MediaRepository__camera">Câmera</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Falha ao descriptografar a mensagem</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Toque para enviar um registro de depuração</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Desconhecida/o</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Foi recebida uma mensagem criptografada usando uma versão antiga do Signal que não possui mais suporte. Favor pedir ao remetente que atualize para a versão mais recente e reenvie a mensagem.</string>
@@ -2999,6 +3003,7 @@
   <string name="ConversationSettingsFragment__unmute">Reativar notificações</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversa silenciada até %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Conversa silenciada para sempre</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Número de telefone copiado para a área de transferência.</string>
   <string name="ConversationSettingsFragment__phone_number">Número de telefone</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Adicionar membros</string>
@@ -3016,5 +3021,12 @@
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Não me notifique</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Personalizar notificações</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Utilizada recentemente</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">0,5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

@@ -816,6 +816,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">すべてのメディア</string>
   <string name="MediaRepository__camera">カメラ</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">不明</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">受信したメッセージはサポート外の古いSignalで暗号化されています。送信者にSignalをアップデートして再送するよう依頼してください。</string>
@@ -2852,5 +2853,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">カスタム通知</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">最近使ったもの</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

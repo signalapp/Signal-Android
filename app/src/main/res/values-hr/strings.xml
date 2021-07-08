@@ -903,6 +903,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Svi medijski zapisi</string>
   <string name="MediaRepository__camera">Kamera</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Nepoznato</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Primljena je poruka koja je šifrirana pomoću stare verzije Signala koja više nije podržana. Zamolite pošiljatelja da ažurira na najnoviju verziju i ponovo pošalje poruku.</string>
@@ -3099,5 +3100,8 @@ broj telefona</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Spominjanja</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Prilagođene obavijesti</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

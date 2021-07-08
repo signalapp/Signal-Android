@@ -806,6 +806,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">ရုပ်/သံ/ပုံ စာများအားလုံး</string>
   <string name="MediaRepository__camera">ကင်မရာ</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">မသိ</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ထပ်မံပံ့ပိုးမှုမရှိတော့သော Signal ဗားရှင်းအဟောင်းဖြင့် encrypt လုပ်ထားသော စာကိုလက်ခံရရှိသည်။ စာပို့သူအား signal နောက်ဆုံးဗားရှင်းကိုမြှင့်ပြီး စာအားပြန်ပို့ခုိင်းပါ။</string>
@@ -2799,5 +2800,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__mentions">မန်းရှင်းများ</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">စိတ်ကြိုက်သတိပေးချက်များ</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

@@ -949,6 +949,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">כל המדיה</string>
   <string name="MediaRepository__camera">מצלמה</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">בלתי ידוע</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">הודעה מוצפנת התקבלה ע״י שימוש בגרסה ישנה של Signal שאינה נתמכת יותר. אנא בקש מהשולח לעדכן אל הגרסה העדכנית ביותר ולשלוח מחדש את ההודעה.</string>
@@ -3202,5 +3203,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">התראות מותאמות אישית</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">בשימוש לאחרונה</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

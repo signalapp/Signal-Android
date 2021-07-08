@@ -52,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(posizione)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(risposta)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Messaggio vocale)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galleria</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -861,6 +862,9 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tutti i file multimediali</string>
   <string name="MediaRepository__camera">Fotocamera</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Impossibile decriptare il messaggio</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Clicca per inviare un log di debug</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Sconosciuto</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Hai ricevuto un messaggio criptato usando una vecchia versione di Signal che non è più supportata. Per favore chiedi al mittente di aggiornare alla versione più recente e di inviare nuovamente il messaggio.</string>
@@ -3034,5 +3038,11 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notifiche personalizzate</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Usati di recente</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

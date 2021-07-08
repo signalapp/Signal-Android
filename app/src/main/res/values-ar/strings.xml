@@ -1036,6 +1036,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">جميع الوسائط</string>
   <string name="MediaRepository__camera">الكاميرا</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">مجهول</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">لقد استلمت رسالة مُعمَّاة من نسخة Signal قديمة وتوقف دعمها. يرجى أن تطلب من المرسل تحديث نسخة التطبيق ومن ثمّ إعادة إرسال الرسالة.</string>
@@ -3180,5 +3181,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__mentions">الذِّكر</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">إشعارات مخصصة</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
   <!--EOF-->
 </resources>

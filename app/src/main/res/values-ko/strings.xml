@@ -803,6 +803,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">모든 미디어</string>
   <string name="MediaRepository__camera">카메라</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">알 수 없음</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">지원하지 않는 이전 Signal 버전으로부터 암호화 메시지를 받았습니다. 발신자에게 최신 버전으로 업데이트하고 다시 보내도록 요청하세요.</string>
@@ -2590,5 +2591,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__mentions">언급</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">맞춤형 알림</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s, %2$s</string>
   <!--EOF-->
 </resources>

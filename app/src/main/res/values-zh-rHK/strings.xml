@@ -51,6 +51,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(視訊)</string>
   <string name="DraftDatabase_Draft_location_snippet">(位置)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(回覆)</string>
+  <string name="DraftDatabase_Draft_voice_note">(語音訊息)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">圖片庫</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -817,6 +818,9 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">所有媒體</string>
   <string name="MediaRepository__camera">相機</string>
+  <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">訊息解密失敗</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">輕觸以傳送除錯記錄檔</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">未知</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">已接收的一則訊息乃使用較舊版本的 Signal 加密，現已不再支援。請著寄件人更新至最新版本，然後重新傳送此訊息。</string>
@@ -2949,5 +2953,11 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">自訂通知</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">最近使用</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

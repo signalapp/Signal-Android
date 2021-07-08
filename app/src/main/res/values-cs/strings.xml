@@ -949,6 +949,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Všechna média</string>
   <string name="MediaRepository__camera">Fotoaparát</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Neznámý</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Přijata zpráva šifrovaná starou verzí Signal, která již není podporována. Prosím, požádejte odesílatele, aby si zaktualizoval aplikaci na nejnovější verzi a poté poslal zprávu znovu.</string>
@@ -3201,5 +3202,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Vlastní oznámení</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Nedávno použité</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
   <!--EOF-->
 </resources>

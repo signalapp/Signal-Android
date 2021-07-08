@@ -862,6 +862,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">بارلىق مېدىيا</string>
   <string name="MediaRepository__camera">كامېرا</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">نامەلۇم</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ئەمدى تېخنىكىلىق ئاسرالمايدىغان Signal نىڭ كونا نەشرىنى ئىشلىتىپ شىفىرلانغان ئۇچۇرنى تاپشۇرۇۋالدىڭىز. ئەۋەتكۈچىدىن ئەڭ يېڭى نەشرىگە يېڭىلاپ ئۇچۇرنى قايتا ئەۋەتىشنى تەلەپ قىلىڭ.</string>
@@ -3033,5 +3034,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ئىختىيارىچە ئۇقتۇرۇش</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">يېقىندا ئىشلىتىلدى</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

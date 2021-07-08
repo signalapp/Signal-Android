@@ -861,6 +861,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Allt myndefni</string>
   <string name="MediaRepository__camera">Myndavél</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Óþekkt</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Tók við skilaboðum sem dulrituð voru í eldri útgáfu Signal sem ekki er lengur studd. Biddu sendandann um að uppfæra hjá sér og senda svo skilaboðin aftur.</string>
@@ -3036,5 +3037,8 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Sérsniðnar tilkynningar</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Nýlega notað</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

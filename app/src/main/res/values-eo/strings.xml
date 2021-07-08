@@ -861,6 +861,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Ĉiuj aŭvidaĵoj</string>
   <string name="MediaRepository__camera">Fotilo</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Nekonata</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vi ricevis mesaĝon ĉifrita per malnova Signal-a versio, kiu ne plu estas subtenata. Bonvolu peti la sendinton ĝisdatigi al la plej nova versio, kaj resendi la mesaĝon.</string>
@@ -2956,5 +2957,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Propraj sciigoj</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Lastatempe uzitaj</string>
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

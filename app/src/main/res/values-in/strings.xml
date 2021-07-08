@@ -806,6 +806,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Semua media</string>
   <string name="MediaRepository__camera">Kamera</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Tidak Dikenal</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Menerima pesan terenkripsi yang menggunakan Signal versi lama tidak lagi didukung, Mohon meminta pengirim untuk memperbarui ke versi terkini dan mengirim ulang pesannya.</string>
@@ -2532,5 +2533,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Menyebut</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notifikasi khusus</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
   <!--EOF-->
 </resources>

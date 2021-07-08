@@ -842,6 +842,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">सर्व मिडिया</string>
   <string name="MediaRepository__camera">कॅमेरा</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">अज्ञात</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal ची जुनी आवृत्ती वापरून एन्क्रिप्टेड संदेश प्राप्त झाला आहे जो आता समर्थित नाही. कृपया प्रेषकाला सर्वात अलीकडील आवृत्तीवर अद्यतन करण्यास आणि संदेश पुन्हा पाठविण्यास विचारा.</string>
@@ -2591,5 +2592,8 @@
   <string name="SoundsAndNotificationsSettingsFragment__mentions">उल्लेख</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">सानुकूल सूचना</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>

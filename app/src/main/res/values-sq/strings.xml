@@ -865,6 +865,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Krejt mediat</string>
   <string name="MediaRepository__camera">Kamerë</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">I panjohur</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Morët një mesazh të fshehtëzuar duke përdorur një version të vjetër të Signal-it, që nuk mirëmbahet më. Ju lutemi, kërkojini dërguesit ta përditësojë me versionin më të ri dhe ta ridërgojë mesazhin.</string>
@@ -3036,5 +3037,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Mos njofto</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Njoftime vetjake</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
 </resources>
