@@ -90,6 +90,8 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         helpTranslateButton.setOnClickListener { helpTranslate() }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
+        val isLightMode = UiModeUtilities.isDayUiMode(this)
+        oxenLogoImageView.setImageResource(if (isLightMode) R.drawable.oxen_light_mode else R.drawable.oxen_dark_mode)
         versionTextView.text = String.format(getString(R.string.version_s), "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})")
     }
 

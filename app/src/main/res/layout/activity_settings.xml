@@ -213,11 +213,18 @@
                 android:gravity="center"
                 android:text="@string/activity_settings_help_translate_session" />
 
+            <ImageView
+                android:id="@+id/oxenLogoImageView"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/oxen_light_mode" />
+
             <TextView
                 android:id="@+id/versionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_spacing"
+                android:layout_marginTop="4dp"
                 android:layout_marginBottom="@dimen/medium_spacing"
                 android:gravity="center"
                 android:text="@string/version_s"
