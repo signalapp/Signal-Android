@@ -51,21 +51,25 @@ public class CommunicationActions {
       return;
     }
 
-    ApplicationDependencies.getSignalCallManager().isCallActive(new ResultReceiver(new Handler(Looper.getMainLooper())) {
-      @Override
-      protected void onReceiveResult(int resultCode, Bundle resultData) {
-        if (resultCode == 1) {
-          startCallInternal(activity, recipient, false);
-        } else {
-          new AlertDialog.Builder(activity)
-                         .setMessage(R.string.CommunicationActions_start_voice_call)
-                         .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(activity, recipient, false))
-                         .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
-                         .setCancelable(true)
-                         .show();
+    if (recipient.isRegistered()) {
+      ApplicationDependencies.getSignalCallManager().isCallActive(new ResultReceiver(new Handler(Looper.getMainLooper())) {
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+          if (resultCode == 1) {
+            startCallInternal(activity, recipient, false);
+          } else {
+            new AlertDialog.Builder(activity)
+                .setMessage(R.string.CommunicationActions_start_voice_call)
+                .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(activity, recipient, false))
+                .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
+                .setCancelable(true)
+                .show();
+          }
         }
-      }
-    });
+      });
+    } else {
+      startInsecureCall(activity, recipient);
+    }
   }
 
   public static void startVideoCall(@NonNull FragmentActivity activity, @NonNull Recipient recipient) {
