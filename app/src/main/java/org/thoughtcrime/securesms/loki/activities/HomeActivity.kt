@@ -11,6 +11,7 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
 import android.widget.Toast
@@ -35,8 +36,8 @@ import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.utilities.toHexString
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.api.OpenGroupManager
@@ -48,7 +49,10 @@ import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegat
 import org.thoughtcrime.securesms.loki.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.util.DateUtils
 import java.io.IOException
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
     private lateinit var glide: GlideRequests
@@ -150,6 +154,16 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
             }
         }
         EventBus.getDefault().register(this@HomeActivity)
+        testDateFormatting()
+    }
+
+    private fun testDateFormatting() {
+        val timestamp = Date().time
+        Log.d("Test", getString(R.string.DateUtils_just_now))
+        Log.d("Test", DateUtils.getFormattedDateTime(timestamp, DateUtils.getHourFormat(this), Locale.getDefault()))
+        Log.d("Test", DateUtils.getFormattedDateTime(timestamp, "EEE " + DateUtils.getHourFormat(this), Locale.getDefault()))
+        Log.d("Test", DateUtils.getFormattedDateTime(timestamp, "MMM d " + DateUtils.getHourFormat(this), Locale.getDefault()))
+        Log.d("Test", DateUtils.getFormattedDateTime(timestamp, "MMM d " + DateUtils.getHourFormat(this) + ", yyyy", Locale.getDefault()))
     }
 
     override fun onResume() {
