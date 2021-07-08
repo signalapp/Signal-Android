@@ -86,6 +86,9 @@ import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import java.security.Security;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.plugins.RxJavaPlugins;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 /**
  * Will be called once when the TextSecure process is created.
  *
@@ -119,10 +122,14 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
     AppStartup.getInstance().addBlocking("security-provider", this::initializeSecurityProvider)
                             .addBlocking("logging", () -> {
-                                initializeLogging();
-                                Log.i(TAG, "onCreate()");
+                              initializeLogging();
+                              Log.i(TAG, "onCreate()");
                             })
                             .addBlocking("crash-handling", this::initializeCrashHandling)
+                            .addBlocking("rx-init", () -> {
+                              RxJavaPlugins.setInitIoSchedulerHandler(schedulerSupplier -> Schedulers.from(SignalExecutors.UNBOUNDED, true, false));
+                              RxJavaPlugins.setInitComputationSchedulerHandler(schedulerSupplier -> Schedulers.from(SignalExecutors.BOUNDED, true, false));
+                            })
                             .addBlocking("eat-db", () -> DatabaseFactory.getInstance(this))
                             .addBlocking("app-dependencies", this::initializeAppDependencies)
                             .addBlocking("notification-channels", () -> NotificationChannels.create(this))
