@@ -49,7 +49,7 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
     // region Updating
     fun bind(message: MmsMessageRecord, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {
         val audio = message.slideDeck.audioSlide!!
-        voiceMessageViewLoader.isVisible = audio.isPendingDownload
+        voiceMessageViewLoader.isVisible = audio.isInProgress
         val cornerRadii = MessageBubbleUtilities.calculateRadii(context, isStartOfMessageCluster, isEndOfMessageCluster, message.isOutgoing)
         cornerMask.setTopLeftRadius(cornerRadii[0])
         cornerMask.setTopRightRadius(cornerRadii[1])
