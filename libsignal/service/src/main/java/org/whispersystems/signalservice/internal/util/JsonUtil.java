@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.logging.Log;
+import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.util.Base64;
 
@@ -49,6 +50,15 @@ public class JsonUtil {
       throws IOException
   {
     return objectMapper.readValue(json, clazz);
+  }
+
+  public static <T> T fromJsonResponse(String body, Class<T> clazz)
+      throws MalformedResponseException {
+    try {
+      return JsonUtil.fromJson(body, clazz);
+    } catch (IOException e) {
+      throw new MalformedResponseException("Unable to parse entity", e);
+    }
   }
   
   public static class IdentityKeySerializer extends JsonSerializer<IdentityKey> {

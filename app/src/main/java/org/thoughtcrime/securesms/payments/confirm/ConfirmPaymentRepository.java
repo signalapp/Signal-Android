@@ -22,7 +22,6 @@ import org.whispersystems.signalservice.api.payments.Money;
 
 import java.io.IOException;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 
 final class ConfirmPaymentRepository {
 
@@ -54,7 +53,7 @@ final class ConfirmPaymentRepository {
         recipientId = payee.requireRecipientId();
         try {
           mobileCoinPublicAddress = ProfileUtil.getAddressForRecipient(Recipient.resolved(recipientId));
-        } catch (InterruptedException | ExecutionException e) {
+        } catch (IOException e) {
           Log.w(TAG, "Failed to get address for recipient " + recipientId);
           consumer.accept(new ConfirmPaymentResult.Error());
           return;

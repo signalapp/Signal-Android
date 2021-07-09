@@ -53,8 +53,9 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
+import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.util.UuidUtil;
-import org.whispersystems.signalservice.internal.util.concurrent.ListenableFuture;
+import org.whispersystems.signalservice.internal.ServiceResponse;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -66,9 +67,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * Manages all the stuff around determining if a user is registered or not.
@@ -131,7 +133,7 @@ public class DirectoryHelper {
     Stopwatch         stopwatch               = new Stopwatch("single");
     RecipientDatabase recipientDatabase       = DatabaseFactory.getRecipientDatabase(context);
     RegisteredState   originalRegisteredState = recipient.resolve().getRegistered();
-    RegisteredState   newRegisteredState      = null;
+    RegisteredState   newRegisteredState;
 
     if (recipient.hasUuid() && !recipient.hasE164()) {
       boolean isRegistered = isUuidRegistered(context, recipient);
@@ -510,29 +512,34 @@ public class DirectoryHelper {
                                              .filter(r -> hasCommunicatedWith(context, r))
                                              .toList();
 
-    List<Pair<Recipient, ListenableFuture<ProfileAndCredential>>> futures = Stream.of(possiblyUnlisted)
-                                                                                  .map(r -> new Pair<>(r, ProfileUtil.retrieveProfile(context, r, SignalServiceProfile.RequestType.PROFILE)))
-                                                                                  .toList();
-    Set<RecipientId> potentiallyActiveIds = new HashSet<>();
-    Set<RecipientId> retries              = new HashSet<>();
+    ProfileService profileService = new ProfileService(ApplicationDependencies.getGroupsV2Operations().getProfileOperations(),
+                                                       ApplicationDependencies.getSignalServiceMessageReceiver(),
+                                                       ApplicationDependencies.getSignalWebSocket());
 
-    Stream.of(futures)
-          .forEach(pair -> {
-            try {
-              pair.second().get(5, TimeUnit.SECONDS);
-              potentiallyActiveIds.add(pair.first().getId());
-            } catch (InterruptedException | TimeoutException e) {
-              retries.add(pair.first().getId());
-              potentiallyActiveIds.add(pair.first().getId());
-            } catch (ExecutionException e) {
-              if (!(e.getCause() instanceof NotFoundException)) {
-                retries.add(pair.first().getId());
-                potentiallyActiveIds.add(pair.first().getId());
-              }
-            }
-          });
+    List<Observable<Pair<Recipient, ServiceResponse<ProfileAndCredential>>>> requests = Stream.of(possiblyUnlisted)
+                                                                                              .map(r -> ProfileUtil.retrieveProfile(context, r, SignalServiceProfile.RequestType.PROFILE, profileService)
+                                                                                                                   .toObservable()
+                                                                                                                   .timeout(5, TimeUnit.SECONDS)
+                                                                                                                   .onErrorReturn(t -> new Pair<>(r, ServiceResponse.forUnknownError(t))))
+                                                                                              .toList();
 
-    return new UnlistedResult(potentiallyActiveIds, retries);
+    return Observable.mergeDelayError(requests)
+                     .observeOn(Schedulers.io(), true)
+                     .scan(new UnlistedResult.Builder(), (builder, pair) -> {
+                       Recipient                               recipient = pair.first();
+                       ProfileService.ProfileResponseProcessor processor = new ProfileService.ProfileResponseProcessor(pair.second());
+                       if (processor.hasResult()) {
+                         builder.potentiallyActiveIds.add(recipient.getId());
+                       } else if (processor.genericIoError() || !processor.notFound()) {
+                         builder.retries.add(recipient.getId());
+                         builder.potentiallyActiveIds.add(recipient.getId());
+                       }
+
+                       return builder;
+                     })
+                     .lastOrError()
+                     .map(UnlistedResult.Builder::build)
+                     .blockingGet();
   }
 
   private static boolean hasCommunicatedWith(@NonNull Context context, @NonNull Recipient recipient) {
@@ -583,6 +590,15 @@ public class DirectoryHelper {
 
     @NonNull Set<RecipientId> getRetries() {
       return retries;
+    }
+
+    private static class Builder {
+      final Set<RecipientId> potentiallyActiveIds = new HashSet<>();
+      final Set<RecipientId> retries              = new HashSet<>();
+
+      @NonNull UnlistedResult build() {
+        return new UnlistedResult(potentiallyActiveIds, retries);
+      }
     }
   }
 

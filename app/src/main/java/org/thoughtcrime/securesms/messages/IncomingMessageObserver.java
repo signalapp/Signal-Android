@@ -26,11 +26,10 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.InvalidVersionException;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
-import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
+import org.whispersystems.signalservice.api.SignalWebSocket;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
+import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +46,6 @@ public class IncomingMessageObserver {
   private static final long REQUEST_TIMEOUT_MINUTES  = 1;
 
   private static final AtomicInteger INSTANCE_COUNT = new AtomicInteger(0);
-
-  private static volatile SignalServiceMessagePipe pipe             = null;
-  private static volatile SignalServiceMessagePipe unidentifiedPipe = null;
 
   private final Application                context;
   private final SignalServiceNetworkAccess networkAccess;
@@ -96,7 +92,7 @@ public class IncomingMessageObserver {
             Log.w(TAG, "Lost network connection. Shutting down our websocket connections and resetting the drained state.");
             networkDrained    = false;
             decryptionDrained = false;
-            shutdown(pipe, unidentifiedPipe);
+            shutdown();
           }
           IncomingMessageObserver.this.notifyAll();
         }
@@ -176,40 +172,12 @@ public class IncomingMessageObserver {
     SignalExecutors.BOUNDED.execute(() -> {
       Log.w(TAG, "Beginning termination.");
       terminated = true;
-      shutdown(pipe, unidentifiedPipe);
+      shutdown();
     });
   }
 
-  private void shutdown(@Nullable SignalServiceMessagePipe pipe, @Nullable SignalServiceMessagePipe unidentifiedPipe) {
-    try {
-      if (pipe != null) {
-        Log.w(TAG, "Shutting down normal pipe.");
-        pipe.shutdown();
-      } else {
-        Log.w(TAG, "No need to shutdown normal pipe, it doesn't exist.");
-      }
-    } catch (Throwable t) {
-      Log.w(TAG, "Closing normal pipe failed!", t);
-    }
-
-    try {
-      if (unidentifiedPipe != null) {
-        Log.w(TAG, "Shutting down unidentified pipe.");
-        unidentifiedPipe.shutdown();
-      } else {
-        Log.w(TAG, "No need to shutdown unidentified pipe, it doesn't exist.");
-      }
-    } catch (Throwable t) {
-      Log.w(TAG, "Closing unidentified pipe failed!", t);
-    }
-  }
-
-  public static @Nullable SignalServiceMessagePipe getPipe() {
-    return pipe;
-  }
-
-  public static @Nullable SignalServiceMessagePipe getUnidentifiedPipe() {
-    return unidentifiedPipe;
+  private void shutdown() {
+    ApplicationDependencies.getSignalWebSocket().disconnect();
   }
 
   private class MessageRetrievalThread extends Thread implements Thread.UncaughtExceptionHandler {
@@ -227,19 +195,14 @@ public class IncomingMessageObserver {
         waitForConnectionNecessary();
 
         Log.i(TAG, "Making websocket connection....");
-        SignalServiceMessageReceiver receiver = ApplicationDependencies.getSignalServiceMessageReceiver();
-
-        pipe             = receiver.createMessagePipe();
-        unidentifiedPipe = receiver.createUnidentifiedMessagePipe();
-
-        SignalServiceMessagePipe localPipe             = pipe;
-        SignalServiceMessagePipe unidentifiedLocalPipe = unidentifiedPipe;
+        SignalWebSocket signalWebSocket = ApplicationDependencies.getSignalWebSocket();
+        signalWebSocket.connect();
 
         try {
           while (isConnectionNecessary()) {
             try {
               Log.d(TAG, "Reading message...");
-              Optional<SignalServiceEnvelope> result = localPipe.readOrEmpty(REQUEST_TIMEOUT_MINUTES, TimeUnit.MINUTES, envelope -> {
+              Optional<SignalServiceEnvelope> result = signalWebSocket.readOrEmpty(TimeUnit.MINUTES.toMillis(REQUEST_TIMEOUT_MINUTES), envelope -> {
                 Log.i(TAG, "Retrieved envelope! " + envelope.getTimestamp());
                 try (Processor processor = ApplicationDependencies.getIncomingMessageProcessor().acquire()) {
                   processor.processEnvelope(envelope);
@@ -251,6 +214,9 @@ public class IncomingMessageObserver {
                 networkDrained = true;
                 ApplicationDependencies.getJobManager().add(new PushDecryptDrainedJob());
               }
+            } catch (WebSocketUnavailableException e) {
+              Log.i(TAG, "Pipe unexpectedly unavailable, connecting");
+              signalWebSocket.connect();
             } catch (TimeoutException e) {
               Log.w(TAG, "Application level read timeout...");
             }
@@ -259,7 +225,7 @@ public class IncomingMessageObserver {
           Log.w(TAG, e);
         } finally {
           Log.w(TAG, "Shutting down pipe...");
-          shutdown(localPipe, unidentifiedLocalPipe);
+          shutdown();
         }
 
         Log.i(TAG, "Looping...");

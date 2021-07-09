@@ -127,7 +127,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             })
                             .addBlocking("crash-handling", this::initializeCrashHandling)
                             .addBlocking("rx-init", () -> {
-                              RxJavaPlugins.setInitIoSchedulerHandler(schedulerSupplier -> Schedulers.from(SignalExecutors.UNBOUNDED, true, false));
+                              RxJavaPlugins.setInitIoSchedulerHandler(schedulerSupplier -> Schedulers.from(SignalExecutors.BOUNDED_IO, true, false));
                               RxJavaPlugins.setInitComputationSchedulerHandler(schedulerSupplier -> Schedulers.from(SignalExecutors.BOUNDED, true, false));
                             })
                             .addBlocking("eat-db", () -> DatabaseFactory.getInstance(this))
