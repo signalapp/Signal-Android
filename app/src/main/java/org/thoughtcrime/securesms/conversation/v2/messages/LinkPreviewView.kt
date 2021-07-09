@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.conversation.v2.utilities.MessageBubbleUtiliti
 import org.thoughtcrime.securesms.conversation.v2.utilities.ModalURLSpan
 import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities.getIntersectedModalSpans
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
+import org.thoughtcrime.securesms.util.UiModeUtilities
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.ImageSlide
 

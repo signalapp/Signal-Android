@@ -7,7 +7,7 @@ import android.content.Intent;
 import androidx.core.app.NotificationCompat;
 
 import org.session.libsession.utilities.recipients.Recipient;
-import org.thoughtcrime.securesms.loki.activities.HomeActivity;
+import org.thoughtcrime.securesms.home.HomeActivity;
 import org.session.libsession.utilities.NotificationPrivacyPreference;
 import org.session.libsession.utilities.TextSecurePreferences;
 

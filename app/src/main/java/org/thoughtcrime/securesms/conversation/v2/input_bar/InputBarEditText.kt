@@ -9,7 +9,7 @@ import android.util.Log
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.AppCompatEditText
 import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities
-import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.util.toPx
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt

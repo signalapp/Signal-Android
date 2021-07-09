@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.MediaPreviewActivity
 import org.thoughtcrime.securesms.components.CornerMask
 import org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
+import org.thoughtcrime.securesms.util.ActivityDispatcher
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.Slide

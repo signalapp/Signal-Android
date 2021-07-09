@@ -35,7 +35,7 @@
                 android:layout_width="26dp"
                 android:layout_height="32dp" >
 
-                <org.thoughtcrime.securesms.loki.views.ProfilePictureView
+                <org.thoughtcrime.securesms.components.ProfilePictureView
                     android:id="@+id/profilePictureView"
                     android:layout_width="@dimen/very_small_profile_picture_size"
                     android:layout_height="@dimen/very_small_profile_picture_size"

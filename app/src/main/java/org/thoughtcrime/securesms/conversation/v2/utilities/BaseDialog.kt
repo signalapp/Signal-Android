@@ -6,7 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
-import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
+import org.thoughtcrime.securesms.util.UiModeUtilities
 
 open class BaseDialog : DialogFragment() {
 

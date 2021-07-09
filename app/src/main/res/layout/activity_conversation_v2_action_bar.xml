@@ -8,7 +8,7 @@
     android:orientation="horizontal"
     android:gravity="center_vertical">
 
-    <org.thoughtcrime.securesms.loki.views.ProfilePictureView
+    <org.thoughtcrime.securesms.components.ProfilePictureView
         android:id="@+id/profilePictureView"
         android:layout_width="@dimen/medium_profile_picture_size"
         android:layout_height="@dimen/medium_profile_picture_size" />
