@@ -22,15 +22,21 @@
         android:id="@+id/voice_note_player_info"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:ellipsize="marquee"
         android:gravity="center_vertical"
+        android:marqueeRepeatLimit="marquee_forever"
         android:minHeight="36dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="13dp"
+        android:singleLine="true"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_icon_tint_primary"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/voice_note_player_speed"
+        app:layout_constraintEnd_toStartOf="@id/voice_note_player_speed_touch_target"
         app:layout_constraintStart_toEndOf="@id/voice_note_player_play_pause_toggle"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Miles Morales · 5:20" />
+        tools:text="Miles Morales in Some strange spider-man group · 5:20" />
 
     <FrameLayout
         android:id="@+id/voice_note_player_speed_touch_target"

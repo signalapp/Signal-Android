@@ -81,6 +81,7 @@ import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
@@ -333,6 +334,9 @@ public class ConversationFragment extends LoggingFragment {
 
     conversationUpdateTick = new ConversationUpdateTick(this::updateConversationItemTimestamps);
     getViewLifecycleOwner().getLifecycle().addObserver(conversationUpdateTick);
+
+    listener.getVoiceNoteMediaController().getVoiceNotePlayerViewState().observe(getViewLifecycleOwner(), state -> conversationViewModel.setInlinePlayerVisible(state.isPresent()));
+    conversationViewModel.getScrollDateTopMargin().observe(getViewLifecycleOwner(), topMargin -> ViewUtil.setTopMargin(scrollDateHeader, topMargin));
 
     return view;
   }
@@ -1280,15 +1284,14 @@ public class ConversationFragment extends LoggingFragment {
       public void onGlobalLayout() {
         Rect rect = new Rect();
         toolbar.getGlobalVisibleRect(rect);
-        ViewUtil.setTopMargin(scrollDateHeader, rect.bottom + ViewUtil.dpToPx(8));
+        conversationViewModel.setToolbarBottom(rect.bottom + ViewUtil.dpToPx(8));
         ViewUtil.setTopMargin(conversationBanner, rect.bottom + ViewUtil.dpToPx(16));
         toolbar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
       }
     });
-
   }
 
-  public interface ConversationFragmentListener {
+  public interface ConversationFragmentListener extends VoiceNoteMediaControllerOwner {
     void setThreadId(long threadId);
     void handleReplyMessage(ConversationMessage conversationMessage);
     void onMessageActionToolbarOpened();

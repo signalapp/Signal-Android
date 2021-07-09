@@ -264,18 +264,18 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
 
         MediaControllerCompat.setMediaController(activity, mediaController);
 
-        mediaController.registerCallback(mediaControllerCompatCallback);
+        MediaMetadataCompat mediaMetadataCompat = mediaController.getMetadata();
+        if (canExtractPlaybackInformationFromMetadata(mediaMetadataCompat)) {
+          VoiceNotePlaybackState newState = extractStateFromMetadata(mediaController, mediaMetadataCompat, null);
 
-        if (Objects.equals(voiceNotePlaybackState.getValue(), VoiceNotePlaybackState.NONE)) {
-          MediaMetadataCompat mediaMetadataCompat = mediaController.getMetadata();
-          if (canExtractPlaybackInformationFromMetadata(mediaMetadataCompat)) {
-            VoiceNotePlaybackState newState = extractStateFromMetadata(mediaController, mediaMetadataCompat, null);
-
-            if (newState != null) {
-              voiceNotePlaybackState.postValue(newState);
-            }
+          if (newState != null) {
+            voiceNotePlaybackState.postValue(newState);
+          } else {
+            voiceNotePlaybackState.postValue(VoiceNotePlaybackState.NONE);
           }
         }
+
+        mediaController.registerCallback(mediaControllerCompatCallback);
 
         mediaControllerCompatCallback.onPlaybackStateChanged(mediaController.getPlaybackState());
       } catch (RemoteException e) {

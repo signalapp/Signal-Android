@@ -52,6 +52,8 @@ class VoiceNotePlayerView @JvmOverloads constructor(
     speedView = findViewById(R.id.voice_note_player_speed)
     closeButton = findViewById(R.id.voice_note_player_close)
 
+    infoView.isSelected = true
+
     val speedTouchTarget: View = findViewById(R.id.voice_note_player_speed_touch_target)
     speedTouchTarget.setOnClickListener {
       speedView.performClick()

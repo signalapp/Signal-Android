@@ -3392,6 +3392,11 @@ public class ConversationActivity extends PassphraseRequiredActivity
     draftViewModel.deleteVoiceNoteDraft();
   }
 
+  @Override
+  public @NonNull VoiceNoteMediaController getVoiceNoteMediaController() {
+    return voiceNoteMediaController;
+  }
+
   // Listeners
 
   private final class DeleteCanceledVoiceNoteListener implements ListenableFuture.Listener<VoiceNoteDraft> {

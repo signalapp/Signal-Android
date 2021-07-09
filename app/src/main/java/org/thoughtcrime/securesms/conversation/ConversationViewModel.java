@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.Pair;
@@ -69,6 +70,9 @@ public class ConversationViewModel extends ViewModel {
   private final LiveData<ChatWallpaper>             wallpaper;
   private final SingleLiveEvent<Event>              events;
   private final LiveData<ChatColors>                chatColors;
+  private final MutableLiveData<Integer>            toolbarBottom;
+  private final MutableLiveData<Integer>            inlinePlayerHeight;
+  private final LiveData<Integer>                   scrollDateTopMargin;
 
   private final Map<GroupId, Set<Recipient>> sessionMemberCache = new HashMap<>();
 
@@ -87,6 +91,9 @@ public class ConversationViewModel extends ViewModel {
     this.events                 = new SingleLiveEvent<>();
     this.pagingController       = new ProxyPagingController();
     this.messageObserver        = pagingController::onDataInvalidated;
+    this.toolbarBottom          = new MutableLiveData<>();
+    this.inlinePlayerHeight     = new MutableLiveData<>();
+    this.scrollDateTopMargin    = Transformations.distinctUntilChanged(LiveDataUtil.combineLatest(toolbarBottom, inlinePlayerHeight, Integer::sum));
 
     LiveData<Recipient>          recipientLiveData  = LiveDataUtil.mapAsync(recipientId, Recipient::resolved);
     LiveData<ThreadAndRecipient> threadAndRecipient = LiveDataUtil.combineLatest(threadId, recipientLiveData, ThreadAndRecipient::new);
@@ -144,6 +151,14 @@ public class ConversationViewModel extends ViewModel {
                                                                     Recipient::getChatColors);
   }
 
+  void setToolbarBottom(int bottom) {
+    toolbarBottom.postValue(bottom);
+  }
+
+  void setInlinePlayerVisible(boolean isVisible) {
+    inlinePlayerHeight.postValue(isVisible ? ViewUtil.dpToPx(36) : 0);
+  }
+
   void onAttachmentKeyboardOpen() {
     mediaRepository.getMediaInBucket(context, Media.ALL_MEDIA_BUCKET_ID, recentMedia::postValue);
   }
@@ -160,6 +175,10 @@ public class ConversationViewModel extends ViewModel {
   void clearThreadId() {
     this.jumpToPosition = -1;
     this.threadId.postValue(-1L);
+  }
+
+  @NonNull LiveData<Integer> getScrollDateTopMargin() {
+    return scrollDateTopMargin;
   }
 
   @NonNull LiveData<Boolean> canShowAsBubble() {

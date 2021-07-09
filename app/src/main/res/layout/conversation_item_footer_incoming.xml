@@ -84,10 +84,11 @@
         android:maxWidth="140dp"
         android:maxLines="1"
         android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/date_and_expiry_wrapper"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/footer_insecure_indicator"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="to SIM1" />
+        tools:text="Sim Op" />
 
     <ImageView
         android:id="@+id/footer_insecure_indicator"
@@ -99,7 +100,7 @@
         android:src="@drawable/ic_unlocked_white_18dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/date_and_expiry_wrapper"
+        app:layout_constraintStart_toEndOf="@id/footer_sim_info"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
