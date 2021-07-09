@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.fragments
+package org.thoughtcrime.securesms.util
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.tbruyelle.rxpermissions2.RxPermissions
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.qr.ScanListener
+import org.thoughtcrime.securesms.util.ScanQRCodeFragment
 
 class ScanQRCodeWrapperFragment : Fragment(), ScanQRCodePlaceholderFragmentDelegate, ScanListener {
 

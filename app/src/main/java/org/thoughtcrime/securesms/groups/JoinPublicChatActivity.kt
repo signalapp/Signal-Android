@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.activities
+package org.thoughtcrime.securesms.groups
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -35,8 +35,8 @@ import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.groups.DefaultGroupsViewModel
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.groups.OpenGroupManager
-import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
-import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
+import org.thoughtcrime.securesms.util.ScanQRCodeWrapperFragment
+import org.thoughtcrime.securesms.util.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
 import org.thoughtcrime.securesms.util.State
 import java.util.*

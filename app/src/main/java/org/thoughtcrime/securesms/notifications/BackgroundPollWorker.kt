@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.api
+package org.thoughtcrime.securesms.notifications
 
 import android.content.BroadcastReceiver
 import android.content.Context

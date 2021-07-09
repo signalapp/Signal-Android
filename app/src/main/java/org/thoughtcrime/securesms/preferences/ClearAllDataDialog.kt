@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.dialogs
+package org.thoughtcrime.securesms.preferences
 
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog

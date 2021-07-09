@@ -40,10 +40,10 @@ import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.dms.CreatePrivateChatActivity
 import org.thoughtcrime.securesms.groups.CreateClosedGroupActivity
-import org.thoughtcrime.securesms.loki.activities.*
+import org.thoughtcrime.securesms.groups.JoinPublicChatActivity
 import org.thoughtcrime.securesms.groups.OpenGroupManager
-import org.thoughtcrime.securesms.loki.dialogs.*
 import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
 import org.thoughtcrime.securesms.util.*
 import org.thoughtcrime.securesms.onboarding.SeedReminderViewDelegate

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.activities
+package org.thoughtcrime.securesms.dms
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -32,8 +32,8 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
-import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
+import org.thoughtcrime.securesms.util.ScanQRCodeWrapperFragment
+import org.thoughtcrime.securesms.util.ScanQRCodeWrapperFragmentDelegate
 
 class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = CreatePrivateChatActivityAdapter(this)

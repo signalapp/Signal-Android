@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.fragments
+package org.thoughtcrime.securesms.util
 
 import android.content.res.Configuration
 import android.os.Bundle

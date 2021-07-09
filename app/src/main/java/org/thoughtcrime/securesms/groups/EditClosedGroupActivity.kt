@@ -24,7 +24,6 @@ import org.session.libsession.messaging.sending_receiving.groupSizeLimit
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.session.libsession.utilities.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.dialogs.ClosedGroupEditingOptionsBottomSheet
 import org.thoughtcrime.securesms.util.fadeIn
 import org.thoughtcrime.securesms.util.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp

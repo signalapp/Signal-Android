@@ -30,8 +30,8 @@ import org.session.libsignal.utilities.hexEncodedPublicKey
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.crypto.KeyPairUtilities
-import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
-import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
+import org.thoughtcrime.securesms.util.ScanQRCodeWrapperFragment
+import org.thoughtcrime.securesms.util.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.crypto.MnemonicUtilities
 import org.thoughtcrime.securesms.util.push
 import org.thoughtcrime.securesms.util.setUpActionBarSessionLogo

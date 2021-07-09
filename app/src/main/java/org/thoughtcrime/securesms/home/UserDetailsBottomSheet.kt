@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.dialogs
+package org.thoughtcrime.securesms.home
 
 import android.annotation.SuppressLint
 import android.content.ClipData
@@ -17,7 +17,6 @@ import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.recipients.Recipient
-import org.session.libsession.utilities.SSKEnvironment
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.mms.GlideApp
 

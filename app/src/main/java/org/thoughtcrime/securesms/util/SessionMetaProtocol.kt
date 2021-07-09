@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.protocol
+package org.thoughtcrime.securesms.util
 
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.recipients.Recipient
@@ -22,7 +22,7 @@ object SessionMetaProtocol {
     }
 
     fun removeTimestamps(timestamps: Set<Long>) {
-        this.timestamps.removeAll(timestamps)
+        SessionMetaProtocol.timestamps.removeAll(timestamps)
     }
 
     @JvmStatic

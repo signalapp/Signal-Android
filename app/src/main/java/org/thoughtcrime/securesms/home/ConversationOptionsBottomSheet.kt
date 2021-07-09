@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.dialogs
+package org.thoughtcrime.securesms.home
 
 import android.os.Bundle
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

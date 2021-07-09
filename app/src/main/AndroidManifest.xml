@@ -106,7 +106,7 @@
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.Session.DayNight.FlatActionBar" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.activities.LinkDeviceActivity"
+            android:name="org.thoughtcrime.securesms.onboarding.LinkDeviceActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.Session.DayNight.FlatActionBar" />
@@ -132,23 +132,23 @@
             android:name="org.thoughtcrime.securesms.home.PathActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.activities.QRCodeActivity"
+            android:name="org.thoughtcrime.securesms.preferences.QRCodeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Session.DayNight.FlatActionBar" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.activities.CreatePrivateChatActivity"
+            android:name="org.thoughtcrime.securesms.dms.CreatePrivateChatActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.Session.DayNight.FlatActionBar" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.activities.CreateClosedGroupActivity"
+            android:name="org.thoughtcrime.securesms.groups.CreateClosedGroupActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="org.thoughtcrime.securesms.groups.EditClosedGroupActivity"
             android:label="@string/activity_edit_closed_group_title"
             android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.activities.JoinPublicChatActivity"
+            android:name="org.thoughtcrime.securesms.groups.JoinPublicChatActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/Theme.Session.DayNight.FlatActionBar" />
@@ -411,7 +411,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="org.thoughtcrime.securesms.loki.api.BackgroundPollWorker$BootBroadcastReceiver"
+            android:name="org.thoughtcrime.securesms.notifications.BackgroundPollWorker$BootBroadcastReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
