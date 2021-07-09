@@ -221,17 +221,10 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     val messageID = storage.persist(message, quoteModel, linkPreviews, message.groupPublicKey, openGroupID, attachments) ?: throw MessageReceiver.Error.DuplicateMessage
     // Parse & persist attachments
     // Start attachment downloads if needed
-    val contact = message.sender?.let { address -> storage.getContactWithSessionID(address) }
     storage.getAttachmentsForMessage(messageID).forEach { attachment ->
         attachment.attachmentId?.let { id ->
-            // if open group or self-send, then always download attachment
-            val immediatelyDownload = !openGroupID.isNullOrEmpty() // open group
-                    || userPublicKey == message.sender // self-send
-                    || contact?.isTrusted == true // trusted contact
-            if (immediatelyDownload) {
-                val downloadJob = AttachmentDownloadJob(id.rowId, messageID)
-                JobQueue.shared.add(downloadJob)
-            }
+            val downloadJob = AttachmentDownloadJob(id.rowId, messageID)
+            JobQueue.shared.add(downloadJob)
         }
     }
     val openGroupServerID = message.openGroupServerMessageID

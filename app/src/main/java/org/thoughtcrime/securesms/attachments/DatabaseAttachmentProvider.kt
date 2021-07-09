@@ -9,6 +9,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.UploadResult
 import org.session.libsession.utilities.Util
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.messages.SignalServiceAttachment
 import org.session.libsignal.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.messages.SignalServiceAttachmentStream
@@ -90,6 +91,14 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
     override fun getLinkPreviewAttachmentIDFor(messageID: Long): Long? {
         val message = DatabaseFactory.getMmsDatabase(context).getOutgoingMessage(messageID)
         return message.linkPreviews.firstOrNull()?.attachmentId?.rowId
+    }
+
+    override fun getIndividualRecipientForMms(mmsId: Long): Recipient? {
+        val mmsDb = DatabaseFactory.getMmsDatabase(context)
+        val message = mmsDb.getMessage(mmsId).use {
+            mmsDb.readerFor(it).next
+        }
+        return message?.individualRecipient
     }
 
     override fun insertAttachment(messageId: Long, attachmentId: AttachmentId, stream: InputStream) {

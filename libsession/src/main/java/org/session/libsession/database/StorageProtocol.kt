@@ -139,6 +139,7 @@ interface StorageProtocol {
     fun getContactWithSessionID(sessionID: String): Contact?
     fun getAllContacts(): Set<Contact>
     fun setContact(contact: Contact)
+    fun getRecipientForThread(threadId: Long): Recipient?
     fun getRecipientSettings(address: Address): RecipientSettings?
     fun addContacts(contacts: List<ConfigurationMessage.Contact>)
 

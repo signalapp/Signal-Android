@@ -3,6 +3,7 @@ package org.session.libsession.database
 import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.UploadResult
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.messages.SignalServiceAttachmentStream
 import java.io.InputStream
@@ -29,4 +30,5 @@ interface MessageDataProvider {
     fun getMessageBodyFor(timestamp: Long, author: String): String
     fun getAttachmentIDsFor(messageID: Long): List<Long>
     fun getLinkPreviewAttachmentIDFor(messageID: Long): Long?
+    fun getIndividualRecipientForMms(mmsId: Long): Recipient?
 }

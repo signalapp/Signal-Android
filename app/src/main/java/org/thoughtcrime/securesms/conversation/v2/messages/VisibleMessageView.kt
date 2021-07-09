@@ -84,6 +84,7 @@ class VisibleMessageView : LinearLayout {
         val threadDB = DatabaseFactory.getThreadDatabase(context)
         val thread = threadDB.getRecipientForThreadId(threadID)!!
         val contactDB = DatabaseFactory.getSessionContactDatabase(context)
+        val contact = contactDB.getContactWithSessionID(senderSessionID)
         val isGroupThread = thread.isGroupRecipient
         val isStartOfMessageCluster = isStartOfMessageCluster(message, previous, isGroupThread)
         val isEndOfMessageCluster = isEndOfMessageCluster(message, next, isGroupThread)
@@ -103,7 +104,7 @@ class VisibleMessageView : LinearLayout {
             }
             senderNameTextView.isVisible = isStartOfMessageCluster
             val context = if (thread.isOpenGroupRecipient) ContactContext.OPEN_GROUP else ContactContext.REGULAR
-            senderNameTextView.text = contactDB.getContactWithSessionID(senderSessionID)?.displayName(context) ?: senderSessionID
+            senderNameTextView.text = contact?.displayName(context) ?: senderSessionID
         } else {
             profilePictureContainer.visibility = View.GONE
             senderNameTextView.visibility = View.GONE
@@ -151,7 +152,7 @@ class VisibleMessageView : LinearLayout {
         var maxWidth = screenWidth - startPadding - endPadding
         if (profilePictureContainer.visibility != View.GONE) { maxWidth -= profilePictureContainer.width }
         // Populate content view
-        messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth, thread, searchQuery)
+        messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth, thread, searchQuery, isGroupThread || (contact?.isTrusted ?: false))
         messageContentView.delegate = contentViewDelegate
         onDoubleTap = { messageContentView.onContentDoubleTap?.invoke() }
     }

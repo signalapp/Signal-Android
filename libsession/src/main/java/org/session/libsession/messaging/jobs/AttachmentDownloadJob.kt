@@ -17,6 +17,7 @@ import org.session.libsignal.utilities.Log
 import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
+import java.lang.NullPointerException
 
 class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long) : Job {
     override var delegate: JobDelegate? = null
@@ -26,6 +27,8 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
     // Error
     internal sealed class Error(val description: String) : Exception(description) {
         object NoAttachment : Error("No such attachment.")
+        object NoThread: Error("Thread no longer exists")
+        object NoSender: Error("Thread recipient or sender does not exist")
     }
 
     // Settings
@@ -42,8 +45,12 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
     override fun execute() {
         val storage = MessagingModuleConfiguration.shared.storage
         val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
+        val threadID = storage.getThreadIdForMms(databaseMessageID)
+
         val handleFailure: (java.lang.Exception, attachmentId: AttachmentId?) -> Unit = { exception, attachment ->
             if (exception == Error.NoAttachment
+                    || exception == Error.NoThread
+                    || exception == Error.NoSender
                     || (exception is OnionRequestAPI.HTTPRequestFailedAtDestinationException && exception.statusCode == 400)) {
                 attachment?.let { id ->
                     messageDataProvider.setAttachmentState(AttachmentState.FAILED, id, databaseMessageID)
@@ -55,13 +62,34 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
                 this.handleFailure(exception)
             }
         }
+
+        if (threadID < 0) {
+            Log.e("Loki", "Thread doesn't exist for database message ID $databaseMessageID")
+            handleFailure(Error.NoThread, null)
+            return
+        }
+
+        val threadRecipient = storage.getRecipientForThread(threadID)
+        val sender = messageDataProvider.getIndividualRecipientForMms(databaseMessageID)
+        val contact = sender?.address?.let { storage.getContactWithSessionID(it.serialize()) }
+        if (threadRecipient == null || sender == null || contact == null) {
+            handleFailure(Error.NoSender, null)
+            return
+        }
+        if (!threadRecipient.isGroupRecipient && (!contact.isTrusted || storage.getUserPublicKey() != sender.address.serialize())) {
+            Log.e("Loki", "Thread isn't a group recipient, or contact isn't trusted or self-send")
+            return
+        }
+
         var tempFile: File? = null
         try {
             val attachment = messageDataProvider.getDatabaseAttachment(attachmentID)
                 ?: return handleFailure(Error.NoAttachment, null)
+            if (attachment.hasData()) {
+                Log.d("Loki", "The attachment $attachmentID already has data")
+            }
             messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachment.attachmentId, this.databaseMessageID)
             tempFile = createTempFile()
-            val threadID = storage.getThreadIdForMms(databaseMessageID)
             val openGroupV2 = storage.getV2OpenGroup(threadID)
             if (openGroupV2 == null) {
                 DownloadUtilities.downloadFile(tempFile, attachment.url)
@@ -94,7 +122,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
             handleSuccess()
         } catch (e: Exception) {
             tempFile?.delete()
-            return handleFailure(e)
+            return handleFailure(e,null)
         }
     }
 

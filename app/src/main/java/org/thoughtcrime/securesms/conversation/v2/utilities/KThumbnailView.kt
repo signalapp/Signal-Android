@@ -109,8 +109,8 @@ open class KThumbnailView: FrameLayout {
 
         this.slide = slide
 
-        loadIndicator.isVisible = slide.isInProgress && !slide.isPendingDownload
-        downloadIndicator.isVisible = slide.isPendingDownload
+        loadIndicator.isVisible = slide.isInProgress
+        downloadIndicator.isVisible = slide.transferState == AttachmentTransferProgress.TRANSFER_PROGRESS_FAILED
 
         dimensDelegate.setDimens(naturalWidth, naturalHeight)
         invalidate()
