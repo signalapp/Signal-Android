@@ -363,6 +363,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.core:core-ktx:1.5.0'
     implementation 'androidx.fragment:fragment-ktx:1.2.5'
     lintChecks project(':lintchecks')
 
@@ -393,6 +394,7 @@ dependencies {
     implementation "androidx.concurrent:concurrent-futures:1.0.0"
     implementation "androidx.autofill:autofill:1.0.0"
     implementation "androidx.biometric:biometric:1.1.0"
+    implementation "androidx.sharetarget:sharetarget:1.1.0"
 
     implementation ('com.google.firebase:firebase-messaging:22.0.0') {
         exclude group: 'com.google.firebase', module: 'firebase-core'

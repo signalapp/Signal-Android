@@ -824,14 +824,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private void reportShortcutLaunch(@NonNull RecipientId recipientId) {
-    if (Build.VERSION.SDK_INT < ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
-      return;
-    }
-
-    ShortcutManager shortcutManager = ServiceUtil.getShortcutManager(this);
-    if (shortcutManager != null) {
-      shortcutManager.reportShortcutUsed(ConversationUtil.getShortcutId(recipientId));
-    }
+    ShortcutManagerCompat.reportShortcutUsed(this, ConversationUtil.getShortcutId(recipientId));
   }
 
   private void handleImageFromDeviceCameraApp() {

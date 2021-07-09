@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.use
 import androidx.core.view.ViewCompat
 import androidx.core.widget.ImageViewCompat
-import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener
 import org.thoughtcrime.securesms.animation.ResizeAnimation
@@ -47,7 +47,7 @@ class KeyboardPageSearchView @JvmOverloads constructor(
     clearButton = findViewById(R.id.emoji_search_clear_icon)
     input = findViewById(R.id.emoji_search_entry)
 
-    input.addTextChangedListener {
+    input.doAfterTextChanged {
       if (it.isNullOrEmpty()) {
         clearButton.setImageDrawable(null)
         clearButton.isClickable = false
