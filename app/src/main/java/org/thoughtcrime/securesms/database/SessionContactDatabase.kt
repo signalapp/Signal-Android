@@ -1,13 +1,11 @@
-package org.thoughtcrime.securesms.loki.database
+package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
 import android.content.Context
 import net.sqlcipher.Cursor
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsignal.utilities.Base64
-import org.thoughtcrime.securesms.database.*
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.util.*
 
 class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 
@@ -35,7 +33,7 @@ class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Da
 
     fun getContactWithSessionID(sessionID: String): Contact? {
         val database = databaseHelper.readableDatabase
-        return database.get(sessionContactTable, "${SessionContactDatabase.sessionID} = ?", arrayOf( sessionID )) { cursor ->
+        return database.get(sessionContactTable, "${Companion.sessionID} = ?", arrayOf( sessionID )) { cursor ->
             contactFromCursor(cursor)
         }
     }

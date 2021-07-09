@@ -23,13 +23,13 @@ import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.session.libsignal.utilities.Log;
-import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.database.SessionContactDatabase;
-import org.thoughtcrime.securesms.loki.database.SessionJobDatabase;
+import org.thoughtcrime.securesms.database.LokiAPIDatabase;
+import org.thoughtcrime.securesms.database.LokiBackupFilesDatabase;
+import org.thoughtcrime.securesms.database.LokiMessageDatabase;
+import org.thoughtcrime.securesms.database.LokiThreadDatabase;
+import org.thoughtcrime.securesms.database.LokiUserDatabase;
+import org.thoughtcrime.securesms.database.SessionContactDatabase;
+import org.thoughtcrime.securesms.database.SessionJobDatabase;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 

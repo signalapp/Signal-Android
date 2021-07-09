@@ -1,10 +1,8 @@
-package org.thoughtcrime.securesms.loki.database
+package org.thoughtcrime.securesms.database
 
 import android.content.Context
-import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.session.libsession.utilities.TextSecurePreferences
-import org.thoughtcrime.securesms.database.get
 
 class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 

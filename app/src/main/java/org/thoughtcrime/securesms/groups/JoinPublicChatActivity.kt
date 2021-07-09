@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.groups.DefaultGroupsViewModel
 import org.thoughtcrime.securesms.groups.GroupManager
-import org.thoughtcrime.securesms.loki.api.OpenGroupManager
+import org.thoughtcrime.securesms.groups.OpenGroupManager
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities

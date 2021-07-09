@@ -1,16 +1,13 @@
-package org.thoughtcrime.securesms.loki.database
+package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.util.*
 import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.JsonUtil
-import org.thoughtcrime.securesms.database.*
-import org.thoughtcrime.securesms.database.getString
 
 class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 

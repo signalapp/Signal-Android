@@ -291,7 +291,7 @@
             android:exported="true"
             android:theme="@style/Theme.Session.DayNight.NoActionBar" />
         <service
-            android:name="org.thoughtcrime.securesms.loki.api.PushNotificationService"
+            android:name="org.thoughtcrime.securesms.notifications.PushNotificationService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>

@@ -1,9 +1,7 @@
-package org.thoughtcrime.securesms.loki.api
+package org.thoughtcrime.securesms.jobs
 
-import android.media.MediaDataSource
 import android.os.Build
 import org.session.libsignal.utilities.Log
-import androidx.annotation.RequiresApi
 import org.greenrobot.eventbus.EventBus
 import org.session.libsession.messaging.utilities.Data
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
@@ -13,9 +11,7 @@ import org.session.libsession.utilities.DecodedAudio
 import org.session.libsession.utilities.InputStreamMediaDataSource
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.jobs.BaseJob
 import org.thoughtcrime.securesms.mms.PartAuthority
-import java.io.InputStream
 import java.lang.IllegalStateException
 import java.util.*
 import java.util.concurrent.TimeUnit

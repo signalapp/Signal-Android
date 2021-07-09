@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.fragments
+package org.thoughtcrime.securesms.contacts
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,10 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.contact_selection_list_fragment.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.contacts.ContactsCursorLoader
 import org.session.libsignal.utilities.Log
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.contacts.ContactSelectionListItem
+import org.thoughtcrime.securesms.contacts.ContactSelectionListLoader
 
 class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<List<ContactSelectionListItem>>, ContactClickListener {
     private var cursorFilter: String? = null
@@ -98,7 +99,7 @@ class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<L
         update(listOf())
     }
 
-    private fun update(items: List<ContactSelectionListItem>) {        
+    private fun update(items: List<ContactSelectionListItem>) {
         if (activity?.isDestroyed == true) {
             Log.e(ContactSelectionListFragment::class.java.name,
                     "Received a loader callback after the fragment was detached from the activity.",

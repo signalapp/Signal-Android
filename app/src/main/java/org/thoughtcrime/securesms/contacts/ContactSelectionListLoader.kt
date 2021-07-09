@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.fragments
+package org.thoughtcrime.securesms.contacts
 
 import android.content.Context
 import network.loki.messenger.R

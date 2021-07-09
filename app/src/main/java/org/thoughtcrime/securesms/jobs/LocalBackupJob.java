@@ -6,7 +6,7 @@ import org.session.libsession.messaging.utilities.Data;
 import org.session.libsignal.utilities.NoExternalStorageException;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.session.libsignal.utilities.Log;
-import org.thoughtcrime.securesms.loki.database.BackupFileRecord;
+import org.thoughtcrime.securesms.database.BackupFileRecord;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.util.BackupUtil;

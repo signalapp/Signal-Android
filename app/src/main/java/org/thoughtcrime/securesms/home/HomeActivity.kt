@@ -42,7 +42,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.groups.CreateClosedGroupActivity
 import org.thoughtcrime.securesms.loki.activities.*
-import org.thoughtcrime.securesms.loki.api.OpenGroupManager
+import org.thoughtcrime.securesms.groups.OpenGroupManager
 import org.thoughtcrime.securesms.loki.dialogs.*
 import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
 import org.thoughtcrime.securesms.util.*

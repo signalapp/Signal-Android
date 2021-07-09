@@ -1,13 +1,10 @@
-package org.thoughtcrime.securesms.loki.database
+package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
 import android.content.Context
 import net.sqlcipher.database.SQLiteDatabase.CONFLICT_REPLACE
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.util.*
 import org.session.libsignal.database.LokiMessageDatabaseProtocol
-import org.session.libsignal.utilities.Log
-import org.thoughtcrime.securesms.database.*
 
 class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiMessageDatabaseProtocol {
 
@@ -62,9 +59,9 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         val database = databaseHelper.writableDatabase
 
         val serverID = database.get(messageIDTable,
-                "${Companion.messageID} = ? AND ${Companion.messageType} = ?",
+                "${Companion.messageID} = ? AND $messageType = ?",
                 arrayOf(messageID.toString(), (if (isSms) SMS_TYPE else MMS_TYPE).toString())) { cursor ->
-            cursor.getInt(Companion.serverID).toLong()
+            cursor.getInt(serverID).toLong()
         } ?: return
 
         database.beginTransaction()
@@ -88,7 +85,7 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         return database.get(messageIDTable,
                 "$messageID = ? AND ${Companion.serverID} = ?",
                 arrayOf(mappedID.toString(), mappedServerID.toString())) { cursor ->
-            cursor.getInt(Companion.messageID).toLong() to (cursor.getInt(messageType) == SMS_TYPE)
+            cursor.getInt(messageID).toLong() to (cursor.getInt(messageType) == SMS_TYPE)
         }
     }
 
@@ -136,18 +133,18 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         val database = databaseHelper.writableDatabase
         try {
             val messages = mutableSetOf<Pair<Long,Long>>()
-            database.get(messageThreadMappingTable,  "${Companion.threadID} = ?", arrayOf(threadId.toString())) { cursor ->
+            database.get(messageThreadMappingTable,  "$threadID = ?", arrayOf(threadId.toString())) { cursor ->
                 // for each add
                 while (cursor.moveToNext()) {
-                    messages.add(cursor.getLong(Companion.messageID) to cursor.getLong(Companion.serverID))
+                    messages.add(cursor.getLong(messageID) to cursor.getLong(serverID))
                 }
             }
             var deletedCount = 0L
             database.beginTransaction()
             messages.forEach { (messageId, serverId) ->
-                deletedCount += database.delete(messageIDTable, "${Companion.messageID} = ? AND ${Companion.serverID} = ?", arrayOf(messageId.toString(), serverId.toString()))
+                deletedCount += database.delete(messageIDTable, "$messageID = ? AND $serverID = ?", arrayOf(messageId.toString(), serverId.toString()))
             }
-            val mappingDeleted = database.delete(messageThreadMappingTable, "${Companion.threadID} = ?", arrayOf(threadId.toString()))
+            val mappingDeleted = database.delete(messageThreadMappingTable, "$threadID = ?", arrayOf(threadId.toString()))
             database.setTransactionSuccessful()
         } finally {
             database.endTransaction()

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.api
+package org.thoughtcrime.securesms.notifications
 
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -10,7 +10,6 @@ import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Log
-import org.thoughtcrime.securesms.notifications.NotificationChannels
 
 class PushNotificationService : FirebaseMessagingService() {
 

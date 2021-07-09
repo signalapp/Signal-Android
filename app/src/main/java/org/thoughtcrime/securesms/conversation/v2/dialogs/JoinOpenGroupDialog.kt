@@ -12,7 +12,7 @@ import network.loki.messenger.R
 import org.session.libsession.utilities.OpenGroupUrlParser
 import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
-import org.thoughtcrime.securesms.loki.api.OpenGroupManager
+import org.thoughtcrime.securesms.groups.OpenGroupManager
 import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
 
 /** Shown upon tapping an open group invitation. */

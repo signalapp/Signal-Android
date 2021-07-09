@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.api
+package org.thoughtcrime.securesms.notifications
 
 import android.content.Context
 import nl.komponents.kovenant.functional.map

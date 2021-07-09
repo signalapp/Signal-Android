@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.database
+package org.thoughtcrime.securesms.database
 
 import android.net.Uri
 import java.util.*

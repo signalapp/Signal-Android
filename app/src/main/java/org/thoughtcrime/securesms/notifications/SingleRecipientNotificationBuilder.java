@@ -28,7 +28,7 @@ import org.session.libsession.avatars.GeneratedContactPhoto;
 import org.session.libsession.messaging.contacts.Contact;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.loki.database.SessionContactDatabase;
+import org.thoughtcrime.securesms.database.SessionContactDatabase;
 import org.thoughtcrime.securesms.util.AvatarPlaceholderGenerator;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;

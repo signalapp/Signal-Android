@@ -42,9 +42,8 @@ import org.session.libsession.utilities.Address;
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.session.libsignal.utilities.Log;
-import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListFragment;
-import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListLoader.DisplayMode;
-import org.thoughtcrime.securesms.mediasend.Media;
+import org.thoughtcrime.securesms.contacts.ContactSelectionListFragment;
+import org.thoughtcrime.securesms.contacts.ContactSelectionListLoader.DisplayMode;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.session.libsession.utilities.recipients.Recipient;
@@ -54,7 +53,6 @@ import org.session.libsession.utilities.ViewUtil;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 
 import network.loki.messenger.R;
 

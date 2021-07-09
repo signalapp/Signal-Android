@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.backup.FullBackupExporter
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.database.BackupFileRecord
+import org.thoughtcrime.securesms.database.BackupFileRecord
 import org.thoughtcrime.securesms.service.LocalBackupListener
 import java.io.IOException
 import java.security.MessageDigest

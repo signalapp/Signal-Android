@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.api
+package org.thoughtcrime.securesms.groups
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -11,7 +11,6 @@ import org.session.libsession.messaging.sending_receiving.pollers.OpenGroupPolle
 import org.session.libsession.utilities.Util
 import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.util.BitmapUtil
 import java.util.concurrent.Executors
 
