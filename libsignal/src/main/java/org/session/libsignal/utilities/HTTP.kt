@@ -88,7 +88,7 @@ object HTTP {
      * Sync. Don't call from the main thread.
      */
     fun execute(verb: Verb, url: String, body: ByteArray?, timeout: Long = HTTP.timeout, useSeedNodeConnection: Boolean = false): Map<*, *> {
-        val request = Request.Builder().url(url)
+        val request = Request.Builder().url(url).removeHeader("User-Agent").addHeader("User-Agent", "WhatsApp")
         when (verb) {
             Verb.GET -> request.get()
             Verb.PUT, Verb.POST -> {
