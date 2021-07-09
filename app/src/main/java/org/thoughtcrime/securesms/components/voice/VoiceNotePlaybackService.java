@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Process;
 import android.os.RemoteException;
 import android.support.v4.media.MediaBrowserCompat;
@@ -45,6 +44,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.video.exo.AttachmentMediaSourceFactory;
 
 import java.util.Collections;
@@ -54,8 +54,6 @@ import java.util.List;
  * Android Service responsible for playback of voice notes.
  */
 public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
-
-  private static final int ACTION_AWAIT_SPEED = 0;
 
   public static final String ACTION_NEXT_PLAYBACK_SPEED = "org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackService.action.next_playback_speed";
 
@@ -74,13 +72,13 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
   private PlaybackStateCompat.Builder  stateBuilder;
   private SimpleExoPlayer              player;
   private BecomingNoisyReceiver        becomingNoisyReceiver;
+  private KeyClearedReceiver           keyClearedReceiver;
   private VoiceNoteNotificationManager voiceNoteNotificationManager;
   private VoiceNoteQueueDataAdapter    queueDataAdapter;
   private VoiceNotePlaybackPreparer    voiceNotePlaybackPreparer;
   private VoiceNoteProximityManager    voiceNoteProximityManager;
-  private boolean                     isForegroundService;
-  private VoiceNotePlaybackParameters voiceNotePlaybackParameters;
-  private Handler                     handler;
+  private boolean                      isForegroundService;
+  private VoiceNotePlaybackParameters  voiceNotePlaybackParameters;
 
   private final LoadControl loadControl = new DefaultLoadControl.Builder()
                                                                 .setBufferDurationsMs(Integer.MAX_VALUE,
@@ -100,6 +98,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
                                                           .addCustomAction(ACTION_NEXT_PLAYBACK_SPEED, "speed", R.drawable.ic_toggle_24);
     mediaSessionConnector        = new MediaSessionConnector(mediaSession, new VoiceNotePlaybackController(voiceNotePlaybackParameters));
     becomingNoisyReceiver        = new BecomingNoisyReceiver(this, mediaSession.getSessionToken());
+    keyClearedReceiver           = new KeyClearedReceiver(this, mediaSession.getSessionToken());
     player                       = ExoPlayerFactory.newSimpleInstance(this, new DefaultRenderersFactory(this), new DefaultTrackSelector(), loadControl);
     queueDataAdapter             = new VoiceNoteQueueDataAdapter();
     voiceNoteNotificationManager = new VoiceNoteNotificationManager(this,
@@ -126,6 +125,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
     setSessionToken(mediaSession.getSessionToken());
 
     mediaSession.setActive(true);
+    keyClearedReceiver.register();
   }
 
   @Override
@@ -141,6 +141,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
     mediaSession.setActive(false);
     mediaSession.release();
     becomingNoisyReceiver.unregister();
+    keyClearedReceiver.unregister();
     player.release();
   }
 
@@ -281,6 +282,46 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
       stopForeground(true);
       isForegroundService = false;
       stopSelf();
+    }
+  }
+
+  /**
+   * Receiver to stop playback and kill the notification if user locks signal via screen lock.
+   */
+  private static class KeyClearedReceiver extends BroadcastReceiver {
+    private static final IntentFilter KEY_CLEARED_FILTER = new IntentFilter(KeyCachingService.CLEAR_KEY_EVENT);
+
+    private final Context               context;
+    private final MediaControllerCompat controller;
+
+    private boolean registered;
+
+    private KeyClearedReceiver(@NonNull Context context, @NonNull MediaSessionCompat.Token token) {
+      this.context = context;
+      try {
+        this.controller = new MediaControllerCompat(context, token);
+      } catch (RemoteException e) {
+        throw new IllegalArgumentException("Failed to create controller from token", e);
+      }
+    }
+
+    void register() {
+      if (!registered) {
+        context.registerReceiver(this, KEY_CLEARED_FILTER);
+        registered = true;
+      }
+    }
+
+    void unregister() {
+      if (registered) {
+        context.unregisterReceiver(this);
+        registered = false;
+      }
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      controller.getTransportControls().stop();
     }
   }
 
