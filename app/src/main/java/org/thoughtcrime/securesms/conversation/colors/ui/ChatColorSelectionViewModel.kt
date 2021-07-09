@@ -43,11 +43,7 @@ class ChatColorSelectionViewModel(private val repository: ChatColorSelectionRepo
 
   fun startDeletion(chatColors: ChatColors) {
     repository.getUsageCount(chatColors.id) {
-      if (it > 0) {
-        internalEvents.postValue(Event.ConfirmDeletion(it, chatColors))
-      } else {
-        deleteNow(chatColors)
-      }
+      internalEvents.postValue(Event.ConfirmDeletion(it, chatColors))
     }
   }
 

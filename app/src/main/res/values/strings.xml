@@ -3498,6 +3498,7 @@
         <item quantity="one">This custom color is used in %1$d chat. Do you want to delete it for all chats?</item>
         <item quantity="other">This custom color is used in %1$d chats. Do you want to delete it for all chats?</item>
     </plurals>
+    <string name="ChatColorSelectionFragment__delete_chat_color">Delete chat color?</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">Solid</string>

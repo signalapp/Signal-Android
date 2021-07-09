@@ -46,7 +46,11 @@ class ChatColorSelectionFragment : Fragment(R.layout.chat_color_selection_fragme
 
     viewModel.events.observe(viewLifecycleOwner) { event ->
       if (event is ChatColorSelectionViewModel.Event.ConfirmDeletion) {
-        showWarningDialog(event)
+        if (event.usageCount > 0) {
+          showWarningDialogForMultipleUses(event)
+        } else {
+          showWarningDialogForNoUses(event)
+        }
       }
     }
   }
@@ -56,7 +60,20 @@ class ChatColorSelectionFragment : Fragment(R.layout.chat_color_selection_fragme
     viewModel.refresh()
   }
 
-  private fun showWarningDialog(confirmDeletion: ChatColorSelectionViewModel.Event.ConfirmDeletion) {
+  private fun showWarningDialogForNoUses(confirmDeletion: ChatColorSelectionViewModel.Event.ConfirmDeletion) {
+    MaterialAlertDialogBuilder(requireContext())
+      .setMessage(R.string.ChatColorSelectionFragment__delete_chat_color)
+      .setPositiveButton(R.string.ChatColorSelectionFragment__delete) { dialog, _ ->
+        viewModel.deleteNow(confirmDeletion.chatColors)
+        dialog.dismiss()
+      }
+      .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+        dialog.dismiss()
+      }
+      .show()
+  }
+
+  private fun showWarningDialogForMultipleUses(confirmDeletion: ChatColorSelectionViewModel.Event.ConfirmDeletion) {
     MaterialAlertDialogBuilder(requireContext())
       .setTitle(R.string.ChatColorSelectionFragment__delete_color)
       .setMessage(resources.getQuantityString(R.plurals.ChatColorSelectionFragment__this_custom_color_is_used, confirmDeletion.usageCount, confirmDeletion.usageCount))
