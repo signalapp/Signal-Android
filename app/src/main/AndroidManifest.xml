@@ -55,6 +55,12 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" tools:node="remove"/>
 
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
+
     <!-- The allowBackup="false" below is important to guard against potential malicious backups -->
 
     <application
