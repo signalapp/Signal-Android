@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.animation;
+package org.thoughtcrime.securesms.util;
 
 
 import android.animation.Animator;
