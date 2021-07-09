@@ -76,7 +76,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
             handleFailure(Error.NoSender, null)
             return
         }
-        if (!threadRecipient.isGroupRecipient && (!contact.isTrusted || storage.getUserPublicKey() != sender.address.serialize())) {
+        if (!threadRecipient.isGroupRecipient && !(contact.isTrusted || storage.getUserPublicKey() != sender.address.serialize())) {
             Log.e("Loki", "Thread isn't a group recipient, or contact isn't trusted or self-send")
             return
         }
