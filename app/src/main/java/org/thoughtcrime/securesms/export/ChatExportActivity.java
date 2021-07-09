@@ -65,6 +65,7 @@ public class ChatExportActivity extends PassphraseRequiredActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         ActivityTransitionUtil.setSlideOutTransition(this);
     }
 

@@ -2478,7 +2478,7 @@
     <string name="conversation_add_to_contacts__menu_add_to_contacts">Add to contacts</string>
 
     <!-- conversation_group_options -->
-    <string name="convesation_group_options__recipients_list">Recipients list</string>
+    <string name="conversation_group_options__recipients_list">Recipients list</string>
     <string name="conversation_group_options__delivery">Delivery</string>
     <string name="conversation_group_options__conversation">Conversation</string>
     <string name="conversation_group_options__broadcast">Broadcast</string>
@@ -3073,12 +3073,8 @@
 
     <string name="zip">zip</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="ChatExportExecutionFragment__percent">Percent: 0%</string>
-    <string name="ChatExportExecutionFragment__info">Overall progress</string>
-    <string name="ChatExportExecutionFragment__create_export">Create Package:</string>
-    <string name="ChatExporFragment__save_folder_information">Save directory:</string>
     <string name="export_now">Export Now</string>
-    <string name="ManageGroupActivity_chat_export">Export group converstation</string>
+    <string name="ManageGroupActivity_chat_export">Export group conversation</string>
     <string name="ChatExporter_signal_requires_external_storage_permission_in_order_to_create_chat_export_zip_file" />
     <string name="ChatExport_collecting_attachments">Processing all data…</string>
     <string name="ChatExport_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal needs the Storage permission in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
@@ -3111,6 +3107,8 @@
     <string name="ChatExportFragment__set_time_period">Time Period</string>
     <string name="ChatExportFragment__select_time_period">Select time period</string>
     <string name="ExportChatsFragment__chatexport_info">Storage permission is required to export the chat.\nExporting a lot of messages can take some time. </string>
+    <string name="open_export_directory">Open directory</string>
+    <string name="export_dialog_close">Close</string>
     <plurals name="ExportZip_adding_n_attachments">
         <item quantity="one">Adding all media to the Zip…</item>
         <item quantity="other">Adding %1$d attachments</item>
@@ -3119,10 +3117,7 @@
         <item quantity="one">Adding all media to the Zip…</item>
         <item quantity="other">Adding %1$d attachments…</item>
     </plurals>
-    <plurals name="ExportZip_start_to_export">Exporting the content>
-        <item quantity="one">Including conversation</item>
-        <item quantity="other">Adding %1$d attachments</item>
-    </plurals>
+    <string name="ExportZip_start_to_export">Collecting data:</string>
     <!-- EOF -->
 
 </resources>

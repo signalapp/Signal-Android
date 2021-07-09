@@ -1,18 +1,19 @@
 package org.thoughtcrime.securesms.export;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Environment;
-import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -45,36 +46,36 @@ import java.util.zip.ZipOutputStream;
  *
  * @author  @anlaji
  * @version 1.0
- * @since   2021-07-07
+ * @since   2021-07-09
  */
 public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachment, Void, Pair<Integer, String>> {
 
     private static final String TAG = ExportZipUtil.class.getSimpleName ();
 
-    static final int BUFFER = 1024;
+    private static final int BUFFER               = 1024;
 
-    static final int SUCCESS                      = 0;
+    private static final int SUCCESS              = 0;
     private static final int FAILURE              = 1;
     private static final int WRITE_ACCESS_FAILURE = 2;
 
 
-    private static final String HTML_VIEWER_PATH = "chatexport.htmlviewer/viewer.html";
-    private static final String HTML_VIEWER_NAME = "viewer.html";
+    private static final String STORAGE_DIRECTORY = Environment.DIRECTORY_DOWNLOADS;
+
+
+    private static final String HTML_VIEWER_PATH        = "chatexport.htmlviewer/viewer.html";
+    private static final String HTML_VIEWER_NAME        = "viewer.html";
     private static final String HTML_VIEWER_JQUERY_PATH = "chatexport.htmlviewer/jquery-3.6.0.min.js";
     private static final String HTML_VIEWER_JQUERY_NAME = "jquery-3.6.0.min.js";
-    private static final String HTML_VIEWER_ICON_PATH = "chatexport.htmlviewer/signal-app.png";
-    private static final String HTML_VIEWER_ICON_NAME= "signal-app.png";
-    private static final String XML_FILENAME = "chat.xml";
-
-    private static final String STORAGE_DIRECTORY = Environment.DIRECTORY_DOWNLOADS;
-    private static final String FILENAME_FORMAT = "/%s-%s_signalChatExport";
+    private static final String HTML_VIEWER_ICON_PATH   = "chatexport.htmlviewer/signal-app.png";
+    private static final String HTML_VIEWER_ICON_NAME   = "signal-app.png";
+    private static final String XML_FILENAME            = "chat.xml";
+    private static final String FILENAME_FORMAT         = "/%s-%s_signalChatExport";
 
     @SuppressLint("SimpleDateFormat")
     static SimpleDateFormat dateFormatter = new SimpleDateFormat ("yyyy-MM-dd-HH-mm-ss-SSS");
 
 
     private final WeakReference<Context> contextReference;
-
     private final int attachmentCount;
     HashMap<String, Uri> otherFiles;
     private final ZipOutputStream out;
@@ -86,7 +87,7 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
 
     public ExportZipUtil (Context context, int count, long threadId, HashMap<String, Uri> otherFiles) throws IOException {
         super (context,
-                context.getResources ().getQuantityString (R.plurals.ExportZip_start_to_export, count, count),
+                context.getResources ().getString (R.string.ExportZip_start_to_export),
                 context.getResources ().getQuantityString (R.plurals.ExportZip_adding_n_attachments_to_media_folder, count, count));
         this.contextReference = new WeakReference<> (context);
         this.attachmentCount = count;
@@ -131,15 +132,21 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
 
 
 
-    void startToExport(Context context, boolean hasViewer, String data) throws IOException {
+    void startToExport(Context context, boolean hasViewer, String data) {
         addXMLFile (XML_FILENAME, data);
         if(hasViewer) includeHTMLViewerToZip (context);
     }
 
-    private void includeHTMLViewerToZip (Context context) throws IOException {
-        addFile (HTML_VIEWER_NAME, context.getAssets().open(HTML_VIEWER_PATH));
-        addFile (HTML_VIEWER_JQUERY_NAME, context.getAssets().open(HTML_VIEWER_JQUERY_PATH));
-        addFile (HTML_VIEWER_ICON_NAME, context.getAssets().open(HTML_VIEWER_ICON_PATH));
+    private void includeHTMLViewerToZip (Context context) {
+        try {
+            AssetManager assetManager = context.getAssets();
+            addFile (HTML_VIEWER_NAME, assetManager.open (HTML_VIEWER_PATH));
+            addFile (HTML_VIEWER_JQUERY_NAME, assetManager.open (HTML_VIEWER_JQUERY_PATH));
+            addFile (HTML_VIEWER_ICON_NAME, assetManager.open (HTML_VIEWER_ICON_PATH));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public @NonNull
@@ -249,8 +256,6 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
         return result;
     }
 
-
-
     @Override
     protected Pair<Integer, String> doInBackground(ExportZipUtil.Attachment... attachments) {
         if (attachments == null) {
@@ -302,9 +307,7 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
                         Toast.LENGTH_LONG).show();
                 break;
             case SUCCESS:
-                String message = !TextUtils.isEmpty(result.second())  ? context.getResources().getString(R.string.SaveAttachmentTask_saved_to, result.second())
-                        : context.getResources().getString(R.string.SaveAttachmentTask_saved);
-                Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+                createFinishDialog(context);
                 break;
             case WRITE_ACCESS_FAILURE:
                 Toast.makeText(context, R.string.ExportZip_unable_to_write_to_sd_card_exclamation,
@@ -314,6 +317,37 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
         try {
             closeZip ();
         } catch (IOException e) {
+            e.printStackTrace ();
+        }
+    }
+
+
+    private void createFinishDialog (Context context) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        File f = Environment.getExternalStoragePublicDirectory (STORAGE_DIRECTORY);
+        Uri storageUri = Uri.parse (f.getAbsolutePath ());
+        alertDialogBuilder.setTitle ("Export successful!");
+        alertDialogBuilder.setIcon(R.drawable.ic_download_32);
+        alertDialogBuilder.setMessage("Chat export file saved to:\n" + storageUri.getPath ()
+                +"\n\nNumber of media files: " + attachmentCount + "\n");
+        alertDialogBuilder.setCancelable(true);
+        alertDialogBuilder.setPositiveButton(R.string.open_export_directory,
+                (dialog, which) -> openDirectory (storageUri));
+        alertDialogBuilder.setNegativeButton(
+                R.string.export_dialog_close,
+                (dialog, which) -> dialog.cancel());
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+    }
+
+
+    private void openDirectory (Uri storageDirectoryUri) {
+        Intent intent = new Intent (Intent.ACTION_VIEW);
+        intent.setDataAndType (storageDirectoryUri, "*/*");
+        try{
+            getContext ().startActivity (intent);
+        }
+        catch ( ActivityNotFoundException e) {
             e.printStackTrace ();
         }
     }

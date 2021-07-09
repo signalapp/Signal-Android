@@ -94,15 +94,14 @@ public class ChatFormatter {
     public static final  String KEY         = "ChatExporter";
     private static final String SCHEMA_PATH = "file:///assets/chatexport.xsdschema/export_chat_xml_schema.xsd";
 
-    private final        long                           threadId;
-    private final        Map<String, MediaRecord> selectedMedia;
-    private final        Map<String, Uri>               otherFiles;
-    private final        Context context;
-
-    private       Document               dom;
-    private final Cursor                 conversation;
-    private final MmsSmsDatabase.Reader  reader;
-    String timePeriod;
+    private final long                     threadId;
+    private final Map<String, MediaRecord> selectedMedia;
+    private final Map<String, Uri>         otherFiles;
+    private final Context                  context;
+    private       Document              dom;
+    private final Cursor                conversation;
+    private final MmsSmsDatabase.Reader reader;
+    private       String                timePeriod;
 
 
     ChatFormatter (@NonNull Context context, long threadId, Date fromDate, Date untilDate) {
