@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -456,14 +457,7 @@ public class InputPanel extends LinearLayout
     if (voiceNoteDraft != null) {
       voiceNoteDraftView.setDraft(voiceNoteDraft);
       voiceNoteDraftView.setVisibility(VISIBLE);
-
-      if (emojiVisible) {
-        mediaKeyboard.setVisibility(View.INVISIBLE);
-      }
-
-      composeText.setVisibility(View.INVISIBLE);
-      quickCameraToggle.setVisibility(View.INVISIBLE);
-      quickAudioToggle.setVisibility(View.INVISIBLE);
+      hideNormalComposeViews();
     } else {
       voiceNoteDraftView.clearDraft();
       ViewUtil.fadeOut(voiceNoteDraftView, FADE_TIME);
@@ -473,6 +467,29 @@ public class InputPanel extends LinearLayout
 
   public @Nullable DraftDatabase.Draft getVoiceNoteDraft() {
     return voiceNoteDraftView.getDraft();
+  }
+
+  private void hideNormalComposeViews() {
+    if (emojiVisible) {
+      Animation animation = mediaKeyboard.getAnimation();
+      if (animation != null) {
+        animation.cancel();
+      }
+
+      mediaKeyboard.setVisibility(View.INVISIBLE);
+    }
+
+    for (Animation animation : Arrays.asList(composeText.getAnimation(), quickCameraToggle.getAnimation(), quickAudioToggle.getAnimation())) {
+      if (animation != null) {
+        animation.cancel();
+      }
+    }
+
+    buttonToggle.animate().cancel();
+
+    composeText.setVisibility(View.INVISIBLE);
+    quickCameraToggle.setVisibility(View.INVISIBLE);
+    quickAudioToggle.setVisibility(View.INVISIBLE);
   }
 
   private void fadeInNormalComposeViews() {
