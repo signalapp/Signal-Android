@@ -119,6 +119,13 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         ), threadId)
     }
 
+    override fun isMmsOutgoing(mmsMessageId: Long): Boolean {
+        val mmsDb = DatabaseFactory.getMmsDatabase(context)
+        return mmsDb.getMessage(mmsMessageId).use { cursor ->
+            mmsDb.readerFor(cursor).next
+        }.isOutgoing
+    }
+
     override fun isOutgoingMessage(timestamp: Long): Boolean {
         val smsDatabase = DatabaseFactory.getSmsDatabase(context)
         val mmsDatabase = DatabaseFactory.getMmsDatabase(context)

@@ -20,7 +20,7 @@ class JobQueue : JobDelegate {
     private val jobTimestampMap = ConcurrentHashMap<Long, AtomicInteger>()
     private val rxDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val txDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
-    private val attachmentDispatcher = Executors.newFixedThreadPool(2).asCoroutineDispatcher()
+    private val attachmentDispatcher = Executors.newFixedThreadPool(4).asCoroutineDispatcher()
     private val scope = GlobalScope + SupervisorJob()
     private val queue = Channel<Job>(UNLIMITED)
     private val pendingJobIds = mutableSetOf<String>()

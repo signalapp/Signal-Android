@@ -29,6 +29,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
         object NoAttachment : Error("No such attachment.")
         object NoThread: Error("Thread no longer exists")
         object NoSender: Error("Thread recipient or sender does not exist")
+        object DuplicateData: Error("Attachment already downloaded")
     }
 
     // Settings
@@ -64,20 +65,24 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
         }
 
         if (threadID < 0) {
-            Log.e("Loki", "Thread doesn't exist for database message ID $databaseMessageID")
             handleFailure(Error.NoThread, null)
             return
         }
 
         val threadRecipient = storage.getRecipientForThread(threadID)
-        val sender = messageDataProvider.getIndividualRecipientForMms(databaseMessageID)
-        val contact = sender?.address?.let { storage.getContactWithSessionID(it.serialize()) }
+        val sender = if (messageDataProvider.isMmsOutgoing(databaseMessageID)) {
+            storage.getUserPublicKey()
+        } else {
+            messageDataProvider.getIndividualRecipientForMms(databaseMessageID)?.address?.serialize()
+        }
+        val contact = sender?.let { storage.getContactWithSessionID(it) }
         if (threadRecipient == null || sender == null || contact == null) {
             handleFailure(Error.NoSender, null)
             return
         }
-        if (!threadRecipient.isGroupRecipient && !(contact.isTrusted || storage.getUserPublicKey() != sender.address.serialize())) {
-            Log.e("Loki", "Thread isn't a group recipient, or contact isn't trusted or self-send")
+        if (!threadRecipient.isGroupRecipient && (!contact.isTrusted && storage.getUserPublicKey() != sender)) {
+            // if we aren't receiving a group message, a message from ourselves (self-send) and the contact sending is not trusted:
+            // do not continue, but do not fail
             return
         }
 
@@ -86,7 +91,8 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
             val attachment = messageDataProvider.getDatabaseAttachment(attachmentID)
                 ?: return handleFailure(Error.NoAttachment, null)
             if (attachment.hasData()) {
-                Log.d("Loki", "The attachment $attachmentID already has data")
+                handleFailure(Error.DuplicateData, attachment.attachmentId)
+                return
             }
             messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachment.attachmentId, this.databaseMessageID)
             tempFile = createTempFile()
