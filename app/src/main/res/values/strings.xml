@@ -942,6 +942,7 @@
     <string name="MediaOverviewActivity_image">Image</string>
     <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s &#183; %2$s</string>
     <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s &#183; %2$s &#183; %3$s</string>
+    <string name="MediaOverviewActivity_voice_message">Voice message</string>
 
     <string name="MediaOverviewActivity_sent_by_s">Sent by %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">Sent by you</string>

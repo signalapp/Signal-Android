@@ -84,6 +84,7 @@
     <dimen name="mention_corner_radius">4dp</dimen>
 
     <integer name="media_overview_cols">4</integer>
+    <dimen name="media_overview_detail_item_height">72dp</dimen>
     <dimen name="message_details_table_row_pad">8dp</dimen>
 
     <dimen name="sticker_page_item_padding">8dp</dimen>
@@ -181,6 +182,7 @@
     <dimen name="payment_recovery_phrase_outline_margin">32dp</dimen>
 
     <dimen name="dsl_settings_gutter">16dp</dimen>
+    <dimen name="media_overview_toggle_gutter">2dp</dimen>
     <dimen name="wallpaper_selection_gutter">8dp</dimen>
 
     <dimen name="chat_colors_preview_bubble_max_width">240dp</dimen>

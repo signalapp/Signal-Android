@@ -71,6 +71,7 @@
         <attr name="waveformThumbTint" format="color" />
         <attr name="waveformPlayedBarsColor" format="color" />
         <attr name="waveformUnplayedBarsColor" format="color" />
+        <attr name="audioView_showSeekBar" format="boolean" />
         <attr name="progressAndPlayTint" format="color" />
         <attr name="autoRewind" format="boolean" />
         <attr name="audioView_mode" format="enum">

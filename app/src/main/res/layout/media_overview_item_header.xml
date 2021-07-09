@@ -5,15 +5,15 @@
     android:layout_height="wrap_content"
     android:background="@color/signal_background_primary"
     android:minHeight="48dp"
-    android:paddingStart="@dimen/dsl_settings_gutter"
     android:paddingTop="16dp"
-    android:paddingEnd="@dimen/dsl_settings_gutter"
     android:paddingBottom="12dp">
 
     <TextView
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
         android:textStyle="bold"
         tools:text="March 1, 2015" />

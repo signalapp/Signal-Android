@@ -52,14 +52,14 @@ public final class AudioView extends FrameLayout {
   private static final int FORWARDS =  1;
   private static final int REVERSE  = -1;
 
-  @NonNull private final AnimatingToggle     controlToggle;
-  @NonNull private final View                progressAndPlay;
-  @NonNull private final LottieAnimationView playPauseButton;
-  @NonNull private final ImageView           downloadButton;
-  @NonNull private final ProgressWheel       circleProgress;
-  @NonNull private final SeekBar             seekBar;
-           private final boolean             smallView;
-           private final boolean             autoRewind;
+  @NonNull  private final AnimatingToggle     controlToggle;
+  @NonNull  private final View                progressAndPlay;
+  @NonNull  private final LottieAnimationView playPauseButton;
+  @NonNull  private final ImageView           downloadButton;
+  @Nullable private final ProgressWheel       circleProgress;
+  @NonNull  private final SeekBar             seekBar;
+            private final boolean             smallView;
+            private final boolean             autoRewind;
 
   @Nullable private final TextView duration;
 
@@ -179,16 +179,20 @@ public final class AudioView extends FrameLayout {
       controlToggle.displayQuick(downloadButton);
       seekBar.setEnabled(false);
       downloadButton.setOnClickListener(new DownloadClickedListener(audio));
-      if (circleProgress.isSpinning()) circleProgress.stopSpinning();
-      circleProgress.setVisibility(View.GONE);
+      if (circleProgress != null) {
+        if (circleProgress.isSpinning()) circleProgress.stopSpinning();
+        circleProgress.setVisibility(View.GONE);
+      }
     } else if (showControls && audio.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_STARTED) {
       controlToggle.displayQuick(progressAndPlay);
       seekBar.setEnabled(false);
-      circleProgress.setVisibility(View.VISIBLE);
-      circleProgress.spin();
+      if (circleProgress != null) {
+        circleProgress.setVisibility(View.VISIBLE);
+        circleProgress.spin();
+      }
     } else {
       seekBar.setEnabled(true);
-      if (circleProgress.isSpinning()) circleProgress.stopSpinning();
+      if (circleProgress != null && circleProgress.isSpinning()) circleProgress.stopSpinning();
       showPlayButton();
     }
 
@@ -346,7 +350,7 @@ public final class AudioView extends FrameLayout {
       duration.setText(getResources().getString(R.string.AudioView_duration, remainingSecs / 60, remainingSecs % 60));
     }
 
-    if (smallView) {
+    if (smallView && circleProgress != null) {
       circleProgress.setInstantProgress(seekBar.getProgress() == 0 ? 1 : progress);
     }
   }
@@ -357,7 +361,10 @@ public final class AudioView extends FrameLayout {
                                                     new LottieValueCallback<>(new SimpleColorFilter(foregroundTint))));
 
     this.downloadButton.setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
-    this.circleProgress.setBarColor(foregroundTint);
+
+    if (circleProgress != null) {
+      this.circleProgress.setBarColor(foregroundTint);
+    }
 
     if (this.duration != null) {
       this.duration.setTextColor(foregroundTint);
@@ -400,11 +407,14 @@ public final class AudioView extends FrameLayout {
   }
 
   private void showPlayButton() {
-    if (!smallView) {
-      circleProgress.setVisibility(GONE);
-    } else if (seekBar.getProgress() == 0) {
-      circleProgress.setInstantProgress(1);
+    if (circleProgress != null) {
+      if (!smallView) {
+        circleProgress.setVisibility(GONE);
+      } else if (seekBar.getProgress() == 0) {
+        circleProgress.setInstantProgress(1);
+      }
     }
+
     playPauseButton.setVisibility(VISIBLE);
     controlToggle.displayQuick(progressAndPlay);
   }
@@ -495,7 +505,7 @@ public final class AudioView extends FrameLayout {
 
   @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
   public void onEventAsync(final PartProgressEvent event) {
-    if (audioSlide != null && event.attachment.equals(audioSlide.asAttachment())) {
+    if (audioSlide != null && circleProgress != null && event.attachment.equals(audioSlide.asAttachment())) {
       circleProgress.setInstantProgress(((float) event.progress) / event.total);
     }
   }

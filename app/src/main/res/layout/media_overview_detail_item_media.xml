@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="56dp">
+    android:minHeight="@dimen/media_overview_detail_item_height">
 
     <FrameLayout
         android:id="@+id/image_container"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="@dimen/dsl_settings_gutter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -22,12 +23,19 @@
             app:thumbnail_radius="8dp"
             app:transparent_overlay_color="@color/transparent_black_08" />
 
-
     </FrameLayout>
 
     <include layout="@layout/media_overview_selected_overlay" />
 
-
     <include layout="@layout/media_overview_detail_text" />
+
+    <View
+        android:id="@+id/audio"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
