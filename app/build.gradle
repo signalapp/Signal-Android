@@ -264,7 +264,7 @@ android {
 
         nightly {
             dimension 'distribution'
-            versionNameSuffix "-nightly-${getDateSuffix()}"
+            versionNameSuffix "-nightly-untagged-${getDateSuffix()}"
             ext.websiteUpdateUrl = "null"
             buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
             buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
@@ -319,6 +319,10 @@ android {
         variant.outputs.each { output ->
             if (output.baseName.contains('nightly')) {
                 output.versionCodeOverride = canonicalVersionCode * postFixSize + 5
+                def tag = getCurrentGitTag()
+                if (tag != null && tag.length() > 0) {
+                    output.versionNameOverride = tag
+                }
             } else {
                 output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
                 def abiName = output.getFilter("ABI") ?: 'universal'
@@ -602,6 +606,26 @@ def getGitHash() {
         standardOutput = stdout
     }
     return stdout.toString().trim()
+}
+
+def getCurrentGitTag() {
+    if (!(new File('.git').exists())) {
+        return ''
+    }
+
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'tag', '--points-at', 'HEAD'
+        standardOutput = stdout
+    }
+
+    def output = stdout.toString().trim()
+
+    if (output != null && output.size() > 0) {
+        return output.split('\n')[0];
+    } else {
+        return null
+    }
 }
 
 tasks.withType(Test) {
