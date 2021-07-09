@@ -1775,6 +1775,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                 SettableFuture<Boolean> quoteResult = new SettableFuture<>();
                 new QuoteRestorationTask(draft.getValue(), quoteResult).execute();
                 quoteResult.addListener(listener);
+                break;
               case Draft.VOICE_NOTE:
                 draftViewModel.setVoiceNoteDraft(recipient.getId(), draft);
                 break;
