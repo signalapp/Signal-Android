@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.utilities
+package org.thoughtcrime.securesms.crypto
 
 import android.content.Context
 

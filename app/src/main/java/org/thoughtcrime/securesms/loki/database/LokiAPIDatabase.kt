@@ -9,9 +9,9 @@ import org.session.libsignal.crypto.ecc.ECKeyPair
 import org.session.libsignal.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.utilities.*
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
-import org.thoughtcrime.securesms.database.Database
+import org.thoughtcrime.securesms.database.*
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.loki.utilities.*
+import org.thoughtcrime.securesms.util.*
 import java.util.*
 import kotlin.Array
 import kotlin.Boolean

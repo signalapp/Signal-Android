@@ -12,8 +12,8 @@ import android.view.View
 import androidx.annotation.ColorInt
 import network.loki.messenger.R
 import org.session.libsession.snode.OnionRequestAPI
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
-import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.util.getColorWithID
+import org.thoughtcrime.securesms.util.toPx
 
 class PathStatusView : View {
     private val broadcastReceivers = mutableListOf<BroadcastReceiver>()

@@ -12,7 +12,7 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import kotlinx.android.synthetic.main.view_fake_chat.view.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.loki.utilities.disableClipping
+import org.thoughtcrime.securesms.util.disableClipping
 
 class FakeChatView : ScrollView {
 

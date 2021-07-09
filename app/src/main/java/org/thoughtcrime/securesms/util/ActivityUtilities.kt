@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.utilities
+package org.thoughtcrime.securesms.util
 
 import android.annotation.SuppressLint
 import android.app.Activity

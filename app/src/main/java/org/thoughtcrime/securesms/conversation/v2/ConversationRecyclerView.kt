@@ -8,8 +8,8 @@ import android.view.VelocityTracker
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_conversation_v2.*
-import org.thoughtcrime.securesms.loki.utilities.disableClipping
-import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.util.disableClipping
+import org.thoughtcrime.securesms.util.toPx
 import kotlin.math.abs
 import kotlin.math.max
 

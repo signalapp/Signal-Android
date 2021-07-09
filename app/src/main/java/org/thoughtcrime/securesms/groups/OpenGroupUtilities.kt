@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.utilities
+package org.thoughtcrime.securesms.groups
 
 import android.content.Context
 import androidx.annotation.WorkerThread

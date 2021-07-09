@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_link_preview_draft.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
-import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.util.toPx
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.ImageSlide
 

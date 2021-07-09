@@ -37,8 +37,8 @@ import org.thoughtcrime.securesms.loki.dialogs.ChangeUiModeDialog
 import org.thoughtcrime.securesms.loki.dialogs.ClearAllDataDialog
 import org.thoughtcrime.securesms.loki.dialogs.SeedDialog
 import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
-import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
-import org.thoughtcrime.securesms.loki.utilities.push
+import org.thoughtcrime.securesms.util.UiModeUtilities
+import org.thoughtcrime.securesms.util.push
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.permissions.Permissions

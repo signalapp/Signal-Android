@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.loki.utilities.UiMode
-import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
+import org.thoughtcrime.securesms.util.UiMode
+import org.thoughtcrime.securesms.util.UiModeUtilities
 
 class ChangeUiModeDialog : DialogFragment() {
 

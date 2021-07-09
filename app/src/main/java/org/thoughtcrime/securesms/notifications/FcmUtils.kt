@@ -1,5 +1,5 @@
 @file:JvmName("FcmUtils")
-package org.thoughtcrime.securesms.loki.utilities
+package org.thoughtcrime.securesms.notifications
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.iid.FirebaseInstanceId

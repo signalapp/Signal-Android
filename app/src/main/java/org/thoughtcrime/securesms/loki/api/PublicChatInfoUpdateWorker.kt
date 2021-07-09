@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.loki.api
 import android.content.Context
 import androidx.work.*
 import org.session.libsignal.utilities.Log
-import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
+import org.thoughtcrime.securesms.groups.OpenGroupUtilities
 
 /**
  * Delegates the [OpenGroupUtilities.updateGroupInfo] call to the work manager.

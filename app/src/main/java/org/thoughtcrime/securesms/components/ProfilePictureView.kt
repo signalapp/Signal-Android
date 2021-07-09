@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.views
+package org.thoughtcrime.securesms.components
 
 import android.content.Context
 import android.util.AttributeSet
@@ -17,7 +17,7 @@ import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator
+import org.thoughtcrime.securesms.util.AvatarPlaceholderGenerator
 import org.thoughtcrime.securesms.mms.GlideRequests
 
 class ProfilePictureView : RelativeLayout {

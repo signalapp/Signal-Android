@@ -11,8 +11,8 @@ import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
-import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.util.getColorWithID
+import org.thoughtcrime.securesms.util.toPx
 import kotlin.math.roundToInt
 
 interface GlowView {

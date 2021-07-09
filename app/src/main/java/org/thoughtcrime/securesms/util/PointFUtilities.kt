@@ -1,7 +1,8 @@
-package org.thoughtcrime.securesms.loki.utilities
+package org.thoughtcrime.securesms.util
 
 import android.graphics.PointF
 import android.view.View
+import org.thoughtcrime.securesms.util.hitRect
 
 fun PointF.distanceTo(other: PointF): Float {
     return Math.sqrt(Math.pow(this.x.toDouble() - other.x.toDouble(), 2.toDouble()) + Math.pow(this.y.toDouble() - other.y.toDouble(), 2.toDouble())).toFloat()

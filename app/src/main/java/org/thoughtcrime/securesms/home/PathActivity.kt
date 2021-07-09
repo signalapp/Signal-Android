@@ -22,8 +22,9 @@ import network.loki.messenger.R
 import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsignal.utilities.Snode
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.loki.utilities.*
+import org.thoughtcrime.securesms.util.*
 import org.thoughtcrime.securesms.util.GlowViewUtilities
+import org.thoughtcrime.securesms.util.IP2Country
 import org.thoughtcrime.securesms.util.PathDotView
 
 class PathActivity : PassphraseRequiredActionBarActivity() {

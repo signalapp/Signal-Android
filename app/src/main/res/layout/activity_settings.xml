@@ -20,7 +20,7 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
-            <org.thoughtcrime.securesms.loki.views.ProfilePictureView
+            <org.thoughtcrime.securesms.components.ProfilePictureView
                 android:id="@+id/profilePictureView"
                 android:layout_width="@dimen/large_profile_picture_size"
                 android:layout_height="@dimen/large_profile_picture_size"
@@ -57,7 +57,7 @@
 
             </RelativeLayout>
 
-            <org.thoughtcrime.securesms.loki.views.LabeledSeparatorView
+            <org.thoughtcrime.securesms.components.LabeledSeparatorView
                 android:id="@+id/separatorView"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"

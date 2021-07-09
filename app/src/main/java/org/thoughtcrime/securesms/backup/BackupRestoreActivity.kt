@@ -29,8 +29,8 @@ import org.thoughtcrime.securesms.backup.FullBackupImporter.DatabaseDowngradeExc
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.session.libsignal.utilities.Log
-import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
-import org.thoughtcrime.securesms.loki.utilities.show
+import org.thoughtcrime.securesms.util.setUpActionBarSessionLogo
+import org.thoughtcrime.securesms.util.show
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.session.libsession.utilities.TextSecurePreferences

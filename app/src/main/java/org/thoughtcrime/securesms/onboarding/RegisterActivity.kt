@@ -24,8 +24,8 @@ import org.session.libsignal.utilities.KeyHelper
 import org.session.libsignal.utilities.hexEncodedPublicKey
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.crypto.KeyPairUtilities
-import org.thoughtcrime.securesms.loki.utilities.push
-import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
+import org.thoughtcrime.securesms.util.push
+import org.thoughtcrime.securesms.util.setUpActionBarSessionLogo
 import java.util.*
 
 class RegisterActivity : BaseActionBarActivity() {

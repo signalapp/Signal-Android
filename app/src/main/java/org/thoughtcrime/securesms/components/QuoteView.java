@@ -23,7 +23,7 @@ import org.session.libsession.messaging.contacts.Contact;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.loki.database.SessionContactDatabase;
-import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities;
+import org.thoughtcrime.securesms.util.UiModeUtilities;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;

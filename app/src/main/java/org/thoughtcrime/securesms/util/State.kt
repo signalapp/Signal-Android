@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.viewmodel
+package org.thoughtcrime.securesms.util
 
 sealed class State<out T> {
     object Loading : State<Nothing>()

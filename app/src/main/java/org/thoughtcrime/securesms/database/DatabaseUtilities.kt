@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.utilities
+package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
 import androidx.core.database.getStringOrNull

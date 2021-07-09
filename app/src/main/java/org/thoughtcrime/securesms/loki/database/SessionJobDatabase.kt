@@ -6,10 +6,10 @@ import net.sqlcipher.Cursor
 import org.session.libsession.messaging.jobs.*
 import org.session.libsession.messaging.utilities.Data
 import org.session.libsignal.utilities.Log
-import org.thoughtcrime.securesms.database.Database
+import org.thoughtcrime.securesms.database.*
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer
-import org.thoughtcrime.securesms.loki.utilities.*
+import org.thoughtcrime.securesms.util.*
 
 class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 

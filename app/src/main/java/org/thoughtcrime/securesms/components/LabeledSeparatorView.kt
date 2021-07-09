@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.views
+package org.thoughtcrime.securesms.components
 
 import android.content.Context
 import android.graphics.Canvas
@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.view_separator.view.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.util.toPx
 import org.session.libsession.utilities.ThemeUtil
 
 class LabeledSeparatorView : RelativeLayout {

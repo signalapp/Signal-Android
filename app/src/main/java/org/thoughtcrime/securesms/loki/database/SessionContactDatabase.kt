@@ -5,9 +5,9 @@ import android.content.Context
 import net.sqlcipher.Cursor
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsignal.utilities.Base64
-import org.thoughtcrime.securesms.database.Database
+import org.thoughtcrime.securesms.database.*
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.loki.utilities.*
+import org.thoughtcrime.securesms.util.*
 
 class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 

@@ -15,7 +15,7 @@ import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
+import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities;
 
 import network.loki.messenger.R;
 

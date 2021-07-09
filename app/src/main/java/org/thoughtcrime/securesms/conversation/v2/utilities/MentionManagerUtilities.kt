@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.utilities
+package org.thoughtcrime.securesms.conversation.v2.utilities
 
 import android.content.Context
 import org.session.libsession.utilities.TextSecurePreferences

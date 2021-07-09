@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.utilities
+package org.thoughtcrime.securesms.util
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -51,7 +51,7 @@ class IP2Country private constructor(private val context: Context) {
 
         public lateinit var shared: IP2Country
 
-        public val isInitialized: Boolean get() = ::shared.isInitialized
+        public val isInitialized: Boolean get() = Companion::shared.isInitialized
 
         public fun configureIfNeeded(context: Context) {
             if (isInitialized) { return; }

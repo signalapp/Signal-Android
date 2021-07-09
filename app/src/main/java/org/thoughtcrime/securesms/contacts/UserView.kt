@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.view_user.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities
+import org.thoughtcrime.securesms.conversation.v2.utilities.MentionManagerUtilities
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.session.libsession.utilities.recipients.Recipient
 

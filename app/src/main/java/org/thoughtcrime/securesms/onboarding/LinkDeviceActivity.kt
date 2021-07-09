@@ -32,10 +32,9 @@ import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.crypto.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
-import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
-import org.thoughtcrime.securesms.loki.utilities.push
-import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
-import org.thoughtcrime.securesms.onboarding.PNModeActivity
+import org.thoughtcrime.securesms.crypto.MnemonicUtilities
+import org.thoughtcrime.securesms.util.push
+import org.thoughtcrime.securesms.util.setUpActionBarSessionLogo
 
 class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = LinkDeviceActivityAdapter(this)

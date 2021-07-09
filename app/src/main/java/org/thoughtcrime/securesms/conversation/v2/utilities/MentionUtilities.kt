@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.utilities
+package org.thoughtcrime.securesms.conversation.v2.utilities
 
 import android.content.Context
 import android.graphics.Typeface
@@ -13,6 +13,7 @@ import nl.komponents.kovenant.combine.Tuple2
 import org.session.libsession.messaging.contacts.Contact
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.session.libsession.utilities.TextSecurePreferences
+import org.thoughtcrime.securesms.util.UiModeUtilities
 import java.util.regex.Pattern
 
 object MentionUtilities {

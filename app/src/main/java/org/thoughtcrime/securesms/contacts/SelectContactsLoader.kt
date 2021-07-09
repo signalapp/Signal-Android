@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.contacts
 
 import android.content.Context
-import org.thoughtcrime.securesms.loki.utilities.ContactUtilities
+import org.thoughtcrime.securesms.util.ContactUtilities
 import org.thoughtcrime.securesms.util.AsyncLoader
 
 class SelectContactsLoader(context: Context, val usersToExclude: Set<String>) : AsyncLoader<List<String>>(context) {

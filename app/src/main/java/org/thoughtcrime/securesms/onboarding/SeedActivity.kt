@@ -16,8 +16,8 @@ import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.utilities.hexEncodedPrivateKey
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
-import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
+import org.thoughtcrime.securesms.crypto.MnemonicUtilities
+import org.thoughtcrime.securesms.util.getColorWithID
 
 class SeedActivity : BaseActionBarActivity() {
 

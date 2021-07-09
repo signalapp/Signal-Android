@@ -20,10 +20,10 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.home.HomeActivity
-import org.thoughtcrime.securesms.loki.utilities.disableClipping
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
-import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
-import org.thoughtcrime.securesms.loki.utilities.show
+import org.thoughtcrime.securesms.util.disableClipping
+import org.thoughtcrime.securesms.util.getColorWithID
+import org.thoughtcrime.securesms.util.setUpActionBarSessionLogo
+import org.thoughtcrime.securesms.util.show
 import org.thoughtcrime.securesms.util.GlowViewUtilities
 import org.thoughtcrime.securesms.util.PNModeView
 

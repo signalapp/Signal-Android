@@ -3,12 +3,11 @@ package org.thoughtcrime.securesms.loki.database
 import android.content.ContentValues
 import android.content.Context
 import net.sqlcipher.database.SQLiteDatabase.CONFLICT_REPLACE
-import org.thoughtcrime.securesms.database.Database
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.loki.utilities.*
+import org.thoughtcrime.securesms.util.*
 import org.session.libsignal.database.LokiMessageDatabaseProtocol
 import org.session.libsignal.utilities.Log
+import org.thoughtcrime.securesms.database.*
 
 class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiMessageDatabaseProtocol {
 

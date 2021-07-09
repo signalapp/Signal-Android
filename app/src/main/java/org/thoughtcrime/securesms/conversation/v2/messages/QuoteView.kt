@@ -1,11 +1,8 @@
 package org.thoughtcrime.securesms.conversation.v2.messages
 
-import android.content.ContentResolver
 import android.content.Context
 import android.content.res.ColorStateList
-import android.content.res.Resources
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -13,22 +10,19 @@ import androidx.annotation.ColorInt
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.text.toSpannable
 import androidx.core.view.isVisible
-import androidx.core.view.marginStart
-import com.google.android.exoplayer2.util.MimeTypes
 import kotlinx.android.synthetic.main.view_link_preview.view.*
 import kotlinx.android.synthetic.main.view_quote.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact
-import org.session.libsession.messaging.utilities.UpdateMessageData
 import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
 import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.loki.utilities.*
+import org.thoughtcrime.securesms.util.*
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.thoughtcrime.securesms.mms.ImageSlide
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.UiModeUtilities
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt

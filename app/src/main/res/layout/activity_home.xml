@@ -27,7 +27,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp">
 
-                <org.thoughtcrime.securesms.loki.views.ProfilePictureView
+                <org.thoughtcrime.securesms.components.ProfilePictureView
                     android:id="@+id/profileButton"
                     android:layout_width="@dimen/small_profile_picture_size"
                     android:layout_height="@dimen/small_profile_picture_size"

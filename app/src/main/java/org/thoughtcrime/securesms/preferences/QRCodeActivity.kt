@@ -16,12 +16,11 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 
 import org.session.libsession.utilities.Address
-import org.session.libsession.utilities.DistributionTypes
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
-import org.thoughtcrime.securesms.loki.utilities.QRCodeUtilities
-import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.util.QRCodeUtilities
+import org.thoughtcrime.securesms.util.toPx
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.util.FileProviderUtil
 import org.session.libsession.utilities.TextSecurePreferences

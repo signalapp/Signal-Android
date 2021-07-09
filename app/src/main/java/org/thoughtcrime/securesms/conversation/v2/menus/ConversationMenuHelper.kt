@@ -41,7 +41,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.EditClosedGroupActivity
 import org.thoughtcrime.securesms.groups.EditClosedGroupActivity.Companion.groupIDKey
 import org.thoughtcrime.securesms.contacts.SelectContactsActivity
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
+import org.thoughtcrime.securesms.util.getColorWithID
 import org.thoughtcrime.securesms.util.BitmapUtil
 import java.io.IOException
 

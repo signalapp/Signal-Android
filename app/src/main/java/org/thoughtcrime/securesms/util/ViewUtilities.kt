@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.utilities
+package org.thoughtcrime.securesms.util
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter

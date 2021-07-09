@@ -13,9 +13,9 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.loki.utilities.animateSizeChange
-import org.thoughtcrime.securesms.loki.utilities.disableClipping
-import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.util.animateSizeChange
+import org.thoughtcrime.securesms.util.disableClipping
+import org.thoughtcrime.securesms.util.toPx
 import org.thoughtcrime.securesms.util.DateUtils
 import java.util.*
 
