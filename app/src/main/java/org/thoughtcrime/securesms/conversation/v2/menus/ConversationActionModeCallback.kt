@@ -31,6 +31,7 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
         if (selectedItems.isEmpty()) { return }
         val firstMessage = selectedItems.iterator().next()
         val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)
+        val thread = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID)!!
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         fun userCanDeleteSelectedItems(): Boolean {
             if (openGroup == null) { return true }
@@ -54,7 +55,7 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
         menu.findItem(R.id.menu_context_copy).isVisible = !containsControlMessage && hasText
         // Copy Session ID
         menu.findItem(R.id.menu_context_copy_public_key).isVisible =
-            (openGroup != null && selectedItems.size == 1 && firstMessage.recipient.address.toString() != userPublicKey)
+            (thread.isGroupRecipient && selectedItems.size == 1 && firstMessage.recipient.address.toString() != userPublicKey)
         // Resend
         menu.findItem(R.id.menu_context_resend).isVisible = (selectedItems.size == 1 && firstMessage.isFailed)
         // Save media

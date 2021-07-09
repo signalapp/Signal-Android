@@ -36,7 +36,7 @@ import org.thoughtcrime.securesms.avatar.AvatarSelection
 import org.thoughtcrime.securesms.loki.dialogs.ChangeUiModeDialog
 import org.thoughtcrime.securesms.loki.dialogs.ClearAllDataDialog
 import org.thoughtcrime.securesms.loki.dialogs.SeedDialog
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
+import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -194,7 +194,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
                 ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey)
             }
             if (profilePicture != null || displayName != null) {
-                MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(this@SettingsActivity)
+                ConfigurationMessageUtilities.forceSyncConfigurationNowIfNeeded(this@SettingsActivity)
             }
         }
         compoundPromise.alwaysUi {

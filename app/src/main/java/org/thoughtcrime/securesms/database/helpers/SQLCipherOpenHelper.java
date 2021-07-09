@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SessionContactDatabase;
 import org.thoughtcrime.securesms.loki.database.SessionJobDatabase;
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsMigration;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
@@ -182,8 +181,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV12) {
         db.execSQL(LokiAPIDatabase.getCreateLastMessageHashValueTable2Command());
-        db.execSQL(ClosedGroupsMigration.getCreateCurrentClosedGroupRatchetTableCommand());
-        db.execSQL(ClosedGroupsMigration.getCreateClosedGroupPrivateKeyTableCommand());
       }
 
       if (oldVersion < lokiV13) {
@@ -192,10 +189,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV14_BACKUP_FILES) {
         db.execSQL(LokiBackupFilesDatabase.getCreateTableCommand());
-      }
-
-      if (oldVersion < lokiV15) {
-        db.execSQL(ClosedGroupsMigration.getCreateOldClosedGroupRatchetTableCommand());
       }
       
       if (oldVersion < lokiV16) {
@@ -217,7 +210,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < lokiV19) {
         db.execSQL(LokiAPIDatabase.getCreateClosedGroupEncryptionKeyPairsTable());
         db.execSQL(LokiAPIDatabase.getCreateClosedGroupPublicKeysTable());
-        ClosedGroupsMigration.INSTANCE.perform(db);
         db.execSQL("DROP TABLE identities");
         deleteJobRecords(db, "RetrieveProfileJob");
         deleteJobRecords(db,

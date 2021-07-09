@@ -1,19 +1,13 @@
 package org.thoughtcrime.securesms.loki.dialogs
 
-import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.dialog_clear_all_data.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.KeyPairUtilities
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
+import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
-import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
 
 class ClearAllDataDialog : BaseDialog() {
 
@@ -26,7 +20,7 @@ class ClearAllDataDialog : BaseDialog() {
 
     private fun clearAllData() {
         if (KeyPairUtilities.hasV2KeyPair(requireContext())) {
-            MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(requireContext())
+            ConfigurationMessageUtilities.forceSyncConfigurationNowIfNeeded(requireContext())
             ApplicationContext.getInstance(context).clearAllData(false)
         } else {
             val dialog = AlertDialog.Builder(requireContext())

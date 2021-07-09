@@ -25,7 +25,6 @@ import network.loki.messenger.R
 import okhttp3.HttpUrl
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2.DefaultGroup
 import org.session.libsession.utilities.Address
-import org.session.libsession.utilities.DistributionTypes
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.utilities.Log
@@ -38,7 +37,7 @@ import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.api.OpenGroupManager
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
+import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
 import org.thoughtcrime.securesms.loki.viewmodel.DefaultGroupsViewModel
 import org.thoughtcrime.securesms.loki.viewmodel.State
 import java.util.*
@@ -108,7 +107,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
                 } else {
                     throw Exception("No longer supported.")
                 }
-                MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(this@JoinPublicChatActivity)
+                ConfigurationMessageUtilities.forceSyncConfigurationNowIfNeeded(this@JoinPublicChatActivity)
                 withContext(Dispatchers.Main) {
                     val recipient = Recipient.from(this@JoinPublicChatActivity, Address.fromSerialized(groupID), false)
                     openConversationActivity(this@JoinPublicChatActivity, threadID, recipient)

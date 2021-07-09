@@ -43,7 +43,7 @@ import org.thoughtcrime.securesms.groups.CreateClosedGroupActivity
 import org.thoughtcrime.securesms.loki.activities.*
 import org.thoughtcrime.securesms.loki.api.OpenGroupManager
 import org.thoughtcrime.securesms.loki.dialogs.*
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
+import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.onboarding.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -167,7 +167,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         }
         if (TextSecurePreferences.getConfigurationMessageSynced(this)) {
             lifecycleScope.launch(Dispatchers.IO) {
-                MultiDeviceProtocol.syncConfigurationIfNeeded(this@HomeActivity)
+                ConfigurationMessageUtilities.syncConfigurationIfNeeded(this@HomeActivity)
             }
         }
     }
