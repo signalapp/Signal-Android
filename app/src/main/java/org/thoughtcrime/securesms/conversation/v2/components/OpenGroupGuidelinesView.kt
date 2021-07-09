@@ -8,7 +8,7 @@ import android.widget.FrameLayout
 import kotlinx.android.synthetic.main.view_open_group_guidelines.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
-import org.thoughtcrime.securesms.loki.activities.OpenGroupGuidelinesActivity
+import org.thoughtcrime.securesms.groups.OpenGroupGuidelinesActivity
 import org.thoughtcrime.securesms.loki.utilities.push
 
 class OpenGroupGuidelinesView : FrameLayout {

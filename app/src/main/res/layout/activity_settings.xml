@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.thoughtcrime.securesms.loki.activities.SettingsActivity"
+    tools:context="org.thoughtcrime.securesms.preferences.SettingsActivity"
     tools:theme="@style/Theme.Session.DayNight.NoActionBar"
     tools:menu="@menu/settings_general">
 

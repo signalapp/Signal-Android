@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.contact_selection_list_divider.view.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.loki.views.UserView
+import org.thoughtcrime.securesms.contacts.UserView
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.session.libsession.utilities.recipients.Recipient
 

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="org.thoughtcrime.securesms.loki.activities.HomeActivity">
+    tools:context="org.thoughtcrime.securesms.home.HomeActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -53,7 +53,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true">
 
-                    <org.thoughtcrime.securesms.loki.views.PathStatusView
+                    <org.thoughtcrime.securesms.home.PathStatusView
                         android:layout_width="@dimen/path_status_view_size"
                         android:layout_height="@dimen/path_status_view_size"
                         android:layout_alignParentRight="true"
@@ -70,7 +70,7 @@
                 android:background="?android:dividerHorizontal"
                 android:elevation="1dp" />
 
-            <org.thoughtcrime.securesms.loki.views.SeedReminderView
+            <org.thoughtcrime.securesms.onboarding.SeedReminderView
                 android:id="@+id/seedReminderView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -124,7 +124,7 @@
 
         </LinearLayout>
 
-        <org.thoughtcrime.securesms.loki.views.NewConversationButtonSetView
+        <org.thoughtcrime.securesms.home.NewConversationButtonSetView
             android:id="@+id/newConversationButtonSet"
             android:layout_width="276dp"
             android:layout_height="236dp"
