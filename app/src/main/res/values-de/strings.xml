@@ -864,7 +864,7 @@
   <string name="MediaRepository__camera">Kamera</string>
   <!--MessageDecryptionUtil-->
   <string name="MessageDecryptionUtil_failed_to_decrypt_message">Nachricht konnte nicht entschlüsselt werden</string>
-  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Tippe um ein Diagnoseprotokoll zu senden</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Antippen, um Diagnoseprotokoll zu senden</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Unbekannt</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Eine empfangene Nachricht wurde mit einer alten, nicht mehr unterstützten Version von Signal verschlüsselt. Bitte den Absender, Signal auf die neueste Version zu aktualisieren und die Nachricht erneut zu senden.</string>

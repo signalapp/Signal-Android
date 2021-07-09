@@ -54,6 +54,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(סרטון)</string>
   <string name="DraftDatabase_Draft_location_snippet">(מיקום)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(תשובה)</string>
+  <string name="DraftDatabase_Draft_voice_note">(הודעה קולית)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">גלריה</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -950,6 +951,8 @@
   <string name="MediaRepository_all_media">כל המדיה</string>
   <string name="MediaRepository__camera">מצלמה</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">נכשל בפענוח הודעה</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">הקש כדי לשלוח יומן ניפוי תקלים</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">בלתי ידוע</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">הודעה מוצפנת התקבלה ע״י שימוש בגרסה ישנה של Signal שאינה נתמכת יותר. אנא בקש מהשולח לעדכן אל הגרסה העדכנית ביותר ולשלוח מחדש את ההודעה.</string>
@@ -3204,6 +3207,9 @@
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">בשימוש לאחרונה</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->

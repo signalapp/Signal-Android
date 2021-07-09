@@ -951,6 +951,8 @@
   <string name="MediaRepository_all_media">Все медиа</string>
   <string name="MediaRepository__camera">Камера</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Не удалось расшифровать сообщение</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Нажмите, чтобы отправить журнал отладки</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Неизвестный</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Полученное сообщение зашифровано в старой версии Signal, которая больше не поддерживается. Пожалуйста, попросите отправителя обновиться до последней версии и заново отправить сообщение.</string>

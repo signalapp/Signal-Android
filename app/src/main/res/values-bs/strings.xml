@@ -53,6 +53,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(lokacija)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(odgovor)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Glasovna poruka)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerija</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -906,6 +907,8 @@
   <string name="MediaRepository_all_media">Svi prilozi</string>
   <string name="MediaRepository__camera">Kamera</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Neuspjelo dešifrovanje poruke</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Dotaknite da pošaljete izvještaj o greškama</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Nepoznato</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Primljena je poruka koja je šifrirana u starijoj verziji Signala koja više nije podržana. Molimo zatražite od pošiljaoca da instalira najnoviju verziju i ponovo pošalje poruku.</string>
@@ -3125,6 +3128,9 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Nedavno korištene</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
