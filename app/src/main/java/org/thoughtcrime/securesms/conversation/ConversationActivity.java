@@ -3229,7 +3229,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @Override
   public void onStickerSelected(@NonNull StickerRecord stickerRecord) {
-    sendSticker(stickerRecord, false);
+    sendSticker(stickerRecord, true);
   }
 
   @Override
@@ -3295,7 +3295,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     slideDeck.addSlide(stickerSlide);
 
-    sendMediaMessage(recipient.getId(), transport.isSms(), "", slideDeck, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, clearCompose);
+    sendMediaMessage(recipient.getId(), transport.isSms(), "", slideDeck,inputPanel.getQuote().orNull(), Collections.emptyList(), Collections.emptyList(), composeText.getMentions(), expiresIn, false, subscriptionId, initiating, clearCompose);
   }
 
   private void silentlySetComposeText(String text) {
@@ -3908,7 +3908,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                      isSmsForced(),
                      "",
                      slideDeck,
-                     null,
+                     inputPanel.getQuote().orNull(),
                      Collections.emptyList(),
                      Collections.emptyList(),
                      composeText.getMentions(),
@@ -3916,7 +3916,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                      false,
                      subscriptionId,
                      initiating,
-                     false);
+                     true);
   }
 
   private class UnverifiedDismissedListener implements UnverifiedBannerView.DismissListener {
