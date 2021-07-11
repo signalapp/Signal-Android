@@ -8,7 +8,7 @@ import org.session.libsession.messaging.messages.control.TypingIndicator;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
+import org.thoughtcrime.securesms.util.SessionMetaProtocol;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.Util;
 

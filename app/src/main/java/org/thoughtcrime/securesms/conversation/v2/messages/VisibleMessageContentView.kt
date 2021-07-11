@@ -6,7 +6,6 @@ import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
-import android.text.method.LinkMovementMethod
 import android.text.style.URLSpan
 import android.text.util.Linkify
 import android.util.AttributeSet
@@ -23,7 +22,6 @@ import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import androidx.core.text.getSpans
 import androidx.core.text.toSpannable
-import androidx.core.text.util.LinkifyCompat
 import kotlinx.android.synthetic.main.view_link_preview.view.*
 import kotlinx.android.synthetic.main.view_visible_message_content.view.*
 import network.loki.messenger.R
@@ -32,15 +30,18 @@ import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.components.AlbumThumbnailView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.conversation.v2.dialogs.OpenURLDialog
+import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
 import org.thoughtcrime.securesms.conversation.v2.utilities.ModalURLSpan
 import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities.getIntersectedModalSpans
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.loki.utilities.*
+import org.thoughtcrime.securesms.util.*
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.SearchUtil
 import org.thoughtcrime.securesms.util.SearchUtil.StyleFactory
+import org.thoughtcrime.securesms.util.UiModeUtilities
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -48,6 +49,7 @@ class VisibleMessageContentView : LinearLayout {
     var onContentClick: ((event: MotionEvent) -> Unit)? = null
     var onContentDoubleTap: (() -> Unit)? = null
     var delegate: VisibleMessageContentViewDelegate? = null
+    var viewHolderIndex: Int = -1
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
@@ -109,7 +111,8 @@ class VisibleMessageContentView : LinearLayout {
             // Audio attachment
             if (contactIsTrusted || message.isOutgoing) {
                 val voiceMessageView = VoiceMessageView(context)
-                voiceMessageView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster)
+                voiceMessageView.index = viewHolderIndex
+            voiceMessageView.delegate = context as? ConversationActivityV2voiceMessageView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster)
                 mainContainer.addView(voiceMessageView)
                 // We have to use onContentClick (rather than a click listener directly on the voice
                 // message view) so as to not interfere with all the other gestures.

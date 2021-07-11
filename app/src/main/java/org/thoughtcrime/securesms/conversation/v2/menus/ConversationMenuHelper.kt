@@ -38,10 +38,10 @@ import org.session.libsignal.utilities.toHexString
 import org.thoughtcrime.securesms.*
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity
-import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity.Companion.groupIDKey
-import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
+import org.thoughtcrime.securesms.groups.EditClosedGroupActivity
+import org.thoughtcrime.securesms.groups.EditClosedGroupActivity.Companion.groupIDKey
+import org.thoughtcrime.securesms.contacts.SelectContactsActivity
+import org.thoughtcrime.securesms.util.getColorWithID
 import org.thoughtcrime.securesms.util.BitmapUtil
 import java.io.IOException
 

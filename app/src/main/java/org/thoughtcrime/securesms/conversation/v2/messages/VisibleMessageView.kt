@@ -24,12 +24,8 @@ import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.loki.utilities.disableClipping
-import org.thoughtcrime.securesms.loki.utilities.getColorWithID
-import org.thoughtcrime.securesms.loki.utilities.toDp
-import org.thoughtcrime.securesms.loki.utilities.toPx
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.thoughtcrime.securesms.util.DateUtils
+import org.thoughtcrime.securesms.util.*
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.min
@@ -47,6 +43,7 @@ class VisibleMessageView : LinearLayout {
     private var longPressCallback: Runnable? = null
     private var onDownTimestamp = 0L
     private var onDoubleTap: (() -> Unit)? = null
+    var viewHolderIndex: Int = -1
     var snIsSelected = false
         set(value) { field = value; handleIsSelectedChanged()}
     var onPress: ((event: MotionEvent) -> Unit)? = null
@@ -82,7 +79,7 @@ class VisibleMessageView : LinearLayout {
         val senderSessionID = sender.address.serialize()
         val threadID = message.threadId
         val threadDB = DatabaseFactory.getThreadDatabase(context)
-        val thread = threadDB.getRecipientForThreadId(threadID)!!
+        val thread = threadDB.getRecipientForThreadId(threadID) ?: return
         val contactDB = DatabaseFactory.getSessionContactDatabase(context)
         val contact = contactDB.getContactWithSessionID(senderSessionID)
         val isGroupThread = thread.isGroupRecipient
@@ -96,7 +93,7 @@ class VisibleMessageView : LinearLayout {
             profilePictureView.glide = glide
             profilePictureView.update()
             if (thread.isOpenGroupRecipient) {
-                val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID)!!
+                val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID) ?: return
                 val isModerator = OpenGroupAPIV2.isUserModerator(senderSessionID, openGroup.room, openGroup.server)
                 moderatorIconImageView.visibility = if (isModerator) View.VISIBLE else View.INVISIBLE
             } else {
@@ -110,11 +107,11 @@ class VisibleMessageView : LinearLayout {
             senderNameTextView.visibility = View.GONE
         }
         // Date break
-        val showDateBreak = (previous == null || !DateUtils.isSameDay(message.timestamp, previous.timestamp))
+        val showDateBreak = (previous == null || !DateUtils.isSameHour(message.timestamp, previous.timestamp))
         dateBreakTextView.isVisible = showDateBreak
-        dateBreakTextView.text = if (showDateBreak) DateUtils.getRelativeDate(context, Locale.getDefault(), message.timestamp) else ""
+        dateBreakTextView.text = if (showDateBreak) DateUtils.getDisplayFormattedTimeSpanString(context, Locale.getDefault(), message.timestamp) else ""
         // Timestamp
-        messageTimestampTextView.text = DateUtils.getExtendedRelativeTimeSpanString(context, Locale.getDefault(), message.timestamp)
+        messageTimestampTextView.text = DateUtils.getDisplayFormattedTimeSpanString(context, Locale.getDefault(), message.timestamp)
         // Margins
         val startPadding: Int
         if (isGroupThread) {
@@ -152,6 +149,7 @@ class VisibleMessageView : LinearLayout {
         var maxWidth = screenWidth - startPadding - endPadding
         if (profilePictureContainer.visibility != View.GONE) { maxWidth -= profilePictureContainer.width }
         // Populate content view
+        messageContentView.viewHolderIndex = viewHolderIndex
         messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth, thread, searchQuery, isGroupThread || (contact?.isTrusted ?: false))
         messageContentView.delegate = contentViewDelegate
         onDoubleTap = { messageContentView.onContentDoubleTap?.invoke() }
@@ -176,10 +174,10 @@ class VisibleMessageView : LinearLayout {
 
     private fun isEndOfMessageCluster(current: MessageRecord, next: MessageRecord?, isGroupThread: Boolean): Boolean {
         return if (isGroupThread) {
-            next == null || next.isUpdate || !DateUtils.isSameDay(current.timestamp, next.timestamp)
+            next == null || next.isUpdate || !DateUtils.isSameHour(current.timestamp, next.timestamp)
                 || current.recipient.address != next.recipient.address
         } else {
-            next == null || next.isUpdate || !DateUtils.isSameDay(current.timestamp, next.timestamp)
+            next == null || next.isUpdate || !DateUtils.isSameHour(current.timestamp, next.timestamp)
                 || current.isOutgoing != next.isOutgoing
         }
     }

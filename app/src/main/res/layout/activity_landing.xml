@@ -19,7 +19,7 @@
         android:textStyle="bold"
         android:text="@string/activity_landing_title_2" />
     
-    <org.thoughtcrime.securesms.loki.views.FakeChatView
+    <org.thoughtcrime.securesms.onboarding.FakeChatView
         android:id="@+id/fakeChatView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/fake_chat_view_height"

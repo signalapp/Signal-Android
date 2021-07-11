@@ -9,12 +9,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.dialog_join_open_group.view.*
 import network.loki.messenger.R
-import org.session.libsession.messaging.open_groups.OpenGroupV2
 import org.session.libsession.utilities.OpenGroupUrlParser
 import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
-import org.thoughtcrime.securesms.loki.api.OpenGroupManager
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
+import org.thoughtcrime.securesms.groups.OpenGroupManager
+import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
 
 /** Shown upon tapping an open group invitation. */
 class JoinOpenGroupDialog(private val name: String, private val url: String) : BaseDialog() {
@@ -38,7 +37,7 @@ class JoinOpenGroupDialog(private val name: String, private val url: String) : B
         val activity = requireContext() as AppCompatActivity
         ThreadUtils.queue {
             OpenGroupManager.add(openGroup.server, openGroup.room, openGroup.serverPublicKey, activity)
-            MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(activity)
+            ConfigurationMessageUtilities.forceSyncConfigurationNowIfNeeded(activity)
         }
         dismiss()
     }

@@ -17,10 +17,9 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.annotation.DrawableRes
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
-import org.thoughtcrime.securesms.loki.utilities.*
-import org.thoughtcrime.securesms.loki.views.GlowViewUtilities
-import org.thoughtcrime.securesms.loki.views.InputBarButtonImageViewContainer
+import org.thoughtcrime.securesms.util.*
+import org.thoughtcrime.securesms.util.GlowViewUtilities
+import org.thoughtcrime.securesms.util.InputBarButtonImageViewContainer
 import java.util.*
 import kotlin.math.abs
 

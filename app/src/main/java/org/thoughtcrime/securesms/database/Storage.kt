@@ -26,13 +26,11 @@ import org.session.libsignal.messages.SignalServiceGroup
 import org.session.libsignal.utilities.KeyHelper
 import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
-import org.thoughtcrime.securesms.loki.api.OpenGroupManager
-import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
-import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
-import org.thoughtcrime.securesms.loki.utilities.get
-import org.thoughtcrime.securesms.loki.utilities.getString
+import org.thoughtcrime.securesms.groups.OpenGroupManager
+import org.thoughtcrime.securesms.util.SessionMetaProtocol
 import org.thoughtcrime.securesms.mms.PartAuthority
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {

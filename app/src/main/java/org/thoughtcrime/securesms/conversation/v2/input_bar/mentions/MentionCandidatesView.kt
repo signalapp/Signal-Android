@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.util.toPx
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.session.libsession.messaging.mentions.Mention
 

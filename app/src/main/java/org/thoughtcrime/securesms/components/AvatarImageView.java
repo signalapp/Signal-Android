@@ -19,7 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 
 
-import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator;
+import org.thoughtcrime.securesms.util.AvatarPlaceholderGenerator;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 

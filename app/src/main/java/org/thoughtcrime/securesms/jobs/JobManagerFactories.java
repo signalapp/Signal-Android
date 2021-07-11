@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
-import org.thoughtcrime.securesms.loki.api.PrepareAttachmentAudioExtrasJob;
 
 import java.util.ArrayList;
 import java.util.Arrays;

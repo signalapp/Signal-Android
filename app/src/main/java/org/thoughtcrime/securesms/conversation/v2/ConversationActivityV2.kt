@@ -23,6 +23,8 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.annotation.DimenRes
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.children
+import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -40,6 +42,7 @@ import kotlinx.android.synthetic.main.view_conversation.view.*
 import kotlinx.android.synthetic.main.view_input_bar.view.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.*
 import kotlinx.android.synthetic.main.view_input_bar_recording.view.*
+import kotlinx.android.synthetic.main.view_visible_message.view.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
@@ -69,7 +72,6 @@ import org.session.libsession.utilities.concurrent.SimpleTask
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.recipients.RecipientModifiedListener
 import org.session.libsignal.utilities.ListenableFuture
-import org.session.libsignal.utilities.SettableFuture
 import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
@@ -84,8 +86,7 @@ import org.thoughtcrime.securesms.conversation.v2.input_bar.mentions.MentionCand
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallback
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationActionModeCallbackDelegate
 import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
-import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentViewDelegate
-import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageView
+import org.thoughtcrime.securesms.conversation.v2.messages.*
 import org.thoughtcrime.securesms.conversation.v2.search.SearchBottomBar
 import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
 import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager
@@ -100,20 +101,16 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
-import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity
-import org.thoughtcrime.securesms.loki.activities.SelectContactsActivity.Companion.selectedContactsKey
-import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
-import org.thoughtcrime.securesms.loki.utilities.MentionUtilities
-import org.thoughtcrime.securesms.loki.utilities.push
-import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.contacts.SelectContactsActivity
+import org.thoughtcrime.securesms.contacts.SelectContactsActivity.Companion.selectedContactsKey
+import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
+import org.thoughtcrime.securesms.util.toPx
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity
 import org.thoughtcrime.securesms.mms.*
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.permissions.Permissions
-import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.SaveAttachmentTask
+import org.thoughtcrime.securesms.util.*
 import java.util.*
 import java.util.concurrent.ExecutionException
 import kotlin.math.*
@@ -125,7 +122,7 @@ import kotlin.math.*
 class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDelegate,
         InputBarRecordingViewDelegate, AttachmentManager.AttachmentListener, ActivityDispatcher,
         ConversationActionModeCallbackDelegate, VisibleMessageContentViewDelegate, RecipientModifiedListener,
-        SearchBottomBar.EventListener {
+        SearchBottomBar.EventListener, VoiceMessageViewDelegate {
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private var linkPreviewViewModel: LinkPreviewViewModel? = null
     private var threadID: Long = -1
@@ -213,6 +210,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             threadID = DatabaseFactory.getThreadDatabase(this).getOrCreateThreadIdFor(recipient)
         }
         this.threadID = threadID
+        val thread = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadID)
+        if (thread == null) {
+            Toast.makeText(this, "This thread has been deleted.", Toast.LENGTH_LONG).show()
+            return finish()
+        }
         setUpRecyclerView()
         setUpToolBar()
         setUpInputBar()
@@ -232,6 +234,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         scrollToFirstUnreadMessageIfNeeded()
         markAllAsRead()
         showOrHideInputIfNeeded()
+        if (this.thread.isOpenGroupRecipient) {
+            val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
+            if (openGroup == null) {
+                Toast.makeText(this, "This thread has been deleted.", Toast.LENGTH_LONG).show()
+                return finish()
+            }
+        }
     }
 
     override fun onResume() {
@@ -849,6 +858,21 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         conversationRecyclerView.scrollToPosition(lastSeenItemPosition)
     }
 
+    override fun playNextAudioIfPossible(current: Int) {
+        if (current > 0) {
+            val nextVisibleMessageView = conversationRecyclerView[current - 1] as? VisibleMessageView
+            nextVisibleMessageView?.let { visibleMessageView ->
+                visibleMessageView.messageContentView.mainContainer.children.forEach { child ->
+                    val nextVoiceMessageView = child as? VoiceMessageView
+                    nextVoiceMessageView?.let { voiceMessageView ->
+                        voiceMessageView.togglePlayback()
+                        return@forEach
+                    }
+                }
+            }
+        }
+    }
+
     override fun sendMessage() {
         if (thread.isContactRecipient && thread.isBlocked) {
             BlockedDialog(thread).show(supportFragmentManager, "Blocked Dialog")
@@ -1129,7 +1153,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         for (message in sortedMessages) {
             val body = MentionUtilities.highlightMentions(message.body, message.threadId, this)
             if (TextUtils.isEmpty(body)) { continue }
-            val formattedTimestamp = DateUtils.getExtendedRelativeTimeSpanString(this, Locale.getDefault(), message.timestamp)
+            val formattedTimestamp = DateUtils.getDisplayFormattedTimeSpanString(this, Locale.getDefault(), message.timestamp)
             builder.append("$formattedTimestamp: $body").append('\n')
         }
         if (builder.isNotEmpty() && builder[builder.length - 1] == '\n') {
@@ -1265,7 +1289,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun saveDraft() {
-        val text = inputBar.text.trim()
+        val text = inputBar?.text?.trim() ?: return
         if (text.isEmpty()) { return }
         val drafts = Drafts()
         drafts.add(DraftDatabase.Draft(DraftDatabase.Draft.TEXT, text))

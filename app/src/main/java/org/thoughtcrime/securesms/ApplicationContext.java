@@ -27,10 +27,10 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDexApplication;
+
 import org.conscrypt.Conscrypt;
 import org.session.libsession.avatars.AvatarHelper;
 import org.session.libsession.messaging.MessagingModuleConfiguration;
-import org.session.libsession.messaging.contacts.Contact;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsession.messaging.sending_receiving.pollers.ClosedGroupPollerV2;
 import org.session.libsession.messaging.sending_receiving.pollers.Poller;
@@ -42,11 +42,11 @@ import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.session.libsession.utilities.dynamiclanguage.LocaleParser;
-import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsignal.utilities.Log;
 import org.session.libsignal.utilities.ThreadUtils;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
+import org.thoughtcrime.securesms.crypto.KeyPairUtilities;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
@@ -58,17 +58,14 @@ import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
-import org.thoughtcrime.securesms.loki.activities.HomeActivity;
-import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
-import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
-import org.thoughtcrime.securesms.loki.api.OpenGroupManager;
-import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.database.SessionContactDatabase;
-import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
-import org.thoughtcrime.securesms.loki.utilities.ContactUtilities;
-import org.thoughtcrime.securesms.loki.utilities.FcmUtils;
-import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities;
+import org.thoughtcrime.securesms.home.HomeActivity;
+import org.thoughtcrime.securesms.notifications.BackgroundPollWorker;
+import org.thoughtcrime.securesms.notifications.LokiPushNotificationManager;
+import org.thoughtcrime.securesms.groups.OpenGroupManager;
+import org.thoughtcrime.securesms.database.LokiAPIDatabase;
+import org.thoughtcrime.securesms.util.Broadcaster;
+import org.thoughtcrime.securesms.notifications.FcmUtils;
+import org.thoughtcrime.securesms.util.UiModeUtilities;
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.OptimizedMessageNotifier;
@@ -84,12 +81,14 @@ import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.security.Security;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import dagger.ObjectGraph;
 import kotlin.Unit;
 import kotlinx.coroutines.Job;
@@ -154,8 +153,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         conversationListNotificationHandler = new Handler(Looper.getMainLooper());
         LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
         MessagingModuleConfiguration.Companion.configure(this,
-            DatabaseFactory.getStorage(this),
-            DatabaseFactory.getAttachmentProvider(this));
+                DatabaseFactory.getStorage(this),
+                DatabaseFactory.getAttachmentProvider(this),
+                ()-> KeyPairUtilities.INSTANCE.getUserED25519KeyPair(this)
+        );
         SnodeModule.Companion.configure(apiDB, broadcaster);
         String userPublicKey = TextSecurePreferences.getLocalNumber(this);
         if (userPublicKey != null) {
@@ -181,27 +182,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         Log.i(TAG, "App is now visible.");
         KeyCachingService.onAppForegrounded(this);
 
-        boolean hasPerformedContactMigration = TextSecurePreferences.INSTANCE.hasPerformedContactMigration(this);
-        if (!hasPerformedContactMigration) {
-            TextSecurePreferences.INSTANCE.setPerformedContactMigration(this);
-            Set<Recipient> allContacts = ContactUtilities.getAllContacts(this);
-            SessionContactDatabase contactDB = DatabaseFactory.getSessionContactDatabase(this);
-            LokiUserDatabase userDB = DatabaseFactory.getLokiUserDatabase(this);
-            for (Recipient recipient : allContacts) {
-                if (recipient.isGroupRecipient()) { continue; }
-                String sessionID = recipient.getAddress().serialize();
-                Contact contact = contactDB.getContactWithSessionID(sessionID);
-                if (contact == null) {
-                    contact = new Contact(sessionID);
-                    String name = userDB.getDisplayName(sessionID);
-                    contact.setName(name);
-                    contact.setProfilePictureURL(recipient.getProfileAvatar());
-                    contact.setProfilePictureEncryptionKey(recipient.getProfileKey());
-                    contact.setTrusted(true);
-                }
-                contactDB.setContact(contact);
-            }
-        }
         if (poller != null) {
             poller.setCaughtUp(false);
         }
@@ -487,7 +467,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         boolean isUsingFCM = TextSecurePreferences.isUsingFCM(this);
         TextSecurePreferences.clearAll(this);
         if (isMigratingToV2KeyPair) {
-            TextSecurePreferences.setIsMigratingKeyPair(this, true);
             TextSecurePreferences.setIsUsingFCM(this, isUsingFCM);
             TextSecurePreferences.setProfileName(this, displayName);
         }

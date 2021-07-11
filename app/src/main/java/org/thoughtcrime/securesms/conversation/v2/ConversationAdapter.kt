@@ -72,6 +72,7 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 view.snIsSelected = isSelected
                 view.messageTimestampTextView.isVisible = isSelected
                 val position = viewHolder.adapterPosition
+                view.viewHolderIndex = position
                 view.bind(message, getMessageBefore(position, cursor), getMessageAfter(position, cursor), glide, searchQuery)
                 view.onPress = { event -> onItemPress(message, viewHolder.adapterPosition, view, event) }
                 view.onSwipeToReply = { onItemSwipeToReply(message, viewHolder.adapterPosition) }

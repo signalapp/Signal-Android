@@ -16,8 +16,8 @@ import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.loki.activities.HomeActivity;
-import org.thoughtcrime.securesms.loki.database.SessionContactDatabase;
+import org.thoughtcrime.securesms.home.HomeActivity;
+import org.thoughtcrime.securesms.database.SessionContactDatabase;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -21,9 +21,9 @@ import org.thoughtcrime.securesms.backup.BackupPassphrase
 import org.thoughtcrime.securesms.backup.BackupProtos.SharedPreference
 import org.thoughtcrime.securesms.backup.FullBackupExporter
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
-import org.session.libsession.utilities.IdentityKeyUtil
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.database.BackupFileRecord
+import org.thoughtcrime.securesms.database.BackupFileRecord
 import org.thoughtcrime.securesms.service.LocalBackupListener
 import java.io.IOException
 import java.security.MessageDigest
@@ -118,7 +118,7 @@ object BackupUtil {
         if (timestamp == null) {
             return context.getString(R.string.BackupUtil_never)
         }
-        return DateUtils.getExtendedRelativeTimeSpanString(context, locale, timestamp.time)
+        return DateUtils.getDisplayFormattedTimeSpanString(context, locale, timestamp.time)
     }
 
     @JvmStatic

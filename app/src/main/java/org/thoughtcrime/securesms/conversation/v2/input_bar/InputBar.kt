@@ -19,8 +19,8 @@ import org.thoughtcrime.securesms.conversation.v2.messages.QuoteView
 import org.thoughtcrime.securesms.conversation.v2.messages.QuoteViewDelegate
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.loki.utilities.toDp
-import org.thoughtcrime.securesms.loki.utilities.toPx
+import org.thoughtcrime.securesms.util.toDp
+import org.thoughtcrime.securesms.util.toPx
 import org.thoughtcrime.securesms.mms.GlideRequests
 import kotlin.math.max
 import kotlin.math.roundToInt

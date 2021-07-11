@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <org.thoughtcrime.securesms.loki.views.LabeledSeparatorView
+        <org.thoughtcrime.securesms.components.LabeledSeparatorView
             android:id="@+id/separatorView"
             android:layout_width="match_parent"
             android:layout_height="32dp"
