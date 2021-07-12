@@ -13,6 +13,10 @@ import androidx.core.view.children
 import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.album_thumbnail_view.view.*
 import network.loki.messenger.R
+import org.session.libsession.messaging.jobs.AttachmentDownloadJob
+import org.session.libsession.messaging.jobs.JobQueue
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.MediaPreviewActivity
@@ -23,6 +27,7 @@ import org.thoughtcrime.securesms.util.ActivityDispatcher
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.Slide
+import org.thoughtcrime.securesms.video.exo.AttachmentDataSource
 import kotlin.math.roundToInt
 
 class AlbumThumbnailView : FrameLayout {
@@ -82,6 +87,13 @@ class AlbumThumbnailView : FrameLayout {
                 // hit intersects with this particular child
                 val slide = slides.getOrNull(index) ?: return
                 // only open to downloaded images
+                if (slide.transferState == AttachmentTransferProgress.TRANSFER_PROGRESS_FAILED) {
+                    // restart download here
+                    (slide.asAttachment() as? DatabaseAttachment)?.let { attachment ->
+                        val attachmentId = attachment.attachmentId.rowId
+                        JobQueue.shared.add(AttachmentDownloadJob(attachmentId, mms.getId()))
+                    }
+                }
                 if (slide.isInProgress) return
 
                 ActivityDispatcher.get(context)?.dispatchIntent { context ->

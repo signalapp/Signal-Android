@@ -9,6 +9,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.UploadResult
 import org.session.libsession.utilities.Util
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.messages.SignalServiceAttachment
 import org.session.libsignal.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.messages.SignalServiceAttachmentStream
@@ -60,9 +61,9 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         return databaseAttachment.toSignalAttachmentPointer()
     }
 
-    override fun setAttachmentState(attachmentState: AttachmentState, attachmentId: Long, messageID: Long) {
+    override fun setAttachmentState(attachmentState: AttachmentState, attachmentId: AttachmentId, messageID: Long) {
         val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
-        attachmentDatabase.setTransferState(messageID, AttachmentId(attachmentId, 0), attachmentState.value)
+        attachmentDatabase.setTransferState(messageID, attachmentId, attachmentState.value)
     }
 
     override fun getMessageForQuote(timestamp: Long, author: Address): Pair<Long, Boolean>? {
@@ -92,6 +93,14 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         return message.linkPreviews.firstOrNull()?.attachmentId?.rowId
     }
 
+    override fun getIndividualRecipientForMms(mmsId: Long): Recipient? {
+        val mmsDb = DatabaseFactory.getMmsDatabase(context)
+        val message = mmsDb.getMessage(mmsId).use {
+            mmsDb.readerFor(it).next
+        }
+        return message?.individualRecipient
+    }
+
     override fun insertAttachment(messageId: Long, attachmentId: AttachmentId, stream: InputStream) {
         val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
         attachmentDatabase.insertAttachmentsForPlaceholder(messageId, attachmentId, stream)
@@ -108,6 +117,13 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
             visualSamples = byteArrayOf(),
             durationMs = durationMs
         ), threadId)
+    }
+
+    override fun isMmsOutgoing(mmsMessageId: Long): Boolean {
+        val mmsDb = DatabaseFactory.getMmsDatabase(context)
+        return mmsDb.getMessage(mmsMessageId).use { cursor ->
+            mmsDb.readerFor(cursor).next
+        }.isOutgoing
     }
 
     override fun isOutgoingMessage(timestamp: Long): Boolean {

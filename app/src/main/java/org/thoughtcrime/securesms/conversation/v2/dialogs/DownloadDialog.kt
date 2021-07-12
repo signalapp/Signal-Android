@@ -9,6 +9,8 @@ import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.dialog_download.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact
+import org.session.libsession.messaging.jobs.AttachmentDownloadJob
+import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -36,6 +38,12 @@ class DownloadDialog(private val recipient: Recipient) : BaseDialog() {
     }
 
     private fun trust() {
-        // TODO: Implement
+        val contactDB = DatabaseFactory.getSessionContactDatabase(requireContext())
+        val sessionID = recipient.address.toString()
+        val contact = contactDB.getContactWithSessionID(sessionID) ?: return
+        val threadID = DatabaseFactory.getThreadDatabase(requireContext()).getThreadIdIfExistsFor(recipient)
+        contactDB.setContactIsTrusted(contact, true, threadID)
+        JobQueue.shared.resumePendingJobs(AttachmentDownloadJob.KEY)
+        dismiss()
     }
 }

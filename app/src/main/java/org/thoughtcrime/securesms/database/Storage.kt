@@ -503,9 +503,9 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val mmsDb = DatabaseFactory.getMmsDatabase(context)
         val cursor = mmsDb.getMessage(mmsId)
         val reader = mmsDb.readerFor(cursor)
-        val threadId = reader.next.threadId
+        val threadId = reader.next?.threadId
         cursor.close()
-        return threadId
+        return threadId ?: -1
     }
 
     override fun getContactWithSessionID(sessionID: String): Contact? {
@@ -518,6 +518,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun setContact(contact: Contact) {
         DatabaseFactory.getSessionContactDatabase(context).setContact(contact)
+    }
+
+    override fun getRecipientForThread(threadId: Long): Recipient? {
+        return DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId)
     }
 
     override fun getRecipientSettings(address: Address): Recipient.RecipientSettings? {

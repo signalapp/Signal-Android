@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.BaseActionBarActivity
+import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 
 fun BaseActionBarActivity.setUpActionBarSessionLogo(hideBackButton: Boolean = false) {
     val actionbar = supportActionBar!!
@@ -65,4 +66,5 @@ interface ActivityDispatcher {
         fun get(context: Context) = context.getSystemService(SERVICE) as? ActivityDispatcher
     }
     fun dispatchIntent(body: (Context)->Intent?)
+    fun showDialog(baseDialog: BaseDialog, tag: String? = null)
 }

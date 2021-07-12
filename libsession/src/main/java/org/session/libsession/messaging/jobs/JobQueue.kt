@@ -20,7 +20,7 @@ class JobQueue : JobDelegate {
     private val jobTimestampMap = ConcurrentHashMap<Long, AtomicInteger>()
     private val rxDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
     private val txDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
-    private val attachmentDispatcher = Executors.newFixedThreadPool(2).asCoroutineDispatcher()
+    private val attachmentDispatcher = Executors.newFixedThreadPool(4).asCoroutineDispatcher()
     private val scope = GlobalScope + SupervisorJob()
     private val queue = Channel<Job>(UNLIMITED)
     private val pendingJobIds = mutableSetOf<String>()
@@ -100,6 +100,23 @@ class JobQueue : JobDelegate {
         Log.d("Loki", "resumed pending send message $id")
     }
 
+    fun resumePendingJobs(typeKey: String) {
+        val allPendingJobs = MessagingModuleConfiguration.shared.storage.getAllPendingJobs(typeKey)
+        val pendingJobs = mutableListOf<Job>()
+        for ((id, job) in allPendingJobs) {
+            if (job == null) {
+                // Job failed to deserialize, remove it from the DB
+                handleJobFailedPermanently(id)
+            } else {
+                pendingJobs.add(job)
+            }
+        }
+        pendingJobs.sortedBy { it.id }.forEach { job ->
+            Log.i("Loki", "Resuming pending job of type: ${job::class.simpleName}.")
+            queue.offer(job) // Offer always called on unlimited capacity
+        }
+    }
+
     fun resumePendingJobs() {
         if (hasResumedPendingJobs) {
             Log.d("Loki", "resumePendingJobs() should only be called once.")
@@ -114,20 +131,7 @@ class JobQueue : JobDelegate {
             NotifyPNServerJob.KEY
         )
         allJobTypes.forEach { type ->
-            val allPendingJobs = MessagingModuleConfiguration.shared.storage.getAllPendingJobs(type)
-            val pendingJobs = mutableListOf<Job>()
-            for ((id, job) in allPendingJobs) {
-                if (job == null) {
-                    // Job failed to deserialize, remove it from the DB
-                    handleJobFailedPermanently(id)
-                } else {
-                    pendingJobs.add(job)
-                }
-            }
-            pendingJobs.sortedBy { it.id }.forEach { job ->
-                Log.i("Loki", "Resuming pending job of type: ${job::class.simpleName}.")
-                queue.offer(job) // Offer always called on unlimited capacity
-            }
+            resumePendingJobs(type)
         }
     }
 

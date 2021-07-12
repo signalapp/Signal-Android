@@ -90,6 +90,7 @@ import org.thoughtcrime.securesms.conversation.v2.messages.*
 import org.thoughtcrime.securesms.conversation.v2.search.SearchBottomBar
 import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
 import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager
+import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
@@ -262,6 +263,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     override fun dispatchIntent(body: (Context) -> Intent?) {
         val intent = body(this) ?: return
         push(intent, false)
+    }
+
+    override fun showDialog(baseDialog: BaseDialog, tag: String?) {
+        baseDialog.show(supportFragmentManager, tag)
     }
 
     private fun setUpRecyclerView() {

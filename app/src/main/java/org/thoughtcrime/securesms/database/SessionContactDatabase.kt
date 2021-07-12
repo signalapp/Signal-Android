@@ -45,6 +45,17 @@ class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Da
         }.toSet()
     }
 
+    fun setContactIsTrusted(contact: Contact, isTrusted: Boolean, threadID: Long) {
+        val database = databaseHelper.writableDatabase
+        val contentValues = ContentValues(1)
+        contentValues.put(Companion.isTrusted, if (isTrusted) 1 else 0)
+        database.update(sessionContactTable, contentValues, "$sessionID = ?", arrayOf( contact.sessionID ))
+        if (threadID >= 0) {
+            notifyConversationListeners(threadID)
+        }
+        notifyConversationListListeners()
+    }
+
     fun setContact(contact: Contact) {
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(8)
@@ -56,7 +67,7 @@ class SessionContactDatabase(context: Context, helper: SQLCipherOpenHelper) : Da
         contact.profilePictureEncryptionKey?.let {
             contentValues.put(profilePictureEncryptionKey, Base64.encodeBytes(it))
         }
-        contentValues.put(threadID, threadID)
+        contentValues.put(threadID, contact.threadID)
         contentValues.put(isTrusted, if (contact.isTrusted) 1 else 0)
         database.insertOrUpdate(sessionContactTable, contentValues, "$sessionID = ?", arrayOf( contact.sessionID ))
         notifyConversationListListeners()

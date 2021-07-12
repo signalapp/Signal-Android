@@ -63,7 +63,7 @@ class VisibleMessageContentView : LinearLayout {
 
     // region Updating
     fun bind(message: MessageRecord, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean,
-        glide: GlideRequests, maxWidth: Int, thread: Recipient, searchQuery: String?) {
+        glide: GlideRequests, maxWidth: Int, thread: Recipient, searchQuery: String?, contactIsTrusted: Boolean) {
         // Background
         val background = getBackground(message.isOutgoing, isStartOfMessageCluster, isEndOfMessageCluster)
         val colorID = if (message.isOutgoing) R.attr.message_sent_background_color else R.attr.message_received_background_color
@@ -108,32 +108,56 @@ class VisibleMessageContentView : LinearLayout {
                 }
             }
         } else if (message is MmsMessageRecord && message.slideDeck.audioSlide != null) {
-            val voiceMessageView = VoiceMessageView(context)
-            voiceMessageView.index = viewHolderIndex
-            voiceMessageView.delegate = context as? ConversationActivityV2
-            voiceMessageView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster)
-            mainContainer.addView(voiceMessageView)
-            // We have to use onContentClick (rather than a click listener directly on the voice
-            // message view) so as to not interfere with all the other gestures.
-            onContentClick = { voiceMessageView.togglePlayback() }
-            onContentDoubleTap = { voiceMessageView.handleDoubleTap() }
+            // Audio attachment
+            if (contactIsTrusted || message.isOutgoing) {
+                val voiceMessageView = VoiceMessageView(context)
+                voiceMessageView.index = viewHolderIndex
+                voiceMessageView.delegate = context as? ConversationActivityV2
+                voiceMessageView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster)
+                mainContainer.addView(voiceMessageView)
+                // We have to use onContentClick (rather than a click listener directly on the voice
+                // message view) so as to not interfere with all the other gestures.
+                onContentClick = { voiceMessageView.togglePlayback() }
+                onContentDoubleTap = { voiceMessageView.handleDoubleTap() }
+            } else {
+                val untrustedView = UntrustedAttachmentView(context)
+                untrustedView.bind(UntrustedAttachmentView.AttachmentType.AUDIO, VisibleMessageContentView.getTextColor(context,message))
+                mainContainer.addView(untrustedView)
+                onContentClick = { untrustedView.showTrustDialog(message.individualRecipient) }
+            }
         } else if (message is MmsMessageRecord && message.slideDeck.documentSlide != null) {
-            val documentView = DocumentView(context)
-            documentView.bind(message, VisibleMessageContentView.getTextColor(context, message))
-            mainContainer.addView(documentView)
+            // Document attachment
+            if (contactIsTrusted || message.isOutgoing) {
+                val documentView = DocumentView(context)
+                documentView.bind(message, VisibleMessageContentView.getTextColor(context, message))
+                mainContainer.addView(documentView)
+            } else {
+                val untrustedView = UntrustedAttachmentView(context)
+                untrustedView.bind(UntrustedAttachmentView.AttachmentType.DOCUMENT, VisibleMessageContentView.getTextColor(context,message))
+                mainContainer.addView(untrustedView)
+                onContentClick = { untrustedView.showTrustDialog(message.individualRecipient) }
+            }
         } else if (message is MmsMessageRecord && message.slideDeck.asAttachments().isNotEmpty()) {
-            val albumThumbnailView = AlbumThumbnailView(context)
-            mainContainer.addView(albumThumbnailView)
-            // isStart and isEnd of cluster needed for calculating the mask for full bubble image groups
-            // bind after add view because views are inflated and calculated during bind
-            albumThumbnailView.bind(
-                glideRequests = glide,
-                message = message,
-                isStart = isStartOfMessageCluster,
-                isEnd = isEndOfMessageCluster
-            )
-            onContentClick = { event ->
-                albumThumbnailView.calculateHitObject(event, message, thread)
+            // Images/Video attachment
+            if (contactIsTrusted || message.isOutgoing) {
+                val albumThumbnailView = AlbumThumbnailView(context)
+                mainContainer.addView(albumThumbnailView)
+                // isStart and isEnd of cluster needed for calculating the mask for full bubble image groups
+                // bind after add view because views are inflated and calculated during bind
+                albumThumbnailView.bind(
+                        glideRequests = glide,
+                        message = message,
+                        isStart = isStartOfMessageCluster,
+                        isEnd = isEndOfMessageCluster
+                )
+                onContentClick = { event ->
+                    albumThumbnailView.calculateHitObject(event, message, thread)
+                }
+            } else {
+                val untrustedView = UntrustedAttachmentView(context)
+                untrustedView.bind(UntrustedAttachmentView.AttachmentType.MEDIA, VisibleMessageContentView.getTextColor(context,message))
+                mainContainer.addView(untrustedView)
+                onContentClick = { untrustedView.showTrustDialog(message.individualRecipient) }
             }
         } else if (message.isOpenGroupInvitation) {
             val openGroupInvitationView = OpenGroupInvitationView(context)

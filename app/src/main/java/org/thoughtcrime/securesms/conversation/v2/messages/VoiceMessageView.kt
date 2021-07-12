@@ -31,7 +31,6 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
     private var progress = 0.0
     private var duration = 0L
     private var player: AudioSlidePlayer? = null
-    private var isPreparing = false
     var delegate: VoiceMessageViewDelegate? = null
     var index = -1
 
@@ -51,7 +50,7 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
     // region Updating
     fun bind(message: MmsMessageRecord, isStartOfMessageCluster: Boolean, isEndOfMessageCluster: Boolean) {
         val audio = message.slideDeck.audioSlide!!
-        voiceMessageViewLoader.isVisible = audio.isPendingDownload
+        voiceMessageViewLoader.isVisible = audio.isInProgress
         val cornerRadii = MessageBubbleUtilities.calculateRadii(context, isStartOfMessageCluster, isEndOfMessageCluster, message.isOutgoing)
         cornerMask.setTopLeftRadius(cornerRadii[0])
         cornerMask.setTopRightRadius(cornerRadii[1])

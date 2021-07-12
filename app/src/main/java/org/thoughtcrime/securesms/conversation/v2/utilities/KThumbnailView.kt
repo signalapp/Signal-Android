@@ -40,6 +40,7 @@ open class KThumbnailView: FrameLayout {
     private val image by lazy { thumbnail_image }
     private val playOverlay by lazy { play_overlay }
     val loadIndicator: View by lazy { thumbnail_load_indicator }
+    val downloadIndicator: View by lazy { thumbnail_download_icon }
 
     private val dimensDelegate = ThumbnailDimensDelegate()
 
@@ -108,7 +109,8 @@ open class KThumbnailView: FrameLayout {
 
         this.slide = slide
 
-        loadIndicator.isVisible = slide.isInProgress && !mms.isFailed
+        loadIndicator.isVisible = slide.isInProgress
+        downloadIndicator.isVisible = slide.transferState == AttachmentTransferProgress.TRANSFER_PROGRESS_FAILED
 
         dimensDelegate.setDimens(naturalWidth, naturalHeight)
         invalidate()
