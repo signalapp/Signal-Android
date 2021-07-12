@@ -234,6 +234,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
       intent.setDataAndType(resolvedExtra, mimeType);
     } else if (resolvedPlaintext != null) {
       intent.putExtra(Intent.EXTRA_TEXT, resolvedPlaintext);
+      intent.setType("text/plain");
     }
 
     return intent;
