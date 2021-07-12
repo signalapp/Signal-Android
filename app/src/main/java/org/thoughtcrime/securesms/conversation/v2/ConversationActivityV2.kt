@@ -76,8 +76,9 @@ import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.audio.AudioRecorder
+import org.thoughtcrime.securesms.contacts.SelectContactsActivity
+import org.thoughtcrime.securesms.contacts.SelectContactsActivity.Companion.selectedContactsKey
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
-
 import org.thoughtcrime.securesms.conversation.v2.dialogs.*
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -91,6 +92,7 @@ import org.thoughtcrime.securesms.conversation.v2.search.SearchBottomBar
 import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
 import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
+import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
@@ -101,10 +103,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
-import org.thoughtcrime.securesms.contacts.SelectContactsActivity
-import org.thoughtcrime.securesms.contacts.SelectContactsActivity.Companion.selectedContactsKey
-import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
-import org.thoughtcrime.securesms.util.toPx
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity
 import org.thoughtcrime.securesms.mms.*
@@ -359,12 +357,16 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 })
                 return
             }
+        } else if (intent.hasExtra(Intent.EXTRA_TEXT)) {
+            val dataTextExtra = intent.getCharSequenceExtra(Intent.EXTRA_TEXT) ?: ""
+            inputBar.text = dataTextExtra.toString()
+        } else {
+            val draftDB = DatabaseFactory.getDraftDatabase(this)
+            val drafts = draftDB.getDrafts(threadID)
+            draftDB.clearDrafts(threadID)
+            val text = drafts.find { it.type == DraftDatabase.Draft.TEXT }?.value ?: return
+            inputBar.text = text
         }
-        val draftDB = DatabaseFactory.getDraftDatabase(this)
-        val drafts = draftDB.getDrafts(threadID)
-        draftDB.clearDrafts(threadID)
-        val text = drafts.find { it.type == DraftDatabase.Draft.TEXT }?.value ?: return
-        inputBar.text = text
     }
 
     private fun addOpenGroupGuidelinesIfNeeded() {
@@ -883,6 +885,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         } else {
             sendTextOnlyMessage()
         }
+    }
+
+    override fun commitInputContent(contentUri: Uri) {
+        val media = Media(contentUri, MediaUtil.getMimeType(this, contentUri)!!, 0, 0, 0, 0, Optional.absent(), Optional.absent())
+        startActivityForResult(MediaSendActivity.buildEditorIntent(this, listOf( media ), thread, getMessageBody()), ConversationActivityV2.PICK_FROM_LIBRARY)
     }
 
     private fun sendTextOnlyMessage() {
