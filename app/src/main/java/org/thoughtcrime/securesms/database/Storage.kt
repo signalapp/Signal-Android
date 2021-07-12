@@ -39,12 +39,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return TextSecurePreferences.getLocalNumber(context)
     }
 
-    override fun getUserKeyPair(): Pair<String, ByteArray>? {
-        val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return null
-        val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
-        return Pair(userPublicKey, userPrivateKey)
-    }
-
     override fun getUserX25519KeyPair(): ECKeyPair {
         return DatabaseFactory.getLokiAPIDatabase(context).getUserX25519KeyPair()
     }

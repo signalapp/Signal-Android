@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/default_dialog_background_inset"
     android:gravity="center_horizontal"
     android:orientation="vertical"
@@ -18,7 +19,7 @@
         android:textSize="@dimen/medium_font_size" />
 
     <TextView
-        android:id="@+id/seedTextView"
+        android:id="@+id/dialogDescriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
@@ -49,6 +50,17 @@
             android:layout_weight="1"
             android:layout_marginStart="@dimen/medium_spacing"
             android:text="@string/delete" />
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            style="@style/SpinKitView.Small.ThreeBounce"
+            android:layout_marginVertical="@dimen/small_spacing"
+            android:id="@+id/progressBar"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/small_button_height"
+            android:layout_weight="1"
+            app:SpinKit_Color="@color/accent"
+            android:visibility="gone"
+            />
 
     </LinearLayout>
 

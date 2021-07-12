@@ -303,6 +303,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     private fun clearAllData() {
         ClearAllDataDialog().show(supportFragmentManager, "Clear All Data Dialog")
     }
+
     // endregion
 
     private inner class DisplayNameEditActionModeCallback: ActionMode.Callback {

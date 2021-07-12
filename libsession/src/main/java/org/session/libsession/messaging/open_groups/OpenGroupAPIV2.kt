@@ -172,9 +172,9 @@ object OpenGroupAPIV2 {
     }
 
     fun requestNewAuthToken(room: String, server: String): Promise<String, Exception> {
-        val (publicKey, privateKey) = MessagingModuleConfiguration.shared.storage.getUserKeyPair()
+        val (publicKey, privateKey) = MessagingModuleConfiguration.shared.storage.getUserX25519KeyPair().let { it.publicKey.serialize() to it.privateKey.serialize() }
             ?: return Promise.ofFail(Error.Generic)
-        val queryParameters = mutableMapOf( "public_key" to publicKey )
+        val queryParameters = mutableMapOf( "public_key" to publicKey.toHexString() )
         val request = Request(GET, room, server, "auth_token_challenge", queryParameters, isAuthRequired = false, parameters = null)
         return send(request).map { json ->
             val challenge = json["challenge"] as? Map<*, *> ?: throw Error.ParsingFailed

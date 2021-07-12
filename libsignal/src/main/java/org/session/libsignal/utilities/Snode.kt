@@ -7,7 +7,9 @@ class Snode(val address: String, val port: Int, val publicKeySet: KeySet?) {
         GetSwarm("get_snodes_for_pubkey"),
         GetMessages("retrieve"),
         SendMessage("store"),
-        OxenDaemonRPCCall("oxend_request")
+        OxenDaemonRPCCall("oxend_request"),
+        Info("info"),
+        DeleteAll("delete_all")
     }
 
     data class KeySet(val ed25519Key: String, val x25519Key: String)

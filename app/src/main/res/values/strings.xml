@@ -755,6 +755,7 @@
     <string name="activity_settings_invite_button_title">Invite</string>
     <string name="activity_settings_recovery_phrase_button_title">Recovery Phrase</string>
     <string name="activity_settings_clear_all_data_button_title">Clear Data</string>
+    <string name="activity_settings_clear_all_data_and_network_button_title">Clear Data Including Network</string>
     <string name="activity_settings_help_translate_session">Help us Translate Session</string>
 
     <string name="activity_notification_settings_title">Notifications</string>
@@ -777,6 +778,9 @@
 
     <string name="dialog_clear_all_data_title">Clear All Data</string>
     <string name="dialog_clear_all_data_explanation">This will permanently delete your messages, sessions, and contacts.</string>
+    <string name="dialog_clear_all_data_network_explanation">Would you like to clear only this device, or delete your entire account?</string>
+    <string name="dialog_clear_all_data_local_only">Delete Only</string>
+    <string name="dialog_clear_all_data_clear_network">Entire Account</string>
 
     <string name="activity_qr_code_title">QR Code</string>
     <string name="activity_qr_code_view_my_qr_code_tab_title">View My QR Code</string>
