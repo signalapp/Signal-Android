@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Sessió</string>
+    <string name="app_name">Session</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="delete">Suprimeix</string>
@@ -54,7 +54,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted">Ha fallat l\'enviament. Toqueu per al mode no segur.</string>
     <string name="ConversationItem_unable_to_open_media">No s\'ha trobat una aplicació que pugui obrir aquest fitxer.</string>
     <string name="ConversationItem_copied_text">S\'ha copiat %s</string>
-    <string name="ConversationItem_read_more">  Més informació</string>
+    <string name="ConversationItem_read_more">Read More</string>
     <string name="ConversationItem_download_more">  Baixa\'n més</string>
     <string name="ConversationItem_pending">  Pendent</string>
     <!-- ConversationActivity -->
@@ -261,7 +261,7 @@ d\'intercanvi de claus!</string>
     <string name="MediaPreviewActivity_you">Jo</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Tipus de fitxer no compatible</string>
     <string name="MediaPreviewActivity_draft">Esborrany</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">El Session necessita el permís de l\'emmagatzematge per tal de desar en un emmagatzematge extern, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi l\'emmagatzematge.</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session needs storage access in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">No es pot desar en un emmagatzematge extern sense permís.</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Voleu suprimir el missatge?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Aquest missatge se suprimirà permanentment.</string>
@@ -600,12 +600,14 @@ d\'intercanvi de claus!</string>
     <string name="activity_path_service_node_row_title">Node de servei</string>
     <string name="activity_path_destination_row_title">Destinació</string>
     <string name="activity_path_learn_more_button_title">Aprèn-ne més</string>
+    <string name="activity_path_resolving_progress">Resolving…</string>
     <string name="activity_create_private_chat_title">Nova sessió</string>
-    <string name="activity_create_private_chat_enter_session_id_tab_title">Introdueix la teva ID de Session</string>
+    <string name="activity_create_private_chat_enter_session_id_tab_title">Introdueix el teu ID de Session</string>
     <string name="activity_create_private_chat_scan_qr_code_tab_title">Escaneja el codi QR</string>
     <string name="activity_create_private_chat_scan_qr_code_explanation">Escaneja el codi QR d’un usuari per a iniciar una sessió. Es poden trobar codis QR tocant la icona de codi QR a la configuració del compte.</string>
-    <string name="fragment_enter_public_key_edit_text_hint">Introdueix la ID de Session del destinatari</string>
-    <string name="fragment_enter_public_key_explanation">Els usuaris poden compartir el seu ID de Session accedint a la configuració del compte i tocant \'Comparteix la ID de Session\' o compartint el seu codi QR.</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID or ONS name</string>
+    <string name="fragment_enter_public_key_explanation">Els usuaris poden compartir el seu ID de Session accedint a la configuració del compte i tocant \'Comparteix l\'ID de Session\' o compartint el seu codi QR.</string>
+    <string name="fragment_enter_public_key_error_message">Please check the Session ID or ONS name and try again.</string>
     <string name="fragment_scan_qr_code_camera_access_explanation">Session necessita accés a la càmera per escanejar codis QR</string>
     <string name="fragment_scan_qr_code_grant_camera_access_button_title">Permet accés a la càmera</string>
     <string name="activity_create_closed_group_title">Nou grup tancat</string>
@@ -640,10 +642,12 @@ d\'intercanvi de claus!</string>
     <string name="activity_privacy_settings_title">Privadesa</string>
     <string name="activity_chat_settings_title">Xats</string>
     <string name="preferences_notifications_strategy_category_title">Estratègia de les notificacions</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_title">Use Fast Mode</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_summary">You’ll be notified of new messages reliably and immediately using Google’s notification servers.</string>
     <string name="fragment_device_list_bottom_sheet_change_name_button_title">Canvia el nom</string>
     <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Desenllaça el dispositiu</string>
     <string name="dialog_seed_title">La teva frase de recuperació</string>
-    <string name="dialog_seed_explanation">Aquesta és la teva frase de recuperació. Pots restaurar-ne o migrar-ne la teva ID de Session cap a un nou dispositiu.</string>
+    <string name="dialog_seed_explanation">Aquesta és la teva frase de recuperació. Pots restaurar-ne o migrar-ne el teu ID de Session cap a un nou dispositiu.</string>
     <string name="dialog_clear_all_data_title">Esborra totes les dades</string>
     <string name="dialog_clear_all_data_explanation">Això esborrarà tots els missatges, sessions i contactes permanentment.</string>
     <string name="activity_qr_code_title">Codi QR</string>
@@ -674,7 +678,7 @@ d\'intercanvi de claus!</string>
     <string name="dialog_ui_mode_option_day">Dia</string>
     <string name="dialog_ui_mode_option_night">Nit</string>
     <string name="dialog_ui_mode_option_system_default">Per defecte del sistema</string>
-    <string name="activity_conversation_menu_copy_session_id">Copia la ID de Session</string>
+    <string name="activity_conversation_menu_copy_session_id">Copia l\'ID de Session</string>
     <string name="attachment">Adjunt</string>
     <string name="attachment_type_voice_message">Missatge de veu</string>
     <string name="details">Detalls</string>
@@ -685,6 +689,9 @@ d\'intercanvi de claus!</string>
     <string name="activity_backup_restore_passphrase">Frase de pas de 30 dígits</string>
     <string name="activity_link_device_skip_prompt">Això triga un xic, t\'ho vols saltar?</string>
     <string name="activity_link_device_link_device">Enllaça un dispositiu</string>
+    <string name="activity_link_device_recovery_phrase">Recovery Phrase</string>
+    <string name="activity_link_device_scan_qr_code">Scan QR Code</string>
+    <string name="activity_link_device_qr_message">Navigate to Settings → Recovery Phrase on your other device to show your QR code.</string>
     <string name="activity_join_public_chat_join_rooms">O uneix-te a alguns d\'aquests…</string>
     <string name="activity_pn_mode_message_notifications">Notificacions de missatge</string>
     <string name="activity_pn_mode_explanation">Hi ha dues maneres per les quals Session et pot notificar els missatges nous.</string>
@@ -697,4 +704,20 @@ d\'intercanvi de claus!</string>
     <string name="activity_prompt_passphrase_tap_to_unlock">Toca per a desblocar</string>
     <string name="fragment_user_details_bottom_sheet_edit_text_hint">Introdueix una sobrenom</string>
     <string name="invalid_public_key">Clau pública invàlida</string>
+    <string name="document">Document</string>
+    <string name="dialog_blocked_title">Unblock %s?</string>
+    <string name="dialog_blocked_explanation">Are you sure you want to unblock %s?</string>
+    <string name="dialog_join_open_group_title">Join %s?</string>
+    <string name="dialog_join_open_group_explanation">Are you sure you want to join the %s open group?</string>
+    <string name="dialog_open_url_title">Open URL?</string>
+    <string name="dialog_open_url_explanation">Are you sure you want to open %s?</string>
+    <string name="open">Open</string>
+    <string name="dialog_link_preview_title">Enable Link Previews?</string>
+    <string name="dialog_link_preview_explanation">Enabling link previews will show previews for URLs you send and receive. This can be useful, but Session will need to contact linked websites to generate previews. You can always disable link previews in Session\'s settings.</string>
+    <string name="dialog_link_preview_enable_button_title">Enable</string>
+    <string name="dialog_download_title">Trust %s?</string>
+    <string name="dialog_download_explanation">Are you sure you want to download media sent by %s?</string>
+    <string name="dialog_download_button_title">Download</string>
+    <string name="activity_conversation_blocked_banner_text">%s is blocked. Unblock them?</string>
+    <string name="activity_conversation_attachment_prep_failed">Failed to prepare attachment for sending.</string>
 </resources>

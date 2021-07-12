@@ -95,7 +95,7 @@ public class LinkPreviewRepository implements InjectableType {
 
   private @NonNull RequestController fetchMetadata(@NonNull String url, Callback<Metadata> callback) {
     Call call = client.newCall(new Request.Builder().url(url).removeHeader("User-Agent").addHeader("User-Agent",
-            "WhatsApp").cacheControl(NO_CACHE).build());
+        "WhatsApp").cacheControl(NO_CACHE).build());
 
     call.enqueue(new okhttp3.Callback() {
       @Override
@@ -186,18 +186,18 @@ public class LinkPreviewRepository implements InjectableType {
     byte[] bytes = baos.toByteArray();
     Uri    uri   = BlobProvider.getInstance().forData(bytes).createForSingleSessionInMemory();
 
-    return  Optional.of(new UriAttachment(uri,
-            uri,
-            contentType,
-            AttachmentTransferProgress.TRANSFER_PROGRESS_STARTED,
-            bytes.length,
-            bitmap.getWidth(),
-            bitmap.getHeight(),
-            null,
-            null,
-            false,
-            false,
-            null));
+    return Optional.of(new UriAttachment(uri,
+           uri,
+           contentType,
+           AttachmentTransferProgress.TRANSFER_PROGRESS_STARTED,
+           bytes.length,
+           bitmap.getWidth(),
+           bitmap.getHeight(),
+           null,
+           null,
+           false,
+           false,
+           null));
 
   }
 

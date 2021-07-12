@@ -17,15 +17,11 @@ import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.utilities.MessageWrapper
-import org.session.libsession.utilities.IdentityKeyUtil
-import org.session.libsession.utilities.KeyPairUtilities
 import org.session.libsignal.crypto.getRandomElement
 import org.session.libsignal.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.protos.SignalServiceProtos
 import org.session.libsignal.utilities.*
 import org.session.libsignal.utilities.Base64
-import org.whispersystems.curve25519.Curve25519
-import java.nio.charset.Charset
 import java.security.SecureRandom
 import java.util.*
 import kotlin.Pair
@@ -175,7 +171,7 @@ object SnodeAPI {
         val validationCount = 3
         val sessionIDByteCount = 33
         // Hash the ONS name using BLAKE2b
-        val onsName = onsName.toLowerCase(Locale.ENGLISH)
+        val onsName = onsName.toLowerCase(Locale.US)
         val nameAsData = onsName.toByteArray()
         val nameHash = ByteArray(GenericHash.BYTES)
         if (!sodium.cryptoGenericHash(nameHash, nameHash.size, nameAsData, nameAsData.size.toLong())) {
@@ -304,9 +300,7 @@ object SnodeAPI {
             getTargetSnodes(destination).map { swarm ->
                 swarm.map { snode ->
                     val parameters = message.toJSON()
-                    retryIfNeeded(maxRetryCount) {
-                        invoke(Snode.Method.SendMessage, snode, destination, parameters)
-                    }
+                    invoke(Snode.Method.SendMessage, snode, destination, parameters)
                 }.toSet()
             }
         }
@@ -341,8 +335,9 @@ object SnodeAPI {
 
         return retryIfNeeded(maxRetryCount) {
             // considerations: timestamp off in retrying logic, not being able to re-sign with latest timestamp? do we just not retry this as it will be synchronous
-            val userED25519KeyPair = KeyPairUtilities.getUserED25519KeyPair(context) ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
-            val userPublicKey = MessagingModuleConfiguration.shared.storage.getUserPublicKey() ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
+            val module = MessagingModuleConfiguration.shared
+            val userED25519KeyPair = module.keyPairProvider() ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
+            val userPublicKey = module.storage.getUserPublicKey() ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
 
             getSingleTargetSnode(userPublicKey).bind { snode ->
                 retryIfNeeded(maxRetryCount) {

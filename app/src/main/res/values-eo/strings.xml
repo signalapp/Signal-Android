@@ -54,7 +54,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted">Sendado malsukcesis, tuŝeti por nesekura retropaŝo</string>
     <string name="ConversationItem_unable_to_open_media">Ne povas trovi aplikaĵon, kiu kapablas malfermi ĉi tiun aŭdvidaĵon.</string>
     <string name="ConversationItem_copied_text">Kopiinta %s</string>
-    <string name="ConversationItem_read_more">&#160; Legi pli</string>
+    <string name="ConversationItem_read_more">Read More</string>
     <string name="ConversationItem_download_more">   Elŝuti pli</string>
     <string name="ConversationItem_pending">  Pritraktota</string>
     <!-- ConversationActivity -->
@@ -262,7 +262,7 @@
     <string name="MediaPreviewActivity_you">Vi</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Nesubtenata tipo de aŭdvidaĵo</string>
     <string name="MediaPreviewActivity_draft">Malneto</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session bezonas la permeson aliri al konservejo por konservi al ekstera konservejo, sed ĝi estis porĉiame malakceptita. Bonvolu iri al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Konservejo“.</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session needs storage access in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Ne eblas konservi en la ekstera konservejo sen permesoj</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Ĉu forviŝi mesaĝon?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Tio daŭre forviŝos ĉi tiun mesaĝon.</string>
@@ -601,12 +601,14 @@
     <string name="activity_path_service_node_row_title">Serva Nodo</string>
     <string name="activity_path_destination_row_title">Celo</string>
     <string name="activity_path_learn_more_button_title">Lerni pli</string>
+    <string name="activity_path_resolving_progress">Resolving…</string>
     <string name="activity_create_private_chat_title">Nova Sesio</string>
     <string name="activity_create_private_chat_enter_session_id_tab_title">Entajpu Session ID-on</string>
     <string name="activity_create_private_chat_scan_qr_code_tab_title">Skani QR-Kodon</string>
     <string name="activity_create_private_chat_scan_qr_code_explanation">Skanu QR-kodon de uzanto por komenci sesion. QR-kodoj povas esti trovitaj per tuŝeti la QR-kodan bildeton en la konta agordo.</string>
-    <string name="fragment_enter_public_key_edit_text_hint">Entajpu la Session ID-on de la ricevanto</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID or ONS name</string>
     <string name="fragment_enter_public_key_explanation">Uzantoj povas kunhavigi sian Session ID-on per irante en sia konta agordo kaj tuŝeti \"Kunhavigi Session ID-on\", aŭ per kunhavigi sian QR-kodon.</string>
+    <string name="fragment_enter_public_key_error_message">Please check the Session ID or ONS name and try again.</string>
     <string name="fragment_scan_qr_code_camera_access_explanation">Sesio bezonas fotilan aliron por skani QR-kodojn</string>
     <string name="fragment_scan_qr_code_grant_camera_access_button_title">Permesi Fotilan Aliron</string>
     <string name="activity_create_closed_group_title">Nova Ferma Grupo</string>
@@ -641,6 +643,8 @@
     <string name="activity_privacy_settings_title">Privateco</string>
     <string name="activity_chat_settings_title">Interparoloj</string>
     <string name="preferences_notifications_strategy_category_title">Sciiga Strategio</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_title">Use Fast Mode</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_summary">You’ll be notified of new messages reliably and immediately using Google’s notification servers.</string>
     <string name="fragment_device_list_bottom_sheet_change_name_button_title">Ŝanĝi nomon</string>
     <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Malligi aparaton</string>
     <string name="dialog_seed_title">Via Ripara Frazo</string>
@@ -686,6 +690,9 @@
     <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
     <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
     <string name="activity_link_device_link_device">Ligi Aparaton</string>
+    <string name="activity_link_device_recovery_phrase">Recovery Phrase</string>
+    <string name="activity_link_device_scan_qr_code">Scan QR Code</string>
+    <string name="activity_link_device_qr_message">Navigate to Settings → Recovery Phrase on your other device to show your QR code.</string>
     <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
     <string name="activity_pn_mode_message_notifications">Sciigoj pri Mesaĝoj</string>
     <string name="activity_pn_mode_explanation">There are two ways Session can notify you of new messages.</string>
@@ -698,4 +705,20 @@
     <string name="activity_prompt_passphrase_tap_to_unlock">Tuŝetu por Malŝlosi</string>
     <string name="fragment_user_details_bottom_sheet_edit_text_hint">Enter a nickname</string>
     <string name="invalid_public_key">Invalid public key</string>
+    <string name="document">Document</string>
+    <string name="dialog_blocked_title">Unblock %s?</string>
+    <string name="dialog_blocked_explanation">Are you sure you want to unblock %s?</string>
+    <string name="dialog_join_open_group_title">Join %s?</string>
+    <string name="dialog_join_open_group_explanation">Are you sure you want to join the %s open group?</string>
+    <string name="dialog_open_url_title">Open URL?</string>
+    <string name="dialog_open_url_explanation">Are you sure you want to open %s?</string>
+    <string name="open">Open</string>
+    <string name="dialog_link_preview_title">Enable Link Previews?</string>
+    <string name="dialog_link_preview_explanation">Enabling link previews will show previews for URLs you send and receive. This can be useful, but Session will need to contact linked websites to generate previews. You can always disable link previews in Session\'s settings.</string>
+    <string name="dialog_link_preview_enable_button_title">Enable</string>
+    <string name="dialog_download_title">Trust %s?</string>
+    <string name="dialog_download_explanation">Are you sure you want to download media sent by %s?</string>
+    <string name="dialog_download_button_title">Download</string>
+    <string name="activity_conversation_blocked_banner_text">%s is blocked. Unblock them?</string>
+    <string name="activity_conversation_attachment_prep_failed">Failed to prepare attachment for sending.</string>
 </resources>

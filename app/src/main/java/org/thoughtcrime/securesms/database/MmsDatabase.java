@@ -34,41 +34,40 @@ import net.sqlcipher.database.SQLiteDatabase;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.session.libsession.utilities.GroupUtil;
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment;
-import org.session.libsession.utilities.IdentityKeyMismatch;
-import org.session.libsession.utilities.IdentityKeyMismatchList;
-import org.session.libsession.utilities.NetworkFailure;
-import org.session.libsession.utilities.NetworkFailureList;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.Quote;
 import org.session.libsession.messaging.messages.signal.IncomingMediaMessage;
-import org.thoughtcrime.securesms.mms.MmsException;
 import org.session.libsession.messaging.messages.signal.OutgoingExpirationUpdateMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingGroupMediaMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingSecureMediaMessage;
-import org.thoughtcrime.securesms.mms.SlideDeck;
-
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
-import org.session.libsession.utilities.Contact;
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
 import org.session.libsession.utilities.Address;
+import org.session.libsession.utilities.Contact;
+import org.session.libsession.utilities.GroupUtil;
+import org.session.libsession.utilities.IdentityKeyMismatch;
+import org.session.libsession.utilities.IdentityKeyMismatchList;
+import org.session.libsession.utilities.NetworkFailure;
+import org.session.libsession.utilities.NetworkFailureList;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.recipients.RecipientFormattingException;
 import org.session.libsignal.utilities.JsonUtil;
-import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsession.utilities.Util;
-
 import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.ThreadUtils;
 import org.session.libsignal.utilities.guava.Optional;
+import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.Quote;
+import org.thoughtcrime.securesms.mms.MmsException;
+import org.thoughtcrime.securesms.mms.SlideDeck;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -883,14 +882,35 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
+  public void deleteQuotedFromMessages(MessageRecord toDeleteRecord) {
+    if (toDeleteRecord == null) { return; }
+    String query = THREAD_ID + " = ?";
+    Cursor threadMmsCursor = rawQuery(query, new String[]{String.valueOf(toDeleteRecord.getThreadId())});
+    Reader reader = readerFor(threadMmsCursor);
+    MmsMessageRecord messageRecord;
+
+    while ((messageRecord = (MmsMessageRecord) reader.getNext()) != null) {
+      if (messageRecord.getQuote() != null && toDeleteRecord.getDateSent() == messageRecord.getQuote().getId()) {
+        setQuoteMissing(messageRecord.getId());
+      }
+    }
+    reader.close();
+  }
+
   public boolean delete(long messageId) {
-    long               threadId           = getThreadIdForMessage(messageId);
+    long threadId = getThreadIdForMessage(messageId);
     AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
-    attachmentDatabase.deleteAttachmentsForMessage(messageId);
+    ThreadUtils.queue(() -> attachmentDatabase.deleteAttachmentsForMessage(messageId));
 
     GroupReceiptDatabase groupReceiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
     groupReceiptDatabase.deleteRowsForMessage(messageId);
 
+    MessageRecord toDelete;
+    try (Cursor messageCursor = getMessage(messageId)) {
+      toDelete = readerFor(messageCursor).getNext();
+    }
+
+    deleteQuotedFromMessages(toDelete);
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, ID_WHERE, new String[] {messageId+""});
     boolean threadDeleted = DatabaseFactory.getThreadDatabase(context).update(threadId, false);
@@ -1068,6 +1088,14 @@ public class MmsDatabase extends MessagingDatabase {
     return new OutgoingMessageReader(message, threadId);
   }
 
+  public int setQuoteMissing(long messageId) {
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(QUOTE_MISSING, 1);
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    int rows = database.update(TABLE_NAME, contentValues, ID + " = ?", new String[]{ String.valueOf(messageId) });
+    return rows;
+  }
+
   public static class Status {
     public static final int DOWNLOAD_INITIALIZED     = 1;
     public static final int DOWNLOAD_NO_CONNECTIVITY = 2;
@@ -1171,9 +1199,9 @@ public class MmsDatabase extends MessagingDatabase {
 
 
       return new NotificationMmsMessageRecord(id, recipient, recipient,
-                                              addressDeviceId, dateSent, dateReceived, deliveryReceiptCount, threadId,
+                                              dateSent, dateReceived, deliveryReceiptCount, threadId,
                                               contentLocationBytes, messageSize, expiry, status,
-                                              transactionIdBytes, mailbox, subscriptionId, slideDeck,
+                                              transactionIdBytes, mailbox, slideDeck,
                                               readReceiptCount);
     }
 

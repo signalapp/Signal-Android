@@ -10,10 +10,9 @@ import org.session.libsession.messaging.sending_receiving.notifications.MessageN
 import org.session.libsession.messaging.sending_receiving.pollers.Poller;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.Debouncer;
-import org.session.libsignal.utilities.Log;
 import org.session.libsignal.utilities.ThreadUtils;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.loki.api.OpenGroupManager;
+import org.thoughtcrime.securesms.groups.OpenGroupManager;
 
 import java.util.concurrent.TimeUnit;
 

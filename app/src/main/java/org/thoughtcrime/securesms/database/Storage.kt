@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.database
 
-import android.app.job.JobScheduler
 import android.content.Context
 import android.net.Uri
 import org.session.libsession.database.StorageProtocol
@@ -27,13 +26,11 @@ import org.session.libsignal.messages.SignalServiceGroup
 import org.session.libsignal.utilities.KeyHelper
 import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
-import org.thoughtcrime.securesms.loki.api.OpenGroupManager
-import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
-import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
-import org.thoughtcrime.securesms.loki.utilities.get
-import org.thoughtcrime.securesms.loki.utilities.getString
+import org.thoughtcrime.securesms.groups.OpenGroupManager
+import org.thoughtcrime.securesms.util.SessionMetaProtocol
 import org.thoughtcrime.securesms.mms.PartAuthority
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
@@ -99,7 +96,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             }
             else -> Optional.absent()
         }
-        val pointerAttachments = attachments.mapNotNull {
+        val pointers = attachments.mapNotNull {
             it.toSignalAttachment()
         }
         val targetAddress = if (isUserSender && !message.syncTarget.isNullOrEmpty()) {
@@ -115,7 +112,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             val linkPreviews: Optional<List<LinkPreview>> = if (linkPreview.isEmpty()) Optional.absent() else Optional.of(linkPreview.mapNotNull { it!! })
             val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
             val insertResult = if (message.sender == getUserPublicKey()) {
-                val mediaMessage = OutgoingMediaMessage.from(message, targetRecipient, pointerAttachments, quote.orNull(), linkPreviews.orNull()?.firstOrNull())
+                val mediaMessage = OutgoingMediaMessage.from(message, targetRecipient, pointers, quote.orNull(), linkPreviews.orNull()?.firstOrNull())
                 mmsDatabase.insertSecureDecryptedMessageOutbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)
             } else {
                 // It seems like we have replaced SignalServiceAttachment with SessionServiceAttachment
@@ -184,7 +181,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun resumeMessageSendJobIfNeeded(messageSendJobID: String) {
         val job = DatabaseFactory.getSessionJobDatabase(context).getMessageSendJob(messageSendJobID) ?: return
-        JobQueue.shared.add(job)
+        JobQueue.shared.resumePendingSendMessage(job)
     }
 
     override fun isJobCanceled(job: Job): Boolean {
@@ -295,6 +292,19 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         } else {
             val smsDatabase = DatabaseFactory.getSmsDatabase(context)
             smsDatabase.markAsSent(messageRecord.getId(), true)
+        }
+    }
+
+    override fun markAsSending(timestamp: Long, author: String) {
+        val database = DatabaseFactory.getMmsSmsDatabase(context)
+        val messageRecord = database.getMessageFor(timestamp, author) ?: return
+        if (messageRecord.isMms) {
+            val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
+            mmsDatabase.markAsSending(messageRecord.getId())
+        } else {
+            val smsDatabase = DatabaseFactory.getSmsDatabase(context)
+            smsDatabase.markAsSending(messageRecord.getId())
+            messageRecord.isPending
         }
     }
 
@@ -487,9 +497,9 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val mmsDb = DatabaseFactory.getMmsDatabase(context)
         val cursor = mmsDb.getMessage(mmsId)
         val reader = mmsDb.readerFor(cursor)
-        val threadId = reader.next.threadId
+        val threadId = reader.next?.threadId
         cursor.close()
-        return threadId
+        return threadId ?: -1
     }
 
     override fun getContactWithSessionID(sessionID: String): Contact? {
@@ -502,6 +512,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun setContact(contact: Contact) {
         DatabaseFactory.getSessionContactDatabase(context).setContact(contact)
+    }
+
+    override fun getRecipientForThread(threadId: Long): Recipient? {
+        return DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId)
     }
 
     override fun getRecipientSettings(address: Address): Recipient.RecipientSettings? {

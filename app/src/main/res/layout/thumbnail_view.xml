@@ -14,24 +14,22 @@
         android:scaleType="fitCenter"
         android:contentDescription="@string/conversation_item__mms_image_description" />
 
-    <ImageView
-        android:id="@+id/thumbnail_caption_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="6dp"
-        android:src="@drawable/ic_caption_28"
-        android:visibility="gone" />
-
-    <ProgressBar
+    <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailProgressBar
         android:id="@+id/thumbnail_load_indicator"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_gravity="center"
-        android:indeterminate="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/accent_line_thickness"
+        android:layout_gravity="bottom"
         android:visibility="gone"
-        android:indeterminateTint="@android:color/white"
-        android:indeterminateTintMode="src_in"
         tools:visibility="visible" />
+
+    <ImageView
+        android:src="@drawable/ic_download_circle_filled_48"
+        android:id="@+id/thumbnail_download_icon"
+        android:layout_width="@dimen/medium_button_height"
+        android:layout_height="@dimen/medium_button_height"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        />
 
     <FrameLayout
         android:id="@+id/play_overlay"
@@ -40,8 +38,7 @@
         android:background="@drawable/circle_white"
         android:layout_gravity="center"
         android:longClickable="false"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="19dp"

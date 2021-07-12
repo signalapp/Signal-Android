@@ -129,7 +129,17 @@ public class MmsSmsDatabase extends Database {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
 
-    return  queryTables(PROJECTION, selection, order, "1");
+    return queryTables(PROJECTION, selection, order, "1");
+  }
+
+  public long getLastMessageID(long threadId) {
+    String order     = MmsSmsColumns.NORMALIZED_DATE_SENT + " DESC";
+    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
+
+    try (Cursor cursor = queryTables(PROJECTION, selection, order, "1")) {
+      cursor.moveToFirst();
+      return cursor.getLong(cursor.getColumnIndex(MmsSmsColumns.ID));
+    }
   }
 
   public Cursor getUnread() {

@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.ExpirationInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.session.libsignal.utilities.Log;
-import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
+import org.thoughtcrime.securesms.util.SessionMetaProtocol;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 
 import java.util.LinkedList;
@@ -81,7 +81,6 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
     for (Address address : addressMap.keySet()) {
       List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
-      // Loki - Check whether we want to send a read receipt to this user
       if (!SessionMetaProtocol.shouldSendReadReceipt(address)) { continue; }
       ReadReceipt readReceipt = new ReadReceipt(timestamps);
       readReceipt.setSentTimestamp(System.currentTimeMillis());

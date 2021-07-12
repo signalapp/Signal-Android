@@ -5,7 +5,7 @@
         android:layout_height="match_parent"
         android:padding="2dp">
 
-    <org.thoughtcrime.securesms.components.ThumbnailView
+    <org.thoughtcrime.securesms.conversation.v2.utilities.ThumbnailView
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

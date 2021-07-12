@@ -3,6 +3,7 @@ package org.session.libsession.database
 import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.UploadResult
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.messages.SignalServiceAttachmentStream
 import java.io.InputStream
@@ -18,9 +19,11 @@ interface MessageDataProvider {
     fun getSignalAttachmentStream(attachmentId: Long): SignalServiceAttachmentStream?
     fun getScaledSignalAttachmentStream(attachmentId: Long): SignalServiceAttachmentStream?
     fun getSignalAttachmentPointer(attachmentId: Long): SignalServiceAttachmentPointer?
-    fun setAttachmentState(attachmentState: AttachmentState, attachmentId: Long, messageID: Long)
+    fun setAttachmentState(attachmentState: AttachmentState, attachmentId: AttachmentId, messageID: Long)
     fun insertAttachment(messageId: Long, attachmentId: AttachmentId, stream : InputStream)
-    fun isOutgoingMessage(timestamp: Long): Boolean
+    fun updateAudioAttachmentDuration(attachmentId: AttachmentId, durationMs: Long, threadId: Long)
+    fun isMmsOutgoing(mmsMessageId: Long): Boolean
+    fun isOutgoingMessage(mmsId: Long): Boolean
     fun handleSuccessfulAttachmentUpload(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: UploadResult)
     fun handleFailedAttachmentUpload(attachmentId: Long)
     fun getMessageForQuote(timestamp: Long, author: Address): Pair<Long, Boolean>?
@@ -28,4 +31,5 @@ interface MessageDataProvider {
     fun getMessageBodyFor(timestamp: Long, author: String): String
     fun getAttachmentIDsFor(messageID: Long): List<Long>
     fun getLinkPreviewAttachmentIDFor(messageID: Long): Long?
+    fun getIndividualRecipientForMms(mmsId: Long): Recipient?
 }

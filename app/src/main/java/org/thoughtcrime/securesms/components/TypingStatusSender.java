@@ -8,7 +8,7 @@ import org.session.libsession.messaging.messages.control.TypingIndicator;
 import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
+import org.thoughtcrime.securesms.util.SessionMetaProtocol;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.Util;
 
@@ -79,8 +79,7 @@ public class TypingStatusSender {
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     Recipient recipient = threadDatabase.getRecipientForThreadId(threadId);
     if (recipient == null) { return; }
-    // Loki - Check whether we want to send a typing indicator to this user
-    if (recipient != null && !SessionMetaProtocol.shouldSendTypingIndicator(recipient.getAddress())) { return; }
+    if (!SessionMetaProtocol.shouldSendTypingIndicator(recipient.getAddress())) { return; }
     TypingIndicator typingIndicator;
     if (typingStarted) {
       typingIndicator = new TypingIndicator(TypingIndicator.Kind.STARTED);

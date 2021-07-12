@@ -6,7 +6,6 @@ import com.goterl.lazysodium.interfaces.Box
 import com.goterl.lazysodium.interfaces.Sign
 import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
-import org.session.libsession.utilities.KeyPairUtilities
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.Log
 import org.session.libsignal.utilities.removing05PrefixIfNeeded
@@ -25,7 +24,7 @@ object MessageEncrypter {
      */
     internal fun encrypt(plaintext: ByteArray, recipientHexEncodedX25519PublicKey: String): ByteArray {
         val context = MessagingModuleConfiguration.shared.context
-        val userED25519KeyPair = KeyPairUtilities.getUserED25519KeyPair(context) ?: throw Error.NoUserED25519KeyPair
+        val userED25519KeyPair = MessagingModuleConfiguration.shared.keyPairProvider() ?: throw Error.NoUserED25519KeyPair
         val recipientX25519PublicKey = Hex.fromStringCondensed(recipientHexEncodedX25519PublicKey.removing05PrefixIfNeeded())
 
         val verificationData = plaintext + userED25519KeyPair.publicKey.asBytes + recipientX25519PublicKey

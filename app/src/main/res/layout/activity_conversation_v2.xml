@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <org.thoughtcrime.securesms.conversation.v2.components.OpenGroupGuidelinesView
+        android:id="@+id/openGroupGuidelinesView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <org.thoughtcrime.securesms.conversation.v2.ConversationRecyclerView
+        android:id="@+id/conversationRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/input_bar_height" />
+
+    <org.thoughtcrime.securesms.conversation.v2.components.TypingIndicatorViewContainer
+        android:id="@+id/typingIndicatorViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="@dimen/input_bar_height"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true" />
+
+    <org.thoughtcrime.securesms.conversation.v2.input_bar.InputBar
+        android:id="@+id/inputBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+    <org.thoughtcrime.securesms.conversation.v2.search.SearchBottomBar
+        android:id="@+id/searchBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:id="@+id/additionalContentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/input_bar_height" />
+
+    <LinearLayout
+        android:id="@+id/attachmentOptionsContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_spacing"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/gifButtonContainer"
+            android:layout_width="@dimen/input_bar_button_expanded_size"
+            android:layout_height="@dimen/input_bar_button_expanded_size"
+            android:alpha="0" />
+
+        <RelativeLayout
+            android:id="@+id/documentButtonContainer"
+            android:layout_marginTop="8dp"
+            android:layout_width="@dimen/input_bar_button_expanded_size"
+            android:layout_height="@dimen/input_bar_button_expanded_size"
+            android:alpha="0" />
+
+        <RelativeLayout
+            android:id="@+id/libraryButtonContainer"
+            android:layout_marginTop="8dp"
+            android:layout_width="@dimen/input_bar_button_expanded_size"
+            android:layout_height="@dimen/input_bar_button_expanded_size"
+            android:alpha="0" />
+
+        <RelativeLayout
+            android:id="@+id/cameraButtonContainer"
+            android:layout_marginTop="8dp"
+            android:layout_width="@dimen/input_bar_button_expanded_size"
+            android:layout_height="@dimen/input_bar_button_expanded_size"
+            android:alpha="0" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/scrollToBottomButton"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="72dp"
+        android:alpha="1">
+
+        <RelativeLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/view_scroll_to_bottom_button_background">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_chevron_up"
+                android:layout_centerInParent="true"
+                android:rotation="180"
+                app:tint="@color/text" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/unreadCountIndicator"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/conversation_unread_count_indicator_background">
+
+            <TextView
+                android:id="@+id/unreadCountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="@dimen/very_small_font_size"
+                android:textColor="@color/text"
+                android:text="8" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarRecordingView
+        android:id="@+id/inputBarRecordingView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-12dp"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true" />
+
+    <RelativeLayout
+        android:id="@+id/blockedBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/destructive"
+        android:layout_alignParentTop="true"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/blockedBannerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/medium_spacing"
+            android:textSize="@dimen/small_font_size"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            tools:text="Elon is blocked. Unblock them?" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

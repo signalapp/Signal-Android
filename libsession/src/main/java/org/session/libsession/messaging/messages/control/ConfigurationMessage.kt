@@ -6,6 +6,7 @@ import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.ProfileKeyUtil
+import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.crypto.ecc.DjbECPrivateKey
 import org.session.libsignal.crypto.ecc.DjbECPublicKey
 import org.session.libsignal.crypto.ecc.ECKeyPair
@@ -19,10 +20,10 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
 
     override val isSelfSendValid: Boolean = true
 
-    class ClosedGroup(var publicKey: String, var name: String, var encryptionKeyPair: ECKeyPair?, var members: List<String>, var admins: List<String>) {
+    class ClosedGroup(var publicKey: String, var name: String, var encryptionKeyPair: ECKeyPair?, var members: List<String>, var admins: List<String>, var expirationTimer: Int) {
         val isValid: Boolean get() = members.isNotEmpty() && admins.isNotEmpty()
 
-        internal constructor() : this("", "", null, listOf(), listOf())
+        internal constructor() : this("", "", null, listOf(), listOf(), 0)
 
         override fun toString(): String {
             return name
@@ -39,7 +40,8 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
                     DjbECPrivateKey(encryptionKeyPairAsProto.privateKey.toByteArray()))
                 val members = proto.membersList.map { it.toByteArray().toHexString() }
                 val admins = proto.adminsList.map { it.toByteArray().toHexString() }
-                return ClosedGroup(publicKey, name, encryptionKeyPair, members, admins)
+                val expirationTimer = proto.expirationTimer
+                return ClosedGroup(publicKey, name, encryptionKeyPair, members, admins, expirationTimer)
             }
         }
 
@@ -53,6 +55,7 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
             result.encryptionKeyPair = encryptionKeyPairAsProto.build()
             result.addAllMembers(members.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
             result.addAllAdmins(admins.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
+            result.expirationTimer = expirationTimer
             return result.build()
         }
     }
@@ -110,7 +113,8 @@ class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: 
                     if (!group.members.contains(Address.fromSerialized(storage.getUserPublicKey()!!))) continue
                     val groupPublicKey = GroupUtil.doubleDecodeGroupID(group.encodedId).toHexString()
                     val encryptionKeyPair = storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey) ?: continue
-                    val closedGroup = ClosedGroup(groupPublicKey, group.title, encryptionKeyPair, group.members.map { it.serialize() }, group.admins.map { it.serialize() })
+                    val recipient = Recipient.from(context, Address.fromSerialized(group.encodedId), false)
+                    val closedGroup = ClosedGroup(groupPublicKey, group.title, encryptionKeyPair, group.members.map { it.serialize() }, group.admins.map { it.serialize() }, recipient.expireMessages)
                     closedGroups.add(closedGroup)
                 }
                 if (group.isOpenGroup) {

@@ -25,13 +25,8 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.database.SessionJobDatabase;
-import org.thoughtcrime.securesms.loki.database.SessionContactDatabase;
+import org.thoughtcrime.securesms.database.LokiAPIDatabase;
+import org.thoughtcrime.securesms.database.SessionJobDatabase;
 
 public class DatabaseFactory {
 

@@ -22,13 +22,10 @@ object TextSecurePreferences {
     val events get() = _events.asSharedFlow()
 
     const val DISABLE_PASSPHRASE_PREF = "pref_disable_passphrase"
-    const val THEME_PREF = "pref_theme"
     const val LANGUAGE_PREF = "pref_language"
     const val THREAD_TRIM_LENGTH = "pref_trim_length"
     const val THREAD_TRIM_NOW = "pref_trim_now"
-
     private const val LAST_VERSION_CODE_PREF = "last_version_code"
-    private const val LAST_EXPERIENCE_VERSION_PREF = "last_experience_version_code"
     const val RINGTONE_PREF = "pref_key_ringtone"
     const val VIBRATE_PREF = "pref_key_vibrate"
     private const val NOTIFICATION_PREF = "pref_key_enable_notifications"
@@ -46,20 +43,15 @@ object TextSecurePreferences {
     private const val UPDATE_APK_REFRESH_TIME_PREF = "pref_update_apk_refresh_time"
     private const val UPDATE_APK_DOWNLOAD_ID = "pref_update_apk_download_id"
     private const val UPDATE_APK_DIGEST = "pref_update_apk_digest"
-
     private const val IN_THREAD_NOTIFICATION_PREF = "pref_key_inthread_notifications"
     const val MESSAGE_BODY_TEXT_SIZE_PREF = "pref_message_body_text_size"
-
     const val LOCAL_REGISTRATION_ID_PREF = "pref_local_registration_id"
-
     const val REPEAT_ALERTS_PREF = "pref_repeat_alerts"
     const val NOTIFICATION_PRIVACY_PREF = "pref_notification_privacy"
     const val NOTIFICATION_PRIORITY_PREF = "pref_notification_priority"
-
     const val MEDIA_DOWNLOAD_MOBILE_PREF = "pref_media_download_mobile"
     const val MEDIA_DOWNLOAD_WIFI_PREF = "pref_media_download_wifi"
     const val MEDIA_DOWNLOAD_ROAMING_PREF = "pref_media_download_roaming"
-
     const val SYSTEM_EMOJI_PREF = "pref_system_emoji"
     const val DIRECT_CAPTURE_CAMERA_ID = "pref_direct_capture_camera_id"
     const val PROFILE_KEY_PREF = "pref_profile_key"
@@ -68,45 +60,33 @@ object TextSecurePreferences {
     const val PROFILE_AVATAR_URL_PREF = "pref_profile_avatar_url"
     const val READ_RECEIPTS_PREF = "pref_read_receipts"
     const val INCOGNITO_KEYBORAD_PREF = "pref_incognito_keyboard"
-
     private const val DATABASE_ENCRYPTED_SECRET = "pref_database_encrypted_secret"
     private const val DATABASE_UNENCRYPTED_SECRET = "pref_database_unencrypted_secret"
     private const val ATTACHMENT_ENCRYPTED_SECRET = "pref_attachment_encrypted_secret"
     private const val ATTACHMENT_UNENCRYPTED_SECRET = "pref_attachment_unencrypted_secret"
     private const val NEEDS_SQLCIPHER_MIGRATION = "pref_needs_sql_cipher_migration"
-
     const val BACKUP_ENABLED = "pref_backup_enabled_v3"
     private const val BACKUP_PASSPHRASE = "pref_backup_passphrase"
     private const val ENCRYPTED_BACKUP_PASSPHRASE = "pref_encrypted_backup_passphrase"
     private const val BACKUP_TIME = "pref_backup_next_time"
     const val BACKUP_NOW = "pref_backup_create"
     private const val BACKUP_SAVE_DIR = "pref_save_dir"
-
     const val SCREEN_LOCK = "pref_android_screen_lock"
     const val SCREEN_LOCK_TIMEOUT = "pref_android_screen_lock_timeout"
-
     private const val LOG_ENCRYPTED_SECRET = "pref_log_encrypted_secret"
     private const val LOG_UNENCRYPTED_SECRET = "pref_log_unencrypted_secret"
-
     private const val NOTIFICATION_CHANNEL_VERSION = "pref_notification_channel_version"
     private const val NOTIFICATION_MESSAGES_CHANNEL_VERSION = "pref_notification_messages_channel_version"
-
     const val UNIVERSAL_UNIDENTIFIED_ACCESS = "pref_universal_unidentified_access"
-
     const val TYPING_INDICATORS = "pref_typing_indicators"
-
     const val LINK_PREVIEWS = "pref_link_previews"
-
     private const val GIF_GRID_LAYOUT = "pref_gif_grid_layout"
-
     const val IS_USING_FCM = "pref_is_using_fcm"
     private const val FCM_TOKEN = "pref_fcm_token"
     private const val LAST_FCM_TOKEN_UPLOAD_TIME = "pref_last_fcm_token_upload_time_2"
-
     private const val LAST_CONFIGURATION_SYNC_TIME = "pref_last_configuration_sync_time"
     const val CONFIGURATION_SYNCED = "pref_configuration_synced"
     private const val LAST_PROFILE_UPDATE_TIME = "pref_last_profile_update_time"
-
     private const val LAST_OPEN_DATE = "pref_last_open_date"
 
     @JvmStatic
@@ -338,7 +318,7 @@ object TextSecurePreferences {
 
     @JvmStatic
     fun setProfileAvatarId(context: Context, id: Int) {
-        setIntegerPrefrence(context, PROFILE_AVATAR_ID_PREF, id)
+        setIntegerPreference(context, PROFILE_AVATAR_ID_PREF, id)
     }
 
     @JvmStatic
@@ -367,7 +347,7 @@ object TextSecurePreferences {
 
     @JvmStatic
     fun setDirectCaptureCameraId(context: Context, value: Int) {
-        setIntegerPrefrence(context, DIRECT_CAPTURE_CAMERA_ID, value)
+        setIntegerPreference(context, DIRECT_CAPTURE_CAMERA_ID, value)
     }
 
     @JvmStatic
@@ -395,7 +375,7 @@ object TextSecurePreferences {
     }
 
     fun setLocalRegistrationId(context: Context, registrationId: Int) {
-        setIntegerPrefrence(context, LOCAL_REGISTRATION_ID_PREF, registrationId)
+        setIntegerPreference(context, LOCAL_REGISTRATION_ID_PREF, registrationId)
     }
 
     @JvmStatic
@@ -476,22 +456,9 @@ object TextSecurePreferences {
 
     @Throws(IOException::class)
     fun setLastVersionCode(context: Context, versionCode: Int) {
-        if (!setIntegerPrefrenceBlocking(context, LAST_VERSION_CODE_PREF, versionCode)) {
+        if (!setIntegerPreferenceBlocking(context, LAST_VERSION_CODE_PREF, versionCode)) {
             throw IOException("couldn't write version code to sharedpreferences")
         }
-    }
-
-    fun setLastExperienceVersionCode(context: Context, versionCode: Int) {
-        setIntegerPrefrence(context, LAST_EXPERIENCE_VERSION_PREF, versionCode)
-    }
-
-    fun getTheme(context: Context): String? {
-        return getStringPreference(context, THEME_PREF, "light")
-    }
-
-    @JvmStatic
-    fun isPushRegistered(context: Context): Boolean {
-        return getBooleanPreference(context, REGISTERED_GCM_PREF, false)
     }
 
     @JvmStatic
@@ -602,23 +569,23 @@ object TextSecurePreferences {
     }
 
     @JvmStatic
-    fun setLogEncryptedSecret(context: Context, base64Secret: String?) {
-        setStringPreference(context, LOG_ENCRYPTED_SECRET, base64Secret)
-    }
-
-    @JvmStatic
     fun getLogEncryptedSecret(context: Context): String? {
         return getStringPreference(context, LOG_ENCRYPTED_SECRET, null)
     }
 
     @JvmStatic
-    fun setLogUnencryptedSecret(context: Context, base64Secret: String?) {
-        setStringPreference(context, LOG_UNENCRYPTED_SECRET, base64Secret)
+    fun setLogEncryptedSecret(context: Context, base64Secret: String?) {
+        setStringPreference(context, LOG_ENCRYPTED_SECRET, base64Secret)
     }
 
     @JvmStatic
     fun getLogUnencryptedSecret(context: Context): String? {
         return getStringPreference(context, LOG_UNENCRYPTED_SECRET, null)
+    }
+
+    @JvmStatic
+    fun setLogUnencryptedSecret(context: Context, base64Secret: String?) {
+        setStringPreference(context, LOG_UNENCRYPTED_SECRET, base64Secret)
     }
 
     @JvmStatic
@@ -628,7 +595,7 @@ object TextSecurePreferences {
 
     @JvmStatic
     fun setNotificationChannelVersion(context: Context, version: Int) {
-        setIntegerPrefrence(context, NOTIFICATION_CHANNEL_VERSION, version)
+        setIntegerPreference(context, NOTIFICATION_CHANNEL_VERSION, version)
     }
 
     @JvmStatic
@@ -638,12 +605,7 @@ object TextSecurePreferences {
 
     @JvmStatic
     fun setNotificationMessagesChannelVersion(context: Context, version: Int) {
-        setIntegerPrefrence(context, NOTIFICATION_MESSAGES_CHANNEL_VERSION, version)
-    }
-
-    @JvmStatic
-    fun setBooleanPreference(context: Context, key: String?, value: Boolean) {
-        getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply()
+        setIntegerPreference(context, NOTIFICATION_MESSAGES_CHANNEL_VERSION, version)
     }
 
     @JvmStatic
@@ -652,8 +614,8 @@ object TextSecurePreferences {
     }
 
     @JvmStatic
-    fun setStringPreference(context: Context, key: String?, value: String?) {
-        getDefaultSharedPreferences(context).edit().putString(key, value).apply()
+    fun setBooleanPreference(context: Context, key: String?, value: Boolean) {
+        getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply()
     }
 
     @JvmStatic
@@ -661,15 +623,20 @@ object TextSecurePreferences {
         return getDefaultSharedPreferences(context).getString(key, defaultValue)
     }
 
+    @JvmStatic
+    fun setStringPreference(context: Context, key: String?, value: String?) {
+        getDefaultSharedPreferences(context).edit().putString(key, value).apply()
+    }
+
     private fun getIntegerPreference(context: Context, key: String, defaultValue: Int): Int {
         return getDefaultSharedPreferences(context).getInt(key, defaultValue)
     }
 
-    private fun setIntegerPrefrence(context: Context, key: String, value: Int) {
+    private fun setIntegerPreference(context: Context, key: String, value: Int) {
         getDefaultSharedPreferences(context).edit().putInt(key, value).apply()
     }
 
-    private fun setIntegerPrefrenceBlocking(context: Context, key: String, value: Int): Boolean {
+    private fun setIntegerPreferenceBlocking(context: Context, key: String, value: Int): Boolean {
         return getDefaultSharedPreferences(context).edit().putInt(key, value).commit()
     }
 
@@ -693,9 +660,6 @@ object TextSecurePreferences {
             defaultValues
         }
     }
-
-    // region Loki
-    @JvmStatic
 
     fun getHasViewedSeed(context: Context): Boolean {
         return getBooleanPreference(context, "has_viewed_seed", false)
@@ -723,21 +687,6 @@ object TextSecurePreferences {
         setLongPreference(context, "last_profile_picture_upload", newValue)
     }
 
-    @JvmStatic
-    fun hasSeenGIFMetaDataWarning(context: Context): Boolean {
-        return getBooleanPreference(context, "has_seen_gif_metadata_warning", false)
-    }
-
-    @JvmStatic
-    fun setHasSeenGIFMetaDataWarning(context: Context) {
-        setBooleanPreference(context, "has_seen_gif_metadata_warning", true)
-    }
-
-    @JvmStatic
-    fun clearAll(context: Context) {
-        getDefaultSharedPreferences(context).edit().clear().commit()
-    }
-
     fun getLastSnodePoolRefreshDate(context: Context?): Long {
         return getLongPreference(context!!, "last_snode_pool_refresh_date", 0)
     }
@@ -746,30 +695,14 @@ object TextSecurePreferences {
         setLongPreference(context!!, "last_snode_pool_refresh_date", date.time)
     }
 
-    fun getIsMigratingKeyPair(context: Context?): Boolean {
-        return getBooleanPreference(context!!, "is_migrating_key_pair", false)
-    }
-
     @JvmStatic
-    fun setIsMigratingKeyPair(context: Context?, newValue: Boolean) {
-        setBooleanPreference(context!!, "is_migrating_key_pair", newValue)
+    fun shouldUpdateProfile(context: Context, profileUpdateTime: Long): Boolean {
+        return profileUpdateTime > getLongPreference(context, LAST_PROFILE_UPDATE_TIME, 0)
     }
 
     @JvmStatic
     fun setLastProfileUpdateTime(context: Context, profileUpdateTime: Long) {
         setLongPreference(context, LAST_PROFILE_UPDATE_TIME, profileUpdateTime)
-    }
-
-    @JvmStatic
-    fun shouldUpdateProfile(context: Context, profileUpdateTime: Long) =
-            profileUpdateTime > getLongPreference(context, LAST_PROFILE_UPDATE_TIME, 0)
-
-    fun hasPerformedContactMigration(context: Context): Boolean {
-        return getBooleanPreference(context, "has_performed_contact_migration", false)
-    }
-
-    fun setPerformedContactMigration(context: Context) {
-        setBooleanPreference(context, "has_performed_contact_migration", true)
     }
 
     fun getLastOpenTimeDate(context: Context): Long {
@@ -778,5 +711,18 @@ object TextSecurePreferences {
 
     fun setLastOpenDate(context: Context) {
         setLongPreference(context, LAST_OPEN_DATE, System.currentTimeMillis())
+    }
+
+    fun hasSeenLinkPreviewSuggestionDialog(context: Context): Boolean {
+        return getBooleanPreference(context, "has_seen_link_preview_suggestion_dialog", false)
+    }
+
+    fun setHasSeenLinkPreviewSuggestionDialog(context: Context) {
+        setBooleanPreference(context, "has_seen_link_preview_suggestion_dialog", true)
+    }
+
+    @JvmStatic
+    fun clearAll(context: Context) {
+        getDefaultSharedPreferences(context).edit().clear().commit()
     }
 }

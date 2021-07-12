@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId
 
 class ReadReceiptManager: SSKEnvironment.ReadReceiptManagerProtocol {
+
     override fun processReadReceipts(context: Context, fromRecipientId: String, sentTimestamps: List<Long>, readTimestamp: Long) {
         if (TextSecurePreferences.isReadReceiptsEnabled(context)) {
 

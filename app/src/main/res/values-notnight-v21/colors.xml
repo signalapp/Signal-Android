@@ -1,13 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-
-    <!-- Session -->
     <color name="accent">#00E97B</color>
     <color name="accent_alpha50">#8000E97B</color>
     <color name="text">#000000</color>
     <color name="destructive">#f26f55</color>
     <color name="unimportant">#606060</color>
-    <color name="profile_picture_border">#23000000</color>
     <color name="profile_picture_background">#B0B0B0</color>
     <color name="cell_background">#FCFCFC</color>
     <color name="cell_selected">#DFDFDF</color>
@@ -18,17 +15,28 @@
     <color name="compose_view_background">#FCFCFC</color>
     <color name="compose_text_view_background">#EDEDED</color>
     <color name="new_conversation_button_collapsed_background">#F5F5F5</color>
+    <color name="new_conversation_button_shadow">#4D077C44</color>
     <color name="pn_option_background">#FCFCFC</color>
     <color name="open_group_chip_color">#0D000000</color>
-
+    <color name="message_selected">#FFFFFF</color>
+    <color name="input_bar_background">#FCFCFC</color>
+    <color name="input_bar_button_background">#0D000000</color>
+    <color name="input_bar_button_background_opaque">#EFEFEF</color>
+    <color name="input_bar_button_background_opaque_border">#33000000</color>
+    <color name="input_bar_lock_view_background">#FCFCFC</color>
+    <color name="input_bar_lock_view_border">#66000000</color>
+    <color name="mention_candidates_view_background">#FCFCFC</color>
+    <color name="mention_candidates_view_background_ripple">#DFDFDF</color>
+    <color name="link_preview_background">#0F000000</color>
+    <color name="scroll_to_bottom_button_background">#FCFCFC</color>
+    <color name="scroll_to_bottom_button_border">#99000000</color>
+    <color name="conversation_unread_count_indicator_background">#E0E0E0</color>
 
     <color name="default_background_start">#ffffff</color>
-    <color name="default_background_end">#fcfcfd</color>
-    <color name="action_bar_background">#fcfcfd</color>
-
+    <color name="default_background_end">#fcfcfc</color>
+    <color name="action_bar_background">#fcfcfc</color>
 
     <color name="app_icon_background">#333132</color>
     <color name="progress_bar_background">#0A000000</color>
     <color name="quote_not_found_background">#8000E97B</color>
-
 </resources>

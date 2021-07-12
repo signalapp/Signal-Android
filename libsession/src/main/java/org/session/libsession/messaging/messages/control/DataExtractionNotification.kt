@@ -34,7 +34,7 @@ class DataExtractionNotification() : ControlMessage() {
         }
     }
 
-    internal constructor(kind: Kind) : this() {
+    constructor(kind: Kind) : this() {
         this.kind = kind
     }
 

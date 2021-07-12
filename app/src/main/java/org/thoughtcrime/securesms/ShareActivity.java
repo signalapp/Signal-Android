@@ -37,13 +37,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import org.session.libsession.utilities.DistributionTypes;
 import org.thoughtcrime.securesms.components.SearchToolbar;
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
+
 import org.session.libsession.utilities.Address;
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.session.libsignal.utilities.Log;
-import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListFragment;
-import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListLoader.DisplayMode;
-import org.thoughtcrime.securesms.mediasend.Media;
+import org.thoughtcrime.securesms.contacts.ContactSelectionListFragment;
+import org.thoughtcrime.securesms.contacts.ContactSelectionListLoader.DisplayMode;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.session.libsession.utilities.recipients.Recipient;
@@ -53,7 +53,6 @@ import org.session.libsession.utilities.ViewUtil;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 
 import network.loki.messenger.R;
 
@@ -215,10 +214,9 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void createConversation(long threadId, Address address, int distributionType) {
-    final Intent intent = getBaseShareIntent(ConversationActivity.class);
-    intent.putExtra(ConversationActivity.ADDRESS_EXTRA, address);
-    intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
-    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
+    final Intent intent = getBaseShareIntent(ConversationActivityV2.class);
+    intent.putExtra(ConversationActivityV2.ADDRESS, address);
+    intent.putExtra(ConversationActivityV2.THREAD_ID, threadId);
 
     isPassingAlongMedia = true;
     startActivity(intent);
@@ -226,11 +224,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   private Intent getBaseShareIntent(final @NonNull Class<?> target) {
     final Intent           intent       = new Intent(this, target);
-    final String           textExtra    = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-    final ArrayList<Media> mediaExtra   = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
-
-    intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
-    intent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaExtra);
 
     if (resolvedExtra != null) intent.setDataAndType(resolvedExtra, mimeType);
 

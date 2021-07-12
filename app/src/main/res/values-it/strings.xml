@@ -8,7 +8,7 @@
     <string name="please_wait">Attendere...</string>
     <string name="save">Salva</string>
     <string name="note_to_self">Note personali</string>
-    <string name="version_s">Version %s</string>
+    <string name="version_s">Versione %s</string>
     <!-- AbstractNotificationBuilder -->
     <string name="AbstractNotificationBuilder_new_message">Nuovo messaggio</string>
     <!-- AlbumThumbnailView -->
@@ -54,7 +54,7 @@
     <string name="ConversationItem_click_to_approve_unencrypted">Invio fallito, tocca per invio non sicuro</string>
     <string name="ConversationItem_unable_to_open_media">Impossibile trovare un\'app per aprire il file.</string>
     <string name="ConversationItem_copied_text">Copiato %s</string>
-    <string name="ConversationItem_read_more">  Leggi tutto</string>
+    <string name="ConversationItem_read_more">Read More</string>
     <string name="ConversationItem_download_more">  Scarica altro</string>
     <string name="ConversationItem_pending">  In attesa</string>
     <!-- ConversationActivity -->
@@ -62,9 +62,9 @@
     <string name="ConversationActivity_select_contact_info">Seleziona informazioni dei contatti</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Attenzione, c\'è stato un errore nell\'inviare il tuo allegato.</string>
     <string name="ConversationActivity_message">Messaggio</string>
-    <string name="ConversationActivity_compose">Compose</string>
-    <string name="ConversationActivity_muted_until_date">Muted until %1$s</string>
-    <string name="ConversationActivity_member_count">%1$d members</string>
+    <string name="ConversationActivity_compose">Componi</string>
+    <string name="ConversationActivity_muted_until_date">Mutato fino a %1$s</string>
+    <string name="ConversationActivity_member_count">%1$d membri</string>
     <string name="ConversationActivity_open_group_guidelines">Community Guidelines</string>
     <string name="ConversationActivity_invalid_recipient">Destinatario non valido!</string>
     <string name="ConversationActivity_added_to_home_screen">Aggiunto alla schermata principale</string>
@@ -261,7 +261,7 @@ scambia un altro messaggio!</string>
     <string name="MediaPreviewActivity_you">Tu</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Tipo di media non supportato</string>
     <string name="MediaPreviewActivity_draft">Bozza</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session richiede l\'autorizzazione per salvare in memoria, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session needs storage access in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Impossibile salvare sulla memoria senza l\'autorizzazione</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Eliminare il messaggio?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Questo messaggio verrà eliminato definitivamente.</string>
@@ -600,12 +600,14 @@ scambia un altro messaggio!</string>
     <string name="activity_path_service_node_row_title">Nodo di servizio</string>
     <string name="activity_path_destination_row_title">Destinazione</string>
     <string name="activity_path_learn_more_button_title">Per saperne di più</string>
+    <string name="activity_path_resolving_progress">Resolving…</string>
     <string name="activity_create_private_chat_title">Nuova sessione</string>
     <string name="activity_create_private_chat_enter_session_id_tab_title">Inserisci la Sessione ID</string>
     <string name="activity_create_private_chat_scan_qr_code_tab_title">Scansiona il codice QR</string>
     <string name="activity_create_private_chat_scan_qr_code_explanation">Scansiona il codice QR di un utente per avviare una sessione. Puoi trovare i codici QR toccando l\'icona Codice QR nelle impostazioni dell\'account.</string>
-    <string name="fragment_enter_public_key_edit_text_hint">Inserisci la Sessione ID del destinatario</string>
+    <string name="fragment_enter_public_key_edit_text_hint">Enter Session ID or ONS name</string>
     <string name="fragment_enter_public_key_explanation">Gli utenti possono condividere la propria Sessione ID accedendo alle impostazioni del proprio account e toccando Condividi la Sessione ID o condividendo il proprio codice QR.</string>
+    <string name="fragment_enter_public_key_error_message">Please check the Session ID or ONS name and try again.</string>
     <string name="fragment_scan_qr_code_camera_access_explanation">La Sessione richiede l\'accesso alla fotocamera per scansionare i codici QR</string>
     <string name="fragment_scan_qr_code_grant_camera_access_button_title">Consenti Accesso Fotocamera</string>
     <string name="activity_create_closed_group_title">Nuovo gruppo chiuso</string>
@@ -640,6 +642,8 @@ scambia un altro messaggio!</string>
     <string name="activity_privacy_settings_title">Privacy</string>
     <string name="activity_chat_settings_title">Chat</string>
     <string name="preferences_notifications_strategy_category_title">Strategia di notifica</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_title">Use Fast Mode</string>
+    <string name="preferences_notifications_strategy_category_fast_mode_summary">You’ll be notified of new messages reliably and immediately using Google’s notification servers.</string>
     <string name="fragment_device_list_bottom_sheet_change_name_button_title">Cambia nome</string>
     <string name="fragment_device_list_bottom_sheet_unlink_device_button_title">Scollega dispositivo</string>
     <string name="dialog_seed_title">Frase di recupero</string>
@@ -685,6 +689,9 @@ scambia un altro messaggio!</string>
     <string name="activity_backup_restore_passphrase">30-digit passphrase</string>
     <string name="activity_link_device_skip_prompt">This is taking a while, would you like to skip?</string>
     <string name="activity_link_device_link_device">Link a Device</string>
+    <string name="activity_link_device_recovery_phrase">Recovery Phrase</string>
+    <string name="activity_link_device_scan_qr_code">Scan QR Code</string>
+    <string name="activity_link_device_qr_message">Navigate to Settings → Recovery Phrase on your other device to show your QR code.</string>
     <string name="activity_join_public_chat_join_rooms">Or join one of these…</string>
     <string name="activity_pn_mode_message_notifications">Message Notifications</string>
     <string name="activity_pn_mode_explanation">There are two ways Session can notify you of new messages.</string>
@@ -697,4 +704,20 @@ scambia un altro messaggio!</string>
     <string name="activity_prompt_passphrase_tap_to_unlock">Tap to Unlock</string>
     <string name="fragment_user_details_bottom_sheet_edit_text_hint">Enter a nickname</string>
     <string name="invalid_public_key">Invalid public key</string>
+    <string name="document">Document</string>
+    <string name="dialog_blocked_title">Unblock %s?</string>
+    <string name="dialog_blocked_explanation">Are you sure you want to unblock %s?</string>
+    <string name="dialog_join_open_group_title">Join %s?</string>
+    <string name="dialog_join_open_group_explanation">Are you sure you want to join the %s open group?</string>
+    <string name="dialog_open_url_title">Open URL?</string>
+    <string name="dialog_open_url_explanation">Are you sure you want to open %s?</string>
+    <string name="open">Open</string>
+    <string name="dialog_link_preview_title">Enable Link Previews?</string>
+    <string name="dialog_link_preview_explanation">Enabling link previews will show previews for URLs you send and receive. This can be useful, but Session will need to contact linked websites to generate previews. You can always disable link previews in Session\'s settings.</string>
+    <string name="dialog_link_preview_enable_button_title">Enable</string>
+    <string name="dialog_download_title">Trust %s?</string>
+    <string name="dialog_download_explanation">Are you sure you want to download media sent by %s?</string>
+    <string name="dialog_download_button_title">Download</string>
+    <string name="activity_conversation_blocked_banner_text">%s is blocked. Unblock them?</string>
+    <string name="activity_conversation_attachment_prep_failed">Failed to prepare attachment for sending.</string>
 </resources>

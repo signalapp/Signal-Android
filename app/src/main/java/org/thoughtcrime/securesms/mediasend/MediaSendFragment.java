@@ -82,7 +82,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
   private InputAwareLayout  hud;
   private View              captionAndRail;
   private ImageButton       sendButton;
-  private ComposeText       composeText;
+  private ComposeText composeText;
   private ViewGroup         composeContainer;
   private EmojiEditText     captionText;
   private EmojiToggle       emojiToggle;

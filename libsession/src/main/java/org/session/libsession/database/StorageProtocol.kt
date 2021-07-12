@@ -88,6 +88,7 @@ interface StorageProtocol {
     fun persistAttachments(messageID: Long, attachments: List<Attachment>): List<Long>
     fun getAttachmentsForMessage(messageID: Long): List<DatabaseAttachment>
     fun getMessageIdInDatabase(timestamp: Long, author: String): Long? // TODO: This is a weird name
+    fun markAsSending(timestamp: Long, author: String)
     fun markAsSent(timestamp: Long, author: String)
     fun markUnidentified(timestamp: Long, author: String)
     fun setErrorMessage(timestamp: Long, author: String, error: Exception)
@@ -137,6 +138,7 @@ interface StorageProtocol {
     fun getContactWithSessionID(sessionID: String): Contact?
     fun getAllContacts(): Set<Contact>
     fun setContact(contact: Contact)
+    fun getRecipientForThread(threadId: Long): Recipient?
     fun getRecipientSettings(address: Address): RecipientSettings?
     fun addContacts(contacts: List<ConfigurationMessage.Contact>)
 

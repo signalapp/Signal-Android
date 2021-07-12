@@ -27,6 +27,7 @@ private typealias Path = List<Snode>
  * See the "Onion Requests" section of [The Session Whitepaper](https://arxiv.org/pdf/2002.04609.pdf) for more information.
  */
 object OnionRequestAPI {
+    private var buildPathsPromise: Promise<List<Path>, Exception>? = null
     private val database: LokiAPIDatabaseProtocol
         get() = SnodeModule.shared.storage
     private val broadcaster: Broadcaster
@@ -158,9 +159,11 @@ object OnionRequestAPI {
      * enough (reliable) snodes are available.
      */
     private fun buildPaths(reusablePaths: List<Path>): Promise<List<Path>, Exception> {
+        val existingBuildPathsPromise = buildPathsPromise
+        if (existingBuildPathsPromise != null) { return existingBuildPathsPromise }
         Log.d("Loki", "Building onion request paths.")
         broadcaster.broadcast("buildingPaths")
-        return SnodeAPI.getRandomSnode().bind { // Just used to populate the snode pool
+        val promise = SnodeAPI.getRandomSnode().bind { // Just used to populate the snode pool
             val reusableGuardSnodes = reusablePaths.map { it[0] }
             getGuardSnodes(reusableGuardSnodes).map { guardSnodes ->
                 var unusedSnodes = SnodeAPI.snodePool.minus(guardSnodes).minus(reusablePaths.flatten())
@@ -183,6 +186,10 @@ object OnionRequestAPI {
                 paths
             }
         }
+        promise.success { buildPathsPromise = null }
+        promise.fail { buildPathsPromise = null }
+        buildPathsPromise = promise
+        return promise
     }
 
     /**
@@ -433,11 +440,12 @@ object OnionRequestAPI {
     internal fun sendOnionRequest(method: Snode.Method, parameters: Map<*, *>, snode: Snode, publicKey: String? = null): Promise<Map<*, *>, Exception> {
         val payload = mapOf( "method" to method.rawValue, "params" to parameters )
         return sendOnionRequest(Destination.Snode(snode), payload).recover { exception ->
-            val httpRequestFailedException = exception as? HTTP.HTTPRequestFailedException
-            if (httpRequestFailedException != null) {
-                val error = SnodeAPI.handleSnodeError(httpRequestFailedException.statusCode, httpRequestFailedException.json, snode, publicKey)
-                if (error != null) { throw error }
+            val error = when (exception) {
+                is HTTP.HTTPRequestFailedException -> SnodeAPI.handleSnodeError(exception.statusCode, exception.json, snode, publicKey)
+                is HTTPRequestFailedAtDestinationException -> SnodeAPI.handleSnodeError(exception.statusCode, exception.json, snode, publicKey)
+                else -> null
             }
+            if (error != null) { throw error }
             throw exception
         }
     }

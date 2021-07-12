@@ -31,7 +31,7 @@
             android:textColor="@color/text"
             android:text="@string/activity_pn_mode_explanation" />
 
-        <org.thoughtcrime.securesms.loki.views.PNModeView
+        <org.thoughtcrime.securesms.util.PNModeView
             android:id="@+id/fcmOptionView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,9 +67,9 @@
                 android:textStyle="bold"
                 android:text="@string/activity_pn_mode_recommended_option_tag" />
 
-        </org.thoughtcrime.securesms.loki.views.PNModeView>
+        </org.thoughtcrime.securesms.util.PNModeView>
 
-        <org.thoughtcrime.securesms.loki.views.PNModeView
+        <org.thoughtcrime.securesms.util.PNModeView
             android:id="@+id/backgroundPollingOptionView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                 android:textColor="@color/text"
                 android:text="@string/activity_pn_mode_slow_mode_explanation" />
 
-        </org.thoughtcrime.securesms.loki.views.PNModeView>
+        </org.thoughtcrime.securesms.util.PNModeView>
 
         <Button
             style="@style/Widget.Session.Button.Common.ProminentFilled"

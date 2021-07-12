@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity">
+    tools:context="org.thoughtcrime.securesms.groups.EditClosedGroupActivity">
 
     <LinearLayout
         android:id="@+id/mainContentContainer"
