@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.view_untrusted_attachment.view.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.dialogs.DownloadDialog
-import org.thoughtcrime.securesms.loki.utilities.ActivityDispatcher
+import org.thoughtcrime.securesms.util.ActivityDispatcher
 import java.util.*
 
 class UntrustedAttachmentView: LinearLayout {

@@ -112,7 +112,8 @@ class VisibleMessageContentView : LinearLayout {
             if (contactIsTrusted || message.isOutgoing) {
                 val voiceMessageView = VoiceMessageView(context)
                 voiceMessageView.index = viewHolderIndex
-            voiceMessageView.delegate = context as? ConversationActivityV2voiceMessageView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster)
+                voiceMessageView.delegate = context as? ConversationActivityV2
+                voiceMessageView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster)
                 mainContainer.addView(voiceMessageView)
                 // We have to use onContentClick (rather than a click listener directly on the voice
                 // message view) so as to not interfere with all the other gestures.

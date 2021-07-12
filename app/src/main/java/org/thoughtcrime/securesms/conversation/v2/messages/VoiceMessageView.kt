@@ -31,7 +31,6 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
     private var progress = 0.0
     private var duration = 0L
     private var player: AudioSlidePlayer? = null
-    private var isPreparing = false
     var delegate: VoiceMessageViewDelegate? = null
     var index = -1
 
