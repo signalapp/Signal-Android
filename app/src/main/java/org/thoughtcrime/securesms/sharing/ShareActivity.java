@@ -190,6 +190,10 @@ public class ShareActivity extends PassphraseRequiredActivity
     viewModel.onContactDeselected(new ShareContact(recipientId, number));
   }
 
+  @Override
+  public void onSelectionChanged() {
+  }
+
   private void animateInSelection() {
     contactsRecyclerDivider.animate()
                            .alpha(1f)

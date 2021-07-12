@@ -12,6 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.recyclerview.OnScrollAnimationHelper
+import org.thoughtcrime.securesms.components.recyclerview.ToolbarShadowAnimationHelper
 
 abstract class DSLSettingsFragment(
   @StringRes private val titleId: Int = -1,
@@ -64,74 +66,6 @@ abstract class DSLSettingsFragment(
             requireNotNull(ContextCompat.getColor(view.context, R.color.settings_ripple_color))
         }
       }
-    }
-  }
-
-  abstract class OnScrollAnimationHelper : RecyclerView.OnScrollListener() {
-    private var lastAnimationState = AnimationState.NONE
-
-    protected open val duration: Long = 250L
-
-    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-      val newAnimationState = getAnimationState(recyclerView)
-
-      if (newAnimationState == lastAnimationState) {
-        return
-      }
-
-      if (lastAnimationState == AnimationState.NONE) {
-        setImmediateState(recyclerView)
-        return
-      }
-
-      when (newAnimationState) {
-        AnimationState.NONE -> throw AssertionError()
-        AnimationState.HIDE -> hide(duration)
-        AnimationState.SHOW -> show(duration)
-      }
-
-      lastAnimationState = newAnimationState
-    }
-
-    fun setImmediateState(recyclerView: RecyclerView) {
-      val newAnimationState = getAnimationState(recyclerView)
-
-      when (newAnimationState) {
-        AnimationState.NONE -> throw AssertionError()
-        AnimationState.HIDE -> hide(0L)
-        AnimationState.SHOW -> show(0L)
-      }
-
-      lastAnimationState = newAnimationState
-    }
-
-    protected open fun getAnimationState(recyclerView: RecyclerView): AnimationState {
-      return if (recyclerView.canScrollVertically(-1)) AnimationState.SHOW else AnimationState.HIDE
-    }
-
-    protected abstract fun show(duration: Long)
-
-    protected abstract fun hide(duration: Long)
-
-    enum class AnimationState {
-      NONE,
-      HIDE,
-      SHOW
-    }
-  }
-
-  open class ToolbarShadowAnimationHelper(private val toolbarShadow: View) : OnScrollAnimationHelper() {
-
-    override fun show(duration: Long) {
-      toolbarShadow.animate()
-        .setDuration(duration)
-        .alpha(1f)
-    }
-
-    override fun hide(duration: Long) {
-      toolbarShadow.animate()
-        .setDuration(duration)
-        .alpha(0f)
     }
   }
 }

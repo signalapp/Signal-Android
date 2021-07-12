@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.components.emoji.EmojiTextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<org.thoughtcrime.securesms.components.emoji.EmojiTextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/label"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/camera_contacts_horizontal_margin"
-    android:layout_marginEnd="@dimen/camera_contacts_horizontal_margin"
-    android:layout_marginTop="16dp"
-    android:layout_marginBottom="24dp"
-    style="@style/Signal.Text.Preview"
-    android:fontFamily="sans-serif-medium"
-    tools:text="@string/CameraContacts_recent_contacts"/>
+    android:minHeight="48dp"
+    android:paddingStart="@dimen/dsl_settings_gutter"
+    android:paddingTop="16dp"
+    android:paddingEnd="@dimen/dsl_settings_gutter"
+    android:paddingBottom="12dp"
+    android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+    android:textStyle="bold"
+    tools:text="@string/CameraContacts_recent_contacts" />

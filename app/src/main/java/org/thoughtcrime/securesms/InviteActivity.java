@@ -7,8 +7,6 @@ import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -24,8 +22,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
-import org.thoughtcrime.securesms.components.ContactFilterToolbar;
-import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChangedListener;
+import org.thoughtcrime.securesms.components.ContactFilterView;
+import org.thoughtcrime.securesms.components.ContactFilterView.OnFilterChangedListener;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -100,7 +98,8 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     View                 shareButton     = findViewById(R.id.share_button);
     Button               smsButton       = findViewById(R.id.sms_button);
     Button               smsCancelButton = findViewById(R.id.cancel_sms_button);
-    ContactFilterToolbar contactFilter   = findViewById(R.id.contact_filter);
+    Toolbar              smsToolbar      = findViewById(R.id.sms_send_frame_toolbar);
+    ContactFilterView    contactFilter   = findViewById(R.id.contact_filter_edit_text);
 
     inviteText        = findViewById(R.id.invite_text);
     smsSendFrame      = findViewById(R.id.sms_send_frame);
@@ -121,7 +120,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     smsCancelButton.setOnClickListener(new SmsCancelClickListener());
     smsSendButton.setOnClickListener(new SmsSendClickListener());
     contactFilter.setOnFilterChangedListener(new ContactFilterChangedListener());
-    contactFilter.setNavigationIcon(R.drawable.ic_search_conversation_24);
+    smsToolbar.setNavigationIcon(R.drawable.ic_search_conversation_24);
 
     if (Util.isDefaultSmsProvider(this)) {
       shareButton.setOnClickListener(new ShareClickListener());
@@ -148,6 +147,10 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
   @Override
   public void onContactDeselected(Optional<RecipientId> recipientId, String number) {
     updateSmsButtonText(contactsFragment.getSelectedContacts().size());
+  }
+
+  @Override
+  public void onSelectionChanged() {
   }
 
   private void sendSmsInvites() {

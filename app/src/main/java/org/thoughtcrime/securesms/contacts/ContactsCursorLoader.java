@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms.contacts;
 
-import android.Manifest;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
@@ -30,7 +29,6 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -126,7 +124,9 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
     List<Cursor> contacts = getContactsCursors();
 
     if (!isCursorListEmpty(contacts)) {
-      cursorList.add(ContactsCursorRows.forContactsHeader(getContext()));
+      if (!getFilter().isEmpty() || recents) {
+        cursorList.add(ContactsCursorRows.forContactsHeader(getContext()));
+      }
       cursorList.addAll(contacts);
     }
   }
@@ -195,19 +195,14 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
   private List<Cursor> getContactsCursors() {
     List<Cursor> cursorList = new ArrayList<>(2);
 
-    if (!Permissions.hasAny(getContext(), Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
-      return cursorList;
-    }
-
-    if (pushEnabled(mode)) {
-      cursorList.add(contactRepository.querySignalContacts(getFilter(), selfEnabled(mode)));
-    }
-
     if (pushEnabled(mode) && smsEnabled(mode)) {
-      cursorList.add(contactRepository.queryNonSignalContacts(getFilter()));
+      cursorList.add(contactRepository.queryNonGroupContacts(getFilter(), selfEnabled(mode)));
+    } else if (pushEnabled(mode)) {
+      cursorList.add(contactRepository.querySignalContacts(getFilter(), selfEnabled(mode)));
     } else if (smsEnabled(mode)) {
-      cursorList.add(filterNonPushContacts(contactRepository.queryNonSignalContacts(getFilter())));
+      cursorList.add(contactRepository.queryNonSignalContacts(getFilter()));
     }
+
     return cursorList;
   }
 
@@ -237,25 +232,6 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
       return getContext().getString(R.string.contact_selection_list__unknown_contact);
     } else {
       return getContext().getString(R.string.contact_selection_list__unknown_contact_add_to_group);
-    }
-  }
-
-  private @NonNull Cursor filterNonPushContacts(@NonNull Cursor cursor) {
-    try {
-      final long         startMillis = System.currentTimeMillis();
-      final MatrixCursor matrix      = ContactsCursorRows.createMatrixCursor();
-      while (cursor.moveToNext()) {
-        final RecipientId id        = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ContactRepository.ID_COLUMN)));
-        final Recipient   recipient = Recipient.resolved(id);
-
-        if (recipient.resolve().getRegistered() != RecipientDatabase.RegisteredState.REGISTERED) {
-          matrix.addRow(ContactsCursorRows.forNonPushContact(cursor));
-        }
-      }
-      Log.i(TAG, "filterNonPushContacts() -> " + (System.currentTimeMillis() - startMillis) + "ms");
-      return matrix;
-    } finally {
-      cursor.close();
     }
   }
 

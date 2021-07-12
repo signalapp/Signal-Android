@@ -1,16 +1,16 @@
 /**
  * Copyright (C) 2014 Open Whisper Systems
- *
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -21,6 +21,7 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.signal.core.util.logging.Log;
@@ -40,12 +40,15 @@ import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.ViewHolde
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.CharacterIterable;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration.StickyHeaderAdapter;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -54,8 +57,8 @@ import java.util.Set;
  * @author Jake McGinty
  */
 public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewHolder>
-                                         implements FastScrollAdapter,
-                                                    StickyHeaderAdapter<HeaderViewHolder>
+    implements FastScrollAdapter,
+               StickyHeaderAdapter<HeaderViewHolder>
 {
   @SuppressWarnings("unused")
   private final static String TAG = Log.tag(ContactSelectionListAdapter.class);
@@ -98,14 +101,28 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
       super(itemView);
     }
 
-    public abstract void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, String about, int color, boolean checkboxVisible);
+    public abstract void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, String about, boolean checkboxVisible);
+
     public abstract void unbind(@NonNull GlideRequests glideRequests);
+
     public abstract void setChecked(boolean checked);
+
+    public void animateChecked(boolean checked) {
+      // Intentionally empty.
+    }
+
     public abstract void setEnabled(boolean enabled);
+
+    public void setLetterHeaderCharacter(@Nullable String letterHeaderCharacter) {
+      // Intentionally empty.
+    }
   }
 
-  public static class ContactViewHolder extends ViewHolder {
-    ContactViewHolder(@NonNull  final View itemView,
+  public static class ContactViewHolder extends ViewHolder implements LetterHeaderDecoration.LetterHeaderItem {
+
+    private String letterHeader;
+
+    ContactViewHolder(@NonNull final View itemView,
                       @Nullable final ItemClickListener clickListener)
     {
       super(itemView);
@@ -118,8 +135,8 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
       return (ContactSelectionListItem) itemView;
     }
 
-    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, String about, int color, boolean checkBoxVisible) {
-      getView().set(glideRequests, recipientId, type, name, number, label, about, color, checkBoxVisible);
+    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, String about, boolean checkBoxVisible) {
+      getView().set(glideRequests, recipientId, type, name, number, label, about, checkBoxVisible);
     }
 
     @Override
@@ -129,12 +146,27 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
     @Override
     public void setChecked(boolean checked) {
-      getView().setChecked(checked);
+      getView().setChecked(checked, false);
+    }
+
+    @Override
+    public void animateChecked(boolean checked) {
+      getView().setChecked(checked, true);
     }
 
     @Override
     public void setEnabled(boolean enabled) {
       getView().setEnabled(enabled);
+    }
+
+    @Override
+    public @Nullable String getHeaderLetter() {
+      return letterHeader;
+    }
+
+    @Override
+    public void setLetterHeaderCharacter(@Nullable String letterHeaderCharacter) {
+      this.letterHeader = letterHeaderCharacter;
     }
   }
 
@@ -148,7 +180,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     }
 
     @Override
-    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, String about, int color, boolean checkboxVisible) {
+    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, String about, boolean checkboxVisible) {
       this.label.setText(name);
     }
 
@@ -168,15 +200,15 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     }
   }
 
-  public ContactSelectionListAdapter(@NonNull  Context context,
-                                     @NonNull  GlideRequests glideRequests,
+  public ContactSelectionListAdapter(@NonNull Context context,
+                                     @NonNull GlideRequests glideRequests,
                                      @Nullable Cursor cursor,
                                      @Nullable ItemClickListener clickListener,
                                      boolean multiSelect,
                                      @NonNull Set<RecipientId> currentContacts)
   {
     super(context, cursor);
-    this.layoutInflater = LayoutInflater.from(context);
+    this.layoutInflater  = LayoutInflater.from(context);
     this.glideRequests   = glideRequests;
     this.multiSelect     = multiSelect;
     this.clickListener   = clickListener;
@@ -186,7 +218,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   @Override
   public long getHeaderId(int i) {
     if (!isActiveCursor()) return -1;
-    else if (i == -1)      return -1;
+    else if (i == -1) return -1;
 
     int contactType = getContactType(i);
 
@@ -215,15 +247,10 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     String      label       = CursorUtil.requireString(cursor, ContactRepository.LABEL_COLUMN);
     String      labelText   = ContactsContract.CommonDataKinds.Phone.getTypeLabel(getContext().getResources(),
                                                                                   numberType, label).toString();
-    boolean     isPush      = (contactType & ContactRepository.PUSH_TYPE) > 0;
-
-    int color = isPush ? ContextCompat.getColor(getContext(), R.color.signal_text_primary)
-                       : ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_60);
-
     boolean currentContact = currentContacts.contains(id);
 
     viewHolder.unbind(glideRequests);
-    viewHolder.bind(glideRequests, id, contactType, name, number, labelText, about, color, multiSelect || currentContact);
+    viewHolder.bind(glideRequests, id, contactType, name, number, labelText, about, multiSelect || currentContact);
     viewHolder.setEnabled(true);
 
     if (currentContact) {
@@ -233,6 +260,54 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
       viewHolder.setChecked(selectedContacts.contains(SelectedContact.forUsername(id, number)));
     } else {
       viewHolder.setChecked(selectedContacts.contains(SelectedContact.forPhone(id, number)));
+    }
+
+    if (isContactRow(contactType)) {
+      int position = cursor.getPosition();
+      if (position == 0) {
+        viewHolder.setLetterHeaderCharacter(getHeaderLetterForDisplayName(cursor));
+      } else {
+        cursor.moveToPrevious();
+
+        int previousRowContactType = CursorUtil.requireInt(cursor, ContactRepository.CONTACT_TYPE_COLUMN);
+
+        if (!isContactRow(previousRowContactType)) {
+          cursor.moveToNext();
+          viewHolder.setLetterHeaderCharacter(getHeaderLetterForDisplayName(cursor));
+        } else {
+          String previousHeaderLetter = getHeaderLetterForDisplayName(cursor);
+          cursor.moveToNext();
+          String newHeaderLetter = getHeaderLetterForDisplayName(cursor);
+
+          if (Objects.equals(previousHeaderLetter, newHeaderLetter)) {
+            viewHolder.setLetterHeaderCharacter(null);
+          } else {
+            viewHolder.setLetterHeaderCharacter(newHeaderLetter);
+          }
+        }
+      }
+    }
+  }
+
+  private boolean isContactRow(int contactType) {
+    return (contactType & (ContactRepository.NEW_PHONE_TYPE | ContactRepository.NEW_USERNAME_TYPE | ContactRepository.DIVIDER_TYPE)) == 0;
+  }
+
+  private @Nullable String getHeaderLetterForDisplayName(@NonNull Cursor cursor) {
+    String           name              = CursorUtil.requireString(cursor, ContactRepository.NAME_COLUMN);
+    Iterator<String> characterIterator = new CharacterIterable(name).iterator();
+
+    if (!TextUtils.isEmpty(name) && characterIterator.hasNext()) {
+      String next = characterIterator.next();
+
+      if (Character.isLetter(next.codePointAt(0))) {
+        return next.toUpperCase();
+      } else {
+        return "#";
+      }
+
+    } else {
+      return null;
     }
   }
 
@@ -250,12 +325,12 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     viewHolder.setEnabled(true);
 
     if (currentContacts.contains(id)) {
-      viewHolder.setChecked(true);
+      viewHolder.animateChecked(true);
       viewHolder.setEnabled(false);
     } else if (numberType == ContactRepository.NEW_USERNAME_TYPE) {
-      viewHolder.setChecked(selectedContacts.contains(SelectedContact.forUsername(id, number)));
+      viewHolder.animateChecked(selectedContacts.contains(SelectedContact.forUsername(id, number)));
     } else {
-      viewHolder.setChecked(selectedContacts.contains(SelectedContact.forPhone(id, number)));
+      viewHolder.animateChecked(selectedContacts.contains(SelectedContact.forPhone(id, number)));
     }
   }
 
@@ -275,7 +350,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   @Override
   public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position, int type) {
-    ((TextView)viewHolder.itemView).setText(getSpannedHeaderString(position));
+    ((TextView) viewHolder.itemView).setText(getSpannedHeaderString(position));
   }
 
   @Override
@@ -299,6 +374,10 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   public int getSelectedContactsCount() {
     return selectedContacts.size();
+  }
+
+  public int getCurrentContactsCount() {
+    return currentContacts.size();
   }
 
   private CharSequence getSpannedHeaderString(int position) {

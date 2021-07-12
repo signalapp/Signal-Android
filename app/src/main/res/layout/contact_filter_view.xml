@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_rectangle_secondary"
+        android:minHeight="44dp"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="6dp">
+
+        <LinearLayout
+            android:id="@+id/toggle_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/search_view"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical"
+                android:hint="@string/ContactFilterView__search_name_or_number"
+                android:inputType="textPersonName"
+                android:lineSpacingExtra="6sp"
+                android:textAppearance="@style/TextSecure.TitleTextStyle"
+                android:textColorHint="@color/signal_text_secondary"
+                android:textCursorDrawable="@drawable/search_cursor" />
+
+            <org.thoughtcrime.securesms.components.AnimatingToggle
+                android:id="@+id/button_toggle"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/search_dialpad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="?actionBarItemBackground"
+                    android:clickable="true"
+                    android:contentDescription="@string/contact_filter_toolbar__show_dial_pad_description"
+                    android:focusable="true"
+                    android:tint="@color/signal_icon_tint_primary"
+                    app:srcCompat="@drawable/ic_number_pad_conversation_filter_24" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/search_keyboard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="?actionBarItemBackground"
+                    android:clickable="true"
+                    android:contentDescription="@string/contact_filter_toolbar__show_keyboard_description"
+                    android:focusable="true"
+                    android:tint="@color/signal_icon_tint_primary"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_keyboard_24" />
+
+                <ImageView
+                    android:id="@+id/search_clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="?actionBarItemBackground"
+                    android:clickable="true"
+                    android:contentDescription="@string/contact_filter_toolbar__clear_entered_text_description"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_x_conversation_filter_24" />
+
+            </org.thoughtcrime.securesms.components.AnimatingToggle>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</merge>

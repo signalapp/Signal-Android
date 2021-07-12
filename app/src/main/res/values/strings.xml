@@ -383,6 +383,7 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Some contacts cannot be in legacy groups.</string>
+    <string name="CreateGroupActivity__select_members">Select members</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profile</string>
@@ -513,6 +514,7 @@
     <string name="AddToGroupActivity_add_to_groups">Add to groups</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">This person can\'t be added to legacy groups.</string>
     <string name="AddToGroupActivity_add">Add</string>
+    <string name="AddToGroupActivity_add_to_a_group">Add to a group</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Choose new admin</string>
@@ -668,6 +670,7 @@
         <item quantity="other">Add %3$d members to \"%2$s\"?</item>
     </plurals>
     <string name="AddMembersActivity__add">Add</string>
+    <string name="AddMembersActivity__add_members">Add members</string>
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">Name this group</string>
@@ -3240,6 +3243,10 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Skip</string>
+    <plurals name="CreateGroupActivity__d_members">
+        <item quantity="one">%1$d member</item>
+        <item quantity="other">%1$d members</item>
+    </plurals>
 
     <!-- ShareActivity -->
     <string name="ShareActivity__share">Share</string>
@@ -3608,8 +3615,21 @@
     <string name="PlaybackSpeedToggleTextView__1x">1x</string>
     <string name="PlaybackSpeedToggleTextView__2x">2x</string>
 
+    <!-- PaymentRecipientSelectionFragment -->
+    <string name="PaymentRecipientSelectionFragment__new_payment">New payment</string>
+
+    <!-- NewConversationActivity -->
+    <string name="NewConversationActivity__new_message">New message</string>
+
+    <!-- ContactFilterView -->
+    <string name="ContactFilterView__search_name_or_number">Search name or number</string>
+
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+
+    <!-- ContactSelectionListItem -->
+    <string name="ContactSelectionListItem__sms">SMS</string>
+    <string name="ContactSelectionListItem__dot_s">· %1$s</string>
 
     <!-- EOF -->
 

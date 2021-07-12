@@ -34,6 +34,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
   private FromTextView    nameView;
   private TextView        labelView;
   private CheckBox        checkBox;
+  private View            smsTag;
 
   private String        number;
   private String        chipName;
@@ -61,6 +62,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     this.labelView         = findViewById(R.id.label);
     this.nameView          = findViewById(R.id.name);
     this.checkBox          = findViewById(R.id.check_box);
+    this.smsTag            = findViewById(R.id.sms_tag);
 
     ViewUtil.setTextViewGravityStart(this.nameView, getContext());
   }
@@ -72,7 +74,6 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
                   String number,
                   String label,
                   String about,
-                  int color,
                   boolean checkboxVisible)
   {
     this.glideRequests = glideRequests;
@@ -92,10 +93,15 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
       name = this.recipient.get().getDisplayName(getContext());
     }
 
+    boolean isPush = (contactType & ContactRepository.PUSH_TYPE) > 0;
+    if (isPush) {
+      smsTag.setVisibility(GONE);
+    } else {
+      smsTag.setVisibility(VISIBLE);
+    }
+
     Recipient recipientSnapshot = recipient != null ? recipient.get() : null;
 
-    this.nameView.setTextColor(color);
-    this.numberView.setTextColor(color);
     if (recipientSnapshot == null || recipientSnapshot.isResolving()) {
       this.contactPhotoImage.setAvatar(glideRequests, null, false);
       setText(null, type, name, number, label, about);
@@ -107,8 +113,20 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     this.checkBox.setVisibility(checkboxVisible ? View.VISIBLE : View.GONE);
   }
 
-  public void setChecked(boolean selected) {
-    this.checkBox.setChecked(selected);
+  public void setChecked(boolean selected, boolean animate) {
+    boolean wasSelected = checkBox.isChecked();
+
+    if (wasSelected != selected) {
+      checkBox.setChecked(selected);
+
+      float alpha = selected ? 1f : 0f;
+      if (animate) {
+        checkBox.animate().setDuration(250L).alpha(alpha);
+      } else {
+        checkBox.animate().cancel();
+        checkBox.setAlpha(alpha);
+      }
+    }
   }
 
   @Override
@@ -146,7 +164,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     } else {
       this.numberView.setText(!Util.isEmpty(about) ? about : number);
       this.nameView.setEnabled(true);
-      this.labelView.setText(label != null && !label.equals("null") ? label : "");
+      this.labelView.setText(label != null && !label.equals("null") ? getResources().getString(R.string.ContactSelectionListItem__dot_s, label) : "");
       this.labelView.setVisibility(View.VISIBLE);
     }
 

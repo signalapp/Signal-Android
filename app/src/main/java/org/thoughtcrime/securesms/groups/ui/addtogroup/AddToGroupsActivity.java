@@ -64,7 +64,7 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
 
     next = findViewById(R.id.next);
 
-    getToolbar().setHint(contactsFragment.isMulti() ? R.string.AddToGroupActivity_add_to_groups : R.string.AddToGroupActivity_add_to_group);
+    getContactFilterView().setHint(contactsFragment.isMulti() ? R.string.AddToGroupActivity_add_to_groups : R.string.AddToGroupActivity_add_to_group);
 
     next.setVisibility(contactsFragment.isMulti() ? View.VISIBLE : View.GONE);
 
@@ -134,12 +134,16 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
   @Override
   public void onContactDeselected(Optional<RecipientId> recipientId, String number) {
     if (contactsFragment.hasQueryFilter()) {
-      getToolbar().clear();
+      getContactFilterView().clear();
     }
 
     if (contactsFragment.getSelectedContactsCount() < MINIMUM_GROUP_SELECT_SIZE) {
       disableNext();
     }
+  }
+
+  @Override
+  public void onSelectionChanged() {
   }
 
   private void enableNext() {

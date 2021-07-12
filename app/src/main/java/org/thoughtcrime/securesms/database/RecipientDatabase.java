@@ -186,7 +186,7 @@ public class RecipientDatabase extends Database {
   };
 
   private static final String[] ID_PROJECTION              = new String[]{ID};
-  private static final String[] SEARCH_PROJECTION          = new String[]{ID, SYSTEM_JOINED_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, ABOUT, ABOUT_EMOJI, EXTRAS, GROUPS_IN_COMMON, "COALESCE(" + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ") AS " + SEARCH_PROFILE_NAME, "COALESCE(" + nullIfEmpty(SYSTEM_JOINED_NAME) + ", " + nullIfEmpty(SYSTEM_GIVEN_NAME) + ", " + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ", " + nullIfEmpty(USERNAME) + ") AS " + SORT_NAME};
+  private static final String[] SEARCH_PROJECTION          = new String[]{ID, SYSTEM_JOINED_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, ABOUT, ABOUT_EMOJI, EXTRAS, GROUPS_IN_COMMON, "COALESCE(" + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ") AS " + SEARCH_PROFILE_NAME, "LOWER(COALESCE(" + nullIfEmpty(SYSTEM_JOINED_NAME) + ", " + nullIfEmpty(SYSTEM_GIVEN_NAME) + ", " + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ", " + nullIfEmpty(USERNAME) + ")) AS " + SORT_NAME};
   public  static final String[] SEARCH_PROJECTION_NAMES    = new String[]{ID, SYSTEM_JOINED_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, ABOUT, ABOUT_EMOJI, EXTRAS, GROUPS_IN_COMMON, SEARCH_PROFILE_NAME, SORT_NAME};
   private static final String[] TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
                                                                    .map(columnName -> TABLE_NAME + "." + columnName)
@@ -2392,6 +2392,50 @@ public class RecipientDatabase extends Database {
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
   }
 
+  public @Nullable Cursor getNonGroupContacts(boolean includeSelf) {
+    String   selection = BLOCKED    + " = ? AND "                                                    +
+                         GROUP_ID   + " IS NULL AND "                                                +
+                         "(" + SYSTEM_JOINED_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
+                         "(" + SORT_NAME + " NOT NULL OR " + USERNAME + " NOT NULL)";
+    String[] args;
+
+    if (includeSelf) {
+      args = SqlUtil.buildArgs("0", "1");
+    } else {
+      selection += " AND " + ID + " != ?";
+      args       = SqlUtil.buildArgs("0", "1", Recipient.self().getId().serialize());
+    }
+
+    String   orderBy   = SORT_NAME + ", " + SYSTEM_JOINED_NAME + ", " + SEARCH_PROFILE_NAME + ", " + USERNAME + ", " + PHONE;
+
+    return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
+  }
+
+  public @Nullable Cursor queryNonGroupContacts(@NonNull String query, boolean includeSelf) {
+    query = buildCaseInsensitiveGlobPattern(query);
+
+    String   selection = BLOCKED     + " = ? AND " +
+                         GROUP_ID    + " IS NULL AND " +
+                         "(" + SYSTEM_JOINED_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
+                         "(" +
+                           PHONE     + " GLOB ? OR " +
+                           SORT_NAME + " GLOB ? OR " +
+                           USERNAME  + " GLOB ?" +
+                         ")";
+    String[] args;
+
+    if (includeSelf) {
+      args = SqlUtil.buildArgs("0", "1", query, query, query);
+    } else {
+      selection += " AND " + ID + " != ?";
+      args       = SqlUtil.buildArgs("0", "1", query, query, query, Recipient.self().getId().toLong());
+    }
+
+    String   orderBy   = SORT_NAME + ", " + SYSTEM_JOINED_NAME + ", " + SEARCH_PROFILE_NAME + ", " + PHONE;
+
+    return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
+  }
+
   public @Nullable Cursor queryAllContacts(@NonNull String query) {
     query = buildCaseInsensitiveGlobPattern(query);
 
@@ -2402,7 +2446,7 @@ public class RecipientDatabase extends Database {
                            PHONE     + " GLOB ? OR " +
                            EMAIL     + " GLOB ?" +
                          ")";
-    String[] args      = new String[] { "0", query, query, query, query };
+    String[] args      = SqlUtil.buildArgs("0", query, query, query, query);
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, null);
   }

@@ -91,14 +91,27 @@
                   app:layout_constraintBottom_toBottomOf="parent"
                   app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-        <org.thoughtcrime.securesms.components.ContactFilterToolbar
-            android:id="@+id/contact_filter"
-            android:layout_height="?attr/actionBarSize"
+        <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
+            android:id="@+id/sms_send_frame_toolbar"
             android:layout_width="match_parent"
-            android:minHeight="?attr/actionBarSize"
-            android:background="@color/core_ultramarine"
-            android:elevation="4dp"
-            app:searchTextStyle="@style/TextSecure.TitleTextStyle.Light" />
+            android:layout_height="56dp"
+            android:theme="?attr/settingsToolbarStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_left_24"
+            app:title="@string/InviteActivity_invite_to_signal"
+            app:titleTextAppearance="@style/Signal.Text.Title" />
+
+        <org.thoughtcrime.securesms.components.ContactFilterView
+            android:id="@+id/contact_filter_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dsl_settings_gutter"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="@dimen/dsl_settings_gutter"
+            android:minHeight="44dp" />
 
         <fragment android:id="@+id/contact_selection_list_fragment"
                   android:layout_width="match_parent"

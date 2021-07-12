@@ -65,4 +65,8 @@ public class PushContactSelectionActivity extends ContactSelectionActivity {
     setResult(RESULT_OK, resultIntent);
     finish();
   }
+
+  @Override
+  public void onSelectionChanged() {
+  }
 }

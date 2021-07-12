@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
@@ -12,7 +13,7 @@ import androidx.navigation.Navigation;
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.ContactFilterToolbar;
+import org.thoughtcrime.securesms.components.ContactFilterView;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -27,7 +28,8 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 public class PaymentRecipientSelectionFragment extends LoggingFragment implements ContactSelectionListFragment.OnContactSelectedListener, ContactSelectionListFragment.ScrollCallback {
 
-  private ContactFilterToolbar         toolbar;
+  private Toolbar                      toolbar;
+  private ContactFilterView            contactFilterView;
   private ContactSelectionListFragment contactsFragment;
 
   public PaymentRecipientSelectionFragment() {
@@ -38,6 +40,8 @@ public class PaymentRecipientSelectionFragment extends LoggingFragment implement
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     toolbar = view.findViewById(R.id.payment_recipient_selection_fragment_toolbar);
     toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).popBackStack());
+
+    contactFilterView = view.findViewById(R.id.contact_filter_edit_text);
 
     Bundle arguments = new Bundle();
     arguments.putBoolean(ContactSelectionListFragment.REFRESHABLE, false);
@@ -59,7 +63,7 @@ public class PaymentRecipientSelectionFragment extends LoggingFragment implement
   }
 
   private void initializeSearch() {
-    toolbar.setOnFilterChangedListener(filter -> contactsFragment.setQueryFilter(filter));
+    contactFilterView.setOnFilterChangedListener(filter -> contactsFragment.setQueryFilter(filter));
   }
 
   @Override
@@ -75,6 +79,10 @@ public class PaymentRecipientSelectionFragment extends LoggingFragment implement
 
   @Override
   public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, @Nullable String number) { }
+
+  @Override
+  public void onSelectionChanged() {
+  }
 
   @Override
   public void onBeginScroll() {

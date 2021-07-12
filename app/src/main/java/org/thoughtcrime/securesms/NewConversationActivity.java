@@ -56,6 +56,7 @@ public class NewConversationActivity extends ContactSelectionActivity
     super.onCreate(bundle, ready);
     assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setTitle(R.string.NewConversationActivity__new_message);
   }
 
   @Override
@@ -94,6 +95,10 @@ public class NewConversationActivity extends ContactSelectionActivity
     }
 
     return true;
+  }
+
+  @Override
+  public void onSelectionChanged() {
   }
 
   private void launch(Recipient recipient) {
