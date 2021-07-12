@@ -17,6 +17,7 @@ import org.session.libsession.messaging.sending_receiving.data_extraction.DataEx
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.utilities.UpdateMessageData
+import org.session.libsession.snode.OnionRequestAPI
 import org.session.libsession.utilities.*
 import org.session.libsession.utilities.Address.Companion.fromSerialized
 import org.session.libsession.utilities.recipients.Recipient
@@ -331,7 +332,13 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             smsDatabase.markAsSentFailed(messageRecord.getId())
         }
         if (error.localizedMessage != null) {
-            DatabaseFactory.getLokiMessageDatabase(context).setErrorMessage(messageRecord.getId(), error.localizedMessage!!)
+            val message: String
+            if (error is OnionRequestAPI.HTTPRequestFailedAtDestinationException && error.statusCode == 429) {
+                message = "Rate limited."
+            } else {
+                message = error.localizedMessage!!
+            }
+            DatabaseFactory.getLokiMessageDatabase(context).setErrorMessage(messageRecord.getId(), message)
         } else {
             DatabaseFactory.getLokiMessageDatabase(context).setErrorMessage(messageRecord.getId(), error.javaClass.simpleName)
         }
