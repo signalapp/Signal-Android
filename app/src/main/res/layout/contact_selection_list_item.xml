@@ -7,7 +7,7 @@
     android:orientation="horizontal"
     android:gravity="center_vertical"
     android:focusable="true"
-    android:background="@drawable/conversation_item_background"
+    android:background="?selectableItemBackground"
     android:paddingStart="@dimen/selection_item_header_width"
     android:paddingEnd="24dp">
 

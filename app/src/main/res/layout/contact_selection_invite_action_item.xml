@@ -5,6 +5,7 @@
     style="@style/Signal.Text.Body"
     android:layout_width="match_parent"
     android:layout_height="@dimen/contact_selection_item_height"
+    android:background="?selectableItemBackground"
     android:drawablePadding="16dp"
     android:ellipsize="marquee"
     android:fontFamily="sans-serif-medium"
