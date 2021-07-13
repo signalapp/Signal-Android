@@ -71,6 +71,7 @@ public class LinkPreviewRepository {
 
   private static final long FAILSAFE_MAX_TEXT_SIZE  = ByteUnit.MEGABYTES.toBytes(2);
   private static final long FAILSAFE_MAX_IMAGE_SIZE = ByteUnit.MEGABYTES.toBytes(2);
+  private static final int MAX_THUMBNAIL_CANVAS_SIZE = 512;
 
   private final OkHttpClient client;
 
@@ -172,6 +173,30 @@ public class LinkPreviewRepository {
     return new CallRequestController(call);
   }
 
+  private Optional<Attachment> makeThumbnailFromBytes(byte[] data) {
+    Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+    if (bitmap == null) {
+      return Optional.absent();
+    }
+
+    double maxImgDim = Math.max(1, Math.max(bitmap.getWidth(), bitmap.getHeight()));
+    double ratio = MAX_THUMBNAIL_CANVAS_SIZE / maxImgDim;
+
+    if (ratio < 1.0) {
+      int newWidth = Math.max(1, (int) Math.floor(ratio * bitmap.getWidth()));
+      int newHeight = Math.max(1, (int) Math.floor(ratio * bitmap.getHeight()));
+      Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
+      bitmap.recycle();
+      bitmap = scaledBitmap;
+    }
+
+    Optional<Attachment> attachment = bitmapToAttachment(bitmap, Bitmap.CompressFormat.JPEG, MediaUtil.IMAGE_JPEG);
+    if (bitmap != null) {
+      bitmap.recycle();
+    }
+    return attachment;
+  }
+
   private @NonNull RequestController fetchThumbnail(@NonNull String imageUrl, @NonNull Consumer<Optional<Attachment>> callback) {
     Call                  call       = client.newCall(new Request.Builder().url(imageUrl).build());
     CallRequestController controller = new CallRequestController(call);
@@ -187,10 +212,7 @@ public class LinkPreviewRepository {
         controller.setStream(bodyStream);
 
         byte[]               data      = OkHttpUtil.readAsBytes(bodyStream, FAILSAFE_MAX_IMAGE_SIZE);
-        Bitmap               bitmap    = BitmapFactory.decodeByteArray(data, 0, data.length);
-        Optional<Attachment> thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.JPEG, MediaUtil.IMAGE_JPEG);
-
-        if (bitmap != null) bitmap.recycle();
+        Optional<Attachment> thumbnail = makeThumbnailFromBytes(data);
 
         callback.accept(thumbnail);
       } catch (IOException e) {
