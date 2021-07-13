@@ -1136,7 +1136,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val builder = AlertDialog.Builder(this)
         val sessionID = messages.first().individualRecipient.address.toString()
         builder.setTitle(R.string.ConversationFragment_ban_selected_user)
-        builder.setMessage("This will ban the selected user from this room. It won't ban them from other rooms. The selected user won't know that they've been banned.")
+        builder.setMessage("This will ban the selected user from this room. It won't ban them from other rooms.")
         builder.setCancelable(true)
         val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)!!
         builder.setPositiveButton(R.string.ban) { _, _ ->
@@ -1144,6 +1144,28 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 Toast.makeText(this@ConversationActivityV2, "Successfully banned user", Toast.LENGTH_LONG).show()
             }.failUi { error ->
                 Toast.makeText(this@ConversationActivityV2, "Couldn't ban user due to error: $error", Toast.LENGTH_LONG).show()
+            }
+            endActionMode()
+        }
+        builder.setNegativeButton(android.R.string.cancel) { dialog, _ ->
+            dialog.dismiss()
+            endActionMode()
+        }
+        builder.show()
+    }
+
+    override fun banAndDeleteAll(messages: Set<MessageRecord>) {
+        val builder = AlertDialog.Builder(this)
+        val sessionID = messages.first().individualRecipient.address.toString()
+        builder.setTitle(R.string.ConversationFragment_ban_selected_user)
+        builder.setMessage("This will ban the selected user from this room and delete all messages sent by them. It won't ban them from other rooms or delete the messages they sent there.")
+        builder.setCancelable(true)
+        val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)!!
+        builder.setPositiveButton(R.string.ban) { _, _ ->
+            OpenGroupAPIV2.banAndDeleteAll(sessionID, openGroup.room, openGroup.server).successUi {
+                Toast.makeText(this@ConversationActivityV2, "Successfully banned user and deleted all their messages", Toast.LENGTH_LONG).show()
+            }.failUi { error ->
+                Toast.makeText(this@ConversationActivityV2, "Couldn't execute request due to error: $error", Toast.LENGTH_LONG).show()
             }
             endActionMode()
         }

@@ -337,6 +337,14 @@ object OpenGroupAPIV2 {
         }
     }
 
+    fun banAndDeleteAll(publicKey: String, room: String, server: String): Promise<Unit, Exception> {
+        val parameters = mapOf( "public_key" to publicKey )
+        val request = Request(verb = POST, room = room, server = server, endpoint = "ban_and_delete_all", parameters = parameters)
+        return send(request).map {
+            Log.d("Loki", "Banned user: $publicKey from: $server.$room.")
+        }
+    }
+
     fun unban(publicKey: String, room: String, server: String): Promise<Unit, Exception> {
         val request = Request(verb = DELETE, room = room, server = server, endpoint = "block_list/$publicKey")
         return send(request).map {

@@ -15,5 +15,5 @@
         android:textColor="?attr/media_overview_header_foreground"
         android:textSize="@dimen/small_font_size"
         tools:text="March 1, 2015" />
-    
+
 </FrameLayout>
