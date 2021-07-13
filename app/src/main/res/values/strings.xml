@@ -3237,6 +3237,7 @@
 
     <!-- DeleteAccountCountryPickerFragment -->
     <string name="DeleteAccountCountryPickerFragment__search_countries">Search Countries</string>
+    <string name="back">Back</string>
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Skip</string>
