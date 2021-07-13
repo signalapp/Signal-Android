@@ -19,11 +19,9 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.EmojiHeader;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.EmojiNoResultsModel;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.VariationSelectorListener;
-import org.thoughtcrime.securesms.emoji.EmojiCategory;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.MappingModel;
-import org.thoughtcrime.securesms.util.MappingModelList;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.List;
@@ -31,7 +29,6 @@ import java.util.Optional;
 
 public class EmojiPageView extends RecyclerView implements VariationSelectorListener {
 
-  private EmojiPageModel                   model;
   private AdapterFactory                   adapterFactory;
   private LinearLayoutManager              layoutManager;
   private RecyclerView.OnItemTouchListener scrollDisabler;
@@ -125,45 +122,15 @@ public class EmojiPageView extends RecyclerView implements VariationSelectorList
   }
 
   public void onSelected() {
-    if (getAdapter() != null && (model == null || model.isDynamic())) {
+    if (getAdapter() != null) {
       getAdapter().notifyDataSetChanged();
     }
   }
 
-  public void setList(@NonNull List<MappingModel<?>> list) {
-    this.model = null;
+  public void setList(@NonNull List<MappingModel<?>> list, @Nullable Runnable commitCallback) {
     EmojiPageViewGridAdapter adapter = adapterFactory.create();
     setAdapter(adapter);
-    adapter.submitList(list);
-  }
-
-  public void setModel(@Nullable EmojiPageModel model) {
-    this.model = model;
-
-    EmojiPageViewGridAdapter adapter = adapterFactory.create();
-    setAdapter(adapter);
-    adapter.submitList(getMappingModelList());
-  }
-
-  public void bindSearchableAdapter(@Nullable EmojiPageModel model) {
-    this.model = model;
-
-    EmojiPageViewGridAdapter adapter = adapterFactory.create();
-    setAdapter(adapter);
-    adapter.submitList(getMappingModelList());
-  }
-
-  private @NonNull MappingModelList getMappingModelList() {
-    if (model != null) {
-      boolean emoticonPage = EmojiCategory.EMOTICONS.getKey().equals(model.getKey());
-      return model.getDisplayEmoji()
-                  .stream()
-                  .map(e -> emoticonPage ? new EmojiPageViewGridAdapter.EmojiTextModel(model.getKey(), e)
-                                         : new EmojiPageViewGridAdapter.EmojiModel(model.getKey(), e))
-                  .collect(MappingModelList.collect());
-    }
-
-    return new MappingModelList();
+    adapter.submitList(list, commitCallback);
   }
 
   @Override

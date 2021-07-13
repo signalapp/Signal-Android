@@ -6,8 +6,8 @@
     android:layout_height="wrap_content"
     android:ellipsize="end"
     android:gravity="center_vertical"
-    android:minHeight="48dp"
+    android:minHeight="36dp"
     android:singleLine="true"
-    android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
-    android:textColor="@color/signal_text_primary"
+    android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
+    android:textColor="@color/signal_text_hint"
     tools:text="@string/ReactWithAnyEmojiBottomSheetDialogFragment__activities" />

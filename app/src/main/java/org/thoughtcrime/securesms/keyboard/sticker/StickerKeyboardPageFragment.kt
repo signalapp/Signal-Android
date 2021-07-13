@@ -21,11 +21,14 @@ import org.thoughtcrime.securesms.stickers.StickerEventListener
 import org.thoughtcrime.securesms.stickers.StickerRolloverTouchListener
 import org.thoughtcrime.securesms.stickers.StickerRolloverTouchListener.RolloverStickerRetriever
 import org.thoughtcrime.securesms.util.DeviceProperties
+import org.thoughtcrime.securesms.util.InsetItemDecoration
 import org.thoughtcrime.securesms.util.MappingModel
+import org.thoughtcrime.securesms.util.MappingModelList
 import org.thoughtcrime.securesms.util.Throttler
 import org.whispersystems.libsignal.util.Pair
 import java.util.Optional
 import kotlin.math.abs
+import kotlin.math.max
 
 class StickerKeyboardPageFragment :
   LoggingFragment(R.layout.keyboard_pager_sticker_page_fragment),
@@ -48,6 +51,7 @@ class StickerKeyboardPageFragment :
   private val packIdSelectionOnScroll: UpdatePackSelectionOnScroll = UpdatePackSelectionOnScroll()
   private val observerThrottler: Throttler = Throttler(500)
   private val stickerThrottler: Throttler = Throttler(100)
+  private var firstLoad: Boolean = true
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -72,6 +76,7 @@ class StickerKeyboardPageFragment :
     stickerList.adapter = stickerListAdapter
     stickerList.addOnItemTouchListener(listTouchListener)
     stickerList.addOnScrollListener(packIdSelectionOnScroll)
+    stickerList.addItemDecoration(InsetItemDecoration(StickerInsetSetter()))
 
     stickerPacksRecycler = view.findViewById(R.id.sticker_packs_recycler)
 
@@ -106,11 +111,20 @@ class StickerKeyboardPageFragment :
     viewModel = ViewModelProviders.of(requireActivity(), StickerKeyboardPageViewModel.Factory(requireContext()))
       .get(StickerKeyboardPageViewModel::class.java)
 
-    viewModel.stickers.observe(viewLifecycleOwner, stickerListAdapter::submitList)
+    viewModel.stickers.observe(viewLifecycleOwner, this::updateStickerList)
     viewModel.packs.observe(viewLifecycleOwner, stickerPacksAdapter::submitList)
     viewModel.getSelectedPack().observe(viewLifecycleOwner, this::updateCategoryTab)
 
     viewModel.refreshStickers()
+  }
+
+  private fun updateStickerList(stickers: MappingModelList) {
+    if (firstLoad) {
+      stickerListAdapter.submitList(stickers) { layoutManager.scrollToPositionWithOffset(1, 0) }
+      firstLoad = false
+    } else {
+      stickerListAdapter.submitList(stickers)
+    }
   }
 
   private fun onTabSelected(stickerPack: KeyboardStickerPackListAdapter.StickerPack) {
@@ -188,9 +202,8 @@ class StickerKeyboardPageFragment :
   }
 
   private fun calculateColumnCount(@Px screenWidth: Int): Int {
-    val modifier = resources.getDimensionPixelOffset(R.dimen.sticker_page_item_padding).toFloat()
-    val divisor = resources.getDimensionPixelOffset(R.dimen.sticker_page_item_divisor).toFloat()
-    return ((screenWidth - modifier) / divisor).toInt()
+    val divisor = resources.getDimensionPixelOffset(R.dimen.sticker_page_item_width).toFloat() + resources.getDimensionPixelOffset(R.dimen.sticker_page_item_padding).toFloat()
+    return max(1, (screenWidth / divisor).toInt())
   }
 
   private inner class UpdatePackSelectionOnScroll : RecyclerView.OnScrollListener() {

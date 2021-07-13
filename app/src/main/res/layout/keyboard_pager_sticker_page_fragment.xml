@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingTop="8dp"
-            android:paddingBottom="8dp"
+            android:paddingBottom="4dp"
             app:click_only="true"
             app:layout_scrollFlags="scroll|snap"
             app:search_hint="@string/StickerSearchDialogFragment_search_stickers"
@@ -34,15 +34,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="?actionBarSize"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="@dimen/keyboard_toolbar_height"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <LinearLayout
         android:id="@+id/sticker_keyboard_packs_background"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="@dimen/keyboard_toolbar_height"
         android:layout_gravity="bottom"
         android:background="@color/signal_background_secondary"
         android:gravity="center_vertical"
@@ -51,11 +51,11 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/sticker_search"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/keyboard_toolbar_height"
+            android:layout_height="@dimen/keyboard_toolbar_height"
             android:background="?selectableItemBackground"
             android:contentDescription="@string/KeyboardPagerFragment_open_sticker_search"
-            android:padding="13dp"
+            android:padding="11dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_search_24"
             app:tint="@color/icon_tab_selector" />
@@ -63,7 +63,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/sticker_packs_recycler"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="@dimen/keyboard_toolbar_height"
             android:layout_weight="1"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -72,11 +72,11 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/sticker_manage"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/keyboard_toolbar_height"
+            android:layout_height="@dimen/keyboard_toolbar_height"
             android:background="?selectableItemBackground"
             android:contentDescription="@string/KeyboardPagerFragment_backspace"
-            android:padding="13dp"
+            android:padding="11dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_plus_24"
             app:tint="@color/icon_tab_selector" />

@@ -219,7 +219,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends BottomShee
       emojiPageView.addOnScrollListener(new TopAndBottomShadowHelper(requireView().findViewById(R.id.react_with_any_emoji_top_shadow),
                                                                      tabBar.findViewById(R.id.react_with_any_emoji_bottom_shadow)));
 
-      viewModel.getEmojiList().observe(getViewLifecycleOwner(), pages -> emojiPageView.setList(pages));
+      viewModel.getEmojiList().observe(getViewLifecycleOwner(), pages -> emojiPageView.setList(pages, null));
       viewModel.getCategories().observe(getViewLifecycleOwner(), categoriesAdapter::submitList);
       viewModel.getSelectedKey().observe(getViewLifecycleOwner(), key -> categoriesRecycler.post(() -> {
         int index = categoriesAdapter.indexOfFirst(EmojiKeyboardPageCategoryMappingModel.class, m -> m.getKey().equals(key));

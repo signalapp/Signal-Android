@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_selected="true">
         <layer-list>
-            <item android:top="8dp" android:left="8dp" android:bottom="8dp" android:right="8dp">
+            <item android:top="6dp" android:left="6dp" android:bottom="6dp" android:right="6dp">
                 <shape android:shape="rectangle">
                     <solid android:color="@color/signal_inverse_transparent_08" />
                     <corners android:radius="8dp" />

@@ -85,7 +85,7 @@ class EmojiKeyboardPageFragment : Fragment(R.layout.keyboard_pager_emoji_page_fr
     }
 
     viewModel.pages.observe(viewLifecycleOwner) { pages ->
-      emojiPageView.setList(pages)
+      emojiPageView.setList(pages) { (emojiPageView.layoutManager as? LinearLayoutManager)?.scrollToPositionWithOffset(1, 0) }
     }
 
     viewModel.selectedKey.observe(viewLifecycleOwner) { updateCategoryTab(it) }

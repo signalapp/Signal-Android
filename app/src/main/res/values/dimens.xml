@@ -6,7 +6,7 @@
     <dimen name="min_custom_keyboard_size">110dp</dimen>
     <dimen name="min_custom_keyboard_top_margin_portrait">170dp</dimen>
     <dimen name="min_custom_keyboard_top_margin_landscape_bubble">56dp</dimen>
-    <dimen name="emoji_drawer_item_width">48dp</dimen>
+    <dimen name="emoji_drawer_item_width">46dp</dimen>
     <dimen name="conversation_item_body_text_size">16sp</dimen>
     <dimen name="conversation_item_date_text_size">12sp</dimen>
     <dimen name="transport_selection_popup_width">200sp</dimen>
@@ -14,6 +14,7 @@
     <dimen name="transport_selection_popup_yoff">2dp</dimen>
     <dimen name="contact_photo_target_size">64dp</dimen>
     <dimen name="contact_selection_photo_size">50dp</dimen>
+    <dimen name="keyboard_toolbar_height">44dp</dimen>
 
     <dimen name="album_total_width">210dp</dimen>
     <dimen name="album_2_total_height">105dp</dimen>
@@ -87,8 +88,8 @@
     <dimen name="media_overview_detail_item_height">72dp</dimen>
     <dimen name="message_details_table_row_pad">8dp</dimen>
 
-    <dimen name="sticker_page_item_padding">8dp</dimen>
-    <dimen name="sticker_page_item_divisor">88dp</dimen>
+    <dimen name="sticker_page_item_padding">16dp</dimen>
+    <dimen name="sticker_page_item_width">72dp</dimen>
     <dimen name="sticker_page_item_multiplier">8dp</dimen>
 
     <dimen name="sticker_management_horizontal_margin">16dp</dimen>

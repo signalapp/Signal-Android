@@ -56,7 +56,7 @@ class EmojiSearchFragment : Fragment(R.layout.emoji_search_fragment), EmojiPageV
     searchBar.callbacks = SearchCallbacks()
 
     viewModel.emojiList.observe(viewLifecycleOwner) { results ->
-      emojiPageView.setList(results.emojiList)
+      emojiPageView.setList(results.emojiList, null)
 
       if (results.emojiList.isNotEmpty() || results.isRecents) {
         emojiPageView.visibility = View.VISIBLE

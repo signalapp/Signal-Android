@@ -16,7 +16,9 @@ import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.stickers.StickerEventListener
 import org.thoughtcrime.securesms.util.DeviceProperties
+import org.thoughtcrime.securesms.util.InsetItemDecoration
 import org.thoughtcrime.securesms.util.ViewUtil
+import kotlin.math.max
 
 /**
  * Search dialog for finding stickers.
@@ -50,6 +52,7 @@ class StickerSearchDialogFragment : DialogFragment(), KeyboardStickerListAdapter
 
     list.layoutManager = layoutManager
     list.adapter = adapter
+    list.addItemDecoration(InsetItemDecoration(StickerInsetSetter()))
 
     val viewModel: StickerSearchViewModel = ViewModelProviders.of(this, StickerSearchViewModel.Factory(requireContext())).get(StickerSearchViewModel::class.java)
 
@@ -80,9 +83,8 @@ class StickerSearchDialogFragment : DialogFragment(), KeyboardStickerListAdapter
   }
 
   private fun calculateColumnCount(@Px screenWidth: Int): Int {
-    val modifier = resources.getDimensionPixelOffset(R.dimen.sticker_page_item_padding).toFloat()
-    val divisor = resources.getDimensionPixelOffset(R.dimen.sticker_page_item_divisor).toFloat()
-    return ((screenWidth - modifier) / divisor).toInt()
+    val divisor = resources.getDimensionPixelOffset(R.dimen.sticker_page_item_width).toFloat() + resources.getDimensionPixelOffset(R.dimen.sticker_page_item_padding).toFloat()
+    return max(1, (screenWidth / divisor).toInt())
   }
 
   override fun onStickerClicked(sticker: KeyboardStickerListAdapter.Sticker) {

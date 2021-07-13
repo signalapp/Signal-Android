@@ -8,14 +8,12 @@
     tools:layout_gravity="bottom"
     tools:maxHeight="339dp">
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/keyboard_pager_fragment_emoji"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="2dp"
+        android:layout_width="@dimen/keyboard_toolbar_height"
+        android:layout_height="@dimen/keyboard_toolbar_height"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="2dp"
-        android:background="?selectableItemBackgroundBorderless"
+        android:background="?selectableItemBackground"
         android:contentDescription="@string/KeyboardPagerFragment_emoji"
         android:padding="6dp"
         app:layout_constraintEnd_toStartOf="@id/keyboard_pager_fragment_sticker"
@@ -24,13 +22,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/keyboard_pager_fragment_emoji_icon" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/keyboard_pager_fragment_sticker"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        android:background="?selectableItemBackgroundBorderless"
+        android:layout_width="@dimen/keyboard_toolbar_height"
+        android:layout_height="@dimen/keyboard_toolbar_height"
+        android:background="?selectableItemBackground"
         android:contentDescription="@string/KeyboardPagerFragment_stickers"
         android:padding="6dp"
         app:layout_constraintEnd_toStartOf="@id/keyboard_pager_fragment_gif"
@@ -39,14 +35,12 @@
         app:srcCompat="@drawable/keyboard_pager_fragment_sticker_icon"
         tools:selected="true" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/keyboard_pager_fragment_gif"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="@dimen/keyboard_toolbar_height"
+        android:layout_height="@dimen/keyboard_toolbar_height"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
-        android:background="?selectableItemBackgroundBorderless"
+        android:background="?selectableItemBackground"
         android:contentDescription="@string/KeyboardPagerFragment_gifs"
         android:padding="6dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +59,6 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/keyboard_pager_button_barrier" />
 

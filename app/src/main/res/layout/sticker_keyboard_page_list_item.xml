@@ -7,8 +7,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/sticker_keyboard_page_image"
-        android:layout_width="88dp"
-        android:layout_height="88dp"
+        android:layout_width="@dimen/sticker_page_item_width"
+        android:layout_height="@dimen/sticker_page_item_width"
         android:layout_gravity="center"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"

@@ -10,9 +10,10 @@ import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.Emoj
 import org.thoughtcrime.securesms.util.InsetItemDecoration
 import org.thoughtcrime.securesms.util.ViewUtil
 
-private val EDGE_LENGTH: Int = ViewUtil.dpToPx(7)
-private val HORIZONTAL_INSET: Int = ViewUtil.dpToPx(8)
-private val VERTICAL_INSET: Int = ViewUtil.dpToPx(8)
+private val EDGE_LENGTH: Int = ViewUtil.dpToPx(6)
+private val HORIZONTAL_INSET: Int = ViewUtil.dpToPx(6)
+private val EMOJI_VERTICAL_INSET: Int = ViewUtil.dpToPx(5)
+private val HEADER_VERTICAL_INSET: Int = ViewUtil.dpToPx(8)
 
 /**
  * Use super class to add insets to the emojis and use the [onDrawOver] to draw the variation
@@ -41,11 +42,12 @@ class EmojiItemDecoration(private val allowVariations: Boolean, private val vari
 
   private class SetInset : InsetItemDecoration.SetInset() {
     override fun setInset(outRect: Rect, view: View, parent: RecyclerView) {
-      val isFirstHeader = view.javaClass == AppCompatTextView::class.java && getPosition(view, parent) == 0
+      val isHeader = view.javaClass == AppCompatTextView::class.java
+
       outRect.left = HORIZONTAL_INSET
       outRect.right = HORIZONTAL_INSET
-      outRect.top = if (isFirstHeader) 0 else VERTICAL_INSET
-      outRect.bottom = VERTICAL_INSET
+      outRect.top = if (isHeader) HEADER_VERTICAL_INSET else EMOJI_VERTICAL_INSET
+      outRect.bottom = if (isHeader) 0 else EMOJI_VERTICAL_INSET
     }
   }
 }

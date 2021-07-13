@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:background="@color/signal_background_secondary"
         app:elevation="0dp"
-        app:expanded="false">
+        app:expanded="false"
+        tools:expanded="true">
 
         <org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
             android:id="@+id/emoji_keyboard_search_text"
@@ -20,11 +21,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingTop="8dp"
-            android:paddingBottom="8dp"
+            android:paddingBottom="4dp"
             app:click_only="true"
             app:layout_scrollFlags="scroll|snap"
-            app:search_icon_tint="@color/signal_icon_tint_tab_unselected"
             app:search_hint="@string/KeyboardPagerFragment_search_emoji"
+            app:search_icon_tint="@color/signal_icon_tint_tab_unselected"
             app:show_always="true" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -34,15 +35,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="?actionBarSize"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="@dimen/keyboard_toolbar_height"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <LinearLayout
         android:id="@+id/emoji_keyboard_bottom_bar"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="@dimen/keyboard_toolbar_height"
         android:layout_gravity="bottom"
         android:background="@color/signal_background_secondary"
         android:gravity="center_vertical"
@@ -51,11 +52,11 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/emoji_search"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/keyboard_toolbar_height"
+            android:layout_height="@dimen/keyboard_toolbar_height"
             android:background="?selectableItemBackground"
             android:contentDescription="@string/KeyboardPagerFragment_open_emoji_search"
-            android:padding="13dp"
+            android:padding="11dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_search_24"
             app:tint="@color/icon_tab_selector" />
@@ -63,7 +64,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/emoji_categories_recycler"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="@dimen/keyboard_toolbar_height"
             android:layout_weight="1"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -72,11 +73,11 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/emoji_backspace"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/keyboard_toolbar_height"
+            android:layout_height="@dimen/keyboard_toolbar_height"
             android:background="?selectableItemBackground"
             android:contentDescription="@string/KeyboardPagerFragment_backspace"
-            android:padding="13dp"
+            android:padding="11dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_backspace_24"
             app:tint="@color/icon_tab_selector" />

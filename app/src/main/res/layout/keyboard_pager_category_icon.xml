@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="?selectableItemBackgroundBorderless">
+    android:background="?selectableItemBackground">
 
     <View
         android:id="@+id/category_icon_selected"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="@dimen/keyboard_toolbar_height"
+        android:layout_height="@dimen/keyboard_toolbar_height"
         android:background="@drawable/keyboard_pager_fragment_category_selected" />
 
     <androidx.appcompat.widget.AppCompatImageView

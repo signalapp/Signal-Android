@@ -35,7 +35,7 @@
     <LinearLayout
         android:id="@+id/gif_keyboard_packs_background"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="@dimen/keyboard_toolbar_height"
         android:layout_gravity="bottom"
         android:background="@drawable/keyboard_bottom_bar_background"
         android:gravity="center_vertical"
@@ -44,11 +44,11 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/gif_keyboard_search"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/keyboard_toolbar_height"
+            android:layout_height="@dimen/keyboard_toolbar_height"
             android:background="?selectableItemBackground"
             android:contentDescription="@string/KeyboardPagerFragment_open_gif_search"
-            android:padding="13dp"
+            android:padding="11dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_search_24"
             app:tint="@color/icon_tab_selector" />
