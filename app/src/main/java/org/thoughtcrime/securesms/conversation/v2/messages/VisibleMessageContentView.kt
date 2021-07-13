@@ -22,7 +22,6 @@ import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import androidx.core.text.getSpans
 import androidx.core.text.toSpannable
-import kotlinx.android.synthetic.main.view_link_preview.view.*
 import kotlinx.android.synthetic.main.view_visible_message_content.view.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.ThemeUtil
@@ -49,7 +48,7 @@ class VisibleMessageContentView : LinearLayout {
     var onContentClick: ((event: MotionEvent) -> Unit)? = null
     var onContentDoubleTap: (() -> Unit)? = null
     var delegate: VisibleMessageContentViewDelegate? = null
-    var viewHolderIndex: Int = -1
+    var indexInAdapter: Int = -1
 
     // region Lifecycle
     constructor(context: Context) : super(context) { initialize() }
@@ -111,7 +110,7 @@ class VisibleMessageContentView : LinearLayout {
             // Audio attachment
             if (contactIsTrusted || message.isOutgoing) {
                 val voiceMessageView = VoiceMessageView(context)
-                voiceMessageView.index = viewHolderIndex
+                voiceMessageView.indexInAdapter = indexInAdapter
                 voiceMessageView.delegate = context as? ConversationActivityV2
                 voiceMessageView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster)
                 mainContainer.addView(voiceMessageView)

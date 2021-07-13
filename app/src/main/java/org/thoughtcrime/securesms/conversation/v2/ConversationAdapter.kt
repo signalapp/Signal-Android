@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.conversation.v2
 
 import android.content.Context
 import android.database.Cursor
-import android.graphics.Rect
 import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -72,7 +71,7 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 view.snIsSelected = isSelected
                 view.messageTimestampTextView.isVisible = isSelected
                 val position = viewHolder.adapterPosition
-                view.viewHolderIndex = position
+                view.indexInAdapter = position
                 view.bind(message, getMessageBefore(position, cursor), getMessageAfter(position, cursor), glide, searchQuery)
                 view.onPress = { event -> onItemPress(message, viewHolder.adapterPosition, view, event) }
                 view.onSwipeToReply = { onItemSwipeToReply(message, viewHolder.adapterPosition) }
