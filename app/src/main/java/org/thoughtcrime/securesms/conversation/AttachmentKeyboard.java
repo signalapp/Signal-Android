@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.conversation;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +15,7 @@ import com.annimon.stream.function.Predicate;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
+import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.StorageUtil;
@@ -24,7 +23,7 @@ import org.thoughtcrime.securesms.util.StorageUtil;
 import java.util.Arrays;
 import java.util.List;
 
-public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.InputView {
+public class AttachmentKeyboard extends KeyboardAwareLinearLayout implements InputAwareLayout.InputView {
 
   private static final List<AttachmentKeyboardButton> DEFAULT_BUTTONS = Arrays.asList(
       AttachmentKeyboardButton.GALLERY,
@@ -125,11 +124,32 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
 
 
   @Override
-  public void show(int height, boolean immediate) {
-    ViewGroup.LayoutParams params = getLayoutParams();
-    params.height = height;
-    setLayoutParams(params);
+  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
+    int width      = MeasureSpec.getSize(widthMeasureSpec);
+    int height     = MeasureSpec.getSize(heightMeasureSpec);
+    int kbHeight   = getKeyboardHeight();
+    int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+    int newHeight;
+    switch (heightMode) {
+      case MeasureSpec.EXACTLY:
+        newHeight = height;
+        break;
+      case MeasureSpec.AT_MOST:
+        newHeight = Math.min(height, kbHeight);
+        break;
+      default:
+        newHeight = kbHeight;
+        break;
+    }
+
+    setMeasuredDimension(width, newHeight);
+  }
+
+  @Override
+  public void show(int height, boolean immediate) {
     setVisibility(VISIBLE);
   }
 
