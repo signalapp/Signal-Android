@@ -84,7 +84,7 @@ final class RecipientDialogViewModel extends ViewModel {
     MutableLiveData<Integer> localGroupCount = new MutableLiveData<>(0);
 
     canAddToAGroup = LiveDataUtil.combineLatest(recipient, localGroupCount,
-                                                (r, count) -> count > 0 && r.isRegistered() && !r.isGroup() && !r.isSelf());
+                                                (r, count) -> count > 0 && r.isRegistered() && !r.isGroup() && !r.isSelf() && !r.isBlocked());
 
     recipientDialogRepository.getActiveGroupCount(localGroupCount::postValue);
   }
