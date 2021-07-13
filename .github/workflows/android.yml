@@ -28,7 +28,7 @@ jobs:
       run: $ANDROID_HOME/tools/bin/sdkmanager --uninstall "platforms;android-S"
 
     - name: Build with Gradle
-      run: ./gradlew qa
+      run: ./gradlew qa --warning-mode=all
 
     - name: Archive reports for failed build
       if: ${{ failure() }}
