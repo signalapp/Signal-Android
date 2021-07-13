@@ -122,6 +122,7 @@ import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsActivity;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel;
+import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -886,6 +887,7 @@ public class ConversationFragment extends LoggingFragment {
 
             if (messageRecord.isMms()) {
               threadDeleted = DatabaseFactory.getMmsDatabase(context).deleteMessage(messageRecord.getId());
+              handleStopAudioAfterDeleteMessage((MediaMmsMessageRecord) messageRecord);
             } else {
               threadDeleted = DatabaseFactory.getSmsDatabase(context).deleteMessage(messageRecord.getId());
             }
@@ -916,6 +918,9 @@ public class ConversationFragment extends LoggingFragment {
       SignalExecutors.BOUNDED.execute(() -> {
         for (MessageRecord message : messageRecords) {
           MessageSender.sendRemoteDelete(ApplicationDependencies.getApplication(), message.getId(), message.isMms());
+          if (message.isMms()) {
+            handleStopAudioAfterDeleteMessage((MediaMmsMessageRecord)message);
+          }
         }
       });
     };
@@ -931,6 +936,21 @@ public class ConversationFragment extends LoggingFragment {
                      })
                      .setNegativeButton(android.R.string.cancel, null)
                      .show();
+    }
+  }
+
+  /**
+   * Stops playback if the given deleted Mms message audio slide is playing
+   *
+   * @param deletedMmsMessage The Mms deleted message to get the Uri of the audio slide to stop
+   */
+  private void handleStopAudioAfterDeleteMessage(@NonNull MediaMmsMessageRecord deletedMmsMessage){
+    AudioSlide audioSlide = deletedMmsMessage.getSlideDeck().getAudioSlide();
+    if (audioSlide != null) {
+      Uri audioSlideUri = audioSlide.getUri();
+      if (audioSlideUri != null) {
+        voiceNoteMediaController.stopPlaybackAndReset(audioSlideUri);
+      }
     }
   }
 
