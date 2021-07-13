@@ -1372,7 +1372,7 @@ public class ConversationFragment extends LoggingFragment {
     }
 
     private int getHeaderPositionId() {
-      return getListLayoutManager().findLastVisibleItemPosition();
+      return getListLayoutManager().findLastCompletelyVisibleItemPosition();
     }
 
     private void bindScrollHeader(StickyHeaderViewHolder headerViewHolder, int positionId) {
