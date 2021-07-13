@@ -51,6 +51,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     ApplicationDependencies.getShakeToReport().registerActivity(this);
     super.onStart();
   }
+  
+  @Override
+  protected void onPause() {
+    logEvent("onPause()");
+    super.onPause();
+  }
 
   @Override
   protected void onStop() {
