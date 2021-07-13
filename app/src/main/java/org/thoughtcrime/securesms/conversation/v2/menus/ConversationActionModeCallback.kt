@@ -51,6 +51,8 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
         menu.findItem(R.id.menu_context_delete_message).isVisible = userCanDeleteSelectedItems()
         // Ban user
         menu.findItem(R.id.menu_context_ban_user).isVisible = userCanBanSelectedUsers()
+        // Ban and delete all
+        menu.findItem(R.id.menu_context_ban_and_delete_all).isVisible = userCanBanSelectedUsers()
         // Copy message text
         menu.findItem(R.id.menu_context_copy).isVisible = !containsControlMessage && hasText
         // Copy Session ID
@@ -77,6 +79,7 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
         when (item.itemId) {
             R.id.menu_context_delete_message -> delegate?.deleteMessages(selectedItems)
             R.id.menu_context_ban_user -> delegate?.banUser(selectedItems)
+            R.id.menu_context_ban_and_delete_all -> delegate?.banAndDeleteAll(selectedItems)
             R.id.menu_context_copy -> delegate?.copyMessages(selectedItems)
             R.id.menu_context_copy_public_key -> delegate?.copySessionID(selectedItems)
             R.id.menu_context_resend -> delegate?.resendMessage(selectedItems)
@@ -97,6 +100,7 @@ interface ConversationActionModeCallbackDelegate {
 
     fun deleteMessages(messages: Set<MessageRecord>)
     fun banUser(messages: Set<MessageRecord>)
+    fun banAndDeleteAll(messages: Set<MessageRecord>)
     fun copyMessages(messages: Set<MessageRecord>)
     fun copySessionID(messages: Set<MessageRecord>)
     fun resendMessage(messages: Set<MessageRecord>)

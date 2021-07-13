@@ -44,6 +44,11 @@
         app:showAsAction="never" />
 
     <item
+        android:title="@string/conversation_context__menu_ban_and_delete_all"
+        android:id="@+id/menu_context_ban_and_delete_all"
+        app:showAsAction="never" />
+
+    <item
         android:title="@string/activity_conversation_menu_copy_session_id"
         android:id="@+id/menu_context_copy_public_key"
         app:showAsAction="never" />
