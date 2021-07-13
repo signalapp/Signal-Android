@@ -1228,6 +1228,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         endActionMode()
     }
 
+    override fun showMessageDetail(messages: Set<MessageRecord>) {
+        TODO("Not yet implemented")
+    }
+
     override fun saveAttachment(messages: Set<MessageRecord>) {
         val message = messages.first() as MmsMessageRecord
         SaveAttachmentTask.showWarningDialog(this, { _, _ ->
