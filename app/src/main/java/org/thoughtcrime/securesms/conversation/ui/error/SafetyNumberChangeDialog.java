@@ -46,10 +46,21 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
   private static final String MESSAGE_TYPE_EXTRA           = "message_type";
   private static final String CONTINUE_TEXT_RESOURCE_EXTRA = "continue_text_resource";
   private static final String CANCEL_TEXT_RESOURCE_EXTRA   = "cancel_text_resource";
+  private static final String SKIP_CALLBACKS_EXTRA         = "skip_callbacks_extra";
 
   private SafetyNumberChangeViewModel viewModel;
   private SafetyNumberChangeAdapter   adapter;
   private View                        dialogView;
+
+  public static void show(@NonNull FragmentManager fragmentManager, @NonNull RecipientId recipientId) {
+    Bundle arguments = new Bundle();
+    arguments.putStringArray(RECIPIENT_IDS_EXTRA, new String[] { recipientId.serialize() });
+    arguments.putInt(CONTINUE_TEXT_RESOURCE_EXTRA, R.string.safety_number_change_dialog__accept);
+    arguments.putBoolean(SKIP_CALLBACKS_EXTRA, true);
+    SafetyNumberChangeDialog fragment = new SafetyNumberChangeDialog();
+    fragment.setArguments(arguments);
+    fragment.show(fragmentManager, SAFETY_NUMBER_DIALOG);
+  }
 
   public static void show(@NonNull FragmentManager fragmentManager, @NonNull List<IdentityDatabase.IdentityRecord> identityRecords) {
     List<String> ids = Stream.of(identityRecords)
@@ -196,9 +207,11 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
   private void handleSendAnyway(DialogInterface dialogInterface, int which) {
     Log.d(TAG, "handleSendAnyway");
 
+    boolean skipCallbacks = requireArguments().getBoolean(SKIP_CALLBACKS_EXTRA, false);
+
     Activity activity = getActivity();
     Callback callback;
-    if (activity instanceof Callback) {
+    if (activity instanceof Callback && !skipCallbacks) {
       callback = (Callback) activity;
     } else {
       callback = null;
@@ -241,7 +254,9 @@ public final class SafetyNumberChangeDialog extends DialogFragment implements Sa
 
   public interface Callback {
     void onSendAnywayAfterSafetyNumberChange(@NonNull List<RecipientId> changedRecipients);
+
     void onMessageResentAfterSafetyNumberChange();
+
     void onCanceled();
   }
 }

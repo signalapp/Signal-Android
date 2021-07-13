@@ -1924,6 +1924,7 @@
 
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Safety Number Changes</string>
+    <string name="safety_number_change_dialog__accept">Accept</string>
     <string name="safety_number_change_dialog__send_anyway">Send anyway</string>
     <string name="safety_number_change_dialog__call_anyway">Call anyway</string>
     <string name="safety_number_change_dialog__join_call">Join call</string>

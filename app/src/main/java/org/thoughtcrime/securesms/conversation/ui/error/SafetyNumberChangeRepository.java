@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.signalservice.api.SignalSessionLock;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.Collection;
 import java.util.List;
@@ -124,13 +125,14 @@ final class SafetyNumberChangeRepository {
 
     try(SignalSessionLock.Lock unused = ReentrantSessionLock.INSTANCE.acquire()) {
       for (ChangedRecipient changedRecipient : changedRecipients) {
-        SignalProtocolAddress      mismatchAddress  = new SignalProtocolAddress(changedRecipient.getRecipient().requireServiceId(), 1);
+        SignalProtocolAddress      mismatchAddress  = new SignalProtocolAddress(changedRecipient.getRecipient().requireServiceId(), SignalServiceAddress.DEFAULT_DEVICE_ID);
         TextSecureIdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(context);
         Log.d(TAG, "Saving identity for: " + changedRecipient.getRecipient().getId() + " " + changedRecipient.getIdentityRecord().getIdentityKey().hashCode());
         TextSecureIdentityKeyStore.SaveResult result = identityKeyStore.saveIdentity(mismatchAddress, changedRecipient.getIdentityRecord().getIdentityKey(), true);
         Log.d(TAG, "Saving identity result: " + result);
         if (result == TextSecureIdentityKeyStore.SaveResult.NO_CHANGE) {
           Log.i(TAG, "Archiving sessions explicitly as they appear to be out of sync.");
+          SessionUtil.archiveSession(context, changedRecipient.getRecipient().getId(), SignalServiceAddress.DEFAULT_DEVICE_ID);
           SessionUtil.archiveSiblingSessions(context, mismatchAddress);
           DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(changedRecipient.getRecipient().getId());
         }

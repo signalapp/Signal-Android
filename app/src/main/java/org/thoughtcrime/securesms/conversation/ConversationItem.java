@@ -65,7 +65,6 @@ import com.google.android.exoplayer2.source.MediaSource;
 import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BindableConversationItem;
-import org.thoughtcrime.securesms.ConfirmIdentityDialog;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -121,7 +120,6 @@ import org.thoughtcrime.securesms.revealable.ViewOnceMessageView;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.Projection;
@@ -1450,16 +1448,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   /// Event handlers
 
-  private void handleApproveIdentity() {
-    List<IdentityKeyMismatch> mismatches = messageRecord.getIdentityKeyMismatches();
-
-    if (mismatches.size() != 1) {
-      throw new AssertionError("Identity mismatch count: " + mismatches.size());
-    }
-
-    new ConfirmIdentityDialog(context, messageRecord, mismatches.get(0)).show();
-  }
-
   private Spannable getLongMessageSpan(@NonNull MessageRecord messageRecord) {
     String   message;
     Runnable action;
@@ -1810,7 +1798,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
           eventListener.onMessageWithRecaptchaNeededClicked(messageRecord);
         }
       } else if (!messageRecord.isOutgoing() && messageRecord.isIdentityMismatchFailure()) {
-        handleApproveIdentity();
+        if (eventListener != null) {
+          eventListener.onIncomingIdentityMismatchClicked(messageRecord.getIndividualRecipient().getId());
+        }
       } else if (messageRecord.isPendingInsecureSmsFallback()) {
         handleMessageApproval();
       }

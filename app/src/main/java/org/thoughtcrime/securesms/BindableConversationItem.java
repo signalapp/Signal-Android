@@ -70,6 +70,7 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onGroupMemberClicked(@NonNull RecipientId recipientId, @NonNull GroupId groupId);
     void onMessageWithErrorClicked(@NonNull MessageRecord messageRecord);
     void onMessageWithRecaptchaNeededClicked(@NonNull MessageRecord messageRecord);
+    void onIncomingIdentityMismatchClicked(@NonNull RecipientId recipientId);
     void onRegisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver);
     void onUnregisterVoiceNoteCallbacks(@NonNull Observer<VoiceNotePlaybackState> onPlaybackStartObserver);
     void onVoiceNotePause(@NonNull Uri uri);
