@@ -22,6 +22,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.util.Rational;
 import android.util.Size;
+import android.view.OrientationEventListener;
+import android.view.Surface;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -281,6 +283,31 @@ final class SignalCameraXModule {
     mCurrentLifecycle.getLifecycle().addObserver(mCurrentLifecycleObserver);
     // Enable flash setting in ImageCapture after use cases are created and binded.
     setFlash(getFlash());
+
+    //attach listener for sensor orientation
+    OrientationEventListener orientationEventListener = new OrientationEventListener(getContext()) {
+      @Override
+      public void onOrientationChanged(int orientation) {
+        int rotation;
+
+        // Monitors orientation values to determine the target rotation value
+        if (orientation >= 45 && orientation < 135) {
+          rotation = Surface.ROTATION_270;
+        } else if (orientation >= 135 && orientation < 225) {
+          rotation = Surface.ROTATION_180;
+        } else if (orientation >= 225 && orientation < 315) {
+          rotation = Surface.ROTATION_90;
+        } else {
+          rotation = Surface.ROTATION_0;
+        }
+        if (mImageCapture != null)
+          mImageCapture.setTargetRotation(rotation);
+        if (mVideoCapture != null)
+          mVideoCapture.setTargetRotation(rotation);
+      }
+    };
+
+    orientationEventListener.enable();
   }
 
   public void open() {
