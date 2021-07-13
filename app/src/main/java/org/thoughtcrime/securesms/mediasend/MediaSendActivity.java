@@ -370,7 +370,6 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     qualityButton.setOnClickListener(v -> QualitySelectorBottomSheetDialog.show(getSupportFragmentManager()));
 
     continueButton.setOnClickListener(v -> {
-      continueButton.setEnabled(false);
       if (recipientIds == null || recipientIds.isEmpty()) {
         navigateToContactSelect();
       } else {
