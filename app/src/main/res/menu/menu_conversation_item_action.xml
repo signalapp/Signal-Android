@@ -22,7 +22,7 @@
         app:showAsAction="always" />
 
     <item
-        android:title="@string/details"
+        android:title="@string/conversation_context__menu_message_details"
         android:id="@+id/menu_message_details"
         android:icon="?menu_info_icon"
         app:showAsAction="always" />

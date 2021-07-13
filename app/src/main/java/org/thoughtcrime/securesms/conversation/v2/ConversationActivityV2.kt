@@ -1251,7 +1251,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun showMessageDetail(messages: Set<MessageRecord>) {
-        TODO("Not yet implemented")
+        val message = messages.first()
+        val intent = Intent(this, MessageDetailActivity::class.java)
+        intent.putExtra(MessageDetailActivity.MESSAGE_TIMESTAMP, message.timestamp)
+        push(intent)
+        endActionMode()
     }
 
     override fun saveAttachment(messages: Set<MessageRecord>) {
