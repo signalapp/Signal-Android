@@ -53,14 +53,12 @@
 
         <com.github.ybq.android.spinkit.SpinKitView
             style="@style/SpinKitView.Small.ThreeBounce"
-            android:layout_marginVertical="@dimen/small_spacing"
             android:id="@+id/progressBar"
             android:layout_width="0dp"
             android:layout_height="@dimen/small_button_height"
             android:layout_weight="1"
             app:SpinKit_Color="@color/accent"
-            android:visibility="gone"
-            />
+            android:visibility="gone" />
 
     </LinearLayout>
 
