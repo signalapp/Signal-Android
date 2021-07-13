@@ -159,6 +159,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
 
     override fun onResume() {
         super.onResume()
+        ApplicationContext.getInstance(this).messageNotifier.setHomeScreenVisible(true)
         if (TextSecurePreferences.getLocalNumber(this) == null) { return; } // This can be the case after a secondary device is auto-cleared
         IdentityKeyUtil.checkUpdate(this)
         profileButton.recycle() // clear cached image before update tje profilePictureView
@@ -172,6 +173,11 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
                 ConfigurationMessageUtilities.syncConfigurationIfNeeded(this@HomeActivity)
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        ApplicationContext.getInstance(this).messageNotifier.setHomeScreenVisible(false)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
