@@ -76,8 +76,9 @@ import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.audio.AudioRecorder
+import org.thoughtcrime.securesms.contacts.SelectContactsActivity
+import org.thoughtcrime.securesms.contacts.SelectContactsActivity.Companion.selectedContactsKey
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher
-
 import org.thoughtcrime.securesms.conversation.v2.dialogs.*
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarButton
 import org.thoughtcrime.securesms.conversation.v2.input_bar.InputBarDelegate
@@ -91,6 +92,7 @@ import org.thoughtcrime.securesms.conversation.v2.search.SearchBottomBar
 import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
 import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
+import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
@@ -101,10 +103,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel.LinkPreviewState
-import org.thoughtcrime.securesms.contacts.SelectContactsActivity
-import org.thoughtcrime.securesms.contacts.SelectContactsActivity.Companion.selectedContactsKey
-import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
-import org.thoughtcrime.securesms.util.toPx
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity
 import org.thoughtcrime.securesms.mms.*
@@ -956,6 +954,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     override fun onAttachmentChanged() {
         // Do nothing
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
