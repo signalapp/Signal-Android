@@ -96,6 +96,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
   private static final long   DESKTOP_ACTIVITY_PERIOD   = TimeUnit.MINUTES.toMillis(1);
 
   private volatile static       long               visibleThread                = -1;
+  private volatile static       boolean            homeScreenVisible            = false;
   private volatile static       long               lastDesktopActivityTimestamp = -1;
   private volatile static       long               lastAudibleNotification      = -1;
   private          static final CancelableExecutor executor                     = new CancelableExecutor();
@@ -103,6 +104,11 @@ public class DefaultMessageNotifier implements MessageNotifier {
   @Override
   public void setVisibleThread(long threadId) {
     visibleThread = threadId;
+  }
+
+  @Override
+  public void setHomeScreenVisible(boolean isVisible) {
+    homeScreenVisible = isVisible;
   }
 
   @Override
@@ -234,7 +240,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     if (isVisible) {
       sendInThreadNotification(context, threads.getRecipientForThreadId(threadId));
-    } else {
+    } else if (!homeScreenVisible) {
       updateNotification(context, signal, 0);
     }
   }
