@@ -96,7 +96,7 @@ try:
         print("\nTo include this in the distribution, copy it to the project's assets/databases/ directory.")
         print("If you support API 10 or lower, you must use the gzipped version to avoid corruption.")
 
-except sqlite3.Error, e:
+except sqlite3.Error as e:
     if connection:
         connection.rollback()
     print("Error: %s" % e.args[0])
