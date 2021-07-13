@@ -76,6 +76,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private ImageView                    searchAction;
   private View                         progressWheel;
   private Uri                          resolvedExtra;
+  private CharSequence                 resolvedPlaintext;
   private String                       mimeType;
   private boolean                      isPassingAlongMedia;
 
@@ -173,11 +174,15 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     isPassingAlongMedia = false;
 
     Uri streamExtra = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
-    mimeType        = getMimeType(streamExtra);
+    CharSequence charSequenceExtra = getIntent().getCharSequenceExtra(Intent.EXTRA_TEXT);
+    mimeType = getMimeType(streamExtra);
 
     if (streamExtra != null && PartAuthority.isLocalUri(streamExtra)) {
       isPassingAlongMedia = true;
       resolvedExtra       = streamExtra;
+      handleResolvedMedia(getIntent(), false);
+    } else if (charSequenceExtra != null && mimeType != null && mimeType.startsWith("text/")) {
+      resolvedPlaintext = charSequenceExtra;
       handleResolvedMedia(getIntent(), false);
     } else {
       contactsFragment.getView().setVisibility(View.GONE);
@@ -225,7 +230,12 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private Intent getBaseShareIntent(final @NonNull Class<?> target) {
     final Intent           intent       = new Intent(this, target);
 
-    if (resolvedExtra != null) intent.setDataAndType(resolvedExtra, mimeType);
+    if (resolvedExtra != null) {
+      intent.setDataAndType(resolvedExtra, mimeType);
+    } else if (resolvedPlaintext != null) {
+      intent.putExtra(Intent.EXTRA_TEXT, resolvedPlaintext);
+      intent.setType("text/plain");
+    }
 
     return intent;
   }

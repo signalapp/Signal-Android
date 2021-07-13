@@ -2,12 +2,15 @@ package org.thoughtcrime.securesms.conversation.v2.input_bar
 
 import android.content.Context
 import android.content.res.Resources
-import android.text.Layout
-import android.text.StaticLayout
+import android.net.Uri
+import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputConnection
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.view.inputmethod.EditorInfoCompat
+import androidx.core.view.inputmethod.InputConnectionCompat
 import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities
 import org.thoughtcrime.securesms.util.toPx
 import kotlin.math.max
@@ -41,10 +44,38 @@ class InputBarEditText : AppCompatEditText {
         this.layoutParams = layoutParams
         delegate?.inputBarEditTextHeightChanged(constrainedHeight.roundToInt())
     }
+
+    override fun onCreateInputConnection(editorInfo: EditorInfo): InputConnection {
+        val ic: InputConnection = super.onCreateInputConnection(editorInfo)
+        EditorInfoCompat.setContentMimeTypes(editorInfo, arrayOf("image/png", "image/gif", "image/jpg"))
+
+        val callback =
+                InputConnectionCompat.OnCommitContentListener { inputContentInfo, flags, opts ->
+                    val lacksPermission = (flags and InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION) != 0
+                    // read and display inputContentInfo asynchronously
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1 && lacksPermission) {
+                        try {
+                            inputContentInfo.requestPermission()
+                        } catch (e: Exception) {
+                            return@OnCommitContentListener false // return false if failed
+                        }
+                    }
+
+                    inputContentInfo.contentUri
+
+                    // read and display inputContentInfo asynchronously.
+                    delegate?.commitInputContent(inputContentInfo.contentUri)
+
+                    true  // return true if succeeded
+                }
+        return InputConnectionCompat.createWrapper(ic, editorInfo, callback)
+    }
+
 }
 
 interface InputBarEditTextDelegate {
 
     fun inputBarEditTextContentChanged(text: CharSequence)
     fun inputBarEditTextHeightChanged(newValue: Int)
+    fun commitInputContent(contentUri: Uri)
 }

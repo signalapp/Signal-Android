@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.v2.input_bar
 
 import android.content.Context
 import android.content.res.Resources
+import android.net.Uri
 import android.text.InputType
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -19,9 +20,9 @@ import org.thoughtcrime.securesms.conversation.v2.messages.QuoteView
 import org.thoughtcrime.securesms.conversation.v2.messages.QuoteViewDelegate
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.toDp
 import org.thoughtcrime.securesms.util.toPx
-import org.thoughtcrime.securesms.mms.GlideRequests
 import kotlin.math.max
 import kotlin.math.roundToInt
 
@@ -94,6 +95,10 @@ class InputBar : RelativeLayout, InputBarEditTextDelegate, QuoteViewDelegate, Li
     override fun inputBarEditTextHeightChanged(newValue: Int) {
         val newHeight = max(newValue + 2 * vMargin, minHeight) + inputBarAdditionalContentContainer.height
         setHeight(newHeight)
+    }
+
+    override fun commitInputContent(contentUri: Uri) {
+        delegate?.commitInputContent(contentUri)
     }
 
     private fun toggleAttachmentOptions() {
@@ -193,4 +198,5 @@ interface InputBarDelegate {
     fun onMicrophoneButtonCancel(event: MotionEvent)
     fun onMicrophoneButtonUp(event: MotionEvent)
     fun sendMessage()
+    fun commitInputContent(contentUri: Uri)
 }
