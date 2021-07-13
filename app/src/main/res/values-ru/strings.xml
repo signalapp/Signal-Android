@@ -891,6 +891,7 @@
   <string name="MediaOverviewActivity_audio">Аудио</string>
   <string name="MediaOverviewActivity_video">Видео</string>
   <string name="MediaOverviewActivity_image">Изображение</string>
+  <string name="MediaOverviewActivity_voice_message">Голосовое сообщение</string>
   <string name="MediaOverviewActivity_sent_by_s">Отправил(-а) %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Отправили вы</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s отправил(-а) %2$s</string>
@@ -3105,6 +3106,7 @@
     <item quantity="many">Этот пользовательский цвет используется в %1$d чатах. Вы хотите удалить его для всех чатов?</item>
     <item quantity="other">Этот пользовательский цвет используется в %1$d чатах. Вы хотите удалить его для всех чатов?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Удалить цвет чата?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Сплошной</string>
   <string name="CustomChatColorCreatorFragment__gradient">Градиент</string>

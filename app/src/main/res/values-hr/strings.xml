@@ -847,6 +847,7 @@
   <string name="MediaOverviewActivity_audio">Zvuk</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Slika</string>
+  <string name="MediaOverviewActivity_voice_message">Glasovna poruka</string>
   <string name="MediaOverviewActivity_sent_by_s">Poslao/la %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Poslali ste vi</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Poslao/la %1$s za %2$s</string>

@@ -54,6 +54,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(fideo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(lleoliad)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(ateb)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Neges llais)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Oriel</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -892,6 +893,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MediaOverviewActivity_audio">Sain</string>
   <string name="MediaOverviewActivity_video">Fideo</string>
   <string name="MediaOverviewActivity_image">Llun</string>
+  <string name="MediaOverviewActivity_voice_message">Neges llais</string>
   <string name="MediaOverviewActivity_sent_by_s">Anfonwyd gan %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Anfonwyd gennych chi</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Anfonwyd gan %1$s i %2$s</string>
@@ -952,6 +954,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="MediaRepository_all_media">Pob cyfrwng</string>
   <string name="MediaRepository__camera">Camera</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Wedi methu â dadgryptio neges</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Tapio i anfon cofnod dadfygio</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Anhysbys</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Wedi derbyn neges wedi\'i hamgryptio gan ddefnyddio hen fersiwn o Signal nad yw bellach yn cael ei gefnogi. Gofynnwch i\'r anfonwr ddiweddaru i\'r fersiwn ddiweddaraf ac ail-anfon y neges.</string>
@@ -3111,6 +3115,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Mae\'r lliw cyfaddas hwn yn cael ei ddefnyddio yn sgwrs %1$d. Ydych chi am ei ddileu ym mhob sgwrs?</item>
     <item quantity="other">Mae\'r lliw cyfaddas hwn yn cael ei ddefnyddio yn sgwrs %1$d. Ydych chi am ei ddileu ym mhob sgwrs?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Dileu lliw sgwrs?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Solet</string>
   <string name="CustomChatColorCreatorFragment__gradient">Graddiant</string>
@@ -3206,6 +3211,9 @@ Send neges heb ei ddiogelu?</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Defnyddiwyd yn ddiweddar</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->

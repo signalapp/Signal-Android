@@ -802,6 +802,7 @@
   <string name="MediaOverviewActivity_audio">Son</string>
   <string name="MediaOverviewActivity_video">Vidéo</string>
   <string name="MediaOverviewActivity_image">Image</string>
+  <string name="MediaOverviewActivity_voice_message">Message vocal</string>
   <string name="MediaOverviewActivity_sent_by_s">Envoyé par %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Envoyé par vous</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Envoyé par %1$s à %2$s</string>

@@ -790,6 +790,7 @@
   <string name="MediaOverviewActivity_audio">Аудио</string>
   <string name="MediaOverviewActivity_video">Видео</string>
   <string name="MediaOverviewActivity_image">Изображение</string>
+  <string name="MediaOverviewActivity_voice_message">Гласово съобщение</string>
   <string name="MediaOverviewActivity_sent_by_s">Изпратено от %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Изпратено от тебе</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Изпратено от %1$s до %2$s</string>

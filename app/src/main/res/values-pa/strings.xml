@@ -681,6 +681,7 @@
   <string name="MediaOverviewActivity_audio">ਆਡੀਓ</string>
   <string name="MediaOverviewActivity_video">ਵੀਡੀਓ</string>
   <string name="MediaOverviewActivity_image">ਤਸਵੀਰ</string>
+  <string name="MediaOverviewActivity_voice_message">ਆਵਾਜ਼ ਸੁਨੇਹਾ</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s ਵਲੋਂ ਭੇਜਿਆ</string>
   <string name="MediaOverviewActivity_sent_by_you">ਤੁਹਾਡੇ ਵਲੋਂ ਭੇਜਿਆ</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s ਦੁਆਰਾ %2$s ਨੂੰ ਭੇਜਿਆ</string>

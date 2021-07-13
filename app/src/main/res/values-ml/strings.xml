@@ -794,6 +794,7 @@
   <string name="MediaOverviewActivity_audio">ഓഡിയോ</string>
   <string name="MediaOverviewActivity_video">വീഡിയോ</string>
   <string name="MediaOverviewActivity_image">ചിത്രം</string>
+  <string name="MediaOverviewActivity_voice_message">ശബ്ദ സന്ദേശം</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s അയച്ചത്</string>
   <string name="MediaOverviewActivity_sent_by_you">നിങ്ങൾ അയച്ചത്</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s %2$s-ന് അയച്ചത്.</string>

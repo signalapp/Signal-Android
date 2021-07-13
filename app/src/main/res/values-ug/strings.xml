@@ -805,6 +805,7 @@
   <string name="MediaOverviewActivity_audio">ئۈن</string>
   <string name="MediaOverviewActivity_video">سىن</string>
   <string name="MediaOverviewActivity_image">رەسىم</string>
+  <string name="MediaOverviewActivity_voice_message">ئۈن ئۇچۇر</string>
   <string name="MediaOverviewActivity_sent_by_s">يوللىغۇچى %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">سىز يوللىغىنى</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s دىن %2$s غا يوللانغان</string>

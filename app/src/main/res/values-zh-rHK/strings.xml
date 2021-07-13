@@ -762,6 +762,7 @@
   <string name="MediaOverviewActivity_audio">音訊</string>
   <string name="MediaOverviewActivity_video">影片</string>
   <string name="MediaOverviewActivity_image">影像</string>
+  <string name="MediaOverviewActivity_voice_message">語音訊息</string>
   <string name="MediaOverviewActivity_sent_by_s">由 %1$s 傳送</string>
   <string name="MediaOverviewActivity_sent_by_you">由您傳送</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">由 %1$s 傳送給 %2$s</string>
@@ -2862,6 +2863,7 @@
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
     <item quantity="other">此自訂色彩已在 %1$d 個聊天中使用。您要為所有聊天刪除此色彩嗎？</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">要刪除聊天色彩嗎？</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">實色</string>
   <string name="CustomChatColorCreatorFragment__gradient">漸層</string>

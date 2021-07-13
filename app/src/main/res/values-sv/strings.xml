@@ -805,6 +805,7 @@
   <string name="MediaOverviewActivity_audio">Ljud</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Bild</string>
+  <string name="MediaOverviewActivity_voice_message">Röstmeddelande</string>
   <string name="MediaOverviewActivity_sent_by_s">Skickad av %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Skickad av dig</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Skickad av %1$s till %2$s</string>

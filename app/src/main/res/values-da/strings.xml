@@ -805,6 +805,7 @@
   <string name="MediaOverviewActivity_audio">Lyd</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Billede</string>
+  <string name="MediaOverviewActivity_voice_message">Talebesked</string>
   <string name="MediaOverviewActivity_sent_by_s">Sendt af %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Sendt af dig</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Sendt af %1$s til %2$s</string>

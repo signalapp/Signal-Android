@@ -891,6 +891,7 @@
   <string name="MediaOverviewActivity_audio">שמע</string>
   <string name="MediaOverviewActivity_video">סרטון</string>
   <string name="MediaOverviewActivity_image">תמונה</string>
+  <string name="MediaOverviewActivity_voice_message">הודעה קולית</string>
   <string name="MediaOverviewActivity_sent_by_s">נשלח על ידי %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">נשלח על ידך</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">נשלח על ידי %1$s אל %2$s</string>
@@ -3112,6 +3113,7 @@
     <item quantity="many">צבע מותאם אישית זה נמצא בשימוש ב־%1$d התכתבויות. האם אתה רוצה למחוק אותו עבור כל ההתכתבויות? </item>
     <item quantity="other">צבע מותאם אישית זה נמצא בשימוש ב־%1$d התכתבויות. האם אתה רוצה למחוק אותו עבור כל ההתכתבויות?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">למחוק צבע התכתבות?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">מוצק</string>
   <string name="CustomChatColorCreatorFragment__gradient">שיפוע</string>

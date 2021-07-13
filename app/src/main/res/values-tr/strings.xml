@@ -804,6 +804,7 @@
   <string name="MediaOverviewActivity_audio">Ses</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Görüntü</string>
+  <string name="MediaOverviewActivity_voice_message">Sesli ileti</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s tarafından gönderilen</string>
   <string name="MediaOverviewActivity_sent_by_you">Sizin gönderdikleriniz</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s tarafından --&gt; %2$s </string>

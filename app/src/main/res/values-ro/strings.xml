@@ -844,6 +844,7 @@
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Imagine</string>
+  <string name="MediaOverviewActivity_voice_message">Mesaj vocal</string>
   <string name="MediaOverviewActivity_sent_by_s">Trimis de %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Trimis de dvs.</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Trimis de %1$s către %2$s</string>

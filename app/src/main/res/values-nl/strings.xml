@@ -807,6 +807,7 @@
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Afbeelding</string>
+  <string name="MediaOverviewActivity_voice_message">Audiobericht</string>
   <string name="MediaOverviewActivity_sent_by_s">Door %1$s verzonden</string>
   <string name="MediaOverviewActivity_sent_by_you">Door jou verzonden</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Door %1$s naar %2$s verzonden</string>
@@ -2950,6 +2951,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
     <item quantity="one">Deze zelfgekozen kleur wordt in %1$d gesprek gebruikt. Wil je het voor dat gesprek wissen?</item>
     <item quantity="other">Deze zelfgekozen kleur wordt in %1$d gesprekken gebruikt. Wil je het voor die gesprekken wissen?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Gesprekskleur verwijderen?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Effen</string>
   <string name="CustomChatColorCreatorFragment__gradient">Verloop</string>

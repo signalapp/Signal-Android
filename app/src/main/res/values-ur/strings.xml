@@ -790,6 +790,7 @@
   <string name="MediaOverviewActivity_audio">آڈیو</string>
   <string name="MediaOverviewActivity_video">وڈیو</string>
   <string name="MediaOverviewActivity_image">تصویر</string>
+  <string name="MediaOverviewActivity_voice_message">آڈیو پیغام</string>
   <string name="MediaOverviewActivity_sent_by_s">کی طرف سے بھیجا%1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">آپ کے ذریعہ بھیجا گیا</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$sبذریعہ%2$s بھیجا گیا</string>

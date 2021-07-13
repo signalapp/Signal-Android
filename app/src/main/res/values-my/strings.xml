@@ -752,6 +752,7 @@
   <string name="MediaOverviewActivity_audio">အသံ</string>
   <string name="MediaOverviewActivity_video">ဗီဒီယို</string>
   <string name="MediaOverviewActivity_image">ရုပ်ပုံ</string>
+  <string name="MediaOverviewActivity_voice_message">အသံ မက်ဆေ့ချ်</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s မှ ပို့သည်</string>
   <string name="MediaOverviewActivity_sent_by_you">သင်မှ ပို့ခဲ့သည်</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s မှ %2$s သို့ ပို့ခဲ့သည်</string>

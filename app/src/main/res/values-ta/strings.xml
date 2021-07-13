@@ -789,6 +789,7 @@
   <string name="MediaOverviewActivity_audio">ஒலி</string>
   <string name="MediaOverviewActivity_video">காணொளி</string>
   <string name="MediaOverviewActivity_image">படம் </string>
+  <string name="MediaOverviewActivity_voice_message">குரல் செய்தி</string>
   <string name="MediaOverviewActivity_sent_by_s">அனுப்பியது %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">அனுப்பியதுநீங்கள்</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">அனுப்பியது %1$s க்கு%2$s</string>

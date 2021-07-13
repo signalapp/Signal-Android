@@ -805,6 +805,7 @@
   <string name="MediaOverviewActivity_audio">Hang</string>
   <string name="MediaOverviewActivity_video">Videó</string>
   <string name="MediaOverviewActivity_image">Kép</string>
+  <string name="MediaOverviewActivity_voice_message">Hangüzenet</string>
   <string name="MediaOverviewActivity_sent_by_s">Küldte: %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Te küldted</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Küldte: %1$s, címzett: %2$s</string>

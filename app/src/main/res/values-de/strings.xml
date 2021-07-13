@@ -805,6 +805,7 @@
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Bild</string>
+  <string name="MediaOverviewActivity_voice_message">Sprachnachricht</string>
   <string name="MediaOverviewActivity_sent_by_s">Von %1$s gesendet</string>
   <string name="MediaOverviewActivity_sent_by_you">Von dir gesendet</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Von %1$s an %2$s gesendet</string>
@@ -2935,6 +2936,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
     <item quantity="one">Diese personalisierte Farbe wird in %1$d Unterhaltung verwendet. Möchtest du sie für alle Unterhaltungen löschen?</item>
     <item quantity="other">Diese personalisierte Farbe wird in %1$d Unterhaltungen verwendet. Möchtest du sie für alle Unterhaltungen löschen?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Unterhaltungsfarbe löschen?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Einfarbig</string>
   <string name="CustomChatColorCreatorFragment__gradient">Farbverlauf</string>

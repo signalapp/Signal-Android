@@ -52,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(stad)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(svar)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Talemelding)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galleri</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -809,6 +810,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MediaOverviewActivity_audio">Lyd</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Bilde</string>
+  <string name="MediaOverviewActivity_voice_message">Talemelding</string>
   <string name="MediaOverviewActivity_sent_by_s">Sent frå %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Sent frå deg</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Sent frå %1$s til %2$s</string>
@@ -867,6 +869,8 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MediaRepository_all_media">All media</string>
   <string name="MediaRepository__camera">Kamera</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Klarte ikkje dekryptera meldinga</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Trykk for å senda feilsøkingsloggen</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Ukjend</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottok ei melding som er kryptert med ein gammal versjon av Signal som ikkje lenger vert støtta. Be avsendaren om å oppdatera til nyaste versjon og senda meldinga på nytt.</string>
@@ -2949,6 +2953,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
     <item quantity="one">Denne eigenvalde fargen er brukt i %1$d samtale. Vil du sletta han for alle samtalar?</item>
     <item quantity="other">Denne eigenvalde fargen er brukt i %1$d samtalar. Vil du sletta han for alle samtalar?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Slett samtalefarge?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Einsfarga</string>
   <string name="CustomChatColorCreatorFragment__gradient">Overgang</string>
@@ -3022,6 +3027,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="ConversationSettingsFragment__unmute">Vis varsel</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Samtalen er dempa fram til %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Samtalen dempa for all framtid</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Kopierte telefonnummeret til utklippstavla.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Legg til medlemmar</string>
@@ -3039,7 +3045,11 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ikkje varsla</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Eigendefinerte varsel</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Nyleg brukt</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->

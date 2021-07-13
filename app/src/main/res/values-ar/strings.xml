@@ -977,6 +977,7 @@
   <string name="MediaOverviewActivity_audio">صوت</string>
   <string name="MediaOverviewActivity_video">فيديو</string>
   <string name="MediaOverviewActivity_image">صورة</string>
+  <string name="MediaOverviewActivity_voice_message">رسالة صوتية</string>
   <string name="MediaOverviewActivity_sent_by_s">مرسل من %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">مرسل منك</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">مرسل من %1$s إلى %2$s</string>

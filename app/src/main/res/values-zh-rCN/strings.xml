@@ -51,6 +51,7 @@
   <string name="DraftDatabase_Draft_video_snippet">（视频）</string>
   <string name="DraftDatabase_Draft_location_snippet">(位置)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(回复)</string>
+  <string name="DraftDatabase_Draft_voice_note">（语音消息）</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">相册</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -761,6 +762,7 @@
   <string name="MediaOverviewActivity_audio">音频</string>
   <string name="MediaOverviewActivity_video">视频</string>
   <string name="MediaOverviewActivity_image">图片</string>
+  <string name="MediaOverviewActivity_voice_message">语音消息</string>
   <string name="MediaOverviewActivity_sent_by_s">发送人 %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">由您发送</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">由 %1$s 发送至 %2$s</string>
@@ -818,6 +820,8 @@
   <string name="MediaRepository_all_media">全部媒体</string>
   <string name="MediaRepository__camera">相机</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">解密消息失败</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">点击发送调试日志</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">未知</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">收到来自旧版本 Signal 的加密消息，该版本已不再支持。请提醒发送人升级至最新版本并重发该消息。</string>
@@ -2861,6 +2865,7 @@
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
     <item quantity="other">该自定义颜色将在 %1$d 个聊天中使用。是否想要对全部聊天删除？</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">是否删除聊天颜色？</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">纯色</string>
   <string name="CustomChatColorCreatorFragment__gradient">渐变</string>
@@ -2953,6 +2958,9 @@
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">最近使用</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->

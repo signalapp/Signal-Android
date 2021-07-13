@@ -805,6 +805,7 @@
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Immagine</string>
+  <string name="MediaOverviewActivity_voice_message">Messaggio vocale</string>
   <string name="MediaOverviewActivity_sent_by_s">Inviato da %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Inviato da te</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Inviato da %1$s a %2$s</string>
@@ -2946,6 +2947,7 @@
     <item quantity="one">Questo colore personalizzato è usato in %1$d chat. Vuoi eliminarlo per tutte le chat?</item>
     <item quantity="other">Questo colore personalizzato è usato in %1$d chat. Vuoi eliminarlo per tutte le chat?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Eliminare colore chat?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Tinta unita</string>
   <string name="CustomChatColorCreatorFragment__gradient">Gradiente</string>

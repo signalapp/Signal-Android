@@ -891,6 +891,7 @@
   <string name="MediaOverviewActivity_audio">Dźwięk</string>
   <string name="MediaOverviewActivity_video">Wideo</string>
   <string name="MediaOverviewActivity_image">Obraz</string>
+  <string name="MediaOverviewActivity_voice_message">Wiadomość głosowa</string>
   <string name="MediaOverviewActivity_sent_by_s">Wysłano przez %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Wysłano przez Ciebie</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Wysłano przez %1$s do %2$s</string>
@@ -3104,6 +3105,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
     <item quantity="many">Ten własny kolor jest używany w %1$d rozmowach. Czy chcesz usunąć go ze wszystkich rozmów?</item>
     <item quantity="other">Ten własny kolor jest używany w %1$d rozmowach. Czy chcesz usunąć go ze wszystkich rozmów?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Usunąć kolor czatu?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Kolor</string>
   <string name="CustomChatColorCreatorFragment__gradient">Gradient</string>

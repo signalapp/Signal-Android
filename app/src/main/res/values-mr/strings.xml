@@ -788,6 +788,7 @@
   <string name="MediaOverviewActivity_audio">ऑडिओ</string>
   <string name="MediaOverviewActivity_video">व्हिडिओ</string>
   <string name="MediaOverviewActivity_image">चित्र</string>
+  <string name="MediaOverviewActivity_voice_message">व्हॉईस संदेश</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s द्वारे पाठवले</string>
   <string name="MediaOverviewActivity_sent_by_you">आपल्या द्वारे पाठवले</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s द्वारा %2$s यास पाठवले</string>

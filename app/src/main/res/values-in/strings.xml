@@ -752,6 +752,7 @@
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Gambar</string>
+  <string name="MediaOverviewActivity_voice_message">Pesan suara</string>
   <string name="MediaOverviewActivity_sent_by_s">Dikirim oleh %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Dikirim oleh Anda</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Dikirim oleh %1$s untuk %2$s</string>

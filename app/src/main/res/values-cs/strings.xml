@@ -54,6 +54,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(poloha)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(odpověď)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Hlasová zpráva)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerie</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -890,6 +891,7 @@
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Obrázek</string>
+  <string name="MediaOverviewActivity_voice_message">Hlasová zpráva</string>
   <string name="MediaOverviewActivity_sent_by_s">Odesláno od %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Odesláno vámi</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Odesláno od %1$s pro %2$s</string>
@@ -950,6 +952,8 @@
   <string name="MediaRepository_all_media">Všechna média</string>
   <string name="MediaRepository__camera">Fotoaparát</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Nepodařilo se dešifrovat zprávu</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Klepnutím odešlete protokol ladění</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Neznámý</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Přijata zpráva šifrovaná starou verzí Signal, která již není podporována. Prosím, požádejte odesílatele, aby si zaktualizoval aplikaci na nejnovější verzi a poté poslal zprávu znovu.</string>
@@ -3108,6 +3112,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
     <item quantity="many">Tato vlastní barva je použita ve %1$d chatech. Chcete ji všude odstranit?</item>
     <item quantity="other">Tato vlastní barva je použita ve %1$d chatech. Chcete ji všude odstranit?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Smazat barvu chatu?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Pevná</string>
   <string name="CustomChatColorCreatorFragment__gradient">Gradientní</string>
@@ -3203,6 +3208,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Nedávno použité</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
   <!--EOF-->

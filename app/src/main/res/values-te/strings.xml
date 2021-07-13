@@ -798,6 +798,7 @@
   <string name="MediaOverviewActivity_audio">ఆడియో</string>
   <string name="MediaOverviewActivity_video">వీడియో</string>
   <string name="MediaOverviewActivity_image">చిత్రం</string>
+  <string name="MediaOverviewActivity_voice_message">వాయిస్ సందేశం</string>
   <string name="MediaOverviewActivity_sent_by_s">పంపినది%1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">మీరు పంపారు</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$sనుండి%2$sవరకు పంపబడింది</string>

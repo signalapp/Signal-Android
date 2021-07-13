@@ -791,6 +791,7 @@
   <string name="MediaOverviewActivity_audio">Audioa</string>
   <string name="MediaOverviewActivity_video">Bideoa</string>
   <string name="MediaOverviewActivity_image">Irudia</string>
+  <string name="MediaOverviewActivity_voice_message">Ahots-mezua</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s -k bidalia</string>
   <string name="MediaOverviewActivity_sent_by_you">Zuk bidalia</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s -k %2$s (r)i bidalia</string>

@@ -802,6 +802,7 @@
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Pilt</string>
+  <string name="MediaOverviewActivity_voice_message">Häälsõnum</string>
   <string name="MediaOverviewActivity_sent_by_s">Saadetud %1$s poolt</string>
   <string name="MediaOverviewActivity_sent_by_you">Saadetud sinu poolt</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Saadetud %1$s poolt kontaktile %2$s</string>

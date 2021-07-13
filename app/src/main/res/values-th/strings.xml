@@ -760,6 +760,7 @@
   <string name="MediaOverviewActivity_audio">เสียง</string>
   <string name="MediaOverviewActivity_video">วิดีโอ</string>
   <string name="MediaOverviewActivity_image">รูปภาพ</string>
+  <string name="MediaOverviewActivity_voice_message">ข้อความเสียง</string>
   <string name="MediaOverviewActivity_sent_by_s">ส่งโดย %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">ส่งโดยคุณ</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">ส่งโดย %1$s ถึง %2$s</string>

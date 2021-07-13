@@ -51,6 +51,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(lokacija)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(odgovor)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Glasovno sporočilo)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerija</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -887,6 +888,7 @@
   <string name="MediaOverviewActivity_audio">Zvok</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Slika</string>
+  <string name="MediaOverviewActivity_voice_message">Glasovno sporočilo</string>
   <string name="MediaOverviewActivity_sent_by_s">Poslano od uporabnika/ce %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Poslano od vas</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Poslano od uporabnika/ce %1$s za uporabnika/co %2$s</string>
@@ -947,6 +949,8 @@
   <string name="MediaRepository_all_media">Vsa večpredstavnostna sporočila</string>
   <string name="MediaRepository__camera">Kamera</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Dešifriranje sporočila ni bilo uspešno</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Tapnite za oddajo zabeležke za razhroščevanje</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Neznano</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prejeli ste sporočilo, šifrirano z različico aplikacije Signal, ki ni več podprta. Prosite pošiljatelja, naj posodobi Signal na najnovejšo različico.</string>
@@ -2961,6 +2965,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="few">Ta barva po meri je uporabljena v %1$d pogovorih. Jo želite izbrisati za vse pogovore?</item>
     <item quantity="other">Ta barva po meri je uporabljena v %1$d pogovorih. Jo želite izbrisati za vse pogovore?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Želite izbrisati barvo pogovora?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Enotna</string>
   <string name="CustomChatColorCreatorFragment__gradient">Prelivajoča</string>
@@ -3054,6 +3059,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Obvestila po meri</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->

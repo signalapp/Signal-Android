@@ -49,6 +49,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(βίντεο)</string>
   <string name="DraftDatabase_Draft_location_snippet">(τοποθεσία)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(απάντηση)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Μήνυμα φωνής)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Πινακοθήκη</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -800,6 +801,7 @@
   <string name="MediaOverviewActivity_audio">Ήχος</string>
   <string name="MediaOverviewActivity_video">Βίντεο</string>
   <string name="MediaOverviewActivity_image">Εικόνα</string>
+  <string name="MediaOverviewActivity_voice_message">Μήνυμα φωνής</string>
   <string name="MediaOverviewActivity_sent_by_s">Στάλθηκε από τον/την %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Στάλθηκε από εσένα</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Στάλθηκε από τον/την %1$s προς τον/την %2$s</string>
@@ -858,6 +860,8 @@
   <string name="MediaRepository_all_media">Όλα τα πολυμέσα</string>
   <string name="MediaRepository__camera">Κάμερα</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Αποτυχία αποκρυπτογράφησης μηνύματος</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Πάτα για την αποστολή του αρχείου καταγραφής αποσφαλμάτωσης</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Άγνωστο</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Λήφθηκε ένα μήνυμα που είναι κρυπτογραφημένο με μια παλιά έκδοση του Signal που πλέον δεν υποστηρίζεται. Παρακαλώ ζήτα από τον αποστολέα να αναβαθμίσει στην πιο πρόσφατη έκδοση και να σου ξαναστείλει το μήνυμα.</string>
@@ -2806,6 +2810,7 @@
     <item quantity="one">Αυτό το προσαρμοσμένο χρώμα χρησιμοποιείται σε %1$d συνομιλία. Θέλεις να το διαγράψεις για όλες τις συνομιλίες;</item>
     <item quantity="other">Αυτό το προσαρμοσμένο χρώμα χρησιμοποιείται σε %1$d συνομιλίες. Θέλεις να το διαγράψεις για όλες τις συνομιλίες;</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Διαγραφή του χρώματος της συνομιλίας;</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Μονόχρωμο</string>
   <string name="CustomChatColorCreatorFragment__gradient">Διαβάθμιση</string>
@@ -2895,6 +2900,9 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Προσαρμογή ειδοποιήσεων</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->

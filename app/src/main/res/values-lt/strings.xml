@@ -891,6 +891,7 @@
   <string name="MediaOverviewActivity_audio">Garso įrašai</string>
   <string name="MediaOverviewActivity_video">Vaizdo įrašai</string>
   <string name="MediaOverviewActivity_image">Paveikslas</string>
+  <string name="MediaOverviewActivity_voice_message">Balso žinutė</string>
   <string name="MediaOverviewActivity_sent_by_s">Išsiuntė %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Išsiuntėte jūs</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s išsiuntė naudotojui ar grupei %2$s</string>
@@ -3112,6 +3113,7 @@
     <item quantity="many">Ši tinkinta spalva yra naudojama %1$d pokalbių. Ar norite ją ištrinti visuose pokalbiuose?</item>
     <item quantity="other">Ši tinkinta spalva yra naudojama %1$d pokalbyje. Ar norite ją ištrinti visuose pokalbiuose?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Ištrinti pokalbio spalvą?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Vientisa</string>
   <string name="CustomChatColorCreatorFragment__gradient">Gradientas</string>

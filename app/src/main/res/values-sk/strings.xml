@@ -890,6 +890,7 @@
   <string name="MediaOverviewActivity_audio">Zvuk</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Obrázok</string>
+  <string name="MediaOverviewActivity_voice_message">Hlasová správa</string>
   <string name="MediaOverviewActivity_sent_by_s">Odoslal/a %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Vami odoslané</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Odoslal/a %1$s adresátovi %2$s</string>

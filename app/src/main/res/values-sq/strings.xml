@@ -52,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(vendndodhje)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(përgjigju)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Mesazh zanor)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeri</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -808,6 +809,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Figurë</string>
+  <string name="MediaOverviewActivity_voice_message">Mesazh zanor</string>
   <string name="MediaOverviewActivity_sent_by_s">Dërguar nga %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Dërguar nga ju</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Dërguar nga %1$s për %2$s</string>
@@ -866,6 +868,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MediaRepository_all_media">Krejt mediat</string>
   <string name="MediaRepository__camera">Kamerë</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">S’u arrit të shfshehtëzohet mesazhi</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Prekeni që të dërgoni një regjistër diagnostikimesh</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">I panjohur</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Morët një mesazh të fshehtëzuar duke përdorur një version të vjetër të Signal-it, që nuk mirëmbahet më. Ju lutemi, kërkojini dërguesit ta përditësojë me versionin më të ri dhe ta ridërgojë mesazhin.</string>
@@ -2947,6 +2951,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
     <item quantity="one">Kjo ngjyrë vetjake përdoret në 1%1$d fjalosje. Doni të fshihet për krejt fjalosjet?</item>
     <item quantity="other">Kjo ngjyrë vetjake përdoret në %1$d fjalosje. Doni të fshihet për krejt fjalosjet?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Të fshihet ngjyrë fjalosjeje?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">E plotë</string>
   <string name="CustomChatColorCreatorFragment__gradient">Gradient</string>
@@ -3020,6 +3025,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ConversationSettingsFragment__unmute">Çheshtoji</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Bisedë e heshtuar deri më %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Bisedë e heshtuar përgjithmonë</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numri i telefonit u kopjua në të papastër.</string>
   <string name="ConversationSettingsFragment__phone_number">Numër telefoni</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Shtoni anëtarë</string>
@@ -3037,7 +3043,11 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Mos njofto</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Njoftime vetjake</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Përdorur së fundi</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->

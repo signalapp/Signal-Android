@@ -848,6 +848,7 @@
   <string name="MediaOverviewActivity_audio">Звук</string>
   <string name="MediaOverviewActivity_video">Видео</string>
   <string name="MediaOverviewActivity_image">Слика</string>
+  <string name="MediaOverviewActivity_voice_message">Гласовна порука</string>
   <string name="MediaOverviewActivity_sent_by_s">Послао %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Ви сте послали</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Послао %1$s за %2$s</string>
@@ -3029,6 +3030,7 @@
     <item quantity="few">Ова прилагођена боја користи се у %1$d ћаскања. Да ли желите да је избришете из свих ћаскања?</item>
     <item quantity="other">Ова прилагођена боја користи се у %1$d ћаскања. Да ли желите да је избришете из свих ћаскања?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Обрисати боје ћаскања?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Солидно</string>
   <string name="CustomChatColorCreatorFragment__gradient">Градијент</string>

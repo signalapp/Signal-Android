@@ -798,6 +798,7 @@
   <string name="MediaOverviewActivity_audio">Lyd</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Bilde</string>
+  <string name="MediaOverviewActivity_voice_message">Talemelding</string>
   <string name="MediaOverviewActivity_sent_by_s">Sendt av %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Sendt av deg</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Sendt av %1$s til %2$s</string>

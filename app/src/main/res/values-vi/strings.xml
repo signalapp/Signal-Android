@@ -757,6 +757,7 @@
   <string name="MediaOverviewActivity_audio">Âm thanh</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Hình ảnh</string>
+  <string name="MediaOverviewActivity_voice_message">Tin nhắn thoại</string>
   <string name="MediaOverviewActivity_sent_by_s">Được gửi từ %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Được gửi từ bạn</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Được gửi từ %1$s tới %2$s</string>

@@ -796,6 +796,7 @@
   <string name="MediaOverviewActivity_audio">Ameslaw</string>
   <string name="MediaOverviewActivity_video">Avidyu</string>
   <string name="MediaOverviewActivity_image">Tugna</string>
+  <string name="MediaOverviewActivity_voice_message">Izen s taɣect</string>
   <string name="MediaOverviewActivity_sent_by_s">Yettwazen-d sɣur %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Yettwazen sɣur-k·m</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Yettwazen-d sɣur %1$s i %2$s</string>

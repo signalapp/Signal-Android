@@ -52,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(myndskeið)</string>
   <string name="DraftDatabase_Draft_location_snippet">(staðsetning)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(svara)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Talskilaboð)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Myndasafn</string>
   <string name="AttachmentKeyboard_gif">GIF</string>
@@ -804,6 +805,7 @@
   <string name="MediaOverviewActivity_audio">Hljóð</string>
   <string name="MediaOverviewActivity_video">Myndskeið</string>
   <string name="MediaOverviewActivity_image">Mynd</string>
+  <string name="MediaOverviewActivity_voice_message">Talskilaboð</string>
   <string name="MediaOverviewActivity_sent_by_s">Sent af %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Sent af þér</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Sent af %1$s til %2$s</string>
@@ -862,6 +864,8 @@
   <string name="MediaRepository_all_media">Allt myndefni</string>
   <string name="MediaRepository__camera">Myndavél</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Mistókst að afkóða skilaboð</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Ýttu til að senda villuskráningu</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Óþekkt</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Tók við skilaboðum sem dulrituð voru í eldri útgáfu Signal sem ekki er lengur studd. Biddu sendandann um að uppfæra hjá sér og senda svo skilaboðin aftur.</string>
@@ -2945,6 +2949,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
     <item quantity="one">Þessi sérsniðni litur er notaður í %1$d spjalli. Viltu eyða honum í öllum spjallrásum?</item>
     <item quantity="other">Þessi sérsniðni litur er notaður í %1$d spjallrásum. Viltu eyða honum í þeim öllum?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Eyða lit á spjalli?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Einlitt</string>
   <string name="CustomChatColorCreatorFragment__gradient">Litstigull</string>
@@ -3038,6 +3043,9 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Nýlega notað</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->

@@ -804,6 +804,7 @@
   <string name="MediaOverviewActivity_audio">Äänitiedosto</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Kuva</string>
+  <string name="MediaOverviewActivity_voice_message">Ääniviesti</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s lähettämä</string>
   <string name="MediaOverviewActivity_sent_by_you">Sinun lähettämäsi</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s lähettämä henkilölle %2$s</string>

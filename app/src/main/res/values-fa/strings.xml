@@ -52,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(ویدئو)</string>
   <string name="DraftDatabase_Draft_location_snippet">(مکان)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(پاسخ)</string>
+  <string name="DraftDatabase_Draft_voice_note">(پیام صوتی)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">گالری</string>
   <string name="AttachmentKeyboard_gif">گیف</string>
@@ -804,6 +805,7 @@
   <string name="MediaOverviewActivity_audio">صوت</string>
   <string name="MediaOverviewActivity_video">ویدئو</string>
   <string name="MediaOverviewActivity_image">تصویر</string>
+  <string name="MediaOverviewActivity_voice_message">پیام صوتی</string>
   <string name="MediaOverviewActivity_sent_by_s">ارسال شد از %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">ارسال شد از شما</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">ارسال شد از %1$s به %2$s</string>
@@ -862,6 +864,8 @@
   <string name="MediaRepository_all_media">همهٔ رسانه‌ها</string>
   <string name="MediaRepository__camera">دوربین</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">رمزگشایی پیام ناموفق بود.</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">برای ارسال یک گزارش عیب‌یابی ضربه بزنید</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">ناشناخته</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">یک پیام رمزگذاری شده با استفاده از نسخه‌ای قدیمی از سیگنال که دیگر پشتیبانی نمی‌شود برایتان ارسال شده است. لطفاً از فرستنده بخواهید تا به آخرین نسخه به‌روزرسانی کند و آن پیام را دوباره ارسال کند.</string>
@@ -2941,6 +2945,7 @@
     <item quantity="one">این رنگ سفارشی در %1$d گفتگو استفاده شده است. آیا می‌خواهید آن را از همهٔ گفتگوها حذف کنید؟</item>
     <item quantity="other">این رنگ سفارشی در %1$d گفتگو استفاده شده است. آیا می‌خواهید آن را از همهٔ گفتگوها حذف کنید؟</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">حذف رنگ گفتگو؟</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">یک‌دست</string>
   <string name="CustomChatColorCreatorFragment__gradient">گرادیان</string>
@@ -3034,6 +3039,9 @@
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">به‌تازگی استفاده شده</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">۵x.</string>
+  <string name="PlaybackSpeedToggleTextView__1x">۱x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">۲x</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--EOF-->
