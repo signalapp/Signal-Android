@@ -62,7 +62,7 @@ try:
             print("normalize MMSC: %s => %s" % (apn.get("mmsc"), normalized_mmsc))
             apn.set("mmsc", normalized_mmsc)
 
-        if not apn.get("mmsproxy") is None:
+        if apn.get("mmsproxy") is not None:
             normalized_mmsproxy = normalized(apn.get("mmsproxy"))
             if normalized_mmsproxy != apn.get("mmsproxy"):
                 print("normalize proxy: %s => %s" % (apn.get("mmsproxy"), normalized_mmsproxy))
