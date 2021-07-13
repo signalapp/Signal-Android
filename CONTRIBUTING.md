@@ -1,6 +1,6 @@
 # Contributing to Signal Android
 
-Thank you for supporting Signal and looking for ways to help. Please note that some conventions here might be a bit different than what you are used to, even if you have contributed to other open source projects before. Reading this document will help you save time and work effectively with the developers and other contributors.
+Thank you for supporting Signal and looking for ways to help. Please note that some conventions here might be a bit different than what you are used to, even if you have contributed to other open source projects before. Reading this document will help you save time and work effectively with the developers and other contributors, and Thank you for making time to read this.
 
 
 ## Development Ideology
