@@ -25,7 +25,7 @@
             android:layout_gravity="bottom"
             android:orientation="vertical"
             android:clickable="true"
-            android:background="@color/transparent_black_40">
+            android:background="@color/transparent_black_60">
 
             <org.thoughtcrime.securesms.components.emoji.EmojiEditText
                 android:id="@+id/mediasend_caption"
@@ -118,6 +118,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
+                        android:textColor="@color/core_white"
                         android:nextFocusForward="@+id/send_button"
                         android:nextFocusRight="@+id/send_button"
                         tools:hint="Send TextSecure message" >
