@@ -137,7 +137,6 @@ public final class ContactSelectionListFragment extends LoggingFragment
 
 
   @Nullable private FixedViewsAdapter headerAdapter;
-  @Nullable private FixedViewsAdapter footerAdapter;
   @Nullable private ListCallback      listCallback;
   @Nullable private ScrollCallback    scrollCallback;
             private GlideRequests     glideRequests;
@@ -336,18 +335,12 @@ public final class ContactSelectionListFragment extends LoggingFragment
     RecyclerViewConcatenateAdapterStickyHeader concatenateAdapter = new RecyclerViewConcatenateAdapterStickyHeader();
 
     if (listCallback != null) {
-      headerAdapter = new FixedViewsAdapter(createNewGroupItem(listCallback));
+      headerAdapter = new FixedViewsAdapter(createNewGroupItem(listCallback), createInviteActionView(listCallback));
       headerAdapter.hide();
       concatenateAdapter.addAdapter(headerAdapter);
     }
 
     concatenateAdapter.addAdapter(cursorRecyclerViewAdapter);
-
-    if (listCallback != null) {
-      footerAdapter = new FixedViewsAdapter(createInviteActionView(listCallback));
-      footerAdapter.hide();
-      concatenateAdapter.addAdapter(footerAdapter);
-    }
 
     recyclerView.setAdapter(concatenateAdapter);
     recyclerView.addItemDecoration(new StickyHeaderDecoration(concatenateAdapter, true, true, 0));
@@ -444,10 +437,6 @@ public final class ContactSelectionListFragment extends LoggingFragment
     showContactsLayout.setVisibility(View.GONE);
 
     cursorRecyclerViewAdapter.changeCursor(data);
-
-    if (footerAdapter != null) {
-      footerAdapter.show();
-    }
 
     if (headerAdapter != null) {
       if (TextUtils.isEmpty(cursorFilter)) {
