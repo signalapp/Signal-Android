@@ -965,6 +965,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         // Do nothing
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         super.onActivityResult(requestCode, resultCode, intent)
         val mediaPreppedListener = object : ListenableFuture.Listener<Boolean> {
