@@ -28,15 +28,18 @@ object NotificationStateProvider {
       MmsSmsDatabase.readerFor(unreadMessages).use { reader ->
         var record: MessageRecord? = reader.next
         while (record != null) {
-          messages += NotificationMessage(
-            messageRecord = record,
-            threadRecipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(record.threadId)?.resolve() ?: Recipient.UNKNOWN,
-            threadId = record.threadId,
-            stickyThread = stickyThreads.containsKey(record.threadId),
-            isUnreadMessage = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.READ) == 0,
-            hasUnreadReactions = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.REACTIONS_UNREAD) == 1,
-            lastReactionRead = CursorUtil.requireLong(unreadMessages, MmsSmsColumns.REACTIONS_LAST_SEEN)
-          )
+          val threadRecipient: Recipient? = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(record.threadId)
+          if (threadRecipient != null) {
+            messages += NotificationMessage(
+              messageRecord = record,
+              threadRecipient = threadRecipient,
+              threadId = record.threadId,
+              stickyThread = stickyThreads.containsKey(record.threadId),
+              isUnreadMessage = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.READ) == 0,
+              hasUnreadReactions = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.REACTIONS_UNREAD) == 1,
+              lastReactionRead = CursorUtil.requireLong(unreadMessages, MmsSmsColumns.REACTIONS_LAST_SEEN)
+            )
+          }
           record = reader.next
         }
       }
@@ -82,14 +85,13 @@ object NotificationStateProvider {
     val lastReactionRead: Long
   ) {
     private val isUnreadIncoming: Boolean = isUnreadMessage && !messageRecord.isOutgoing
-    private val unknownOrNotMutedThread: Boolean = threadRecipient == Recipient.UNKNOWN || threadRecipient.isNotMuted
 
     fun includeMessage(): Boolean {
-      return (isUnreadIncoming || stickyThread) && (unknownOrNotMutedThread || (threadRecipient.isAlwaysNotifyMentions && messageRecord.hasSelfMention()))
+      return (isUnreadIncoming || stickyThread) && (threadRecipient.isNotMuted || (threadRecipient.isAlwaysNotifyMentions && messageRecord.hasSelfMention()))
     }
 
     fun includeReaction(reaction: ReactionRecord): Boolean {
-      return reaction.author != Recipient.self().id && messageRecord.isOutgoing && reaction.dateReceived > lastReactionRead && unknownOrNotMutedThread
+      return reaction.author != Recipient.self().id && messageRecord.isOutgoing && reaction.dateReceived > lastReactionRead && threadRecipient.isNotMuted
     }
 
     private val Recipient.isNotMuted: Boolean

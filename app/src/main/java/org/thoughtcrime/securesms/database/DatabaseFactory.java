@@ -208,6 +208,8 @@ public class DatabaseFactory {
     synchronized (lock) {
       getInstance(context).databaseHelper.onUpgrade(database, database.getVersion(), -1);
       getInstance(context).databaseHelper.markCurrent(database);
+      getInstance(context).sms.deleteAbandonedMessages();
+      getInstance(context).mms.deleteAbandonedMessages();
       getInstance(context).mms.trimEntriesForExpiredMessages();
       getInstance(context).getRawDatabase().rawExecSQL("DROP TABLE IF EXISTS key_value");
       getInstance(context).getRawDatabase().rawExecSQL("DROP TABLE IF EXISTS megaphone");

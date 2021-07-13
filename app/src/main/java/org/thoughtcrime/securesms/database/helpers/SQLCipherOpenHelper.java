@@ -202,8 +202,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int MESSAGE_DUPE_INDEX               = 104;
   private static final int MESSAGE_LOG                      = 105;
   private static final int MESSAGE_LOG_2                    = 106;
+  private static final int ABANDONED_MESSAGE_CLEANUP        = 107;
 
-  private static final int    DATABASE_VERSION = 106;
+  private static final int    DATABASE_VERSION = 107;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1633,6 +1634,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
         db.execSQL("CREATE TRIGGER msl_sms_delete AFTER DELETE ON sms BEGIN DELETE FROM msl_payload WHERE _id IN (SELECT payload_id FROM msl_message WHERE message_id = old._id AND is_mms = 0); END");
         db.execSQL("CREATE TRIGGER msl_mms_delete AFTER DELETE ON mms BEGIN DELETE FROM msl_payload WHERE _id IN (SELECT payload_id FROM msl_message WHERE message_id = old._id AND is_mms = 1); END");
         db.execSQL("CREATE TRIGGER msl_attachment_delete AFTER DELETE ON part BEGIN DELETE FROM msl_payload WHERE _id IN (SELECT payload_id FROM msl_message WHERE message_id = old.mid AND is_mms = 1); END");
+      }
+
+      if (oldVersion < ABANDONED_MESSAGE_CLEANUP) {
+        int smsDeleteCount = db.delete("sms", "thread_id NOT IN (SELECT _id FROM thread)", null);
+        int mmsDeleteCount = db.delete("mms", "thread_id NOT IN (SELECT _id FROM thread)", null);
+        Log.i(TAG, "Deleted " + smsDeleteCount + " sms and " + mmsDeleteCount + " mms");
       }
 
       db.setTransactionSuccessful();
