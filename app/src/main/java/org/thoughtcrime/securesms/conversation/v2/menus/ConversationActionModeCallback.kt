@@ -58,6 +58,8 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
         // Copy Session ID
         menu.findItem(R.id.menu_context_copy_public_key).isVisible =
             (thread.isGroupRecipient && selectedItems.size == 1 && firstMessage.recipient.address.toString() != userPublicKey)
+        // Message detail
+        menu.findItem(R.id.menu_message_details).isVisible = (selectedItems.size == 1 && firstMessage.isFailed)
         // Resend
         menu.findItem(R.id.menu_context_resend).isVisible = (selectedItems.size == 1 && firstMessage.isFailed)
         // Save media
@@ -81,6 +83,7 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
             R.id.menu_context_copy -> delegate?.copyMessages(selectedItems)
             R.id.menu_context_copy_public_key -> delegate?.copySessionID(selectedItems)
             R.id.menu_context_resend -> delegate?.resendMessage(selectedItems)
+            R.id.menu_message_details -> delegate?.showMessageDetail(selectedItems)
             R.id.menu_context_save_attachment -> delegate?.saveAttachment(selectedItems)
             R.id.menu_context_reply -> delegate?.reply(selectedItems)
         }
@@ -101,6 +104,7 @@ interface ConversationActionModeCallbackDelegate {
     fun copyMessages(messages: Set<MessageRecord>)
     fun copySessionID(messages: Set<MessageRecord>)
     fun resendMessage(messages: Set<MessageRecord>)
+    fun showMessageDetail(messages: Set<MessageRecord>)
     fun saveAttachment(messages: Set<MessageRecord>)
     fun reply(messages: Set<MessageRecord>)
 }

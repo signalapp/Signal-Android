@@ -52,7 +52,7 @@ class VisibleMessageView : LinearLayout {
     var contentViewDelegate: VisibleMessageContentViewDelegate? = null
 
     companion object {
-        const val swipeToReplyThreshold = 80.0f // dp
+        const val swipeToReplyThreshold = 64.0f // dp
         const val longPressMovementTreshold = 10.0f // dp
         const val longPressDurationThreshold = 250L // ms
         const val maxDoubleTapInterval = 200L

@@ -334,7 +334,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         if (error.localizedMessage != null) {
             val message: String
             if (error is OnionRequestAPI.HTTPRequestFailedAtDestinationException && error.statusCode == 429) {
-                message = "Rate limited."
+                message = "429: Rate limited."
             } else {
                 message = error.localizedMessage!!
             }
