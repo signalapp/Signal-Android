@@ -84,6 +84,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         notificationsButton.setOnClickListener { showNotificationSettings() }
         chatsButton.setOnClickListener { showChatSettings() }
         sendInvitationButton.setOnClickListener { sendInvitation() }
+        faqButton.setOnClickListener { showFAQ() }
         helpTranslateButton.setOnClickListener { helpTranslate() }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
@@ -224,7 +225,6 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
             Toast.makeText(this, R.string.activity_settings_display_name_too_long_error, Toast.LENGTH_SHORT).show()
             return false
         }
-//        isEditingDisplayName = false
         displayNameToBeUploaded = displayName
         updateProfile(false)
         return true
@@ -238,11 +238,11 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     private fun showEditProfilePictureUI() {
         // Ask for an optional camera permission.
         Permissions.with(this)
-                .request(Manifest.permission.CAMERA)
-                .onAnyResult {
-                    tempFile = AvatarSelection.startAvatarSelection(this, false, true)
-                }
-                .execute()
+            .request(Manifest.permission.CAMERA)
+            .onAnyResult {
+                tempFile = AvatarSelection.startAvatarSelection(this, false, true)
+            }
+            .execute()
     }
 
     private fun copyPublicKey() {
@@ -284,6 +284,16 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         intent.type = "text/plain"
         val chooser = Intent.createChooser(intent, getString(R.string.activity_settings_invite_button_title))
         startActivity(chooser)
+    }
+
+    private fun showFAQ() {
+        try {
+            val url = "https://getsession.org/faq"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Can't open URL", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun helpTranslate() {
