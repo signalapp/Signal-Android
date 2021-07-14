@@ -70,19 +70,19 @@ object OnionRequestAPI {
     const val targetPathCount = 2 // A main path and a backup path for the case where the target snode is in the main path
     // endregion
 
-    class HTTPRequestFailedAtDestinationException(val statusCode: Int, val json: Map<*, *>)
-        : Exception("HTTP request failed at destination with status code $statusCode.")
+    class HTTPRequestFailedAtDestinationException(val statusCode: Int, val json: Map<*, *>, val destination: String)
+        : Exception("HTTP request failed at destination ($destination) with status code $statusCode.")
     class InsufficientSnodesException : Exception("Couldn't find enough snodes to build a path.")
 
     private data class OnionBuildingResult(
-            val guardSnode: Snode,
-            val finalEncryptionResult: EncryptionResult,
-            val destinationSymmetricKey: ByteArray
+        val guardSnode: Snode,
+        val finalEncryptionResult: EncryptionResult,
+        val destinationSymmetricKey: ByteArray
     )
 
-    internal sealed class Destination {
-        class Snode(val snode: org.session.libsignal.utilities.Snode) : Destination()
-        class Server(val host: String, val target: String, val x25519PublicKey: String, val scheme: String, val port: Int) : Destination()
+    internal sealed class Destination(val description: String) {
+        class Snode(val snode: org.session.libsignal.utilities.Snode) : Destination("Service node ${snode.ip}:${snode.port}")
+        class Server(val host: String, val target: String, val x25519PublicKey: String, val scheme: String, val port: Int) : Destination("$host")
     }
 
     // region Private API
@@ -339,7 +339,7 @@ object OnionRequestAPI {
                             val statusCode = json["status_code"] as? Int ?: json["status"] as Int
                             if (statusCode == 406) {
                                 @Suppress("NAME_SHADOWING") val body = mapOf( "result" to "Your clock is out of sync with the service node network." )
-                                val exception = HTTPRequestFailedAtDestinationException(statusCode, body)
+                                val exception = HTTPRequestFailedAtDestinationException(statusCode, body, destination.description)
                                 return@queue deferred.reject(exception)
                             } else if (json["body"] != null) {
                                 @Suppress("NAME_SHADOWING") val body: Map<*, *>
@@ -354,13 +354,13 @@ object OnionRequestAPI {
                                     }
                                 }
                                 if (statusCode != 200) {
-                                    val exception = HTTPRequestFailedAtDestinationException(statusCode, body)
+                                    val exception = HTTPRequestFailedAtDestinationException(statusCode, body, destination.description)
                                     return@queue deferred.reject(exception)
                                 }
                                 deferred.resolve(body)
                             } else {
                                 if (statusCode != 200) {
-                                    val exception = HTTPRequestFailedAtDestinationException(statusCode, json)
+                                    val exception = HTTPRequestFailedAtDestinationException(statusCode, json, destination.description)
                                     return@queue deferred.reject(exception)
                                 }
                                 deferred.resolve(json)
