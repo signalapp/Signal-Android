@@ -404,10 +404,8 @@ public class RecipientDatabase extends Database {
     return getByColumn(EMAIL, email);
   }
 
-  public @NonNull
-  Optional<RecipientId> getByGroupId(@NonNull GroupId groupId) {
+  public @NonNull Optional<RecipientId> getByGroupId(@NonNull GroupId groupId) {
     return getByColumn(GROUP_ID, groupId.toString());
-
   }
 
   public @NonNull
@@ -2976,18 +2974,24 @@ public class RecipientDatabase extends Database {
     // SMS Messages
     ContentValues smsValues = new ContentValues();
     smsValues.put(SmsDatabase.RECIPIENT_ID, byUuid.serialize());
-    if (threadMerge.neededMerge) {
-      smsValues.put(SmsDatabase.THREAD_ID, threadMerge.threadId);
-    }
     db.update(SmsDatabase.TABLE_NAME, smsValues, SmsDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
+
+    if (threadMerge.neededMerge) {
+      ContentValues values = new ContentValues();
+      values.put(SmsDatabase.THREAD_ID, threadMerge.threadId);
+      db.update(SmsDatabase.TABLE_NAME, values, SmsDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(threadMerge.previousThreadId));
+    }
 
     // MMS Messages
     ContentValues mmsValues = new ContentValues();
     mmsValues.put(MmsDatabase.RECIPIENT_ID, byUuid.serialize());
-    if (threadMerge.neededMerge) {
-      mmsValues.put(MmsDatabase.THREAD_ID, threadMerge.threadId);
-    }
     db.update(MmsDatabase.TABLE_NAME, mmsValues, MmsDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
+
+    if (threadMerge.neededMerge) {
+      ContentValues values = new ContentValues();
+      values.put(MmsDatabase.THREAD_ID, threadMerge.threadId);
+      db.update(MmsDatabase.TABLE_NAME, values, MmsDatabase.THREAD_ID + " = ?", SqlUtil.buildArgs(threadMerge.previousThreadId));
+    }
 
     // Sessions
     boolean hasE164Session = DatabaseFactory.getSessionDatabase(context).getAllFor(byE164).size() > 0;
