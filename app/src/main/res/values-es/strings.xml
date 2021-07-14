@@ -261,7 +261,7 @@ de intercambio de claves!</string>
     <string name="MediaPreviewActivity_you">Tú</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Formato de contenido incompatible</string>
     <string name="MediaPreviewActivity_draft">Borrador</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Session needs storage access in order to save to external storage, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">La sesión necesita acceso de almacenamiento para guardar en el almacenamiento externo, pero se ha denegado permanentemente. Por favor, continúe con la configuración de la aplicación, seleccione \"Permisos\" y active \"Almacenar\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">No se puede guardar en una unidad de almacenamiento externo si Session no tiene acceso</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">¿Eliminar mensaje?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Este mensaje se eliminará permanentemente.</string>
@@ -635,6 +635,7 @@ de intercambio de claves!</string>
     <string name="activity_settings_invite_button_title">Invitar</string>
     <string name="activity_settings_recovery_phrase_button_title">Frase de recuperación</string>
     <string name="activity_settings_clear_all_data_button_title">Borrar datos</string>
+    <string name="activity_settings_clear_all_data_and_network_button_title">Clear Data Including Network</string>
     <string name="activity_settings_help_translate_session">Ayúdanos a traducir Session</string>
     <string name="activity_notification_settings_title">Notificaciones</string>
     <string name="activity_notification_settings_style_section_title">Estilo de Notificación</string>
@@ -650,6 +651,9 @@ de intercambio de claves!</string>
     <string name="dialog_seed_explanation">Esta es tu frase de recuperación. Con ella, puedes restaurar o migrar tu ID de Session a un nuevo dispositivo.</string>
     <string name="dialog_clear_all_data_title">Borrar todos los datos</string>
     <string name="dialog_clear_all_data_explanation">Esto eliminará permanentemente tu ID de Session, incluyendo todos los mensajes, sesiones y contactos.</string>
+    <string name="dialog_clear_all_data_network_explanation">Would you like to clear only this device, or delete your entire account?</string>
+    <string name="dialog_clear_all_data_local_only">Delete Only</string>
+    <string name="dialog_clear_all_data_clear_network">Entire Account</string>
     <string name="activity_qr_code_title">Código QR</string>
     <string name="activity_qr_code_view_my_qr_code_tab_title">Ver mi código QR</string>
     <string name="activity_qr_code_view_scan_qr_code_tab_title">Escanear código QR</string>
@@ -720,4 +724,6 @@ de intercambio de claves!</string>
     <string name="dialog_download_button_title">Descargar</string>
     <string name="activity_conversation_blocked_banner_text">%s is blocked. Unblock them?</string>
     <string name="activity_conversation_attachment_prep_failed">Failed to prepare attachment for sending.</string>
+    <string name="media">Media</string>
+    <string name="UntrustedAttachmentView_download_attachment">Tap to download %s</string>
 </resources>
