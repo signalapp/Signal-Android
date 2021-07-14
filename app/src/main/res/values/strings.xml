@@ -883,4 +883,5 @@
     <string name="activity_conversation_attachment_prep_failed">Failed to prepare attachment for sending.</string>
     <string name="media">Media</string>
     <string name="UntrustedAttachmentView_download_attachment">Tap to download %s</string>
+    <string name="message_details_header__error">Error</string>
 </resources>
