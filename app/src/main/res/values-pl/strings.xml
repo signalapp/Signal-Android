@@ -662,6 +662,7 @@
     <string name="activity_settings_invite_button_title">Zaproś</string>
     <string name="activity_settings_recovery_phrase_button_title">Fraza odzyskiwania</string>
     <string name="activity_settings_clear_all_data_button_title">Wyczyść dane</string>
+    <string name="activity_settings_clear_all_data_and_network_button_title">Wyczyść dane łącznie z siecią</string>
     <string name="activity_settings_help_translate_session">Pomóż nam w tłumaczeniu Session</string>
     <string name="activity_notification_settings_title">Powiadomienia</string>
     <string name="activity_notification_settings_style_section_title">Styl powiadomienia</string>
@@ -677,6 +678,9 @@
     <string name="dialog_seed_explanation">To jest twoja fraza odzyskiwania. Dzięki niej możesz przywrócić lub przenieść identyfikator Session na nowe urządzenie.</string>
     <string name="dialog_clear_all_data_title">Wyczyść wszystkie dane</string>
     <string name="dialog_clear_all_data_explanation">Spowoduje to trwałe usunięcie wiadomości, sesji i kontaktów.</string>
+    <string name="dialog_clear_all_data_network_explanation">Czy chcesz wyczyścić tylko to urządzenie, czy usunąć całe swoje konto?</string>
+    <string name="dialog_clear_all_data_local_only">Tylko urządzenie</string>
+    <string name="dialog_clear_all_data_clear_network">Całe konto</string>
     <string name="activity_qr_code_title">Kod QR</string>
     <string name="activity_qr_code_view_my_qr_code_tab_title">Wyświetl mój kod QR</string>
     <string name="activity_qr_code_view_scan_qr_code_tab_title">Skanowania QR code</string>
@@ -747,4 +751,6 @@
     <string name="dialog_download_button_title">Pobierz</string>
     <string name="activity_conversation_blocked_banner_text">%s jest zablokowany. Odblokować?</string>
     <string name="activity_conversation_attachment_prep_failed">Nie udało się przygotować załącznika do wysłania.</string>
+    <string name="media">Multimedia</string>
+    <string name="UntrustedAttachmentView_download_attachment">Kliknij by pobrać %s</string>
 </resources>
