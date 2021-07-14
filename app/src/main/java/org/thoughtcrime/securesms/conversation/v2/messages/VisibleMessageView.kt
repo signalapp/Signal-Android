@@ -6,12 +6,14 @@ import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
 import android.view.*
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
@@ -24,6 +26,7 @@ import org.session.libsignal.utilities.ThreadUtils
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.home.UserDetailsBottomSheet
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.*
 import java.util.*
@@ -92,6 +95,7 @@ class VisibleMessageView : LinearLayout {
             profilePictureView.publicKey = senderSessionID
             profilePictureView.glide = glide
             profilePictureView.update()
+            profilePictureView.setOnClickListener { showUserDetails(message.recipient.address.toString()) }
             if (thread.isOpenGroupRecipient) {
                 val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID) ?: return
                 val isModerator = OpenGroupAPIV2.isUserModerator(senderSessionID, openGroup.room, openGroup.server)
@@ -361,6 +365,15 @@ class VisibleMessageView : LinearLayout {
     private fun onPress(event: MotionEvent) {
         onPress?.invoke(event)
         pressCallback = null
+    }
+
+    private fun showUserDetails(publicKey: String) {
+        val userDetailsBottomSheet = UserDetailsBottomSheet()
+        val bundle = Bundle()
+        bundle.putString("publicKey", publicKey)
+        userDetailsBottomSheet.arguments = bundle
+        val activity = context as AppCompatActivity
+        userDetailsBottomSheet.show(activity.supportFragmentManager, userDetailsBottomSheet.tag)
     }
     // endregion
 }

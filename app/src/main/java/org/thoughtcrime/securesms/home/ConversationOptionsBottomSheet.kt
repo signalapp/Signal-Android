@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_conversation_bottom_sheet.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.util.UiModeUtilities
 
 public class ConversationOptionsBottomSheet : BottomSheetDialogFragment() {
 
@@ -40,5 +41,12 @@ public class ConversationOptionsBottomSheet : BottomSheetDialogFragment() {
             detailsTextView.visibility = View.GONE
         }
         deleteTextView.setOnClickListener { onDeleteTapped?.invoke() }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val window = dialog?.window ?: return
+        val isLightMode = UiModeUtilities.isDayUiMode(requireContext())
+        window.setDimAmount(if (isLightMode) 0.1f else 0.75f)
     }
 }

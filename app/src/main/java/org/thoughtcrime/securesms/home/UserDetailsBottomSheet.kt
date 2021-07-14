@@ -19,6 +19,7 @@ import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.util.UiModeUtilities
 
 class UserDetailsBottomSheet : BottomSheetDialogFragment() {
 
@@ -68,6 +69,13 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
             clipboard.setPrimaryClip(clip)
             Toast.makeText(requireContext(), R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val window = dialog?.window ?: return
+        val isLightMode = UiModeUtilities.isDayUiMode(requireContext())
+        window.setDimAmount(if (isLightMode) 0.1f else 0.75f)
     }
 
     fun saveNickName(recipient: Recipient) {
