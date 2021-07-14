@@ -1,42 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/transparent"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout android:id="@+id/item_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/medium_spacing"
-        android:paddingBottom="@dimen/medium_spacing"
-        android:elevation="10dp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingStart="@dimen/medium_spacing"
+        android:paddingTop="@dimen/very_large_spacing"
         android:paddingEnd="@dimen/medium_spacing">
 
-        <TableLayout android:id="@+id/metadata_container"
+        <TableLayout
+            android:id="@+id/metadata_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:shrinkColumns="1">
 
-            <TableRow android:id="@+id/sent_container"
+            <TableRow
+                android:id="@+id/sent_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:paddingHorizontal="@dimen/small_spacing">
 
-                <TextView android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/message_details_header__sent"
                     android:gravity="end"
                     android:textStyle="bold" />
 
-                <TextView android:id="@+id/sent_time"
+                <TextView
+                    android:id="@+id/sent_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -44,20 +43,24 @@
 
             </TableRow>
 
-            <TableRow android:id="@+id/expires_container"
+            <TableRow
+                android:id="@+id/expires_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:paddingHorizontal="@dimen/small_spacing"
+                android:layout_marginTop="@dimen/medium_spacing"
                 android:visibility="gone"
                 tools:visibility="visible">
 
-                <TextView android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/message_details_header__disappears"
                     android:gravity="end"
                     android:textStyle="bold"/>
 
-                <TextView android:id="@+id/expires_in"
+                <TextView
+                    android:id="@+id/expires_in"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -65,17 +68,21 @@
 
             </TableRow>
 
-            <TableRow android:layout_width="wrap_content"
+            <TableRow
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:paddingHorizontal="@dimen/small_spacing"
+                android:layout_marginTop="@dimen/medium_spacing">
 
-                <TextView android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/message_details_header__error"
                     android:gravity="end"
                     android:textStyle="bold"/>
 
-                <TextView android:id="@+id/error_message"
+                <TextView
+                    android:id="@+id/error_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -88,16 +95,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:gravity="end">
-
+            android:layout_marginTop="@dimen/very_large_spacing"
+            android:gravity="start">
 
             <Button
                 android:id="@+id/resend_button"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/medium_button_height"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
                 style="@style/Widget.Session.Button.Common.ProminentOutline"
                 android:text="@string/message_recipients_list_item__resend" />
 

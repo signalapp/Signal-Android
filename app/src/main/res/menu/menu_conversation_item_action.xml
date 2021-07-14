@@ -24,8 +24,7 @@
     <item
         android:title="@string/conversation_context__menu_message_details"
         android:id="@+id/menu_message_details"
-        android:icon="?menu_info_icon"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 
     <item
         android:title="@string/conversation_context__menu_copy_text"
