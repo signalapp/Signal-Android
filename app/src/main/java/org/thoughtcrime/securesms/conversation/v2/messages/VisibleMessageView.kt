@@ -164,10 +164,10 @@ class VisibleMessageView : LinearLayout {
 
     private fun isStartOfMessageCluster(current: MessageRecord, previous: MessageRecord?, isGroupThread: Boolean): Boolean {
         return if (isGroupThread) {
-            previous == null || previous.isUpdate || !DateUtils.isSameDay(current.timestamp, previous.timestamp)
+            previous == null || previous.isUpdate || !DateUtils.isSameHour(current.timestamp, previous.timestamp)
                 || current.recipient.address != previous.recipient.address
         } else {
-            previous == null || previous.isUpdate || !DateUtils.isSameDay(current.timestamp, previous.timestamp)
+            previous == null || previous.isUpdate || !DateUtils.isSameHour(current.timestamp, previous.timestamp)
                 || current.isOutgoing != previous.isOutgoing
         }
     }
