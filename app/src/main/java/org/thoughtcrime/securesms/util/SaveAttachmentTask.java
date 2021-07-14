@@ -35,6 +35,8 @@ import java.text.SimpleDateFormat;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import static org.thoughtcrime.securesms.R.string.SaveAttachmentTask_saved_to;
+
 public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTask.Attachment, Void, Pair<Integer, String>> {
   private static final String TAG = Log.tag(SaveAttachmentTask.class);
 
@@ -271,7 +273,10 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
                        Toast.LENGTH_LONG).show();
         break;
       case SUCCESS:
-        String message = !TextUtils.isEmpty(result.second())  ? context.getResources().getString(R.string.SaveAttachmentTask_saved_to, result.second())
+        String path = Environment.getExternalStorageDirectory().getPath();
+        String downloadPath = path + "/Download/";
+        final Pair<Integer, String> new_result =  new Pair<>(result.first(), downloadPath);
+        String message = !TextUtils.isEmpty(new_result.second())  ? context.getResources().getString(R.string.SaveAttachmentTask_saved_to, new_result.second())
                                                               : context.getResources().getString(R.string.SaveAttachmentTask_saved);
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
         break;
