@@ -30,6 +30,11 @@ public class OptimizedMessageNotifier implements MessageNotifier {
   public void setVisibleThread(long threadId) { wrapped.setVisibleThread(threadId); }
 
   @Override
+  public void setHomeScreenVisible(boolean isVisible) {
+    wrapped.setHomeScreenVisible(isVisible);
+  }
+
+  @Override
   public void setLastDesktopActivityTimestamp(long timestamp) { wrapped.setLastDesktopActivityTimestamp(timestamp);}
 
   @Override

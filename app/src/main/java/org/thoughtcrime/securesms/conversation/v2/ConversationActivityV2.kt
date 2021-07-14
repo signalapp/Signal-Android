@@ -861,17 +861,13 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         conversationRecyclerView.scrollToPosition(lastSeenItemPosition)
     }
 
-    override fun playNextAudioIfPossible(current: Int) {
-        if (current > 0) {
-            val nextVisibleMessageView = conversationRecyclerView[current - 1] as? VisibleMessageView
-            nextVisibleMessageView?.let { visibleMessageView ->
-                visibleMessageView.messageContentView.mainContainer.children.forEach { child ->
-                    val nextVoiceMessageView = child as? VoiceMessageView
-                    nextVoiceMessageView?.let { voiceMessageView ->
-                        voiceMessageView.togglePlayback()
-                        return@forEach
-                    }
-                }
+    override fun playVoiceMessageAtIndexIfPossible(indexInAdapter: Int) {
+        if (indexInAdapter < 0 || indexInAdapter >= adapter.itemCount) { return }
+        val viewHolder = conversationRecyclerView.findViewHolderForAdapterPosition(indexInAdapter) as? ConversationAdapter.VisibleMessageViewHolder
+        val nextVisibleMessageView = viewHolder?.view ?: return
+        nextVisibleMessageView.messageContentView.mainContainer.children.forEach { view ->
+            if (view is VoiceMessageView) {
+                return@forEach view.togglePlayback()
             }
         }
     }

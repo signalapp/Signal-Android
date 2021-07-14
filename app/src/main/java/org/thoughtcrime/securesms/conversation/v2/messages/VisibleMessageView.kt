@@ -43,7 +43,7 @@ class VisibleMessageView : LinearLayout {
     private var longPressCallback: Runnable? = null
     private var onDownTimestamp = 0L
     private var onDoubleTap: (() -> Unit)? = null
-    var viewHolderIndex: Int = -1
+    var indexInAdapter: Int = -1
     var snIsSelected = false
         set(value) { field = value; handleIsSelectedChanged()}
     var onPress: ((event: MotionEvent) -> Unit)? = null
@@ -52,7 +52,7 @@ class VisibleMessageView : LinearLayout {
     var contentViewDelegate: VisibleMessageContentViewDelegate? = null
 
     companion object {
-        const val swipeToReplyThreshold = 80.0f // dp
+        const val swipeToReplyThreshold = 64.0f // dp
         const val longPressMovementTreshold = 10.0f // dp
         const val longPressDurationThreshold = 250L // ms
         const val maxDoubleTapInterval = 200L
@@ -149,7 +149,7 @@ class VisibleMessageView : LinearLayout {
         var maxWidth = screenWidth - startPadding - endPadding
         if (profilePictureContainer.visibility != View.GONE) { maxWidth -= profilePictureContainer.width }
         // Populate content view
-        messageContentView.viewHolderIndex = viewHolderIndex
+        messageContentView.indexInAdapter = indexInAdapter
         messageContentView.bind(message, isStartOfMessageCluster, isEndOfMessageCluster, glide, maxWidth, thread, searchQuery, isGroupThread || (contact?.isTrusted ?: false))
         messageContentView.delegate = contentViewDelegate
         onDoubleTap = { messageContentView.onContentDoubleTap?.invoke() }
