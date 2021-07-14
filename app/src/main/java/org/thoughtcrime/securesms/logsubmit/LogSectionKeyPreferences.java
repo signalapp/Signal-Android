@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -28,6 +29,17 @@ final class LogSectionKeyPreferences implements LogSection {
                               .append("Client Deprecated    : ").append(SignalStore.misc().isClientDeprecated()).append("\n")
                               .append("Push Registered      : ").append(TextSecurePreferences.isPushRegistered(context)).append("\n")
                               .append("Unauthorized Received: ").append(TextSecurePreferences.isUnauthorizedRecieved(context)).append("\n")
-                              .append("self.isRegistered()  : ").append(Recipient.self().isRegistered()).append("\n");
+                              .append("self.isRegistered()  : ").append(Recipient.self().isRegistered()).append("\n")
+                              .append("Thread Trimming      : ").append(getThreadTrimmingString()).append("\n");
+  }
+
+  private static String getThreadTrimmingString() {
+    if (SignalStore.settings().isTrimByLengthEnabled()) {
+      return "Enabled - Max length of " + SignalStore.settings().getThreadTrimLength();
+    } else if (SignalStore.settings().getKeepMessagesDuration() != KeepMessagesDuration.FOREVER) {
+      return "Enabled - Max age of " + SignalStore.settings().getKeepMessagesDuration();
+    } else {
+      return "Disabled";
+    }
   }
 }
