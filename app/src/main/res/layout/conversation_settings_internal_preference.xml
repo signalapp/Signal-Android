@@ -13,6 +13,7 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_text_secondary"
+        android:textIsSelectable="true"
         tools:text="@tools:sample/lorem" />
 
     <com.google.android.material.button.MaterialButton
