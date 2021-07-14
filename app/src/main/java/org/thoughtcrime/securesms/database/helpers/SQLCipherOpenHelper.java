@@ -75,6 +75,7 @@ import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
+import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Triple;
 import org.thoughtcrime.securesms.util.Util;
@@ -203,8 +204,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int MESSAGE_LOG                      = 105;
   private static final int MESSAGE_LOG_2                    = 106;
   private static final int ABANDONED_MESSAGE_CLEANUP        = 107;
+  private static final int THREAD_AUTOINCREMENT             = 108;
 
-  private static final int    DATABASE_VERSION = 107;
+  private static final int    DATABASE_VERSION = 108;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1637,9 +1639,83 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       }
 
       if (oldVersion < ABANDONED_MESSAGE_CLEANUP) {
+        long start = System.currentTimeMillis();
         int smsDeleteCount = db.delete("sms", "thread_id NOT IN (SELECT _id FROM thread)", null);
         int mmsDeleteCount = db.delete("mms", "thread_id NOT IN (SELECT _id FROM thread)", null);
-        Log.i(TAG, "Deleted " + smsDeleteCount + " sms and " + mmsDeleteCount + " mms");
+        Log.i(TAG, "Deleted " + smsDeleteCount + " sms and " + mmsDeleteCount + " mms in " + (System.currentTimeMillis() - start) + " ms");
+      }
+
+      if (oldVersion < THREAD_AUTOINCREMENT) {
+        Stopwatch stopwatch = new Stopwatch("thread-autoincrement");
+
+        db.execSQL("CREATE TABLE thread_tmp (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                            "date INTEGER DEFAULT 0, " +
+                                            "thread_recipient_id INTEGER, "  +
+                                            "message_count INTEGER DEFAULT 0, " +
+                                            "snippet TEXT, " +
+                                            "snippet_charset INTEGER DEFAULT 0, " +
+                                            "snippet_type INTEGER DEFAULT 0, " +
+                                            "snippet_uri TEXT DEFAULT NULL, " +
+                                            "snippet_content_type INTEGER DEFAULT NULL, " +
+                                            "snippet_extras TEXT DEFAULT NULL, " +
+                                            "read INTEGER DEFAULT 1, "  +
+                                            "type INTEGER DEFAULT 0, " +
+                                            "error INTEGER DEFAULT 0, " +
+                                            "archived INTEGER DEFAULT 0, " +
+                                            "status INTEGER DEFAULT 0, " +
+                                            "expires_in INTEGER DEFAULT 0, " +
+                                            "last_seen INTEGER DEFAULT 0, " +
+                                            "has_sent INTEGER DEFAULT 0, " +
+                                            "delivery_receipt_count INTEGER DEFAULT 0, " +
+                                            "read_receipt_count INTEGER DEFAULT 0, " +
+                                            "unread_count INTEGER DEFAULT 0, " +
+                                            "last_scrolled INTEGER DEFAULT 0, " +
+                                            "pinned INTEGER DEFAULT 0)");
+        stopwatch.split("table-create");
+
+        db.execSQL("INSERT INTO thread_tmp SELECT _id, " +
+                                                 "date, " +
+                                                 "recipient_ids, " +
+                                                 "message_count, " +
+                                                 "snippet, " +
+                                                 "snippet_cs, " +
+                                                 "snippet_type, " +
+                                                 "snippet_uri, " +
+                                                 "snippet_content_type, " +
+                                                 "snippet_extras, " +
+                                                 "read, " +
+                                                 "type, " +
+                                                 "error, " +
+                                                 "archived, " +
+                                                 "status, " +
+                                                 "expires_in, " +
+                                                 "last_seen, " +
+                                                 "has_sent, " +
+                                                 "delivery_receipt_count, " +
+                                                 "read_receipt_count, " +
+                                                 "unread_count, " +
+                                                 "last_scrolled, " +
+                                                 "pinned " +
+                   "FROM thread");
+
+        stopwatch.split("table-copy");
+
+        db.execSQL("DROP TABLE thread");
+        db.execSQL("ALTER TABLE thread_tmp RENAME TO thread");
+
+        stopwatch.split("table-rename");
+
+        db.execSQL("CREATE INDEX thread_recipient_id_index ON thread (thread_recipient_id)");
+        db.execSQL("CREATE INDEX archived_count_index ON thread (archived, message_count)");
+        db.execSQL("CREATE INDEX thread_pinned_index ON thread (pinned)");
+
+        stopwatch.split("indexes");
+
+        db.execSQL("DELETE FROM remapped_threads");
+
+        stopwatch.split("delete-remap");
+
+        stopwatch.stop(TAG);
       }
 
       db.setTransactionSuccessful();

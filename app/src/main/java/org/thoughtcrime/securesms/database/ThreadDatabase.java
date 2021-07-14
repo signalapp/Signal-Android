@@ -89,9 +89,9 @@ public class ThreadDatabase extends Database {
   public  static final String ID                     = "_id";
   public  static final String DATE                   = "date";
   public  static final String MESSAGE_COUNT          = "message_count";
-  public  static final String RECIPIENT_ID           = "recipient_ids";
+  public  static final String RECIPIENT_ID           = "thread_recipient_id";
   public  static final String SNIPPET                = "snippet";
-  private static final String SNIPPET_CHARSET        = "snippet_cs";
+  private static final String SNIPPET_CHARSET        = "snippet_charset";
   public  static final String READ                   = "read";
   public  static final String UNREAD_COUNT           = "unread_count";
   public  static final String TYPE                   = "type";
@@ -110,7 +110,7 @@ public class ThreadDatabase extends Database {
   private static final String LAST_SCROLLED          = "last_scrolled";
           static final String PINNED                 = "pinned";
 
-  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID                     + " INTEGER PRIMARY KEY, " +
+  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID                     + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                                                   DATE                   + " INTEGER DEFAULT 0, " +
                                                                                   MESSAGE_COUNT          + " INTEGER DEFAULT 0, " +
                                                                                   RECIPIENT_ID           + " INTEGER, " +
@@ -135,7 +135,7 @@ public class ThreadDatabase extends Database {
                                                                                   PINNED                 + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
-    "CREATE INDEX IF NOT EXISTS thread_recipient_ids_index ON " + TABLE_NAME + " (" + RECIPIENT_ID + ");",
+    "CREATE INDEX IF NOT EXISTS thread_recipient_id_index ON " + TABLE_NAME + " (" + RECIPIENT_ID + ");",
     "CREATE INDEX IF NOT EXISTS archived_count_index ON " + TABLE_NAME + " (" + ARCHIVED + ", " + MESSAGE_COUNT + ");",
     "CREATE INDEX IF NOT EXISTS thread_pinned_index ON " + TABLE_NAME + " (" + PINNED + ");",
   };
