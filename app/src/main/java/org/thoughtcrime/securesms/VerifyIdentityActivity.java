@@ -56,6 +56,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -479,7 +480,11 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
     }
 
     private void setRecipientText(Recipient recipient) {
-      description.setText(Html.fromHtml(String.format(getActivity().getString(R.string.verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s), recipient.getDisplayName(getContext()))));
+      String link                 = String.format("<a href=\"%s\">%s</a>", getString(R.string.verify_display_fragment__learn_more_link), getString(R.string.verify_display_fragment__learn_more));
+      String recipientDisplayName = recipient.getDisplayName(getContext());
+      String descriptionText      = getString(R.string.verify_display_fragment__if_you_wish_to_verify_the_security, recipientDisplayName, link);
+
+      description.setText(HtmlCompat.fromHtml(descriptionText, 0));
       description.setMovementMethod(LinkMovementMethod.getInstance());
     }
 

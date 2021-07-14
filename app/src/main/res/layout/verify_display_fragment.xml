@@ -181,7 +181,7 @@
                   android:layout_marginTop="15dp"
                   android:textSize="17sp"
                   android:lineSpacingExtra="3sp"
-                  android:text="@string/verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"/>
+                  android:text="@string/verify_display_fragment__if_you_wish_to_verify_the_security"/>
 
 
     </LinearLayout>
