@@ -88,7 +88,7 @@ class AppSettingsActivity : DSLSettingsActivity() {
 
     @JvmStatic
     fun help(context: Context, startCategoryIndex: Int = 0): Intent {
-      return getIntentForStartLocation(context, StartLocation.HOME)
+      return getIntentForStartLocation(context, StartLocation.HELP)
         .putExtra(HelpFragment.START_CATEGORY_INDEX, startCategoryIndex)
     }
 
