@@ -92,7 +92,7 @@ public final class LeaveGroupDialog {
                    .setMessage(R.string.LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group)
                    .setNegativeButton(android.R.string.cancel, null)
                    .setPositiveButton(R.string.LeaveGroupDialog_leave, (dialog, which) -> {
-                     AlertDialog progressDialog = SimpleProgressDialog.show(activity);
+                     AlertDialog progressDialog = SimpleProgressDialog.show(activity, R.color.transparent, 0.4f);
                      SimpleTask.run(activity.getLifecycle(), this::leaveGroup, result -> {
                        progressDialog.dismiss();
                        handleLeaveGroupResult(result);

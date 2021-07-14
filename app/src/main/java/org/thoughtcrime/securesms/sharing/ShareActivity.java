@@ -452,7 +452,7 @@ public class ShareActivity extends PassphraseRequiredActivity
     AtomicReference<AlertDialog> progressWheel = new AtomicReference<>();
 
     if (viewModel.getShareData().getValue() == null) {
-      progressWheel.set(SimpleProgressDialog.show(this));
+      progressWheel.set(SimpleProgressDialog.show(this, R.color.transparent, 0.4f));
     }
 
     viewModel.getShareData().observe(this, (data) -> {

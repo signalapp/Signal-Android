@@ -24,7 +24,7 @@ public final class PinOptOutDialog {
                                         .setPositiveButton(R.string.PinOptOutDialog_disable_pin, (d, which) -> {
                                           Log.i(TAG, "Disable clicked.");
                                           d.dismiss();
-                                          AlertDialog progress = SimpleProgressDialog.show(context);
+                                          AlertDialog progress = SimpleProgressDialog.show(context, R.color.transparent, 0.4f);
 
                                           SimpleTask.run(() -> {
                                             PinState.onPinOptOut();
