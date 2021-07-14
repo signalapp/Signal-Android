@@ -356,12 +356,6 @@
         <item name="searchIcon">@drawable/ic_search_24</item>
     </style>
 
-    <style name="Signal.SearchView.Dark">
-        <item name="closeIcon">@drawable/ic_x_conversation_20</item>
-        <item name="searchHintIcon">@drawable/ic_search_conversation_24</item>
-        <item name="searchIcon">@drawable/ic_search_conversation_24</item>
-    </style>
-
     <style name="Signal.Toolbar.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
         <item name="srcCompat">@drawable/ic_more_vert_24</item>
         <item name="android:src">@null</item>

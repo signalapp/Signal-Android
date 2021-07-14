@@ -3,7 +3,6 @@
     <attr name="theme_type" format="string"/>
 
     <attr name="search_view_style" format="reference" />
-    <attr name="search_view_style_dark" format="reference" />
 
     <attr name="emoji_category_recent" format="reference"/>
     <attr name="emoji_category_people" format="reference"/>

@@ -128,7 +128,6 @@
         <item name="theme_type">light</item>
 
         <item name="search_view_style">@style/Signal.SearchView</item>
-        <item name="search_view_style_dark">@style/Signal.SearchView.Dark</item>
 
         <item name="bottomSheetDialogTheme">@style/Theme.Design.Light.BottomSheetDialog</item>
 
@@ -183,7 +182,6 @@
         <item name="theme_type">dark</item>
 
         <item name="search_view_style">@style/Signal.SearchView</item>
-        <item name="search_view_style_dark">@style/Signal.SearchView.Dark</item>
 
         <item name="bottomSheetDialogTheme">@style/Theme.Design.BottomSheetDialog</item>
 
