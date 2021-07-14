@@ -635,6 +635,7 @@
     <string name="activity_settings_invite_button_title">आमंत्रण</string>
     <string name="activity_settings_recovery_phrase_button_title">पुनर्प्राप्ति वाक्यांश</string>
     <string name="activity_settings_clear_all_data_button_title">डेटा हटाएं</string>
+    <string name="activity_settings_clear_all_data_and_network_button_title">Clear Data Including Network</string>
     <string name="activity_settings_help_translate_session">सेशन का अनुवाद करने में सहायता करें</string>
     <string name="activity_notification_settings_title">सूचनाएं</string>
     <string name="activity_notification_settings_style_section_title">अधिसूचना शैली</string>
@@ -650,6 +651,9 @@
     <string name="dialog_seed_explanation">यह आपका रिकवरी फ्रेज है | इसके साथ, आप अपनी Session ID को किसी नए डिवाइस पर माइग्रेट कर सकते हैं।</string>
     <string name="dialog_clear_all_data_title">सभी डेटा हटाएं</string>
     <string name="dialog_clear_all_data_explanation">यह आपके मैसेजस, सेशन और कॉन्टैक्टस को स्थायी रूप से हटा देगा।</string>
+    <string name="dialog_clear_all_data_network_explanation">Would you like to clear only this device, or delete your entire account?</string>
+    <string name="dialog_clear_all_data_local_only">Delete Only</string>
+    <string name="dialog_clear_all_data_clear_network">Entire Account</string>
     <string name="activity_qr_code_title">QR कोड</string>
     <string name="activity_qr_code_view_my_qr_code_tab_title">मेरा QR कोड देखें</string>
     <string name="activity_qr_code_view_scan_qr_code_tab_title">QR कोड को स्कैन करें</string>
@@ -720,4 +724,6 @@
     <string name="dialog_download_button_title">Download</string>
     <string name="activity_conversation_blocked_banner_text">%s is blocked. Unblock them?</string>
     <string name="activity_conversation_attachment_prep_failed">Failed to prepare attachment for sending.</string>
+    <string name="media">Media</string>
+    <string name="UntrustedAttachmentView_download_attachment">Tap to download %s</string>
 </resources>

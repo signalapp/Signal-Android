@@ -635,6 +635,7 @@ d\'intercanvi de claus!</string>
     <string name="activity_settings_invite_button_title">Convida</string>
     <string name="activity_settings_recovery_phrase_button_title">Frase de recuperació</string>
     <string name="activity_settings_clear_all_data_button_title">Neteja les dades</string>
+    <string name="activity_settings_clear_all_data_and_network_button_title">Clear Data Including Network</string>
     <string name="activity_settings_help_translate_session">Ajuda\'ns a traduir Session</string>
     <string name="activity_notification_settings_title">Notificacions</string>
     <string name="activity_notification_settings_style_section_title">Estil de notificacions</string>
@@ -650,6 +651,9 @@ d\'intercanvi de claus!</string>
     <string name="dialog_seed_explanation">Aquesta és la teva frase de recuperació. Pots restaurar-ne o migrar-ne el teu ID de Session cap a un nou dispositiu.</string>
     <string name="dialog_clear_all_data_title">Esborra totes les dades</string>
     <string name="dialog_clear_all_data_explanation">Això esborrarà tots els missatges, sessions i contactes permanentment.</string>
+    <string name="dialog_clear_all_data_network_explanation">Would you like to clear only this device, or delete your entire account?</string>
+    <string name="dialog_clear_all_data_local_only">Delete Only</string>
+    <string name="dialog_clear_all_data_clear_network">Entire Account</string>
     <string name="activity_qr_code_title">Codi QR</string>
     <string name="activity_qr_code_view_my_qr_code_tab_title">Mostra el meu codi QR</string>
     <string name="activity_qr_code_view_scan_qr_code_tab_title">Escaneja el codi QR</string>
@@ -720,4 +724,6 @@ d\'intercanvi de claus!</string>
     <string name="dialog_download_button_title">Download</string>
     <string name="activity_conversation_blocked_banner_text">%s is blocked. Unblock them?</string>
     <string name="activity_conversation_attachment_prep_failed">Failed to prepare attachment for sending.</string>
+    <string name="media">Media</string>
+    <string name="UntrustedAttachmentView_download_attachment">Tap to download %s</string>
 </resources>
