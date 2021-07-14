@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -51,6 +52,7 @@ import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.UnsupportedDataMessageException;
 
 import java.util.LinkedList;
@@ -171,14 +173,13 @@ public final class MessageDecryptionUtil {
       envelopeType    = protocolException.getUnidentifiedSenderMessageContent().get().getType();
     } else {
       originalContent = envelope.getContent();
-      envelopeType    = envelope.getType();
+      envelopeType    = envelopeTypeToCiphertextMessageType(envelope.getType());
     }
 
     DecryptionErrorMessage decryptionErrorMessage = DecryptionErrorMessage.forOriginalMessage(originalContent, envelopeType, envelope.getTimestamp(), senderDevice);
 
     return new SendRetryReceiptJob(sender.getId(), groupId, decryptionErrorMessage);
   }
-
 
   private static ExceptionMetadata toExceptionMetadata(@NonNull UnsupportedDataMessageException e)
       throws NoSenderException
@@ -218,6 +219,16 @@ public final class MessageDecryptionUtil {
                                                                          .setContentText(context.getString(R.string.MessageDecryptionUtil_tap_to_send_a_debug_log))
                                                                          .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, SubmitDebugLogActivity.class), 0))
                                                                          .build());
+  }
+
+  private static int envelopeTypeToCiphertextMessageType(int envelopeType) {
+    switch (envelopeType) {
+      case SignalServiceProtos.Envelope.Type.CIPHERTEXT_VALUE: return CiphertextMessage.WHISPER_TYPE;
+      case SignalServiceProtos.Envelope.Type.PREKEY_BUNDLE_VALUE: return CiphertextMessage.PREKEY_TYPE;
+      case SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE: return CiphertextMessage.SENDERKEY_TYPE;
+      case SignalServiceProtos.Envelope.Type.PLAINTEXT_CONTENT_VALUE: return CiphertextMessage.PLAINTEXT_CONTENT_TYPE;
+      default: return CiphertextMessage.WHISPER_TYPE;
+    }
   }
 
 
