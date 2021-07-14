@@ -79,7 +79,9 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
         }
     }
 
-    override fun onPlayerStart(player: AudioSlidePlayer) {}
+    override fun onPlayerStart(player: AudioSlidePlayer) {
+        isPlaying = true
+    }
 
     override fun onPlayerProgress(player: AudioSlidePlayer, progress: Double, unused: Long) {
         if (progress == 1.0) {
@@ -102,7 +104,6 @@ class VoiceMessageView : LinearLayout, AudioSlidePlayer.Listener {
     }
 
     override fun onPlayerStop(player: AudioSlidePlayer) {
-        Log.d("Loki", "Player stopped")
         isPlaying = false
     }
 
