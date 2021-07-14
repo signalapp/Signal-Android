@@ -19,6 +19,7 @@ import org.session.libsession.utilities.ExpirationUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.conversation.v2.utilities.ResendMessageUtilities
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -44,11 +45,13 @@ class MessageDetailActivity: PassphraseRequiredActionBarActivity() {
         setContentView(R.layout.activity_message_detail)
         title = resources.getString(R.string.conversation_context__menu_message_details)
         val timestamp = intent.getLongExtra(MESSAGE_TIMESTAMP, -1L)
+        // We only show this screen for messages fail to send,
+        // so the author of the messages must be the current user.
         val author = Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)!!)
         messageRecord = DatabaseFactory.getMmsSmsDatabase (this).getMessageFor(timestamp, author)
         updateContent()
         resend_button.setOnClickListener {
-            resend()
+            ResendMessageUtilities.resend(messageRecord!!)
             finish()
         }
     }
@@ -71,48 +74,5 @@ class MessageDetailActivity: PassphraseRequiredActionBarActivity() {
             val duration = ExpirationUtil.getExpirationDisplayValue(this, Math.max((remaining / 1000).toInt(), 1))
             expires_in.text = duration
         }
-    }
-
-    fun resend() {
-        val messageRecord = messageRecord!!
-        val recipient: Recipient = messageRecord.recipient
-        val message = VisibleMessage()
-        message.id = messageRecord.getId()
-        if (messageRecord.isOpenGroupInvitation) {
-            val openGroupInvitation = OpenGroupInvitation()
-            UpdateMessageData.fromJSON(messageRecord.body)?.let { updateMessageData ->
-                val kind = updateMessageData.kind
-                if (kind is UpdateMessageData.Kind.OpenGroupInvitation) {
-                    openGroupInvitation.name = kind.groupName
-                    openGroupInvitation.url = kind.groupUrl
-                }
-            }
-            message.openGroupInvitation = openGroupInvitation
-        } else {
-            message.text = messageRecord.body
-        }
-        message.sentTimestamp = messageRecord.timestamp
-        if (recipient.isGroupRecipient) {
-            message.groupPublicKey = recipient.address.toGroupString()
-        } else {
-            message.recipient = messageRecord.recipient.address.serialize()
-        }
-        message.threadID = messageRecord.threadId
-        if (messageRecord.isMms) {
-            val mmsMessageRecord = messageRecord as MmsMessageRecord
-            if (mmsMessageRecord.linkPreviews.isNotEmpty()) {
-                message.linkPreview = LinkPreview.from(mmsMessageRecord.linkPreviews[0])
-            }
-            if (mmsMessageRecord.quote != null) {
-                message.quote = Quote.from(mmsMessageRecord.quote!!.quoteModel)
-            }
-            message.addSignalAttachments(mmsMessageRecord.slideDeck.asAttachments())
-        }
-        val sentTimestamp = message.sentTimestamp
-        val sender = MessagingModuleConfiguration.shared.storage.getUserPublicKey()
-        if (sentTimestamp != null && sender != null) {
-            MessagingModuleConfiguration.shared.storage.markAsSending(sentTimestamp, sender)
-        }
-        MessageSender.send(message, recipient.address)
     }
 }

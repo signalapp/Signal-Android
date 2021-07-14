@@ -93,6 +93,7 @@ import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
 import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
+import org.thoughtcrime.securesms.conversation.v2.utilities.ResendMessageUtilities
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
@@ -1212,45 +1213,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     override fun resendMessage(messages: Set<MessageRecord>) {
         messages.forEach { messageRecord ->
-            val recipient: Recipient = messageRecord.recipient
-            val message = VisibleMessage()
-            message.id = messageRecord.getId()
-            if (messageRecord.isOpenGroupInvitation) {
-                val openGroupInvitation = OpenGroupInvitation()
-                fromJSON(messageRecord.body)?.let { updateMessageData ->
-                    val kind = updateMessageData.kind
-                    if (kind is UpdateMessageData.Kind.OpenGroupInvitation) {
-                        openGroupInvitation.name = kind.groupName
-                        openGroupInvitation.url = kind.groupUrl
-                    }
-                }
-                message.openGroupInvitation = openGroupInvitation
-            } else {
-                message.text = messageRecord.body
-            }
-            message.sentTimestamp = messageRecord.timestamp
-            if (recipient.isGroupRecipient) {
-                message.groupPublicKey = recipient.address.toGroupString()
-            } else {
-                message.recipient = messageRecord.recipient.address.serialize()
-            }
-            message.threadID = messageRecord.threadId
-            if (messageRecord.isMms) {
-                val mmsMessageRecord = messageRecord as MmsMessageRecord
-                if (mmsMessageRecord.linkPreviews.isNotEmpty()) {
-                    message.linkPreview = from(mmsMessageRecord.linkPreviews[0])
-                }
-                if (mmsMessageRecord.quote != null) {
-                    message.quote = from(mmsMessageRecord.quote!!.quoteModel)
-                }
-                message.addSignalAttachments(mmsMessageRecord.slideDeck.asAttachments())
-            }
-            val sentTimestamp = message.sentTimestamp
-            val sender = MessagingModuleConfiguration.shared.storage.getUserPublicKey()
-            if (sentTimestamp != null && sender != null) {
-                MessagingModuleConfiguration.shared.storage.markAsSending(sentTimestamp, sender)
-            }
-            MessageSender.send(message, recipient.address)
+            ResendMessageUtilities.resend(messageRecord)
         }
         endActionMode()
     }
