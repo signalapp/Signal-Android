@@ -279,7 +279,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     private fun sendInvitation() {
         val intent = Intent()
         intent.action = Intent.ACTION_SEND
-        val invitation = "Hey, I've been using Session to chat with complete privacy and security. Come join me! Download it at https://getsession.org/. My Session ID is $hexEncodedPublicKey!"
+        val invitation = "Hey, I've been using Session to chat with complete privacy and security. Come join me! Download it at https://getsession.org/. My Session ID is $hexEncodedPublicKey !"
         intent.putExtra(Intent.EXTRA_TEXT, invitation)
         intent.type = "text/plain"
         val chooser = Intent.createChooser(intent, getString(R.string.activity_settings_invite_button_title))
