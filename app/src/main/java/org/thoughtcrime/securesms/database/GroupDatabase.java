@@ -466,7 +466,7 @@ private static final String[] GROUP_PROJECTION = {
     GroupId.V2 groupId = GroupId.v2(groupMasterKey);
 
     if (getGroupV1ByExpectedV2(groupId).isPresent()) {
-      throw new MissedGroupMigrationInsertException(groupId);
+      Log.w(TAG, "There already exists a V1 group that should be migrated into this group. But if the recipient already exists, there's not much we can do here.");
     }
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
