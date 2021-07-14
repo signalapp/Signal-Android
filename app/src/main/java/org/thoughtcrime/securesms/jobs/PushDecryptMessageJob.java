@@ -21,7 +21,11 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.SignalProtocolAddress;
+import org.whispersystems.libsignal.protocol.SenderKeyDistributionMessage;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -93,6 +97,10 @@ public final class PushDecryptMessageJob extends BaseJob {
     DecryptionResult result = MessageDecryptionUtil.decrypt(context, envelope);
 
     if (result.getContent() != null) {
+      if (result.getContent().getSenderKeyDistributionMessage().isPresent()) {
+        handleSenderKeyDistributionMessage(result.getContent().getSender(), result.getContent().getSenderDevice(), result.getContent().getSenderKeyDistributionMessage().get());
+      }
+
       jobs.add(new PushProcessMessageJob(result.getContent(), smsMessageId, envelope.getTimestamp()));
     } else if (result.getException() != null && result.getState() != MessageState.NOOP) {
       jobs.add(new PushProcessMessageJob(result.getState(), result.getException(), smsMessageId, envelope.getTimestamp()));
@@ -112,6 +120,12 @@ public final class PushDecryptMessageJob extends BaseJob {
 
   @Override
   public void onFailure() {
+  }
+
+  private void handleSenderKeyDistributionMessage(@NonNull SignalServiceAddress address, int deviceId, @NonNull SenderKeyDistributionMessage message) {
+    Log.i(TAG, "Processing SenderKeyDistributionMessage.");
+    SignalServiceMessageSender sender = ApplicationDependencies.getSignalServiceMessageSender();
+    sender.processSenderKeyDistributionMessage(new SignalProtocolAddress(address.getIdentifier(), deviceId), message);
   }
 
   private boolean needsMigration() {
