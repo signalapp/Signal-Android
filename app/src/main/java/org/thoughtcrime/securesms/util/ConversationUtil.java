@@ -5,7 +5,6 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
 import androidx.core.app.Person;
 import androidx.core.content.pm.ShortcutInfoCompat;
@@ -26,10 +25,10 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * ConversationUtil encapsulates support for Android 11+'s new Conversations system
@@ -92,11 +91,9 @@ public final class ConversationUtil {
   /**
    * Clears the shortcuts tied to a given thread.
    */
-  public static void clearShortcuts(@NonNull Context context, @NonNull Set<Long> threadIds) {
+  public static void clearShortcuts(@NonNull Context context, @NonNull Collection<RecipientId> recipientIds) {
     SignalExecutors.BOUNDED.execute(() -> {
-      List<RecipientId> recipientIds = DatabaseFactory.getThreadDatabase(context).getRecipientIdsForThreadIds(threadIds);
-
-      ShortcutManagerCompat.removeLongLivedShortcuts(context, Stream.of(recipientIds).map(ConversationUtil::getShortcutId).toList());
+      ShortcutManagerCompat.removeLongLivedShortcuts(context, Stream.of(recipientIds).withoutNulls().map(ConversationUtil::getShortcutId).toList());
     });
   }
 

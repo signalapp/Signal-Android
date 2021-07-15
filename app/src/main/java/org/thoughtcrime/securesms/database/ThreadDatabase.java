@@ -905,7 +905,8 @@ public class ThreadDatabase extends Database {
   }
 
   public void deleteConversation(long threadId) {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    SQLiteDatabase db                     = databaseHelper.getWritableDatabase();
+    RecipientId    recipientIdForThreadId = getRecipientIdForThreadId(threadId);
 
     db.beginTransaction();
     try {
@@ -922,11 +923,12 @@ public class ThreadDatabase extends Database {
 
     notifyConversationListListeners();
     notifyConversationListeners(threadId);
-    ConversationUtil.clearShortcuts(context, Collections.singleton(threadId));
+    ConversationUtil.clearShortcuts(context, Collections.singleton(recipientIdForThreadId));
   }
 
   public void deleteConversations(Set<Long> selectedConversations) {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    SQLiteDatabase    db                       = databaseHelper.getWritableDatabase();
+    List<RecipientId> recipientIdsForThreadIds = getRecipientIdsForThreadIds(selectedConversations);
 
     db.beginTransaction();
     try {
@@ -952,7 +954,7 @@ public class ThreadDatabase extends Database {
 
     notifyConversationListListeners();
     notifyConversationListeners(selectedConversations);
-    ConversationUtil.clearShortcuts(context, selectedConversations);
+    ConversationUtil.clearShortcuts(context, recipientIdsForThreadIds);
   }
 
   public void deleteAllConversations() {
