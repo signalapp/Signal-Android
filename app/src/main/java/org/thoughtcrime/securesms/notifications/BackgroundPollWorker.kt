@@ -25,12 +25,12 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
         @JvmStatic
         fun schedulePeriodic(context: Context) {
             Log.v(TAG, "Scheduling periodic work.")
-            val builder = PeriodicWorkRequestBuilder<BackgroundPollWorker>(5, TimeUnit.MINUTES)
+            val builder = PeriodicWorkRequestBuilder<BackgroundPollWorker>(15, TimeUnit.MINUTES)
             builder.setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
             val workRequest = builder.build()
             WorkManager.getInstance(context).enqueueUniquePeriodicWork(
                 TAG,
-                ExistingPeriodicWorkPolicy.REPLACE,
+                ExistingPeriodicWorkPolicy.KEEP,
                 workRequest
             )
         }

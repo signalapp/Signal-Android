@@ -8,6 +8,8 @@ import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.jobs.TrimThreadJob
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.open_groups.OpenGroupMessageV2
+import org.session.libsession.messaging.sending_receiving.MessageReceiver
+import org.session.libsession.messaging.sending_receiving.handle
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.protos.SignalServiceProtos
@@ -64,7 +66,6 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
         val threadId = storage.getThreadId(Address.fromSerialized(groupID)) ?: -1
         val threadExists = threadId >= 0
         if (!hasStarted || !threadExists) { return }
-        var latestJob: MessageReceiveJob? = null
         messages.sortedBy { it.serverID!! }.forEach { message ->
             try {
                 val senderPublicKey = message.sender!!
@@ -75,20 +76,13 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
                 builder.content = message.toProto().toByteString()
                 builder.timestamp = message.sentTimestamp
                 val envelope = builder.build()
-                val job = MessageReceiveJob(envelope.toByteArray(), message.serverID, openGroupID)
-                if (isBackgroundPoll) {
-                    job.executeAsync()
-                } else {
-                    JobQueue.shared.add(job)
-                    if (!isCaughtUp) {
-                        secondToLastJob = latestJob
-                    }
-                    latestJob = job
-                }
+                val (parsedMessage, content) = MessageReceiver.parse(envelope.toByteArray(), message.serverID)
+                MessageReceiver.handle(parsedMessage, content, openGroupID)
             } catch (e: Exception) {
                 Log.e("Loki", "Exception parsing message", e)
             }
         }
+
         val currentLastMessageServerID = storage.getLastMessageServerID(room, server) ?: 0
         val actualMax = max(messages.mapNotNull { it.serverID }.maxOrNull() ?: 0, currentLastMessageServerID)
         if (actualMax > 0) {
@@ -105,11 +99,7 @@ class OpenGroupPollerV2(private val server: String, private val executorService:
         val groupID = GroupUtil.getEncodedOpenGroupID(openGroupID.toByteArray())
         val threadID = storage.getThreadId(Address.fromSerialized(groupID)) ?: return
         val deletedMessageIDs = deletions.mapNotNull { deletion ->
-            val messageID = dataProvider.getMessageID(deletion.deletedMessageServerID, threadID)
-            if (messageID == null) {
-                Log.d("Loki", "Couldn't find message ID for message with serverID: ${deletion.deletedMessageServerID}.")
-            }
-            messageID
+            dataProvider.getMessageID(deletion.deletedMessageServerID, threadID)
         }
         deletedMessageIDs.forEach { (messageId, isSms) ->
             MessagingModuleConfiguration.shared.messageDataProvider.deleteMessage(messageId, isSms)
