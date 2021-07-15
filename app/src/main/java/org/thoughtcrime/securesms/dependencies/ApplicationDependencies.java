@@ -62,7 +62,6 @@ public class ApplicationDependencies {
 
   private static Application           application;
   private static Provider              provider;
-  private static MessageNotifier       messageNotifier;
   private static AppForegroundObserver appForegroundObserver;
 
   private static volatile SignalServiceAccountManager  accountManager;
@@ -92,6 +91,7 @@ public class ApplicationDependencies {
   private static volatile PendingRetryReceiptManager   pendingRetryReceiptManager;
   private static volatile PendingRetryReceiptCache     pendingRetryReceiptCache;
   private static volatile SignalWebSocket              signalWebSocket;
+  private static volatile MessageNotifier              messageNotifier;
 
   @MainThread
   public static void init(@NonNull Application application, @NonNull Provider provider) {
@@ -102,7 +102,6 @@ public class ApplicationDependencies {
 
       ApplicationDependencies.application           = application;
       ApplicationDependencies.provider              = provider;
-      ApplicationDependencies.messageNotifier       = provider.provideMessageNotifier();
       ApplicationDependencies.appForegroundObserver = provider.provideAppForegroundObserver();
 
       ApplicationDependencies.appForegroundObserver.begin();
@@ -322,6 +321,13 @@ public class ApplicationDependencies {
   }
 
   public static @NonNull MessageNotifier getMessageNotifier() {
+    if (messageNotifier == null) {
+      synchronized (LOCK) {
+        if (messageNotifier == null) {
+          messageNotifier = provider.provideMessageNotifier();
+        }
+      }
+    }
     return messageNotifier;
   }
 

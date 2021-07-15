@@ -227,8 +227,6 @@ public class DatabaseFactory {
   }
 
   private DatabaseFactory(@NonNull Context context) {
-    SQLiteDatabase.loadLibs(context);
-
     DatabaseSecret   databaseSecret   = DatabaseSecretProvider.getOrCreateDatabaseSecret(context);
     AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
 

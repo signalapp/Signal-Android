@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
@@ -91,10 +92,12 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
   public void onOpen(SQLiteDatabase db) {
     Log.i(TAG, "onOpen()");
 
-    if (DatabaseFactory.getInstance(application).hasTable("megaphone")) {
-      Log.i(TAG, "Dropping original megaphone table from the main database.");
-      DatabaseFactory.getInstance(application).getRawDatabase().rawExecSQL("DROP TABLE megaphone");
-    }
+    SignalExecutors.BOUNDED.execute(() -> {
+      if (DatabaseFactory.getInstance(application).hasTable("megaphone")) {
+        Log.i(TAG, "Dropping original megaphone table from the main database.");
+        DatabaseFactory.getInstance(application).getRawDatabase().rawExecSQL("DROP TABLE megaphone");
+      }
+    });
   }
 
   public void insert(@NonNull Collection<Event> events) {

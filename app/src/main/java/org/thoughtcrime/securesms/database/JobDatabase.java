@@ -11,6 +11,7 @@ import com.annimon.stream.Stream;
 import net.sqlcipher.database.SQLiteOpenHelper;
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
@@ -140,9 +141,11 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
   public void onOpen(SQLiteDatabase db) {
     Log.i(TAG, "onOpen()");
 
-    dropTableIfPresent("job_spec");
-    dropTableIfPresent("constraint_spec");
-    dropTableIfPresent("dependency_spec");
+    SignalExecutors.BOUNDED.execute(() -> {
+      dropTableIfPresent("job_spec");
+      dropTableIfPresent("constraint_spec");
+      dropTableIfPresent("dependency_spec");
+    });
   }
 
   public synchronized void insertJobs(@NonNull List<FullSpec> fullSpecs) {
