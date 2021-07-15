@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.export;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,13 +13,14 @@ import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
@@ -59,6 +61,7 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
     private static final int WRITE_ACCESS_FAILURE = 2;
 
 
+    @SuppressLint("NewApi")
     private static final String STORAGE_DIRECTORY = Environment.DIRECTORY_DOWNLOADS;
 
 
@@ -81,11 +84,11 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
     private final ZipOutputStream out;
 
 
-    public ExportZipUtil (Context context, long threadId) throws IOException {
+    public ExportZipUtil (Context context, long threadId) throws IOException, NoExternalStorageException {
         this(context, 0, threadId, null);
     }
 
-    public ExportZipUtil (Context context, int count, long threadId, HashMap<String, Uri> otherFiles) throws IOException {
+    public ExportZipUtil (Context context, int count, long threadId, HashMap<String, Uri> otherFiles) throws IOException, NoExternalStorageException {
         super (context,
                 context.getResources ().getString (R.string.ExportZip_start_to_export),
                 context.getResources ().getQuantityString (R.plurals.ExportZip_adding_n_attachments_to_media_folder, count, count));
@@ -95,36 +98,43 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
         this.out = getZipOutputStream (threadId);
     }
 
-    public ZipOutputStream getZipOutputStream(long threadId) throws IOException {
+    public ZipOutputStream getZipOutputStream(long threadId) throws IOException, NoExternalStorageException {
        String zipPath = "";
        File zipFile = instantiateZipFile(threadId);
        if (zipFile.exists()) {
            throw new IOException("Export zip file already exists?");
        }
-       if(zipFile != null)
-           zipPath = zipFile.getAbsolutePath();
         try {
+            zipPath = zipFile.getAbsolutePath();
             FileOutputStream dest = new FileOutputStream(zipPath+"/");
             return new ZipOutputStream(new BufferedOutputStream(dest));
         } catch (IOException e) {
+            e.printStackTrace ();
+            Log.w(TAG, "Path: " + zipPath);
             throw new IOException("Chat export file had an error.\"");
         }
     }
 
-    private File instantiateZipFile (long threadId) {
+    private File instantiateZipFile (long threadId) throws NoExternalStorageException {
         File root = new File(getExternalPathToSaveZip ());
         String fileName = createFileName(threadId);
         return new File(root.getAbsolutePath () + "/" + fileName + ".zip");
     }
 
-    private String getExternalPathToSaveZip () {
+    private String getExternalPathToSaveZip () throws NoExternalStorageException {
         File storage = Environment.getExternalStoragePublicDirectory(STORAGE_DIRECTORY);
+        if (!storage.canWrite()) {
+            throw new NoExternalStorageException();
+        }
         return storage.getAbsolutePath ();
     }
 
     private String createFileName (long threadId) {
-        String groupName = DatabaseFactory.getThreadDatabase (getContext ()).getRecipientForThreadId (threadId).getDisplayName (getContext ());
-        groupName = groupName.replaceAll("[^a-zA-Z0-9.\\-]", "_");
+        ThreadDatabase db = DatabaseFactory.getThreadDatabase (getContext ());
+        Recipient r = db.getRecipientForThreadId(threadId);
+        String groupName = null;
+        if (r != null) groupName = r.getDisplayName (getContext ());
+        if (groupName != null) groupName = groupName.replaceAll("[^a-zA-Z0-9.\\-]", "_");
         return String.format(FILENAME_FORMAT,
                 dateFormatter.format (new Date()),
                 groupName);
@@ -276,7 +286,6 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
             for (ExportZipUtil.Attachment attachment : attachments) {
                 if (attachment != null) {
                     directory = saveAttachment(context, attachment);
-                    if (directory == null) return new Pair<>(FAILURE, null);
                 }
             }
 
@@ -359,7 +368,7 @@ public class ExportZipUtil extends ProgressDialogAsyncTask<ExportZipUtil.Attachm
         private final long   size;
 
         public Attachment(Uri uri, String contentType,
-                          long date, @Nullable String fileName, long size)
+                          long date, long size)
         {
             if (uri == null || contentType == null || date < 0) {
                 throw new AssertionError("uri, content type, and date must all be specified");

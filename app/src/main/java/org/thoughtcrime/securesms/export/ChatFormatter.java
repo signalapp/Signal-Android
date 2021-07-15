@@ -51,20 +51,16 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Util;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.xml.sax.ErrorHandler;
-import org.xml.sax.SAXParseException;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -101,7 +97,7 @@ public class ChatFormatter {
     private       Document              dom;
     private final Cursor                conversation;
     private final MmsSmsDatabase.Reader reader;
-    private       String                timePeriod;
+    private final String                timePeriod;
 
 
     ChatFormatter (@NonNull Context context, long threadId, Date fromDate, Date untilDate) {
@@ -178,6 +174,7 @@ public class ChatFormatter {
         ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase (context);
         RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
         Recipient recipient = threadDatabase.getRecipientForThreadId (threadId);
+        assert recipient != null;
         RecipientDatabase.RecipientSettings settings = recipientDatabase.getRecipientSettings(recipient.getId ());
 
         Element members = addElement (conv, "members");
@@ -227,10 +224,12 @@ public class ChatFormatter {
         Uri systemContact =      Util.uri(settings.getSystemContactUri ());
         if(systemContactPhoto!=null){
             addElement (contact, "contact_photo_uri", systemContactPhoto.getPath ());
-            otherFiles.put (settings.getProfileKey ().toString (), systemContactPhoto);
+            if(settings.getProfileKey()!=null)
+            otherFiles.put (new String(settings.getProfileKey ()), systemContactPhoto);
         }if(systemContact!=null){
             addElement (contact, "contact_uri", systemContact.getPath ());
-            otherFiles.put (settings.getProfileKey ().toString (), systemContact);
+            if(settings.getProfileKey()!=null)
+                otherFiles.put (new String(settings.getProfileKey ()), systemContact);
         }
     }
 
@@ -339,7 +338,7 @@ public class ChatFormatter {
         addElement (quote, "quote_text",q.getDisplayText ().toString ());
         if (q.isOriginalMissing ())
             addElement (quote, "original", "is_missing");
-        if(q.getAttachment ()!= null){
+        if(q.getAttachment ().getSlides().size()!= 0){
             List<Slide> slides = Stream.of(q.getAttachment ().getSlides()).filter(s -> s.hasImage() || s.hasVideo() || s.hasSticker() || s.hasLocation ()
                     || s.hasAudio () || s.hasDocument () || s.hasPlayOverlay ()).limit(1).toList();
             for(Slide s: slides){
@@ -365,22 +364,22 @@ public class ChatFormatter {
             addAttribute (link, "title", lp.getTitle ());
             addElement (link, "url", escapeXML (lp.getUrl ()));
             addElement (link, "description", lp.getDescription ());
-            if(lp.getAttachmentId ().isValid ()){
-                DatabaseAttachment a = DatabaseFactory.getAttachmentDatabase(context).getAttachment (lp.getAttachmentId ());
-                Element link_preview = addElement (link, "link_preview");
-                MediaRecord mediaRecord = new MediaRecord (a, record.getRecipient ().getId (), threadId, record.getDateSent (), record.isOutgoing ());
-                selectedMedia.put (lp.getThumbnail ().get ().getKey (), mediaRecord);
-                if(mediaRecord.getAttachment ().getAttachmentId ()!=null)
-                    addAttribute (link_preview, "id", mediaRecord.getAttachment ().getAttachmentId ().toString ());
-                if(mediaRecord.getAttachment ().getFileName ()!=null)
-                    addElement (link_preview, "filename", mediaRecord.getAttachment ().getFileName ());
-                if(a.getUri ()!=null)
-                    addElement (link_preview, "content_path", getContentPath (mediaRecord.getContentType (), mediaRecord.getDate (), mediaRecord.getAttachment ().getUri ()));
-                if(a.getContentType ()!=null)
-                    addAttribute (link_preview, "content_type", a.getContentType ());
+            if (lp.getAttachmentId() != null && lp.getAttachmentId().isValid()) {
+                DatabaseAttachment a = DatabaseFactory.getAttachmentDatabase(context).getAttachment(lp.getAttachmentId());
+                Element link_preview = addElement(link, "link_preview");
+                MediaRecord mediaRecord = new MediaRecord(a, record.getRecipient().getId(), threadId, record.getDateSent(), record.isOutgoing());
+                selectedMedia.put(lp.getThumbnail().get().getKey(), mediaRecord);
+                if (mediaRecord.getAttachment() != null && mediaRecord.getAttachment().getAttachmentId() != null)
+                    addAttribute(link_preview, "id", mediaRecord.getAttachment().getAttachmentId().toString());
+                if (mediaRecord.getAttachment() != null && mediaRecord.getAttachment().getFileName() != null)
+                    addElement(link_preview, "filename", mediaRecord.getAttachment().getFileName());
+                if (mediaRecord.getAttachment() != null && mediaRecord.getAttachment().getUri()!=null)
+                    addElement(link_preview, "content_path", getContentPath(mediaRecord.getContentType(), mediaRecord.getDate(), mediaRecord.getAttachment().getUri()));
+                if (a != null)
+                    addAttribute(link_preview, "content_type", a.getContentType());
             }
             if (Build.VERSION.SDK_INT >= 26)
-                if(lp.getDate () > 0 )addElement (link, "date", DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale,lp.getDate ()));
+                if(lp.getDate () > 0 )addElement (link, "date",  DateUtils.formatDate ( Resources.getSystem().getConfiguration().locale, lp.getDate ()));
         }
     }
 
@@ -393,7 +392,7 @@ public class ChatFormatter {
             for(Contact.Email e: contact.getEmails ()){
                 Element email = addElement (shared_contact, "email");
                 addAttribute (email, "type", e.getType ().name ());
-                if(e.getLabel ()!=null) addElement (email, "label", e.getLabel ());
+                addElement (email, "label", e.getLabel ());
                 addElement (email, "address", e.getEmail ());
             }
         if(contact.getPhoneNumbers ().size ()>0)
@@ -439,7 +438,7 @@ public class ChatFormatter {
         if (formattedMessageBody.length () % 4 == 0 && formattedMessageBody.toString ().endsWith ("=")){
             try {
                 String bodytext = record.getBody ();
-                formattedMessageBody = new StringBuilder (String.valueOf (Base64.decode (escapeXML(bodytext))));
+                formattedMessageBody = new StringBuilder (new String(Base64.decode (escapeXML(bodytext))));
             } catch (IOException e) {
                 e.printStackTrace ();
             }
@@ -515,7 +514,7 @@ public class ChatFormatter {
                 if(s.asAttachment ().getCaption ()!=null)
                     addElement (audio, "caption", String.valueOf (s.asAttachment ().getCaption ()));
                 MediaInput dataSource;
-                if (android.os.Build.VERSION.SDK_INT >= 23) {
+                if (android.os.Build.VERSION.SDK_INT >= 23 && s.getUri()!=null) {
                     dataSource = DecryptableUriMediaInput.createForUri(context, s.getUri ());
                     addElement (audio, "duration_sec", String.valueOf (TimeUnit.SECONDS.convert((dataSource.createExtractor ().getTrackFormat (0).getLong(MediaFormat.KEY_DURATION)), TimeUnit.SECONDS)));
                 }
@@ -704,8 +703,7 @@ public class ChatFormatter {
             addElement (message, "msg_type", "SENT");
 
         UpdateDescription updateDisplayBody = record.getUpdateDisplayBody (context);
-        Collection<UUID> uuids             = updateDisplayBody.getMentioned();
-        if(updateDisplayBody.isStringStatic ())
+        if(updateDisplayBody!= null && updateDisplayBody.isStringStatic ())
             addElement (message,"system_message", updateDisplayBody.getStaticString ());
     }
 
@@ -913,7 +911,10 @@ public class ChatFormatter {
         }
 
         public String getKey () {
-            return getAttachment ().getKey ();
+            if (getAttachment () != null) {
+                return getAttachment ().getKey ();
+            }
+            else return "UNKNOWN";
         }
     }
 

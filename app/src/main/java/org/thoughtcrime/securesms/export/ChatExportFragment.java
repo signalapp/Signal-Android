@@ -22,6 +22,7 @@ import androidx.navigation.Navigation;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.StorageUtil;
@@ -143,10 +144,15 @@ public class ChatExportFragment extends Fragment {
     private void onCreateClicked (ChatExportViewModel viewModel)  {
 
         Toast.makeText (getContext (), "Start processing chat data", Toast.LENGTH_SHORT).show ();
-        ChatFormatter formatter = new ChatFormatter (getContext (),
+        Date from = null, until = null;
+        if(viewModel.getDateFrom().getValue()!=null)
+            from = viewModel.getDateFrom ().getValue ().get ();
+        if(viewModel.getDateUntil().getValue()!=null)
+            until = viewModel.getDateUntil ().getValue ().get ();
+        ChatFormatter formatter = new ChatFormatter (requireContext (),
                 existingThread,
-                viewModel.getDateFrom ().getValue ().get (),
-                viewModel.getDateUntil ().getValue ().get ());
+                from,
+                until);
 
         Permissions.with(this)
                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -243,7 +249,6 @@ public class ChatExportFragment extends Fragment {
                             attachments.add (new ExportZipUtil.Attachment (mediaRecord.getAttachment ().getUri (),
                                     mediaRecord.getContentType (),
                                     mediaRecord.getDate (),
-                                    mediaRecord.getAttachment ().getFileName (),
                                     mediaRecord.getAttachment ().getSize ()));
                         }
                         if (isCancelled ()) break;
@@ -257,7 +262,6 @@ public class ChatExportFragment extends Fragment {
                                     attachments.add(new ExportZipUtil.Attachment(e.getValue (),
                                             Files.probeContentType (Paths.get (e.getValue ().getPath ())),
                                             new Date().getTime (),
-                                            e.getKey (),
                                             (new File (String.valueOf (e.getValue ()))).length ()));
                                 }
                             } catch (IOException ioException) {
@@ -275,7 +279,7 @@ public class ChatExportFragment extends Fragment {
                 try {
                     zip = new ExportZipUtil (context, attachments.size(), existingThread, moreFiles);
                     zip.startToExport (context, hasViewer, resultXML);
-                } catch (IOException e) {
+                } catch (IOException | NoExternalStorageException e) {
                     e.printStackTrace ();
                     Log.w(TAG, e);
                 }
