@@ -848,6 +848,7 @@
   <string name="MediaOverviewActivity_audio">Zvuk</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Slika</string>
+  <string name="MediaOverviewActivity_voice_message">Glasovna poruka</string>
   <string name="MediaOverviewActivity_sent_by_s">Poslao/la %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Vi ste poslali</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Poslao/la %1$s za %2$s</string>
@@ -2093,7 +2094,7 @@
   <string name="preferences_app_protection__who_can">Ko može…</string>
   <string name="preferences_app_protection__app_access">Pristup aplikaciji</string>
   <string name="preferences_app_protection__communication">Komunikacija</string>
-  <string name="preferences_chats__chats">Konverzacije</string>
+  <string name="preferences_chats__chats">Poruke</string>
   <string name="preferences_data_and_storage__manage_storage">Upravljanje memorijom</string>
   <string name="preferences_data_and_storage__calls">Pozivi</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Koristi manju količinu podataka za pozive</string>
@@ -3034,6 +3035,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
     <item quantity="few">Ova boja korištena je u %1$d konverzacije. Želite li je izbrisati iz svih konverzacija?</item>
     <item quantity="other">Ova boja korištena je u %1$d konverzacija. Želite li je izbrisati iz svih konverzacija?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Izbrisati boju poruka?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Puna</string>
   <string name="CustomChatColorCreatorFragment__gradient">Prijelaz</string>
@@ -3084,8 +3086,8 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ConversationSettingsFragment__start_video_call">Započni videopoziv</string>
   <string name="ConversationSettingsFragment__start_audio_call">Započni audiopoziv</string>
   <string name="ConversationSettingsFragment__message">Poruka</string>
-  <string name="ConversationSettingsFragment__video">Videozapisi</string>
-  <string name="ConversationSettingsFragment__audio">Audiozapisi</string>
+  <string name="ConversationSettingsFragment__video">Videopoziv</string>
+  <string name="ConversationSettingsFragment__audio">Audiopoziv</string>
   <string name="ConversationSettingsFragment__call">Nazovi</string>
   <string name="ConversationSettingsFragment__mute">Stišaj</string>
   <string name="ConversationSettingsFragment__muted">Stišano</string>

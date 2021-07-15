@@ -352,7 +352,7 @@
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Säkerhetskopior krypteras med ett lösenord och lagras på din enhet.</string>
   <string name="BackupsPreferenceFragment__create_backup">Skapa säkerhetskopia</string>
   <string name="BackupsPreferenceFragment__last_backup">Senaste säkerhetskopia: %1$s</string>
-  <string name="BackupsPreferenceFragment__backup_folder">Säkerhetskopieringsmapp</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Mapp för säkerhetskopior</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verifiera säkerhetskopians lösenord</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Testa ditt lösenord för säkerhetskopian och kontrollera att den matchar</string>
   <string name="BackupsPreferenceFragment__turn_on">Aktivera</string>
@@ -403,7 +403,7 @@
   <string name="DonateMegaphone_no_thanks">Nej tack</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Vi presenterar gruppsamtal</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Öppna en Ny grupp för att starta ett gratis krypterat gruppsamtal</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Öppna en Ny grupp för att starta ett fritt krypterat gruppsamtal</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimera för avsaknad av Play-tjänster</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheten stöder inte Play-tjänster. Tryck för att inaktivera systembatterioptimeringar som hindrar Signal från att hämta meddelanden vid inaktivitet.</string>
@@ -522,7 +522,7 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Inaktivera</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Förhandsgranska vilken länk som helst</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Du kan nu hämta länkförhandsvisningar direkt från valfri webbplats för meddelanden du skickar.</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Du kan nu hämta länkförhandsgranskningar direkt från valfri webbplats för meddelanden du skickar.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Ingen länkförhandsvisning tillgänglig</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Denna grupplänk är inte aktiv</string>
@@ -1891,12 +1891,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__pref_all_mms_title">Använd för alla MMS</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Använd Signal för alla inkommande SMS-meddelanden</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Använd Signal för alla inkommande multimediameddelanden</string>
-  <string name="preferences__pref_enter_sends_title">Returtangenten skickar</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Om du trycker på returtangenten skickas textmeddelanden</string>
-  <string name="preferences__pref_use_address_book_photos">Använd foton i adressboken</string>
+  <string name="preferences__pref_enter_sends_title">Enter-tangenten skickar</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Om du trycker på enter-tangenten skickas textmeddelanden</string>
+  <string name="preferences__pref_use_address_book_photos">Använd foton från adressboken</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Visa kontaktfoton från din adressbok om tillgängliga</string>
-  <string name="preferences__generate_link_previews">Generera länkförhandsvisningar</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hämta länkförhandsvisningar direkt från webbplatser för meddelanden du skickar.</string>
+  <string name="preferences__generate_link_previews">Skapa länkförhandsgranskningar</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hämta länkförhandsgranskningar direkt från webbplatser för meddelanden du skickar.</string>
   <string name="preferences__choose_identity">Välj identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Välj din kontakt från kontaktlistan.</string>
   <string name="preferences__change_passphrase">Ändra lösenord</string>
@@ -1980,7 +1980,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__typing_indicators">Skrivindikatorer</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Om skrivindikatorer är inaktiverade kommer du inte att kunna se skrivindikatorer från andra.</string>
   <string name="preferences__request_keyboard_to_disable">Begär att tangentbordet inaktiverar personlig inlärning.</string>
-  <string name="preferences__this_setting_is_not_a_guarantee">Denna inställning är ingen garanti, och ditt tangentbord kanske ignorerar det.</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">Denna inställning är ingen garanti och ditt tangentbord kanske ignorerar det.</string>
   <string name="preferences_app_protection__blocked_users">Blockerade användare</string>
   <string name="preferences_chats__when_using_mobile_data">Vid användning av mobildata</string>
   <string name="preferences_chats__when_using_wifi">Vid användning av Wi-Fi</string>
@@ -2020,7 +2020,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_data_and_storage__calls">Samtal</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Använd mindre data för samtal</string>
   <string name="preferences_data_and_storage__never">Aldrig</string>
-  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi och mobildata</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi och mobildata</string>
   <string name="preferences_data_and_storage__mobile_data_only">Endast mobildata</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Att använda mindre data kan förbättra samtal på dåliga nätverk</string>
   <string name="preferences_notifications__messages">Meddelanden</string>
@@ -2298,7 +2298,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Din statistikprocentsats beräknas utifrån utgående meddelanden inom det förflutna %1$d dagarna som inte har försvunnit eller tagits bort.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Starta en konversation</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Börja kommunicera säkert och aktivera nya funktioner som går utöver begränsningarna för okrypterade SMS-meddelanden genom att bjuda in fler kontakter att gå med i Signal.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Denna statistik genererades lokalt på din enhet och kan bara ses av dig. Den överförs aldrig någonstans.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Denna statistik skapades lokalt på din enhet och kan bara ses av dig. Den överförs aldrig någonstans.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterade meddelanden</string>
   <string name="InsightsDashboardFragment__cancel">Avbryt</string>
   <string name="InsightsDashboardFragment__send">Skicka</string>
@@ -2420,7 +2420,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrerar Signal-databas</string>
   <string name="PushDecryptJob_new_locked_message">Nytt låst meddelande</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås upp för att se väntande meddelanden</string>
-  <string name="enter_backup_passphrase_dialog__backup_passphrase">Lösenord för säkerhetskopian</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Lösenord för säkerhetskopia</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Säkerhetskopior kommer att sparas i extern lagring och krypteras med lösenordet nedanför. Du måste ange lösenordet för att återställa en säkerhetskopia.</string>
   <string name="backup_enable_dialog__you_must_have_this_passphrase">Du måste ha detta lösenord för att återställa en säkerhetskopia.</string>
   <string name="backup_enable_dialog__folder">Mapp</string>
@@ -2459,7 +2459,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="BackupDialog_passphrase_was_not_correct">Lösenordet var inte korrekt</string>
   <string name="LocalBackupJob_creating_backup">Skapar säkerhetskopia…</string>
   <string name="LocalBackupJobApi29_backup_failed">Säkerhetskopieringen misslyckades</string>
-  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din säkerhetskopieringsmapp har tagits bort eller flyttats.</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din mapp för säkerhetskopior har tagits bort eller flyttats.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din säkerhetskopieringsfil är för stor för att lagras på denna volym.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Det finns inte tillräckligt med utrymme för att lagra din säkerhetskopia.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Tryck för att hantera säkerhetskopior.</string>
@@ -2563,8 +2563,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="DeviceTransferSetup__location_permission">Platsbehörighet</string>
   <string name="DeviceTransferSetup__location_services">Platstjänster</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Ta bort alla ihågkomna grupper på WiFi Direct-skärmen och ta bort länken till alla inbjudna eller anslutna enheter.</string>
-  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct-skärm</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Ta bort alla ihågkomna grupper på Wi-Fi Direct-skärmen och ta bort länken till alla inbjudna eller anslutna enheter.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Wi-Fi Direct-skärm</string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Försök med att inaktivera och aktivera Wi-Fi på båda enheterna.</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Se till att båda enheterna är i överföringsläge.</string>
   <string name="DeviceTransferSetup__go_to_support_page">Gå till supportsidan</string>
@@ -2879,7 +2879,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Kräv din PIN-kod för att registrera ditt telefonnummer hos Signal igen</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tangentbord</string>
-  <string name="ChatsSettingsFragment__enter_key_sends">Returtangenten skickar</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">Enter-tangenten skickar</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">Använd som standardapp för SMS</string>
   <!--NotificationsSettingsFragment-->
@@ -2941,6 +2941,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="one">Denna anpassade färg används %1$d chatt. Vill du ta bort den för alla chattar?</item>
     <item quantity="other">Denna anpassade färg används %1$d chattar. Vill du ta bort den för alla chattar?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Ta bort chattfärg?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Solid</string>
   <string name="CustomChatColorCreatorFragment__gradient">Lutning</string>

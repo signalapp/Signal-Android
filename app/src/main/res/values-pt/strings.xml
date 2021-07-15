@@ -2268,7 +2268,7 @@
   <string name="conversation_group_options__conversation">Conversa</string>
   <string name="conversation_group_options__broadcast">Emissão</string>
   <!--text_secure_normal-->
-  <string name="text_secure_normal__menu_new_group">Grupo novo</string>
+  <string name="text_secure_normal__menu_new_group">Novo grupo</string>
   <string name="text_secure_normal__menu_settings">Definições</string>
   <string name="text_secure_normal__menu_clear_passphrase">Desbloquear</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar tudo como lido</string>
