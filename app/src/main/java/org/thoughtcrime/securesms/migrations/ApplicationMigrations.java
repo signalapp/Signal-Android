@@ -77,9 +77,10 @@ public class ApplicationMigrations {
     static final int SENDER_KEY             = 35;
     static final int SENDER_KEY_2           = 36;
     static final int DB_AUTOINCREMENT       = 37;
+    static final int ATTACHMENT_CLEANUP     = 38;
   }
 
-  public static final int CURRENT_VERSION = 37;
+  public static final int CURRENT_VERSION = 38;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -322,7 +323,7 @@ public class ApplicationMigrations {
     }
 
     if (lastSeenVersion < Version.APPLY_UNIVERSAL_EXPIRE) {
-      jobs.put(Version.SMS_STORAGE_SYNC, new ApplyUnknownFieldsToSelfMigrationJob());
+      jobs.put(Version.APPLY_UNIVERSAL_EXPIRE, new ApplyUnknownFieldsToSelfMigrationJob());
     }
 
     if (lastSeenVersion < Version.SENDER_KEY) {
@@ -335,6 +336,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.DB_AUTOINCREMENT) {
       jobs.put(Version.DB_AUTOINCREMENT, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.ATTACHMENT_CLEANUP) {
+      jobs.put(Version.ATTACHMENT_CLEANUP, new AttachmentCleanupMigrationJob());
     }
 
     return jobs;

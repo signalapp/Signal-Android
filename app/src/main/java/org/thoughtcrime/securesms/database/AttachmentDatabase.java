@@ -466,13 +466,12 @@ public class AttachmentDatabase extends Database {
   public void trimAllAbandonedAttachments() {
     SQLiteDatabase db              = databaseHelper.getWritableDatabase();
     String         selectAllMmsIds = "SELECT " + MmsDatabase.ID + " FROM " + MmsDatabase.TABLE_NAME;
-    String         selectDataInUse = "SELECT DISTINCT " + DATA + " FROM " + TABLE_NAME + " WHERE " + QUOTE + " = 0 AND (" + MMS_ID + " IN (" + selectAllMmsIds + ") OR " + MMS_ID + " = " + PREUPLOAD_MESSAGE_ID + ")";
-    String         where           = MMS_ID + " NOT IN (" + selectAllMmsIds + ") AND " + DATA + " NOT IN (" + selectDataInUse + ")";
+    String         where           = MMS_ID + " != " + PREUPLOAD_MESSAGE_ID + " AND " + MMS_ID + " NOT IN (" + selectAllMmsIds + ")";
 
     db.delete(TABLE_NAME, where, null);
   }
 
-  public void deleteAbandonedAttachmentFiles() {
+  public int deleteAbandonedAttachmentFiles() {
     Set<String> filesOnDisk = new HashSet<>();
     Set<String> filesInDb   = new HashSet<>();
 
@@ -495,6 +494,8 @@ public class AttachmentDatabase extends Database {
       //noinspection ResultOfMethodCallIgnored
       new File(filePath).delete();
     }
+
+    return onDiskButNotInDatabase.size();
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")

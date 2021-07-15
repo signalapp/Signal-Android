@@ -255,6 +255,7 @@ public class ThreadDatabase extends Database {
     GroupReceiptDatabase groupReceiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
     MmsSmsDatabase       mmsSmsDatabase       = DatabaseFactory.getMmsSmsDatabase(context);
     MentionDatabase      mentionDatabase      = DatabaseFactory.getMentionDatabase(context);
+    int                  deletes              = 0;
 
     try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] { ID }, null, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
@@ -269,12 +270,15 @@ public class ThreadDatabase extends Database {
       attachmentDatabase.trimAllAbandonedAttachments();
       groupReceiptDatabase.deleteAbandonedRows();
       mentionDatabase.deleteAbandonedMentions();
-      attachmentDatabase.deleteAbandonedAttachmentFiles();
+      deletes = attachmentDatabase.deleteAbandonedAttachmentFiles();
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
     }
 
+    if (deletes > 0) {
+      Log.i(TAG, "Trim all threads caused " + deletes + " attachments to be deleted.");
+    }
 
     notifyAttachmentListeners();
     notifyStickerListeners();
@@ -291,6 +295,7 @@ public class ThreadDatabase extends Database {
     GroupReceiptDatabase groupReceiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
     MmsSmsDatabase       mmsSmsDatabase       = DatabaseFactory.getMmsSmsDatabase(context);
     MentionDatabase      mentionDatabase      = DatabaseFactory.getMentionDatabase(context);
+    int                  deletes              = 0;
 
     db.beginTransaction();
 
@@ -300,12 +305,15 @@ public class ThreadDatabase extends Database {
       attachmentDatabase.trimAllAbandonedAttachments();
       groupReceiptDatabase.deleteAbandonedRows();
       mentionDatabase.deleteAbandonedMentions();
-      attachmentDatabase.deleteAbandonedAttachmentFiles();
+      deletes = attachmentDatabase.deleteAbandonedAttachmentFiles();
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
     }
 
+    if (deletes > 0) {
+      Log.i(TAG, "Trim thread " + threadId + " caused " + deletes + " attachments to be deleted.");
+    }
 
     notifyAttachmentListeners();
     notifyStickerListeners();

@@ -206,8 +206,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int ABANDONED_MESSAGE_CLEANUP        = 107;
   private static final int THREAD_AUTOINCREMENT             = 108;
   private static final int MMS_AUTOINCREMENT                = 109;
+  private static final int ABANDONED_ATTACHMENT_CLEANUP     = 110;
 
-  private static final int    DATABASE_VERSION = 109;
+  private static final int    DATABASE_VERSION = 110;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1927,6 +1928,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
 
         smsStopwatch.split("triggers");
         smsStopwatch.stop(TAG);
+      }
+
+      if (oldVersion < ABANDONED_ATTACHMENT_CLEANUP) {
+        db.delete("part", "mid != -8675309 AND mid NOT IN (SELECT _id FROM mms)", null);
       }
 
       db.setTransactionSuccessful();
