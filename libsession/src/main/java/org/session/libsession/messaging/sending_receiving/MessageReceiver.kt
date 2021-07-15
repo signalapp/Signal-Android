@@ -4,7 +4,6 @@ import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.*
 import org.session.libsession.messaging.messages.visible.VisibleMessage
-import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.crypto.PushTransportDetails
 import org.session.libsignal.protos.SignalServiceProtos
 
@@ -32,7 +31,7 @@ object MessageReceiver {
         }
     }
 
-    internal fun parse(data: ByteArray, openGroupServerID: Long?, isRetry: Boolean = false): Pair<Message, SignalServiceProtos.Content> {
+    internal fun parse(data: ByteArray, openGroupServerID: Long?): Pair<Message, SignalServiceProtos.Content> {
         val storage = MessagingModuleConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()
         val isOpenGroupMessage = (openGroupServerID != null)
