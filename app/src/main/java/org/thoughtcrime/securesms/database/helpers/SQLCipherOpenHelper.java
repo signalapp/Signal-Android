@@ -205,8 +205,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int MESSAGE_LOG_2                    = 106;
   private static final int ABANDONED_MESSAGE_CLEANUP        = 107;
   private static final int THREAD_AUTOINCREMENT             = 108;
+  private static final int MMS_AUTOINCREMENT                = 109;
 
-  private static final int    DATABASE_VERSION = 108;
+  private static final int    DATABASE_VERSION = 109;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1716,6 +1717,216 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
         stopwatch.split("delete-remap");
 
         stopwatch.stop(TAG);
+      }
+
+      if (oldVersion < MMS_AUTOINCREMENT) {
+        Stopwatch mmsStopwatch = new Stopwatch("mms-autoincrement");
+
+        db.execSQL("CREATE TABLE mms_tmp (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                         "thread_id INTEGER, " +
+                                         "date INTEGER, " +
+                                         "date_received INTEGER, " +
+                                         "date_server INTEGER DEFAULT -1, " +
+                                         "msg_box INTEGER, " +
+                                         "read INTEGER DEFAULT 0, " +
+                                         "body TEXT, " +
+                                         "part_count INTEGER, " +
+                                         "ct_l TEXT, " +
+                                         "address INTEGER, " +
+                                         "address_device_id INTEGER, " +
+                                         "exp INTEGER, " +
+                                         "m_type INTEGER, " +
+                                         "m_size INTEGER, " +
+                                         "st INTEGER, " +
+                                         "tr_id TEXT, " +
+                                         "delivery_receipt_count INTEGER DEFAULT 0, " +
+                                         "mismatched_identities TEXT DEFAULT NULL, " +
+                                         "network_failures TEXT DEFAULT NULL, " +
+                                         "subscription_id INTEGER DEFAULT -1, " +
+                                         "expires_in INTEGER DEFAULT 0, " +
+                                         "expire_started INTEGER DEFAULT 0, " +
+                                         "notified INTEGER DEFAULT 0, " +
+                                         "read_receipt_count INTEGER DEFAULT 0, " +
+                                         "quote_id INTEGER DEFAULT 0, " +
+                                         "quote_author TEXT, " +
+                                         "quote_body TEXT, " +
+                                         "quote_attachment INTEGER DEFAULT -1, " +
+                                         "quote_missing INTEGER DEFAULT 0, " +
+                                         "quote_mentions BLOB DEFAULT NULL, " +
+                                         "shared_contacts TEXT, " +
+                                         "unidentified INTEGER DEFAULT 0, " +
+                                         "previews TEXT, " +
+                                         "reveal_duration INTEGER DEFAULT 0, " +
+                                         "reactions BLOB DEFAULT NULL, " +
+                                         "reactions_unread INTEGER DEFAULT 0, " +
+                                         "reactions_last_seen INTEGER DEFAULT -1, " +
+                                         "remote_deleted INTEGER DEFAULT 0, " +
+                                         "mentions_self INTEGER DEFAULT 0, " +
+                                         "notified_timestamp INTEGER DEFAULT 0, " +
+                                         "viewed_receipt_count INTEGER DEFAULT 0, " +
+                                         "server_guid TEXT DEFAULT NULL);");
+
+        mmsStopwatch.split("table-create");
+
+        db.execSQL("INSERT INTO mms_tmp SELECT _id, " +
+                                              "thread_id, " +
+                                              "date, " +
+                                              "date_received, " +
+                                              "date_server, " +
+                                              "msg_box, " +
+                                              "read, " +
+                                              "body, " +
+                                              "part_count, " +
+                                              "ct_l, " +
+                                              "address, " +
+                                              "address_device_id, " +
+                                              "exp, " +
+                                              "m_type, " +
+                                              "m_size, " +
+                                              "st, " +
+                                              "tr_id, " +
+                                              "delivery_receipt_count, " +
+                                              "mismatched_identities, " +
+                                              "network_failures, " +
+                                              "subscription_id, " +
+                                              "expires_in, " +
+                                              "expire_started, " +
+                                              "notified, " +
+                                              "read_receipt_count, " +
+                                              "quote_id, " +
+                                              "quote_author, " +
+                                              "quote_body, " +
+                                              "quote_attachment, " +
+                                              "quote_missing, " +
+                                              "quote_mentions, " +
+                                              "shared_contacts, " +
+                                              "unidentified, " +
+                                              "previews, " +
+                                              "reveal_duration, " +
+                                              "reactions, " +
+                                              "reactions_unread, " +
+                                              "reactions_last_seen, " +
+                                              "remote_deleted, " +
+                                              "mentions_self, " +
+                                              "notified_timestamp, " +
+                                              "viewed_receipt_count, " +
+                                              "server_guid " +
+                   "FROM mms");
+
+        mmsStopwatch.split("table-copy");
+
+        db.execSQL("DROP TABLE mms");
+        db.execSQL("ALTER TABLE mms_tmp RENAME TO mms");
+
+        mmsStopwatch.split("table-rename");
+
+        db.execSQL("CREATE INDEX mms_read_and_notified_and_thread_id_index ON mms(read, notified, thread_id)");
+        db.execSQL("CREATE INDEX mms_message_box_index ON mms (msg_box)");
+        db.execSQL("CREATE INDEX mms_date_sent_index ON mms (date, address, thread_id)");
+        db.execSQL("CREATE INDEX mms_date_server_index ON mms (date_server)");
+        db.execSQL("CREATE INDEX mms_thread_date_index ON mms (thread_id, date_received)");
+        db.execSQL("CREATE INDEX mms_reactions_unread_index ON mms (reactions_unread)");
+
+        mmsStopwatch.split("indexes");
+
+        db.execSQL("CREATE TRIGGER mms_ai AFTER INSERT ON mms BEGIN INSERT INTO mms_fts(rowid, body, thread_id) VALUES (new._id, new.body, new.thread_id); END");
+        db.execSQL("CREATE TRIGGER mms_ad AFTER DELETE ON mms BEGIN INSERT INTO mms_fts(mms_fts, rowid, body, thread_id) VALUES('delete', old._id, old.body, old.thread_id); END");
+        db.execSQL("CREATE TRIGGER mms_au AFTER UPDATE ON mms BEGIN INSERT INTO mms_fts(mms_fts, rowid, body, thread_id) VALUES('delete', old._id, old.body, old.thread_id); INSERT INTO mms_fts(rowid, body, thread_id) VALUES (new._id, new.body, new.thread_id); END");
+        db.execSQL("CREATE TRIGGER msl_mms_delete AFTER DELETE ON mms BEGIN DELETE FROM msl_payload WHERE _id IN (SELECT payload_id FROM msl_message WHERE message_id = old._id AND is_mms = 1); END");
+
+        mmsStopwatch.split("triggers");
+        mmsStopwatch.stop(TAG);
+
+        Stopwatch smsStopwatch = new Stopwatch("sms-autoincrement");
+
+        db.execSQL("CREATE TABLE sms_tmp (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                         "thread_id INTEGER, " +
+                                         "address INTEGER, " +
+                                         "address_device_id INTEGER DEFAULT 1, " +
+                                         "person INTEGER, " +
+                                         "date INTEGER, " +
+                                         "date_sent INTEGER, " +
+                                         "date_server INTEGER DEFAULT -1, " +
+                                         "protocol INTEGER, " +
+                                         "read INTEGER DEFAULT 0, " +
+                                         "status INTEGER DEFAULT -1, " +
+                                         "type INTEGER, " +
+                                         "reply_path_present INTEGER, " +
+                                         "delivery_receipt_count INTEGER DEFAULT 0, " +
+                                         "subject TEXT, " +
+                                         "body TEXT, " +
+                                         "mismatched_identities TEXT DEFAULT NULL, " +
+                                         "service_center TEXT, " +
+                                         "subscription_id INTEGER DEFAULT -1, " +
+                                         "expires_in INTEGER DEFAULT 0, " +
+                                         "expire_started INTEGER DEFAULT 0, " +
+                                         "notified DEFAULT 0, " +
+                                         "read_receipt_count INTEGER DEFAULT 0, " +
+                                         "unidentified INTEGER DEFAULT 0, " +
+                                         "reactions BLOB DEFAULT NULL, " +
+                                         "reactions_unread INTEGER DEFAULT 0, " +
+                                         "reactions_last_seen INTEGER DEFAULT -1, " +
+                                         "remote_deleted INTEGER DEFAULT 0, " +
+                                         "notified_timestamp INTEGER DEFAULT 0, " +
+                                         "server_guid TEXT DEFAULT NULL)");
+
+        smsStopwatch.split("table-create");
+
+        db.execSQL("INSERT INTO sms_tmp SELECT _id, " +
+                                              "thread_id, " +
+                                              "address, " +
+                                              "address_device_id, " +
+                                              "person, " +
+                                              "date, " +
+                                              "date_sent, " +
+                                              "date_server , " +
+                                              "protocol, " +
+                                              "read, " +
+                                              "status , " +
+                                              "type, " +
+                                              "reply_path_present, " +
+                                              "delivery_receipt_count, " +
+                                              "subject, " +
+                                              "body, " +
+                                              "mismatched_identities, " +
+                                              "service_center, " +
+                                              "subscription_id , " +
+                                              "expires_in, " +
+                                              "expire_started, " +
+                                              "notified, " +
+                                              "read_receipt_count, " +
+                                              "unidentified, " +
+                                              "reactions BLOB, " +
+                                              "reactions_unread, " +
+                                              "reactions_last_seen , " +
+                                              "remote_deleted, " +
+                                              "notified_timestamp, " +
+                                              "server_guid " +
+                   "FROM sms");
+
+        smsStopwatch.split("table-copy");
+
+        db.execSQL("DROP TABLE sms");
+        db.execSQL("ALTER TABLE sms_tmp RENAME TO sms");
+
+        smsStopwatch.split("table-rename");
+
+        db.execSQL("CREATE INDEX sms_read_and_notified_and_thread_id_index ON sms(read, notified, thread_id)");
+        db.execSQL("CREATE INDEX sms_type_index ON sms (type)");
+        db.execSQL("CREATE INDEX sms_date_sent_index ON sms (date_sent, address, thread_id)");
+        db.execSQL("CREATE INDEX sms_date_server_index ON sms (date_server)");
+        db.execSQL("CREATE INDEX sms_thread_date_index ON sms (thread_id, date)");
+        db.execSQL("CREATE INDEX sms_reactions_unread_index ON sms (reactions_unread)");
+
+        smsStopwatch.split("indexes");
+
+        db.execSQL("CREATE TRIGGER sms_ai AFTER INSERT ON sms BEGIN INSERT INTO sms_fts(rowid, body, thread_id) VALUES (new._id, new.body, new.thread_id); END;");
+        db.execSQL("CREATE TRIGGER sms_ad AFTER DELETE ON sms BEGIN INSERT INTO sms_fts(sms_fts, rowid, body, thread_id) VALUES('delete', old._id, old.body, old.thread_id); END;");
+        db.execSQL("CREATE TRIGGER sms_au AFTER UPDATE ON sms BEGIN INSERT INTO sms_fts(sms_fts, rowid, body, thread_id) VALUES('delete', old._id, old.body, old.thread_id); INSERT INTO sms_fts(rowid, body, thread_id) VALUES(new._id, new.body, new.thread_id); END;");
+        db.execSQL("CREATE TRIGGER msl_sms_delete AFTER DELETE ON sms BEGIN DELETE FROM msl_payload WHERE _id IN (SELECT payload_id FROM msl_message WHERE message_id = old._id AND is_mms = 0); END");
+
+        smsStopwatch.split("triggers");
+        smsStopwatch.stop(TAG);
       }
 
       db.setTransactionSuccessful();

@@ -126,44 +126,26 @@ public class MmsDatabase extends MessageDatabase {
 
   public  static final String VIEW_ONCE       = "reveal_duration";
 
-  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID                     + " INTEGER PRIMARY KEY, " +
+  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID                     + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                                                   THREAD_ID              + " INTEGER, " +
                                                                                   DATE_SENT              + " INTEGER, " +
                                                                                   DATE_RECEIVED          + " INTEGER, " +
                                                                                   DATE_SERVER            + " INTEGER DEFAULT -1, " +
                                                                                   MESSAGE_BOX            + " INTEGER, " +
                                                                                   READ                   + " INTEGER DEFAULT 0, " +
-                                                                                  "m_id"                 + " TEXT, " +
-                                                                                  "sub"                  + " TEXT, " +
-                                                                                  "sub_cs"               + " INTEGER, " +
                                                                                   BODY                   + " TEXT, " +
                                                                                   PART_COUNT             + " INTEGER, " +
-                                                                                  "ct_t"                 + " TEXT, " +
                                                                                   CONTENT_LOCATION       + " TEXT, " +
                                                                                   RECIPIENT_ID           + " INTEGER, " +
                                                                                   ADDRESS_DEVICE_ID      + " INTEGER, " +
                                                                                   EXPIRY                 + " INTEGER, " +
-                                                                                  "m_cls"                + " TEXT, " +
                                                                                   MESSAGE_TYPE           + " INTEGER, " +
-                                                                                  "v"                    + " INTEGER, " +
                                                                                   MESSAGE_SIZE           + " INTEGER, " +
-                                                                                  "pri"                  + " INTEGER, " +
-                                                                                  "rr"                   + " INTEGER, " +
-                                                                                  "rpt_a"                + " INTEGER, " +
-                                                                                  "resp_st"              + " INTEGER, " +
                                                                                   STATUS                 + " INTEGER, " +
                                                                                   TRANSACTION_ID         + " TEXT, " +
-                                                                                  "retr_st"              + " INTEGER, " +
-                                                                                  "retr_txt"             + " TEXT, " +
-                                                                                  "retr_txt_cs"          + " INTEGER, " +
-                                                                                  "read_status"          + " INTEGER, " +
-                                                                                  "ct_cls"               + " INTEGER, " +
-                                                                                  "resp_txt"             + " TEXT, " +
-                                                                                  "d_tm"                 + " INTEGER, " +
                                                                                   DELIVERY_RECEIPT_COUNT + " INTEGER DEFAULT 0, " +
                                                                                   MISMATCHED_IDENTITIES  + " TEXT DEFAULT NULL, " +
                                                                                   NETWORK_FAILURE        + " TEXT DEFAULT NULL," +
-                                                                                  "d_rpt"                + " INTEGER, " +
                                                                                   SUBSCRIPTION_ID        + " INTEGER DEFAULT -1, " +
                                                                                   EXPIRES_IN             + " INTEGER DEFAULT 0, " +
                                                                                   EXPIRE_STARTED         + " INTEGER DEFAULT 0, " +
@@ -189,8 +171,6 @@ public class MmsDatabase extends MessageDatabase {
                                                                                   SERVER_GUID            + " TEXT DEFAULT NULL);";
 
   public static final String[] CREATE_INDEXS = {
-    "CREATE INDEX IF NOT EXISTS mms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
-    "CREATE INDEX IF NOT EXISTS mms_read_index ON " + TABLE_NAME + " (" + READ + ");",
     "CREATE INDEX IF NOT EXISTS mms_read_and_notified_and_thread_id_index ON " + TABLE_NAME + "(" + READ + "," + NOTIFIED + "," + THREAD_ID + ");",
     "CREATE INDEX IF NOT EXISTS mms_message_box_index ON " + TABLE_NAME + " (" + MESSAGE_BOX + ");",
     "CREATE INDEX IF NOT EXISTS mms_date_sent_index ON " + TABLE_NAME + " (" + DATE_SENT + ", " + RECIPIENT_ID + ", " + THREAD_ID + ");",
