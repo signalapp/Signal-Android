@@ -21,8 +21,6 @@ class MessageReceiveJob(val data: ByteArray, val openGroupMessageServerID: Long?
 
         // Keys used for database storage
         private val DATA_KEY = "data"
-        // FIXME: We probably shouldn't be using this job when background polling
-        private val IS_BACKGROUND_POLL_KEY = "is_background_poll"
         private val OPEN_GROUP_MESSAGE_SERVER_ID_KEY = "openGroupMessageServerID"
         private val OPEN_GROUP_ID_KEY = "open_group_id"
     }
@@ -35,7 +33,7 @@ class MessageReceiveJob(val data: ByteArray, val openGroupMessageServerID: Long?
         val deferred = deferred<Unit, Exception>()
         try {
             val isRetry: Boolean = failureCount != 0
-            val (message, proto) = MessageReceiver.parse(this.data, this.openGroupMessageServerID, isRetry)
+            val (message, proto) = MessageReceiver.parse(this.data, this.openGroupMessageServerID)
             synchronized(RECEIVE_LOCK) { // FIXME: Do we need this?
                 MessageReceiver.handle(message, proto, this.openGroupID)
             }
