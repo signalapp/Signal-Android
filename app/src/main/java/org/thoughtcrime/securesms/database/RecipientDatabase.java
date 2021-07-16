@@ -3671,7 +3671,7 @@ public class RecipientDatabase extends Database {
           if (Util.isEmpty(searchQuery)) {
             stringBuilder.append(NON_SIGNAL_CONTACT);
           } else {
-            stringBuilder.append(QUERY_SIGNAL_CONTACT);
+            stringBuilder.append(QUERY_NON_SIGNAL_CONTACT);
             args.add(searchQuery);
             args.add(searchQuery);
             args.add(searchQuery);
