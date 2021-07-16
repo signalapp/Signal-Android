@@ -305,6 +305,8 @@ public class SignalServiceMessageSender {
                                            SignalServiceDataMessage         message)
       throws UntrustedIdentityException, IOException
   {
+    Log.d(TAG, "[" + message.getTimestamp() + "] Sending a data message.");
+
     Content           content         = createMessageContent(message);
     EnvelopeContent   envelopeContent = EnvelopeContent.encrypted(content, contentHint, message.getGroupId());
     long              timestamp       = message.getTimestamp();
@@ -395,6 +397,8 @@ public class SignalServiceMessageSender {
                                                       SignalServiceDataMessage   message)
       throws IOException, UntrustedIdentityException, NoSessionException, InvalidKeyException
   {
+    Log.d(TAG, "[" + message.getTimestamp() + "] Sending a group data message to " + recipients.size() + " recipients.");
+
     Content                 content = createMessageContent(message);
     Optional<byte[]>        groupId = message.getGroupId();
     List<SendMessageResult> results = sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, contentHint, groupId.orNull(), false);
@@ -424,6 +428,8 @@ public class SignalServiceMessageSender {
                                                  CancelationSignal                      cancelationSignal)
       throws IOException, UntrustedIdentityException
   {
+    Log.d(TAG, "[" + message.getTimestamp() + "] Sending a data message to " + recipients.size() + " recipients.");
+
     Content                 content            = createMessageContent(message);
     EnvelopeContent         envelopeContent    = EnvelopeContent.encrypted(content, contentHint, message.getGroupId());
     long                    timestamp          = message.getTimestamp();
@@ -1591,6 +1597,10 @@ public class SignalServiceMessageSender {
       try {
         OutgoingPushMessageList messages = getEncryptedMessages(socket, recipient, unidentifiedAccess, timestamp, content, online);
 
+        if (content.getContent().isPresent() && content.getContent().get().getSyncMessage() != null && content.getContent().get().getSyncMessage().hasSent()) {
+          Log.d(TAG, "[" + timestamp + "] Sending a sent sync message to devices: " + messages.getDevices());
+        }
+
         if (cancelationSignal != null && cancelationSignal.isCanceled()) {
           throw new CancelationException();
         }
@@ -1838,7 +1848,6 @@ public class SignalServiceMessageSender {
     List<AttachmentPointer> pointers = new LinkedList<>();
 
     if (!attachments.isPresent() || attachments.get().isEmpty()) {
-      Log.w(TAG, "No attachments present...");
       return pointers;
     }
 
