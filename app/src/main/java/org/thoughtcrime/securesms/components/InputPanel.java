@@ -445,14 +445,6 @@ public class InputPanel extends LinearLayout
     microphoneRecorderView.unlockAction();
   }
 
-  public void showGifMovedTooltip() {
-    TooltipPopup.forTarget(mediaKeyboard)
-                .setBackgroundTint(ContextCompat.getColor(getContext(), R.color.signal_accent_primary))
-                .setTextColor(getResources().getColor(R.color.core_white))
-                .setText(R.string.ConversationActivity__gifs_are_now_here)
-                .show(TooltipPopup.POSITION_ABOVE);
-  }
-
   public void setVoiceNoteDraft(@Nullable DraftDatabase.Draft voiceNoteDraft) {
     if (voiceNoteDraft != null) {
       voiceNoteDraftView.setDraft(voiceNoteDraft);

@@ -83,7 +83,7 @@ class AttachmentKeyboardButtonAdapter extends RecyclerView.Adapter<AttachmentKey
       this.title = itemView.findViewById(R.id.attachment_button_title);
     }
 
-    void bind(@NonNull AttachmentKeyboardButton button,boolean wallpaperEnabled, @NonNull Listener listener) {
+    void bind(@NonNull AttachmentKeyboardButton button, boolean wallpaperEnabled, @NonNull Listener listener) {
       image.setImageResource(button.getIconRes());
       title.setText(button.getTitleRes());
 
