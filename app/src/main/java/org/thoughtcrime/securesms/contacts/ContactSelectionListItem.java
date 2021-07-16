@@ -93,8 +93,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
       name = this.recipient.get().getDisplayName(getContext());
     }
 
-    boolean isPush = (contactType & ContactRepository.PUSH_TYPE) > 0;
-    if (isPush) {
+    if (recipient == null || recipient.get().isRegistered()) {
       smsTag.setVisibility(GONE);
     } else {
       smsTag.setVisibility(VISIBLE);
