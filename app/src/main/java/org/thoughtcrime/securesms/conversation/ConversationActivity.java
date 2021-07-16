@@ -982,6 +982,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
       }
     });
 
+    if (threadId == -1L) {
+      hideMenuItem(menu, R.id.menu_view_media);
+    }
+
     searchViewItem = menu.findItem(R.id.menu_search);
 
     SearchView                     searchView    = (SearchView) searchViewItem.getActionView();
