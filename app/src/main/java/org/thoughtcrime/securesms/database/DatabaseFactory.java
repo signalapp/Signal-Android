@@ -227,6 +227,8 @@ public class DatabaseFactory {
   }
 
   private DatabaseFactory(@NonNull Context context) {
+    SqlCipherLibraryLoader.load(context);
+
     DatabaseSecret   databaseSecret   = DatabaseSecretProvider.getOrCreateDatabaseSecret(context);
     AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
 

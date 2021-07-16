@@ -39,6 +39,7 @@ import org.signal.core.util.tracing.Tracer;
 import org.signal.glide.SignalGlideCodecs;
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
@@ -128,7 +129,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                               Log.i(TAG, "onCreate()");
                             })
                             .addBlocking("crash-handling", this::initializeCrashHandling)
-                            .addBlocking("sqlcipher-init", () -> SQLiteDatabase.loadLibs(this))
+                            .addBlocking("sqlcipher-init", () -> SqlCipherLibraryLoader.load(this))
                             .addBlocking("rx-init", () -> {
                               RxJavaPlugins.setInitIoSchedulerHandler(schedulerSupplier -> Schedulers.from(SignalExecutors.BOUNDED_IO, true, false));
                               RxJavaPlugins.setInitComputationSchedulerHandler(schedulerSupplier -> Schedulers.from(SignalExecutors.BOUNDED, true, false));
