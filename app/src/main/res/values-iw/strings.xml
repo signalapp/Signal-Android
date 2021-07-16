@@ -57,7 +57,7 @@
   <string name="DraftDatabase_Draft_voice_note">(הודעה קולית)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">גלריה</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">קובץ</string>
   <string name="AttachmentKeyboard_contact">איש קשר</string>
   <string name="AttachmentKeyboard_location">מיקום</string>
@@ -244,9 +244,9 @@
   <string name="ConversationActivity_full">מלאה</string>
   <string name="ConversationActivity_error_sending_media">שגיאה בשליחת מדיה</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">דֻּוַּח כזבל ונחסם.</string>
-  <string name="ConversationActivity_gifs_have_moved">קבצי GIF הועברו</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">חפש קבצי GIF ליד אימוג\'י ומדבקות.</string>
-  <string name="ConversationActivity__gifs_are_now_here">קבצי GIF נמצאים כאן עכשיו.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">קבצי GIF הועברו</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">חפש קבצי GIF ליד אימוג\'י ומדבקות.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">קבצי GIF נמצאים כאן עכשיו.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">הודעה %d לא נקראה</item>
@@ -459,6 +459,7 @@
   <string name="AddToGroupActivity_add_to_groups">הוסף לקבוצות</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">איש זה אינו יכול להתווסף אל קבוצות מיושנות.</string>
   <string name="AddToGroupActivity_add">הוסף</string>
+  <string name="AddToGroupActivity_add_to_a_group">הוסף אל קבוצה</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">בחר מנהלן חדש</string>
   <string name="ChooseNewAdminActivity_done">סיים</string>
@@ -621,6 +622,7 @@
     <item quantity="other">להוסיף %3$d חברי קבוצה אל \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">הוסף</string>
+  <string name="AddMembersActivity__add_members">הוסף חברי קבוצה</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">תן שם לקבוצה זו</string>
   <string name="AddGroupDetailsFragment__create_group">צור קבוצה</string>
@@ -1769,6 +1771,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">גלול לתחתית</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">שינויי מספר ביטחון</string>
+  <string name="safety_number_change_dialog__accept">אשר</string>
   <string name="safety_number_change_dialog__send_anyway">שלח בכל זאת</string>
   <string name="safety_number_change_dialog__call_anyway">התקשר בכל זאת</string>
   <string name="safety_number_change_dialog__join_call">הצטרף לשיחה</string>
@@ -3212,7 +3215,13 @@
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">הודעה חדשה</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">מסרון</string>
   <!--EOF-->
 </resources>

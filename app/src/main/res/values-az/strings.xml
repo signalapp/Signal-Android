@@ -55,7 +55,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(cavab)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Qalereya</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fayl</string>
   <string name="AttachmentKeyboard_contact">Əlaqə</string>
   <string name="AttachmentKeyboard_location">Məkan</string>

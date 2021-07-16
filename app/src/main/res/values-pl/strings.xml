@@ -57,7 +57,7 @@
   <string name="DraftDatabase_Draft_voice_note">(Wiadomość głosowa)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeria</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Plik</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Lokalizacja</string>
@@ -244,9 +244,9 @@
   <string name="ConversationActivity_full">Pełne</string>
   <string name="ConversationActivity_error_sending_media">Błąd przy wysyłaniu multimediów</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Zgłoszono, jako spam i zablokowano.</string>
-  <string name="ConversationActivity_gifs_have_moved">GIF-y zostały przeniesione</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Szukaj GIF-ów obok emotikon i naklejek.</string>
-  <string name="ConversationActivity__gifs_are_now_here">GIF-y są teraz tutaj.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF-y zostały przeniesione</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Szukaj GIF-ów obok emotikon i naklejek.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIF-y są teraz tutaj.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nieprzeczytana wiadomość</item>
@@ -351,6 +351,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Niektóre kontakty nie mogą być w Starych grupach.</string>
+  <string name="CreateGroupActivity__select_members">Wybierz członków</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Błąd ustawiania zdjęcia profilowego</string>
@@ -459,6 +460,7 @@
   <string name="AddToGroupActivity_add_to_groups">Dodaj do grup</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Nie można dodać tej osoby do Starych grup.</string>
   <string name="AddToGroupActivity_add">Dodaj</string>
+  <string name="AddToGroupActivity_add_to_a_group">Dodaj do grupy</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Wybierz nowego administratora</string>
   <string name="ChooseNewAdminActivity_done">Gotowe</string>
@@ -621,6 +623,7 @@
     <item quantity="other">Dodać %3$d członków do \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Dodaj</string>
+  <string name="AddMembersActivity__add_members">Dodaj członków</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Nazwij grupę</string>
   <string name="AddGroupDetailsFragment__create_group">Utwórz grupę</string>
@@ -1761,6 +1764,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Przewiń do dołu</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Zmiany numeru bezpieczeństwa</string>
+  <string name="safety_number_change_dialog__accept">Akceptuj</string>
   <string name="safety_number_change_dialog__send_anyway">Wyślij mimo to</string>
   <string name="safety_number_change_dialog__call_anyway">Zadzwoń mimo to</string>
   <string name="safety_number_change_dialog__join_call">Dołącz do rozmowy</string>
@@ -2820,6 +2824,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Skopiowano do schowka</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Ten link nie jest obecnie aktywny</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Nie udało się odtworzyć wiadomości głosowej</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Wiadomość głosowa · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s do %2$s</string>
@@ -2890,6 +2895,12 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="DeleteAccountCountryPickerFragment__search_countries">Wybierz kraj</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Pomiń</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d członek</item>
+    <item quantity="few">%1$d członków</item>
+    <item quantity="many">%1$d członków</item>
+    <item quantity="other">%1$d członków</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Udostępnij</string>
   <string name="ShareActivity__send">Wyślij</string>
@@ -3204,7 +3215,16 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Nowa płatność</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Nowa wiadomość</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Szukaj po nazwie lub numerze</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

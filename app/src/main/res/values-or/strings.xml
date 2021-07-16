@@ -53,7 +53,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(ପ୍ରତିଉତ୍ତର ଦିଅନ୍ତୁ)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ଗ୍ୟାଲେରୀ</string>
-  <string name="AttachmentKeyboard_gif">ଜିଆଇଏଫ୍</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">ଜିଆଇଏଫ୍</string> -->
   <string name="AttachmentKeyboard_file">ଫାଇଲ୍</string>
   <string name="AttachmentKeyboard_contact">ଯୋଗାଯୋଗ</string>
   <string name="AttachmentKeyboard_location">ଅବସ୍ଥାନ</string>
@@ -427,6 +427,7 @@
   <string name="AddToGroupActivity_add_to_groups">ଗୋଷ୍ଠୀଗୁଡ଼ିକରେ ଯୋଡ଼ନ୍ତୁ</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">ଏହି ବ୍ୟକ୍ତି ପୁରୁଣା ଗୋଷ୍ଠୀରେ ଯୋଡି ହୋଇପାରିବ ନାହିଁ</string>
   <string name="AddToGroupActivity_add">ଯୋଡ଼ନ୍ତୁ</string>
+  <string name="AddToGroupActivity_add_to_a_group">ଏକ ଗୋଷ୍ଠୀରେ ଯୋଡ଼ନ୍ତୁ</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">ନୂଆ ବ୍ୟବସ୍ଥାପକ ବାଛନ୍ତୁ</string>
   <string name="ChooseNewAdminActivity_done">ହେଇଗଲା</string>
@@ -557,6 +558,7 @@
     <item quantity="other">\"%2$s\" ରେ \"%3$d\"ଜଣ ସଦସ୍ୟ ଯୋଡନ୍ତୁ?</item>
   </plurals>
   <string name="AddMembersActivity__add">ଯୋଡ଼ନ୍ତୁ</string>
+  <string name="AddMembersActivity__add_members">ସଦସ୍ୟ ଯୋଡ଼ନ୍ତୁ</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">ଏହି ଗୋଷ୍ଠୀର ନାମ ଦିଅନ୍ତୁ</string>
   <string name="AddGroupDetailsFragment__create_group">ଗୋଷ୍ଠୀ ସୃଷ୍ଟି କରନ୍ତୁ</string>
@@ -1597,6 +1599,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">ତଳକୁ ସ୍କ୍ରୋଲ୍ କରନ୍ତୁ</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">ସୁରକ୍ଷା ସଂଖ୍ୟା ପରିବର୍ତ୍ତନଗୁଡ଼ିକ</string>
+  <string name="safety_number_change_dialog__accept">ସ୍ୱୀକାର କରନ୍ତୁ</string>
   <string name="safety_number_change_dialog__send_anyway">ଯାହା ବି ହେଉ ପଠାନ୍ତୁ</string>
   <string name="safety_number_change_dialog__call_anyway">ଯାହା ହେଉ କଲ୍ କରନ୍ତୁ</string>
   <string name="safety_number_change_dialog__join_call">କଲ୍ ରେ ଯୋଗ ଦିଅନ୍ତୁ</string>
@@ -2622,7 +2625,13 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">କଷ୍ଟମ୍ ବିଜ୍ଞପ୍ତି</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">ନୂତନ ବାର୍ତ୍ତା</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">ଏସ୍ଏମ୍ଏସ୍</string>
   <!--EOF-->
 </resources>

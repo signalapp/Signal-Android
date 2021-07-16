@@ -50,7 +50,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(답장)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">갤러리</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">파일</string>
   <string name="AttachmentKeyboard_contact">연락처</string>
   <string name="AttachmentKeyboard_location">위치</string>
@@ -413,6 +413,7 @@
   <string name="AddToGroupActivity_add_to_groups">그룹에 추가하기</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">이 사용자를 기존 그룹에 추가할 수 없습니다.</string>
   <string name="AddToGroupActivity_add">추가</string>
+  <string name="AddToGroupActivity_add_to_a_group">그룹에 추가</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">새 관리자 선택</string>
   <string name="ChooseNewAdminActivity_done">확인</string>
@@ -527,6 +528,7 @@
     <item quantity="other">%3$d명의 멤버를 \'%2$s\'에 추가하시겠습니까?</item>
   </plurals>
   <string name="AddMembersActivity__add">추가</string>
+  <string name="AddMembersActivity__add_members">멤버 추가</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">그룹 이름 입력</string>
   <string name="AddGroupDetailsFragment__create_group">그룹 만들기</string>
@@ -1539,6 +1541,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">하단으로 스크롤</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">안전 번호 변경됨</string>
+  <string name="safety_number_change_dialog__accept">수락</string>
   <string name="safety_number_change_dialog__send_anyway">그냥 보내기</string>
   <string name="safety_number_change_dialog__call_anyway">그냥 전화</string>
   <string name="safety_number_change_dialog__join_call">통화 참여</string>
@@ -2593,7 +2596,13 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">맞춤형 알림</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">새 메시지</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s, %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

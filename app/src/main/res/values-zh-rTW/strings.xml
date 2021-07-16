@@ -54,7 +54,7 @@
   <string name="DraftDatabase_Draft_voice_note">（語音留言）</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">圖片庫</string>
-  <string name="AttachmentKeyboard_gif">動態圖檔</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">動態圖檔</string> -->
   <string name="AttachmentKeyboard_file">檔案</string>
   <string name="AttachmentKeyboard_contact">聯絡人</string>
   <string name="AttachmentKeyboard_location">位置</string>
@@ -241,9 +241,9 @@
   <string name="ConversationActivity_full">已滿</string>
   <string name="ConversationActivity_error_sending_media">傳送媒體檔時出錯</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">已檢舉垃圾訊息並封鎖。</string>
-  <string name="ConversationActivity_gifs_have_moved">GIF 挪動了</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">請到表情符號與貼圖旁邊尋找 GIF。</string>
-  <string name="ConversationActivity__gifs_are_now_here">GIF 現在在這裡。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF 挪動了</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">請到表情符號與貼圖旁邊尋找 GIF。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIF 現在在這裡。</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 則未讀訊息</item>
@@ -318,6 +318,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">某些聯絡人不能在舊群組中。</string>
+  <string name="CreateGroupActivity__select_members">選擇成員</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">個人資訊</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">頭像照片設定出現錯誤</string>
@@ -423,6 +424,7 @@
   <string name="AddToGroupActivity_add_to_groups">新增到群組</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">無法將此人新增到舊群組中。</string>
   <string name="AddToGroupActivity_add">新增</string>
+  <string name="AddToGroupActivity_add_to_a_group">新增到群組</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">選擇新的管理員</string>
   <string name="ChooseNewAdminActivity_done">完成</string>
@@ -537,6 +539,7 @@
     <item quantity="other">新增 %3$d 個成員到「%2$s」嗎？</item>
   </plurals>
   <string name="AddMembersActivity__add">新增</string>
+  <string name="AddMembersActivity__add_members">新增成員</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">為群組取一個名稱</string>
   <string name="AddGroupDetailsFragment__create_group">建立群組</string>
@@ -1570,6 +1573,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">向下滑動至底部</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">安全碼變更</string>
+  <string name="safety_number_change_dialog__accept">接受</string>
   <string name="safety_number_change_dialog__send_anyway">仍然傳送</string>
   <string name="safety_number_change_dialog__call_anyway">無論如何要打電話</string>
   <string name="safety_number_change_dialog__join_call">加入通話</string>
@@ -2584,6 +2588,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">已複製到剪貼簿</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">連結目前無效</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">無法播放語音留言</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">語音訊息 · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s 傳送給 %2$s</string>
@@ -2648,6 +2653,9 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">搜索國家</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">略過</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="other">%1$d 個成員</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">分享</string>
   <string name="ShareActivity__send">傳送</string>
@@ -2956,7 +2964,16 @@
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">新的付款</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">新訊息</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">搜尋姓名或電話號碼</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">簡訊</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

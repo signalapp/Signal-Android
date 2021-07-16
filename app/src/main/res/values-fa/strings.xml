@@ -55,7 +55,7 @@
   <string name="DraftDatabase_Draft_voice_note">(پیام صوتی)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">گالری</string>
-  <string name="AttachmentKeyboard_gif">گیف</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">گیف</string> -->
   <string name="AttachmentKeyboard_file">فایل</string>
   <string name="AttachmentKeyboard_contact">مخاطب</string>
   <string name="AttachmentKeyboard_location">مکان</string>
@@ -242,9 +242,9 @@
   <string name="ConversationActivity_full">پر شده</string>
   <string name="ConversationActivity_error_sending_media">خطا در ارسال رسانه</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">اسپم گزارش داده و مسدود شد.</string>
-  <string name="ConversationActivity_gifs_have_moved">گیف‌ها جابجا شدند</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">در کنار ایموجی و استیکرها بدنبال گیف‌ها بگردید</string>
-  <string name="ConversationActivity__gifs_are_now_here">گیف‌ها حالا اینجا هستند.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">گیف‌ها جابجا شدند</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">در کنار ایموجی و استیکرها بدنبال گیف‌ها بگردید</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">گیف‌ها حالا اینجا هستند.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d پیام خوانده نشده</item>
@@ -329,6 +329,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">بعضی از مخاطبین نمی‌توانند در گروه‌های قدیمی باشند.</string>
+  <string name="CreateGroupActivity__select_members">اعضا را انتخاب کنید</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">پروفایل</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">خطا در ثبت عکس پروفایل</string>
@@ -435,6 +436,7 @@
   <string name="AddToGroupActivity_add_to_groups">افزودن به گروه‌ها</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">این فرد نمی‌تواند به گروه‌های قدیمی اضافه شود.</string>
   <string name="AddToGroupActivity_add">افزودن</string>
+  <string name="AddToGroupActivity_add_to_a_group">افزودن به گروه</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">مدیر جدید را انتخاب کنید</string>
   <string name="ChooseNewAdminActivity_done">تمام</string>
@@ -565,6 +567,7 @@
     <item quantity="other">افزودن %3$d عضو به «%2$s»؟</item>
   </plurals>
   <string name="AddMembersActivity__add">افزودن</string>
+  <string name="AddMembersActivity__add_members">افزودن اعضا</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">نامی برای گروه انتخاب کنید</string>
   <string name="AddGroupDetailsFragment__create_group">ایجاد گروه</string>
@@ -1637,6 +1640,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">رفتن به پایین</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">تغییرات شمارهٔ امنیتی</string>
+  <string name="safety_number_change_dialog__accept">پذیرفتن</string>
   <string name="safety_number_change_dialog__send_anyway">در هر صورت ارسال کن</string>
   <string name="safety_number_change_dialog__call_anyway">در هر صورت تماس بگیر</string>
   <string name="safety_number_change_dialog__join_call">پیوستن به تماس</string>
@@ -2666,6 +2670,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">روی کلیپ‌بورد کپی شد</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">پیوند در حال حاضر فعال نیست</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">پخش پیام صوتی ناموفق بود</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">پیام صوتی · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s به %2$s</string>
@@ -2732,6 +2737,10 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">جستجوی کشورها</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">رد کردن</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d عضو</item>
+    <item quantity="other">%1$d عضو</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">اشتراک‌گذاری</string>
   <string name="ShareActivity__send">ارسال</string>
@@ -3042,7 +3051,16 @@
   <string name="PlaybackSpeedToggleTextView__p5x">۵x.</string>
   <string name="PlaybackSpeedToggleTextView__1x">۱x</string>
   <string name="PlaybackSpeedToggleTextView__2x">۲x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">پرداخت جدید</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">پیام جدید</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">نام یا شماره را جستجو کنید</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">پیامک</string>
+  <string name="ContactSelectionListItem__dot_s">%1$s</string>
   <!--EOF-->
 </resources>

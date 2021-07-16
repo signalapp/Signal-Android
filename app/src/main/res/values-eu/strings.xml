@@ -51,7 +51,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(erantzun)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeria</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Artxiboa</string>
   <string name="AttachmentKeyboard_contact">Kontaktua</string>
   <string name="AttachmentKeyboard_location">Kokalekua</string>
@@ -425,6 +425,7 @@
   <string name="AddToGroupActivity_add_to_groups">Gehitu taldeetara</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Pertsona hau ezin da jarauntsitako taldeetan gehitu.</string>
   <string name="AddToGroupActivity_add">Gehitu</string>
+  <string name="AddToGroupActivity_add_to_a_group">Gehitu taldera</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Hautatu administratzaile berria</string>
   <string name="ChooseNewAdminActivity_done">Eginda</string>
@@ -555,6 +556,7 @@
     <item quantity="other">%3$d kideak gehitu \"%2$s\"  taldera?</item>
   </plurals>
   <string name="AddMembersActivity__add">Gehitu</string>
+  <string name="AddMembersActivity__add_members">Gehitu kideak</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Eman izena talde honi</string>
   <string name="AddGroupDetailsFragment__create_group">Taldea sortu</string>
@@ -1599,6 +1601,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Hondora korritu</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Segurtasun Zenbakiaren Aldaketak</string>
+  <string name="safety_number_change_dialog__accept">Onartu</string>
   <string name="safety_number_change_dialog__send_anyway">Bidali hala eta guztiz ere</string>
   <string name="safety_number_change_dialog__call_anyway">Deitu edonola ere</string>
   <string name="safety_number_change_dialog__join_call">Deian sartu</string>
@@ -2614,7 +2617,13 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Jakinarazpen pertsonalizatuak</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Mezu berria</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

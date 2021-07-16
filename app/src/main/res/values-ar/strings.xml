@@ -58,7 +58,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(رَدّ)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">المعرض</string>
-  <string name="AttachmentKeyboard_gif">صورة متحركة</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">صورة متحركة</string> -->
   <string name="AttachmentKeyboard_file">ملف</string>
   <string name="AttachmentKeyboard_contact">جهة الاتصال</string>
   <string name="AttachmentKeyboard_location">الموقع الجغرافي</string>
@@ -245,9 +245,9 @@
   <string name="ConversationActivity_full">ممتليء</string>
   <string name="ConversationActivity_error_sending_media">خَطَأُ في إرسال الوَسط</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">أُبلِغ عن الإزعاج ثم حُظر</string>
-  <string name="ConversationActivity_gifs_have_moved">تحركت الصور المتحركة</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">اطلع على الصور المتحركة التي بجانب الوجوه المُعبِّرة والملصقات.</string>
-  <string name="ConversationActivity__gifs_are_now_here">توجد الصور المتحركة هنا.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">تحركت الصور المتحركة</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">اطلع على الصور المتحركة التي بجانب الوجوه المُعبِّرة والملصقات.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">توجد الصور المتحركة هنا.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="zero">%d رسالة غير مقروءة</item>
@@ -483,6 +483,7 @@
   <string name="AddToGroupActivity_add_to_groups">أضف إلى مجموعات</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">لا يمكن إضافة هذا الشخص إلى المجموعات من الطراز القديم.</string>
   <string name="AddToGroupActivity_add">إضافة</string>
+  <string name="AddToGroupActivity_add_to_a_group">إضافة إلى مجموعة</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">اختر مشرفا جديدا</string>
   <string name="ChooseNewAdminActivity_done">تم</string>
@@ -677,6 +678,7 @@
     <item quantity="other">إضافة %3$d عضو إلى \"%2$s\"؟</item>
   </plurals>
   <string name="AddMembersActivity__add">إضافة</string>
+  <string name="AddMembersActivity__add_members">إضافة أعضاء</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">سمّ هذه المجموعة</string>
   <string name="AddGroupDetailsFragment__create_group">إنشاء مجموعة</string>
@@ -1887,6 +1889,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">النزول إلى الأسفل</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">تغيّرات رقم الأمان</string>
+  <string name="safety_number_change_dialog__accept">قبول</string>
   <string name="safety_number_change_dialog__send_anyway">أرسل على كل حال</string>
   <string name="safety_number_change_dialog__call_anyway">الاتصال على كل حال</string>
   <string name="safety_number_change_dialog__join_call">الانضمام للمكالمة</string>
@@ -3183,7 +3186,13 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">إشعارات مخصصة</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">رسالة جديدة</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">رسالة SMS</string>
   <!--EOF-->
 </resources>

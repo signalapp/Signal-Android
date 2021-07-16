@@ -58,7 +58,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(جواب دینا)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">گیلری</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">فائل</string>
   <string name="AttachmentKeyboard_contact">رابطہ</string>
   <string name="AttachmentKeyboard_location">تھاں</string>

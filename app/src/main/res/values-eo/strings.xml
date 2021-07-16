@@ -54,7 +54,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(respondo)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerio</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Dosiero</string>
   <string name="AttachmentKeyboard_contact">Kontakto</string>
   <string name="AttachmentKeyboard_location">Loko</string>
@@ -241,9 +241,9 @@
   <string name="ConversationActivity_full">Plena</string>
   <string name="ConversationActivity_error_sending_media">Eraro dum sendado de aŭdvidaĵo</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Denuncita kiel trudaĵon kaj blokita.</string>
-  <string name="ConversationActivity_gifs_have_moved">GIF-oj moviĝis</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Vi trovos GIF-ojn apud la emoĝioj kaj glumarkoj.</string>
-  <string name="ConversationActivity__gifs_are_now_here">GIF-oj estas nun ĉi tie.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF-oj moviĝis</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Vi trovos GIF-ojn apud la emoĝioj kaj glumarkoj.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIF-oj estas nun ĉi tie.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nelegita mesaĝo</item>
@@ -434,6 +434,7 @@
   <string name="AddToGroupActivity_add_to_groups">Aldoni al grupoj</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Tiu persono ne aldoneblas al malnovtipaj grupoj.</string>
   <string name="AddToGroupActivity_add">Aldoni</string>
+  <string name="AddToGroupActivity_add_to_a_group">Aldoni al grupo</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Elekti novan administranton</string>
   <string name="ChooseNewAdminActivity_done">Farita</string>
@@ -564,6 +565,7 @@
     <item quantity="other">Ĉu aldoni %3$d anojn al „%2$s“?</item>
   </plurals>
   <string name="AddMembersActivity__add">Aldoni</string>
+  <string name="AddMembersActivity__add_members">Aldoni anojn</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Nomi tiun grupon</string>
   <string name="AddGroupDetailsFragment__create_group">Krei grupon</string>
@@ -1634,6 +1636,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rulumi malsupren</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Ŝanĝoj pri la sekuriga numero</string>
+  <string name="safety_number_change_dialog__accept">Akcepti</string>
   <string name="safety_number_change_dialog__send_anyway">Tamen sendi</string>
   <string name="safety_number_change_dialog__call_anyway">Tamen alvoki</string>
   <string name="safety_number_change_dialog__join_call">Eniri la alvokon</string>
@@ -2958,7 +2961,13 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Lastatempe uzitaj</string>
   <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Nova mesaĝo</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

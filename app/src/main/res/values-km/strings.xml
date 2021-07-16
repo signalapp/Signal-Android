@@ -59,7 +59,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(ឆ្លើយតប)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">វិចិត្រសាល</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">ឯកសារ</string>
   <string name="AttachmentKeyboard_contact">ទំនាក់ទំនង</string>
   <string name="AttachmentKeyboard_location">ទីតាំង</string>

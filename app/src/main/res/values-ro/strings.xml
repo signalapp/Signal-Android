@@ -50,9 +50,10 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(locație)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(răspuns)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Mesaj vocal)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerie</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fișier</string>
   <string name="AttachmentKeyboard_contact">Contact</string>
   <string name="AttachmentKeyboard_location">Locație</string>
@@ -239,9 +240,9 @@
   <string name="ConversationActivity_full">Plină</string>
   <string name="ConversationActivity_error_sending_media">Eroare la trimiterea conținutului media</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Raportat ca spam și blocat.</string>
-  <string name="ConversationActivity_gifs_have_moved">GIF-urile au fost mutate</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Căutați GIF-urile lângă emoji și autocolante.</string>
-  <string name="ConversationActivity__gifs_are_now_here">GIF-urile sunt acum aici.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF-urile au fost mutate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Căutați GIF-urile lângă emoji și autocolante.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIF-urile sunt acum aici.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesaj necitit</item>
@@ -336,6 +337,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Anumite contacte nu pot exista în grupurile vechi.</string>
+  <string name="CreateGroupActivity__select_members">Selectați membrii</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Eroare la setarea pozei de profil</string>
@@ -443,6 +445,7 @@
   <string name="AddToGroupActivity_add_to_groups">Adaugaţi la grupuri</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Acestă persoană nu poate fi adăugată la grupurile vechi.</string>
   <string name="AddToGroupActivity_add">Adaugă</string>
+  <string name="AddToGroupActivity_add_to_a_group">Adaugaţi la un grup</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Alegeți un nou administrator</string>
   <string name="ChooseNewAdminActivity_done">Gata</string>
@@ -589,6 +592,7 @@
     <item quantity="other">Adăugați %3$d membri la \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Adaugă</string>
+  <string name="AddMembersActivity__add_members">Adăugare membri</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Numiți acest grup</string>
   <string name="AddGroupDetailsFragment__create_group">Creează grup </string>
@@ -904,6 +908,7 @@
   <string name="MediaRepository_all_media">Toate fișierele media</string>
   <string name="MediaRepository__camera">Cameră foto</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Atingeți pentru a trimite un jurnal de depanare</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Necunoscut</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Ai primit un mesaj care a fost criptat cu o versiune mai veche de Signal care nu mai este suportată. Roagă-l pe expeditor să-și actualizeze aplicația la ultima versiune și să retrimită mesajul.</string>
@@ -1694,6 +1699,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Derulați până jos</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Modificări ale numărului de siguranță</string>
+  <string name="safety_number_change_dialog__accept">Acceptați</string>
   <string name="safety_number_change_dialog__send_anyway">Trimite oricum</string>
   <string name="safety_number_change_dialog__call_anyway">Sunați oricum</string>
   <string name="safety_number_change_dialog__join_call">Alăturați-vă apelului</string>
@@ -2735,6 +2741,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="DeleteAccountCountryPickerFragment__search_countries">Căutați țări</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Omiteți</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d membru</item>
+    <item quantity="few">%1$d membri</item>
+    <item quantity="other">%1$d membri</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Distribuiți</string>
   <string name="ShareActivity__send">Trimiteți</string>
@@ -2910,6 +2921,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
     <item quantity="few">Această culoare personalizată este utilizată în %1$d conversații. Doriți să o ștergeți pentru toate conversațiile?</item>
     <item quantity="other">Această culoare personalizată este utilizată în %1$d conversații. Doriți să o ștergeți pentru toate conversațiile?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Ștergeți culoarea conversației?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Solid</string>
   <string name="CustomChatColorCreatorFragment__gradient">Gradient</string>
@@ -3004,7 +3016,19 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Utilizate recent</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Plată nouă</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Mesaj nou</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Cautare nume sau număr</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

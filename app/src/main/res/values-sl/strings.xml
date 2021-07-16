@@ -54,7 +54,7 @@
   <string name="DraftDatabase_Draft_voice_note">(Glasovno sporočilo)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerija</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Datoteka</string>
   <string name="AttachmentKeyboard_contact">Stik</string>
   <string name="AttachmentKeyboard_location">Lokacija</string>
@@ -241,9 +241,9 @@
   <string name="ConversationActivity_full">Polno</string>
   <string name="ConversationActivity_error_sending_media">Napaka pri pošiljanju medijske datoteke</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Označeno kot neželeno in blokirano.</string>
-  <string name="ConversationActivity_gifs_have_moved">GIF-i so premaknjeni</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Najdete jih zraven emojijev in nalepk.</string>
-  <string name="ConversationActivity__gifs_are_now_here">GIF-i so odslej tu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF-i so premaknjeni</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Najdete jih zraven emojijev in nalepk.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIF-i so odslej tu.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprebrano sporočilo</item>
@@ -348,6 +348,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Nekateri uporabniki/ce ne morejo biti v starih skupinah.</string>
+  <string name="CreateGroupActivity__select_members">Izbira članov</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Napaka pri pošiljanju predstavitvene fotografije</string>
@@ -456,6 +457,7 @@
   <string name="AddToGroupActivity_add_to_groups">Dodaj v skupine</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Uporabnik/ca ne more biti dodan/a v staro skupino.</string>
   <string name="AddToGroupActivity_add">Dodaj</string>
+  <string name="AddToGroupActivity_add_to_a_group">Dodaj v skupino</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Določi novega skrbnika/co</string>
   <string name="ChooseNewAdminActivity_done">OK</string>
@@ -618,6 +620,7 @@
     <item quantity="other">Želite dodati %3$d članov/ic v skupino \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Dodaj</string>
+  <string name="AddMembersActivity__add_members">Dodaj člane/ice</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Poimenuj skupino</string>
   <string name="AddGroupDetailsFragment__create_group">Ustvari skupino</string>
@@ -1757,6 +1760,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Na dno</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Spremembe varnostnega števila</string>
+  <string name="safety_number_change_dialog__accept">Sprejmi</string>
   <string name="safety_number_change_dialog__send_anyway">Vseeno pošlji</string>
   <string name="safety_number_change_dialog__call_anyway">Vseeno kliči</string>
   <string name="safety_number_change_dialog__join_call">Pridruži se klicu</string>
@@ -2737,6 +2741,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopirano v odložišče</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Povezava trenutno ni aktivna</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Glasovnega sporočila ni bilo mogoče predvajati</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Glasovno sporočilo · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s do %2$s</string>
@@ -2806,6 +2811,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="DeleteAccountCountryPickerFragment__search_countries">Išči po državah</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Preskoči</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d član</item>
+    <item quantity="two">%1$d člana</item>
+    <item quantity="few">%1$d člani</item>
+    <item quantity="other">%1$d članov</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Deli</string>
   <string name="ShareActivity__send">Pošlji</string>
@@ -3041,6 +3052,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ConversationSettingsFragment__unmute">Prekini utišanje</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Pogovor utišan do %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Pogovor utišan za vedno</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonska številka je bila prekopirana v odložišče.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefonska številka</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Dodaj člane/ice</string>
@@ -3058,11 +3070,21 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ne obveščaj</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Obvestila po meri</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Nedavno uporabljeno</string>
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Novo plačilo</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Novo sporočilo</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Iskanje po imenu ali številki</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

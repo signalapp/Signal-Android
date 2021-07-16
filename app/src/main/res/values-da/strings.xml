@@ -54,7 +54,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(svar)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Billeder</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fil</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Lokation</string>
@@ -242,9 +242,9 @@
   <string name="ConversationActivity_full">Fuld</string>
   <string name="ConversationActivity_error_sending_media">Fejl ved afsendelse af medier</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Rapporteret som spam og blokeret.</string>
-  <string name="ConversationActivity_gifs_have_moved">GIF\'er er flyttet</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Se efter GIF\'er ved siden af emoji og klistermærker.</string>
-  <string name="ConversationActivity__gifs_are_now_here">GIF\'er er nu her.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF\'er er flyttet</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Se efter GIF\'er ved siden af emoji og klistermærker.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIF\'er er nu her.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulæst besked</item>
@@ -435,6 +435,7 @@
   <string name="AddToGroupActivity_add_to_groups">Tilføj til grupper</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Personen kan ikke tilføjes forældede grupper</string>
   <string name="AddToGroupActivity_add">Tilføj</string>
+  <string name="AddToGroupActivity_add_to_a_group">Tilføj til en gruppe</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Vælg ny administrator</string>
   <string name="ChooseNewAdminActivity_done">Udført</string>
@@ -565,6 +566,7 @@
     <item quantity="other">Tilføj %3$d medlemmer til \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Tilføj</string>
+  <string name="AddMembersActivity__add_members">Tilføj medlemmer</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Navngiv gruppen</string>
   <string name="AddGroupDetailsFragment__create_group">Opret gruppe</string>
@@ -1636,6 +1638,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll til bunden</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Sikkerhedsnummer ændringer</string>
+  <string name="safety_number_change_dialog__accept">Godkend</string>
   <string name="safety_number_change_dialog__send_anyway">Send alligevel</string>
   <string name="safety_number_change_dialog__call_anyway">Ring alligevel</string>
   <string name="safety_number_change_dialog__join_call">Deltag i samtalen</string>
@@ -3023,7 +3026,13 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Brugerdefinerede notifikationer</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Ny besked</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s - %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

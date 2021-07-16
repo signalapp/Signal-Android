@@ -55,7 +55,7 @@
   <string name="DraftDatabase_Draft_voice_note">(Missatge de veu)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeria</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fitxer</string>
   <string name="AttachmentKeyboard_contact">Contacte</string>
   <string name="AttachmentKeyboard_location">Ubicació</string>
@@ -242,9 +242,9 @@
   <string name="ConversationActivity_full">Ple</string>
   <string name="ConversationActivity_error_sending_media">Error en enviar contingut</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Se n\'ha informat com a brossa i s\'ha blocat.</string>
-  <string name="ConversationActivity_gifs_have_moved">S\'han mogut els GIF</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Cerqueu els GIF al costat d’emoticones i adhesius.</string>
-  <string name="ConversationActivity__gifs_are_now_here">Ara teniu aquí els GIF.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">S\'han mogut els GIF</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Cerqueu els GIF al costat d’emoticones i adhesius.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">Ara teniu aquí els GIF.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d missatge sense llegir</item>
@@ -435,6 +435,7 @@
   <string name="AddToGroupActivity_add_to_groups">Afegeix-lo als grups</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Aquesta persona no es pot afegir a grups de llegat.</string>
   <string name="AddToGroupActivity_add">Afegeix</string>
+  <string name="AddToGroupActivity_add_to_a_group">Afegeix-lo a un grup</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Trieu un administrador nou</string>
   <string name="ChooseNewAdminActivity_done">Fet</string>
@@ -565,6 +566,7 @@
     <item quantity="other">Voleu afegir %3$d membres a \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Afegeix</string>
+  <string name="AddMembersActivity__add_members">Afegeix-hi membres</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Poseu un nom al grup</string>
   <string name="AddGroupDetailsFragment__create_group">Crea un grup</string>
@@ -1633,6 +1635,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Desplaça al final</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Canvis en el número de seguretat</string>
+  <string name="safety_number_change_dialog__accept">Ho accepto</string>
   <string name="safety_number_change_dialog__send_anyway">Envia\'l tanmateix</string>
   <string name="safety_number_change_dialog__call_anyway">Truca-li tanmateix</string>
   <string name="safety_number_change_dialog__join_call">Afegeix-me a la trucada</string>
@@ -3038,7 +3041,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Missatge nou</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

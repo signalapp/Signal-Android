@@ -54,7 +54,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(válasz)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galéria</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fájl</string>
   <string name="AttachmentKeyboard_contact">Névjegy</string>
   <string name="AttachmentKeyboard_location">Hely</string>
@@ -242,9 +242,9 @@
   <string name="ConversationActivity_full">Tele</string>
   <string name="ConversationActivity_error_sending_media">Hiba történt a médiafájl küldése során</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Kéretlen üzenetnek jelölve és tiltva.</string>
-  <string name="ConversationActivity_gifs_have_moved">A GIF-ek mozgatásra kerültek</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Keresd a GIF-eket az emojik és a matricák mellett.</string>
-  <string name="ConversationActivity__gifs_are_now_here">A GIF-ek most már itt vannak.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">A GIF-ek mozgatásra kerültek</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Keresd a GIF-eket az emojik és a matricák mellett.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">A GIF-ek most már itt vannak.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d olvasatlan üzenet</item>
@@ -435,6 +435,7 @@
   <string name="AddToGroupActivity_add_to_groups">Hozzáadás csoportokhoz</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Ez a személyt nem adható régi típusú csoporthoz.</string>
   <string name="AddToGroupActivity_add">Hozzáadás</string>
+  <string name="AddToGroupActivity_add_to_a_group">Hozzáadás egy csoporthoz</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Új admin választása</string>
   <string name="ChooseNewAdminActivity_done">Befejezés</string>
@@ -565,6 +566,7 @@
     <item quantity="other">Hozzáadsz %3$d tagot a \"%2$s\" csoporthoz?</item>
   </plurals>
   <string name="AddMembersActivity__add">Hozzáadás</string>
+  <string name="AddMembersActivity__add_members">Tagok hozzáadása</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Csoport elnevezése</string>
   <string name="AddGroupDetailsFragment__create_group">Csoport létrehozása</string>
@@ -1634,6 +1636,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Görgetés az aljára</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Biztonságiszám-változások</string>
+  <string name="safety_number_change_dialog__accept">Elfogadás</string>
   <string name="safety_number_change_dialog__send_anyway">Küldés így is</string>
   <string name="safety_number_change_dialog__call_anyway">Hívás ennek ellenére</string>
   <string name="safety_number_change_dialog__join_call">Belépés a hívásba</string>
@@ -3007,7 +3010,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Egyedi értesítések</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Új üzenet</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

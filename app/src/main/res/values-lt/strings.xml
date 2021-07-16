@@ -57,7 +57,7 @@
   <string name="DraftDatabase_Draft_voice_note">(Balso žinutė)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerija</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Failas</string>
   <string name="AttachmentKeyboard_contact">Adresatas</string>
   <string name="AttachmentKeyboard_location">Vieta</string>
@@ -244,9 +244,9 @@
   <string name="ConversationActivity_full">Pilnas</string>
   <string name="ConversationActivity_error_sending_media">Klaida siunčiant mediją</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Pranešta apie brukalą ir užblokuota.</string>
-  <string name="ConversationActivity_gifs_have_moved">GIF atvaizdai perkelti</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIF atvaizdų ieškokite šalia šypsenėlių ir lipdukų.</string>
-  <string name="ConversationActivity__gifs_are_now_here">Nuo šiol, GIF atvaizdai yra čia.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF atvaizdai perkelti</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIF atvaizdų ieškokite šalia šypsenėlių ir lipdukų.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">Nuo šiol, GIF atvaizdai yra čia.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neskaityta žinutė</item>
@@ -351,6 +351,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kai kurie adresatai negali būti pasenusiose grupėse.</string>
+  <string name="CreateGroupActivity__select_members">Pasirinkti narius</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profilis</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Klaida, nustatant profilio nuotrauką</string>
@@ -459,6 +460,7 @@
   <string name="AddToGroupActivity_add_to_groups">Pridėti į grupes</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Šis žmogus negali būti pridėtas į pasenusias grupes.</string>
   <string name="AddToGroupActivity_add">Pridėti</string>
+  <string name="AddToGroupActivity_add_to_a_group">Pridėti į grupę</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Pasirinkti naują administratorių</string>
   <string name="ChooseNewAdminActivity_done">Atlikta</string>
@@ -562,7 +564,7 @@
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Išeiti iš grupės?</string>
-  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Jūs daugiau šioje grupėje nebegalėsite siųsti ar gauti žinutes.</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Jūs daugiau šioje grupėje nebegalėsite siųsti ar gauti žinučių.</string>
   <string name="LeaveGroupDialog_leave">Išeiti</string>
   <string name="LeaveGroupDialog_choose_new_admin">Pasirinkti naują administratorių</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Prieš išeidami, privalote pasirinkti šiai grupei bent vieną naują administratorių.</string>
@@ -621,6 +623,7 @@
     <item quantity="other">Pridėti %3$d narį į „%2$s“?</item>
   </plurals>
   <string name="AddMembersActivity__add">Pridėti</string>
+  <string name="AddMembersActivity__add_members">Pridėti narius</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Suteikti šiai grupei pavadinimą</string>
   <string name="AddGroupDetailsFragment__create_group">Sukurti grupę</string>
@@ -1769,6 +1772,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Slinkti į apačią</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Saugumo numerio pasikeitimai</string>
+  <string name="safety_number_change_dialog__accept">Priimti</string>
   <string name="safety_number_change_dialog__send_anyway">Vis tiek siųsti</string>
   <string name="safety_number_change_dialog__call_anyway">Vis tiek skambinti</string>
   <string name="safety_number_change_dialog__join_call">Prisijungti prie skambučio</string>
@@ -2828,6 +2832,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Nukopijuota į iškarpinę</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Šiuo metu nuoroda nėra aktyvi</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Nepavyko atkurti balso žinutės</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Balso žinutė · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s naudotojui %2$s</string>
@@ -2898,6 +2903,12 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">Ieškoti šalių</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Praleisti</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d narys</item>
+    <item quantity="few">%1$d nariai</item>
+    <item quantity="many">%1$d narių</item>
+    <item quantity="other">%1$d narys</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Bendrinti</string>
   <string name="ShareActivity__send">Siųsti</string>
@@ -3165,11 +3176,11 @@
   <string name="ConversationSettingsFragment__start_video_call">Pradėti vaizdo skambutį</string>
   <string name="ConversationSettingsFragment__start_audio_call">Pradėti garso skambutį</string>
   <string name="ConversationSettingsFragment__message">Žinutė</string>
-  <string name="ConversationSettingsFragment__video">Vaizdo skambutis</string>
-  <string name="ConversationSettingsFragment__audio">Garso skambutis</string>
+  <string name="ConversationSettingsFragment__video">Vaizdo skamb.</string>
+  <string name="ConversationSettingsFragment__audio">Garso skamb.</string>
   <string name="ConversationSettingsFragment__call">Skambinti</string>
-  <string name="ConversationSettingsFragment__mute">Išjungti pranešimus</string>
-  <string name="ConversationSettingsFragment__muted">Pranešimai išjungti</string>
+  <string name="ConversationSettingsFragment__mute">Išj. pranešimus</string>
+  <string name="ConversationSettingsFragment__muted">Pranešimai išj.</string>
   <string name="ConversationSettingsFragment__search">Ieškoti</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Išnykstančios žinutės</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">Garsai ir pranešimai</string>
@@ -3212,7 +3223,16 @@
   <string name="PlaybackSpeedToggleTextView__p5x">0,5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Naujas mokėjimas</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Nauja žinutė</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Ieškoti vardo ar numerio</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

@@ -55,7 +55,7 @@
   <string name="DraftDatabase_Draft_voice_note">(Nota de voz)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galería</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Archivo</string>
   <string name="AttachmentKeyboard_contact">Contacto</string>
   <string name="AttachmentKeyboard_location">Posición</string>
@@ -242,9 +242,9 @@
   <string name="ConversationActivity_full">Completa</string>
   <string name="ConversationActivity_error_sending_media">Fallo al enviar adjunto</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Denunciado como spam y bloqueado.</string>
-  <string name="ConversationActivity_gifs_have_moved">Los GIFs se han mudado</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Encuentra GIFs al lado de los emojis y stickers.</string>
-  <string name="ConversationActivity__gifs_are_now_here">Los GIFs los encuentras aquí.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">Los GIFs se han mudado</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Encuentra GIFs al lado de los emojis y stickers.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">Los GIFs los encuentras aquí.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaje no leído</item>
@@ -329,6 +329,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Algunas personas no pueden añadirse a grupos antiguos.</string>
+  <string name="CreateGroupActivity__select_members">Seleccionar participantes</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fallo al establecer la foto de perfil</string>
@@ -435,6 +436,7 @@
   <string name="AddToGroupActivity_add_to_groups">Añadir a grupos</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">No se puede añadir a esta persona a grupos del sistema antiguo.</string>
   <string name="AddToGroupActivity_add">Añadir</string>
+  <string name="AddToGroupActivity_add_to_a_group">Añadir a un grupo</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Selecciona nuev@ admin</string>
   <string name="ChooseNewAdminActivity_done">Hecho</string>
@@ -565,6 +567,7 @@
     <item quantity="other">¿Añadir %3$d participantes a «%2$s»?</item>
   </plurals>
   <string name="AddMembersActivity__add">Añadir</string>
+  <string name="AddMembersActivity__add_members">Añadir participantes</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Nombra este grupo</string>
   <string name="AddGroupDetailsFragment__create_group">Crear grupo</string>
@@ -1639,6 +1642,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Desliza hasta el final</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Cambios en cifras de seguridad</string>
+  <string name="safety_number_change_dialog__accept">Aceptar</string>
   <string name="safety_number_change_dialog__send_anyway">Enviar de todas formas</string>
   <string name="safety_number_change_dialog__call_anyway">Llamar de todas formas</string>
   <string name="safety_number_change_dialog__join_call">Unirse a la llamada</string>
@@ -2052,7 +2056,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_off">Inactivo</string>
   <string name="preferences_on">Activo</string>
   <string name="preferences_proxy_address">Dirección del proxy</string>
-  <string name="preferences_only_use_a_proxy_if">Usa un proxy si Signal no puede conectar en una Wi-Fi o en la red móvil.</string>
+  <string name="preferences_only_use_a_proxy_if">Usa un proxy si Signal no se puede conectar en una Wi-Fi o en la red móvil.</string>
   <string name="preferences_share">Compartir</string>
   <string name="preferences_save">Guardar</string>
   <string name="preferences_connecting_to_proxy">Conectando con el proxy …</string>
@@ -2668,6 +2672,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Copiado al portapapeles</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Enlace (actualmente) inactivo</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Fallo al reproducir la nota de voz</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Nota de voz · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s de %2$s</string>
@@ -2734,6 +2739,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="DeleteAccountCountryPickerFragment__search_countries">Buscar país</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Omitir</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d participante</item>
+    <item quantity="other">%1$d participantes</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Compartir</string>
   <string name="ShareActivity__send">Enviar</string>
@@ -3044,7 +3053,16 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PlaybackSpeedToggleTextView__p5x">1/2x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Nuevo pago</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Nuevo mensaje</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Buscar por nombre o número</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

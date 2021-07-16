@@ -51,7 +51,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(svar)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galleri</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fil</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Posisjon</string>
@@ -428,6 +428,7 @@
   <string name="AddToGroupActivity_add_to_groups">Legg til gruppene</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Denne personen kan ikke legges til \"legacy\"-grupper.</string>
   <string name="AddToGroupActivity_add">Legg til</string>
+  <string name="AddToGroupActivity_add_to_a_group">Legg til gruppen</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Velg ny administrator</string>
   <string name="ChooseNewAdminActivity_done">Ferdig</string>
@@ -558,6 +559,7 @@
     <item quantity="other">Legge %3$d medlemmer til \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Legg til</string>
+  <string name="AddMembersActivity__add_members">Legg til medlemmer</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Navngi denne gruppen</string>
   <string name="AddGroupDetailsFragment__create_group">Lag gruppe</string>
@@ -1618,6 +1620,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rull til bunnen</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Endringer av sikkerhetsnummer</string>
+  <string name="safety_number_change_dialog__accept">Godta</string>
   <string name="safety_number_change_dialog__send_anyway">Send likevel</string>
   <string name="safety_number_change_dialog__call_anyway">Ring allikevel</string>
   <string name="safety_number_change_dialog__join_call">Bli med i samtale</string>
@@ -2917,7 +2920,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Egendefinerte varsler</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Ny melding</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

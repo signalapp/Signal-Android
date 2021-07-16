@@ -55,7 +55,7 @@
   <string name="DraftDatabase_Draft_voice_note">(Messaggio vocale)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galleria</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">File</string>
   <string name="AttachmentKeyboard_contact">Contatto</string>
   <string name="AttachmentKeyboard_location">Posizione</string>
@@ -242,9 +242,9 @@
   <string name="ConversationActivity_full">Piena</string>
   <string name="ConversationActivity_error_sending_media">Errore durante l\'invio del media</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Segnalato come spam e bloccato.</string>
-  <string name="ConversationActivity_gifs_have_moved">Le GIF si sono spostate</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Cerca le GIF accanto a emoji e adesivi.</string>
-  <string name="ConversationActivity__gifs_are_now_here">Le GIF ora sono qui.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">Le GIF si sono spostate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Cerca le GIF accanto a emoji e adesivi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">Le GIF ora sono qui.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d messaggio non letto</item>
@@ -329,6 +329,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Alcuni contatti non possono appartenere a gruppi legacy.</string>
+  <string name="CreateGroupActivity__select_members">Seleziona membri</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profilo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Errore salvando la foto del profilo</string>
@@ -435,6 +436,7 @@
   <string name="AddToGroupActivity_add_to_groups">Aggiungi ai gruppi</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Questa persona non può essere aggiunta ai gruppi legacy.</string>
   <string name="AddToGroupActivity_add">Aggiungi</string>
+  <string name="AddToGroupActivity_add_to_a_group">Aggiungi a un gruppo</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Scegli un nuovo amministratore</string>
   <string name="ChooseNewAdminActivity_done">Fatto</string>
@@ -565,6 +567,7 @@
     <item quantity="other">Aggiungere %3$d membri a \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Aggiungi</string>
+  <string name="AddMembersActivity__add_members">Aggiungi membri</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Dai un nome a questo gruppo</string>
   <string name="AddGroupDetailsFragment__create_group">Crea gruppo</string>
@@ -1639,6 +1642,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Salta alla fine</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Modifiche al codice di sicurezza</string>
+  <string name="safety_number_change_dialog__accept">Accetta</string>
   <string name="safety_number_change_dialog__send_anyway">Invia comunque</string>
   <string name="safety_number_change_dialog__call_anyway">Chiama comunque</string>
   <string name="safety_number_change_dialog__join_call">Unisciti alla chiamata</string>
@@ -2668,6 +2672,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Copiato negli appunti</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Il link non è al momento attivo</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Impossibile riprodurre il messaggio vocale</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Messaggio vocale · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s a %2$s</string>
@@ -2734,6 +2739,10 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">Cerca paesi</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Salta</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d membro</item>
+    <item quantity="other">%1$d membri</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Condividi</string>
   <string name="ShareActivity__send">Invia</string>
@@ -3044,7 +3053,16 @@
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Nuovo pagamento</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Nuovo messaggio</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Cerca nome o numero</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

@@ -51,7 +51,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(جواب )</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">گیلری</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">فائل</string>
   <string name="AttachmentKeyboard_contact">رابطہ</string>
   <string name="AttachmentKeyboard_location">مقام</string>
@@ -424,6 +424,7 @@
   <string name="AddToGroupActivity_add_to_groups">گروپوں میں شامل کریں</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">اس شخص کو میراثی گروپوں میں شامل نہیں کیا جاسکتا۔</string>
   <string name="AddToGroupActivity_add">شامل کریں</string>
+  <string name="AddToGroupActivity_add_to_a_group">کسی گروپ میں شامل کریں</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">نیا ایڈمن منتخب کریں</string>
   <string name="ChooseNewAdminActivity_done">ہو گیا</string>
@@ -554,6 +555,7 @@
     <item quantity="other">\"%2$s\" میں\"%3$d\" ممبروں کو شامل کریں؟</item>
   </plurals>
   <string name="AddMembersActivity__add">شامل کریں</string>
+  <string name="AddMembersActivity__add_members">ممبران شامل کریں</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">اس گروپ کو نام دیں</string>
   <string name="AddGroupDetailsFragment__create_group">گروپ بنائیں</string>
@@ -1588,6 +1590,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">نیچے سکرول کریں</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">حفاظت نمبر میں تبدیلیاں</string>
+  <string name="safety_number_change_dialog__accept">قبول کریں</string>
   <string name="safety_number_change_dialog__send_anyway">بہر حال بھیجیں</string>
   <string name="safety_number_change_dialog__call_anyway">ویسے بھی کال کریں</string>
   <string name="safety_number_change_dialog__join_call">کال میں شامل ہوں</string>
@@ -2589,7 +2592,13 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">نيا پیغام</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">ایس ایم ایس</string>
   <!--EOF-->
 </resources>

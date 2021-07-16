@@ -58,7 +58,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(jibu)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Picha</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Faili</string>
   <string name="AttachmentKeyboard_contact">Mwasiliani</string>
   <string name="AttachmentKeyboard_location">Eneo</string>

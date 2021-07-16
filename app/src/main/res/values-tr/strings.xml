@@ -55,7 +55,7 @@
   <string name="DraftDatabase_Draft_voice_note">(Sesli ileti)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeri</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Dosya</string>
   <string name="AttachmentKeyboard_contact">Kişi</string>
   <string name="AttachmentKeyboard_location">Konum</string>
@@ -242,9 +242,9 @@
   <string name="ConversationActivity_full">Dolu</string>
   <string name="ConversationActivity_error_sending_media">İçerik gönderilemedi</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Gereksiz olarak bildirildi ve engellendi</string>
-  <string name="ConversationActivity_gifs_have_moved">GIF\'ler taşındı</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIF\'leri emoji ve çıkartmaların yanında bulabilirsiniz.</string>
-  <string name="ConversationActivity__gifs_are_now_here">GIF\'ler artık burada.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF\'ler taşındı</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIF\'leri emoji ve çıkartmaların yanında bulabilirsiniz.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIF\'ler artık burada.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d okunmamış ileti</item>
@@ -435,6 +435,7 @@
   <string name="AddToGroupActivity_add_to_groups">Gruplara ekle</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Bu kullanıcı eski bir gruba eklenemez.</string>
   <string name="AddToGroupActivity_add">Ekle</string>
+  <string name="AddToGroupActivity_add_to_a_group">Bir gruba ekle</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Yeni yönetici seç</string>
   <string name="ChooseNewAdminActivity_done">Tamam</string>
@@ -565,6 +566,7 @@
     <item quantity="other">\"%2$s\" grubuna %3$d üye eklensin mi?</item>
   </plurals>
   <string name="AddMembersActivity__add">Ekle</string>
+  <string name="AddMembersActivity__add_members">Üye ekle</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Bu grubu adlandır</string>
   <string name="AddGroupDetailsFragment__create_group">Grup oluştur</string>
@@ -1637,6 +1639,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">En alta kaydır</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Güvenlik Numarası Değişiklikleri</string>
+  <string name="safety_number_change_dialog__accept">Kabul et</string>
   <string name="safety_number_change_dialog__send_anyway">Yine de gönder</string>
   <string name="safety_number_change_dialog__call_anyway">Yine de ara</string>
   <string name="safety_number_change_dialog__join_call">Aramaya katıl</string>
@@ -3042,7 +3045,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Yeni ileti</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

@@ -51,7 +51,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(മറുപടി)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ഗാലറി</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">ഫയൽ</string>
   <string name="AttachmentKeyboard_contact">കോൺ‌ടാക്റ്റ്</string>
   <string name="AttachmentKeyboard_location">സ്ഥാനം</string>
@@ -424,6 +424,7 @@
   <string name="AddToGroupActivity_add_to_groups">ഗ്രൂപ്പുകളിലേക്ക് ചേർക്കുക</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">ഈ വ്യക്തിയെ ലെഗസി ഗ്രൂപ്പുകളിൽ ചേർക്കാൻ കഴിയില്ല.</string>
   <string name="AddToGroupActivity_add">ചേർക്കുക</string>
+  <string name="AddToGroupActivity_add_to_a_group">ഒരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">പുതിയ അഡ്മിനെ തിരെഞ്ഞെടുക്കുക</string>
   <string name="ChooseNewAdminActivity_done">ചെയ്‌തു</string>
@@ -554,6 +555,7 @@
     <item quantity="other">\"%2$s\"-ലേക്ക് %3$d അംഗങ്ങളെ ചേർക്കുക?</item>
   </plurals>
   <string name="AddMembersActivity__add">ചേർക്കുക</string>
+  <string name="AddMembersActivity__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">ഈ ഗ്രൂപ്പിന് പേര് നൽകുക</string>
   <string name="AddGroupDetailsFragment__create_group">ഗ്രൂപ്പ് സൃഷ്ടിക്കുക</string>
@@ -1607,6 +1609,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">താഴേക്ക് സ്ക്രോൾ ചെയ്യുക</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">സുരക്ഷാ നമ്പർ മാറ്റങ്ങൾ</string>
+  <string name="safety_number_change_dialog__accept">സ്വീകരിക്കുക</string>
   <string name="safety_number_change_dialog__send_anyway">എന്തായാലും അയയ്ക്കുക</string>
   <string name="safety_number_change_dialog__call_anyway">എന്തായാലും വിളിക്കുക</string>
   <string name="safety_number_change_dialog__join_call">കോളിൽ ചേരുക</string>
@@ -2697,7 +2700,13 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">പുതിയ സന്ദേശം</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

@@ -54,7 +54,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(vastaus)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galleria</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Tiedosto</string>
   <string name="AttachmentKeyboard_contact">Yhteystieto</string>
   <string name="AttachmentKeyboard_location">Sijainti</string>
@@ -241,9 +241,9 @@
   <string name="ConversationActivity_full">Täynnä</string>
   <string name="ConversationActivity_error_sending_media">Virhe median lähettämisessä</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Ilmoitettu spammista ja blokattu</string>
-  <string name="ConversationActivity_gifs_have_moved">GIFfit ovat siirtyneet</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Löydät GIFfit emojien ja tarrojen vierestä.</string>
-  <string name="ConversationActivity__gifs_are_now_here">GIFfit ovat nyt täällä.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIFfit ovat siirtyneet</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Löydät GIFfit emojien ja tarrojen vierestä.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIFfit ovat nyt täällä.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d lukematon viesti</item>
@@ -434,6 +434,7 @@
   <string name="AddToGroupActivity_add_to_groups">Lisää ryhmiin</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Tätä henkilöä ei voida lisätä vanhan tyylisiin ryhmiin.</string>
   <string name="AddToGroupActivity_add">Lisää</string>
+  <string name="AddToGroupActivity_add_to_a_group">Lisää ryhmään</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Valitse uusi ylläpitäjä</string>
   <string name="ChooseNewAdminActivity_done">Valmis</string>
@@ -564,6 +565,7 @@
     <item quantity="other">Lisätäänkö %3$d jäsentä ryhmään %2$s?</item>
   </plurals>
   <string name="AddMembersActivity__add">Lisää</string>
+  <string name="AddMembersActivity__add_members">Lisää jäseniä</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Nimeä tämä ryhmä</string>
   <string name="AddGroupDetailsFragment__create_group">Luo ryhmä</string>
@@ -1628,6 +1630,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Vieritä alas</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Turvanumeroiden vaihdot</string>
+  <string name="safety_number_change_dialog__accept">Hyväksy</string>
   <string name="safety_number_change_dialog__send_anyway">Lähetä silti</string>
   <string name="safety_number_change_dialog__call_anyway">Soita joka tapauksessa</string>
   <string name="safety_number_change_dialog__join_call">Liity puheluun</string>
@@ -2992,7 +2995,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Äskettäin käytetyt</string>
   <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Uusi viesti</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

@@ -53,7 +53,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(ပြန်လည်ပေးပို့လာသောစာတို)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ဓါတ်ပုံပြခန်း</string>
-  <string name="AttachmentKeyboard_gif">လှုပ်ရှားနေသောရုပ်ပုံ</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">လှုပ်ရှားနေသောရုပ်ပုံ</string> -->
   <string name="AttachmentKeyboard_file">ဖိုင်</string>
   <string name="AttachmentKeyboard_contact">အဆက်အသွယ်</string>
   <string name="AttachmentKeyboard_location">တည်နေရာ</string>
@@ -416,6 +416,7 @@
   <string name="AddToGroupActivity_add_to_groups">အုပ်စုများထဲသို့ ထည့်ပါ။</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">ဤပုဂ္ဂိုလ်အား အမွေအဖွဲ့ထဲသို့ ထည့်၍မရပါ။</string>
   <string name="AddToGroupActivity_add">ထည့်သည်။</string>
+  <string name="AddToGroupActivity_add_to_a_group">အဖွဲ့တစ်ဖွဲ့ထဲသို့ ထည့်မယ်</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">အက်မင် အသစ် ရွေးချယ်ပါ။</string>
   <string name="ChooseNewAdminActivity_done">ပြီးပါပြီ။</string>
@@ -530,6 +531,7 @@
     <item quantity="other">\"%2$s\" ထဲသို့ အဖွဲ့ဝင် %3$d ဦးကို ပေါင်းထည့်မည်လား?</item>
   </plurals>
   <string name="AddMembersActivity__add">ပေါင်းထည့်မယ်</string>
+  <string name="AddMembersActivity__add_members">အဖွဲ့ဝင်များ ထည့်ပါ</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">၎င်းအဖွဲ့ကို အမည်ပေးပါ</string>
   <string name="AddGroupDetailsFragment__create_group">အဖွဲ့ ဖွဲ့မယ်</string>
@@ -1539,6 +1541,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">အောက်သို့ ဆွဲလိုက်ပါ</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">လုံခြုံရေးနံပါတ်အပြောင်းအလဲများ</string>
+  <string name="safety_number_change_dialog__accept">လက်ခံမယ်</string>
   <string name="safety_number_change_dialog__send_anyway">ဘာပဲဖြစ်ဖြစ်ပို့ပါ</string>
   <string name="safety_number_change_dialog__call_anyway">ဘာပဲဖြစ်ဖြစ်ဖုန်းခေါ်ပါ</string>
   <string name="safety_number_change_dialog__join_call">ခေါ်ဆိုမှုထဲဝင်မယ်</string>
@@ -2802,7 +2805,13 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">စိတ်ကြိုက်သတိပေးချက်များ</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">စာအသစ်</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

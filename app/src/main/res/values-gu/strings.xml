@@ -57,7 +57,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(જવાબ)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ગેલેરી</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">ફાઇલ</string>
   <string name="AttachmentKeyboard_contact">સંપર્ક</string>
   <string name="AttachmentKeyboard_location">સ્થળ</string>

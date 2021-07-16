@@ -57,7 +57,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(Amsa)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Gidan hotuna</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fayil</string>
   <string name="AttachmentKeyboard_contact">Lambar sadarwa</string>
   <string name="AttachmentKeyboard_location">Wuri</string>

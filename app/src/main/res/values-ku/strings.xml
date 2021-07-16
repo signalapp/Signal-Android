@@ -51,7 +51,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(bibersivîne)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerî</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Dosye</string>
   <string name="AttachmentKeyboard_contact">Kes</string>
   <string name="AttachmentKeyboard_location">Cîgeh</string>

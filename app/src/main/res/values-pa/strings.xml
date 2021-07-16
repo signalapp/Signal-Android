@@ -52,7 +52,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(ਜਵਾਬ )</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ਗੈਲਰੀ</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">ਫਾਇਲ</string>
   <string name="AttachmentKeyboard_contact">ਸੰਪਰਕ </string>
   <string name="AttachmentKeyboard_location">ਟਿਕਾਣਾ</string>
@@ -425,6 +425,7 @@
   <string name="AddToGroupActivity_add_to_groups">ਗਰੁੱਪਾਂ ਵਿੱਚ ਜੋੜੋ</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">ਇਸ ਵਿਅਕਤੀ ਨੂੰ ਵਿਰਾਸਤ ਸਮੂਹਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ.</string>
   <string name="AddToGroupActivity_add">ਜੋੜੋ</string>
+  <string name="AddToGroupActivity_add_to_a_group">ਸਮੂਹ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">ਨਵਾਂ ਐਡਮਿਨ ਚੁਣੋ</string>
   <string name="ChooseNewAdminActivity_done">ਹੋ ਗਿਆ</string>
@@ -503,6 +504,7 @@
   <string name="AddMembersActivity__done">ਹੋ ਗਿਆ</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ਇਸ ਵਿਅਕਤੀ ਨੂੰ ਵਿਰਾਸਤ ਸਮੂਹਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ.</string>
   <string name="AddMembersActivity__add">ਜੋੜੋ</string>
+  <string name="AddMembersActivity__add_members">ਮੈਂਬਰ ਜੋੜੋ</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">ਇਸ ਗਰੁੱਪ ਦਾ ਨਾਂ</string>
   <string name="AddGroupDetailsFragment__create_group">ਗਰੁੱਪ ਬਣਾਓ</string>
@@ -1342,6 +1344,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">ਥੱਲੇ ਤਕ ਸਕ੍ਰੌਲ ਕਰੋ</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">ਸੁਰੱਖਿਆ ਨੰਬਰ ਤਬਦੀਲੀਆਂ</string>
+  <string name="safety_number_change_dialog__accept">ਮਨਜ਼ੂਰ</string>
   <string name="safety_number_change_dialog__send_anyway">ਫਿਰ ਵੀ ਭੇਜੋ</string>
   <string name="safety_number_change_dialog__call_anyway">ਫਿਰ ਵੀ ਕਾਲ ਕਰੋ</string>
   <string name="safety_number_change_dialog__join_call">ਕਾਲ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ</string>
@@ -2492,7 +2495,13 @@
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ਕਸਟਮ ਸੂਚਨਾਵਾਂ </string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">ਨਵਾਂ ਸੁਨੇਹਾ </string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

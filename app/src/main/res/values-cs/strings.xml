@@ -57,7 +57,7 @@
   <string name="DraftDatabase_Draft_voice_note">(Hlasová zpráva)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerie</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Soubor</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Poloha</string>
@@ -244,9 +244,9 @@
   <string name="ConversationActivity_full">Plno</string>
   <string name="ConversationActivity_error_sending_media">Chyba při odesílání médií</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Nahlášeno jako spam a zablokováno</string>
-  <string name="ConversationActivity_gifs_have_moved">GIFy se přesunuly</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIFy hledejte vedle smajlíků a nálepek.</string>
-  <string name="ConversationActivity__gifs_are_now_here">GIFy jsou teď tady.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIFy se přesunuly</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIFy hledejte vedle smajlíků a nálepek.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIFy jsou teď tady.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepřečtená zpráva</item>
@@ -351,6 +351,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Některé kontakty nemohou být ve starších skupinách.</string>
+  <string name="CreateGroupActivity__select_members">Vyberte členy</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Chyba při nastavení profilové fotografie</string>
@@ -459,6 +460,7 @@
   <string name="AddToGroupActivity_add_to_groups">Přidat do skupin</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Tento člověk nemůže být přidán do starších skupin.</string>
   <string name="AddToGroupActivity_add">Přidat</string>
+  <string name="AddToGroupActivity_add_to_a_group">Přidat do skupiny</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Vyberte nového správce.</string>
   <string name="ChooseNewAdminActivity_done">Hotovo</string>
@@ -621,6 +623,7 @@
     <item quantity="other">Přidat %3$d členů do \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Přidat</string>
+  <string name="AddMembersActivity__add_members">Přidat členy</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Pojmenovat tuto skupinu</string>
   <string name="AddGroupDetailsFragment__create_group">Vytvořit skupinu</string>
@@ -1768,6 +1771,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Posun na konec</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Změny bezpečnostního čísla</string>
+  <string name="safety_number_change_dialog__accept">Přijmout</string>
   <string name="safety_number_change_dialog__send_anyway">Přesto poslat</string>
   <string name="safety_number_change_dialog__call_anyway">Přesto zavolat</string>
   <string name="safety_number_change_dialog__join_call">Připojit se k hovoru</string>
@@ -2827,6 +2831,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Zkopírováno do schránky</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Odkaz není v současné době aktivní</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Nepodařilo ze přehrát zvukovou zprávu</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Hlasová zpráva · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s pro %2$s</string>
@@ -2897,6 +2902,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="DeleteAccountCountryPickerFragment__search_countries">Hledat země</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Přeskočit</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d člen</item>
+    <item quantity="few">%1$d členové</item>
+    <item quantity="many">%1$d členů</item>
+    <item quantity="other">%1$d členů</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Sdílet</string>
   <string name="ShareActivity__send">Odeslat</string>
@@ -3211,7 +3222,16 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Nová platba</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Nová zpráva</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Vyhledat jméno nebo číslo</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">%1$s</string>
   <!--EOF-->
 </resources>

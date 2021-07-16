@@ -56,7 +56,7 @@
   <string name="DraftDatabase_Draft_voice_note">(Гласовна порука)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Галерија</string>
-  <string name="AttachmentKeyboard_gif">ГИФ</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">ГИФ</string> -->
   <string name="AttachmentKeyboard_file">Датотека</string>
   <string name="AttachmentKeyboard_contact">Контакт</string>
   <string name="AttachmentKeyboard_location">Локација</string>
@@ -243,9 +243,9 @@
   <string name="ConversationActivity_full">Пуно</string>
   <string name="ConversationActivity_error_sending_media">Грешка приликом слања медија</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Пријављено као нежељена пошта и блокирано.</string>
-  <string name="ConversationActivity_gifs_have_moved">ГИФ-ови су премештени</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Потражите ГИФ-ове поред Емоџи и налепница.</string>
-  <string name="ConversationActivity__gifs_are_now_here">ГИФ-ови су сада овде</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">ГИФ-ови су премештени</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Потражите ГИФ-ове поред Емоџи и налепница.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">ГИФ-ови су сада овде</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочитана порука</item>
@@ -340,6 +340,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Неки контакти не могу бити у застарелим групама.</string>
+  <string name="CreateGroupActivity__select_members">Одаберите чланове</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Профил</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Грешка постављања профилне слике</string>
@@ -447,6 +448,7 @@
   <string name="AddToGroupActivity_add_to_groups">Додај у групе</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Ова особа не може да се дода у застареле групе.</string>
   <string name="AddToGroupActivity_add">Додај</string>
+  <string name="AddToGroupActivity_add_to_a_group">Додај у групу</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Изабери новог администратора</string>
   <string name="ChooseNewAdminActivity_done">Готово</string>
@@ -593,6 +595,7 @@
     <item quantity="other">Додати %3$d чланова у групу „%2$s“?</item>
   </plurals>
   <string name="AddMembersActivity__add">Додај</string>
+  <string name="AddMembersActivity__add_members">Додај чланове</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Дајте назив групи</string>
   <string name="AddGroupDetailsFragment__create_group">Направи групу</string>
@@ -1703,6 +1706,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Клизај на дно</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Промене сигурносног броја</string>
+  <string name="safety_number_change_dialog__accept">Прихвати</string>
   <string name="safety_number_change_dialog__send_anyway">Нема везе, пошаљи</string>
   <string name="safety_number_change_dialog__call_anyway">Нема везе, позови</string>
   <string name="safety_number_change_dialog__join_call">Придружи се позиву</string>
@@ -2748,6 +2752,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Копирано у остави</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Веза није тренутно активна</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Гласовна порука није успешно учитана</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Гласовна порука · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s за %2$s</string>
@@ -2816,6 +2821,11 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">Претражити државе</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Прескочи</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d члан(ов)а</item>
+    <item quantity="few">%1$d члан(ов)а</item>
+    <item quantity="other">%1$d члан(ов)а</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Поделите</string>
   <string name="ShareActivity__send">Пошаљи</string>
@@ -3128,7 +3138,16 @@
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Нова уплата</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Нова порука</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Претрага имена или броја</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">СМС</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

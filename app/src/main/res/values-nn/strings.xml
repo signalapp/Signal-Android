@@ -55,7 +55,7 @@
   <string name="DraftDatabase_Draft_voice_note">(Talemelding)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galleri</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fil</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Plassering</string>
@@ -242,9 +242,9 @@
   <string name="ConversationActivity_full">Fullt</string>
   <string name="ConversationActivity_error_sending_media">Klarte ikkje senda media</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Rapportert som søppel og blokkert</string>
-  <string name="ConversationActivity_gifs_have_moved">GIF-ar har flytta</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Du finn GIF-ane med emojiane og klistremerkar.</string>
-  <string name="ConversationActivity__gifs_are_now_here">GIF-ane er her no.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF-ar har flytta</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Du finn GIF-ane med emojiane og klistremerkar.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIF-ane er her no.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulesen melding</item>
@@ -330,6 +330,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Visse kontaktar kan ikkje vera i eldre grupper.</string>
+  <string name="CreateGroupActivity__select_members">Vel medlemmar</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Klarte ikkje endra profilbildet</string>
@@ -436,6 +437,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="AddToGroupActivity_add_to_groups">Legg til i grupper</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Denne kontakten kan ikkje vera med i eldre grupper.</string>
   <string name="AddToGroupActivity_add">Legg til</string>
+  <string name="AddToGroupActivity_add_to_a_group">Legg til i ei gruppe</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Vel ny administrator.</string>
   <string name="ChooseNewAdminActivity_done">Ferdig</string>
@@ -570,6 +572,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
     <item quantity="other">Legg til %3$d medlemmar til «%2$s»?</item>
   </plurals>
   <string name="AddMembersActivity__add">Legg til</string>
+  <string name="AddMembersActivity__add_members">Legg til medlemmar</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Døyp gruppa</string>
   <string name="AddGroupDetailsFragment__create_group">Lag gruppe</string>
@@ -1643,6 +1646,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rull til botnen</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Endringar med tryggleiksnummer.</string>
+  <string name="safety_number_change_dialog__accept">Godta</string>
   <string name="safety_number_change_dialog__send_anyway">Send uansett</string>
   <string name="safety_number_change_dialog__call_anyway">Ring uansett</string>
   <string name="safety_number_change_dialog__join_call">Bli med i samtalen</string>
@@ -2674,6 +2678,7 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopiert til utklippstavla</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Denne lenka er ikkje aktiv no</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Klarte ikkje spela av talemelding</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Talemelding · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s til %2$s</string>
@@ -2740,6 +2745,10 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="DeleteAccountCountryPickerFragment__search_countries">Søk etter land</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Hopp over</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d medlem</item>
+    <item quantity="other">%1$d medlemmar</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Del</string>
   <string name="ShareActivity__send">Send</string>
@@ -3050,7 +3059,16 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Ny betaling</string>
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Ny melding</string>
+  <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Søk etter namn eller nummer</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

@@ -52,7 +52,7 @@
   <string name="DraftDatabase_Draft_voice_note">(Μήνυμα φωνής)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Πινακοθήκη</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Αρχείο</string>
   <string name="AttachmentKeyboard_contact">Επαφή</string>
   <string name="AttachmentKeyboard_location">Τοποθεσία</string>
@@ -239,9 +239,9 @@
   <string name="ConversationActivity_full">Γεμάτο</string>
   <string name="ConversationActivity_error_sending_media">Σφάλμα στην αποστολή πολυμέσων</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Αναφέρθηκε ως ανεπιθύμητο και είναι σε φραγή</string>
-  <string name="ConversationActivity_gifs_have_moved">Τα GIF μεταφέρθηκαν</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Μπορείς να βρεις τα GIF δίπλα στα emoji και τα αυτοκόλλητα.</string>
-  <string name="ConversationActivity__gifs_are_now_here">Τα GIF θα είναι πλέον εδώ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">Τα GIF μεταφέρθηκαν</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Μπορείς να βρεις τα GIF δίπλα στα emoji και τα αυτοκόλλητα.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">Τα GIF θα είναι πλέον εδώ.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d μη αναγνωσμένο μήνυμα</item>
@@ -432,6 +432,7 @@
   <string name="AddToGroupActivity_add_to_groups">Προσθήκη σε ομάδες</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Αυτό το άτομο δεν μπορεί να προστεθεί σε ομάδες παλαιού τύπου.</string>
   <string name="AddToGroupActivity_add">Προσθήκη</string>
+  <string name="AddToGroupActivity_add_to_a_group">Προσθήκη σε μια ομάδα</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Επιλογή νέου διαχειριστή</string>
   <string name="ChooseNewAdminActivity_done">Τέλος</string>
@@ -562,6 +563,7 @@
     <item quantity="other">Προσθήκη %3$d μελών στο \"%2$s\";</item>
   </plurals>
   <string name="AddMembersActivity__add">Προσθήκη</string>
+  <string name="AddMembersActivity__add_members">Προσθήκη μελών</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Ονομασία ομάδας</string>
   <string name="AddGroupDetailsFragment__create_group">Δημιουργία ομάδας</string>
@@ -1623,6 +1625,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Πήγαινε στο τέρμα</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Αλλαγές αριθμού ασφαλείας</string>
+  <string name="safety_number_change_dialog__accept">Αποδοχή</string>
   <string name="safety_number_change_dialog__send_anyway">Αποστόλη παρ\' όλα αυτά</string>
   <string name="safety_number_change_dialog__call_anyway">Κλήση παρ\' όλα αυτά</string>
   <string name="safety_number_change_dialog__join_call">Είσοδος στην κλήση</string>
@@ -2903,7 +2906,13 @@
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Νέο μήνυμα</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

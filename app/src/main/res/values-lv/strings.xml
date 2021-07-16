@@ -61,7 +61,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(atbilde)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerija</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fails</string>
   <string name="AttachmentKeyboard_contact">Kontakts</string>
   <string name="AttachmentKeyboard_location">Atrašanās vieta</string>

@@ -53,7 +53,7 @@
   <string name="DraftDatabase_Draft_voice_note">(音声メッセージ)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ギャラリー</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">ファイル</string>
   <string name="AttachmentKeyboard_contact">連絡先</string>
   <string name="AttachmentKeyboard_location">場所</string>
@@ -240,9 +240,9 @@
   <string name="ConversationActivity_full">満席</string>
   <string name="ConversationActivity_error_sending_media">メディア送信エラー</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">スパムとして報告してブロックしました。</string>
-  <string name="ConversationActivity_gifs_have_moved">GIFは移動しました</string>
-  <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIFは絵文字やステッカーの隣にあります。</string>
-  <string name="ConversationActivity__gifs_are_now_here">GIFはここです。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIFは移動しました</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIFは絵文字やステッカーの隣にあります。</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIFはここです。</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d件の未読メッセージ</item>
@@ -422,6 +422,7 @@
   <string name="AddToGroupActivity_add_to_groups">グループへ追加</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">このユーザーはレガシーグループに追加できません。</string>
   <string name="AddToGroupActivity_add">追加する</string>
+  <string name="AddToGroupActivity_add_to_a_group">グループへ追加</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">新しい管理者を選択</string>
   <string name="ChooseNewAdminActivity_done">完了</string>
@@ -536,6 +537,7 @@
     <item quantity="other">%3$d人のメンバーを「%2$s」へ追加しますか？</item>
   </plurals>
   <string name="AddMembersActivity__add">追加する</string>
+  <string name="AddMembersActivity__add_members">メンバーの追加</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">このグループに名前を付ける</string>
   <string name="AddGroupDetailsFragment__create_group">グループ作成</string>
@@ -1563,6 +1565,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">一番下までスクロール</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">安全番号の変更</string>
+  <string name="safety_number_change_dialog__accept">承認する</string>
   <string name="safety_number_change_dialog__send_anyway">とにかく送信する</string>
   <string name="safety_number_change_dialog__call_anyway">とにかく発信する</string>
   <string name="safety_number_change_dialog__join_call">通話に参加する</string>
@@ -2862,7 +2865,13 @@
   <string name="PlaybackSpeedToggleTextView__p5x">0.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">新着メッセージ</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

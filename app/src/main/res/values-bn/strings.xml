@@ -60,7 +60,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(উত্তর)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">গ্যাল্যারি</string>
-  <string name="AttachmentKeyboard_gif">জিফ</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">জিফ</string> -->
   <string name="AttachmentKeyboard_file">ফাইল</string>
   <string name="AttachmentKeyboard_contact">পরিচিতি</string>
   <string name="AttachmentKeyboard_location">স্থান</string>

@@ -53,7 +53,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(err)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Tamsikent</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Afaylu</string>
   <string name="AttachmentKeyboard_contact">Anermis</string>
   <string name="AttachmentKeyboard_location">Adig</string>
@@ -428,6 +428,7 @@
   <string name="AddToGroupActivity_add_to_groups">Rnu ɣer igrawen</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Amdan-a ulamek i d-yettwarna ɣer igrawen iqburen.</string>
   <string name="AddToGroupActivity_add">Rnu</string>
+  <string name="AddToGroupActivity_add_to_a_group">Rnu ɣer ugraw</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Fren anedbal amaynut</string>
   <string name="ChooseNewAdminActivity_done">Yemmed</string>
@@ -558,6 +559,7 @@
     <item quantity="other">Rnu %3$d n iɛeggalen ɣer \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Rnu</string>
+  <string name="AddMembersActivity__add_members">Rnu iɛeggalen</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Efk isem i ugraw-agi</string>
   <string name="AddGroupDetailsFragment__create_group">Snulfu-d agraw</string>
@@ -1607,6 +1609,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Drurem d akessar</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Amyibdel n WuṭṭunAɣellsan</string>
+  <string name="safety_number_change_dialog__accept">Qbel</string>
   <string name="safety_number_change_dialog__send_anyway">Azen akken ibɣu yili</string>
   <string name="safety_number_change_dialog__call_anyway">Siwel akken yebɣu yili</string>
   <string name="safety_number_change_dialog__join_call">Kcem ɣer usiwel</string>
@@ -2725,7 +2728,13 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Sagen ilɣa</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">Izen amaynut</string>
+  <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

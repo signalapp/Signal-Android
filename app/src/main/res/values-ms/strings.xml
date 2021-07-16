@@ -53,7 +53,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(balas)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeri</string>
-  <string name="AttachmentKeyboard_gif">GIF</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fail</string>
   <string name="AttachmentKeyboard_contact">Kenalan</string>
   <string name="AttachmentKeyboard_location">Lokasi</string>
