@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tempLaout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/core_grey_95"
+    android:gravity="start|center_vertical"
+    android:orientation="vertical"
+    android:paddingStart="5dp"
+    android:paddingEnd="0dp">
+
+    <TextView
+        android:id="@+id/temp_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:defaultFocusHighlightEnabled="false"
+        android:ellipsize="marquee"
+        android:focusable="false"
+        android:gravity="start|center_vertical"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/item_textsize"
+        android:visibility="gone"
+        tools:targetApi="o" />
+
+    <TextView
+        android:id="@+id/temp_item_name2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:defaultFocusHighlightEnabled="false"
+        android:ellipsize="marquee"
+        android:focusable="false"
+        android:gravity="start|center_vertical"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/item_textsize"
+        tools:targetApi="o" />
+</FrameLayout>

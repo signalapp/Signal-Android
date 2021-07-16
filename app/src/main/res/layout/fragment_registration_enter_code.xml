@@ -1,142 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_weight="1"
+    android:background="@color/sim_background"
+    android:defaultFocusHighlightEnabled="false"
+    android:fillViewport="true"
     tools:context=".registration.fragments.EnterCodeFragment">
 
-    <ScrollView
-        android:id="@+id/scroll_view"
+    <TextView
+        android:id="@+id/verification_entry"
+        style="@style/Mp02.Signal.Text.BigCommonTextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="50dp"
+        android:text="Verification code"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/verification_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:cursorVisible="true"
+        android:hint="Enter code here"
+        android:inputType="number"
+        android:minWidth="3dp"
+        android:nextFocusUp="@id/phone_number_entry"
+        android:nextFocusDown="@id/phone_number_nav"
+        android:singleLine="true"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white_focus"
+        android:textColorHint="@color/white_not_focus"
+        android:textCursorDrawable="@drawable/mp02_cursor_style"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verification_entry" />
+
+    <TextView
+        android:id="@+id/verification_nav"
+        style="@style/Mp02.Signal.Text.CommonTextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/RegistrationActivity_next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/enter_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:defaultFocusHighlightEnabled="false"
+        android:visibility="gone"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:context=".registration.fragments.EnterCodeFragment">
-
-            <Button
-                android:id="@+id/wrong_number"
-                style="@style/Button.Borderless.Registration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_toEndOf="@id/call_me_count_down"
-                android:text="@string/RegistrationActivity_wrong_number"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/call_me_count_down"
-                app:layout_constraintTop_toBottomOf="@+id/code" />
-
-            <Button
-                android:id="@+id/no_code"
-                style="@style/Button.Borderless.Registration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_toEndOf="@id/call_me_count_down"
-                android:text="@string/RegistrationActivity_contact_signal_support"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/call_me_count_down"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/wrong_number"
-                tools:visibility="visible" />
-
-            <TextView
-                android:id="@+id/verify_header"
-                style="@style/Signal.Text.Headline.Registration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="32dp"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/RegistrationActivity_enter_the_code_we_sent_to_s" />
-
-            <org.thoughtcrime.securesms.components.registration.CallMeCountDownView
-                android:id="@+id/call_me_count_down"
-                style="@style/Button.Borderless.Registration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/code"
-                app:layout_constraintEnd_toStartOf="@+id/wrong_number"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/wrong_number"
-                tools:text="@string/RegistrationActivity_call" />
-
-            <org.thoughtcrime.securesms.components.registration.VerificationCodeView
-                android:id="@+id/code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="32dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/verify_header" />
-
-            <LinearLayout
-                android:id="@+id/cell_service_warning"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:alpha="0"
-                android:background="@drawable/registration_no_cell_service_warning_border"
-                android:gravity="center"
-                android:paddingStart="8dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="4dp"
-                android:text="@string/RegistrationActivity_make_sure_your_phone_has_a_cellular_signal"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/no_code"
-                tools:alpha="1"
-                tools:visibility="visible">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_margin="2dp"
-                    android:background="@drawable/ic_error_outline_14_ultramarine"
-                    android:importantForAccessibility="no" />
-
-                <TextView
-                    style="@style/Signal.Text.Body.Registration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/RegistrationActivity_make_sure_your_phone_has_a_cellular_signal"
-                    android:textAlignment="center"
-                    android:textColor="@color/core_ultramarine"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
-
-    <org.thoughtcrime.securesms.components.registration.VerificationPinKeyboard
-        android:id="@+id/keyboard"
+    <FrameLayout
+        android:id="@+id/verification_loading"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:background="@color/sim_background"
+        android:visibility="gone">
 
-</LinearLayout>
+        <ProgressBar
+            style="?android:attr/progressBarStyleLargeInverse"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/white"
+            android:padding="10dp" />
+    </FrameLayout>
+
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/verify_header"-->
+    <!--        style="@style/Mp02.Signal.Text.Title"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:focusable="false"-->
+    <!--        android:gravity="center"-->
+    <!--        android:paddingStart="10dp"-->
+    <!--        android:paddingEnd="10dp"-->
+    <!--        android:textColor="#FFFFFF"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        tools:text="@string/RegistrationActivity_enter_the_code_we_sent_to_s" />-->
+
+    <!--    <include-->
+    <!--        android:id="@+id/verify_code"-->
+    <!--        layout="@layout/mp02_twoline_item"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/verify_header" />-->
+
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/call_me_count_down"-->
+    <!--        style="@style/Mp02.Signal.Text.CommonTextButton"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:ellipsize="marquee"-->
+    <!--        android:marqueeRepeatLimit="marquee_forever"-->
+    <!--        android:paddingStart="35dp"-->
+    <!--        android:paddingEnd="1dp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/verify_code"-->
+    <!--        tools:text="@string/RegistrationActivity_call" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/wrong_number"-->
+    <!--        style="@style/Mp02.Signal.Text.CommonTextButton"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:layout_toEndOf="@id/call_me_count_down"-->
+    <!--        android:paddingStart="35dp"-->
+    <!--        android:paddingEnd="1dp"-->
+    <!--        android:text="@string/RegistrationActivity_wrong_number"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/call_me_count_down"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/call_me_count_down" />-->
+</androidx.constraintlayout.widget.ConstraintLayout>

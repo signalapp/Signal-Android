@@ -244,7 +244,7 @@ public class ThumbnailView extends FrameLayout {
     if (transferControls.isPresent()) transferControls.get().setClickable(clickable);
   }
 
-  private TransferControlView getTransferControls() {
+  public TransferControlView getTransferControls() {
     if (!transferControls.isPresent()) {
       transferControls = Optional.of(ViewUtil.inflateStub(this, R.id.transfer_controls_stub));
     }

@@ -97,7 +97,7 @@ uploadArchives {
         pom.project {
             name 'signal-service-java'
             packaging 'jar'
-            description 'Signal Service communication library for Java'
+            description 'Pigeon Service communication library for Java'
             url 'https://github.com/WhisperSystems/libsignal-service-java'
 
             scm {

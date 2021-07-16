@@ -30,7 +30,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       style="@style/Signal.Text.Body"
-      tools:text="Your Safety Number with Peter Parker changed, likely because they reinstalled Signal or changed devices. Tap Verify to confirm the new safety number. This is optional."/>
+      tools:text="Your Safety Number with Peter Parker changed, likely because they reinstalled Pigeon or changed devices. Tap Verify to confirm the new safety number. This is optional."/>
 
 
 </LinearLayout>

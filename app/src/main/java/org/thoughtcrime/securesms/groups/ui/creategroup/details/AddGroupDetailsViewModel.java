@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -30,6 +31,8 @@ import java.util.Objects;
 import java.util.Set;
 
 public final class AddGroupDetailsViewModel extends ViewModel {
+
+  private static final String TAG = Log.tag(AddGroupDetailsViewModel.class);
 
   private final LiveData<List<GroupMemberEntry.NewGroupCandidate>> members;
   private final DefaultValueLiveData<Set<RecipientId>>             deleted           = new DefaultValueLiveData<>(new HashSet<>());
@@ -113,6 +116,7 @@ public final class AddGroupDetailsViewModel extends ViewModel {
   }
 
   void create() {
+    Log.v(TAG, "Model create");
     List<GroupMemberEntry.NewGroupCandidate> members     = Objects.requireNonNull(this.members.getValue());
     Set<RecipientId>                         memberIds   = Stream.of(members).map(member -> member.getMember().getId()).collect(Collectors.toSet());
     byte[]                                   avatarBytes = avatar.getValue();

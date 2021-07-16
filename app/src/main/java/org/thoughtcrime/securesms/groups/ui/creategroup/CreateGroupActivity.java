@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,11 +41,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CreateGroupActivity extends ContactSelectionActivity {
+public class CreateGroupActivity extends ContactSelectionActivity implements ContactSelectionListFragment.ApplyCallBack{
 
   private static final String TAG = Log.tag(CreateGroupActivity.class);
 
   private static final short REQUEST_CODE_ADD_DETAILS = 17275;
+
+  public static final String GROUP_ID_EXTRA      = "group_id";
+  public static final String GROUP_THREAD_EXTRA  = "group_thread";
 
   private ExtendedFloatingActionButton next;
   private ValueAnimator                padStart;
@@ -56,8 +60,8 @@ public class CreateGroupActivity extends ContactSelectionActivity {
     intent.putExtra(ContactSelectionListFragment.REFRESHABLE, false);
     intent.putExtra(ContactSelectionActivity.EXTRA_LAYOUT_RES_ID, R.layout.create_group_activity);
 
-    int displayMode = TextSecurePreferences.isSmsEnabled(context) ? ContactsCursorLoader.DisplayMode.FLAG_SMS | ContactsCursorLoader.DisplayMode.FLAG_PUSH
-                                                                  : ContactsCursorLoader.DisplayMode.FLAG_PUSH;
+    int displayMode = TextSecurePreferences.isSmsEnabled(context) ? ContactsCursorLoader.DisplayMode.FLAG_SMS | ContactsCursorLoader.DisplayMode.FLAG_PUSH | ContactsCursorLoader.DisplayMode.FLAG_BLOCK_SELF
+                                                                  : ContactsCursorLoader.DisplayMode.FLAG_PUSH | ContactsCursorLoader.DisplayMode.FLAG_BLOCK_SELF;
 
     intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayMode);
     intent.putExtra(ContactSelectionListFragment.SELECTION_LIMITS, FeatureFlags.groupLimits().excludingSelf());
@@ -68,13 +72,16 @@ public class CreateGroupActivity extends ContactSelectionActivity {
   @Override
   public void onCreate(Bundle bundle, boolean ready) {
     super.onCreate(bundle, ready);
-    assert getSupportActionBar() != null;
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     next = findViewById(R.id.next);
     extendSkip();
 
     next.setOnClickListener(v -> handleNextPressed());
+  }
+
+  @Override
+  public void onSearch(View view) {
+
   }
 
   @Override
@@ -221,5 +228,10 @@ public class CreateGroupActivity extends ContactSelectionActivity {
                        .show();
       }
     });
+  }
+
+  @Override
+  public void onApply() {
+    handleNextPressed();
   }
 }

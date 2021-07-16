@@ -29,6 +29,4 @@
               android:minLines="3"
               android:padding="20dp"
               tools:text="Your messages will not expire."/>
-
-
 </RelativeLayout>

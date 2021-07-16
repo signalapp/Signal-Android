@@ -104,7 +104,7 @@ class WitnessPlugin implements Plugin<Project> {
                 }
                 .findAll {
                     // Exclude locally built modules
-                    it.module.id.group != 'Signal'
+                    it.module.id.group != 'Pigeon'
                 }
                 .collectMany {
                     it.allModuleArtifacts

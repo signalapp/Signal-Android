@@ -105,7 +105,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/insights_dashboard_encrypted_messages"
-                tools:text="100% of your outgoing messages in the past 7 days were end-to-end encrypted with Signal Protocol." />
+                tools:text="100% of your outgoing messages in the past 7 days were end-to-end encrypted with Pigeon Protocol." />
 
             <Button
                 android:id="@+id/insights_dashboard_start_a_conversation"

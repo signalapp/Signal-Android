@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/group_mute_notifications"
+        style="@style/Mp02.Signal.ListTextView"
+        android:text="@string/ManageGroupActivity_mute_notifications" />
+
+    <TextView
+        android:id="@+id/group_mute_notifications_until"
+        style="@style/Mp02.Signal.ListTextView"
+        android:focusable="false"
+        android:textSize="@dimen/small_textsize"
+        tools:text="Until 12:42 PM" />
+</LinearLayout>

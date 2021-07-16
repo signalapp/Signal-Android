@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sim_background"
+    tools:context=".groups.ui.managegroup.ManageGroupFragment">
+
+    <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+        android:id="@+id/manage_group_info_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/round_background"
+        android:paddingStart="12dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="10dp"
+        android:textAppearance="@style/TextAppearance.Signal.Subtitle"
+        android:textColor="@color/signal_text_secondary"
+        android:visibility="gone"
+        tools:text="@string/ManageGroupActivity_legacy_group_learn_more"
+        tools:visibility="visible" />
+
+    <RelativeLayout
+        android:id="@+id/rl_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/conversation_setting_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:defaultFocusHighlightEnabled="false" />
+    </RelativeLayout>
+</LinearLayout>

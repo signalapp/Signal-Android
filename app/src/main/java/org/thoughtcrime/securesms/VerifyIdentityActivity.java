@@ -16,11 +16,9 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.Manifest;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -34,14 +32,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.Html;
-import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -51,7 +45,6 @@ import android.view.animation.ScaleAnimation;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -83,17 +76,13 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.fingerprint.Fingerprint;
-import org.whispersystems.libsignal.fingerprint.FingerprintParsingException;
-import org.whispersystems.libsignal.fingerprint.FingerprintVersionMismatchException;
 import org.whispersystems.libsignal.fingerprint.NumericFingerprintGenerator;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.Locale;
 
@@ -105,7 +94,7 @@ import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
  * @author Moxie Marlinspike
  */
 @SuppressLint("StaticFieldLeak")
-public class VerifyIdentityActivity extends PassphraseRequiredActivity implements ScanListener, View.OnClickListener {
+public class VerifyIdentityActivity extends PassphraseRequiredActivity {
 
   private static final String TAG = Log.tag(VerifyIdentityActivity.class);
 
@@ -116,7 +105,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
   private final DynamicTheme dynamicTheme = new DynamicDarkActionBarTheme();
 
   private final VerifyDisplayFragment displayFragment = new VerifyDisplayFragment();
-  private final VerifyScanFragment    scanFragment    = new VerifyScanFragment();
 
   public static Intent newIntent(@NonNull Context context,
                                  @NonNull IdentityDatabase.IdentityRecord identityRecord)
@@ -153,18 +141,13 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
 
   @Override
   public void onPreCreate() {
-    dynamicTheme.onCreate(this);
+//    dynamicTheme.onCreate(this);
   }
 
   @Override
   protected void onCreate(Bundle state, boolean ready) {
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_number);
 
     LiveRecipient recipient = Recipient.live(getIntent().getParcelableExtra(RECIPIENT_EXTRA));
-    recipient.observe(this, r -> setActionBarNotificationBarColor(r.getColor()));
-
-    setActionBarNotificationBarColor(recipient.get().getColor());
 
     Bundle extras = new Bundle();
     extras.putParcelable(VerifyDisplayFragment.RECIPIENT_ID, getIntent().getParcelableExtra(RECIPIENT_EXTRA));
@@ -173,48 +156,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
     extras.putString(VerifyDisplayFragment.LOCAL_NUMBER, TextSecurePreferences.getLocalNumber(this));
     extras.putBoolean(VerifyDisplayFragment.VERIFIED_STATE, getIntent().getBooleanExtra(VERIFIED_EXTRA, false));
 
-    scanFragment.setScanListener(this);
-    displayFragment.setClickListener(this);
-
     initFragment(android.R.id.content, displayFragment, Locale.getDefault(), extras);
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home: finish(); return true;
-    }
-
-    return false;
-  }
-
-  @Override
-  public void onQrDataFound(final String data) {
-    Util.runOnMain(() -> {
-      ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
-
-      getSupportFragmentManager().popBackStack();
-      displayFragment.setScannedFingerprint(data);
-    });
-  }
-
-  @Override
-  public void onClick(View v) {
-    Permissions.with(this)
-               .request(Manifest.permission.CAMERA)
-               .ifNecessary()
-               .withPermanentDenialDialog(getString(R.string.VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied))
-               .onAllGranted(() -> {
-                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                 transaction.setCustomAnimations(R.anim.slide_from_top, R.anim.slide_to_bottom,
-                                                 R.anim.slide_from_bottom, R.anim.slide_to_top);
-
-                 transaction.replace(android.R.id.content, scanFragment)
-                            .addToBackStack(null)
-                            .commitAllowingStateLoss();
-               })
-               .onAnyDenied(() -> Toast.makeText(this, R.string.VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission, Toast.LENGTH_LONG).show())
-               .execute();
   }
 
   @Override
@@ -243,12 +185,9 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
     private Fingerprint   fingerprint;
 
     private View                 container;
-    private View                 numbersContainer;
     private ImageView            qrCode;
     private ImageView            qrVerified;
-    private TextView             tapLabel;
     private TextView             description;
-    private View.OnClickListener clickListener;
     private SwitchCompat         verified;
 
     private TextView[] codes                = new TextView[12];
@@ -258,12 +197,10 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
       this.container        = ViewUtil.inflate(inflater, viewGroup, R.layout.verify_display_fragment);
-      this.numbersContainer = container.findViewById(R.id.number_table);
       this.qrCode           = container.findViewById(R.id.qr_code);
       this.verified         = container.findViewById(R.id.verified_switch);
       this.qrVerified       = container.findViewById(R.id.qr_verified);
       this.description      = container.findViewById(R.id.description);
-      this.tapLabel         = container.findViewById(R.id.tap_label);
       this.codes[0]         = container.findViewById(R.id.code_first);
       this.codes[1]         = container.findViewById(R.id.code_second);
       this.codes[2]         = container.findViewById(R.id.code_third);
@@ -276,9 +213,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
       this.codes[9]         = container.findViewById(R.id.code_tenth);
       this.codes[10]        = container.findViewById(R.id.code_eleventh);
       this.codes[11]        = container.findViewById(R.id.code_twelth);
-
-      this.qrCode.setOnClickListener(clickListener);
-      this.registerForContextMenu(numbersContainer);
 
       this.verified.setChecked(getArguments().getBoolean(VERIFIED_STATE, false));
       this.verified.setOnCheckedChangeListener(this);
@@ -345,8 +279,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
           getActivity().supportInvalidateOptionsMenu();
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
-      setHasOptionsMenu(true);
     }
 
     @Override
@@ -365,132 +297,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
       } else if (animateFailureOnDraw) {
         animateFailureOnDraw = false;
         animateVerifiedFailure();
-      }
-    }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View view,
-                                    ContextMenuInfo menuInfo)
-    {
-      super.onCreateContextMenu(menu, view, menuInfo);
-
-      if (fingerprint != null) {
-        MenuInflater inflater = getActivity().getMenuInflater();
-        inflater.inflate(R.menu.verify_display_fragment_context_menu, menu);
-      }
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-      if (fingerprint == null) return super.onContextItemSelected(item);
-
-      switch (item.getItemId()) {
-        case R.id.menu_copy:    handleCopyToClipboard(fingerprint, codes.length); return true;
-        case R.id.menu_compare: handleCompareWithClipboard(fingerprint);          return true;
-        default:                return super.onContextItemSelected(item);
-      }
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-      super.onCreateOptionsMenu(menu, inflater);
-
-      if (fingerprint != null) {
-        inflater.inflate(R.menu.verify_identity, menu);
-      }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-      switch (item.getItemId()) {
-        case R.id.verify_identity__share: handleShare(fingerprint, codes.length);  return true;
-      }
-
-      return false;
-    }
-
-    public void setScannedFingerprint(String scanned) {
-      try {
-        if (fingerprint.getScannableFingerprint().compareTo(scanned.getBytes("ISO-8859-1"))) {
-          this.animateSuccessOnDraw = true;
-        } else {
-          this.animateFailureOnDraw = true;
-        }
-      } catch (FingerprintVersionMismatchException e) {
-        Log.w(TAG, e);
-        if (e.getOurVersion() < e.getTheirVersion()) {
-          Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal, Toast.LENGTH_LONG).show();
-        } else {
-          Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal, Toast.LENGTH_LONG).show();
-        }
-      } catch (FingerprintParsingException e) {
-        Log.w(TAG, e);
-        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number, Toast.LENGTH_LONG).show();
-      } catch (UnsupportedEncodingException e) {
-        throw new AssertionError(e);
-      }
-    }
-
-    public void setClickListener(View.OnClickListener listener) {
-      this.clickListener = listener;
-    }
-
-    private @NonNull String getFormattedSafetyNumbers(@NonNull Fingerprint fingerprint, int segmentCount) {
-      String[]      segments = getSegments(fingerprint, segmentCount);
-      StringBuilder result   = new StringBuilder();
-
-      for (int i = 0; i < segments.length; i++) {
-        result.append(segments[i]);
-
-        if (i != segments.length - 1) {
-          if (((i+1) % 4) == 0) result.append('\n');
-          else                  result.append(' ');
-        }
-      }
-
-      return result.toString();
-    }
-
-    private void handleCopyToClipboard(Fingerprint fingerprint, int segmentCount) {
-      Util.writeTextToClipboard(getActivity(), getFormattedSafetyNumbers(fingerprint, segmentCount));
-    }
-
-    private void handleCompareWithClipboard(Fingerprint fingerprint) {
-      String clipboardData = Util.readTextFromClipboard(getActivity());
-
-      if (clipboardData == null) {
-        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard, Toast.LENGTH_LONG).show();
-        return;
-      }
-
-      String numericClipboardData = clipboardData.replaceAll("\\D", "");
-
-      if (TextUtils.isEmpty(numericClipboardData) || numericClipboardData.length() != 60) {
-        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard, Toast.LENGTH_LONG).show();
-        return;
-      }
-
-      if (fingerprint.getDisplayableFingerprint().getDisplayText().equals(numericClipboardData)) {
-        animateVerifiedSuccess();
-      } else {
-        animateVerifiedFailure();
-      }
-    }
-
-    private void handleShare(@NonNull Fingerprint fingerprint, int segmentCount) {
-      String shareString =
-          getString(R.string.VerifyIdentityActivity_our_signal_safety_number) + "\n" +
-              getFormattedSafetyNumbers(fingerprint, segmentCount) + "\n";
-
-      Intent intent = new Intent();
-      intent.setAction(Intent.ACTION_SEND);
-      intent.putExtra(Intent.EXTRA_TEXT, shareString);
-      intent.setType("text/plain");
-
-      try {
-        startActivity(Intent.createChooser(intent, getString(R.string.VerifyIdentityActivity_share_safety_number_via)));
-      } catch (ActivityNotFoundException e) {
-        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_no_app_to_share_to, Toast.LENGTH_LONG).show();
       }
     }
 
@@ -515,10 +321,8 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
 
       if (animate) {
         ViewUtil.fadeIn(qrCode, 1000);
-        ViewUtil.fadeIn(tapLabel, 1000);
       } else {
         qrCode.setVisibility(View.VISIBLE);
-        tapLabel.setVisibility(View.VISIBLE);
       }
     }
 
@@ -660,7 +464,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
     private View           container;
     private CameraView     cameraView;
     private ScanningThread scanningThread;
-    private ScanListener   scanListener;
+    private ScanListener scanListener;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
       this.container  = ViewUtil.inflate(inflater, viewGroup, R.layout.verify_scan_fragment);

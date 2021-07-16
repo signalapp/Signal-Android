@@ -34,6 +34,7 @@ public class EmojiTextView extends AppCompatTextView {
 
   private final boolean scaleEmojis;
   private final boolean forceCustom;
+  private final String sideTag;
 
   private static final char ELLIPSIS = '…';
 
@@ -62,6 +63,7 @@ public class EmojiTextView extends AppCompatTextView {
 
     TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.EmojiTextView, 0, 0);
     scaleEmojis    = a.getBoolean(R.styleable.EmojiTextView_scaleEmojis, false);
+    sideTag = a.getString(R.styleable.EmojiTextView_sideTag);
     maxLength      = a.getInteger(R.styleable.EmojiTextView_emoji_maxLength, -1);
     forceCustom    = a.getBoolean(R.styleable.EmojiTextView_emoji_forceCustom, false);
     renderMentions = a.getBoolean(R.styleable.EmojiTextView_emoji_renderMentions, true);
@@ -103,6 +105,7 @@ public class EmojiTextView extends AppCompatTextView {
       if (emojis <= 4) scale += 0.25f;
       if (emojis <= 2) scale += 0.25f;
 
+      //TODO This part need delete, but if delete it, emoji size is wrong when first time enter, just hold it further check.
       super.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize * scale);
     } else if (scaleEmojis) {
       super.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize);
@@ -124,8 +127,9 @@ public class EmojiTextView extends AppCompatTextView {
         ellipsizeAnyTextForMaxLength();
       }
     } else {
-      CharSequence emojified = provider.emojify(candidates, text, this);
-      super.setText(new SpannableStringBuilder(emojified).append(Optional.fromNullable(overflowText).or("")), BufferType.SPANNABLE);
+//      CharSequence emojified = provider.emojify(candidates, text, this);
+//      super.setText(new SpannableStringBuilder(emojified).append(Optional.fromNullable(overflowText).or("")), BufferType.SPANNABLE);
+      super.setText(new SpannableStringBuilder(text).append(Optional.fromNullable(overflowText).or("")), BufferType.SPANNABLE);
 
       // Android fails to ellipsize spannable strings. (https://issuetracker.google.com/issues/36991688)
       // We ellipsize them ourselves by manually truncating the appropriate section.
@@ -166,8 +170,9 @@ public class EmojiTextView extends AppCompatTextView {
       if (useSystemEmoji || newCandidates == null || newCandidates.size() == 0) {
         super.setText(newContent, BufferType.NORMAL);
       } else {
-        CharSequence emojified = EmojiProvider.getInstance(getContext()).emojify(newCandidates, newContent, this);
-        super.setText(emojified, BufferType.SPANNABLE);
+//        CharSequence emojified = EmojiProvider.getInstance(getContext()).emojify(newCandidates, newContent, this);
+//        super.setText(emojified, BufferType.SPANNABLE);
+        super.setText(newContent, BufferType.SPANNABLE);
       }
     }
   }
@@ -195,10 +200,11 @@ public class EmojiTextView extends AppCompatTextView {
                   .append(ellipsized.subSequence(0, ellipsized.length()))
                   .append(Optional.fromNullable(overflowText).or(""));
 
-        EmojiParser.CandidateList newCandidates = EmojiProvider.getInstance(getContext()).getCandidates(newContent);
-        CharSequence              emojified     = EmojiProvider.getInstance(getContext()).emojify(newCandidates, newContent, this);
-
-        super.setText(emojified, BufferType.SPANNABLE);
+//        EmojiParser.CandidateList newCandidates = EmojiProvider.getInstance(getContext()).getCandidates(newContent);
+//        CharSequence              emojified     = EmojiProvider.getInstance(getContext()).emojify(newCandidates, newContent, this);
+//
+//        super.setText(emojified, BufferType.SPANNABLE);
+        super.setText(newContent, BufferType.SPANNABLE);
       }
     });
   }
@@ -240,12 +246,32 @@ public class EmojiTextView extends AppCompatTextView {
   @Override
   public void setTextSize(int unit, float size) {
     this.originalFontSize = TypedValue.applyDimension(unit, size, getResources().getDisplayMetrics());
-    super.setTextSize(unit, size);
+    //setTextSize()->onSizeChanged()->setText()->setTextSize() Lead this issue. When emoji move change size logic directly to here.
+    EmojiProvider             provider   = EmojiProvider.getInstance(getContext());
+    EmojiParser.CandidateList candidates = provider.getCandidates(previousText);
+
+    if (scaleEmojis && candidates != null && candidates.allEmojis) {
+      int   emojis = candidates.size();
+      float scale  = 1.0f;
+
+      if (emojis <= 8) scale += 0.25f;
+      if (emojis <= 6) scale += 0.25f;
+      if (emojis <= 4) scale += 0.25f;
+      if (emojis <= 2) scale += 0.25f;
+
+      super.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize * scale);
+    } else {
+      super.setTextSize(unit, size);
+    }
   }
 
   public void setMentionBackgroundTint(@ColorInt int mentionBackgroundTint) {
     if (renderMentions) {
       mentionRendererDelegate.setTint(mentionBackgroundTint);
     }
+  }
+
+  public String getSideTag() {
+    return sideTag;
   }
 }

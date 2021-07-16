@@ -262,7 +262,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
           Log.i(TAG, "Backup restore complete.");
           return BackupImportResult.SUCCESS;
         } catch (FullBackupImporter.DatabaseDowngradeException e) {
-          Log.w(TAG, "Failed due to the backup being from a newer version of Signal.", e);
+          Log.w(TAG, "Failed due to the backup being from a newer version of Pigeon.", e);
           return BackupImportResult.FAILURE_VERSION_DOWNGRADE;
         } catch (IOException e) {
           Log.w(TAG, e);

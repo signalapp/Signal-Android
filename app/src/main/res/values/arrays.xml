@@ -352,4 +352,34 @@
         <item>@string/MediaOverviewActivity_Storage_used</item>
     </string-array>
 
+    <string-array name="conversation_list_item_options_menu">
+        <item>@string/conversation_list_batch_archive__menu_archive_selected</item>
+        <item>@string/conversation_list_batch__menu_delete_selected</item>
+    </string-array>
+
+    <string-array name="conversation_list_item_archive_options_menu">
+        <item>@string/conversation_list_batch_unarchive__menu_unarchive_selected</item>
+        <item>@string/conversation_list_batch__menu_delete_selected</item>
+    </string-array>
+
+    <string-array name="conversation_list_item_menu">
+        <item>@string/conversation_list_fragment__fab_content_description</item>
+        <item>@string/text_secure_normal__menu_new_group</item>
+        <item>@string/text_secure_normal__mark_all_as_read</item>
+        <item>@string/text_secure_normal__menu_settings</item>
+        <item>@string/SearchToolbar_search</item>
+        <item>divider</item>
+    </string-array>
+
+    <string-array name="conversation_list_search_menu">
+        <item>@string/SearchToolbar_search</item>
+    </string-array>
+    <string-array name="sim_dial_options">
+        <item>Turn speaker</item>
+        <item>Mute</item>
+    </string-array>
+    <string-array name="sim_save_options">
+        <item>@string/save_options_new_contact</item>
+        <item>@string/save_options_add_to_existing</item>
+    </string-array>
 </resources>

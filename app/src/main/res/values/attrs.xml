@@ -17,6 +17,7 @@
     <attr name="emoji_category_emoticons" format="reference"/>
 
     <attr name="contact_filter_toolbar_icon_tint" format="color" />
+    <attr name="conversation_item_bubble_background_color" format="color" />
 
     <declare-styleable name="CustomDefaultPreference">
         <attr name="custom_pref_toggle" format="string"/>
@@ -108,6 +109,7 @@
         <attr name="emoji_maxLength" format="integer" />
         <attr name="emoji_forceCustom" format="boolean" />
         <attr name="emoji_renderMentions" format="boolean" />
+        <attr name="sideTag" format="string" />
     </declare-styleable>
 
     <declare-styleable name="RingtonePreference">

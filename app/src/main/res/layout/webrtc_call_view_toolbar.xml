@@ -43,8 +43,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/call_screen_recipient_name"
-            tools:text="Signal Calling..." />
+            tools:text="Pigeon Calling..." />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

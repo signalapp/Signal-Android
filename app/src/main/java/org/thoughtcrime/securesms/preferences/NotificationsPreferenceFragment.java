@@ -1,121 +1,111 @@
 package org.thoughtcrime.securesms.preferences;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
-import androidx.preference.ListPreference;
 import androidx.preference.Preference;
+import androidx.preference.PreferenceGroup;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.components.mp02anim.ItemAnimViewController;
+import org.thoughtcrime.securesms.preferences.widgets.Mp02CommonPreference;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import static android.app.Activity.RESULT_OK;
 
-public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragment {
+public class NotificationsPreferenceFragment extends CorrectedPreferenceFragment implements Preference.OnPreferenceClickListener {
 
   @SuppressWarnings("unused")
   private static final String TAG = NotificationsPreferenceFragment.class.getSimpleName();
+
+  private Mp02CommonPreference mNotiPref;
+  private Mp02CommonPreference mRingTonePref;
+  private Mp02CommonPreference mVibratePref;
+  private Mp02CommonPreference mInchatSoundPref;
+  private Mp02CommonPreference mCallNotiPref;
+  private Mp02CommonPreference mCallRingTonePref;
+  private Mp02CommonPreference mCallVibratePref;
+  private Mp02CommonPreference mContactJoinPref;
+
+  private boolean mNotiEnabled;
+  private boolean mVibrateEnabled;
+  private boolean mInchatSoundEnabled;
+  private boolean mCallNotiEnabled;
+  private boolean mCallVibrateEnabled;
+  private boolean mContactJoinEnabled;
 
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
 
-    Preference ledBlinkPref = this.findPreference(TextSecurePreferences.LED_BLINK_PREF);
-
-    if (NotificationChannels.supported()) {
-      ledBlinkPref.setVisible(false);
-      TextSecurePreferences.setNotificationRingtone(getContext(), NotificationChannels.getMessageRingtone(getContext()).toString());
-      TextSecurePreferences.setNotificationVibrateEnabled(getContext(), NotificationChannels.getMessageVibrate(getContext()));
-
-    } else {
-      ledBlinkPref.setOnPreferenceChangeListener(new ListSummaryListener());
-      initializeListSummary((ListPreference) ledBlinkPref);
-    }
-
-    this.findPreference(TextSecurePreferences.LED_COLOR_PREF)
-        .setOnPreferenceChangeListener(new LedColorChangeListener());
-    this.findPreference(TextSecurePreferences.RINGTONE_PREF)
-        .setOnPreferenceChangeListener(new RingtoneSummaryListener());
-    this.findPreference(TextSecurePreferences.REPEAT_ALERTS_PREF)
-        .setOnPreferenceChangeListener(new ListSummaryListener());
-    this.findPreference(TextSecurePreferences.NOTIFICATION_PRIVACY_PREF)
-        .setOnPreferenceChangeListener(new NotificationPrivacyListener());
-    this.findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF)
-        .setOnPreferenceChangeListener(new ListSummaryListener());
-    this.findPreference(TextSecurePreferences.CALL_RINGTONE_PREF)
-        .setOnPreferenceChangeListener(new RingtoneSummaryListener());
+    TextSecurePreferences.setNotificationRingtone(getContext(), NotificationChannels.getMessageRingtone(getContext()).toString());
+    TextSecurePreferences.setNotificationVibrateEnabled(getContext(), NotificationChannels.getMessageVibrate(getContext()));
     this.findPreference(TextSecurePreferences.VIBRATE_PREF)
         .setOnPreferenceChangeListener((preference, newValue) -> {
           NotificationChannels.updateMessageVibrate(getContext(), (boolean) newValue);
           return true;
         });
 
-    this.findPreference(TextSecurePreferences.RINGTONE_PREF)
-        .setOnPreferenceClickListener(preference -> {
-          Uri current = TextSecurePreferences.getNotificationRingtone(getContext());
+    mNotiPref = (Mp02CommonPreference) findPreference(TextSecurePreferences.NOTIFICATION_PREF);
+    mRingTonePref = (Mp02CommonPreference) findPreference(TextSecurePreferences.RINGTONE_PREF);
+    mRingTonePref.setOnPreferenceClickListener(preference -> {
+      Uri current = TextSecurePreferences.getNotificationRingtone(getContext());
+      Intent intent = new Intent(getContext(), RingtonePickerActivity.class);//RingtoneManager.ACTION_RINGTONE_PICKER);
+      intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
+      intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, true);
+      intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_NOTIFICATION);
+      intent.putExtra(RingtoneManager.EXTRA_RINGTONE_DEFAULT_URI, Settings.System.DEFAULT_NOTIFICATION_URI);
+      intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, current);
+      startActivityForResult(intent, 1);
+      return true;
+    });
+    mVibratePref = (Mp02CommonPreference) findPreference(TextSecurePreferences.VIBRATE_PREF);//TextSecurePreferences.isNotificationVibrateEnabled(getContext())
+    mInchatSoundPref = (Mp02CommonPreference) findPreference(TextSecurePreferences.IN_THREAD_NOTIFICATION_PREF);
 
-          Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
-          intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
-          intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, true);
-          intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_NOTIFICATION);
-          intent.putExtra(RingtoneManager.EXTRA_RINGTONE_DEFAULT_URI, Settings.System.DEFAULT_NOTIFICATION_URI);
-          intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, current);
+    mCallNotiPref = (Mp02CommonPreference) findPreference(TextSecurePreferences.CALL_NOTIFICATIONS_PREF);
+    mCallVibratePref = (Mp02CommonPreference) findPreference(TextSecurePreferences.CALL_VIBRATE_PREF);//TextSecurePreferences.isCallNotificationVibrateEnabled(getContext())
+    mContactJoinPref = (Mp02CommonPreference) findPreference(TextSecurePreferences.NEW_CONTACTS_NOTIFICATIONS);
 
-          startActivityForResult(intent, 1);
+    mNotiPref.setOnPreferenceClickListener(this);
+    mVibratePref.setOnPreferenceClickListener(this);
+    mInchatSoundPref.setOnPreferenceClickListener(this);
+    mCallNotiPref.setOnPreferenceClickListener(this);
+    mCallRingTonePref = (Mp02CommonPreference) findPreference(TextSecurePreferences.CALL_RINGTONE_PREF);
+    mCallRingTonePref.setOnPreferenceClickListener(preference -> {
+      Uri current = TextSecurePreferences.getCallNotificationRingtone(getContext());
+      Intent intent = new Intent(getContext(), RingtonePickerActivity.class);//RingtoneManager.ACTION_RINGTONE_PICKER);
+      intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
+      intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, true);
+      intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_RINGTONE);
+      intent.putExtra(RingtoneManager.EXTRA_RINGTONE_DEFAULT_URI, Settings.System.DEFAULT_RINGTONE_URI);
+      intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, current);
+      startActivityForResult(intent, 2);
+      return true;
+    });
+    mCallVibratePref.setOnPreferenceClickListener(this);
+    mContactJoinPref.setOnPreferenceClickListener(this);
 
-          return true;
-        });
+    updatePrefStatus(TextSecurePreferences.NOTIFICATION_PREF, TextSecurePreferences.isNotificationsEnabled(getContext()));
+    updatePrefStatus(TextSecurePreferences.VIBRATE_PREF, TextSecurePreferences.isNotificationVibrateEnabled(getContext()));
+    updatePrefStatus(TextSecurePreferences.IN_THREAD_NOTIFICATION_PREF, TextSecurePreferences.isInThreadNotifications(getContext()));
+    updatePrefStatus(TextSecurePreferences.CALL_NOTIFICATIONS_PREF, TextSecurePreferences.isCallNotificationsEnabled(getContext()));
+    updatePrefStatus(TextSecurePreferences.CALL_VIBRATE_PREF, TextSecurePreferences.isCallNotificationVibrateEnabled(getContext()));
+    updatePrefStatus(TextSecurePreferences.NEW_CONTACTS_NOTIFICATIONS, TextSecurePreferences.isNewContactsNotificationEnabled(getContext()));
+  }
 
-    this.findPreference(TextSecurePreferences.CALL_RINGTONE_PREF)
-        .setOnPreferenceClickListener(preference -> {
-          Uri current = TextSecurePreferences.getCallNotificationRingtone(getContext());
-
-          Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
-          intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
-          intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, true);
-          intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_RINGTONE);
-          intent.putExtra(RingtoneManager.EXTRA_RINGTONE_DEFAULT_URI, Settings.System.DEFAULT_RINGTONE_URI);
-          intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, current);
-
-          startActivityForResult(intent, 2);
-
-          return true;
-        });
-
-    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.LED_COLOR_PREF));
-    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.REPEAT_ALERTS_PREF));
-    initializeListSummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIVACY_PREF));
-
-    if (NotificationChannels.supported()) {
-      this.findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF)
-          .setOnPreferenceClickListener(preference -> {
-            Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
-            intent.putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannels.getMessagesChannel(getContext()));
-            intent.putExtra(Settings.EXTRA_APP_PACKAGE, getContext().getPackageName());
-            startActivity(intent);
-            return true;
-          });
-    } else {
-      initializeListSummary((ListPreference) findPreference(TextSecurePreferences.NOTIFICATION_PRIORITY_PREF));
-    }
-
-    initializeRingtoneSummary(findPreference(TextSecurePreferences.RINGTONE_PREF));
-    initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));
-    initializeMessageVibrateSummary((SwitchPreferenceCompat)findPreference(TextSecurePreferences.VIBRATE_PREF));
-    initializeCallVibrateSummary((SwitchPreferenceCompat)findPreference(TextSecurePreferences.CALL_VIBRATE_PREF));
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    return super.onCreateView(inflater, container, savedInstanceState);
   }
 
   @Override
@@ -124,26 +114,18 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
   }
 
   @Override
-  public void onResume() {
-    super.onResume();
-    ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__notifications);
-  }
-
-  @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
       Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
 
       if (Settings.System.DEFAULT_NOTIFICATION_URI.equals(uri)) {
-        NotificationChannels.updateMessageRingtone(getContext(), uri);
+        NotificationChannels.updateMessageRingtone(requireContext(), uri);
         TextSecurePreferences.removeNotificationRingtone(getContext());
       } else {
         uri = uri == null ? Uri.EMPTY : uri;
-        NotificationChannels.updateMessageRingtone(getContext(), uri );
+        NotificationChannels.updateMessageRingtone(requireContext(), uri);
         TextSecurePreferences.setNotificationRingtone(getContext(), uri.toString());
       }
-
-      initializeRingtoneSummary(findPreference(TextSecurePreferences.RINGTONE_PREF));
     } else if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
       Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
 
@@ -152,89 +134,75 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
       } else {
         TextSecurePreferences.setCallNotificationRingtone(getContext(), uri != null ? uri.toString() : Uri.EMPTY.toString());
       }
-
-      initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));
     }
   }
 
-  private class RingtoneSummaryListener implements Preference.OnPreferenceChangeListener {
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-      Uri value = (Uri) newValue;
+  @Override
+  public void onResume() {
+    super.onResume();
+  }
 
-      if (value == null || TextUtils.isEmpty(value.toString())) {
-        preference.setSummary(R.string.preferences__silent);
-      } else {
-        Ringtone tone = RingtoneManager.getRingtone(getActivity(), value);
-
-        if (tone != null) {
-          preference.setSummary(tone.getTitle(getActivity()));
-        }
-      }
-
-      return true;
+  private void updatePrefStatus(String key, boolean enabled) {
+    String status = enabled ? PREF_STATUS_ON : PREF_STATUS_OFF;
+    switch (key) {
+      case TextSecurePreferences.NOTIFICATION_PREF:
+        mNotiEnabled = enabled;
+        mNotiPref.setTitle(getString(R.string.preferences__notifications) + status);
+        break;
+      case TextSecurePreferences.VIBRATE_PREF:
+        mVibrateEnabled = enabled;
+        mVibratePref.setTitle(getString(R.string.preferences__vibrate) + status);
+        break;
+      case TextSecurePreferences.IN_THREAD_NOTIFICATION_PREF:
+        mInchatSoundEnabled = enabled;
+        mInchatSoundPref.setTitle(getString(R.string.preferences_notifications__in_chat_sounds) + status);
+        break;
+      case TextSecurePreferences.CALL_NOTIFICATIONS_PREF:
+        mCallNotiEnabled = enabled;
+        mCallNotiPref.setTitle(getString(R.string.preferences__notifications) + status);
+        break;
+      case TextSecurePreferences.CALL_VIBRATE_PREF:
+        mCallVibrateEnabled = enabled;
+        mCallVibratePref.setTitle(getString(R.string.preferences__vibrate) + status);
+        break;
+      case TextSecurePreferences.NEW_CONTACTS_NOTIFICATIONS:
+        mContactJoinEnabled = enabled;
+        mContactJoinPref.setTitle(getString(R.string.preferences_events__contact_joined_signal) + status);
+        break;
+      default:
+        break;
     }
   }
 
-  private void initializeRingtoneSummary(Preference pref) {
-    RingtoneSummaryListener listener = (RingtoneSummaryListener) pref.getOnPreferenceChangeListener();
-    Uri                     uri      = TextSecurePreferences.getNotificationRingtone(getContext());
-
-    listener.onPreferenceChange(pref, uri);
-  }
-
-  private void initializeCallRingtoneSummary(Preference pref) {
-    RingtoneSummaryListener listener = (RingtoneSummaryListener) pref.getOnPreferenceChangeListener();
-    Uri                     uri      = TextSecurePreferences.getCallNotificationRingtone(getContext());
-
-    listener.onPreferenceChange(pref, uri);
-  }
-
-  private void initializeMessageVibrateSummary(SwitchPreferenceCompat pref) {
-    pref.setChecked(TextSecurePreferences.isNotificationVibrateEnabled(getContext()));
-  }
-
-  private void initializeCallVibrateSummary(SwitchPreferenceCompat pref) {
-    pref.setChecked(TextSecurePreferences.isCallNotificationVibrateEnabled(getContext()));
-  }
-
-  public static CharSequence getSummary(Context context) {
-    final int onCapsResId   = R.string.ApplicationPreferencesActivity_On;
-    final int offCapsResId  = R.string.ApplicationPreferencesActivity_Off;
-
-    return context.getString(TextSecurePreferences.isNotificationsEnabled(context) ? onCapsResId : offCapsResId);
-  }
-
-  private class NotificationPrivacyListener extends ListSummaryListener {
-    @SuppressLint("StaticFieldLeak")
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object value) {
-      new AsyncTask<Void, Void, Void>() {
-        @Override
-        protected Void doInBackground(Void... params) {
-          ApplicationDependencies.getMessageNotifier().updateNotification(getActivity());
-          return null;
-        }
-      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
-      return super.onPreferenceChange(preference, value);
+  @Override
+  public boolean onPreferenceClick(Preference preference) {
+    String key = preference.getKey();
+    switch (key) {
+      case TextSecurePreferences.NOTIFICATION_PREF:
+        TextSecurePreferences.setNotificationsEnabled(getContext(), !mNotiEnabled);
+        updatePrefStatus(TextSecurePreferences.NOTIFICATION_PREF, TextSecurePreferences.isNotificationsEnabled(getContext()));
+        break;
+      case TextSecurePreferences.VIBRATE_PREF:
+        TextSecurePreferences.setNotificationVibrateEnabled(getContext(), !mVibrateEnabled);
+        updatePrefStatus(TextSecurePreferences.VIBRATE_PREF, TextSecurePreferences.isNotificationVibrateEnabled(getContext()));
+        break;
+      case TextSecurePreferences.IN_THREAD_NOTIFICATION_PREF:
+        TextSecurePreferences.setInThreadNotifications(getContext(), !mInchatSoundEnabled);
+        updatePrefStatus(TextSecurePreferences.IN_THREAD_NOTIFICATION_PREF, TextSecurePreferences.isInThreadNotifications(getContext()));
+        break;
+      case TextSecurePreferences.CALL_NOTIFICATIONS_PREF:
+        TextSecurePreferences.setCallNotificationsEnabled(getContext(), !mCallNotiEnabled);
+        updatePrefStatus(TextSecurePreferences.CALL_NOTIFICATIONS_PREF, TextSecurePreferences.isCallNotificationsEnabled(getContext()));
+        break;
+      case TextSecurePreferences.CALL_VIBRATE_PREF:
+        TextSecurePreferences.setCallNotificationVibrateEnabled(getContext(), !mCallVibrateEnabled);
+        updatePrefStatus(TextSecurePreferences.CALL_VIBRATE_PREF, TextSecurePreferences.isCallNotificationVibrateEnabled(getContext()));
+        break;
+      case TextSecurePreferences.NEW_CONTACTS_NOTIFICATIONS:
+        TextSecurePreferences.setNewContactsNotificationEnabled(getContext(), !mContactJoinEnabled);
+        updatePrefStatus(TextSecurePreferences.NEW_CONTACTS_NOTIFICATIONS, TextSecurePreferences.isNewContactsNotificationEnabled(getContext()));
+        break;
     }
-  }
-
-  @SuppressLint("StaticFieldLeak")
-  private class LedColorChangeListener extends ListSummaryListener {
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object value) {
-      if (NotificationChannels.supported()) {
-        new AsyncTask<Void, Void, Void>() {
-          @Override
-          protected Void doInBackground(Void... voids) {
-            NotificationChannels.updateMessagesLedColor(getActivity(), (String) value);
-            return null;
-          }
-        }.execute();
-      }
-      return super.onPreferenceChange(preference, value);
-    }
+    return false;
   }
 }

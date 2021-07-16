@@ -54,7 +54,7 @@
         app:layout_constraintStart_toEndOf="@id/reminder_progress"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginStart="16dp"
-        tools:text="Invite to Signal" />
+        tools:text="Invite to Pigeon" />
 
     <TextView
         android:id="@+id/reminder_text"

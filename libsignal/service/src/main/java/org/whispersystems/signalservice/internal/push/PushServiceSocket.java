@@ -153,6 +153,7 @@ import okhttp3.ResponseBody;
 public class PushServiceSocket {
 
   private static final String TAG = PushServiceSocket.class.getSimpleName();
+  private final static boolean DEBUG = false;
 
   private static final String CREATE_ACCOUNT_SMS_PATH   = "/v1/accounts/sms/code/%s?client=%s";
   private static final String CREATE_ACCOUNT_VOICE_PATH = "/v1/accounts/voice/code/%s";
@@ -1487,8 +1488,10 @@ public class PushServiceSocket {
   private Request buildServiceRequest(String urlFragment, String method, RequestBody body, Map<String, String> headers, Optional<UnidentifiedAccess> unidentifiedAccess) {
     ServiceConnectionHolder connectionHolder = (ServiceConnectionHolder) getRandom(serviceClients, random);
 
-//      Log.d(TAG, "Push service URL: " + connectionHolder.getUrl());
-//      Log.d(TAG, "Opening URL: " + String.format("%s%s", connectionHolder.getUrl(), urlFragment));
+    if(DEBUG) {
+      Log.d(TAG, "Push service URL: " + connectionHolder.getUrl());
+      Log.d(TAG, "Opening URL: " + String.format("%s%s", connectionHolder.getUrl(), urlFragment));
+    }
 
     Request.Builder request = new Request.Builder();
     request.url(String.format("%s%s", connectionHolder.getUrl(), urlFragment));

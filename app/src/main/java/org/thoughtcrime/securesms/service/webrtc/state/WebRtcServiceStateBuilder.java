@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.OptionalLong;
 
 import org.signal.ringrtc.GroupCall;
+import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
@@ -97,6 +98,11 @@ public class WebRtcServiceStateBuilder {
 
     public @NonNull LocalDeviceStateBuilder isBluetoothAvailable(boolean available) {
       toBuild.bluetoothAvailable = available;
+      return this;
+    }
+
+    public @NonNull LocalDeviceStateBuilder setOrientation(@NonNull Orientation orientation) {
+      toBuild.orientation = orientation;
       return this;
     }
   }

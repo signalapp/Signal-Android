@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,9 +19,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.BlockUnblockDialog;
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
+import org.thoughtcrime.securesms.DialogWithListActivity;
 import org.thoughtcrime.securesms.ExpirationDialog;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.Mp02CustomDialog;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
@@ -47,8 +52,12 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
+
+import static org.thoughtcrime.securesms.conversation.ConversationActivity.RECIPIENT_EXTRA;
+import static org.thoughtcrime.securesms.conversation.ConversationActivity.STRING_CURRENT_EXPIRATION;
 
 public class ManageGroupViewModel extends ViewModel {
 
@@ -236,12 +245,34 @@ public class ManageGroupViewModel extends ViewModel {
     return groupInfoMessage;
   }
 
-  void handleExpirationSelection() {
-    manageGroupRepository.getRecipient(getGroupId(),
-                                       groupRecipient ->
-                                         ExpirationDialog.show(context,
-                                                               groupRecipient.getExpireMessages(),
-                                                               expirationTime -> manageGroupRepository.setExpiration(getGroupId(), expirationTime, this::showErrorToast)));
+  void handleExpirationSelection(Context context) {
+    boolean activeGroup = isActiveGroup();
+
+    if (isPushGroupConversation() && !activeGroup) {
+      return;
+    }
+
+    //final long thread = this.threadId;
+    Intent intent = new Intent(context, DialogWithListActivity.class);
+    intent.putExtra(STRING_CURRENT_EXPIRATION, groupRecipient.getValue().getExpireMessages());
+    intent.putExtra(RECIPIENT_EXTRA, groupRecipient.getValue().getId());
+    //intent.putExtra(THREAD_ID_EXTRA, threadId);
+    context.startActivity(intent);
+  }
+
+  private boolean isActiveGroup() {
+    if (!isGroupConversation()) return false;
+
+    Optional<GroupDatabase.GroupRecord> record = DatabaseFactory.getGroupDatabase(context).getGroup(Recipient.self().getId());
+    return record.isPresent() && record.get().isActive();
+  }
+
+  private boolean isGroupConversation() {
+    return Recipient.self() != null && Recipient.self().isGroup();
+  }
+
+  private boolean isPushGroupConversation() {
+    return Recipient.self() != null && Recipient.self().isPushGroup();
   }
 
   void applyMembershipRightsChange(@NonNull GroupAccessControl newRights) {
@@ -253,17 +284,79 @@ public class ManageGroupViewModel extends ViewModel {
   }
 
   void blockAndLeave(@NonNull FragmentActivity activity) {
-    manageGroupRepository.getRecipient(getGroupId(),
-                                       recipient -> BlockUnblockDialog.showBlockFor(activity,
-                                                                                    activity.getLifecycle(),
-                                                                                    recipient,
-                                                                                    this::onBlockAndLeaveConfirmed));
+    Mp02CustomDialog dialog = new Mp02CustomDialog(activity);
+    if (groupRecipient.getValue().isGroup()) {
+      if (DatabaseFactory.getGroupDatabase(context).isActive(groupRecipient.getValue().requireGroupId())) {
+        dialog.setMessage(activity.getString(R.string.BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates));
+        dialog.setPositiveListener(R.string.BlockUnblockDialog_block_and_leave, new Mp02CustomDialog.Mp02DialogKeyListener() {
+          @Override
+          public void onDialogKeyClicked() {
+            onBlockAndLeaveConfirmed();
+            dialog.dismiss();
+          }
+        });
+        dialog.setNegativeListener(android.R.string.cancel, null);
+      } else {
+        dialog.setMessage(activity.getString(R.string.BlockUnblockDialog_group_members_wont_be_able_to_add_you));
+        dialog.setPositiveListener(R.string.RecipientPreferenceActivity_block, new Mp02CustomDialog.Mp02DialogKeyListener() {
+          @Override
+          public void onDialogKeyClicked() {
+            onBlockAndLeaveConfirmed();
+            dialog.dismiss();
+          }
+        });
+        dialog.setNegativeListener(android.R.string.cancel, null);
+      }
+    } else {
+      dialog.setMessage(activity.getString(R.string.BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages));
+      dialog.setPositiveListener(R.string.BlockUnblockDialog_block, new Mp02CustomDialog.Mp02DialogKeyListener() {
+        @Override
+        public void onDialogKeyClicked() {
+          onBlockAndLeaveConfirmed();
+          dialog.dismiss();
+        }
+      });
+      dialog.setNegativeListener(android.R.string.cancel, null);
+    }
+    dialog.show();
   }
 
   void unblock(@NonNull FragmentActivity activity) {
-    manageGroupRepository.getRecipient(getGroupId(),
-                                       recipient -> BlockUnblockDialog.showUnblockFor(activity, activity.getLifecycle(), recipient,
-                                       () -> RecipientUtil.unblock(context, recipient)));
+    Mp02CustomDialog dialog = new Mp02CustomDialog(activity);
+    if (groupRecipient.getValue().isGroup()) {
+      if (DatabaseFactory.getGroupDatabase(context).isActive(groupRecipient.getValue().requireGroupId())) {
+        dialog.setMessage(activity.getString(R.string.BlockUnblockDialog_group_members_will_be_able_to_add_you));
+        dialog.setPositiveListener(R.string.RecipientPreferenceActivity_unblock, new Mp02CustomDialog.Mp02DialogKeyListener() {
+          @Override
+          public void onDialogKeyClicked() {
+            RecipientUtil.unblock(context, groupRecipient.getValue());
+            dialog.dismiss();
+          }
+        });
+        dialog.setNegativeListener(android.R.string.cancel, null);
+      } else {
+        dialog.setMessage(activity.getString(R.string.BlockUnblockDialog_group_members_will_be_able_to_add_you));
+        dialog.setPositiveListener(R.string.RecipientPreferenceActivity_unblock, new Mp02CustomDialog.Mp02DialogKeyListener() {
+          @Override
+          public void onDialogKeyClicked() {
+            RecipientUtil.unblock(context, groupRecipient.getValue());
+            dialog.dismiss();
+          }
+        });
+        dialog.setNegativeListener(android.R.string.cancel, null);
+      }
+    } else {
+      dialog.setMessage(activity.getString(R.string.BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other));
+      dialog.setPositiveListener(R.string.RecipientPreferenceActivity_unblock, new Mp02CustomDialog.Mp02DialogKeyListener() {
+        @Override
+        public void onDialogKeyClicked() {
+          RecipientUtil.unblock(context, groupRecipient.getValue());
+          dialog.dismiss();
+        }
+      });
+      dialog.setNegativeListener(android.R.string.cancel, null);
+    }
+    dialog.show();
   }
 
   void onAddMembers(@NonNull List<RecipientId> selected,
@@ -332,6 +425,11 @@ public class ManageGroupViewModel extends ViewModel {
         fragment.startActivityForResult(intent, resultCode);
       }
     });
+  }
+
+  public void onShowAllMembersClick(@NonNull Fragment fragment,View view){
+    revealCollapsedMembers();
+    view.setVisibility(View.GONE);
   }
 
   static final class AddMembersResult {

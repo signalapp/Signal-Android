@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/sim_background"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,9 +13,12 @@
 
         <TextView
             android:id="@+id/pin_restore_pin_title"
+            style="@style/Mp02.Signal.Text.WelcomeTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:layout_marginStart="5dp"
+            android:focusable="false"
+            android:visibility="gone"
             android:text="@string/RegistrationLockFragment__enter_your_pin"
             android:textAppearance="@style/TextAppearance.Signal.Title1"
             app:layout_constraintBottom_toTopOf="@id/pin_restore_keyboard_toggle"
@@ -23,90 +27,119 @@
 
         <TextView
             android:id="@+id/pin_restore_pin_description"
+            style="@style/Mp02.Signal.Text.WelcomeTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="27dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="27dp"
-            android:gravity="center_horizontal"
-            android:minHeight="66dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:focusable="false"
             android:text="@string/RegistrationLockFragment__enter_the_pin_you_created"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            android:textColor="@color/core_grey_60"
-            app:layout_constraintTop_toBottomOf="@id/pin_restore_pin_title" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/pin_restore_pin_input"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:gravity="center_horizontal"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
             android:inputType="numberPassword"
-            android:minWidth="210dp"
+            android:minWidth="3dp"
+            android:singleLine="true"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white_focus"
+            android:textColorHint="@color/white_not_focus"
+            android:textCursorDrawable="@drawable/mp02_cursor_style"
+            android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pin_restore_pin_description" />
 
         <TextView
             android:id="@+id/pin_restore_pin_input_label"
+            style="@style/Mp02.Signal.Text.WelcomeTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:focusable="false"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pin_restore_pin_input"
             tools:text="@string/RegistrationLockFragment__incorrect_pin_try_again" />
 
         <Button
             android:id="@+id/pin_restore_forgot_pin"
-            style="@style/Button.Borderless"
+            style="@style/Mp02.Signal.Text.CommonTextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@null"
             android:text="@string/PinRestoreEntryFragment_need_help"
             android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pin_restore_pin_input_label"
             tools:visibility="visible"/>
 
         <Button
             android:id="@+id/pin_restore_keyboard_toggle"
-            style="@style/Button.Borderless"
+            style="@style/Mp02.Signal.Text.CommonTextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@null"
             app:layout_constraintBottom_toTopOf="@id/pin_restore_pin_confirm"
             app:layout_constraintTop_toBottomOf="@id/pin_restore_forgot_pin"
             app:layout_constraintVertical_bias="1.0"
             tools:text="Create Alphanumeric Pin" />
 
-        <com.dd.CircularProgressButton
+        <Button
             android:id="@+id/pin_restore_pin_confirm"
-            style="@style/Button.Registration"
+            style="@style/Mp02.Signal.Text.CommonTextButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
-            app:cpb_textIdle="@string/RegistrationActivity_continue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@null"
+            android:text="@string/RegistrationActivity_continue"
+            app:layout_constraintBottom_toTopOf="@+id/pin_restore_skip_button"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/pin_restore_skip_button"
+            style="@style/Mp02.Signal.Text.CommonTextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/PinRestoreEntryFragment_skip"
-            style="@style/Button.Borderless.Registration"
+            android:background="@null"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
+
+        <FrameLayout
+            android:id="@+id/verification_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:visibility="visible"/>
+            android:background="@color/sim_background"
+            android:visibility="gone">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleLargeInverse"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/white"
+                android:padding="10dp" />
+        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

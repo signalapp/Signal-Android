@@ -41,6 +41,7 @@ import org.signal.core.util.logging.PersistentLogger;
 import org.signal.core.util.tracing.Tracer;
 import org.signal.glide.SignalGlideCodecs;
 import org.signal.ringrtc.CallManager;
+import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -57,6 +58,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.LogSecretProvider;
+import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -70,6 +72,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
+import org.thoughtcrime.securesms.service.ScreenListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.shakereport.ShakeToReport;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
@@ -84,6 +87,7 @@ import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWra
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
+import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
 
 import java.security.Security;
 import java.util.HashSet;
@@ -104,6 +108,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   private ExpiringMessageManager expiringMessageManager;
   private ViewOnceMessageManager viewOnceMessageManager;
+  private TypingStatusRepository typingStatusRepository;
   private PersistentLogger       persistentLogger;
 
   private volatile boolean isAppVisible;
@@ -163,6 +168,30 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
                             .execute();
 
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
+    initializeTypingStatusRepository();
+    ScreenListener screenListener = new ScreenListener(this);
+    screenListener.begin(new ScreenListener.ScreenStateListener() {
+      @Override
+      public void onScreenOn() {
+        SignalServiceMessagePipe pipe = IncomingMessageObserver.getPipe();
+        if (pipe!=null){
+          pipe.setTest(true);
+        }
+      }
+
+      @Override
+      public void onScreenOff() {
+        SignalServiceMessagePipe pipe = IncomingMessageObserver.getPipe();
+        if (pipe!=null){
+          pipe.setTest(false);
+        }
+      }
+
+      @Override
+      public void onUserPresent() {
+
+      }
+    });
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
     Tracer.getInstance().end("Application#onCreate()");
@@ -199,6 +228,10 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     ApplicationDependencies.getMessageNotifier().clearVisibleThread();
     ApplicationDependencies.getFrameRateTracker().end();
     ApplicationDependencies.getShakeToReport().disable();
+  }
+
+  public TypingStatusRepository getTypingStatusRepository() {
+    return typingStatusRepository;
   }
 
   public ExpiringMessageManager getExpiringMessageManager() {
@@ -314,6 +347,10 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     this.viewOnceMessageManager = new ViewOnceMessageManager(this);
   }
 
+  private void initializeTypingStatusRepository() {
+    this.typingStatusRepository = new TypingStatusRepository();
+  }
+
   private void initializePeriodicTasks() {
     RotateSignedPreKeyListener.schedule(this);
     DirectoryRefreshListener.schedule(this);
@@ -340,6 +377,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
         add("Redmi Note 5");
         add("FP2"); // Fairphone FP2
         add("MI 5");
+        add("MP02");
       }};
 
       Set<String> OPEN_SL_ES_WHITELIST = new HashSet<String>() {{

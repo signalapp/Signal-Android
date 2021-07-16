@@ -3,20 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
-    android:background="?selectableItemBackground"
+    android:minHeight="32px"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pigeon_item_bg"
     android:clickable="true"
     android:focusable="true">
-
-    <org.thoughtcrime.securesms.components.AvatarImageView
-        android:id="@+id/recipient_avatar"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
 
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/recipient_selected"
@@ -26,24 +17,26 @@
         android:button="@null"
         android:clickable="false"
         android:focusable="false"
-        app:layout_constraintBottom_toBottomOf="@+id/recipient_avatar"
-        app:layout_constraintEnd_toEndOf="@+id/recipient_avatar"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
         tools:checked="true" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/recipient_name"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:paddingStart="@dimen/item_padding_x"
         android:gravity="start|center_vertical"
         android:textAlignment="viewStart"
-        android:textAppearance="@style/Signal.Text.Body"
-        app:layout_constraintBottom_toBottomOf="@+id/recipient_avatar"
+        android:textSize="24px"
+        android:singleLine="true"
+        android:textColor="@color/white_not_focus"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/admin"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/recipient_avatar"
-        app:layout_constraintTop_toTopOf="@+id/recipient_avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/full_names" />
 
     <TextView
@@ -53,8 +46,8 @@
         android:layout_marginEnd="16dp"
         android:gravity="start|center_vertical"
         android:text="@string/GroupRecipientListItem_admin"
-        android:textAppearance="@style/TextAppearance.Signal.Subtitle2"
-        android:textColor="@color/signal_text_secondary"
+        android:textSize="24px"
+        android:textColor="@color/white_not_focus"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/recipient_name"
         app:layout_constraintEnd_toStartOf="@+id/popupMenuProgressContainer"

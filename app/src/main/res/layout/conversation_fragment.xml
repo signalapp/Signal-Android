@@ -18,7 +18,7 @@
         android:cacheColorHint="@color/signal_background_primary"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingBottom="2dp"
+        android:paddingBottom="7dp"
         android:scrollbars="vertical" />
 
     <TextView

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.groups.ui;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -73,12 +74,20 @@ public final class GroupMemberListView extends RecyclerView {
     membersAdapter.setRecipientSelectionChangeListener(listener);
   }
 
+  public void setRecipientFocusChangeListener(View.OnFocusChangeListener focusChangeListener) {
+    membersAdapter.setRecipientFocusChangeListener(focusChangeListener);
+  }
+
   public void setMembers(@NonNull List<? extends GroupMemberEntry> recipients) {
     membersAdapter.updateData(recipients);
   }
 
   public void setDisplayOnlyMembers(@NonNull List<Recipient> recipients) {
     membersAdapter.updateData(Stream.of(recipients).map(r -> new GroupMemberEntry.FullMember(r, false)).toList());
+  }
+
+  public GroupMemberListAdapter getMemberListAdapter() {
+    return membersAdapter;
   }
 
   @Override

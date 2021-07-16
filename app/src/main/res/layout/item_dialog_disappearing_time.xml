@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="match_parent"
+        android:layout_height="32px"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        style="@style/Signal.Text.Body"
+        android:textSize="24px"
+        android:textColor="@color/white"
+        android:layout_weight="1"
+        android:layout_marginLeft="10px"/>
+
+    <CheckBox
+        android:id="@+id/check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        style="@style/CustomCheckBox"
+        android:focusable="false"
+        android:clickable="false"
+        android:layout_marginRight="10px"/>
+
+
+
+</LinearLayout>

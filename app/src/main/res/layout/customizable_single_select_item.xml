@@ -4,15 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?selectableItemBackground"
-    android:minHeight="?attr/listPreferredItemHeightSmall"
     android:orientation="horizontal"
-    android:paddingStart="20dp"
-    android:paddingTop="8dp"
     android:paddingEnd="?attr/dialogPreferredPadding"
-    android:paddingBottom="8dp">
+    android:background="#00000000"
+    style="@style/Mp02.Signal.Text.CommonTextButton">
 
-    <RadioButton
+    <!--<RadioButton
         android:id="@+id/customizable_single_select_radio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,18 +19,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="RtlSymmetry" />
+        tools:ignore="RtlSymmetry" />-->
 
     <CheckedTextView
         android:id="@+id/single_select_item_text"
+        style="@style/Mp02.Signal.Text.CommonTextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:minHeight="?attr/listPreferredItemHeightSmall"
+        android:paddingStart="30dp"
+        android:paddingEnd="5dp"
         android:textAppearance="?android:attr/textAppearanceListItem"
-        android:textColor="?attr/textColorAlertDialogListItem"
+        android:textColor="@color/grey"
         app:layout_constraintBottom_toTopOf="@id/customizable_single_select_summary"
-        app:layout_constraintStart_toEndOf="@id/customizable_single_select_radio"
         app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
         tools:text="Pick me!" />
 
     <TextView

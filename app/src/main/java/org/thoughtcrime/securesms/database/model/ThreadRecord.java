@@ -57,7 +57,7 @@ public final class ThreadRecord {
   private final long      lastSeen;
   private final boolean   isPinned;
 
-  private ThreadRecord(@NonNull Builder builder) {
+  public ThreadRecord(@NonNull Builder builder) {
     this.threadId             = builder.threadId;
     this.body                 = builder.body;
     this.recipient            = builder.recipient;

@@ -21,7 +21,7 @@ public class LogSectionPin implements LogSection {
                               .append("Next Reminder Interval: ").append(SignalStore.pinValues().getCurrentInterval()).append("\n")
                               .append("ReglockV1: ").append(TextSecurePreferences.isV1RegistrationLockEnabled(context)).append("\n")
                               .append("ReglockV2: ").append(SignalStore.kbsValues().isV2RegistrationLockEnabled()).append("\n")
-                              .append("Signal PIN: ").append(SignalStore.kbsValues().hasPin()).append("\n")
+                              .append("Pigeon PIN: ").append(SignalStore.kbsValues().hasPin()).append("\n")
                               .append("Opted Out: ").append(SignalStore.kbsValues().hasOptedOut()).append("\n")
                               .append("Last Creation Failed: ").append(SignalStore.kbsValues().lastPinCreateFailed()).append("\n")
                               .append("Needs Account Restore: ").append(SignalStore.storageServiceValues().needsAccountRestore()).append("\n")

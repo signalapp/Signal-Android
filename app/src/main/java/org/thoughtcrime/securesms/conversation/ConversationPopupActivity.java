@@ -114,8 +114,8 @@ public class ConversationPopupActivity extends ConversationActivity {
 
   @Override
   protected void updateReminders() {
-    if (reminderView.resolved()) {
-      reminderView.get().setVisibility(View.GONE);
-    }
+//    if (reminderView.resolved()) {
+//      reminderView.get().setVisibility(View.GONE);
+//    }
   }
 }

@@ -4,6 +4,7 @@
     android:id="@+id/base_settings_list"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/sim_background"
     android:scrollIndicators="top|bottom"
     tools:ignore="UnusedAttribute"
     tools:listitem="@layout/single_select_item" />

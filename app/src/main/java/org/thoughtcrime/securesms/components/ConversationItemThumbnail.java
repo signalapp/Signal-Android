@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -24,8 +25,9 @@ import java.util.List;
 
 public class ConversationItemThumbnail extends FrameLayout {
 
-  private ThumbnailView          thumbnail;
-  private AlbumThumbnailView     album;
+  private static final String TAG = ConversationItemThumbnail.class.getSimpleName();
+  public ThumbnailView          thumbnail;
+  public AlbumThumbnailView     album;
   private ImageView              shade;
   private ConversationItemFooter footer;
   private CornerMask             cornerMask;
@@ -48,6 +50,14 @@ public class ConversationItemThumbnail extends FrameLayout {
     init(attrs);
   }
 
+  public AlbumThumbnailView getAlbum(){
+    return album;
+  }
+
+  public ThumbnailView getThumbnailview(){
+    return thumbnail;
+  }
+
   private void init(@Nullable AttributeSet attrs) {
     inflate(getContext(), R.layout.conversation_item_thumbnail, this);
 
@@ -68,6 +78,17 @@ public class ConversationItemThumbnail extends FrameLayout {
                           typedArray.getDimensionPixelSize(R.styleable.ConversationItemThumbnail_conversationThumbnail_maxHeight, 0));
       typedArray.recycle();
     }
+
+    thumbnail.setOnClickListener(v -> {
+      Log.d(TAG, "init()  onClick  ");
+    });
+
+    album.setOnClickListener(v -> {
+      ThumbnailView cell = findViewById(R.id.album_cell_1);
+      if (cell!=null) {
+        cell.performClick();
+      }
+    });
   }
 
   @SuppressWarnings("SuspiciousNameCombination")

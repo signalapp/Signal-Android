@@ -32,13 +32,6 @@ public final class PopulationFeatureFlags {
     return isEnabled(FeatureFlags.RESEARCH_MEGAPHONE_1, FeatureFlags.researchMegaphone());
   }
 
-  /**
-   * In donate megaphone group for given country code
-   */
-  public static boolean isInDonateMegaphone() {
-    return isEnabled(FeatureFlags.DONATE_MEGAPHONE, FeatureFlags.donateMegaphone());
-  }
-
   private static boolean isEnabled(@NonNull String flag, @NonNull String serialized) {
     Map<String, Integer> countryCountEnabled = parseCountryCounts(serialized);
     Recipient            self                = Recipient.self();

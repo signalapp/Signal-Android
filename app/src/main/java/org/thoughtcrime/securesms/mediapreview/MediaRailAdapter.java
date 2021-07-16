@@ -146,15 +146,15 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
 
     private final ThumbnailView image;
     private final View          outline;
-    private final View          deleteButton;
-    private final View          captionIndicator;
+//    private final View          deleteButton;
+//    private final View          captionIndicator;
 
     MediaViewHolder(@NonNull View itemView) {
       super(itemView);
       image            = itemView.findViewById(R.id.rail_item_image);
       outline          = itemView.findViewById(R.id.rail_item_outline);
-      deleteButton     = itemView.findViewById(R.id.rail_item_delete);
-      captionIndicator = itemView.findViewById(R.id.rail_item_caption);
+//      deleteButton     = itemView.findViewById(R.id.rail_item_delete);
+//      captionIndicator = itemView.findViewById(R.id.rail_item_caption);
     }
 
     void bind(@NonNull Media media, boolean isActive, @NonNull GlideRequests glideRequests,
@@ -166,19 +166,19 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
 
       outline.setVisibility(isActive && interactive ? View.VISIBLE : View.GONE);
 
-      captionIndicator.setVisibility(media.getCaption().isPresent() ? View.VISIBLE : View.GONE);
+//      captionIndicator.setVisibility(media.getCaption().isPresent() ? View.VISIBLE : View.GONE);
 
-      if (editable && isActive && interactive) {
-        deleteButton.setVisibility(View.VISIBLE);
-        deleteButton.setOnClickListener(v -> railItemListener.onRailItemDeleteClicked(distanceFromActive));
-      } else {
-        deleteButton.setVisibility(View.GONE);
-      }
+//      if (editable && isActive && interactive) {
+//        deleteButton.setVisibility(View.VISIBLE);
+//        deleteButton.setOnClickListener(v -> railItemListener.onRailItemDeleteClicked(distanceFromActive));
+//      } else {
+//        deleteButton.setVisibility(View.GONE);
+//      }
     }
 
     void recycle() {
       image.setOnClickListener(null);
-      deleteButton.setOnClickListener(null);
+//      deleteButton.setOnClickListener(null);
     }
   }
 

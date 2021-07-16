@@ -23,9 +23,9 @@
         android:title="@string/preferences__internal_preferences"
         app:isPreferenceVisible="false" />
 
-    <Preference
-        android:key="pref_submit_debug_logs"
-        android:title="@string/preferences__submit_debug_log"/>
+    <org.thoughtcrime.securesms.preferences.widgets.VersionCodePreference
+        android:key="pref_version_code"
+        android:title="@string/app_name" />
 
     <PreferenceCategory android:layout="@layout/preference_divider"/>
 

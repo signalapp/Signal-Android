@@ -20,6 +20,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -45,7 +47,9 @@ import java.io.IOException;
  *
  */
 public class NewConversationActivity extends ContactSelectionActivity
-                                    implements ContactSelectionListFragment.ListCallback
+                                    implements ContactSelectionListFragment.ListCallback,
+        ContactSelectionListFragment.RefreshCallback,
+        ContactSelectionListFragment.SearchCallBack
 {
 
   @SuppressWarnings("unused")
@@ -54,8 +58,6 @@ public class NewConversationActivity extends ContactSelectionActivity
   @Override
   public void onCreate(Bundle bundle, boolean ready) {
     super.onCreate(bundle, ready);
-    assert getSupportActionBar() != null;
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   }
 
   @Override
@@ -123,15 +125,18 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   private void handleManualRefresh() {
-    contactsFragment.setRefreshing(true);
+    contactsFragment.setRefreshing(false);
     onRefresh();
+    Toast.makeText(getApplicationContext(),"Refreshed", Toast.LENGTH_SHORT).show();
   }
 
   private void handleCreateGroup() {
+    Log.e(TAG, "handleCreateGroup");
     startActivity(CreateGroupActivity.newIntent(this));
   }
 
   private void handleInvite() {
+    Log.e(TAG, "handleInvite");
     startActivity(new Intent(this, InviteActivity.class));
   }
 
@@ -147,12 +152,22 @@ public class NewConversationActivity extends ContactSelectionActivity
   @Override
   public void onInvite() {
     handleInvite();
-    finish();
+//    finish();
   }
 
   @Override
   public void onNewGroup(boolean forceV1) {
     handleCreateGroup();
-    finish();
+//    finish();
+  }
+
+  @Override
+  public void onReFresh() {
+    handleManualRefresh();
+  }
+
+  @Override
+  public void onSearch(View view) {
+
   }
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240px"
+    android:layout_height="56px"
+    android:orientation="vertical"
+    android:background="@color/action_mode_status_bar">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50px"
+        android:text="@string/ExpirationDialog_disappearing_messages"
+        android:textSize="24px"
+        android:textColor="@color/white"
+        android:gravity="center"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/sim_background"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rl_disappearing_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:defaultFocusHighlightEnabled="false"/>
+
+</LinearLayout>

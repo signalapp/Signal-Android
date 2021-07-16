@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:defaultFocusHighlightEnabled="false"
+    tools:context=".DisclaimerFragment"
+    android:orientation="vertical"
+    tools:targetApi="o">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:defaultFocusHighlightEnabled="false"
+        android:nextFocusDown="@id/disclaimer_continue_container"
+        android:scrollbars="none"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/disclaimer_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:defaultFocusHighlightEnabled="false"
+                android:nextFocusDown="@+id/disclaimer_continue_container"
+                android:singleLine="false"
+                android:text="@string/hello_blank_fragment"
+                android:textColor="@color/white_focus"
+                android:textSize="20sp" />
+
+            <!--<TextView
+                android:id="@+id/disclaimer_continue_pre"
+                style="@style/Mp02.Signal.Text.CommonTextButton"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:text="@string/Permissions_continue"
+                android:textSize="20sp"
+                android:textColor="@color/white_focus"/>-->
+        </LinearLayout>
+    </ScrollView>
+
+    <!--<LinearLayout
+        android:id="@+id/disclaimer_continue_container"
+        android:layout_width="match_parent"
+        android:layout_height="108px"
+        android:defaultFocusHighlightEnabled="false"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/disclaimer_continue"
+            style="@style/Mp02.Signal.Text.CommonTextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:text="@string/Permissions_continue"
+            android:textSize="20sp"
+            android:textColor="@color/white_focus"
+            android:layout_marginLeft="10px"/>
+    </LinearLayout>-->
+</LinearLayout>

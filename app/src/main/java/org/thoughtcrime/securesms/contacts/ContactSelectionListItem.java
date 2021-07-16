@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
@@ -27,11 +26,10 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
   @SuppressWarnings("unused")
   private static final String TAG = ContactSelectionListItem.class.getSimpleName();
 
-  private AvatarImageView contactPhotoImage;
-  private TextView        numberView;
-  private FromTextView    nameView;
-  private TextView        labelView;
-  private CheckBox        checkBox;
+  public TextView        numberView; //number
+  public FromTextView    nameView; //name
+  public TextView        labelView; //label
+  public CheckBox        checkBox;
 
   private String        number;
   private String        chipName;
@@ -50,7 +48,6 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
-    this.contactPhotoImage = findViewById(R.id.contact_photo_image);
     this.numberView        = findViewById(R.id.number);
     this.labelView         = findViewById(R.id.label);
     this.nameView          = findViewById(R.id.name);
@@ -74,7 +71,6 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
 
     if (type == ContactRepository.NEW_PHONE_TYPE || type == ContactRepository.NEW_USERNAME_TYPE) {
       this.recipient = null;
-      this.contactPhotoImage.setAvatar(glideRequests, null, false);
     } else if (recipientId != null) {
       this.recipient = Recipient.live(recipientId);
       this.recipient.observeForever(this);
@@ -83,9 +79,8 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
 
     Recipient recipientSnapshot = recipient != null ? recipient.get() : null;
 
-    this.nameView.setTextColor(color);
-    this.numberView.setTextColor(color);
-    this.contactPhotoImage.setAvatar(glideRequests, recipientSnapshot, false);
+//    this.nameView.setTextColor(color);
+//    this.numberView.setTextColor(color);
 
     setText(recipientSnapshot, type, name, number, label);
 
@@ -174,7 +169,6 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
 
   @Override
   public void onRecipientChanged(@NonNull Recipient recipient) {
-    contactPhotoImage.setAvatar(glideRequests, recipient, false);
     nameView.setText(recipient);
     if (recipient.isGroup()) {
       numberView.setText(getGroupMemberCount(recipient));

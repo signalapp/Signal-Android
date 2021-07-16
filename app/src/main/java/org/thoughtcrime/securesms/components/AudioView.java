@@ -5,7 +5,9 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
+import android.media.AudioManager;
 import android.net.Uri;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,6 +31,7 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.audio.AudioWaveForm;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
@@ -40,6 +43,8 @@ import org.thoughtcrime.securesms.mms.SlideClickListener;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import static android.media.AudioManager.ADJUST_RAISE;
+
 public final class AudioView extends FrameLayout {
 
   private static final String TAG = AudioView.class.getSimpleName();
@@ -49,8 +54,8 @@ public final class AudioView extends FrameLayout {
 
   @NonNull private final AnimatingToggle     controlToggle;
   @NonNull private final View                progressAndPlay;
-  @NonNull private final LottieAnimationView playPauseButton;
-  @NonNull private final ImageView           downloadButton;
+  @NonNull public final LottieAnimationView playPauseButton;
+  @NonNull public final ImageView           downloadButton;
   @NonNull private final ProgressWheel       circleProgress;
   @NonNull private final SeekBar             seekBar;
            private final boolean             smallView;
@@ -69,6 +74,7 @@ public final class AudioView extends FrameLayout {
             private long               durationMillis;
             private AudioSlide         audioSlide;
             private Callbacks          callbacks;
+  private DownloadClickedListener downloadClickedListener01;
 
   private final Observer<VoiceNotePlaybackState> playbackStateObserver = this::onPlaybackState;
 
@@ -129,6 +135,15 @@ public final class AudioView extends FrameLayout {
     EventBus.getDefault().unregister(this);
   }
 
+  public PlayPauseClickedListener getListener(){
+    return new PlayPauseClickedListener();
+  }
+
+  public DownloadClickedListener getDownloadListener(){
+    // return new PlayPauseClickedListener();
+    return  downloadClickedListener01;
+  }
+
   public Observer<VoiceNotePlaybackState> getPlaybackStateObserver() {
     return playbackStateObserver;
   }
@@ -156,7 +171,9 @@ public final class AudioView extends FrameLayout {
     if (showControls && audio.isPendingDownload()) {
       controlToggle.displayQuick(downloadButton);
       seekBar.setEnabled(false);
-      downloadButton.setOnClickListener(new DownloadClickedListener(audio));
+      downloadClickedListener01 = new DownloadClickedListener(audio);
+      downloadButton.setOnClickListener(downloadClickedListener01);
+      //downloadButton.performClick();
       if (circleProgress.isSpinning()) circleProgress.stopSpinning();
       circleProgress.setVisibility(View.GONE);
     } else if (showControls && audio.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_STARTED) {
@@ -395,6 +412,20 @@ public final class AudioView extends FrameLayout {
     public void onClick(View v) {
       if (audioSlide == null || audioSlide.getUri() == null) return;
 
+      AudioManager mAudioManager;
+      mAudioManager = (AudioManager)getContext().getSystemService(Context.AUDIO_SERVICE);
+
+      include_volume("80");
+      mAudioManager.setSpeakerphoneOn(false);
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+        mAudioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
+//        mAudioManager.setStreamVolume(AudioManager.MODE_IN_COMMUNICATION,10,0);
+      } else {
+        mAudioManager.setMode(AudioManager.MODE_IN_CALL);
+//        mAudioManager.setStreamVolume(AudioManager.MODE_IN_CALL,10,0);
+      }
+
+
       if (callbacks != null) {
         if (lottieDirection == REVERSE) {
           callbacks.onPlay(audioSlide.getUri(), getProgress());
@@ -402,6 +433,37 @@ public final class AudioView extends FrameLayout {
           callbacks.onPause(audioSlide.getUri());
         }
       }
+    }
+  }
+
+  private void include_volume(String volumes) {
+    try {
+      AudioManager am = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+      int max = am.getStreamMaxVolume(AudioManager.MODE_IN_COMMUNICATION);
+      int current = am.getStreamVolume(AudioManager.MODE_IN_COMMUNICATION);
+      float zhanbi = max / 100f;
+
+      if (!volumes.equals(0)) {
+        int apiVolume = Integer.parseInt(volumes);
+        int setapi = (int) (apiVolume * zhanbi);
+        if (current > setapi) {
+          int ad = current - setapi;
+          for (int p = 0; p < ad; p++) {
+            am.adjustSuggestedStreamVolume(AudioManager.ADJUST_LOWER, AudioManager.MODE_IN_COMMUNICATION, setapi);
+          }
+          int currents = am.getStreamVolume(AudioManager.MODE_IN_COMMUNICATION);
+        } else {
+          int af = setapi - current;
+          for (int p = 0; p < af; p++) {
+            am.adjustSuggestedStreamVolume(ADJUST_RAISE, AudioManager.MODE_IN_COMMUNICATION, setapi);
+          }
+          int currents = am.getStreamVolume(AudioManager.MODE_IN_COMMUNICATION);
+        }
+      } else {
+        am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+      }
+    } catch (Exception e) {
+      Log.e(TAG, "include_volume: error" + e.getMessage());
     }
   }
 

@@ -26,7 +26,7 @@ final class GroupsV2ProcessingLock {
 
   @WorkerThread
   static Closeable acquireGroupProcessingLock(long timeoutMs) throws GroupChangeBusyException {
-    Util.assertNotMainThread();
+//    Util.assertNotMainThread();
 
     try {
       if (!lock.tryLock(timeoutMs, TimeUnit.MILLISECONDS)) {

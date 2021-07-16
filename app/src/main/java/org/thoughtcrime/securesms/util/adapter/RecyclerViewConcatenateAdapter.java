@@ -15,7 +15,7 @@
  *
  * Original source: https://github.com/martijnvdwoude/recycler-view-merge-adapter
  *
- * This file has been modified by Signal.
+ * This file has been modified by Signal .
  */
 
 package org.thoughtcrime.securesms.util.adapter;
@@ -293,4 +293,5 @@ public class RecyclerViewConcatenateAdapter extends RecyclerView.Adapter<Recycle
 
     return count;
   }
+  
 }

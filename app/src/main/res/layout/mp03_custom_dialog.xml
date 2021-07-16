@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:defaultFocusHighlightEnabled="false"
+    android:scrollbars="none">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="fill_vertical">
+        <LinearLayout
+            android:id="@+id/top"
+            style="@style/Theme.AppCompat.NoActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:layout_marginTop="60px"
+            android:orientation="vertical"
+            android:transitionGroup="false">
+            <TextView
+                android:id="@+id/reminder_disable_title"
+                android:layout_width="match_parent"
+                android:layout_height="32px"
+                android:paddingStart="30px"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="24px"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/reminder_disable_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="30px"
+                android:textColor="@color/white"
+                android:textSize="24px"
+                android:visibility="visible" />
+            <EditText
+                android:id="@+id/reminder_disable_pin_0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="30px"
+                android:focusable="true"
+                android:focusedByDefault="true"
+                android:background="@color/transparent"
+                android:textColor="@color/white"
+                android:textSize="24px"
+                android:hint="@string/preferences_app_protection__confirm_pin" />
+            <TextView
+                android:id="@+id/reminder_disable_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:defaultFocusHighlightEnabled="false"
+                android:paddingStart="30px"
+                android:focusable="true"
+                android:clickable="true"
+                android:textColor="@color/white"
+                android:textSize="24px"
+                android:visibility="visible" />
+            <TextView
+                android:id="@+id/reminder_disable_turn_off"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:defaultFocusHighlightEnabled="false"
+                android:paddingStart="30px"
+                android:focusable="true"
+                android:clickable="true"
+                android:textColor="@color/white"
+                android:textSize="24px"
+                android:visibility="visible" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

@@ -14,6 +14,23 @@
     <style name="Theme.Signal.DayNight.NoActionBar" parent="TextSecure.LightNoActionBar">
     </style>
 
+    <style name="Mp02.Signal.PreferenceActivity" parent="Theme.AppCompat.NoActionBar">
+        <item name="preferenceTheme">@style/Mp02.Signal.PreferenceTheme</item>
+    </style>
+
+    <style name="Mp02.Signal.PreferenceTheme" parent="PreferenceThemeOverlay">
+        <item name="android:scrollbars">none</item>
+        <item name="preferenceStyle">@style/Mp02.Signal.PreferenceTheme.PreferenceStyle</item>
+    </style>
+
+    <style name="Mp02.Signal.PreferenceTheme.PreferenceStyle">
+        <item name="layout">@layout/preference_material_mp02</item>
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">true</item>
+        <item name="singleLineTitle">false</item>
+        <item name="iconSpaceReserved">false</item>
+    </style>
+
     <style name="TextSecure.LightNoActionBar" parent="@style/TextSecure.BaseLightNoActionBar">
         <!-- leave empty to allow overriding -->
     </style>
@@ -22,6 +39,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">@drawable/mp02_splash_bg</item>
 
         <item name="theme_type">light</item>
         <item name="colorPrimary">@color/core_ultramarine</item>
@@ -124,7 +142,7 @@
         <item name="colorPrimaryDark">@color/core_ultramarine</item>
         <item name="colorAccent">@color/core_ultramarine</item>
         <item name="colorControlActivated">@color/core_ultramarine</item>
-        <item name="colorControlHighlight">@color/core_ultramarine</item>
+        <item name="colorControlHighlight">@color/transparent</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
@@ -177,8 +195,8 @@
         <item name="colorAccent">@color/core_ultramarine_light</item>
         <item name="colorControlActivated">@color/core_ultramarine_light</item>
         <item name="colorControlHighlight">@color/core_ultramarine_light</item>
-        <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/core_ultramarine_light</item>
-        <item name="android:windowBackground">@color/core_grey_95</item>
+        <item name="android:colorControlHighlight" tools:ignore="NewApi">@color/sim_background</item>
+        <item name="android:windowBackground">@color/sim_background</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
@@ -203,6 +221,7 @@
         <item name="chipStyle">@style/Signal.Chip.Action</item>
 
         <item name="colorControlNormal">@color/core_white</item>
+        <item name="conversation_item_bubble_background_color">@color/core_bubble_blue</item>
     </style>
 
     <style name="Theme.Signal.AlertDialog.Light.Cornered" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -275,13 +294,14 @@
         <item name="android:collapseIcon" tools:ignore="NewApi">@drawable/ic_arrow_left_conversation_24</item>
     </style>
 
-    <style name="TextSecure.DarkTheme.WebRTCCall">
+    <style name="TextSecure.DarkTheme.WebRTCCall" parent="NoAnimation.Theme.AppCompat.Light.DarkActionBar">
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/core_ultramarine</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
         <item name="android:navigationBarColor" tools:ignore="NewApi">@color/core_black</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+        <item name="android:windowBackground">@color/sim_background</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

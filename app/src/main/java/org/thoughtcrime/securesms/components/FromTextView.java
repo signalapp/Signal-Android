@@ -69,5 +69,13 @@ public class FromTextView extends EmojiTextView {
     else                            setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
   }
 
+  private boolean mFocused;
 
+  public boolean isFocused() {
+    return mFocused;
+  }
+
+  public void setFocused(boolean mFocused) {
+    this.mFocused = mFocused;
+  }
 }

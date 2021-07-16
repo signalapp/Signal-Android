@@ -82,6 +82,8 @@ public class MainActivity extends PassphraseRequiredActivity {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == MainNavigator.REQUEST_CONFIG_CHANGES && resultCode == RESULT_CONFIG_CHANGED) {
       recreate();
+    } else if (resultCode == MainNavigator.PROFILE_EMPTY) {
+      finish();
     }
   }
 

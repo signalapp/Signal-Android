@@ -21,7 +21,7 @@
 
         <action
             android:id="@+id/action_skip_restore"
-            app:destination="@id/enterPhoneNumberFragment"
+            app:destination="@id/enterCountryCodeFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -34,7 +34,83 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_read_disclaimer"
+            app:destination="@id/disclaimerFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_read_terms"
+            app:destination="@id/termsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/disclaimerFragment"
+        android:name="org.thoughtcrime.securesms.DisclaimerFragment"
+        android:label="fragment_registration_disclaimer"
+        tools:layout="@layout/fragment_registration_disclaimer" >
+        <action
+            android:id="@+id/action_disclaimerFragment_continue"
+            app:destination="@id/enterCountryCodeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_skip_restore"
+            app:destination="@id/enterCountryCodeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_restore"
+            app:destination="@id/restoreBackupFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_disclaimerFragment_to_welcomeFragment3"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/termsFragment"
+        android:name="org.thoughtcrime.securesms.TermsFragment"
+        android:label="fragment_registration_terms"
+        tools:layout="@layout/fragment_registration_terms" >
+        <action
+            android:id="@+id/action_termsFragment_continue"
+            app:destination="@id/enterCountryCodeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_skip_restore"
+            app:destination="@id/enterCountryCodeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_restore"
+            app:destination="@id/restoreBackupFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_termsFragment_to_welcomeFragment3"
+            app:destination="@id/welcomeFragment" />
     </fragment>
 
     <fragment
@@ -64,20 +140,32 @@
     </fragment>
 
     <fragment
-        android:id="@+id/enterPhoneNumberFragment"
-        android:name="org.thoughtcrime.securesms.registration.fragments.EnterPhoneNumberFragment"
-        android:label="fragment_enter_phone_number"
-        tools:layout="@layout/fragment_registration_enter_phone_number">
+        android:id="@+id/enterCountryCodeFragment"
+        android:name="org.thoughtcrime.securesms.registration.fragments.EnterCountryCodeFragment"
+        android:label="fragment_enter_country_code"
+        tools:layout="@layout/fragment_enter_country_code">
+        <action
+            android:id="@+id/action_enter_phonenumber"
+            app:destination="@id/enterPhoneNumberFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
         <action
             android:id="@+id/action_pickCountry"
             app:destination="@id/countryPickerFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
-            app:launchSingleTop="true"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/enterPhoneNumberFragment"
+        android:name="org.thoughtcrime.securesms.registration.fragments.EnterPhoneNumberFragment"
+        android:label="fragment_enter_phone_number"
+        tools:layout="@layout/fragment_registration_enter_phone_number">
         <action
             android:id="@+id/action_enterVerificationCode"
             app:destination="@id/enterCodeFragment"

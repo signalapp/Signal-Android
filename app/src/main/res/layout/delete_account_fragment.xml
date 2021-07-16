@@ -113,7 +113,7 @@
                 app:labeledEditText_textLayout="@layout/phone_text" />
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/delete_account_fragment_delete"
             style="@style/Signal.Widget.Button.Large.Danger"
             android:layout_width="match_parent"

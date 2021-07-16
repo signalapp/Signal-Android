@@ -82,6 +82,16 @@ public final class ViewUtil {
     return (T)((ViewStub)parent.findViewById(stubId)).inflate();
   }
 
+  @SuppressWarnings("unchecked")
+  public static <T extends View> T findById(@NonNull View parent, @IdRes int resId) {
+    return (T) parent.findViewById(resId);
+  }
+
+  @SuppressWarnings("unchecked")
+  public static <T extends View> T findById(@NonNull Activity parent, @IdRes int resId) {
+    return (T) parent.findViewById(resId);
+  }
+
   public static <T extends View> Stub<T> findStubById(@NonNull Activity parent, @IdRes int resId) {
     return new Stub<>(parent.findViewById(resId));
   }

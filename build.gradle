@@ -21,7 +21,7 @@ ext {
 
     COMPILE_SDK = 30
     TARGET_SDK  = 30
-    MINIMUM_SDK = 19
+    MINIMUM_SDK = 21
 
     JAVA_VERSION = JavaVersion.VERSION_1_8
 }
@@ -54,8 +54,8 @@ subprojects {
 task qa {
     group 'Verification'
     description 'Quality Assurance. Run before pushing.'
-    dependsOn ':Signal-Android:testPlayProdReleaseUnitTest',
-            ':Signal-Android:lintPlayProdRelease',
+    dependsOn ':Pigeon:testPlayReleaseUnitTest',
+            ':Pigeon:lintPlayRelease',
             ':libsignal-service:test',
-            ':Signal-Android:assemblePlayProdDebug'
+            ':Pigeon:assemblePlayDebug'
 }

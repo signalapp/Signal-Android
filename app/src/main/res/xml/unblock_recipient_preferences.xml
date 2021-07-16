@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    android:defaultFocusHighlightEnabled="false"
+
+    <org.thoughtcrime.securesms.preferences.widgets.Mp02CommonPreference
+        android:defaultValue="false"
+        android:disableDependentsState="true"
+        android:key="pref_key_delete"
+        android:persistent="false"
+        android:title="@string/delete" />
+    <org.thoughtcrime.securesms.preferences.widgets.Mp02CommonPreference
+        android:defaultValue="false"
+        android:disableDependentsState="true"
+        android:key="pref_key_unblock"
+        android:persistent="false"
+        android:title="@string/ConversationActivity_unblock" />
+
+</PreferenceScreen>

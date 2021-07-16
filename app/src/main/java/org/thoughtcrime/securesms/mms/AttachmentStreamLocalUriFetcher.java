@@ -50,7 +50,7 @@ class AttachmentStreamLocalUriFetcher implements DataFetcher<InputStream> {
       if (is != null) is.close();
       is = null;
     } catch (IOException ioe) {
-      Log.w(TAG, "ioe");
+      Log.w(TAG, "IOException");
     }
   }
 

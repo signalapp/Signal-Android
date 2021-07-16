@@ -319,10 +319,17 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
         shouldScheduleReminder = sendSingleThreadNotification(context, notificationState, signal, false, isReminder, bubbleState);
 
-        if (isDisplayingSummaryNotification(context)) {
-          sendMultipleThreadNotification(context, notificationState, false);
-        }
+//        if (isDisplayingSummaryNotification(context)) {
+//          sendMultipleThreadNotification(context, notificationState, false);
+//        }
       }
+
+      /* BroadCast for Launcher to display notification from Pigeon*/
+      Intent intent = new Intent();
+      intent.setAction("new.msg.from.signal");
+      intent.putExtra("thread_count", notificationState.getThreadCount());
+      intent.putExtra("msg_count", notificationState.getMessageCount());
+      context.sendBroadcast(intent);
 
       cancelOrphanedNotifications(context, notificationState);
       updateBadge(context, notificationState.getMessageCount());

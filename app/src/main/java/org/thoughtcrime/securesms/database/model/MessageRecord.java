@@ -160,9 +160,9 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isOutgoingVideoCall()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_you_called_date, getCallDateString(context)), R.drawable.ic_update_video_call_outgoing_16);
     } else if (isMissedAudioCall()) {
-      return staticUpdateDescription(context.getString(R.string.MessageRecord_missed_audio_call_date, getCallDateString(context)), R.drawable.ic_update_audio_call_missed_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red));
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_missed_call, getCallDateString(context)), R.drawable.ic_update_audio_call_missed_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red));
     } else if (isMissedVideoCall()) {
-      return staticUpdateDescription(context.getString(R.string.MessageRecord_missed_video_call_date, getCallDateString(context)), R.drawable.ic_update_video_call_missed_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red));
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_missed_call, getCallDateString(context)), R.drawable.ic_update_video_call_missed_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red));
     } else if (isGroupCall()) {
       return getGroupCallUpdateDescription(context, getBody(), true);
     } else if (isJoined()) {
@@ -412,7 +412,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isIdentityUpdate() {
-    return SmsDatabase.Types.isIdentityUpdate(type);
+    return (SmsDatabase.Types.isIdentityUpdate(type) && type != 10485765);
   }
 
   public boolean isCorruptedKeyExchange() {

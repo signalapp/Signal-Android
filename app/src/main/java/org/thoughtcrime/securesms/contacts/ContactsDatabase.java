@@ -24,6 +24,7 @@ import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.RemoteException;
+import android.os.Build;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
@@ -52,6 +53,7 @@ import java.util.Set;
 public class ContactsDatabase {
 
   private static final String TAG              = ContactsDatabase.class.getSimpleName();
+  private final static boolean DEBUG           = Build.TYPE.equals("userdebug");
   private static final String CONTACT_MIMETYPE = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact";
   private static final String CALL_MIMETYPE    = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call";
   private static final String SYNC             = "__TS";
@@ -97,7 +99,7 @@ public class ContactsDatabase {
           Optional<SystemContactInfo> systemContactInfo = getSystemContactInfo(registeredAddress);
 
           if (systemContactInfo.isPresent()) {
-            Log.i(TAG, "Adding number: " + registeredAddress);
+            if (DEBUG) Log.i(TAG, "Adding number: " + registeredAddress);
             addTextSecureRawContact(operations, account, systemContactInfo.get().number,
                                     systemContactInfo.get().name, systemContactInfo.get().id);
           }
@@ -112,16 +114,16 @@ public class ContactsDatabase {
     for (Map.Entry<String, SignalContact> currentContactEntry : currentContacts.entrySet()) {
       if (!registeredAddressSet.contains(currentContactEntry.getKey())) {
         if (remove) {
-          Log.i(TAG, "Removing number: " + currentContactEntry.getKey());
+          if (DEBUG) Log.i(TAG, "Removing number: " + currentContactEntry.getKey());
           removeTextSecureRawContact(operations, account, currentContactEntry.getValue().getId());
         }
       } else if (!currentContactEntry.getValue().isVoiceSupported()) {
-        Log.i(TAG, "Adding voice support: " + currentContactEntry.getKey());
+        if (DEBUG) Log.i(TAG, "Adding voice support: " + currentContactEntry.getKey());
         addContactVoiceSupport(operations, currentContactEntry.getKey(), currentContactEntry.getValue().getId());
       } else if (!Util.isStringEquals(currentContactEntry.getValue().getRawDisplayName(),
                                       currentContactEntry.getValue().getAggregateDisplayName()))
       {
-        Log.i(TAG, "Updating display name: " + currentContactEntry.getKey());
+        if (DEBUG) Log.i(TAG, "Updating display name: " + currentContactEntry.getKey());
         updateDisplayName(operations, currentContactEntry.getValue().getAggregateDisplayName(), currentContactEntry.getValue().getId(), currentContactEntry.getValue().getDisplayNameSource());
       }
     }

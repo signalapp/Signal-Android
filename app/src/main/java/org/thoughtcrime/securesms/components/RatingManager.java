@@ -32,7 +32,7 @@ public class RatingManager {
     if (daysSinceInstall >= DAYS_SINCE_INSTALL_THRESHOLD &&
         System.currentTimeMillis() >= laterTimestamp)
     {
-      showRatingDialog(context);
+//      showRatingDialog(context);
     }
   }
 

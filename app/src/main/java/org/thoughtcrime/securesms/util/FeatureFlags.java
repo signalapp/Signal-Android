@@ -58,7 +58,6 @@ public final class FeatureFlags {
   private static final String PHONE_NUMBER_PRIVACY_VERSION = "android.phoneNumberPrivacyVersion";
   private static final String CLIENT_EXPIRATION            = "android.clientExpiration";
   public  static final String RESEARCH_MEGAPHONE_1         = "research.megaphone.1";
-  public  static final String DONATE_MEGAPHONE             = "android.donate";
   private static final String VIEWED_RECEIPTS              = "android.viewed.receipts";
   private static final String GROUP_CALLING                = "android.groupsv2.calling.2";
   private static final String GV1_MANUAL_MIGRATE           = "android.groupsV1Migration.manual";
@@ -85,7 +84,6 @@ public final class FeatureFlags {
       VERIFY_V2,
       CLIENT_EXPIRATION,
       RESEARCH_MEGAPHONE_1,
-      DONATE_MEGAPHONE,
       VIEWED_RECEIPTS,
       GV1_MIGRATION_JOB,
       GV1_MANUAL_MIGRATE,
@@ -237,11 +235,6 @@ public final class FeatureFlags {
   /** The raw research megaphone CSV string */
   public static String researchMegaphone() {
     return getString(RESEARCH_MEGAPHONE_1, "");
-  }
-
-  /** The raw donate megaphone CSV string */
-  public static String donateMegaphone() {
-    return getString(DONATE_MEGAPHONE, "");
   }
 
   /**

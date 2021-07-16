@@ -1,39 +1,47 @@
 package org.thoughtcrime.securesms.preferences;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.provider.Settings;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceScreen;
+import androidx.preference.PreferenceGroup;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.SmsUtil;
+import org.thoughtcrime.securesms.components.mp02anim.ItemAnimViewController;
+import org.thoughtcrime.securesms.preferences.widgets.Mp02CommonPreference;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 
-public class SmsMmsPreferenceFragment extends CorrectedPreferenceFragment {
-  private static final String KITKAT_DEFAULT_PREF   = "pref_set_default";
-  private static final String MMS_PREF              = "pref_mms_preferences";
-  private static final short  SMS_ROLE_REQUEST_CODE = 1234;
+public class SmsMmsPreferenceFragment extends CorrectedPreferenceFragment implements Preference.OnPreferenceClickListener {
+
+  private static final String PREF_DELIVERY_REPORT_SMS = "pref_delivery_report_sms";
+  private static final String PREF_WIFI_SMS = "pref_wifi_sms";
+
+  private Mp02CommonPreference mSmsDeliveryPref;
+  private Mp02CommonPreference mWifiCallingPref;
+  private boolean mSmsDeliveryStatus;
+  private boolean mWifiCallingStatus;
+
+  private PreferenceGroup mPrefGroup;
+  private int mPrefCount;
+  private int mCurPoi = 0;
+  private ItemAnimViewController mParentViewController;
 
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
+    initPreferences();
+  }
 
-
-    this.findPreference(MMS_PREF)
-      .setOnPreferenceClickListener(new ApnPreferencesClickListener());
-
-    initializePlatformSpecificOptions();
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    View view = super.onCreateView(inflater, container, savedInstanceState);
+//    mParentViewController = getParentAnimViewController();
+//    changeView(mCurPoi, false);
+    return view;
   }
 
   @Override
@@ -41,82 +49,100 @@ public class SmsMmsPreferenceFragment extends CorrectedPreferenceFragment {
     addPreferencesFromResource(R.xml.preferences_sms_mms);
   }
 
+  private void initPreferences() {
+    mSmsDeliveryPref = (Mp02CommonPreference) this.findPreference(PREF_DELIVERY_REPORT_SMS);
+    mWifiCallingPref = (Mp02CommonPreference) this.findPreference(PREF_WIFI_SMS);
+    mSmsDeliveryPref.setOnPreferenceClickListener(this);
+    mWifiCallingPref.setOnPreferenceClickListener(this);
+    updatePrefStatus(PREF_DELIVERY_REPORT_SMS, TextSecurePreferences.isSmsDeliveryReportsEnabled(getContext()));
+    updatePrefStatus(PREF_WIFI_SMS, TextSecurePreferences.isWifiSmsEnabled(getContext()));
+
+    mPrefGroup = getPreferenceGroup();
+    mPrefCount = mPrefGroup.getPreferenceCount();
+  }
+
+  private void updatePrefStatus(String key, boolean enabled) {
+    String status = enabled ? PREF_STATUS_ON : PREF_STATUS_OFF;
+    switch (key) {
+      case PREF_DELIVERY_REPORT_SMS:
+        mSmsDeliveryStatus = enabled;
+        mSmsDeliveryPref.setTitle(getString(R.string.preferences__sms_delivery_reports) + status);
+        break;
+      case PREF_WIFI_SMS:
+        mWifiCallingStatus = enabled;
+        mWifiCallingPref.setTitle(getString(R.string.preferences__support_wifi_calling) + status);
+        break;
+      default:
+        break;
+    }
+  }
+
   @Override
-  public void onResume() {
-    super.onResume();
-    ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__sms_mms);
-
-    initializeDefaultPreference();
+  public boolean onKeyDown(KeyEvent event) {
+    View v = getListView().getFocusedChild();
+    if (v != null) {
+      mCurPoi = (int) v.getTag();
+    }
+    switch (event.getKeyCode()) {
+      case KeyEvent.KEYCODE_DPAD_DOWN:
+        if (mCurPoi < mPrefCount - 1) {
+          mCurPoi++;
+          changeView(mCurPoi, true);
+        }
+        break;
+      case KeyEvent.KEYCODE_DPAD_UP:
+        if (mCurPoi > 0) {
+          mCurPoi--;
+          changeView(mCurPoi, false);
+        }
+        break;
+    }
+    return super.onKeyDown(event);
   }
 
-  private void initializePlatformSpecificOptions() {
-    PreferenceScreen preferenceScreen    = getPreferenceScreen();
-    Preference       defaultPreference   = findPreference(KITKAT_DEFAULT_PREF);
-    Preference       allSmsPreference    = findPreference(TextSecurePreferences.ALL_SMS_PREF);
-    Preference       allMmsPreference    = findPreference(TextSecurePreferences.ALL_MMS_PREF);
-    Preference       manualMmsPreference = findPreference(MMS_PREF);
-
-    if (VERSION.SDK_INT >= VERSION_CODES.KITKAT) {
-      if (allSmsPreference != null) preferenceScreen.removePreference(allSmsPreference);
-      if (allMmsPreference != null) preferenceScreen.removePreference(allMmsPreference);
-    } else if (defaultPreference != null) {
-      preferenceScreen.removePreference(defaultPreference);
+  private void changeView(int currentPosition, boolean b) {
+    Preference preference = mPrefGroup.getPreference(currentPosition);
+    Preference preference1 = null;
+    Preference preference2 = null;
+    if (currentPosition > 0) {
+      preference1 = mPrefGroup.getPreference(currentPosition - 1);
+    }
+    if (currentPosition < mPrefCount - 1) {
+      preference2 = mPrefGroup.getPreference(currentPosition + 1);
     }
 
-    if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP && manualMmsPreference != null) {
-      preferenceScreen.removePreference(manualMmsPreference);
+    String curTitle = "";
+    String title1 = "";
+    String title2 = "";
+    curTitle = preference.getTitle().toString();
+    if (preference1 != null) {
+      title1 = preference1.getTitle().toString();
     }
-  }
-
-  private void initializeDefaultPreference() {
-    Preference defaultPreference = findPreference(KITKAT_DEFAULT_PREF);
-    if (Util.isDefaultSmsProvider(getActivity())) {
-      defaultPreference.setOnPreferenceClickListener(null);
-
-      if (VERSION.SDK_INT < VERSION_CODES.M) defaultPreference.setIntent(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
-      if (VERSION.SDK_INT < VERSION_CODES.N) defaultPreference.setIntent(new Intent(Settings.ACTION_SETTINGS));
-      else                                   defaultPreference.setIntent(new Intent(Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS));
-
-      defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_enabled));
-      defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_change_your_default_sms_app));
+    if (preference2 != null) {
+      title2 = preference2.getTitle().toString();
+    }
+    if (b) {
+      mParentViewController.actionUpIn(title1, curTitle);
     } else {
-      defaultPreference.setTitle(getString(R.string.ApplicationPreferencesActivity_sms_disabled));
-      defaultPreference.setSummary(getString(R.string.ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app));
-
-      defaultPreference.setOnPreferenceClickListener(preference -> {
-        startActivityForResult(SmsUtil.getSmsRoleIntent(requireContext()), SMS_ROLE_REQUEST_CODE);
-        return true;
-      });
+      mParentViewController.actionDownIn(title2, curTitle);
     }
   }
 
-  private class ApnPreferencesClickListener implements Preference.OnPreferenceClickListener {
-
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-      Fragment            fragment            = new MmsPreferencesFragment();
-      FragmentManager     fragmentManager     = getActivity().getSupportFragmentManager();
-      FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-      fragmentTransaction.replace(android.R.id.content, fragment);
-      fragmentTransaction.addToBackStack(null);
-      fragmentTransaction.commit();
-
-      return true;
+  @Override
+  public boolean onPreferenceClick(Preference preference) {
+    String key = preference.getKey();
+    switch (key) {
+      case PREF_DELIVERY_REPORT_SMS:
+        TextSecurePreferences.setSmsDeliveryReportsEnabled(getContext(), !mSmsDeliveryStatus);
+        updatePrefStatus(PREF_DELIVERY_REPORT_SMS, TextSecurePreferences.isSmsDeliveryReportsEnabled(getContext()));
+        break;
+      case PREF_WIFI_SMS:
+        TextSecurePreferences.setWifiSmsEnabled(getContext(), !mWifiCallingStatus);
+        updatePrefStatus(PREF_WIFI_SMS, TextSecurePreferences.isWifiSmsEnabled(getContext()));
+        break;
+      default:
+        break;
     }
-  }
-
-  public static CharSequence getSummary(Context context) {
-    final String on                 = context.getString(R.string.ApplicationPreferencesActivity_on);
-    final String onCaps             = context.getString(R.string.ApplicationPreferencesActivity_On);
-    final String off                = context.getString(R.string.ApplicationPreferencesActivity_off);
-    final String offCaps            = context.getString(R.string.ApplicationPreferencesActivity_Off);
-    final int    smsMmsSummaryResId = R.string.ApplicationPreferencesActivity_sms_mms_summary;
-
-    boolean postKitkatSMS = Util.isDefaultSmsProvider(context);
-    boolean preKitkatSMS  = TextSecurePreferences.isInterceptAllSmsEnabled(context);
-    boolean preKitkatMMS  = TextSecurePreferences.isInterceptAllMmsEnabled(context);
-
-    if (postKitkatSMS) return onCaps;
-    else               return offCaps;
+    return true;
   }
 }

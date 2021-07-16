@@ -32,10 +32,10 @@
     <dimen name="message_corner_collapse_radius">4dp</dimen>
     <dimen name="message_bubble_corner_radius">2dp</dimen>
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
-    <dimen name="message_bubble_horizontal_padding">12dp</dimen>
-    <dimen name="message_bubble_top_padding">6dp</dimen>
+    <dimen name="message_bubble_horizontal_padding">5px</dimen>
+    <dimen name="message_bubble_top_padding">5px</dimen>
     <dimen name="message_bubble_top_padding_audio">12dp</dimen>
-    <dimen name="message_bubble_collapsed_footer_padding">6dp</dimen>
+    <dimen name="message_bubble_collapsed_footer_padding">5px</dimen>
     <dimen name="message_bubble_edge_margin">32dp</dimen>
     <dimen name="message_bubble_bottom_padding">8dp</dimen>
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
@@ -47,7 +47,7 @@
     <dimen name="media_bubble_min_height">100dp</dimen>
     <dimen name="media_bubble_max_height">320dp</dimen>
     <dimen name="media_bubble_sticker_dimens">175dp</dimen>
-    <dimen name="message_audio_width">242dp</dimen>
+    <dimen name="message_audio_width">210dp</dimen>
 
     <dimen name="media_picker_folder_width">175dp</dimen>
     <dimen name="media_picker_item_width">85dp</dimen>
@@ -162,4 +162,31 @@
     <dimen name="wave_form_bar_width">2dp</dimen>
 
     <dimen name="review_card_icon_arc_radius">14.5dp</dimen>
+
+    <dimen name="conversation_list_item_default_height">35dp</dimen>
+    <dimen name="conversation_list_item_default_height_focused">52dp</dimen>
+    <dimen name="conversation_list_item_divider_height">10dp</dimen>
+    <dimen name="conversation_list_item_normal_height">60dp</dimen>
+    <dimen name="conversation_list_item_normal_height_focused">52dp</dimen>
+    <dimen name="conversation_list_item_search_contact_height_focused">95dp</dimen>
+    <dimen name="conversation_list_item_padding_start_focused">5dp</dimen>
+    <dimen name="conversation_list_item_padding_start_unfocused">30dp</dimen>
+    <dimen name="conversation_list_item_text_size_focused">40dp</dimen>
+    <dimen name="conversation_list_item_text_size_unfocused">24dp</dimen>
+    <dimen name="conversation_list_item_search_contact_number_text_size_focused">24dp</dimen>
+    <dimen name="conversation_list_item_search_contact_number_text_size_unfocused">14dp</dimen>
+
+    <dimen name="focus_item_padding_x">5px</dimen>
+    <dimen name="item_height">32px</dimen>
+    <dimen name="item_padding_x">30px</dimen>
+    <dimen name="item_textsize">24px</dimen>
+    <dimen name="focus_item_textsize">40px</dimen>
+    <dimen name="focus_item_height">56px</dimen>
+    <dimen name="focus_small_height">32px</dimen>
+    <dimen name="small_height">22px</dimen>
+    <dimen name="focus_small_textsize">24px</dimen>
+    <dimen name="small_textsize">14px</dimen>
+
+    <dimen name="listview_header_height">76px</dimen>
+    <dimen name="listview_footer_height">107px</dimen>
 </resources>

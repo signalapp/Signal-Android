@@ -1,9 +1,11 @@
 package org.thoughtcrime.securesms.conversationlist;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -33,38 +35,64 @@ import java.util.Set;
 
 class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.ViewHolder> {
 
+  private static final String TAG = Log.tag(ConversationListArchiveFragment.class);
+
   private static final int TYPE_THREAD      = 1;
   private static final int TYPE_ACTION      = 2;
   private static final int TYPE_PLACEHOLDER = 3;
   private static final int TYPE_HEADER      = 4;
+  public static final int MENU_OPTIONS_TYPE = 100;
 
   private enum Payload {
     TYPING_INDICATOR,
     SELECTION
   }
 
-  private final GlideRequests               glideRequests;
+  private final GlideRequests glideRequests;
   private final OnConversationClickListener onConversationClickListener;
-  private final Map<Long, Conversation>     batchSet  = Collections.synchronizedMap(new LinkedHashMap<>());
-  private       boolean                     batchMode = false;
-  private final Set<Long>                   typingSet = new HashSet<>();
+  private final Map<Long, Conversation> batchSet = Collections.synchronizedMap(new LinkedHashMap<>());
+  private boolean batchMode = false;
+  private final Set<Long> typingSet = new HashSet<>();
+  private final Context mContext;
 
   private PagingController pagingController;
 
-  protected ConversationListAdapter(@NonNull GlideRequests glideRequests,
-                                    @NonNull OnConversationClickListener onConversationClickListener)
-  {
+  private List<String> data;
+  private boolean hasDivider;
+  private int dividerType;
+  private ConversationListItem fromText;
+  private View.OnKeyListener keyListener;
+  private boolean isFromLauncher = false;
+  private int originItemCount = 0;
+
+  protected ConversationListAdapter(@NonNull Context context,
+                                    @NonNull GlideRequests glideRequests,
+                                    @NonNull OnConversationClickListener onConversationClickListener) {
     super(new ConversationDiffCallback());
 
-    this.glideRequests               = glideRequests;
+    this.mContext = context;
+    this.glideRequests = glideRequests;
     this.onConversationClickListener = onConversationClickListener;
   }
 
+  protected ConversationListAdapter(@NonNull Context context,
+                                    @NonNull GlideRequests glideRequests,
+                                    @NonNull OnConversationClickListener onConversationClickListener,
+                                    @NonNull View.OnKeyListener onKeyListener) {
+    super(new ConversationDiffCallback());
+      this.mContext = context;
+      this.glideRequests = glideRequests;
+      this.onConversationClickListener = onConversationClickListener;
+      this.keyListener = onKeyListener;
+  }
+
   @Override
-  public @NonNull RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  public @NonNull
+  RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    Log.v(TAG, "onCreateViewHolder viewType: " + viewType);
     if (viewType == TYPE_ACTION) {
-      ConversationViewHolder holder =  new ConversationViewHolder(LayoutInflater.from(parent.getContext())
-                                                                                .inflate(R.layout.conversation_list_item_action, parent, false));
+      ConversationViewHolder holder = new ConversationViewHolder(LayoutInflater.from(parent.getContext())
+              .inflate(R.layout.conversation_list_item_action, parent, false));
 
       holder.itemView.setOnClickListener(v -> {
         if (holder.getAdapterPosition() != RecyclerView.NO_POSITION) {
@@ -73,27 +101,63 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
       });
 
       return holder;
-    } else if (viewType == TYPE_THREAD) {
+    } else if (viewType == TYPE_THREAD || viewType >= MENU_OPTIONS_TYPE) {
       ConversationViewHolder holder =  new ConversationViewHolder(CachedInflater.from(parent.getContext())
                                                                                 .inflate(R.layout.conversation_list_item_view, parent, false));
+
+      ((ConversationListItem)holder.itemView).setViewType(viewType);
+      if (viewType >= MENU_OPTIONS_TYPE) {
+        if (hasDivider && viewType == dividerType + MENU_OPTIONS_TYPE) {
+          ((ConversationListItem)holder.itemView).bind(data.get(viewType - MENU_OPTIONS_TYPE), true);
+        } else {
+          ((ConversationListItem)holder.itemView).bind(data.get(viewType - MENU_OPTIONS_TYPE), false);
+        }
+        ((ConversationListItem)holder.itemView).setViewType(MENU_OPTIONS_TYPE);
+
+        TextView menuItem = holder.itemView.findViewById(R.id.conversation_list_item_name);
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) menuItem.getLayoutParams();
+        params.rightMargin = 0;
+        if (menuItem != null) menuItem.setLayoutParams(params);
+
+      }
 
       holder.itemView.setOnClickListener(v -> {
         int position = holder.getAdapterPosition();
 
         if (position != RecyclerView.NO_POSITION) {
-          onConversationClickListener.onConversationClick(getItem(position));
+          onConversationClickListener.onConversationClick((ConversationListItem)holder.itemView, getItem(position));
         }
       });
+      if (viewType == TYPE_THREAD) {
+        holder.itemView.setOnLongClickListener(view -> {
+          if (onConversationClickListener != null) {
+            ConversationListFragment.longClickItemPosition = holder.getAdapterPosition();
+            return onConversationClickListener.onConversationLongClick((ConversationListItem)holder.itemView);
+          }
+          return false;
+        });
+      }
 
-      holder.itemView.setOnLongClickListener(v -> {
-        int position = holder.getAdapterPosition();
+//      holder.itemView.setOnLongClickListener(v -> {
+//        int position = holder.getAdapterPosition();
+//
+//        if (position != RecyclerView.NO_POSITION) {
+//          return onConversationClickListener.onConversationLongClick(getItem(position));
+//        }
+//
+//        return false;
+//      });
 
-        if (position != RecyclerView.NO_POSITION) {
-          return onConversationClickListener.onConversationLongClick(getItem(position));
+      holder.itemView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+          ((ConversationListItem)v).updateItemParas(hasFocus);
+          if (hasFocus) {
+            setFromText((ConversationListItem)v);
+          }
         }
-
-        return false;
       });
+      holder.itemView.setOnKeyListener(keyListener);
       return holder;
     } else if (viewType == TYPE_PLACEHOLDER) {
       View v = new FrameLayout(parent.getContext());
@@ -124,20 +188,35 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
         }
       }
     }
+
+//    Log.d(TAG, "isFromLauncher : " + isFromLauncher);
+    if(isFromLauncher() && holder.getAdapterPosition() == 6){
+      View item = (ConversationListItem) holder.itemView;
+      item.requestFocus();
+      setFromLauncher(false);
+    }
+  }
+
+  public ConversationListItem getFromText() {
+    return this.fromText;
+  }
+
+  public void setFromText(ConversationListItem item) {
+    this.fromText = item;
   }
 
   @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
     if (holder.getItemViewType() == TYPE_ACTION || holder.getItemViewType() == TYPE_THREAD) {
-      ConversationViewHolder casted       = (ConversationViewHolder) holder;
-      Conversation           conversation = Objects.requireNonNull(getItem(position));
+      ConversationViewHolder casted = (ConversationViewHolder) holder;
+      Conversation conversation = Objects.requireNonNull(getItem(position));
 
       casted.getConversationListItem().bind(conversation.getThreadRecord(),
-                                            glideRequests,
-                                            Locale.getDefault(),
-                                            typingSet,
-                                            getBatchSelectionIds(),
-                                            batchMode);
+              glideRequests,
+              Locale.getDefault(),
+              typingSet,
+              getBatchSelectionIds(),
+              batchMode);
     } else if (holder.getItemViewType() == TYPE_HEADER) {
       HeaderViewHolder casted       = (HeaderViewHolder) holder;
       Conversation     conversation = Objects.requireNonNull(getItem(position));
@@ -162,7 +241,17 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   }
 
   @Override
+  public int getItemCount() {
+    originItemCount = super.getItemCount();
+    return originItemCount == 0 ? getDataSize() : originItemCount ;
+  }
+
+  @Override
   protected Conversation getItem(int position) {
+    if (originItemCount == 0 && position < getDataSize()) {
+      return null;
+    }
+
     if (pagingController != null) {
       pagingController.onDataNeededAroundIndex(position);
     }
@@ -197,47 +286,29 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
   @Override
   public int getItemViewType(int position) {
-    Conversation conversation = getItem(position);
-    if (conversation == null) {
-      return TYPE_PLACEHOLDER;
-    }
-    switch (conversation.getType()) {
-      case PINNED_HEADER:
-      case UNPINNED_HEADER:
-        return TYPE_HEADER;
-      case ARCHIVED_FOOTER:
-        return TYPE_ACTION;
-      case THREAD:
-        return TYPE_THREAD;
-      default:
-        throw new IllegalArgumentException();
+    if (data != null && position < data.size()) {
+      return position + MENU_OPTIONS_TYPE;
+    } else {
+        Conversation conversation = getItem(position);
+        if (conversation == null) {
+          return TYPE_PLACEHOLDER;
+        }
+        switch (conversation.getType()) {
+          case PINNED_HEADER:
+          case UNPINNED_HEADER:
+            return TYPE_HEADER;
+          case ARCHIVED_FOOTER:
+            return TYPE_ACTION;
+          case THREAD:
+            return TYPE_THREAD;
+          default:
+            throw new IllegalArgumentException();
+        }
     }
   }
 
   @NonNull Set<Long> getBatchSelectionIds() {
     return batchSet.keySet();
-  }
-
-  void selectAllThreads() {
-    for (int i = 0; i < super.getItemCount(); i++) {
-      Conversation conversation = getItem(i);
-      if (conversation != null && conversation.getThreadRecord().getThreadId() >= 0) {
-        batchSet.put(conversation.getThreadRecord().getThreadId(), conversation);
-      }
-    }
-
-    notifyItemRangeChanged(0, getItemCount(), Payload.SELECTION);
-  }
-
-  void initializeBatchMode(boolean toggle) {
-    this.batchMode = toggle;
-    unselectAllThreads();
-  }
-
-  private void unselectAllThreads() {
-    batchSet.clear();
-
-    notifyItemRangeChanged(0, getItemCount(), Payload.SELECTION);
   }
 
   static final class ConversationViewHolder extends RecyclerView.ViewHolder {
@@ -264,6 +335,9 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
     @Override
     public boolean areContentsTheSame(@NonNull Conversation oldItem, @NonNull Conversation newItem) {
+      if(oldItem.getThreadRecord().getThreadId() == -1 || newItem.getThreadRecord().getThreadId() == -1) {
+        return true;
+      }
       return oldItem.equals(newItem);
     }
   }
@@ -283,9 +357,33 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     }
   }
 
+  public void setData(List<String> Data){
+    data = Data;
+  }
+
+  public void setHasDivider(boolean divider, int type) {
+    hasDivider = divider;
+    dividerType = type;
+  }
+
+  public int getDataSize() {
+    if (data != null) {
+      return data.size();
+    }
+    return 0;
+  }
+
+  public void setFromLauncher(boolean isFromLauncher){
+    this.isFromLauncher = isFromLauncher;
+  }
+
+  public boolean isFromLauncher(){
+    return isFromLauncher;
+  }
+
   interface OnConversationClickListener {
-    void onConversationClick(Conversation conversation);
-    boolean onConversationLongClick(Conversation conversation);
+    void onConversationClick(ConversationListItem item, Conversation conversation);
+    boolean onConversationLongClick(ConversationListItem item);
     void onShowArchiveClick();
   }
 }

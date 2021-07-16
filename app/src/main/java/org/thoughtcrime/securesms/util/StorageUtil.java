@@ -47,7 +47,7 @@ public class StorageUtil {
 
   public static File getBackupDirectory() throws NoExternalStorageException {
     File storage = Environment.getExternalStorageDirectory();
-    File signal  = new File(storage, "Signal");
+    File signal  = new File(storage, "Pigeon");
     File backups = new File(signal, "Backups");
 
     //noinspection ConstantConditions

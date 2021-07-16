@@ -90,7 +90,8 @@ public class BlacklistingTrustManager implements X509TrustManager {
         if (certificate.getIssuerDN().getName().equals(blacklistedSerial.first()) &&
             certificate.getSerialNumber().equals(blacklistedSerial.second()))
         {
-          throw new CertificateException("Blacklisted Serial: " + certificate.getSerialNumber());
+//          throw new CertificateException("Blacklisted Serial: " + certificate.getSerialNumber());
+          throw new CertificateException("Blacklisted Serial Exception");
         }
       }
     }

@@ -762,8 +762,14 @@ public class MmsSmsDatabase extends Database {
     public MessageRecord getCurrent() {
       String type = cursor.getString(cursor.getColumnIndexOrThrow(TRANSPORT));
 
-      if      (MmsSmsDatabase.MMS_TRANSPORT.equals(type)) return getMmsReader().getCurrent();
-      else if (MmsSmsDatabase.SMS_TRANSPORT.equals(type)) return getSmsReader().getCurrent();
+      if      (MmsSmsDatabase.MMS_TRANSPORT.equals(type)){
+        Log.d(TAG,"Reader  getCurrent == MmsSmsDatabase.MMS_TRANSPORT.equals(type); type = " + type );
+        return getMmsReader().getCurrent();
+      }
+      else if (MmsSmsDatabase.SMS_TRANSPORT.equals(type)){
+        Log.d(TAG,"Reader  getCurrent == MmsSmsDatabase.SMS_TRANSPORT.equals(type); type = " + type );
+        return getSmsReader().getCurrent();
+      }
       else                                                throw new AssertionError("Bad type: " + type);
     }
 

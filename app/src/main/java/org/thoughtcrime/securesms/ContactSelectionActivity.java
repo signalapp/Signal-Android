@@ -19,6 +19,9 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -45,7 +48,8 @@ import java.lang.ref.WeakReference;
 public abstract class ContactSelectionActivity extends PassphraseRequiredActivity
                                                implements SwipeRefreshLayout.OnRefreshListener,
                                                           ContactSelectionListFragment.OnContactSelectedListener,
-                                                          ContactSelectionListFragment.ScrollCallback
+                                                          ContactSelectionListFragment.ScrollCallback,
+                                                          ContactSelectionListFragment.SearchCallBack
 {
   private static final String TAG = ContactSelectionActivity.class.getSimpleName();
 
@@ -56,6 +60,8 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActivit
   protected ContactSelectionListFragment contactsFragment;
 
   private ContactFilterToolbar toolbar;
+
+  private TextView confirm_tv;
 
   @Override
   protected void onPreCreate() {
@@ -75,6 +81,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActivit
     initializeToolbar();
     initializeResources();
     initializeSearch();
+    initializeTextView();
   }
 
   @Override
@@ -85,6 +92,13 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActivit
 
   protected ContactFilterToolbar getToolbar() {
     return toolbar;
+  }
+
+  protected TextView getConfirmTextView(){return confirm_tv;}
+
+  private void initializeTextView(){
+    this.confirm_tv = this.findViewById(R.id.confirm_tv);
+    confirm_tv.setVisibility(View.GONE);
   }
 
   private void initializeToolbar() {
@@ -159,5 +173,13 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActivit
         activity.contactsFragment.resetQueryFilter();
       }
     }
+  }
+
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if (contactsFragment!=null)
+      contactsFragment.setOnKey();
+    return super.onKeyDown(keyCode, event);
+
   }
 }

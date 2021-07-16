@@ -20,6 +20,7 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.MenuRes;
@@ -30,6 +31,7 @@ import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -43,13 +45,11 @@ import org.thoughtcrime.securesms.util.views.Stub;
 import java.util.Set;
 
 
-public class ConversationListArchiveFragment extends ConversationListFragment implements ActionMode.Callback
+public class ConversationListArchiveFragment extends ConversationListFragment
 {
   private RecyclerView                list;
-  private Stub<View>                  emptyState;
-  private PulsingFloatingActionButton fab;
-  private PulsingFloatingActionButton cameraFab;
   private Stub<Toolbar>               toolbar;
+  private Stub<View>                  emptyState;
 
   public static ConversationListArchiveFragment newInstance() {
     return new ConversationListArchiveFragment();
@@ -58,7 +58,6 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
-    setHasOptionsMenu(false);
   }
 
   @Override
@@ -68,23 +67,21 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
     super.onViewCreated(view, savedInstanceState);
 
     list       = view.findViewById(R.id.list);
-    fab        = view.findViewById(R.id.fab);
-    cameraFab  = view.findViewById(R.id.camera_fab);
     emptyState = new Stub<>(view.findViewById(R.id.empty_state));
-
-    ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    toolbar.get().setNavigationOnClickListener(v -> requireActivity().onBackPressed());
-    toolbar.get().setTitle(R.string.AndroidManifest_archived_conversations);
-
-    fab.hide();
-    cameraFab.hide();
+    list.requestFocus();
+    getDefaultAdapter().setData(null);
+    if (DatabaseFactory.getThreadDatabase(getActivity()).getArchivedConversationListCount() == 0){
+      emptyState.get().setVisibility(View.VISIBLE);
+    } else{
+      emptyState.get().setVisibility(View.GONE);
+    }
   }
 
   @Override
   protected void onPostSubmitList(int conversationCount) {
     list.setVisibility(View.VISIBLE);
 
-    if (emptyState.resolved()) {
+    if (emptyState.resolved() && conversationCount > 0) {
       emptyState.get().setVisibility(View.GONE);
     }
   }
@@ -150,8 +147,9 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
   }
 
   @Override
-  void updateEmptyState(boolean isConversationEmpty) {
-    // Do nothing
+  public boolean onBackPressed() {
+    getNavigator().setFromArchive(true);
+    return super.onBackPressed();
   }
 }
 

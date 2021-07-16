@@ -43,7 +43,9 @@
     <color name="light_blue_A100">#80D8FF</color>
     <color name="light_blue_A200">#40C4FF</color>
     <color name="light_blue_A400">#00B0FF</color>
-    <color name="light_blue_A700">#0091EA</color>
+    <color name="light_blue_A700">#497795</color>
+    <color name="blue_A800_focus">#68A9EA</color>
+    <color name="blue_A800_normal">#8068A9EA</color>
 
     <color name="green_50">#E8F5E9</color>
     <color name="green_100">#C8E6C9</color>

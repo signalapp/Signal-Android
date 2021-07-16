@@ -51,6 +51,6 @@
                android:layout_height="wrap_content"
                android:layout_alignParentBottom="true"
                android:padding="10dp"
-               android:background="@color/black"/>
+               android:background="@color/sim_background"/>
 
 </RelativeLayout>

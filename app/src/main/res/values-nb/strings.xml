@@ -10,7 +10,7 @@
   <string name="AbstractNotificationBuilder_new_message">Ny melding</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal oppdateres…</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Pigeon oppdateres…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Gjeldende: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke angitt en passordfrase ennå!</string>
@@ -25,17 +25,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Slett</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Deaktiver passordfrase?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dette vil låse opp Signal og meldingsvarsler permanent.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dette vil låse opp Pigeon og meldingsvarsler permanent.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktiver</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrerer</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerer fra Signal-meldinger og -samtaler…</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Deaktiver Signal-meldinger og -samtaler?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deaktiver Signal-meldinger og -samtaler ved å registrere deg fra serveren. Du må registrere ditt telefonnummer på nytt for å bruke dem igjen i fremtiden.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerer fra Pigeon -meldinger og -samtaler…</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Отключить сообщения и звонки через Pigeon?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deaktiver Pigeon-meldinger og -samtaler ved å registrere deg fra serveren. Du må registrere ditt telefonnummer på nytt for å bruke dem igjen i fremtiden.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Feil ved tilkobling til server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Aktivert</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Trykk for å endre standard SMS-appen din</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Deaktivert</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Trykk for å gjøre Signal til din standard SMS-app</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Trykk for å gjøre Pigeon til din standard SMS-app</string>
   <string name="ApplicationPreferencesActivity_on">på</string>
   <string name="ApplicationPreferencesActivity_On">På</string>
   <string name="ApplicationPreferencesActivity_off">av</string>
@@ -66,14 +66,14 @@
   <string name="AttachmentKeyboard_file">Fil</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Posisjon</string>
-  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal trenger tillatelse til å vise bildene og videoene dine.</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Pigeon trenger tillatelse til å vise bildene og videoene dine.</string>
   <string name="AttachmentKeyboard_give_access">Gi tilgang</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Finner ikke en app for å velge medier.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal krever tillatelse fra systemet for å kunne legge til bilder, videoer eller lyd, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal krever tillatelse fra systemet for å kunne legge til kontaktinformasjon, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal krever tillatelse fra systemet for å kunne legge til posisjonsdata, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Posisjon».</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne ta bilder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Pigeon krever tillatelse fra systemet for å kunne legge til bilder, videoer eller lyd, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Pigeon krever tillatelse fra systemet for å kunne legge til kontaktinformasjon, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Pigeon krever tillatelse fra systemet for å kunne legge til posisjonsdata, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Posisjon».</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Pigeon krever tillatelse fra systemet for å kunne ta bilder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Laster opp media…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Komprimerer video…</string>
@@ -122,26 +122,26 @@
   <string name="CameraXFragment_open_gallery_description">Åpne galleri</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Nylige kontakter</string>
-  <string name="CameraContacts_signal_contacts">Signal-kontakter</string>
-  <string name="CameraContacts_signal_groups">Signal grupper</string>
+  <string name="CameraContacts_signal_contacts">Pigeon-kontakter</string>
+  <string name="CameraContacts_signal_groups">Pigeon grupper</string>
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Du kan dele med maksimalt %d samtaler.</string>
-  <string name="CameraContacts_select_signal_recipients">Velg Signal mottakere</string>
-  <string name="CameraContacts_no_signal_contacts">Ingen Signal-kontakter</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">Du kan bare bruke kameraknappen til å sende bilder til Signal kontakter.</string>
+  <string name="CameraContacts_select_signal_recipients">Velg Pigeon mottakere</string>
+  <string name="CameraContacts_no_signal_contacts">Ingen Pigeon -kontakter</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Du kan bare bruke kameraknappen til å sende bilder til Pigeon kontakter.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Finner du ikke den du leter etter?</string>
-  <string name="CameraContacts_invite_a_contact_to_join_signal">Inviter en kontakt for å bli med i Signal</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Inviter en kontakt for å bli med i Pigeon </string>
   <string name="CameraContacts__menu_search">Søk</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjern</string>
   <string name="ClearProfileActivity_remove_profile_photo">Vil du fjerne profilbildet?</string>
   <string name="ClearProfileActivity_remove_group_photo">Fjern gruppebilde?</string>
   <!--ClientDeprecatedActivity-->
-  <string name="ClientDeprecatedActivity_update_signal">Oppdater Signal</string>
+  <string name="ClientDeprecatedActivity_update_signal">Oppdater Pigeon </string>
   <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Denne versjonen av appen støttes ikke lenger. For å fortsette å sende og motta meldinger, oppdater til den nyeste versjonen.</string>
   <string name="ClientDeprecatedActivity_update">Oppdater</string>
   <string name="ClientDeprecatedActivity_dont_update">Ikke oppdater</string>
   <string name="ClientDeprecatedActivity_warning">Advarsel</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Versjonen din av Signal er utløpt. Du kan se meldingsloggen din, men du kan ikke sende eller motta meldinger før du oppdaterer.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Versjonen din av Pigeon er utløpt. Du kan se meldingsloggen din, men du kan ikke sende eller motta meldinger før du oppdaterer.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ingen nettleser funnet.</string>
   <string name="CommunicationActions_no_email_app_found">Ingen e-postapp funnet.</string>
@@ -152,9 +152,9 @@
   <string name="CommunicationActions_cancel">Avbryt</string>
   <string name="CommunicationActions_call">Ring</string>
   <string name="CommunicationActions_insecure_call">Usikker samtale</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Avgifter fra teleoportører kan muligens komme i tillegg. Nummeret du ringer er ikke registrert hos Signal. Denne samtalen blir plassert via din mobiloperatør, ikke over internett.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Avgifter fra teleoportører kan muligens komme i tillegg. Nummeret du ringer er ikke registrert hos Pigeon. Denne samtalen blir plassert via din mobiloperatør, ikke over internett.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sikkerhetsnummeret ditt med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s har installert Signal på nytt.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sikkerhetsnummeret ditt med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s har installert Pigeon på nytt.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du bør kontrollere sikkerhetsnumrene dine mot denne kontakten.</string>
   <string name="ConfirmIdentityDialog_accept">Godta</string>
   <!--ContactsCursorLoader-->
@@ -165,7 +165,7 @@
   <string name="ContactsCursorLoader_username_search">Brukernavn søk</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
-  <string name="ContactsDatabase_signal_call_s">Signal-anrop %s</string>
+  <string name="ContactsDatabase_signal_call_s">Pigeon-anrop %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Fornavn</string>
   <string name="ContactNameEditActivity_family_name">Etternavn</string>
@@ -187,7 +187,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Sending mislyktes, trykk for usikret reserveløsning</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Vil du bruke ukryptert SMS som reserveløsning?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Vil du bruke ukryptert MMS som reserveløsning?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldingen blir <b>ikke</b> kryptert, fordi mottakeren ikke lenger er en Signal bruker.\n\nVil du sende den ukryptert?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne meldingen blir <b>ikke</b> kryptert, fordi mottakeren ikke lenger er en Pigeon bruker.\n\nVil du sende den ukryptert?</string>
   <string name="ConversationItem_unable_to_open_media">Fant ingen programmer som kan åpne dette innholdet.</string>
   <string name="ConversationItem_copied_text">Kopiert %s</string>
   <string name="ConversationItem_from_s">fra %s</string>
@@ -213,14 +213,15 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Denne enheten ser ikke ut til å støtte oppringing.</string>
   <string name="ConversationActivity_transport_insecure_sms">Usikker SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Usikker MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">La oss bytte til Signal %1$s</string>
+  <string name="ConversationActivity_transport_signal">Pigeon</string>
+  <string name="ConversationActivity_lets_switch_to_signal">La oss bytte til Pigeon %1$s</string>
   <string name="ConversationActivity_specify_recipient">Velg en kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Vil du fjerne blokkering av denne kontakten?</string>
   <string name="ConversationActivity_unblock_this_group_question">Fjerne blokkering av denne gruppen?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du vil igjen kunne motta meldinger og anrop fra denne kontakten.</string>
   <string name="ConversationActivity_unblock_this_group_description">Eksisterende medlemmer kan igjen legge deg til gruppen igjen.</string>
   <string name="ConversationActivity_unblock">Fjern blokkering</string>
+  <string name="ConversationActivity_blocked">Blokkert</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegg overskrider maksimal størrelsesgrense for gjeldende meldingstype.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgjengelig</string>
   <string name="ConversationActivity_unable_to_record_audio">Kan ikke ta opp lyd!</string>
@@ -228,17 +229,17 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har ingen programmer på denne enheten som kan håndtere denne lenka.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din forespørsel om å bli med har blitt sendt til gruppeadministratoren. Du vil bli varslet når de tar aksjon.</string>
   <string name="ConversationActivity_cancel_request">Avbryt forespørsel</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">For å sende lydmeldinger, gi Signal tilgang til mikrofonen din.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal krever tillatelse fra systemet for å kunne bruke mikrofonen, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Mikrofon».</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal krever tillatelser fra systemet for å kunne ringe %s, men du har valgt å avslå minst én av disse permanent. Gå til «Apper»-menyen på systemet og slå på tillatelser for «Mikrofon» og «Kamera».</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Du må gi Signal «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal krever tillatelse fra systemet for å kunne ta bilder eller filme, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Du må gi Signal «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">For å sende lydmeldinger, gi Pigeon tilgang til mikrofonen din.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Pigeon krever tillatelse fra systemet for å kunne bruke mikrofonen, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Mikrofon».</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Pigeon krever tillatelser fra systemet for å kunne ringe %s, men du har valgt å avslå minst én av disse permanent. Gå til «Apper»-menyen på systemet og slå på tillatelser for «Mikrofon» og «Kamera».</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Du må gi Pigeon «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Pigeon krever tillatelse fra systemet for å kunne ta bilder eller filme, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Du må gi Pigeon «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Aktiver mikrofonens tillatelse til å ta opp videoer med lyd.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal trenger mikrofontillatelser for å spille inn videoer, men de har blitt nektet. Vennligst fortsett til appinnstillingene, velg \"Tillatelser\" og aktiver \"Mikrofon\" og \"Kamera\".</string>
-  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal trenger mikrofontillatelser for å spille inn videoer.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Pigeon trenger mikrofontillatelser for å spille inn videoer, men de har blitt nektet. Vennligst fortsett til appinnstillingene, velg \"Tillatelser\" og aktiver \"Mikrofon\" og \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Pigeon trenger mikrofontillatelser for å spille inn videoer.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan ikke sende SMS/MMS-meldinger fordi det ikke er din standard SMS-app. Vil du endre dette i Android-innstillingene dine?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Pigeon kan ikke sende SMS/MMS-meldinger fordi det ikke er din standard SMS-app. Vil du endre dette i Android-innstillingene dine?</string>
   <string name="ConversationActivity_yes">Ja</string>
   <string name="ConversationActivity_no">Nei</string>
   <string name="ConversationActivity_search_position">%1$d av %2$d</string>
@@ -252,8 +253,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Du vil forlate denne gruppen, og den blir slettet fra alle enhetene dine.</string>
   <string name="ConversationActivity_delete">Slett</string>
   <string name="ConversationActivity_delete_and_leave">Slett og forlat</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal trenger tilgang til mikrofonen din for å ringe %1$s</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal trenger tilgang til mikrofon og kamera for å ringe %1$s.</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Pigeon må ha tilgang til mikrofonen for å kunne ringe «%s».</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Pigeon trenger tilgang til mikrofon og kamera for å ringe %1$s.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Flere valg er nå tilgjengelig i \"Gruppeinnstillinger\".</string>
   <string name="ConversationActivity_join">Bli med</string>
   <string name="ConversationActivity_full">Full</string>
@@ -290,14 +291,14 @@
     <item quantity="other">Lagrer %1$d vedlegg på enhetslager …</item>
   </plurals>
   <string name="ConversationFragment_pending">Venter…</string>
-  <string name="ConversationFragment_push">Data (Signal)</string>
+  <string name="ConversationFragment_push">Data (Pigeon)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Sletter</string>
   <string name="ConversationFragment_deleting_messages">Sletter meldinger…</string>
   <string name="ConversationFragment_delete_for_me">Slett for meg</string>
   <string name="ConversationFragment_delete_for_everyone">Slett for alle</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Denne meldingen vil bli slettet for alle i samtalen dersom de er på en nylig versjon av Signal. De vil kunne se at du har slettet en samtale.</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Denne meldingen vil bli slettet for alle i samtalen dersom de er på en nylig versjon av Pigeon . De vil kunne se at du har slettet en samtale.</string>
   <string name="ConversationFragment_quoted_message_not_found">Opprinnelig melding ikke funnet</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Opprinnelig melding er ikke lenger tilgjengelig</string>
   <string name="ConversationFragment_failed_to_open_message">Kunne ikke åpne meldingen</string>
@@ -309,12 +310,12 @@
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d gruppemedlemmer har samme navn.</string>
   <string name="ConversationFragment__tap_to_review">Trykk for å gå gjennom</string>
   <string name="ConversationFragment__review_requests_carefully">Gjennomgå forespørsler grundig</string>
-  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal fant en annen kontakt med samme navn.</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Pigeon fant en annen kontakt med samme navn.</string>
   <string name="ConversationFragment_contact_us">Kontakt oss</string>
   <string name="ConversationFragment_verify">Bekreft</string>
   <string name="ConversationFragment_not_now">Ikke nå</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Sikkerhetsnummeret for %s har endret seg</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Sikkerhetsnummeret for %s har endret seg, sannsynligvis fordi de har installert Signal på nytt eller byttet enhet. Trykk Bekreft for å bekrefte det nye sikkerhetsnummeret. Dette er valgfritt.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Sikkerhetsnummeret for %s har endret seg, sannsynligvis fordi de har installert Pigeon på nytt eller byttet enhet. Trykk Bekreft for å bekrefte det nye sikkerhetsnummeret. Dette er valgfritt.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Denne enheten har ingen nettleser installert.</string>
   <!--ConversationListFragment-->
@@ -353,7 +354,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Feil ved lagring av profil</string>
   <string name="CreateProfileActivity_profile_photo">Profilbilde</string>
   <string name="CreateProfileActivity_set_up_your_profile">Sett opp din profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilen din er ende-til-ende kryptert. Den, og endringene som gjøres, vil være søkbar for kontaktene dine, når du starter eller godtar nye samtaler, og når du blir medlem av nye grupper.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Pigeon-profiler er kryptert fra ende til ende, og Signal-tjenesten har aldri tilgang til denne informasjonen.</string>
   <string name="CreateProfileActivity_set_avatar_description">Sett avatar</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Vil du gjenopprette fra sikkerhetskopi?</string>
@@ -376,11 +377,11 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test passordfrasen din og bekreft at den stemmer overens</string>
   <string name="BackupsPreferenceFragment__turn_on">Slå på</string>
   <string name="BackupsPreferenceFragment__turn_off">Skru av</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">For å gjenopprette fra en sikkerhetskopi, installer en ny kopi av Signal. Åpne appen og trykk \"Gjenopprett fra sikkerhetskopi\", og finn så frem til en sikkerhetskopifil. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">For å gjenopprette fra en sikkerhetskopi, installer en ny kopi av Pigeon . Åpne appen og trykk \"Gjenopprett fra sikkerhetskopi\", og finn så frem til en sikkerhetskopifil. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Lær mer</string>
   <string name="BackupsPreferenceFragment__in_progress">Under behandling…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d så langt…</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal krever tillatelse fra systemet for å kunne lagre sikkerhetskopier, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Pigeon krever tillatelse fra systemet for å kunne lagre sikkerhetskopier, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Bruker selvvalgt: %s</string>
   <string name="CustomDefaultPreference_using_default">Bruker forvalgt: %s</string>
@@ -399,7 +400,7 @@
   <string name="DateUtils_yesterday">I går</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">Samtaleøkt lastet inn på nytt</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal benytter seg av ende-til-ende-kryptering og det kan av og til være nødvendig å laste inn samtaleøkten din på nytt. Dette påvirker ikke din samtales sikkerhet, men du kan ha gått glipp av en melding fra din samtalepartner og må be dem om å sende den på nytt.</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Pigeon benytter seg av ende-til-ende-kryptering og det kan av og til være nødvendig å laste inn samtaleøkten din på nytt. Dette påvirker ikke din samtales sikkerhet, men du kan ha gått glipp av en melding fra din samtalepartner og må be dem om å sende den på nytt.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Sender</string>
   <string name="DeliveryStatus_sent">Sendt</string>
@@ -420,19 +421,14 @@
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Uten navn</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Doner til Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal drives av folk som deg. Vis din støtte i dag!</string>
-  <string name="DonateMegaphone_donate">Doner</string>
-  <string name="DonateMegaphone_no_thanks">Nei takk</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Vi introduserer gruppesamtaler</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Åpne en ny gruppe for å gjøre et gratis gruppeanrop</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliser for manglende Play Tjenester</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne enheten støtter ikke Play-tjenester. Trykk én gang for å slå av batterioptimalisering som kan hindre Signal i å motta meldinger når det kjører i bakgrunnen.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne enheten støtter ikke Play-tjenester. Trykk én gang for å slå av batterioptimalisering som kan hindre Pigeon i å motta meldinger når det kjører i bakgrunnen.</string>
   <!--ExpiredBuildReminder-->
-  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Din versjon av Signal er utløpt. Vennligst oppdater for å sende ytterligere meldinger.</string>
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Din versjon av Pigeon er utløpt. Vennligst oppdater for å sende ytterligere meldinger.</string>
   <string name="ExpiredBuildReminder_update_now">Oppdater nå</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -446,8 +442,8 @@
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mottar en melding…</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal kommunikasjonssvikt!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal klarte ikke å registrere seg som Google Play-tjeneste. Signal-meldinger og -samtaler er derfor slått av. Prøv å registrere programmet på nytt under Innstillinger &gt; Avansert.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Pigeon kommunikasjonssvikt!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Pigeon klarte ikke å registrere seg som Google Play-tjeneste. Pigeon -meldinger og -samtaler er derfor slått av. Prøv å registrere programmet på nytt under Innstillinger &gt; Avansert.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Feil under henting av GIF</string>
   <!--GiphyFragmentPageAdapter-->
@@ -494,8 +490,8 @@
     <item quantity="other">Disse medlemmene må akseptere en invitasjon for å bli med i gruppen igjen, og vil ikke få gruppemeldinger før de har akseptert: </item>
   </plurals>
   <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-    <item quantity="one">Denne brukeren ble fjernet fra gruppen og kan ikke bli med igjen før de oppgraderer sin Signal-versjon:</item>
-    <item quantity="other">Disse brukerne ble fjernet fra gruppen og kan ikke bli med igjen før de oppgraderer sin Signal-versjon:</item>
+    <item quantity="one">Denne brukeren ble fjernet fra gruppen og kan ikke bli med igjen før de oppgraderer sin Pigeon -versjon:</item>
+    <item quantity="other">Disse brukerne ble fjernet fra gruppen og kan ikke bli med igjen før de oppgraderer sin Pigeon -versjon:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Oppgrader til \"ny\" gruppe</string>
@@ -612,7 +608,7 @@
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Grupper må bestå av minst to medlemmer.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Oppretting av gruppen mislyktes.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Prøv igjen senere.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Du har valgt en kontakt som ikke støtter Signal-grupper. Denne gruppa blir derfor en MMS-gruppe.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Du har valgt en kontakt som ikke støtter Pigeon -grupper. Denne gruppa blir derfor en MMS-gruppe.</string>
   <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Selvvalgte MMS-gruppenavn og -gruppebilder er kun synlige for deg.</string>
   <string name="AddGroupDetailsFragment__remove">Fjern</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
@@ -626,15 +622,15 @@
     <item quantity="other">%d medlemmer støtter ikke nye grupper, så denne gruppen kan ikke opprettes.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">En \"legacy\"-gruppe vil ble opprettet fordi \"%1$s\" bruker en gammel versjon av Signal. Du kan opprette en \"ny\" gruppe med dem etter de har oppdatert Signal, eller fjerne vedkommende før gruppen opprettes.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">En \"legacy\"-gruppe vil ble opprettet fordi \"%1$s\" bruker en gammel versjon av Pigeon . Du kan opprette en \"ny\" gruppe med dem etter de har oppdatert Pigeon , eller fjerne vedkommende før gruppen opprettes.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">En \"legacy\"-gruppe vil ble opprettet fordi %1$d medlem bruker en gammel versjon av Signal. Du kan opprette en \"ny\" gruppe med dem etter de har oppdatert Signal, eller fjerne vedkommende før gruppen opprettes.</item>
-    <item quantity="other">En \"legacy\"-gruppe vil bli opprettet fordi %1$d medlemmer bruker en gammel versjon av Signal. Du kan opprette en \"ny\" gruppe med dem etter de har oppdatert Signal, eller fjerne dem før gruppen opprettes.</item>
+    <item quantity="one">En \"legacy\"-gruppe vil ble opprettet fordi %1$d medlem bruker en gammel versjon av Pigeon . Du kan opprette en \"ny\" gruppe med dem etter de har oppdatert Pigeon , eller fjerne vedkommende før gruppen opprettes.</item>
+    <item quantity="other">En \"legacy\"-gruppe vil bli opprettet fordi %1$d medlemmer bruker en gammel versjon av Pigeon . Du kan opprette en \"ny\" gruppe med dem etter de har oppdatert Pigeon , eller fjerne dem før gruppen opprettes.</item>
   </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Denne gruppen kan ikke bli opprettet fordi \"%1$s\" bruker en gammel versjon av Signal. Du må fjerne dem før du oppretter gruppen.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Denne gruppen kan ikke bli opprettet fordi \"%1$s\" bruker en gammel versjon av Pigeon . Du må fjerne dem før du oppretter gruppen.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
-    <item quantity="one">Denne gruppen kan ikke bli opprettet fordi %1$d medlem bruker en gammel versjon av Signal. Du må fjerne medlemmet før du oppretter gruppen.</item>
-    <item quantity="other">Denne gruppen kan ikke bli opprettet fordi %1$d medlemmer bruker en gammel versjon av Signal. Du må fjerne dem før du oppretter gruppen.</item>
+    <item quantity="one">Denne gruppen kan ikke bli opprettet fordi %1$d medlem bruker en gammel versjon av Pigeon . Du må fjerne medlemmet før du oppretter gruppen.</item>
+    <item quantity="other">Denne gruppen kan ikke bli opprettet fordi %1$d medlemmer bruker en gammel versjon av Pigeon . Du må fjerne dem før du oppretter gruppen.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Forsvinnende meldinger</string>
@@ -668,7 +664,7 @@
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Kun administratorer kan skru av eller på innstillingen for å godkjenne nye medlemmer.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Bare administratorer kan resette den delbare gruppelenken.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Du har ikke rettigheter for å gjøre dette</string>
-  <string name="ManageGroupActivity_not_capable">Noen du la til har ikke støtte for nye grupper og må oppdatere Signal</string>
+  <string name="ManageGroupActivity_not_capable">Noen du la til har ikke støtte for nye grupper og må oppdatere Pigeon </string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Gruppeoppdatering feilet</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Du er ikke medlem av gruppen</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Gruppeoppdateringen feilet, prøv igjen senere</string>
@@ -679,7 +675,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Dette er en \"legacy\"-gruppe. For å få tilgang til de nye funksjonene, som @-omtaler og gruppeadministratorer,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Denne gruppen kan ikke oppgraderes til ny gruppe fordi den er for stor. Maksimal gruppestørrelse er %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">Oppgrader denne gruppen.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikret MMS-gruppe. For å melde privat, inviter kontaktene dine til Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dette er en usikret MMS-gruppe. For å melde privat, inviter kontaktene dine til Pigeon .</string>
   <string name="ManageGroupActivity_invite_now">Inviter nå</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Varsle meg om omtaler</string>
@@ -769,10 +765,10 @@
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Gruppelenker kommer snart</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Oppdater Signal for å bruke gruppelenker</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versjonen av Signal du bruker støtter ikke denne gruppelenken. Oppdater til siste versjon for å bli med i gruppen via lenke.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Oppdater Signal</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">En eller flere av dine koblede enheter kjøre en versjon av Signal som ikke støtter gruppelenker. Oppdater Signal på alle koblede enheter for å bli med i gruppen.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Oppdater Pigeon for å bruke gruppelenker</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versjonen av Pigeon du bruker støtter ikke denne gruppelenken. Oppdater til siste versjon for å bli med i gruppen via lenke.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Oppdater Pigeon </string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">En eller flere av dine koblede enheter kjøre en versjon av Pigeon som ikke støtter gruppelenker. Oppdater Pigeon på alle koblede enheter for å bli med i gruppen.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppelenken er ikke gyldig</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Inviter venner</string>
@@ -807,7 +803,7 @@
   <string name="InviteActivity_sending">Sender…</string>
   <string name="InviteActivity_heart_content_description">Hjerte</string>
   <string name="InviteActivity_invitations_sent">Invitasjoner sendt.</string>
-  <string name="InviteActivity_invite_to_signal">Inviter til Signal</string>
+  <string name="InviteActivity_invite_to_signal">Inviter kontakter</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">SEND SMS TIL %dVENN</item>
     <item quantity="other">SEND SMS TIL %dVENNER</item>
@@ -816,7 +812,7 @@
     <item quantity="one">Vil du sende %d SMS-invitasjon?</item>
     <item quantity="other">Vil du sende %d SMS-invitasjoner?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">La oss bytte til Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">La oss kontaktes med ende- til ende-kryptering: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Det ser ut som at du ikke har noen programmer å dele denne informasjonen med.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Venner bør ikke prate ukryptert over nettet.</string>
   <!--Job-->
@@ -828,7 +824,7 @@
   <string name="LongMessageActivity_message_from_s">Melding fra %1$s</string>
   <string name="LongMessageActivity_your_message">Din melding</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Pigeon</string>
   <string name="MessageRetrievalService_background_connection_enabled">Bakgrunnstilkobling slått på</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Feil under lesing av oppsett for MMS-leverandør</string>
@@ -877,7 +873,7 @@
   <string name="Megaphones_introducing_reactions">Vi introduserer reaksjoner</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Trykk og hold på en hvilken som helst melding for raskt å dele hvordan du føler deg.</string>
   <string name="Megaphones_remind_me_later">Minn meg på det senere</string>
-  <string name="Megaphones_verify_your_signal_pin">Bekreft din Signal PIN</string>
+  <string name="Megaphones_verify_your_signal_pin">Bekreft din Pigeon PIN</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Noen ganger ber vi deg om å bekrefte PIN-koden din slik at du husker den.</string>
   <string name="Megaphones_verify_pin">Bekreft PIN</string>
   <string name="Megaphones_get_started">Kom i gang</string>
@@ -885,9 +881,9 @@
   <string name="Megaphones_invite_friends">Inviter venner</string>
   <string name="Megaphones_use_sms">Bruk SMS</string>
   <!--NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale pågår</string>
-  <string name="NotificationBarManager__establishing_signal_call">Setter opp Signal-anrop</string>
-  <string name="NotificationBarManager__incoming_signal_call">Inngående Signal-anrop</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Pigeon-samtale pågår</string>
+  <string name="NotificationBarManager__establishing_signal_call">Setter opp Pigeon -anrop</string>
+  <string name="NotificationBarManager__incoming_signal_call">Inngående Pigeon -anrop</string>
   <string name="NotificationBarManager__deny_call">Avslå anrop</string>
   <string name="NotificationBarManager__answer_call">Svar på anrop</string>
   <string name="NotificationBarManager__end_call">Avslutt samtale</string>
@@ -908,8 +904,8 @@
   <string name="MediaSendActivity_message_to_s">Melding til %s</string>
   <string name="MediaSendActivity_message">Melding</string>
   <string name="MediaSendActivity_select_recipients">Velg mottakere</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal må ha tilgang til kontaktene dine for å kunne vise dem.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal trenger tillatelse til kontakter for å kunne vise kontaktene dine, men det har blitt avslått permanent. Fortsett med appinnstillingene, velg \"Tillatelser\" og aktiver \"Kontakter\".</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Pigeon må ha tilgang til kontaktene dine for å kunne vise dem.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Pigeon trenger tillatelse til kontakter for å kunne vise kontaktene dine, men det har blitt avslått permanent. Fortsett med appinnstillingene, velg \"Tillatelser\" og aktiver \"Kontakter\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kan ikke dele mer enn %d fil.</item>
     <item quantity="other">Du kan ikke dele mer enn %d filer.</item>
@@ -921,17 +917,18 @@
   <string name="MediaRepository__camera">Kamera</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Ukjent</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottatt en melding som er kryptert med en gammel versjon av Signal som ikke lenger støttes. Be avsenderen oppdatere til den nyeste versjonen og sende meldingen på nytt.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottatt en melding som er kryptert med en gammel versjon av Pigeon som ikke lenger støttes. Be avsenderen oppdatere til den nyeste versjonen og sende meldingen på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlatt gruppa.</string>
   <string name="MessageRecord_you_updated_group">Du har oppdatert gruppa.</string>
   <string name="MessageRecord_the_group_was_updated">Gruppen ble oppdatert.</string>
   <string name="MessageRecord_you_called_date">Du ringte · %1$s</string>
+  <string name="MessageRecord_missed_call">Ubesvart anrop · %1$s</string>
   <string name="MessageRecord_missed_audio_call_date">Ubesvart anrop · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">Ubesvart videoanrop · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s oppdaterte gruppa.</string>
   <string name="MessageRecord_s_called_you_date">%1$sringte deg %2$s·</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
-  <string name="MessageRecord_s_joined_signal">%s er på Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s er på Pigeon !</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Du deaktiverte forsvinnende meldinger.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s deaktiverte forsvinnende meldinger.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du satte utløpstid for meldinger til %1$s.</string>
@@ -1146,27 +1143,27 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Du har koblet sammen sammen for mange enheter allerede. Prøv å fjerne noen</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Dette er ikke en gyldig QR-kode for enhetstilkobling.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Vil du koble til en Signal-enhet?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ut som at du prøver å koble en enhet til Signal ved hjelp av en tredjepartsskanner. For din egen sikkerhet må du skanne koden på nytt via Signal.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal krever tillatelse fra systemet for å kunne skanne QR-koder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
-  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Du kan ikke skanne en QR-kode når systemet ikke tillater Signal å bruke kameraet</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Vil du koble til en Pigeon -enhet?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ut som at du prøver å koble en enhet til Pigeon ved hjelp av en tredjepartsskanner. For din egen sikkerhet må du skanne koden på nytt via Pigeon .</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Pigeon krever tillatelse fra systemet for å kunne skanne QR-koder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Du kan ikke skanne en QR-kode når systemet ikke tillater Pigeon å bruke kameraet</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Forsvinnende meldinger</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Dine meldinger vil ikke utløpe.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meldinger som sendes og mottas i denne samtalen vil forsvinne %s etter de har blitt sett.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Oppdater nå</string>
-  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denne versjonen av Signal går ut på dato i dag. Oppgrader til nyeste versjon.</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denne versjonen av Pigeon går ut på dato i dag. Oppgrader til nyeste versjon.</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-    <item quantity="one">Denne versjonen av Signal vil utløpe i morgen. Oppdater til den nyeste versjonen.</item>
-    <item quantity="other">Denne versjonen av Signal vil utløpe om %d dager. Oppdater til den nyeste versjonen.</item>
+    <item quantity="one">Denne versjonen av Pigeon vil utløpe i morgen. Oppdater til den nyeste versjonen.</item>
+    <item quantity="other">Denne versjonen av Pigeon vil utløpe om %d dager. Oppdater til den nyeste versjonen.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Skriv inn passord</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Signal-ikon</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Pigeon-ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Send inn passord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldig passord!</string>
-  <string name="PassphrasePromptActivity_unlock_signal">Lås opp Signal</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Lås opp Pigeon </string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Kart</string>
   <string name="PlacePickerActivity_not_a_valid_address">Ikke en gyldig adresse</string>
@@ -1188,16 +1185,16 @@
     <item quantity="one">Du har %1$d forsøk igjen. Hvis du går tom for forsøk, kan du opprette en ny PIN. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</item>
     <item quantity="other">Du har %1$d forsøk igjen. Hvis du går tom for forsøk, kan du opprette en ny PIN. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</item>
   </plurals>
-  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registrering - Hjelp ønskes til verifikasjonskode for Android</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Pigeon Registrering - Hjelp ønskes til verifikasjonskode for Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Skriv inn alfanumerisk PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Skriv inn numerisk PIN</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Opprett PIN-koden</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Du har gått tom for PIN-gjetninger, men du kan fremdeles få tilgang til Signal-kontoen din ved å opprette en ny PIN-kode. For ditt personvern og sikkerhet vil kontoen din bli gjenopprettet uten lagret profilinformasjon eller innstillinger.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Du har gått tom for PIN-gjetninger, men du kan fremdeles få tilgang til Pigeon -kontoen din ved å opprette en ny PIN-kode. For ditt personvern og sikkerhet vil kontoen din bli gjenopprettet uten lagret profilinformasjon eller innstillinger.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Opprett ny PIN-kode</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Advarsel</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN-koden vil du miste all data når du gjennomfører Signal-registrering på nytt, med mindre du manuelt tar en sikkerhetskopi og gjenoppretter innholdet. Du kan ikke skru på registreringslås mens PIN-koden er deaktivert.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN-koden vil du miste all data når du gjennomfører Pigeon -registrering på nytt, med mindre du manuelt tar en sikkerhetskopi og gjenoppretter innholdet. Du kan ikke skru på registreringslås mens PIN-koden er deaktivert.</string>
   <string name="PinOptOutDialog_disable_pin">Deaktiver PIN-kode</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vurder dette programmet</string>
@@ -1235,13 +1232,13 @@
   <string name="RedPhone_got_it">Ålreit</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Trykk her for å skru på video</string>
-  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">For å ringe %1$s, trenger Signal tilgang til kameraet</string>
-  <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">For å ringe %1$s, trenger Pigeon tilgang til kameraet</string>
+  <string name="WebRtcCallActivity__signal_s">Pigeon %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer…</string>
   <string name="WebRtcCallActivity__group_call">Gruppesamtale</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal taleanrop…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal videosamtale…</string>
+  <string name="WebRtcCallView__signal_voice_call">Pigeon taleanrop…</string>
+  <string name="WebRtcCallView__signal_video_call">Pigeon videosamtale…</string>
   <string name="WebRtcCallView__start_call">Start samtale</string>
   <string name="WebRtcCallView__join_call">Bli med i samtale</string>
   <string name="WebRtcCallView__call_is_full">Samtalen er full</string>
@@ -1286,19 +1283,20 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_is_your_phone_number_above_correct">Er telefonnummeret ditt ovenfor korrekt?</string>
   <string name="RegistrationActivity_edit_number">Rediger nummer</string>
   <string name="RegistrationActivity_missing_google_play_services">Mangler Google Play tjenester</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denne enheten mangler Google Play-tjenester. Du kan fremdeles bruke Signal, men det kan oppføre seg ustabilit eller gi dårlig ytelse.\n\nHvis du ikke er en avansert bruker, ikke kjører en egeninstallert Android-fastvare, eller du mener at du har Google Play-tjenester installert, ber vi deg om å kontakte support@signal.org så vi kan hjelpe deg med feilsøking.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denne enheten mangler Google Play-tjenester. Du kan fremdeles bruke Pigeon, men det kan oppføre seg ustabilit eller gi dårlig ytelse.\n\nHvis du ikke er en avansert bruker, ikke kjører en egeninstallert Android-fastvare, eller du mener at du har Google Play-tjenester installert, ber vi deg om å kontakte support@signal.org så vi kan hjelpe deg med feilsøking.</string>
   <string name="RegistrationActivity_i_understand">Jeg forstår</string>
   <string name="RegistrationActivity_play_services_error">Play Tjenester Feil</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjenester er opptatt eller midlertidig utilgjengelig. Vent litt, og prøv på nytt.</string>
-  <string name="RegistrationActivity_terms_and_privacy">Vilkår og personvernerklæring</string>
+  <string name="RegistrationActivity_disclaimer">Pigeon disclaimer</string>
+  <string name="RegistrationActivity_terms_and_privacy">Signal vilkår og personvernerklæring</string>
   <string name="RegistrationActivity_no_browser">Klarte ikke å åpne lenke. Fant ingen nettleser.</string>
   <string name="RegistrationActivity_more_information">Mer informasjon</string>
   <string name="RegistrationActivity_less_information">Mindre informasjon</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal må ha tilgang til kontakter og medier på systemet for å kunne koble til venner, sende/motta meldinger og ringe sikkert</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal må ha tilgang til kontaktene dine for å kunne koble til venner, sende/motta meldinger og ringe sikkert</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pigeon må ha tilgang til kontakter og medier på systemet for å kunne koble til venner, sende/motta meldinger og ringe</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pigeon må ha tilgang til kontaktene dine for å kunne koble til venner, sende/motta meldinger og ringe sikkert</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har gjort for mange forsøk på å registrere dette nummeret. Prøv igjen senere.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Klarte ikke å koble til tjenesten. Kontroller at du har en stabil nettilkobling og prøv på nytt.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Signal kan hente SMS-bekreftelseskoden din automatisk hvis du tillater at programmet leser SMS-meldinger på enheten.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pigeon kan hente SMS-bekreftelseskoden din automatisk hvis du tillater at programmet leser SMS-meldinger på enheten.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Du er nå %d steg unna fra å sende inn en feilsøkingslogg.</item>
     <item quantity="other">Du er nå %d steg unna fra å sende inn en feilsøkingslogg.</item>
@@ -1310,6 +1308,7 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_continue_d_attempts_left">Fortsett (%d forsøk igjen)</string>
   <string name="RegistrationActivity_continue_last_attempt">Fortsett (siste forsøk!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta personvernet med deg.\nVær deg selv i hver melding.</string>
+  <string name="RegistrationActivity_pigeon_enables_you_to_use_signal">Pigeon lar deg bruke Signal på MP02.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Skriv inn telefonnummeret ditt for å komme i gang</string>
   <string name="RegistrationActivity_enter_your_phone_number">Skriv inn ditt telefonnummer</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du vil motta en bekreftelseskode. Teleoperatøren kan belaste deg for dette.</string>
@@ -1321,7 +1320,7 @@ skrev inn (%s) er ugyldig.</string>
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Aktiver registreringslås?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Deaktiver registreringslås?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Hvis du glemmer din Signal PIN-kode når du registrerer deg med Signal igjen, blir du låst ute av kontoen din i 7 dager.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Hvis du glemmer din Pigeon PIN-kode når du registrerer deg med Pigeon igjen, blir du låst ute av kontoen din i 7 dager.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Slå på</string>
   <string name="RegistrationLockV2Dialog_turn_off">Skru av</string>
   <!--RevealableMessageView-->
@@ -1339,13 +1338,13 @@ skrev inn (%s) er ugyldig.</string>
   <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Legg til kontakt</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Inviter til Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">Signal-melding</string>
-  <string name="SharedContactDetailsActivity_signal_call">Signal-samtale</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Inviter kontakter</string>
+  <string name="SharedContactDetailsActivity_signal_message">Pigeon-melding</string>
+  <string name="SharedContactDetailsActivity_signal_call">Pigeon-samtale</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Legg til kontakt</string>
-  <string name="SharedContactView_invite_to_signal">Inviter til Signal</string>
-  <string name="SharedContactView_message">Signal-melding</string>
+  <string name="SharedContactView_invite_to_signal">Inviter kontakter</string>
+  <string name="SharedContactView_message">Pigeon-melding</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Vi minner deg om det senere.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vi minner deg på igjen i morgen.</string>
@@ -1367,14 +1366,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SmsMessageRecord_secure_session_reset">Du tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Denne meldingen kunne ikke behandles fordi den ble sendt fra en nyere versjon av Signal. Du kan spørre kontakten din om å sende denne meldingen igjen etter at du har oppdatert.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Denne meldingen kunne ikke behandles fordi den ble sendt fra en nyere versjon av Pigeon . Du kan spørre kontakten din om å sende denne meldingen igjen etter at du har oppdatert.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Feil ved håndtering av innkommende melding.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Klistremerker</string>
   <!--StickerManagementAdapter-->
   <string name="StickerManagementAdapter_installed_stickers">Installerte klistremerker</string>
   <string name="StickerManagementAdapter_stickers_you_received">Klistremerker du mottok</string>
-  <string name="StickerManagementAdapter_signal_artist_series">Signal Artist Serier</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Pigeon Artist Serier</string>
   <string name="StickerManagementAdapter_no_stickers_installed">Ingen klistremerker installert</string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Klistremerker fra innkommende meldinger vises her</string>
   <string name="StickerManagementAdapter_untitled">Uten navn</string>
@@ -1398,11 +1397,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SubmitDebugLogActivity_share">Del</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Emne:</string>
-  <string name="SupportEmailUtil_signal_android_support_request">Kontakt Signal Android support</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Kontakt Pigeon Android support</string>
   <string name="SupportEmailUtil_device_info">Enhetsinformasjon:</string>
   <string name="SupportEmailUtil_android_version">Android versjon</string>
-  <string name="SupportEmailUtil_signal_version">Signal versjon:</string>
-  <string name="SupportEmailUtil_signal_package">Signal pakke:</string>
+  <string name="SupportEmailUtil_signal_version">Pigeon versjon:</string>
+  <string name="SupportEmailUtil_signal_package">Pigeon pakke:</string>
   <string name="SupportEmailUtil_registration_lock">Registreringslås:</string>
   <string name="SupportEmailUtil_locale">Språk:</string>
   <!--ThreadRecord-->
@@ -1421,7 +1420,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_view_once_media">Vis en gang media</string>
   <string name="ThreadRecord_this_message_was_deleted">Denne meldingen ble slettet.</string>
   <string name="ThreadRecord_you_deleted_this_message">Du slettet denne meldingen.</string>
-  <string name="ThreadRecord_s_is_on_signal"> %s er på Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal"> %s er på Pigeon !</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Forsvinnende meldinger deaktivert</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for meldinger endret til %s</string>
   <string name="ThreadRecord_safety_number_changed">Sikkerhetsnummer endret </string>
@@ -1440,8 +1439,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_video">Video</string>
   <string name="ThreadRecord_chat_session_refreshed">Samtaleøkt lastet inn på nytt</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Signal oppdatering</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny versjon av Signal er tilgjengelig, trykk for å oppdatere</string>
+  <string name="UpdateApkReadyListener_Signal_update">Pigeon oppdatering</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny versjon av Pigeon er tilgjengelig, trykk for å oppdatere</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Send melding?</string>
   <string name="UntrustedSendDialog_send">Send</string>
@@ -1460,21 +1459,21 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brukernavn kan ikke begynne med et tall.</string>
   <string name="UsernameEditFragment_username_is_invalid">Brukernavnet er ugyldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brukernavn må være mellom %1$d og %2$d tegn.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Brukernavn på Signal er valgfritt. Dersom du velger å opprette et brukernavn, vil andre Signal-brukere kunne finne deg på dette brukernavnet og kontakte deg uten å kunne telefonnummeret ditt.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Brukernavn på Pigeon er valgfritt. Dersom du velger å opprette et brukernavn, vil andre Pigeon -brukere kunne finne deg på dette brukernavnet og kontakte deg uten å kunne telefonnummeret ditt.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
-    <item quantity="one">%d kontakt er på Signal!</item>
-    <item quantity="other">%d kontakter er på Signal! </item>
+    <item quantity="one">%d kontakt er på Pigeon !</item>
+    <item quantity="other">%d kontakter er på Pigeon ! </item>
   </plurals>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakten kjører en gammel versjon av Signal. Be vedkommende om å oppdatere og deretter bekrefte sikkerhetsnummeret ditt.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten kjører en nyere versjon av Signal og bruker et QR-kodeformat som ikke kan brukes med din versjon. Oppdater Signal for å sammenligne.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakten kjører en gammel versjon av Pigeon . Be vedkommende om å oppdatere og deretter bekrefte sikkerhetsnummeret ditt.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten kjører en nyere versjon av Pigeon og bruker et QR-kodeformat som ikke kan brukes med din versjon. Oppdater Pigeon for å sammenligne.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">QR-koden du skannet er feilformatert. Prøv å skanne på nytt.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Del sikkerhetsnummer via…</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Vår Signal sikkerhet nummer:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Vår Pigeon sikkerhet nummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Det ser ut som at du ikke har noen programmer å dele denne informasjonen med.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ingen sikkerhet nummer å sammenligne ble funnet i utklippstavlen </string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne skanne QR-koder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
-  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Du kan ikke skanne en QR-kode når systemet ikke tillater Signal å bruke kameraet</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Pigeon krever tillatelse fra systemet for å kunne skanne QR-koder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Du kan ikke skanne en QR-kode når systemet ikke tillater Pigeon å bruke kameraet</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Du må utveksle meldinger for å se %1$s sitt sikkerhetsnummer.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
@@ -1493,13 +1492,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Trykk for å åpne.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Trykk for å åpne, eller trykk på lås for å lukke.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal er låst opp</string>
-  <string name="KeyCachingService_lock">Lås Signal</string>
+  <string name="KeyCachingService_passphrase_cached">Pigeon er låst opp</string>
+  <string name="KeyCachingService_lock">Lås Pigeon </string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Deg</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Ustøttet medietype</string>
   <string name="MediaPreviewActivity_draft">Utkast</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne skrive til ekstern lagringsenhet, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Pigeon krever tillatelse fra systemet for å kunne skrive til ekstern lagringsenhet, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Du kan ikke lagre på ekstern lagringsenhet uten å slå på tillatelse i systemet først</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Vil du slette denne meldinga?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Meldinga blir slettet for godt.</string>
@@ -1522,10 +1521,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_view_once_photo">Vis en gang bilde</string>
   <string name="MessageNotifier_view_once_video">Vis en gang video</string>
   <string name="MessageNotifier_reply">Svar</string>
-  <string name="MessageNotifier_signal_message">Signal-melding</string>
+  <string name="MessageNotifier_signal_message">Pigeon-melding</string>
   <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
   <string name="MessageNotifier_you_may_have_new_messages">Du kan ha nye meldinger</string>
-  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Åpne signal for å se etter nylige varsler.</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Åpne Pigeon for å se etter nylige varsler.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <string name="MessageNotifier_reacted_s_to_s">Reagerte %1$s til \"%2$s\".</string>
@@ -1536,7 +1535,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagerte %1$spå engangsmediet ditt.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerte %1$s på klistremerket ditt. </string>
   <string name="MessageNotifier_this_message_was_deleted">Denne meldingen ble slettet.</string>
-  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Skru av varsling når kontakter tar i bruk Signal? Du kan skru de på igjen i Signal&gt; Innstillinger &gt; Varsler.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Skru av varsling når kontakter tar i bruk Pigeon ? Du kan skru de på igjen i Pigeon &gt; Innstillinger &gt; Varsler.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Forvalgt</string>
   <string name="NotificationChannel_calls">Samtaler</string>
@@ -1552,7 +1551,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Lagret profilnavnet.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Det oppstod en nettverksfeil.</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtigsvar er utilgjengelig når Signal er låst.</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtigsvar er utilgjengelig når Pigeon er låst.</string>
   <string name="QuickResponseService_problem_sending_message">Det oppstod et problem under sending av melding.</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Lagret til %s</string>
@@ -1563,7 +1562,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Ugyldig snarvei</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Pigeon</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Spill av video</string>
@@ -1575,18 +1574,18 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Enheten er ikke lenger registrert</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dette skyldes sannsynligvis at du registrerte telefonnummeret ditt på Signal med en annen enhet. Trykk for å registrere på nytt.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dette skyldes sannsynligvis at du registrerte telefonnummeret ditt på Pigeon med en annen enhet. Trykk for å registrere på nytt.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Feil ved avspilling av video</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Gi Signal tilgang til mikrofonen for å besvare samtalen fra 1%s.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal krever tillatelser fra systemet for å kunne ringe eller motta samtaler, men du har valgt å avslå minst én av disse permanent. Gå til «Apper»-menyen på systemet og slå på tillatelser for «Mikrofon» og «Kamera».</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Gi Pigeon tilgang til mikrofonen for å besvare samtalen fra 1%s.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Pigeon krever tillatelser fra systemet for å kunne ringe eller motta samtaler, men du har valgt å avslå minst én av disse permanent. Gå til «Apper»-menyen på systemet og slå på tillatelser for «Mikrofon» og «Kamera».</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvart på en koblet enhet.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Avslått på en koblet enhet.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Opptatt på en koblet enhet.</string>
   <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Noen har blitt med i samtalen med et sikkerhetsnummer som er endret.</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Sikkerhetsnummeret for samtalen din med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s bare gjeninstalleres Signal.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Sikkerhetsnummeret for samtalen din med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s bare gjeninstalleres Pigeon .</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du bør bekrefte sikkerhetsnummeret ditt med denne kontakten.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nytt sikkerhetsnummer</string>
   <string name="WebRtcCallScreen_accept">Godta</string>
@@ -1605,9 +1604,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="WebRtcCallControls_tap_to_enable_your_video">Trykk for å ta i bruk video</string>
   <!--WebRtcCallControls Content Descriptions-->
   <string name="WebRtcCallControls_contact_photo_description">Kontaktfoto</string>
+  <string name="WebRtcCallControls_volume_button_description">Lydstyrke</string>
   <string name="WebRtcCallControls_speaker_button_description">Høyttaler</string>
   <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
   <string name="WebRtcCallControls_mute_button_description">Demp</string>
+  <string name="WebRtcCallControls_mute_button_description_on">Demp lyden</string>
+  <string name="WebRtcCallControls_mute_button_description_off">Slå på lyden</string>
   <string name="WebRtcCallControls_your_camera_button_description">Ditt kamera</string>
   <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Bytt til bak kamera</string>
   <string name="WebRtcCallControls_answer_call_description">Svar på anrop</string>
@@ -1634,7 +1636,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Gjenta ny passord</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Skriv inn navn eller nummer</string>
-  <string name="contact_selection_activity__invite_to_signal">Inviter til Signal</string>
+  <string name="contact_selection_activity__invite_to_signal">Inviter kontakter</string>
   <string name="contact_selection_activity__new_group">Ny gruppe</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Fjern inntastet tekst</string>
@@ -1646,15 +1648,15 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktfoto</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal krever tillatelse fra systemet for å kunne vise kontakter, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Pigeon krever tillatelse fra systemet for å kunne vise kontakter, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klarte ikke å hente kontakter. Kontroller nettforbindelse</string>
   <string name="ContactSelectionListFragment_username_not_found">Brukernavn ikke funnet</string>
-  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" er ikke en Signal-bruker. Kontroller brukernavnet og prøv igjen.</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" er ikke en Pigeon -bruker. Kontroller brukernavnet og prøv igjen.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Det er ikke nødvendig å legge deg selv til gruppen</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Maksimum antall på gruppestørrelse er oppnådd </string>
-  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal grupper kan ha maksimum %1$dmedlemmer.</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Pigeon grupper kan ha maksimum %1$dmedlemmer.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Anbefalt øvre grense for medlemsantall er nådd</string>
-  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-grupper yter best med %1$d eller færre. Å legge til flere medlemmer vil føre til tregere sending og mottak av meldinger.</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Pigeon-grupper yter best med %1$d eller færre. Å legge til flere medlemmer vil føre til tregere sending og mottak av meldinger.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d medlem</item>
     <item quantity="other">%1$d medlemmer</item>
@@ -1662,7 +1664,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontakter</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal må ha tilgang til kontaktene dine for å kunne vise dem.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Pigeon må ha tilgang til kontaktene dine for å kunne vise dem.</string>
   <string name="contact_selection_list_fragment__show_contacts">Vis Kontakter</string>
   <!--contact_selection_list_item-->
   <plurals name="contact_selection_list_item__number_of_members">
@@ -1670,7 +1672,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
     <item quantity="other">%1$d medlemmer</item>
   </plurals>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal-melding</string>
+  <string name="conversation_activity__type_message_push">Pigeon-melding</string>
   <string name="conversation_activity__type_message_sms_insecure">Usikret SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Usikret MMS</string>
   <string name="conversation_activity__from_sim_name">Fra %1$s</string>
@@ -1682,7 +1684,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Slå av/på hurtig kamera-vedleggsfunksjon</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ta opp og sende lyd vedlegg</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lås opptak av lydmelding</string>
-  <string name="conversation_activity__enable_signal_for_sms">Bruk Signal for SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Bruk Pigeon for SMS</string>
   <string name="conversation_activity__message_could_not_be_sent">Meldingen kunne ikke sendes. Kontroller nettverksforbindelsen din og prøv igjen.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Skyv for å avbryte</string>
@@ -1733,7 +1735,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="country_selection_fragment__search">Søk</string>
   <string name="country_selection_fragment__no_matching_countries">Ingen matchende land</string>
   <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skann QR-koden på Signal-enheten du vil koble denne enheten med</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skann QR-koden på Pigeon -enheten du vil koble denne enheten med</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Koble til enhet</string>
   <!--device_list_fragment-->
@@ -1776,9 +1778,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="IdentityUtil_unverified_banner_one">Sikkerhetsnummeret for %s er endret og ikke lenger bekreftet</string>
   <string name="IdentityUtil_unverified_banner_two">Sikkerhetsnummeret for %1$s og %2$s er ikke lenger bekreftet</string>
   <string name="IdentityUtil_unverified_banner_many">Sikkerhetsnummer for %1$s, %2$s og %3$s er ikke lenger bekreftet</string>
-  <string name="IdentityUtil_unverified_dialog_one">Sikkerhetsnummer for %1$s er endret og ikke lenger bekreftet. Dette kan enten bety at noen forsøker å overvåke eller manipulere kommunikasjonen, eller det kan være så enkelt som at %1$s installerte Signal på nytt.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Sikkerhetsnummer for %1$s og %2$s er ikke lenger bekreftet. Dette kan enten bety at noen forsøker å overvåke eller manipulere kommunikasjonen, eller det kan være så enkelt som at de installerte Signal på nytt.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Sikkerhetsnummer for %1$s, %2$s og %3$ser ikke lenger bekreftet. Dette kan enten bety at noen forsøker å overvåke eller manipulere kommunikasjonen, eller det kan være så enkelt som at de installerte Signal på nytt. </string>
+  <string name="IdentityUtil_unverified_dialog_one">Sikkerhetsnummer for %1$s er endret og ikke lenger bekreftet. Dette kan enten bety at noen forsøker å overvåke eller manipulere kommunikasjonen, eller det kan være så enkelt som at %1$s installerte Pigeon på nytt.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Sikkerhetsnummer for %1$s og %2$s er ikke lenger bekreftet. Dette kan enten bety at noen forsøker å overvåke eller manipulere kommunikasjonen, eller det kan være så enkelt som at de installerte Pigeon på nytt.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Sikkerhetsnummer for %1$s, %2$s og %3$ser ikke lenger bekreftet. Dette kan enten bety at noen forsøker å overvåke eller manipulere kommunikasjonen, eller det kan være så enkelt som at de installerte Pigeon på nytt. </string>
   <string name="IdentityUtil_untrusted_dialog_one">Sikkerhetsnummer for %s ble nettopp endret.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Sikkerhetsnummer for %1$s og %2$s ble nettopp endret.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Sikkerhetsnummer for %1$s, %2$s og %3$s ble nettopp endret.</string>
@@ -1806,7 +1808,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="log_submit_activity__please_review_this_log_from_my_app">Vennligst prøv denne loggen fra appen min: %1$s</string>
   <string name="log_submit_activity__network_failure">Nettverksfeil. Vær så snill, prøv på nytt.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vil du importere tekstmeldinger som ligger på enheten til Signals krypterte database?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vil du importere tekstmeldinger som ligger på enheten til Pigeons krypterte database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Forvalgt systemdatabase blir ikke endret på noen måte.</string>
   <string name="database_migration_activity__skip">Hopp over</string>
   <string name="database_migration_activity__import">Importer</string>
@@ -1834,11 +1836,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås opp</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal krever MMS-oppsett for å levere medier og gruppemeldinger via mobilnett. Enheten din gjør ikke denne informasjonen tilgjengelig, som kan skje for låste enheter og andre restriktive konfigurasjoner.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Pigeon krever MMS-oppsett for å levere medier og gruppemeldinger via mobilnett. Enheten din gjør ikke denne informasjonen tilgjengelig, som kan skje for låste enheter og andre restriktive konfigurasjoner.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Trykk «OK» og følg anvisninger hvis du vil sende medie- og gruppemeldinger. Du finner vanligvis MMS-oppsettet for operatøren din ved å søke etter «din operatør APN». Du trenger bare å gjøre dette én gang.</string>
   <!--profile_create_activity-->
-  <string name="CreateProfileActivity_first_name_required">Fornavn (påkrevd)</string>
-  <string name="CreateProfileActivity_last_name_optional">Etternavn (valgfritt)</string>
+  <string name="CreateProfileActivity_first_name_required">Fornavn</string>
+  <string name="CreateProfileActivity_last_name_optional">Etternavn</string>
+  <string name="CreateProfileActivity_required">påkrevd</string>
+  <string name="CreateProfileActivity_optional">valgfritt</string>
   <string name="CreateProfileActivity_next">Neste</string>
   <string name="CreateProfileActivity__username">Brukernavn</string>
   <string name="CreateProfileActivity__create_a_username">Opprett et brukernavn</string>
@@ -1849,10 +1853,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Delte medier</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signal-samtale</string>
+  <string name="redphone_call_card__signal_call">Pigeon-samatale</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gjør det enkelt å kommunisere ved å bruke telefonnummeret og adresseboka du allerede har. Venner og kontakter som allerede vet hvordan de kontakter deg via telefon kan enkelt ta kontakt via Signal.\n\nRegistrering overfører noe kontaktinformasjon til Signal-tjeneren. Dette blir ikke lagret.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Pigeon gjør det enkelt å kommunisere ved å bruke telefonnummeret og adresseboka du allerede har. Venner og kontakter som allerede vet hvordan de kontakter deg via telefon kan enkelt ta kontakt via Pigeon .\n\nRegistrering overfører noe kontaktinformasjon til Pigeon -tjeneren. Dette blir ikke lagret.</string>
   <string name="registration_activity__verify_your_number">Bekreft nummeret ditt</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Skriv inn mobilnummeret ditt for å motta en bekreftelseskode. Teleoperatøren kan belaste deg for dette.</string>
   <!--recipients_panel-->
@@ -1918,11 +1922,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__whats_this">Hva er dette?</string>
   <string name="HelpFragment__how_do_you_feel">Hvordan føler du deg? (Valgfri)</string>
   <string name="HelpFragment__support_info">Brukterstøtteinformasjon</string>
-  <string name="HelpFragment__signal_android_support_request">Kontakt Signal Android support</string>
+  <string name="HelpFragment__signal_android_support_request">Kontakt Pigeon Android support</string>
   <string name="HelpFragment__debug_log">Feilsøkingslogg:</string>
   <string name="HelpFragment__na">n/a</string>
   <string name="HelpFragment__could_not_upload_logs">Kunne ikke laste opp logger</string>
-  <string name="HelpFragment__signal_support">Signal brukerstøtte</string>
+  <string name="HelpFragment__signal_support">Pigeon brukerstøtte</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vær så beskrivende som mulig for å hjelpe oss med å forstå problemet.</string>
   <string name="HelpFragment__no_email_app_found">Ingen e-postapp funnet.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -1972,8 +1976,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__sms_mms">SMS og MMS</string>
   <string name="preferences__pref_all_sms_title">Ta imot alle SMS</string>
   <string name="preferences__pref_all_mms_title">Ta imot alle MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Bruk Signal for alle innkommende tekstmeldinger </string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle innkommende multimediameldinger </string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Bruk Pigeon for alle innkommende tekstmeldinger </string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Pigeon for alle innkommende multimediameldinger </string>
   <string name="preferences__pref_enter_sends_title">Send med enter-tast</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk Enter-tasten for å sende tekstmeldinger</string>
   <string name="preferences__pref_use_address_book_photos">Benytt adressebokbilder</string>
@@ -1988,7 +1992,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås skjerm og varsler med passordfrase</string>
   <string name="preferences__screen_security">Skjermsikkerhet</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokker skjermbilder i sist brukte-liste og i programmet</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås Signal automatisk etter valgt tid uten aktivitet</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås Pigeon automatisk etter valgt tid uten aktivitet</string>
   <string name="preferences__inactivity_timeout_passphrase">Passord ved tidsavbrudd</string>
   <string name="preferences__inactivity_timeout_interval">Tidsavbrudd ved inaktivitet</string>
   <string name="preferences__notifications">Varsler</string>
@@ -2019,7 +2023,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__slow">Langsomt</string>
   <string name="preferences__help">Hjelp</string>
   <string name="preferences__advanced">Avansert</string>
-  <string name="preferences__donate_to_signal">Doner til Signal</string>
   <string name="preferences__privacy">Personvern</string>
   <string name="preferences__mms_user_agent">MMS-brukeragent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuelt MMS-oppsett</string>
@@ -2042,14 +2045,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">Deaktiver PIN-kode</string>
   <string name="preferences__enable_pin">Aktiver PIN-kode</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN-koden vil du miste all informasjon når du gjennomfører Signal-registrering på nytt, med mindre du manuelt tar en sikkerhetskopi og gjenoppretter innholdet. Du kan ikke skru på registreringslås mens PIN-koden er deaktivert.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-koder holder informasjon lagret i Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprettes når du installerer Signal på nytt. Du vil ikke trenge PIN-koden for å åpne appen.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN-koden vil du miste all informasjon når du gjennomfører Pigeon -registrering på nytt, med mindre du manuelt tar en sikkerhetskopi og gjenoppretter innholdet. Du kan ikke skru på registreringslås mens PIN-koden er deaktivert.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-koder holder informasjon lagret i Pigeon kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprettes når du installerer Pigeon på nytt. Du vil ikke trenge PIN-koden for å åpne appen.</string>
   <string name="preferences__system_default">System standard</string>
   <string name="preferences__default">Forvalgt</string>
   <string name="preferences__language">Språk</string>
-  <string name="preferences__signal_messages_and_calls">Signal-meldinger og -samtaler</string>
+  <string name="preferences__signal_messages_and_calls">Pigeonmeldinger og -samtaler</string>
   <string name="preferences__advanced_pin_settings">Avanserte PIN-kode instillinger</string>
-  <string name="preferences__free_private_messages_and_calls">Gratis private meldinger og samtaler til Signal-brukere</string>
+  <string name="preferences__free_private_messages_and_calls">Gratis private meldinger og samtaler til Pigeon -brukere</string>
   <string name="preferences__submit_debug_log">Send inn feilsøkingslogg</string>
   <string name="preferences__delete_account">Slett konto</string>
   <string name="preferences__support_wifi_calling">«Wi-Fi-anrop»-tilbakefallsmodus</string>
@@ -2088,13 +2091,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_storage__s_messages">%1$s meldinger</string>
   <string name="preferences_storage__custom">Selvvalgt</string>
   <string name="preferences_advanced__use_system_emoji">Bruk systemets emoji</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle samtaler gjennom Signal serveren for å unngå å avsløre IP-adressen din til kontakten din. Aktivering vill redusere samtalekvaliteten.</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Pigeon </string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle samtaler gjennom Pigeon serveren for å unngå å avsløre IP-adressen din til kontakten din. Aktivering vill redusere samtalekvaliteten.</string>
   <string name="preferences_advanced__always_relay_calls">Videresend alle anrop</string>
   <string name="preferences_app_protection__who_can">Hvem kan…</string>
   <string name="preferences_app_protection__app_access">Programtilgang</string>
   <string name="preferences_app_protection__communication">Kommunikasjon</string>
-  <string name="preferences_chats__chats">Samtaler</string>
+  <string name="preferences_chats__chats">Vedlegg</string>
   <string name="preferences_data_and_storage__manage_storage">Håndter lagring</string>
   <string name="preferences_data_and_storage__calls">Samtaler</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Bruk mindre data for anrop</string>
@@ -2109,9 +2112,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_notifications__calls">Samtaler</string>
   <string name="preferences_notifications__ringtone">Ringetone</string>
   <string name="preferences_chats__show_invitation_prompts">Vis invitasjonsmeldinger</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis invitasjonsspørringer for kontakter som ikke har Signal</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis invitasjonsspørringer for kontakter som ikke har Pigeon </string>
   <string name="preferences_chats__message_text_size">Skriftstørrelse i meldinger</string>
-  <string name="preferences_events__contact_joined_signal">Når kontakt installerer Signal</string>
+  <string name="preferences_events__contact_joined_signal">Kontakt tilgjengelig på Pigeon</string>
   <string name="preferences_notifications__priority">Prioritet</string>
   <string name="preferences_communication__category_sealed_sender">Forseglet Avsender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Visningsindikatorer</string>
@@ -2135,8 +2138,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Ring</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Signal-samtale</string>
-  <string name="conversation_callable_secure__menu_video">Signal videosamtale</string>
+  <string name="conversation_callable_secure__menu_call">Pigeon-samtale</string>
+  <string name="conversation_callable_secure__menu_video">Pigeon videosamtale</string>
+  <!-- conversation_voice_message -->
+  <string name="conversation_voice_message">Talemelding</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Meldingsdetaljer</string>
   <string name="conversation_context__menu_copy_text">Kopier tekst</string>
@@ -2193,6 +2198,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation__menu_view_all_media">Alle medier</string>
   <string name="conversation__menu_conversation_settings">Samtaleinnstillinger</string>
   <string name="conversation__menu_add_shortcut">Legg til på startskjermen</string>
+  <string name="conversation__menu_voice_message">Talemelding</string>
   <string name="conversation__menu_pending_members">Avventende medlemmer</string>
   <string name="conversation__menu_create_bubble">Lag boble</string>
   <!--conversation_popup-->
@@ -2216,15 +2222,15 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Sammenlign med utklippstavlen</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">Importer system-SMS</string>
-  <string name="reminder_header_sms_import_text">Trykk for å kopiere telefonens SMS-meldinger til Signals krypterte database.</string>
-  <string name="reminder_header_push_title">Slå på Signal-meldinger og -samtaler</string>
+  <string name="reminder_header_sms_import_text">Trykk for å kopiere telefonens SMS-meldinger til Pigeon s krypterte database.</string>
+  <string name="reminder_header_push_title">Slå på Pigeon -meldinger og -samtaler</string>
   <string name="reminder_header_push_text">Oppgrader kommunikasjonsopplevelsen.</string>
-  <string name="reminder_header_invite_title">Inviter til Signal</string>
+  <string name="reminder_header_invite_title">Inviter kontakter</string>
   <string name="reminder_header_invite_text">Ta samtalen med %1$s til neste nivå.</string>
   <string name="reminder_header_share_title">Inviter vennene dine!</string>
-  <string name="reminder_header_share_text">Jo flere venner som bruker Signal, desto bedre blir det.</string>
-  <string name="reminder_header_service_outage_text">Signal har tekniske problemer. Vi jobber med å få tjenesten i gang igjen så fort som mulig.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">De nyeste Signal-funksjonene vil ikke fungere på denne versjonen av Android. Oppgrader denne enheten for å motta fremtidige Signal-oppdateringer.</string>
+  <string name="reminder_header_share_text">Jo flere venner som bruker Pigeon , desto bedre blir det.</string>
+  <string name="reminder_header_service_outage_text">Pigeon har tekniske problemer. Vi jobber med å få tjenesten i gang igjen så fort som mulig.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">De nyeste Pigeon -funksjonene vil ikke fungere på denne versjonen av Android. Oppgrader denne enheten for å motta fremtidige Pigeon -oppdateringer.</string>
   <string name="reminder_header_progress">%1$d %%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Lagre</string>
@@ -2244,22 +2250,22 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Innsikt</string>
   <string name="InsightsDashboardFragment__title">Innsikt</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokoll automatisk beskyttet %1$d%% av utgående meldinger over de siste %2$d dagene. Samtaler mellom Signal-brukere er alltid kryptert fra ende til ende.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signal økning</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Pigeon-protokoll automatisk beskyttet %1$d%% av utgående meldinger over de siste %2$d dagene. Samtaler mellom Pigeon -brukere er alltid kryptert fra ende til ende.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Pigeon økning</string>
   <string name="InsightsDashboardFragment__not_enough_data">Ikke nok data</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Prosentene i oversikten er regnet ut fra utgående meldinger de siste %1$d dagene som ikke har forsvunnet eller blitt slettet.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Begynn å kommunisere sikkert og aktiver nye funksjoner som går utover begrensningene for ikke-krypterte SMS-meldinger ved å invitere flere kontakter til å bli med i Signal.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Begynn å kommunisere sikkert og aktiver nye funksjoner som går utover begrensningene for ikke-krypterte SMS-meldinger ved å invitere flere kontakter til å bli med i Pigeon .</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Denne statistikken ble lokalt generert på enheten din og kan bare sees av deg. Den blir aldri overført noe sted.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterte meldinger</string>
   <string name="InsightsDashboardFragment__cancel">Avbryt</string>
   <string name="InsightsDashboardFragment__send">Send</string>
   <string name="InsightsModalFragment__title">Vi presenterer Innsikt</string>
-  <string name="InsightsModalFragment__description">Finn ut hvor mange av utgående meldinger som ble sendt sikkert, og inviter raskt nye kontakter for å øke Signal-prosenten.</string>
+  <string name="InsightsModalFragment__description">Finn ut hvor mange av utgående meldinger som ble sendt sikkert, og inviter raskt nye kontakter for å øke Pigeon -prosenten.</string>
   <string name="InsightsModalFragment__view_insights">Se Innsikt</string>
-  <string name="FirstInviteReminder__title">Inviter til Signal</string>
+  <string name="FirstInviteReminder__title">Inviter kontakter</string>
   <string name="FirstInviteReminder__description">Du kan øke antallet krypterte meldinger du sender av %1$d%%</string>
-  <string name="SecondInviteReminder__title">Styrk ditt Signal</string>
+  <string name="SecondInviteReminder__title">Styrk ditt Pigeon </string>
   <string name="SecondInviteReminder__description">Inviter %1$s</string>
   <string name="InsightsReminder__view_insights">Se Innsikt</string>
   <string name="InsightsReminder__invite">Inviter</string>
@@ -2280,7 +2286,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Opprett en ny PIN-kode</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan endre PIN-koden din så lenge denne enheten er registrert.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Opprett PIN-koden</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret i Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprettes når du installerer Signal på nytt. Du vil ikke trenge PIN-koden for å åpne appen.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret i Pigeon kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprettes når du installerer Pigeon på nytt. Du vil ikke trenge PIN-koden for å åpne appen.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Velg en sterkere PIN-kode</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-koder stemmer ikke overens. Prøv igjen.</string>
@@ -2292,7 +2298,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Oppretter PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Vi introduserer PIN-koder</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret i Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprettes når du installerer Signal på nytt. Du vil ikke trenge PIN-koden for å åpne appen.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret i Pigeon kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprettes når du installerer Pigeon på nytt. Du vil ikke trenge PIN-koden for å åpne appen.</string>
   <string name="KbsSplashFragment__learn_more">Lær mer</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registreringslås = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Din registreringskode kalles nå PIN, og den gjør mer. Oppdater den nå.</string>
@@ -2302,7 +2308,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Lær mer om PIN-koder</string>
   <string name="KbsSplashFragment__disable_pin">Deaktiver PIN-kode</string>
   <!--KBS Reminder Dialog-->
-  <string name="KbsReminderDialog__enter_your_signal_pin">Skriv inn din Signal PIN</string>
+  <string name="KbsReminderDialog__enter_your_signal_pin">Skriv inn din Pigeon PIN</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">For å hjelpe deg med å huske PIN-koden din, ber vi deg om å oppgi den med jevne mellomrom. Vi ber deg mindre etter hvert.</string>
   <string name="KbsReminderDialog__skip">Hopp over</string>
   <string name="KbsReminderDialog__submit">Send inn</string>
@@ -2349,19 +2355,19 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s vil motta en meldingsforespørsel fra deg. Du kan ringe når forespørselen din er akseptert.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Lag en PIN</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-koden holder informasjonen som er lagret i Signal kryptert.</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-koden holder informasjonen som er lagret i Pigeon kryptert.</string>
   <string name="KbsMegaphone__create_pin">Lag PIN</string>
   <string name="KbsMegaphone__introducing_pins">Vi introduserer PIN-koder</string>
   <string name="KbsMegaphone__update_pin">Oppdater PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Vi vil minne deg på det senere. Å lage en PIN-kode blir obligatorisk om %1$d dager.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vi vil minne deg på det senere. Bekreftelse av PIN-koden blir obligatorisk om %1$d dager.</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Fortell Signal hva du synes</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Vi trenger dine tilbakemeldinger for å gjøre Signal til den beste meldingsappen i verden.</string>
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Fortell Pigeon hva du synes</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Vi trenger dine tilbakemeldinger for å gjøre Pigeon til den beste meldingsappen i verden.</string>
   <string name="ResearchMegaphone_learn_more">Lær mer</string>
   <string name="ResearchMegaphone_dismiss">Avbryt</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal undersøkelse</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vi har troen på personvern.</b></p><p>Signal sporer ikke deg eller samler ikke inn dataene dine. For å forbedre Signal for alle er vi avhengige av tilbakemeldinger fra brukere, <b>og vi blir svært glade for dine.</b></p><p>Vi kjører en undersøkelse for å forstå hvordan du bruker Signal. Undersøkelsen vår samler ikke inn data som vil identifisere deg. Hvis du er interessert i å dele ytterligere tilbakemeldinger, har du muligheten til å oppgi kontaktinformasjon.</p><p>Hvis du har noen minutter og tilbakemeldinger å tilby, vil vi gjerne høre fra deg.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_signal_research">Pigeon undersøkelse</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vi har troen på personvern.</b></p><p>Pigeon sporer ikke deg eller samler ikke inn dataene dine. For å forbedre Pigeon for alle er vi avhengige av tilbakemeldinger fra brukere, <b>og vi blir svært glade for dine.</b></p><p>Vi kjører en undersøkelse for å forstå hvordan du bruker Pigeon . Undersøkelsen vår samler ikke inn data som vil identifisere deg. Hvis du er interessert i å dele ytterligere tilbakemeldinger, har du muligheten til å oppgi kontaktinformasjon.</p><p>Hvis du har noen minutter og tilbakemeldinger å tilby, vil vi gjerne høre fra deg.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Gjennomfør brukerundersøkelsen</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nei takk</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Undersøkelsen gjøres av Alchemer på det sikre domenet surveys.signalusers.org</string>
@@ -2370,12 +2376,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConversationListFragment_loading">Laster…</string>
   <string name="CallNotificationBuilder_connecting">Kobler til…</string>
   <string name="Permissions_permission_required">Tillatelse kreves</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal krever tillatelse fra systemet for å kunne sende SMS-meldinger, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «SMS».</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Pigeon krever tillatelse fra systemet for å kunne sende SMS-meldinger, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «SMS».</string>
   <string name="Permissions_continue">Fortsett</string>
   <string name="Permissions_not_now">Ikke nå</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne søke etter kontakter, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
-  <string name="conversation_activity__enable_signal_messages">SLÅ PÅ SIGNAL-MELDINGER</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Flytter Signal-database</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Pigeon krever tillatelse fra systemet for å kunne søke etter kontakter, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
+  <string name="conversation_activity__enable_signal_messages">SLÅ PÅ PIGEON -MELDINGER</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Flytter Pigeon -database</string>
   <string name="PushDecryptJob_new_locked_message">Ny låst melding</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås opp for å vise ventende meldinger</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Passordfrase for sikkerhetskopi</string>
@@ -2393,7 +2399,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Test passordfrasen din og bekreft at den stemmer overens</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Skriv inn passordfrase for sikkerhetskopi</string>
   <string name="RegistrationActivity_restore">Gjenopprett</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Kan ikke importere sikkerhetskopier fra nyere versjoner av Signal.</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Kan ikke importere sikkerhetskopier fra nyere versjoner av Pigeon .</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Feil passordfrase for sikkerhetskopi</string>
   <string name="RegistrationActivity_checking">Kontrollerer…</string>
   <string name="RegistrationActivity_d_messages_so_far">%d meldinger så langt…</string>
@@ -2415,7 +2421,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="BackupDialog_verify">Bekreft</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du har bekreftet passordfrasen for sikkerhetskopi</string>
   <string name="BackupDialog_passphrase_was_not_correct">Passordfrasen stemmer ikke overens</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal krever tillatelse fra systemet for å kunne lagre sikkerhetskopier, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Pigeon krever tillatelse fra systemet for å kunne lagre sikkerhetskopier, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Siste sikkerhetskopi: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Under behandling</string>
   <string name="LocalBackupJob_creating_backup">Tar sikkerhetskopi …</string>
@@ -2428,8 +2434,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv inn bekreftelseskoden som er sendt til %s.</string>
   <string name="RegistrationActivity_wrong_number">Feil nummer</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Ring meg i stedet \n (Tilgjengelig om %1$02d:%2$02d)</string>
-  <string name="RegistrationActivity_contact_signal_support">Kontakt Signal Kundestøtte</string>
-  <string name="RegistrationActivity_code_support_subject">Signal Registrering - Verifikasjonskode for Android</string>
+  <string name="RegistrationActivity_contact_signal_support">Kontakt Pigeon Kundestøtte</string>
+  <string name="RegistrationActivity_code_support_subject">Pigeon Registrering - Verifikasjonskode for Android</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjent</string>
   <string name="preferences_app_protection__see_my_phone_number">Se mitt telefonnummer</string>
@@ -2438,22 +2444,22 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PhoneNumberPrivacy_my_contacts">Mine kontakter</string>
   <string name="PhoneNumberPrivacy_nobody">Ingen</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">Telefonnummeret ditt vil være synlig for alle personer og grupper du sender meldinger til.</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">Alle som har telefonnummeret ditt i kontaktene sine, vil se deg som en kontakt på Signal. Andre vil kunne finne deg i Søk.</string>
-  <string name="PhoneNumberPrivacy_my_contacts_see_description">Bare kontaktene dine vil se telefonnummeret ditt på Signal.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Alle som har telefonnummeret ditt i kontaktene sine, vil se deg som en kontakt på Pigeon . Andre vil kunne finne deg i Søk.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Bare kontaktene dine vil se telefonnummeret ditt på Pigeon .</string>
   <string name="preferences_app_protection__screen_lock">Skjermlås</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås Signal tilgang med Android-skjermlås eller fingeravtrykk</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås Pigeon tilgang med Android-skjermlås eller fingeravtrykk</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tidsavbrudd for skjermlås ved inaktivitet.</string>
-  <string name="preferences_app_protection__signal_pin">Signal-PIN</string>
+  <string name="preferences_app_protection__signal_pin">Pigeon-PIN</string>
   <string name="preferences_app_protection__create_a_pin">Lag en PIN</string>
   <string name="preferences_app_protection__change_your_pin">Endre PIN-koden</string>
   <string name="preferences_app_protection__pin_reminders">PIN-kode påminnelser</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret med Signal kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprette når du installerer Signal på nytt.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Legg til ekstra sikkerhet ved å kreve at Signal PIN-koden din må benyttes dersom telefonnummeret ditt registreres hos Signal igjen.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koder holder informasjon lagret med Pigeon kryptert slik at bare du kan få tilgang til den. Profilen, innstillingene og kontaktene dine vil gjenopprette når du installerer Pigeon på nytt.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Legg til ekstra sikkerhet ved å kreve at Pigeon PIN-koden din må benyttes dersom telefonnummeret ditt registreres hos Pigeon igjen.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Påminnelser hjelper deg å huske PIN-koden siden den ikke kan gjenopprettes. Du blir spurt mindre ofte over tid.</string>
   <string name="preferences_app_protection__turn_off">Skru av</string>
   <string name="preferences_app_protection__confirm_pin">Bekreft PIN-koden</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Bekreft Signal PIN-kode</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Pass på at du husker eller lagrer PIN-koden sikkert, da den ikke kan gjenopprettes. Hvis du glemmer PIN-koden, risikerer du å miste data når du registrerer Signal-kontoen på nytt.</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Bekreft Pigeon PIN-kode</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Pass på at du husker eller lagrer PIN-koden sikkert, da den ikke kan gjenopprettes. Hvis du glemmer PIN-koden, risikerer du å miste data når du registrerer Pigeon -kontoen på nytt.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Feil PIN-kode. Prøv igjen.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Kunne ikke skru på registreringslås.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Kunne ikke skru av registreringslås.</string>
@@ -2466,7 +2472,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="registration_lock_dialog_view__confirm_pin">Bekreft PIN-koden</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Skriv inn registrerings-PIN</string>
   <string name="registration_lock_reminder_view__enter_pin">Skriv inn PIN-kode</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Slå på en registrerings-PIN som må tastes inn for å registrere dette telefonnummeret med Signal på nytt.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Slå på en registrerings-PIN som må tastes inn for å registrere dette telefonnummeret med Pigeon på nytt.</string>
   <string name="preferences_app_protection__registration_lock_pin">Registrerings-PIN</string>
   <string name="preferences_app_protection__registration_lock">Registreringslås</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du må skrive inn registrerings-PIN-koden</string>
@@ -2477,13 +2483,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Du har gjort for mange forsøk. Prøv igjen senere.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Feil under tilkobling til tjeneste</string>
   <string name="RegistrationActivity_oh_no">Å nei!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Du må vente 7 dager etter at Signal sist ble brukt med dette telefonnummeret før du kan registrere nummeret på nytt uten å taste inn registrerings-PIN. %d dager gjenstår.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Du må vente 7 dager etter at Pigeon sist ble brukt med dette telefonnummeret før du kan registrere nummeret på nytt uten å taste inn registrerings-PIN. %d dager gjenstår.</string>
   <string name="RegistrationActivity_registration_lock_pin">Registrerings-PIN</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Dette telefonnummeret har registreringslås aktivert. Vennligst tast inn PIN-koden for registreringslås.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registreringslås er aktivert for telefonnummeret ditt. For å hjelpe deg med å huske PIN-koden for registreringslås, vil Signal med jevne mellomrom be deg om å bekrefte den.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registreringslås er aktivert for telefonnummeret ditt. For å hjelpe deg med å huske PIN-koden for registreringslås, vil Pigeon med jevne mellomrom be deg om å bekrefte den.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Jeg har glemt PIN-koden min.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Har du glemt PIN-koden?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registreringslås beskytter telefonnummeret ditt mot uautoriserte registreringsforsøk. Denne funksjonen kan deaktiveres når som helst i Signal-personverninnstillingene</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registreringslås beskytter telefonnummeret ditt mot uautoriserte registreringsforsøk. Denne funksjonen kan deaktiveres når som helst i Pigeon -personverninnstillingene</string>
   <string name="RegistrationLockDialog_registration_lock">Registreringslås</string>
   <string name="RegistrationLockDialog_enable">Aktiver</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Registreringslåsen må være på minst %d sifre.</string>
@@ -2494,7 +2500,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RegistrationActivity_pin_incorrect">PIN-kode feil</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">Du har %d forsøk igjen</string>
   <string name="preferences_chats__backups">Sikkerhetskopiering</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal er låst</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Pigeon er låst</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TRYKK FOR Å LÅSE OPP</string>
   <string name="RegistrationLockDialog_reminder">Påminnelse:</string>
   <string name="recipient_preferences__about">Om</string>
@@ -2526,10 +2532,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Hva er \"legacy\"-grupper?</string>
   <string name="GroupsLearnMore_paragraph_1">\"Legacy\"-grupper er grupper som ikke er kompatible med nye gruppefunksjoner som administrator og mer beskrivende gruppeoppdateringer.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Kan jeg oppgradere en \"Legacy\"-gruppe?</string>
-  <string name="GroupsLearnMore_paragraph_2">\"Legacy\"-grupper kan ikke bli oppgradert til nye grupper enda, men du kan kan lage en ny gruppe med de samme medlemmene om de bruker den nyeste utgaven av Signal.</string>
-  <string name="GroupsLearnMore_paragraph_3">Signal vil tilby en måter å oppgradere \"Legacy\"-grupper i fremtiden.</string>
+  <string name="GroupsLearnMore_paragraph_2">\"Legacy\"-grupper kan ikke bli oppgradert til nye grupper enda, men du kan kan lage en ny gruppe med de samme medlemmene om de bruker den nyeste utgaven av Pigeon .</string>
+  <string name="GroupsLearnMore_paragraph_3">Pigeon vil tilby en måter å oppgradere \"Legacy\"-grupper i fremtiden.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
-  <string name="GroupLinkBottomSheet_share_via_signal">Del via Signal</string>
+  <string name="GroupLinkBottomSheet_share_via_signal">Del via Pigeon </string>
   <string name="GroupLinkBottomSheet_copy">Kopier</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-kode</string>
   <string name="GroupLinkBottomSheet_share">Del</string>
@@ -2594,7 +2600,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="DeleteAccountFragment__no_number">Ikke noe nummer angitt</string>
   <string name="DeleteAccountFragment__the_phone_number">Telefonnummeret du tastet inn stemmer ikke med kontoen din sitt.</string>
   <string name="DeleteAccountFragment__are_you_sure">Er du sikker på at du vil slette kontoen din?</string>
-  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dette vil slette din Signal konto og tilbakestille applikasjonen. Appen vil lukkes etter prosessen er fullført.</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dette vil slette din Pigeon konto og tilbakestille applikasjonen. Appen vil lukkes etter prosessen er fullført.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Klarte ikke slette konto. Har du nettverksforbindelse?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Klarte ikke slette lokal data. Du kan manuelt slette den i systemet applikasjonsinnstillinger.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Åpne App Innstillinger</string>
@@ -2603,4 +2609,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Hopp over</string>
   <!--EOF-->
+  <string name="save_options_new_contact">Ny kontakt</string>
+  <string name="save_options_add_to_existing">Legg til eksisterende</string>
+
+  <string name="webrtccallactivity_status">I en samtale</string>
+  <string name="webrtccallactivity_back">Tilbake</string>
+
+  <string name="advanced_version_name">Pigeon %s på Signal %s</string>
 </resources>

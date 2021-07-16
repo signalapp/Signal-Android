@@ -13,7 +13,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarStyle">
+            android:theme="?attr/actionBarStyle"
+            android:visibility="gone"
+            tools:visibility="gone">
 
         <RelativeLayout
                 android:layout_width="match_parent"
@@ -54,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:elevation="4dp"
-            android:visibility="invisible"
-            tools:visibility="invisible"/>
+            android:visibility="gone"
+            tools:visibility="gone"/>
 
 </RelativeLayout>

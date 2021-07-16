@@ -36,7 +36,8 @@
             android:padding="12dp"
             android:visibility="gone"
             app:lottie_rawRes="@raw/lottie_play_pause"
-            tools:visibility="visible" />
+            tools:visibility="visible"
+            android:focusable="false"/>
 
     </FrameLayout>
 

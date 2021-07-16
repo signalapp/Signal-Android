@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:defaultFocusHighlightEnabled="false">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
@@ -16,14 +17,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chipGroupScrollContainer">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <RelativeLayout
+            android:id="@+id/rl_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:scrollbars="vertical"
-            tools:listitem="@layout/contact_selection_list_item" />
+            android:layout_height="wrap_content">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:scrollbars="none"
+                android:defaultFocusHighlightEnabled="false"
+                tools:listitem="@layout/contact_selection_list_item" />
+
+        </RelativeLayout>
         <TextView
             android:id="@android:id/empty"
             android:layout_width="match_parent"
@@ -34,17 +42,6 @@
             android:textSize="20sp" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <org.thoughtcrime.securesms.components.RecyclerViewFastScroller
-        android:id="@+id/fast_scroller"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="end"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroupScrollContainer"
-        tools:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/show_contacts_container"
@@ -60,13 +57,15 @@
         app:layout_constraintTop_toBottomOf="@+id/chipGroupScrollContainer"
         tools:visibility="visible">
 
-        <Button
-            android:id="@+id/show_contacts_button"
+
+        <TextView
+            android:id="@+id/show_contacts_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:background="@color/core_ultramarine"
+            android:background="@color/transparent"
+            android:defaultFocusHighlightEnabled="false"
             android:padding="10dp"
             android:text="@string/contact_selection_list_fragment__show_contacts"
             android:textColor="@color/white" />
@@ -138,7 +137,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/group_limit"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup"

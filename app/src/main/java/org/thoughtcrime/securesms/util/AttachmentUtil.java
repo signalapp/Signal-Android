@@ -40,8 +40,8 @@ public class AttachmentUtil {
     Set<String> allowedTypes = getAllowedAutoDownloadTypes(context);
     String      contentType  = attachment.getContentType();
 
-    if (attachment.isVoiceNote()                                                       ||
-        (MediaUtil.isAudio(attachment) && TextUtils.isEmpty(attachment.getFileName())) ||
+    if (/*attachment.isVoiceNote()                                                       ||
+        (MediaUtil.isAudio(attachment) && TextUtils.isEmpty(attachment.getFileName())) ||*/
         MediaUtil.isLongTextType(attachment.getContentType())                          ||
         attachment.isSticker())
     {

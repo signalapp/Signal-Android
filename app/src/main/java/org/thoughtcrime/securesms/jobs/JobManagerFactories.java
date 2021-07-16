@@ -99,7 +99,7 @@ public final class JobManagerFactories {
       put(MultiDeviceStorageSyncRequestJob.KEY,      new MultiDeviceStorageSyncRequestJob.Factory());
       put(MultiDeviceVerifiedUpdateJob.KEY,          new MultiDeviceVerifiedUpdateJob.Factory());
       put(MultiDeviceViewOnceOpenJob.KEY,            new MultiDeviceViewOnceOpenJob.Factory());
-      put(ProfileKeySendJob.KEY,                     new ProfileKeySendJob.Factory());
+//      put(ProfileKeySendJob.KEY,                     new ProfileKeySendJob.Factory());
       put(PushDecryptMessageJob.KEY,                 new PushDecryptMessageJob.Factory());
       put(PushDecryptDrainedJob.KEY,                 new PushDecryptDrainedJob.Factory());
       put(PushProcessMessageJob.KEY,                 new PushProcessMessageJob.Factory());

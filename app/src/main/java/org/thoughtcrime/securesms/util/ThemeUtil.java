@@ -25,7 +25,7 @@ public class ThemeUtil {
   }
 
   public static boolean isDarkTheme(@NonNull Context context) {
-    return getAttribute(context, R.attr.theme_type, "light").equals("dark");
+    return getAttribute(context, R.attr.theme_type, "dark").equals("dark");
   }
 
   public static int getThemedResourceId(@NonNull Context context, @AttrRes int attr) {

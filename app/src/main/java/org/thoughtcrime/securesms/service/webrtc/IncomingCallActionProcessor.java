@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
+import org.thoughtcrime.securesms.components.webrtc.OrientationAwareVideoSink;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -20,6 +21,7 @@ import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.VideoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
@@ -86,11 +88,12 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
       webRtcInteractor.getCallManager().proceed(activePeer.getCallId(),
                                                 context,
                                                 videoState.requireEglBase(),
-                                                videoState.requireLocalSink(),
-                                                callParticipant.getVideoSink(),
+                                                new OrientationAwareVideoSink(videoState.requireLocalSink()),
+                                                new OrientationAwareVideoSink(callParticipant.getVideoSink()),
                                                 videoState.requireCamera(),
                                                 iceServers,
                                                 hideIp,
+                                                NetworkUtil.getCallingBandwidthMode(context),
                                                 false);
     } catch (CallException e) {
       return callFailure(currentState, "Unable to proceed with call: ", e);
@@ -222,14 +225,6 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                                                 @NonNull ArrayList<IceCandidateParcel> iceCandidates)
   {
     return activeCallDelegate.handleSendIceCandidates(currentState, callMetadata, broadcast, iceCandidates);
-  }
-
-  @Override
-  protected @NonNull WebRtcServiceState handleReceivedIceCandidates(@NonNull WebRtcServiceState currentState,
-                                                                    @NonNull WebRtcData.CallMetadata callMetadata,
-                                                                    @NonNull ArrayList<IceCandidateParcel> iceCandidateParcels)
-  {
-    return activeCallDelegate.handleReceivedIceCandidates(currentState, callMetadata, iceCandidateParcels);
   }
 
   @Override

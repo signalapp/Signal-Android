@@ -5,7 +5,7 @@
     android:id="@+id/call_screen_large_local_renderer_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@color/sim_background">
 
     <org.thoughtcrime.securesms.components.webrtc.TextureViewRenderer
         android:id="@+id/call_screen_large_local_renderer"

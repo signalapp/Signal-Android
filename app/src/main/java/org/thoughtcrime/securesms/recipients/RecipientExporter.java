@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
 
+import static android.content.Intent.ACTION_INSERT;
 import static android.content.Intent.ACTION_INSERT_OR_EDIT;
 
 public final class RecipientExporter {
@@ -19,7 +20,16 @@ public final class RecipientExporter {
   }
 
   public Intent asAddContactIntent() {
-    Intent intent = new Intent(ACTION_INSERT_OR_EDIT);
+    Intent intent = new Intent(ACTION_INSERT);
+    intent.setType(ContactsContract.Contacts.CONTENT_TYPE);
+
+    addNameToIntent(intent, recipient.getProfileName().toString());
+    addAddressToIntent(intent, recipient);
+    return intent;
+  }
+
+  public Intent asExistContactIntent() {
+    Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
     intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
 
     addNameToIntent(intent, recipient.getProfileName().toString());

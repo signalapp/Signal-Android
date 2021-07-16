@@ -18,7 +18,12 @@ public class SmoothScrollingLinearLayoutManager extends LinearLayoutManager {
     final LinearSmoothScroller scroller = new LinearSmoothScroller(context) {
       @Override
       protected int getVerticalSnapPreference() {
-        return LinearSmoothScroller.SNAP_TO_END;
+        return LinearSmoothScroller.SNAP_TO_START;
+      }
+
+      @Override
+      public int calculateDtToFit(int viewStart, int viewEnd, int boxStart, int boxEnd, int snapPreference) {
+        return super.calculateDtToFit(viewStart, viewEnd, boxStart, boxEnd, snapPreference);
       }
 
       @Override

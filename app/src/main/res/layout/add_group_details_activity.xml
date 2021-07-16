@@ -5,5 +5,6 @@
     android:name="androidx.navigation.fragment.NavHostFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/sim_background"
     app:defaultNavHost="true"
     app:navGraph="@navigation/create_group" />

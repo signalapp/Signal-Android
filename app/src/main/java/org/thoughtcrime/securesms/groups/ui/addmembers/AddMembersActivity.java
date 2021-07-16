@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.groups.ui.addmembers;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
@@ -40,15 +41,6 @@ public class AddMembersActivity extends PushContactSelectionActivity {
     );
 
     disableDone();
-  }
-
-  @Override
-  protected void initializeToolbar() {
-    getToolbar().setNavigationIcon(R.drawable.ic_arrow_left_24);
-    getToolbar().setNavigationOnClickListener(v -> {
-      setResult(RESULT_CANCELED);
-      finish();
-    });
   }
 
   @Override
@@ -107,5 +99,13 @@ public class AddMembersActivity extends PushContactSelectionActivity {
                    })
                    .setCancelable(true)
                    .show();
+  }
+
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if (keyCode == KeyEvent.KEYCODE_CALL){
+      viewModel.getDialogStateForSelectedContacts(contactsFragment.getSelectedContacts(), this::displayAlertMessage);
+    }
+    return super.onKeyDown(keyCode, event);
   }
 }

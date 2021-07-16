@@ -159,4 +159,9 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
 
     viewModel.onContinueWithSelection(groupsRecipientIds);
   }
+
+  @Override
+  public void onSearch(View view) {
+
+  }
 }

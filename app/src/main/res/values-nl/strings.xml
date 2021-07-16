@@ -10,7 +10,7 @@
   <string name="AbstractNotificationBuilder_new_message">Nieuw bericht</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal wordt nu bijgewerkt …</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Pigeon wordt nu bijgewerkt …</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momenteel: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Je hebt nog geen wachtwoord ingesteld!</string>
@@ -25,17 +25,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Wissen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Wachtwoord uitschakelen?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dit zal Signal en berichtmeldingen ontgrendelen en ontgrendeld houden.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dit zal Pigeon en berichtmeldingen ontgrendelen en ontgrendeld houden.</string>
   <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
   <string name="ApplicationPreferencesActivity_unregistering">Aan het uitschrijven</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Je telefoonnummer wordt afgemeld voor Signal-berichten en -oproepen …</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal-berichten en -oproepen uitschakelen?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dit zal je telefoonnummer uitschrijven bij de servers, je kunt dan niet langer Signal-berichten en -oproepen ontvangen of verzenden. Je zult je telefoonnummer opnieuw moeten registreren als je die functies weer wilt gebruiken.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Je telefoonnummer wordt afgemeld voor Pigeon -berichten en -oproepen …</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Pigeon-berichten en -oproepen uitschakelen?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dit zal Pigeon-berichten en -oproepen uitschakelen door je telefoonnummer uit te schrijven bij de server. Je zult je telefoonnummer opnieuw moeten registreren als je deze functies weer wilt gebruiken.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fout bij verbinden met de server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Sms ingeschakeld</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tik hier als je je standaard-sms-applicatie wilt wijzigen</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Sms uitgeschakeld</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tik hier als je Signal naast gebruik voor internetberichten ook wilt instellen als je standaard-sms-applicatie</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tik hier als je Pigeon naast gebruik voor internetberichten ook wilt instellen als je standaard-sms-applicatie</string>
   <string name="ApplicationPreferencesActivity_on">aan</string>
   <string name="ApplicationPreferencesActivity_On">Aan</string>
   <string name="ApplicationPreferencesActivity_off">uit</string>
@@ -66,14 +66,14 @@
   <string name="AttachmentKeyboard_file">Bestand</string>
   <string name="AttachmentKeyboard_contact">Contactpersoon</string>
   <string name="AttachmentKeyboard_location">Locatie</string>
-  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal heeft toegang nodig tot de externe opslagruimte om afbeeldingen en video\'s weer te kunnen geven.</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Pigeon heeft toegang nodig tot de externe opslagruimte om afbeeldingen en video\'s weer te kunnen geven.</string>
   <string name="AttachmentKeyboard_give_access">Toestemming geven</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Geen app gevonden om media te selecteren.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal heeft toegang nodig tot de externe opslagruimte om afbeeldingen, video\'s of audio te kunnen verzenden, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer  ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal heeft toegang nodig tot de contacten om contactinformatie in Signal weer te geven, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer ‘Toestemmingen’ en schakel ‘Contacten’ in.</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal heeft toegang nodig tot de locatie om locaties te kunnen verzenden aan je gesprekspartners, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer ‘Toestemmingen’ en schakel ‘Locatie’ in.</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot de camera om foto\'s te kunnen maken, maar deze toegang is pertinent geweigerd. Ga naar de instellingen, selecteer ‘Toestemmingen’ en schakel ‘Camera’ in.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Pigeon heeft toegang nodig tot de externe opslagruimte om afbeeldingen, video\'s of audio te kunnen verzenden, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer  ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Pigeon heeft toegang nodig tot de contacten om contactinformatie in Pigeon weer te geven, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer ‘Toestemmingen’ en schakel ‘Contacten’ in.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Pigeon heeft toegang nodig tot de locatie om locaties te kunnen verzenden aan je gesprekspartners, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer ‘Toestemmingen’ en schakel ‘Locatie’ in.</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Pigeon heeft toegang nodig tot de camera om foto\'s te kunnen maken, maar deze toegang is pertinent geweigerd. Ga naar de instellingen, selecteer ‘Toestemmingen’ en schakel ‘Camera’ in.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Media aan het uploaden …</string>
   <string name="AttachmentUploadJob_compressing_video_start">Video aan het comprimeren …</string>
@@ -123,26 +123,26 @@
   <string name="CameraXFragment_open_gallery_description">Galerij openen</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Recente contactpersonen</string>
-  <string name="CameraContacts_signal_contacts">Signal-gebruikers</string>
-  <string name="CameraContacts_signal_groups">Signal-groepen</string>
+  <string name="CameraContacts_signal_contacts">Pigeon-gebruikers</string>
+  <string name="CameraContacts_signal_groups">Pigeon-groepen</string>
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Je kunt dit delen met maximaal %d gesprekken.</string>
-  <string name="CameraContacts_select_signal_recipients">Selecteer Signal-ontvangers</string>
-  <string name="CameraContacts_no_signal_contacts">Geen Signal-gebuikers</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">Je kunt de cameraknop alleen gebruiken om foto\'s te verzenden aan Signal-gebruikers.</string>
+  <string name="CameraContacts_select_signal_recipients">Selecteer Pigeon -ontvangers</string>
+  <string name="CameraContacts_no_signal_contacts">Geen Pigeon -gebuikers</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Je kunt de cameraknop alleen gebruiken om foto\'s te verzenden aan Pigeon -gebruikers.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Kun je de persoon die je zoekt niet vinden?</string>
-  <string name="CameraContacts_invite_a_contact_to_join_signal">Nodig een contactpersoon uit om ook Signal te gebruiken</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Nodig een contactpersoon uit om ook Pigeon te gebruiken</string>
   <string name="CameraContacts__menu_search">Zoeken</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Verwijderen</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profielfoto verwijderen?</string>
   <string name="ClearProfileActivity_remove_group_photo">Groepsafbeelding verwijderen?</string>
   <!--ClientDeprecatedActivity-->
-  <string name="ClientDeprecatedActivity_update_signal">Signal bijwerken</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Deze versie van de app wordt niet langer ondersteund. Om berichten te kunnen blijven verzenden en ontvangen moet je Signal bijwerken naar de meest recente versie.</string>
+  <string name="ClientDeprecatedActivity_update_signal">Pigeon bijwerken</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Deze versie van de app wordt niet langer ondersteund. Om berichten te kunnen blijven verzenden en ontvangen moet je Pigeon bijwerken naar de meest recente versie.</string>
   <string name="ClientDeprecatedActivity_update">Bijwerken</string>
   <string name="ClientDeprecatedActivity_dont_update">Niet bijwerken</string>
   <string name="ClientDeprecatedActivity_warning">Waarschuwing</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Jouw versie van Signal is verlopen. Je kunt je gespreksgeschiedenis nog weergeven maar je kunt geen nieuwe berichten verzenden of ontvangen totdat je Signal hebt bijgewerkt.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Jouw versie van Pigeon is verlopen. Je kunt je gespreksgeschiedenis nog weergeven maar je kunt geen nieuwe berichten verzenden of ontvangen totdat je Pigeon hebt bijgewerkt.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Geen webbrowser gevonden.</string>
   <string name="CommunicationActions_no_email_app_found">Geen e-mail-app gevonden op je apparaat.</string>
@@ -153,9 +153,9 @@
   <string name="CommunicationActions_cancel">Annuleren</string>
   <string name="CommunicationActions_call">Bellen</string>
   <string name="CommunicationActions_insecure_call">Onbeveiligde oproep</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Je mobielentelefonie-aanbieder brengt misschien extra kosten in rekening. Het nummer wat je op het punt staat te bellen is niet geregistreerd bij Signal. Dit gesprek zal via het telefonienetwerk lopen, niet over internet.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Je mobielentelefonie-aanbieder brengt misschien extra kosten in rekening. Het nummer wat je op het punt staat te bellen is niet geregistreerd bij Pigeon . Dit gesprek zal via het telefonienetwerk lopen, niet over internet.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Signal opnieuw heeft geïnstalleerd.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Pigeon opnieuw heeft geïnstalleerd.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Je wilt misschien je veiligheidsnummer bij deze contactpersoon verifiëren.</string>
   <string name="ConfirmIdentityDialog_accept">Aanvaarden</string>
   <!--ContactsCursorLoader-->
@@ -166,7 +166,7 @@
   <string name="ContactsCursorLoader_username_search">Zoeken op gebruikersnaam</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Bericht sturen naar %s</string>
-  <string name="ContactsDatabase_signal_call_s">Signal-oproep %s</string>
+  <string name="ContactsDatabase_signal_call_s">Pigeon-oproep %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Voornaam</string>
   <string name="ContactNameEditActivity_family_name">Achternaam</string>
@@ -188,7 +188,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Verzenden is mislukt, tik om onbeveiligd te verzenden</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Terugvallen naar onversleutelde sms?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Terugvallen naar onversleutelde mms?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Dit bericht zal <b>niet</b> versleuteld worden omdat de ontvanger niet langer Signal gebruikt.\n\nBericht onbeveiligd verzenden?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Dit bericht zal <b>niet</b> versleuteld worden omdat de ontvanger niet langer Pigeon gebruikt.\n\nBericht onbeveiligd verzenden?</string>
   <string name="ConversationItem_unable_to_open_media">Geen app gevonden waarmee dit bestand geopend kan openen.</string>
   <string name="ConversationItem_copied_text">%s naar klembord gekopieerd</string>
   <string name="ConversationItem_from_s">van %s</string>
@@ -214,14 +214,15 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Dit apparaat lijkt belacties niet te ondersteunen.</string>
   <string name="ConversationActivity_transport_insecure_sms">Onbeveiligde sms</string>
   <string name="ConversationActivity_transport_insecure_mms">Onbeveiligde mms</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Laten we Signal gebruiken om een gesprek te voeren %1$s</string>
+  <string name="ConversationActivity_transport_signal">Pigeon</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Laten we Pigeon gebruiken om een gesprek te voeren %1$s</string>
   <string name="ConversationActivity_specify_recipient">Kies een gesprekspartner</string>
   <string name="ConversationActivity_unblock_this_contact_question">Gesprekspartner deblokkeren?</string>
   <string name="ConversationActivity_unblock_this_group_question">Groep deblokkeren?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Je zult weer berichten en oproepen van deze gesprekspartner kunnen ontvangen.</string>
   <string name="ConversationActivity_unblock_this_group_description">Huidige leden van de groep zullen jou weer aan de groep kunnen toevoegen.</string>
   <string name="ConversationActivity_unblock">Deblokkeren</string>
+  <string name="ConversationActivity_blocked">Geblokkeerd</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bijlage overschrijdt de maximale grootte voor het type bericht dat je wilt verzenden.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Camera niet beschikbaar</string>
   <string name="ConversationActivity_unable_to_record_audio">Kan audio niet opnemen!</string>
@@ -229,17 +230,17 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Er is geen app beschikbaar op je apparaat om deze verwijzing te openen.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Je verzoek om lid te worden van de groep is doorgestuurd naar een beheerder. Je krijgt een melding zodra deze een besluit heeft genomen.</string>
   <string name="ConversationActivity_cancel_request">Verzoek annuleren</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Om audioberichten op te nemen, moet je Signal toegang geven tot je microfoon.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal heeft toegang nodig tot de microfoon om audioberichten te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Microfoon’ in.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal heeft toegang nodig tot de microfoon en de camera om %s te kunnen bellen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Geef Signal toegang tot de camera om foto\'s en video\'s te maken.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal heeft toegang nodig tot de camera om foto’s en video’s te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Camera’ in.</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal heeft toegang tot de camera nodig om foto’s en video’s te kunnen opnemen</string>
-  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Signal heeft toegang nodig tot de microfoon om video te kunnen opnemen met geluid.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal heeft toegang nodig tot de microfoon en camera om video te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
-  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal heeft toegang nodig tot de microfoon om video te kunnen opnemen.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Om audioberichten op te nemen, moet je Pigeon toegang geven tot je microfoon.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Pigeon heeft toegang nodig tot de microfoon om audioberichten te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Microfoon’ in.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Pigeon heeft toegang nodig tot de microfoon en de camera om %s te kunnen bellen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Geef Pigeon toegang tot de camera om foto\'s en video\'s te maken.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Pigeon heeft toegang nodig tot de camera om foto’s en video’s te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Camera’ in.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Pigeon heeft toegang tot de camera nodig om foto’s en video’s te kunnen opnemen</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Pigeon heeft toegang nodig tot de microfoon om video te kunnen opnemen met geluid.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Pigeon heeft toegang nodig tot de microfoon en camera om video te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Pigeon heeft toegang nodig tot de microfoon om video te kunnen opnemen.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan geen sms-/mms-bericht verzenden omdat Signal niet je standaard sms-app is. Wil je dit veranderen in je Android-instellingen?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Pigeon kan geen sms-/mms-bericht verzenden omdat Pigeon niet je standaard sms-app is. Wil je dit veranderen in je Android-instellingen?</string>
   <string name="ConversationActivity_yes">Ja</string>
   <string name="ConversationActivity_no">Nee</string>
   <string name="ConversationActivity_search_position">%1$d van %2$d</string>
@@ -253,8 +254,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Je zult deze groep verlaten en het gesprek zal van al je apparaten worden gewist.</string>
   <string name="ConversationActivity_delete">Verwijderen</string>
   <string name="ConversationActivity_delete_and_leave">Verwijderen en verlaten</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal heeft toegang nodig tot je microfoon om %1$s te bellen.</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal heeft toegang nodig tot je microfoon en camera om %1$s te bellen.</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Pigeon heeft toegang nodig tot je microfoon om %s te bellen.</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Pigeon heeft toegang nodig tot je microfoon en camera om %1$s te bellen.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Er zijn vanaf nu meer opties in de ‘Groepsinstellingen’</string>
   <string name="ConversationActivity_join">Deelnemen</string>
   <string name="ConversationActivity_full">Vol</string>
@@ -291,31 +292,31 @@
     <item quantity="other">%1$d bijlagen aan het opslaan naar telefoonopslag …</item>
   </plurals>
   <string name="ConversationFragment_pending">In afwachting …</string>
-  <string name="ConversationFragment_push">Internet (Signal-protocol)</string>
+  <string name="ConversationFragment_push">Internet (Pigeon-protocol)</string>
   <string name="ConversationFragment_mms">Mms (onbeveiligd)</string>
   <string name="ConversationFragment_sms">Sms (onbeveiligd)</string>
   <string name="ConversationFragment_deleting">Aan het wissen</string>
   <string name="ConversationFragment_deleting_messages">Berichten aan het wissen …</string>
   <string name="ConversationFragment_delete_for_me">Voor mij wissen</string>
   <string name="ConversationFragment_delete_for_everyone">Wissen voor iedereen</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Dit bericht zal voor iedere deelnemer aan dit gesprek die een recente versie van Signal gebruikt gewist worden. Ze zullen wel een berichtbubbel zien waarin staat dat je een bericht hebt gewist.</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Dit bericht zal voor iedere deelnemer aan dit gesprek die een recente versie van Pigeon gebruikt gewist worden. Ze zullen wel een berichtbubbel zien waarin staat dat je een bericht hebt gewist.</string>
   <string name="ConversationFragment_quoted_message_not_found">Oorspronkelijk bericht niet gevonden</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Het oorspronkelijke bericht is niet langer beschikbaar</string>
   <string name="ConversationFragment_failed_to_open_message">Openen van bericht is mislukt</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Je kunt elk bericht naar rechts vegen om snel een reactie te schijven</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Je kunt elk bericht naar links vegen om snel een reactie te schijven</string>
-  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Uitgaande eenmaligeweergave-media worden onmiddellijk gewist zodra ze zijn verzonden. Je kunt je eigen media dus niet terugzien. – Gebruik eenmaligeweergave-berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Uitgaande eenmaligeweergave-media worden onmiddellijk gewist zodra ze zijn verzonden. Je kunt je eigen media dus niet terugzien. – Gebruik eenmaligeweergave-berichten niet ter beveiliging, want Pigeon kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit eenmaligeweergave-bericht al weergegeven</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit speciale gesprek notities voor jezelf achterlaten.\nAls je de Signal app op een ander apparaat gekoppeld hebt, dan worden alle notities van na het moment van koppelen gesynchroniseerd. Je kunt dus notities toevoegen en teruglezen vanaf al je gekoppelde apparaten.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit speciale gesprek notities voor jezelf achterlaten.\nAls je de Pigeon app op een ander apparaat gekoppeld hebt, dan worden alle notities van na het moment van koppelen gesynchroniseerd. Je kunt dus notities toevoegen en teruglezen vanaf al je gekoppelde apparaten.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam.</string>
   <string name="ConversationFragment__tap_to_review">Tik hier om te evalueren</string>
   <string name="ConversationFragment__review_requests_carefully">Evalueer verzoeken zorgvuldig</string>
-  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal heeft een ander contactpersoon gevonden met dezelfde naam.</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Pigeon heeft een ander contactpersoon gevonden met dezelfde naam.</string>
   <string name="ConversationFragment_contact_us">Neem contact met ons op</string>
   <string name="ConversationFragment_verify">Verifiëren</string>
   <string name="ConversationFragment_not_now">Niet nu</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Je veiligheidsnummer met %s is veranderd</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Je veiligheidsnummer met %s is veranderd, waarschijnlijk heeft hij of zij Signal opnieuw geïnstalleerd of is hij of zij op een nieuwe telefoon overgestapt. Tik op ‘Verifiëren’ om het veiligheidsnummer na te kijken als je echt zeker wilt weten dat de beveiliging van het hoogste niveau is. Je hoeft dit niet te doen.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Je veiligheidsnummer met %s is veranderd, waarschijnlijk heeft hij of zij Pigeon opnieuw geïnstalleerd of is hij of zij op een nieuwe telefoon overgestapt. Tik op ‘Verifiëren’ om het veiligheidsnummer na te kijken als je echt zeker wilt weten dat de beveiliging van het hoogste niveau is. Je hoeft dit niet te doen.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Er is geen browser op je apparaat geïnstalleerd.</string>
   <!--ConversationListFragment-->
@@ -354,11 +355,11 @@
   <string name="CreateProfileActivity_problem_setting_profile">Probleem bij instellen van profiel</string>
   <string name="CreateProfileActivity_profile_photo">Profielfoto</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Je profielnaam en -foto zijn alleen zichtbaar voor personen wie zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuwe gesprek initieert, personen met wie je een gesprek aanvaardt en alle leden van een groep waarvan jij lid bent. Signal-profielen worden net als berichten eind-tot-eind-versleuteld uitgewisseld, daarom kunnen zelfs Signal\'s ontwikkelaars je profielnaam en -foto nooit zien.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Pigeon-profielen worden eind-tot-eind-versleuteld uitgewisseld, dus zelfs de Signal-dienst heeft nooit toegang tot je profielfoto en naam.</string>
   <string name="CreateProfileActivity_set_avatar_description">Profielfoto instellen</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Back-up-gegevens terugzetten?</string>
-  <string name="ChooseBackupFragment__restore_your_messages_and_media">Je hebt nu de gelegenheid om berichten en media uit een back-up-bestand terug te zetten. Let op: Als je de back-up-gegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-up-bestand kan alleen tijdens de installatie van de Signal-app.</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Je hebt nu de gelegenheid om berichten en media uit een back-up-bestand terug te zetten. Let op: Als je de back-up-gegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-up-bestand kan alleen tijdens de installatie van de Pigeon -app.</string>
   <string name="ChooseBackupFragment__icon_content_description">Back-up-gegevens terugzetten pictogram</string>
   <string name="ChooseBackupFragment__choose_backup">Back-up-bestand kiezen</string>
   <string name="ChooseBackupFragment__learn_more">Meer leren hierover</string>
@@ -369,7 +370,7 @@
   <string name="RestoreBackupFragment__not_now">Niet nu</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">Back-up-bestanden maken</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Back-up-bestanden worden versleuteld met een wachtwoord en worden alleen offline op je eigen apparaat opgeslagen. Als je het maken van back-up-bestanden inschakelt maakt Signal automatisch elke dag een nieuw back-up-bestand van al je gesprekken en media. Alleen de twee meest recente geslaagde back-up-bestanden blijven bewaard, oudere back-up-bestanden worden overschreven.</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Back-up-bestanden worden versleuteld met een wachtwoord en worden alleen offline op je eigen apparaat opgeslagen. Als je het maken van back-up-bestanden inschakelt maakt Pigeon automatisch elke dag een nieuw back-up-bestand van al je gesprekken en media. Alleen de twee meest recente geslaagde back-up-bestanden blijven bewaard, oudere back-up-bestanden worden overschreven.</string>
   <string name="BackupsPreferenceFragment__create_backup">Nu een back-up-bestand maken</string>
   <string name="BackupsPreferenceFragment__last_backup">Meest recente back-up-bestand: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Back-up-directory</string>
@@ -377,11 +378,11 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test je back-up-wachtwoord om na te gaan of je het juiste wachtwoord onthouden hebt</string>
   <string name="BackupsPreferenceFragment__turn_on">Inschakelen</string>
   <string name="BackupsPreferenceFragment__turn_off">Uitschakelen</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">Om je gegevens uit een bestaand back-up-bestand terug te plaatsen moet je Signal opnieuw installeren. Open dan de net geïnstalleerde Signal app en tik op “Back-up-gegevens terugzetten”. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Om je gegevens uit een bestaand back-up-bestand terug te plaatsen moet je Pigeon opnieuw installeren. Open dan de net geïnstalleerde Pigeon app en tik op “Back-up-gegevens terugzetten”. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Meer leren hierover</string>
   <string name="BackupsPreferenceFragment__in_progress">Wordt nu uitgevoerd …</string>
   <string name="BackupsPreferenceFragment__d_so_far">Tot nu toe %1$d …</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de externe opslagruimte om back-up-bestanden te kunnen maken, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Pigeon heeft toegang nodig tot de externe opslagruimte om back-up-bestanden te kunnen maken, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Zelf ingesteld: %s</string>
   <string name="CustomDefaultPreference_using_default">Standaard in gebruik: %s</string>
@@ -421,19 +422,14 @@
   <string name="DeviceListItem_today">Vandaag</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Onbenoemd bestand</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Aan Signal doneren</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij. Zou je ons willen steunen?</string>
-  <string name="DonateMegaphone_donate">Doneren</string>
-  <string name="DonateMegaphone_no_thanks">Nee</string>
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Signal ondersteunt vanaf nu groepsoproepen</string>
+  <string name="GroupCallingMegaphone__introducing_group_calls">Pigeon ondersteunt vanaf nu groepsoproepen</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Je vindt de knop om een eind-tot-eind-versleutelde groepsoproep te starten rechts bovenin in een groepsgesprek</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliseren voor ontbrekende Google Play Services</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor Google Play Services. Tik hier om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor Google Play Services. Tik hier om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Pigeon momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
   <!--ExpiredBuildReminder-->
-  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Deze versie van Signal is verlopen. Werk Signal bij om weer berichten te kunnen verzenden en ontvangen.</string>
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Deze versie van Pigeon is verlopen. Werk Pigeon bij om weer berichten te kunnen verzenden en ontvangen.</string>
   <string name="ExpiredBuildReminder_update_now">Nu bijwerken</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -447,8 +443,8 @@
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Bericht aan het ophalen …</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Pertinente Signal-communicatiefout!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was niet in staat zich bij de Google Play services op je telefoon te registreren. Signal-berichten en -oproepen zijn nu uitgeschakeld, probeer opnieuw te registreren via Instellingen &gt; Geavanceerd.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Pertinente Pigeon -communicatiefout!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Pigeon was niet in staat zich bij de Google Play services op je telefoon te registreren. Pigeon -berichten en -oproepen zijn nu uitgeschakeld, probeer opnieuw te registreren via Instellingen &gt; Geavanceerd.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fout bij het ophalen van de GIF in volledige resolutie</string>
   <!--GiphyFragmentPageAdapter-->
@@ -495,8 +491,8 @@
     <item quantity="other">Deze groepsleden zullen opnieuw een uitnodiging om tot de groep toe te treden moeten accepteren en zullen geen berichten krijgen zolang ze dit geaccepteerd hebben:</item>
   </plurals>
   <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-    <item quantity="one">Dit groepslid is verwijderd uit de groep en kan niet opnieuw toetreden totdat hij Signal heeft bijgewerkt:</item>
-    <item quantity="other">Deze groepsleden zijn verwijderd uit de groep en kunnen niet opnieuw toetreden totdat ze Signal hebben bijgewerkt:</item>
+    <item quantity="one">Dit groepslid is verwijderd uit de groep en kan niet opnieuw toetreden totdat hij Pigeon heeft bijgewerkt:</item>
+    <item quantity="other">Deze groepsleden zijn verwijderd uit de groep en kunnen niet opnieuw toetreden totdat ze Pigeon hebben bijgewerkt:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Omzetten naar nieuwe groep</string>
@@ -614,7 +610,7 @@
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Groepsgesprekken moeten tenminste twee deelnemers hebben.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Nieuw groepsgesprek aanmaken is mislukt</string>
   <string name="AddGroupDetailsFragment__try_again_later">Probeer het later opnieuw.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruik maken van mms.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Je hebt een contactpersoon geselecteerd die geen Pigeon -groepen ondersteunt, dus deze groep zal gebruik maken van mms.</string>
   <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Zelf ingestelde mms-groepsnamen en groepsafbeeldingen zullen alleen zichtbaar zijn voor jou.</string>
   <string name="AddGroupDetailsFragment__remove">Verwijderen</string>
   <string name="AddGroupDetailsFragment__sms_contact">Sms-contactpersoon</string>
@@ -628,15 +624,15 @@
     <item quantity="other">%d groepsleden ondersteunen geen nieuwe groepen, dus de nieuwe groep kan niet worden aangemaakt.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Er zal een oude groep aangemaakt worden omdat “%1$s”een oude versie van Signal gebruikt. Je kunt een groep nieuwe stijl aanmaken met hem als lid nadat hij Signal bijgewerkt heeft, of hem voordat je de groep aanmaakt verwijderen.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Er zal een oude groep aangemaakt worden omdat “%1$s”een oude versie van Pigeon gebruikt. Je kunt een groep nieuwe stijl aanmaken met hem als lid nadat hij Pigeon bijgewerkt heeft, of hem voordat je de groep aanmaakt verwijderen.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">Er zal een oude groep aangemaakt worden omdat %1$d lid een oude versie van Signal gebruikt. Je kunt een groep nieuwe stijl aanmaken met hem als lid nadat hij Signal bijgewerkt heeft, of hem voordat je de groep aanmaakt verwijderen.</item>
-    <item quantity="other">Er zal een oude groep aangemaakt worden omdat %1$d leden een oude versie van Signal gebruiken. Je kunt een groep nieuwe stijl aanmaken met hen als lid nadat ze Signal bijgewerkt hebben, of hen voordat je de groep aanmaakt verwijderen.</item>
+    <item quantity="one">Er zal een oude groep aangemaakt worden omdat %1$d lid een oude versie van Pigeon gebruikt. Je kunt een groep nieuwe stijl aanmaken met hem als lid nadat hij Pigeon bijgewerkt heeft, of hem voordat je de groep aanmaakt verwijderen.</item>
+    <item quantity="other">Er zal een oude groep aangemaakt worden omdat %1$d leden een oude versie van Pigeon gebruiken. Je kunt een groep nieuwe stijl aanmaken met hen als lid nadat ze Pigeon bijgewerkt hebben, of hen voordat je de groep aanmaakt verwijderen.</item>
   </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">De nieuwe groep kon niet aangemaakt worden omdat “%1$s” een oude versie van Signal gebruikt. Je zult hem of haar moeten verwijderen om een nieuwe groep aan te kunnen maken.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">De nieuwe groep kon niet aangemaakt worden omdat “%1$s” een oude versie van Pigeon gebruikt. Je zult hem of haar moeten verwijderen om een nieuwe groep aan te kunnen maken.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
-    <item quantity="one">De nieuwe groep kon niet aangemaakt worden omdat %1$d lid een oude versie van Signal gebruikt. Je zult hem of haar moeten verwijderen om een nieuwe groep aan te kunnen maken.</item>
-    <item quantity="other">De nieuwe groep kon niet aangemaakt worden omdat %1$d leden een oude versie van Signal gebruiken. Je zult hen moeten verwijderen om een nieuwe groep aan te kunnen maken.</item>
+    <item quantity="one">De nieuwe groep kon niet aangemaakt worden omdat %1$d lid een oude versie van Pigeon gebruikt. Je zult hem of haar moeten verwijderen om een nieuwe groep aan te kunnen maken.</item>
+    <item quantity="other">De nieuwe groep kon niet aangemaakt worden omdat %1$d leden een oude versie van Pigeon gebruiken. Je zult hen moeten verwijderen om een nieuwe groep aan te kunnen maken.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Verlopende berichten</string>
@@ -670,7 +666,7 @@
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Uitsluitend beheerders kunnen de beheerderstoestemming vereiste om lid te mogen worden van de groep in- of uitschakelen.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Uitsluitend beheerders kunnen de groepsverwijzing vernieuwen.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
-  <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de nieuwe groepsgesprekken nog niet. Zij moeten Signal bijwerken.</string>
+  <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de nieuwe groepsgesprekken nog niet. Zij moeten Pigeon bijwerken.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Bijwerken van de groep is mislukt</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Je bent geen lid van deze groep</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Het bijwerken van de groep is mislukt. Probeer het later opnieuw</string>
@@ -681,7 +677,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Dit is een verouderde groep; om nieuwe functionaliteiten te kunnen gebruiken zoals @vermeldigen en beheerders,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Deze verouderde groep kan niet worden omgezet naar een nieuwe groep omdat die teveel leden bevat. Het maximum ledenaantal voor een groep is %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">moet je deze groep omzetten.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dit is een onbeveiligde mms-groep. Om beveiligde berichten uit te wisselen en om functionaliteiten te kunnen gebruiken zoals groepsnamen en groepsbeheer, moet je je contactpersonen uitnodigen om Signal berichtenapp te gebruiken.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Dit is een onbeveiligde mms-groep. Om beveiligde berichten uit te wisselen en om functionaliteiten te kunnen gebruiken zoals groepsnamen en groepsbeheer, moet je je contactpersonen uitnodigen om Pigeon berichtenapp te gebruiken.</string>
   <string name="ManageGroupActivity_invite_now">Nu uitnodigen</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meldingen bij naamsvermeldingen</string>
@@ -771,10 +767,10 @@
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Binnenkort komen er groepsverwijzingen</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Werk Signal bij om groepsverwijzingen te kunnen gebruiken</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De versie van Signal die je gebruikt ondersteunt deze groepsverwijzing niet. Werk Signal bij naar de meest recente versie om via een verwijzing lid te kunnen worden van een groep.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal bijwerken</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Een of meerdere van je gekoppelde apparaten gebruikt een versie van Signal die geen groepsverwijzingen ondersteunt. Werk Signal op die apparaten bij om lid te worden van deze groep.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Werk Pigeon bij om groepsverwijzingen te kunnen gebruiken</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">De versie van Pigeon die je gebruikt ondersteunt deze groepsverwijzing niet. Werk Pigeon bij naar de meest recente versie om via een verwijzing lid te kunnen worden van een groep.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Pigeon bijwerken</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Een of meerdere van je gekoppelde apparaten gebruikt een versie van Pigeon die geen groepsverwijzingen ondersteunt. Werk Pigeon op die apparaten bij om lid te worden van deze groep.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ongeldige groepsverwijzing</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Kennissen uitnodigen</string>
@@ -809,7 +805,7 @@
   <string name="InviteActivity_sending">Bezig met verzenden …</string>
   <string name="InviteActivity_heart_content_description">Hartje</string>
   <string name="InviteActivity_invitations_sent">Uitnodigingen verzonden!</string>
-  <string name="InviteActivity_invite_to_signal">Uitnodigen voor Signal</string>
+  <string name="InviteActivity_invite_to_signal">Nodig contacten uit</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">VERZEND SMS NAAR %d KENNIS</item>
     <item quantity="other">VERZEND SMS NAAR %d KENNISSEN</item>
@@ -818,7 +814,7 @@
     <item quantity="one">%d sms-uitnodiging verzenden?</item>
     <item quantity="other">%d sms-uitnodigingen verzenden?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Laten we Signal gebruiken om een gesprek te voeren: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Laten we verbinding maken met end-to-end versleuteling: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt waarmee je een uitnodiging kan verzenden.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vrienden laten vrienden niet onversleuteld chatten.</string>
   <!--Job-->
@@ -830,7 +826,7 @@
   <string name="LongMessageActivity_message_from_s">Volledige bericht van %1$s</string>
   <string name="LongMessageActivity_your_message">Jouw volledige bericht</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Pigeon</string>
   <string name="MessageRetrievalService_background_connection_enabled">Berichten ontvangen in de achtergrond is actief</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Fout bij het lezen van de mms-instellingen van de provider</string>
@@ -879,17 +875,17 @@
   <string name="Megaphones_introducing_reactions">We introduceren ‘reacties’</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Je kunt vanaf nu een bericht aantikken en vasthouden om snel en gemakkelijk te laten weten hoe je je er over voelt.</string>
   <string name="Megaphones_remind_me_later">Herinner me later</string>
-  <string name="Megaphones_verify_your_signal_pin">Weet je je Signal-pincode nog?</string>
-  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Signal vraagt je af en toe of je je pincode nog weet, zodat je je pincode goed onthoudt.</string>
+  <string name="Megaphones_verify_your_signal_pin">Weet je je Pigeon -pincode nog?</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Pigeon vraagt je af en toe of je je pincode nog weet, zodat je je pincode goed onthoudt.</string>
   <string name="Megaphones_verify_pin">Pincode bevestigen</string>
   <string name="Megaphones_get_started">Maak een begin</string>
   <string name="Megaphones_new_group">Nieuwe groep</string>
   <string name="Megaphones_invite_friends">Kennissen uitnodigen</string>
   <string name="Megaphones_use_sms">Sms gebruiken</string>
   <!--NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Signal-oproep aan de gang</string>
-  <string name="NotificationBarManager__establishing_signal_call">Signal-oproep aan het opzetten</string>
-  <string name="NotificationBarManager__incoming_signal_call">Inkomende Signal-oproep</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Pigeon-oproep aan de gang</string>
+  <string name="NotificationBarManager__establishing_signal_call">Pigeon-oproep aan het opzetten</string>
+  <string name="NotificationBarManager__incoming_signal_call">Inkomende Pigeon -oproep</string>
   <string name="NotificationBarManager__deny_call">Oproep afwijzen</string>
   <string name="NotificationBarManager__answer_call">Oproep beantwoorden</string>
   <string name="NotificationBarManager__end_call">Oproep beëindigen</string>
@@ -909,31 +905,32 @@
   <string name="MediaSendActivity_camera_unavailable">Camera niet beschikbaar.</string>
   <string name="MediaSendActivity_message_to_s">Bericht aan %s</string>
   <string name="MediaSendActivity_message">Bericht</string>
-  <string name="MediaSendActivity_select_recipients">Selecteer Signal-gebruikers</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal heeft toegang nodig tot je contacten om contactpersonen te kunnen weergeven.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal heeft toegang tot je lijst met contacten nodig om je contacten weer te kunnen geven, maar toestemming om contacten in te zien is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Contacten’ in.</string>
+  <string name="MediaSendActivity_select_recipients">Selecteer Pigeon -gebruikers</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Pigeon heeft toegang nodig tot je contacten om contactpersonen te kunnen weergeven.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Pigeon heeft toegang tot je lijst met contacten nodig om je contacten weer te kunnen geven, maar toestemming om contacten in te zien is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Contacten’ in.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Je kan niet meer dan %d item delen.</item>
     <item quantity="other">Je kunt niet meer dan %d items delen.</item>
   </plurals>
-  <string name="MediaSendActivity_select_recipients_description">Selecteer Signal-gebruikers</string>
+  <string name="MediaSendActivity_select_recipients_description">Selecteer Pigeon -gebruikers</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Tik hier om er voor te zorgen dat dit bericht wordt gewist nadat het is gezien.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle media</string>
   <string name="MediaRepository__camera">Camera</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Gebruiker niet bekend</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling van een Signal-versie die niet langer ondersteund wordt. Vraag de afzender om bij te werken naar de meest recente versie en het bericht opnieuw te verzenden.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Dit bericht gebruikt verouderde versleuteling van een Pigeon -versie die niet langer ondersteund wordt. Vraag de afzender om bij te werken naar de meest recente versie en het bericht opnieuw te verzenden.</string>
   <string name="MessageRecord_left_group">Je hebt de groep verlaten.</string>
   <string name="MessageRecord_you_updated_group">Je hebt de groep aangepast.</string>
   <string name="MessageRecord_the_group_was_updated">De groep is aangepast.</string>
   <string name="MessageRecord_you_called_date">Je hebt gebeld · %1$s</string>
+  <string name="MessageRecord_missed_call">Gemiste oproep · %1$s</string>
   <string name="MessageRecord_missed_audio_call_date">Audio-oproep gemist· %1$s</string>
   <string name="MessageRecord_missed_video_call_date">Video-oproep gemist · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s heeft de groep aangepast.</string>
   <string name="MessageRecord_s_called_you_date">%1$s heeft je gebeld · %2$s</string>
   <string name="MessageRecord_called_s">Je hebt %s gebeld</string>
-  <string name="MessageRecord_s_joined_signal">%s is vanaf nu bereikbaar via Signal.</string>
+  <string name="MessageRecord_s_joined_signal">%s is vanaf nu bereikbaar via Pigeon.</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Je hebt verlopende berichten uitgeschakeld.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s heeft verlopende berichten uitgeschakeld.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor verlopende berichten op %1$s ingesteld.</string>
@@ -1149,27 +1146,27 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ongeldige QR-code.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Sorry, je hebt te veel apparaten gekoppeld, probeer er eerst enkele te verwijderen</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Sorry, dit is geen geldige QR-code om een apparaat te koppelen.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Een Signal-apparaat koppelen?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Het lijkt erop dat je een Signal-apparaat wilt koppelen met behulp van een externe scanner. Scan voor de veiligheid de code opnieuw vanuit Signal.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal heeft toegang tot de camera nodig om een QR-code te scannen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Camera’ in.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Een Pigeon -apparaat koppelen?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Het lijkt erop dat je een Pigeon -apparaat wilt koppelen met behulp van een externe scanner. Scan voor de veiligheid de code opnieuw vanuit Pigeon .</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Pigeon heeft toegang tot de camera nodig om een QR-code te scannen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Camera’ in.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan geen QR-code scannen zonder toegang tot camera</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Verlopende berichten</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">Nieuwe berichten die in dit gesprek verzonden of ontvangen worden zullen niet automatisch worden gewist. – Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Elk nieuwe bericht dat in dit gesprek verzonden of ontvangen wordt zal voor iedere deelnemer aan het gesprek %s nadat hij of zij het bericht heeft gezien worden gewist. – Gebruik verlopende berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">Nieuwe berichten die in dit gesprek verzonden of ontvangen worden zullen niet automatisch worden gewist. – Gebruik verlopende berichten niet ter beveiliging, want Pigeon kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Elk nieuwe bericht dat in dit gesprek verzonden of ontvangen wordt zal voor iedere deelnemer aan het gesprek %s nadat hij of zij het bericht heeft gezien worden gewist. – Gebruik verlopende berichten niet ter beveiliging, want Pigeon kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Nu bijwerken</string>
-  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Deze versie van Signal zal vandaag verlopen. Werk bij naar de meest recente versie.</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Deze versie van Pigeon zal vandaag verlopen. Werk bij naar de meest recente versie.</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-    <item quantity="one">Deze versie van Signal zal morgen verlopen. Werk bij naar de meest recente versie.</item>
-    <item quantity="other">Deze versie van Signal zal in %d dagen verlopen. Werk bij naar de meest recente versie.</item>
+    <item quantity="one">Deze versie van Pigeon zal morgen verlopen. Werk bij naar de meest recente versie.</item>
+    <item quantity="other">Deze versie van Pigeon zal in %d dagen verlopen. Werk bij naar de meest recente versie.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Signal-pictogram</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Pigeon-pictogram</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Wachtwoord instellen</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ongeldig wachtwoord!</string>
-  <string name="PassphrasePromptActivity_unlock_signal">Signal ontgrendelen</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Pigeon ontgrendelen</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Kaart</string>
   <string name="PlacePickerActivity_not_a_valid_address">Geen geldig adres</string>
@@ -1181,26 +1178,26 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Incorrecte pincode</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Pincode invoeren overslaan?</string>
   <string name="PinRestoreEntryFragment_need_help">Hulp nodig?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Je pincode is een code welke je zelf hebt aangemaakt en welke bestaat uit %1$d of meer cijfers of een combinatie van cijfers en letters. Als je je je pincode niet kunt herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam en -foto zullen dan verloren gaan.</string>
-  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Als je je je pincode niet kan herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan weer gebruiken, maar sommige instellingen waaronder je profielnaam en -foto zullen dan niet bewaard blijven.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Je pincode is een code welke je zelf hebt aangemaakt en welke bestaat uit %1$d of meer cijfers of een combinatie van cijfers en letters. Als je je je pincode niet kunt herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Pigeon dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam en -foto zullen dan verloren gaan.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Als je je je pincode niet kan herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Pigeon dan weer gebruiken, maar sommige instellingen waaronder je profielnaam en -foto zullen dan niet bewaard blijven.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <string name="PinRestoreEntryFragment_contact_support">Neem contact op met ondersteuning</string>
   <string name="PinRestoreEntryFragment_cancel">Audio-opname annuleren</string>
   <string name="PinRestoreEntryFragment_skip">Overslaan</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-    <item quantity="one">Je hebt nog %1$d poging resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam en -foto zullen dan verloren gaan.</item>
-    <item quantity="other">Je hebt nog %1$d pogingen resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam en -foto zullen dan verloren gaan.</item>
+    <item quantity="one">Je hebt nog %1$d poging resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Pigeon dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam en -foto zullen dan verloren gaan.</item>
+    <item quantity="other">Je hebt nog %1$d pogingen resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Pigeon dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam en -foto zullen dan verloren gaan.</item>
   </plurals>
-  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registratratie - Ik heb hulp nodig bij de Signal-pincode op Android apparaten</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Pigeon-registratratie - Ik heb hulp nodig bij de Pigeon -pincode op Android apparaten</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Voer alfanumerieke pincode in.</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Voer numerieke pincode in.</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Pincode aanmaken</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Je hebt geen pogingen resterend om je pincode te raden, maar je kunt nog wel gebruik blijven maken van Signal door een nieuwe pincode aan te maken. Ter beveiliging van je profielinformatie, zullen je instellingen, profielnaam en profielfoto niet worden herstelt.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Je hebt geen pogingen resterend om je pincode te raden, maar je kunt nog wel gebruik blijven maken van Pigeon door een nieuwe pincode aan te maken. Ter beveiliging van je profielinformatie, zullen je instellingen, profielnaam en profielfoto niet worden herstelt.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Waarschuwing</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je ze handmatig herstelt vanuit een back-up-bestand. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Pigeon opnieuw registreert alle gegevens kwijtraken, tenzij je ze handmatig herstelt vanuit een back-up-bestand. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
   <string name="PinOptOutDialog_disable_pin">Pincode uitschakelen</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Beoordeel deze app</string>
@@ -1238,13 +1235,13 @@
   <string name="RedPhone_got_it">Begrepen</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tik hier om je camera aan te zetten</string>
-  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal heeft toegang nodig tot je camera om %1$s te bellen</string>
-  <string name="WebRtcCallActivity__signal_s">Signal-oproep %1$s</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Pigeon heeft toegang nodig tot je camera om %1$s te bellen</string>
+  <string name="WebRtcCallActivity__signal_s">Pigeon-oproep %1$s</string>
   <string name="WebRtcCallActivity__calling">Aan het bellen …</string>
   <string name="WebRtcCallActivity__group_call">Groepsoproep</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal audio-oproep …</string>
-  <string name="WebRtcCallView__signal_video_call">Signal video-oproep …</string>
+  <string name="WebRtcCallView__signal_voice_call">Pigeon audio-oproep …</string>
+  <string name="WebRtcCallView__signal_video_call">Pigeon video-oproep …</string>
   <string name="WebRtcCallView__start_call">Oproep beginnen</string>
   <string name="WebRtcCallView__join_call">Aan oproep deelnemen</string>
   <string name="WebRtcCallView__call_is_full">De oproep is vol</string>
@@ -1292,32 +1289,32 @@
   <string name="RegistrationActivity_is_your_phone_number_above_correct">Is je telefoonnummer hierboven correct?</string>
   <string name="RegistrationActivity_edit_number">Telefoonnummer wijzigen</string>
   <string name="RegistrationActivity_missing_google_play_services">De Google Play Services zijn niet aanwezig</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Dit apparaat bevat geen Google Play Services. Je kunt Signal nog steeds gebruiken, maar deze configuratie kan de betrouwbaarheid en prestaties verslechteren.\n\nAls je geen gevorderde gebruiker bent, geen aangepaste ROM gebruikt of denkt dat dit bericht onterecht wordt weergegeven, neem dan contact op met support@signal.org voor hulp met probleemoplossen.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Dit apparaat bevat geen Google Play Services. Je kunt Pigeon nog steeds gebruiken, maar deze configuratie kan de betrouwbaarheid en prestaties verslechteren.\n\nAls je geen gevorderde gebruiker bent, geen aangepaste ROM gebruikt of denkt dat dit bericht onterecht wordt weergegeven, neem dan contact op met support@signal.org voor hulp met probleemoplossen.</string>
   <string name="RegistrationActivity_i_understand">Ik begrijp het</string>
   <string name="RegistrationActivity_play_services_error">Google Play Services fout</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">De Google Play Services is momenteel aan het updaten of is tijdelijk niet beschikbaar. Probeer het nog eens.</string>
-  <string name="RegistrationActivity_terms_and_privacy">Gebruiksvoorwaarden &amp; privacybeleid</string>
+  <string name="RegistrationActivity_disclaimer">Pigeon disclaimer</string>
+  <string name="RegistrationActivity_terms_and_privacy">Signal gebruiksvoorwaarden &amp; privacybeleid</string>
   <string name="RegistrationActivity_no_browser">Kan deze verwijzing niet openen; geen webbrowser gevonden.</string>
   <string name="RegistrationActivity_more_information">Meer informatie</string>
   <string name="RegistrationActivity_less_information">Minder informatie</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal zal je om een aantal toestemmingen vragen: Signal moet je contactenlijst lezen om berichten te kunnen verzenden en om beveiligde oproepen tot stand te kunnen brengen naar je opgeslagen contacten.
-Signal moet ook bestanden kunnen lezen van en schrijven naar de externe opslag, om deze bij te kunnen voegen als bijlagen en om ontvangen bijlagen op te kunnen slaan.
-Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-oproepen je andere oproepen verstoren.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal heeft toegang nodig tot de contactenlijst van je telefoon om je contactpersonen te kunnen weergeven als opties om beveiligde gesprekken mee te beginnen en om beveiligd mee te bellen</string>
-  <string name="RegistrationActivity_rate_limited_to_service">Je hebt te veel pogingen ondernomen om Signal voor dit telefoonnummer te registreren. Probeer het later opnieuw.</string>
-  <string name="RegistrationActivity_unable_to_connect_to_service">Het lukt niet om te verbinden met Signal\'s servers. Controleer je netwerkverbinding en probeer het opnieuw.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Als je Signal toestaat sms-berichten te lezen, kan het je registratiecode automatisch detecteren om je telefoonnummer eenvoudig te verifiëren.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pigeon zal je om een aantal toestemmingen vragen: Pigeon moet je contactenlijst lezen om berichten te kunnen verzenden en om beveiligde oproepen tot stand te kunnen brengen naar je opgeslagen contacten.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pigeon heeft toegang nodig tot de contactenlijst van je telefoon om je contactpersonen te kunnen weergeven als opties om beveiligde gesprekken mee te beginnen en om beveiligd mee te bellen</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Je hebt te veel pogingen ondernomen om Pigeon voor dit telefoonnummer te registreren. Probeer het later opnieuw.</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Het lukt niet om te verbinden met Pigeon \'s servers. Controleer je netwerkverbinding en probeer het opnieuw.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Als je Pigeon toestaat sms-berichten te lezen, kan het je registratiecode automatisch detecteren om je telefoonnummer eenvoudig te verifiëren.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Je bent nu %d stap verwijderd van het indienen van een foutopsporingslog.</item>
     <item quantity="other">Je bent nu %d stappen verwijderd van het indienen van een foutopsporingslog.</item>
   </plurals>
-  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Signal moet verifiëren dat je een mens bent.</string>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Pigeon moet verifiëren dat je een mens bent.</string>
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Verifiëren van CAPTCHA mislukt</string>
   <string name="RegistrationActivity_next">Volgende</string>
   <string name="RegistrationActivity_continue">Doorgaan</string>
   <string name="RegistrationActivity_continue_d_attempts_left">Doorgaan (%d pogingen resteren)</string>
   <string name="RegistrationActivity_continue_last_attempt">Doorgaan (laatste poging!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Neem je privacy met je mee.\nWees jezelf in elk bericht.</string>
+  <string name="RegistrationActivity_pigeon_enables_you_to_use_signal">Pigeon stelt u in staat om Signal te gebruiken op de MP02.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Voer je telefoonnummer in om te beginnen</string>
   <string name="RegistrationActivity_enter_your_phone_number">Voer je telefoonnummer in</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Je zult een verificatiecode ontvangen. Providerkosten zijn mogelijk van toepassing.</string>
@@ -1329,7 +1326,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Registratievergrendeling inschakelen?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Registratievergrendeling uitschakelen?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Als je je pincode bent vergeten wanneer je Signal opnieuw wilt registreren, dan zul je voor 7 dagen Signal niet kunnen gebruiken met dit telefoonnummer.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Als je je pincode bent vergeten wanneer je Pigeon opnieuw wilt registreren, dan zul je voor 7 dagen Pigeon niet kunnen gebruiken met dit telefoonnummer.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Inschakelen</string>
   <string name="RegistrationLockV2Dialog_turn_off">Uitschakelen</string>
   <!--RevealableMessageView-->
@@ -1347,20 +1344,20 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Aan contactenlijst toevoegen</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Uitnodigen voor Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">Signal-gesprek openen</string>
-  <string name="SharedContactDetailsActivity_signal_call">Signal-oproep</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Nodig contacten uit</string>
+  <string name="SharedContactDetailsActivity_signal_message">Pigeon-gesprek openen</string>
+  <string name="SharedContactDetailsActivity_signal_call">Pigeon-oproep</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Aan contactenlijst toevoegen</string>
-  <string name="SharedContactView_invite_to_signal">Uitnodigen voor Signal</string>
-  <string name="SharedContactView_message">Signal-gesprek openen</string>
+  <string name="SharedContactView_invite_to_signal">Nodig contacten uit</string>
+  <string name="SharedContactView_message">Pigeon-gesprek openen</string>
   <!--SignalPinReminders-->
-  <string name="SignalPinReminders_well_remind_you_again_later">Correct! Signal zal je later opnieuw vragen of je je pincode nog weet.</string>
-  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Correct! Signal zal je morgen opnieuw vragen of je je pincode nog weet.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Correct! Signal zal je binnen een paar dagen opnieuw vragen of je je pincode nog weet.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Correct! Signal zal je na een week opnieuw vragen of je je pincode nog weet.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Correct! Signal zal je binnen een aantal weken opnieuw vragen of je je pincode nog weet.</string>
-  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Correct! Signal zal je binnen een maand opnieuw vragen of je je pincode nog weet.</string>
+  <string name="SignalPinReminders_well_remind_you_again_later">Correct! Pigeon zal je later opnieuw vragen of je je pincode nog weet.</string>
+  <string name="SignalPinReminders_well_remind_you_again_tomorrow">Correct! Pigeon zal je morgen opnieuw vragen of je je pincode nog weet.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Correct! Pigeon zal je binnen een paar dagen opnieuw vragen of je je pincode nog weet.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_week">Correct! Pigeon zal je na een week opnieuw vragen of je je pincode nog weet.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Correct! Pigeon zal je binnen een aantal weken opnieuw vragen of je je pincode nog weet.</string>
+  <string name="SignalPinReminders_well_remind_you_again_in_a_month">Correct! Pigeon zal je binnen een maand opnieuw vragen of je je pincode nog weet.</string>
   <!--Slide-->
   <string name="Slide_image">Afbeelding</string>
   <string name="Slide_sticker">Sticker</string>
@@ -1377,14 +1374,14 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SmsMessageRecord_secure_session_reset">Je hebt de beveiligde sessie opnieuw ingesteld.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s heeft de beveiligde sessie opnieuw ingesteld.</string>
   <string name="SmsMessageRecord_duplicate_message">Gedupliceerd bericht.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Dit bericht kon niet worden verwerkt omdat het is verzonden vanuit een nieuwere versie van Signal. Je kunt je gesprekspartner vragen om dit bericht opnieuw te verzenden nadat je jouw Signal-app hebt bijgewerkt naar een nieuwere versie.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Dit bericht kon niet worden verwerkt omdat het is verzonden vanuit een nieuwere versie van Pigeon . Je kunt je gesprekspartner vragen om dit bericht opnieuw te verzenden nadat je jouw Pigeon -app hebt bijgewerkt naar een nieuwere versie.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Fout bij verwerken van inkomend bericht.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Stickers</string>
   <!--StickerManagementAdapter-->
   <string name="StickerManagementAdapter_installed_stickers">Geïnstalleerde stickerpakketten</string>
   <string name="StickerManagementAdapter_stickers_you_received">Ontvangen stickerpakketten</string>
-  <string name="StickerManagementAdapter_signal_artist_series">Signals eigen stickerpakketten</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Pigeons eigen stickerpakketten</string>
   <string name="StickerManagementAdapter_no_stickers_installed">Geen stickerpakketten geïnstalleerd</string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Stickerpakketten uit binnengekomen berichten zullen hier verschijnen</string>
   <string name="StickerManagementAdapter_untitled">Zonder titel</string>
@@ -1408,11 +1405,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubmitDebugLogActivity_share">Doorsturen via andere app</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Onderwerp:</string>
-  <string name="SupportEmailUtil_signal_android_support_request">Signal-Android ondersteuningsverzoek</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Pigeon ondersteuningsverzoek</string>
   <string name="SupportEmailUtil_device_info">Apparaatinformatie:</string>
   <string name="SupportEmailUtil_android_version">Android-versie:</string>
-  <string name="SupportEmailUtil_signal_version">Signal-versie:</string>
-  <string name="SupportEmailUtil_signal_package">Signal-pakket:</string>
+  <string name="SupportEmailUtil_signal_version">Pigeon-versie:</string>
+  <string name="SupportEmailUtil_signal_package">Pigeon-pakket:</string>
   <string name="SupportEmailUtil_registration_lock">Registratievergrendeling:</string>
   <string name="SupportEmailUtil_locale">Taalgebied:</string>
   <!--ThreadRecord-->
@@ -1431,7 +1428,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ThreadRecord_view_once_media">Eenmaligeweergave-media</string>
   <string name="ThreadRecord_this_message_was_deleted">Dit bericht is gewist.</string>
   <string name="ThreadRecord_you_deleted_this_message">Je hebt dit bericht gewist.</string>
-  <string name="ThreadRecord_s_is_on_signal">%s is bereikbaar via Signal.</string>
+  <string name="ThreadRecord_s_is_on_signal">%s is bereikbaar via Pigeon .</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Verlopende berichten uitgeschakeld</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Verlopende berichten op %s ingesteld</string>
   <string name="ThreadRecord_safety_number_changed">Veiligheidsnummer is veranderd</string>
@@ -1450,8 +1447,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ThreadRecord_video">Video</string>
   <string name="ThreadRecord_chat_session_refreshed">Gespreksessie vernieuwd</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Nieuwe versie van Signal</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Er is een nieuwe versie van Signal beschikbaar. Tik hier om bij te werken</string>
+  <string name="UpdateApkReadyListener_Signal_update">Nieuwe versie van Pigeon </string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Er is een nieuwe versie van Pigeon beschikbaar. Tik hier om bij te werken</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Bericht verzenden?</string>
   <string name="UntrustedSendDialog_send">Verzenden</string>
@@ -1470,20 +1467,20 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersnamen mogen niet met een cijfer beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Gebruikersnaam is ongeldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit ten minste %1$d en maximaal %2$d karakters bestaan.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Gebruikersnamen in Signal zijn optioneel. Als je een gebruikersnaam aanmaakt zullen andere Signal gebruikers je kunnen vinden met deze naam en contact met je kunnen opnemen zonder je telefoonnummer te kennen.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Gebruikersnamen in Pigeon zijn optioneel. Als je een gebruikersnaam aanmaakt zullen andere Pigeon gebruikers je kunnen vinden met deze naam en contact met je kunnen opnemen zonder je telefoonnummer te kennen.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
-    <item quantity="one">%d van je contactpersonen is bereikbaar via Signal.</item>
-    <item quantity="other">%d van je contactpersonen zijn bereikbaar via Signal.</item>
+    <item quantity="one">%d van je contactpersonen is bereikbaar via Pigeon .</item>
+    <item quantity="other">%d van je contactpersonen zijn bereikbaar via Pigeon .</item>
   </plurals>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Deze contactpersoon gebruikt een oude versie van Signal. Vraag hem om eerst Signal bij te werken, alvorens je het veiligheidsnummer verifieert.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Je contact gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Deze contactpersoon gebruikt een oude versie van Pigeon . Vraag hem om eerst Pigeon bij te werken, alvorens je het veiligheidsnummer verifieert.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Je contact gebruikt een nieuwere versie van Pigeon met een incompatibel QR-codeformaat. Werk Pigeon bij om te vergelijken.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">De gescande QR-code is geen goed geformatteerd veiligheidsnummer-verificatiecode. Probeer de code opnieuw te scannen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Veiligheidsnummer doorsturen via …</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Ons Signal-veiligheidsnummer:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Ons Pigeon -veiligheidsnummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt waarmee je je veiligheidsnummer kunt doorsturen.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Geen veiligheidsnummer gevonden op het klembord</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal heeft toegang tot de camera nodig om een QR-code te scannen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Camera’ in.</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Pigeon heeft toegang tot de camera nodig om een QR-code te scannen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Camera’ in.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan QR-code niet scannen zonder toegang tot camera</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Om het veiligheidsnummer van %1$s te kunnen weergeven moet je eerst berichten met hem of haar uitwisselen.</string>
   <!--ViewOnceMessageActivity-->
@@ -1503,13 +1500,13 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Tik om te openen.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tik om te openen of tik op het slot om te sluiten.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal is ontgrendeld</string>
-  <string name="KeyCachingService_lock">Vergrendel Signal</string>
+  <string name="KeyCachingService_passphrase_cached">Pigeon is ontgrendeld</string>
+  <string name="KeyCachingService_lock">Vergrendel Pigeon </string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">jou</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Niet-ondersteund mediatype</string>
   <string name="MediaPreviewActivity_draft">Concept</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang tot externe opslagruimte nodig om iets op te slaan op de externe opslag, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Pigeon heeft toegang tot externe opslagruimte nodig om iets op te slaan op de externe opslag, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan niet opslaan naar externe opslag zonder machtiging</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Bericht wissen?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal alleen voor jou onherroepelijk gewist worden, maar dus niet voor je gesprekspartner(s).</string>
@@ -1519,7 +1516,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nieuwe berichten in %2$d gesprekken</string>
   <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
-  <string name="MessageNotifier_locked_message">Nieuw bericht, ontgrendel Signal om het weer te geven</string>
+  <string name="MessageNotifier_locked_message">Nieuw bericht, ontgrendel Pigeon om het weer te geven</string>
   <string name="MessageNotifier_media_message_with_text">Mediabericht: %s</string>
   <string name="MessageNotifier_message_delivery_failed">Berichtaflevering mislukt.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Het bericht afleveren is mislukt.</string>
@@ -1532,10 +1529,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MessageNotifier_view_once_photo">Eenmaligeweergave-afbeelding</string>
   <string name="MessageNotifier_view_once_video">Eenmaligeweergave-video</string>
   <string name="MessageNotifier_reply">Reageren</string>
-  <string name="MessageNotifier_signal_message">Signal-bericht</string>
+  <string name="MessageNotifier_signal_message">Pigeon-bericht</string>
   <string name="MessageNotifier_unsecured_sms">Onbeveiligde sms</string>
   <string name="MessageNotifier_you_may_have_new_messages">Je hebt mogelijk nieuwe berichten</string>
-  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Open Signal om te zien of er recente meldingen zijn.</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Open Pigeon om te zien of er recente meldingen zijn.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contactpersoon</string>
   <string name="MessageNotifier_reacted_s_to_s">reageerde met %1$s op “%2$s”.</string>
@@ -1546,7 +1543,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">reageerde met %1$s op je eenmaligeweergave-media.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">reageerde met %1$s op je sticker.</string>
   <string name="MessageNotifier_this_message_was_deleted">Dit bericht is gewist.</string>
-  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Zet meldingen uit over mensen die bereikbaar zijn via Signal. Je kunt ze opnieuw aanzetten in  Signal &gt; Instellingen &gt; Meldingen.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Zet meldingen uit over mensen die bereikbaar zijn via Pigeon . Je kunt ze opnieuw aanzetten in  Pigeon &gt; Instellingen &gt; Meldingen.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Systeemstandaard</string>
   <string name="NotificationChannel_calls">Oproepen</string>
@@ -1562,7 +1559,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Profielnaam succesvol ingesteld.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snel reageren niet beschikbaar wanneer Signal vergrendeld is!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Snel reageren niet beschikbaar wanneer Pigeon vergrendeld is!</string>
   <string name="QuickResponseService_problem_sending_message">Fout bij verzenden van bericht!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Opgeslagen naar %s</string>
@@ -1585,18 +1582,18 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Apparaat niet langer geregistreerd</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je je telefoonnummer met Signal op een ander apparaat hebt geregistreerd. Tik hier om opnieuw te registreren.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je je telefoonnummer met Pigeon op een ander apparaat hebt geregistreerd. Tik hier om opnieuw te registreren.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Fout bij afspelen van video</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Geef Signal toegang tot je microfoon om de oproep van %s te beantwoorden.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal heeft toegang nodig tot de microfoon en de camera om oproepen te maken of te ontvangen, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Geef Pigeon toegang tot je microfoon om de oproep van %s te beantwoorden.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Pigeon heeft toegang nodig tot de microfoon en de camera om oproepen te maken of te ontvangen, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Beantwoord vanaf een gekoppeld apparaat.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Geweigerd vanaf een gekoppeld apparaat.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Bezet omdat je al een gesprek voerde via een van je gekoppelde apparaten.</string>
   <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Iemand neemt nu deel aan deze oproep met een veiligheidsnummer dat is veranderd.</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Je veiligheidsnummer met %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Signal opnieuw geïnstalleerd heeft.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Je veiligheidsnummer met %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Pigeon opnieuw geïnstalleerd heeft.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Het wordt aanbevolen de veiligheidsnummers met deze contactpersoon te verifiëren.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nieuw veiligheidsnummer</string>
   <string name="WebRtcCallScreen_accept">Aanvaarden</string>
@@ -1615,9 +1612,12 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tik om je video in te schakelen</string>
   <!--WebRtcCallControls Content Descriptions-->
   <string name="WebRtcCallControls_contact_photo_description">Foto van contactpersoon</string>
+  <string name="WebRtcCallControls_volume_button_description">Volume</string>
   <string name="WebRtcCallControls_speaker_button_description">Luidspreker</string>
   <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
   <string name="WebRtcCallControls_mute_button_description">Dempen</string>
+  <string name="WebRtcCallControls_mute_button_description_on">Stil</string>
+  <string name="WebRtcCallControls_mute_button_description_off">Dempen opheffen</string>
   <string name="WebRtcCallControls_your_camera_button_description">Jouw camera</string>
   <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Wisselen naar achter-camera</string>
   <string name="WebRtcCallControls_answer_call_description">Oproep beantwoorden</string>
@@ -1644,7 +1644,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="change_passphrase_activity__repeat_new_passphrase">Herhaal nieuw wachtwoord</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Typ naam of nummer</string>
-  <string name="contact_selection_activity__invite_to_signal">Uitnodigen voor Signal</string>
+  <string name="contact_selection_activity__invite_to_signal">Nodig contacten uit</string>
   <string name="contact_selection_activity__new_group">Nieuwe groep</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Ingevoerde tekst wissen</string>
@@ -1656,15 +1656,15 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto van contactpersoon</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal heeft toegang tot je lijst met contacten nodig om je contacten weer te kunnen geven, maar toestemming om contacten in te zien is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Contacten’ in.</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Pigeon heeft toegang tot je lijst met contacten nodig om je contacten weer te kunnen geven, maar toestemming om contacten in te zien is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Contacten’ in.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fout bij ophalen van contactpersonen, controleer je netwerkverbinding</string>
   <string name="ContactSelectionListFragment_username_not_found">Gebruikersnaam niet gevonden</string>
-  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">“%1$s” is geen Signal-gebruiker. Kijk de gebruikersnaam na en probeer het opnieuw.</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">“%1$s” is geen Pigeon -gebruiker. Kijk de gebruikersnaam na en probeer het opnieuw.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Het is niet nodig om jezelf toe te voegen aan de groep</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">De maximale groepsgrootte is bereikt</string>
-  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal groepen kunnen uit maximaal %1$d leden bestaan.</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Pigeon groepen kunnen uit maximaal %1$d leden bestaan.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Het aanbevolen ledenlimiet is bereikt</string>
-  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-groepen presteren het best met %1$d of minder leden. Het toevoegen van extra leden zal vertragingen veroorzaken in het verzenden en ontvangen van berichten.</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Pigeon-groepen presteren het best met %1$d of minder leden. Het toevoegen van extra leden zal vertragingen veroorzaken in het verzenden en ontvangen van berichten.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d persoon</item>
     <item quantity="other">%1$d personen</item>
@@ -1672,7 +1672,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Geen geblokkeerde contactpersonen</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal heeft toegang nodig tot je contacten om contactpersonen te kunnen weergeven.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Pigeon heeft toegang nodig tot je contacten om contactpersonen te kunnen weergeven.</string>
   <string name="contact_selection_list_fragment__show_contacts">Contactpersonen weergeven</string>
   <!--contact_selection_list_item-->
   <plurals name="contact_selection_list_item__number_of_members">
@@ -1680,7 +1680,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
     <item quantity="other">%1$d personen</item>
   </plurals>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal-bericht</string>
+  <string name="conversation_activity__type_message_push">Pigeon-bericht</string>
   <string name="conversation_activity__type_message_sms_insecure">Onbeveiligde sms</string>
   <string name="conversation_activity__type_message_mms_insecure">Onbeveiligde mms</string>
   <string name="conversation_activity__from_sim_name">Van %1$s</string>
@@ -1692,7 +1692,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Camera overzicht weergeven/verbergen</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Geluid opnemen en verzenden</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Vergrendel opnemen van audio</string>
-  <string name="conversation_activity__enable_signal_for_sms">Gebruik Signal voor sms</string>
+  <string name="conversation_activity__enable_signal_for_sms">Gebruik Pigeon voor sms</string>
   <string name="conversation_activity__message_could_not_be_sent">het bericht kon niet worden verzonden. Ga na of je apparaat verbonden is met internet of met je sms-provider en probeer het opnieuw.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Veeg om te annuleren</string>
@@ -1786,9 +1786,9 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="IdentityUtil_unverified_banner_one">Je veiligheidsnummer met %s is veranderd en is niet langer geverifieerd</string>
   <string name="IdentityUtil_unverified_banner_two">Je veiligheidsnummers met %1$s en %2$s  zijn niet langer geverifieerd</string>
   <string name="IdentityUtil_unverified_banner_many">Je veiligheidsnummers met %1$s, %2$s en %3$s zijn niet langer geverifieerd</string>
-  <string name="IdentityUtil_unverified_dialog_one">Je veiligheidsnummer met %1$s is veranderd en is niet langer geverifieerd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %1$s Signal opnieuw heeft geïnstalleerd.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Je veiligheidsnummers met %1$s en %2$s zijn niet langer geverifieerd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat ze Signal opnieuw geïnstalleerd hebben.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Je veiligheidsnummers met %1$s, %2$s en %3$s zijn niet langer geverifieerd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat ze Signal opnieuw geïnstalleerd hebben.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Je veiligheidsnummer met %1$s is veranderd en is niet langer geverifieerd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %1$s Pigeon opnieuw heeft geïnstalleerd.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Je veiligheidsnummers met %1$s en %2$s zijn niet langer geverifieerd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat ze Pigeon opnieuw geïnstalleerd hebben.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Je veiligheidsnummers met %1$s, %2$s en %3$s zijn niet langer geverifieerd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat ze Pigeon opnieuw geïnstalleerd hebben.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Je veiligheidsnummer met %s is zojuist veranderd.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Je veiligheidsnummers met %1$s en %2$s zijn zojuist veranderd.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Je veiligheidsnummers met %1$s, %2$s en %3$s zijn zojuist veranderd.</string>
@@ -1816,11 +1816,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="log_submit_activity__please_review_this_log_from_my_app">Gelieve dit logbestand van mijn app te bestuderen: %1$s</string>
   <string name="log_submit_activity__network_failure">Netwerkfout. Probeer het opnieuw.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je je sms- en mms-berichten importeren naar de versleutelde databank van Signal?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je je sms- en mms-berichten importeren naar de versleutelde databank van Pigeon?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De systeemdatabank zal op geen enkele wijze worden gewijzigd of aangepast.</string>
   <string name="database_migration_activity__skip">Overslaan</string>
   <string name="database_migration_activity__import">Importeren</string>
-  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dit kan even duren, daarom graag even geduld. Signal zal je melden wanneer het importeren voltooid is.</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dit kan even duren, daarom graag even geduld. Pigeon zal je melden wanneer het importeren voltooid is.</string>
   <string name="database_migration_activity__importing">BEZIG MET IMPORTEREN</string>
   <string name="import_fragment__import_system_sms_database">Sms-berichten uit de systeemdatabank importeren?</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importeer de databank van de standaardberichtenapp</string>
@@ -1844,11 +1844,13 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Ontgrendelen</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal heeft mms-instellingen nodig om mediaberichten te kunnen versturen via je telefoonprovider. Je apparaat maakt deze informatie niet beschikbaar. Dit komt vaker voor bij gelockte apparaten en andere beperkende configuraties.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Pigeon heeft mms-instellingen nodig om mediaberichten te kunnen versturen via je telefoonprovider. Je apparaat maakt deze informatie niet beschikbaar. Dit komt vaker voor bij gelockte apparaten en andere beperkende configuraties.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Om media- en groepsberichten te verzenden tik je op ‘Oké’ en voer je de gevraagde gegevens in. De mms-instellingen voor je provider kunnen meestal gevonden worden door on-line te zoeken naar ‘naam-van-je-provider APN’. Dit hoef je maar één keer te doen.</string>
   <!--profile_create_activity-->
-  <string name="CreateProfileActivity_first_name_required">Voornaam (vereist)</string>
-  <string name="CreateProfileActivity_last_name_optional">Achternaam (optioneel)</string>
+  <string name="CreateProfileActivity_first_name_required">Voornaam</string>
+  <string name="CreateProfileActivity_last_name_optional">Achternaam</string>
+  <string name="CreateProfileActivity_required">vereist</string>
+  <string name="CreateProfileActivity_optional">optioneel</string>
   <string name="CreateProfileActivity_next">Volgende</string>
   <string name="CreateProfileActivity__username">Gebruikersnaam</string>
   <string name="CreateProfileActivity__create_a_username">Gebruikersnaam aanmaken</string>
@@ -1859,12 +1861,12 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Uitgewisselde media</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signal-oproep</string>
+  <string name="redphone_call_card__signal_call">Pigeon oproep</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFOONNUMMER</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal maakt het mogelijk voor anderen wie jou als hun contactpersoon toevoegen om te weten dat ze je kunnen bereiken via Signal. Om dat mogelijk te maken wordt je telefoonnummer opgeslagen op de Signal servers.
-Signal laat je ook zien wie van jou contactpersonen je kunt bereiken via Signal. Om dat mogelijk te maken worden uitsluitend de telefoonnummers van je contactpersonen geüpload, maar die telefoonnummers worden niet op de servers opgeslagen. Omdat de broncode van Signal\'s servers open is kan iedereen nagaan dat de telefoonnummers van je contactpersonen echt nooit worden opgeslagen en nooit worden gebruikt voor andere doeleinden.
-Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wie van je contactpersonen bereikbaar zijn om Signal-berichten en -oproepen te ontvangen.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Pigeon maakt het mogelijk voor anderen wie jou als hun contactpersoon toevoegen om te weten dat ze je kunnen bereiken via Pigeon . Om dat mogelijk te maken wordt je telefoonnummer opgeslagen op de Pigeon servers.
+Pigeon laat je ook zien wie van jou contactpersonen je kunt bereiken via Pigeon . Om dat mogelijk te maken worden uitsluitend de telefoonnummers van je contactpersonen geüpload, maar die telefoonnummers worden niet op de servers opgeslagen. Omdat de broncode van Pigeon \'s servers open is kan iedereen nagaan dat de telefoonnummers van je contactpersonen echt nooit worden opgeslagen en nooit worden gebruikt voor andere doeleinden.
+Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wie van je contactpersonen bereikbaar zijn om Pigeon -berichten en -oproepen te ontvangen.</string>
   <string name="registration_activity__verify_your_number">Verifieer je telefoonnummer</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Voer je telefoonnummer in om een registratiecode te ontvangen. Extra providerkosten zijn mogelijk van toepassing.</string>
   <!--recipients_panel-->
@@ -1930,11 +1932,11 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="HelpFragment__whats_this">Wat is dit?</string>
   <string name="HelpFragment__how_do_you_feel">Hoe voel je je? (Optioneel)</string>
   <string name="HelpFragment__support_info">Ondersteuningsinformatie</string>
-  <string name="HelpFragment__signal_android_support_request">Signal-Android ondersteuningsverzoek</string>
+  <string name="HelpFragment__signal_android_support_request">Pigeon ondersteuningsverzoek</string>
   <string name="HelpFragment__debug_log">Foutopsporingslog:</string>
   <string name="HelpFragment__na">Niet van toepassing</string>
   <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
-  <string name="HelpFragment__signal_support">Signal-ondersteuning</string>
+  <string name="HelpFragment__signal_support">Pigeon-ondersteuning</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
   <string name="HelpFragment__no_email_app_found">Geen e-mail-app gevonden op je apparaat.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -1984,23 +1986,23 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__sms_mms">Sms en mms</string>
   <string name="preferences__pref_all_sms_title">Ontvang alle sms</string>
   <string name="preferences__pref_all_mms_title">Ontvang alle mms</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Signal gebruiken voor alle inkomende tekstberichten</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal gebruiken voor alle inkomende multimediaberichten</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Pigeon gebruiken voor alle inkomende tekstberichten</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Pigeon gebruiken voor alle inkomende multimediaberichten</string>
   <string name="preferences__pref_enter_sends_title">Enter-toets verzendt</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Gebruik de Enter-toets voor het verzenden van tekstberichten</string>
   <string name="preferences__pref_use_address_book_photos">Profielfoto uit systeemadresboek</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Gebruik indien beschikbaar de profielafbeelding uit je eigen systeemadresboek, in plaats van de profielafbeelding welke anderen voor zichzelf hebben ingesteld.</string>
   <string name="preferences__generate_link_previews">Voorbeeldafbeeldingen genereren</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Sta Signal toe om voor elke verwijzing naar een website die je verzendt een voorbeeldafbeelding genereren en aan je bericht bij te voegen. Echter, als je dit inschakelt zouden websites kunnen detecteren dat je hen in je bericht vermeldt.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Sta Pigeon toe om voor elke verwijzing naar een website die je verzendt een voorbeeldafbeelding genereren en aan je bericht bij te voegen. Echter, als je dit inschakelt zouden websites kunnen detecteren dat je hen in je bericht vermeldt.</string>
   <string name="preferences__choose_identity">Identiteit kiezen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies je contactgegevens uit de lijst met contactpersonen.</string>
   <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>
   <string name="preferences__change_your_passphrase">Wijzig je wachtwoord</string>
   <string name="preferences__enable_passphrase">Appvergrendeling met wachtwoord inschakelen</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Vergrendel de Signal-app en -meldingen met een wachtwoord</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Vergrendel de Pigeon -app en -meldingen met een wachtwoord</string>
   <string name="preferences__screen_security">Meekijkpreventie</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bescherm je gesprekken tegen schermopnames door andere apps door Signal\'s inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal automatisch vergrendelen na een bepaalde periode van inactiviteit</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bescherm je gesprekken tegen schermopnames door andere apps door Pigeon \'s inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Pigeon automatisch vergrendelen na een bepaalde periode van inactiviteit</string>
   <string name="preferences__inactivity_timeout_passphrase">Vergrendeling bij inactiviteit</string>
   <string name="preferences__inactivity_timeout_interval">Inactiviteitsduur voor vergrendeling</string>
   <string name="preferences__notifications">Meldingen</string>
@@ -2031,7 +2033,6 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__slow">Langzaam</string>
   <string name="preferences__help">Hulp</string>
   <string name="preferences__advanced">Geavanceerd</string>
-  <string name="preferences__donate_to_signal">Aan Signal doneren</string>
   <string name="preferences__privacy">Privacy</string>
   <string name="preferences__mms_user_agent">Mms-gebruikersagent</string>
   <string name="preferences__advanced_mms_access_point_names">Handmatige mms-instellingen</string>
@@ -2054,14 +2055,14 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__theme">Thema</string>
   <string name="preferences__disable_pin">Pincode uitschakelen</string>
   <string name="preferences__enable_pin">Pincode inschakelen</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je ze handmatig herstelt vanuit een back-up-bestand. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Pigeon opnieuw registreert alle gegevens kwijtraken, tenzij je ze handmatig herstelt vanuit een back-up-bestand. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Met een pincode wordt informatie versleuteld opgeslagen op Pigeon \'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Pigeon opnieuw installeert. Zelfs Pigeon \'s ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
   <string name="preferences__system_default">Systeemstandaard</string>
   <string name="preferences__default">Systeemstandaard</string>
   <string name="preferences__language">Taal</string>
-  <string name="preferences__signal_messages_and_calls">Signal-berichten en -oproepen</string>
+  <string name="preferences__signal_messages_and_calls">Pigeon-berichten en -oproepen</string>
   <string name="preferences__advanced_pin_settings">Geavanceerde pincode-instellingen</string>
-  <string name="preferences__free_private_messages_and_calls">Gratis privéberichten en bellen met Signal-gebruikers</string>
+  <string name="preferences__free_private_messages_and_calls">Gratis privéberichten en bellen met Pigeon -gebruikers</string>
   <string name="preferences__submit_debug_log">Foutopsporingslog indienen</string>
   <string name="preferences__delete_account">Al je gegevens wissen</string>
   <string name="preferences__support_wifi_calling">‘Bellen via wifi’-compatibiliteitsmodus</string>
@@ -2100,13 +2101,13 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_storage__s_messages">%1$s berichten</string>
   <string name="preferences_storage__custom">Zelf ingesteld</string>
   <string name="preferences_advanced__use_system_emoji">Systeem-emoji gebruiken</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Gebruik de systeem-emoji in plaats van de ingebouwde emoji-ondersteuning van Signal</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen worden Signal-oproepen met niet-contactpersonen altijd al omgeleid via de Signal-servers. Door deze optie in te schakelen wordt dat ook gedaan voor Signal-oproepen met contacten wie wel in je contactenlijst staan. Dit leidt echter tot een verminderde geluids- en videokwaliteit.</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Gebruik de systeem-emoji in plaats van de ingebouwde emoji-ondersteuning van Pigeon </string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen worden Pigeon -oproepen met niet-contactpersonen altijd al omgeleid via de Pigeon -servers. Door deze optie in te schakelen wordt dat ook gedaan voor Pigeon -oproepen met contacten wie wel in je contactenlijst staan. Dit leidt echter tot een verminderde geluids- en videokwaliteit.</string>
   <string name="preferences_advanced__always_relay_calls">Alle oproepen omleiden</string>
   <string name="preferences_app_protection__who_can">Wie mag …</string>
   <string name="preferences_app_protection__app_access">Toegang tot app</string>
   <string name="preferences_app_protection__communication">Communicatie</string>
-  <string name="preferences_chats__chats">Gesprekken</string>
+  <string name="preferences_chats__chats">Bijlagen</string>
   <string name="preferences_data_and_storage__manage_storage">Opslag beheren</string>
   <string name="preferences_data_and_storage__calls">Oproepen</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Minder gegevensoverdracht bij oproepen</string>
@@ -2121,9 +2122,9 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_notifications__calls">Oproepen</string>
   <string name="preferences_notifications__ringtone">Oproepgeluid</string>
   <string name="preferences_chats__show_invitation_prompts">Uitnodigingsvoorstel weergeven</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Toon boven sms-gesprekken met gesprekspartners die niet op Signal zitten een suggestie om je gesprekspartner uit te nodigen op Signal</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Toon boven sms-gesprekken met gesprekspartners die niet op Pigeon zitten een suggestie om je gesprekspartner uit te nodigen op Pigeon </string>
   <string name="preferences_chats__message_text_size">Tekstgrootte voor berichten</string>
-  <string name="preferences_events__contact_joined_signal">Nieuw persoon bereikbaar via Signal</string>
+  <string name="preferences_events__contact_joined_signal">Contact beschikbaar op Pigeon</string>
   <string name="preferences_notifications__priority">Belangrijkheid</string>
   <string name="preferences_communication__category_sealed_sender">Verzegelde afzender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">‘Verzegelde afzender’-pictorgram</string>
@@ -2147,8 +2148,10 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Bellen</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Signal-oproep</string>
-  <string name="conversation_callable_secure__menu_video">Signal-video-oproep</string>
+  <string name="conversation_callable_secure__menu_call">Pigeon-oproep</string>
+  <string name="conversation_callable_secure__menu_video">Pigeon-video-oproep</string>
+  <!-- conversation_voice_message -->
+  <string name="conversation_voice_message">Spraakbericht</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Berichtdetails</string>
   <string name="conversation_context__menu_copy_text">Tekst kopiëren</string>
@@ -2205,6 +2208,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="conversation__menu_view_all_media">Alle media</string>
   <string name="conversation__menu_conversation_settings">Gespreksinstellingen</string>
   <string name="conversation__menu_add_shortcut">Aan thuisscherm toevoegen</string>
+  <string name="conversation__menu_voice_message">Spraakbericht</string>
   <string name="conversation__menu_pending_members">Personen in afwachting</string>
   <string name="conversation__menu_create_bubble">Bubbel aanmaken</string>
   <!--conversation_popup-->
@@ -2228,15 +2232,15 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Vergelijken met klembord</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">Sms uit systeem importeren</string>
-  <string name="reminder_header_sms_import_text">Tik hier om de sms-berichten uit je telefoon te kopiëren naar de versleutelde databank van Signal.</string>
-  <string name="reminder_header_push_title">Signal-berichten en -oproepen inschakelen</string>
+  <string name="reminder_header_sms_import_text">Tik hier om de sms-berichten uit je telefoon te kopiëren naar de versleutelde databank van Pigeon .</string>
+  <string name="reminder_header_push_title">Pigeon-berichten en -oproepen inschakelen</string>
   <string name="reminder_header_push_text">Verbeter je communicatie-ervaring.</string>
-  <string name="reminder_header_invite_title">Uitnodigen voor Signal</string>
-  <string name="reminder_header_invite_text">Stel aan %1$s voor om dit gesprek als beveiligd Signal-gesprek voort te zetten.</string>
+  <string name="reminder_header_invite_title">Nodig contacten uit</string>
+  <string name="reminder_header_invite_text">Stel aan %1$s voor om dit gesprek als beveiligd Pigeon -gesprek voort te zetten.</string>
   <string name="reminder_header_share_title">Nodig je vrienden uit!</string>
-  <string name="reminder_header_share_text">Hoe meer mensen Signal gebruiken, des te vaker je beveiligd kunt communiceren.</string>
-  <string name="reminder_header_service_outage_text">Signal heeft technische problemen. We werken er hard aan om zo snel als mogelijk de bereikbaarheid te herstellen.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">De meest recente functionaliteit van Signal kan niet werken op deze versie van Android. Waardeer dit apparaat op naar een hogere versie van Android om in de toekomst nog updates te ontvangen voor Signal.</string>
+  <string name="reminder_header_share_text">Hoe meer mensen Pigeon gebruiken, des te vaker je beveiligd kunt communiceren.</string>
+  <string name="reminder_header_service_outage_text">Pigeon heeft technische problemen. We werken er hard aan om zo snel als mogelijk de bereikbaarheid te herstellen.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">De meest recente functionaliteit van Pigeon kan niet werken op deze versie van Android. Waardeer dit apparaat op naar een hogere versie van Android om in de toekomst nog updates te ontvangen voor Pigeon .</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Opslaan</string>
@@ -2256,12 +2260,12 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Inzichten</string>
   <string name="InsightsDashboardFragment__title">Inzichten</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">%1$d%% van je verzonden berichten over de afgelopen %2$d dagen werden automatisch beschermd door het Signal-protocol. Gesprekken tussen Signal-gebruikers zijn altijd eind-tot-eind-versleuteld.</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">%1$d%% van je verzonden berichten over de afgelopen %2$d dagen werden automatisch beschermd door het Pigeon -protocol. Gesprekken tussen Pigeon -gebruikers zijn altijd eind-tot-eind-versleuteld.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Je kunt meer gesprekken beveiligd voeren</string>
   <string name="InsightsDashboardFragment__not_enough_data">Niet genoeg gegevens</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Je inzichten-percentage wordt berekend op basis van berichten welke je hebt verzonden in de afgelopen %1$d dagen welke niet zijn verlopen en niet handmatig zijn gewist.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Begin een gesprek</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Communiceer voortaan beveiligd en maak nieuwe functies mogelijk welke verder gaan dan de limitaties van onversleutelde sms-berichten, door meer contactpersonen uit te nodigen om Signal te gebruiken.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Communiceer voortaan beveiligd en maak nieuwe functies mogelijk welke verder gaan dan de limitaties van onversleutelde sms-berichten, door meer contactpersonen uit te nodigen om Pigeon te gebruiken.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Deze statistiek is lokaal gegenereerd op jouw apparaat en kan alleen door jou gezien worden. Ze wordt nooit geüpload.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Versleutelde berichten</string>
   <string name="InsightsDashboardFragment__cancel">Annuleren</string>
@@ -2269,7 +2273,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="InsightsModalFragment__title">We introduceren ‘inzichten’</string>
   <string name="InsightsModalFragment__description">Ontdek hoeveel van je uitgaande berichten beveiligd zijn verzonden en nodig gemakkelijk nieuwe contactpersonen uit om je percentage beveiligde berichten te verhogen.</string>
   <string name="InsightsModalFragment__view_insights">Inzichten weergeven</string>
-  <string name="FirstInviteReminder__title">Uitnodigen voor Signal</string>
+  <string name="FirstInviteReminder__title">Nodig contacten uit</string>
   <string name="FirstInviteReminder__description">Je kunt het aantal versleutelde berichten welke je verzendt verhogen met %1$d%%</string>
   <string name="SecondInviteReminder__title">Beveilig meer gesprekken</string>
   <string name="SecondInviteReminder__description">Nodig %1$s uit</string>
@@ -2292,19 +2296,19 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="CreateKbsPinFragment__create_a_new_pin">Nieuwe pincode aanmaken</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Je kunt je pincode nu nog wijzigen omdat je telefoonnummer nog voor dit apparaat geregistreerd staat. Wanneer je telefoonnummer niet meer geregistreerd staat voor dit apparaat, dan kun je de pincode niet langer wijzigen en ook niet teruglezen; je zult hem dus moeten onthouden.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Pincode aanmaken</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Verzin een pincode die je nergens anders gebruikt. Met die pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Verzin een pincode die je nergens anders gebruikt. Met die pincode wordt informatie versleuteld opgeslagen op Pigeon \'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Pigeon opnieuw installeert. Zelfs Pigeon \'s ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Verzin een sterkere pincode</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">De pincodes komen niet overeen, probeer het opnieuw.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bevestig je pincode.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Pincode aanmaken mislukt</string>
-  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Je pincode is niet opgeslagen. Signal zal je later vragen een pincode aan te maken.</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Je pincode is niet opgeslagen. Pigeon zal je later vragen een pincode aan te maken.</string>
   <string name="ConfirmKbsPinFragment__pin_created">Pincode aangemaakt.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Voer dezelfde pincode opnieuw in</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Pincode aan het aanmaken …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">We introduceren pincodes</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Pigeon \'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Pigeon opnieuw installeert. Zelfs Pigeon \'s ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
   <string name="KbsSplashFragment__learn_more">Lees meer</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registratievergrendeling = Pincode</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Registratievergrendeling heet vanaf nu ‘pincode’, en je kunt er meer mee doen. Je moet de pincode welke je tot nog toe gebruikte bijwerken.</string>
@@ -2314,20 +2318,20 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="KbsSplashFragment__learn_more_about_pins">Lees meer over pincodes</string>
   <string name="KbsSplashFragment__disable_pin">Pincode uitschakelen</string>
   <!--KBS Reminder Dialog-->
-  <string name="KbsReminderDialog__enter_your_signal_pin">Voer je Signal-pincode in</string>
-  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Om je te helpen je pincode te onthouden vraagt Signal je periodiek om te bewijzen dat je je pincode nog weet. Als je je pincode een aantal keer juist invoert, dan zal Signal je minder vaak deze vraag stellen.</string>
+  <string name="KbsReminderDialog__enter_your_signal_pin">Voer je Pigeon -pincode in</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Om je te helpen je pincode te onthouden vraagt Pigeon je periodiek om te bewijzen dat je je pincode nog weet. Als je je pincode een aantal keer juist invoert, dan zal Pigeon je minder vaak deze vraag stellen.</string>
   <string name="KbsReminderDialog__skip">Overslaan</string>
   <string name="KbsReminderDialog__submit">Bevestigen</string>
   <string name="KbsReminderDialog__forgot_pin">Pincode vergeten?</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">Foutieve pincode, probeer het opnieuw.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Vergrendeld voor dit telefoonnummer</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Om je privacy en beveiliging te beschermen is Signal vergrendeld voor dit telefoonnummer. Na %1$d dagen waarin Signal niet is met jouw telefoonnummer is gebruikt zul je je telefoonnummer opnieuw zonder je pincode kunnen registreren, maar als je zonder pincode opnieuw registreert zal alle inhoud worden gewist.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Om je privacy en beveiliging te beschermen is Pigeon vergrendeld voor dit telefoonnummer. Na %1$d dagen waarin Pigeon niet is met jouw telefoonnummer is gebruikt zul je je telefoonnummer opnieuw zonder je pincode kunnen registreren, maar als je zonder pincode opnieuw registreert zal alle inhoud worden gewist.</string>
   <string name="AccountLockedFragment__next">Volgende</string>
   <string name="AccountLockedFragment__learn_more">Lees meer</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Voer je pincode in</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">Voer de pincode in welke je eerder hebt aangemaakt om informatie versleuteld op te slaan op Signal\'s servers. Dit is niet dezelfde code als je sms-verificatiecode.</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Voer de pincode in welke je eerder hebt aangemaakt om informatie versleuteld op te slaan op Pigeon \'s servers. Dit is niet dezelfde code als je sms-verificatiecode.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Voer alfanumerieke pincode in.</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Voer numerieke pincode in.</string>
   <string name="RegistrationLockFragment__next">Volgende</string>
@@ -2337,16 +2341,16 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RegistrationLockFragment__forgot_your_pin">Pincode vergeten?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Weinig pogingen resterend.</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="one">Om je privacy en beveiliging te beschermen is er geen mogelijkheid om je pincode terug te zien. Als je je je pincode niet kunt herinneren dan kun je je, na %1$d dag waarin Signal voor dit telefoonnummer niet wordt gebruikt, opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
-    <item quantity="other">Om je privacy en beveiliging te beschermen is er geen mogelijkheid om je pincode terug te zien. Als je je je pincode niet kunt herinneren dan kun je je, na %1$d dagen waarin Signal voor dit telefoonnummer niet wordt gebruikt, opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
+    <item quantity="one">Om je privacy en beveiliging te beschermen is er geen mogelijkheid om je pincode terug te zien. Als je je je pincode niet kunt herinneren dan kun je je, na %1$d dag waarin Pigeon voor dit telefoonnummer niet wordt gebruikt, opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
+    <item quantity="other">Om je privacy en beveiliging te beschermen is er geen mogelijkheid om je pincode terug te zien. Als je je je pincode niet kunt herinneren dan kun je je, na %1$d dagen waarin Pigeon voor dit telefoonnummer niet wordt gebruikt, opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">Pincode foutief. %1$d poging resterend.</item>
     <item quantity="other">Pincode foutief. %1$d pogingen resterend.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-    <item quantity="one">Als je geen pogingen meer over hebt dan zal Signal voor dit telefoonnummer worden vergrendeld voor %1$d dag. Na %1$d dag waarin Signal voor dit telefoonnummer niet wordt gebruikt, kun je je telefoonnummer zonder je pincode opnieuw registreren, maar als je opnieuw registreert zonder je pincode te gebruiken dan zal alle inhoud worden gewist.</item>
-    <item quantity="other">Als je geen pogingen meer over hebt dan zal Signal voor dit telefoonnummer worden vergrendeld voor %1$d dagen. Na %1$d dagen waarin Signal voor dit telefoonnummer niet wordt gebruikt, kun je je telefoonnummer zonder je pincode opnieuw registreren, maar als je opnieuw registreert zonder je pincode te gebruiken dan zal alle inhoud worden gewist.</item>
+    <item quantity="one">Als je geen pogingen meer over hebt dan zal Pigeon voor dit telefoonnummer worden vergrendeld voor %1$d dag. Na %1$d dag waarin Pigeon voor dit telefoonnummer niet wordt gebruikt, kun je je telefoonnummer zonder je pincode opnieuw registreren, maar als je opnieuw registreert zonder je pincode te gebruiken dan zal alle inhoud worden gewist.</item>
+    <item quantity="other">Als je geen pogingen meer over hebt dan zal Pigeon voor dit telefoonnummer worden vergrendeld voor %1$d dagen. Na %1$d dagen waarin Pigeon voor dit telefoonnummer niet wordt gebruikt, kun je je telefoonnummer zonder je pincode opnieuw registreren, maar als je opnieuw registreert zonder je pincode te gebruiken dan zal alle inhoud worden gewist.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">Je hebt %1$d poging resterend.</item>
@@ -2361,19 +2365,19 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s zal van jou een gespreksverzoek ontvangen. Je kunt bellen vanaf het moment dat je gespreksverzoek is geaccepteerd.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Een pincode aanmaken</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Met een pincode wordt informatie versleuteld voor die wordt opgeslagen op Signal\'s servers. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien.</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Met een pincode wordt informatie versleuteld voor die wordt opgeslagen op Pigeon \'s servers. Zelfs Pigeon \'s ontwikkelaars kunnen je informatie niet inzien.</string>
   <string name="KbsMegaphone__create_pin">Pincode aanmaken</string>
   <string name="KbsMegaphone__introducing_pins">We introduceren pincodes</string>
   <string name="KbsMegaphone__update_pin">Pincode bijwerken</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Je zult er later aan worden herinnert dat je nog een pincode moet aanmaken. Dit wordt binnen %1$d dagen verplicht.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Je zult er later aan worden herinnert dat je nog moet bevestigen dat je je huidige pincode nog bezit. Dit wordt binnen %1$d dagen verplicht.</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Vertel Signal-organisatie wat je van de Signal app vindt</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Om Signal de beste berichtenapp op deze planeet te maken, horen we graag ook van jou wat je van Signal vindt.</string>
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Vertel Pigeon -organisatie wat je van de Pigeon app vindt</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Om Pigeon de beste berichtenapp op deze planeet te maken, horen we graag ook van jou wat je van Pigeon vindt.</string>
   <string name="ResearchMegaphone_learn_more">Meer leren hierover</string>
   <string name="ResearchMegaphone_dismiss">Sluiten</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Signal-onderzoek</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>We geloven in privacy.</b></p><p>Signal volgt je gedrag niet en verzamelt je gegevens niet. Om Signal zonder die gegevens toch voor iedereen beter te maken zijn we afhankelijk van terugkoppeling van gebruikers, <b>en we zouden ook graag van je horen wat je van Signal vindt</b>.</p><p>We organiseren een enquête om te begrijpen op welke manier en waarvoor jij Signal gebruikt. Onze enquête verzamelt geen gegevens waarmee jij geïdentificeerd kan worden. Als je graag meer terugkoppeling geeft, dan kun je gebruik maken van de vrijblijvende optie om je contactgegevens in te vullen.</p><p>Als je een aantal minuten tijd vrij hebt, en als je iets hebt om terug te koppelen, dan horen we graag van je.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_signal_research">Pigeon-onderzoek</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>We geloven in privacy.</b></p><p>Pigeon volgt je gedrag niet en verzamelt je gegevens niet. Om Pigeon zonder die gegevens toch voor iedereen beter te maken zijn we afhankelijk van terugkoppeling van gebruikers, <b>en we zouden ook graag van je horen wat je van Pigeon vindt</b>.</p><p>We organiseren een enquête om te begrijpen op welke manier en waarvoor jij Pigeon gebruikt. Onze enquête verzamelt geen gegevens waarmee jij geïdentificeerd kan worden. Als je graag meer terugkoppeling geeft, dan kun je gebruik maken van de vrijblijvende optie om je contactgegevens in te vullen.</p><p>Als je een aantal minuten tijd vrij hebt, en als je iets hebt om terug te koppelen, dan horen we graag van je.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">De enquête invullen</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nee bedankt</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">De enquête wordt georganiseerd door Alchemer op het beveiligde domein surveys.signalusers.org</string>
@@ -2382,12 +2386,12 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="ConversationListFragment_loading">Aan het laden …</string>
   <string name="CallNotificationBuilder_connecting">Aan het verbinden …</string>
   <string name="Permissions_permission_required">Toestemming vereist</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal heeft toestemming nodig om sms-berichten te sturen, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Sms’ in.</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Pigeon heeft toestemming nodig om sms-berichten te sturen, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Sms’ in.</string>
   <string name="Permissions_continue">Doorgaan</string>
   <string name="Permissions_not_now">Niet nu</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal heeft toegang nodig tot je lijst met contacten om contactpersonen te zoeken, maar toestemming om de contactenlijst in te zien is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Contacten’ in.</string>
-  <string name="conversation_activity__enable_signal_messages">SIGNAL-BERICHTEN INSCHAKELEN</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-databank wordt gemigreerd</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Pigeon heeft toegang nodig tot je lijst met contacten om contactpersonen te zoeken, maar toestemming om de contactenlijst in te zien is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Contacten’ in.</string>
+  <string name="conversation_activity__enable_signal_messages">PIGEON-BERICHTEN INSCHAKELEN</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Pigeon-databank wordt gemigreerd</string>
   <string name="PushDecryptJob_new_locked_message">Nieuw vergrendeld bericht</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ontgrendel om je berichten te lezen</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Back-up-wachtwoord</string>
@@ -2399,25 +2403,25 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="registration_activity__skip">Overslaan</string>
   <string name="registration_activity__register">Registreren</string>
   <string name="preferences_chats__chat_backups">Back-up-bestanden maken</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Laat Signal versleutelde back-up-bestanden maken van gesprekken en media</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Laat Pigeon versleutelde back-up-bestanden maken van gesprekken en media</string>
   <string name="preferences_chats__create_backup">Nu een back-up-bestand maken</string>
   <string name="preferences_chats__verify_backup_passphrase">Back-up-wachtwoord verifiëren</string>
   <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Test je back-up-wachtwoord om na te gaan of je het juiste wachtwoord onthouden hebt</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Voer back-up-wachtwoord in</string>
   <string name="RegistrationActivity_restore">Herstellen</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Kan geen back-up-bestanden importeren welke gemaakt zijn door nieuwere versies van Signal</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Kan geen back-up-bestanden importeren welke gemaakt zijn door nieuwere versies van Pigeon </string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Verkeerd back-up-wachtwoord</string>
   <string name="RegistrationActivity_checking">Aan het controleren …</string>
   <string name="RegistrationActivity_d_messages_so_far">%d berichten tot nu toe …</string>
   <string name="RegistrationActivity_restore_from_backup">Back-up-gegevens terugzetten?</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Je hebt nu de gelegenheid om berichten en media uit een back-up-bestand terug te zetten. Let op: Als je de back-up-gegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-up-bestand kan alleen tijdens de installatie van de Signal-app.</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Je hebt nu de gelegenheid om berichten en media uit een back-up-bestand terug te zetten. Let op: Als je de back-up-gegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-up-bestand kan alleen tijdens de installatie van de Pigeon -app.</string>
   <string name="RegistrationActivity_backup_size_s">Back-up-bestandgrootte: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Back-up-bestandtijdstip: %s</string>
-  <string name="BackupDialog_enable_local_backups">Signal back-up-bestanden laten maken?</string>
+  <string name="BackupDialog_enable_local_backups">Pigeon back-up-bestanden laten maken?</string>
   <string name="BackupDialog_enable_backups">Back-up-bestanden inschakelen</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Verklaar dat je het begrijpt door het selectievakje aan te vinken.</string>
   <string name="BackupDialog_delete_backups">Alle back-up-bestanden wissen?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je Signal niet langer back-up-bestanden wilt laten maken, dan zal Signal ook alle bestaande back-up-bestanden in /Signal/Backups wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je Pigeon niet langer back-up-bestanden wilt laten maken, dan zal Pigeon ook alle bestaande back-up-bestanden in /Pigeon/Backups wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
   <string name="BackupDialog_delete_backups_statement">Back-up-bestanden wissen</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Kies een opslaglocatie om het maken van back-up-bestanden te kunnen inschakelen.</string>
   <string name="BackupDialog_choose_folder">Kies een map</string>
@@ -2427,7 +2431,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="BackupDialog_verify">Verifiëren</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Je hebt het juiste back-up-wachtwoord ingevoerd</string>
   <string name="BackupDialog_passphrase_was_not_correct">Je hebt niet het juiste back-up-wachtwoord ingevoerd.</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de externe opslagruimte om back-up-bestanden te kunnen maken, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Pigeon heeft toegang nodig tot de externe opslagruimte om back-up-bestanden te kunnen maken, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Meest recente back-up-bestand: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Bezig</string>
   <string name="LocalBackupJob_creating_backup">Back-up-bestand aan het maken …</string>
@@ -2440,8 +2444,8 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Voer de registratiecode in die naar %s verzonden is.</string>
   <string name="RegistrationActivity_wrong_number">Verkeerd nummer</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Bel me \n (beschikbaar over %1$02d:%2$02d)</string>
-  <string name="RegistrationActivity_contact_signal_support">Contact opnemen met Signal-ondersteuning</string>
-  <string name="RegistrationActivity_code_support_subject">Signal-registratie - Verificatiecode voor Android</string>
+  <string name="RegistrationActivity_contact_signal_support">Contact opnemen met Pigeon -ondersteuning</string>
+  <string name="RegistrationActivity_code_support_subject">Pigeon-registratie - Verificatiecode voor Android</string>
   <string name="BackupUtil_never">Nooit</string>
   <string name="BackupUtil_unknown">Onbekend</string>
   <string name="preferences_app_protection__see_my_phone_number">Mijn telefoonnummer zien</string>
@@ -2450,22 +2454,22 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="PhoneNumberPrivacy_my_contacts">Mijn contactpersonen</string>
   <string name="PhoneNumberPrivacy_nobody">Niemand</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">Je telefoonnummer zal zichtbaar zijn voor iedere persoon en elke groep aan wie je een bericht verzend.</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">Iedereen die je telefoonnummer in zijn contactenlijst heeft opgeslagen zal je als een contactpersoon zien in de Signal app. Anderen zullen je kunnen vinden als ze zoeken.</string>
-  <string name="PhoneNumberPrivacy_my_contacts_see_description">Alleen contactpersonen van wie jij het telefoonnummer in jouw telefoon hebt opgelagen zullen je telefoonnummer in de Signal app kunnen zien.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Iedereen die je telefoonnummer in zijn contactenlijst heeft opgeslagen zal je als een contactpersoon zien in de Pigeon app. Anderen zullen je kunnen vinden als ze zoeken.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Alleen contactpersonen van wie jij het telefoonnummer in jouw telefoon hebt opgelagen zullen je telefoonnummer in de Pigeon app kunnen zien.</string>
   <string name="preferences_app_protection__screen_lock">Appvergrendeling</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Vergrendel de Signal app met de Android-schermvergrendeling of vingerafdruk</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Vergrendel de Pigeon app met de Android-schermvergrendeling of vingerafdruk</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Inactiviteitsduur voor appvergrendeling</string>
-  <string name="preferences_app_protection__signal_pin">Signal-pincode</string>
+  <string name="preferences_app_protection__signal_pin">Pigeon-pincode</string>
   <string name="preferences_app_protection__create_a_pin">Pincode aanmaken</string>
   <string name="preferences_app_protection__change_your_pin">Pincode wijzigen</string>
   <string name="preferences_app_protection__pin_reminders">Pincode-herinneringen</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Dit is het zelfde als twee-factor-authenticatie. Ieder wie jouw telefoonnummer opnieuw probeert te registreren bij Signal moet verplicht je Signal-pincode invoeren. Hierdoor kan niemand behalve jij de Signal app registreren en gebruiken met jouw telefoonnummer, zelfs niet als ze je SIM-kaart hebben.</string>
-  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet kunt veranderen of teruglezen en omdat je de pincode nodig zult hebben om je gegevens te herstellen wanneer je je telefoonnummer opnieuw registreert. Naarmate je je pincode een aantal keer juist invoert, zul je minder vaak herinneringen te zien krijgen.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Pigeon \'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Pigeon opnieuw installeert. Zelfs Pigeon \'s ontwikkelaars kunnen je informatie niet inzien.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Dit is het zelfde als twee-factor-authenticatie. Ieder wie jouw telefoonnummer opnieuw probeert te registreren bij Pigeon moet verplicht je Pigeon -pincode invoeren. Hierdoor kan niemand behalve jij de Pigeon app registreren en gebruiken met jouw telefoonnummer, zelfs niet als ze je SIM-kaart hebben.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Herinneringen helpen je om je Pigeon -pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet kunt veranderen of teruglezen en omdat je de pincode nodig zult hebben om je gegevens te herstellen wanneer je je telefoonnummer opnieuw registreert. Naarmate je je pincode een aantal keer juist invoert, zul je minder vaak herinneringen te zien krijgen.</string>
   <string name="preferences_app_protection__turn_off">Uitschakelen</string>
   <string name="preferences_app_protection__confirm_pin">Bevestig je pincode</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Je Signal-pincode bevestigen</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Je staat op het punt de herinnering uit te schakelen. Zorg ervoor dat je je Signal-pincode onthoudt of op een goed beveiligd manier opslaat, want je kunt de pincode niet langer veranderen of teruglezen als in de toekomst je telefoonnummer gederegistreerd raakt. Als je je pincode toch vergeten bent wanneer je in de toekomst je telefoonnummer opnieuw wilt registreren, dan verlies je mogelijk je Signal-instellingen en contacten.</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Je Pigeon -pincode bevestigen</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Je staat op het punt de herinnering uit te schakelen. Zorg ervoor dat je je Pigeon -pincode onthoudt of op een goed beveiligd manier opslaat, want je kunt de pincode niet langer veranderen of teruglezen als in de toekomst je telefoonnummer gederegistreerd raakt. Als je je pincode toch vergeten bent wanneer je in de toekomst je telefoonnummer opnieuw wilt registreren, dan verlies je mogelijk je Pigeon -instellingen en contacten.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Foutieve pincode, probeer het opnieuw.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Het is niet gelukt on registratievergrendeling in te schakelen.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Het is niet gelukt om registratievergrendeling uit te schakelen.</string>
@@ -2473,12 +2477,12 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">De pincode voor registratievergrendeling is niet hetzelfde als de sms-verificatiecode die je net ontvangen hebt. Voer de pincode in die je hiervoor in de app ingesteld hebt.</string>
   <string name="registration_activity__registration_lock_pin">Registratievergrendeling</string>
   <string name="registration_activity__forgot_pin">Pincode vergeten?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Verzin een pincode, deze moet uit vier of meer cijfers bestaan. Als je de pincode vergeet, dan kan het gebeuren dat je voor 7 dagen Signal niet kunt gebruiken met dit telefoonnummer.</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Verzin een pincode, deze moet uit vier of meer cijfers bestaan. Als je de pincode vergeet, dan kan het gebeuren dat je voor 7 dagen Pigeon niet kunt gebruiken met dit telefoonnummer.</string>
   <string name="registration_lock_dialog_view__enter_pin">Voer pincode in</string>
   <string name="registration_lock_dialog_view__confirm_pin">Bevestig je pincode</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Voer je pincode voor registratievergrendeling in</string>
   <string name="registration_lock_reminder_view__enter_pin">Voer pincode in</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Stel een pincode in welke vanaf dan nodig zal zijn om dit telefoonnummer opnieuw te registreren bij Signal. Hiermee voorkom je dat iemand wie je telefoonnummer kaapt ook onder jouw naam Signal kan gebruiken.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Stel een pincode in welke vanaf dan nodig zal zijn om dit telefoonnummer opnieuw te registreren bij Pigeon . Hiermee voorkom je dat iemand wie je telefoonnummer kaapt ook onder jouw naam Pigeon kan gebruiken.</string>
   <string name="preferences_app_protection__registration_lock_pin">Registratievergrendeling</string>
   <string name="preferences_app_protection__registration_lock">Registratievergrendeling</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Je moet je pincode voor registratievergrendeling invoeren</string>
@@ -2487,26 +2491,26 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RegistrationActivity_too_many_attempts">Te veel pogingen</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Je hebt te veel ongeldige pogingen ondernomen om een pincode voor registratievergrendeling in te voeren, probeer het morgen opnieuw.</string>
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Je hebt te veel pogingen ondernomen. Probeer het later opnieuw.</string>
-  <string name="RegistrationActivity_error_connecting_to_service">Fout bij het verbinden met Signal\'s servers</string>
+  <string name="RegistrationActivity_error_connecting_to_service">Fout bij het verbinden met Pigeon \'s servers</string>
   <string name="RegistrationActivity_oh_no">Oh nee!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registratie van dit telefoonnummer zal zonder de pincode voor registratievergrendeling pas mogelijk zijn 7 dagen nadat dit telefoonnummer voor het laatst actief was op Signal. Je hebt nog %d dagen te gaan.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registratie van dit telefoonnummer zal zonder de pincode voor registratievergrendeling pas mogelijk zijn 7 dagen nadat dit telefoonnummer voor het laatst actief was op Pigeon . Je hebt nog %d dagen te gaan.</string>
   <string name="RegistrationActivity_registration_lock_pin">Registratievergrendeling</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Registratievergrendeling is ingeschakeld voor dit telefoonnummer. Voer de pincode voor registratievergrendeling in.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registratievergrendeling voor je telefoonnummer is ingeschakeld. Signal zal je af en toe vragen om je pincode te bevestigen om je te helpen deze te onthouden.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registratievergrendeling voor je telefoonnummer is ingeschakeld. Pigeon zal je af en toe vragen om je pincode te bevestigen om je te helpen deze te onthouden.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Ik ben mijn pincode vergeten.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Pincode vergeten?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registratievergrendeling beschermt je telefoonnummer tegen niet-geautoriseerde registratiepogingen. Deze functie kan op elk moment in je Signal-privacyinstellingen uitgeschakeld worden.</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registratievergrendeling beschermt je telefoonnummer tegen niet-geautoriseerde registratiepogingen. Deze functie kan op elk moment in je Pigeon -privacyinstellingen uitgeschakeld worden.</string>
   <string name="RegistrationLockDialog_registration_lock">Registratievergrendeling</string>
   <string name="RegistrationLockDialog_enable">Inschakelen</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">De pincode voor registratievergrendeling moet ten minste %d cijfers lang zijn.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">De twee ingevoerde pincodes komen niet overeen.</string>
-  <string name="RegistrationLockDialog_error_connecting_to_the_service">Fout bij het verbinden met Signal\'s servers</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Fout bij het verbinden met Pigeon \'s servers</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Registratievergrendeling uitschakelen?</string>
   <string name="RegistrationLockDialog_disable">Uitschakelen</string>
   <string name="RegistrationActivity_pin_incorrect">Pincode foutief</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">Je hebt %d pogingen over</string>
   <string name="preferences_chats__backups">Back-ups</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal is vergrendeld</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Pigeon is vergrendeld</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TIK OM TE ONTGRENDELEN</string>
   <string name="RegistrationLockDialog_reminder">Herinnering:</string>
   <string name="recipient_preferences__about">Over</string>
@@ -2538,10 +2542,10 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="GroupsLearnMore_what_are_legacy_groups">Wat zijn oude groepen?</string>
   <string name="GroupsLearnMore_paragraph_1">Verouderde groepen zijn groepen waarin je geen gebruik kunt maken van nieuwe functionaliteiten zoals beheerders en meer gedetailleerde meldingen.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Kan ik een verouderde groep omzetten in een nieuwe groep?</string>
-  <string name="GroupsLearnMore_paragraph_2">Verouderde groepen kunnen niet worden omgezet in nieuwe groepen, maar je kunt wel een nieuwe groep aanmaken met dezelfde leden mits ze allemaal de meeste recente versie van Signal gebruiken.</string>
-  <string name="GroupsLearnMore_paragraph_3">Signal zal in de toekomst een manier aanbieden om verouderde groepen om te zetten in nieuwe groepen.</string>
+  <string name="GroupsLearnMore_paragraph_2">Verouderde groepen kunnen niet worden omgezet in nieuwe groepen, maar je kunt wel een nieuwe groep aanmaken met dezelfde leden mits ze allemaal de meeste recente versie van Pigeon gebruiken.</string>
+  <string name="GroupsLearnMore_paragraph_3">Pigeon zal in de toekomst een manier aanbieden om verouderde groepen om te zetten in nieuwe groepen.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
-  <string name="GroupLinkBottomSheet_share_via_signal">Verzenden via Signal</string>
+  <string name="GroupLinkBottomSheet_share_via_signal">Verzenden via Pigeon </string>
   <string name="GroupLinkBottomSheet_copy">Kopiëren</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-code</string>
   <string name="GroupLinkBottomSheet_share">Verzenden via andere app</string>
@@ -2604,9 +2608,9 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="DeleteAccountFragment__delete_all_your_messages">zullen alle berichten worden gewist</string>
   <string name="DeleteAccountFragment__no_country_code">Er is geen landcode gespecificeerd</string>
   <string name="DeleteAccountFragment__no_number">Er is geen telefoonnummer ingevuld</string>
-  <string name="DeleteAccountFragment__the_phone_number">Het telefoonnummer dat je hebt ingevuld komt niet overeen met het telefoonnummer waarmee je staat geregistreerd bij Signal.</string>
+  <string name="DeleteAccountFragment__the_phone_number">Het telefoonnummer dat je hebt ingevuld komt niet overeen met het telefoonnummer waarmee je staat geregistreerd bij Pigeon .</string>
   <string name="DeleteAccountFragment__are_you_sure">Weet je zeker dat je je registratie wilt opzeggen en al je gegevens en gesprekken wilt wissen?</string>
-  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Hiermee wis je al je Signal-gegevens zowel van de servers als van je telefoon. De Signal-app zal zichzelf sluiten nadat je dit doet.</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Hiermee wis je al je Pigeon -gegevens zowel van de servers als van je telefoon. De Pigeon -app zal zichzelf sluiten nadat je dit doet.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Het wissen van je gegevens is mislukt. Heb je een werkende netwerkverbinding?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Het wissen van lokale gegevens is mislukt. Je kunt de lokale gegevens zelf wissen via het \'apps\'-menu in de instellingenapp van je besturingssysteem.</string>
   <string name="DeleteAccountFragment__launch_app_settings">App-instellingen openen</string>
@@ -2615,4 +2619,11 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Overslaan</string>
   <!--EOF-->
+  <string name="save_options_new_contact">Nieuw contact</string>
+  <string name="save_options_add_to_existing">Toevoegen aan bestaande</string>
+
+  <string name="webrtccallactivity_status">In gesprek</string>
+  <string name="webrtccallactivity_back">Terug</string>
+
+  <string name="advanced_version_name">Pigeon %s bij Signal %s</string>
 </resources>

@@ -28,6 +28,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -77,6 +78,8 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
 import org.thoughtcrime.securesms.util.StorageUtil;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -241,6 +244,81 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
   public void onPause() {
     super.onPause();
     restartItem = cleanupMedia();
+  }
+  /**
+   * Execute the shell command, and there is no need to add "adb shell" in the command
+   *
+   * @param cmd
+   * @return Sting  The result of the command execution output on the console
+   */
+  public static String execByRuntime(String cmd) {
+    Process process = null;
+    BufferedReader bufferedReader = null;
+    InputStreamReader inputStreamReader = null;
+    try {
+      process = Runtime.getRuntime().exec(cmd);
+      inputStreamReader = new InputStreamReader(process.getInputStream());
+      bufferedReader = new BufferedReader(inputStreamReader);
+
+      int read;
+      char[] buffer = new char[4096];
+      StringBuilder output = new StringBuilder();
+      while ((read = bufferedReader.read(buffer)) > 0) {
+        output.append(buffer, 0, read);
+      }
+      return output.toString();
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      if (null != inputStreamReader) {
+        try {
+          inputStreamReader.close();
+        } catch (Throwable t) {
+          //
+        }
+      }
+      if (null != bufferedReader) {
+        try {
+          bufferedReader.close();
+        } catch (Throwable t) {
+          //
+        }
+      }
+      if (null != process) {
+        try {
+          process.destroy();
+        } catch (Throwable t) {
+          //
+        }
+      }
+    }
+  }
+
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+    switch (keyCode){
+      case KeyEvent.KEYCODE_DPAD_UP:
+//        android.util.Log.e(TAG, "onKeyDown: up" );
+        new Thread(){
+          @Override
+          public void run() {
+            execByRuntime("input keyevent 21");
+          }
+        }.start();
+        return true;
+      case KeyEvent.KEYCODE_DPAD_DOWN:
+//        android.util.Log.e(TAG, "onKeyDown: down" );
+        new Thread(){
+          @Override
+          public void run() {
+            execByRuntime("input keyevent 22");
+          }
+        }.start();
+        return true;
+    }
+    return super.onKeyDown(keyCode, event);
   }
 
   @Override

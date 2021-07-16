@@ -57,7 +57,7 @@ public final class RegistrationCodeRequest {
 
           return new VerificationRequestResult(fcmToken.orNull(), Optional.absent());
         } catch (IOException e) {
-          org.signal.core.util.logging.Log.w(TAG, "Error during account registration", e);
+          Log.w(TAG, "Error during account registration", e);
           return new VerificationRequestResult(null, Optional.of(e));
         }
       }

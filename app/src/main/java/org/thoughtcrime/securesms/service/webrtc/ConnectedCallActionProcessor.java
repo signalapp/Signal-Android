@@ -91,14 +91,6 @@ public class ConnectedCallActionProcessor extends DeviceAwareActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleReceivedIceCandidates(@NonNull WebRtcServiceState currentState,
-                                                                    @NonNull WebRtcData.CallMetadata callMetadata,
-                                                                    @NonNull ArrayList<IceCandidateParcel> iceCandidateParcels)
-  {
-    return activeCallDelegate.handleReceivedIceCandidates(currentState, callMetadata, iceCandidateParcels);
-  }
-
-  @Override
   protected @NonNull WebRtcServiceState handleLocalHangup(@NonNull WebRtcServiceState currentState) {
     return activeCallDelegate.handleLocalHangup(currentState);
   }

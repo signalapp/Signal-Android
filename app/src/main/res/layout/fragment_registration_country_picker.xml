@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:orientation="vertical"
-              android:background="#ffffff">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/sim_background"
+    android:orientation="vertical">
 
-    <EditText android:id="@+id/country_search"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-              android:drawableStart="@drawable/ic_menu_search_holo_light"
-              android:hint="@string/country_selection_fragment__search" />
+    <EditText
+        android:id="@+id/country_search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:drawableStart="@drawable/ic_menu_search_holo_light"
+        android:hint="@string/country_selection_fragment__search"
+        android:textColor="@color/white"
+        android:textCursorDrawable="@null" />
 
-    <ListView android:id="@android:id/list"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:divider="#ffdddddd"
-              android:dividerHeight="1.0px"
-              android:choiceMode="singleChoice" />
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:choiceMode="singleChoice"
+        android:divider="#ffdddddd"
+        android:dividerHeight="1.0px" />
 
-    <TextView android:id="@android:id/empty"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:gravity="center"
-              android:textAppearance="?android:attr/textAppearanceLarge"
-              android:text="@string/country_selection_fragment__loading_countries" />
+    <TextView
+        android:id="@android:id/empty"
+        style="@style/Mp02.Signal.Text.Title"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:text="@string/country_selection_fragment__loading_countries" />
 </LinearLayout>

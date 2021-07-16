@@ -78,6 +78,16 @@ public final class ConversationUpdateItem extends LinearLayout
     this.actionButton = findViewById(R.id.conversation_update_action);
 
     this.setOnClickListener(new InternalClickListener(null));
+
+    this.setOnFocusChangeListener(new OnFocusChangeListener() {
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus){
+          body.setFocusable(true);
+          body.requestFocus();
+        }
+      }
+    });
   }
 
   @Override

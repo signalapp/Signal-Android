@@ -58,12 +58,13 @@ public class CommunicationActions {
         if (resultCode == 1) {
           startCallInternal(activity, recipient, false);
         } else {
-          new AlertDialog.Builder(activity)
-                         .setMessage(R.string.CommunicationActions_start_voice_call)
-                         .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(activity, recipient, false))
-                         .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
-                         .setCancelable(true)
-                         .show();
+//          new AlertDialog.Builder(activity)
+//                         .setMessage(R.string.CommunicationActions_start_voice_call)
+//                         .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(activity, recipient, false))
+//                         .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
+//                         .setCancelable(true)
+//                         .show();
+          startCallInternal(activity, recipient, false);
         }
       }
     });
@@ -251,7 +252,7 @@ public class CommunicationActions {
 
   private static void startVideoCallInternal(@NonNull FragmentActivity activity, @NonNull Recipient recipient) {
     Permissions.with(activity)
-               .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
+               .request(Manifest.permission.RECORD_AUDIO)
                .ifNecessary()
                .withRationaleDialog(activity.getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.getDisplayName(activity)),
                                     R.drawable.ic_mic_solid_24,
@@ -265,9 +266,6 @@ public class CommunicationActions {
                  activity.startService(intent);
 
                  Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);
-
-                 activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                     .putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true);
 
                  activity.startActivity(activityIntent);
                })

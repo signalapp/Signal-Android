@@ -1,24 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_gravity="center"
-              android:layout_height="fill_parent"
-              android:layout_width="fill_parent"
-              android:orientation="vertical"
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:background="@color/sim_background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/confirm_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:defaultFocusHighlightEnabled="false"
+        android:focusable="true"
+        android:paddingLeft="30px"
+        android:text="@string/ChooseNewAdminActivity_done"
+        android:textSize="24px"
+        tools:ignore="UnusedAttribute"
+        android:visibility="gone"/>
 
     <org.thoughtcrime.securesms.components.ContactFilterToolbar
-            android:id="@+id/toolbar"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_width="match_parent"
-            android:minHeight="?attr/actionBarSize"
-            android:elevation="4dp"
-            android:theme="?attr/actionBarStyle"
-            app:navigationIcon="@drawable/ic_arrow_left_24"
-            app:contentInsetStartWithNavigation="0dp"/>
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarStyle"
+        app:contentInsetStartWithNavigation="0dp"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        android:visibility="gone"/>
 
-        <fragment android:id="@+id/contact_selection_list_fragment"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:name="org.thoughtcrime.securesms.ContactSelectionListFragment" />
-
+    <fragment
+        android:id="@+id/contact_selection_list_fragment"
+        android:name="org.thoughtcrime.securesms.ContactSelectionListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

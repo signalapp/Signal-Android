@@ -10,7 +10,7 @@
   <string name="AbstractNotificationBuilder_new_message">Nuovo messaggio</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal si sta aggiornando…</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Pigeon si sta aggiornando…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">In questo momento: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Non hai ancora impostato una password!</string>
@@ -25,17 +25,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Elimina</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Disabilitare la password?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Saranno sbloccati definitivamente Signal e le relative notifiche</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Saranno sbloccati definitivamente Pigeon e le relative notifiche</string>
   <string name="ApplicationPreferencesActivity_disable">Disabilita</string>
   <string name="ApplicationPreferencesActivity_unregistering">Disiscriviti</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Disiscrizione da messaggi e chiamate Signal…</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Disattivare i messaggi e le chiamate di Signal?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Disabilita i messaggi e le chiamate di Signal annullando la tua registrazione sul server. Dovrai registrare di nuovo il tuo numero di telefono per usare messaggi e chiamate di Signal in futuro.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Disiscrizione da messaggi e chiamate Pigeon …</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Disattivare i messaggi e le chiamate di Pigeon?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Disabilita i messaggi e le chiamate di Pigeon annullando la tua registrazione sul server. Dovrai registrare di nuovo il tuo numero di telefono per usare messaggi e chiamate di Pigeon in futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errore durante la connessione al server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Abilitati</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tocca per cambiare l\'applicazione predefinita per gli SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Disabilitati</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tocca per usare Signal come applicazione predefinita per gli SMS</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tocca per usare Pigeon come applicazione predefinita per gli SMS</string>
   <string name="ApplicationPreferencesActivity_on">on</string>
   <string name="ApplicationPreferencesActivity_On">On</string>
   <string name="ApplicationPreferencesActivity_off">off</string>
@@ -66,14 +66,14 @@
   <string name="AttachmentKeyboard_file">File</string>
   <string name="AttachmentKeyboard_contact">Contatto</string>
   <string name="AttachmentKeyboard_location">Posizione</string>
-  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal ha bisogno dell\'autorizzazione per mostrare le tue foto e i tuoi video.</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Pigeon ha bisogno dell\'autorizzazione per mostrare le tue foto e i tuoi video.</string>
   <string name="AttachmentKeyboard_give_access">Dai l\'accesso</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossibile trovare un\'app per selezionare il file.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal richiede l\'autorizzazione all\'accesso della memoria per allegare foto, video o audio, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Archiviazione\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal richiede l\'autorizzazione alla lettura dei contatti per allegare le informazioni di contatto, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal richiede l\'autorizzazione alla geolocalizzazione per allegare una posizione, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Posizione\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Pigeon richiede l\'autorizzazione all\'accesso della memoria per allegare foto, video o audio, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Archiviazione\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Pigeon richiede l\'autorizzazione alla lettura dei contatti per allegare le informazioni di contatto, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Pigeon richiede l\'autorizzazione alla geolocalizzazione per allegare una posizione, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Posizione\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Pigeon richiede l\'autorizzazione all\'uso della fotocamera per scattare foto, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Caricamento media…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Compressione video…</string>
@@ -122,26 +122,26 @@
   <string name="CameraXFragment_open_gallery_description">Apri galleria</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Contatti recenti</string>
-  <string name="CameraContacts_signal_contacts">Contatti Signal</string>
-  <string name="CameraContacts_signal_groups">Gruppi Signal</string>
+  <string name="CameraContacts_signal_contacts">Contatti Pigeon </string>
+  <string name="CameraContacts_signal_groups">Gruppi Pigeon </string>
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Puoi condividere con un massimo di %d conversazioni.</string>
-  <string name="CameraContacts_select_signal_recipients">Seleziona destinatari Signal</string>
-  <string name="CameraContacts_no_signal_contacts">Nessun contatto Signal</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">Puoi solo usare il bottone camera per inviare foto a contatti Signal.</string>
+  <string name="CameraContacts_select_signal_recipients">Seleziona destinatari Pigeon </string>
+  <string name="CameraContacts_no_signal_contacts">Nessun contatto Pigeon </string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Puoi solo usare il bottone camera per inviare foto a contatti Pigeon .</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Non riesci a trovare chi stai cercando?</string>
-  <string name="CameraContacts_invite_a_contact_to_join_signal">Invita un contatto a unirsi a Signal</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Invita un contatto a unirsi a Pigeon </string>
   <string name="CameraContacts__menu_search">Cerca</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Elimina</string>
   <string name="ClearProfileActivity_remove_profile_photo">Rimuovere foto profilo?</string>
   <string name="ClearProfileActivity_remove_group_photo">Rimuovere foto gruppo?</string>
   <!--ClientDeprecatedActivity-->
-  <string name="ClientDeprecatedActivity_update_signal">Aggiorna Signal</string>
+  <string name="ClientDeprecatedActivity_update_signal">Aggiorna Pigeon </string>
   <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Questa versione dell\'app non è più supportata. Per continuare a inviare e ricevere messaggi, aggiorna alla versione più recente.</string>
   <string name="ClientDeprecatedActivity_update">Aggiorna</string>
   <string name="ClientDeprecatedActivity_dont_update">Non aggiornare</string>
   <string name="ClientDeprecatedActivity_warning">Attenzione</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">La tua versione di Signal è scaduta. Puoi visualizzare la cronologia dei messaggi, ma non sarai in grado di inviare o ricevere messaggi finché non aggiorni.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">La tua versione di Pigeon è scaduta. Puoi visualizzare la cronologia dei messaggi, ma non sarai in grado di inviare o ricevere messaggi finché non aggiorni.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nessun browser web trovato.</string>
   <string name="CommunicationActions_no_email_app_found">Nessuna app di posta elettronica trovata.</string>
@@ -152,9 +152,9 @@
   <string name="CommunicationActions_cancel">Annulla</string>
   <string name="CommunicationActions_call">Chiama</string>
   <string name="CommunicationActions_insecure_call">Chiamata non sicura</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Potrebbero essere applicati costi dall\'operatore. Il numero che stai per chiamare non è registrato con Signal. Questa chiamata verrà effettuata tramite il tuo gestore di telefonia mobile, non tramite Internet.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Potrebbero essere applicati costi dall\'operatore. Il numero che stai per chiamare non è registrato con Pigeon . Questa chiamata verrà effettuata tramite il tuo gestore di telefonia mobile, non tramite Internet.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Il codice di sicurezza con %1$s è cambiato. Questo può voler dire che qualcuno sta cercando d\'intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Il codice di sicurezza con %1$s è cambiato. Questo può voler dire che qualcuno sta cercando d\'intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Pigeon .</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Dovresti verificare il tuo codice di sicurezza con questo contatto.</string>
   <string name="ConfirmIdentityDialog_accept">Accetta</string>
   <!--ContactsCursorLoader-->
@@ -165,7 +165,7 @@
   <string name="ContactsCursorLoader_username_search">Ricerca nome utente</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Messaggio %s</string>
-  <string name="ContactsDatabase_signal_call_s">Chiamata Signal %s</string>
+  <string name="ContactsDatabase_signal_call_s">Chiamata Pigeon %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Nome</string>
   <string name="ContactNameEditActivity_family_name">Cognome</string>
@@ -187,7 +187,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Invio fallito, tocca per invio non sicuro</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Tornare agli SMS non cifrati?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Tornare agli MMS non cifrati?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Questo messaggio <b>non</b> sarà criptato perché il destinatario non è più  un utente Signal.\n\nInviare un messaggio non sicuro?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Questo messaggio <b>non</b> sarà criptato perché il destinatario non è più  un utente Pigeon .\n\nInviare un messaggio non sicuro?</string>
   <string name="ConversationItem_unable_to_open_media">Impossibile trovare un\'app per aprire il file.</string>
   <string name="ConversationItem_copied_text">Copiato %s</string>
   <string name="ConversationItem_from_s">da %s</string>
@@ -213,14 +213,15 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Il dispositivo non sembra supportare le telefonate.</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS non sicuro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS non sicuro</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Passiamo a Signal %1$s</string>
+  <string name="ConversationActivity_transport_signal">Pigeon</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Passiamo a Pigeon %1$s</string>
   <string name="ConversationActivity_specify_recipient">Scegli un contatto</string>
   <string name="ConversationActivity_unblock_this_contact_question">Sbloccare questo contatto?</string>
   <string name="ConversationActivity_unblock_this_group_question">Sbloccare questo gruppo?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Sarai di nuovo in grado di ricevere messaggi e chiamate da questo contatto.</string>
   <string name="ConversationActivity_unblock_this_group_description">I membri esistenti potranno aggiungerti nel gruppo nuovamente.</string>
   <string name="ConversationActivity_unblock">Sblocca</string>
+  <string name="ConversationActivity_blocked">Bloccato</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">L\'allegato che stai cercando di inviare supera le dimensioni consentite.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Fotocamera non disponibile</string>
   <string name="ConversationActivity_unable_to_record_audio">Impossibile registrare il messaggio!</string>
@@ -228,17 +229,17 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Sul tuo dispositivo non sono presenti app per gestire questo link.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">La tua richiesta di unirti è stata inviata agli amministratori del gruppo. Riceverai una notifica quando interverranno.</string>
   <string name="ConversationActivity_cancel_request">Annulla richiesta</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Per poter mandare un messaggio audio, permetti a Signal di accedere al tuo microfono.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal richiede l\'autorizzazione all\'uso del microfono per inviare messaggi audio, ma è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\".</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal richiede le autorizzazioni all\'uso del microfono e della fotocamera per chiamare %s, ma sono state negate in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\" e \"Fotocamera\".</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Per poter catturare foto e video, permetti a Signal di accedere alla fotocamera del tuo dispositivo</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto o registrare video, ma è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto o registrare video</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Per poter mandare un messaggio audio, permetti a Pigeon di accedere al tuo microfono.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Pigeon richiede l\'autorizzazione all\'uso del microfono per inviare messaggi audio, ma è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\".</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Pigeon richiede le autorizzazioni all\'uso del microfono e della fotocamera per chiamare %s, ma sono state negate in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\" e \"Fotocamera\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Per poter catturare foto e video, permetti a Pigeon di accedere alla fotocamera del tuo dispositivo</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Pigeon richiede l\'autorizzazione all\'uso della fotocamera per scattare foto o registrare video, ma è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Pigeon richiede l\'autorizzazione all\'uso della fotocamera per scattare foto o registrare video</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Abilita l\'autorizzazione all\'uso del microfono per registrare video con audio.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal richiede l\'autorizzazione all\'uso del microfono per registrare video, ma è stata negata. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\" e \"Fotocamera\".</string>
-  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal richiede l\'autorizzazione all\'uso del microfono per registrare video.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Pigeon richiede l\'autorizzazione all\'uso del microfono per registrare video, ma è stata negata. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\" e \"Fotocamera\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Pigeon richiede l\'autorizzazione all\'uso del microfono per registrare video.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal non può inviare SMS/MMS perchè non è la tua app predefinita per gli sms. Vuoi renderla tale nelle impostazioni di Android?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Pigeon non può inviare SMS/MMS perchè non è la tua app predefinita per gli sms. Vuoi renderla tale nelle impostazioni di Android?</string>
   <string name="ConversationActivity_yes">Sì</string>
   <string name="ConversationActivity_no">No</string>
   <string name="ConversationActivity_search_position">%1$d di %2$d</string>
@@ -252,8 +253,8 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Abbandonerai questo gruppo e verrà eliminato da tutti i tuoi dispositivi.</string>
   <string name="ConversationActivity_delete">Elimina</string>
   <string name="ConversationActivity_delete_and_leave">Elimina e abbandona</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Per chiamare %1$s, Signal necessita dell\'accesso al tuo microfono</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Per chiamare %1$s, Signal necessita dell\'accesso al tuo microfono e alla tua fotocamera.</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Per chiamare %s, Pigeon necessita dell\'accesso al tuo microfono.</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Per chiamare %1$s, Pigeon necessita dell\'accesso al tuo microfono e alla tua fotocamera.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Altre opzioni ora in \"Impostazioni gruppo\"</string>
   <string name="ConversationActivity_join">Unisciti</string>
   <string name="ConversationActivity_full">Piena</string>
@@ -290,14 +291,14 @@
     <item quantity="other">Salvataggio di %1$d allegati in memoria…</item>
   </plurals>
   <string name="ConversationFragment_pending">In attesa…</string>
-  <string name="ConversationFragment_push">Dati (Signal)</string>
+  <string name="ConversationFragment_push">Dati (Pigeon)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Cancellazione</string>
   <string name="ConversationFragment_deleting_messages">Eliminazione messaggi…</string>
   <string name="ConversationFragment_delete_for_me">Elimina per me</string>
   <string name="ConversationFragment_delete_for_everyone">Elimina per tutti</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Questo messaggio verrà eliminato per tutti i partecipanti alla conversazione se utilizzano una versione recente di Signal. Potranno vedere che hai eliminato un messaggio.</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Questo messaggio verrà eliminato per tutti i partecipanti alla conversazione se utilizzano una versione recente di Pigeon . Potranno vedere che hai eliminato un messaggio.</string>
   <string name="ConversationFragment_quoted_message_not_found">Messaggio originale non trovato</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Messaggio originale non più disponibile</string>
   <string name="ConversationFragment_failed_to_open_message">Apertura messaggio fallita</string>
@@ -309,12 +310,12 @@
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membri del gruppo hanno lo stesso nome.</string>
   <string name="ConversationFragment__tap_to_review">Clicca per controllare</string>
   <string name="ConversationFragment__review_requests_carefully">Controlla attentamente le richieste</string>
-  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal ha trovato un altro contatto con lo stesso nome.</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Pigeon ha trovato un altro contatto con lo stesso nome.</string>
   <string name="ConversationFragment_contact_us">Contattaci</string>
   <string name="ConversationFragment_verify">Verifica</string>
   <string name="ConversationFragment_not_now">Non ora</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Il tuo codice di sicurezza con %s è cambiato</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Il tuo codice di sicurezza con %s è cambiato, probabilmente perché ha reinstallato Signal o cambiato dispositivo. Tocca Verifica per confermare il nuovo codice di sicurezza. Questo è facoltativo.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Il tuo codice di sicurezza con %s è cambiato, probabilmente perché ha reinstallato Pigeon o cambiato dispositivo. Tocca Verifica per confermare il nuovo codice di sicurezza. Questo è facoltativo.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Sul tuo dispositivo non ci sono browser installati.</string>
   <!--ConversationListFragment-->
@@ -353,7 +354,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Errore nella configurazione del profilo</string>
   <string name="CreateProfileActivity_profile_photo">Foto del profilo</string>
   <string name="CreateProfileActivity_set_up_your_profile">Imposta il tuo profilo</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Il tuo profilo è crittografato end-to-end. Il tuo profilo e le modifiche saranno visibili ai tuoi contatti quando inizi o accetti nuove conversazioni e quando ti unisci a nuovi gruppi.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">I profili di Pigeon sono criptati end-to-end ed il servizio di Signal non ha mai accesso a queste informazioni.</string>
   <string name="CreateProfileActivity_set_avatar_description">Imposta avatar</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Ripristinare da backup?</string>
@@ -376,11 +377,11 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Testa la passphrase del tuo backup e verifica che corrisponda</string>
   <string name="BackupsPreferenceFragment__turn_on">Attiva</string>
   <string name="BackupsPreferenceFragment__turn_off">Disattiva</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">Per ripristinare un backup, installa una nuova copia di Signal. Apri l\'app e tocca \"Ripristina backup\", quindi individua un file di backup. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">Per ripristinare un backup, installa una nuova copia di Pigeon . Apri l\'app e tocca \"Ripristina backup\", quindi individua un file di backup. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Scopri di più</string>
   <string name="BackupsPreferenceFragment__in_progress">In corso…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d finora…</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal richiede l\'autorizzazione per creare backup in memoria, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Pigeon richiede l\'autorizzazione per creare backup in memoria, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Utilizzo personalizzato: %s</string>
   <string name="CustomDefaultPreference_using_default">Utilizzo predefinito: %s</string>
@@ -399,7 +400,7 @@
   <string name="DateUtils_yesterday">Ieri</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">Sessione di chat aggiornata</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal utilizza la crittografia end-to-end e potrebbe essere necessario aggiornare la tua sessione di chat a volte. Ciò non influisce sulla sicurezza della tua chat, ma potresti aver perso un messaggio da questo contatto e puoi chiedere loro di inviarlo di nuovo.</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Pigeon utilizza la crittografia end-to-end e potrebbe essere necessario aggiornare la tua sessione di chat a volte. Ciò non influisce sulla sicurezza della tua chat, ma potresti aver perso un messaggio da questo contatto e puoi chiedere loro di inviarlo di nuovo.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Invio</string>
   <string name="DeliveryStatus_sent">Inviato</string>
@@ -420,19 +421,14 @@
   <string name="DeviceListItem_today">Oggi</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">File senza nome</string>
-  <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Dona a Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal è sostenuto da persone come te. Mostra il tuo sostegno oggi!</string>
-  <string name="DonateMegaphone_donate">Dona</string>
-  <string name="DonateMegaphone_no_thanks">No grazie</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">Ti presentiamo le chiamate di gruppo</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Apri un Nuovo Gruppo per avviare una chiamata di gruppo criptata gratuita</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Ottimizza per la mancanza di Google Play Services</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Questo dispositivo non supporta Google Play Services. Premi per disabilitare l\'ottimizzazione di sistema del consumo della batteria che impedisce a Signal di ricevere messaggi quando è inattivo.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Questo dispositivo non supporta Google Play Services. Premi per disabilitare l\'ottimizzazione di sistema del consumo della batteria che impedisce a Pigeon di ricevere messaggi quando è inattivo.</string>
   <!--ExpiredBuildReminder-->
-  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Questa versione di Signal è scaduta. Aggiorna ora per inviare e ricevere messaggi.</string>
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Questa versione di Pigeon è scaduta. Aggiorna ora per inviare e ricevere messaggi.</string>
   <string name="ExpiredBuildReminder_update_now">Aggiorna ora</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -446,8 +442,8 @@
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Recuperando un messaggio…</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Comunicazione Signal fallita definitivamente!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal è stato impossibilitato a registrarsi con i sevizi di Google Play. I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-registrare in Impostazioni &gt; Avanzate.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Comunicazione Pigeon fallita definitivamente!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Pigeon è stato impossibilitato a registrarsi con i sevizi di Google Play. I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-registrare in Impostazioni &gt; Avanzate.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Errore nel prelevare la GIF in risoluzione massima</string>
   <!--GiphyFragmentPageAdapter-->
@@ -612,7 +608,7 @@
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">I gruppi richiedono almeno 2 membri.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Creazione gruppo fallita.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Riprova più tardi.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Hai selezionato un contatto che non supporta i gruppi di Signal, quindi questo gruppo sarà MMS.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Hai selezionato un contatto che non supporta i gruppi di Pigeon , quindi questo gruppo sarà MMS.</string>
   <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">I nomi personalizzati e le foto dei gruppi MMS saranno visibili solo a te.</string>
   <string name="AddGroupDetailsFragment__remove">Rimuovi</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contatto SMS</string>
@@ -626,15 +622,15 @@
     <item quantity="other">%d membri non supportano i Nuovi Gruppi, quindi questo gruppo non può essere creato.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Verrà creato un Gruppo Legacy perché “%1$s” utilizza una vecchia versione di Signal. Puoi creare un Nuovo Gruppo con loro dopo che avranno aggiornato Signal o rimuovendoli prima di creare il gruppo.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Verrà creato un Gruppo Legacy perché “%1$s” utilizza una vecchia versione di Pigeon . Puoi creare un Nuovo Gruppo con loro dopo che avranno aggiornato Pigeon o rimuovendoli prima di creare il gruppo.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">Verrà creato un Gruppo Legacy perché %1$d membro utilizza una vecchia versione di Signal. Puoi creare un Nuovo Gruppo con loro dopo che avranno aggiornato Signal o rimuovendoli prima di creare il gruppo.</item>
-    <item quantity="other">Verrà creato un Gruppo Legacy perché %1$d membri utilizzano una vecchia versione di Signal. Puoi creare un Nuovo Gruppo con loro dopo che avranno aggiornato Signal o rimuovendoli prima di creare il gruppo.</item>
+    <item quantity="one">Verrà creato un Gruppo Legacy perché %1$d membro utilizza una vecchia versione di Pigeon . Puoi creare un Nuovo Gruppo con loro dopo che avranno aggiornato Pigeon o rimuovendoli prima di creare il gruppo.</item>
+    <item quantity="other">Verrà creato un Gruppo Legacy perché %1$d membri utilizzano una vecchia versione di Pigeon . Puoi creare un Nuovo Gruppo con loro dopo che avranno aggiornato Pigeon o rimuovendoli prima di creare il gruppo.</item>
   </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Questo gruppo non può essere creato perché “%1$s” sta usando una vecchia versione di Signal. Devi rimuoverli prima di creare il gruppo.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Questo gruppo non può essere creato perché “%1$s” sta usando una vecchia versione di Pigeon . Devi rimuoverli prima di creare il gruppo.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
-    <item quantity="one">Questo gruppo non può essere creato perché %1$d membro sta usando una vecchia versione di Signal. Devi rimuoverli prima di creare il gruppo.</item>
-    <item quantity="other">Questo gruppo non può essere creato perché %1$d membri stanno usando una vecchia versione di Signal. Devi rimuoverli prima di creare il gruppo.</item>
+    <item quantity="one">Questo gruppo non può essere creato perché %1$d membro sta usando una vecchia versione di Pigeon . Devi rimuoverli prima di creare il gruppo.</item>
+    <item quantity="other">Questo gruppo non può essere creato perché %1$d membri stanno usando una vecchia versione di Pigeon . Devi rimuoverli prima di creare il gruppo.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Messaggi a scomparsa</string>
@@ -668,7 +664,7 @@
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Solo gli amministratori possono attivare o disattivare l\'opzione di approvare nuovi membri.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Solo gli amministratori possono reimpostare il link del gruppo condivisibile.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Non hai i permessi per farlo</string>
-  <string name="ManageGroupActivity_not_capable">Qualcuno che hai aggiunto non supporta i nuovi gruppi e deve aggiornare Signal</string>
+  <string name="ManageGroupActivity_not_capable">Qualcuno che hai aggiunto non supporta i nuovi gruppi e deve aggiornare Pigeon </string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Aggiornamento del gruppo fallito</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Non sei un membro del gruppo</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Impossibile aggiornare il gruppo, riprova più tardi</string>
@@ -679,7 +675,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Questo è un Gruppo Legacy. Per accedere a nuove funzionalità come @menzioni e amministratori,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Questo Gruppo Legacy non può essere aggiornato a un Nuovo Gruppo perché è troppo grande. La dimensione massima del gruppo è %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">aggiorna questo gruppo.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Questo è un gruppo MMS non sicuro. Per chattare in privato, invita i tuoi contatti su Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Questo è un gruppo MMS non sicuro. Per chattare in privato, invita i tuoi contatti su Pigeon .</string>
   <string name="ManageGroupActivity_invite_now">Invita ora</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificami per le menzioni</string>
@@ -769,10 +765,10 @@
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Link dei gruppi presto disponibili</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aggiorna Signal per utilizzare i link dei gruppi</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versione di Signal che stai utilizzando non supporta questo link del gruppo. Aggiorna alla versione più recente per unirti a questo gruppo tramite link.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aggiorna Signal</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Uno o più dei tuoi dispositivi collegati eseguono una versione di Signal che non supporta i link dei gruppi. Aggiorna Signal sui tuoi dispositivi collegati per unirti a questo gruppo.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aggiorna Pigeon per utilizzare i link dei gruppi</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versione di Pigeon che stai utilizzando non supporta questo link del gruppo. Aggiorna alla versione più recente per unirti a questo gruppo tramite link.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aggiorna Pigeon </string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Uno o più dei tuoi dispositivi collegati eseguono una versione di Pigeon che non supporta i link dei gruppi. Aggiorna Pigeon sui tuoi dispositivi collegati per unirti a questo gruppo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Il link del gruppo non è valido</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Invita amici</string>
@@ -807,7 +803,7 @@
   <string name="InviteActivity_sending">Invio in corso…</string>
   <string name="InviteActivity_heart_content_description">Cuore</string>
   <string name="InviteActivity_invitations_sent">Inviti mandati!</string>
-  <string name="InviteActivity_invite_to_signal">Invita su Signal</string>
+  <string name="InviteActivity_invite_to_signal">Invita contatti</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">INVIA SMS A %d AMICO</item>
     <item quantity="other">INVIA SMS A %d AMICI</item>
@@ -816,7 +812,7 @@
     <item quantity="one">Inviare %d invito SMS?</item>
     <item quantity="other">Inviare %d inviti SMS?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Passiamo a Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Collegati con la crittografia end to end: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Sembra che tu non abbia applicazioni per condividere.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Gli amici non lasciano che gli amici chattino senza crittografia.</string>
   <!--Job-->
@@ -877,7 +873,7 @@
   <string name="Megaphones_introducing_reactions">Ti presentiamo le reazioni</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tieni premuto qualsiasi messaggio per rispondere rapidamente con una reazione.</string>
   <string name="Megaphones_remind_me_later">Ricordamelo più tardi</string>
-  <string name="Megaphones_verify_your_signal_pin">Verifica il tuo PIN di Signal</string>
+  <string name="Megaphones_verify_your_signal_pin">Verifica il tuo PIN di Pigeon </string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Occasionalmente ti chiederemo di verificare il tuo PIN in modo che te lo ricordi.</string>
   <string name="Megaphones_verify_pin">Verifica PIN</string>
   <string name="Megaphones_get_started">Iniziamo</string>
@@ -885,9 +881,9 @@
   <string name="Megaphones_invite_friends">Invita amici</string>
   <string name="Megaphones_use_sms">Usa SMS</string>
   <!--NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Chiamata con Signal in corso</string>
-  <string name="NotificationBarManager__establishing_signal_call">Preparazione chiamata Signal</string>
-  <string name="NotificationBarManager__incoming_signal_call">Chiamata Signal in arrivo</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Chiamata con Pigeon in corso</string>
+  <string name="NotificationBarManager__establishing_signal_call">Preparazione chiamata Pigeon </string>
+  <string name="NotificationBarManager__incoming_signal_call">Chiamata Pigeon in arrivo</string>
   <string name="NotificationBarManager__deny_call">Rifiuta chiamata</string>
   <string name="NotificationBarManager__answer_call">Rispondi</string>
   <string name="NotificationBarManager__end_call">Termina chiamata</string>
@@ -908,8 +904,8 @@
   <string name="MediaSendActivity_message_to_s">Messaggio a %s</string>
   <string name="MediaSendActivity_message">Messaggio</string>
   <string name="MediaSendActivity_select_recipients">Seleziona destinatari</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal richiede l\'accesso ai tuoi contatti per poterli mostrare.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione alla lettura dei contatti per permetterti la ricerca, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Pigeon richiede l\'accesso ai tuoi contatti per poterli mostrare.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Pigeon richiede l\'autorizzazione alla lettura dei contatti per permetterti la ricerca, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Non puoi condividere più di %d elemento.</item>
     <item quantity="other">Non puoi condividere più di %d elementi.</item>
@@ -921,17 +917,18 @@
   <string name="MediaRepository__camera">Fotocamera</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Sconosciuto</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Hai ricevuto un messaggio criptato usando una vecchia versione di Signal che non è più supportata. Per favore chiedi al mittente di aggiornare alla versione più recente e di inviare nuovamente il messaggio.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Hai ricevuto un messaggio criptato usando una vecchia versione di Pigeon che non è più supportata. Per favore chiedi al mittente di aggiornare alla versione più recente e di inviare nuovamente il messaggio.</string>
   <string name="MessageRecord_left_group">Hai lasciato il gruppo.</string>
   <string name="MessageRecord_you_updated_group">Hai aggiornato il gruppo.</string>
   <string name="MessageRecord_the_group_was_updated">Il gruppo è stato aggiornato.</string>
   <string name="MessageRecord_you_called_date">Hai chiamato · %1$s</string>
+  <string name="MessageRecord_missed_call">Chiamata persa · %1$s</string>
   <string name="MessageRecord_missed_audio_call_date">Chiamata audio persa · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">Videochiamata persa · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s ha aggiornato il gruppo.</string>
   <string name="MessageRecord_s_called_you_date">%1$s ti ha chiamato · %2$s</string>
   <string name="MessageRecord_called_s">Hai chiamato %s</string>
-  <string name="MessageRecord_s_joined_signal">%s è su Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s è su Pigeon !</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Hai disabilitato i messaggi a scomparsa.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ha disabilitato i messaggi a scomparsa.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Hai impostato il timer dei messaggi a scomparsa a %1$s.</string>
@@ -1147,27 +1144,27 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Codice QR non valido.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Siamo spiacenti, hai troppi dispositivi connessi, prova a scollegarne qualcuno</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Ci spiace, questo non è un codice QR valido per collegare il dispositivo.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Collegare un dispositivo Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sembrerebbe che tu stia provando a connettere un dispositivo Signal usando uno scanner di terze parti. Per la tua protezione ti preghiamo di  scansionare nuovamente il codice usando Signal.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal richiede l\'autorizzazione all\'uso della fotocamera per leggere codici QR, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
-  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Signal richiede l\'autorizzazione all\'uso della fotocamera per leggere codici QR.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Collegare un dispositivo Pigeon ?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sembrerebbe che tu stia provando a connettere un dispositivo Pigeon usando uno scanner di terze parti. Per la tua protezione ti preghiamo di  scansionare nuovamente il codice usando Pigeon .</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Pigeon richiede l\'autorizzazione all\'uso della fotocamera per leggere codici QR, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Pigeon richiede l\'autorizzazione all\'uso della fotocamera per leggere codici QR.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Messaggi a scomparsa</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">I tuoi messaggi non scadranno.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">I messaggi inviati e ricevuti in questa conversazione spariranno %s dopo essere stati visti.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Aggiorna ora</string>
-  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Questa versione di Signal scadrà oggi. Aggiorna alla versione più recente.</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Questa versione di Pigeon scadrà oggi. Aggiorna alla versione più recente.</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-    <item quantity="one">Questa versione di Signal scadrà domani. Aggiorna alla versione più recente.</item>
-    <item quantity="other">Questa versione di Signal scadrà tra %d giorni. Aggiorna alla versione più recente.</item>
+    <item quantity="one">Questa versione di Pigeon scadrà domani. Aggiorna alla versione più recente.</item>
+    <item quantity="other">Questa versione di Pigeon scadrà tra %d giorni. Aggiorna alla versione più recente.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Inserire la password</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Icona Signal</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Icona Pigeon </string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Inserisci password</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Password non valida!</string>
-  <string name="PassphrasePromptActivity_unlock_signal">Sblocca Signal</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Sblocca Pigeon </string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mappa</string>
   <string name="PlacePickerActivity_not_a_valid_address">Indirizzo non valido</string>
@@ -1189,16 +1186,16 @@
     <item quantity="one">Hai %1$d tentativo rimanente. Se esaurisci i tentativi, puoi creare un nuovo PIN. Puoi registrarti e usare il tuo account ma perderai alcune impostazioni salvate come le informazioni del tuo profilo.</item>
     <item quantity="other">Hai %1$d tentativi rimanenti. Se esaurisci i tentativi, puoi creare un nuovo PIN. Puoi registrarti e usare il tuo account ma perderai alcune impostazioni salvate come le informazioni del tuo profilo.</item>
   </plurals>
-  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Registrazione Signal - Ho bisogno di aiuto con il PIN per Android</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Registrazione Pigeon - Ho bisogno di aiuto con il PIN per Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Inserisci PIN alfanumerico</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Inserisci PIN numerico</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Crea il tuo PIN</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Hai esaurito i tentativi del PIN, ma puoi comunque accedere al tuo account Signal creando un nuovo PIN. Per la tua privacy e sicurezza il tuo account verrà ripristinato senza alcuna informazione o impostazione del profilo salvata.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Hai esaurito i tentativi del PIN, ma puoi comunque accedere al tuo account Pigeon creando un nuovo PIN. Per la tua privacy e sicurezza il tuo account verrà ripristinato senza alcuna informazione o impostazione del profilo salvata.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Crea nuovo PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Attenzione</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Se disabiliti il PIN, perderai tutti i dati quando ti registri nuovamente con Signal a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Se disabiliti il PIN, perderai tutti i dati quando ti registri nuovamente con Pigeon a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string>
   <string name="PinOptOutDialog_disable_pin">Disabilita PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vota questa app!</string>
@@ -1236,13 +1233,13 @@
   <string name="RedPhone_got_it">Capito</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Fai clic per abilitare la tua videocamera</string>
-  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Per chiamare %1$s, Signal necessita dell\'accesso alla tua fotocamera</string>
-  <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Per chiamare %1$s, Pigeon necessita dell\'accesso alla tua fotocamera</string>
+  <string name="WebRtcCallActivity__signal_s">Pigeon %1$s</string>
   <string name="WebRtcCallActivity__calling">Chiamata…</string>
   <string name="WebRtcCallActivity__group_call">Chiamata di gruppo</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Chiamata vocale Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">Videochiamata Signal…</string>
+  <string name="WebRtcCallView__signal_voice_call">Chiamata vocale Pigeon …</string>
+  <string name="WebRtcCallView__signal_video_call">Videochiamata Pigeon …</string>
   <string name="WebRtcCallView__start_call">Inizia chiamata</string>
   <string name="WebRtcCallView__join_call">Unisciti alla chiamata</string>
   <string name="WebRtcCallView__call_is_full">La chiamata è piena</string>
@@ -1290,19 +1287,20 @@
   <string name="RegistrationActivity_is_your_phone_number_above_correct">Il tuo numero di telefono sopra è corretto?</string>
   <string name="RegistrationActivity_edit_number">Modifica numero</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services mancanti</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Il dispositivo non ha Google Play Services. Puoi comunque usare Signal, ma questa configurazione potrebbe essere meno affidabile o performante.\n\nSe non sei un utente avanzato, non usi una ROM Android alternativa o credi che questo messaggio sia un errore, contatta support@signal.org per ricevere aiuto.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Il dispositivo non ha Google Play Services. Puoi comunque usare Pigeon , ma questa configurazione potrebbe essere meno affidabile o performante.\n\nSe non sei un utente avanzato, non usi una ROM Android alternativa o credi che questo messaggio sia un errore, contatta support@signal.org per ricevere aiuto.</string>
   <string name="RegistrationActivity_i_understand">Ho capito</string>
   <string name="RegistrationActivity_play_services_error">Errore di Google Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services si sta aggiornando o non è al momento disponibile. Per favore riprovare.</string>
-  <string name="RegistrationActivity_terms_and_privacy">Termini &amp; Politica sulla privacy</string>
+  <string name="RegistrationActivity_disclaimer">Pigeon disclaimer</string>
+  <string name="RegistrationActivity_terms_and_privacy">Signal termini &amp; Politica sulla privacy</string>
   <string name="RegistrationActivity_no_browser">Impossibile aprire questo link. Nessun browser web trovato.</string>
   <string name="RegistrationActivity_more_information">Maggiori informazioni</string>
   <string name="RegistrationActivity_less_information">Meno informazioni</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal richiede l\'accesso ai tuoi contatti e ai tuoi contenuti multimediali per connetterti con gli amici, scambiare messaggi e fare chiamate sicure</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal richiede l\'accesso ai tuoi contatti per connetterti con gli amici, scambiare messaggi e fare chiamate sicure</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pigeon richiede l\'accesso ai tuoi contatti e ai tuoi contenuti multimediali per connetterti con gli amici, scambiare messaggi e fare chiamate sicure</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pigeon richiede l\'accesso ai tuoi contatti per connetterti con gli amici, scambiare messaggi e fare chiamate sicure</string>
   <string name="RegistrationActivity_rate_limited_to_service">Hai fatto troppi tentativi per registrare questo numero. Per favore riprova più tardi.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Impossibile connettersi al servizio. Per favore controlla la connessione a internet e riprova</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Per verificare facilmente il tuo numero di telefono, Signal può rilevare automaticamente il codice di verifica se consenti a Signal di visualizzare i messaggi SMS.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Per verificare facilmente il tuo numero di telefono, Pigeon può rilevare automaticamente il codice di verifica se consenti a Pigeon di visualizzare i messaggi SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Ti manca solo %d passo per inviare un log di debug.</item>
     <item quantity="other">Ti mancano solo %d passi per inviare un log di debug.</item>
@@ -1314,6 +1312,7 @@
   <string name="RegistrationActivity_continue_d_attempts_left">Continua (%d tentativi rimanenti)</string>
   <string name="RegistrationActivity_continue_last_attempt">Continua (ultimo tentativo!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Porta la privacy con te.\nSii te stesso in ogni messaggio.</string>
+  <string name="RegistrationActivity_pigeon_enables_you_to_use_signal">Pigeon vi permette di usare Signal sull\'MP02.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Inserisci il tuo numero di telefono per iniziare</string>
   <string name="RegistrationActivity_enter_your_phone_number">Inserisci il tuo numero di telefono</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Riceverai un codice di verifica. Potrebbero applicarsi costi del tuo gestore.</string>
@@ -1325,7 +1324,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Attivare il blocco registrazione?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Disattivare il blocco registrazione?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Se dimentichi il tuo PIN di Signal quando ti registri di nuovo con Signal, non avrai accesso al tuo account per 7 giorni.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Se dimentichi il tuo PIN di Pigeon quando ti registri di nuovo con Pigeon , non avrai accesso al tuo account per 7 giorni.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Attiva</string>
   <string name="RegistrationLockV2Dialog_turn_off">Disattiva</string>
   <!--RevealableMessageView-->
@@ -1343,13 +1342,13 @@
   <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Aggiungi ai contatti</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Invita su Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">Messaggio Signal</string>
-  <string name="SharedContactDetailsActivity_signal_call">Chiamata Signal</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Invita contatti</string>
+  <string name="SharedContactDetailsActivity_signal_message">Messaggio Pigeon </string>
+  <string name="SharedContactDetailsActivity_signal_call">Chiamata Pigeon </string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Aggiungi ai contatti</string>
-  <string name="SharedContactView_invite_to_signal">Invita su Signal</string>
-  <string name="SharedContactView_message">Messaggio Signal</string>
+  <string name="SharedContactView_invite_to_signal">Invita contatti</string>
+  <string name="SharedContactView_message">Messaggio Pigeon </string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Te lo ricorderemo di nuovo più tardi.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Te lo ricorderemo di nuovo domani.</string>
@@ -1373,14 +1372,14 @@
   <string name="SmsMessageRecord_secure_session_reset">Hai resettato la sessione sicura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ha resettato la sessione sicura.</string>
   <string name="SmsMessageRecord_duplicate_message">Messaggio duplicato.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Questo messaggio non può essere elaborato poiché è stato inviato da una versione più recente di Signal. Puoi chiedere al tuo contatto di inviare di nuovo questo messaggio dopo che hai aggiornato.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Questo messaggio non può essere elaborato poiché è stato inviato da una versione più recente di Pigeon . Puoi chiedere al tuo contatto di inviare di nuovo questo messaggio dopo che hai aggiornato.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Errore in gestione messaggio in arrivo.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Adesivi</string>
   <!--StickerManagementAdapter-->
   <string name="StickerManagementAdapter_installed_stickers">Adesivi installati</string>
   <string name="StickerManagementAdapter_stickers_you_received">Adesivi che hai ricevuto</string>
-  <string name="StickerManagementAdapter_signal_artist_series">Serie artisti di Signal</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Serie artisti di Pigeon </string>
   <string name="StickerManagementAdapter_no_stickers_installed">Nessun pacchetto di adesivi installato</string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Gli adesivi dei messaggi in arrivo appariranno qui</string>
   <string name="StickerManagementAdapter_untitled">Senza titolo</string>
@@ -1404,11 +1403,11 @@
   <string name="SubmitDebugLogActivity_share">Condividi</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_subject">Oggetto:</string>
-  <string name="SupportEmailUtil_signal_android_support_request">Richiesta di supporto Signal Android</string>
+  <string name="SupportEmailUtil_signal_android_support_request">Richiesta di supporto Pigeon Android</string>
   <string name="SupportEmailUtil_device_info">Informazioni sul dispositivo:</string>
   <string name="SupportEmailUtil_android_version">Versione di Android:</string>
-  <string name="SupportEmailUtil_signal_version">Versione di Signal:</string>
-  <string name="SupportEmailUtil_signal_package">Pacchetto di Signal:</string>
+  <string name="SupportEmailUtil_signal_version">Versione di Pigeon :</string>
+  <string name="SupportEmailUtil_signal_package">Pacchetto di Pigeon :</string>
   <string name="SupportEmailUtil_registration_lock">Blocco registrazione:</string>
   <string name="SupportEmailUtil_locale">Lingua:</string>
   <!--ThreadRecord-->
@@ -1427,7 +1426,7 @@
   <string name="ThreadRecord_view_once_media">Media visualizzabile una volta</string>
   <string name="ThreadRecord_this_message_was_deleted">Questo messaggio è stato eliminato.</string>
   <string name="ThreadRecord_you_deleted_this_message">Hai eliminato questo messaggio.</string>
-  <string name="ThreadRecord_s_is_on_signal">%s è su Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s è su Pigeon !</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Messaggi a scomparsa disabilitati</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempo di scomparsa dei messaggi impostato a %s</string>
   <string name="ThreadRecord_safety_number_changed">Codice di sicurezza cambiato</string>
@@ -1446,8 +1445,8 @@
   <string name="ThreadRecord_video">Video</string>
   <string name="ThreadRecord_chat_session_refreshed">Sessione di chat aggiornata</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Aggiornamento Signal</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">È disponibile una nuova versione di Signal, tocca per aggiornare</string>
+  <string name="UpdateApkReadyListener_Signal_update">Aggiornamento Pigeon </string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">È disponibile una nuova versione di Pigeon , tocca per aggiornare</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Inviare messaggio?</string>
   <string name="UntrustedSendDialog_send">Invia</string>
@@ -1466,20 +1465,20 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">I nomi utente non possono iniziare con un numero.</string>
   <string name="UsernameEditFragment_username_is_invalid">Il nome utente non è valido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">I nomi utente devono contenere da %1$d a %2$d caratteri.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">I nomi utente su Signal sono facoltativi. Se scegli di creare un nome utente, gli altri utenti di Signal potranno trovarti con questo nome utente e contattarti senza conoscere il tuo numero di telefono.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">I nomi utente su Pigeon sono facoltativi. Se scegli di creare un nome utente, gli altri utenti di Pigeon potranno trovarti con questo nome utente e contattarti senza conoscere il tuo numero di telefono.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
-    <item quantity="one">%d contatto è su Signal!</item>
-    <item quantity="other">%d contatti sono su Signal!</item>
+    <item quantity="one">%d contatto è su Pigeon !</item>
+    <item quantity="other">%d contatti sono su Pigeon !</item>
   </plurals>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Il tuo contatto sta usando una vecchia versione di Signal. Chiedigli cortesemente di aggiornarla prima di verificare il codice di sicurezza.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Il tuo contatto sta eseguendo una versione più aggiornata di Signal con un formato di codice QR non compatibile. Per effettuare il confronto aggiorna la tua versione.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Il tuo contatto sta usando una vecchia versione di Pigeon . Chiedigli cortesemente di aggiornarla prima di verificare il codice di sicurezza.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Il tuo contatto sta eseguendo una versione più aggiornata di Pigeon con un formato di codice QR non compatibile. Per effettuare il confronto aggiorna la tua versione.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Il codice QR letto non è un codice di verifica formalmente valido per un codice di sicurezza. Si prega di rieseguire la scansione.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Condividi codice di sicurezza tramite…</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">I nostri codice di sicurezza Signal:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">I nostri codice di sicurezza Pigeon :</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Sembra che tu non abbia applicazioni per condividere.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Negli appunti non c\'è un codice di sicurezza da confrontare</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione all\'uso della fotocamera per leggere codici QR, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Pigeon richiede l\'autorizzazione all\'uso della fotocamera per leggere codici QR, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Impossibile scannerizzare i codici QR senza il permesso all\'uso della fotocamera</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">È necessario prima scambiarsi messaggi per poter visualizzare il codice di sicurezza di %1$s.</string>
   <!--ViewOnceMessageActivity-->
@@ -1499,13 +1498,13 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Tocca per aprire.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tocca per aprire, o tocca il lucchetto per chiudere.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal è sbloccato</string>
-  <string name="KeyCachingService_lock">Blocca Signal</string>
+  <string name="KeyCachingService_passphrase_cached">Pigeon è sbloccato</string>
+  <string name="KeyCachingService_lock">Blocca Pigeon </string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tu</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tipo di media non supportato</string>
   <string name="MediaPreviewActivity_draft">Bozza</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione per salvare in memoria, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Pigeon richiede l\'autorizzazione per salvare in memoria, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Impossibile salvare nella memoria esterna senza l\'autorizzazione</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Eliminare il messaggio?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Questo messaggio verrà eliminato definitivamente.</string>
@@ -1528,10 +1527,10 @@
   <string name="MessageNotifier_view_once_photo">Foto visualizzabile una volta</string>
   <string name="MessageNotifier_view_once_video">Video visualizzabile una volta</string>
   <string name="MessageNotifier_reply">Rispondi</string>
-  <string name="MessageNotifier_signal_message">Messaggio Signal</string>
+  <string name="MessageNotifier_signal_message">Messaggio Pigeon </string>
   <string name="MessageNotifier_unsecured_sms">SMS non sicuro</string>
   <string name="MessageNotifier_you_may_have_new_messages">Potresti avere nuovi messaggi</string>
-  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Apri Signal per controllare le notifiche recenti.</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Apri Pigeon per controllare le notifiche recenti.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contatto</string>
   <string name="MessageNotifier_reacted_s_to_s">Reagito %1$s a: \"%2$s\".</string>
@@ -1542,7 +1541,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagito %1$s al tuo media visualizzabile una volta.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagito %1$s al tuo adesivo.</string>
   <string name="MessageNotifier_this_message_was_deleted">Questo messaggio è stato eliminato.</string>
-  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Disattivare le notifiche quando un contatto si unisce a Signal? Puoi attivarle di nuovo in Signal &gt; Impostazioni &gt; Notifiche.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Disattivare le notifiche quando un contatto si unisce a Pigeon ? Puoi attivarle di nuovo in Pigeon &gt; Impostazioni &gt; Notifiche.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Predefinito</string>
   <string name="NotificationChannel_calls">Chiamate</string>
@@ -1558,7 +1557,7 @@
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Nome profilo impostato con successo.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Si è verificato un errore di rete.</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Risposta veloce non disponibile quando Signal è bloccato!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Risposta veloce non disponibile quando Pigeon è bloccato!</string>
   <string name="QuickResponseService_problem_sending_message">Problema nell\'invio del messaggio!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Salvato in %s</string>
@@ -1581,18 +1580,18 @@
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Dispositivo non più registrato</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Probabilmente perchè hai registrato il numero di telefono con Signal su un altro dispositivo. Tocca per registrare di nuovo.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Probabilmente perchè hai registrato il numero di telefono con Pigeon su un altro dispositivo. Tocca per registrare di nuovo.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Errore riproduzione video</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Per rispondere alla chiamata da %s, dai a Signal l\'autorizzazione ad accedere al tuo microfono.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal richiede le autorizzazioni all\'uso del microfono e della fotocamera per fare e ricevere chiamate, ma questo sono state negate in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\" e \"Fotocamera\".</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Per rispondere alla chiamata da %s, dai a Pigeon l\'autorizzazione ad accedere al tuo microfono.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Pigeon richiede le autorizzazioni all\'uso del microfono e della fotocamera per fare e ricevere chiamate, ma questo sono state negate in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\" e \"Fotocamera\".</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Hai risposto su un dispositivo collegato.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Hai rifiutato su un dispositivo collegato.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Occupato su un dispositivo collegato.</string>
   <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Qualcuno si è unito a questa chiamata con un codice di sicurezza che è cambiato.</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Il codice di sicurezza per le tue conversazioni con %1$s è cambiato. Questo può significare che qualcuno sta provando ad intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Il codice di sicurezza per le tue conversazioni con %1$s è cambiato. Questo può significare che qualcuno sta provando ad intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Pigeon .</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Dovresti verificare il codice di sicurezza con questo contatto.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nuovo codice di sicurezza</string>
   <string name="WebRtcCallScreen_accept">Accetta</string>
@@ -1611,9 +1610,12 @@
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tocca per abilitare il tuo video</string>
   <!--WebRtcCallControls Content Descriptions-->
   <string name="WebRtcCallControls_contact_photo_description">Foto del contatto</string>
+  <string name="WebRtcCallControls_volume_button_description">Volume</string>
   <string name="WebRtcCallControls_speaker_button_description">Vivavoce</string>
   <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
   <string name="WebRtcCallControls_mute_button_description">Muto</string>
+  <string name="WebRtcCallControls_mute_button_description_on">Muto</string>
+  <string name="WebRtcCallControls_mute_button_description_off">Riattiva audio</string>
   <string name="WebRtcCallControls_your_camera_button_description">La tua camera</string>
   <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Passa alla camera posteriore</string>
   <string name="WebRtcCallControls_answer_call_description">Rispondi</string>
@@ -1640,7 +1642,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Ripeti la nuova password</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Inserisci nome o numero</string>
-  <string name="contact_selection_activity__invite_to_signal">Invita ad usare Signal</string>
+  <string name="contact_selection_activity__invite_to_signal">Invita contatti</string>
   <string name="contact_selection_activity__new_group">Nuovo gruppo</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Cancella testo inserito</string>
@@ -1652,15 +1654,15 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto del contatto</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal richiede l\'autorizzazione alla lettura dei contatti per permetterti la ricerca, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Pigeon richiede l\'autorizzazione alla lettura dei contatti per permetterti la ricerca, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Errore di rilevamento dei contatti, controlla la connessione di rete</string>
   <string name="ContactSelectionListFragment_username_not_found">Nome utente non trovato</string>
-  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" non è un utente Signal. Controlla il nome utente e riprova.</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" non è un utente Pigeon . Controlla il nome utente e riprova.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Non è necessario aggiungere te stesso al gruppo</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Dimensione massima del gruppo raggiunta</string>
-  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">I gruppi di Signal possono avere un massimo di %1$d membri.</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">I gruppi di Pigeon possono avere un massimo di %1$d membri.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Limite di membri consigliato raggiunto</string>
-  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">I gruppi di Signal funzionano meglio con %1$d membri o meno. Aggiungere più membri causerà ritardi nell\'invio e nella ricezione dei messaggi.</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">I gruppi di Pigeon funzionano meglio con %1$d membri o meno. Aggiungere più membri causerà ritardi nell\'invio e nella ricezione dei messaggi.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d membro</item>
     <item quantity="other">%1$d membri</item>
@@ -1668,7 +1670,7 @@
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nessun contatto bloccato</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal richiede l\'accesso ai tuoi contatti per poterli mostrare.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Pigeon richiede l\'accesso ai tuoi contatti per poterli mostrare.</string>
   <string name="contact_selection_list_fragment__show_contacts">Mostra contatti</string>
   <!--contact_selection_list_item-->
   <plurals name="contact_selection_list_item__number_of_members">
@@ -1676,7 +1678,7 @@
     <item quantity="other">%1$d membri</item>
   </plurals>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Messaggio Signal</string>
+  <string name="conversation_activity__type_message_push">Messaggio Pigeon</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS non sicuro</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS non sicuro</string>
   <string name="conversation_activity__from_sim_name">Da %1$s</string>
@@ -1688,7 +1690,7 @@
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Mostra/nascondi pannello fotocamera</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Registra ed invia allegato audio</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Blocca la registrazione di un allegato audio</string>
-  <string name="conversation_activity__enable_signal_for_sms">Abilita Signal per gli SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Abilita Pigeon per gli SMS</string>
   <string name="conversation_activity__message_could_not_be_sent">Il messaggio non può essere inviato. Controlla la tua connessione e riprova.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Scorri per cancellare</string>
@@ -1782,9 +1784,9 @@
   <string name="IdentityUtil_unverified_banner_one">Il tuo codice di sicurezza con %s è cambiato e non è più verificato</string>
   <string name="IdentityUtil_unverified_banner_two">I tuoi codici di sicurezza con %1$s e %2$s non sono più verificati</string>
   <string name="IdentityUtil_unverified_banner_many">I tuoi codici di sicurezza con %1$s,%2$s e %3$s non sono più verificati</string>
-  <string name="IdentityUtil_unverified_dialog_one">Il tuo codice di sicurezza con %1$s è cambiato. Questo può voler dire che qualcuno sta cercando d\'intercettare la tua comunicazione, oppure che %1$s ha semplicemente reinstallato Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_two">I tuoi codici di sicurezza con %1$s e %2$s non sono più verificati. Questo può voler dire che qualcuno sta cercando di intercettare la tua comunicazione che semplicemente hanno reinstallato Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_many">I tuoi codici di sicurezza con %1$s,%2$s e %3$s non sono più verificati. Questo può voler dire che qualcuno sta cercando di intercettare la tua comunicazione che semplicemente hanno reinstallato Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Il tuo codice di sicurezza con %1$s è cambiato. Questo può voler dire che qualcuno sta cercando d\'intercettare la tua comunicazione, oppure che %1$s ha semplicemente reinstallato Pigeon .</string>
+  <string name="IdentityUtil_unverified_dialog_two">I tuoi codici di sicurezza con %1$s e %2$s non sono più verificati. Questo può voler dire che qualcuno sta cercando di intercettare la tua comunicazione che semplicemente hanno reinstallato Pigeon .</string>
+  <string name="IdentityUtil_unverified_dialog_many">I tuoi codici di sicurezza con %1$s,%2$s e %3$s non sono più verificati. Questo può voler dire che qualcuno sta cercando di intercettare la tua comunicazione che semplicemente hanno reinstallato Pigeon .</string>
   <string name="IdentityUtil_untrusted_dialog_one">Il tuo codice di sicurezza con %s è cambiato.</string>
   <string name="IdentityUtil_untrusted_dialog_two">I tuoi codici di sicurezza sicuri con %1$s e %2$s sono cambiati.</string>
   <string name="IdentityUtil_untrusted_dialog_many">I tuoi codici di sicurezza con %1$s,%2$s e %3$s sono cambiati.</string>
@@ -1812,7 +1814,7 @@
   <string name="log_submit_activity__please_review_this_log_from_my_app">Per favore controllate questo mio log dell\'app: %1$s</string>
   <string name="log_submit_activity__network_failure">Errore di rete. Riprova.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vuoi importare i tuoi vecchi messaggi nel database criptato di Signal?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vuoi importare i tuoi vecchi messaggi nel database criptato di Pigeon?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Il database di default non verrà modificato o alterato in nessun modo.</string>
   <string name="database_migration_activity__skip">Salta</string>
   <string name="database_migration_activity__import">Importa</string>
@@ -1840,11 +1842,13 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Sblocca</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal ha bisogno delle impostazioni degli MMS per poter inviare messaggi multimediali e di gruppo attraverso il tuo operatore. Il tuo dispositivo non fornisce queste impostazioni, probabilmente perché bloccato dall\'operatore  o altre configurazioni restrittive.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Pigeon ha bisogno delle impostazioni degli MMS per poter inviare messaggi multimediali e di gruppo attraverso il tuo operatore. Il tuo dispositivo non fornisce queste impostazioni, probabilmente perché bloccato dall\'operatore  o altre configurazioni restrittive.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Per inviare media e messaggi di gruppo, tocca \'OK\' e completa le impostazioni richieste. Le impostazioni MMS per il tuo operatore possono essere trovate cercando per \'APN del tuo operatore\'. Dovrai fare questo solo una volta.</string>
   <!--profile_create_activity-->
-  <string name="CreateProfileActivity_first_name_required">Nome (obbligatorio)</string>
-  <string name="CreateProfileActivity_last_name_optional">Cognome (facoltativo)</string>
+  <string name="CreateProfileActivity_first_name_required">Nome</string>
+  <string name="CreateProfileActivity_last_name_optional">Cognome</string>
+  <string name="CreateProfileActivity_required">obbligatorio</string>
+  <string name="CreateProfileActivity_optional">facoltativo</string>
   <string name="CreateProfileActivity_next">Avanti</string>
   <string name="CreateProfileActivity__username">Nome utente</string>
   <string name="CreateProfileActivity__create_a_username">Crea un nome utente</string>
@@ -1855,10 +1859,10 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Media condivisi</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Chiamata Signal</string>
+  <string name="redphone_call_card__signal_call">Chiamata Pigeon</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMERO DI TELEFONO</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal rende facile comunicare usando il tuo numero di telefono e la tua rubrica. Gli amici e i contatti che sanno già come chiamarti per telefono potranno mettersi in contatto facilmente con Signal.\n\nLa registrazione trasmette alcune informazioni di contatto al sever. Non vengono salvate.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Pigeon rende facile comunicare usando il tuo numero di telefono e la tua rubrica. Gli amici e i contatti che sanno già come chiamarti per telefono potranno mettersi in contatto facilmente con Pigeon .\n\nLa registrazione trasmette alcune informazioni di contatto al sever. Non vengono salvate.</string>
   <string name="registration_activity__verify_your_number">Verifica il tuo numero</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Inseirisci il tuo numero di telefono per ricevere un codice di verifica. Costi dell\'operatore applicabili.</string>
   <!--recipients_panel-->
@@ -1924,11 +1928,11 @@
   <string name="HelpFragment__whats_this">Cos\'è?</string>
   <string name="HelpFragment__how_do_you_feel">Come ti senti? (Facoltativo)</string>
   <string name="HelpFragment__support_info">Informazioni supporto</string>
-  <string name="HelpFragment__signal_android_support_request">Richiesta di supporto Signal Android</string>
+  <string name="HelpFragment__signal_android_support_request">Richiesta di supporto Pigeon Android</string>
   <string name="HelpFragment__debug_log">Log di debug:</string>
   <string name="HelpFragment__na">n.d.</string>
   <string name="HelpFragment__could_not_upload_logs">Impossibile inviare i log</string>
-  <string name="HelpFragment__signal_support">Assistenza Signal</string>
+  <string name="HelpFragment__signal_support">Assistenza Pigeon </string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Sii il più descrittivo possibile per aiutarci a capire il problema.</string>
   <string name="HelpFragment__no_email_app_found">Nessuna app di posta elettronica trovata.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -1978,8 +1982,8 @@
   <string name="preferences__sms_mms">SMS ed MMS</string>
   <string name="preferences__pref_all_sms_title">Recepire tutti gli SMS</string>
   <string name="preferences__pref_all_mms_title">Recepire tutti gli MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Usa Signal per tutti i messaggi in arrivo</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Usa Signal per tutti i messaggi multimediali in arrivo</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Usa Pigeon per tutti i messaggi in arrivo</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Usa Pigeon per tutti i messaggi multimediali in arrivo</string>
   <string name="preferences__pref_enter_sends_title">Spedisci premendo Invio</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Il tasto Invio manderà il messaggio</string>
   <string name="preferences__pref_use_address_book_photos">Usa le foto della rubrica</string>
@@ -1994,7 +1998,7 @@
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blocca schermo e notifiche con password</string>
   <string name="preferences__screen_security">Sicurezza schermo</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Non consentire di effettuare screenshots nella lista delle applicazioni recenti ed all\'interno dell\'app stessa.</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blocca automaticamente Signal dopo uno specifico intervallo di inattività</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blocca automaticamente Pigeon dopo uno specifico intervallo di inattività</string>
   <string name="preferences__inactivity_timeout_passphrase">Password intervallo di inattività</string>
   <string name="preferences__inactivity_timeout_interval">Intervallo di timeout per inattività</string>
   <string name="preferences__notifications">Notifiche</string>
@@ -2025,7 +2029,6 @@
   <string name="preferences__slow">Lento</string>
   <string name="preferences__help">Aiuto</string>
   <string name="preferences__advanced">Avanzate</string>
-  <string name="preferences__donate_to_signal">Dona a Signal</string>
   <string name="preferences__privacy">Privacy</string>
   <string name="preferences__mms_user_agent">User agent MMS</string>
   <string name="preferences__advanced_mms_access_point_names">Impostazioni manuali MMS</string>
@@ -2048,14 +2051,14 @@
   <string name="preferences__theme">Tema</string>
   <string name="preferences__disable_pin">Disabilita PIN</string>
   <string name="preferences__enable_pin">Abilita PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se disabiliti il PIN, perderai tutti i dati quando ti registri nuovamente con Signal a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">I PIN mantengono le informazioni memorizzate con Signal crittografate in modo che solo tu possa accedervi. Il profilo, le impostazioni e i contatti verranno ripristinati quando reinstalli. Non avrai bisogno del tuo PIN per aprire l\'app.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se disabiliti il PIN, perderai tutti i dati quando ti registri nuovamente con Pigeon a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">I PIN mantengono le informazioni memorizzate con Pigeon crittografate in modo che solo tu possa accedervi. Il profilo, le impostazioni e i contatti verranno ripristinati quando reinstalli. Non avrai bisogno del tuo PIN per aprire l\'app.</string>
   <string name="preferences__system_default">Predefinito di sistema</string>
   <string name="preferences__default">Predefinito</string>
   <string name="preferences__language">Lingua</string>
-  <string name="preferences__signal_messages_and_calls">Messaggi e chiamate Signal</string>
+  <string name="preferences__signal_messages_and_calls">Messaggi e chiamate Pigeon</string>
   <string name="preferences__advanced_pin_settings">Impostazioni PIN avanzate</string>
-  <string name="preferences__free_private_messages_and_calls">Messaggi e chiamate private e gratuite verso gli utenti Signal</string>
+  <string name="preferences__free_private_messages_and_calls">Messaggi e chiamate private e gratuite verso gli utenti Pigeon </string>
   <string name="preferences__submit_debug_log">Invia log di debug</string>
   <string name="preferences__delete_account">Elimina account</string>
   <string name="preferences__support_wifi_calling">Modalità di compatibilità \'WiFi Calling\'</string>
@@ -2094,13 +2097,13 @@
   <string name="preferences_storage__s_messages">%1$s messaggi</string>
   <string name="preferences_storage__custom">Personalizzato</string>
   <string name="preferences_advanced__use_system_emoji">Usa le emoji di sistema</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disattiva le emoji di Signal</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ritrasmetti le chiamate attraverso i server di Signal per non rivelare il tuo indirizzo IP ai tuoi contatti. Abilitandolo verrà ridotta la qualità della chiamata.</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disattiva le emoji di Pigeon </string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ritrasmetti le chiamate attraverso i server di Pigeon per non rivelare il tuo indirizzo IP ai tuoi contatti. Abilitandolo verrà ridotta la qualità della chiamata.</string>
   <string name="preferences_advanced__always_relay_calls">Ritrasmetti sempre le chiamate</string>
   <string name="preferences_app_protection__who_can">Chi può…</string>
   <string name="preferences_app_protection__app_access">Accesso app</string>
   <string name="preferences_app_protection__communication">Comunicazione</string>
-  <string name="preferences_chats__chats">Conversazioni</string>
+  <string name="preferences_chats__chats">Allegati</string>
   <string name="preferences_data_and_storage__manage_storage">Gestisci memoria</string>
   <string name="preferences_data_and_storage__calls">Chiamate</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Utilizza meno dati per le chiamate</string>
@@ -2115,9 +2118,9 @@
   <string name="preferences_notifications__calls">Chiamate</string>
   <string name="preferences_notifications__ringtone">Suoneria</string>
   <string name="preferences_chats__show_invitation_prompts">Mostra i messaggi di invito</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Visualizza messaggio di invito per i contatti senza Signal</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Visualizza messaggio di invito per i contatti senza Pigeon </string>
   <string name="preferences_chats__message_text_size">Dimensione carattere messaggio</string>
-  <string name="preferences_events__contact_joined_signal">Quando un contatto si unisce a Signal</string>
+  <string name="preferences_events__contact_joined_signal">Contatto disponibile su Pigeon</string>
   <string name="preferences_notifications__priority">Priorità</string>
   <string name="preferences_communication__category_sealed_sender">Mittente sigillato</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Mostra indicatori</string>
@@ -2141,8 +2144,10 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Chiama</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Chiamata Signal</string>
-  <string name="conversation_callable_secure__menu_video">Videochiamata Signal</string>
+  <string name="conversation_callable_secure__menu_call">Chiamata Pigeon </string>
+  <string name="conversation_callable_secure__menu_video">Videochiamata Pigeon </string>
+  <!-- conversation_voice_message -->
+  <string name="conversation_voice_message">Messaggio vocale</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Dettagli messaggio</string>
   <string name="conversation_context__menu_copy_text">Copia testo</string>
@@ -2199,6 +2204,7 @@
   <string name="conversation__menu_view_all_media">Tutti i file multimediali</string>
   <string name="conversation__menu_conversation_settings">Impostazioni conversazione</string>
   <string name="conversation__menu_add_shortcut">Aggiungi alla schermata principale</string>
+  <string name="conversation__menu_voice_message">Messaggio vocale</string>
   <string name="conversation__menu_pending_members">Membri in attesa</string>
   <string name="conversation__menu_create_bubble">Crea bolla</string>
   <!--conversation_popup-->
@@ -2222,15 +2228,15 @@
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Confronta con gli appunti</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">Importa gli SMS di sistema</string>
-  <string name="reminder_header_sms_import_text">Tocca per copiare i messaggi SMS del tuo telefono nel database criptato di Signal.</string>
-  <string name="reminder_header_push_title">Attiva i messaggi e le chiamate con Signal</string>
+  <string name="reminder_header_sms_import_text">Tocca per copiare i messaggi SMS del tuo telefono nel database criptato di Pigeon .</string>
+  <string name="reminder_header_push_title">Attiva i messaggi e le chiamate con Pigeon </string>
   <string name="reminder_header_push_text">Migliora la tua esperienza nel comunicare.</string>
-  <string name="reminder_header_invite_title">Invita ad usare Signal</string>
+  <string name="reminder_header_invite_title">Invita contatti</string>
   <string name="reminder_header_invite_text">Porta la tua conversazione con %1$s ad un nuovo livello.</string>
   <string name="reminder_header_share_title">Invita i tuoi amici!</string>
-  <string name="reminder_header_share_text">Più amici usano Signal, più migliora.</string>
-  <string name="reminder_header_service_outage_text">Signal sta riscontrando problemi tecnici. Stiamo lavorando per ripristinare il servizio nel minor tempo possibile.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Le ultime funzionalità di Signal non funzionano in questa versione di Android. Aggiorna il dispositivo per ricevere i futuri aggiornamenti di Signal.</string>
+  <string name="reminder_header_share_text">Più amici usano Pigeon , più migliora.</string>
+  <string name="reminder_header_service_outage_text">Pigeon sta riscontrando problemi tecnici. Stiamo lavorando per ripristinare il servizio nel minor tempo possibile.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Le ultime funzionalità di Pigeon non funzionano in questa versione di Android. Aggiorna il dispositivo per ricevere i futuri aggiornamenti di Pigeon .</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salva</string>
@@ -2250,22 +2256,22 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Statistiche</string>
   <string name="InsightsDashboardFragment__title">Statistiche</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Il Protocollo Signal ha automaticamente protetto il %1$d%% dei tuoi messaggi in uscita negli ultimi %2$d giorni. Le conversazioni tra utenti Signal sono sempre crittografate end-to-end.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Potenzia Signal</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Il Protocollo Pigeon ha automaticamente protetto il %1$d%% dei tuoi messaggi in uscita negli ultimi %2$d giorni. Le conversazioni tra utenti Pigeon sono sempre crittografate end-to-end.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Potenzia Pigeon </string>
   <string name="InsightsDashboardFragment__not_enough_data">Dati non sufficienti</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">La tua percentuale nelle statistiche viene calcolata basandosi sui messaggi in uscita negli ultimi %1$d giorni che non sono scomparsi o stati eliminati.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Inizia una conversazione</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Inizia a comunicare in modo sicuro e attiva nuove funzionalità che vanno oltre le limitazioni dei messaggi SMS non criptati invitando più contatti a unirsi a Signal.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Inizia a comunicare in modo sicuro e attiva nuove funzionalità che vanno oltre le limitazioni dei messaggi SMS non criptati invitando più contatti a unirsi a Pigeon .</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Queste statistiche sono generate localmente sul tuo dispositivo e possono essere viste solo da te. Non sono mai trasmesse da nessuna parte.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Messaggi criptati</string>
   <string name="InsightsDashboardFragment__cancel">Annulla</string>
   <string name="InsightsDashboardFragment__send">Invia</string>
   <string name="InsightsModalFragment__title">Ti presentiamo le statistiche</string>
-  <string name="InsightsModalFragment__description">Scopri quanti dei tuoi messaggi in uscita sono stati inviati in modo sicuro, quindi invita rapidamente nuovi contatti per aumentare la tua percentuale di Signal.</string>
+  <string name="InsightsModalFragment__description">Scopri quanti dei tuoi messaggi in uscita sono stati inviati in modo sicuro, quindi invita rapidamente nuovi contatti per aumentare la tua percentuale di Pigeon .</string>
   <string name="InsightsModalFragment__view_insights">Visualizza statistiche</string>
-  <string name="FirstInviteReminder__title">Invita a Signal</string>
+  <string name="FirstInviteReminder__title">Invita contatti</string>
   <string name="FirstInviteReminder__description">Puoi aumentare il numero di messaggi criptati che hai inviato del %1$d%%</string>
-  <string name="SecondInviteReminder__title">Aumenta il tuo Signal</string>
+  <string name="SecondInviteReminder__title">Aumenta il tuo Pigeon </string>
   <string name="SecondInviteReminder__description">Invita %1$s</string>
   <string name="InsightsReminder__view_insights">Visualizza statistiche</string>
   <string name="InsightsReminder__invite">Invita</string>
@@ -2286,7 +2292,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Crea un nuovo PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Puoi cambiare il tuo PIN finché questo dispositivo è registrato.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Crea il tuo PIN</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">I PIN mantengono le informazioni memorizzate con Signal crittografate in modo che solo tu possa accedervi. Il profilo, le impostazioni e i contatti verranno ripristinati quando reinstalli. Non avrai bisogno del tuo PIN per aprire l\'app.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">I PIN mantengono le informazioni memorizzate con Pigeon crittografate in modo che solo tu possa accedervi. Il profilo, le impostazioni e i contatti verranno ripristinati quando reinstalli. Non avrai bisogno del tuo PIN per aprire l\'app.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Scegli un PIN più complesso</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">I PIN non corrispondono. Riprova.</string>
@@ -2298,7 +2304,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Creazione PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Ti presentiamo i PIN</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">I PIN mantengono le informazioni memorizzate con Signal crittografate in modo che solo tu possa accedervi. Il profilo, le impostazioni e i contatti verranno ripristinati quando reinstalli. Non avrai bisogno del tuo PIN per aprire l\'app.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">I PIN mantengono le informazioni memorizzate con Pigeon crittografate in modo che solo tu possa accedervi. Il profilo, le impostazioni e i contatti verranno ripristinati quando reinstalli. Non avrai bisogno del tuo PIN per aprire l\'app.</string>
   <string name="KbsSplashFragment__learn_more">Scopri di più</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Blocco registrazione = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Il tuo blocco registrazione ora è chiamato PIN e fa di più. Aggiornalo ora.</string>
@@ -2308,7 +2314,7 @@
   <string name="KbsSplashFragment__learn_more_about_pins">Scopri di più sui PIN</string>
   <string name="KbsSplashFragment__disable_pin">Disabilita PIN</string>
   <!--KBS Reminder Dialog-->
-  <string name="KbsReminderDialog__enter_your_signal_pin">Inserisci il tuo PIN di Signal</string>
+  <string name="KbsReminderDialog__enter_your_signal_pin">Inserisci il tuo PIN di Pigeon </string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Per aiutarti a memorizzare il tuo PIN, ti chiederemo di inserirlo periodicamente. Lo chiederemo di meno nel corso del tempo.</string>
   <string name="KbsReminderDialog__skip">Salta</string>
   <string name="KbsReminderDialog__submit">Invia</string>
@@ -2355,19 +2361,19 @@
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s riceverà una richiesta di messaggio da te. Potrai chiamarlo quando la tua richiesta di messaggio verrà accettata.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Crea un PIN</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">I PIN mantengono le informazioni che sono memorizzate con Signal crittografate.</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">I PIN mantengono le informazioni che sono memorizzate con Pigeon crittografate.</string>
   <string name="KbsMegaphone__create_pin">Crea PIN</string>
   <string name="KbsMegaphone__introducing_pins">Ti presentiamo i PIN</string>
   <string name="KbsMegaphone__update_pin">Aggiorna PIN</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Te lo ricorderemo più tardi. Creare un PIN diventerà obbligatorio tra %1$d giorni.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Te lo ricorderemo più tardi. Confermare il tuo PIN diventerà obbligatorio tra %1$d giorni.</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">Di\' a Signal cosa ne pensi</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Per rendere Signal la migliore app di messaggistica del pianeta, ci piacerebbe ricevere il tuo feedback.</string>
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Di\' a Pigeon cosa ne pensi</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Per rendere Pigeon la migliore app di messaggistica del pianeta, ci piacerebbe ricevere il tuo feedback.</string>
   <string name="ResearchMegaphone_learn_more">Scopri di più</string>
   <string name="ResearchMegaphone_dismiss">Chiudi</string>
-  <string name="ResearchMegaphoneDialog_signal_research">Ricerca di Signal</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Crediamo nella privacy.</b></p><p>Signal non ti traccia né raccoglie i tuoi dati. Per migliorare Signal per tutti, ci affidiamo al feedback degli utenti, <b>e ci piacerebbe molto il tuo.</b></p><p>Stiamo conducendo un sondaggio per capire come utilizzi Signal. Il nostro sondaggio non raccoglie dati che ti identificano. Se sei interessato a condividere feedback aggiuntivi, avrai la possibilità di fornire le informazioni di contatto.</p><p>Se hai qualche minuto e feedback da offrire, ci piacerebbe sentirti.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_signal_research">Ricerca di Pigeon </string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Crediamo nella privacy.</b></p><p>Pigeon non ti traccia né raccoglie i tuoi dati. Per migliorare Pigeon per tutti, ci affidiamo al feedback degli utenti, <b>e ci piacerebbe molto il tuo.</b></p><p>Stiamo conducendo un sondaggio per capire come utilizzi Pigeon . Il nostro sondaggio non raccoglie dati che ti identificano. Se sei interessato a condividere feedback aggiuntivi, avrai la possibilità di fornire le informazioni di contatto.</p><p>Se hai qualche minuto e feedback da offrire, ci piacerebbe sentirti.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Partecipa al sondaggio</string>
   <string name="ResearchMegaphoneDialog_no_thanks">No grazie</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Il sondaggio è ospitato da Alchemer presso il dominio sicuro surveys.signalusers.org</string>
@@ -2376,12 +2382,12 @@
   <string name="ConversationListFragment_loading">Caricamento…</string>
   <string name="CallNotificationBuilder_connecting">Connessione…</string>
   <string name="Permissions_permission_required">Autorizzazione necessaria</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal necessita l\'accesso agli SMS per poterli inviare, ma è stato negato in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"SMS\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Pigeon necessita l\'accesso agli SMS per poterli inviare, ma è stato negato in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"SMS\".</string>
   <string name="Permissions_continue">Continua</string>
   <string name="Permissions_not_now">Non ora</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione alla lettura dei contatti per permetterti la ricerca, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
-  <string name="conversation_activity__enable_signal_messages">ABILITA MESSAGGI SIGNAL</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrazione del database di Signal</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Pigeon richiede l\'autorizzazione alla lettura dei contatti per permetterti la ricerca, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
+  <string name="conversation_activity__enable_signal_messages">ABILITA MESSAGGI PIGEON</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrazione del database di Pigeon </string>
   <string name="PushDecryptJob_new_locked_message">Nuovo messaggio bloccato</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Sblocca per leggere i messaggi in sospeso</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Passphrase di backup</string>
@@ -2399,7 +2405,7 @@
   <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Testa la passphrase del tuo backup e verifica che corrisponda</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Inserire passphrase del backup</string>
   <string name="RegistrationActivity_restore">Ripristina</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Impossibile importare backup da versioni più recenti di Signal</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Impossibile importare backup da versioni più recenti di Pigeon </string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Passphrase del backup errata</string>
   <string name="RegistrationActivity_checking">Controllo…</string>
   <string name="RegistrationActivity_d_messages_so_far">Ancora %d messaggi…</string>
@@ -2421,7 +2427,7 @@
   <string name="BackupDialog_verify">Verifica</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Hai inserito correttamente la passphrase del tuo backup</string>
   <string name="BackupDialog_passphrase_was_not_correct">La passphrase non è corretta</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal richiede l\'autorizzazione per creare backup in memoria, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Pigeon richiede l\'autorizzazione per creare backup in memoria, ma è stata negata in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\", quindi abilitare \"Archiviazione\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Ultimo backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">In corso</string>
   <string name="LocalBackupJob_creating_backup">Creazione backup…</string>
@@ -2434,8 +2440,8 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Per favore inserire il codice di verifica inviato a %s.</string>
   <string name="RegistrationActivity_wrong_number">Numero errato</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Chiamami \n (Disponibile tra %1$02d:%2$02d)</string>
-  <string name="RegistrationActivity_contact_signal_support">Contatta l\'assistenza Signal</string>
-  <string name="RegistrationActivity_code_support_subject">Registrazione Signal - Codice di verifica per Android</string>
+  <string name="RegistrationActivity_contact_signal_support">Contatta l\'assistenza Pigeon </string>
+  <string name="RegistrationActivity_code_support_subject">Registrazione Pigeon - Codice di verifica per Android</string>
   <string name="BackupUtil_never">Mai</string>
   <string name="BackupUtil_unknown">Sconosciuto</string>
   <string name="preferences_app_protection__see_my_phone_number">Vedere il mio numero di telefono</string>
@@ -2444,22 +2450,22 @@
   <string name="PhoneNumberPrivacy_my_contacts">I miei contatti</string>
   <string name="PhoneNumberPrivacy_nobody">Nessuno</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">Il tuo numero di telefono sarà visibile a tutte le persone e ai gruppi a cui invii messaggi.</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">Chiunque abbia il tuo numero nei suoi contatti telefonici lo vedrà anche su Signal. Gli altri potranno trovarti nella ricerca.</string>
-  <string name="PhoneNumberPrivacy_my_contacts_see_description">Solo i tuoi contatti vedranno il tuo numero di telefono su Signal.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Chiunque abbia il tuo numero nei suoi contatti telefonici lo vedrà anche su Pigeon . Gli altri potranno trovarti nella ricerca.</string>
+  <string name="PhoneNumberPrivacy_my_contacts_see_description">Solo i tuoi contatti vedranno il tuo numero di telefono su Pigeon .</string>
   <string name="preferences_app_protection__screen_lock">Blocco schermo</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blocca l\'accesso a Signal con il blocco schermo di Android o la tua impronta digitale</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blocca l\'accesso a Pigeon con il blocco schermo di Android o la tua impronta digitale</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Tempo di inattività per blocco schermo</string>
-  <string name="preferences_app_protection__signal_pin">PIN di Signal</string>
+  <string name="preferences_app_protection__signal_pin">PIN di Pigeon </string>
   <string name="preferences_app_protection__create_a_pin">Crea un PIN</string>
   <string name="preferences_app_protection__change_your_pin">Cambia il tuo PIN</string>
   <string name="preferences_app_protection__pin_reminders">Promemoria del PIN</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">I PIN mantengono le informazioni memorizzate con Signal crittografate in modo che solo tu possa accedervi. Il profilo, le impostazioni e i contatti verranno ripristinati quando reinstalli Signal.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Aggiungi ulteriore sicurezza richiedendo il tuo PIN di Signal per registrare nuovamente il tuo numero di telefono con Signal.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">I PIN mantengono le informazioni memorizzate con Pigeon crittografate in modo che solo tu possa accedervi. Il profilo, le impostazioni e i contatti verranno ripristinati quando reinstalli Pigeon .</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Aggiungi ulteriore sicurezza richiedendo il tuo PIN di Pigeon per registrare nuovamente il tuo numero di telefono con Pigeon .</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">I promemoria ti aiutano a ricordare il tuo PIN poiché non può essere recuperato. Ti verrà chiesto meno frequentemente nel corso del tempo.</string>
   <string name="preferences_app_protection__turn_off">Disattiva</string>
   <string name="preferences_app_protection__confirm_pin">Conferma PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">Conferma il tuo PIN di Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Assicurati di memorizzare o archiviare in modo sicuro il tuo PIN in quanto non può essere recuperato. Se dimentichi il tuo PIN, potresti perdere dati durante la nuova registrazione del tuo account Signal.</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">Conferma il tuo PIN di Pigeon </string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Assicurati di memorizzare o archiviare in modo sicuro il tuo PIN in quanto non può essere recuperato. Se dimentichi il tuo PIN, potresti perdere dati durante la nuova registrazione del tuo account Pigeon .</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">PIN errato. Riprova.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Impossibile abilitare il blocco registrazione.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Impossibile disabilitare il blocco registrazione.</string>
@@ -2472,7 +2478,7 @@
   <string name="registration_lock_dialog_view__confirm_pin">Conferma PIN</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Inserisci il PIN per il blocco della registrazione</string>
   <string name="registration_lock_reminder_view__enter_pin">Inserisci PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Abilita un PIN di blocco della registrazione che sarà necessario per registrare nuovamente questo numero di telefono con Signal.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Abilita un PIN di blocco della registrazione che sarà necessario per registrare nuovamente questo numero di telefono con Pigeon .</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN di blocco della registrazione</string>
   <string name="preferences_app_protection__registration_lock">Blocco registrazione</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Devi inserire il tuo PIN di blocco registrazione</string>
@@ -2483,13 +2489,13 @@
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Hai fatto troppi tentativi. Riprova più tardi.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Errore durante la connessione al servizio</string>
   <string name="RegistrationActivity_oh_no">Oh no!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">La registrazione di questo numero di telefono sarà possibile senza il PIN di blocco della registrazione dopo che saranno trascorsi 7 giorni dall\'ultima volta in cui questo numero di telefono è stato attivo su Signal. Hai %d giorni rimanenti.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">La registrazione di questo numero di telefono sarà possibile senza il PIN di blocco della registrazione dopo che saranno trascorsi 7 giorni dall\'ultima volta in cui questo numero di telefono è stato attivo su Pigeon . Hai %d giorni rimanenti.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN di blocco registrazione</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Questo numero di telefono ha il blocco registrazione attivo. Per favore inserisci il PIN di blocco registrazione.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Il PIN di blocco registrazione è abilitato sul tuo numero di telefono. Per aiutarti a memorizzarlo Signal ti chiederà periodicamente di confermarlo.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Il PIN di blocco registrazione è abilitato sul tuo numero di telefono. Per aiutarti a memorizzarlo Pigeon ti chiederà periodicamente di confermarlo.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Ho dimenticato il mio PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN dimenticato?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Il blocco registrazione aiuta a proteggere il tuo numero di telefono da tentativi non autorizzati di registrazione. Questa funzionalità può essere disabilitata in ogni momento dalle impostazioni Privacy di Signal</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Il blocco registrazione aiuta a proteggere il tuo numero di telefono da tentativi non autorizzati di registrazione. Questa funzionalità può essere disabilitata in ogni momento dalle impostazioni Privacy di Pigeon </string>
   <string name="RegistrationLockDialog_registration_lock">Blocco registrazione</string>
   <string name="RegistrationLockDialog_enable">Abilita</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Il PIN di blocco registrazione deve essere almeno di %d cifre.</string>
@@ -2500,7 +2506,7 @@
   <string name="RegistrationActivity_pin_incorrect">PIN errato</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">Hai %d tentativi rimanenti</string>
   <string name="preferences_chats__backups">Backup</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal è bloccato</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Pigeon è bloccato</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOCCA PER SBLOCCARE</string>
   <string name="RegistrationLockDialog_reminder">Promemoria:</string>
   <string name="recipient_preferences__about">A riguardo</string>
@@ -2532,10 +2538,10 @@
   <string name="GroupsLearnMore_what_are_legacy_groups">Cos\'è un Gruppo Legacy?</string>
   <string name="GroupsLearnMore_paragraph_1">I Gruppi Legacy sono gruppi che non sono compatibili con le funzionalità dei Nuovi Gruppi come amministratori e aggiornamenti del gruppo più descrittivi.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Posso aggiornare un Gruppo Legacy?</string>
-  <string name="GroupsLearnMore_paragraph_2">I Gruppi Legacy non possono ancora essere aggiornati a Nuovi Gruppi, ma puoi creare un Nuovo Gruppo con gli stessi membri se si trovano sull\'ultima versione di Signal.</string>
-  <string name="GroupsLearnMore_paragraph_3">Signal offrirà un modo per aggiornare i Gruppi Legacy in futuro.</string>
+  <string name="GroupsLearnMore_paragraph_2">I Gruppi Legacy non possono ancora essere aggiornati a Nuovi Gruppi, ma puoi creare un Nuovo Gruppo con gli stessi membri se si trovano sull\'ultima versione di Pigeon .</string>
+  <string name="GroupsLearnMore_paragraph_3">Pigeon offrirà un modo per aggiornare i Gruppi Legacy in futuro.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
-  <string name="GroupLinkBottomSheet_share_via_signal">Condividi tramite Signal</string>
+  <string name="GroupLinkBottomSheet_share_via_signal">Condividi tramite Pigeon </string>
   <string name="GroupLinkBottomSheet_copy">Copia</string>
   <string name="GroupLinkBottomSheet_qr_code">Codice QR</string>
   <string name="GroupLinkBottomSheet_share">Condividi</string>
@@ -2600,7 +2606,7 @@
   <string name="DeleteAccountFragment__no_number">Nessun numero specificato</string>
   <string name="DeleteAccountFragment__the_phone_number">Il numero di telefono che hai inserito non corrisponde a quello del tuo account.</string>
   <string name="DeleteAccountFragment__are_you_sure">Sei sicuro di voler eliminare il tuo account?</string>
-  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Questo cancellerà il tuo account Signal e ripristinerà l\'applicazione. L\'app si chiuderà al termine del processo.</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Questo cancellerà il tuo account Pigeon e ripristinerà l\'applicazione. L\'app si chiuderà al termine del processo.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Impossibile eliminare l\'account. Hai una connessione di rete?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Impossibile eliminare i dati locali. Puoi cancellarli manualmente nelle impostazioni di sistema dell\'applicazione.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Avvia impostazioni app</string>
@@ -2609,4 +2615,11 @@
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Salta</string>
   <!--EOF-->
+  <string name="save_options_new_contact">Nuovo contatto</string>
+  <string name="save_options_add_to_existing">Aggiungi a esistente</string>
+
+  <string name="webrtccallactivity_status">In chiamata</string>
+  <string name="webrtccallactivity_back">Indietro</string>
+
+  <string name="advanced_version_name">Pigeon %s al Signal %s</string>
 </resources>

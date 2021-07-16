@@ -164,7 +164,7 @@ public class XmlBackup {
   public static class Writer {
 
     private static final String  XML_HEADER      = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>";
-    private static final String  CREATED_BY      = "<!-- File Created By Signal -->";
+    private static final String  CREATED_BY      = "<!-- File Created By Pigeon -->";
     private static final String  OPEN_TAG_SMSES  = "<smses count=\"%d\">";
     private static final String  CLOSE_TAG_SMSES = "</smses>";
     private static final String  OPEN_TAG_SMS    = " <sms ";

@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -53,6 +54,9 @@ public class SmsSendtoActivity extends Activity {
       nextIntent = ConversationIntents.createBuilder(this, recipient.getId(), threadId)
                                       .withDraftText(destination.getBody())
                                       .build();
+      if ("tel".equals(original.getData().getScheme())) {
+        nextIntent.putExtra(ConversationActivity.IS_CALL_TO_EXTRA, true);
+      }
     }
     return nextIntent;
   }

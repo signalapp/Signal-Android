@@ -31,24 +31,24 @@
         android:layout_gravity="center"
         android:src="@drawable/mediapicker_item_border_dark"/>
 
-    <ImageView
-        android:id="@+id/rail_item_caption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start|top"
-        android:layout_marginStart="2dp"
-        android:src="@drawable/ic_caption_28"
-        android:visibility="gone"
-        tools:visibility="visible"/>
+<!--    <ImageView-->
+<!--        android:id="@+id/rail_item_caption"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="start|top"-->
+<!--        android:layout_marginStart="2dp"-->
+<!--        android:src="@drawable/ic_caption_28"-->
+<!--        android:visibility="gone"-->
+<!--        tools:visibility="visible"/>-->
 
-    <ImageView
-        android:id="@+id/rail_item_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|top"
-        android:layout_margin="1dp"
-        android:src="@drawable/ic_x_28"
-        android:visibility="gone"
-        tools:visibility="visible"/>
+<!--    <ImageView-->
+<!--        android:id="@+id/rail_item_delete"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="end|top"-->
+<!--        android:layout_margin="1dp"-->
+<!--        android:src="@drawable/ic_x_28"-->
+<!--        android:visibility="gone"-->
+<!--        tools:visibility="visible"/>-->
 
 </FrameLayout>

@@ -58,4 +58,8 @@ public final class SelectedContact {
     return number   != null && number  .equals(other.number)   ||
            username != null && username.equals(other.username);
   }
+
+  public String getNumber() {
+    return number;
+  }
 }

@@ -11,12 +11,14 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.Mp02CustomDialog;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.ui.chooseadmin.ChooseNewAdminActivity;
+import org.thoughtcrime.securesms.permissions.RationaleDialog;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
@@ -76,28 +78,40 @@ public final class LeaveGroupDialog {
   }
 
   private void showSelectNewAdminDialog() {
-    new AlertDialog.Builder(activity)
-                   .setTitle(R.string.LeaveGroupDialog_choose_new_admin)
-                   .setMessage(R.string.LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group)
-                   .setNegativeButton(android.R.string.cancel, null)
-                   .setPositiveButton(R.string.LeaveGroupDialog_choose_admin, (d,w) -> activity.startActivity(ChooseNewAdminActivity.createIntent(activity, groupId.requireV2())))
-                   .show();
+    Mp02CustomDialog dialog = new Mp02CustomDialog(activity);
+    dialog.setMessage(activity.getString(R.string.LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group));
+    dialog.setNegativeListener(android.R.string.cancel, new Mp02CustomDialog.Mp02DialogKeyListener() {
+      @Override
+      public void onDialogKeyClicked() {
+        dialog.dismiss();
+      }
+    });
+    dialog.setPositiveListener(R.string.LeaveGroupDialog_choose_admin, new Mp02CustomDialog.Mp02DialogKeyListener() {
+      @Override
+      public void onDialogKeyClicked() {
+        activity.startActivity(ChooseNewAdminActivity.createIntent(activity, groupId.requireV2()));
+        dialog.dismiss();
+      }
+    });
+    dialog.show();
   }
 
   private void showLeaveDialog() {
-    new AlertDialog.Builder(activity)
-                   .setTitle(R.string.LeaveGroupDialog_leave_group)
-                   .setCancelable(true)
-                   .setMessage(R.string.LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group)
-                   .setNegativeButton(android.R.string.cancel, null)
-                   .setPositiveButton(R.string.LeaveGroupDialog_leave, (dialog, which) -> {
-                     AlertDialog progressDialog = SimpleProgressDialog.show(activity);
-                     SimpleTask.run(activity.getLifecycle(), this::leaveGroup, result -> {
-                       progressDialog.dismiss();
-                       handleLeaveGroupResult(result);
-                     });
-                   })
-                   .show();
+    android.app.AlertDialog builder = RationaleDialog.createNonMsgDialog(activity,
+            activity.getString(R.string.LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group),
+            R.string.yes,
+            R.string.no,
+            () -> {
+              AlertDialog progressDialog = SimpleProgressDialog.show(activity);
+              SimpleTask.run(activity.getLifecycle(), this::leaveGroup, result -> {
+                progressDialog.dismiss();
+                handleLeaveGroupResult(result);
+              });},
+            null,
+            null
+    );
+    builder.setCancelable(true);
+    builder.show();
   }
 
   private @NonNull GroupChangeResult leaveGroup() {

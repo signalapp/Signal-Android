@@ -3,13 +3,14 @@
               xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
-              android:layout_height="70dp">
+              android:layout_height="70dp"
+              android:background="@drawable/pigeon_item_bg">
 
     <TextView android:id="@+id/description"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:gravity="center"
-              android:textSize="14sp"
+              android:textSize="25sp"
               android:textStyle="bold"
               tools:text="Archived conversations (2)"/>
 

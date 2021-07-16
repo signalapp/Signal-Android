@@ -1,0 +1,16 @@
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_name"
+    android:layout_width="match_parent"
+    android:layout_height="32px"
+    android:gravity="start|center_vertical"
+    android:paddingLeft="@dimen/item_padding_x"
+    android:singleLine="true"
+    android:includeFontPadding="false"
+    android:defaultFocusHighlightEnabled="false"
+    android:textColor="@drawable/sim_text_item_color"
+    android:textSize="@dimen/item_textsize"
+    android:ellipsize="marquee"
+    android:focusable="true"
+    tools:ignore="UnusedAttribute" />

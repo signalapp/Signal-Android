@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
+import org.thoughtcrime.securesms.components.webrtc.OrientationAwareVideoSink;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -20,6 +21,7 @@ import org.thoughtcrime.securesms.service.webrtc.WebRtcData.OfferMetadata;
 import org.thoughtcrime.securesms.service.webrtc.state.VideoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
+import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.webrtc.audio.OutgoingRinger;
 import org.webrtc.PeerConnection;
@@ -112,11 +114,12 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
       webRtcInteractor.getCallManager().proceed(activePeer.getCallId(),
                                                 context,
                                                 videoState.requireEglBase(),
-                                                videoState.requireLocalSink(),
-                                                callParticipant.getVideoSink(),
+                                                new OrientationAwareVideoSink(videoState.requireLocalSink()),
+                                                new OrientationAwareVideoSink(callParticipant.getVideoSink()),
                                                 videoState.requireCamera(),
                                                 iceServers,
                                                 isAlwaysTurn,
+                                                NetworkUtil.getCallingBandwidthMode(context),
                                                 currentState.getCallSetupState().isEnableVideoOnCreate());
     } catch (CallException e) {
       return callFailure(currentState, "Unable to proceed with call: ", e);
@@ -147,11 +150,15 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
   {
     Log.i(TAG, "handleReceivedAnswer(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
 
+    if (answerMetadata.getOpaque() == null) {
+      return callFailure(currentState, "receivedAnswer() failed: answerMetadata did not contain opaque", null);
+    }
+
     try {
       byte[] remoteIdentityKey = WebRtcUtil.getPublicKeyBytes(receivedAnswerMetadata.getRemoteIdentityKey());
       byte[] localIdentityKey  = WebRtcUtil.getPublicKeyBytes(IdentityKeyUtil.getIdentityKey(context).serialize());
 
-      webRtcInteractor.getCallManager().receivedAnswer(callMetadata.getCallId(), callMetadata.getRemoteDevice(), answerMetadata.getOpaque(), answerMetadata.getSdp(), receivedAnswerMetadata.isMultiRing(), remoteIdentityKey, localIdentityKey);
+      webRtcInteractor.getCallManager().receivedAnswer(callMetadata.getCallId(), callMetadata.getRemoteDevice(), answerMetadata.getOpaque(), receivedAnswerMetadata.isMultiRing(), remoteIdentityKey, localIdentityKey);
     } catch (CallException | InvalidKeyException e) {
       return callFailure(currentState, "receivedAnswer() failed: ", e);
     }
@@ -222,14 +229,6 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
                                                                 @NonNull ArrayList<IceCandidateParcel> iceCandidates)
   {
     return activeCallDelegate.handleSendIceCandidates(currentState, callMetadata, broadcast, iceCandidates);
-  }
-
-  @Override
-  protected @NonNull WebRtcServiceState handleReceivedIceCandidates(@NonNull WebRtcServiceState currentState,
-                                                                    @NonNull WebRtcData.CallMetadata callMetadata,
-                                                                    @NonNull ArrayList<IceCandidateParcel> iceCandidateParcels)
-  {
-    return activeCallDelegate.handleReceivedIceCandidates(currentState, callMetadata, iceCandidateParcels);
   }
 
   @Override

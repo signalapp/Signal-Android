@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.components.settings;
 
 import android.view.View;
-import android.widget.RadioButton;
+import android.widget.CheckedTextView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,9 +24,10 @@ public class CustomizableSingleSelectSetting {
   }
 
   public static class ViewHolder extends MappingViewHolder<Item> {
+    private final CheckedTextView                     text;
     private final TextView                            summaryText;
     private final View                                customize;
-    private final RadioButton                         radio;
+//    private final RadioButton                         radio;
     private final SingleSelectSetting.ViewHolder      delegate;
     private final Group                               customizeGroup;
     private final CustomizableSingleSelectionListener selectionListener;
@@ -34,16 +35,23 @@ public class CustomizableSingleSelectSetting {
     public ViewHolder(@NonNull View itemView, @NonNull CustomizableSingleSelectionListener selectionListener) {
       super(itemView);
       this.selectionListener = selectionListener;
-
-      radio          = findViewById(R.id.customizable_single_select_radio);
+      this.text = findViewById(R.id.single_select_item_text);
+//      radio          = findViewById(R.id.customizable_single_select_radio);
       summaryText    = findViewById(R.id.customizable_single_select_summary);
       customize      = findViewById(R.id.customizable_single_select_customize);
       customizeGroup = findViewById(R.id.customizable_single_select_customize_group);
 
+      ((View)text.getParent()).setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+          delegate.updateFocusView(text, hasFocus);
+        }
+      });
       delegate = new SingleSelectSetting.ViewHolder(itemView, selectionListener) {
         @Override
         protected void setChecked(boolean checked) {
-          radio.setChecked(checked);
+//          radio.setChecked(checked);
         }
       };
     }
@@ -51,7 +59,7 @@ public class CustomizableSingleSelectSetting {
     @Override
     public void bind(@NonNull Item model) {
       delegate.bind(model.singleSelectItem);
-      customizeGroup.setVisibility(radio.isChecked() ? View.VISIBLE : View.GONE);
+//      customizeGroup.setVisibility(radio.isChecked() ? View.VISIBLE : View.GONE);
       customize.setOnClickListener(v -> selectionListener.onCustomizeClicked(model));
       if (model.getCustomValue() != null) {
         summaryText.setText(model.getSummaryText());

@@ -30,7 +30,7 @@ public final class SettingsValues extends SignalStoreValues {
   @Override
   void onFirstEverAppLaunch() {
     getStore().beginWrite()
-              .putBoolean(LINK_PREVIEWS, true)
+              .putBoolean(LINK_PREVIEWS, false)
               .apply();
   }
 

@@ -30,6 +30,8 @@ import java.util.Map;
 
 public final class TransferControlView extends FrameLayout {
 
+  private static final String TAG = "TransferControlView";
+
   private static final int UPLOAD_TASK_WEIGHT = 1;
 
   /**
@@ -41,7 +43,7 @@ public final class TransferControlView extends FrameLayout {
   @Nullable private View        current;
 
   private final ProgressWheel progressWheel;
-  private final View          downloadDetails;
+  public final View          downloadDetails;
   private final TextView      downloadDetailsText;
 
   private final Map<Attachment, Float> networkProgress;
@@ -94,6 +96,10 @@ public final class TransferControlView extends FrameLayout {
   protected void onDetachedFromWindow() {
     super.onDetachedFromWindow();
     EventBus.getDefault().unregister(this);
+  }
+
+  public View getDownloadDetails(){
+    return downloadDetails;
   }
 
   public void setSlide(final @NonNull Slide slides) {

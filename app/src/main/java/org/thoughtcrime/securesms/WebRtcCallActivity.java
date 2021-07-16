@@ -18,18 +18,23 @@
 package org.thoughtcrime.securesms;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.PictureInPictureParams;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Rational;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowInsetsController;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
@@ -37,8 +42,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.transition.Transition;
-import androidx.transition.TransitionListenerAdapter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -47,7 +50,9 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
+import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
+import org.thoughtcrime.securesms.components.webrtc.PigeonWebRtcCallView;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel;
@@ -65,12 +70,13 @@ import org.thoughtcrime.securesms.util.EllapsedTimeFormatter;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.WindowUtil;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 import java.util.List;
+
+import static androidx.camera.core.CameraX.getContext;
 
 public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChangeDialog.Callback {
 
@@ -85,11 +91,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   public static final String EXTRA_ENABLE_VIDEO_IF_AVAILABLE = WebRtcCallActivity.class.getCanonicalName() + ".ENABLE_VIDEO_IF_AVAILABLE";
 
   private CallParticipantsListUpdatePopupWindow participantUpdateWindow;
+  private DeviceOrientationMonitor              deviceOrientationMonitor;
 
   private FullscreenHelper    fullscreenHelper;
-  private WebRtcCallView      callScreen;
+  private PigeonWebRtcCallView callScreen;
   private TooltipPopup        videoTooltip;
   private WebRtcCallViewModel viewModel;
+  public MyReceiver myReceiver;
   private boolean             enableVideoIfAvailable;
 
   @Override
@@ -105,8 +113,14 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     super.onCreate(savedInstanceState);
 
+    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.webrtc_call_activity);
+    IntentFilter filter = new IntentFilter();
+    filter.addAction("Signal_End_Call");
+    myReceiver = new MyReceiver();
+    registerReceiver(myReceiver,  new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+
 
     fullscreenHelper = new FullscreenHelper(this);
 
@@ -121,10 +135,21 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     getIntent().removeExtra(EXTRA_ENABLE_VIDEO_IF_AVAILABLE);
   }
 
+  public class MyReceiver extends BroadcastReceiver {
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      handleEndCall();
+    }
+  }
+
+
+  @SuppressLint("SourceLockedOrientationActivity")
   @Override
   public void onResume() {
     Log.i(TAG, "onResume()");
     super.onResume();
+    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     initializeScreenshotSecurity();
 
     if (!EventBus.getDefault().isRegistered(this)) {
@@ -143,10 +168,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   public void onPause() {
     Log.i(TAG, "onPause");
     super.onPause();
-
-    if (!isInPipMode()) {
-      EventBus.getDefault().unregister(this);
-    }
+    EventBus.getDefault().unregister(this);
 
     if (!viewModel.isCallStarting()) {
       CallParticipantsState state = viewModel.getCallParticipantsState().getValue();
@@ -188,6 +210,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     if (!enterPipModeIfPossible()) {
       super.onBackPressed();
     }
+    handleEndCall();
+    finish();
   }
 
   @Override
@@ -209,8 +233,60 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     return false;
   }
 
-  private boolean isInPipMode() {
-    return isSystemPipEnabledAndAvailable() && isInPictureInPictureMode();
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent keyEvent) {
+    WebRtcViewModel event = EventBus.getDefault().getStickyEvent(WebRtcViewModel.class);
+    switch (keyCode) {
+      case KeyEvent.KEYCODE_BACK:
+        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int which)
+          {
+            switch (which)
+            {
+              case AlertDialog.BUTTON_POSITIVE:
+                finish();
+                break;
+              case AlertDialog.BUTTON_NEGATIVE:
+                break;
+              default:
+                break;
+            }
+          }
+        };
+//        AlertDialog.Builder dialog = new AlertDialog.Builder(this, R.style.Mp02_Signal_PreferenceActivity);
+//        AlertDialog.Builder dialog = new AlertDialog.Builder(this, R.style.NoAnimation_Theme_AppCompat_Light_DarkActionBar);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.app_name));
+        builder.setMessage(getString(R.string.webrtccallactivity_status));
+        builder.setNegativeButton(getString(R.string.webrtccallactivity_back), listener);
+        builder.setPositiveButton(android.R.string.ok, listener);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getWindow().setLayout(278, 170);
+        return true;
+      case KeyEvent.KEYCODE_F4:
+        WebRtcCallActivity.this.handleDenyCall();
+        if (event.getState() == WebRtcViewModel.State.CALL_CONNECTED ){
+          WebRtcCallActivity.this.handleDenyCall();
+          return true;
+        }
+      case KeyEvent.KEYCODE_ENDCALL:
+        WebRtcCallActivity.this.handleDenyCall();
+        WebRtcCallActivity.this.handleEndCall();
+        if (event.getState() == WebRtcViewModel.State.CALL_CONNECTED ){
+          WebRtcCallActivity.this.handleDenyCall();
+          return true;
+        }
+      case KeyEvent.KEYCODE_CALL:
+        if (event != null && event.getState() == WebRtcViewModel.State.CALL_INCOMING ){
+          WebRtcCallActivity.this.handleAnswerWithAudio();
+          return true;
+        }
+      default:
+        Log.d(TAG, "onKeyDown: do nothing.");
+        break;
+    }
+    return super.onKeyDown(keyCode, keyEvent);
   }
 
   private void processIntent(@NonNull Intent intent) {
@@ -234,14 +310,18 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   private void initializeResources() {
     callScreen = findViewById(R.id.callScreen);
-    callScreen.setControlsListener(new ControlsListener());
+    callScreen.setControlsListener(new PigeonControlsListener());
 
     participantUpdateWindow = new CallParticipantsListUpdatePopupWindow(callScreen);
   }
 
   private void initializeViewModel() {
-    viewModel = ViewModelProviders.of(this).get(WebRtcCallViewModel.class);
-    viewModel.setIsInPipMode(isInPipMode());
+    deviceOrientationMonitor = new DeviceOrientationMonitor(this);
+    getLifecycle().addObserver(deviceOrientationMonitor);
+
+    WebRtcCallViewModel.Factory factory = new WebRtcCallViewModel.Factory(deviceOrientationMonitor);
+
+    viewModel = ViewModelProviders.of(this, factory).get(WebRtcCallViewModel.class);
     viewModel.getMicrophoneEnabled().observe(this, callScreen::setMicEnabled);
     viewModel.getWebRtcControls().observe(this, callScreen::setWebRtcControls);
     viewModel.getEvents().observe(this, this::handleViewModelEvent);
@@ -262,6 +342,25 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
         }
       }
     });
+
+    viewModel.getOrientation().observe(this, orientation -> {
+      Intent intent = new Intent(this, WebRtcCallService.class);
+      intent.setAction(WebRtcCallService.ACTION_ORIENTATION_CHANGED)
+            .putExtra(WebRtcCallService.EXTRA_ORIENTATION_DEGREES, orientation.getDegrees());
+
+      startService(intent);
+
+      switch (orientation) {
+        case LANDSCAPE_LEFT_EDGE:
+//          callScreen.rotateControls(90);
+          break;
+        case LANDSCAPE_RIGHT_EDGE:
+//          callScreen.rotateControls(-90);
+          break;
+        case PORTRAIT_BOTTOM_EDGE:
+//          callScreen.rotateControls(0);
+      }
+    });
   }
 
   private void handleViewModelEvent(@NonNull WebRtcCallViewModel.Event event) {
@@ -273,18 +372,14 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       return;
     }
 
-    if (isInPipMode()) {
-      return;
-    }
-
     if (event instanceof WebRtcCallViewModel.Event.ShowVideoTooltip) {
       if (videoTooltip == null) {
-        videoTooltip = TooltipPopup.forTarget(callScreen.getVideoTooltipTarget())
-                                   .setBackgroundTint(ContextCompat.getColor(this, R.color.core_ultramarine))
-                                   .setTextColor(ContextCompat.getColor(this, R.color.core_white))
-                                   .setText(R.string.WebRtcCallActivity__tap_here_to_turn_on_your_video)
-                                   .setOnDismissListener(() -> viewModel.onDismissedVideoTooltip())
-                                   .show(TooltipPopup.POSITION_ABOVE);
+//        videoTooltip = TooltipPopup.forTarget(callScreen.getVideoTooltipTarget())
+//                                   .setBackgroundTint(ContextCompat.getColor(this, R.color.core_ultramarine))
+//                                   .setTextColor(ContextCompat.getColor(this, R.color.core_white))
+//                                   .setText(R.string.WebRtcCallActivity__tap_here_to_turn_on_your_video)
+//                                   .setOnDismissListener(() -> viewModel.onDismissedVideoTooltip())
+//                                   .show(TooltipPopup.POSITION_ABOVE);
         return;
       }
     } else if (event instanceof WebRtcCallViewModel.Event.DismissVideoTooltip) {
@@ -304,7 +399,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       return;
     }
 
-    callScreen.setStatus(getString(R.string.WebRtcCallActivity__signal_s, ellapsedTimeFormatter.toString()));
+//    callScreen.setStatus(getString(R.string.WebRtcCallActivity__signal_s, ellapsedTimeFormatter.toString()));
+    callScreen.setElapsedTime(ellapsedTimeFormatter.toString());
   }
 
   private void handleSetAudioHandset() {
@@ -389,7 +485,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     if (!recipient.equals(Recipient.UNKNOWN)) {
       Permissions.with(this)
-                 .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
+                 .request(Manifest.permission.RECORD_AUDIO)
                  .ifNecessary()
                  .withRationaleDialog(getString(R.string.WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone, recipient.getDisplayName(this)),
                      R.drawable.ic_mic_solid_24, R.drawable.ic_video_solid_24_tinted)
@@ -422,6 +518,10 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       callScreen.setStatus(getString(R.string.RedPhone_ending_call));
       delayedFinish();
     }
+  }
+
+  private void handleVolumePressed() {
+    startActivity(new Intent(this, WebRtcCallVolumeActivity.class));
   }
 
   private void handleEndCall() {
@@ -466,6 +566,9 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES);
     if (event.getGroupState().isNotIdleOrConnected()) {
       callScreen.setStatusFromGroupCallState(event.getGroupState());
+    } else {
+      callScreen.setStatus(getString(R.string.RedPhone_connected));
+      callScreen.enableElapsedTime(true);
     }
   }
 
@@ -673,6 +776,112 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     @Override
     public void onVideoChanged(boolean isVideoEnabled) {
       handleSetMuteVideo(!isVideoEnabled);
+    }
+
+    @Override
+    public void onMicChanged(boolean isMicEnabled) {
+      handleSetMuteAudio(!isMicEnabled);
+    }
+
+    @Override
+    public void onCameraDirectionChanged() {
+      handleFlipCamera();
+    }
+
+    @Override
+    public void onEndCallPressed() {
+      handleEndCall();
+    }
+
+    @Override
+    public void onDenyCallPressed() {
+      handleDenyCall();
+    }
+
+    @Override
+    public void onAcceptCallWithVoiceOnlyPressed() {
+      handleAnswerWithAudio();
+    }
+
+    @Override
+    public void onAcceptCallPressed() {
+      if (viewModel.isAnswerWithVideoAvailable()) {
+        handleAnswerWithVideo();
+      } else {
+        handleAnswerWithAudio();
+      }
+    }
+
+    @Override
+    public void onShowParticipantsList() {
+      CallParticipantsListDialog.show(getSupportFragmentManager());
+    }
+
+    @Override
+    public void onPageChanged(@NonNull CallParticipantsState.SelectedPage page) {
+      viewModel.setIsViewingFocusedParticipant(page);
+    }
+
+    @Override
+    public void onLocalPictureInPictureClicked() {
+      viewModel.onLocalPictureInPictureClicked();
+    }
+  }
+
+  private final class PigeonControlsListener implements PigeonWebRtcCallView.ControlsListener {
+
+    @Override
+    public void onStartCall(boolean isVideoCall) {
+      viewModel.startCall(isVideoCall);
+    }
+
+    @Override
+    public void onCancelStartCall() {
+      delayedFinish();
+    }
+
+    @Override
+    public void onControlsFadeOut() {
+      if (videoTooltip != null) {
+        videoTooltip.dismiss();
+      }
+    }
+
+    @Override
+    public void showSystemUI() {
+      fullscreenHelper.showSystemUI();
+    }
+
+    @Override
+    public void hideSystemUI() {
+      fullscreenHelper.hideSystemUI();
+    }
+
+    @Override
+    public void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput) {
+      switch (audioOutput) {
+        case HANDSET:
+          handleSetAudioHandset();
+          break;
+        case HEADSET:
+          handleSetAudioBluetooth();
+          break;
+        case SPEAKER:
+          handleSetAudioSpeaker();
+          break;
+        default:
+          throw new IllegalStateException("Unknown output: " + audioOutput);
+      }
+    }
+
+    @Override
+    public void onVideoChanged(boolean isVideoEnabled) {
+      handleSetMuteVideo(!isVideoEnabled);
+    }
+
+    @Override
+    public void onVolumePressed() {
+      handleVolumePressed();
     }
 
     @Override

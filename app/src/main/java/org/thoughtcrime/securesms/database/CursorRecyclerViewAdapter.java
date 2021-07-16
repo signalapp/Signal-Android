@@ -214,7 +214,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
   }
 
   @Override
-  public final int getItemViewType(int position) {
+  public int getItemViewType(int position) {
     if (isHeaderPosition(position))     return HEADER_TYPE;
     if (isFooterPosition(position))     return FOOTER_TYPE;
     if (isFastAccessPosition(position)) return getFastAccessItemViewType(position);

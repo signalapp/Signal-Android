@@ -48,10 +48,10 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
   private static final String TAG = AdvancedPreferenceFragment.class.getSimpleName();
 
   private static final String PUSH_MESSAGING_PREF   = "pref_toggle_push_messaging";
-  private static final String SUBMIT_DEBUG_LOG_PREF = "pref_submit_debug_logs";
   private static final String INTERNAL_PREF         = "pref_internal";
   private static final String ADVANCED_PIN_PREF     = "pref_advanced_pin_settings";
   private static final String DELETE_ACCOUNT        = "pref_delete_account";
+  private static final String VERSION_CODE          = "pref_version_code";
 
   private static final int PICK_IDENTITY_CONTACT = 1;
 
@@ -61,9 +61,8 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
 
     initializeIdentitySelection();
 
-    Preference submitDebugLog = this.findPreference(SUBMIT_DEBUG_LOG_PREF);
-    submitDebugLog.setOnPreferenceClickListener(new SubmitDebugLogListener());
-    submitDebugLog.setSummary(getVersion(getActivity()));
+    Preference versionCode = this.findPreference(VERSION_CODE);
+    versionCode.setTitle(getVersion(getActivity()));
 
     Preference pinSettings = this.findPreference(ADVANCED_PIN_PREF);
     pinSettings.setOnPreferenceClickListener(preference -> {
@@ -93,14 +92,11 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    view.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.signal_background_tertiary));
-
     View                   list   = view.findViewById(R.id.recycler_view);
     ViewGroup.LayoutParams params = list.getLayoutParams();
 
     params.height = ActionBar.LayoutParams.WRAP_CONTENT;
     list.setLayoutParams(params);
-    list.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.signal_background_primary));
   }
 
   @Override
@@ -111,8 +107,6 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
   @Override
   public void onResume() {
     super.onResume();
-    getApplicationPreferencesActivity().getSupportActionBar().setTitle(R.string.preferences__advanced);
-
     initializePushMessagingToggle();
   }
 
@@ -166,11 +160,9 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
 
   private @NonNull String getVersion(@Nullable Context context) {
     if (context == null) return "";
-
-    String app     = context.getString(R.string.app_name);
-    String version = BuildConfig.VERSION_NAME;
-
-    return String.format("%s %s", app, version);
+    String[] names = BuildConfig.VERSION_NAME.split("\\s+");
+    String formatVersion = getResources().getString(R.string.advanced_version_name);
+    return String.format(formatVersion, names[1], names[4]);
   }
 
   private class IdentityPreferenceClickListener implements Preference.OnPreferenceClickListener {
@@ -189,15 +181,6 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
     if (contactUri != null) {
       TextSecurePreferences.setIdentityContactUri(getActivity(), contactUri.toString());
       initializeIdentitySelection();
-    }
-  }
-
-  private class SubmitDebugLogListener implements Preference.OnPreferenceClickListener {
-    @Override
-    public boolean onPreferenceClick(Preference preference) {
-      final Intent intent = new Intent(getActivity(), SubmitDebugLogActivity.class);
-      startActivity(intent);
-      return true;
     }
   }
 

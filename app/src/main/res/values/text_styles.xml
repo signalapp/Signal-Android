@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <style name="Mp02.Signal.Background">
+        <item name="android:background">@color/black</item>
+    </style>
+
+    <style name="Mp02.Signal.Text">Mp02.Signal.Text</style>
+
+    <style name="Mp02.Signal.Text.WelcomeTitle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white_focus</item>
+        <item name="singleLine">false</item>
+        <item name="android:defaultFocusHighlightEnabled" tools:ignore="NewApi">false</item>
+    </style>
+
+    <style name="Mp02.Signal.Text.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:defaultFocusHighlightEnabled" tools:ignore="NewApi">false</item>
+    </style>
+
+    <style name="Mp02.Signal.Text.SubTitle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">1sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Mp02.Signal.Text.CommonTextButton">
+        <item name="android:textSize">24sp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/mp02_common_text_button</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:defaultFocusHighlightEnabled" tools:ignore="NewApi">false</item>
+    </style>
+
+    <style name="Mp02.Signal.Text.BigCommonTextButton">
+        <item name="android:textSize">36sp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/mp02_common_text_button</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:defaultFocusHighlightEnabled" tools:ignore="NewApi">false</item>
+    </style>
+
     <style name="Signal.Text.Headline" parent="Base.TextAppearance.AppCompat.Headline">
         <item name="android:textSize">28sp</item>
         <item name="android:lineSpacingExtra">3sp</item>
@@ -11,8 +56,11 @@
     <style name="Signal.Text.Body" parent="Base.TextAppearance.AppCompat.Body1">
         <item name="android:textSize">16sp</item>
         <item name="android:lineSpacingExtra">2sp</item>
-        <item name="android:fontFamily">sans-serif</item>
         <item name="android:letterSpacing" tools:ignore="NewApi">0.01</item>
+    </style>
+
+    <style name="Mp02.Signal.Text.Body" parent="Signal.Text.Body">
+        <item name="android:textSize">24sp</item>
     </style>
 
     <style name="Signal.Text.Preview" parent="Base.TextAppearance.AppCompat.Body2">
@@ -23,12 +71,15 @@
     </style>
 
     <style name="Signal.Text.Caption" parent="Base.TextAppearance.AppCompat.Caption">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:lineSpacingExtra">2sp</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:letterSpacing" tools:ignore="NewApi">0.03</item>
     </style>
 
+    <style name="Mp02.Signal.Text.Caption" parent="Signal.Text.Caption">
+        <item name="android:textSize">24sp</item>
+    </style>
 
     <style name="Signal.Text.Caption.MessageSent">
         <item name="android:textColor">@color/signal_text_secondary</item>

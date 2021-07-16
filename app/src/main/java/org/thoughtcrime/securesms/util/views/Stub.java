@@ -23,6 +23,10 @@ public class Stub<T> {
     return view;
   }
 
+  public boolean isResolved() {
+    return viewStub != null;
+  }
+
   public boolean resolved() {
     return view != null;
   }

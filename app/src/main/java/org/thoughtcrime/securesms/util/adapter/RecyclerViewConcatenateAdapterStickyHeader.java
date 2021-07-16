@@ -14,6 +14,7 @@ public final class RecyclerViewConcatenateAdapterStickyHeader extends    Recycle
                                                                          RecyclerViewFastScroller.FastScrollAdapter
 {
 
+
   @Override
   public long getHeaderId(int position) {
     return getForPosition(position).transform(p -> p.first().getHeaderId(p.second())).or(-1L);

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.settings;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,9 @@ public class BaseSettingsFragment extends Fragment {
 
     recycler = view.findViewById(R.id.base_settings_list);
     recycler.setItemAnimator(null);
+    recycler.setClipToPadding(false);
+    recycler.setClipChildren(false);
+    recycler.setPadding(0, 76, 0, 200);
 
     return view;
   }
@@ -55,6 +59,12 @@ public class BaseSettingsFragment extends Fragment {
 
     recycler.setLayoutManager(new LinearLayoutManager(requireContext()));
     recycler.setAdapter(adapter);
+    new Handler().postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        recycler.getLayoutManager().scrollToPosition(adapter.getItemCount() / 2 - 1);
+      }
+    }, 10);
 
     Configuration configuration = (Configuration) Objects.requireNonNull(requireArguments().getSerializable(CONFIGURATION_ARGUMENT));
     configuration.configure(requireActivity(), adapter);

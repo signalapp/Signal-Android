@@ -148,7 +148,7 @@ final class MessageRequestRepository {
         RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
         recipientDatabase.setProfileSharing(liveRecipient.getId(), true);
 
-        MessageSender.sendProfileKey(context, threadId);
+//        MessageSender.sendProfileKey(context, threadId);
 
         List<MessageDatabase.MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context)
                                                                             .setEntireThreadRead(threadId);

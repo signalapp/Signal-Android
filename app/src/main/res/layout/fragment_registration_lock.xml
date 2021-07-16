@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/sim_background"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,6 +18,7 @@
             android:gravity="center_horizontal"
             android:text="@string/RegistrationLockFragment__enter_your_pin"
             android:textAppearance="@style/TextAppearance.Signal.Title1"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@id/kbs_lock_keyboard_toggle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.20" />
@@ -32,7 +34,7 @@
             android:minHeight="66dp"
             android:text="@string/RegistrationLockFragment__enter_the_pin_you_created"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            android:textColor="@color/core_grey_60"
+            android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/kbs_lock_pin_title" />
 
         <EditText
@@ -44,6 +46,7 @@
             android:gravity="center_horizontal"
             android:inputType="numberPassword"
             android:minWidth="210dp"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/kbs_lock_pin_description" />
@@ -54,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center_horizontal"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/kbs_lock_pin_input"
@@ -67,6 +71,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:text="@string/RegistrationLockFragment__forgot_pin"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/kbs_lock_pin_input_label" />
@@ -78,6 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@id/kbs_lock_pin_confirm"
             app:layout_constraintTop_toBottomOf="@id/kbs_lock_forgot_pin"
             app:layout_constraintVertical_bias="1.0"

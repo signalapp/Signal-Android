@@ -110,7 +110,7 @@ public final class UpdateDescription {
       return staticString;
     }
 
-    Util.assertNotMainThread();
+//    Util.assertNotMainThread();
 
     //noinspection ConstantConditions
     return stringFactory.create();

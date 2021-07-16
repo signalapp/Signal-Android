@@ -61,15 +61,15 @@ protobuf {
     }
 }
 
-def canonicalVersionCode = 772
-def canonicalVersionName = "5.2.3"
+def canonicalVersionCode = 778
+def canonicalVersionName = "Pigeon 1.0.0778 upon Signal 5.2.3"
 
 def postFixSize = 100
-def abiPostFix = ['universal'   : 0,
-                  'armeabi-v7a' : 1,
-                  'arm64-v8a'   : 2,
-                  'x86'         : 3,
-                  'x86_64'      : 4]
+def abiPostFix = ['universal'  : 0,
+                  'armeabi-v7a': 1,
+                  'arm64-v8a'  : 2,
+                  'x86'        : 3,
+                  'x86_64'     : 4]
 
 def keystores = [ 'debug'  : loadKeystoreProperties('keystore.debug.properties') ]
 
@@ -286,10 +286,23 @@ android {
             includeAndroidResources = true
         }
     }
+
+    sourceSets{
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
     lintChecks project(':lintchecks')
+    implementation(name:'ringrtc-android-2.9.4', ext:'aar')
 
     implementation ('androidx.appcompat:appcompat:1.2.0') {
         force = true
@@ -344,7 +357,7 @@ dependencies {
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
     implementation 'org.signal:argon2:13.1@aar'
 
-    implementation 'org.signal:ringrtc-android:2.8.9'
+//    implementation 'org.signal:ringrtc-android:2.8.9'
 
     implementation "me.leolin:ShortcutBadger:1.1.16"
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
@@ -352,6 +365,7 @@ dependencies {
     implementation 'org.apache.httpcomponents:httpclient-android:4.3.5'
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     annotationProcessor 'androidx.annotation:annotation:1.1.0'
     implementation 'com.makeramen:roundedimageview:2.1.0'
@@ -366,18 +380,18 @@ dependencies {
     implementation ('com.davemorrissey.labs:subsampling-scale-image-view:3.6.0') {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    implementation ('cn.carbswang.android:NumberPickerView:1.0.9') {
+    implementation('cn.carbswang.android:NumberPickerView:1.0.9') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
-    implementation ('com.tomergoldst.android:tooltips:1.0.6') {
+    implementation('com.tomergoldst.android:tooltips:1.0.6') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
-    implementation ('com.klinkerapps:android-smsmms:4.0.1') {
+    implementation('com.klinkerapps:android-smsmms:4.0.1') {
         exclude group: 'com.squareup.okhttp', module: 'okhttp'
         exclude group: 'com.squareup.okhttp', module: 'okhttp-urlconnection'
     }
     implementation 'com.annimon:stream:1.1.8'
-    implementation ('com.takisoft.fix:colorpicker:0.9.1') {
+    implementation('com.takisoft.fix:colorpicker:0.9.1') {
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
@@ -387,7 +401,7 @@ dependencies {
     implementation 'com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4'
     implementation 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2'
     implementation 'org.signal:android-database-sqlcipher:3.5.9-S3'
-    implementation ('com.googlecode.ez-vcard:ez-vcard:0.9.11') {
+    implementation('com.googlecode.ez-vcard:ez-vcard:0.9.11') {
         exclude group: 'com.fasterxml.jackson.core'
         exclude group: 'org.freemarker'
     }
@@ -422,12 +436,12 @@ dependencyVerification {
 def assembleWebsiteDescriptor = { variant, file ->
     if (file.exists()) {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
-        file.eachByte 4096, {bytes, size ->
+        file.eachByte 4096, { bytes, size ->
             md.update(bytes, 0, size);
         }
 
-        String digest  = md.digest().collect {String.format "%02x", it}.join();
-        String url     = variant.productFlavors.get(0).ext.websiteUpdateUrl
+        String digest = md.digest().collect { String.format "%02x", it }.join();
+        String url = variant.productFlavors.get(0).ext.websiteUpdateUrl
         String apkName = file.getName()
 
         String descriptor = "{" +
@@ -445,15 +459,15 @@ def assembleWebsiteDescriptor = { variant, file ->
 
 def signProductionRelease = { variant ->
     variant.outputs.collect { output ->
-        String apkName    = output.outputFile.name
-        File   inputFile  = new File(output.outputFile.path)
-        File   outputFile = new File(output.outputFile.parent, apkName.replace('-unsigned', ''))
+        String apkName = output.outputFile.name
+        File inputFile = new File(output.outputFile.path)
+        File outputFile = new File(output.outputFile.parent, apkName.replace('-unsigned', ''))
 
         new ApkSignerUtil('sun.security.pkcs11.SunPKCS11',
-                          'pkcs11.config',
-                          'PKCS11',
-                          'file:pkcs11.password').calculateSignature(inputFile.getAbsolutePath(),
-                                                                     outputFile.getAbsolutePath())
+                'pkcs11.config',
+                'PKCS11',
+                'file:pkcs11.password').calculateSignature(inputFile.getAbsolutePath(),
+                outputFile.getAbsolutePath())
 
         inputFile.delete()
         outputFile

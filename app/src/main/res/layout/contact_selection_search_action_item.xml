@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.MyEditText xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:background="@color/transparent"
+    android:fontFamily="sans-serif"
+    android:hint="@string/country_selection_fragment__search"
+    android:inputType="textUri"
+    android:focusable="true"
+    android:textCursorDrawable="@drawable/mp02_cursor_style"
+    android:paddingLeft="30px"
+    android:textSize="24px" />
+
+
+    <!--    android:id="@+id/digits"-->
+    <!--    android:textCursorDrawable="@drawable/cursor_color"-->
+    <!--    android:includeFontPadding="false"-->
+    <!--    android:defaultFocusHighlightEnabled="false"-->
+    <!--    android:textColor="@drawable/sim_text_item_color"-->
+    <!--    android:textSize="@dimen/item_textsize"-->
+    <!--    android:lineSpacingMultiplier="0.78"-->
+    <!--    android:letterSpacing="0.01"-->
+    <!--    android:gravity="left|bottom"-->
+    <!--    android:paddingLeft="@dimen/item_padding_x"-->
+    <!--    android:background="@null"-->
+    <!--    android:numeric="integer"-->
+    <!--    android:phoneNumber="true"-->
+    <!--    android:maxLines="2"-->
+    <!--    android:focusable="true"-->

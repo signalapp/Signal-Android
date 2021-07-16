@@ -45,9 +45,9 @@ public class ConversationItemBodyBubble extends LinearLayout {
 
     if (Util.isEmpty(outliners)) return;
 
-    for (Outliner outliner : outliners) {
-      outliner.draw(canvas, 0, getMeasuredWidth(), getMeasuredHeight(), 0);
-    }
+//    for (Outliner outliner : outliners) {
+//      outliner.draw(canvas, 0, getMeasuredWidth(), getMeasuredHeight(), 0);
+//    }
   }
 
   @Override

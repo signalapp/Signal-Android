@@ -17,6 +17,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
+import org.thoughtcrime.securesms.keyvalue.PinValues;
 import org.thoughtcrime.securesms.keyvalue.SettingsValues;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
@@ -50,6 +51,8 @@ public class TextSecurePreferences {
   public  static final String MMSC_USERNAME_PREF               = "pref_apn_mmsc_username";
   private static final String MMSC_CUSTOM_PASSWORD_PREF        = "pref_apn_mmsc_custom_password";
   public  static final String MMSC_PASSWORD_PREF               = "pref_apn_mmsc_password";
+  public  static final String THREAD_TRIM_LENGTH               = "pref_trim_length";
+  public  static final String THREAD_TRIM_NOW                  = "pref_trim_now";
   public  static final String ENABLE_MANUAL_MMS_PREF           = "pref_enable_manual_mms";
 
   private static final String LAST_VERSION_CODE_PREF           = "last_version_code";
@@ -57,7 +60,7 @@ public class TextSecurePreferences {
   private static final String EXPERIENCE_DISMISSED_PREF        = "experience_dismissed";
   public  static final String RINGTONE_PREF                    = "pref_key_ringtone";
   public  static final String VIBRATE_PREF                     = "pref_key_vibrate";
-  private static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
+  public static final String NOTIFICATION_PREF                = "pref_key_enable_notifications";
   public  static final String LED_COLOR_PREF                   = "pref_led_color";
   public  static final String LED_BLINK_PREF                   = "pref_led_blink";
   private static final String LED_BLINK_PREF_CUSTOM            = "pref_led_blink_custom";
@@ -86,7 +89,7 @@ public class TextSecurePreferences {
   private static final String UPDATE_APK_DIGEST                = "pref_update_apk_digest";
   private static final String SIGNED_PREKEY_ROTATION_TIME_PREF = "pref_signed_pre_key_rotation_time";
 
-  private static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
+  public static final String IN_THREAD_NOTIFICATION_PREF      = "pref_key_inthread_notifications";
   private static final String SHOW_INVITE_REMINDER_PREF        = "pref_show_invite_reminder";
   public  static final String MESSAGE_BODY_TEXT_SIZE_PREF      = "pref_message_body_text_size";
 
@@ -118,7 +121,7 @@ public class TextSecurePreferences {
   public  static final String SYSTEM_EMOJI_PREF                = "pref_system_emoji";
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
   public  static final String DIRECT_CAPTURE_CAMERA_ID         = "pref_direct_capture_camera_id";
-  private static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
+  public static final String ALWAYS_RELAY_CALLS_PREF          = "pref_turn_only";
   private static final String PROFILE_NAME_PREF                = "pref_profile_name";
   private static final String PROFILE_AVATAR_ID_PREF           = "pref_profile_avatar_id";
   public  static final String READ_RECEIPTS_PREF               = "pref_read_receipts";
@@ -419,7 +422,7 @@ public class TextSecurePreferences {
    * we stop showing the link previews megaphone.
    */
   public static boolean wereLinkPreviewsEnabled(Context context) {
-    return getBooleanPreference(context, LINK_PREVIEWS, true);
+    return getBooleanPreference(context, LINK_PREVIEWS, false);
   }
 
   public static boolean isGifSearchInGridLayout(Context context) {
@@ -440,6 +443,10 @@ public class TextSecurePreferences {
 
   public static boolean isTurnOnly(Context context) {
     return getBooleanPreference(context, ALWAYS_RELAY_CALLS_PREF, false);
+  }
+
+  public static void setTurnOnly(Context context, boolean value) {
+    setBooleanPreference(context, ALWAYS_RELAY_CALLS_PREF, value);
   }
 
   public static boolean isFcmDisabled(Context context) {
@@ -519,6 +526,10 @@ public class TextSecurePreferences {
     setBooleanPreference(context, WEBSOCKET_REGISTERED_PREF, registered);
   }
 
+  public static void setWifiSmsEnabled(Context context, boolean value) {
+    setBooleanPreference(context, WIFI_SMS_PREF, value);
+  }
+
   public static boolean isWifiSmsEnabled(Context context) {
     return getBooleanPreference(context, WIFI_SMS_PREF, false);
   }
@@ -583,6 +594,10 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, true);
   }
 
+  public static void setInThreadNotifications(Context context, boolean value) {
+    setBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, value);
+  }
+
   public static long getUnidentifiedAccessCertificateRotationTime(Context context) {
     return getLongPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF, 0L);
   }
@@ -593,6 +608,15 @@ public class TextSecurePreferences {
 
   public static boolean isUniversalUnidentifiedAccess(Context context) {
     return getBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, false);
+  }
+  public static void setUniversalUnidentifiedAccess(Context context, boolean value) {
+    setBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, value);
+  }
+  public static boolean isPinNotificationAccess(Context context) {
+    return getBooleanPreference(context, PinValues.PIN_REMINDERS_ENABLED, false);
+  }
+  public static void setPinNotificationEnable(Context context, boolean enabled) {
+    setBooleanPreference(context, PinValues.PIN_REMINDERS_ENABLED, enabled);
   }
 
   public static void setShowUnidentifiedDeliveryIndicatorsEnabled(Context context, boolean enabled) {
@@ -833,8 +857,9 @@ public class TextSecurePreferences {
     setIntegerPrefrence(context, EXPERIENCE_DISMISSED_PREF, versionCode);
   }
 
+  //need to be removed
   public static String getTheme(Context context) {
-    return getStringPreference(context, THEME_PREF, DynamicTheme.systemThemeAvailable() ? DynamicTheme.SYSTEM : DynamicTheme.LIGHT);
+    return DynamicTheme.DARK;
   }
 
   public static boolean isPushRegistered(Context context) {
@@ -868,6 +893,10 @@ public class TextSecurePreferences {
 
   public static void setLanguage(Context context, String language) {
     setStringPreference(context, LANGUAGE_PREF, language);
+  }
+
+  public static void setSmsDeliveryReportsEnabled(Context context, boolean value) {
+    setBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, value);
   }
 
   public static boolean isSmsDeliveryReportsEnabled(Context context) {
@@ -910,8 +939,16 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, NOTIFICATION_PREF, true);
   }
 
+  public static void setNotificationsEnabled(Context context, boolean value) {
+    setBooleanPreference(context, NOTIFICATION_PREF, value);
+  }
+
   public static boolean isCallNotificationsEnabled(Context context) {
     return getBooleanPreference(context, CALL_NOTIFICATIONS_PREF, true);
+  }
+
+  public static void setCallNotificationsEnabled(Context context, boolean value) {
+    setBooleanPreference(context, CALL_NOTIFICATIONS_PREF, value);
   }
 
   public static @NonNull Uri getNotificationRingtone(Context context) {
@@ -959,13 +996,11 @@ public class TextSecurePreferences {
   }
 
   public static boolean isCallNotificationVibrateEnabled(Context context) {
-    boolean defaultValue = true;
+    return getBooleanPreference(context, CALL_VIBRATE_PREF, true);
+  }
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      defaultValue = (Settings.System.getInt(context.getContentResolver(), Settings.System.VIBRATE_WHEN_RINGING, 1) == 1);
-    }
-
-    return getBooleanPreference(context, CALL_VIBRATE_PREF, defaultValue);
+  public static void setCallNotificationVibrateEnabled(Context context, boolean value) {
+    setBooleanPreference(context, CALL_VIBRATE_PREF, value);
   }
 
   public static String getNotificationLedColor(Context context) {
@@ -984,6 +1019,10 @@ public class TextSecurePreferences {
     setStringPreference(context, LED_BLINK_PREF_CUSTOM, pattern);
   }
 
+  public static void setThreadTrimLength(Context context, int value) {
+    setStringPreference(context, THREAD_TRIM_LENGTH, String.valueOf(value));
+  }
+
   public static boolean isSystemEmojiPreferred(Context context) {
     return getBooleanPreference(context, SYSTEM_EMOJI_PREF, false);
   }
@@ -992,18 +1031,34 @@ public class TextSecurePreferences {
     return getMediaDownloadAllowed(context, MEDIA_DOWNLOAD_MOBILE_PREF, R.array.pref_media_download_mobile_data_default);
   }
 
+  public static void setMobileMediaDownloadAllowed(Context context, Set<String> values) {
+    setMediaDownloadAllowed(context, MEDIA_DOWNLOAD_MOBILE_PREF, values);
+  }
+
   public static @NonNull Set<String> getWifiMediaDownloadAllowed(Context context) {
     return getMediaDownloadAllowed(context, MEDIA_DOWNLOAD_WIFI_PREF, R.array.pref_media_download_wifi_default);
+  }
+
+  public static void setWifiMediaDownloadAllowed(Context context, Set<String> values) {
+    setMediaDownloadAllowed(context, MEDIA_DOWNLOAD_WIFI_PREF, values);
   }
 
   public static @NonNull Set<String> getRoamingMediaDownloadAllowed(Context context) {
     return getMediaDownloadAllowed(context, MEDIA_DOWNLOAD_ROAMING_PREF, R.array.pref_media_download_roaming_default);
   }
 
+  public static void setRoamingMediaDownloadAllowed(Context context, Set<String> values) {
+    setMediaDownloadAllowed(context, MEDIA_DOWNLOAD_ROAMING_PREF, values);
+  }
+
   private static @NonNull Set<String> getMediaDownloadAllowed(Context context, String key, @ArrayRes int defaultValuesRes) {
     return getStringSetPreference(context,
                                   key,
                                   new HashSet<>(Arrays.asList(context.getResources().getStringArray(defaultValuesRes))));
+  }
+
+  private static void setMediaDownloadAllowed(Context context, String key, Set<String> values) {
+    setStringSetPreference(context, key, values);
   }
 
   public static void setLastOutageCheckTime(Context context, long timestamp) {
@@ -1215,6 +1270,12 @@ public class TextSecurePreferences {
       return defaultValues;
     }
   }
+
+  private static void setStringSetPreference(Context context, String key, Set<String> values) {
+    final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+    prefs.edit().putStringSet(key, values).apply();
+  }
+
 
   // NEVER rename these -- they're persisted by name
   public enum MediaKeyboardMode {

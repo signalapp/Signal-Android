@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.conversationlist;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
@@ -23,9 +24,11 @@ import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
@@ -33,9 +36,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BindableConversationListItem;
@@ -98,12 +103,27 @@ public final class ConversationListItem extends ConstraintLayout
   private AlertView           alertView;
   private TextView            unreadIndicator;
   private long                lastSeen;
+  private View                divider;
   private ThreadRecord        thread;
   private boolean             batchMode;
 
+  private enum ITEM_TYPE {TYPE_MANAGER_VIEW, TYPE_DIVIDER, TYPE_NORMAL_VIEW}
+
+  private int defaultHeight;
+  private int focusDefaultHeight;
+  private int normalHeight;
+  private int focusNormalHeight;
+  private int normalPaddingX;
+  private int focusPaddingX;
+  private int normalTextSize;
+  private int focusTextSize;
+  private int normalColor;
+  private int focusedColor;
+
   private int             unreadCount;
-  private AvatarImageView contactPhotoImage;
   private ThumbnailView   thumbnailView;
+
+  private int viewType = 0;
 
   private final Debouncer subjectViewClearDebouncer = new Debouncer(150);
 
@@ -126,11 +146,21 @@ public final class ConversationListItem extends ConstraintLayout
     this.dateView                = findViewById(R.id.conversation_list_item_date);
     this.deliveryStatusIndicator = findViewById(R.id.conversation_list_item_status);
     this.alertView               = findViewById(R.id.conversation_list_item_alert);
-    this.contactPhotoImage       = findViewById(R.id.conversation_list_item_avatar);
     this.thumbnailView           = findViewById(R.id.conversation_list_item_thumbnail);
     this.archivedView            = findViewById(R.id.conversation_list_item_archived);
     this.unreadIndicator         = findViewById(R.id.conversation_list_item_unread_indicator);
+    this.divider                 = findViewById(R.id.dividerview);
     thumbnailView.setClickable(false);
+    this.normalHeight            = (int)getResources().getDimension(R.dimen.conversation_list_item_normal_height);
+    this.focusNormalHeight       = (int)getResources().getDimension(R.dimen.conversation_list_item_normal_height_focused);
+    this.defaultHeight           = (int)getResources().getDimension(R.dimen.conversation_list_item_default_height);
+    this.focusDefaultHeight      = (int)getResources().getDimension(R.dimen.conversation_list_item_default_height_focused);
+    this.normalPaddingX          = (int)getResources().getDimension(R.dimen.conversation_list_item_padding_start_unfocused);
+    this.focusPaddingX           = (int)getResources().getDimension(R.dimen.conversation_list_item_padding_start_focused);
+    this.normalTextSize          = (int)getResources().getDimension(R.dimen.conversation_list_item_text_size_unfocused);
+    this.focusTextSize           = (int)getResources().getDimension(R.dimen.conversation_list_item_text_size_focused);
+    this.normalColor             = getResources().getColor(R.color.white_not_focus);
+    this.focusedColor            = getResources().getColor(R.color.white_focus);
   }
 
   @Override
@@ -190,16 +220,20 @@ public final class ConversationListItem extends ConstraintLayout
 
     if (thread.isArchived()) {
       this.archivedView.setVisibility(View.VISIBLE);
+//      LayoutParams a = (LayoutParams) dateView.getLayoutParams();
+//      a.addRule(RelativeLayout.CENTER_VERTICAL,0);
+//      this.alertView.setLayoutParams(a);
     } else {
       this.archivedView.setVisibility(View.GONE);
     }
 
+    this.divider.setVisibility(View.GONE);
     setStatusIcons(thread);
     setThumbnailSnippet(thread);
     setBatchMode(batchMode);
-    setRippleColor(recipient.get());
     setUnreadIndicator(thread);
-    this.contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
+    updateHeight(ITEM_TYPE.TYPE_NORMAL_VIEW);
+    setFocusable(true);
   }
 
   public void bind(@NonNull  Recipient     contact,
@@ -224,10 +258,11 @@ public final class ConversationListItem extends ConstraintLayout
     deliveryStatusIndicator.setNone();
     alertView.setNone();
     thumbnailView.setVisibility(GONE);
+    this.divider.setVisibility(View.GONE);
 
     setBatchMode(false);
-    setRippleColor(contact);
-    contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
+    updateHeight(ITEM_TYPE.TYPE_NORMAL_VIEW);
+    setFocusable(true);
   }
 
   public void bind(@NonNull  MessageResult messageResult,
@@ -252,8 +287,111 @@ public final class ConversationListItem extends ConstraintLayout
     thumbnailView.setVisibility(GONE);
 
     setBatchMode(false);
-    setRippleColor(recipient.get());
-    contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
+    updateHeight(ITEM_TYPE.TYPE_NORMAL_VIEW);
+    setFocusable(true);
+  }
+
+  public void bind(@NonNull String text, boolean isDivider) {
+    if (this.recipient != null) this.recipient.removeForeverObserver(this);
+
+    archivedView.setVisibility(GONE);
+    unreadIndicator.setVisibility(GONE);
+    deliveryStatusIndicator.setNone();
+    alertView.setNone();
+    thumbnailView.setVisibility(GONE);
+    if (isDivider) {
+      this.divider.setVisibility(View.VISIBLE);
+      fromView.setVisibility(View.GONE);
+      updateHeight(ITEM_TYPE.TYPE_DIVIDER);
+      setFocusable(false);
+    } else {
+      fromView.setText(text);
+      this.divider.setVisibility(View.GONE);
+      updateHeight(ITEM_TYPE.TYPE_MANAGER_VIEW);
+      setFocusable(true);
+    }
+
+  }
+
+  private void updateHeight(ITEM_TYPE type) {
+    RecyclerView.LayoutParams params = (RecyclerView.LayoutParams)getLayoutParams();
+    if (type == ITEM_TYPE.TYPE_MANAGER_VIEW) {
+      params.height = defaultHeight;
+    } else if (type == ITEM_TYPE.TYPE_DIVIDER) {
+      params.height = (int)getResources().getDimension(R.dimen.conversation_list_item_divider_height);
+    } else {
+      params.height = normalHeight;
+    }
+    setLayoutParams(params);
+  }
+
+  public void updateItemParas(boolean hasFocus) {
+    int paddingStart;
+    int textSize;
+    int itemHeight;
+    int textColor;
+    if(hasFocus) {
+      paddingStart = focusPaddingX;
+      textSize = focusTextSize;
+      if (viewType >= 10) {
+        itemHeight = focusDefaultHeight;
+      } else {
+        itemHeight = focusNormalHeight;
+      }
+      textColor = focusedColor;
+    } else {
+      paddingStart = normalPaddingX;
+      textSize = normalTextSize;
+      if (viewType >= 10) {
+        itemHeight = defaultHeight;
+      } else {
+        itemHeight = normalHeight;
+      }
+      textColor = normalColor;
+    }
+    fromView.setTextSize(textSize);
+    fromView.setTextColor(textColor);
+    fromView.setFocused(hasFocus);
+    setPadding(paddingStart, getPaddingTop(),getPaddingRight(),getPaddingBottom());
+    RecyclerView.LayoutParams params = (RecyclerView.LayoutParams)getLayoutParams();
+    params.height = itemHeight;
+    setLayoutParams(params);
+  }
+
+  public void updateSearchItemParas(boolean hasFocus) {
+    int paddingStart;
+    int textSize;
+    int contactNumTextSize;
+    int itemHeight;
+    int textColor;
+    if(hasFocus) {
+      paddingStart = focusPaddingX;
+      textSize = focusTextSize;
+      itemHeight = focusNormalHeight;
+      textColor = focusedColor;
+      contactNumTextSize = (int)getResources().getDimension(R.dimen.conversation_list_item_search_contact_number_text_size_focused);
+      if (subjectView.getVisibility() == VISIBLE) {
+        itemHeight = (int)getResources().getDimension(R.dimen.conversation_list_item_search_contact_height_focused);
+      }
+
+    } else {
+      paddingStart = normalPaddingX;
+      textSize = normalTextSize;
+      itemHeight = normalHeight;
+      textColor = normalColor;
+      contactNumTextSize = (int)getResources().getDimension(R.dimen.conversation_list_item_search_contact_number_text_size_unfocused);
+    }
+    fromView.setTextSize(textSize);
+    fromView.setTextColor(textColor);
+    fromView.setFocused(hasFocus);
+    if (subjectView.getVisibility() == VISIBLE) {
+      subjectView.setTextSize(contactNumTextSize);
+      subjectView.setTextColor(textColor);
+    }
+    setPadding(paddingStart, getPaddingTop(),getPaddingRight(),getPaddingBottom());
+    RecyclerView.LayoutParams params = (RecyclerView.LayoutParams)getLayoutParams();
+    params.height = itemHeight;
+    setLayoutParams(params);
   }
 
   @Override
@@ -261,7 +399,6 @@ public final class ConversationListItem extends ConstraintLayout
     if (this.recipient != null) {
       observeRecipient(null);
       setBatchMode(false);
-      contactPhotoImage.setAvatar(glideRequests, null, !batchMode);
     }
 
     observeDisplayBody(null);
@@ -284,7 +421,8 @@ public final class ConversationListItem extends ConstraintLayout
       this.typingView.setVisibility(GONE);
       this.typingView.stopAnimation();
 
-      this.subjectView.setVisibility(VISIBLE);
+//      this.subjectView.setVisibility(VISIBLE);
+      this.subjectView.setVisibility(GONE);
     }
   }
 
@@ -307,6 +445,18 @@ public final class ConversationListItem extends ConstraintLayout
   public long getLastSeen() {
     return lastSeen;
   }
+
+  public void setViewType(int type) {
+    viewType = type;
+  }
+
+  public int getViewType() {
+    return viewType;
+  }
+  public String getFromText() {
+    return fromView.getText().toString();
+  }
+
 
   private void observeRecipient(@Nullable LiveRecipient newRecipient) {
     if (this.recipient != null) {
@@ -388,21 +538,16 @@ public final class ConversationListItem extends ConstraintLayout
     }
   }
 
-  private void setRippleColor(Recipient recipient) {
-    if (Build.VERSION.SDK_INT >= 21) {
-      ((RippleDrawable)(getBackground()).mutate())
-          .setColor(ColorStateList.valueOf(recipient.getColor().toConversationColor(getContext())));
-    }
-  }
-
   private void setUnreadIndicator(ThreadRecord thread) {
     if ((thread.isOutgoing() && !thread.isForcedUnread()) || thread.isRead()) {
       unreadIndicator.setVisibility(View.GONE);
+      dateView.setVisibility(VISIBLE);
       return;
     }
 
     unreadIndicator.setText(unreadCount > 0 ? String.valueOf(unreadCount) : " ");
     unreadIndicator.setVisibility(View.VISIBLE);
+    dateView.setVisibility(GONE);
   }
 
   @Override
@@ -413,8 +558,6 @@ public final class ConversationListItem extends ConstraintLayout
     }
 
     fromView.setText(recipient, unreadCount == 0);
-    contactPhotoImage.setAvatar(glideRequests, recipient, !batchMode);
-    setRippleColor(recipient);
   }
 
   private static @NonNull LiveData<SpannableString> getThreadDisplayBody(@NonNull Context context, @NonNull ThreadRecord thread) {

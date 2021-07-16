@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.mediasend;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -139,14 +140,15 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
   private ViewGroup           countButton;
   private TextView            countButtonText;
   private View                continueButton;
-  private ImageView           revealButton;
+//  private ImageView           revealButton;
   private EmojiEditText       captionText;
-  private EmojiToggle         emojiToggle;
+//  private EmojiToggle         emojiToggle;
   private Stub<MediaKeyboard> emojiDrawer;
   private Stub<View>          mentionSuggestions;
   private TextView            charactersLeft;
   private RecyclerView        mediaRail;
   private MediaRailAdapter    mediaRailAdapter;
+  private TextView            sendText;
 
   private int visibleHeight;
 
@@ -220,13 +222,32 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     countButton         = findViewById(R.id.mediasend_count_button);
     countButtonText     = findViewById(R.id.mediasend_count_button_text);
     continueButton      = findViewById(R.id.mediasend_continue_button);
-    revealButton        = findViewById(R.id.mediasend_reveal_toggle);
+//    revealButton        = findViewById(R.id.mediasend_reveal_toggle);
     captionText         = findViewById(R.id.mediasend_caption);
-    emojiToggle         = findViewById(R.id.mediasend_emoji_toggle);
+//    emojiToggle         = findViewById(R.id.mediasend_emoji_toggle);
     charactersLeft      = findViewById(R.id.mediasend_characters_left);
     mediaRail           = findViewById(R.id.mediasend_media_rail);
     emojiDrawer         = new Stub<>(findViewById(R.id.mediasend_emoji_drawer_stub));
     mentionSuggestions  = new Stub<>(findViewById(R.id.mediasend_mention_suggestions_stub));
+    sendText            = findViewById(R.id.send_textView);
+    sendText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+          sendText.setTextSize(30);
+          sendText.setTextColor(Color.WHITE);
+        } else {
+          sendText.setTextSize(25);
+          sendText.setTextColor(Color.GRAY);
+        }
+      }
+    });
+    sendText.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        sendButton.performClick();
+      }
+    });
 
     RecipientId recipientId = getIntent().getParcelableExtra(KEY_RECIPIENT);
     if (recipientId != null) {
@@ -246,12 +267,11 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
     List<Media> media    = getIntent().getParcelableArrayListExtra(KEY_MEDIA);
     boolean     isCamera = getIntent().getBooleanExtra(KEY_IS_CAMERA, false);
-
     if (isCamera) {
-      Fragment fragment = CameraFragment.newInstance();
-      getSupportFragmentManager().beginTransaction()
-                                 .replace(R.id.mediasend_fragment_container, fragment, TAG_CAMERA)
-                                 .commit();
+//      Fragment fragment = CameraFragment.newInstance();
+//      getSupportFragmentManager().beginTransaction()
+//                                 .replace(R.id.mediasend_fragment_container, fragment, TAG_CAMERA)
+//                                 .commit();
 
     } else if (!Util.isEmpty(media)) {
       viewModel.onSelectedMediaChanged(this, media);
@@ -261,10 +281,10 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
                                  .replace(R.id.mediasend_fragment_container, fragment, TAG_SEND)
                                  .commit();
     } else {
-      MediaPickerFolderFragment fragment = MediaPickerFolderFragment.newInstance(this, recipient != null ? recipient.get() : null);
-      getSupportFragmentManager().beginTransaction()
-                                 .replace(R.id.mediasend_fragment_container, fragment, TAG_FOLDER_PICKER)
-                                 .commit();
+//      MediaPickerFolderFragment fragment = MediaPickerFolderFragment.newInstance(this, recipient != null ? recipient.get() : null);
+//      getSupportFragmentManager().beginTransaction()
+//                                 .replace(R.id.mediasend_fragment_container, fragment, TAG_FOLDER_PICKER)
+//                                 .commit();
     }
 
     sendButton.setOnClickListener(v -> onSendClicked());
@@ -274,8 +294,8 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     sendButton.addOnTransportChangedListener((newTransport, manuallySelected) -> {
       presentCharactersRemaining();
       composeText.setTransport(newTransport);
-      sendButtonContainer.getBackground().setColorFilter(newTransport.getBackgroundColor(), PorterDuff.Mode.MULTIPLY);
-      sendButtonContainer.getBackground().invalidateSelf();
+//      sendButtonContainer.getBackground().setColorFilter(newTransport.getBackgroundColor(), PorterDuff.Mode.MULTIPLY);
+//      sendButtonContainer.getBackground().invalidateSelf();
     });
 
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
@@ -285,10 +305,10 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     composeText.setOnClickListener(composeKeyPressedListener);
     composeText.setOnFocusChangeListener(composeKeyPressedListener);
 
-    captionText.clearFocus();
+//    captionText.clearFocus();
     composeText.requestFocus();
 
-    mediaRailAdapter = new MediaRailAdapter(GlideApp.with(this), this, true);
+    mediaRailAdapter = new MediaRailAdapter(GlideApp.with(this), this, false);
     mediaRail.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     mediaRail.setAdapter(mediaRailAdapter);
 
@@ -322,17 +342,18 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
       return isSend;
     });
 
-    if (TextSecurePreferences.isSystemEmojiPreferred(this)) {
-      emojiToggle.setVisibility(View.GONE);
-    } else {
-      emojiToggle.setOnClickListener(this::onEmojiToggleClicked);
-    }
+//    if (TextSecurePreferences.isSystemEmojiPreferred(this)) {
+//      emojiToggle.setVisibility(View.GONE);
+//    } else {
+//      emojiToggle.setOnClickListener(this::onEmojiToggleClicked);
+//    }
 
     initializeMentionsViewModel();
     initViewModel();
 
-    revealButton.setOnClickListener(v -> viewModel.onRevealButtonToggled());
-    continueButton.setOnClickListener(v -> navigateToContactSelect());
+//    revealButton.setOnClickListener(v -> viewModel.onRevealButtonToggled());
+//    continueButton.setOnClickListener(v -> navigateToContactSelect());
+
   }
 
   @Override
@@ -662,7 +683,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
       switch (state.getButtonState()) {
         case SEND:
-          sendButtonContainer.setVisibility(View.VISIBLE);
+//          sendButtonContainer.setVisibility(View.VISIBLE);
           continueButton.setVisibility(View.GONE);
           countButton.setVisibility(View.GONE);
           break;
@@ -690,7 +711,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
           break;
       }
 
-      switch (state.getViewOnceState()) {
+      /*switch (state.getViewOnceState()) {
         case ENABLED:
           revealButton.setVisibility(View.VISIBLE);
           revealButton.setImageResource(R.drawable.ic_view_once_32);
@@ -702,12 +723,12 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
         case GONE:
           revealButton.setVisibility(View.GONE);
           break;
-      }
+      }*/
 
       switch (state.getRailState()) {
         case INTERACTIVE:
           mediaRail.setVisibility(View.VISIBLE);
-          mediaRailAdapter.setEditable(true);
+//          mediaRailAdapter.setEditable(true);
           mediaRailAdapter.setInteractive(true);
           break;
         case VIEWABLE:
@@ -772,12 +793,12 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     viewModel.getEvents().observe(this, event -> {
       switch (event) {
         case VIEW_ONCE_TOOLTIP:
-          TooltipPopup.forTarget(revealButton)
-                      .setText(R.string.MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed)
-                      .setBackgroundTint(getResources().getColor(R.color.core_ultramarine))
-                      .setTextColor(getResources().getColor(R.color.core_white))
-                      .setOnDismissListener(() -> TextSecurePreferences.setHasSeenViewOnceTooltip(this, true))
-                      .show(TooltipPopup.POSITION_ABOVE);
+//          TooltipPopup.forTarget(revealButton)
+//                      .setText(R.string.MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed)
+//                      .setBackgroundTint(getResources().getColor(R.color.core_ultramarine))
+//                      .setTextColor(getResources().getColor(R.color.core_white))
+//                      .setOnDismissListener(() -> TextSecurePreferences.setHasSeenViewOnceTooltip(this, true))
+//                      .show(TooltipPopup.POSITION_ABOVE);
           break;
       }
     });
@@ -945,7 +966,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
           getActiveInputField().insertEmoji(emoji);
         }
       }));
-      emojiToggle.attach(emojiDrawer.get());
+//      emojiToggle.attach(emojiDrawer.get());
     }
 
     if (hud.getCurrentInput() == emojiDrawer.get()) {
@@ -981,6 +1002,13 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
             sendButton.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
             return true;
           }
+        }
+        if (keyCode == KeyEvent.KEYCODE_CALL && composeText.hasFocus()){
+          sendButton.performClick();
+          return true;
+        }
+        if(keyCode == KeyEvent.KEYCODE_DPAD_UP && composeText.hasFocus()){
+          return true;
         }
       }
       return false;

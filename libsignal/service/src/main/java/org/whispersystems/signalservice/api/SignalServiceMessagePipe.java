@@ -62,6 +62,7 @@ import static org.whispersystems.signalservice.internal.websocket.WebSocketProto
 public class SignalServiceMessagePipe {
 
   private static final String TAG = SignalServiceMessagePipe.class.getName();
+  private boolean test;
 
   private static final String SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp";
 
@@ -80,6 +81,9 @@ public class SignalServiceMessagePipe {
     this.websocket.connect();
   }
 
+  public void setTest(boolean test){
+    websocket.setTest(test);
+  }
   /**
    * A blocking call that reads a message off the pipe.  When this
    * call returns, the message has been acknowledged and will not

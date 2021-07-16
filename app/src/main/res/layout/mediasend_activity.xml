@@ -10,7 +10,8 @@
     <FrameLayout
         android:id="@+id/mediasend_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
     <org.thoughtcrime.securesms.components.InputAwareLayout
         android:id="@+id/mediasend_hud"
@@ -41,16 +42,19 @@
                 android:hint="@string/MediaSendActivity_add_a_caption"
                 android:autoText="true"
                 android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
-                android:background="@null"/>
+                android:background="@null"
+                android:visibility="gone"
+                tools:visibility="gone"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mediasend_media_rail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                tools:layout_height="64dp"/>
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                tools:layout_height="64dp"
+                android:focusable="false"/>
 
             <LinearLayout
                 android:id="@+id/mediasend_compose_row"
@@ -69,7 +73,9 @@
                     android:layout_marginEnd="12dp"
                     android:layout_marginBottom="4dp"
                     android:layout_gravity="bottom"
-                    tools:src="@drawable/ic_view_infinite_32" />
+                    tools:src="@drawable/ic_view_infinite_32"
+                    android:visibility="gone"
+                    tools:visibility="gone"/>
 
                 <LinearLayout
                     android:id="@+id/mediasend_compose_container"
@@ -89,7 +95,9 @@
                         android:paddingStart="4dp"
                         android:paddingEnd="6dp"
                         android:background="?selectableItemBackgroundBorderless"
-                        android:contentDescription="@string/conversation_activity__emoji_toggle_description" />
+                        android:contentDescription="@string/conversation_activity__emoji_toggle_description"
+                        android:visibility="gone"
+                        tools:visibility="gone"/>
 
                     <Space
                         android:layout_width="0dp"
@@ -102,8 +110,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:nextFocusForward="@+id/send_button"
-                        android:nextFocusRight="@+id/send_button"
+                        android:nextFocusDown="@id/send_textView"
                         tools:hint="Send TextSecure message" >
                         <requestFocus />
                     </org.thoughtcrime.securesms.components.ComposeText>
@@ -117,7 +124,8 @@
                     android:layout_marginStart="12dp"
                     android:layout_gravity="bottom"
                     android:background="@drawable/circle_tintable"
-                    tools:backgroundTint="@color/core_ultramarine">
+                    tools:backgroundTint="@color/core_ultramarine"
+                    android:visibility="gone">
 
                     <org.thoughtcrime.securesms.components.SendButton
                         android:id="@+id/mediasend_send_button"
@@ -146,10 +154,20 @@
                     android:contentDescription="@string/MediaSendActivity_select_recipients_description"
                     android:visibility="gone"
                     app:srcCompat="@drawable/ic_continue_24"
-                    tools:visibility="visible"/>
-
-
+                    tools:visibility="gone"/>
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/send_textView"
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:focusable="true"
+                android:paddingLeft="25dp"
+                android:defaultFocusHighlightEnabled="false"
+                android:text="@string/conversation_activity__send"
+                android:textColor="@color/grey"
+                android:textSize="25dp"
+                tools:ignore="UnusedAttribute" />
 
             <include
                 android:id="@+id/mediasend_count_button"
@@ -161,7 +179,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_gravity="bottom|end"
                 android:visibility="gone"
-                tools:visibility="visible" />
+                tools:visibility="gone" />
 
             <TextView
                 android:id="@+id/mediasend_characters_left"
@@ -171,7 +189,7 @@
                 android:layout_marginEnd="16dp"
                 android:paddingBottom="12dp"
                 android:visibility="gone"
-                tools:visibility="visible"
+                tools:visibility="gone"
                 tools:text="160/160 (1)" />
 
             <ViewStub
@@ -187,7 +205,9 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="gone">
 
         <ViewStub
             android:id="@+id/mediasend_mention_suggestions_stub"

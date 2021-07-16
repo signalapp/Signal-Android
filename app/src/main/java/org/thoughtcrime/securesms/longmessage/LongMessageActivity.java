@@ -151,7 +151,9 @@ public class LongMessageActivity extends PassphraseRequiredActivity {
       SpannableString styledBody  = linkifyMessageBody(new SpannableString(trimmedBody));
 
       bubble.setVisibility(View.VISIBLE);
-      text.setText(styledBody);
+      final String DOUBLE_BYTE_WORDJOINER = "\u2060";
+      text.setText(styledBody + DOUBLE_BYTE_WORDJOINER);
+//      text.setText(styledBody);
       text.setMovementMethod(LinkMovementMethod.getInstance());
       text.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(this));
       if (message.get().getMessageRecord().isOutgoing()) {

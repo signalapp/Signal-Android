@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
-import org.signal.ringrtc.IceCandidate;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -85,27 +84,6 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
     SignalServiceCallMessage callMessage         = SignalServiceCallMessage.forIceUpdates(iceUpdateMessages, true, destinationDeviceId);
 
     webRtcInteractor.sendCallMessage(callMetadata.getRemotePeer(), callMessage);
-
-    return currentState;
-  }
-
-  @Override
-  protected @NonNull WebRtcServiceState handleReceivedIceCandidates(@NonNull WebRtcServiceState currentState,
-                                                                    @NonNull WebRtcData.CallMetadata callMetadata,
-                                                                    @NonNull ArrayList<IceCandidateParcel> iceCandidateParcels)
-  {
-    Log.i(tag, "handleReceivedIceCandidates(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()) + ", count: " + iceCandidateParcels.size());
-
-    LinkedList<IceCandidate> iceCandidates = new LinkedList<>();
-    for (IceCandidateParcel parcel : iceCandidateParcels) {
-      iceCandidates.add(parcel.getIceCandidate());
-    }
-
-    try {
-      webRtcInteractor.getCallManager().receivedIceCandidates(callMetadata.getCallId(), callMetadata.getRemoteDevice(), iceCandidates);
-    } catch (CallException e) {
-      return callFailure(currentState, "receivedIceCandidates() failed: ", e);
-    }
 
     return currentState;
   }

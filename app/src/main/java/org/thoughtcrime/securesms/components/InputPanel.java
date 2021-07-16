@@ -84,6 +84,7 @@ public class InputPanel extends LinearLayout
   private           boolean  emojiVisible;
 
   private ConversationStickerSuggestionAdapter stickerSuggestionAdapter;
+  private TextView mytexview;
 
   public InputPanel(Context context) {
     super(context);
@@ -116,10 +117,10 @@ public class InputPanel extends LinearLayout
     this.slideToCancel          = new SlideToCancel(findViewById(R.id.slide_to_cancel));
     this.microphoneRecorderView = findViewById(R.id.recorder_view);
     this.microphoneRecorderView.setListener(this);
-    this.recordTime             = new RecordTime(findViewById(R.id.record_time),
-                                                 findViewById(R.id.microphone),
-                                                 TimeUnit.HOURS.toSeconds(1),
-                                                 () -> microphoneRecorderView.cancelAction());
+//    this.recordTime             = new RecordTime(findViewById(R.id.record_time),
+//                                                 findViewById(R.id.microphone),
+//                                                 TimeUnit.HOURS.toSeconds(1),
+//                                                 () -> microphoneRecorderView.cancelAction());
 
     this.recordLockCancel.setOnClickListener(v -> microphoneRecorderView.cancelAction());
 
@@ -127,10 +128,13 @@ public class InputPanel extends LinearLayout
       mediaKeyboard.setVisibility(View.GONE);
       emojiVisible = false;
     } else {
-      mediaKeyboard.setVisibility(View.VISIBLE);
+      mediaKeyboard.setVisibility(View.GONE);
       emojiVisible = true;
     }
 
+    quickCameraToggle.setVisibility(View.GONE);
+    microphoneRecorderView.setVisibility(View.GONE);
+    recordingContainer.setVisibility(View.GONE);
     quoteDismiss.setOnClickListener(v -> clearQuote());
 
     linkPreview.setCloseClickedListener(() -> {
@@ -143,6 +147,18 @@ public class InputPanel extends LinearLayout
 
     stickerSuggestion.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
     stickerSuggestion.setAdapter(stickerSuggestionAdapter);
+  }
+
+  public void mydisMiss(){
+    mytexview.setVisibility(View.GONE);
+  }
+
+  public void setThis(TextView mytexview_out){
+    this.mytexview=mytexview_out;
+    this.recordTime = new RecordTime(this.mytexview,
+            findViewById(R.id.microphone),
+            TimeUnit.HOURS.toSeconds(1),
+            () -> microphoneRecorderView.cancelAction());
   }
 
   public void setListener(final @NonNull Listener listener) {
@@ -181,6 +197,10 @@ public class InputPanel extends LinearLayout
       int cornerRadius = readDimen(R.dimen.message_corner_collapse_radius);
       this.linkPreview.setCorners(cornerRadius, cornerRadius);
     }
+  }
+
+  public QuoteView getQuoteView(){
+    return quoteView;
   }
 
   public void clearQuote() {
@@ -271,7 +291,7 @@ public class InputPanel extends LinearLayout
 
   public void showMediaKeyboardToggle(boolean show) {
     emojiVisible = show;
-    mediaKeyboard.setVisibility(show ? View.VISIBLE : GONE);
+    mediaKeyboard.setVisibility(show ? View.GONE : GONE);
   }
 
   public void setMediaKeyboardToggleMode(boolean isSticker) {
@@ -297,11 +317,11 @@ public class InputPanel extends LinearLayout
     recordTime.display();
     slideToCancel.display();
 
-    if (emojiVisible) ViewUtil.fadeOut(mediaKeyboard, FADE_TIME, View.INVISIBLE);
-    ViewUtil.fadeOut(composeText, FADE_TIME, View.INVISIBLE);
-    ViewUtil.fadeOut(quickCameraToggle, FADE_TIME, View.INVISIBLE);
-    ViewUtil.fadeOut(quickAudioToggle, FADE_TIME, View.INVISIBLE);
-    buttonToggle.animate().alpha(0).setDuration(FADE_TIME).start();
+//    if (emojiVisible) ViewUtil.fadeOut(mediaKeyboard, FADE_TIME, View.INVISIBLE);
+//    ViewUtil.fadeOut(composeText, FADE_TIME, View.INVISIBLE);
+//    ViewUtil.fadeOut(quickCameraToggle, FADE_TIME, View.INVISIBLE);
+//    ViewUtil.fadeOut(quickAudioToggle, FADE_TIME, View.INVISIBLE);
+//    buttonToggle.animate().alpha(0).setDuration(FADE_TIME).start();
   }
 
   @Override
@@ -367,10 +387,10 @@ public class InputPanel extends LinearLayout
     future.addListener(new AssertedSuccessListener<Void>() {
       @Override
       public void onSuccess(Void result) {
-        if (emojiVisible) ViewUtil.fadeIn(mediaKeyboard, FADE_TIME);
-        ViewUtil.fadeIn(composeText, FADE_TIME);
-        ViewUtil.fadeIn(quickCameraToggle, FADE_TIME);
-        ViewUtil.fadeIn(quickAudioToggle, FADE_TIME);
+//        if (emojiVisible) ViewUtil.fadeIn(mediaKeyboard, FADE_TIME);
+//        ViewUtil.fadeIn(composeText, FADE_TIME);
+//        ViewUtil.fadeIn(quickCameraToggle, FADE_TIME);
+//        ViewUtil.fadeIn(quickAudioToggle, FADE_TIME);
         buttonToggle.animate().alpha(1).setDuration(FADE_TIME).start();
       }
     });
@@ -499,8 +519,9 @@ public class InputPanel extends LinearLayout
     public long hide() {
       long elapsedTime = System.currentTimeMillis() - startTime;
       this.startTime = 0;
-      ViewUtil.fadeOut(this.recordTimeView, FADE_TIME, View.INVISIBLE);
-      microphone.clearAnimation();
+//      ViewUtil.fadeOut(this.recordTimeView, FADE_TIME, View.INVISIBLE);
+//      microphone.clearAnimation();
+      this.recordTimeView.setVisibility(View.GONE);
       ViewUtil.fadeOut(this.microphone, FADE_TIME, View.INVISIBLE);
       return elapsedTime;
     }

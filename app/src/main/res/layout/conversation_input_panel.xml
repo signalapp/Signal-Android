@@ -6,9 +6,9 @@
     android:id="@+id/bottom_panel"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/input_panel_sticker_suggestion"
@@ -18,9 +18,8 @@
         android:visibility="gone" />
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:gravity="center_vertical"
@@ -76,21 +75,25 @@
                     android:clipToPadding="false">
 
                     <LinearLayout
+                        android:id="@+id/llt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:clickable="true"
                         android:clipChildren="false"
                         android:clipToPadding="false"
+                        android:focusable="true"
                         android:paddingStart="8dp">
 
                         <org.thoughtcrime.securesms.components.emoji.EmojiToggle
                             android:id="@+id/emoji_toggle"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/conversation_compose_height"
+                            android:visibility="gone"
                             android:layout_gravity="bottom"
                             android:background="?selectableItemBackgroundBorderless"
-                            android:tint="@color/signal_icon_tint_primary"
                             android:contentDescription="@string/conversation_activity__emoji_toggle_description"
-                            android:paddingEnd="6dp" />
+                            android:paddingEnd="6dp"
+                            android:tint="@color/signal_icon_tint_primary"/>
 
                         <Space
                             android:layout_width="0dp"
@@ -103,8 +106,10 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
-                            android:nextFocusRight="@+id/send_button"
+                            android:descendantFocusability="afterDescendants"
+                            android:nextFocusRight="@+id/send_text"
                             android:nextFocusForward="@+id/send_button"
+                            android:singleLine="false"
                             tools:hint="Send TextSecure message"
                             tools:visibility="invisible">
 
@@ -189,6 +194,7 @@
             android:id="@+id/button_toggle"
             android:layout_width="@dimen/conversation_compose_height"
             android:layout_height="@dimen/conversation_compose_height"
+            android:visibility="gone"
             android:layout_gravity="bottom"
             android:layout_marginStart="12dp"
             android:background="@drawable/circle_tintable">
@@ -198,6 +204,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:visibility="gone"
                 android:background="@drawable/circle_touch_highlight_background"
                 android:contentDescription="@string/ConversationActivity_add_attachment"
                 android:nextFocusLeft="@+id/embedded_text_editor"
@@ -209,8 +216,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/circle_touch_highlight_background"
+                android:visibility="gone"
+                android:clickable="true"
                 android:contentDescription="@string/conversation_activity__send"
-                android:nextFocusLeft="@+id/embedded_text_editor"
+                android:focusable="true"
+                android:nextFocusUp="@+id/embedded_text_editor"
                 android:paddingStart="6dp"
                 android:paddingTop="6dp"
                 android:paddingEnd="6dp"
@@ -222,4 +232,14 @@
         </org.thoughtcrime.securesms.components.AnimatingToggle>
 
     </LinearLayout>
+    <TextView
+        android:id="@+id/send_text"
+        android:layout_width="match_parent"
+        android:layout_height="50px"
+        android:defaultFocusHighlightEnabled="false"
+        android:paddingLeft="25dp"
+        android:text="@string/conversation_activity__send"
+        android:textColor="@color/grey"
+        android:textSize="25dp"
+        tools:ignore="UnusedAttribute" />
 </org.thoughtcrime.securesms.components.InputPanel>

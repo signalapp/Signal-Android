@@ -419,6 +419,10 @@ public class Recipient {
            !TextUtils.isEmpty(getProfileName().toString());
   }
 
+  public @NonNull String getNumber() {
+    return PhoneNumberFormatter.prettyPrint(e164);
+  }
+
   public @NonNull String getDisplayName(@NonNull Context context) {
     String name = getName(context);
 
@@ -994,5 +998,45 @@ public class Recipient {
   }
 
   private static class MissingAddressError extends AssertionError {
+  }
+
+
+  @Override
+  public String toString() {
+    return "Recipient{" +
+            "id=" + id +
+            ", resolving=" + resolving +
+            ", uuid=" + uuid +
+            ", username='" + username + '\'' +
+            ", e164='" + e164 + '\'' +
+            ", email='" + email + '\'' +
+            ", groupId=" + groupId +
+            ", participants=" + participants +
+            ", groupAvatarId=" + groupAvatarId +
+            ", blocked=" + blocked +
+            ", muteUntil=" + muteUntil +
+            ", messageVibrate=" + messageVibrate +
+            ", callVibrate=" + callVibrate +
+            ", messageRingtone=" + messageRingtone +
+            ", callRingtone=" + callRingtone +
+            ", color=" + color +
+            ", defaultSubscriptionId=" + defaultSubscriptionId +
+            ", expireMessages=" + expireMessages +
+            ", registered=" + registered +
+            ", profileKey=" + Arrays.toString(profileKey) +
+            ", name='" + name + '\'' +
+            ", systemContactPhoto=" + systemContactPhoto +
+            ", customLabel='" + customLabel + '\'' +
+            ", contactUri=" + contactUri +
+            ", profileName=" + profileName +
+            ", profileAvatar='" + profileAvatar + '\'' +
+            ", profileSharing=" + profileSharing +
+            ", notificationChannel='" + notificationChannel + '\'' +
+            ", unidentifiedAccessMode=" + unidentifiedAccessMode +
+            ", forceSmsSelection=" + forceSmsSelection +
+            ", groupsV2Capability=" + groupsV2Capability +
+            ", insightsBannerTier=" + insightsBannerTier +
+            ", storageId=" + Arrays.toString(storageId) +
+            '}';
   }
 }

@@ -8,6 +8,11 @@ public class Conversation {
   private final ThreadRecord threadRecord;
   private final Type         type;
 
+  public Conversation() {
+    threadRecord = new ThreadRecord(new ThreadRecord.Builder(-1));
+    type = Type.THREAD;
+  }
+
   public Conversation(@NonNull ThreadRecord threadRecord) {
     this.threadRecord = threadRecord;
     if (this.threadRecord.getThreadId() < 0) {

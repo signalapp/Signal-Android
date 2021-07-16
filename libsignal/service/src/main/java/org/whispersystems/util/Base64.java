@@ -1241,7 +1241,7 @@ public class Base64
      * @since 1.4
      */
     public static byte[] decode( String s ) throws java.io.IOException {
-        // Signal: We never use gzip, avoid trying to unzip.
+        // Signal : We never use gzip, avoid trying to unzip.
         // return decode( s, NO_OPTIONS );
         return decode( s, DONT_GUNZIP );
     }

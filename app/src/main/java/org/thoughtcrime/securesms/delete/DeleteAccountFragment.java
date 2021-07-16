@@ -81,7 +81,6 @@ public class DeleteAccountFragment extends Fragment {
   @Override
   public void onResume() {
     super.onResume();
-    ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__delete_account);
   }
 
   private @NonNull CharSequence buildBulletsText() {

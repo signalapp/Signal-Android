@@ -26,11 +26,11 @@ public final class ContactFilterToolbar extends DarkOverflowToolbar {
   private   OnFilterChangedListener listener;
 
   private final EditText        searchText;
-  private final AnimatingToggle toggle;
-  private final ImageView       keyboardToggle;
-  private final ImageView       dialpadToggle;
-  private final ImageView       clearToggle;
-  private final LinearLayout    toggleContainer;
+//  private final AnimatingToggle toggle;
+//  private final ImageView       keyboardToggle;
+//  private final ImageView       dialpadToggle;
+//  private final ImageView       clearToggle;
+//  private final LinearLayout    toggleContainer;
 
   public ContactFilterToolbar(Context context) {
     this(context, null);
@@ -45,39 +45,39 @@ public final class ContactFilterToolbar extends DarkOverflowToolbar {
     inflate(context, R.layout.contact_filter_toolbar, this);
 
     this.searchText      = findViewById(R.id.search_view);
-    this.toggle          = findViewById(R.id.button_toggle);
-    this.keyboardToggle  = findViewById(R.id.search_keyboard);
-    this.dialpadToggle   = findViewById(R.id.search_dialpad);
-    this.clearToggle     = findViewById(R.id.search_clear);
-    this.toggleContainer = findViewById(R.id.toggle_container);
-
-    this.keyboardToggle.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        searchText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
-        ServiceUtil.getInputMethodManager(getContext()).showSoftInput(searchText, 0);
-        displayTogglingView(dialpadToggle);
-      }
-    });
-
-    this.dialpadToggle.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        searchText.setInputType(InputType.TYPE_CLASS_PHONE);
-        ServiceUtil.getInputMethodManager(getContext()).showSoftInput(searchText, 0);
-        displayTogglingView(keyboardToggle);
-      }
-    });
-
-    this.clearToggle.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        searchText.setText("");
-
-        if (SearchUtil.isTextInput(searchText)) displayTogglingView(dialpadToggle);
-        else displayTogglingView(keyboardToggle);
-      }
-    });
+//    this.toggle          = findViewById(R.id.button_toggle);
+//    this.keyboardToggle  = findViewById(R.id.search_keyboard);
+//    this.dialpadToggle   = findViewById(R.id.search_dialpad);
+//    this.clearToggle     = findViewById(R.id.search_clear);
+//    this.toggleContainer = findViewById(R.id.toggle_container);
+//
+//    this.keyboardToggle.setOnClickListener(new View.OnClickListener() {
+//      @Override
+//      public void onClick(View v) {
+//        searchText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
+//        ServiceUtil.getInputMethodManager(getContext()).showSoftInput(searchText, 0);
+//        displayTogglingView(dialpadToggle);
+//      }
+//    });
+//
+//    this.dialpadToggle.setOnClickListener(new View.OnClickListener() {
+//      @Override
+//      public void onClick(View v) {
+//        searchText.setInputType(InputType.TYPE_CLASS_PHONE);
+//        ServiceUtil.getInputMethodManager(getContext()).showSoftInput(searchText, 0);
+//        displayTogglingView(keyboardToggle);
+//      }
+//    });
+//
+//    this.clearToggle.setOnClickListener(new View.OnClickListener() {
+//      @Override
+//      public void onClick(View v) {
+//        searchText.setText("");
+//
+//        if (SearchUtil.isTextInput(searchText)) displayTogglingView(dialpadToggle);
+//        else displayTogglingView(keyboardToggle);
+//      }
+//    });
 
     this.searchText.addTextChangedListener(new TextWatcher() {
       @Override
@@ -92,16 +92,16 @@ public final class ContactFilterToolbar extends DarkOverflowToolbar {
 
       @Override
       public void afterTextChanged(Editable s) {
-        if (!SearchUtil.isEmpty(searchText)) displayTogglingView(clearToggle);
-        else if (SearchUtil.isTextInput(searchText)) displayTogglingView(dialpadToggle);
-        else if (SearchUtil.isPhoneInput(searchText)) displayTogglingView(keyboardToggle);
+//        if (!SearchUtil.isEmpty(searchText)) displayTogglingView(clearToggle);
+//        else if (SearchUtil.isTextInput(searchText)) displayTogglingView(dialpadToggle);
+//        else if (SearchUtil.isPhoneInput(searchText)) displayTogglingView(keyboardToggle);
         notifyListener();
       }
     });
 
     setLogo(null);
     setContentInsetStartWithNavigation(0);
-    expandTapArea(toggleContainer, dialpadToggle);
+//    expandTapArea(toggleContainer, dialpadToggle);
     applyAttributes(searchText, context, attrs, defStyleAttr);
     searchText.requestFocus();
   }
@@ -120,9 +120,9 @@ public final class ContactFilterToolbar extends DarkOverflowToolbar {
     if (styleResource != -1) {
       TextViewCompat.setTextAppearance(searchText, styleResource);
     }
-    if (!attributes.getBoolean(R.styleable.ContactFilterToolbar_showDialpad, true)) {
-      dialpadToggle.setVisibility(GONE);
-    }
+//    if (!attributes.getBoolean(R.styleable.ContactFilterToolbar_showDialpad, true)) {
+//      dialpadToggle.setVisibility(GONE);
+//    }
     attributes.recycle();
   }
 
@@ -147,43 +147,43 @@ public final class ContactFilterToolbar extends DarkOverflowToolbar {
     if (listener != null) listener.onFilterChanged(searchText.getText().toString());
   }
 
-  private void displayTogglingView(View view) {
-    toggle.display(view);
-    expandTapArea(toggleContainer, view);
-  }
-
-  private void expandTapArea(final View container, final View child) {
-    final int padding = getResources().getDimensionPixelSize(R.dimen.contact_selection_actions_tap_area);
-
-    container.post(new Runnable() {
-      @Override
-      public void run() {
-        Rect rect = new Rect();
-        child.getHitRect(rect);
-
-        rect.top -= padding;
-        rect.left -= padding;
-        rect.right += padding;
-        rect.bottom += padding;
-
-        container.setTouchDelegate(new TouchDelegate(rect, child));
-      }
-    });
-  }
-
-  private static class SearchUtil {
-    static boolean isTextInput(EditText editText) {
-      return (editText.getInputType() & InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_TEXT;
-    }
-
-    static boolean isPhoneInput(EditText editText) {
-      return (editText.getInputType() & InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_PHONE;
-    }
-
-    public static boolean isEmpty(EditText editText) {
-      return editText.getText().length() <= 0;
-    }
-  }
+//  private void displayTogglingView(View view) {
+//    toggle.display(view);
+//    expandTapArea(toggleContainer, view);
+//  }
+//
+//  private void expandTapArea(final View container, final View child) {
+//    final int padding = getResources().getDimensionPixelSize(R.dimen.contact_selection_actions_tap_area);
+//
+//    container.post(new Runnable() {
+//      @Override
+//      public void run() {
+//        Rect rect = new Rect();
+//        child.getHitRect(rect);
+//
+//        rect.top -= padding;
+//        rect.left -= padding;
+//        rect.right += padding;
+//        rect.bottom += padding;
+//
+//        container.setTouchDelegate(new TouchDelegate(rect, child));
+//      }
+//    });
+//  }
+//
+//  private static class SearchUtil {
+//    static boolean isTextInput(EditText editText) {
+//      return (editText.getInputType() & InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_TEXT;
+//    }
+//
+//    static boolean isPhoneInput(EditText editText) {
+//      return (editText.getInputType() & InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_PHONE;
+//    }
+//
+//    public static boolean isEmpty(EditText editText) {
+//      return editText.getText().length() <= 0;
+//    }
+//  }
 
   public interface OnFilterChangedListener {
     void onFilterChanged(String filter);

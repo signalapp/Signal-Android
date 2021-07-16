@@ -164,7 +164,7 @@ public class TransportOptions {
                                                     new MmsCharacterCalculator()));
     } else {
       results.addAll(getTransportOptionsForSimCards(context.getString(R.string.ConversationActivity_transport_insecure_sms),
-                                                    context.getString(R.string.conversation_activity__type_message_sms_insecure),
+                                                    context.getString(R.string.conversation_activity__type_message_push),
                                                     new SmsCharacterCalculator()));
     }
 

@@ -67,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Review requests carefully Signal found another contact with the same name." />
+        tools:text="Review requests carefully Pigeon found another contact with the same name." />
 
     <ImageView
         android:id="@+id/banner_close"

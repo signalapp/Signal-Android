@@ -161,7 +161,7 @@ public class UpdateApkJob extends BaseJob {
 
     downloadRequest.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
     downloadRequest.setTitle("Downloading Signal update");
-    downloadRequest.setDescription("Downloading Signal " + versionName);
+    downloadRequest.setDescription("Downloading " + versionName);
     downloadRequest.setVisibleInDownloadsUi(false);
     downloadRequest.setDestinationInExternalFilesDir(context, null, "signal-update.apk");
     downloadRequest.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);

@@ -91,7 +91,6 @@ public final class Megaphones {
       put(Event.LINK_PREVIEWS, shouldShowLinkPreviewsMegaphone(context) ? ALWAYS : NEVER);
       put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
       put(Event.RESEARCH, shouldShowResearchMegaphone(context) ? ShowForDurationSchedule.showForDays(7) : NEVER);
-      put(Event.DONATE, shouldShowDonateMegaphone(context) ? ShowForDurationSchedule.showForDays(7) : NEVER);
       put(Event.GROUP_CALLING, shouldShowGroupCallingMegaphone() ? ALWAYS : NEVER);
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
     }};
@@ -113,8 +112,6 @@ public final class Megaphones {
         return buildClientDeprecatedMegaphone(context);
       case RESEARCH:
         return buildResearchMegaphone(context);
-      case DONATE:
-        return buildDonateMegaphone(context);
       case GROUP_CALLING:
         return buildGroupCallingMegaphone(context);
       case ONBOARDING:
@@ -230,21 +227,6 @@ public final class Megaphones {
                         .build();
   }
 
-  private static @NonNull Megaphone buildDonateMegaphone(@NonNull Context context) {
-    return new Megaphone.Builder(Event.DONATE, Megaphone.Style.BASIC)
-                        .disableSnooze()
-                        .setTitle(R.string.DonateMegaphone_donate_to_signal)
-                        .setBody(R.string.DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today)
-                        .setImage(R.drawable.ic_donate_megaphone)
-                        .setActionButton(R.string.DonateMegaphone_donate, (megaphone, controller) -> {
-                          controller.onMegaphoneCompleted(megaphone.getEvent());
-                          CommunicationActions.openBrowserLink(controller.getMegaphoneActivity(), context.getString(R.string.donate_url));
-                        })
-                        .setSecondaryButton(R.string.DonateMegaphone_no_thanks, (megaphone, controller) -> controller.onMegaphoneCompleted(megaphone.getEvent()))
-                        .setPriority(Megaphone.Priority.DEFAULT)
-                        .build();
-  }
-
   private static @NonNull Megaphone buildGroupCallingMegaphone(@NonNull Context context) {
     return new Megaphone.Builder(Event.GROUP_CALLING, Megaphone.Style.BASIC)
                         .disableSnooze()
@@ -272,10 +254,6 @@ public final class Megaphones {
     return VersionTracker.getDaysSinceFirstInstalled(context) > 7 && PopulationFeatureFlags.isInResearchMegaphone();
   }
 
-  private static boolean shouldShowDonateMegaphone(@NonNull Context context) {
-    return VersionTracker.getDaysSinceFirstInstalled(context) > 7 && PopulationFeatureFlags.isInDonateMegaphone();
-  }
-
   private static boolean shouldShowLinkPreviewsMegaphone(@NonNull Context context) {
     return TextSecurePreferences.wereLinkPreviewsEnabled(context) && !SignalStore.settings().isLinkPreviewsEnabled();
   }
@@ -296,7 +274,6 @@ public final class Megaphones {
     LINK_PREVIEWS("link_previews"),
     CLIENT_DEPRECATED("client_deprecated"),
     RESEARCH("research"),
-    DONATE("donate"),
     GROUP_CALLING("group_calling"),
     ONBOARDING("onboarding");
 

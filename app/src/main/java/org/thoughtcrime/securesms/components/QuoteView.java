@@ -293,4 +293,16 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   public @NonNull List<Mention> getMentions() {
     return MentionAnnotation.getMentionsFromAnnotations(body);
   }
+
+  public void setQuoteViewTextColor(boolean hasFocus) {
+    if (hasFocus) {
+      int focusColor = getResources().getColor(R.color.conversation_item_quote_text_color);
+      authorView.setTextColor(focusColor);
+      bodyView.setTextColor(focusColor);
+    } else {
+      int normalColor = getResources().getColor(R.color.normal_text_color);
+      authorView.setTextColor(normalColor);
+      bodyView.setTextColor(normalColor);
+    }
+  }
 }

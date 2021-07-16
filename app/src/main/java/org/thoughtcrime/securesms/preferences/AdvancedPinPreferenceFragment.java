@@ -66,8 +66,6 @@ public class AdvancedPinPreferenceFragment extends ListSummaryPreferenceFragment
         return true;
       });
     }
-
-    ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__advanced_pin_settings);
   }
 
   private void onPreferenceChanged(boolean enabled) {

@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.conversationlist;
 
+import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +13,14 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.Mp02EditText;
 import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.conversationlist.model.SearchResult;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
+import org.signal.core.util.logging.Log;
 
 import java.util.Collections;
 import java.util.Locale;
@@ -23,30 +28,65 @@ import java.util.Locale;
 class ConversationListSearchAdapter extends    RecyclerView.Adapter<ConversationListSearchAdapter.SearchResultViewHolder>
                         implements StickyHeaderDecoration.StickyHeaderAdapter<ConversationListSearchAdapter.HeaderViewHolder>
 {
+  private static final String TAG = Log.tag(ConversationListSearchAdapter.class);
   private static final int TYPE_CONVERSATIONS = 1;
   private static final int TYPE_CONTACTS      = 2;
   private static final int TYPE_MESSAGES      = 3;
+  private static final int TYPE_SEARCH        = 0;
+  private static final int DEFAULT_MENU_COUNT = 1;
 
   private final GlideRequests glideRequests;
   private final EventListener eventListener;
   private final Locale        locale;
+  private final LayoutInflater inflater;
 
   @NonNull
   private SearchResult searchResult = SearchResult.EMPTY;
 
-  ConversationListSearchAdapter(@NonNull GlideRequests glideRequests,
+  ConversationListSearchAdapter(@NonNull Context context,
+                                @NonNull GlideRequests glideRequests,
                                 @NonNull EventListener eventListener,
                                 @NonNull Locale        locale)
   {
     this.glideRequests = glideRequests;
     this.eventListener = eventListener;
     this.locale        = locale;
+    this.inflater      = LayoutInflater.from(context);
   }
 
   @Override
-  public @NonNull SearchResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    return new SearchResultViewHolder(LayoutInflater.from(parent.getContext())
-                                                    .inflate(R.layout.conversation_list_item_view, parent, false));
+  public @NonNull
+  SearchResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    Log.i(TAG,"onCreateViewHolder viewType : " + viewType);
+    if (viewType == TYPE_SEARCH) {
+      Mp02EditText editText = (Mp02EditText) inflater.inflate(R.layout.conversation_list_search_view,
+              parent, false);
+      editText.addTextChangedListener(new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+          eventListener.onSearchTextChange(s.toString());
+        }
+      });
+      return new SearchResultViewHolder(editText);
+    } else {
+      final View item = LayoutInflater.from(parent.getContext())
+              .inflate(R.layout.conversation_list_item_view, parent, false);
+      item.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+          ((ConversationListItem)v).updateSearchItemParas(hasFocus);
+        }
+      });
+      return new SearchResultViewHolder(item);
+    }
   }
 
   @Override
@@ -78,13 +118,29 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
   }
 
   @Override
+  public int getItemViewType(int position) {
+    if (position == 0) {
+      return TYPE_SEARCH;
+    } else if (getConversationResult(position) != null) {
+      return TYPE_CONVERSATIONS;
+    } else if (getContactResult(position) != null) {
+      return TYPE_CONTACTS;
+    } else {
+      return TYPE_MESSAGES;
+    }
+  }
+
+  @Override
   public int getItemCount() {
-    return searchResult.size();
+    return searchResult.size() + DEFAULT_MENU_COUNT;
   }
 
   @Override
   public long getHeaderId(int position) {
-    if (getConversationResult(position) != null) {
+    Log.i(TAG,"getHeaderId : " + position);
+    if (position == 0) {
+      return TYPE_SEARCH;
+    } else if (getConversationResult(position) != null) {
       return TYPE_CONVERSATIONS;
     } else if (getContactResult(position) != null) {
       return TYPE_CONTACTS;
@@ -111,8 +167,11 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
 
   @Nullable
   private ThreadRecord getConversationResult(int position) {
-    if (position < searchResult.getConversations().size()) {
-      return searchResult.getConversations().get(position);
+    if (position < DEFAULT_MENU_COUNT) {
+      return null;
+    }
+    if (position - DEFAULT_MENU_COUNT < searchResult.getConversations().size()) {
+      return searchResult.getConversations().get(position - DEFAULT_MENU_COUNT);
     }
     return null;
   }
@@ -127,14 +186,14 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
 
   @Nullable
   private MessageResult getMessageResult(int position) {
-    if (position >= getFirstMessageIndex() && position < searchResult.size()) {
+    if (position >= getFirstMessageIndex() && position <= searchResult.size()) {
       return searchResult.getMessages().get(position - getFirstMessageIndex());
     }
     return null;
   }
 
   private int getFirstContactIndex() {
-    return searchResult.getConversations().size();
+    return searchResult.getConversations().size() + DEFAULT_MENU_COUNT;
   }
 
   private int getFirstMessageIndex() {
@@ -145,15 +204,20 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
     void onConversationClicked(@NonNull ThreadRecord threadRecord);
     void onContactClicked(@NonNull Recipient contact);
     void onMessageClicked(@NonNull MessageResult message);
+    void onSearchTextChange(String text);
   }
 
   static class SearchResultViewHolder extends RecyclerView.ViewHolder {
 
-    private final ConversationListItem root;
+    private ConversationListItem root;
 
     SearchResultViewHolder(View itemView) {
       super(itemView);
       root = (ConversationListItem) itemView;
+    }
+
+    SearchResultViewHolder(Mp02EditText itemView) {
+      super(itemView);
     }
 
     void bind(@NonNull  ThreadRecord  conversationResult,
@@ -162,8 +226,10 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
               @NonNull  Locale        locale,
               @Nullable String        query)
     {
-      root.bind(conversationResult, glideRequests, locale, Collections.emptySet(), Collections.emptySet(), false, query);
-      root.setOnClickListener(view -> eventListener.onConversationClicked(conversationResult));
+      if (root instanceof ConversationListItem) {
+        root.bind(conversationResult, glideRequests, locale, Collections.emptySet(), Collections.emptySet(), false, query);
+        root.setOnClickListener(view -> eventListener.onConversationClicked(conversationResult));
+      }
     }
 
     void bind(@NonNull  Recipient     contactResult,
@@ -172,8 +238,10 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
               @NonNull  Locale        locale,
               @Nullable String        query)
     {
-      root.bind(contactResult, glideRequests, locale, query);
-      root.setOnClickListener(view -> eventListener.onContactClicked(contactResult));
+      if (root instanceof ConversationListItem) {
+        root.bind(contactResult, glideRequests, locale, query);
+        root.setOnClickListener(view -> eventListener.onContactClicked(contactResult));
+      }
     }
 
     void bind(@NonNull  MessageResult messageResult,
@@ -182,13 +250,17 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
               @NonNull  Locale        locale,
               @Nullable String        query)
     {
-      root.bind(messageResult, glideRequests, locale, query);
-      root.setOnClickListener(view -> eventListener.onMessageClicked(messageResult));
+      if (root instanceof ConversationListItem) {
+        root.bind(messageResult, glideRequests, locale, query);
+        root.setOnClickListener(view -> eventListener.onMessageClicked(messageResult));
+      }
     }
 
     void recycle() {
-      root.unbind();
-      root.setOnClickListener(null);
+      if (root instanceof ConversationListItem) {
+        root.unbind();
+        root.setOnClickListener(null);
+      }
     }
   }
 

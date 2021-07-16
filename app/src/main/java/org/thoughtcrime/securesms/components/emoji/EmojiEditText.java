@@ -27,9 +27,9 @@ public class EmojiEditText extends AppCompatEditText {
 
   public EmojiEditText(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    if (!TextSecurePreferences.isSystemEmojiPreferred(getContext())) {
-      setFilters(appendEmojiFilter(this.getFilters()));
-    }
+//    if (!TextSecurePreferences.isSystemEmojiPreferred(getContext())) {
+//      setFilters(appendEmojiFilter(this.getFilters()));
+//    }
   }
 
   public void insertEmoji(String emoji) {

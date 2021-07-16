@@ -23,11 +23,13 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+
+import java.util.UUID;
 
 public class ConversationTitleView extends RelativeLayout {
 
-  private AvatarImageView avatar;
   private TextView        title;
   private TextView        subtitle;
   private ImageView       verified;
@@ -35,6 +37,7 @@ public class ConversationTitleView extends RelativeLayout {
   private View            verifiedSubtitle;
   private View            expirationBadgeContainer;
   private TextView        expirationBadgeTime;
+  private String titlename="";
 
   public ConversationTitleView(Context context) {
     this(context, null);
@@ -53,7 +56,6 @@ public class ConversationTitleView extends RelativeLayout {
     this.verified                 = findViewById(R.id.verified_indicator);
     this.subtitleContainer        = findViewById(R.id.subtitle_container);
     this.verifiedSubtitle         = findViewById(R.id.verified_subtitle);
-    this.avatar                   = findViewById(R.id.contact_photo_image);
     this.expirationBadgeContainer = findViewById(R.id.expiration_badge_container);
     this.expirationBadgeTime      = findViewById(R.id.expiration_badge);
 
@@ -70,6 +72,10 @@ public class ConversationTitleView extends RelativeLayout {
   public void clearExpiring() {
     expirationBadgeContainer.setVisibility(View.GONE);
     updateSubtitleVisibility();
+  }
+
+  public String getTitleName(){
+    return titlename;
   }
 
   public void setTitle(@NonNull GlideRequests glideRequests, @Nullable Recipient recipient) {
@@ -94,10 +100,6 @@ public class ConversationTitleView extends RelativeLayout {
     title.setCompoundDrawablesRelativeWithIntrinsicBounds(startDrawable, 0, endDrawable, 0);
     TextViewCompat.setCompoundDrawableTintList(title, ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.transparent_white_90)));
 
-    if (recipient != null) {
-      this.avatar.setAvatar(glideRequests, recipient, false);
-    }
-
     updateVerifiedSubtitleVisibility();
   }
 
@@ -114,6 +116,7 @@ public class ConversationTitleView extends RelativeLayout {
   }
 
   private void setRecipientTitle(@NonNull Recipient recipient) {
+    titlename = "";
     if      (recipient.isGroup()) setGroupRecipientTitle(recipient);
     else if (recipient.isSelf())  setSelfTitle();
     else                          setIndividualRecipientTitle(recipient);
@@ -121,6 +124,8 @@ public class ConversationTitleView extends RelativeLayout {
 
   private void setGroupRecipientTitle(@NonNull Recipient recipient) {
     this.title.setText(recipient.getDisplayName(getContext()));
+    titlename = recipient.getName(getContext());
+    titlename = Util.getFirstNonEmpty(recipient.getE164().orNull(), recipient.getUuid().transform(UUID::toString).orNull());
     this.subtitle.setText(Stream.of(recipient.getParticipants())
                                 .sorted((a, b) -> Boolean.compare(a.isSelf(), b.isSelf()))
                                 .map(r -> r.isSelf() ? getResources().getString(R.string.ConversationTitleView_you)
@@ -131,12 +136,14 @@ public class ConversationTitleView extends RelativeLayout {
   }
 
   private void setSelfTitle() {
+    titlename = getContext().getString(R.string.note_to_self);
     this.title.setText(R.string.note_to_self);
     this.subtitleContainer.setVisibility(View.GONE);
   }
 
   private void setIndividualRecipientTitle(@NonNull Recipient recipient) {
     final String displayName = recipient.getDisplayNameOrUsername(getContext());
+    titlename = displayName;
     this.title.setText(displayName);
     this.subtitle.setText(null);
     updateSubtitleVisibility();

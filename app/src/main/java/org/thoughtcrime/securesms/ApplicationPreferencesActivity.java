@@ -20,36 +20,36 @@ package org.thoughtcrime.securesms;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PorterDuff;
-import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.Preference;
+import androidx.preference.PreferenceGroup;
 
+import org.thoughtcrime.securesms.components.mp02anim.ItemAnimViewController;
 import org.thoughtcrime.securesms.help.HelpFragment;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.preferences.AdvancedPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
-import org.thoughtcrime.securesms.preferences.AppearancePreferenceFragment;
 import org.thoughtcrime.securesms.preferences.BackupsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.ChatsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
-import org.thoughtcrime.securesms.preferences.DataAndStoragePreferenceFragment;
 import org.thoughtcrime.securesms.preferences.NotificationsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.SmsMmsPreferenceFragment;
-import org.thoughtcrime.securesms.preferences.widgets.ProfilePreference;
+import org.thoughtcrime.securesms.preferences.StoragePreferenceFragment;
 import org.thoughtcrime.securesms.preferences.widgets.UsernamePreference;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.CachedInflater;
-import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -70,37 +70,28 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
   @SuppressWarnings("unused")
   private static final String TAG = ApplicationPreferencesActivity.class.getSimpleName();
 
-  private static final String PREFERENCE_CATEGORY_PROFILE        = "preference_category_profile";
   private static final String PREFERENCE_CATEGORY_USERNAME       = "preference_category_username";
-  private static final String PREFERENCE_CATEGORY_SMS_MMS        = "preference_category_sms_mms";
-  private static final String PREFERENCE_CATEGORY_NOTIFICATIONS  = "preference_category_notifications";
+  private static final String PREFERENCE_CATEGORY_PROFILE = "preference_category_profile";
+  private static final String PREFERENCE_CATEGORY_SMS_MMS = "preference_category_sms_mms";
+  private static final String PREFERENCE_CATEGORY_NOTIFICATIONS = "preference_category_notifications";
   private static final String PREFERENCE_CATEGORY_APP_PROTECTION = "preference_category_app_protection";
-  private static final String PREFERENCE_CATEGORY_APPEARANCE     = "preference_category_appearance";
-  private static final String PREFERENCE_CATEGORY_CHATS          = "preference_category_chats";
-  private static final String PREFERENCE_CATEGORY_STORAGE        = "preference_category_storage";
-  private static final String PREFERENCE_CATEGORY_DEVICES        = "preference_category_devices";
-  private static final String PREFERENCE_CATEGORY_HELP           = "preference_category_help";
-  private static final String PREFERENCE_CATEGORY_ADVANCED       = "preference_category_advanced";
-  private static final String PREFERENCE_CATEGORY_DONATE         = "preference_category_donate";
+  private static final String PREFERENCE_CATEGORY_CHATS = "preference_category_chats";
+  private static final String PREFERENCE_CATEGORY_STORAGE = "preference_category_storage";
+  private static final String PREFERENCE_CATEGORY_ADVANCED = "preference_category_advanced";
 
   private static final String WAS_CONFIGURATION_UPDATED          = "was_configuration_updated";
 
-  private final DynamicTheme    dynamicTheme    = new DynamicTheme();
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
+  private static ApplicationPreferenceFragment applicationPreferenceFragment;
+  private static int focus;
 
   private boolean wasConfigurationUpdated = false;
 
   @Override
   protected void onPreCreate() {
-    dynamicTheme.onCreate(this);
-    dynamicLanguage.onCreate(this);
   }
 
   @Override
   protected void onCreate(Bundle icicle, boolean ready) {
-    //noinspection ConstantConditions
-    this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     if (getIntent() != null && getIntent().getCategories() != null && getIntent().getCategories().contains("android.intent.category.NOTIFICATION_PREFERENCES")) {
       initFragment(android.R.id.content, new NotificationsPreferenceFragment());
     } else if (getIntent() != null && getIntent().getBooleanExtra(LAUNCH_TO_BACKUPS_FRAGMENT, false)) {
@@ -108,7 +99,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
     } else if (getIntent() != null && getIntent().getBooleanExtra(LAUNCH_TO_HELP_FRAGMENT, false)) {
       initFragment(android.R.id.content, new HelpFragment());
     } else if (icicle == null) {
-      initFragment(android.R.id.content, new ApplicationPreferenceFragment());
+      applicationPreferenceFragment=new ApplicationPreferenceFragment();
+      initFragment(android.R.id.content, applicationPreferenceFragment);
     } else {
       wasConfigurationUpdated = icicle.getBoolean(WAS_CONFIGURATION_UPDATED);
     }
@@ -123,8 +115,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
   @Override
   public void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
-    dynamicLanguage.onResume(this);
   }
 
   @Override
@@ -133,27 +123,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
     super.onActivityResult(requestCode, resultCode, data);
     Fragment fragment = getSupportFragmentManager().findFragmentById(android.R.id.content);
     fragment.onActivityResult(requestCode, resultCode, data);
-  }
-
-  @Override
-  public boolean onSupportNavigateUp() {
-    FragmentManager fragmentManager = getSupportFragmentManager();
-    if (fragmentManager.getBackStackEntryCount() > 0) {
-      fragmentManager.popBackStack();
-    } else {
-      if (wasConfigurationUpdated) {
-        setResult(MainActivity.RESULT_CONFIG_CHANGED);
-      } else {
-        setResult(RESULT_OK);
-      }
-      finish();
-    }
-    return true;
-  }
-
-  @Override
-  public void onBackPressed() {
-    onSupportNavigateUp();
   }
 
   @Override
@@ -172,6 +141,30 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
     }
   }
 
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    Fragment fragment = getSupportFragmentManager().findFragmentById(android.R.id.content);
+//    switch (keyCode) {
+//      case KeyEvent.KEYCODE_DPAD_DOWN:
+//      case KeyEvent.KEYCODE_DPAD_UP:
+//        if (fragment instanceof ApplicationPreferenceFragment) {
+//          return ((ApplicationPreferenceFragment) fragment).onKeyDown(event);
+//        } else if (fragment instanceof SmsMmsPreferenceFragment) {
+//          return ((SmsMmsPreferenceFragment) fragment).onKeyDown(event);
+//        } else if (fragment instanceof NotificationsPreferenceFragment) {
+//          return ((NotificationsPreferenceFragment) fragment).onKeyDown(event);
+//        } else if (fragment instanceof AppProtectionPreferenceFragment) {
+//          return ((AppProtectionPreferenceFragment) fragment).onKeyDown(event);
+//        } else if (fragment instanceof ChatsPreferenceFragment) {
+//          return ((ChatsPreferenceFragment) fragment).onKeyDown(event);
+//        } else if (fragment instanceof StoragePreferenceFragment) {
+//          return ((StoragePreferenceFragment) fragment).onKeyDown(event);
+//        }
+//        break;
+//    }
+    return super.onKeyDown(keyCode, event);
+  }
+
   public void pushFragment(@NonNull Fragment fragment) {
     getSupportFragmentManager().beginTransaction()
                                .setCustomAnimations(R.anim.slide_from_end, R.anim.slide_to_start, R.anim.slide_from_start, R.anim.slide_to_end)
@@ -182,43 +175,42 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
 
   public static class ApplicationPreferenceFragment extends CorrectedPreferenceFragment {
 
+    private PreferenceGroup mPrefGroup;
+    private int mPrefCount;
+    private int mCurPoi = 0;
+    private ItemAnimViewController mParentViewController;
+
     @Override
     public void onCreate(Bundle icicle) {
       super.onCreate(icicle);
 
       this.findPreference(PREFERENCE_CATEGORY_PROFILE)
-          .setOnPreferenceClickListener(new ProfileClickListener());
-      this.findPreference(PREFERENCE_CATEGORY_USERNAME)
-          .setOnPreferenceClickListener(new UsernameClickListener());
-      this.findPreference(PREFERENCE_CATEGORY_SMS_MMS)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_SMS_MMS));
+              .setOnPreferenceClickListener(new ProfileClickListener());
+//      this.findPreference(PREFERENCE_CATEGORY_SMS_MMS)
+//              .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_SMS_MMS));
       this.findPreference(PREFERENCE_CATEGORY_NOTIFICATIONS)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_NOTIFICATIONS));
+              .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_NOTIFICATIONS));
       this.findPreference(PREFERENCE_CATEGORY_APP_PROTECTION)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_APP_PROTECTION));
-      this.findPreference(PREFERENCE_CATEGORY_APPEARANCE)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_APPEARANCE));
+              .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_APP_PROTECTION));
       this.findPreference(PREFERENCE_CATEGORY_CHATS)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_CHATS));
+              .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_CHATS));
       this.findPreference(PREFERENCE_CATEGORY_STORAGE)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_STORAGE));
-      this.findPreference(PREFERENCE_CATEGORY_DEVICES)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_DEVICES));
-      this.findPreference(PREFERENCE_CATEGORY_HELP)
-          .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_HELP));
+              .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_STORAGE));
       this.findPreference(PREFERENCE_CATEGORY_ADVANCED)
-          .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_ADVANCED));
-      this.findPreference(PREFERENCE_CATEGORY_DONATE)
-          .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_DONATE));
-
-      tintIcons();
+              .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_ADVANCED));
+      focus = 0;
+      mPrefGroup = getPreferenceGroup();
+      mPrefCount = mPrefGroup.getPreferenceCount();
     }
 
-    private void tintIcons() {
-      if (Build.VERSION.SDK_INT >= 21) return;
-
-      Preference preference = this.findPreference(PREFERENCE_CATEGORY_SMS_MMS);
-      preference.getIcon().setColorFilter(ContextCompat.getColor(requireContext(), R.color.signal_icon_tint_primary), PorterDuff.Mode.SRC_IN);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+      View view = super.onCreateView(inflater, container, savedInstanceState);
+      view.findViewById(android.R.id.list_container).setBackgroundColor(getResources().getColor(R.color.sim_background));
+      setFocus(focus);
+//      mParentViewController = getParentAnimViewController();
+//      changeView(mCurPoi, false);
+      return view;
     }
 
     @Override
@@ -245,38 +237,59 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
     }
 
     @Override
-    public void onResume() {
-      super.onResume();
-      //noinspection ConstantConditions
-      ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.text_secure_normal__menu_settings);
-      setCategorySummaries();
-      setCategoryVisibility();
+    public void onActivityCreated(Bundle savedInstanceState) {
+      super.onActivityCreated(savedInstanceState);
     }
 
-    private void setCategorySummaries() {
-      ((ProfilePreference)this.findPreference(PREFERENCE_CATEGORY_PROFILE)).refresh();
+    @Override
+    public boolean onKeyDown(KeyEvent event) {
+      View v = getListView().getFocusedChild();
+      if (v != null) {
+        mCurPoi = (int) v.getTag();
+      }
+      switch (event.getKeyCode()) {
+        case KeyEvent.KEYCODE_DPAD_DOWN:
+          if (mCurPoi < mPrefCount - 1) {
+            mCurPoi++;
+            changeView(mCurPoi, true);
+          }
+          break;
+        case KeyEvent.KEYCODE_DPAD_UP:
+          if (mCurPoi > 0) {
+            mCurPoi--;
+            changeView(mCurPoi, false);
+          }
+          break;
+      }
+      return super.onKeyDown(event);
+    }
 
-      if (FeatureFlags.usernames()) {
-        this.findPreference(PREFERENCE_CATEGORY_USERNAME)
-            .setVisible(shouldDisplayUsernameReminder());
+    private void changeView(int currentPosition, boolean b) {
+      Preference preference = mPrefGroup.getPreference(currentPosition);
+      Preference preference1 = null;
+      Preference preference2 = null;
+      if (currentPosition > 0)
+        preference1 = mPrefGroup.getPreference(currentPosition - 1);
+      if (currentPosition < mPrefCount - 1)
+        preference2 = mPrefGroup.getPreference(currentPosition + 1);
+
+      String curTitle = "";
+      String title1 = "";
+      String title2 = "";
+
+      curTitle = preference.getTitle().toString();
+      if (preference1 != null) {
+
+        title1 = preference1.getTitle().toString();
+      }
+      if (preference2 != null) {
+        title2 = preference2.getTitle().toString();
       }
 
-      this.findPreference(PREFERENCE_CATEGORY_SMS_MMS)
-          .setSummary(SmsMmsPreferenceFragment.getSummary(getActivity()));
-      this.findPreference(PREFERENCE_CATEGORY_NOTIFICATIONS)
-          .setSummary(NotificationsPreferenceFragment.getSummary(getActivity()));
-      this.findPreference(PREFERENCE_CATEGORY_APP_PROTECTION)
-          .setSummary(AppProtectionPreferenceFragment.getSummary(getActivity()));
-      this.findPreference(PREFERENCE_CATEGORY_APPEARANCE)
-          .setSummary(AppearancePreferenceFragment.getSummary(getActivity()));
-      this.findPreference(PREFERENCE_CATEGORY_CHATS)
-          .setSummary(ChatsPreferenceFragment.getSummary(getActivity()));
-    }
-
-    private void setCategoryVisibility() {
-      Preference devicePreference = this.findPreference(PREFERENCE_CATEGORY_DEVICES);
-      if (devicePreference != null && !TextSecurePreferences.isPushRegistered(getActivity())) {
-        getPreferenceScreen().removePreference(devicePreference);
+      if (b) {
+        mParentViewController.actionUpIn(title1, curTitle);
+      } else {
+        mParentViewController.actionDownIn(title2, curTitle);
       }
     }
 
@@ -296,48 +309,40 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
         Fragment fragment = null;
 
         switch (category) {
-        case PREFERENCE_CATEGORY_SMS_MMS:
-          fragment = new SmsMmsPreferenceFragment();
-          break;
-        case PREFERENCE_CATEGORY_NOTIFICATIONS:
-          fragment = new NotificationsPreferenceFragment();
-          break;
-        case PREFERENCE_CATEGORY_APP_PROTECTION:
-          fragment = new AppProtectionPreferenceFragment();
-          break;
-        case PREFERENCE_CATEGORY_APPEARANCE:
-          fragment = new AppearancePreferenceFragment();
-          break;
-        case PREFERENCE_CATEGORY_CHATS:
-          fragment = new ChatsPreferenceFragment();
-          break;
-        case PREFERENCE_CATEGORY_STORAGE:
-          fragment = new DataAndStoragePreferenceFragment();
-          break;
-        case PREFERENCE_CATEGORY_DEVICES:
-          Intent intent = new Intent(getActivity(), DeviceActivity.class);
-          startActivity(intent);
-          break;
-        case PREFERENCE_CATEGORY_ADVANCED:
-          fragment = new AdvancedPreferenceFragment();
-          break;
-        case PREFERENCE_CATEGORY_HELP:
-          fragment = new HelpFragment();
-          break;
-        case PREFERENCE_CATEGORY_DONATE:
-          CommunicationActions.openBrowserLink(requireContext(), getString(R.string.donate_url));
-          break;
-        default:
-          throw new AssertionError();
+//          case PREFERENCE_CATEGORY_SMS_MMS:
+//            fragment = new SmsMmsPreferenceFragment();
+//            break;
+          case PREFERENCE_CATEGORY_NOTIFICATIONS:
+            fragment = new NotificationsPreferenceFragment();
+            focus=1;
+            break;
+          case PREFERENCE_CATEGORY_APP_PROTECTION:
+            fragment = new AppProtectionPreferenceFragment();
+            focus=2;
+            break;
+          case PREFERENCE_CATEGORY_CHATS:
+            fragment = new ChatsPreferenceFragment();
+            focus=3;
+            break;
+          case PREFERENCE_CATEGORY_STORAGE:
+            fragment = new StoragePreferenceFragment();
+            focus=4;
+            break;
+          case PREFERENCE_CATEGORY_ADVANCED:
+            fragment = new AdvancedPreferenceFragment();
+            focus=5;
+            break;
+          default:
+            throw new AssertionError();
         }
 
-        if (fragment != null) {
-          Bundle args = new Bundle();
-          fragment.setArguments(args);
-
-          ((ApplicationPreferencesActivity) requireActivity()).pushFragment(fragment);
-        }
-
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(android.R.id.content, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
         return true;
       }
     }
@@ -358,5 +363,4 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
       }
     }
   }
-
 }

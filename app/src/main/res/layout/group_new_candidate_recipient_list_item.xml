@@ -3,35 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="64dp"
-    android:background="?selectableItemBackground"
-    android:clickable="true"
-    android:focusable="true">
-
-    <org.thoughtcrime.securesms.components.AvatarImageView
-        android:id="@+id/recipient_avatar"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="56dp"
+    android:background="@drawable/pigeon_item_bg"
+    android:clickable="true">
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/recipient_name"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
+        android:paddingStart="@dimen/item_padding_x"
         android:gravity="start|center_vertical"
-        app:layout_goneMarginEnd="16dp"
         android:textAlignment="viewStart"
-        android:textAppearance="@style/TextAppearance.Signal.Body1"
+        android:textSize="24sp"
+        android:textColor="@color/white_not_focus"
         app:layout_constraintBottom_toTopOf="@+id/sms_contact"
         app:layout_constraintEnd_toStartOf="@+id/sms_warning"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@+id/recipient_avatar"
-        app:layout_constraintTop_toTopOf="@+id/recipient_avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/full_names" />
+
+    <ImageButton
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="#00ffffff"
+        android:contentDescription="@string/GroupCreateActivity_remove_member_description"
+        android:src="@drawable/ic_menu_remove_holo_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/recipient_name"
+        app:layout_constraintBottom_toBottomOf="@id/recipient_name"/>
 
     <TextView
         android:id="@+id/sms_contact"
@@ -43,7 +46,7 @@
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.Signal.Body2"
         android:textColor="@color/signal_text_secondary"
-        app:layout_constraintBottom_toBottomOf="@id/recipient_avatar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/recipient_name"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/recipient_avatar"
