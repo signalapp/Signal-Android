@@ -48,7 +48,7 @@ public final class LogRecorder extends Log.Logger {
   }
 
   @Override
-  public void blockUntilAllWritesFinished() {
+  public void flush() {
   }
 
   public List<Entry> getVerbose() {

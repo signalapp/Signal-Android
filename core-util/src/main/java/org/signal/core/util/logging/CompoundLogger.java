@@ -57,9 +57,9 @@ class CompoundLogger extends Log.Logger {
   }
 
   @Override
-  public void blockUntilAllWritesFinished() {
+  public void flush() {
     for (Log.Logger logger : loggers) {
-      logger.blockUntilAllWritesFinished();
+      logger.flush();
     }
   }
 }

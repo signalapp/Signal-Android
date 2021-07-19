@@ -22,5 +22,5 @@ public class EmptyLogger extends Log.Logger {
   public void wtf(String tag, String message, Throwable t) { }
 
   @Override
-  public void blockUntilAllWritesFinished() { }
+  public void flush() { }
 }

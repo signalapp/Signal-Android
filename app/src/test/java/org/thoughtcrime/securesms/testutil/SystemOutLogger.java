@@ -34,7 +34,7 @@ public final class SystemOutLogger extends Log.Logger {
   }
 
   @Override
-  public void blockUntilAllWritesFinished() { }
+  public void flush() { }
 
   private void printlnFormatted(char level, String tag, String message, Throwable t) {
     System.out.println(format(level, tag, message, t));

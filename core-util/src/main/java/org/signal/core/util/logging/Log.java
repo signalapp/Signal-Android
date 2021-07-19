@@ -5,8 +5,6 @@ import android.annotation.SuppressLint;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 
-import java.util.logging.Logger;
-
 @SuppressLint("LogNotSignal")
 public final class Log {
 
@@ -124,7 +122,7 @@ public final class Log {
   }
 
   public static void blockUntilAllWritesFinished() {
-    logger.blockUntilAllWritesFinished();
+    logger.flush();
   }
 
   public static abstract class Logger {
@@ -134,7 +132,7 @@ public final class Log {
     public abstract void w(String tag, String message, Throwable t);
     public abstract void e(String tag, String message, Throwable t);
     public abstract void wtf(String tag, String message, Throwable t);
-    public abstract void blockUntilAllWritesFinished();
+    public abstract void flush();
 
     public void v(String tag, String message) {
       v(tag, message, null);

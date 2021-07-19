@@ -61,7 +61,7 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
     return instance;
   }
 
-  public KeyValueDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret) {
+  private KeyValueDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret) {
     super(application, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook(), new SqlCipherErrorHandler(DATABASE_NAME));
 
     this.application    = application;

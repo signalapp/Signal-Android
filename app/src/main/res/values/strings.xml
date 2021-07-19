@@ -1573,7 +1573,7 @@
     <string name="SubmitDebugLogActivity_success">Success!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copy this URL and add it to your issue report or support email:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Share</string>
-    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">This log will be posted publicly online for contributors to view. You may examine and edit it before uploading.</string>
+    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">This log will be posted publicly online for contributors to view. You may examine it before uploading.</string>
 
     <!-- SupportEmailUtil -->
     <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
@@ -2019,9 +2019,6 @@
 
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">Nothing found</string>
-
-    <!-- log_submit_activity -->
-    <string name="log_submit_activity__this_log_will_be_posted_online">This log will be posted publicly online for contributors to view, you may examine and edit it before submitting.</string>
 
     <!-- database_migration_activity -->
     <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into Signal\'s encrypted database?</string>

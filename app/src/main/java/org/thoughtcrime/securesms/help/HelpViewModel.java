@@ -19,29 +19,19 @@ public class HelpViewModel extends ViewModel {
 
   private static final int MINIMUM_PROBLEM_CHARS = 10;
 
-  private MutableLiveData<Boolean> problemMeetsLengthRequirements = new MutableLiveData<>();
-  private MutableLiveData<Boolean> hasLines                       = new MutableLiveData<>(false);
-  private MutableLiveData<Integer> categoryIndex                  = new MutableLiveData<>(0);
-  private LiveData<Boolean>        isFormValid                    = Transformations.map(new LiveDataPair<>(problemMeetsLengthRequirements, hasLines), this::transformValidationData);
+  private final MutableLiveData<Boolean> problemMeetsLengthRequirements;
+  private final MutableLiveData<Integer> categoryIndex;
+  private final LiveData<Boolean>        isFormValid;
 
   private final SubmitDebugLogRepository submitDebugLogRepository;
 
-  private List<LogLine> logLines;
-
   public HelpViewModel() {
-    submitDebugLogRepository = new SubmitDebugLogRepository();
+    submitDebugLogRepository       = new SubmitDebugLogRepository();
+    problemMeetsLengthRequirements = new MutableLiveData<>();
+    categoryIndex                  = new MutableLiveData<>(0);
 
-    submitDebugLogRepository.getLogLines(lines -> {
-      logLines = lines;
-      hasLines.postValue(true);
-    });
-
-    LiveData<Boolean> firstValid = LiveDataUtil.combineLatest(problemMeetsLengthRequirements, hasLines, (validLength, validLines) -> {
-      return validLength == Boolean.TRUE && validLines == Boolean.TRUE;
-    });
-
-    isFormValid = LiveDataUtil.combineLatest(firstValid, categoryIndex, (valid, index) -> {
-      return  valid == Boolean.TRUE && index > 0;
+    isFormValid = LiveDataUtil.combineLatest(problemMeetsLengthRequirements, categoryIndex, (meetsLengthRequirements, index) -> {
+      return meetsLengthRequirements == Boolean.TRUE && index > 0;
     });
   }
 
@@ -65,16 +55,12 @@ public class HelpViewModel extends ViewModel {
     MutableLiveData<SubmitResult> resultLiveData = new MutableLiveData<>();
 
     if (includeDebugLogs) {
-      submitDebugLogRepository.submitLog(logLines, result -> resultLiveData.postValue(new SubmitResult(result, result.isPresent())));
+      submitDebugLogRepository.buildAndSubmitLog(result -> resultLiveData.postValue(new SubmitResult(result, result.isPresent())));
     } else {
       resultLiveData.postValue(new SubmitResult(Optional.absent(), false));
     }
 
     return resultLiveData;
-  }
-
-  private boolean transformValidationData(Pair<Boolean, Boolean> validationData) {
-    return validationData.first() == Boolean.TRUE && validationData.second() == Boolean.TRUE;
   }
 
   static class SubmitResult {
