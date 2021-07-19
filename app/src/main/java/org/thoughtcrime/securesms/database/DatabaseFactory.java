@@ -17,16 +17,17 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
+
 import net.sqlcipher.database.SQLiteDatabase;
+
 import org.thoughtcrime.securesms.attachments.DatabaseAttachmentProvider;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.database.LokiAPIDatabase;
-import org.thoughtcrime.securesms.database.SessionJobDatabase;
 
 public class DatabaseFactory {
 
@@ -35,28 +36,28 @@ public class DatabaseFactory {
   private static DatabaseFactory instance;
 
   private final SQLCipherOpenHelper   databaseHelper;
-  private final SmsDatabase           sms;
-  private final MmsDatabase           mms;
-  private final AttachmentDatabase    attachments;
-  private final MediaDatabase         media;
-  private final ThreadDatabase        thread;
-  private final MmsSmsDatabase        mmsSmsDatabase;
-  private final DraftDatabase         draftDatabase;
-  private final PushDatabase          pushDatabase;
-  private final GroupDatabase         groupDatabase;
-  private final RecipientDatabase     recipientDatabase;
-  private final GroupReceiptDatabase  groupReceiptDatabase;
-  private final SearchDatabase        searchDatabase;
-  private final JobDatabase           jobDatabase;
-  private final LokiAPIDatabase lokiAPIDatabase;
-  private final LokiMessageDatabase lokiMessageDatabase;
-  private final LokiThreadDatabase lokiThreadDatabase;
-  private final LokiUserDatabase lokiUserDatabase;
-  private final LokiBackupFilesDatabase lokiBackupFilesDatabase;
-  private final SessionJobDatabase sessionJobDatabase;
-  private final SessionContactDatabase sessionContactDatabase;
-  private final Storage storage;
-  private final DatabaseAttachmentProvider attachmentProvider;
+  private SmsDatabase           sms;
+  private MmsDatabase           mms;
+  private AttachmentDatabase    attachments;
+  private MediaDatabase         media;
+  private ThreadDatabase        thread;
+  private MmsSmsDatabase        mmsSmsDatabase;
+  private DraftDatabase         draftDatabase;
+  private PushDatabase          pushDatabase;
+  private GroupDatabase         groupDatabase;
+  private RecipientDatabase     recipientDatabase;
+  private GroupReceiptDatabase  groupReceiptDatabase;
+  private SearchDatabase        searchDatabase;
+  private JobDatabase           jobDatabase;
+  private LokiAPIDatabase lokiAPIDatabase;
+  private LokiMessageDatabase lokiMessageDatabase;
+  private LokiThreadDatabase lokiThreadDatabase;
+  private LokiUserDatabase lokiUserDatabase;
+  private LokiBackupFilesDatabase lokiBackupFilesDatabase;
+  private SessionJobDatabase sessionJobDatabase;
+  private SessionContactDatabase sessionContactDatabase;
+  private Storage storage;
+  private DatabaseAttachmentProvider attachmentProvider;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -68,19 +69,43 @@ public class DatabaseFactory {
   }
 
   public static MmsSmsDatabase getMmsSmsDatabase(Context context) {
-    return getInstance(context).mmsSmsDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.mmsSmsDatabase == null) {
+        factory.mmsSmsDatabase = new MmsSmsDatabase(context, factory.databaseHelper);
+      }
+      return factory.mmsSmsDatabase;
+    }
   }
 
   public static ThreadDatabase getThreadDatabase(Context context) {
-    return getInstance(context).thread;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.thread == null) {
+        factory.thread = new ThreadDatabase(context, factory.databaseHelper);
+      }
+      return factory.thread;
+    }
   }
 
   public static SmsDatabase getSmsDatabase(Context context) {
-    return getInstance(context).sms;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.sms == null) {
+        factory.sms = new SmsDatabase(context, factory.databaseHelper);
+      }
+      return factory.sms;
+    }
   }
 
   public static MmsDatabase getMmsDatabase(Context context) {
-    return getInstance(context).mms;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.mms == null) {
+        factory.mms = new MmsDatabase(context, factory.databaseHelper);
+      }
+      return factory.mms;
+    }
   }
 
   public static AttachmentDatabase getAttachmentDatabase(Context context) {
@@ -88,35 +113,83 @@ public class DatabaseFactory {
   }
 
   public static MediaDatabase getMediaDatabase(Context context) {
-    return getInstance(context).media;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.media == null) {
+        factory.media = new MediaDatabase(context, factory.databaseHelper);
+      }
+      return factory.media;
+    }
   }
 
   public static DraftDatabase getDraftDatabase(Context context) {
-    return getInstance(context).draftDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.draftDatabase == null) {
+        factory.draftDatabase = new DraftDatabase(context, factory.databaseHelper);
+      }
+      return factory.draftDatabase;
+    }
   }
 
   public static PushDatabase getPushDatabase(Context context) {
-    return getInstance(context).pushDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.pushDatabase == null) {
+        factory.pushDatabase = new PushDatabase(context, factory.databaseHelper);
+      }
+      return factory.pushDatabase;
+    }
   }
 
   public static GroupDatabase getGroupDatabase(Context context) {
-    return getInstance(context).groupDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.groupDatabase == null) {
+        factory.groupDatabase = new GroupDatabase(context, factory.databaseHelper);
+      }
+      return factory.groupDatabase;
+    }
   }
 
   public static RecipientDatabase getRecipientDatabase(Context context) {
-    return getInstance(context).recipientDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.recipientDatabase == null) {
+        factory.recipientDatabase = new RecipientDatabase(context, factory.databaseHelper);
+      }
+      return factory.recipientDatabase;
+    }
   }
 
   public static GroupReceiptDatabase getGroupReceiptDatabase(Context context) {
-    return getInstance(context).groupReceiptDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.groupReceiptDatabase == null) {
+        factory.groupReceiptDatabase = new GroupReceiptDatabase(context, factory.databaseHelper);
+      }
+      return factory.groupReceiptDatabase;
+    }
   }
 
   public static SearchDatabase getSearchDatabase(Context context) {
-    return getInstance(context).searchDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.searchDatabase == null) {
+        factory.searchDatabase = new SearchDatabase(context, factory.databaseHelper);
+      }
+      return factory.searchDatabase;
+    }
   }
 
   public static JobDatabase getJobDatabase(Context context) {
-    return getInstance(context).jobDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.jobDatabase == null) {
+        factory.jobDatabase = new JobDatabase(context, factory.databaseHelper);
+      }
+      return factory.jobDatabase;
+    }
   }
 
   public static SQLiteDatabase getBackupDatabase(Context context) {
@@ -125,41 +198,95 @@ public class DatabaseFactory {
 
   // region Loki
   public static LokiAPIDatabase getLokiAPIDatabase(Context context) {
-    return getInstance(context).lokiAPIDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.lokiAPIDatabase == null) {
+        factory.lokiAPIDatabase = new LokiAPIDatabase(context, factory.databaseHelper);
+      }
+      return factory.lokiAPIDatabase;
+    }
   }
 
   public static LokiMessageDatabase getLokiMessageDatabase(Context context) {
-    return getInstance(context).lokiMessageDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.lokiMessageDatabase == null) {
+        factory.lokiMessageDatabase = new LokiMessageDatabase(context, factory.databaseHelper);
+      }
+      return factory.lokiMessageDatabase;
+    }
   }
 
   public static LokiThreadDatabase getLokiThreadDatabase(Context context) {
-    return getInstance(context).lokiThreadDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.lokiThreadDatabase == null) {
+        factory.lokiThreadDatabase = new LokiThreadDatabase(context, factory.databaseHelper);
+      }
+      return factory.lokiThreadDatabase;
+    }
   }
 
   public static LokiUserDatabase getLokiUserDatabase(Context context) {
-    return getInstance(context).lokiUserDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.lokiUserDatabase == null) {
+        factory.lokiUserDatabase = new LokiUserDatabase(context, factory.databaseHelper);
+      }
+      return factory.lokiUserDatabase;
+    }
   }
 
   public static LokiBackupFilesDatabase getLokiBackupFilesDatabase(Context context) {
-    return getInstance(context).lokiBackupFilesDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.lokiBackupFilesDatabase == null) {
+        factory.lokiBackupFilesDatabase = new LokiBackupFilesDatabase(context, factory.databaseHelper);
+      }
+      return factory.lokiBackupFilesDatabase;
+    }
   }
 
   public static SessionJobDatabase getSessionJobDatabase(Context context) {
-    return getInstance(context).sessionJobDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.sessionJobDatabase == null) {
+        factory.sessionJobDatabase = new SessionJobDatabase(context, factory.databaseHelper);
+      }
+      return factory.sessionJobDatabase;
+    }
   }
 
   public static SessionContactDatabase getSessionContactDatabase(Context context) {
-    return getInstance(context).sessionContactDatabase;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.sessionContactDatabase == null) {
+        factory.sessionContactDatabase = new SessionContactDatabase(context, factory.databaseHelper);
+      }
+      return factory.sessionContactDatabase;
+    }
   }
   // endregion
 
   // region Refactor
   public static Storage getStorage(Context context) {
-    return getInstance(context).storage;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.storage == null) {
+        factory.storage = new Storage(context, factory.databaseHelper);
+      }
+      return factory.storage;
+    }
   }
 
   public static DatabaseAttachmentProvider getAttachmentProvider(Context context) {
-    return getInstance(context).attachmentProvider;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.attachmentProvider == null) {
+        factory.attachmentProvider = new DatabaseAttachmentProvider(context, factory.databaseHelper);
+      }
+      return factory.attachmentProvider;
+    }
   }
   // endregion
 
@@ -175,28 +302,7 @@ public class DatabaseFactory {
     AttachmentSecret    attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
 
     this.databaseHelper            = new SQLCipherOpenHelper(context, databaseSecret);
-    this.sms                       = new SmsDatabase(context, databaseHelper);
-    this.mms                       = new MmsDatabase(context, databaseHelper);
     this.attachments               = new AttachmentDatabase(context, databaseHelper, attachmentSecret);
-    this.media                     = new MediaDatabase(context, databaseHelper);
-    this.thread                    = new ThreadDatabase(context, databaseHelper);
-    this.mmsSmsDatabase            = new MmsSmsDatabase(context, databaseHelper);
-    this.draftDatabase             = new DraftDatabase(context, databaseHelper);
-    this.pushDatabase              = new PushDatabase(context, databaseHelper);
-    this.groupDatabase             = new GroupDatabase(context, databaseHelper);
-    this.recipientDatabase         = new RecipientDatabase(context, databaseHelper);
-    this.groupReceiptDatabase      = new GroupReceiptDatabase(context, databaseHelper);
-    this.searchDatabase            = new SearchDatabase(context, databaseHelper);
-    this.jobDatabase               = new JobDatabase(context, databaseHelper);
-    this.lokiAPIDatabase           = new LokiAPIDatabase(context, databaseHelper);
-    this.lokiMessageDatabase       = new LokiMessageDatabase(context, databaseHelper);
-    this.lokiThreadDatabase        = new LokiThreadDatabase(context, databaseHelper);
-    this.lokiUserDatabase          = new LokiUserDatabase(context, databaseHelper);
-    this.lokiBackupFilesDatabase   = new LokiBackupFilesDatabase(context, databaseHelper);
-    this.storage                   = new Storage(context, databaseHelper);
-    this.attachmentProvider        = new DatabaseAttachmentProvider(context, databaseHelper);
-    this.sessionJobDatabase        = new SessionJobDatabase(context, databaseHelper);
-    this.sessionContactDatabase    = new SessionContactDatabase(context, databaseHelper);
   }
 
 }
