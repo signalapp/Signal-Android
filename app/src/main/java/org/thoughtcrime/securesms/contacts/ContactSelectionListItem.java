@@ -90,16 +90,21 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     } else if (recipientId != null) {
       this.recipient = Recipient.live(recipientId);
       this.recipient.observeForever(this);
-      name = this.recipient.get().getDisplayName(getContext());
     }
 
-    if (recipient == null || recipient.get().isRegistered()) {
+    Recipient recipientSnapshot = recipient != null ? recipient.get() : null;
+
+    if (recipientSnapshot != null && !recipientSnapshot.isResolving()) {
+      name = recipientSnapshot.getDisplayName(getContext());
+    } else {
+      name = "";
+    }
+
+    if (recipientSnapshot == null || recipientSnapshot.isResolving() || recipientSnapshot.isRegistered()) {
       smsTag.setVisibility(GONE);
     } else {
       smsTag.setVisibility(VISIBLE);
     }
-
-    Recipient recipientSnapshot = recipient != null ? recipient.get() : null;
 
     if (recipientSnapshot == null || recipientSnapshot.isResolving()) {
       this.contactPhotoImage.setAvatar(glideRequests, null, false);
@@ -209,6 +214,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     if (this.recipient != null && this.recipient.getId().equals(recipient.getId())) {
       contactPhotoImage.setAvatar(glideRequests, recipient, false);
       setText(recipient, contactType, contactName, contactNumber, contactLabel, contactAbout);
+      smsTag.setVisibility(recipient.isRegistered() ? GONE : VISIBLE);
     } else {
       Log.w(TAG, "Bad change! Local recipient doesn't match. Ignoring. Local: " + (this.recipient == null ? "null" : this.recipient.getId()) + ", Changed: " + recipient.getId());
     }
