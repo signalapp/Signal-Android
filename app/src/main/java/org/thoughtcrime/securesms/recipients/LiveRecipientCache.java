@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.MissingRecipientException;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -198,19 +199,22 @@ public final class LiveRecipientCache {
 
       stopwatch.split("thread");
 
-      try (Cursor cursor = DatabaseFactory.getRecipientDatabase(context).getNonGroupContacts(false)) {
-        int count = 0;
-        while (cursor != null && cursor.moveToNext() && count < CONTACT_CACHE_WARM_MAX) {
-          RecipientId id = RecipientId.from(CursorUtil.requireLong(cursor, RecipientDatabase.ID));
-          Recipient.resolved(id);
-          count++;
+      if (SignalStore.registrationValues().isRegistrationComplete()) {
+        try (Cursor cursor = DatabaseFactory.getRecipientDatabase(context).getNonGroupContacts(false)) {
+          int count = 0;
+          while (cursor != null && cursor.moveToNext() && count < CONTACT_CACHE_WARM_MAX) {
+            RecipientId id = RecipientId.from(CursorUtil.requireLong(cursor, RecipientDatabase.ID));
+            Recipient.resolved(id);
+            count++;
+          }
+
+          Log.d(TAG, "Warmed up " + count + " contact recipient.");
+
+          stopwatch.split("contact");
         }
-
-        Log.d(TAG, "Warmed up " + count + " contact recipient.");
-
-        stopwatch.split("contact");
-        stopwatch.stop(TAG);
       }
+
+      stopwatch.stop(TAG);
     });
   }
 
