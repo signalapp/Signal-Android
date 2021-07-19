@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
@@ -95,8 +96,9 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     Recipient recipientSnapshot = recipient != null ? recipient.get() : null;
 
     if (recipientSnapshot != null && !recipientSnapshot.isResolving()) {
-      name = recipientSnapshot.getDisplayName(getContext());
-    } else {
+      contactName = recipientSnapshot.getDisplayName(getContext());
+      name        = contactName;
+    } else if (recipient != null) {
       name = "";
     }
 
@@ -212,6 +214,10 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
   @Override
   public void onRecipientChanged(@NonNull Recipient recipient) {
     if (this.recipient != null && this.recipient.getId().equals(recipient.getId())) {
+      contactName   = recipient.getDisplayName(getContext());
+      contactAbout  = recipient.getCombinedAboutAndEmoji();
+      contactNumber = PhoneNumberFormatter.prettyPrint(recipient.getE164().or(""));
+
       contactPhotoImage.setAvatar(glideRequests, recipient, false);
       setText(recipient, contactType, contactName, contactNumber, contactLabel, contactAbout);
       smsTag.setVisibility(recipient.isRegistered() ? GONE : VISIBLE);

@@ -50,9 +50,11 @@ public final class LiveRecipient {
     this.groupDatabase     = DatabaseFactory.getGroupDatabase(context);
     this.observers         = new CopyOnWriteArraySet<>();
     this.foreverObserver   = recipient -> {
-      for (RecipientForeverObserver o : observers) {
-        o.onRecipientChanged(recipient);
-      }
+      ThreadUtil.postToMain(() -> {
+        for (RecipientForeverObserver o : observers) {
+          o.onRecipientChanged(recipient);
+        }
+      });
     };
     this.refreshForceNotify = new MutableLiveData<>(new Object());
     this.observableLiveData = LiveDataUtil.combineLatest(LiveDataUtil.distinctUntilChanged(liveData, Recipient::hasSameContent),
