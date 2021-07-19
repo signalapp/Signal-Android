@@ -55,7 +55,6 @@
   <string name="DraftDatabase_Draft_voice_note">(Talskilaboð)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Myndasafn</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Skrá</string>
   <string name="AttachmentKeyboard_contact">Tengiliður</string>
   <string name="AttachmentKeyboard_location">Staðsetning</string>
@@ -242,9 +241,6 @@
   <string name="ConversationActivity_full">Fullt</string>
   <string name="ConversationActivity_error_sending_media">Villa við að senda myndefni</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Tilkynnt sem ruslpóstur og útilokað.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF-myndir hafa verið færðar</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Leita að GIF-myndum næst emoji-táknum og límmerkjum.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIF-myndir eru núna hér.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ólesin skilaboð</item>
@@ -329,6 +325,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Sumir tengiliðir geta ekki verið í eldri gerð hópa.</string>
+  <string name="CreateGroupActivity__select_members">Veldu meðlimi</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Notandasnið</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Villa við að setja auðkennismynd</string>
@@ -2673,6 +2670,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Afritað á klippispjald</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Tengillinn er ekki virkur í augnablikinu</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Mistókst að spila talskilaboð</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Talskilaboð - %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s til %2$s</string>
@@ -2739,6 +2737,10 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="DeleteAccountCountryPickerFragment__search_countries">Leita í löndum</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Sleppa</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d meðlimur</item>
+    <item quantity="other">%1$d meðlimir</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Deila</string>
   <string name="ShareActivity__send">Senda</string>
@@ -3050,12 +3052,15 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Ný greiðsla</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Ný skilaboð</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Leita eftir nafni eða símanúmeri</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

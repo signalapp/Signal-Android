@@ -53,7 +53,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">(ပြန်လည်ပေးပို့လာသောစာတို)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ဓါတ်ပုံပြခန်း</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">လှုပ်ရှားနေသောရုပ်ပုံ</string> -->
   <string name="AttachmentKeyboard_file">ဖိုင်</string>
   <string name="AttachmentKeyboard_contact">အဆက်အသွယ်</string>
   <string name="AttachmentKeyboard_location">တည်နေရာ</string>

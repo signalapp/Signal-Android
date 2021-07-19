@@ -38,6 +38,8 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN अक्षम केले.</string>
   <string name="ApplicationPreferencesActivity_hide">लपवा</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">स्मरणपत्र लपवायचे?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">पेमेंट रिकव्हरी फ्रेझ रेकॉर्ड करा</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">फ्रेझ रेकॉर्ड करा</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d मिनिट</item>
@@ -51,7 +53,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">(प्रतिसाद द्या)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">गॅलरी</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">फाईल</string>
   <string name="AttachmentKeyboard_contact">संपर्क</string>
   <string name="AttachmentKeyboard_location">स्थान</string>

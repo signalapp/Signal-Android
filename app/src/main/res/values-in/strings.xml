@@ -53,7 +53,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">(balas)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeri</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Berkas</string>
   <string name="AttachmentKeyboard_contact">Kontak</string>
   <string name="AttachmentKeyboard_location">Lokasi</string>
@@ -2431,11 +2430,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="payment_info_card_update_pin">Perbarui PIN</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">Mulai</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">Berikutnya</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Berikutnya</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Sunting</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">Sebelumnya</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Salin</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Selesai</string>
@@ -2448,6 +2449,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">Kirim sebuah pesan</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Anda tidak punya grup yang sama dengan orang ini. Tinjau permintaan dengan seksama sebelum menerima untuk menghindari pesan tidak diinginkan.</string>
   <string name="GroupsInCommonMessageRequest__okay">Oke</string>
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
@@ -2488,6 +2490,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__chat_color">Warna percakapan</string>
   <string name="ChatColorSelectionFragment__edit">Sunting</string>
+  <string name="ChatColorSelectionFragment__duplicate">Duplikat</string>
   <string name="ChatColorSelectionFragment__delete">Hapus</string>
   <!--CustomChatColorCreatorFragment-->
   <!--CustomChatColorCreatorFragmentPage-->

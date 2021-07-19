@@ -52,7 +52,6 @@
   <string name="DraftDatabase_Draft_voice_note">(Häälsõnum)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerii</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fail</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Asukoht</string>
@@ -239,9 +238,6 @@
   <string name="ConversationActivity_full">Täis</string>
   <string name="ConversationActivity_error_sending_media">Meedia saatmisel tekkis tõrge</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Raporteeritud rämpspostitusena ja blokeeritud</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIFid on liikunud</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Otsi GIFe emotikonide ja kleebiste kõrvalt.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIFid on nüüd siin.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d lugemata sõnum</item>

@@ -51,7 +51,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">(svar)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galleri</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fil</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Posisjon</string>

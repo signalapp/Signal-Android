@@ -58,7 +58,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">(رَدّ)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">المعرض</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">صورة متحركة</string> -->
   <string name="AttachmentKeyboard_file">ملف</string>
   <string name="AttachmentKeyboard_contact">جهة الاتصال</string>
   <string name="AttachmentKeyboard_location">الموقع الجغرافي</string>
@@ -245,9 +244,6 @@
   <string name="ConversationActivity_full">ممتليء</string>
   <string name="ConversationActivity_error_sending_media">خَطَأُ في إرسال الوَسط</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">أُبلِغ عن الإزعاج ثم حُظر</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">تحركت الصور المتحركة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">اطلع على الصور المتحركة التي بجانب الوجوه المُعبِّرة والملصقات.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">توجد الصور المتحركة هنا.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="zero">%d رسالة غير مقروءة</item>

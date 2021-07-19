@@ -57,7 +57,6 @@
   <string name="DraftDatabase_Draft_voice_note">(הודעה קולית)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">גלריה</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">קובץ</string>
   <string name="AttachmentKeyboard_contact">איש קשר</string>
   <string name="AttachmentKeyboard_location">מיקום</string>
@@ -244,9 +243,6 @@
   <string name="ConversationActivity_full">מלאה</string>
   <string name="ConversationActivity_error_sending_media">שגיאה בשליחת מדיה</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">דֻּוַּח כזבל ונחסם.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">קבצי GIF הועברו</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">חפש קבצי GIF ליד אימוג\'י ומדבקות.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">קבצי GIF נמצאים כאן עכשיו.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">הודעה %d לא נקראה</item>
@@ -351,6 +347,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">כמה אנשי קשר אינם יכולים להיות בקבוצות מיושנות.</string>
+  <string name="CreateGroupActivity__select_members">בחר חברי קבוצה</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">פרופיל</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">שגיאה בהגדרת תמונת פרופיל</string>
@@ -2831,6 +2828,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">הועתק ללוח</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">הקישור אינו פעיל כרגע</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">נכשל בניגון הודעה קולית</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">הודעה קולית · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s אל %2$s</string>
@@ -2901,6 +2899,12 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">חפש מדינות</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">דלג</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">חבר קבוצה %1$d</item>
+    <item quantity="two">%1$d חברי קבוצה</item>
+    <item quantity="many">%1$d חברי קבוצה</item>
+    <item quantity="other">%1$d חברי קבוצה</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">שתף</string>
   <string name="ShareActivity__send">שלח</string>
@@ -3216,12 +3220,15 @@
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">תשלום חדש</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">הודעה חדשה</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">חפש שם או מספר</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">מסרון</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

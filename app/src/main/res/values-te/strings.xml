@@ -51,7 +51,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">స్పంధించు</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">చిత్రశాల</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">గిఫ్</string> -->
   <string name="AttachmentKeyboard_file">పత్రం</string>
   <string name="AttachmentKeyboard_contact">పరిచయం</string>
   <string name="AttachmentKeyboard_location">స్థానం</string>

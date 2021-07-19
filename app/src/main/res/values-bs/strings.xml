@@ -56,7 +56,6 @@
   <string name="DraftDatabase_Draft_voice_note">(Glasovna poruka)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerija</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Datoteka</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Lokacija</string>
@@ -243,9 +242,6 @@
   <string name="ConversationActivity_full">Popunjeno</string>
   <string name="ConversationActivity_error_sending_media">Greška prilikom slanja priloga</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Prijavljeno kao neželjena poruka i blokirano.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF-animacije su premještene</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIF-animacije tražite pored emoji-sličica i naljepnica.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIF-animacije sada se nalaze ovdje.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepročitana poruka</item>

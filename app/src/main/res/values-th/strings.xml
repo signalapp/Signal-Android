@@ -52,7 +52,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">(ตอบกลับ)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">อัลบั้มภาพ</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">แฟ้ม</string>
   <string name="AttachmentKeyboard_contact">ผู้ติดต่อ</string>
   <string name="AttachmentKeyboard_location">ตำแหน่งที่ตั้ง</string>
@@ -239,9 +238,6 @@
   <string name="ConversationActivity_full">เต็ม</string>
   <string name="ConversationActivity_error_sending_media">เกิดข้อผิดพลาดในการส่งสื่อ</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">ถูกรายงานว่าเป็นสแปมและถูกปิดกั้นแล้ว</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF ถูกย้าย</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">มองหา GIF ข้างๆ อีโมจิและสติกเกอร์</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">ตอนนี้ GIF อยู่ที่นี่</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d ข้อความที่ยังไม่ได้อ่าน</item>

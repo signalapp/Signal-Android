@@ -51,7 +51,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">(erantzun)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galeria</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Artxiboa</string>
   <string name="AttachmentKeyboard_contact">Kontaktua</string>
   <string name="AttachmentKeyboard_location">Kokalekua</string>

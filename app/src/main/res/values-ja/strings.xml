@@ -53,7 +53,6 @@
   <string name="DraftDatabase_Draft_voice_note">(音声メッセージ)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ギャラリー</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">ファイル</string>
   <string name="AttachmentKeyboard_contact">連絡先</string>
   <string name="AttachmentKeyboard_location">場所</string>
@@ -240,9 +239,6 @@
   <string name="ConversationActivity_full">満席</string>
   <string name="ConversationActivity_error_sending_media">メディア送信エラー</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">スパムとして報告してブロックしました。</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIFは移動しました</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIFは絵文字やステッカーの隣にあります。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIFはここです。</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d件の未読メッセージ</item>
@@ -317,6 +313,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">レガシーグループには入れられない連絡先があります。</string>
+  <string name="CreateGroupActivity__select_members">メンバーの選択</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">プロフィール</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">プロフィール画像の設定中にエラーが発生しました</string>
@@ -422,7 +419,7 @@
   <string name="AddToGroupActivity_add_to_groups">グループへ追加</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">このユーザーはレガシーグループに追加できません。</string>
   <string name="AddToGroupActivity_add">追加する</string>
-  <string name="AddToGroupActivity_add_to_a_group">グループへ追加</string>
+  <string name="AddToGroupActivity_add_to_a_group">グループへの追加</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">新しい管理者を選択</string>
   <string name="ChooseNewAdminActivity_done">完了</string>
@@ -1992,11 +1989,15 @@
   <string name="PaymentsHomeFragment__introducing_payments">支払い機能のご紹介 (ベータ)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signalで、プライバシーを考慮した仮想通貨MobileCoinを利用できます。利用するには機能を有効化してください。</string>
   <string name="PaymentsHomeFragment__activate_payments">支払い機能を有効化</string>
+  <string name="PaymentsHomeFragment__activating_payments">支払い機能を有効化しています…</string>
+  <string name="PaymentsHomeFragment__recent_activity">最近のアクティビティ</string>
   <string name="PaymentsHomeFragment__see_all">すべて表示</string>
+  <string name="PaymentsHomeFragment__add_funds">入金</string>
   <string name="PaymentsHomeFragment__send">送信する</string>
   <string name="PaymentsHomeFragment__sent_s">%1$s を送付しました</string>
   <string name="PaymentsHomeFragment__received_s">%1$s を受け取りました</string>
   <string name="PaymentsHomeFragment__currency_conversion">通貨換算</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">支払い機能を停止</string>
   <string name="PaymentsHomeFragment__recovery_phrase">リカバリーフレーズ</string>
   <string name="PaymentsHomeFragment__help">ヘルプ</string>
   <string name="PaymentsHomeFragment__sent_payment">送金済み</string>
@@ -2004,6 +2005,7 @@
   <string name="PaymentsHomeFragment__processing_payment">支払いを処理しています</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">通貨換算は利用できません</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">通貨換算を表示できません。携帯電話のインターネット接続を確認して、再度試してください。</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">支払い機能を停止しますか？</string>
   <string name="PaymentsHomeFragment__deactivate">支払い機能を停止</string>
   <string name="PaymentsHomeFragment__continue">続ける</string>
@@ -2012,6 +2014,7 @@
   <string name="PaymentsHomeFragment__activate">同意</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signalの支払い機能はもう利用できません。残金は取引所に移行できますが、送金や入金は今後できません。</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">入金</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">あなたのウォレットアドレス</string>
   <string name="PaymentsAddMoneyFragment__copy">コピー</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">クリップボードにコピーしました</string>
@@ -2021,6 +2024,7 @@
   <string name="PaymentsDetailsFragment__status">状態</string>
   <string name="PaymentsDetailsFragment__processing_payment">支払いを処理しています…</string>
   <string name="PaymentsDetailsFragment__network_fee">ネットワーク料金</string>
+  <string name="PaymentsDetailsFragment__sent_by">送金者</string>
   <string name="PaymentsDetailsFragment__to">宛先</string>
   <string name="PaymentsDetailsFragment__from">差出人</string>
   <string name="PaymentsDetailsFragment__information">金額と時間を含む取引詳細は、MobileCoinの元帳の一部です。</string>
@@ -2683,6 +2687,7 @@
   <string name="PaymentNotificationsView__view">表示する</string>
   <!--UnreadPayments-->
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">送金できません</string>
   <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">送金するには、このユーザーがあなたのメッセージリクエストを受け取る必要があります。リクエストを作成するため、先にメッセージを送ってください。</string>
   <string name="CanNotSendPaymentDialog__send_a_message">メッセージ送信</string>
   <!--GroupsInCommonMessageRequest-->
@@ -2866,9 +2871,11 @@
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">新しい送金</string>
   <!--NewConversationActivity-->
-  <string name="NewConversationActivity__new_message">新着メッセージ</string>
+  <string name="NewConversationActivity__new_message">新規メッセージ</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">名前か電話番号で検索</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--ContactSelectionListItem-->

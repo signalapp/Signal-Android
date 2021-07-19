@@ -55,7 +55,6 @@
   <string name="DraftDatabase_Draft_voice_note">(Röstmeddelande)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galleri</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fil</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Plats</string>
@@ -242,9 +241,6 @@
   <string name="ConversationActivity_full">Fullt</string>
   <string name="ConversationActivity_error_sending_media">Fel vid sändning av media</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Rapporterad som skräppost och blockerad.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF-bilder har flyttat</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Leta efter GIF-bilder bredvid emoji och klistermärken.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIF-bilder är nu här.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d oläst meddelande</item>
@@ -329,6 +325,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Vissa kontakter kan inte vara i gamla grupper.</string>
+  <string name="CreateGroupActivity__select_members">Välj medlemmar</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Det gick inte att ställa in profilbild</string>
@@ -2665,6 +2662,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopierade till urklipp</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Länken är för närvarande inte aktiv</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Det gick inte att spela röstmeddelande</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Röstmeddelande · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s till %2$s</string>
@@ -2731,6 +2729,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="DeleteAccountCountryPickerFragment__search_countries">Sök länder</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Hoppa över</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d medlem</item>
+    <item quantity="other">%1$d medlemmar</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Dela</string>
   <string name="ShareActivity__send">Skicka</string>
@@ -3042,12 +3044,15 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Ny betalning</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Nytt meddelande</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Sök namn eller nummer</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

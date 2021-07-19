@@ -54,7 +54,6 @@
   <string name="DraftDatabase_Draft_voice_note">(語音訊息)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">圖片庫</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">檔案</string>
   <string name="AttachmentKeyboard_contact">聯絡人</string>
   <string name="AttachmentKeyboard_location">位置</string>
@@ -241,9 +240,6 @@
   <string name="ConversationActivity_full">已滿</string>
   <string name="ConversationActivity_error_sending_media">傳送媒體時發生錯誤</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">已舉報垃圾訊息並封鎖。</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF 已搬遷</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">GIF 已歸於表情符號和貼圖旁邊，敬請查看。</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIF 新居於此。</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 則未讀訊息</item>
@@ -499,7 +495,7 @@
   <string name="LeaveGroupDialog_choose_admin">請選擇管理員</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">停用</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">預覧任何連結</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">預覽任何連結</string>
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">您現已可以為傳送的訊息直接從任何網站擷取連結預覽。</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">連結預覽欠奉</string>
@@ -1745,7 +1741,7 @@
   <string name="AndroidManifest__change_passphrase">更改密碼</string>
   <string name="AndroidManifest__verify_safety_number">驗證安全碼</string>
   <string name="AndroidManifest__log_submit">提交除錯記錄檔</string>
-  <string name="AndroidManifest__media_preview">媒體預覧</string>
+  <string name="AndroidManifest__media_preview">媒體預覽</string>
   <string name="AndroidManifest__message_details">訊息詳情</string>
   <string name="AndroidManifest__linked_devices">已連結的裝置</string>
   <string name="AndroidManifest__invite_friends">邀請好友</string>
@@ -1831,8 +1827,8 @@
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">按一下輸入鍵將會發送文字訊息</string>
   <string name="preferences__pref_use_address_book_photos">使用通訊錄照片</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">在可用時顯示來自您的通訊錄中的聯絡人照片</string>
-  <string name="preferences__generate_link_previews">產生連結預覧</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">為您傳送的訊息直接從網站提取連結預覧。</string>
+  <string name="preferences__generate_link_previews">產生連結預覽</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">為您傳送的訊息直接從網站提取連結預覽。</string>
   <string name="preferences__choose_identity">請選擇身份</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">從聯絡人清單中選擇您的聯絡人項目。</string>
   <string name="preferences__change_passphrase">更改密碼</string>
@@ -2220,7 +2216,7 @@
   <string name="media_preview__share_title">分享</string>
   <string name="media_preview__all_media_title">所有媒體</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__media_content_description">媒體預覧</string>
+  <string name="media_preview_activity__media_content_description">媒體預覽</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">重新整理</string>
   <!--redphone_audio_popup_menu-->
@@ -2681,7 +2677,7 @@
   <string name="ChatWallpaperFragment__contact_name">聯絡人名稱</string>
   <string name="ChatWallpaperFragment__reset">重設</string>
   <string name="ChatWallpaperFragment__clear">清除</string>
-  <string name="ChatWallpaperFragment__wallpaper_preview_description">背景預覧</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">背景預覽</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">您要覆寫所有聊天色彩嗎？</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">您要覆寫所有背景嗎？</string>
   <string name="ChatWallpaperFragment__reset_default_colors">重設預設色彩</string>
@@ -2697,7 +2693,7 @@
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">預覽</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">設定背景</string>
-  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">滑動以預覧更多背景</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">滑動以預覽更多背景</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">為所有聊天設定背景</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">為 %1$s 設定背景</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">檢視您的圖片庫需要儲存裝置權限。</string>
@@ -2792,7 +2788,7 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">您的聯絡人或曾與您聊天的人俱不在此群組中。請仔細檢閱方接受請求，以免無謂訊息滋擾。</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">關於訊息請求</string>
   <string name="GroupsInCommonMessageRequest__okay">好</string>
-  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">這是聊天色彩的預覧。</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">這是聊天色彩的預覽。</string>
   <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">色彩只有您看得見。</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">群組描述</string>

@@ -51,7 +51,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">(பதில்)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">கேலரி</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">கோப்பு</string>
   <string name="AttachmentKeyboard_contact">தொடர்பு</string>
   <string name="AttachmentKeyboard_location">இடம்</string>

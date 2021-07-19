@@ -52,9 +52,9 @@
   <string name="DraftDatabase_Draft_video_snippet">(سىن)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ئورنى)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(جاۋاب)</string>
+  <string name="DraftDatabase_Draft_voice_note">(ئۈن ئۇچۇر)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">سۈرەتدان</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">ھۆججەت</string>
   <string name="AttachmentKeyboard_contact">ئالاقەداش</string>
   <string name="AttachmentKeyboard_location">ئورنى</string>
@@ -241,9 +241,6 @@
   <string name="ConversationActivity_full">توشتى</string>
   <string name="ConversationActivity_error_sending_media">ۋاسىتە ئەۋەتىش خاتالىقى</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">ئەخلەت ئۇچۇر دەپ مەلۇم قىلىنىپ چەكلەندى.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIF يۆتكىۋېتىلدى</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">چىراي بەلگە ۋە چاپلاقنىڭ يېنىدىن GIF نى ئىزدەڭ.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">ھازىر GIF بۇ جايدا.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%dئوقۇلمىغان ئۇچۇر</item>
@@ -283,7 +280,7 @@
   <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ئەگەر Signal نىڭ يېقىنقى نەشرىنى ئىشلىتىۋاتقان بولسا، بۇ ئۇچۇر سۆھبەتتىكى ھەممە ئادەملەردىن ئۆچۈرۈلىدۇ. ئۇلار سىزنىڭ بىر ئۇچۇرنى ئۆچۈرگەنلىكىڭىزنى كۆرەلەيدۇ.</string>
   <string name="ConversationFragment_quoted_message_not_found">ئەسلى ئۇچۇر تېپىلمىدى</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">ئەسلى ئۇچۇرنى ئەمدى يوق</string>
-  <string name="ConversationFragment_failed_to_open_message">ئۇچۇرنى ئېچىشتا مەغلۇپ بولدى</string>
+  <string name="ConversationFragment_failed_to_open_message">ئۇچۇرنى ئاچالمىدى</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">تېز جاۋاب قايتۇرۇش ئۈچۈن ھەر قانداق ئۇچۇردا ئوڭ تەرەپكە سىيرىسىڭىز بولىدۇ</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">تېز جاۋاب قايتۇرۇش ئۈچۈن ھەر قانداق ئۇچۇردا سول تەرەپكە سىيرىسىڭىز بولىدۇ</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">بىر قېتىملا كۆرۈنىدىغان مېدىيا ھۆججەتلىرى ئەۋەتىلگەندىن كېيىن ئاپتوماتىك ئۆچۈرۈلىدۇ</string>
@@ -328,6 +325,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">بەزى ئالاقەداشلار كونا گۇرۇپپىدا بولالمايدۇ.</string>
+  <string name="CreateGroupActivity__select_members">ئەزالارنى تاللاڭ</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">ئارخىپ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ئارخىپىڭىزنى بەلگىلەشتىكى خاتالىق</string>
@@ -866,6 +864,8 @@
   <string name="MediaRepository_all_media">بارلىق مېدىيا</string>
   <string name="MediaRepository__camera">كامېرا</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">ئۇچۇرنى يېشەلمىدى</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">چېكىپ سازلاش خاتىرىسىنى يوللاڭ</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">نامەلۇم</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ئەمدى تېخنىكىلىق ئاسرالمايدىغان Signal نىڭ كونا نەشرىنى ئىشلىتىپ شىفىرلانغان ئۇچۇرنى تاپشۇرۇۋالدىڭىز. ئەۋەتكۈچىدىن ئەڭ يېڭى نەشرىگە يېڭىلاپ ئۇچۇرنى قايتا ئەۋەتىشنى تەلەپ قىلىڭ.</string>
@@ -876,7 +876,7 @@
   <string name="MessageRecord_missed_audio_call_date">سۆزلەشمىگەن ئۈن چاقىرىش. %1$s</string>
   <string name="MessageRecord_missed_video_call_date">سۆزلەشمىگەن سىن چاقىرىش. %1$s</string>
   <string name="MessageRecord_s_updated_group">%s گۇرۇپپىنى يېڭىلىدى.</string>
-  <string name="MessageRecord_s_called_you_date">%1$s سىزنى چاقىرغان. %2$s</string>
+  <string name="MessageRecord_s_called_you_date">‏%1$s سىزنى چاقىرغان. %2$s</string>
   <string name="MessageRecord_s_joined_signal">Signal غا%s قوشۇلدى!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">سىز غايىب ئۇچۇرنى چەكلىدىڭىز.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s غايىب ئۇچۇرنى چەكلىدى.</string>
@@ -1637,7 +1637,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">ئەڭ ئاستىغا سىيرى</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">بىخەتەرلىك نومۇرى ئۆزگەردى</string>
-  <string name="safety_number_change_dialog__accept">قوشۇل</string>
+  <string name="safety_number_change_dialog__accept">قوبۇل قىل</string>
   <string name="safety_number_change_dialog__send_anyway">نىمىلا بولمىسۇن ئەۋەت</string>
   <string name="safety_number_change_dialog__call_anyway">چاقىرىۋەر</string>
   <string name="safety_number_change_dialog__join_call">چاقىرىققا قېتىل</string>
@@ -2667,6 +2667,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">كېسىش تاختىسىغا كۆچۈرۈش</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">بۇ ئۇلانما ئاكتىپ ئەمەس</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">ئۈن ئۇچۇرىنى قويالمىدى</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ئاۋازلىق ئۇچۇر· %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s دىن%2$s غىچە</string>
@@ -2733,6 +2734,10 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">دۆلەتلەردىن ئاقتۇر</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">ئاتلاش</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">‏%1$d ئەزا</item>
+    <item quantity="other">‏%1$d ئەزا</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">ھەمبەھىرلە</string>
   <string name="ShareActivity__send">ئەۋەت</string>
@@ -2946,6 +2951,7 @@
     <item quantity="one">بۇ ئىختىيارىچە رەڭ %1$d سۆھبەتكە ئىشلىتىلىدۇ. ئۇنى ھەممە سۆھبەتتىن ئۆچۈرەمسىز؟</item>
     <item quantity="other">بۇ ئىختىيارىچە رەڭ %1$d سۆھبەتكە ئىشلىتىلىدۇ. ئۇنى ھەممە سۆھبەتتىن ئۆچۈرەمسىز؟</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">سۆھبەت رېڭىنى ئۆچۈرەمسىز؟</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">قېنىق</string>
   <string name="CustomChatColorCreatorFragment__gradient">يانتۇلۇق</string>
@@ -3039,13 +3045,19 @@
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">يېقىندا ئىشلىتىلدى</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">يېڭى چىقىم</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">يېڭى ئۇچۇر</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">نام ياكى سانىنى ئاختۇر</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">قىسقا ئۇچۇر</string>
+  <string name="ContactSelectionListItem__dot_s">‏· %1$s</string>
   <!--EOF-->
 </resources>

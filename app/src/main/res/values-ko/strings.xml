@@ -50,7 +50,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">(답장)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">갤러리</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">파일</string>
   <string name="AttachmentKeyboard_contact">연락처</string>
   <string name="AttachmentKeyboard_location">위치</string>

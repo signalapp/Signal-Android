@@ -54,9 +54,9 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(poloha)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(odpoveď)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Hlasová správa)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galéria</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Súbor</string>
   <string name="AttachmentKeyboard_contact">Kontakt</string>
   <string name="AttachmentKeyboard_location">Poloha</string>
@@ -243,9 +243,6 @@
   <string name="ConversationActivity_full">Plný</string>
   <string name="ConversationActivity_error_sending_media">Chyba pri odosielaní médií</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Nahlásené ako spam a blokované.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">GIFy sa presunuli</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Hľadajte obrázky GIF vedľa emotikónových nálepiek.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">GIFy sú tu.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprečítaná správa</item>
@@ -350,6 +347,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Niektoré kontakty nemôžu byť v zastaraných skupinách.</string>
+  <string name="CreateGroupActivity__select_members">Vyberte členov</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Chyba pri nastavení profilovej fotky</string>
@@ -953,6 +951,8 @@
   <string name="MediaRepository_all_media">Všetky médiá</string>
   <string name="MediaRepository__camera">Fotoaparát</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Nepodarilo sa dešifrovať správu</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Ťuknutím odošlete protokol ladenia</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Neznámy</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Prijatá správa je šifrovaná starou verziou Signalu, ktorá už nie je podporovaná. Prosím požiadajte odosielateľa o aktualizáciu na najnovšiu verziu a opätovné odoslanie správy.</string>
@@ -2827,6 +2827,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Skopírované do schránky</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Odkaz momentálne nie je aktívny</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Nepodarilo sa prehrať hlasovú správu</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Hlasová správa · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">od %1$s do %2$s</string>
@@ -2897,6 +2898,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="DeleteAccountCountryPickerFragment__search_countries">Vyhľadať krajinu</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Preskočiť</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d člen</item>
+    <item quantity="few">%1$d členov</item>
+    <item quantity="many">%1$d členov</item>
+    <item quantity="other">%1$d členov</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Zdieľať</string>
   <string name="ShareActivity__send">Poslať</string>
@@ -3112,6 +3119,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
     <item quantity="many">Táto vlastná farba sa používa v %1$d konverzáciach. Chcete ho odstrániť pre všetky konverzácie?</item>
     <item quantity="other">Táto vlastná farba sa používa v %1$d konverzáciach. Chcete ho odstrániť pre všetky konverzácie?</item>
   </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Odstrániť farbu rozhovoru?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Jednoliata</string>
   <string name="CustomChatColorCreatorFragment__gradient">Farebný prechod</string>
@@ -3207,13 +3215,19 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Nedávno použité</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Nová platba</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Nová správa</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Vyhľadajte meno, alebo číslo</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

@@ -52,7 +52,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">(ਜਵਾਬ )</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ਗੈਲਰੀ</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">ਫਾਇਲ</string>
   <string name="AttachmentKeyboard_contact">ਸੰਪਰਕ </string>
   <string name="AttachmentKeyboard_location">ਟਿਕਾਣਾ</string>

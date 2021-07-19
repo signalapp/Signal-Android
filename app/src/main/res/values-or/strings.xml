@@ -53,7 +53,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">(ପ୍ରତିଉତ୍ତର ଦିଅନ୍ତୁ)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ଗ୍ୟାଲେରୀ</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">ଜିଆଇଏଫ୍</string> -->
   <string name="AttachmentKeyboard_file">ଫାଇଲ୍</string>
   <string name="AttachmentKeyboard_contact">ଯୋଗାଯୋଗ</string>
   <string name="AttachmentKeyboard_location">ଅବସ୍ଥାନ</string>

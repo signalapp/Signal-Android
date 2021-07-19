@@ -51,7 +51,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">(മറുപടി)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ഗാലറി</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">ഫയൽ</string>
   <string name="AttachmentKeyboard_contact">കോൺ‌ടാക്റ്റ്</string>
   <string name="AttachmentKeyboard_location">സ്ഥാനം</string>

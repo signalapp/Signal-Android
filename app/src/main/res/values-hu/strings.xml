@@ -54,7 +54,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">(válasz)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galéria</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">Fájl</string>
   <string name="AttachmentKeyboard_contact">Névjegy</string>
   <string name="AttachmentKeyboard_location">Hely</string>
@@ -242,9 +241,6 @@
   <string name="ConversationActivity_full">Tele</string>
   <string name="ConversationActivity_error_sending_media">Hiba történt a médiafájl küldése során</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Kéretlen üzenetnek jelölve és tiltva.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_gifs_have_moved">A GIF-ek mozgatásra kerültek</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_look_for_gifs_next_to_emoji_and_stickers">Keresd a GIF-eket az emojik és a matricák mellett.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__gifs_are_now_here">A GIF-ek most már itt vannak.</string> -->
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d olvasatlan üzenet</item>
