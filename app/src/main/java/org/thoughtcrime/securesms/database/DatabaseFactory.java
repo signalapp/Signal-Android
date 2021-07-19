@@ -109,7 +109,14 @@ public class DatabaseFactory {
   }
 
   public static AttachmentDatabase getAttachmentDatabase(Context context) {
-    return getInstance(context).attachments;
+    DatabaseFactory factory = getInstance(context);
+    synchronized (lock) {
+      if (factory.attachments == null) {
+        AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
+        factory.attachments = new AttachmentDatabase(context, factory.databaseHelper, attachmentSecret);
+      }
+      return factory.attachments;
+    }
   }
 
   public static MediaDatabase getMediaDatabase(Context context) {
@@ -299,10 +306,8 @@ public class DatabaseFactory {
     SQLiteDatabase.loadLibs(context);
 
     DatabaseSecret      databaseSecret   = new DatabaseSecretProvider(context).getOrCreateDatabaseSecret();
-    AttachmentSecret    attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
 
     this.databaseHelper            = new SQLCipherOpenHelper(context, databaseSecret);
-    this.attachments               = new AttachmentDatabase(context, databaseHelper, attachmentSecret);
   }
 
 }
