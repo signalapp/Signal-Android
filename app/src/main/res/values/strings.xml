@@ -884,4 +884,8 @@
     <string name="media">Media</string>
     <string name="UntrustedAttachmentView_download_attachment">Tap to download %s</string>
     <string name="message_details_header__error">Error</string>
+
+    <string name="dialog_send_seed_title">Warning</string>
+    <string name="dialog_send_seed_explanation">This is your recovery phrase. If you send it to someone they\'ll have full access to your account.</string>
+    <string name="dialog_send_seed_send_button_title">Send</string>
 </resources>

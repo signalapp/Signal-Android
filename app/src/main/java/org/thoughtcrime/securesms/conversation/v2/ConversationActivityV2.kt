@@ -71,8 +71,10 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.concurrent.SimpleTask
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.recipients.RecipientModifiedListener
+import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.utilities.ListenableFuture
 import org.session.libsignal.utilities.guava.Optional
+import org.session.libsignal.utilities.hexEncodedPrivateKey
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.audio.AudioRecorder
@@ -94,6 +96,8 @@ import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager
 import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
 import org.thoughtcrime.securesms.conversation.v2.utilities.ResendMessageUtilities
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.crypto.MnemonicUtilities
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.DraftDatabase
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
@@ -152,6 +156,17 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     private val layoutManager: LinearLayoutManager
         get() { return conversationRecyclerView.layoutManager as LinearLayoutManager }
+
+    private val seed by lazy {
+        var hexEncodedSeed = IdentityKeyUtil.retrieve(this, IdentityKeyUtil.LOKI_SEED)
+        if (hexEncodedSeed == null) {
+            hexEncodedSeed = IdentityKeyUtil.getIdentityKeyPair(this).hexEncodedPrivateKey // Legacy account
+        }
+        val loadFileContents: (String) -> String = { fileName ->
+            MnemonicUtilities.loadFileContents(this, fileName)
+        }
+        MnemonicCodec(loadFileContents).encode(hexEncodedSeed!!, MnemonicCodec.Language.Configuration.english)
+    }
 
     private val adapter by lazy {
         val cursor = DatabaseFactory.getMmsSmsDatabase(this).getConversation(threadID)
@@ -889,11 +904,18 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         startActivityForResult(MediaSendActivity.buildEditorIntent(this, listOf( media ), thread, getMessageBody()), ConversationActivityV2.PICK_FROM_LIBRARY)
     }
 
-    private fun sendTextOnlyMessage() {
+    private fun sendTextOnlyMessage(hasPermissionToSendSeed: Boolean = false) {
+        val text = getMessageBody()
+        val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+        val isNoteToSelf = (thread.isContactRecipient && thread.address.toString() == userPublicKey)
+        if (text.contains(seed) && !isNoteToSelf && !hasPermissionToSendSeed) {
+            val dialog = SendSeedDialog { sendTextOnlyMessage(true) }
+            return dialog.show(supportFragmentManager, "Send Seed Dialog")
+        }
         // Create the message
         val message = VisibleMessage()
         message.sentTimestamp = System.currentTimeMillis()
-        message.text = getMessageBody()
+        message.text = text
         val outgoingTextMessage = OutgoingTextMessage.from(message, thread)
         // Clear the input bar
         inputBar.text = ""
