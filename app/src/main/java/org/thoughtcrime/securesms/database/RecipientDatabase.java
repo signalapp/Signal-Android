@@ -2378,7 +2378,7 @@ public class RecipientDatabase extends Database {
                                                                                  .excludeId(includeSelf ? null : Recipient.self().getId())
                                                                                  .build();
 
-    String orderBy = SORT_NAME + ", " + SYSTEM_JOINED_NAME + ", " + SEARCH_PROFILE_NAME + ", " + USERNAME + ", " + PHONE;
+    String orderBy = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, searchSelection.where, searchSelection.args, null, null, orderBy);
   }
@@ -2395,7 +2395,7 @@ public class RecipientDatabase extends Database {
 
     String   selection = searchSelection.getWhere();
     String[] args      = searchSelection.getArgs();
-    String   orderBy   = SORT_NAME + ", " + SYSTEM_JOINED_NAME + ", " + SEARCH_PROFILE_NAME + ", " + PHONE;
+    String   orderBy   = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
   }
@@ -3089,6 +3089,16 @@ public class RecipientDatabase extends Database {
 
   private static @NonNull String nullIfEmpty(String column) {
     return "NULLIF(" + column + ", '')";
+  }
+
+  /**
+   * By default, SQLite will prefer numbers over letters when sorting. e.g. (b, a, 1) is sorted as (1, a, b).
+   * This order by will using a GLOB pattern to instead sort it as (a, b, 1).
+   *
+   * @param column The name of the column to sort by
+   */
+  private static @NonNull String orderByPreferringAlphaOverNumeric(@NonNull String column) {
+    return "CASE WHEN " + column + " GLOB '[0-9]*' THEN 1 ELSE 0 END, " + column;
   }
 
   private static @NonNull String removeWhitespace(@NonNull String column) {
