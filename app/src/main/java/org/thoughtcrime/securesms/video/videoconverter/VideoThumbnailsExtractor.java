@@ -109,6 +109,8 @@ final class VideoThumbnailsExtractor {
           decoder.stop();
         } catch (MediaCodec.CodecException codecException) {
           Log.w(TAG, "Decoder stop failed: " + codecException.getDiagnosticInfo(), codecException);
+        } catch (IllegalStateException ise) {
+          Log.w(TAG, "Decoder stop failed", ise);
         }
         decoder.release();
       }
