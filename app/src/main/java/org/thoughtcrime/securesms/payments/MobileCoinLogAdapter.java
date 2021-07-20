@@ -39,10 +39,8 @@ final class MobileCoinLogAdapter implements LogAdapter {
         Log.w(tag, message, throwable);
         break;
       case ERROR:
-        Log.e(tag, message, throwable);
-        break;
       case WTF:
-        Log.wtf(tag, message, throwable);
+        Log.e(tag, message, throwable);
         break;
     }
   }

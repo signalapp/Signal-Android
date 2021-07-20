@@ -3,34 +3,33 @@ package org.thoughtcrime.securesms.testutil;
 import org.signal.core.util.logging.Log;
 
 public final class SystemOutLogger extends Log.Logger {
+  public SystemOutLogger() {
+    super(0);
+  }
+
   @Override
-  public void v(String tag, String message, Throwable t) {
+  public void v(String tag, String message, Throwable t, long duration) {
     printlnFormatted('v', tag, message, t);
   }
 
   @Override
-  public void d(String tag, String message, Throwable t) {
+  public void d(String tag, String message, Throwable t, long duration) {
     printlnFormatted('d', tag, message, t);
   }
 
   @Override
-  public void i(String tag, String message, Throwable t) {
+  public void i(String tag, String message, Throwable t, long duration) {
     printlnFormatted('i', tag, message, t);
   }
 
   @Override
-  public void w(String tag, String message, Throwable t) {
+  public void w(String tag, String message, Throwable t, long duration) {
     printlnFormatted('w', tag, message, t);
   }
 
   @Override
-  public void e(String tag, String message, Throwable t) {
+  public void e(String tag, String message, Throwable t, long duration) {
     printlnFormatted('e', tag, message, t);
-  }
-
-  @Override
-  public void wtf(String tag, String message, Throwable t) {
-    printlnFormatted('x', tag, message, t);
   }
 
   @Override

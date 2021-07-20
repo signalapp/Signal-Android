@@ -25,7 +25,7 @@ import java.util.Locale
 class PersistentLogger(
   application: Application,
   defaultLifespan: Long
-) : Log.Logger() {
+) : Log.Logger(defaultLifespan) {
 
   companion object {
     private const val LOG_V = "V"
@@ -41,41 +41,37 @@ class PersistentLogger(
   private val cachedThreadString: ThreadLocal<String> = ThreadLocal()
 
   init {
-    WriteThread(logEntries, logDatabase, defaultLifespan).apply {
+    WriteThread(logEntries, logDatabase).apply {
       priority = Thread.MIN_PRIORITY
     }.start()
   }
 
-  override fun v(tag: String?, message: String?, t: Throwable?) {
-    write(LOG_V, tag, message, t)
+  override fun v(tag: String?, message: String?, t: Throwable?, duration: Long) {
+    write(LOG_V, tag, message, t, duration)
   }
 
-  override fun d(tag: String?, message: String?, t: Throwable?) {
-    write(LOG_D, tag, message, t)
+  override fun d(tag: String?, message: String?, t: Throwable?, duration: Long) {
+    write(LOG_D, tag, message, t, duration)
   }
 
-  override fun i(tag: String?, message: String?, t: Throwable?) {
-    write(LOG_I, tag, message, t)
+  override fun i(tag: String?, message: String?, t: Throwable?, duration: Long) {
+    write(LOG_I, tag, message, t, duration)
   }
 
-  override fun w(tag: String?, message: String?, t: Throwable?) {
-    write(LOG_W, tag, message, t)
+  override fun w(tag: String?, message: String?, t: Throwable?, duration: Long) {
+    write(LOG_W, tag, message, t, duration)
   }
 
-  override fun e(tag: String?, message: String?, t: Throwable?) {
-    write(LOG_E, tag, message, t)
-  }
-
-  override fun wtf(tag: String?, message: String?, t: Throwable?) {
-    write(LOG_WTF, tag, message, t)
+  override fun e(tag: String?, message: String?, t: Throwable?, duration: Long) {
+    write(LOG_E, tag, message, t, duration)
   }
 
   override fun flush() {
     logEntries.blockForFlushed()
   }
 
-  private fun write(level: String, tag: String?, message: String?, t: Throwable?) {
-    logEntries.add(LogRequest(level, tag ?: "null", message, Date(), getThreadString(), t))
+  private fun write(level: String, tag: String?, message: String?, t: Throwable?, lifespan: Long) {
+    logEntries.add(LogRequest(level, tag ?: "null", message, Date(), getThreadString(), t, lifespan))
   }
 
   private fun getThreadString(): String {
@@ -100,13 +96,13 @@ class PersistentLogger(
     val message: String?,
     val date: Date,
     val threadString: String,
-    val throwable: Throwable?
+    val throwable: Throwable?,
+    val lifespan: Long
   )
 
   private class WriteThread(
     private val requests: LogRequests,
-    private val db: LogDatabase,
-    private val defaultLifespan: Long
+    private val db: LogDatabase
   ) : Thread("signal-logger") {
 
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS zzz", Locale.US)
@@ -127,7 +123,7 @@ class PersistentLogger(
       out.add(
         LogEntry(
           createdAt = request.date.time,
-          lifespan = defaultLifespan,
+          lifespan = request.lifespan,
           body = formatBody(request.threadString, request.date, request.level, request.tag, request.message)
         )
       )
@@ -142,7 +138,7 @@ class PersistentLogger(
         val entries = lines.map { line ->
           LogEntry(
             createdAt = request.date.time,
-            lifespan = defaultLifespan,
+            lifespan = request.lifespan,
             body = formatBody(request.threadString, request.date, request.level, request.tag, line)
           )
         }

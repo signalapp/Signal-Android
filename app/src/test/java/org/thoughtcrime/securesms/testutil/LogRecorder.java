@@ -17,34 +17,33 @@ public final class LogRecorder extends Log.Logger {
   private final List<Entry> errors      = new ArrayList<>();
   private final List<Entry> wtf         = new ArrayList<>();
 
+  public LogRecorder() {
+    super(0);
+  }
+
   @Override
-  public void v(String tag, String message, Throwable t) {
+  public void v(String tag, String message, Throwable t, long duration) {
     verbose.add(new Entry(tag, message, t));
   }
 
   @Override
-  public void d(String tag, String message, Throwable t) {
+  public void d(String tag, String message, Throwable t, long duration) {
     debug.add(new Entry(tag, message, t));
   }
 
   @Override
-  public void i(String tag, String message, Throwable t) {
+  public void i(String tag, String message, Throwable t, long duration) {
     information.add(new Entry(tag, message, t));
   }
 
   @Override
-  public void w(String tag, String message, Throwable t) {
+  public void w(String tag, String message, Throwable t, long duration) {
     warnings.add(new Entry(tag, message, t));
   }
 
   @Override
-  public void e(String tag, String message, Throwable t) {
+  public void e(String tag, String message, Throwable t, long duration) {
     errors.add(new Entry(tag, message, t));
-  }
-
-  @Override
-  public void wtf(String tag, String message, Throwable t) {
-    wtf.add(new Entry(tag, message, t));
   }
 
   @Override

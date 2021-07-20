@@ -1276,16 +1276,16 @@ public class ThreadDatabase extends Database {
       throw new IllegalStateException("Must be in a transaction!");
     }
 
-    Log.w(TAG, "Merging threads. Primary: " + primaryRecipientId + ", Secondary: " + secondaryRecipientId);
+    Log.w(TAG, "Merging threads. Primary: " + primaryRecipientId + ", Secondary: " + secondaryRecipientId, RecipientDatabase.IMPORTANT_LOG_DURATION);
 
     ThreadRecord primary   = getThreadRecord(getThreadIdFor(primaryRecipientId));
     ThreadRecord secondary = getThreadRecord(getThreadIdFor(secondaryRecipientId));
 
     if (primary != null && secondary == null) {
-      Log.w(TAG, "[merge] Only had a thread for primary. Returning that.");
+      Log.w(TAG, "[merge] Only had a thread for primary. Returning that.", RecipientDatabase.IMPORTANT_LOG_DURATION);
       return new MergeResult(primary.getThreadId(), -1, false);
     } else if (primary == null && secondary != null) {
-      Log.w(TAG, "[merge] Only had a thread for secondary. Updating it to have the recipientId of the primary.");
+      Log.w(TAG, "[merge] Only had a thread for secondary. Updating it to have the recipientId of the primary.", RecipientDatabase.IMPORTANT_LOG_DURATION);
 
       ContentValues values = new ContentValues();
       values.put(RECIPIENT_ID, primaryRecipientId.serialize());
@@ -1296,7 +1296,7 @@ public class ThreadDatabase extends Database {
       Log.w(TAG, "[merge] No thread for either.");
       return new MergeResult(-1, -1, false);
     } else {
-      Log.w(TAG, "[merge] Had a thread for both. Deleting the secondary and merging the attributes together.");
+      Log.w(TAG, "[merge] Had a thread for both. Deleting the secondary and merging the attributes together.", RecipientDatabase.IMPORTANT_LOG_DURATION);
 
       SQLiteDatabase db = databaseHelper.getWritableDatabase();
 

@@ -151,7 +151,7 @@ class LogDatabase private constructor(
 
   class Reader(private val cursor: Cursor) : Iterator<String>, Closeable {
     override fun hasNext(): Boolean {
-      return !cursor.isLast
+      return !cursor.isLast && cursor.count > 0
     }
 
     override fun next(): String {
