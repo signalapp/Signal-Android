@@ -263,6 +263,10 @@ public class ConversationFragment extends LoggingFragment {
     list.setLayoutManager(layoutManager);
     list.setItemAnimator(null);
 
+    if (Build.VERSION.SDK_INT >= 31) {
+      list.setOverScrollMode(View.OVER_SCROLL_NEVER);
+    }
+
     snapToTopDataObserver = new ConversationSnapToTopDataObserver(list, new ConversationScrollRequestValidator());
     conversationBanner    = (ConversationBannerView) inflater.inflate(R.layout.conversation_item_banner, container, false);
     topLoadMoreView       = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
