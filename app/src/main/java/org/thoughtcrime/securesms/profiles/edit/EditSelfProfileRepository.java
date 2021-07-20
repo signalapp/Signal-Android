@@ -9,6 +9,7 @@ import androidx.core.util.Consumer;
 
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob;
@@ -40,6 +41,11 @@ public class EditSelfProfileRepository implements EditProfileRepository {
   EditSelfProfileRepository(@NonNull Context context, boolean excludeSystem) {
     this.context        = context.getApplicationContext();
     this.excludeSystem  = excludeSystem;
+  }
+
+  @Override
+  public void getCurrentAvatarColor(@NonNull Consumer<AvatarColor> avatarColorConsumer) {
+    SimpleTask.run(() -> Recipient.self().getAvatarColor(), avatarColorConsumer::accept);
   }
 
   @Override

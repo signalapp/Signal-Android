@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.database.SqlCipherErrorHandler;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.UnknownStorageIdDatabase;
+import org.thoughtcrime.securesms.database.model.AvatarPickerDatabase;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ReactionList;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -207,8 +208,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int THREAD_AUTOINCREMENT             = 108;
   private static final int MMS_AUTOINCREMENT                = 109;
   private static final int ABANDONED_ATTACHMENT_CLEANUP     = 110;
+  private static final int AVATAR_PICKER                    = 111;
 
-  private static final int    DATABASE_VERSION = 110;
+  private static final int    DATABASE_VERSION = 111;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -245,6 +247,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     db.execSQL(PaymentDatabase.CREATE_TABLE);
     db.execSQL(ChatColorsDatabase.CREATE_TABLE);
     db.execSQL(EmojiSearchDatabase.CREATE_TABLE);
+    db.execSQL(AvatarPickerDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE);
     executeStatements(db, MessageSendLogDatabase.CREATE_TABLE);
@@ -1932,6 +1935,24 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
 
       if (oldVersion < ABANDONED_ATTACHMENT_CLEANUP) {
         db.delete("part", "mid != -8675309 AND mid NOT IN (SELECT _id FROM mms)", null);
+      }
+
+      if (oldVersion < AVATAR_PICKER) {
+        db.execSQL("CREATE TABLE avatar_picker (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                               "last_used INTEGER DEFAULT 0, " +
+                                               "group_id TEXT DEFAULT NULL, " +
+                                               "avatar BLOB NOT NULL)");
+
+        try (Cursor cursor = db.query("recipient", new String[] { "_id" }, "color IS NULL", null, null, null, null)) {
+          while (cursor.moveToNext()) {
+            long id = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+
+            ContentValues values = new ContentValues(1);
+            values.put("color", AvatarColor.random().serialize());
+
+            db.update("recipient", values, "_id = ?", new String[] { String.valueOf(id) });
+          }
+        }
       }
 
       db.setTransactionSuccessful();

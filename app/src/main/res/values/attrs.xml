@@ -310,4 +310,10 @@
     <declare-styleable name="BottomShadowBehavior">
         <attr name="bottom_bar_id" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="ButtonStripItemView">
+        <attr name="bsiv_icon" format="reference" />
+        <attr name="bsiv_label" format="string" />
+        <attr name="bsiv_icon_contentDescription" format="string" />
+    </declare-styleable>
 </resources>

@@ -13,7 +13,6 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.Key;
 import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.data.DataFetcher;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.model.ModelLoader;
 import com.bumptech.glide.load.model.ModelLoaderFactory;
 import com.bumptech.glide.load.model.MultiModelLoaderFactory;
@@ -23,9 +22,8 @@ import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.util.ByteUtil;
@@ -186,8 +184,8 @@ public final class ConversationShortcutPhoto implements Key {
         photoSource = R.drawable.ic_profile_80;
       }
 
-      FallbackContactPhoto photo   = recipient.isSelf() || recipient.isGroup() ? new FallbackPhoto80dp(photoSource, recipient.getAvatarColor().colorInt())
-                                                                               : new ShortcutGeneratedContactPhoto(recipient.getDisplayName(context), photoSource, ViewUtil.dpToPx(80), ViewUtil.dpToPx(28), recipient.getAvatarColor().colorInt());
+      FallbackContactPhoto photo   = recipient.isSelf() || recipient.isGroup() ? new FallbackPhoto80dp(photoSource, recipient.getAvatarColor())
+                                                                               : new ShortcutGeneratedContactPhoto(recipient.getDisplayName(context), photoSource, ViewUtil.dpToPx(80), recipient.getAvatarColor());
       Bitmap               toWrap  = DrawableUtil.toBitmap(photo.asCallCard(context), ViewUtil.dpToPx(80), ViewUtil.dpToPx(80));
       Bitmap               wrapped = DrawableUtil.wrapBitmapForShortcutInfo(toWrap);
 
@@ -199,20 +197,20 @@ public final class ConversationShortcutPhoto implements Key {
 
   private static final class ShortcutGeneratedContactPhoto extends GeneratedContactPhoto {
 
-    private final int color;
+    private final AvatarColor color;
 
-    public ShortcutGeneratedContactPhoto(@NonNull String name, int fallbackResId, int targetSize, int fontSize, int color) {
-      super(name, fallbackResId, targetSize, fontSize);
+    public ShortcutGeneratedContactPhoto(@NonNull String name, int fallbackResId, int targetSize, @NonNull AvatarColor color) {
+      super(name, fallbackResId, targetSize);
 
       this.color = color;
     }
 
     @Override
-    protected Drawable newFallbackDrawable(@NonNull Context context, int color, boolean inverted) {
-      return new FallbackPhoto80dp(getFallbackResId(), color).asDrawable(context, -1);
+    protected Drawable newFallbackDrawable(@NonNull Context context, @NonNull AvatarColor color, boolean inverted) {
+      return new FallbackPhoto80dp(getFallbackResId(), color).asDrawable(context, AvatarColor.UNKNOWN);
     }
 
-    @Override public Drawable asCallCard(Context context) {
+    @Override public Drawable asCallCard(@NonNull Context context) {
       return new FallbackPhoto80dp(getFallbackResId(), color).asCallCard(context);
     }
   }

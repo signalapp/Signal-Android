@@ -154,6 +154,6 @@ public final class AvatarUtil {
   private static Drawable getFallback(@NonNull Context context, @NonNull Recipient recipient) {
     String name = Optional.fromNullable(recipient.getDisplayName(context)).or("");
 
-    return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40).asDrawable(context, recipient.getAvatarColor().colorInt());
+    return new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40).asDrawable(context, recipient.getAvatarColor());
   }
 }

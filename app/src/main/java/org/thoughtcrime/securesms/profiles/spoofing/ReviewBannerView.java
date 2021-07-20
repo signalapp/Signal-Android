@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto20dp;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -122,7 +123,7 @@ public class ReviewBannerView extends LinearLayout {
     }
 
     @Override
-    protected Drawable newFallbackDrawable(@NonNull Context context, int color, boolean inverted) {
+    protected Drawable newFallbackDrawable(@NonNull Context context, @NonNull AvatarColor color, boolean inverted) {
       return new FallbackPhoto20dp(getFallbackResId()).asDrawable(context, color, inverted);
     }
   }

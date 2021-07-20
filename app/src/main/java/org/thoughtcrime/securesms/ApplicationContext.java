@@ -35,6 +35,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
 import org.signal.glide.SignalGlideCodecs;
 import org.signal.ringrtc.CallManager;
+import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
@@ -152,6 +153,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             })
                             .addBlocking("blob-provider", this::initializeBlobProvider)
                             .addBlocking("feature-flags", FeatureFlags::init)
+                            .addNonBlocking(this::cleanAvatarStorage)
                             .addNonBlocking(this::initializeRevealableMessageManager)
                             .addNonBlocking(this::initializePendingRetryReceiptManager)
                             .addNonBlocking(this::initializeGcmCheck)
@@ -373,6 +375,11 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   @WorkerThread
   private void initializeBlobProvider() {
     BlobProvider.getInstance().initialize(this);
+  }
+
+  @WorkerThread
+  private void cleanAvatarStorage() {
+    AvatarPickerStorage.cleanOrphans(this);
   }
 
   @WorkerThread

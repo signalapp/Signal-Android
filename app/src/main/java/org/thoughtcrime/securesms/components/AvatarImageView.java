@@ -106,7 +106,7 @@ public final class AvatarImageView extends AppCompatImageView {
 
     outlinePaint = ThemeUtil.isDarkTheme(context) ? DARK_THEME_OUTLINE_PAINT : LIGHT_THEME_OUTLINE_PAINT;
 
-    unknownRecipientDrawable = new ResourceContactPhoto(R.drawable.ic_profile_outline_40, R.drawable.ic_profile_outline_20).asDrawable(context, AvatarColor.UNKNOWN.colorInt(), inverted);
+    unknownRecipientDrawable = new ResourceContactPhoto(R.drawable.ic_profile_outline_40, R.drawable.ic_profile_outline_20).asDrawable(context, AvatarColor.UNKNOWN, inverted);
     blurred                  = false;
     chatColors               = null;
   }
@@ -248,7 +248,7 @@ public final class AvatarImageView extends AppCompatImageView {
       requestManager.clear(this);
       if (fallbackPhotoProvider != null) {
         setImageDrawable(fallbackPhotoProvider.getPhotoForRecipientWithoutName()
-                                              .asDrawable(getContext(), AvatarColor.UNKNOWN.colorInt(), inverted));
+                                              .asDrawable(getContext(), AvatarColor.UNKNOWN, inverted));
       } else {
         setImageDrawable(unknownRecipientDrawable);
       }
@@ -285,7 +285,7 @@ public final class AvatarImageView extends AppCompatImageView {
   {
     Drawable fallback = Util.firstNonNull(fallbackPhotoProvider, Recipient.DEFAULT_FALLBACK_PHOTO_PROVIDER)
                             .getPhotoForGroup()
-                            .asDrawable(getContext(), color.colorInt());
+                            .asDrawable(getContext(), color);
 
     GlideApp.with(this)
             .load(avatarBytes)

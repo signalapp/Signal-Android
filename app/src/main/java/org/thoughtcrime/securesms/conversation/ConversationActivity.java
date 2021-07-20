@@ -1129,6 +1129,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     updateReminders();
   }
 
+  @SuppressLint("MissingSuperCall")
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
@@ -1302,7 +1303,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     GlideApp.with(this)
             .asBitmap()
             .load(recipient.getContactPhoto())
-            .error(recipient.getFallbackContactPhoto().asDrawable(this, recipient.getAvatarColor().colorInt(), false))
+            .error(recipient.getFallbackContactPhoto().asDrawable(this, recipient.getAvatarColor(), false))
             .into(new CustomTarget<Bitmap>() {
               @Override
               public void onLoadFailed(@Nullable Drawable errorDrawable) {

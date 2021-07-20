@@ -793,11 +793,11 @@ public class Recipient {
   }
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
-    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asDrawable(context, avatarColor.colorInt(), inverted);
+    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asDrawable(context, avatarColor, inverted);
   }
 
   public @NonNull Drawable getSmallFallbackContactPhotoDrawable(Context context, boolean inverted, @Nullable FallbackPhotoProvider fallbackPhotoProvider) {
-    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asSmallDrawable(context, avatarColor.colorInt(), inverted);
+    return getFallbackContactPhoto(Util.firstNonNull(fallbackPhotoProvider, DEFAULT_FALLBACK_PHOTO_PROVIDER)).asSmallDrawable(context, avatarColor, inverted);
   }
 
   public @NonNull FallbackContactPhoto getFallbackContactPhoto() {

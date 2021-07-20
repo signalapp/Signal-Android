@@ -208,6 +208,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
                .execute();
   }
 
+  @SuppressLint("MissingSuperCall")
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);

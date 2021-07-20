@@ -191,4 +191,6 @@
     <dimen name="conversation_settings_button_strip_spacing">16dp</dimen>
     <dimen name="conversation_settings_button_strip_button_size">48dp</dimen>
     <dimen name="conversation_settings_button_strip_button_padding">12dp</dimen>
+
+    <dimen name="avatar_picker_image_width">100dp</dimen>
 </resources>

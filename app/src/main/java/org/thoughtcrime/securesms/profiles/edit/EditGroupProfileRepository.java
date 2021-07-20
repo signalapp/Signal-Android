@@ -9,6 +9,7 @@ import androidx.core.util.Consumer;
 
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -32,6 +33,11 @@ class EditGroupProfileRepository implements EditProfileRepository {
   EditGroupProfileRepository(@NonNull Context context, @NonNull GroupId groupId) {
     this.context = context.getApplicationContext();
     this.groupId = groupId;
+  }
+
+  @Override
+  public void getCurrentAvatarColor(@NonNull Consumer<AvatarColor> avatarColorConsumer) {
+    SimpleTask.run(() -> Recipient.resolved(getRecipientId()).getAvatarColor(), avatarColorConsumer::accept);
   }
 
   @Override

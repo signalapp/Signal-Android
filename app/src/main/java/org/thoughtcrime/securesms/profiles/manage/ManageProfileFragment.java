@@ -23,9 +23,9 @@ import com.bumptech.glide.Glide;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
-import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.manage.ManageProfileViewModel.AvatarState;
@@ -35,8 +35,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class ManageProfileFragment extends LoggingFragment {
 
-  private static final String TAG                        = Log.tag(ManageProfileFragment.class);
-  private static final short  REQUEST_CODE_SELECT_AVATAR = 31726;
+  private static final String TAG                       = Log.tag(ManageProfileFragment.class);
 
   private Toolbar                toolbar;
   private ImageView              avatarView;
@@ -86,22 +85,11 @@ public class ManageProfileFragment extends LoggingFragment {
     this.aboutContainer.setOnClickListener(v -> {
       Navigation.findNavController(v).navigate(ManageProfileFragmentDirections.actionManageAbout());
     });
-  }
 
-  @Override
-  public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-
-    if (requestCode == REQUEST_CODE_SELECT_AVATAR && resultCode == RESULT_OK) {
-      if (data != null && data.getBooleanExtra("delete", false)) {
-        viewModel.onAvatarSelected(requireContext(), null);
-        return;
-      }
-
-      Media result = data.getParcelableExtra(AvatarSelectionActivity.EXTRA_MEDIA);
-
+    getParentFragmentManager().setFragmentResultListener(AvatarPickerFragment.REQUEST_KEY_SELECT_AVATAR, getViewLifecycleOwner(), (key, bundle) -> {
+      Media result = bundle.getParcelable(AvatarPickerFragment.SELECT_AVATAR_MEDIA);
       viewModel.onAvatarSelected(requireContext(), result);
-    }
+    });
   }
 
   private void initializeViewModel() {
@@ -193,10 +181,6 @@ public class ManageProfileFragment extends LoggingFragment {
   }
 
   private void onAvatarClicked() {
-    AvatarSelectionBottomSheetDialogFragment.create(viewModel.canRemoveAvatar(),
-                                                    true,
-                                                    REQUEST_CODE_SELECT_AVATAR,
-                                                    false)
-                                            .show(getChildFragmentManager(), null);
+    Navigation.findNavController(requireView()).navigate(ManageProfileFragmentDirections.actionManageProfileFragmentToAvatarPicker(null, null));
   }
 }

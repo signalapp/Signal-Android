@@ -67,7 +67,8 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
 
   private enum EditingPurpose {
     IMAGE,
-    AVATAR_CIRCLE,
+    AVATAR_CAPTURE,
+    AVATAR_EDIT,
     WALLPAPER
   }
 
@@ -95,8 +96,14 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
     return new EditorModel(EditingPurpose.IMAGE, 0, EditorElementHierarchy.create());
   }
 
-  public static EditorModel createForCircleEditing() {
-    EditorModel editorModel = new EditorModel(EditingPurpose.AVATAR_CIRCLE, 1, EditorElementHierarchy.createForCircleEditing());
+  public static EditorModel createForAvatarCapture() {
+    EditorModel editorModel = new EditorModel(EditingPurpose.AVATAR_CAPTURE, 1, EditorElementHierarchy.createForCircleEditing());
+    editorModel.setCropAspectLock(true);
+    return editorModel;
+  }
+
+  public static EditorModel createForAvatarEdit() {
+    EditorModel editorModel = new EditorModel(EditingPurpose.AVATAR_EDIT, 1, EditorElementHierarchy.createForCircleEditing());
     editorModel.setCropAspectLock(true);
     return editorModel;
   }
@@ -642,7 +649,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
       if (imageCropMatrix.isIdentity()) {
         imageCropMatrix.set(cropMatrix);
 
-        if (editingPurpose == EditingPurpose.AVATAR_CIRCLE || editingPurpose == EditingPurpose.WALLPAPER) {
+        if (editingPurpose == EditingPurpose.AVATAR_CAPTURE || editingPurpose == EditingPurpose.WALLPAPER || editingPurpose == EditingPurpose.AVATAR_EDIT) {
           Matrix userCropMatrix = editorElementHierarchy.getCropEditorElement().getLocalMatrix();
           if (size.x > size.y) {
             userCropMatrix.setScale(fixedRatio * size.y / (float) size.x, 1f);
@@ -658,7 +665,7 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
         }
 
         switch (editingPurpose) {
-          case AVATAR_CIRCLE: {
+          case AVATAR_CAPTURE: {
             startCrop();
             break;
           }
@@ -667,6 +674,8 @@ public final class EditorModel implements Parcelable, RendererContext.Ready {
             startCrop();
             break;
           }
+          default:
+            break;
         }
       }
     }

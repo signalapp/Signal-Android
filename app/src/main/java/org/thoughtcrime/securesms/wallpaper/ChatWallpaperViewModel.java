@@ -58,7 +58,7 @@ public class ChatWallpaperViewModel extends ViewModel {
       });
     } else {
       liveRecipient            = null;
-      wallpaperPreviewPortrait = new DefaultValueLiveData<>(new WallpaperPreviewPortrait.SolidColor(AvatarColor.ULTRAMARINE));
+      wallpaperPreviewPortrait = new DefaultValueLiveData<>(new WallpaperPreviewPortrait.SolidColor(AvatarColor.A100));
     }
   }
 

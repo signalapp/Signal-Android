@@ -18,6 +18,7 @@
 package org.thoughtcrime.securesms;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.PictureInPictureParams;
 import android.content.Context;
 import android.content.Intent;
@@ -180,6 +181,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     EventBus.getDefault().unregister(this);
   }
 
+  @SuppressLint("MissingSuperCall")
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);

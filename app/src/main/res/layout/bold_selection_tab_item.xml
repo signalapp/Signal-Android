@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.mediaoverview.MediaOverviewTabItem xmlns:android="http://schemas.android.com/apk/res/android"
+<org.thoughtcrime.securesms.components.BoldSelectionTabItem xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
@@ -27,4 +27,4 @@
         android:textColor="@color/signal_text_primary"
         tools:text="Media" />
 
-</org.thoughtcrime.securesms.mediaoverview.MediaOverviewTabItem>
+</org.thoughtcrime.securesms.components.BoldSelectionTabItem>

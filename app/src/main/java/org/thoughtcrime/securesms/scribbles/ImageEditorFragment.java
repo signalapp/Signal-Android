@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
@@ -51,6 +52,7 @@ import org.whispersystems.libsignal.util.Pair;
 import java.io.ByteArrayOutputStream;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -60,8 +62,8 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
   private static final String TAG = Log.tag(ImageEditorFragment.class);
 
-  private static final String KEY_IMAGE_URI      = "image_uri";
-  private static final String KEY_IS_AVATAR_MODE = "avatar_mode";
+  private static final String KEY_IMAGE_URI        = "image_uri";
+  private static final String KEY_MODE             = "mode";
 
   private static final int SELECT_STICKER_REQUEST_CODE = 124;
 
@@ -104,15 +106,22 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   private ImageEditorHud   imageEditorHud;
   private ImageEditorView  imageEditorView;
 
-  public static ImageEditorFragment newInstanceForAvatar(@NonNull Uri imageUri) {
+  public static ImageEditorFragment newInstanceForAvatarCapture(@NonNull Uri imageUri) {
     ImageEditorFragment fragment = newInstance(imageUri);
-    fragment.requireArguments().putBoolean(KEY_IS_AVATAR_MODE, true);
+    fragment.requireArguments().putString(KEY_MODE, Mode.AVATAR_CAPTURE.code);
+    return fragment;
+  }
+
+  public static ImageEditorFragment newInstanceForAvatarEdit(@NonNull Uri imageUri) {
+    ImageEditorFragment fragment = newInstance(imageUri);
+    fragment.requireArguments().putString(KEY_MODE, Mode.AVATAR_EDIT.code);
     return fragment;
   }
 
   public static ImageEditorFragment newInstance(@NonNull Uri imageUri) {
     Bundle args = new Bundle();
     args.putParcelable(KEY_IMAGE_URI, imageUri);
+    args.putString(KEY_MODE, Mode.NORMAL.code);
 
     ImageEditorFragment fragment = new ImageEditorFragment();
     fragment.setArguments(args);
@@ -123,10 +132,16 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (!(getActivity() instanceof Controller)) {
+
+    Fragment parent = getParentFragment();
+    if (parent instanceof Controller) {
+      controller = (Controller) parent;
+    } else if (getActivity() instanceof Controller) {
+      controller = (Controller) getActivity();
+    } else {
       throw new IllegalStateException("Parent activity must implement Controller interface.");
     }
-    controller = (Controller) getActivity();
+
     Bundle arguments = getArguments();
     if (arguments != null) {
       imageUri = arguments.getParcelable(KEY_IMAGE_URI);
@@ -152,7 +167,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    boolean isAvatarMode = requireArguments().getBoolean(KEY_IS_AVATAR_MODE, false);
+    Mode mode = Mode.getByCode(requireArguments().getString(KEY_MODE));
 
     imageEditorHud  = view.findViewById(R.id.scribble_hud);
     imageEditorView = view.findViewById(R.id.image_editor_view);
@@ -171,14 +186,28 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     }
 
     if (editorModel == null) {
-      editorModel = isAvatarMode ? EditorModel.createForCircleEditing() : EditorModel.create();
+      switch (mode) {
+        case AVATAR_EDIT:
+          editorModel = EditorModel.createForAvatarEdit();
+          break;
+        case AVATAR_CAPTURE:
+          editorModel = EditorModel.createForAvatarCapture();
+          break;
+        default:
+          editorModel = EditorModel.create();
+          break;
+      }
+
       EditorElement image = new EditorElement(new UriGlideRenderer(imageUri, true, imageMaxWidth, imageMaxHeight));
       image.getFlags().setSelectable(false).persist();
       editorModel.addElement(image);
     }
 
-    if (isAvatarMode) {
+    if (mode == Mode.AVATAR_CAPTURE || mode == Mode.AVATAR_EDIT) {
       imageEditorHud.setUpForAvatarEditing();
+    }
+
+    if (mode == Mode.AVATAR_CAPTURE) {
       imageEditorHud.enterMode(ImageEditorHud.Mode.CROP);
     }
 
@@ -460,22 +489,25 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   }
 
   private void performSaveToDisk() {
-    SimpleTask.run(() -> {
-      ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-      Bitmap                image        = imageEditorView.getModel().render(requireContext());
-
-      image.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
-
-      return BlobProvider.getInstance()
-                         .forData(outputStream.toByteArray())
-                         .withMimeType(MediaUtil.IMAGE_JPEG)
-                         .createForSingleUseInMemory();
-
-    }, uri -> {
+    SimpleTask.run(this::renderToSingleUseBlob, uri -> {
       SaveAttachmentTask            saveTask   = new SaveAttachmentTask(requireContext());
       SaveAttachmentTask.Attachment attachment = new SaveAttachmentTask.Attachment(uri, MediaUtil.IMAGE_JPEG, System.currentTimeMillis(), null);
       saveTask.executeOnExecutor(SignalExecutors.BOUNDED, attachment);
     });
+  }
+
+  @WorkerThread
+  public @NonNull Uri renderToSingleUseBlob() {
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    Bitmap                image        = imageEditorView.getModel().render(requireContext());
+
+    image.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
+    image.recycle();
+
+    return BlobProvider.getInstance()
+                       .forData(outputStream.toByteArray())
+                       .withMimeType(MediaUtil.IMAGE_JPEG)
+                       .createForSingleUseInMemory();
   }
 
   private void refreshUniqueColors() {
@@ -585,6 +617,37 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
       Matrix imageProjectionMatrix = new Matrix();
       imageProjectionMatrix.setRectToRect(new RectF(0, 0, imageSize.x, imageSize.y), Bounds.FULL_BOUNDS, Matrix.ScaleToFit.FILL);
       this.position.preConcat(imageProjectionMatrix);
+    }
+  }
+
+  private enum Mode {
+
+    NORMAL("normal"),
+    AVATAR_CAPTURE("avatar_capture"),
+    AVATAR_EDIT("avatar_edit");
+
+    private final String code;
+
+    Mode(@NonNull String code) {
+      this.code = code;
+    }
+
+    String getCode() {
+      return code;
+    }
+
+    static Mode getByCode(@Nullable String code) {
+      if (code == null) {
+        return NORMAL;
+      }
+
+      for (Mode mode : values()) {
+        if (Objects.equals(code, mode.code)) {
+          return mode;
+        }
+      }
+
+      return NORMAL;
     }
   }
 }

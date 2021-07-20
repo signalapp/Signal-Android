@@ -399,6 +399,11 @@
         <item name="cornerSizeBottomRight">12dp</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.Signal.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
     <style name="Widget.Signal.BottomSheet.Rounded" parent="Widget.MaterialComponents.BottomSheet">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
         <item name="backgroundTint">@color/core_grey_75</item>
