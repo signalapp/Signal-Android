@@ -30,18 +30,18 @@ import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.session.libsession.utilities.DistributionTypes;
-import org.session.libsession.utilities.Contact;
 import org.session.libsession.utilities.Address;
-import org.session.libsession.utilities.GroupRecord;
-import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsession.utilities.recipients.Recipient.RecipientSettings;
+import org.session.libsession.utilities.Contact;
 import org.session.libsession.utilities.DelimiterUtil;
+import org.session.libsession.utilities.DistributionTypes;
+import org.session.libsession.utilities.GroupRecord;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient.RecipientSettings;
+import org.session.libsignal.utilities.Log;
 import org.session.libsignal.utilities.Pair;
 import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
@@ -49,9 +49,9 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.util.SessionMetaProtocol;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.util.SessionMetaProtocol;
 
 import java.io.Closeable;
 import java.util.HashMap;
@@ -651,7 +651,7 @@ public class ThreadDatabase extends Database {
         groupRecord = Optional.absent();
       }
 
-      Recipient          recipient            = Recipient.from(context, address, settings, groupRecord, true);
+      Recipient          recipient            = Recipient.from(context, address, settings, groupRecord, false);
       String             body                 = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET));
       long               date                 = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
       long               count                = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));

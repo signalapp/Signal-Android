@@ -238,6 +238,14 @@ public class DefaultMessageNotifier implements MessageNotifier {
       return;
     }
 
+    if (recipients != null && recipients.notifyType != RecipientDatabase.NOTIFY_TYPE_ALL) {
+      // if mentions and no mention then return
+      if (recipients.notifyType == RecipientDatabase.NOTIFY_TYPE_MENTIONS) {
+
+      }
+      return;
+    }
+
     if (isVisible) {
       sendInThreadNotification(context, threads.getRecipientForThreadId(threadId));
     } else if (!homeScreenVisible) {
@@ -280,7 +288,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
         }
 
         sendMultipleThreadNotification(context, notificationState, signal);
-      } else {
+      } else if (notificationState.getMessageCount() > 0){
         sendSingleThreadNotification(context, notificationState, signal, false);
       }
 
