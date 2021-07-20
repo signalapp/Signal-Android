@@ -55,6 +55,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifes
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.IDN;
 import java.util.concurrent.ExecutionException;
 
 import okhttp3.CacheControl;
@@ -193,7 +194,7 @@ public class LinkPreviewRepository {
         if (bitmap != null) bitmap.recycle();
 
         callback.accept(thumbnail);
-      } catch (IOException e) {
+      } catch (IOException | IllegalArgumentException e) {
         Log.w(TAG, "Exception during link preview image retrieval.", e);
         controller.cancel();
         callback.accept(Optional.absent());
