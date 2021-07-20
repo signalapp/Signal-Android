@@ -10,26 +10,26 @@ import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
+import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.JobDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.PushDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.SearchDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.database.LokiBackupFilesDatabase;
 import org.thoughtcrime.securesms.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.database.LokiUserDatabase;
+import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.SessionContactDatabase;
 import org.thoughtcrime.securesms.database.SessionJobDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
@@ -58,9 +58,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV24                          = 45;
   private static final int lokiV25                          = 46;
   private static final int lokiV26                          = 47;
+  private static final int lokiV27                          = 48;
 
   // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
-  private static final int    DATABASE_VERSION = lokiV26;
+  private static final int    DATABASE_VERSION = lokiV27;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -294,6 +295,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV26) {
         db.execSQL(SessionContactDatabase.getCreateSessionContactTableCommand());
+      }
+
+      if (oldVersion < lokiV27) {
+        db.execSQL(RecipientDatabase.getCreateNotificationTypeCommand());
       }
 
       db.setTransactionSuccessful();

@@ -6,4 +6,8 @@
         android:title="@string/ConversationActivity_invite_to_open_group"
         android:id="@+id/menu_invite_to_open_group" />
 
+    <item
+        android:title="@string/RecipientPreferenceActivity_notification_settings"
+        android:id="@+id/menu_notification_settings"/>
+
 </menu>

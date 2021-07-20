@@ -41,26 +41,26 @@ import androidx.core.app.NotificationManagerCompat;
 
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsession.utilities.Contact;
-import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.ServiceUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsignal.utilities.Util;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.Util;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
-
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
+import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.util.SessionMetaProtocol;
-import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.SessionMetaProtocol;
 import org.thoughtcrime.securesms.util.SpanUtil;
 
 import java.util.HashSet;
@@ -493,7 +493,16 @@ public class DefaultMessageNotifier implements MessageNotifier {
       }
 
       if (threadRecipients == null || !threadRecipients.isMuted()) {
-        notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
+        if (threadRecipients != null && threadRecipients.notifyType == RecipientDatabase.NOTIFY_TYPE_MENTIONS) {
+          // check if mentioned here
+          if (body.toString().contains("@"+TextSecurePreferences.getLocalNumber(context))) {
+            notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
+          }
+        } else if (threadRecipients != null && threadRecipients.notifyType == RecipientDatabase.NOTIFY_TYPE_NONE) {
+          // do nothing, no notifications
+        } else {
+          notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
+        }
       }
     }
 

@@ -36,13 +36,14 @@ import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.utilities.toHexString
 import org.thoughtcrime.securesms.*
+import org.thoughtcrime.securesms.contacts.SelectContactsActivity
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
+import org.thoughtcrime.securesms.conversation.v2.utilities.NotificationUtils
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.EditClosedGroupActivity
 import org.thoughtcrime.securesms.groups.EditClosedGroupActivity.Companion.groupIDKey
-import org.thoughtcrime.securesms.contacts.SelectContactsActivity
-import org.thoughtcrime.securesms.util.getColorWithID
 import org.thoughtcrime.securesms.util.BitmapUtil
+import org.thoughtcrime.securesms.util.getColorWithID
 import java.io.IOException
 
 object ConversationMenuHelper {
@@ -152,6 +153,7 @@ object ConversationMenuHelper {
             R.id.menu_invite_to_open_group -> { inviteContacts(context, thread) }
             R.id.menu_unmute_notifications -> { unmute(context, thread) }
             R.id.menu_mute_notifications -> { mute(context, thread) }
+            R.id.menu_notification_settings -> { setNotifyType(context, thread) }
         }
         return true
     }
@@ -325,4 +327,11 @@ object ConversationMenuHelper {
             DatabaseFactory.getRecipientDatabase(context).setMuted(thread, until)
         }
     }
+
+    private fun setNotifyType(context: Context, thread: Recipient) {
+        NotificationUtils.showNotifyDialog(context, thread) { notifyType ->
+            DatabaseFactory.getRecipientDatabase(context).setNotifyType(thread, notifyType)
+        }
+    }
+
 }

@@ -1,16 +1,17 @@
 package org.thoughtcrime.securesms.home
 
 import android.os.Bundle
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_conversation_bottom_sheet.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.util.UiModeUtilities
 
-public class ConversationOptionsBottomSheet : BottomSheetDialogFragment() {
+public class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.OnClickListener {
 
     //FIXME AC: Supplying a recipient directly into the field from an activity
     // is not the best idea. It doesn't survive configuration change.
@@ -22,9 +23,23 @@ public class ConversationOptionsBottomSheet : BottomSheetDialogFragment() {
     var onBlockTapped: (() -> Unit)? = null
     var onUnblockTapped: (() -> Unit)? = null
     var onDeleteTapped: (() -> Unit)? = null
+    var onNotificationTapped: (() -> Unit)? = null
+    var onSetMuteTapped: ((Boolean) -> Unit)? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_conversation_bottom_sheet, container, false)
+    }
+
+    override fun onClick(v: View?) {
+        when (v) {
+            detailsTextView -> onViewDetailsTapped?.invoke()
+            blockTextView -> onBlockTapped?.invoke()
+            unblockTextView -> onUnblockTapped?.invoke()
+            deleteTextView -> onDeleteTapped?.invoke()
+            notificationsTextView -> onNotificationTapped?.invoke()
+            unMuteNotificationsTextView -> onSetMuteTapped?.invoke(false)
+            muteNotificationsTextView -> onSetMuteTapped?.invoke(true)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,13 +49,19 @@ public class ConversationOptionsBottomSheet : BottomSheetDialogFragment() {
             detailsTextView.visibility = View.VISIBLE
             unblockTextView.visibility = if (recipient.isBlocked) View.VISIBLE else View.GONE
             blockTextView.visibility = if (recipient.isBlocked) View.GONE else View.VISIBLE
-            detailsTextView.setOnClickListener { onViewDetailsTapped?.invoke() }
-            blockTextView.setOnClickListener { onBlockTapped?.invoke() }
-            unblockTextView.setOnClickListener { onUnblockTapped?.invoke() }
+            detailsTextView.setOnClickListener(this)
+            blockTextView.setOnClickListener(this)
+            unblockTextView.setOnClickListener(this)
         } else {
             detailsTextView.visibility = View.GONE
         }
-        deleteTextView.setOnClickListener { onDeleteTapped?.invoke() }
+        unMuteNotificationsTextView.isVisible = recipient.isMuted && !recipient.isLocalNumber
+        muteNotificationsTextView.isVisible = !recipient.isMuted && !recipient.isLocalNumber
+        unMuteNotificationsTextView.setOnClickListener(this)
+        muteNotificationsTextView.setOnClickListener(this)
+        notificationsTextView.isVisible = recipient.isGroupRecipient
+        notificationsTextView.setOnClickListener(this)
+        deleteTextView.setOnClickListener(this)
     }
 
     override fun onStart() {

@@ -247,6 +247,7 @@
     <string name="RecipientPreferenceActivity_unblock_this_contact_question">Unblock this contact?</string>
     <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">You will once again be able to receive messages and calls from this contact.</string>
     <string name="RecipientPreferenceActivity_unblock">Unblock</string>
+    <string name="RecipientPreferenceActivity_notification_settings">Notification Settings</string>
 
     <!-- Slide -->
     <string name="Slide_image">Image</string>
@@ -481,6 +482,7 @@
     <string name="arrays__mute_for_one_day">Mute for 1 day</string>
     <string name="arrays__mute_for_seven_days">Mute for 7 days</string>
     <string name="arrays__mute_for_one_year">Mute for 1 year</string>
+    <string name="arrays__mute_forever">Mute forever</string>
 
     <string name="arrays__settings_default">Settings default</string>
     <string name="arrays__enabled">Enabled</string>
@@ -888,4 +890,7 @@
     <string name="dialog_send_seed_title">Warning</string>
     <string name="dialog_send_seed_explanation">This is your recovery phrase. If you send it to someone they\'ll have full access to your account.</string>
     <string name="dialog_send_seed_send_button_title">Send</string>
+    <string name="notify_type_all">All</string>
+    <string name="notify_type_mentions">Mentions</string>
+    <string name="notify_type_none">None</string>
 </resources>

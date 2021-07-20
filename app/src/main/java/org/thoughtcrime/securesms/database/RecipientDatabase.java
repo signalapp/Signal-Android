@@ -10,17 +10,18 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
-import org.session.libsession.utilities.MaterialColor;
 import org.session.libsession.utilities.Address;
-import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsession.utilities.recipients.Recipient.*;
-import org.session.libsignal.utilities.Base64;
+import org.session.libsession.utilities.MaterialColor;
 import org.session.libsession.utilities.Util;
-
-import org.session.libsignal.utilities.guava.Optional;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient.RecipientSettings;
+import org.session.libsession.utilities.recipients.Recipient.RegisteredState;
+import org.session.libsession.utilities.recipients.Recipient.UnidentifiedAccessMode;
+import org.session.libsignal.utilities.Base64;
 import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.guava.Optional;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -55,13 +56,14 @@ public class RecipientDatabase extends Database {
   private static final String NOTIFICATION_CHANNEL     = "notification_channel";
   private static final String UNIDENTIFIED_ACCESS_MODE = "unidentified_access_mode";
   private static final String FORCE_SMS_SELECTION      = "force_sms_selection";
+  private static final String NOTIFY_TYPE              = "notify_type"; // all, mentions only, none
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
       BLOCK, NOTIFICATION, CALL_RINGTONE, VIBRATE, CALL_VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, EXPIRE_MESSAGES, REGISTERED,
       PROFILE_KEY, SYSTEM_DISPLAY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_CONTACT_URI,
       SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING, NOTIFICATION_CHANNEL,
       UNIDENTIFIED_ACCESS_MODE,
-      FORCE_SMS_SELECTION,
+      FORCE_SMS_SELECTION, NOTIFY_TYPE,
   };
 
   static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
@@ -94,6 +96,15 @@ public class RecipientDatabase extends Database {
           NOTIFICATION_CHANNEL + " TEXT DEFAULT NULL, " +
           UNIDENTIFIED_ACCESS_MODE + " INTEGER DEFAULT 0, " +
           FORCE_SMS_SELECTION + " INTEGER DEFAULT 0);";
+
+  public static String getCreateNotificationTypeCommand() {
+    return "ALTER TABLE "+ TABLE_NAME + " " +
+            "ADD COLUMN " + NOTIFY_TYPE + " INTEGER DEFAULT 0;";
+  }
+
+  public static final int NOTIFY_TYPE_ALL = 0;
+  public static final int NOTIFY_TYPE_MENTIONS = 1;
+  public static final int NOTIFY_TYPE_NONE = 2;
 
   public RecipientDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -131,6 +142,7 @@ public class RecipientDatabase extends Database {
     int     messageVibrateState    = cursor.getInt(cursor.getColumnIndexOrThrow(VIBRATE));
     int     callVibrateState       = cursor.getInt(cursor.getColumnIndexOrThrow(CALL_VIBRATE));
     long    muteUntil              = cursor.getLong(cursor.getColumnIndexOrThrow(MUTE_UNTIL));
+    int     notifyType             = cursor.getInt(cursor.getColumnIndexOrThrow(NOTIFY_TYPE));
     String  serializedColor        = cursor.getString(cursor.getColumnIndexOrThrow(COLOR));
     int     defaultSubscriptionId  = cursor.getInt(cursor.getColumnIndexOrThrow(DEFAULT_SUBSCRIPTION_ID));
     int     expireMessages         = cursor.getInt(cursor.getColumnIndexOrThrow(EXPIRE_MESSAGES));
@@ -167,6 +179,7 @@ public class RecipientDatabase extends Database {
     }
 
     return Optional.of(new RecipientSettings(blocked, muteUntil,
+                                             notifyType,
                                              Recipient.VibrateState.fromId(messageVibrateState),
                                              Recipient.VibrateState.fromId(callVibrateState),
                                              Util.uri(messageRingtone), Util.uri(callRingtone),
@@ -212,6 +225,18 @@ public class RecipientDatabase extends Database {
     values.put(MUTE_UNTIL, until);
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setMuted(until);
+  }
+
+  /**
+   *
+   * @param recipient to modify notifications for
+   * @param notifyType the new notification type {@link #NOTIFY_TYPE_ALL}, {@link #NOTIFY_TYPE_MENTIONS} or {@link #NOTIFY_TYPE_NONE}
+   */
+  public void setNotifyType(@NonNull Recipient recipient, int notifyType) {
+    ContentValues values = new ContentValues();
+    values.put(NOTIFY_TYPE, notifyType);
+    updateOrInsert(recipient.getAddress(), values);
+    recipient.resolve().setNotifyType(notifyType);
   }
 
   public void setExpireMessages(@NonNull Recipient recipient, int expiration) {
