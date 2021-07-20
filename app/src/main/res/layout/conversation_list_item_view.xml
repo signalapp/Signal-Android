@@ -70,7 +70,7 @@
       app:layout_constraintStart_toStartOf="@id/conversation_list_item_name"
       tools:visibility="visible" />
 
-  <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+  <org.thoughtcrime.securesms.components.emoji.SingleLineEmojiTextView
       android:id="@+id/conversation_list_item_summary"
       style="@style/Signal.Text.Preview"
       android:layout_width="0dp"
