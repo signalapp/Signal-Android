@@ -40,6 +40,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
   companion object {
     const val REQUEST_KEY_SELECT_AVATAR = "org.thoughtcrime.securesms.avatar.picker.SELECT_AVATAR"
     const val SELECT_AVATAR_MEDIA = "org.thoughtcrime.securesms.avatar.picker.SELECT_AVATAR_MEDIA"
+    const val SELECT_AVATAR_CLEAR = "org.thoughtcrime.securesms.avatar.picker.SELECT_AVATAR_CLEAR"
 
     private const val REQUEST_CODE_SELECT_IMAGE = 1
   }
@@ -94,15 +95,26 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
     photoButton.setOnIconClickedListener { openGallery() }
     textButton.setOnIconClickedListener { openTextEditor(null) }
     saveButton.setOnClickListener { v ->
-      viewModel.save {
-        setFragmentResult(
-          REQUEST_KEY_SELECT_AVATAR,
-          Bundle().apply {
-            putParcelable(SELECT_AVATAR_MEDIA, it)
-          }
-        )
-        Navigation.findNavController(v).popBackStack()
-      }
+      viewModel.save(
+        {
+          setFragmentResult(
+            REQUEST_KEY_SELECT_AVATAR,
+            Bundle().apply {
+              putParcelable(SELECT_AVATAR_MEDIA, it)
+            }
+          )
+          Navigation.findNavController(v).popBackStack()
+        },
+        {
+          setFragmentResult(
+            REQUEST_KEY_SELECT_AVATAR,
+            Bundle().apply {
+              putBoolean(SELECT_AVATAR_CLEAR, true)
+            }
+          )
+          Navigation.findNavController(v).popBackStack()
+        }
+      )
     }
     clearButton.setOnClickListener { viewModel.clear() }
 

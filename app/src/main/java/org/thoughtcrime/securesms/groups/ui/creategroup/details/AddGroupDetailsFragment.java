@@ -170,6 +170,12 @@ public class AddGroupDetailsFragment extends LoggingFragment {
   }
 
   private void handleMediaResult(Bundle data) {
+    if (data.getBoolean(AvatarPickerFragment.SELECT_AVATAR_CLEAR)) {
+      viewModel.setAvatarMedia(null);
+      viewModel.setAvatar(null);
+      return;
+    }
+
     final Media result                                             = data.getParcelable(AvatarPickerFragment.SELECT_AVATAR_MEDIA);
     final DecryptableStreamUriLoader.DecryptableUri decryptableUri = new DecryptableStreamUriLoader.DecryptableUri(result.getUri());
 

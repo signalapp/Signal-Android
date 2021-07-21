@@ -6,7 +6,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.setPadding
-import androidx.core.widget.addTextChangedListener
 import com.airbnb.lottie.SimpleColorFilter
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.Avatar
@@ -58,17 +57,14 @@ object AvatarPickerItem {
     init {
       textView.typeface = AvatarRenderer.getTypeface(context)
       textView.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
-        updateTextSize()
+        updateAndApplyText(textView.text.toString())
       }
-      textView.addTextChangedListener(
-        afterTextChanged = {
-          updateTextSize()
-        }
-      )
     }
 
-    private fun updateTextSize() {
-      textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, Avatars.getTextSizeForLength(context, textView.text.toString(), textView.measuredWidth * 0.8f, textView.measuredHeight * 0.45f))
+    private fun updateAndApplyText(text: String) {
+      val textSize = Avatars.getTextSizeForLength(context, text, textView.measuredWidth * 0.8f, textView.measuredHeight * 0.45f)
+      textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
+      textView.text = text
     }
 
     override fun bind(model: Model) {
@@ -112,9 +108,7 @@ object AvatarPickerItem {
         is Avatar.Text -> {
           textView.visible = true
 
-          if (textView.text.toString() != model.avatar.text) {
-            textView.text = model.avatar.text
-          }
+          updateAndApplyText(model.avatar.text)
 
           imageView.setImageDrawable(null)
           imageView.background.colorFilter = SimpleColorFilter(model.avatar.color.backgroundColor)

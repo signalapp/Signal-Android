@@ -27,6 +27,7 @@ sealed class AvatarPickerViewModel(private val repository: AvatarPickerRepositor
 
   fun delete(avatar: Avatar) {
     repository.delete(avatar) {
+      refreshAvatar()
       refreshSelectableAvatars()
     }
   }
@@ -34,22 +35,26 @@ sealed class AvatarPickerViewModel(private val repository: AvatarPickerRepositor
   fun clear() {
     store.update {
       val avatar = getDefaultAvatarFromRepository()
-      it.copy(currentAvatar = avatar, canSave = isSaveable(avatar), canClear = false)
+      it.copy(currentAvatar = avatar, canSave = true, canClear = false, isCleared = true)
     }
   }
 
-  fun save(onSaved: (Media) -> Unit) {
-    val avatar = store.state.currentAvatar ?: throw AssertionError()
-    persistAndCreateMedia(avatar, onSaved)
+  fun save(onSaved: (Media) -> Unit, onCleared: () -> Unit) {
+    if (store.state.isCleared) {
+      onCleared()
+    } else {
+      val avatar = store.state.currentAvatar ?: throw AssertionError()
+      persistAndCreateMedia(avatar, onSaved)
+    }
   }
 
   fun onAvatarSelectedFromGrid(avatar: Avatar) {
-    store.update { it.copy(currentAvatar = avatar, canSave = isSaveable(avatar), canClear = true) }
+    store.update { it.copy(currentAvatar = avatar, canSave = isSaveable(avatar), canClear = true, isCleared = false) }
   }
 
   fun onAvatarEditCompleted(avatar: Avatar) {
     persistAvatar(avatar) { saved ->
-      store.update { it.copy(currentAvatar = saved, canSave = isSaveable(saved), canClear = true) }
+      store.update { it.copy(currentAvatar = saved, canSave = isSaveable(saved), canClear = true, isCleared = false) }
       refreshSelectableAvatars()
     }
   }
@@ -57,7 +62,7 @@ sealed class AvatarPickerViewModel(private val repository: AvatarPickerRepositor
   fun onAvatarPhotoSelectionCompleted(media: Media) {
     repository.writeMediaToMultiSessionStorage(media) { multiSessionUri ->
       persistAvatar(Avatar.Photo(multiSessionUri, media.size, Avatar.DatabaseId.NotSet)) { avatar ->
-        store.update { it.copy(currentAvatar = avatar, canSave = isSaveable(avatar), canClear = true) }
+        store.update { it.copy(currentAvatar = avatar, canSave = isSaveable(avatar), canClear = true, isCleared = false) }
         refreshSelectableAvatars()
       }
     }
@@ -66,7 +71,7 @@ sealed class AvatarPickerViewModel(private val repository: AvatarPickerRepositor
   protected fun refreshAvatar() {
     disposables.add(
       getAvatar().subscribeOn(Schedulers.io()).subscribe { avatar ->
-        store.update { it.copy(currentAvatar = avatar, canSave = isSaveable(avatar), canClear = !isSaveable(avatar)) }
+        store.update { it.copy(currentAvatar = avatar, canSave = isSaveable(avatar), canClear = avatar is Avatar.Photo && !isSaveable(avatar), isCleared = false) }
       }
     )
   }
@@ -84,7 +89,7 @@ sealed class AvatarPickerViewModel(private val repository: AvatarPickerRepositor
     )
   }
 
-  private fun isSaveable(avatar: Avatar) = !(avatar is Avatar.Photo && avatar.databaseId == Avatar.DatabaseId.DoNotPersist)
+  private fun isSaveable(avatar: Avatar) = avatar.databaseId != Avatar.DatabaseId.DoNotPersist
 
   override fun onCleared() {
     disposables.dispose()
@@ -132,7 +137,7 @@ sealed class AvatarPickerViewModel(private val repository: AvatarPickerRepositor
       }
     }
 
-    override fun getDefaultAvatarFromRepository(): Avatar = repository.getDefaultAvatarForGroup()
+    override fun getDefaultAvatarFromRepository(): Avatar = repository.getDefaultAvatarForGroup(groupId)
     override fun getPersistedAvatars(): Single<List<Avatar>> = repository.getPersistedAvatarsForGroup(groupId)
     override fun getDefaultAvatars(): Single<List<Avatar>> = repository.getDefaultAvatarsForGroup()
 
@@ -161,11 +166,11 @@ sealed class AvatarPickerViewModel(private val repository: AvatarPickerRepositor
       return if (initialAvatar != null) {
         Single.just(initialAvatar)
       } else {
-        Single.just(getDefaultAvatarFromRepository())
+        Single.fromCallable { getDefaultAvatarFromRepository() }
       }
     }
 
-    override fun getDefaultAvatarFromRepository(): Avatar = repository.getDefaultAvatarForGroup()
+    override fun getDefaultAvatarFromRepository(): Avatar = repository.getDefaultAvatarForGroup(null)
     override fun getPersistedAvatars(): Single<List<Avatar>> = Single.just(listOf())
     override fun getDefaultAvatars(): Single<List<Avatar>> = repository.getDefaultAvatarsForGroup()
     override fun persistAvatar(avatar: Avatar, onPersisted: (Avatar) -> Unit) = onPersisted(avatar)

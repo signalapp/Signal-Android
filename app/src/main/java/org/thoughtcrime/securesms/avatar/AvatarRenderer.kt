@@ -3,13 +3,11 @@ package org.thoughtcrime.securesms.avatar
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.appcompat.content.res.AppCompatResources
 import com.airbnb.lottie.SimpleColorFilter
-import com.amulyakhare.textdrawable.TextDrawable
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mms.PartAuthority
@@ -28,7 +26,7 @@ import javax.annotation.meta.Exhaustive
  */
 object AvatarRenderer {
 
-  private val DIMENSIONS = AvatarHelper.AVATAR_DIMENSIONS
+  val DIMENSIONS = AvatarHelper.AVATAR_DIMENSIONS
 
   fun getTypeface(context: Context): Typeface {
     return Typeface.createFromAsset(context.assets, "fonts/Inter-Medium.otf")
@@ -50,30 +48,8 @@ object AvatarRenderer {
     avatar: Avatar.Text,
     inverted: Boolean = false,
     size: Int = DIMENSIONS,
-    isRect: Boolean = true
   ): Drawable {
-    val typeface = getTypeface(context)
-    val color: Int = if (inverted) {
-      avatar.color.backgroundColor
-    } else {
-      avatar.color.foregroundColor
-    }
-
-    val builder = TextDrawable
-      .builder()
-      .beginConfig()
-      .fontSize(Avatars.getTextSizeForLength(context, avatar.text, size * 0.8f, size * 0.45f).toInt())
-      .textColor(color)
-      .useFont(typeface)
-      .width(size)
-      .height(size)
-      .endConfig()
-
-    return if (isRect) {
-      builder.buildRect(avatar.text, Color.TRANSPARENT)
-    } else {
-      builder.buildRound(avatar.text, Color.TRANSPARENT)
-    }
+    return TextAvatarDrawable(context, avatar, inverted, size)
   }
 
   private fun renderVector(context: Context, avatar: Avatar.Vector, onAvatarRendered: (Media) -> Unit, onRenderFailed: (Throwable?) -> Unit) {

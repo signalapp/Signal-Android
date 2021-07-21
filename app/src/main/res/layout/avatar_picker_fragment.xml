@@ -111,6 +111,7 @@
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:paddingBottom="80dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

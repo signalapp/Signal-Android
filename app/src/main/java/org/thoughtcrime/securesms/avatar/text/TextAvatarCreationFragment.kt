@@ -41,6 +41,8 @@ class TextAvatarCreationFragment : Fragment(R.layout.text_avatar_creation_fragme
   private val withRecyclerSet = ConstraintSet()
   private val withoutRecyclerSet = ConstraintSet()
 
+  private var hasBoundFromViewModel: Boolean = false
+
   private fun createFactory(): TextAvatarCreationViewModel.Factory {
     val args = TextAvatarCreationFragmentArgs.fromBundle(requireArguments())
     val textBundle = args.textAvatar
@@ -83,17 +85,25 @@ class TextAvatarCreationFragment : Fragment(R.layout.text_avatar_creation_fragme
       EditTextUtil.setCursorColor(textInput, state.currentAvatar.color.foregroundColor)
 
       val hadText = textInput.length() > 0
+      val selectionStart = textInput.selectionStart
+      val selectionEnd = textInput.selectionEnd
+
       viewHolder.bind(AvatarPickerItem.Model(state.currentAvatar, false))
-      if (!hadText) {
-        textInput.setSelection(textInput.length())
+      textInput.post {
+        if (!hadText) {
+          textInput.setSelection(textInput.length())
+        } else {
+          textInput.setSelection(selectionStart, selectionEnd)
+        }
       }
 
       adapter.submitList(state.colors().map { AvatarColorItem.Model(it) })
+      hasBoundFromViewModel = true
     }
 
     EditTextUtil.addGraphemeClusterLimitFilter(textInput, 3)
     textInput.doAfterTextChanged {
-      if (it != null) {
+      if (it != null && hasBoundFromViewModel) {
         viewModel.setText(it.toString())
       }
     }

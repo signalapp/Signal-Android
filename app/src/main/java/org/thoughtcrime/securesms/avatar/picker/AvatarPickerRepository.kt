@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage
 import org.thoughtcrime.securesms.avatar.AvatarRenderer
 import org.thoughtcrime.securesms.avatar.Avatars
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.mediasend.Media
@@ -61,10 +62,10 @@ class AvatarPickerRepository(context: Context) {
         )
       } catch (e: IOException) {
         Log.w(TAG, "Failed to read group avatar!")
-        getDefaultAvatarForGroup()
+        getDefaultAvatarForGroup(recipient.avatarColor)
       }
     } else {
-      getDefaultAvatarForGroup()
+      getDefaultAvatarForGroup(recipient.avatarColor)
     }
   }
 
@@ -155,12 +156,25 @@ class AvatarPickerRepository(context: Context) {
     return if (initials.isNullOrBlank()) {
       Avatar.getDefaultForSelf()
     } else {
-      Avatar.Text(initials, Avatars.colors.random(), Avatar.DatabaseId.NotSet)
+      Avatar.Text(initials, requireNotNull(Avatars.colorMap[Recipient.self().avatarColor.serialize()]), Avatar.DatabaseId.DoNotPersist)
     }
   }
 
-  fun getDefaultAvatarForGroup(): Avatar {
-    return Avatar.getDefaultForGroup()
+  fun getDefaultAvatarForGroup(groupId: GroupId): Avatar {
+    val recipient = Recipient.externalGroupExact(applicationContext, groupId)
+
+    return getDefaultAvatarForGroup(recipient.avatarColor)
+  }
+
+  fun getDefaultAvatarForGroup(color: AvatarColor?): Avatar {
+    val colorPair = Avatars.colorMap[color?.serialize()]
+    val defaultColor = Avatar.getDefaultForGroup()
+
+    return if (colorPair != null) {
+      defaultColor.copy(color = colorPair)
+    } else {
+      defaultColor
+    }
   }
 
   fun delete(avatar: Avatar, onDelete: () -> Unit) {

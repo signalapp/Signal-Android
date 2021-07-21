@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.avatar.text
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.avatar.Avatar
@@ -11,14 +12,20 @@ class TextAvatarCreationViewModel(initialText: Avatar.Text) : ViewModel() {
 
   private val store = Store(TextAvatarCreationState(initialText))
 
-  val state: LiveData<TextAvatarCreationState> = store.stateLiveData
+  val state: LiveData<TextAvatarCreationState> = Transformations.distinctUntilChanged(store.stateLiveData)
 
   fun setColor(colorPair: Avatars.ColorPair) {
     store.update { it.copy(currentAvatar = it.currentAvatar.copy(color = colorPair)) }
   }
 
   fun setText(text: String) {
-    store.update { it.copy(currentAvatar = it.currentAvatar.copy(text = text)) }
+    store.update {
+      if (it.currentAvatar.text == text) {
+        it
+      } else {
+        it.copy(currentAvatar = it.currentAvatar.copy(text = text))
+      }
+    }
   }
 
   fun getCurrentAvatar(): Avatar.Text {

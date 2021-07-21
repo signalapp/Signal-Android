@@ -34,6 +34,8 @@ import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.avatar.Avatars;
 import org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment;
+import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ParcelableGroupId;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -104,8 +106,14 @@ public class EditProfileFragment extends LoggingFragment {
     initializeProfileName();
 
     getParentFragmentManager().setFragmentResultListener(AvatarPickerFragment.REQUEST_KEY_SELECT_AVATAR, getViewLifecycleOwner(), (key, bundle) -> {
-      Media media = bundle.getParcelable(AvatarPickerFragment.SELECT_AVATAR_MEDIA);
-      handleMediaFromResult(media);
+      if (bundle.getBoolean(AvatarPickerFragment.SELECT_AVATAR_CLEAR)) {
+        viewModel.setAvatarMedia(null);
+        viewModel.setAvatar(null);
+        avatar.setImageDrawable(null);
+      } else {
+        Media media = bundle.getParcelable(AvatarPickerFragment.SELECT_AVATAR_MEDIA);
+        handleMediaFromResult(media);
+      }
     });
   }
 
