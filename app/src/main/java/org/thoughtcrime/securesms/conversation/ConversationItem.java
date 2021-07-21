@@ -1172,12 +1172,13 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         quoteView.dismiss();
       }
 
+      int topMargin = current.isOutgoing() ? 0 : readDimen(R.dimen.message_bubble_content_top_padding);
       if (mediaThumbnailStub.resolved()) {
-        ViewUtil.setTopMargin(mediaThumbnailStub.get(), 0);
+        ViewUtil.setTopMargin(mediaThumbnailStub.get(), topMargin);
       }
 
       if (linkPreviewStub.resolved()) {
-        ViewUtil.setTopMargin(linkPreviewStub.get(), 0);
+        ViewUtil.setTopMargin(linkPreviewStub.get(), topMargin);
       }
     }
   }
