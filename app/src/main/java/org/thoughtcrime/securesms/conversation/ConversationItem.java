@@ -727,6 +727,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       bodyText.setText(StringUtil.trim(styledText));
       bodyText.setVisibility(View.VISIBLE);
     }
+
+    if (!messageRecord.isOutgoing()) {
+      if (!messageRecord.isMms()) {
+        ViewUtil.setTopMargin(bodyText, readDimen(R.dimen.message_bubble_content_top_padding));
+      } else {
+        ViewUtil.setTopMargin(bodyText, readDimen(R.dimen.message_bubble_text_top_padding));
+      }
+    }
   }
 
   private void setMediaAttributes(@NonNull  MessageRecord                messageRecord,
@@ -1123,6 +1131,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setQuote(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread, @NonNull ChatColors chatColors) {
+    boolean startOfCluster = isStartOfMessageCluster(current, previous, isGroupThread);
     if (current.isMms() && !current.isMmsNotification() && ((MediaMmsMessageRecord)current).getQuote() != null) {
       if (quoteView == null) {
         throw new AssertionError();
@@ -1144,7 +1153,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       quoteView.setOnLongClickListener(passthroughClickListener);
 
-      if (isStartOfMessageCluster(current, previous, isGroupThread)) {
+      if (startOfCluster) {
         if (current.isOutgoing()) {
           quoteView.setTopCornerSizes(true, true);
         } else if (isGroupThread) {
@@ -1172,7 +1181,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         quoteView.dismiss();
       }
 
-      int topMargin = current.isOutgoing() ? 0 : readDimen(R.dimen.message_bubble_content_top_padding);
+      int topMargin = (current.isOutgoing() || !startOfCluster || !groupThread) ? 0 : readDimen(R.dimen.message_bubble_content_top_padding);
       if (mediaThumbnailStub.resolved()) {
         ViewUtil.setTopMargin(mediaThumbnailStub.get(), topMargin);
       }
