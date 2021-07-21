@@ -9,8 +9,8 @@ dependencyVerification {
         ['androidx.activity:activity:1.1.0',
          '4f2b35916768032f7d0c20e250e28b29037ed4ce9ebf3da4fcd51bcb0c6067ef'],
 
-        ['androidx.annotation:annotation-experimental:1.0.0',
-         'b219d2b568e7e4ba534e09f8c2fd242343df6ccbdfbbe938846f5d740e6b0b11'],
+        ['androidx.annotation:annotation-experimental:1.1.0',
+         '0157de61a2064047896a058080f3fd67ba57ad9a94857b3f7a363660243e3f90'],
 
         ['androidx.annotation:annotation:1.2.0',
          '9029262bddce116e6d02be499e4afdba21f24c239087b76b3b57d7e98b490a36'],
@@ -69,11 +69,11 @@ dependencyVerification {
         ['androidx.coordinatorlayout:coordinatorlayout:1.1.0',
          '44a9e30abf56af1025c52a0af506fee9c4131aa55efda52f9fd9451211c5e8cb'],
 
-        ['androidx.core:core-ktx:1.5.0',
-         '5964cfe7a4882da2a00fb6ca3d3a072d04139208186f7bc4b3cb66022764fc42'],
+        ['androidx.core:core-ktx:1.6.0',
+         '71ef02cee7eba1e905a7f37f313b50ba8a3bee0ec59a0f876d5a78860e1de963'],
 
-        ['androidx.core:core:1.5.0',
-         '2b279712795689069cfb63e48b3ab63c32a5649bdda44c482eb8f81ca1a72161'],
+        ['androidx.core:core:1.6.0',
+         '875dbec888c91b05521575fd180cc08824d2c4d12b10b0261b4f9d6825214ef1'],
 
         ['androidx.cursoradapter:cursoradapter:1.0.0',
          'a81c8fe78815fa47df5b749deb52727ad11f9397da58b16017f4eb2c11e28564'],
@@ -459,6 +459,15 @@ dependencyVerification {
         ['io.perfmark:perfmark-api:0.23.0',
          'c705b5c10c18ff3032b9e81742bc2f6b0e5607f6a6dfc0c8ad0cff75d4913042'],
 
+        ['io.reactivex.rxjava3:rxandroid:3.0.0',
+         '5b3582a1e9fd9e9037ee933ab9486ff323d6244b5f1b6ff6ebadc2bfa957ce5b'],
+
+        ['io.reactivex.rxjava3:rxjava:3.0.13',
+         '598abaf71dbc970dd0727e6d5f4f786dc999df5b972cbf261316a32e155b2c69'],
+
+        ['io.reactivex.rxjava3:rxkotlin:3.0.1',
+         'c142e3460b676ac51d9e04152173a44e469a95fe220264fde0e6fb38653aff64'],
+
         ['javax.annotation:javax.annotation-api:1.3.2',
          'e04ba5195bcd555dc95650f7cc614d151e4bcd52d29a10b8aa2197f3ab89ab9b'],
 
@@ -492,14 +501,14 @@ dependencyVerification {
         ['org.jetbrains.kotlin:kotlin-reflect:1.4.10',
          '3ab3413ec945f801448360ad97bc6e14fec6d606889ede3c707cc277b4467f45'],
 
-        ['org.jetbrains.kotlin:kotlin-stdlib-common:1.4.32',
-         'e1ff6f55ee9e7591dcc633f7757bac25a7edb1cc7f738b37ec652f10f66a4145'],
+        ['org.jetbrains.kotlin:kotlin-stdlib-common:1.5.10',
+         'd958ce94beda85f865829fb95012804866db7d5246615fd71a2f5aabca3e7994'],
 
         ['org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.32',
          '5f801e75ca27d8791c14b07943c608da27620d910a8093022af57f543d5d98b6'],
 
-        ['org.jetbrains.kotlin:kotlin-stdlib:1.4.32',
-         '13e9fd3e69dc7230ce0fc873a92a4e5d521d179bcf1bef75a6705baac3bfecba'],
+        ['org.jetbrains.kotlin:kotlin-stdlib:1.5.10',
+         'ca87c454cd3f2e60931f1803c59699d510d3b4b959cd7119296fb947581d722d'],
 
         ['org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0',
          'c80aaadf041f044d324a19a73f88879dfd1e4d026b14e3230075ff9081942ae3'],
@@ -521,6 +530,9 @@ dependencyVerification {
 
         ['org.mp4parser:streaming:1.9.39',
          'da5151cfc3bf491d550fb9127bba22736f4b7416058d58a1a5fcfdfa3673876d'],
+
+        ['org.reactivestreams:reactive-streams:1.0.3',
+         '1dee0481072d19c929b623e155e14d2f6085dc011529a0a0dbefc84cf571d865'],
 
         ['org.signal:aesgcmprovider:0.0.3',
          '6eb4422e8a618b3b76cb2096a3619d251f9e27989dc68307a1e5414c3710f2d1'],

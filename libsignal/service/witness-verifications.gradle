@@ -24,6 +24,12 @@ dependencyVerification {
         ['com.squareup.okio:okio:1.15.0',
          '693fa319a7e8843300602b204023b7674f106ebcb577f2dd5807212b66118bd2'],
 
+        ['io.reactivex.rxjava3:rxjava:3.0.13',
+         '598abaf71dbc970dd0727e6d5f4f786dc999df5b972cbf261316a32e155b2c69'],
+
+        ['org.reactivestreams:reactive-streams:1.0.3',
+         '1dee0481072d19c929b623e155e14d2f6085dc011529a0a0dbefc84cf571d865'],
+
         ['org.signal:zkgroup-java:0.7.0',
          'd0099eedd60d6f7d4df5b288175e5d585228ed8897789926bdab69bf8c05659f'],
 

@@ -13,6 +13,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
 import androidx.core.app.RemoteInput
+import androidx.core.content.LocusIdCompat
 import androidx.core.graphics.drawable.IconCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationIntents
@@ -67,6 +68,7 @@ sealed class NotificationBuilder(protected val context: Context) {
   abstract fun setTicker(ticker: CharSequence?)
   abstract fun addTurnOffJoinedNotificationsAction(pendingIntent: PendingIntent)
   abstract fun setAutoCancel(autoCancel: Boolean)
+  abstract fun setLocusIdActual(locusId: String)
   abstract fun build(): Notification
 
   protected abstract fun addPersonActual(recipient: Recipient)
@@ -81,6 +83,12 @@ sealed class NotificationBuilder(protected val context: Context) {
   fun addPerson(recipient: Recipient) {
     if (privacy.isDisplayContact) {
       addPersonActual(recipient)
+    }
+  }
+
+  fun setLocusId(locusId: String) {
+    if (privacy.isDisplayContact && isNotLocked) {
+      setLocusIdActual(locusId)
     }
   }
 
@@ -377,6 +385,10 @@ sealed class NotificationBuilder(protected val context: Context) {
 
     override fun setLargeIcon(largeIcon: Bitmap?) {
       builder.setLargeIcon(largeIcon)
+    }
+
+    override fun setLocusIdActual(locusId: String) {
+      builder.setLocusId(LocusIdCompat(locusId))
     }
 
     override fun setShortcutIdActual(shortcutId: String) {
