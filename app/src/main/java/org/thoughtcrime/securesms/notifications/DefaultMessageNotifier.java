@@ -87,6 +87,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
   private static final String TAG = DefaultMessageNotifier.class.getSimpleName();
 
   public static final  String EXTRA_REMOTE_REPLY = "extra_remote_reply";
+  public static final  String LATEST_MESSAGE_ID_TAG     = "extra_latest_message_id";
 
   private static final  int   FOREGROUND_ID             = 313399;
   private static final  int   SUMMARY_NOTIFICATION_ID   = 1338;
@@ -238,14 +239,6 @@ public class DefaultMessageNotifier implements MessageNotifier {
       return;
     }
 
-    if (recipients != null && recipients.notifyType != RecipientDatabase.NOTIFY_TYPE_ALL) {
-      // if mentions and no mention then return
-      if (recipients.notifyType == RecipientDatabase.NOTIFY_TYPE_MENTIONS) {
-
-      }
-      return;
-    }
-
     if (isVisible) {
       sendInThreadNotification(context, threads.getRecipientForThreadId(threadId));
     } else if (!homeScreenVisible) {
@@ -280,16 +273,9 @@ public class DefaultMessageNotifier implements MessageNotifier {
         lastAudibleNotification = System.currentTimeMillis();
       }
 
-      if (notificationState.hasMultipleThreads()) {
-        if (Build.VERSION.SDK_INT >= 23) {
-          for (long threadId : notificationState.getThreads()) {
-            sendSingleThreadNotification(context, new NotificationState(notificationState.getNotificationsForThread(threadId)), false, true);
-          }
-        }
-
-        sendMultipleThreadNotification(context, notificationState, signal);
-      } else if (notificationState.getMessageCount() > 0){
-        sendSingleThreadNotification(context, notificationState, signal, false);
+      boolean hasMultipleThreads = notificationState.hasMultipleThreads();
+      for (long threadId : notificationState.getThreads()) {
+        sendSingleThreadNotification(context, new NotificationState(notificationState.getNotificationsForThread(threadId)), signal, hasMultipleThreads);
       }
 
       cancelOrphanedNotifications(context, notificationState);
@@ -320,7 +306,20 @@ public class DefaultMessageNotifier implements MessageNotifier {
     List<NotificationItem>             notifications  = notificationState.getNotifications();
     Recipient                          recipient      = notifications.get(0).getRecipient();
     int                                notificationId = (int) (SUMMARY_NOTIFICATION_ID + (bundled ? notifications.get(0).getThreadId() : 0));
+    String                             messageIdTag   = String.valueOf(notifications.get(0).getId());
 
+    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    for (StatusBarNotification notification: notificationManager.getActiveNotifications()) {
+
+      if (messageIdTag.equals(notification.getNotification().extras.getString(LATEST_MESSAGE_ID_TAG))) {
+        return;
+      }
+    }
+
+    long timestamp = notifications.get(0).getTimestamp();
+    if (timestamp != 0) builder.setWhen(timestamp);
+
+    builder.putStringExtra(LATEST_MESSAGE_ID_TAG, messageIdTag);
 
     builder.setThread(notifications.get(0).getRecipient());
     builder.setMessageCount(notificationState.getMessageCount());
@@ -332,11 +331,6 @@ public class DefaultMessageNotifier implements MessageNotifier {
     builder.setOnlyAlertOnce(!signal);
     builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
     builder.setAutoCancel(true);
-
-    long timestamp = notifications.get(0).getTimestamp();
-    if (timestamp != 0) builder.setWhen(timestamp);
-
-    long threadID = notifications.get(0).getThreadId();
 
     ReplyMethod replyMethod = ReplyMethod.forRecipient(context, recipient);
 

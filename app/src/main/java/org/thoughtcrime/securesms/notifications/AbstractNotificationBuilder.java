@@ -4,18 +4,21 @@ import android.app.Notification;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
+import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 
-import network.loki.messenger.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+
 import org.session.libsession.utilities.NotificationPrivacyPreference;
-import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsession.utilities.recipients.Recipient.*;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsession.utilities.recipients.Recipient.VibrateState;
+
+import network.loki.messenger.R;
 
 public abstract class AbstractNotificationBuilder extends NotificationCompat.Builder {
 
@@ -26,10 +29,11 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
 
   protected Context                       context;
   protected NotificationPrivacyPreference privacy;
+  protected final Bundle                  extras;
 
   public AbstractNotificationBuilder(Context context, NotificationPrivacyPreference privacy) {
     super(context);
-
+    extras = new Bundle();
     this.context = context;
     this.privacy = privacy;
 
@@ -96,5 +100,11 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
 
     return text.length() <= MAX_DISPLAY_LENGTH ? text
                                                : text.subSequence(0, MAX_DISPLAY_LENGTH);
+  }
+
+  @Override
+  public Notification build() {
+    addExtras(extras);
+    return super.build();
   }
 }

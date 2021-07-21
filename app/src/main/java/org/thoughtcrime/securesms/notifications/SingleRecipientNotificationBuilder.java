@@ -15,33 +15,38 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.text.SpannableStringBuilder;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Action;
 import androidx.core.app.RemoteInput;
+
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import org.session.libsession.avatars.ContactColors;
 import org.session.libsession.avatars.ContactPhoto;
 import org.session.libsession.avatars.GeneratedContactPhoto;
 import org.session.libsession.messaging.contacts.Contact;
+import org.session.libsession.utilities.NotificationPrivacyPreference;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.SessionContactDatabase;
-import org.thoughtcrime.securesms.util.AvatarPlaceholderGenerator;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.session.libsession.utilities.NotificationPrivacyPreference;
-import org.session.libsession.utilities.recipients.Recipient;
+import org.thoughtcrime.securesms.util.AvatarPlaceholderGenerator;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsession.utilities.Util;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+
 import network.loki.messenger.R;
 
 public class SingleRecipientNotificationBuilder extends AbstractNotificationBuilder {
@@ -57,6 +62,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   public SingleRecipientNotificationBuilder(@NonNull Context context, @NonNull NotificationPrivacyPreference privacy)
   {
     super(context, privacy);
+
 
     setSmallIcon(R.drawable.ic_notification);
     setColor(context.getResources().getColor(R.color.textsecure_primary));
@@ -196,6 +202,10 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   @StringRes
   private static int replyMethodLongDescription(@NonNull ReplyMethod replyMethod) {
     return R.string.MessageNotifier_reply;
+  }
+
+  public void putStringExtra(String key, String value) {
+    extras.putString(key,value);
   }
 
   public void addMessageBody(@NonNull Recipient threadRecipient,
