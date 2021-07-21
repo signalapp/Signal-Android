@@ -1666,7 +1666,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">எதுவும் கிடைக்கவில்லை</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">பங்களிப்பாளர்களைக் காண இந்த பதிவு ஆன்லைனில் பொதுவில் வெளியிடப்படும், சமர்ப்பிக்கும் முன் அதை ஆராய்ந்து திருத்தலாம்.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">பங்களிப்பாளர்களைக் காண இந்த பதிவு ஆன்லைனில் பொதுவில் வெளியிடப்படும், சமர்ப்பிக்கும் முன் அதை ஆராய்ந்து திருத்தலாம்.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">உங்களிடம்  இருக்கும் உரை செய்திகளை Signal-இன் மறையாக்கப்பட்ட தரவுத்தளத்தில் இறக்குமதி செய்ய விரும்புகிறீர்களா?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">இயல்புநிலை சாதனக் கோப்பு இதனால் எந்தவிதத்திலும் மாற்றமோ அல்லது திறுத்தமோ பெறாது.</string>

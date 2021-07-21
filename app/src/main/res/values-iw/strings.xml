@@ -1468,7 +1468,7 @@
   <string name="SubmitDebugLogActivity_success">הצלחה!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">העתק כתובת זו והוסף אותה אל דוח הסוגיות שלך או דוא״ל התמיכה שלך:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">שתף</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">יומן זה יפורסם באופן ציבורי ומקוון עבור מתנדבים כדי שיצפו בו, ניתן לבחון ולערוך אותו לפני העלאה.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">יומן זה יפורסם באופן ציבורי ומקוון עבור מתנדבים כדי שיצפו בו, ניתן לבחון ולערוך אותו לפני העלאה.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">סנן:</string>
   <string name="SupportEmailUtil_device_info">מידע מכשיר:</string>
@@ -1859,7 +1859,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">שום דבר לא נמצא</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">יומן זה יפורסם באופן ציבורי ומקוון לתורמים עבור צפייה, אתה יכול לבחון ולערוך אותו לפני הגשה.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">יומן זה יפורסם באופן ציבורי ומקוון לתורמים עבור צפייה, אתה יכול לבחון ולערוך אותו לפני הגשה.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">האם תרצה לייבא את הודעות הטקסט הקיימות שלך אל מסד הנתונים המוצפן של Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">מסד הנתונים ברירת המחדל של המערכת לא ישונה בשום אופן.</string>

@@ -1090,7 +1090,7 @@
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Ajengaken</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">Oke</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Serat email</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Log niki bakal dipunkirimaken sacara online kangge publik supados kontributor saged ningali. Sampeyan saged mriksa lan nggantos log kasebut sadereng dipunajengaken.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Log niki bakal dipunkirimaken sacara online kangge publik supados kontributor saged ningali. Sampeyan saged mriksa lan nggantos log kasebut sadereng dipunajengaken.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Taksih ngunggahi log…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Taksih ngenggali log…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">Pileh aplikasi email</string> -->

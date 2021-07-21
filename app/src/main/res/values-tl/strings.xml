@@ -1163,7 +1163,7 @@
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Isumite</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">OK</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Magsulat ng email</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Pampublikong ipapaskil online ang log na ito para makita ng mga contributor, puwede mo itong suriin at i-edit bago isumite.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Pampublikong ipapaskil online ang log na ito para makita ng mga contributor, puwede mo itong suriin at i-edit bago isumite.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Inilo-load ang mga log…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Ina-upload ang mga log…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">Pumili ng app na pang-email</string> -->

@@ -1346,7 +1346,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="SubmitDebugLogActivity_success">Sukses!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopjojeni këtë URL dhe shtojeni te njoftimi i problemit tuaj ose email-i për asistencën:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Ndajeni Me të Tjerë</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Ky regjistër do të postohet publikisht në internet që ta shohin kontribuesit. Para se ta ngarkoni, mund ta shqyrtoni dhe përpunoni.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Ky regjistër do të postohet publikisht në internet që ta shohin kontribuesit. Para se ta ngarkoni, mund ta shqyrtoni dhe përpunoni.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtër:</string>
   <string name="SupportEmailUtil_device_info">Të dhëna pajisjeje:</string>
@@ -1717,7 +1717,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">S\’u gjet gjë</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Ky regjistër do të postohet publikisht në internet që kontribuesit ta shohin, mund ta ekzaminoni dhe përpunoni përpara se ta parashtroni.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Ky regjistër do të postohet publikisht në internet që kontribuesit ta shohin, mund ta ekzaminoni dhe përpunoni përpara se ta parashtroni.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Doni të importohen mesazhet tuaj tekst te baza e fshehtëzuar e të dhënave të Signal-it?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Baza parazgjedhje e sistemit për të dhënat nuk do modifikohet apo tjetërsohet në ndonjë mënyrë.</string>

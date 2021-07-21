@@ -1334,7 +1334,7 @@
   <string name="SubmitDebugLogActivity_success">Correcto!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia este URL e engádeo ao teu informe de problemas ou correo de asistencia:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Compartir</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Este rexistro publicarase en liña para que os colaboradores poidan velo; podes examinalo e editalo antes de o enviar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Este rexistro publicarase en liña para que os colaboradores poidan velo; podes examinalo e editalo antes de o enviar.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Información do dispositivo:</string>
@@ -1694,7 +1694,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Non se atopou nada</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Este rexistro publicarase en liña para que os colaboradores poidan velo; podes examinalo e editalo antes de o enviar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Este rexistro publicarase en liña para que os colaboradores poidan velo; podes examinalo e editalo antes de o enviar.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gustaríache importar ás túas mensaxes de texto á base de datos cifrada de Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de datos predefinida do sistema non se modificará nin alterará de modo ningún.</string>

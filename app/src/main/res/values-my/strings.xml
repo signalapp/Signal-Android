@@ -1613,7 +1613,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ဘာမှ မတွေ့ဘူး</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">ပံ့ပိုးသူများ ကြည့်ရှုနိုင်ရန် ဤမှတ်တမ်းကို အများကြည့်ရှုနိုင်ရန် အွန်လိုင်းပေါ်တင်ထားပါမည်။ သင်မတင်သွင်းမီ လေ့လာတည်းဖြတ်နိုင်ပါသည်။</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">ပံ့ပိုးသူများ ကြည့်ရှုနိုင်ရန် ဤမှတ်တမ်းကို အများကြည့်ရှုနိုင်ရန် အွန်လိုင်းပေါ်တင်ထားပါမည်။ သင်မတင်သွင်းမီ လေ့လာတည်းဖြတ်နိုင်ပါသည်။</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">သင်၏စာသားသတင်းစကားများကို Signal ၏encrypt အချက်အလက်အဖြစ်ကူးပြောင်းချင်ပါသလား?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">မူလဒေတာဘေ့စ်စနစ်ကို ပြောင်းလဲမည် မဟုတ်ပါ။</string>

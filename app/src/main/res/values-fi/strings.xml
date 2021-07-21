@@ -1334,7 +1334,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SubmitDebugLogActivity_success">Onnistui!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopioi tämä URL ja lisää se ongelmaraporttiin tai tukisähköpostiisi:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Jaa</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Tämä loki julkaistaan netissä, jossa se on julkisesti kehittäjien ja muiden nähtävissä. Voit tutkia ja muokata sitä ennen lähettämistä.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Tämä loki julkaistaan netissä, jossa se on julkisesti kehittäjien ja muiden nähtävissä. Voit tutkia ja muokata sitä ennen lähettämistä.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Suodatin:</string>
   <string name="SupportEmailUtil_device_info">Laitetiedot:</string>
@@ -1705,7 +1705,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ei hakutuloksia</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Loki julkaistaan Internetissä, jossa se on julkisesti kehittäjien nähtävillä. Tarkasta ja tarvittaessa muokkaa sitä ennen lähettämistä.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Loki julkaistaan Internetissä, jossa se on julkisesti kehittäjien nähtävillä. Tarkasta ja tarvittaessa muokkaa sitä ennen lähettämistä.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Napauta, jos haluat kopioida puhelimesi tekstiviestit Signalin salattuun tietokantaan.</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Järjestelmän oletustietokantaa ei tulla muuttamaan millään tavalla.</string>

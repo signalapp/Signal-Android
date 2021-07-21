@@ -959,7 +959,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Hantar</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">Faham</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Mengarang e-mel</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Log ini akan dihantarskan secara terbuka dalam talian untuk penyumbang lihat, anda boleh memeriksa dan mengeditnya sebelum menghantar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Log ini akan dihantarskan secara terbuka dalam talian untuk penyumbang lihat, anda boleh memeriksa dan mengeditnya sebelum menghantar.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Memuatkan log…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Memuat naik log-log…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">Memilih aplikasi e-mel</string> -->

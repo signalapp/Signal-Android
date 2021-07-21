@@ -1470,7 +1470,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="SubmitDebugLogActivity_success">Llwyddiant!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copïwch yr URL hwn a\'i ychwanegu at eich adroddiad neu e-bost cymorth:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Rhannu</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Bydd y cofnod hwn yn cael ei bostio\'n gyhoeddus ar-lein i gyfranwyr ei weld. Gallwch ei archwilio a\'i olygu cyn ei lwytho i fyny.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Bydd y cofnod hwn yn cael ei bostio\'n gyhoeddus ar-lein i gyfranwyr ei weld. Gallwch ei archwilio a\'i olygu cyn ei lwytho i fyny.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Hidl:</string>
   <string name="SupportEmailUtil_device_info">Manylion y ddyfais:</string>
@@ -1861,7 +1861,7 @@ Send neges heb ei ddiogelu?</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Heb ganfod dim</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Caiff y cofnod hwn ei bostio\'n gyhoeddus ar-lein i gyfranwyr ei weld, fe allwch ei archwilio a\'i olygu cyn ei gyflwyno.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Caiff y cofnod hwn ei bostio\'n gyhoeddus ar-lein i gyfranwyr ei weld, fe allwch ei archwilio a\'i olygu cyn ei gyflwyno.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Hoffech chi fewnforio eich negeseuon testun i gronfa ddata amgryptiedig Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Ni chaiff cronfa ddata\'r system rhagosodedig ei addasu neu ei newid mewn unrhyw ffordd.</string>

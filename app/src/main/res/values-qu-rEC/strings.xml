@@ -810,7 +810,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Kachana</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">Chaskishka</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Sirma chaskipi killkana</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Kay willaywanka tukuylla yanapakkunapa killkakatichunmi kanka, rikuyta munankiman mushukyachita shinapash manara kachashpallata.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Kay willaywanka tukuylla yanapakkunapa killkakatichunmi kanka, rikuyta munankiman mushukyachita shinapash manara kachashpallata.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Allichishkakunata uryakuchikun</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Allichishkakunata sikachikun</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">¡Paktachishka!</string> -->

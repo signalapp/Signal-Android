@@ -1581,7 +1581,7 @@
   <string name="SubmitDebugLogActivity_success">تم بنجاح !</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">يُرجى نسخ هذا العنوان وإضافته إلى بلاغك أو إلى بريد الدعم :\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">شارك</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">سيتم نشر هذا السّجل علناً حتى يتمكن المساهمون في التطبيق من الاطلاع عليه. يمكنك فحصه أو تعديله قبل رفعه.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">سيتم نشر هذا السّجل علناً حتى يتمكن المساهمون في التطبيق من الاطلاع عليه. يمكنك فحصه أو تعديله قبل رفعه.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">المُرشِّح :</string>
   <string name="SupportEmailUtil_device_info">معلومات الجهاز :</string>
@@ -1983,7 +1983,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">لم نعثر على شيء</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">سيتم نشر هذا السّجل علناً حتى يتمكن المساهمون في التطبيق من الاطلاع عليه. يمكنك فحصه أو تعديله قبل إرساله.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">سيتم نشر هذا السّجل علناً حتى يتمكن المساهمون في التطبيق من الاطلاع عليه. يمكنك فحصه أو تعديله قبل إرساله.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">ألديك الرغبة في استيراد الرسائل النصية الموجودة إلى قاعدة بيانات Signal المُعمَّاة ؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">لن يتم تغيير قاعدة البيانات الأساسية بأي طريقة.</string>

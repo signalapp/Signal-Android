@@ -1292,7 +1292,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ಏನೂ ಕಂಡುಬಂದಿಲ್ಲ</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">ಕೊಡುಗೆ ನೀಡುವವವರ ನೋಡುವಂತಾಗಲು ಈ ಲಾಗ್ ಅನ್ನು ಸಾರ್ವಜನಿಕವಾಗಿ ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಪೋಸ್ಟ್ ಮಾಡಲಾಗುತ್ತದೆ, ಸಲ್ಲಿಸುವ ಮೊದಲು ನೀವು ಅದನ್ನು ಪರಿಶೀಲಿಸಬಹುದು ಮತ್ತು ಸಂಪಾದಿಸಬಹುದು.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">ಕೊಡುಗೆ ನೀಡುವವವರ ನೋಡುವಂತಾಗಲು ಈ ಲಾಗ್ ಅನ್ನು ಸಾರ್ವಜನಿಕವಾಗಿ ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಪೋಸ್ಟ್ ಮಾಡಲಾಗುತ್ತದೆ, ಸಲ್ಲಿಸುವ ಮೊದಲು ನೀವು ಅದನ್ನು ಪರಿಶೀಲಿಸಬಹುದು ಮತ್ತು ಸಂಪಾದಿಸಬಹುದು.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">ನಿಮ್ಮ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು Signal ನ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಡೇಟಾಬೇಸ್‌ಗೆ ಇಂಪೋರ್ಟ್ ಮಾಡಲು ನೀವು ಬಯಸುವಿರಾ?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">ಪ್ರಸ್ತುತ ವ್ಯವಸ್ಥೆಯ ದತ್ತಾಂಶವನ್ನು ಯಾವುದೇ ರೀತಿಯಲ್ಲಿ ಮಾರ್ಪಡಿಸಿವುದಿಲ್ಲ.</string>

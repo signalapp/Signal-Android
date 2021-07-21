@@ -1405,7 +1405,7 @@
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">បញ្ជូន</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">ទទួលបាន</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">បង្កើតសារថ្មី</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">កំណត់ត្រានេះនឹងត្រូវបិតផ្សាយជាសាធារណៈតាមអនឡាញ សម្រាប់អ្នកចូលរួម ដើម្បីបង្ហើញ អ្នកអាចត្រួតពិនិត្យ និងកែប្រែ មុនពេលដាក់បញ្ជូន។</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">កំណត់ត្រានេះនឹងត្រូវបិតផ្សាយជាសាធារណៈតាមអនឡាញ សម្រាប់អ្នកចូលរួម ដើម្បីបង្ហើញ អ្នកអាចត្រួតពិនិត្យ និងកែប្រែ មុនពេលដាក់បញ្ជូន។</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">កំពុងផ្ទុកកំណត់ត្រា…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">កំពុងបញ្ជូនកំណត់ត្រា…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">ជ្រើសរើសកម្មវិធីអ៊ីមែល</string> -->

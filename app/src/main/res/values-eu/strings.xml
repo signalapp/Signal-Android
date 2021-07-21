@@ -1668,7 +1668,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ez da ezer aurkitu</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Egunkari hau publikoki argitaratuko da ekarleek ikus dezaten, bidali aurretik aztertu eta aldatu dezakezu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Egunkari hau publikoki argitaratuko da ekarleek ikus dezaten, bidali aurretik aztertu eta aldatu dezakezu.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Oraingo telefonoaren zifratu gabeko mezuak Signalen datu-base zifratura inportatzea gustatuko litzaizuke?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Sistemaren lehenetsitako datubasea ez da inolako moduan aldatuko.</string>

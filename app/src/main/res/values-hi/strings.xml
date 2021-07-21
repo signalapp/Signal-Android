@@ -51,7 +51,6 @@
   <string name="DraftDatabase_Draft_quote_snippet">( उत्तर ) </string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">गैलरी</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentKeyboard_gif">GIF</string> -->
   <string name="AttachmentKeyboard_file">फ़ाइल</string>
   <string name="AttachmentKeyboard_contact">संपर्क</string>
   <string name="AttachmentKeyboard_location">स्थान</string>
@@ -163,6 +162,7 @@
   <string name="ConversationItem_error_network_not_delivered">भेजना असफल रहा</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">की एक्सचेंज मेसेज प्राप्त हुआ, प्रक्रिया करने के लिए टैप करें।</string>
   <string name="ConversationItem_group_action_left">%1$s ने समूह को छोड़ दिया है</string>
+  <string name="ConversationItem_send_paused">भेजें रोका गया</string>
   <string name="ConversationItem_click_to_approve_unencrypted">भेजने में असफल रहा, असुरक्षित फ़ॉलबैक के लिए टैप करें</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">अनएन्क्रिप्टेड SMS पर फॉलबैक?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">अनएन्क्रिप्टेड MMS पर फॉलबैक?</string>
@@ -232,6 +232,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">समूह सेटिंग्स में अब और विकल्प</string>
   <string name="ConversationActivity_join">जुड़ें</string>
   <string name="ConversationActivity_full">पूर्ण</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">स्पैम के रूप में रिपोर्ट किया गया और अवरुद्ध कर दिया गया।</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d अपठित मेसेज</item>
@@ -422,6 +423,7 @@
   <string name="AddToGroupActivity_add_to_groups">समूहों में शामिल करें</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">इस व्यक्ति को लेगेसी ग्रुप्स में शामिल नहीं किया जा सकता।</string>
   <string name="AddToGroupActivity_add">जोड़ें</string>
+  <string name="AddToGroupActivity_add_to_a_group">किसी समूह में शामिल करें  </string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">नया एडमिन चुनें</string>
   <string name="ChooseNewAdminActivity_done">पूर्ण</string>
@@ -552,6 +554,7 @@
     <item quantity="other">%3$d मेंबर्स को \"%2$s\" में जोड़ना है?</item>
   </plurals>
   <string name="AddMembersActivity__add">जोड़ें</string>
+  <string name="AddMembersActivity__add_members">मेंबर्स जोड़ें</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">इस समूह को नाम दें</string>
   <string name="AddGroupDetailsFragment__create_group">समूह बनाएँ</string>
@@ -839,6 +842,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">सभी मीडिया</string>
   <string name="MediaRepository__camera">कैमरा</string>
+  <!--MessageDecryptionUtil-->
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">अनजान</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal के पुराने वर्ज़न का उपयोग करके एन्क्रिप्ट किया गया एक संदेश प्राप्त हुआ जो अब समर्थित नहीं है। कृपया प्रेषक से नवीनतम वर्ज़न में अपडेट करने और संदेश भेजने के लिए कहें।</string>
@@ -939,6 +943,7 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ने ग्रुप का नाम बदल कर \"%2$s\" रख दिया है।</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">ग्रुप का नाम बदल कर \"%1$s\" हो गया है।</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">आपने समूह विवरण बदल दिया है।</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">आपने ग्रुप का अवतार बदल दिया है।</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ने ग्रुप का अवतार बदल दिया है।</string>
@@ -1126,6 +1131,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">आप</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">संदेश भेजना जारी रखने के लिए सत्यापित करें</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal पर स्पैम रोकने में मदद करने के लिए, कृपया सत्यापन पूर्ण करें।</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">सत्यापित करने के बाद, आप संदेश भेजना जारी रख सकते हैं। कोई भी रोके गए संदेश स्वचालित रूप से भेजे जाएंगे।</string>
   <!--Recipient-->
   <string name="Recipient_you">आप</string>
   <!--RecipientPreferencesActivity-->
@@ -1326,6 +1334,7 @@
   <string name="ThreadRecord_you_marked_verified">आपने सत्यापित मार्क किया है</string>
   <string name="ThreadRecord_you_marked_unverified">आपने असत्यापित मार्क किया है</string>
   <string name="ThreadRecord_message_could_not_be_processed">मेसेज संसाधित नहीं किया जा सका</string>
+  <string name="ThreadRecord_delivery_issue">डिलिवरी का मामला</string>
   <string name="ThreadRecord_message_request">बाच-चीत का निवेदन</string>
   <string name="ThreadRecord_photo">तस्वीर</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1560,6 +1569,7 @@
   <string name="ConversationUpdateItem_return_to_call">कॉल पर वापस जाएँ</string>
   <string name="ConversationUpdateItem_call_is_full">कॉल पूर्ण है</string>
   <string name="ConversationUpdateItem_invite_friends">मित्रों को आमंत्रित करें</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">कोई समूह सामान्य नहीं है। अनुरोधों की सावधानीपूर्वक समीक्षा करें।</string>
   <string name="ConversationUpdateItem_view">देखना</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">चलाएं … रोकें</string>
@@ -1576,6 +1586,7 @@
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">नीचे स्क्रॉल करें</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">सुरक्षा नंबर परिवर्तन</string>
+  <string name="safety_number_change_dialog__accept">स्वीकृत </string>
   <string name="safety_number_change_dialog__send_anyway">फिर भी भेजें</string>
   <string name="safety_number_change_dialog__call_anyway">फिर भी कॉल करें</string>
   <string name="safety_number_change_dialog__join_call">कॉल से जुड़ें</string>
@@ -1643,7 +1654,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">कुछ नहीं मिला</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">यह लॉग योगदानकर्ताओं के देखने के लिए सार्वजनिक रूप से ऑनलाइन पोस्ट किया जाएगा, आप सबमिट करने से पहले इसकी जांच और संपादन कर सकते हैं।</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">यह लॉग योगदानकर्ताओं के देखने के लिए सार्वजनिक रूप से ऑनलाइन पोस्ट किया जाएगा, आप सबमिट करने से पहले इसकी जांच और संपादन कर सकते हैं।</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">क्या आप अपने मौजूदा टेक्स्ट मेसेज को Signal के एन्क्रिप्टेड डेटाबेस में आयात करना चाहते हैं?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">डिफ़ॉल्ट सिस्टम डेटाबेस किसी भी तरह से संशोधित या परिवर्तित नहीं किया जाएगा।</string>
@@ -1671,6 +1682,7 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal को आपके वायरलेस वाहक के माध्यम से मीडिया और समूह मेसेज को वितरित करने के लिए MMS सेटिंग्स की आवश्यकता होती है। आपका डिवाइस यह जानकारी उपलब्ध नहीं कराता है, जो कभी-कभी लॉक किए गए डिवाइस और अन्य प्रतिबंधित कॉन्फ़िगरेशन के लिए सच है।</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">मीडिया और समूह मेसेज भेजने के लिए, \'OK\' टैप करें और अनुरोधित सेटिंग्स को पूरा करें। आपके वाहक के लिए MMS सेटिंग्स आम तौर पर \'आपके वाहक APN\' की खोज करके स्थित हो सकती हैं। आपको केवल एक बार ऐसा करने की आवश्यकता होगी।</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">डिलिवरी का मामला</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">पहला नाम (आवश्यक)</string>
   <string name="CreateProfileActivity_last_name_optional">अंतिम नाम (वैकल्पिक)</string>
@@ -1678,6 +1690,7 @@
   <string name="CreateProfileActivity__username">उपयोगकर्ता नाम</string>
   <string name="CreateProfileActivity__create_a_username">एक उपयोगकर्ता नाम बनाएँ</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">कस्टम MMS ग्रुप के नाम और तस्वीरें केवल आप देख सकेंगे।</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">समूह विवरण इस समूह के सदस्यों और आमंत्रित किए गए लोगों के लिए दृश्यमान होंगे।</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">हमारे बारे में</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">अपने बारे में कुछ शब्द लिखें…</string>
@@ -2420,7 +2433,9 @@
   <!--ChatWallpaperActivity-->
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">चैट का रंग</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">चैट रंग रीसेट करें</string>
   <string name="ChatWallpaperFragment__reset">फिर से स्थापित करना</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">क्या आप सभी चैट रंगों को ओवरराइड करना चाहेंगे?</string>
   <!--ChatWallpaperSelectionFragment-->
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">गैलरी को देखने के लिए स्टोरेज इजाज़त की ज़रूरत होती है।</string>
@@ -2448,10 +2463,16 @@
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">एक मेसेज भेजें</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">इस व्यक्ति के साथ आपका कोई समूह समान नहीं है। अवांछित संदेशों से बचने के लिए स्वीकार करने से पहले अनुरोधों की सावधानीपूर्वक समीक्षा करें।</string>
   <string name="GroupsInCommonMessageRequest__okay">ठीक है</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">यहां चैट रंग का पूर्वावलोकन दिया गया है।</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">रंग केवल आपको दिखाई देता है।</string>
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">मानक</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">तेज़, कम डेटा</string>
   <string name="QualitySelectorBottomSheetDialog__high">उच्च</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">धीमा, अधिक डेटा</string>
   <!--AppSettingsFragment-->
   <!--AccountSettingsFragment-->
   <!--ChatsSettingsFragment-->
@@ -2466,6 +2487,8 @@
   <string name="PrivacySettingsFragment__messaging">संदेश संवाद</string>
   <string name="PrivacySettingsFragment__disappearing_messages">गायब होने वाले मेसेज</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">रीसेंट सूची में और ऐप के अंदर स्क्रीनशॉट ब्लॉक करें</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">नई चैट के लिए डिफ़ॉल्ट टाइमर</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">आपके द्वारा शुरू की गई सभी नई चैट के लिए एक ग़ायब होने वाले संदेशों का समय सेट करें।</string>
   <!--AdvancedPrivacySettingsFragment-->
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__off">बंद </string>
@@ -2474,6 +2497,8 @@
   <string name="ExpireTimerSettingsFragment__1_hour">1 घंटा</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 मिनट</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 सेकंड</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">कस्टम समय</string>
+  <string name="ExpireTimerSettingsFragment__set">सेट</string>
   <string name="ExpireTimerSettingsFragment__save">सेव</string>
   <!--HelpSettingsFragment-->
   <string name="HelpSettingsFragment__contact_us">हमसे संपर्क करें</string>
@@ -2485,10 +2510,17 @@
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__chat_color">चैट का रंग</string>
   <string name="ChatColorSelectionFragment__edit">बदलें</string>
+  <string name="ChatColorSelectionFragment__duplicate">नक़ल</string>
   <string name="ChatColorSelectionFragment__delete">हटाए </string>
+  <string name="ChatColorSelectionFragment__delete_color">रंग हटाएं</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">ठोस</string>
+  <string name="CustomChatColorCreatorFragment__gradient">ढाल</string>
+  <string name="CustomChatColorCreatorFragment__hue">वर्ण</string>
+  <string name="CustomChatColorCreatorFragment__saturation">परिपूर्णता</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">सेव</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">रंग संपादित करें</string>
   <!--ChatColorGradientTool-->
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">फिर से स्थापित करना</string>
@@ -2534,5 +2566,14 @@
   <string name="SoundsAndNotificationsSettingsFragment__mentions">मेंछन</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">कस्टम अधिसूचनाएं</string>
   <!--StickerKeyboard-->
+  <!--PlaybackSpeedToggleTextView-->
+  <!--PaymentRecipientSelectionFragment-->
+  <!--NewConversationActivity-->
+  <string name="NewConversationActivity__new_message">नया Signal मेसेज</string>
+  <!--ContactFilterView-->
+  <!--VoiceNotePlayerView-->
+  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--ContactSelectionListItem-->
+  <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->
 </resources>

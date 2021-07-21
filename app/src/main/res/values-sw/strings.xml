@@ -1114,7 +1114,7 @@ nambari yako ya simu</string>
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Tuma</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">Nimeelewa</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Tunga barua pepe</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Faili hii itawekwa hadharani mkondoni ili wachangiaji watazame, unaweza kuikagua na kuihariri kabla ya kuiwasilisha.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Faili hii itawekwa hadharani mkondoni ili wachangiaji watazame, unaweza kuikagua na kuihariri kabla ya kuiwasilisha.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Inapakia logi</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Inapakia logi</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">Chagua program ya barua pepe</string> -->

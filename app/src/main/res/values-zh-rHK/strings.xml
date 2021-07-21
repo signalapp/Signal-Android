@@ -1284,7 +1284,7 @@
   <string name="SubmitDebugLogActivity_success">成功！</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">請複製此 URL 並新增至您的問題報告或支援電子郵件中：\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">分享</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">此記錄檔將會在線上公開張貼，以供各貢獻者查看。您可先行檢閱並編輯，然後才上載。</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">此記錄檔將會在線上公開張貼，以供各貢獻者查看。您可先行檢閱並編輯，然後才上載。</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">篩選：</string>
   <string name="SupportEmailUtil_device_info">裝置資訊：</string>
@@ -1645,7 +1645,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">查無結果</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">此記錄檔將會在線上公開張貼，以供各貢獻者查看，您可先行檢閱並編輯，然後才提交。</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">此記錄檔將會在線上公開張貼，以供各貢獻者查看，您可先行檢閱並編輯，然後才提交。</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">您要匯入您現有的文字訊息到 Signal 的加密資料庫嗎？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">預設的系統資料庫並不會受任何形式的修改或變更。</string>

@@ -40,6 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">स्मरणपत्र लपवायचे?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">पेमेंट रिकव्हरी फ्रेझ रेकॉर्ड करा</string>
   <string name="ApplicationPreferencesActivity_record_phrase">फ्रेझ रेकॉर्ड करा</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">आपण आपला PIN अक्षम करण्यापूर्वी, आपण आपले पेमेंट खाते रिकव्हर करू शकता हे सुनिश्चित करण्यासाठी आपण आपले पेमेंट रिकव्हरी फ्रेझ रेकॉर्ड करणे आवश्यक आहे.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d मिनिट</item>
@@ -51,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(व्हिडिओ)</string>
   <string name="DraftDatabase_Draft_location_snippet">(स्थान)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(प्रतिसाद द्या)</string>
+  <string name="DraftDatabase_Draft_voice_note">(व्हॉईस संदेश)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">गॅलरी</string>
   <string name="AttachmentKeyboard_file">फाईल</string>
@@ -58,6 +60,7 @@
   <string name="AttachmentKeyboard_location">स्थान</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">आपले फोटो आणि व्हिडिओ दर्शविण्यासाठी Signal ला परवानगी आवश्यक आहे.</string>
   <string name="AttachmentKeyboard_give_access">प्रवेश द्या</string>
+  <string name="AttachmentKeyboard_payment">पेमेंट</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">मिडिया निवडण्यासाठी अॅप सापडत नाही.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">फोटो, व्हिडिओ, किंवा ऑडिओ, संलग्न करण्यासाठी Signal ला संचयन परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"संचयन\" सक्षम करा.</string>
@@ -67,6 +70,7 @@
   <string name="AttachmentUploadJob_uploading_media">मिडिया अपलोड करत आहे…</string>
   <string name="AttachmentUploadJob_compressing_video_start">व्हिडिओ काँप्रेस करत आहे…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">संदेशांसाठी तपासत आहे…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">अवरोधित वापरकर्ते</string>
   <string name="BlockedUsersActivity__add_blocked_user">अवरोधित वापरकर्ता जोडा</string>
@@ -89,6 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$sअनब्लॉक करायचे?</string>
   <string name="BlockUnblockDialog_block">अवरोधित करा</string>
   <string name="BlockUnblockDialog_block_and_leave">अवरोधित करा आणि पडा</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">स्पॅम म्हणून रिपोर्ट करा आणि ब्लॉक करा</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">आज</string>
   <string name="BucketedThreadMedia_Yesterday">काल</string>
@@ -164,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">पाठविणे अयशस्वी</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">की विनिमय संदेश प्राप्त झाला आहे, प्रक्रिया करण्यासाठी टॅप करा.</string>
   <string name="ConversationItem_group_action_left">%1$s याने गट सोडले आहे.</string>
+  <string name="ConversationItem_send_paused">विराम दिलेले पाठवा</string>
   <string name="ConversationItem_click_to_approve_unencrypted">पाठविणे अयशस्वी, असुरक्षित फॉलबॅक करिता टॅप करा</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">अनएन्क्रिप्टेड SMS वर फॉलबॅक करायचे?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">अनएन्क्रिप्टेड MMS वर फॉलबॅक करायचे?</string>
@@ -233,6 +239,8 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">\"गट सेटिंग्ज\" मध्ये आता अधिक पर्याय</string>
   <string name="ConversationActivity_join">सामील व्हा</string>
   <string name="ConversationActivity_full">पूर्ण</string>
+  <string name="ConversationActivity_error_sending_media">मिडिया पाठवण्यात त्रुटी</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">स्पॅम म्हणून रिपोर्ट केले आणि ब्लॉक केले.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d न वाचलेला संदेश</item>
@@ -317,6 +325,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">काही संपर्क लेगसी गटात असू शकत नाहीत.</string>
+  <string name="CreateGroupActivity__select_members">सदस्य निवडा</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">प्रोफाईल</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाईल फोटो सेट करण्यात त्रुटी</string>
@@ -603,7 +612,9 @@
   <string name="ManageGroupActivity_mute_notifications">सूचना म्यूट करा</string>
   <string name="ManageGroupActivity_custom_notifications">सानुकूल सूचना</string>
   <string name="ManageGroupActivity_mentions">उल्लेख</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">चॅट रंग आणि वॉलपेपर </string>
   <string name="ManageGroupActivity_until_s">%1$s पर्यंत</string>
+  <string name="ManageGroupActivity_always">नेहमी</string>
   <string name="ManageGroupActivity_off">बंद</string>
   <string name="ManageGroupActivity_on">चालू</string>
   <string name="ManageGroupActivity_view_all_members">सर्व सदस्य बघा</string>
@@ -629,6 +640,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">हा गट श्रेणीसुधारित करा.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">हा एक असुरक्षित MMS गट आहे. खाजगीरीत्या चॅट करण्यासाठी, आपल्या संपर्कांना Signal वर आमंत्रित करा.</string>
   <string name="ManageGroupActivity_invite_now">आता आमंत्रित करा</string>
+  <string name="ManageGroupActivity_more">आणखी</string>
+  <string name="ManageGroupActivity_add_group_description">गट विवरण जोडा…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">उल्लेखसाठी मला सूचित करा</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">म्यूट केलेल्या चॅटमध्ये आपला उल्लेख केल्यानंतर सूचना प्राप्त करायच्या?</string>
@@ -812,6 +825,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal कॉल प्रगती मध्ये</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal कॉल प्रस्थापित करत आहे</string>
   <string name="NotificationBarManager__incoming_signal_call">येणारा Signal कॉल</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Signal कॉल सेवा बंद करत आहे</string>
   <string name="NotificationBarManager__deny_call">कॉलला नकार द्या</string>
   <string name="NotificationBarManager__answer_call">कॉलला उत्तर द्या</string>
   <string name="NotificationBarManager__end_call">कॉल संपवा</string>
@@ -831,6 +845,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">एक कॅप्शन जोडा…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">एक आयटम काढला गेला कारण त्याने आकार मर्यादा ओलांडली होती</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">आयटम काढला गेला कारण त्यात एक अज्ञात प्रकार होता.</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">आयटम काढला गेला कारण त्याने आकार मर्यादा ओलांडली किंवा त्यात एक अज्ञात प्रकार होता.</string>
   <string name="MediaSendActivity_camera_unavailable">कॅमेरा अनुपलब्ध.</string>
   <string name="MediaSendActivity_message_to_s">%s ला संदेश</string>
   <string name="MediaSendActivity_message">संदेश</string>
@@ -847,6 +863,8 @@
   <string name="MediaRepository_all_media">सर्व मिडिया</string>
   <string name="MediaRepository__camera">कॅमेरा</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">संदेश डिक्रिप्ट करण्यात अयशस्वी</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">डीबग लॉग पाठवण्यासाठी टॅप करा</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">अज्ञात</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal ची जुनी आवृत्ती वापरून एन्क्रिप्टेड संदेश प्राप्त झाला आहे जो आता समर्थित नाही. कृपया प्रेषकाला सर्वात अलीकडील आवृत्तीवर अद्यतन करण्यास आणि संदेश पुन्हा पाठविण्यास विचारा.</string>
@@ -947,6 +965,8 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ने गट नाव \"%2$s\" वर बदलले.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">गट नाव \"%1$s\" वर बदलले गेले आहे.</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">आपण गट विवरण बदलले आहे.</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s ने गट विवरण बदलले आहे.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">आपण गट अवतार बदलला आहे.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ने गट अवतार बदलला आहे.</string>
@@ -1664,7 +1684,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">काहीही सापडले नाही</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">अंशदात्यांनी बघण्यासाठी हा लॉग सार्वजनिकरीत्या ऑनलाईन पोस्ट केला जाईल, आपण प्रविष्ट करण्यापूर्वी त्यास तपासू आणि संपादित करू शकता.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">अंशदात्यांनी बघण्यासाठी हा लॉग सार्वजनिकरीत्या ऑनलाईन पोस्ट केला जाईल, आपण प्रविष्ट करण्यापूर्वी त्यास तपासू आणि संपादित करू शकता.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">आपल्याला आपले मजकूर संदेश Signal च्या एन्क्रिप्टेड डेटाबेस मध्ये आयात करायला आवडेल का?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">पूर्वनिर्धारित सिस्टिम डेटाबेस कुठल्याही प्रकारे सुधारित किंवा दुरूस्त केला जाणार नाही.</string>
@@ -1796,6 +1816,7 @@
   <string name="arrays__mute_for_one_hour">1 तासासाठी म्यूट करा</string>
   <string name="arrays__mute_for_one_day">1 दिवसासाठी म्यूट करा</string>
   <string name="arrays__mute_for_seven_days">7 दिवसांसाठी म्यूट करा</string>
+  <string name="arrays__always">नेहमी</string>
   <string name="arrays__settings_default">पूर्वनिर्धारित सेटिंग</string>
   <string name="arrays__enabled">सक्षम केले</string>
   <string name="arrays__disabled">अक्षम केले</string>
@@ -1891,6 +1912,7 @@
   <string name="preferences__appearance">स्वरूप</string>
   <string name="preferences__theme">थीम</string>
   <string name="preferences__chat_wallpaper">चॅट वॉलपेपर</string>
+  <string name="preferences__chat_color_and_wallpaper">चॅट रंग आणि वॉलपेपर </string>
   <string name="preferences__disable_pin">PIN अक्षम करा</string>
   <string name="preferences__enable_pin">PIN सक्षम करा</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">आपण PIN अक्षम केल्यास, आपण व्यक्तिचलितरीत्या बॅक अप आणि पुनर्स्थापना केल्याशिवाय आपण Signal वर पुन्हा नोंदणी करताना आपण सर्व डेटा गमवाल. PIN अक्षम केलेले असताना आपण नोंदणी लॉक चालू करू शकत नाही.</string>

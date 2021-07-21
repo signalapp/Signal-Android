@@ -1345,7 +1345,7 @@
   <string name="SubmitDebugLogActivity_success">Efetuado com sucesso!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copie este URL e adicione-o ao seu relatório de problema ou e-mail de pedido de apoio:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Partilhar</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Este registo será publicado online para ser consultado pelos contribuidores. Poderá analisá-lo e editá-lo antes do seu carregamento.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Este registo será publicado online para ser consultado pelos contribuidores. Poderá analisá-lo e editá-lo antes do seu carregamento.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Informação do dispositivo:</string>
@@ -1716,7 +1716,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Não foi encontrado nada</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Este registo será publicado on-line para que outros contribuidores o possam ver. Poderá examinar o registo e editá-lo antes de o submeter.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Este registo será publicado on-line para que outros contribuidores o possam ver. Poderá examinar o registo e editá-lo antes de o submeter.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gostaria de importar as suas mensagens de texto existentes para a base de dados encriptada do Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de dados padrão do sistema não será modificada ou alterada de nenhuma forma.</string>

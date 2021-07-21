@@ -1340,7 +1340,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SubmitDebugLogActivity_success">Klart!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopiera webbadressen och lägg till den i din felanmälan eller support-e-post:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Dela</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Denna logg publiceras offentligt på nätet för bidragsgivare att se. Du kan granska och redigera den innan uppladdning.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Denna logg publiceras offentligt på nätet för bidragsgivare att se. Du kan granska och redigera den innan uppladdning.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Enhetsinformation:</string>
@@ -1711,7 +1711,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Inget hittat</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Denna logg publiceras på nätet och visas för bidragsgivare. Du kan granska och redigera den innan du skickar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Denna logg publiceras på nätet och visas för bidragsgivare. Du kan granska och redigera den innan du skickar.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vill du importera dina existerande SMS-meddelanden till Signals krypterade databas?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Standard systemdatabasen kommer inte att modifieras eller ändras på något sätt.</string>
@@ -1758,7 +1758,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="EditAboutFragment_encrypted">Krypterad</string>
   <string name="EditAboutFragment_be_kind">Var snäll</string>
   <string name="EditAboutFragment_coffee_lover">Kaffeälskare</string>
-  <string name="EditAboutFragment_free_to_chat">Tillgänglig för chatt</string>
+  <string name="EditAboutFragment_free_to_chat">Tillgänglig för att chatta</string>
   <string name="EditAboutFragment_taking_a_break">Tar en rast</string>
   <string name="EditAboutFragment_working_on_something_new">Arbetar på något nytt</string>
   <!--EditProfileFragment-->

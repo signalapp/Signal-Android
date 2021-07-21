@@ -1626,7 +1626,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ไม่พบสิ่งใด</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">ปูมนี้จะถูกเผยแพร่สู่สาธารณะทางออนไลน์ เพื่อให้ผู้ร่วมพัฒนาโปรแกรมได้เห็น คุณสามารถตรวจสอบและแก้ไขปูมได้ก่อนส่ง</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">ปูมนี้จะถูกเผยแพร่สู่สาธารณะทางออนไลน์ เพื่อให้ผู้ร่วมพัฒนาโปรแกรมได้เห็น คุณสามารถตรวจสอบและแก้ไขปูมได้ก่อนส่ง</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">คุณต้องการนำข้อความของคุณเข้าไปเก็บไว้ในฐานข้อมูลที่เข้ารหัสลับของ Signal หรือไม่?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">ฐานข้อมูลมาตรฐานของระบบจะไม่ถูกแก้ไขหรือเปลี่ยนแปลงใดๆ</string>

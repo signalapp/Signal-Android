@@ -1325,7 +1325,7 @@
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">সাবমিট</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">বুঝতে পেরেছি</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">ইমেইল লিখুন</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">এই লগটি অবদানকারীদের দেখার জন্য অনলাইনে প্রকাশ্যে পোস্ট করা হবে, আপনি সাবমিট করার আগে এটি পরীক্ষা এবং সম্পাদনা করতে পারেন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">এই লগটি অবদানকারীদের দেখার জন্য অনলাইনে প্রকাশ্যে পোস্ট করা হবে, আপনি সাবমিট করার আগে এটি পরীক্ষা এবং সম্পাদনা করতে পারেন।</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">লগগুলি লোড হচ্ছে …</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">লগগুলি আপলোড হচ্ছে …</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">ইমেইল অ্যাপ বাছুন</string> -->

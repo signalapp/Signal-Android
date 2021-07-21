@@ -52,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(videó)</string>
   <string name="DraftDatabase_Draft_location_snippet">(hely)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(válasz)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Hangüzenet)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galéria</string>
   <string name="AttachmentKeyboard_file">Fájl</string>
@@ -325,6 +326,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Néhány kontakt nem lehet régi típusú csoport tagja.</string>
+  <string name="CreateGroupActivity__select_members">Tagok kiválasztása</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Hiba történt a profilkép beállítása során</string>
@@ -860,6 +862,8 @@
   <string name="MediaRepository_all_media">Összes médiafájl</string>
   <string name="MediaRepository__camera">Kamera</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Nem sikerült visszafejteni az üzenetet</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Érints a hibakeresési napló beküldéséhez</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Ismeretlen</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Egy olyan üzenet érkezett, amely a Signal egy régebbi, már nem támogatott verziójával lett titkosítva. Kérd meg a feladót, hogy frissítsen a legfrissebb verzióra, majd küldje el újra az üzenetet!</string>
@@ -1340,7 +1344,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SubmitDebugLogActivity_success">Sikerült!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Másold ki ezt a URL-t és illeszd be a hibajegybe vagy a támogatásnak küldött e-mailbe:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Megosztás</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Ez a naplófájl nyilvánosan elérhető lesz az interneten annak érdekében, hogy a fejlesztők megtekinthessék. A tartalmát feltöltés előtt ellenőrizheted, és szabadon szerkesztheted.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Ez a naplófájl nyilvánosan elérhető lesz az interneten annak érdekében, hogy a fejlesztők megtekinthessék. A tartalmát feltöltés előtt ellenőrizheted, és szabadon szerkesztheted.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Szűrő:</string>
   <string name="SupportEmailUtil_device_info">Eszköz információ:</string>
@@ -1711,7 +1715,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nincs találat</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Ez a napló nyilvános közlésre kerül az interneten annak érdekében, hogy a fejlesztők megtekinthessék. Küldés előtt szabadon megvizsgálhatod és szerkesztheted.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Ez a napló nyilvános közlésre kerül az interneten annak érdekében, hogy a fejlesztők megtekinthessék. Küldés előtt szabadon megvizsgálhatod és szerkesztheted.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Szeretnéd importálni a már meglévő szöveges üzeneteidet a Signal titkosított adatbázisába?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Az alapértelmezett rendszer adatbázist semmilyen módon nem fogjuk megváltoztatni.</string>
@@ -2659,6 +2663,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Vágólapra másolva</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">A hivatkozás jelenleg nem aktív</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Hangüzenet lejátszása sikertelen</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Hangüzenet · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s (címzett: %2$s)</string>
@@ -2725,6 +2730,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="DeleteAccountCountryPickerFragment__search_countries">Ország keresése</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Kihagyás</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d tag</item>
+    <item quantity="other">%1$d tag</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Megosztás</string>
   <string name="ShareActivity__send">Küldés</string>
@@ -2946,6 +2955,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ChatColorGradientTool_bottom_edge_selector">Alsó él kiválasztó</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Egyedi reakciók</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Érints emoji cseréjéhez</string>
   <string name="EditReactionsFragment__reset">Alaphelyzetbe állítás</string>
   <string name="EditReactionsFragment_save">Mentés</string>
   <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Háttérképhez passzoló automatikus színválasztás</string>
@@ -2972,6 +2982,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="EmojiSearchFragment__no_results_found">Nincs találat</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Ismeretlen csengőhang</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Üzenet küldése</string>
+  <string name="ConversationSettingsFragment__start_video_call">Videóhívás indítása</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Hanghívás indítása</string>
   <string name="ConversationSettingsFragment__message">Üzenet</string>
   <string name="ConversationSettingsFragment__video">Videó</string>
   <string name="ConversationSettingsFragment__audio">Hang</string>
@@ -2980,6 +2993,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ConversationSettingsFragment__muted">Némítva</string>
   <string name="ConversationSettingsFragment__search">Keresés</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Eltűnő üzenetek</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Hangok &amp; értesítések</string>
+  <string name="ConversationSettingsFragment__contact_details">Kontakt adatok</string>
   <string name="ConversationSettingsFragment__view_safety_number">Biztonsági szám megjelenítése</string>
   <string name="ConversationSettingsFragment__block">Letiltás</string>
   <string name="ConversationSettingsFragment__block_group">Csoport letiltása</string>
@@ -2989,8 +3004,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ConversationSettingsFragment__see_all">Összes megtekintése</string>
   <string name="ConversationSettingsFragment__add_members">Tagok hozzáadása</string>
   <string name="ConversationSettingsFragment__permissions">Jogosultságok</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Kérelmek &amp; meghívók</string>
   <string name="ConversationSettingsFragment__group_link">Csoporthivatkozás</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Hozzáadás kontaktként</string>
   <string name="ConversationSettingsFragment__unmute">Némítás feloldása</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Beszélgetés némítva eddig: %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Beszélgetés némítva örökké</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonszám másolva a vágólapra.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefonszám</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Tagok hozzáadása</string>
@@ -3002,17 +3022,27 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Értesítések némítása</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nincs némítva</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Némítva eddig: %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Említések</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Mindig értesítsen</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ne értesítsen</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Egyedi értesítések</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Nemrég használt</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">Új fizetés</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Új üzenet</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Telefonszám vagy név keresése</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

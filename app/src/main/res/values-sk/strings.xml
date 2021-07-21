@@ -1467,7 +1467,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SubmitDebugLogActivity_success">Operácia úspešne dokončená!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Skopírujte túto URL adresu a pridajte ju k hláseniu o chybe alebo e-mailu určenému tímu podpory:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Zdieľať</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Tento záznam bude verejne zverejnený online, aby si ho mohli prispievatelia pozrieť. Pred nahraním ho môžete skontrolovať a upraviť.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Tento záznam bude verejne zverejnený online, aby si ho mohli prispievatelia pozrieť. Pred nahraním ho môžete skontrolovať a upraviť.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Info o zariadení:</string>
@@ -1858,7 +1858,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nič sa nenašlo</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Tento záznam bude zverejnený online pre vývojárov. Pred odoslaním ho môžete skontrolovať a upraviť.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Tento záznam bude zverejnený online pre vývojárov. Pred odoslaním ho môžete skontrolovať a upraviť.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovať vaše existujúce textové správy do šifrovanej databázy Signalu?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Pôvodná systémová databáza nebude žiadnym spôsobom modifikovaná.</string>

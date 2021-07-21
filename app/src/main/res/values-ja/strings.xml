@@ -1274,7 +1274,7 @@
   <string name="SubmitDebugLogActivity_success">成功しました！</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">このURLをコピーしてバグレポートやサポートメールに貼り付けてください:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">共有</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">このログはコントリビュータに公開されますが、アップロードする前に内容を確認したり編集することができます。</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">このログはコントリビュータに公開されますが、アップロードする前に内容を確認したり編集することができます。</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">フィルタ:</string>
   <string name="SupportEmailUtil_device_info">Device info:</string>
@@ -1635,7 +1635,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">何も見つかりませんでした</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">このログはコントリビュータに公開されますが、提出する前に内容を確認したり編集することができます。</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">このログはコントリビュータに公開されますが、提出する前に内容を確認したり編集することができます。</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">既存のテキストメッセージをSignalの暗号化されたデータベースにインポートしますか？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">既定のシステムデータベースは変更や改ざんされません。</string>
@@ -2696,7 +2696,7 @@
   <string name="GroupsInCommonMessageRequest__about_message_requests">メッセージ申請について</string>
   <string name="GroupsInCommonMessageRequest__okay">OK</string>
   <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">チャットの色のプレビューです。</string>
-  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">この色はあなたたけに表示されます。</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">この色はあなただけに表示されます。</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">グループの説明</string>
   <!--QualitySelectorBottomSheetDialog-->

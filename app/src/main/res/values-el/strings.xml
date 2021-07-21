@@ -1701,7 +1701,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Δε βρέθηκε τίποτα</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Αυτό το αρχείο καταγραφής θα δημοσιευθεί διαδικτυακά ώστε οι συνεισφέροντες να μπορούν να το δουν, οπότε ίσως επιθυμείς να το μελετήσεις και να το τροποποιήσεις πριν την καταχώρησή του.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Αυτό το αρχείο καταγραφής θα δημοσιευθεί διαδικτυακά ώστε οι συνεισφέροντες να μπορούν να το δουν, οπότε ίσως επιθυμείς να το μελετήσεις και να το τροποποιήσεις πριν την καταχώρησή του.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Θέλεις να εισάγεις τα υπάρχοντα μηνύματά σου στην κρυπτογραφημένη βάση δεδομένων του Signal;</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Η προκαθορισμένη βάση δεδομένων του συστήματος δε θα αλλαχθεί καθόλου.</string>

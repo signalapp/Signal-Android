@@ -1328,7 +1328,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SubmitDebugLogActivity_success">Fullført!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL-en og legg den til i din feilrapport eller support-e-postadressen:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Del</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Denne logg-meldingen vil bli publisert på nettet for deltakere i prosjektet. Du kan se over og redigere den før du sender den inn.</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Denne logg-meldingen vil bli publisert på nettet for deltakere i prosjektet. Du kan se over og redigere den før du sender den inn.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Enhetsinformasjon:</string>
@@ -1698,7 +1698,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ingenting funnet</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Denne loggen blir publisert på nett for bruk blant bidragsytere. Du kan undersøke og redigere den før du sender den inn.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Denne loggen blir publisert på nett for bruk blant bidragsytere. Du kan undersøke og redigere den før du sender den inn.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vil du importere tekstmeldinger som ligger på enheten til Signals krypterte database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Forvalgt systemdatabase blir ikke endret på noen måte.</string>

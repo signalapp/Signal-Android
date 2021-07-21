@@ -1315,7 +1315,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Iesniegt</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">Pieleca</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Rakstīt e-pastu</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Šis žurnāls tiks publiskots internetā, lai lietotnes palīgi varētu to apskatīt. Jūs to variet pārskatīt un rediģēt pirms iesniegšanas.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Šis žurnāls tiks publiskots internetā, lai lietotnes palīgi varētu to apskatīt. Jūs to variet pārskatīt un rediģēt pirms iesniegšanas.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Ielādē žurnālus…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Augšupielādē žurnālus…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">Izvēlieties e-pasta lietotni</string> -->
