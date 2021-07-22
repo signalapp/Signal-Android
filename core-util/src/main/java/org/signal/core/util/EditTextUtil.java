@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -26,10 +27,15 @@ public final class EditTextUtil {
     text.setFilters(filters.toArray(new InputFilter[0]));
   }
 
-  public static void setCursorColor(EditText text, @ColorInt int colorInt) {
+  public static void setCursorColor(@NonNull EditText text, @ColorInt int colorInt) {
     if (Build.VERSION.SDK_INT >= 29) {
-      Drawable cursorDrawable = text.getTextCursorDrawable().mutate();
+      Drawable drawable = text.getTextCursorDrawable();
 
+      if (drawable == null) {
+        return;
+      }
+
+      Drawable cursorDrawable = drawable.mutate();
       cursorDrawable.setColorFilter(new PorterDuffColorFilter(colorInt, PorterDuff.Mode.SRC_IN));
       text.setTextCursorDrawable(cursorDrawable);
     } else {
