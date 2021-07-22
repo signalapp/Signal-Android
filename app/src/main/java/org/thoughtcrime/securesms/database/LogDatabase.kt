@@ -71,6 +71,7 @@ class LogDatabase private constructor(
       if (instance == null) {
         synchronized(LogDatabase::class.java) {
           if (instance == null) {
+            SqlCipherLibraryLoader.load(context)
             instance = LogDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context))
           }
         }

@@ -10,6 +10,7 @@ import net.sqlcipher.database.SQLiteDatabase
 class SqlCipherLibraryLoader {
 
   companion object {
+    @Volatile
     private var loaded = false
     private val LOCK = Object()
 
