@@ -107,7 +107,7 @@ public final class Megaphones {
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
       put(Event.CHAT_COLORS, ALWAYS);
-      put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfileMegaphone(context) ? ALWAYS : NEVER);
+      put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
     }};
   }
 
@@ -383,8 +383,18 @@ public final class Megaphones {
     return shouldShow;
   }
 
-  private static boolean shouldShowAddAProfileMegaphone(@NonNull Context context) {
-    return !AvatarHelper.hasAvatar(context, Recipient.self().getId());
+  private static boolean shouldShowAddAProfilePhotoMegaphone(@NonNull Context context) {
+    if (SignalStore.misc().hasEverHadAnAvatar()) {
+      return false;
+    }
+
+    boolean hasAnAvatar = AvatarHelper.hasAvatar(context, Recipient.self().getId());
+    if (hasAnAvatar) {
+      SignalStore.misc().markHasEverHadAnAvatar();
+      return false;
+    }
+
+    return true;
   }
 
   public enum Event {

@@ -253,7 +253,10 @@ public class EditProfileFragment extends LoggingFragment {
 
   private void initializeProfileAvatar() {
     viewModel.avatar().observe(getViewLifecycleOwner(), bytes -> {
-      if (bytes == null) return;
+      if (bytes == null) {
+        GlideApp.with(this).clear(avatar);
+        return;
+      }
 
       GlideApp.with(this)
               .load(bytes)

@@ -160,8 +160,8 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
     val menuRes = when (avatar) {
       is Avatar.Photo -> R.menu.avatar_picker_context
       is Avatar.Text -> R.menu.avatar_picker_context
-      is Avatar.Vector -> return false
-      is Avatar.Resource -> return false
+      is Avatar.Vector -> return true
+      is Avatar.Resource -> return true
     }
 
     val popup = PopupMenu(context, anchorView, Gravity.TOP)

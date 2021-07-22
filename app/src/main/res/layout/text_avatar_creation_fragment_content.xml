@@ -2,63 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
-        android:id="@+id/text_avatar_creation_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:theme="?attr/settingsToolbarStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_arrow_left_24"
-        app:title="@string/TextAvatarCreationFragment__preview"
-        app:titleTextAppearance="@style/Signal.Text.Title" />
-
-    <View
-        android:id="@+id/text_avatar_creation_hairline"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="-1dp"
-        android:background="@color/transparent_black_05"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_avatar_creation_tabs" />
-
-    <org.thoughtcrime.securesms.components.ControllableTabLayout
-        android:id="@+id/text_avatar_creation_tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_avatar_creation_toolbar"
-        app:tabGravity="fill"
-        app:tabIndicatorColor="@color/signal_inverse_primary"
-        app:tabIndicatorFullWidth="false"
-        app:tabMode="fixed"
-        app:tabTextAppearance="@style/TextAppearance.Signal.Body2">
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/text_avatar_creation_tab_text"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/TextAvatarCreationFragment__text" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/text_avatar_creation_tab_color"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/TextAvatarCreationFragment__color" />
-
-    </org.thoughtcrime.securesms.components.ControllableTabLayout>
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/avatar_picker_image_wrapper"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        app:layout_constraintTop_toBottomOf="@id/text_avatar_creation_tabs"
+        app:layout_constraintBottom_toTopOf="@id/text_avatar_creation_recycler"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -81,6 +34,7 @@
             android:background="@null"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
+            android:imeOptions="actionNext"
             android:inputType="textCapCharacters"
             app:layout_constraintBottom_toBottomOf="@id/avatar_picker_item_image"
             app:layout_constraintEnd_toEndOf="@id/avatar_picker_item_image"
@@ -100,28 +54,15 @@
         android:clipChildren="false"
         android:clipToPadding="false"
         android:paddingBottom="80dp"
-        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_max="326dp"
+        app:layout_constraintHeight_min="160dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/avatar_picker_image_wrapper"
         app:spanCount="4"
         tools:itemCount="12"
         tools:listitem="@layout/avatar_picker_item" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/text_avatar_creation_done"
-        style="@style/Signal.Widget.Button.Large.Primary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:minHeight="48dp"
-        android:text="@string/TextAvatarCreationFragment__done"
-        app:cornerRadius="28dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
