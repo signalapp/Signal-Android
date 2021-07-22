@@ -57,6 +57,7 @@ import android.view.View.OnKeyListener;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -381,7 +382,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private   MenuItem                     searchViewItem;
   private   MessageRequestsBottomView    messageRequestBottomView;
   private   ConversationReactionDelegate reactionDelegate;
-  private   Stub<VoiceNotePlayerView>    voiceNotePlayerViewStub;
+  private   Stub<FrameLayout>            voiceNotePlayerViewStub;
 
   private   AttachmentManager        attachmentManager;
   private   AudioRecorder            audioRecorder;
@@ -413,6 +414,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private VoiceRecorderWakeLock        voiceRecorderWakeLock;
   private DraftViewModel               draftViewModel;
   private VoiceNoteMediaController     voiceNoteMediaController;
+  private VoiceNotePlayerView          voiceNotePlayerView;
 
 
   private LiveRecipient recipient;
@@ -2076,17 +2078,23 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     voiceNoteMediaController.getVoiceNotePlayerViewState().observe(this, state -> {
       if (state.isPresent()) {
-        if (!voiceNotePlayerViewStub.resolved()) {
-          voiceNotePlayerViewStub.get().setListener(new VoiceNotePlayerViewListener());
-        }
-        voiceNotePlayerViewStub.get().show();
-        voiceNotePlayerViewStub.get().setState(state.get());
+        requireVoiceNotePlayerView().show();
+        requireVoiceNotePlayerView().setState(state.get());
       } else if (voiceNotePlayerViewStub.resolved()) {
-        voiceNotePlayerViewStub.get().hide();
+        requireVoiceNotePlayerView().hide();
       }
     });
 
     voiceNoteMediaController.getVoiceNotePlaybackState().observe(ConversationActivity.this, inputPanel.getPlaybackStateObserver());
+  }
+
+  private @NonNull VoiceNotePlayerView requireVoiceNotePlayerView() {
+    if (voiceNotePlayerView == null) {
+      voiceNotePlayerView = voiceNotePlayerViewStub.get().findViewById(R.id.voice_note_player_view);
+      voiceNotePlayerView.setListener(new VoiceNotePlayerViewListener());
+    }
+
+    return voiceNotePlayerView;
   }
 
   private void updateWallpaper(@Nullable ChatWallpaper chatWallpaper) {

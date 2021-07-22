@@ -38,6 +38,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,8 +59,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -92,7 +91,6 @@ import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
-import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView;
 import org.thoughtcrime.securesms.conversation.ConversationFragment;
@@ -195,7 +193,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private Drawable                          archiveDrawable;
   private AppForegroundObserver.Listener    appForegroundObserver;
   private VoiceNoteMediaControllerOwner     mediaControllerOwner;
-  private Stub<VoiceNotePlayerView>         voiceNotePlayerViewStub;
+  private Stub<FrameLayout>                 voiceNotePlayerViewStub;
+  private VoiceNotePlayerView               voiceNotePlayerView;
+
 
   private Stopwatch startupStopwatch;
 
@@ -531,17 +531,23 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private void initializeVoiceNotePlayer() {
     mediaControllerOwner.getVoiceNoteMediaController().getVoiceNotePlayerViewState().observe(getViewLifecycleOwner(), state -> {
       if (state.isPresent()) {
-        if (!voiceNotePlayerViewStub.resolved()) {
-          voiceNotePlayerViewStub.get().setListener(new VoiceNotePlayerViewListener());
-        }
-
-        voiceNotePlayerViewStub.get().setState(state.get());
-        voiceNotePlayerViewStub.get().show();
+        requireVoiceNotePlayerView().setState(state.get());
+        requireVoiceNotePlayerView().show();
       } else if (voiceNotePlayerViewStub.resolved()) {
-        voiceNotePlayerViewStub.get().hide();
+        requireVoiceNotePlayerView().hide();
       }
     });
   }
+
+  private @NonNull VoiceNotePlayerView requireVoiceNotePlayerView() {
+    if (voiceNotePlayerView == null) {
+      voiceNotePlayerView = voiceNotePlayerViewStub.get().findViewById(R.id.voice_note_player_view);
+      voiceNotePlayerView.setListener(new VoiceNotePlayerViewListener());
+    }
+
+    return voiceNotePlayerView;
+  }
+
 
   private void initializeListAdapters() {
     defaultAdapter          = new ConversationListAdapter(GlideApp.with(this), this);
