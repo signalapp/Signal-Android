@@ -1344,7 +1344,7 @@
   <string name="SubmitDebugLogActivity_success">موفقیت!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">این ‌‌URL را کپی کرده و آن را به گزارش اشکال یا ایمیل پشتیبانی اضافه کنید:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">اشتراک‌گذاری</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">این گزارش به صورت عمومی و آنلاین برای بازنگری مشارکت‌کنندگان منتشر خواهد شد، شما می‌توانید قبل از بارگذاری آن را بازرسی کرده و ویرایش کنید.</string> -->
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">این گزارش به صورت عمومی و آنلاین برای بازنگری مشارکت‌کنندگان منتشر خواهد شد، شما می‌توانید قبل از بارگذاری آن را بازرسی کنید.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">فیلتر:</string>
   <string name="SupportEmailUtil_device_info">اطلاعات دستگاه:</string>
@@ -1714,8 +1714,6 @@
   <string name="giphy_activity_toolbar__search_gifs">جستجوی گیف‌ها</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">چیزی یافت نشد</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">این گزارش به صورت آنلاین برای بازنگری مشارکت‌کنندگان منتشر خواهد شد، می‌توانید آن را قبل از ارسال بررسی کرده و ویرایش کنید.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">آیا مایل به وارد کردن پیام‌های متنی موجود خود به پایگاه داده رمزگذاری شدهٔ سیگنال هستید؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">پایگاه دادهٔ پيش‌‌فرض سيستم به هيچ شکلی تغییر نخواهد کرد.</string>
@@ -2978,6 +2976,11 @@
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">ما رنگ‌های گفتگو را تغییر دادیم تا به شما گزینه‌ها‌ی بیشتری بدهیم و خواندن گفتگوها را آسان‌تر کنیم.</string>
   <string name="ChatColorsMegaphone__appearance">ظاهر برنامه</string>
   <string name="ChatColorsMegaphone__not_now">حالا نه</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">یک عکس پروفایل اضافه کنید</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">برای حروف اول خود یک ظاهر و رنگ جدید انتخاب کنید.</string>
+  <string name="AddAProfilePhotoMegaphone__not_now">حالا نه</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">افزودن عکس</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">شکلک</string>
   <string name="KeyboardPagerFragment_open_emoji_search">جستجوی ایموجی را باز کنید</string>
@@ -3055,8 +3058,23 @@
   <string name="ContactFilterView__search_name_or_number">نام یا شماره را جستجو کنید</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__avatar_preview">پیش‌نمایش آواتار</string>
+  <string name="AvatarPickerFragment__camera">دوربین</string>
+  <string name="AvatarPickerFragment__take_a_picture">یک عکس بگیرید</string>
+  <string name="AvatarPickerFragment__choose_a_photo">یک عکس انتخاب کنید</string>
+  <string name="AvatarPickerFragment__photo">عکس</string>
+  <string name="AvatarPickerFragment__text">متن</string>
+  <string name="AvatarPickerFragment__save">ذخیره</string>
+  <string name="AvatarPickerFragment__select_an_avatar">یک آواتار انتخاب کنید</string>
+  <string name="TextAvatarCreationFragment__preview">پیش‌نمایش</string>
+  <string name="TextAvatarCreationFragment__done">تمام</string>
+  <string name="TextAvatarCreationFragment__text">متن</string>
+  <string name="TextAvatarCreationFragment__color">رنگ</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">پیامک</string>
   <string name="ContactSelectionListItem__dot_s">%1$s</string>
+  <string name="AvatarPickerFragment__clear_avatar">پاک کردن آواتار</string>
+  <string name="AvatarPickerFragment__edit">ویرایش</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">ذخیره کردن آواتار موفق نبود</string>
   <!--EOF-->
 </resources>

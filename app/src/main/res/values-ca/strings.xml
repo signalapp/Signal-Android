@@ -1340,7 +1340,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SubmitDebugLogActivity_success">Acabat!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copieu aquest URL i afegiu-lo a l\'informe d\'error o al correu electrònic de suport:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Comparteix</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Aquest registre es publicarà públicament en línia perquè els col·laboradors el vegin. Podeu examinar-lo i editar-lo abans de penjar-lo.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtre:</string>
   <string name="SupportEmailUtil_device_info">Informació del dispositiu:</string>
@@ -1710,8 +1709,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="giphy_activity_toolbar__search_gifs">Cerca de GIF</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">No s\'ha trobat res</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Aquest registre es penjarà públicament perquè el vegin els col·laboradors. Podeu examinar-lo i editar-lo abans d\'enviar-lo.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Voleu importar els missatges de text existents a la base de dades encriptada del Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La base de dades predeterminada del sistema no es modificarà ni  s\'alterarà de cap manera.</string>
@@ -2974,6 +2971,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Hem canviat els colors de les converses per oferir-vos més opcions i facilitar-ne la lectura.</string>
   <string name="ChatColorsMegaphone__appearance">Aparença</string>
   <string name="ChatColorsMegaphone__not_now">Ara no</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Ara no</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoticones</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Obre la cerca d\'emoticones</string>
@@ -3051,8 +3050,17 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ContactFilterView__search_name_or_number">Cerqueu un nom o un número</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">Càmera</string>
+  <string name="AvatarPickerFragment__photo">Foto</string>
+  <string name="AvatarPickerFragment__text">Text</string>
+  <string name="AvatarPickerFragment__save">Desa</string>
+  <string name="TextAvatarCreationFragment__preview">Previsualitza</string>
+  <string name="TextAvatarCreationFragment__done">Fet</string>
+  <string name="TextAvatarCreationFragment__text">Text</string>
+  <string name="TextAvatarCreationFragment__color">Color</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__edit">Edita</string>
   <!--EOF-->
 </resources>

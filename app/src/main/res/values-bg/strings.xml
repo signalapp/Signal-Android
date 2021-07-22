@@ -1693,8 +1693,6 @@
   <string name="giphy_activity_toolbar__search_gifs">Търсете GIF-ове</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Няма нищо открито</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Този лог ще бъде публичен и разработчиците ще могат да го рагледат, може да го прегледате и промените преди да го изпратите.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Желаете ли да внесете вече съществуващите текстови съобщения в криптираната база данни на Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Системната база данни няма да бъде променена по никакъв начин.</string>
@@ -2694,6 +2692,8 @@
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">Облик</string>
   <string name="ChatColorsMegaphone__not_now">Не сега</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Не сега</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Емоджи</string>
   <string name="KeyboardPagerFragment_stickers">Стикери</string>
@@ -2741,7 +2741,14 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">Камера</string>
+  <string name="AvatarPickerFragment__photo">Снимка</string>
+  <string name="AvatarPickerFragment__save">Запази</string>
+  <string name="TextAvatarCreationFragment__preview">Преглед</string>
+  <string name="TextAvatarCreationFragment__done">Готово</string>
+  <string name="TextAvatarCreationFragment__color">Цвят</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="AvatarPickerFragment__edit">Редакция</string>
   <!--EOF-->
 </resources>

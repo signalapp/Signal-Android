@@ -1468,7 +1468,7 @@
   <string name="SubmitDebugLogActivity_success">Įvykdyta!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Nukopijuokite šį URL ir pridėkite jį į savo pranešimą apie klaidą ar palaikymo el. laišką:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Bendrinti</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Šis žurnalas bus viešai paskelbtas internete talkininkams peržiūrėti. Jūs galite jį išnagrinėti ir, prieš išsiųsdami, paredaguoti.</string> -->
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Šis žurnalas bus viešai paskelbtas internete talkininkams peržiūrėti. Prieš išsiųsdami, galite jį panagrinėti.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtras:</string>
   <string name="SupportEmailUtil_device_info">Įrenginio informacija:</string>
@@ -1858,8 +1858,6 @@
   <string name="giphy_activity_toolbar__search_gifs">Ieškoti GIF</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nieko nerasta</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Šis žurnalas bus viešai paskelbtas internete talkininkams peržiūrėti, prieš jį pateikdami, galite jį išnagrinėti ir redaguoti .</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Ar norėtumėte importuoti savo esamas tekstines žinutes į užšifruotą Signal duomenų bazę?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Numatytoji sistemos duomenų bazė jokiu būdu nebus pakeista ar modifikuota.</string>
@@ -3150,6 +3148,11 @@
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Mes perjungėme pokalbių spalvas, kad suteiktume jums daugiau parinkčių ir palengvintume pokalbių skaitymą.</string>
   <string name="ChatColorsMegaphone__appearance">Išvaizda</string>
   <string name="ChatColorsMegaphone__not_now">Ne dabar</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Pridėkite profilio nuotrauką</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Pasirinkite išvaizdą ir spalvą arba tinkinkite savo inicialus.</string>
+  <string name="AddAProfilePhotoMegaphone__not_now">Ne dabar</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Pridėti nuotrauką</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Šypsenėlės</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Atverti šypsenėlių paiešką</string>
@@ -3227,8 +3230,23 @@
   <string name="ContactFilterView__search_name_or_number">Ieškoti vardo ar numerio</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__avatar_preview">Avataro peržiūra</string>
+  <string name="AvatarPickerFragment__camera">Kamera</string>
+  <string name="AvatarPickerFragment__take_a_picture">Padaryti nuotrauką</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Pasirinkti nuotrauką</string>
+  <string name="AvatarPickerFragment__photo">Nuotrauka</string>
+  <string name="AvatarPickerFragment__text">Tekstas</string>
+  <string name="AvatarPickerFragment__save">Įrašyti</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Pasirinkti avatarą</string>
+  <string name="TextAvatarCreationFragment__preview">Peržiūra</string>
+  <string name="TextAvatarCreationFragment__done">Atlikta</string>
+  <string name="TextAvatarCreationFragment__text">Tekstas</string>
+  <string name="TextAvatarCreationFragment__color">Spalva</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__clear_avatar">Išvalyti avatarą</string>
+  <string name="AvatarPickerFragment__edit">Taisyti</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Nepavyko įrašyti avataro</string>
   <!--EOF-->
 </resources>

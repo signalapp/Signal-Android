@@ -1686,8 +1686,6 @@
   <string name="giphy_activity_toolbar__search_gifs">Пребарај GIF-ови</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ништо не е пронајдено</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Овој запис ќе биде објавен јавно онлајн за сите придонесувачи. Можете да го прегледате и уредите пред да го испратите.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Дали сакате да ги увезете постоечките текстуални пораки во енкриптираната база на Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Стандардната системска база нема да биде променета на ниеден начин.</string>
@@ -2809,6 +2807,8 @@
   <string name="ChatColorsMegaphone__new_chat_colors">Нови бои за разговори</string>
   <string name="ChatColorsMegaphone__appearance">Изглед</string>
   <string name="ChatColorsMegaphone__not_now">Не сега</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Не сега</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Емоџи</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Отвори пребарување на емоџи</string>
@@ -2862,7 +2862,14 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">Камера</string>
+  <string name="AvatarPickerFragment__photo">Слика</string>
+  <string name="AvatarPickerFragment__save">Зачувај</string>
+  <string name="TextAvatarCreationFragment__preview">Преглед</string>
+  <string name="TextAvatarCreationFragment__done">Готово</string>
+  <string name="TextAvatarCreationFragment__color">Боја</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="AvatarPickerFragment__edit">Измени</string>
   <!--EOF-->
 </resources>

@@ -1675,8 +1675,6 @@
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ഒന്നും കണ്ടെത്തിയില്ല</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">സംഭാവന ചെയ്യുന്നവർക്കായി ഈ ലോഗ് പൊതുവായി ഓൺലൈനിൽ പോസ്റ്റുചെയ്യും, സമർപ്പിക്കുന്നതിന് മുമ്പ് നിങ്ങൾക്കത് പരിശോധിച്ച് എഡിറ്റുചെയ്യാം.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">നിങ്ങളുടെ നിലവിലുള്ള വാചക സന്ദേശങ്ങൾ Signal-ന്റെ എൻ‌ക്രിപ്റ്റ് ചെയ്ത ഡാറ്റാബേസിലേക്ക് ഇറക്കുമതി ചെയ്യാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">സ്ഥിരസ്ഥിതി സിസ്റ്റം ഡാറ്റാബേസ് ഒരു തരത്തിലും പരിഷ്കരിക്കുകയോ മാറ്റം വരുത്തുകയോ ചെയ്യില്ല.</string>
@@ -2656,6 +2654,8 @@
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">ദൃശ്യത</string>
   <string name="ChatColorsMegaphone__not_now">ഇപ്പോൾ വേണ്ട</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ഇമോജി</string>
   <string name="KeyboardPagerFragment_stickers">സ്റ്റിക്കറുകൾ</string>
@@ -2705,7 +2705,14 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">ക്യാമറ</string>
+  <string name="AvatarPickerFragment__photo">ഫോട്ടോ</string>
+  <string name="AvatarPickerFragment__save">സംരക്ഷിക്കൂ</string>
+  <string name="TextAvatarCreationFragment__preview">പ്രിവ്യൂ</string>
+  <string name="TextAvatarCreationFragment__done">ചെയ്‌തു</string>
+  <string name="TextAvatarCreationFragment__color">നിറം</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="AvatarPickerFragment__edit">തിരുത്തുക</string>
   <!--EOF-->
 </resources>

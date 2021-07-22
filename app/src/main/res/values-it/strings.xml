@@ -1346,7 +1346,7 @@
   <string name="SubmitDebugLogActivity_success">Completato!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia questo URL e aggiungilo alla tua segnalazione o all\'email di supporto:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Condividi</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Questo log verrà postato pubblicamente online per essere visualizzato dai contributori. Puoi esaminarlo e modificarlo prima di caricarlo.</string> -->
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Questo log verrà postato pubblicamente online per essere visualizzato dai contributori. Puoi esaminarlo prima di caricarlo.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Informazioni sul dispositivo:</string>
@@ -1716,8 +1716,6 @@
   <string name="giphy_activity_toolbar__search_gifs">Cerca GIF</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Non trovato</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Questo log verrà postato pubblicamente online per i contributori, è possibile esaminarlo e modificarlo prima di inviare.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vuoi importare i tuoi vecchi messaggi nel database criptato di Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Il database di default non verrà modificato o alterato in nessun modo.</string>
@@ -2980,6 +2978,11 @@
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Abbiamo cambiato i colori delle chat per darti più opzioni e rendere le chat più facili da leggere.</string>
   <string name="ChatColorsMegaphone__appearance">Aspetto</string>
   <string name="ChatColorsMegaphone__not_now">Non ora</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Aggiungi una foto profilo</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Scegli un look e un colore o personalizza le tue iniziali.</string>
+  <string name="AddAProfilePhotoMegaphone__not_now">Non ora</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Aggiungi foto</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Apri ricerca emoji</string>
@@ -3057,8 +3060,23 @@
   <string name="ContactFilterView__search_name_or_number">Cerca nome o numero</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__avatar_preview">Anteprima avatar</string>
+  <string name="AvatarPickerFragment__camera">Fotocamera</string>
+  <string name="AvatarPickerFragment__take_a_picture">Scatta una foto</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Scegli una foto</string>
+  <string name="AvatarPickerFragment__photo">Foto</string>
+  <string name="AvatarPickerFragment__text">Testo</string>
+  <string name="AvatarPickerFragment__save">Salva</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Seleziona un avatar</string>
+  <string name="TextAvatarCreationFragment__preview">Anteprima</string>
+  <string name="TextAvatarCreationFragment__done">Fatto</string>
+  <string name="TextAvatarCreationFragment__text">Testo</string>
+  <string name="TextAvatarCreationFragment__color">Colore</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__clear_avatar">Rimuovi avatar</string>
+  <string name="AvatarPickerFragment__edit">Modifica</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Impossibile salvare l\'avatar</string>
   <!--EOF-->
 </resources>

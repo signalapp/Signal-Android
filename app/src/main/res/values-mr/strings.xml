@@ -967,6 +967,7 @@
   <!--GV2 description change-->
   <string name="MessageRecord_you_changed_the_group_description">आपण गट विवरण बदलले आहे.</string>
   <string name="MessageRecord_s_changed_the_group_description">%1$s ने गट विवरण बदलले आहे.</string>
+  <string name="MessageRecord_the_group_description_has_changed">गट विवरण बदलले आहे.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">आपण गट अवतार बदलला आहे.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ने गट अवतार बदलला आहे.</string>
@@ -1023,6 +1024,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s सोबत आपण आपला सुरक्षितता नंबर दुसऱ्या डिव्हाईस वरून सत्यापित म्हणून चिन्हांकित केला आहे</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s सोबत आपण आपला सुरक्षितता नंबर असत्यापित म्हणून चिन्हांकित केला आहे</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s सोबत आपण आपला सुरक्षितता नंबर दुसऱ्या डिव्हाईस वरून असत्यापित म्हणून चिन्हांकित केला आहे</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s कडील संदेश डिलिव्हर केला जाऊ शकला नाही</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ने गट कॉल चालू केला · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s गट कॉलमध्ये  आहे · %2$s</string>
@@ -1156,6 +1158,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">आपण</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">संदेश पाठवणे सुरू ठेवण्यासाठी सत्यापित करा</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal वर स्पॅम प्रतिबंधित करण्यात मदत करण्यासाठी, कृपया सत्यापन पूर्ण करा.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">सत्यापन केल्यानंतर, आपण संदेश पाठवणे सुरू ठेवू शकता. कुठलेही विराम दिलेले संदेश स्वयंचलितपणे पाठवले जातील.</string>
   <!--Recipient-->
   <string name="Recipient_you">आपण</string>
   <!--RecipientPreferencesActivity-->
@@ -1194,6 +1199,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">येथे अजून कुणीही नाही</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s या कॉलमध्ये आहे</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s आणि %2$s या कॉलमध्ये आहेत</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s सादर करत आहे</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s, आणि %3$d इतर व्यक्ती गट कॉलमध्ये आहे</item>
     <item quantity="other">%1$s, %2$s, आणि %3$d इतर व्यक्ती कॉलमध्ये आहेत</item>
@@ -1211,6 +1217,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s कडून ऑडिओ आणि व्हिडिओ प्राप्त करू शकत नाही</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">त्यांनी आपला सुरक्षितता नंबर बदल सत्यापित न केल्यामुळे, त्यांच्या डिव्हाईसमध्ये काहीतरी समस्या असल्यामुळे, किंवा त्यांनी आपल्याला ब्लॉक केल्यामुळे असे असू शकते.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">स्क्रीन शेअर पहाण्यासाठी स्वाइप करा</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">प्रॉक्सी सर्व्हर</string>
   <string name="ProxyBottomSheetFragment_proxy_address">प्रॉक्सी पत्ता</string>
@@ -1218,6 +1225,8 @@
   <string name="ProxyBottomSheetFragment_use_proxy">प्रॉक्सी वापरा</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">प्रॉक्सी शी यशस्वीरीत्या कनेक्ट केले.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">प्रविष्ट करण्यात अयशस्वी</string>
+  <string name="RecaptchaProofActivity_complete_verification">सत्यापन पूर्ण करा</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">आपला देश निवडा</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">आपण आपला देश कोड
@@ -1334,6 +1343,7 @@
   <string name="SubmitDebugLogActivity_success">यश!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ही URL कॉपी करा आणि आपल्या समस्येच्या अहवालात किंवा समर्थन ईमेल वर जोडा : \n\n <b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">सामायिक करा</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">अंशदात्यांनी बघण्यासाठी हा लॉग सार्वजनिकरीत्या ऑनलाईन पोस्ट केला जाईल. आपण अपलोड करण्यापूर्वी त्यास तपासू शकता.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">फिल्टर:</string>
   <string name="SupportEmailUtil_device_info">डिव्हाईस माहिती:</string>
@@ -1366,6 +1376,7 @@
   <string name="ThreadRecord_you_marked_verified">आपण सत्यापित म्हणून चिन्हांकित केले</string>
   <string name="ThreadRecord_you_marked_unverified">आपण असत्यापित म्हणून चिन्हांकित केले</string>
   <string name="ThreadRecord_message_could_not_be_processed">संदेशावर प्रक्रिया होऊ शकली नाही</string>
+  <string name="ThreadRecord_delivery_issue">डिलिव्हरी समस्या</string>
   <string name="ThreadRecord_message_request">संदेश विनंती</string>
   <string name="ThreadRecord_photo">फोटो</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1446,6 +1457,8 @@
   <string name="MessageNotifier_message_delivery_failed">संदेश पोहोचवणे अयशस्वी.</string>
   <string name="MessageNotifier_failed_to_deliver_message">संदेश पोहोचवण्यात अयशस्वी.</string>
   <string name="MessageNotifier_error_delivering_message">संदेश पोहोचवण्यात त्रुटी.</string>
+  <string name="MessageNotifier_message_delivery_paused">संदेश डिलिव्हरीला विराम दिला.</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Signal वर संदेश पाठवणे सुरू ठेवण्यासाठी सत्यापित करा.</string>
   <string name="MessageNotifier_mark_all_as_read">सर्व वाचले म्हणून चिन्हांकित करा</string>
   <string name="MessageNotifier_mark_read">वाचले चिन्हांकित करा</string>
   <string name="MessageNotifier_turn_off_these_notifications">या सूचना बंद करा</string>
@@ -1479,6 +1492,7 @@
   <string name="NotificationChannel_missing_display_name">अज्ञात</string>
   <string name="NotificationChannel_voice_notes">व्हॉईस टिपा</string>
   <string name="NotificationChannel_contact_joined_signal">संपर्क Signal मध्ये सामील झाला</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">सूचना चॅनल सेटिंग उघडण्यासाठी कुठलीही अॅक्टिव्हिटी उपलब्ध नाही.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal लॉक केलेले असताना जलद प्रतिसाद अनुपलब्ध!</string>
@@ -1494,6 +1508,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">नवीन संदेश</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">संदेश विनंती</string>
   <string name="SingleRecipientNotificationBuilder_you">आपण</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">व्हिडिओ प्ले करा</string>
@@ -1600,7 +1615,11 @@
   <string name="ConversationUpdateItem_return_to_call">कॉलवर परत या </string>
   <string name="ConversationUpdateItem_call_is_full">कॉल पूर्ण आहे</string>
   <string name="ConversationUpdateItem_invite_friends">मित्रांना आमंत्रित करा</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">कॉल सूचना सक्षम करा</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">कुठलेही गट सामाईक नाहीत. विनंत्यांचे काळजीपूर्वक पुनरावलोकन करा.</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">या गटात कुठलेही संपर्क नाहीत. विनंत्यांचे काळजीपूर्वक पुनरावलोकन करा.</string>
   <string name="ConversationUpdateItem_view">बघा</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">आपण त्यांना संदेश पाठवल्यावर हरवणाऱ्या संदेशाची वेळ %1$s वर सेट केली गेली जाईल.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">प्ले करा … विराम द्या</string>
   <string name="audio_view__download_accessibility_description">डाऊनलोड करा</string>
@@ -1626,7 +1645,17 @@
   <string name="safety_number_change_dialog__view">बघा</string>
   <string name="safety_number_change_dialog__previous_verified">आधीचे सत्यापित</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">कॉल सूचना सक्षम केल्या गेल्या.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">कॉल सूचना सक्षम करा</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">पार्श्वभूमी अॅक्टिव्हिटी सक्षम करा</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">आता सगळे छान दिसते!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">कॉल सूचना प्राप्त करण्यासाठी, येथे टॅप करा आणि \"सूचना दाखवा\" चालू करा.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">कॉल सूचना प्राप्त करण्यासाठी, येथे टॅप करा आणि सूचना चालू करा आणि ध्वनी आणि पॉप-अप सक्षम केले असल्याची खात्री करा.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">कॉल सूचना प्राप्त करण्यासाठी, येथे टॅप करा आणि \"बॅटरी\" सेटिंगमध्ये पार्श्वभूमी अॅक्टिव्हिटी सक्षम करा.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">सेटिंग</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">कॉल सूचना प्राप्त करण्यासाठी, सेटिंगवर टॅप करा आणि \"सूचना दाखवा\" चालू करा.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">कॉल सूचना प्राप्त करण्यासाठी, सेटिंगवर टॅप करा आणि सूचना चालू करा आणि ध्वनी आणि पॉप-अप सक्षम केले असल्याची खात्री करा.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">कॉल सूचना प्राप्त करण्यासाठी, सेटिंगवर टॅप करा आणि \"बॅटरी\" सेटिंगमध्ये पार्श्वभूमी अॅक्टिव्हिटी सक्षम करा.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">देश लोड करत आहे…</string>
   <string name="country_selection_fragment__search">शोध</string>
@@ -1681,10 +1710,9 @@
     <item quantity="other">%d इतर</item>
   </plurals>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs">GIF शोधा</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">काहीही सापडले नाही</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">अंशदात्यांनी बघण्यासाठी हा लॉग सार्वजनिकरीत्या ऑनलाईन पोस्ट केला जाईल, आपण प्रविष्ट करण्यापूर्वी त्यास तपासू आणि संपादित करू शकता.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">आपल्याला आपले मजकूर संदेश Signal च्या एन्क्रिप्टेड डेटाबेस मध्ये आयात करायला आवडेल का?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">पूर्वनिर्धारित सिस्टिम डेटाबेस कुठल्याही प्रकारे सुधारित किंवा दुरूस्त केला जाणार नाही.</string>
@@ -1712,6 +1740,9 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">आपल्या वायरलेस वाहकाद्वारे मिडिया आणि गट संदेश पोहोचविण्यासाठी Signal ला MMS सेटिंगची आवश्यकता असते. आपला डिव्हाईस ही माहिती उपलब्ध करून देत नाही, जे लॉक असलेल्या डिव्हाईस करिता आणि इतर प्रतिबंधक कॉन्फिगरेशन यांकरिता कधी कधी खरे असते.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">मिडिया आणि गट संदेश पाठविण्यासाठी, \'ठीक\' टॅप करा आणि विनंती केलेल्या सेटिंग पूर्ण करा. आपल्या वाहकासाठीच्या MMS सेटिंग सामान्यपणे \'आपला वाहक APN\' शोधून सापडू शकते. आपल्याला हे फक्त एकदा करावे लागेल.</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">डिलिव्हरी समस्या</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%s पासून संदेश, स्टिकर, प्रतिक्रिया किंवा वाचल्याची पावती आपल्यापर्यंत पोहोचवली जाऊ शकली नाही. त्यांनी आपल्याला थेट किंवा गटात पाठवण्याचा प्रयत्न केला असेल.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%s पासून संदेश, स्टिकर, प्रतिक्रिया किंवा वाचल्याची पावती आपल्यापर्यंत पोहोचवली जाऊ शकली नाही.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">पहिले नाव (आवश्यक)</string>
   <string name="CreateProfileActivity_last_name_optional">शेवटचे नाव (पर्यायी)</string>
@@ -1733,6 +1764,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group">गट संपादन करा</string>
   <string name="EditProfileFragment__group_name">गट नाव</string>
+  <string name="EditProfileFragment__group_description">गट विवरण</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">आपले नाव</string>
   <string name="EditProfileNameFragment_first_name">नाव</string>
@@ -1766,6 +1798,7 @@
   <string name="message_details_recipient_header__delivered_to">याला पोहोचवले</string>
   <string name="message_details_recipient_header__read_by">याने वाचले</string>
   <string name="message_details_recipient_header__not_sent">पाठवलेले नाही</string>
+  <string name="message_details_recipient_header__viewed">यांनी बघितले</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">पाठविण्यात अयशस्वी</string>
   <string name="message_details_recipient__new_safety_number">नवीन सुरक्षितता नंबर</string>
@@ -1793,11 +1826,21 @@
   <string name="HelpFragment__include_debug_log">डीबग लॉग समाविष्ट करा.</string>
   <string name="HelpFragment__whats_this">हे काय आहे?</string>
   <string name="HelpFragment__how_do_you_feel">आपल्याला कसे वाटत आहे? (पर्यायी)</string>
+  <string name="HelpFragment__tell_us_why_youre_reaching_out">आपण का लिहित आहात ते कळवा.</string>
   <string name="HelpFragment__support_info">समर्थन माहिती</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android समर्थन विनंती</string>
   <string name="HelpFragment__debug_log">डीबग लॉग:</string>
   <string name="HelpFragment__could_not_upload_logs">लॉग अपलोड करू शकले नाही</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">कृपया जास्तीत जास्त विवरण करून आम्हाला समस्या जाणून घेण्यात मदत करा.</string>
+  <string-array name="HelpFragment__categories">
+    <item>-- कृपया एक पर्याय निवडा --</item>
+    <item>काहीतरी काम करत नाही</item>
+    <item>वैशिष्ट्य विनंती</item>
+    <item>प्रश्न</item>
+    <item>अभिप्राय</item>
+    <item>इतर</item>
+    <item>पेमेंट</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">हा संदेश</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">अलीकडील वापरलेले</string>
@@ -1810,10 +1853,12 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">चिन्ह</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">झेंडे</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">इमोटीकॉन</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">कुठलेही परिणाम नाहीत</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">पूर्वनिर्धारित वापरा</string>
   <string name="arrays__use_custom">सानुकूल वापरा</string>
   <string name="arrays__mute_for_one_hour">1 तासासाठी म्यूट करा</string>
+  <string name="arrays__mute_for_eight_hours">8 तासांसाठी म्यूट करा</string>
   <string name="arrays__mute_for_one_day">1 दिवसासाठी म्यूट करा</string>
   <string name="arrays__mute_for_seven_days">7 दिवसांसाठी म्यूट करा</string>
   <string name="arrays__always">नेहमी</string>
@@ -2534,6 +2579,7 @@
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__okay">ठीक आहे</string>
   <!--GroupDescriptionDialog-->
+  <string name="GroupDescriptionDialog__group_description">गट विवरण</string>
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">उंच</string>
   <!--AppSettingsFragment-->
@@ -2581,10 +2627,14 @@
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">स्वरूप</string>
   <string name="ChatColorsMegaphone__not_now">आता नाही</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">आता नाही</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ईमोजी</string>
   <string name="KeyboardPagerFragment_stickers">स्टिकर</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_no_results_found">कुठलेही परिणाम नाहीत</string>
+  <string name="EmojiSearchFragment__no_results_found">कुठलेही परिणाम नाहीत</string>
   <!--ConversationSettingsFragment-->
   <string name="ConversationSettingsFragment__message">संदेश</string>
   <string name="ConversationSettingsFragment__video">व्हिडिओ</string>
@@ -2626,7 +2676,14 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">कॅमेरा</string>
+  <string name="AvatarPickerFragment__photo">फोटो</string>
+  <string name="AvatarPickerFragment__save">जतन करा</string>
+  <string name="TextAvatarCreationFragment__preview">पुनरावलोकन</string>
+  <string name="TextAvatarCreationFragment__done">ठीक</string>
+  <string name="TextAvatarCreationFragment__color">रंग</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="AvatarPickerFragment__edit">संपादन</string>
   <!--EOF-->
 </resources>

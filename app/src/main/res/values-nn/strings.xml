@@ -1350,7 +1350,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SubmitDebugLogActivity_success">Fullført!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL-en og legg han til feilrapporten eller e-posten til support:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Del</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Loggen vil vera tilgjengeleg på nett slik at deltakarar i prosjektet kan sjå han. Du kan sjå gjennom og redigera før opplasting.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Einingsinfo:</string>
@@ -1720,8 +1719,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="giphy_activity_toolbar__search_gifs">Søk Gif-ar</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ikkje noko funne</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Denne loggen vil bli synleg offentleg på nettet slik at bidragsytarar kan sjå han; du kan sjå over og redigera han før du sender han inn.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vil du importera tekstmeldingar som ligg på eininga til Signal sin krypterte database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Standard systemdatabase vert ikkje endra på nokon måte.</string>
@@ -2986,6 +2983,8 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Me har bytta rundt på samtalefargane for å gi deg fleire val og gjera samtalen lettare å lesa</string>
   <string name="ChatColorsMegaphone__appearance">Utsjåande</string>
   <string name="ChatColorsMegaphone__not_now">Ikkje no</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Ikkje no</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Opna emoji-søk</string>
@@ -3063,8 +3062,15 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="ContactFilterView__search_name_or_number">Søk etter namn eller nummer</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">Kamera</string>
+  <string name="AvatarPickerFragment__photo">Bilde</string>
+  <string name="AvatarPickerFragment__save">Lagra</string>
+  <string name="TextAvatarCreationFragment__preview">Førehandsvisning</string>
+  <string name="TextAvatarCreationFragment__done">Ferdig</string>
+  <string name="TextAvatarCreationFragment__color">Farge</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__edit">Endra</string>
   <!--EOF-->
 </resources>

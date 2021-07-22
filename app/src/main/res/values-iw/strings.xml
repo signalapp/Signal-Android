@@ -1468,7 +1468,6 @@
   <string name="SubmitDebugLogActivity_success">הצלחה!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">העתק כתובת זו והוסף אותה אל דוח הסוגיות שלך או דוא״ל התמיכה שלך:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">שתף</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">יומן זה יפורסם באופן ציבורי ומקוון עבור מתנדבים כדי שיצפו בו, ניתן לבחון ולערוך אותו לפני העלאה.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">סנן:</string>
   <string name="SupportEmailUtil_device_info">מידע מכשיר:</string>
@@ -1858,8 +1857,6 @@
   <string name="giphy_activity_toolbar__search_gifs">חפש תמונות GIF</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">שום דבר לא נמצא</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">יומן זה יפורסם באופן ציבורי ומקוון לתורמים עבור צפייה, אתה יכול לבחון ולערוך אותו לפני הגשה.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">האם תרצה לייבא את הודעות הטקסט הקיימות שלך אל מסד הנתונים המוצפן של Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">מסד הנתונים ברירת המחדל של המערכת לא ישונה בשום אופן.</string>
@@ -3150,6 +3147,8 @@
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">החלפנו צבעי התכתבות כדי לתת לך יותר אפשרויות ולעשות התכתבויות קלות יותר לקריאה.</string>
   <string name="ChatColorsMegaphone__appearance">מראה</string>
   <string name="ChatColorsMegaphone__not_now">לא עכשיו</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">לא עכשיו</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">אמוג\'י</string>
   <string name="KeyboardPagerFragment_open_emoji_search">פתח חיפוש אימוג\'י</string>
@@ -3227,8 +3226,17 @@
   <string name="ContactFilterView__search_name_or_number">חפש שם או מספר</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">מצלמה</string>
+  <string name="AvatarPickerFragment__photo">תמונה</string>
+  <string name="AvatarPickerFragment__text">מלל</string>
+  <string name="AvatarPickerFragment__save">שמור</string>
+  <string name="TextAvatarCreationFragment__preview">תצוגה מקדימה</string>
+  <string name="TextAvatarCreationFragment__done">סיים</string>
+  <string name="TextAvatarCreationFragment__text">מלל</string>
+  <string name="TextAvatarCreationFragment__color">צבע</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">מסרון</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__edit">ערוך</string>
   <!--EOF-->
 </resources>

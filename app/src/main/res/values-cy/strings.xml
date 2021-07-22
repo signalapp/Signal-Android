@@ -1470,7 +1470,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="SubmitDebugLogActivity_success">Llwyddiant!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copïwch yr URL hwn a\'i ychwanegu at eich adroddiad neu e-bost cymorth:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Rhannu</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Bydd y cofnod hwn yn cael ei bostio\'n gyhoeddus ar-lein i gyfranwyr ei weld. Gallwch ei archwilio a\'i olygu cyn ei lwytho i fyny.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Hidl:</string>
   <string name="SupportEmailUtil_device_info">Manylion y ddyfais:</string>
@@ -1860,8 +1859,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="giphy_activity_toolbar__search_gifs">Chwilio drwy\'r GIFau</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Heb ganfod dim</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Caiff y cofnod hwn ei bostio\'n gyhoeddus ar-lein i gyfranwyr ei weld, fe allwch ei archwilio a\'i olygu cyn ei gyflwyno.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Hoffech chi fewnforio eich negeseuon testun i gronfa ddata amgryptiedig Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Ni chaiff cronfa ddata\'r system rhagosodedig ei addasu neu ei newid mewn unrhyw ffordd.</string>
@@ -3152,6 +3149,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Rydym wedi diwygio\'n lliwiau sgwrsio i roi mwy o ddewis i chi a gwneud sgyrsiau yn haws eu darllen.</string>
   <string name="ChatColorsMegaphone__appearance">Golwg</string>
   <string name="ChatColorsMegaphone__not_now">Nid nawr</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Nid nawr</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Agor chwilio emoji</string>
@@ -3229,8 +3228,17 @@ Send neges heb ei ddiogelu?</string>
   <string name="ContactFilterView__search_name_or_number">Chwilio am enw neu rif</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">Camera</string>
+  <string name="AvatarPickerFragment__photo">Llun</string>
+  <string name="AvatarPickerFragment__text">Testun</string>
+  <string name="AvatarPickerFragment__save">Cadw</string>
+  <string name="TextAvatarCreationFragment__preview">Rhagolwg</string>
+  <string name="TextAvatarCreationFragment__done">Wedi Gorffen</string>
+  <string name="TextAvatarCreationFragment__text">Testun</string>
+  <string name="TextAvatarCreationFragment__color">Lliw</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__edit">Golygu</string>
   <!--EOF-->
 </resources>

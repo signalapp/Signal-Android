@@ -1284,7 +1284,7 @@
   <string name="SubmitDebugLogActivity_success">成功！</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">請複製此 URL 並新增至您的問題報告或支援電子郵件中：\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">分享</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">此記錄檔將會在線上公開張貼，以供各貢獻者查看。您可先行檢閱並編輯，然後才上載。</string> -->
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">此記錄檔將會在線上公開張貼，以供各貢獻者查看。您可先行檢閱，然後才上載。</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">篩選：</string>
   <string name="SupportEmailUtil_device_info">裝置資訊：</string>
@@ -1644,8 +1644,6 @@
   <string name="giphy_activity_toolbar__search_gifs">搜尋 GIF</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">查無結果</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">此記錄檔將會在線上公開張貼，以供各貢獻者查看，您可先行檢閱並編輯，然後才提交。</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">您要匯入您現有的文字訊息到 Signal 的加密資料庫嗎？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">預設的系統資料庫並不會受任何形式的修改或變更。</string>
@@ -2894,6 +2892,11 @@
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">聊天色彩駕到，給您更多選項，同時讓您更容易閱讀對話。</string>
   <string name="ChatColorsMegaphone__appearance">外觀</string>
   <string name="ChatColorsMegaphone__not_now">現在不要</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">新增個人資料照片</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">選擇外觀與色彩，又或自訂您的縮寫。</string>
+  <string name="AddAProfilePhotoMegaphone__not_now">現在不要</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">新增照片</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">表情符號</string>
   <string name="KeyboardPagerFragment_open_emoji_search">開啟表情符號搜尋</string>
@@ -2971,8 +2974,23 @@
   <string name="ContactFilterView__search_name_or_number">搜尋名稱或號碼</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__avatar_preview">頭像預覽</string>
+  <string name="AvatarPickerFragment__camera">相機</string>
+  <string name="AvatarPickerFragment__take_a_picture">拍照</string>
+  <string name="AvatarPickerFragment__choose_a_photo">選取照片</string>
+  <string name="AvatarPickerFragment__photo">照片</string>
+  <string name="AvatarPickerFragment__text">文字</string>
+  <string name="AvatarPickerFragment__save">儲存</string>
+  <string name="AvatarPickerFragment__select_an_avatar">選取頭像</string>
+  <string name="TextAvatarCreationFragment__preview">預覽</string>
+  <string name="TextAvatarCreationFragment__done">完成</string>
+  <string name="TextAvatarCreationFragment__text">文字</string>
+  <string name="TextAvatarCreationFragment__color">色彩</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">短訊</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__clear_avatar">清除頭像</string>
+  <string name="AvatarPickerFragment__edit">編輯</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">儲存頭像失敗</string>
   <!--EOF-->
 </resources>

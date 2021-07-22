@@ -641,11 +641,11 @@
   <string name="CustomNotificationsDialogFragment__disabled">無効</string>
   <string name="CustomNotificationsDialogFragment__default">既定</string>
   <!--ShareableGroupLinkDialogFragment-->
-  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">共有グループリンク</string>
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">グループリンク</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">管理と共有</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">グループリンク</string>
-  <string name="ShareableGroupLinkDialogFragment__share">共有する</string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">リンクをリセットする</string>
+  <string name="ShareableGroupLinkDialogFragment__share">共有</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">リンクをリセット</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">メンバー申請</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">新メンバーを承認制にする</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">グループリンク経由での新メンバー参加時に、管理者の承認を要求します。</string>
@@ -1274,7 +1274,7 @@
   <string name="SubmitDebugLogActivity_success">成功しました！</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">このURLをコピーしてバグレポートやサポートメールに貼り付けてください:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">共有</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">このログはコントリビュータに公開されますが、アップロードする前に内容を確認したり編集することができます。</string> -->
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">このログはコントリビュータにオンラインで公開されます。アップロードする前に内容を確認できます。</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">フィルタ:</string>
   <string name="SupportEmailUtil_device_info">Device info:</string>
@@ -1634,8 +1634,6 @@
   <string name="giphy_activity_toolbar__search_gifs">GiFを検索</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">何も見つかりませんでした</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">このログはコントリビュータに公開されますが、提出する前に内容を確認したり編集することができます。</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">既存のテキストメッセージをSignalの暗号化されたデータベースにインポートしますか？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">既定のシステムデータベースは変更や改ざんされません。</string>
@@ -1780,10 +1778,10 @@
   <!--arrays.xml-->
   <string name="arrays__use_default">既定を使う</string>
   <string name="arrays__use_custom">カスタムを使う</string>
-  <string name="arrays__mute_for_one_hour">1時間ミュート</string>
-  <string name="arrays__mute_for_eight_hours">8時間ミュート</string>
-  <string name="arrays__mute_for_one_day">1日間ミュート</string>
-  <string name="arrays__mute_for_seven_days">7日間ミュート</string>
+  <string name="arrays__mute_for_one_hour">1時間</string>
+  <string name="arrays__mute_for_eight_hours">8時間</string>
+  <string name="arrays__mute_for_one_day">1日間</string>
+  <string name="arrays__mute_for_seven_days">7日間</string>
   <string name="arrays__always">常時</string>
   <string name="arrays__settings_default">既定の設定</string>
   <string name="arrays__enabled">有効</string>
@@ -1816,9 +1814,9 @@
   <string name="preferences__pref_enter_sends_title">エンターキーで送信する</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">エンターキーでテキストメッセージを送信します</string>
   <string name="preferences__pref_use_address_book_photos">アドレス帳の写真を使用する</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">可能であれば連絡先の表示にアドレス帳の写真を使用します</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">可能であれば、連絡先の表示にアドレス帳の写真を使用します。</string>
   <string name="preferences__generate_link_previews">リンクプレビューを生成する</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">送信メッセージのリンクプレビューをウェブサイトから直接取得します。</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">送信メッセージのリンクプレビューを、ウェブサイトから直接取得します。</string>
   <string name="preferences__choose_identity">アイデンティティを選択</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">連絡先リストからあなたの連絡先を選んでください。</string>
   <string name="preferences__change_passphrase">パスフレーズを変更</string>
@@ -1826,8 +1824,8 @@
   <string name="preferences__enable_passphrase">パスフレーズでの画面ロックを有効にする</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">パスフレーズで画面と通知をロックします</string>
   <string name="preferences__screen_security">画面のセキュリティ</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">「最近使ったアプリ」やアプリ内でのスクリーンショットをブロックします</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">指定した無操作時間経過後にSignalを自動でロックします</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">「最近使ったアプリ」やアプリ内でのスクリーンショットをブロックします。</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">指定した無操作時間経過後にSignalを自動でロックします。</string>
   <string name="preferences__inactivity_timeout_passphrase">無操作タイムアウトのパスフレーズ</string>
   <string name="preferences__inactivity_timeout_interval">無操作タイムアウトの間隔</string>
   <string name="preferences__notifications">通知</string>
@@ -1944,7 +1942,7 @@
   <string name="preferences_data_and_storage__never">なし</string>
   <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fiとモバイルデータ</string>
   <string name="preferences_data_and_storage__mobile_data_only">モバイルデータのみ</string>
-  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">データ通信量を抑えて低品質なネットワーク上での通話を改善します</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">データ通信量を抑えて、低品質なネットワーク上での通話を改善します。</string>
   <string name="preferences_notifications__messages">メッセージ</string>
   <string name="preferences_notifications__events">イベント</string>
   <string name="preferences_notifications__in_chat_sounds">チャット中の着信音</string>
@@ -2353,7 +2351,7 @@
   <string name="PhoneNumberPrivacy_everyone_see_description">あなたの電話番号は、あなたがメッセージを送信したすべての相手とグループに表示されます。</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">あなたの電話番号を連絡先に登録している人には、あなたがSignalの連絡先として表示されます。他の人は検索であなたを見つけることができます。</string>
   <string name="preferences_app_protection__screen_lock">画面ロック</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">SignalをAndroidの画面ロックや指紋認証でロックします</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">SignalをAndroidの画面ロックや指紋認証でロックします。</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">画面ロックまでの無操作時間</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN</string>
   <string name="preferences_app_protection__create_a_pin">PINを作成する</string>
@@ -2525,7 +2523,7 @@
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_hint_requiring_approval">誰でもこのリンクから、グループの名前やアイコンを見たり、参加を申請できます。信頼できる人と共有してください。</string>
   <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">誰でもこのリンクから、グループの名前やアイコンを見たり、グループに参加できます。信頼できる人と共有してください。</string>
-  <string name="GroupLinkBottomSheet_share_via_signal">Signal経由で共有する</string>
+  <string name="GroupLinkBottomSheet_share_via_signal">Signal経由で共有</string>
   <string name="GroupLinkBottomSheet_copy">コピー</string>
   <string name="GroupLinkBottomSheet_qr_code">QRコード</string>
   <string name="GroupLinkBottomSheet_share">共有</string>
@@ -2727,7 +2725,7 @@
   <string name="PrivacySettingsFragment__messaging">メッセージ送受信</string>
   <string name="PrivacySettingsFragment__disappearing_messages">消えるメッセージ</string>
   <string name="PrivacySettingsFragment__app_security">アプリのセキュリティ</string>
-  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">「最近使ったアプリ」やアプリ内でのスクリーンショットをブロックします</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">「最近使ったアプリ」やアプリ内でのスクリーンショットをブロックします。</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signalメッセージと通話, 通話を常に中継, 送信者の秘匿化</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">新規チャットの既定タイマー</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">今後新しく始めるチャットについて、消えるメッセージのタイマーの既定値を設定します。</string>
@@ -2801,6 +2799,11 @@
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">チャットの色のオプションを増やし、チャットを読みやすくしました。</string>
   <string name="ChatColorsMegaphone__appearance">デザイン</string>
   <string name="ChatColorsMegaphone__not_now">あとで</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">プロフィール画像を追加しよう</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">見た目や色を選んだり、イニシャルをカスタマイズできます。</string>
+  <string name="AddAProfilePhotoMegaphone__not_now">あとで</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">画像を追加</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">絵文字</string>
   <string name="KeyboardPagerFragment_open_emoji_search">絵文字検索を開く</string>
@@ -2878,7 +2881,21 @@
   <string name="ContactFilterView__search_name_or_number">名前か電話番号で検索</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__avatar_preview">アバターのプレビュー</string>
+  <string name="AvatarPickerFragment__camera">カメラ</string>
+  <string name="AvatarPickerFragment__take_a_picture">写真を撮影</string>
+  <string name="AvatarPickerFragment__photo">写真</string>
+  <string name="AvatarPickerFragment__text">テキスト</string>
+  <string name="AvatarPickerFragment__save">保存</string>
+  <string name="AvatarPickerFragment__select_an_avatar">アバターを選択してください</string>
+  <string name="TextAvatarCreationFragment__preview">プレビュー</string>
+  <string name="TextAvatarCreationFragment__done">完了</string>
+  <string name="TextAvatarCreationFragment__text">テキスト</string>
+  <string name="TextAvatarCreationFragment__color">色</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="AvatarPickerFragment__clear_avatar">アバターを削除</string>
+  <string name="AvatarPickerFragment__edit">編集</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">アバターの保存に失敗しました</string>
   <!--EOF-->
 </resources>

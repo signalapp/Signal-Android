@@ -1413,8 +1413,6 @@
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ਕੁਝ ਵੀ ਮਿਲਿਆ ਨਹੀਂ</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">ਇਸ ਲੌਗ ਨੂੰ ਦੇਖਣ ਲਈ ਯੋਗੀਆਂ ਲਈ ਆਨਲਾਇਨ ਪੋਸਟ ਕੀਤਾ ਜਾਵੇਗਾ, ਤੁਸੀਂ ਇਸ ਨੂੰ ਪ੍ਰਸਤੁਤ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸੰਪਾਦਿਤ ਕਰ ਸਕਦੇ ਹੋ.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਮੌਜੂਦਾ ਟੈਕਸਟ ਸੁਨੇਹੇ Signal ਦੇ ਏਨਕ੍ਰਿਪਟ ਕੀਤੇ ਡਾਟਾਬੇਸ ਵਿੱਚ ਆਯਾਤ ਕਰਨਾ ਪਸੰਦ ਕਰੋਗੇ?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">ਡਿਫਾਲਟ ਸਿਸਟਮ ਡੇਟਾਬੇਸ ਨੂੰ ਕਿਸੇ ਵੀ ਤਰੀਕੇ ਨਾਲ ਸੋਧਿਆ ਜਾਂ ਬਦਲਿਆ ਨਹੀਂ ਜਾਵੇਗਾ.</string>
@@ -2449,6 +2447,8 @@
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">ਦਿਖਾਵਟ</string>
   <string name="ChatColorsMegaphone__not_now">ਹਾਲੇ ਨਹੀਂ</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">ਹਾਲੇ ਨਹੀਂ</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ਈਮੋਜ਼ੀ</string>
   <string name="KeyboardPagerFragment_stickers">ਸਟਿੱਕਰ</string>
@@ -2500,7 +2500,14 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <string name="AvatarPickerFragment__camera">ਕੈਮਰਾ </string>
+  <string name="AvatarPickerFragment__photo">ਫੋਟੋ</string>
+  <string name="AvatarPickerFragment__save">ਸੰਭਾਲੋ</string>
+  <string name="TextAvatarCreationFragment__preview">ਝਲਕ</string>
+  <string name="TextAvatarCreationFragment__done">ਮੁਕੰਮਲ</string>
+  <string name="TextAvatarCreationFragment__color">ਰੰਗ</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="AvatarPickerFragment__edit">ਸੋਧੋ</string>
   <!--EOF-->
 </resources>

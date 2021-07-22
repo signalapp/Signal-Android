@@ -1606,8 +1606,6 @@
   <string name="giphy_activity_toolbar__search_gifs">GIF 검색</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">검색 결과 없음</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">로그를 다른 사용자들이 읽을 수 있도록 온라인에 게시됩니다. 제출하기 전 로그를 보고 수정할 수 있습니다.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">시스템 SMS 메시지를 Signal의 암호화된 데이터베이스에 가져오시겠습니까?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">기본 시스템 SMS 데이터베이스가 변경되지 않습니다.</string>
@@ -2548,6 +2546,8 @@
   <string name="ChatColorsMegaphone__new_chat_colors">새로운 대화창 색</string>
   <string name="ChatColorsMegaphone__appearance">모양</string>
   <string name="ChatColorsMegaphone__not_now">나중에</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">나중에</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">이모지</string>
   <string name="KeyboardPagerFragment_stickers">스티커</string>
@@ -2601,7 +2601,14 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s, %2$s</string>
+  <string name="AvatarPickerFragment__camera">카메라</string>
+  <string name="AvatarPickerFragment__photo">사진</string>
+  <string name="AvatarPickerFragment__save">저장</string>
+  <string name="TextAvatarCreationFragment__preview">미리보기</string>
+  <string name="TextAvatarCreationFragment__done">확인</string>
+  <string name="TextAvatarCreationFragment__color">색상</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="AvatarPickerFragment__edit">수정</string>
   <!--EOF-->
 </resources>

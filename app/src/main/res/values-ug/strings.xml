@@ -1344,7 +1344,6 @@
   <string name="SubmitDebugLogActivity_success">مۇۋەپپەقىيەتلىك!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">بۇ URL نى كۆچۈرۈپ ۋە ئۇنى مەسىلە دوكلاتىڭىز ياكى قوللاش ئېلخېتىگە قوشۇڭ:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">ھەمبەھىرلە</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">بۇ خاتىرە تۆھپىكارلارنىڭ كۆرۈشى ئۈچۈن توردا ئاشكارا ئېلان قىلىنىدۇ، يوللاشتىن ئىلگىرى مەزكۇر خاتىرەنى تەكشۈرۈپ ۋە تەھرىرلىيەلەيسىز.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">سۈزگۈچ:</string>
   <string name="SupportEmailUtil_device_info">ئۈسكۈنە ئۇچۇرى:</string>
@@ -1715,8 +1714,6 @@
   <string name="giphy_activity_toolbar__search_gifs">‫GIF ئىزدە</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ھىچنېمە تېپىلمىدى</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">بۇ خاتىرە قاتناشقۇچىلارنىڭ كۆرۈشى ئۈچۈن توردا ئاشكارا ئېلان قىلىنىدۇ، يوللاشتىن ئىلگىرى مەزكۇر خاتىرەنى تەكشۈرۈپ ۋە تەھرىرلىيەلەيسىز.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">مەۋجۇت تېكىست ئۇچۇرلىرىڭىزنى Signal نىڭ شىفىرلانغان ساندانىغا ئەكىرەمسىز؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">كۆڭۈلدىكى سىستېما ساندانىدا ھېچقانداق ئۆزگەرتىش ياكى ئۆزگىرىش بولمايدۇ</string>
@@ -2979,6 +2976,8 @@
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">سۆھبەت رەڭگىنى ئۆزگەرتىش ئۈچۈن سىزگە تېخىمۇ كۆپ تاللاش بېرىپ ھەمدە سۆھبەت ئوقۇشنى تېخىمۇ قۇلايلاشتۇردۇق.</string>
   <string name="ChatColorsMegaphone__appearance">كۆرۈنۈش</string>
   <string name="ChatColorsMegaphone__not_now">ھازىر ئەمەس</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">ھازىر ئەمەس</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">چىراي بەلگە</string>
   <string name="KeyboardPagerFragment_open_emoji_search">چىراي بەلگە ئىزدەشنى ئاچ</string>
@@ -3056,8 +3055,17 @@
   <string name="ContactFilterView__search_name_or_number">نام ياكى سانىنى ئاختۇر</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">كامېرا</string>
+  <string name="AvatarPickerFragment__photo">سۈرەت</string>
+  <string name="AvatarPickerFragment__text">تېكىست</string>
+  <string name="AvatarPickerFragment__save">ساقلا</string>
+  <string name="TextAvatarCreationFragment__preview">ئالدىن كۆرۈش</string>
+  <string name="TextAvatarCreationFragment__done">بولدى</string>
+  <string name="TextAvatarCreationFragment__text">تېكىست</string>
+  <string name="TextAvatarCreationFragment__color">رەڭ</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">قىسقا ئۇچۇر</string>
   <string name="ContactSelectionListItem__dot_s">‏· %1$s</string>
+  <string name="AvatarPickerFragment__edit">تەھرىر</string>
   <!--EOF-->
 </resources>

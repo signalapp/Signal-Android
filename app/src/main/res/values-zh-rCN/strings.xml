@@ -1286,7 +1286,6 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">复制此 URL 并将其添加到问题报告或支持电子邮件:\n\n<b>%1$s</b>
 </string>
   <string name="SubmitDebugLogActivity_share">分享</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">该日志将在线公开发布，以供参与者查看。在上传之前，您可查看并编辑。</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">筛选器：</string>
   <string name="SupportEmailUtil_device_info">设备信息：</string>
@@ -1646,8 +1645,6 @@
   <string name="giphy_activity_toolbar__search_gifs">搜索 GIF 图片</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">未找到</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">该日志将在线公开发布，用于参与者查看。提交之前，您可检查并编辑该日志。</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">是否将现有短信导入至 Signal 加密数据库？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">默认系统数据库不会发生任何形式的修改或变更。</string>
@@ -2896,6 +2893,8 @@
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">升级聊天颜色，提供更多选项，令聊天更易阅读。</string>
   <string name="ChatColorsMegaphone__appearance">外观</string>
   <string name="ChatColorsMegaphone__not_now">稍后再说</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">稍后再说</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">表情符号</string>
   <string name="KeyboardPagerFragment_open_emoji_search">打开表情符号搜索</string>
@@ -2973,8 +2972,17 @@
   <string name="ContactFilterView__search_name_or_number">搜索名字或号码</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">相机</string>
+  <string name="AvatarPickerFragment__photo">图片</string>
+  <string name="AvatarPickerFragment__text">文本</string>
+  <string name="AvatarPickerFragment__save">保存</string>
+  <string name="TextAvatarCreationFragment__preview">预览</string>
+  <string name="TextAvatarCreationFragment__done">完成</string>
+  <string name="TextAvatarCreationFragment__text">文本</string>
+  <string name="TextAvatarCreationFragment__color">颜色</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">短信</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__edit">编辑</string>
   <!--EOF-->
 </resources>

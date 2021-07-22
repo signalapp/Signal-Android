@@ -1284,7 +1284,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SubmitDebugLogActivity_success">Sukses!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Salin URL ini dan kirimkan ke email support <b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Bagikan</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Catatan ini akan dipasang secara daring kepada publik untuk dilihat oleh kontributor. Anda dapat memeriksa dan menyuntingnya sebelum mengunggah.</string> -->
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Catatan ini akan dipasang secara daring kepada publik untuk dilihat oleh kontributor. Anda dapat memeriksa dan menyuntingnya sebelum mengunggah.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Informasi perangkat:</string>
@@ -1644,8 +1644,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="giphy_activity_toolbar__search_gifs">Cari GIF</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Tidak ada yang ditemukan</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Catatan ini akan diunggah secara publik agar para kontributor dapat melihat, Anda dapat memeriksa kembali dan menyunting sebelum mengunggahnya.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Apakah Anda ingin mengimpor pesan teks yang ada ke basis data Signal yang terenkripsi?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Basis data sistem utama tidak akan diubah atau dimodifikasi</string>
@@ -2075,10 +2073,12 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="PaymentsTransferFragment__settings">Pengaturan</string>
   <!--PaymentsTransferQrScanFragment-->
   <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">PIndai Kode QR Alamat</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Pindai kode QR alamat untuk penerima pembayaran</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Permintaan</string>
   <string name="CreatePaymentFragment__pay">Bayar</string>
   <string name="CreatePaymentFragment__available_balance_s">Saldo tersedia: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">Beralih</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2098,6 +2098,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">Konfirmasi pembayaran</string>
   <string name="ConfirmPayment__network_fee">Biaya jaringan</string>
+  <string name="ConfirmPayment__error_getting_fee">Gagal mendapatkan upah</string>
   <string name="ConfirmPayment__estimated_s">Perkiraan %1$s</string>
   <string name="ConfirmPayment__to">Kepada</string>
   <string name="ConfirmPayment__total_amount">Jumlah total</string>
@@ -2446,32 +2447,92 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal memerlukan akses ke perijinan lokasi untuk menemukan dan menyambungkan dengan perangkat Android lama Anda.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal memerluhkan layanan lokasi diaktifkan untuk menemukan dan menyambungkan dengan perangkat Android lama Anda.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal memerlukan Wi-Fi untuk menemukan dan menyambungkan dengan perangkat Android lama Anda. Wi-Fi diperukan untuk diaktifkan namun tidak harus tersambung ke jaringan Wi-Fi.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Maaf, sepertinya perangkat ini tidak mendukung Wi-Fi Direct. Signal menggunakan Wi-Fi Direct untuk mencari dan menyambungkan dengan perangkat Android lama Anda. Anda tetap dapat memulihkan cadangan untuk mengembalikan akun dari perangkat Android lama Anda.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Pulihkan cadangan</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Kesalahan tidak terduga terjadi saat mencoba menyambungkan ke perangkat Android lama Anda.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Mencari perangkat Android baru…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal memerlukan akses ke perijinan lokasi untuk menemukan dan menyambungkan dengan perangkat Android baru Anda.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal memerluhkan layanan lokasi diaktifkan untuk menemukan dan menyambungkan dengan perangkat Android baru Anda.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal memerlukan Wi-Fi untuk menemukan dan menyambungkan dengan perangkat Android baru Anda. Wi-Fi diperukan untuk diaktifkan namun tidak harus tersambung ke jaringan Wi-Fi.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Maaf, sepertinya perangkat ini tidak mendukung Wi-Fi Direct. Signal menggunakan Wi-Fi Direct untuk mencari dan menyambungkan dengan perangkat Android baru Anda. Anda tetap dapat memulihkan cadangan untuk mengembalikan akun dari perangkat Android baru Anda.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Buat cadangan</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Kesalahan tidak terduga terjadi saat mencoba menyambungkan ke perangkat Android baru Anda.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Tidak dapat membuka Pengaturan Wi-Fi. Mohon nyalakan Wi-Fi secara manual.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Izinkan penggunaan lokasi</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Nyalakan layanan lokasi</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Tidak dapat membuka pengaturan lokasi.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Nyalakan Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Gagal Menyambungkan</string>
   <string name="DeviceTransferSetup__retry">Coba lagi</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Kirim catatan awakutu</string>
+  <string name="DeviceTransferSetup__verify_code">Verifikasi kode</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Verifikasi bahwa kode di bawah cocok pada kedua perangkat Anda. Kemudian ketuk lanjutkan.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Nomor tidak cocok</string>
   <string name="DeviceTransferSetup__continue">Lanjut</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Nomor tidak sama</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Jika nomor pada perangkat Anda tidak sama, mungkin saja Anda tersambung ke perangkat yang salah. Untuk memperbaikinya, hentikan transfer dan coba lagi, dan dekatkan kedua perangkat Anda.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Hentikan transfer</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Tidak dapat menemukan perangkat lama</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Tidak dapat menemukan perangkat baru</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Pastikan perijinan-perijinan dan layanan berikut telah diaktifkan:</string>
+  <string name="DeviceTransferSetup__location_permission">Izin lokasi</string>
+  <string name="DeviceTransferSetup__location_services">Layanan lokasi</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Pada layar WiFi Direct, hapus semua grup yang diingat dan lepaskan tautan undangan atau perangkat yang tersambung.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Layar WiFi Direct</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Coba matikan Wi-Fi dan nyalakan kembali, pada kedua perangkat.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Pastikan kedua perangkat dalam mode transfer.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Pergi ke halaman bantuan</string>
   <string name="DeviceTransferSetup__try_again">Coba Lagi</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">Menunggu perangkat lain</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Ketuk Lanjutkan pada perangkat lain Anda untuk memulai transfer.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Ketuk Lanjutkan pada perangkat lain Anda…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Tidak dapat mentransfer dari versi baru Signal</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Mentransfer data</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Letakkan kedua perangkat berdekatan satu sama lain. Jangan matikan perangkat dan biarkan Signal terbuka. Proses transfer dienkripsi ujung-ke-ujung.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d pesan sejauh ini…</string>
   <string name="DeviceTransfer__cancel">Batal</string>
   <string name="DeviceTransfer__try_again">Coba Lagi</string>
+  <string name="DeviceTransfer__stop_transfer_question">Hentikan transfer?</string>
+  <string name="DeviceTransfer__stop_transfer">Hentikan transfer</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Semua hasil transfer akan hilang.</string>
+  <string name="DeviceTransfer__transfer_failed">Transfer gagal</string>
+  <string name="DeviceTransfer__unable_to_transfer">Tidak dapat mentransfer</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Transfer Akun</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Anda dapat mentransfer akun Signal Anda saat memasang Signal pada perangkat Android baru. Sebelum melanjutkan:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Unduh Signal di perangkat Android baru Anda</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Ketuk pada \"Transfer atau pulihkan akun\"</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Pilih \"Transfer dari perangkat Android\" saat diminta kemudian \"Lanjutkan\". Letakan kedua perangkat secara berdekatan.</string>
   <string name="OldDeviceTransferInstructions__continue">Lanjut</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Transfer selesai</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Pergi ke perangkat baru Anda</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Data Signal Anda telah ditransfer ke perangkat baru. Untuk menyelesaikan proses transfer, Anda harus melanjutkan pendaftaran pada perangkat baru Anda.</string>
   <string name="OldDeviceTransferComplete__close">Tutup</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Transfer berhasil</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Transfer selesai</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Untuk melanjutkan proses transfer, Anda harus melanjutkan pendaftaran.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Lanjutkan pendaftaran</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Transfer akun</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Verifikasi dibutuhkan</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Mentransfer akun…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Selesaikan pendaftaran pada perangkat baru Anda</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Akun Signal Anda telah ditransfer ke perangkat baru, namun Anda harus menyelesaikan pendaftaran di perangkat baru untuk melanjutkannya. Signal akan dinonaktifkan pada perangkat ini.</string>
   <string name="OldDeviceTransferLockedDialog__done">Selesai</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Batalkan dan aktifkan perangkat ini</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Transfer saldo MOB?</string>
   <string name="AdvancedPreferenceFragment__transfer">Pindahkan</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokir</string>
@@ -2512,6 +2573,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Disalin ke papan klip</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Tautan ini sepertinya sedang tidak aktif</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Gagal memutar pesan suara</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Pesan suara. %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s hingga %2$s</string>
@@ -2563,6 +2625,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="DeleteAccountFragment__delete_account">Hapus akun</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Menghapus info akun dan foto profil Anda</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Hapus semua pesan anda</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Hapus %1$s pada akun pembayaran Anda</string>
   <string name="DeleteAccountFragment__no_country_code">Tidak ada kode negara yang ditentukan</string>
   <string name="DeleteAccountFragment__no_number">Tidak ada nomor ditentukan</string>
   <string name="DeleteAccountFragment__the_phone_number">Nomor telepon yang kamu masukan tidak cocok dengan akun manapun.</string>
@@ -2575,9 +2638,13 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="DeleteAccountCountryPickerFragment__search_countries">Cari negara</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Lewati</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="other">%1$d anggota</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Bagikan</string>
   <string name="ShareActivity__send">Kirim</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Berbagi ke beberapa percakapan hanya didukung untuk pesan Signal.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Gagal mengirim ke beberapa pengguna</string>
@@ -2588,12 +2655,24 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ChatWallpaperActivity__chat_wallpaper">Gambar latar percakapan</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Warna percakapan</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Atur ulang warna percakapan</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Atur ulang warna percakapan</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Atur ulang warna percakapan?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Atur gambar latar</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Mode gelap meredupkan gambar latar</string>
   <string name="ChatWallpaperFragment__contact_name">Nama kontak</string>
   <string name="ChatWallpaperFragment__reset">Atur ulang</string>
   <string name="ChatWallpaperFragment__clear">Bersihkan</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Pratinjau gambar latar</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Apakah Anda ingin mengganti semua warna percakapan?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Apakah Anda ingin mengganti semua gambar latar?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">Atur ulang warna bawaan</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">Atur ulang semua warna</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">Atur ulang gambar latar bawaan</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Kembalikan semua gambar latar.</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">Atur ulang gambar latar</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">Atur ulang gambar latar</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">Atur ulang gambar latar?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Pilih dari galeri</string>
   <string name="ChatWallpaperSelectionFragment__presets">Preset</string>
@@ -2613,6 +2692,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="WallpaperCropActivity__error_setting_wallpaper">Gagal mengatur gambar latar.</string>
   <string name="WallpaperCropActivity__blur_photo">Buramkan foto</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">Tentang MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin adalah mata uang digital yang berfokus pada privasi.</string>
+  <string name="payment_info_card_adding_funds">Menambahkan dana</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Anda dapat menambahkan dana untuk digunakan di Signal dengan mengirimkan MobileCoin ke alamat wallet Anda.</string>
   <string name="payment_info_card_hide">Sembunyikan</string>
   <string name="payment_info_card_update_pin">Perbarui PIN</string>
   <!--DeactivateWalletFragment-->
@@ -2693,6 +2776,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">Penampilan</string>
   <string name="ChatColorsMegaphone__not_now">Nanti saja</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Nanti saja</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_stickers">Stiker</string>
@@ -2740,7 +2825,14 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <string name="AvatarPickerFragment__camera">Kamera</string>
+  <string name="AvatarPickerFragment__photo">Foto</string>
+  <string name="AvatarPickerFragment__save">Simpan</string>
+  <string name="TextAvatarCreationFragment__preview">Pratinjau</string>
+  <string name="TextAvatarCreationFragment__done">Selesai</string>
+  <string name="TextAvatarCreationFragment__color">Warna</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="AvatarPickerFragment__edit">Sunting</string>
   <!--EOF-->
 </resources>

@@ -1467,7 +1467,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SubmitDebugLogActivity_success">Operácia úspešne dokončená!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Skopírujte túto URL adresu a pridajte ju k hláseniu o chybe alebo e-mailu určenému tímu podpory:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Zdieľať</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Tento záznam bude verejne zverejnený online, aby si ho mohli prispievatelia pozrieť. Pred nahraním ho môžete skontrolovať a upraviť.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Info o zariadení:</string>
@@ -1857,8 +1856,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="giphy_activity_toolbar__search_gifs">Hľadať GIFy</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nič sa nenašlo</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Tento záznam bude zverejnený online pre vývojárov. Pred odoslaním ho môžete skontrolovať a upraviť.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovať vaše existujúce textové správy do šifrovanej databázy Signalu?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Pôvodná systémová databáza nebude žiadnym spôsobom modifikovaná.</string>
@@ -3149,6 +3146,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Prepli sme farby konverzácie, aby sme vám poskytli viac možností a uľahčili čítanie konverzácií.</string>
   <string name="ChatColorsMegaphone__appearance">Vzhľad</string>
   <string name="ChatColorsMegaphone__not_now">Teraz nie</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Pridajte profilovú fotografiu</string>
+  <string name="AddAProfilePhotoMegaphone__not_now">Teraz nie</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Pridať fotku</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emotikony</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Otvoriť vyhľadávanie emotikónov</string>
@@ -3226,8 +3227,21 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ContactFilterView__search_name_or_number">Vyhľadajte meno, alebo číslo</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <string name="AvatarPickerFragment__avatar_preview">Ukážka avataru</string>
+  <string name="AvatarPickerFragment__camera">Fotoaparát</string>
+  <string name="AvatarPickerFragment__take_a_picture">Odfoťte sa</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Vyberte fotku</string>
+  <string name="AvatarPickerFragment__photo">Fotka</string>
+  <string name="AvatarPickerFragment__text">Text</string>
+  <string name="AvatarPickerFragment__save">Uložiť</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Vyberte profilový obrázok</string>
+  <string name="TextAvatarCreationFragment__preview">Náhľad</string>
+  <string name="TextAvatarCreationFragment__done">Hotovo</string>
+  <string name="TextAvatarCreationFragment__text">Text</string>
+  <string name="TextAvatarCreationFragment__color">Farba</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__edit">Upraviť</string>
   <!--EOF-->
 </resources>

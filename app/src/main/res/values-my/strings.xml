@@ -1612,8 +1612,6 @@
   <string name="giphy_activity_toolbar__search_gifs">GIF များရှာဖွေမယ်</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ဘာမှ မတွေ့ဘူး</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">ပံ့ပိုးသူများ ကြည့်ရှုနိုင်ရန် ဤမှတ်တမ်းကို အများကြည့်ရှုနိုင်ရန် အွန်လိုင်းပေါ်တင်ထားပါမည်။ သင်မတင်သွင်းမီ လေ့လာတည်းဖြတ်နိုင်ပါသည်။</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">သင်၏စာသားသတင်းစကားများကို Signal ၏encrypt အချက်အလက်အဖြစ်ကူးပြောင်းချင်ပါသလား?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">မူလဒေတာဘေ့စ်စနစ်ကို ပြောင်းလဲမည် မဟုတ်ပါ။</string>
@@ -2765,6 +2763,8 @@
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">ပုံပန်းသဏ္ဌာန်</string>
   <string name="ChatColorsMegaphone__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_stickers">စတစ်ကာများ </string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>
@@ -2810,7 +2810,14 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">ကင်မရာ</string>
+  <string name="AvatarPickerFragment__photo">ရုပ်ပုံ</string>
+  <string name="AvatarPickerFragment__save">သိမ်းမယ်</string>
+  <string name="TextAvatarCreationFragment__preview">ကြိုတင်ကြည့်မယ်</string>
+  <string name="TextAvatarCreationFragment__done">ပြီးပါပြီ</string>
+  <string name="TextAvatarCreationFragment__color">အရောင်</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="AvatarPickerFragment__edit">ပြင်မယ်</string>
   <!--EOF-->
 </resources>

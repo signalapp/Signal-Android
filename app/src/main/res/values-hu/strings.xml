@@ -1344,7 +1344,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SubmitDebugLogActivity_success">Sikerült!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Másold ki ezt a URL-t és illeszd be a hibajegybe vagy a támogatásnak küldött e-mailbe:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Megosztás</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Ez a naplófájl nyilvánosan elérhető lesz az interneten annak érdekében, hogy a fejlesztők megtekinthessék. A tartalmát feltöltés előtt ellenőrizheted, és szabadon szerkesztheted.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Szűrő:</string>
   <string name="SupportEmailUtil_device_info">Eszköz információ:</string>
@@ -1714,8 +1713,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="giphy_activity_toolbar__search_gifs">GIF-ek  keresése</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nincs találat</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Ez a napló nyilvános közlésre kerül az interneten annak érdekében, hogy a fejlesztők megtekinthessék. Küldés előtt szabadon megvizsgálhatod és szerkesztheted.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Szeretnéd importálni a már meglévő szöveges üzeneteidet a Signal titkosított adatbázisába?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Az alapértelmezett rendszer adatbázist semmilyen módon nem fogjuk megváltoztatni.</string>
@@ -2964,6 +2961,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ChatColorsMegaphone__new_chat_colors">Új csevegésszínek</string>
   <string name="ChatColorsMegaphone__appearance">Megjelenés</string>
   <string name="ChatColorsMegaphone__not_now">Később</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Később</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji kereső megnyitása</string>
@@ -3041,8 +3040,17 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ContactFilterView__search_name_or_number">Telefonszám vagy név keresése</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">Kamera</string>
+  <string name="AvatarPickerFragment__photo">Fotó</string>
+  <string name="AvatarPickerFragment__text">Szöveg</string>
+  <string name="AvatarPickerFragment__save">Mentés</string>
+  <string name="TextAvatarCreationFragment__preview">Előnézet</string>
+  <string name="TextAvatarCreationFragment__done">Befejezés</string>
+  <string name="TextAvatarCreationFragment__text">Szöveg</string>
+  <string name="TextAvatarCreationFragment__color">Szín</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__edit">Szerkesztés</string>
   <!--EOF-->
 </resources>

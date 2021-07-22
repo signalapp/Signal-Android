@@ -1279,7 +1279,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="SubmitDebugLogActivity_success">Thành công!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Sao chép URL này và thêm nó vào báo cáo lỗi hoặc email hỗ trợ:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Chia sẻ</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Nhật kí này sẽ được đăng trực tuyến công khai cho những người đóng góp theo dõi. Bạn có thể kiểm tra và sửa đổi nó trước khi gửi đi.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Bộ lọc:</string>
   <string name="SupportEmailUtil_device_info">Thông tin thiết bị:</string>
@@ -1639,8 +1638,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="giphy_activity_toolbar__search_gifs">Tìm GIF</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Không tìm thấy</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Nhật kí này sẽ được đăng trực tuyến công khai cho những người đóng góp theo dõi, bạn có thể kiểm tra và sửa đổi nó trước khi gửi đi.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Bạn có muốn nhập các tin nhắn đã có vào cơ sở dữ liệu mã hoá của Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Cơ sở dữ liệu mặc định của hệ thống sẽ không bị sửa hay thay đổi gì cả.</string>
@@ -2889,6 +2886,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Chúng tôi đã thay đổi màu cuộc trò chuyện để cho bạn nhiều lựa chọn hơn và giúp tin nhắn dễ đọc hơn.</string>
   <string name="ChatColorsMegaphone__appearance">Diện mạo</string>
   <string name="ChatColorsMegaphone__not_now">Để sau</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Để sau</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Mở tìm kiếm emoji</string>
@@ -2966,8 +2965,17 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ContactFilterView__search_name_or_number">Tìm kiếm tên hoặc số điện thoại</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">Máy ảnh</string>
+  <string name="AvatarPickerFragment__photo">Ảnh</string>
+  <string name="AvatarPickerFragment__text">Tin nhắn</string>
+  <string name="AvatarPickerFragment__save">Lưu</string>
+  <string name="TextAvatarCreationFragment__preview">Xem trước</string>
+  <string name="TextAvatarCreationFragment__done">Xong</string>
+  <string name="TextAvatarCreationFragment__text">Tin nhắn</string>
+  <string name="TextAvatarCreationFragment__color">Màu</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">. %1$s</string>
+  <string name="AvatarPickerFragment__edit">Sửa</string>
   <!--EOF-->
 </resources>

@@ -1460,7 +1460,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="SubmitDebugLogActivity_success">Sukces!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Skopiuj ten URL i dodaj go do Twojego raportu o błędzie lub wiadomości e-mail:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Udostępnij</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Ten log zostanie upubliczniony online, aby umożliwić twórcom aplikacji jego sprawdzenie. Możesz go przejrzeć i edytować przed przesłaniem.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtr:</string>
   <string name="SupportEmailUtil_device_info">Dane urządzenia:</string>
@@ -1850,8 +1849,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="giphy_activity_toolbar__search_gifs">Szukaj GIF-ów</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nic nie znaleziono</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Ten log zostanie upubliczniony online, aby umożliwić twórcom aplikacji jego sprawdzenie. Możesz go przejrzeć i edytować przed przesłaniem.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Czy chcesz zaimportować swoje wiadomości do zaszyfrowanej bazy danych Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Domyślna baza danych nie zostanie zmodyfikowana ani zastąpiona w żaden sposób.</string>
@@ -3142,6 +3139,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Zamieniliśmy kolory czatów, aby dać Ci więcej opcji i zwiększyć czytelność rozmów.</string>
   <string name="ChatColorsMegaphone__appearance">Wygląd</string>
   <string name="ChatColorsMegaphone__not_now">Nie teraz</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Nie teraz</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emotikony</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Otwórz wyszukiwarkę emotikon</string>
@@ -3219,8 +3218,17 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ContactFilterView__search_name_or_number">Szukaj po nazwie lub numerze</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">Aparat</string>
+  <string name="AvatarPickerFragment__photo">Zdjęcie</string>
+  <string name="AvatarPickerFragment__text">Tekst</string>
+  <string name="AvatarPickerFragment__save">Zapisz</string>
+  <string name="TextAvatarCreationFragment__preview">Podgląd</string>
+  <string name="TextAvatarCreationFragment__done">Gotowe</string>
+  <string name="TextAvatarCreationFragment__text">Tekst</string>
+  <string name="TextAvatarCreationFragment__color">Kolor</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__edit">Edytuj</string>
   <!--EOF-->
 </resources>

@@ -1708,8 +1708,6 @@
   <string name="giphy_activity_toolbar__search_gifs">Otsi GIFe</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Midagi ei leitud</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">See logi postitatakse Internetti avalikult, et kaastöötajad saaksid seda näha, sa võid seda enne postitamist vaadata ja muuta. </string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Kas soovid importida kõik oma olemasolevad tekstsõnumid Signali krüptitud andmebaasi?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Vaikimisi süsteemi andmebaasi ei muudeta mistahes viisil.</string>
@@ -2820,6 +2818,8 @@
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Me uuendasime vestluse värve, et anda sulle rohkem valikuid ja vestluse lihtsamini loetavaks.</string>
   <string name="ChatColorsMegaphone__appearance">Välimus</string>
   <string name="ChatColorsMegaphone__not_now">Mitte praegu</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Mitte praegu</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Ava emotikonide otsing</string>
@@ -2895,7 +2895,14 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">Kaamera</string>
+  <string name="AvatarPickerFragment__photo">Foto</string>
+  <string name="AvatarPickerFragment__save">Salvesta</string>
+  <string name="TextAvatarCreationFragment__preview">Eelvaade</string>
+  <string name="TextAvatarCreationFragment__done">Tehtud</string>
+  <string name="TextAvatarCreationFragment__color">Värv</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="AvatarPickerFragment__edit">Muuda</string>
   <!--EOF-->
 </resources>

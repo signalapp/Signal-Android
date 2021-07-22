@@ -1345,7 +1345,6 @@
   <string name="SubmitDebugLogActivity_success">Tókst!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Afritaðu þessa slóð og bættu henni í verkbeiðnina þína eða tölvupóst með beiðni um aðstoð:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Deila</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Þessi villumeldingaskrá verður birt opinberlega á netinu svoforritarar og fleiri geti skoðað hana. Þú ættir að yfirfara hana og breyta ef þörf þykir áður en hún er send inn.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Sía:</string>
   <string name="SupportEmailUtil_device_info">Upplýsingar um tæki:</string>
@@ -1715,8 +1714,6 @@
   <string name="giphy_activity_toolbar__search_gifs">Leita að GIF-myndum</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ekkert fannst</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Þessi villumeldingaskrá verður birt opinberlega á netinu svoforritarar og fleiri geti skoðað hana. Þú ættir að yfirfara hana og breyta ef þörf þykir áður en hún er send.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Viltu flytja öll fyrirliggjandi textaskilaboð inn í dulritaðan gagnagrunn Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Sjálfgefnum gagnagrunni kerfisins verður ekki breytt á nokkurn hátt.</string>
@@ -2982,6 +2979,8 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Við bættum við fleiri möguleikum á að sýsla með liti í spjallrásum, sem gerir auðveldara að lesa spjall.</string>
   <string name="ChatColorsMegaphone__appearance">Útlit</string>
   <string name="ChatColorsMegaphone__not_now">Ekki núna</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Ekki núna</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Tjáningartákn</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Opna leit að emoji-táknum</string>
@@ -3059,8 +3058,17 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ContactFilterView__search_name_or_number">Leita eftir nafni eða símanúmeri</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">Myndavél</string>
+  <string name="AvatarPickerFragment__photo">Mynd</string>
+  <string name="AvatarPickerFragment__text">Texti</string>
+  <string name="AvatarPickerFragment__save">Vista</string>
+  <string name="TextAvatarCreationFragment__preview">Forskoða</string>
+  <string name="TextAvatarCreationFragment__done">Lokið</string>
+  <string name="TextAvatarCreationFragment__text">Texti</string>
+  <string name="TextAvatarCreationFragment__color">Litur</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__edit">Breyta</string>
   <!--EOF-->
 </resources>

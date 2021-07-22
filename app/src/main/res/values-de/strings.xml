@@ -1335,7 +1335,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubmitDebugLogActivity_success">Erfolgreich!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bitte kopiere diese Internetadresse und füge sie deinem Fehlerbericht oder deiner E-Mail an den Support hinzu:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Teilen</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Dieses Diagnoseprotokoll wird im Internet veröffentlicht, damit Mitwirkende es einsehen können. Bevor du das Protokoll hochlädst, kannst du es noch einmal überprüfen und bearbeiten.</string> -->
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Geräteinformationen:</string>
@@ -1705,8 +1704,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="giphy_activity_toolbar__search_gifs">GIFs suchen</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nichts gefunden</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Dieses Protokoll wird für Mitwirkende im Internet veröffentlicht. Vor Übermittlung kannst du es noch überprüfen und bearbeiten.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Möchtest du deine bestehenden Nachrichten in Signals verschlüsselte Datenbank importieren?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Die Standard-Systemdatenbank wird dabei in keiner Weise verändert.</string>
@@ -1746,7 +1743,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Personalisierte MMS-Gruppennamen und -fotos sind nur für dich sichtbar.</string>
   <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Gruppenbeschreibungen sind für Mitglieder dieser Gruppe und eingeladene Personen sichtbar.</string>
   <!--EditAboutFragment-->
-  <string name="EditAboutFragment_about">Über</string>
+  <string name="EditAboutFragment_about">Info</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Schreib einige Worte über dich …</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Sprich offen</string>
@@ -2969,6 +2966,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Wir haben die Unterhaltungsfarben geändert, um mehr Optionen zu bieten und Unterhaltungen besser lesbar zu machen.</string>
   <string name="ChatColorsMegaphone__appearance">Darstellung</string>
   <string name="ChatColorsMegaphone__not_now">Jetzt nicht</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Jetzt nicht</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji-Suche öffnen</string>
@@ -3046,8 +3045,17 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ContactFilterView__search_name_or_number">Name oder Nummer suchen</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">Kamera</string>
+  <string name="AvatarPickerFragment__photo">Foto</string>
+  <string name="AvatarPickerFragment__text">Text</string>
+  <string name="AvatarPickerFragment__save">Speichern</string>
+  <string name="TextAvatarCreationFragment__preview">Vorschau</string>
+  <string name="TextAvatarCreationFragment__done">Fertig</string>
+  <string name="TextAvatarCreationFragment__text">Text</string>
+  <string name="TextAvatarCreationFragment__color">Farbe</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__edit">Bearbeiten</string>
   <!--EOF-->
 </resources>

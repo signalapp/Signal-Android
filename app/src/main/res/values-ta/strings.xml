@@ -1665,8 +1665,6 @@
   <string name="giphy_activity_toolbar__search_gifs">நகரும் படங்களைத் GIF தேடுங்கள்</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">எதுவும் கிடைக்கவில்லை</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">பங்களிப்பாளர்களைக் காண இந்த பதிவு ஆன்லைனில் பொதுவில் வெளியிடப்படும், சமர்ப்பிக்கும் முன் அதை ஆராய்ந்து திருத்தலாம்.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">உங்களிடம்  இருக்கும் உரை செய்திகளை Signal-இன் மறையாக்கப்பட்ட தரவுத்தளத்தில் இறக்குமதி செய்ய விரும்புகிறீர்களா?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">இயல்புநிலை சாதனக் கோப்பு இதனால் எந்தவிதத்திலும் மாற்றமோ அல்லது திறுத்தமோ பெறாது.</string>
@@ -2580,6 +2578,8 @@
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">தோற்றம்</string>
   <string name="ChatColorsMegaphone__not_now">இப்போது இல்லை</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">இப்போது இல்லை</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">உணர்வு படங்கள்</string>
   <string name="KeyboardPagerFragment_stickers">ஒட்டிகள்</string>
@@ -2625,7 +2625,14 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">புகைப்பட கருவி</string>
+  <string name="AvatarPickerFragment__photo">புகைப்படம் </string>
+  <string name="AvatarPickerFragment__save">சேமி</string>
+  <string name="TextAvatarCreationFragment__preview">முன்னோட்டம்</string>
+  <string name="TextAvatarCreationFragment__done">முடிந்தது</string>
+  <string name="TextAvatarCreationFragment__color">நிறம்</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="AvatarPickerFragment__edit">தொகு</string>
   <!--EOF-->
 </resources>

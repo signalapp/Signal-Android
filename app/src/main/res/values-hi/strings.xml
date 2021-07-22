@@ -1653,8 +1653,6 @@
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">कुछ नहीं मिला</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">यह लॉग योगदानकर्ताओं के देखने के लिए सार्वजनिक रूप से ऑनलाइन पोस्ट किया जाएगा, आप सबमिट करने से पहले इसकी जांच और संपादन कर सकते हैं।</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">क्या आप अपने मौजूदा टेक्स्ट मेसेज को Signal के एन्क्रिप्टेड डेटाबेस में आयात करना चाहते हैं?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">डिफ़ॉल्ट सिस्टम डेटाबेस किसी भी तरह से संशोधित या परिवर्तित नहीं किया जाएगा।</string>
@@ -2528,6 +2526,8 @@
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">दिखावट</string>
   <string name="ChatColorsMegaphone__not_now">अभी नहीं</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">अभी नहीं</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">इमोजी</string>
   <string name="KeyboardPagerFragment_stickers">स्टिकर</string>
@@ -2573,7 +2573,13 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__camera">कैमरा</string>
+  <string name="AvatarPickerFragment__photo">तस्वीर</string>
+  <string name="AvatarPickerFragment__save">सेव</string>
+  <string name="TextAvatarCreationFragment__done">पूर्ण</string>
+  <string name="TextAvatarCreationFragment__color">रंग </string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="AvatarPickerFragment__edit">बदलें</string>
   <!--EOF-->
 </resources>

@@ -1350,7 +1350,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubmitDebugLogActivity_success">Succesvol geüpload!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze URL (door deze aan te tikken en vast te houden) en voeg die toe aan je foutrapport op GitHub of aan een e-mail aan onze ondersteuning:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Doorsturen via andere app</string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Dit logbestand wordt publiekelijk beschikbaar gesteld op internet zodat de ontwikkelaars en vrijwilligers het kunnen bestuderen. Je kunt het bekijken en aanpassen voor je het upload.</string> -->
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dit logbestand wordt publiekelijk beschikbaar gesteld op internet zodat de ontwikkelaars en vrijwilligers het kunnen bestuderen. Je kunt het bekijken voor je het upload.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Apparaatinformatie:</string>
@@ -1720,8 +1720,6 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="giphy_activity_toolbar__search_gifs">GIFs zoeken</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Niets gevonden</string>
-  <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Dit logbestand wordt publiekelijk beschikbaar gesteld op internet zodat de ontwikkelaars en vrijwilligers het kunnen bestuderen. Je kunt het bekijken en aanpassen voor je het verzendt.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je je sms- en mms-berichten importeren naar de versleutelde databank van Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De systeemdatabank zal op geen enkele wijze worden gewijzigd of aangepast.</string>
@@ -2984,6 +2982,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">We hebben de kleuren van berichtenbubbels omgewisseld, zodat je meer mogelijkheden hebt om zelf kleuren te kiezen en zodat gesprekken makkelijker te lezen zijn.</string>
   <string name="ChatColorsMegaphone__appearance">Uiterlijk</string>
   <string name="ChatColorsMegaphone__not_now">Niet nu</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Voeg een profielfoto toe</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Maak jezelf herkenbaar door een profielfoto in te stellen of pas de kleur of tekst aan.</string>
+  <string name="AddAProfilePhotoMegaphone__not_now">Niet nu</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Voeg een foto toe</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji-zoeken</string>
@@ -3061,8 +3064,23 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ContactFilterView__search_name_or_number">Zoek op naam of telefoonnummer</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__avatar_preview">Voorbeeld van profielafbeelding</string>
+  <string name="AvatarPickerFragment__camera">Camera</string>
+  <string name="AvatarPickerFragment__take_a_picture">Neem een foto</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Kies een afbeelding</string>
+  <string name="AvatarPickerFragment__photo">Foto</string>
+  <string name="AvatarPickerFragment__text">Tekst</string>
+  <string name="AvatarPickerFragment__save">Opslaan</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Of kies een standaard-afbeelding</string>
+  <string name="TextAvatarCreationFragment__preview">Voorbeeld</string>
+  <string name="TextAvatarCreationFragment__done">Klaar</string>
+  <string name="TextAvatarCreationFragment__text">Tekst</string>
+  <string name="TextAvatarCreationFragment__color">Kleur</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">Sms (onbeveiligd)</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__clear_avatar">Profielafbeelding verwijderen</string>
+  <string name="AvatarPickerFragment__edit">Aanpassen</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">De profielafbeelding opslaan is mislukt</string>
   <!--EOF-->
 </resources>
