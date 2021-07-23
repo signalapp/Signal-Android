@@ -95,7 +95,7 @@ object OpenGroupAPIV2 {
         return RequestBody.create(MediaType.get("application/json"), parametersAsJSON)
     }
 
-    private fun send(request: Request, isJsonRequired: Boolean = true): Promise<Map<*, *>, Exception> {
+    private fun send(request: Request): Promise<Map<*, *>, Exception> {
         val url = HttpUrl.parse(request.server) ?: return Promise.ofFail(Error.InvalidURL)
         val urlBuilder = HttpUrl.Builder()
             .scheme(url.scheme())
@@ -127,7 +127,7 @@ object OpenGroupAPIV2 {
             if (request.useOnionRouting) {
                 val publicKey = MessagingModuleConfiguration.shared.storage.getOpenGroupPublicKey(request.server)
                     ?: return Promise.ofFail(Error.NoPublicKey)
-                return OnionRequestAPI.sendOnionRequest(requestBuilder.build(), request.server, publicKey, isJSONRequired = isJsonRequired).fail { e ->
+                return OnionRequestAPI.sendOnionRequest(requestBuilder.build(), request.server, publicKey).fail { e ->
                     // A 401 means that we didn't provide a (valid) auth token for a route that required one. We use this as an
                     // indication that the token we're using has expired. Note that a 403 has a different meaning; it means that
                     // we provided a valid token but it doesn't have a high enough permission level for the route in question.

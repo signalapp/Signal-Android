@@ -146,7 +146,8 @@ object MessageSender {
             }
             val base64EncodedData = Base64.encodeBytes(wrappedMessage)
             // Send the result
-            val snodeMessage = SnodeMessage(message.recipient!!, base64EncodedData, message.ttl, message.sentTimestamp!!)
+            val timestamp = message.sentTimestamp!! + SnodeAPI.clockOffset
+            val snodeMessage = SnodeMessage(message.recipient!!, base64EncodedData, message.ttl, timestamp)
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
                 SnodeModule.shared.broadcaster.broadcast("sendingMessage", message.sentTimestamp!!)
             }
