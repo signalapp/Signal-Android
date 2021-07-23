@@ -959,6 +959,7 @@
     <string name="Megaphones_invite_friends">Invite friends</string>
     <string name="Megaphones_use_sms">Use SMS</string>
     <string name="Megaphones_appearance">Appearance</string>
+    <string name="Megaphones_add_photo">Add photo</string>
 
     <!-- NotificationBarManager -->
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
