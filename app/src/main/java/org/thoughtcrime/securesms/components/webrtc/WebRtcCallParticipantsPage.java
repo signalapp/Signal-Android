@@ -64,6 +64,10 @@ class WebRtcCallParticipantsPage {
     return isPortrait;
   }
 
+  public @NonNull CallParticipantsLayout.LayoutStrategy getLayoutStrategy() {
+    return CallParticipantsLayoutStrategies.getStrategy(isPortrait);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

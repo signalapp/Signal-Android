@@ -231,6 +231,9 @@ dependencyVerification {
         ['androidx.viewpager:viewpager:1.0.0',
          '147af4e14a1984010d8f155e5e19d781f03c1d70dfed02a8e0d18428b8fc8682'],
 
+        ['androidx.window:window:1.0.0-alpha09',
+         'edbaafc3a7b0977c138916585d761fe159a521177a30065d676d067edf6571d2'],
+
         ['cn.carbswang.android:NumberPickerView:1.0.9',
          '18b3c316d62c7c277978a8d4ed57a5b8f4e943762264960f579a8a549c756729'],
 
@@ -507,20 +510,23 @@ dependencyVerification {
         ['org.jetbrains.kotlin:kotlin-reflect:1.4.10',
          '3ab3413ec945f801448360ad97bc6e14fec6d606889ede3c707cc277b4467f45'],
 
-        ['org.jetbrains.kotlin:kotlin-stdlib-common:1.4.32',
-         'e1ff6f55ee9e7591dcc633f7757bac25a7edb1cc7f738b37ec652f10f66a4145'],
+        ['org.jetbrains.kotlin:kotlin-stdlib-common:1.5.10',
+         'd958ce94beda85f865829fb95012804866db7d5246615fd71a2f5aabca3e7994'],
 
-        ['org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.32',
-         '5f801e75ca27d8791c14b07943c608da27620d910a8093022af57f543d5d98b6'],
+        ['org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.0',
+         'ac12f092f12b575c1f9e0ab5025b1e610b0fe95663e26371c16c328895711bae'],
 
-        ['org.jetbrains.kotlin:kotlin-stdlib:1.4.32',
-         '13e9fd3e69dc7230ce0fc873a92a4e5d521d179bcf1bef75a6705baac3bfecba'],
+        ['org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0',
+         '15e6c81b9e845eefe58d51a04670bb90418046f458264ec0e61ee9bdbc1bfae7'],
 
-        ['org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1',
-         'd4cadb673b2101f1ee5fbc147956ac78b1cfd9cc255fb53d3aeb88dff11d99ca'],
+        ['org.jetbrains.kotlin:kotlin-stdlib:1.5.10',
+         'ca87c454cd3f2e60931f1803c59699d510d3b4b959cd7119296fb947581d722d'],
 
-        ['org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.4.1',
-         '6d2f87764b6638f27aff12ed380db4b63c9d46ba55dc32683a650598fa5a3e22'],
+        ['org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0',
+         '7099198391d673c199fea084423d9f3fdc79470acba19111330c7f88504279c7'],
+
+        ['org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.0',
+         '78d6cc7135f84d692ff3752fcfd1fa1bbe0940d7df70652e4f1eaeec0c78afbb'],
 
         ['org.jetbrains:annotations:13.0',
          'ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478'],

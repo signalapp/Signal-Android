@@ -4,10 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:parentTag="org.thoughtcrime.securesms.components.webrtc.WebRtcCallView">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fold_top_guideline"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="0dp" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/call_screen_participants_parent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/fold_top_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/call_screen_participants_pager"
@@ -21,21 +32,63 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <include
-        layout="@layout/webrtc_call_view_large_local_render"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <FrameLayout
+        android:id="@+id/call_screen_large_local_renderer_frame"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/fold_top_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.thoughtcrime.securesms.components.webrtc.TextureViewRenderer
+            android:id="@+id/call_screen_large_local_renderer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/call_screen_large_local_video_off_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/call_screen_large_local_video_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/WebRtcCallView__your_video_is_off"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:drawableTopCompat="@drawable/ic_video_off_solid_white_28"
+            tools:visibility="visible" />
+
+    </FrameLayout>
 
     <ViewStub
         android:id="@+id/group_call_call_full_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout="@layout/group_call_call_full" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout="@layout/group_call_call_full"
+        app:layout_constraintBottom_toTopOf="@id/fold_top_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/call_screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/fold_top_call_screen_guideline"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_navigation_bar_guideline"
+            app:layout_constraintGuide_end="0dp" />
 
         <View
             android:id="@+id/call_screen_header_gradient"
@@ -68,19 +121,20 @@
 
         <View
             android:id="@+id/call_screen_footer_gradient"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="-40dp"
-            android:background="@drawable/webrtc_call_screen_header_gradient"
-            android:rotation="180"
+            android:background="@drawable/webrtc_call_screen_footer_gradient"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/call_screen_footer_gradient_spacer"
             tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/call_screen_participants_recycler"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
@@ -89,14 +143,19 @@
             android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/call_screen_video_toggle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
             app:reverseLayout="true"
-            tools:listitem="@layout/webrtc_call_participant_recycler_item" />
+            tools:itemCount="2"
+            tools:listitem="@layout/webrtc_call_participant_recycler_item"
+            tools:visibility="visible" />
 
         <org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
             android:id="@+id/call_screen_pip_area"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/call_screen_navigation_bar_guideline"
+            app:layout_constraintBottom_toTopOf="@+id/fold_top_call_screen_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -357,6 +416,39 @@
             app:layout_constraintBottom_toTopOf="@+id/call_screen_footer_gradient_barrier"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/fold_show_participants_menu_counter_wrapper"
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:alpha="0"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:minWidth="48dp"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fold_top_call_screen_guideline"
+            tools:background="@color/core_ultramarine">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                app:srcCompat="@drawable/ic_group_solid_24"
+                app:tint="@color/core_white" />
+
+            <TextView
+                android:id="@+id/fold_show_participants_menu_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/core_white"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="0" />
+
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/call_screen_footer_gradient_barrier"

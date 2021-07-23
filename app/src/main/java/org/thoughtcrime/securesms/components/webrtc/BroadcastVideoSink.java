@@ -20,6 +20,8 @@ import java.util.WeakHashMap;
  */
 public class BroadcastVideoSink implements VideoSink {
 
+  public static final int DEVICE_ROTATION_IGNORE = -1;
+
   private final EglBase                         eglBase;
   private final WeakHashMap<VideoSink, Boolean> sinks;
   private final WeakHashMap<Object, Point>      requestingSizes;
@@ -85,7 +87,10 @@ public class BroadcastVideoSink implements VideoSink {
 
   @Override
   public synchronized void onFrame(@NonNull VideoFrame videoFrame) {
-    if (videoFrame.getRotatedHeight() < videoFrame.getRotatedWidth() || forceRotate) {
+    boolean isDeviceRotationIgnored = deviceOrientationDegrees == DEVICE_ROTATION_IGNORE;
+    boolean isWideVideoFrame        = videoFrame.getRotatedHeight() < videoFrame.getRotatedWidth();
+
+    if (!isDeviceRotationIgnored && (isWideVideoFrame || forceRotate)) {
       int rotation = calculateRotation();
       if (rotation > 0) {
         rotation += rotateWithDevice ? videoFrame.getRotation() : 0;

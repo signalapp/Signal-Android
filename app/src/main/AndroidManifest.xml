@@ -96,6 +96,7 @@
                  android:label="@string/app_name"
                  android:supportsRtl="true"
                  tools:replace="android:allowBackup"
+                 android:resizeableActivity="true"
                  android:allowBackup="false"
                  android:theme="@style/TextSecure.LightTheme"
                  android:largeHeap="true">
@@ -103,6 +104,9 @@
     <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCSx9xea86GwDKGznCAULE9Y5a8b-TfN9U"/>
+
+    <meta-data android:name="android.supports_size_changes"
+               android:value="true" />
 
     <meta-data android:name="com.google.android.gms.version"
                android:value="@integer/google_play_services_version" />
@@ -117,16 +121,15 @@
     <activity android:name=".WebRtcCallActivity"
               android:theme="@style/TextSecure.DarkTheme.WebRTCCall"
               android:excludeFromRecents="true"
-              android:screenOrientation="portrait"
               android:supportsPictureInPicture="true"
               android:windowSoftInputMode="stateAlwaysHidden"
               android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
               android:taskAffinity=".calling"
+              android:resizeableActivity="true"
               android:launchMode="singleTask"/>
 
     <activity android:name=".messagerequests.CalleeMustAcceptMessageRequestActivity"
               android:theme="@style/TextSecure.DarkNoActionBar"
-              android:screenOrientation="portrait"
               android:noHistory="true"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
