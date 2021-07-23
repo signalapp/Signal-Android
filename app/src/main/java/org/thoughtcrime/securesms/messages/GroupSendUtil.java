@@ -35,6 +35,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 import org.whispersystems.signalservice.internal.push.http.PartialSendCompleteListener;
 
@@ -206,6 +207,9 @@ public final class GroupSendUtil {
         if (sendOperation.shouldIncludeInMessageLog()) {
           DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(sendOperation.getSentTimestamp(), senderKeyTargets, results, sendOperation.getContentHint(), sendOperation.getRelatedMessageId());
         }
+      } catch (InvalidUnidentifiedAccessHeaderException e) {
+        Log.w(TAG, "Someone had a bad UD header. Falling back to legacy sends.", e);
+        legacyTargets.addAll(senderKeyTargets);
       } catch (NoSessionException e) {
         Log.w(TAG, "No session. Falling back to legacy sends.", e);
         legacyTargets.addAll(senderKeyTargets);
