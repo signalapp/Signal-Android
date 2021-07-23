@@ -197,7 +197,7 @@ public class DateUtils extends android.text.format.DateUtils {
    *
    * @return The timestamp if able to be parsed, otherwise -1.
    */
-  @SuppressLint("ObsoleteSdkInt")
+  @SuppressLint({ "ObsoleteSdkInt", "NewApi" })
   public static long parseIso8601(@Nullable String date) {
     SimpleDateFormat format;
     if (Build.VERSION.SDK_INT == 0 || Build.VERSION.SDK_INT >= 24) {
