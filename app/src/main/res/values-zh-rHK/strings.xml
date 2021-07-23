@@ -335,7 +335,7 @@
   <string name="RestoreBackupFragment__not_now">現在不要</string>
   <!--BackupsPreferenceFragment-->
   <string name="BackupsPreferenceFragment__chat_backups">聊天備份</string>
-  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">備份均以密碼加密並儲存在您的裝置上。</string>
+  <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">備份會以密碼加密並儲存在您的裝置上。</string>
   <string name="BackupsPreferenceFragment__create_backup">建立備份</string>
   <string name="BackupsPreferenceFragment__last_backup">上次備份：%1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">備份資料夾</string>
@@ -343,7 +343,7 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">測試您的備份密碼並驗證是否相符</string>
   <string name="BackupsPreferenceFragment__turn_on">開啟</string>
   <string name="BackupsPreferenceFragment__turn_off">關閉</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">如要還原備份，在 Signal 全新安裝後，請開啟應用程式並輕觸 [還原備份]，然後找出備份檔案位置。%1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">如要還原備份，在全新安裝 Signal 後，請開啟應用程式並輕觸 [還原備份]，然後找出備份檔案位置。%1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">了解更多</string>
   <string name="BackupsPreferenceFragment__in_progress">進行中…</string>
   <string name="BackupsPreferenceFragment__d_so_far">目前進度 %1$d…</string>
@@ -2821,7 +2821,7 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">封鎖 [最近使用應用程式] 清單以及此應用程式中的畫面擷取</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal 訊息與通話、一律轉送通話和密封寄件人</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">新聊天的預設計時器</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">為您開展的所有新對話，設定一個預設的限時訊息計時器。</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">為您開展的所有新對話，預設一個限時訊息計時器。</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">顯示狀態圖示</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">當訊息是以密封寄件人送達時，在訊息詳情中標示此圖示。</string>
@@ -2981,7 +2981,7 @@
   <string name="AvatarPickerFragment__photo">照片</string>
   <string name="AvatarPickerFragment__text">文字</string>
   <string name="AvatarPickerFragment__save">儲存</string>
-  <string name="AvatarPickerFragment__select_an_avatar">選取頭像</string>
+  <string name="AvatarPickerFragment__select_an_avatar">選取一個頭像</string>
   <string name="TextAvatarCreationFragment__preview">預覽</string>
   <string name="TextAvatarCreationFragment__done">完成</string>
   <string name="TextAvatarCreationFragment__text">文字</string>

@@ -1467,6 +1467,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SubmitDebugLogActivity_success">Operácia úspešne dokončená!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Skopírujte túto URL adresu a pridajte ju k hláseniu o chybe alebo e-mailu určenému tímu podpory:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Zdieľať</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Tento denník bude zverejnený online, aby si ho mohli prispievatelia vidieť. Pred nahraním to môžete skontrolovať.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Info o zariadení:</string>
@@ -3148,6 +3149,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ChatColorsMegaphone__not_now">Teraz nie</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Pridajte profilovú fotografiu</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Vyberte vzhľad a farbu, alebo prispôsobte svoje iniciály.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Teraz nie</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Pridať fotku</string>
   <!--KeyboardPagerFragment-->
@@ -3242,6 +3244,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__clear_avatar">Vymazať avatara</string>
   <string name="AvatarPickerFragment__edit">Upraviť</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Avatar sa nepodarilo uložiť</string>
   <!--EOF-->
 </resources>

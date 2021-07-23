@@ -163,6 +163,7 @@
   <string name="ConversationItem_error_network_not_delivered">அனுப்புவது தோல்வியுற்றது</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">முக்கிய பரிமாற்ற செய்தி பெறப்பட்டது, செயலாக்க தட்டவும்.</string>
   <string name="ConversationItem_group_action_left">%1$s இந்தக் குழுவை விட்டு விலகினார்.</string>
+  <string name="ConversationItem_send_paused">அனுப்பு இடைநிறுத்தப்பட்டது</string>
   <string name="ConversationItem_click_to_approve_unencrypted">அனுப்புதல் தோல்வியுற்றது, பாதுகாப்பற்ற மாற்று செய்ய  தட்டவும்</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">மாற்றாக மறையாக்கப்படாத SMS-ஆக அனுப்பலாமா?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">மாற்றாக மறையாக்கப்படாத MMS-ஆக அனுப்பலாமா?</string>
@@ -232,6 +233,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">கூடுதல் அம்சங்கள் இப்போது \"குழு அமைப்புகளில்\"</string>
   <string name="ConversationActivity_join">சேரவும்</string>
   <string name="ConversationActivity_full">நிரம்பியது</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">என புகாரளிக்கப்பட்டது ஸ்பேம் மற்றும் தடுக்கப்பட்டது.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d படிக்காத செய்தி</item>
@@ -946,6 +948,7 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s அவர்கள் குழு பெயரை \"%2$s\" என மாற்றினர்.</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">குழுவின் பெயர் \"%1$s\" என்று மாற்றப்பட்டுள்ளது.</string>
   <!--GV2 description change-->
+  <string name="MessageRecord_you_changed_the_group_description">நீங்கள் மாற்றினீர்கள் குழு விளக்கம்.</string>
   <string name="MessageRecord_s_changed_the_group_description">%1$s குழு விளக்கத்தை மாற்றினார்.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">குழு சின்னத்தை மாற்றியுள்ளீர்கள்.</string>
@@ -1136,6 +1139,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">நீங்கள்</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">செய்தியைத் தொடர சரிபார்க்கவும்</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">க்கு உதவி தடுக்க ஸ்பேம் ஆன் சிக்னல், தயவு செய்து முழுமை சரிபார்ப்பு.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">சரிபார்க்கப்பட்ட பிறகு, நீங்கள் தொடர்ந்து செய்தியிடலாம். இடைநிறுத்தப்பட்ட எந்த செய்திகளும் தானாகவே அனுப்பப்படும்.</string>
   <!--Recipient-->
   <string name="Recipient_you">நீங்கள்</string>
   <!--RecipientPreferencesActivity-->
@@ -1346,6 +1352,7 @@
   <string name="ThreadRecord_you_marked_verified">சரிபார்க்கப்பட்டதைக் குறித்தீர்கள்</string>
   <string name="ThreadRecord_you_marked_unverified">நீங்கள் சரிபார்க்கப்படவில்லை எனக் குறித்தீர்கள்</string>
   <string name="ThreadRecord_message_could_not_be_processed">செய்தியை செயலாக்க முடியவில்லை</string>
+  <string name="ThreadRecord_delivery_issue">டெலிவரி பிரச்சினை</string>
   <string name="ThreadRecord_message_request">செய்தி கோரிக்கை</string>
   <string name="ThreadRecord_photo">புகைப்படம் </string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1581,6 +1588,7 @@
   <string name="ConversationUpdateItem_return_to_call">அழைப்புக்குத் திரும்பு</string>
   <string name="ConversationUpdateItem_call_is_full">அழைப்பு நிரம்பியுள்ளது</string>
   <string name="ConversationUpdateItem_invite_friends">நண்பர்களை அழை</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">இல்லை குழுக்கள்பொதுவாக. கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்.</string>
   <string name="ConversationUpdateItem_view">காண்க</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">விளையாடு … இடைநிறுத்து</string>
@@ -1692,6 +1700,7 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">உங்கள் வயர்லெஸ் கேரியர் மூலம் மீடியா மற்றும் குழு செய்திகளை வழங்க Signal கு எம்எம்எஸ் அமைப்புகள் தேவை. உங்கள் சாதனத்தில் இந்த தகவல் கிடைக்கும்  இருப்பில் இருக்காது, இது பூட்டப்பட்ட சாதனங்கள், மற்றும் பிற கட்டுப்பாட்டு உள்ளமைவுகளுக்கு, அவ்வப்போது பொருந்தும்  உண்மை.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">மீடியா மற்றும் குழு செய்திகளை அனுப்ப, \'சரி\' என்பதைத் தட்டவும், கோரப்பட்ட அமைப்புகளை முடிக்கவும். \'உங்கள் கேரியர் APN\' ஐத் தேடுவதன் மூலம் உங்கள் கேரியருக்கான MMS அமைப்புகள் பொதுவாக அமைந்திருக்கும். நீங்கள் இதை ஒரு முறை மட்டுமே செய்ய வேண்டும்.</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">டெலிவரி பிரச்சினை</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">முதல் பெயர் (தேவை)</string>
   <string name="CreateProfileActivity_last_name_optional">குடும்பப் பெயர் (விரும்பினால்)</string>
@@ -1699,6 +1708,7 @@
   <string name="CreateProfileActivity__username">பயனர்பெயர்</string>
   <string name="CreateProfileActivity__create_a_username">பயனர்பெயரை உருவாக்கவும்</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">தனிப்பயன் எம்.எம்.எஸ் குழு பெயர்கள் மற்றும் புகைப்படங்கள் உங்களுக்கு மட்டுமே தெரியும்.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">குழு இந்த உறுப்பினர்களுக்கு விளக்கங்கள் தெரியும் குழு மற்றும் மக்கள் அழைக்கப்பட்டவர்கள்.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">பற்றி</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">உங்களைப் பற்றி சில வார்த்தைகளை எழுதுங்கள்…</string>
@@ -1746,6 +1756,7 @@
   <string name="message_details_recipient_header__delivered_to">வழங்கப்பட்டது</string>
   <string name="message_details_recipient_header__read_by">படித்தவர்கள்</string>
   <string name="message_details_recipient_header__not_sent">அனுப்ப முடியவில்லை</string>
+  <string name="message_details_recipient_header__viewed">பார்த்தவர்</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">அனுப்ப முடியவில்லை</string>
   <string name="message_details_recipient__new_safety_number">புதிய பாதுகாப்பு எண்</string>
@@ -2474,11 +2485,13 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">உரையாடல் பின்னணிப்படம்</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">உரையாடல் நிறம்</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">மீட்டமை அரட்டை நிறம்</string>
   <string name="ChatWallpaperFragment__set_wallpaper">பின்னணிப்படம் அமைக்கவும்</string>
   <string name="ChatWallpaperFragment__contact_name">தொடர்பு பெயர்</string>
   <string name="ChatWallpaperFragment__reset">மீட்டமைக்க</string>
   <string name="ChatWallpaperFragment__clear">அழி</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">பின்னணிப்பட மாதிரிக்காட்சி</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">அனைத்தையும் மேலெழுத விரும்புகிறீர்களா? அரட்டை வண்ணங்கள்?</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">அனைத்து பின்னணிப்படங்களையும் மீட்டமைக்கவும்</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">புகைப்படங்களிலிருந்து தேர்வு செய்யவும்</string>
@@ -2520,7 +2533,11 @@
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">செய்தி அனுப்புங்கள்</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">உங்களிடம் உள்ளது இல்லை குழுக்கள்இந்த நபருடன் பொதுவானது. தேவையற்ற செய்திகளைத் தவிர்ப்பதற்கு ஏற்றுக்கொள்வதற்கு முன் கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்.
+ </string>
   <string name="GroupsInCommonMessageRequest__okay">சரி</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">இங்கே ஒரு முன்னோட்டம் அரட்டை நிறம்.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">நிறம் உங்களுக்கு மட்டுமே தெரியும்.</string>
   <!--GroupDescriptionDialog-->
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__standard">தரநிலை</string>
@@ -2545,6 +2562,8 @@
   <string name="PrivacySettingsFragment__messaging">செய்தி அனுப்புதல்</string>
   <string name="PrivacySettingsFragment__disappearing_messages">காணாமல் போகும் செய்திகள்</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">அண்மை பட்டியல் மற்றும் மென்பொருளுக்கு உள்ளே திரையை படம் எடுப்பதை தடுக்கவும்</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">இயல்புநிலை நேரக்குறிப்பான் புதிய அரட்டைகளுக்கு</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">அமை இயல்புநிலை மறைந்து வரும் செய்தி டைமர் நீங்கள் தொடங்கிய அனைத்து புதிய அரட்டைகளுக்கும்.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__off">அணை</string>
@@ -2553,6 +2572,7 @@
   <string name="ExpireTimerSettingsFragment__1_hour">1 மணி நேரம்</string>
   <string name="ExpireTimerSettingsFragment__5_minutes">5 நிமிடம்</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 வினாடிகள்</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">விருப்ப நேரம்</string>
   <string name="ExpireTimerSettingsFragment__set">அமைக்கவும்</string>
   <string name="ExpireTimerSettingsFragment__save">சேமி</string>
   <string name="CustomExpireTimerSelectorView__minutes">நிமிடங்கள்</string>
@@ -2567,10 +2587,17 @@
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__chat_color">உரையாடல் நிறம்</string>
   <string name="ChatColorSelectionFragment__edit">தொகு</string>
+  <string name="ChatColorSelectionFragment__duplicate">நகல்</string>
   <string name="ChatColorSelectionFragment__delete">நீக்கு</string>
+  <string name="ChatColorSelectionFragment__delete_color">வண்ணத்தை நீக்கு</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">திட</string>
+  <string name="CustomChatColorCreatorFragment__gradient">சாய்வு</string>
+  <string name="CustomChatColorCreatorFragment__hue">சாயல்</string>
+  <string name="CustomChatColorCreatorFragment__saturation">செறிவூட்டல்</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">சேமி</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">தொகு நிறம்</string>
   <!--ChatColorGradientTool-->
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">மீட்டமைக்க</string>

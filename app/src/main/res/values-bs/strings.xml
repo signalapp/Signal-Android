@@ -1407,6 +1407,7 @@
   <string name="SubmitDebugLogActivity_success">Uspješno završeno!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopirajte ovu adresu i priložite je uz svoj izvještaj o problemu ili email za podršku:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Dijeli</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Ovaj izvještaj bit će objavljen javno kako bi ga drugi mogli pregledati. Prije slanja možete ga pregledati.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Podaci o uređaju:</string>
@@ -1970,7 +1971,7 @@
   <string name="preferences__pref_enter_sends_title">Tipka Enter šalje</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pritiskom na tipku Enter poslat će se tekstualna poruka</string>
   <string name="preferences__pref_use_address_book_photos">Koristi fotografije iz adresara</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prikaži fotografiju kontakta iz adresara, ako je dostupna</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prikazati fotografiju kontakta iz adresara, ako je dostupna.</string>
   <string name="preferences__generate_link_previews">Kreiraj pregled linkova</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Preuzeti pregled linkova do internet-stranica u porukama koje šaljete.</string>
   <string name="preferences__choose_identity">Odaberite identitet</string>
@@ -2055,7 +2056,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ako je potvrda čitanja isključena, nećete moći vidjeti potvrdu čitanja od drugih.</string>
   <string name="preferences__typing_indicators">Indikatori kucanja</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ako je indikator kucanja isključen, nećete moći vidjeti indikator kucanja od drugih.</string>
-  <string name="preferences__request_keyboard_to_disable">Zahtijevaj od tastature da onemogući personalizovano učenje.</string>
+  <string name="preferences__request_keyboard_to_disable">Zahtijevaj od tastature da onemogući personalizovano učenje</string>
   <string name="preferences__this_setting_is_not_a_guarantee">Ovo podešavanje ipak nije garancija i tastatura ga može ignorisati.</string>
   <string name="preferences_app_protection__blocked_users">Blokirani korisnici</string>
   <string name="preferences_chats__when_using_mobile_data">Prilikom korištenja mobilnog interneta</string>
@@ -2403,7 +2404,7 @@
     <item quantity="few">PIN mora sadržavati najmanje %1$d brojke</item>
     <item quantity="other">PIN mora sadržavati najmanje %1$d brojki</item>
   </plurals>
-  <string name="CreateKbsPinFragment__create_a_new_pin">Kreiraj novi PIN</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">Kreirajte novi PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Možete promijeniti PIN sve dok je ovaj uređaj registrovan.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Kreirajte svoj PIN</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN služi za šifriranje informacija na Signalu tako da im samo Vi možete pristupiti. Vaš profil, podešavanja i kontakti bit će sačuvani i učitani kad ponovo instalirate Signal. PIN Vam neće trebati da otvorite aplikaciju.</string>
@@ -2515,7 +2516,7 @@
   <string name="preferences_chats__chat_backups">Rezervne kopije poruka</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Pohrani rezervne kopije poruka u memoriju uređaja</string>
   <string name="preferences_chats__transfer_account">Prenesi račun</string>
-  <string name="preferences_chats__transfer_account_to_a_new_android_device">Prenesi račun na novi Android uređaj</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Prenesite račun na novi Android uređaj</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Unesite lozinku za rezervne kopije</string>
   <string name="RegistrationActivity_restore">Vrati</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Ne mogu se preuzeti podaci iz rezervnih kopija kreiranih u novijoj verziji Signala.</string>
@@ -3068,7 +3069,10 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ChatColorsMegaphone__appearance">Izgled</string>
   <string name="ChatColorsMegaphone__not_now">Ne sada</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Postavite fotografiju profila</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Izaberite izgled i boju ili izmijenite svoje inicijale.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ne sada</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Dodaj fotografiju</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji-sličice</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Otvori pretragu emoji-sličica</string>
@@ -3146,15 +3150,23 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ContactFilterView__search_name_or_number">Traži ime ili broj</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__avatar_preview">Izgled profila</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>
+  <string name="AvatarPickerFragment__take_a_picture">Uslikaj</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Izaberi fotografiju</string>
   <string name="AvatarPickerFragment__photo">Fotografija</string>
+  <string name="AvatarPickerFragment__text">Tekst</string>
   <string name="AvatarPickerFragment__save">Pohrani</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Izaberi sličicu profila</string>
   <string name="TextAvatarCreationFragment__preview">Pregled</string>
   <string name="TextAvatarCreationFragment__done">Uredu</string>
+  <string name="TextAvatarCreationFragment__text">Tekst</string>
   <string name="TextAvatarCreationFragment__color">Boja</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__clear_avatar">Ukloni sličicu profila</string>
   <string name="AvatarPickerFragment__edit">Uredi</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Neuspjelo pohranjivanje sličice</string>
   <!--EOF-->
 </resources>

@@ -894,8 +894,8 @@
     <item quantity="other">%1$s membres n’ont pas pu être ajoutés au Nouveau groupe et ont été supprimé du groupe.</item>
   </plurals>
   <!--Profile change updates-->
-  <string name="MessageRecord_changed_their_profile_name_to">%1$s a changé le nom de son profil en %2$s.</string>
-  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s a changé le nom de son profil de %2$s en %3$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_to">%1$s a changé son nom de profil à %2$s.</string>
+  <string name="MessageRecord_changed_their_profile_name_from_to">%1$s a changé son nom de profil de %2$s à %3$s.</string>
   <string name="MessageRecord_changed_their_profile">%1$s a changé son profil.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Vous avez créé le groupe.</string>
@@ -961,9 +961,9 @@
   <string name="MessageRecord_you_added_invited_member_s">Vous avez ajouté le membre invité %1$s.</string>
   <string name="MessageRecord_s_added_invited_member_s">%1$s a ajouté le membre invité %2$s.</string>
   <!--GV2 title change-->
-  <string name="MessageRecord_you_changed_the_group_name_to_s">Vous avez changé le nom du groupe en « %1$s ».</string>
-  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s a changé le nom du groupe en « %2$s ».</string>
-  <string name="MessageRecord_the_group_name_has_changed_to_s">Le nom du groupe a été changé en « %1$s ».</string>
+  <string name="MessageRecord_you_changed_the_group_name_to_s">Vous avez changé le nom du groupe à « %1$s ».</string>
+  <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s a changé le nom du groupe à « %2$s ».</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Le nom du groupe a été changé à « %1$s ».</string>
   <!--GV2 description change-->
   <string name="MessageRecord_you_changed_the_group_description">Vous avez changé la description du groupe.</string>
   <string name="MessageRecord_s_changed_the_group_description">%1$s a changé la description du groupe.</string>
@@ -1199,7 +1199,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">Il n’y a personne d’autre ici</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s est dans cet appel</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s et %2$s font partie de cet appel</string>
-  <string name="WebRtcCallView__s_is_presenting">%1$s est en présentation.</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s présente actuellement</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s et %3$d autre personne font partie de cet appel</item>
     <item quantity="other">%1$s, %2$s et %3$d autres personnes font partie de cet appel</item>
@@ -1850,7 +1850,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Émoticônes</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Aucun résultat trouvé</string>
   <!--arrays.xml-->
-  <string name="arrays__use_default">Valeur par défaut</string>
+  <string name="arrays__use_default">Utiliser la valeur par défaut</string>
   <string name="arrays__use_custom">Personnalisé</string>
   <string name="arrays__mute_for_one_hour">Sourdine pendant 1 heure</string>
   <string name="arrays__mute_for_eight_hours">Sourdine pendant 8 heures</string>
@@ -2669,7 +2669,7 @@
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Examiner les membres</string>
   <string name="ReviewCardDialogFragment__review_request">Examiner la demande</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d membres du groupe ont le même nom. Examinez-les ci-dessous et choisissez l’action appropriée.</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d membres du groupe portent le même nom. Examinez-les ci-dessous et choisissez l’action appropriée.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Si vous n’êtes pas certain de qui la demande provient, examinez les contacts ci-dessous et agissez en conséquence.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Aucun autre groupe en commun.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Aucun groupe en commun.</string>
@@ -2692,7 +2692,7 @@
   <string name="ReviewCard__update_contact">Mettre le contact à jour</string>
   <string name="ReviewCard__block">Bloquer</string>
   <string name="ReviewCard__delete">Supprimer</string>
-  <string name="ReviewCard__recently_changed">%1$s a récemment changé le nom de son profil en %2$s</string>
+  <string name="ReviewCard__recently_changed">A récemment changé son nom de profil de %1$sà %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s s’est joint</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s et %2$s se sont joints</string>

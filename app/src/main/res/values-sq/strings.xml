@@ -1346,6 +1346,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="SubmitDebugLogActivity_success">Sukses!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopjojeni këtë URL dhe shtojeni te njoftimi i problemit tuaj ose email-i për asistencën:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Ndajeni Me të Tjerë</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Ky regjistër do të postohet publikisht në internet që ta shohin kontribuesit. Para se ta ngarkoni, mund ta shqyrtoni.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtër:</string>
   <string name="SupportEmailUtil_device_info">Të dhëna pajisjeje:</string>
@@ -2982,7 +2983,10 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ChatColorsMegaphone__appearance">Dukje</string>
   <string name="ChatColorsMegaphone__not_now">Jo tani</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Shtoni një foto profili</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Zgjidhni një pamje dhe ngjyrë, ose përshtatni inicialet tuaja.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Jo tani</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Shtoni foto</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Hap kërkim emoji-sh</string>
@@ -3060,10 +3064,14 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ContactFilterView__search_name_or_number">Kërkoni emër ose numër</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__avatar_preview">Paraparje avatari</string>
   <string name="AvatarPickerFragment__camera">Kamerë</string>
+  <string name="AvatarPickerFragment__take_a_picture">Bëni një foto</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Zgjidhni një foto</string>
   <string name="AvatarPickerFragment__photo">Foto</string>
   <string name="AvatarPickerFragment__text">Tekst</string>
   <string name="AvatarPickerFragment__save">Ruaje</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Përzgjidhni një avatar</string>
   <string name="TextAvatarCreationFragment__preview">Paraparje</string>
   <string name="TextAvatarCreationFragment__done">U bë</string>
   <string name="TextAvatarCreationFragment__text">Tekst</string>
@@ -3071,6 +3079,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__clear_avatar">Spastroje avatarin</string>
   <string name="AvatarPickerFragment__edit">Përpunojeni</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">S’u arrit të ruhej avatari</string>
   <!--EOF-->
 </resources>

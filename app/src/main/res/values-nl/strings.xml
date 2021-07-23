@@ -3068,10 +3068,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="AvatarPickerFragment__camera">Camera</string>
   <string name="AvatarPickerFragment__take_a_picture">Neem een foto</string>
   <string name="AvatarPickerFragment__choose_a_photo">Kies een afbeelding</string>
-  <string name="AvatarPickerFragment__photo">Foto</string>
+  <string name="AvatarPickerFragment__photo">Gallerij</string>
   <string name="AvatarPickerFragment__text">Tekst</string>
   <string name="AvatarPickerFragment__save">Opslaan</string>
-  <string name="AvatarPickerFragment__select_an_avatar">Of kies een standaard-afbeelding</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Reeds beschikbare afbeeldingen</string>
   <string name="TextAvatarCreationFragment__preview">Voorbeeld</string>
   <string name="TextAvatarCreationFragment__done">Klaar</string>
   <string name="TextAvatarCreationFragment__text">Tekst</string>

@@ -1340,6 +1340,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SubmitDebugLogActivity_success">Acabat!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copieu aquest URL i afegiu-lo a l\'informe d\'error o al correu electrònic de suport:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Comparteix</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Aquest registre es penjarà públicament en línia perquè els col·laboradors el vegin. Podeu examinar-lo abans de penjar-lo.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtre:</string>
   <string name="SupportEmailUtil_device_info">Informació del dispositiu:</string>
@@ -2972,7 +2973,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ChatColorsMegaphone__appearance">Aparença</string>
   <string name="ChatColorsMegaphone__not_now">Ara no</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Afegiu una fotografia de perfil</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Trieu un aspecte i un color o personalitzeu les vostres inicials.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ara no</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Afegiu-hi una fotografia</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoticones</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Obre la cerca d\'emoticones</string>
@@ -3050,10 +3054,14 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ContactFilterView__search_name_or_number">Cerqueu un nom o un número</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__avatar_preview">Previsualització de l\'avatar</string>
   <string name="AvatarPickerFragment__camera">Càmera</string>
+  <string name="AvatarPickerFragment__take_a_picture">Fes una fotografia</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Trieu una fotografia</string>
   <string name="AvatarPickerFragment__photo">Foto</string>
   <string name="AvatarPickerFragment__text">Text</string>
   <string name="AvatarPickerFragment__save">Desa</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Seleccioneu un avatar</string>
   <string name="TextAvatarCreationFragment__preview">Previsualitza</string>
   <string name="TextAvatarCreationFragment__done">Fet</string>
   <string name="TextAvatarCreationFragment__text">Text</string>
@@ -3061,6 +3069,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__clear_avatar">Neteja l\'avatar</string>
   <string name="AvatarPickerFragment__edit">Edita</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Ha fallat desar l\'avatar.</string>
   <!--EOF-->
 </resources>

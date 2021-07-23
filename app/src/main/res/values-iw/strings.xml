@@ -1468,6 +1468,7 @@
   <string name="SubmitDebugLogActivity_success">הצלחה!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">העתק כתובת זו והוסף אותה אל דוח הסוגיות שלך או דוא״ל התמיכה שלך:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">שתף</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">יומן זה יפורסם באופן ציבורי ומקוון עבור מתנדבים כדי שיצפו בו, אתה יכול לבחון אותו לפני העלאה.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">סנן:</string>
   <string name="SupportEmailUtil_device_info">מידע מכשיר:</string>
@@ -3148,7 +3149,10 @@
   <string name="ChatColorsMegaphone__appearance">מראה</string>
   <string name="ChatColorsMegaphone__not_now">לא עכשיו</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">הוסף תמונת פרופיל</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">בחר מראה וצבע או התאם אישית את ראשי התיבות שלך.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">לא עכשיו</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">הוסף תמונה</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">אמוג\'י</string>
   <string name="KeyboardPagerFragment_open_emoji_search">פתח חיפוש אימוג\'י</string>
@@ -3226,10 +3230,14 @@
   <string name="ContactFilterView__search_name_or_number">חפש שם או מספר</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__avatar_preview">תצוגה מקדימה של יצגן</string>
   <string name="AvatarPickerFragment__camera">מצלמה</string>
+  <string name="AvatarPickerFragment__take_a_picture">צלם</string>
+  <string name="AvatarPickerFragment__choose_a_photo">בחר תמונה</string>
   <string name="AvatarPickerFragment__photo">תמונה</string>
   <string name="AvatarPickerFragment__text">מלל</string>
   <string name="AvatarPickerFragment__save">שמור</string>
+  <string name="AvatarPickerFragment__select_an_avatar">בחר יצגן</string>
   <string name="TextAvatarCreationFragment__preview">תצוגה מקדימה</string>
   <string name="TextAvatarCreationFragment__done">סיים</string>
   <string name="TextAvatarCreationFragment__text">מלל</string>
@@ -3237,6 +3245,8 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">מסרון</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__clear_avatar">נקה יצגן</string>
   <string name="AvatarPickerFragment__edit">ערוך</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">נכשל בשמירת יצגן</string>
   <!--EOF-->
 </resources>

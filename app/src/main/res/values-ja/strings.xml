@@ -570,8 +570,8 @@
   <string name="ManageGroupActivity_member_requests_and_invites">メンバー申請と招待</string>
   <string name="ManageGroupActivity_add_members">メンバーを追加</string>
   <string name="ManageGroupActivity_edit_group_info">グループの情報を編集</string>
-  <string name="ManageGroupActivity_who_can_add_new_members">メンバーを追加できる人は？</string>
-  <string name="ManageGroupActivity_who_can_edit_this_groups_info">グループ情報を編集できる人は？</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">メンバーを追加できるユーザーは？</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">グループ情報を編集できるユーザーは？</string>
   <string name="ManageGroupActivity_group_link">グループリンク</string>
   <string name="ManageGroupActivity_block_group">グループをブロック</string>
   <string name="ManageGroupActivity_unblock_group">グループのブロック解除</string>
@@ -2857,8 +2857,8 @@
   <string name="PermissionsSettingsFragment__edit_group_info">グループ情報を編集</string>
   <string name="PermissionsSettingsFragment__all_members">すべてのメンバー</string>
   <string name="PermissionsSettingsFragment__only_admins">管理者のみ</string>
-  <string name="PermissionsSettingsFragment__who_can_add_new_members">メンバーを追加できる人は？</string>
-  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">グループ情報を編集できる人は？</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">メンバーを追加できるユーザーは？</string>
+  <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">グループ情報を編集できるユーザーは？</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">通知をミュート</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">ミュートしていません</string>
@@ -2884,6 +2884,7 @@
   <string name="AvatarPickerFragment__avatar_preview">アバターのプレビュー</string>
   <string name="AvatarPickerFragment__camera">カメラ</string>
   <string name="AvatarPickerFragment__take_a_picture">写真を撮影</string>
+  <string name="AvatarPickerFragment__choose_a_photo">画像を選択</string>
   <string name="AvatarPickerFragment__photo">写真</string>
   <string name="AvatarPickerFragment__text">テキスト</string>
   <string name="AvatarPickerFragment__save">保存</string>
@@ -2894,6 +2895,7 @@
   <string name="TextAvatarCreationFragment__color">色</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <string name="AvatarPickerFragment__clear_avatar">アバターを削除</string>
   <string name="AvatarPickerFragment__edit">編集</string>
   <string name="AvatarPickerRepository__failed_to_save_avatar">アバターの保存に失敗しました</string>

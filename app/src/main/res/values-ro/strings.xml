@@ -2944,7 +2944,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ChatColorsMegaphone__appearance">Aspect</string>
   <string name="ChatColorsMegaphone__not_now">Nu acum</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Adăugați o poză de profil</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Alegeți un aspect și o culoare sau personalizați-vă inițialele.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Nu acum</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Adăugare poză</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Deschideți căutarea emoji</string>
@@ -3022,10 +3025,14 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ContactFilterView__search_name_or_number">Cautare nume sau număr</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="AvatarPickerFragment__avatar_preview">Previzualizare avatar</string>
   <string name="AvatarPickerFragment__camera">Cameră foto</string>
+  <string name="AvatarPickerFragment__take_a_picture">Faceți o poză</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Alegeți o poză</string>
   <string name="AvatarPickerFragment__photo">Poză</string>
   <string name="AvatarPickerFragment__text">Text</string>
   <string name="AvatarPickerFragment__save">Salvează</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Selectați un avatar</string>
   <string name="TextAvatarCreationFragment__preview">Previzualizare</string>
   <string name="TextAvatarCreationFragment__done">Gata</string>
   <string name="TextAvatarCreationFragment__text">Text</string>
@@ -3033,6 +3040,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <string name="AvatarPickerFragment__clear_avatar">Șterge avatarul</string>
   <string name="AvatarPickerFragment__edit">Editează</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Eroare la salvarea avatarului</string>
   <!--EOF-->
 </resources>
