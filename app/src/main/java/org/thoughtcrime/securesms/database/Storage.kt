@@ -27,12 +27,11 @@ import org.session.libsignal.messages.SignalServiceGroup
 import org.session.libsignal.utilities.KeyHelper
 import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.groups.OpenGroupManager
-import org.thoughtcrime.securesms.util.SessionMetaProtocol
+import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.mms.PartAuthority
+import org.thoughtcrime.securesms.util.SessionMetaProtocol
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
     
@@ -282,6 +281,21 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         val database = DatabaseFactory.getMmsSmsDatabase(context)
         val address = Address.fromSerialized(author)
         return database.getMessageFor(timestamp, address)?.getId()
+    }
+
+    override fun updateSentTimestamp(
+        messageID: Long,
+        isMms: Boolean,
+        openGroupSentTimestamp: Long,
+        threadId: Long
+    ) {
+        if (isMms) {
+            val mmsDb = DatabaseFactory.getMmsDatabase(context)
+            mmsDb.updateSentTimestamp(messageID, openGroupSentTimestamp, threadId)
+        } else {
+            val smsDb = DatabaseFactory.getSmsDatabase(context)
+            smsDb.updateSentTimestamp(messageID, openGroupSentTimestamp, threadId)
+        }
     }
 
     override fun markAsSent(timestamp: Long, author: String) {

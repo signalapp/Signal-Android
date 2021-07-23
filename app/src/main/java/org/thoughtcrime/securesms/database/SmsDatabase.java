@@ -20,8 +20,6 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -318,6 +316,15 @@ public class SmsDatabase extends MessagingDatabase {
     }
 
     return results;
+  }
+
+  public void updateSentTimestamp(long messageId, long newTimestamp, long threadId) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.execSQL("UPDATE " + TABLE_NAME + " SET " + DATE_SENT + " = ? " +
+                    "WHERE " + ID + " = ?",
+            new String[] {newTimestamp + "", messageId + ""});
+    notifyConversationListeners(threadId);
+    notifyConversationListListeners();
   }
 
   public Pair<Long, Long> updateBundleMessageBody(long messageId, String body) {
