@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -68,6 +69,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * Entry point for sharing content into the app.
@@ -104,6 +108,8 @@ public class ShareActivity extends PassphraseRequiredActivity
   private ShareIntents.Args args;
   private ShareViewModel    viewModel;
 
+  private final LifecycleDisposable disposables = new LifecycleDisposable();
+
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
@@ -113,6 +119,8 @@ public class ShareActivity extends PassphraseRequiredActivity
   @Override
   protected void onCreate(Bundle icicle, boolean ready) {
     setContentView(R.layout.share_activity);
+
+    disposables.bindTo(getLifecycle());
 
     initializeArgs();
     initializeViewModel();
@@ -176,12 +184,28 @@ public class ShareActivity extends PassphraseRequiredActivity
   }
 
   @Override
-  public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
+  public void onBeforeContactSelected(Optional<RecipientId> recipientId, String number, java.util.function.Consumer<Boolean> callback) {
     if (disallowMultiShare) {
       Toast.makeText(this, R.string.ShareActivity__sharing_to_multiple_chats_is, Toast.LENGTH_LONG).show();
-      return false;
+      callback.accept(false);
     } else {
-      return viewModel.onContactSelected(new ShareContact(recipientId, number));
+      disposables.add(viewModel.onContactSelected(new ShareContact(recipientId, number))
+                               .subscribeOn(Schedulers.io())
+                               .observeOn(AndroidSchedulers.mainThread())
+                               .subscribe(result -> {
+                                 switch (result) {
+                                   case TRUE:
+                                     callback.accept(true);
+                                     break;
+                                   case FALSE:
+                                     callback.accept(false);
+                                     break;
+                                   case FALSE_AND_SHOW_PERMISSION_TOAST:
+                                     Toast.makeText(this, R.string.ShareActivity_you_do_not_have_permission_to_send_to_this_group, Toast.LENGTH_SHORT).show();
+                                     callback.accept(false);
+                                     break;
+                                 }
+                               }));
     }
   }
 

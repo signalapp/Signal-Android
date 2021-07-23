@@ -16,6 +16,8 @@ import androidx.core.app.RemoteInput
 import androidx.core.graphics.drawable.IconCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationIntents
+import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.GroupDatabase
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -28,6 +30,7 @@ import org.thoughtcrime.securesms.util.AvatarUtil
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.libsignal.util.guava.Optional
 import androidx.core.app.Person as PersonCompat
 
 private const val BIG_PICTURE_DIMEN = 500
@@ -103,7 +106,14 @@ sealed class NotificationBuilder(protected val context: Context) {
   }
 
   fun addReplyActions(conversation: NotificationConversation) {
-    if (privacy.isDisplayMessage && isNotLocked && RecipientUtil.isMessageRequestAccepted(context, conversation.recipient)) {
+    if (privacy.isDisplayMessage && isNotLocked && !conversation.recipient.isPushV1Group && RecipientUtil.isMessageRequestAccepted(context, conversation.recipient)) {
+      if (conversation.recipient.isPushV2Group) {
+        val group: Optional<GroupDatabase.GroupRecord> = DatabaseFactory.getGroupDatabase(context).getGroup(conversation.recipient.requireGroupId())
+        if (group.isPresent && group.get().isAnnouncementGroup && !group.get().isAdmin(Recipient.self())) {
+          return
+        }
+      }
+
       addActions(ReplyMethod.forRecipient(context, conversation.recipient), conversation)
     }
   }

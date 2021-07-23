@@ -11,6 +11,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
+import org.signal.storageservice.protos.groups.local.EnabledState;
 
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +42,8 @@ public final class GroupChangeUtil {
            change.getDeleteRequestingMembersCount()  == 0 && // field 17
            change.getPromoteRequestingMembersCount() == 0 && // field 18
            !change.hasModifyInviteLinkPassword()          && // field 19
-           !change.hasModifyDescription();                   // field 20
+           !change.hasModifyDescription()                 && // field 20
+           !change.hasModifyAnnouncementsOnly();             // field 21
   }
 
   /**
@@ -135,6 +137,7 @@ public final class GroupChangeUtil {
     resolveField17DeleteMembers                  (conflictingChange, changeSetModifier, requestingMembersByUuid);
     resolveField18PromoteRequestingMembers       (conflictingChange, changeSetModifier, requestingMembersByUuid);
     resolveField20ModifyDescription              (groupState, conflictingChange, changeSetModifier);
+    resolveField21ModifyAnnouncementsOnly        (groupState, conflictingChange, changeSetModifier);
   }
 
   private static void resolveField3AddMembers(DecryptedGroupChange conflictingChange, ChangeSetModifier result, HashMap<ByteString, DecryptedMember> fullMembersByUuid, HashMap<ByteString, DecryptedPendingMember> pendingMembersByUuid) {
@@ -308,6 +311,12 @@ public final class GroupChangeUtil {
   private static void resolveField20ModifyDescription(DecryptedGroup groupState, DecryptedGroupChange conflictingChange, ChangeSetModifier result) {
     if (conflictingChange.hasNewDescription() && conflictingChange.getNewDescription().getValue().equals(groupState.getDescription())) {
       result.clearModifyDescription();
+    }
+  }
+
+  private static void resolveField21ModifyAnnouncementsOnly(DecryptedGroup groupState, DecryptedGroupChange conflictingChange, ChangeSetModifier result) {
+    if (conflictingChange.getNewIsAnnouncementGroup().equals(groupState.getIsAnnouncementGroup())) {
+      result.clearModifyAnnouncementsOnly();
     }
   }
 }

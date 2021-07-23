@@ -434,9 +434,30 @@ public final class MessageContentProcessor {
       return true;
     }
 
-    if (!groupDatabase.isCurrentMember(groupId, senderRecipient.getId())) {
+    Optional<GroupRecord> groupRecord = groupDatabase.getGroup(groupId);
+
+    if (groupRecord.isPresent() && !groupRecord.get().getMembers().contains(senderRecipient.getId())) {
       log(String.valueOf(content.getTimestamp()), "Ignoring GV2 message from member not in group " + groupId);
       return true;
+    }
+
+    if (groupRecord.isPresent() && groupRecord.get().isAnnouncementGroup() && !groupRecord.get().getAdmins().contains(senderRecipient)) {
+      if (content.getDataMessage().isPresent()) {
+        SignalServiceDataMessage data = content.getDataMessage().get();
+        if (data.getBody().isPresent()        ||
+            data.getAttachments().isPresent() ||
+            data.getQuote().isPresent()       ||
+            data.getPreviews().isPresent()    ||
+            data.getMentions().isPresent()    ||
+            data.getSticker().isPresent())
+        {
+          Log.w(TAG, "Ignoring message from " + senderRecipient.getId() + " because it has disallowed content, and they're not an admin in an announcement-only group.");
+          return true;
+        }
+      } else if (content.getTypingMessage().isPresent()) {
+        Log.w(TAG, "Ignoring typing indicator from " + senderRecipient.getId() + " because they're not an admin in an announcement-only group.");
+        return true;
+      }
     }
 
     return false;
@@ -2149,7 +2170,13 @@ public final class MessageContentProcessor {
       if (content.getTypingMessage().get().getGroupId().isPresent()) {
         GroupId   groupId        = GroupId.push(content.getTypingMessage().get().getGroupId().get());
         Recipient groupRecipient = Recipient.externalPossiblyMigratedGroup(context, groupId);
-        return groupRecipient.isBlocked() || !groupRecipient.isActiveGroup();
+
+        if (groupRecipient.isBlocked() || !groupRecipient.isActiveGroup()) {
+          return true;
+        } else {
+          Optional<GroupRecord> groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(groupId);
+          return groupRecord.isPresent() && groupRecord.get().isAnnouncementGroup() && !groupRecord.get().getAdmins().contains(sender);
+        }
       }
     }
 

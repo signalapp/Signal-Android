@@ -337,6 +337,13 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
+    @NonNull GroupManager.GroupActionResult updateAnnouncementGroup(boolean isAnnouncementGroup)
+        throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
+    {
+      return commitChangeWithConflictResolution(groupOperations.createAnnouncementGroupChange(isAnnouncementGroup));
+    }
+
+    @WorkerThread
     @NonNull GroupManager.GroupActionResult updateGroupTitleDescriptionAndAvatar(@Nullable String title, @Nullable String description, @Nullable byte[] avatarBytes, boolean avatarChanged)
       throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
@@ -345,7 +352,7 @@ final class GroupManagerV2 {
                                                            : GroupChange.Actions.newBuilder();
 
         if (description != null) {
-          change.setModifyDescription(groupOperations.createModifyGroupDescription(description));
+          change.setModifyDescription(groupOperations.createModifyGroupDescriptionAction(description));
         }
 
         if (avatarChanged) {

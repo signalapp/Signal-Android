@@ -101,6 +101,8 @@ public class RefreshAttributesJob extends BaseJob {
                "\n    Storage? " + capabilities.isStorage() +
                "\n    GV2? " + capabilities.isGv2() +
                "\n    GV1 Migration? " + capabilities.isGv1Migration() +
+               "\n    Sender Key? " + capabilities.isSenderKey() +
+               "\n    Announcement Groups? " + capabilities.isAnnouncementGroup() +
                "\n    UUID? " + capabilities.isUuid());
 
     SignalServiceAccountManager signalAccountManager = ApplicationDependencies.getSignalServiceAccountManager();

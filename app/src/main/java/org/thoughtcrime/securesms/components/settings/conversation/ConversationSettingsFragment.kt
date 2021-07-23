@@ -317,7 +317,15 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         ButtonStripPreference.Model(
           state = state.buttonStripState,
           onVideoClick = {
-            CommunicationActions.startVideoCall(requireActivity(), state.recipient)
+            if (state.recipient.isPushV2Group && state.requireGroupSettingsState().isAnnouncementGroup && !state.requireGroupSettingsState().isSelfAdmin) {
+              MaterialAlertDialogBuilder(requireContext())
+                .setTitle(R.string.ConversationActivity_cant_start_group_call)
+                .setMessage(R.string.ConversationActivity_only_admins_of_this_group_can_start_a_call)
+                .setPositiveButton(android.R.string.ok) { d, _ -> d.dismiss() }
+                .show()
+            } else {
+              CommunicationActions.startVideoCall(requireActivity(), state.recipient)
+            }
           },
           onAudioClick = {
             CommunicationActions.startVoiceCall(requireActivity(), state.recipient)
@@ -666,6 +674,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         ContactsCursorLoader.DisplayMode.FLAG_PUSH,
         addMembersToGroup.selectionWarning,
         addMembersToGroup.selectionLimit,
+        addMembersToGroup.isAnnouncementGroup,
         addMembersToGroup.groupMembersWithoutSelf
       ),
       REQUEST_CODE_ADD_MEMBERS_TO_GROUP

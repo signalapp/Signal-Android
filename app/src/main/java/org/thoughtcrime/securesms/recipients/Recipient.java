@@ -111,6 +111,7 @@ public class Recipient {
   private final Capability             groupsV2Capability;
   private final Capability             groupsV1MigrationCapability;
   private final Capability             senderKeyCapability;
+  private final Capability             announcementGroupCapability;
   private final InsightsBannerTier     insightsBannerTier;
   private final byte[]                 storageId;
   private final MentionSetting         mentionSetting;
@@ -360,6 +361,7 @@ public class Recipient {
     this.groupsV2Capability          = Capability.UNKNOWN;
     this.groupsV1MigrationCapability = Capability.UNKNOWN;
     this.senderKeyCapability         = Capability.UNKNOWN;
+    this.announcementGroupCapability = Capability.UNKNOWN;
     this.storageId                   = null;
     this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
     this.wallpaper                   = null;
@@ -411,6 +413,7 @@ public class Recipient {
     this.groupsV2Capability          = details.groupsV2Capability;
     this.groupsV1MigrationCapability = details.groupsV1MigrationCapability;
     this.senderKeyCapability         = details.senderKeyCapability;
+    this.announcementGroupCapability = details.announcementGroupCapability;
     this.storageId                   = details.storageId;
     this.mentionSetting              = details.mentionSetting;
     this.wallpaper                   = details.wallpaper;
@@ -901,6 +904,10 @@ public class Recipient {
 
   public @NonNull Capability getSenderKeyCapability() {
     return senderKeyCapability;
+  }
+
+  public @NonNull Capability getAnnouncementGroupCapability() {
+    return announcementGroupCapability;
   }
 
   /**

@@ -19,6 +19,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedModifyMemberRole;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
+import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GV2AccessLevelUtil;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
@@ -107,6 +108,7 @@ final class GroupsV2UpdateMessageProducer {
       describeRequestingMembers(change, updates);
       describeUnknownEditorRequestingMembersApprovals(change, updates);
       describeUnknownEditorRequestingMembersDeletes(change, updates);
+      describeUnknownEditorAnnouncementGroupChange(change, updates);
 
       describeUnknownEditorMemberRemovals(change, updates);
 
@@ -131,6 +133,7 @@ final class GroupsV2UpdateMessageProducer {
       describeRequestingMembers(change, updates);
       describeRequestingMembersApprovals(change, updates);
       describeRequestingMembersDeletes(change, updates);
+      describeAnnouncementGroupChange(change, updates);
 
       describeMemberRemovals(change, updates);
 
@@ -709,6 +712,32 @@ final class GroupsV2UpdateMessageProducer {
       } else {
         updates.add(updateDescription(requestingMember, requesting -> context.getString(R.string.MessageRecord_a_request_to_join_the_group_from_s_has_been_denied, requesting), R.drawable.ic_update_group_decline_16));
       }
+    }
+  }
+
+  private void describeAnnouncementGroupChange(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    boolean editorIsYou = change.getEditor().equals(selfUuidBytes);
+
+    if (change.getNewIsAnnouncementGroup() == EnabledState.ENABLED) {
+      if (editorIsYou) {
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_allow_only_admins_to_send), R.drawable.ic_update_group_role_16));
+      } else {
+        updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_allow_only_admins_to_send, editor), R.drawable.ic_update_group_role_16));
+      }
+    } else if (change.getNewIsAnnouncementGroup() == EnabledState.DISABLED) {
+      if (editorIsYou) {
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_allow_all_members_to_send), R.drawable.ic_update_group_role_16));
+      } else {
+        updates.add(updateDescription(change.getEditor(), editor -> context.getString(R.string.MessageRecord_s_allow_all_members_to_send, editor), R.drawable.ic_update_group_role_16));
+      }
+    }
+  }
+
+  private void describeUnknownEditorAnnouncementGroupChange(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
+    if (change.getNewIsAnnouncementGroup() == EnabledState.ENABLED) {
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_only_admins_to_send), R.drawable.ic_update_group_role_16));
+    } else if (change.getNewIsAnnouncementGroup() == EnabledState.DISABLED) {
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_all_members_to_send), R.drawable.ic_update_group_role_16));
     }
   }
 

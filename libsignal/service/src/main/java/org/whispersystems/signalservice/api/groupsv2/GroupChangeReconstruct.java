@@ -36,6 +36,10 @@ public final class GroupChangeReconstruct {
       builder.setNewDescription(DecryptedString.newBuilder().setValue(toState.getDescription()));
     }
 
+    if (!fromState.getIsAnnouncementGroup().equals(toState.getIsAnnouncementGroup())) {
+      builder.setNewIsAnnouncementGroup(toState.getIsAnnouncementGroup());
+    }
+
     if (!fromState.getAvatar().equals(toState.getAvatar())) {
       builder.setNewAvatar(DecryptedString.newBuilder().setValue(toState.getAvatar()));
     }

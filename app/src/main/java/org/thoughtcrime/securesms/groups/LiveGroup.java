@@ -129,6 +129,10 @@ public final class LiveGroup {
     return Transformations.map(groupRecord, GroupDatabase.GroupRecord::getDescription);
   }
 
+  public LiveData<Boolean> isAnnouncementGroup() {
+    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::isAnnouncementGroup);
+  }
+
   public LiveData<Recipient> getGroupRecipient() {
     return recipient;
   }

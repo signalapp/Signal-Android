@@ -166,6 +166,7 @@ public class RecipientDatabase extends Database {
     static final int GROUPS_V2           = 0;
     static final int GROUPS_V1_MIGRATION = 1;
     static final int SENDER_KEY          = 2;
+    static final int ANNOUNCEMENT_GROUPS = 3;
   }
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
@@ -544,6 +545,7 @@ public class RecipientDatabase extends Database {
 
         if (remapped != null) {
           Recipient.live(remapped.first()).refresh(remapped.second());
+          ApplicationDependencies.getRecipientCache().remap(remapped.first(), remapped.second());
         }
 
         if (recipientNeedingRefresh != null || remapped != null) {
@@ -1614,6 +1616,7 @@ public class RecipientDatabase extends Database {
     value = Bitmask.update(value, Capabilities.GROUPS_V2,           Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGv2()).serialize());
     value = Bitmask.update(value, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGv1Migration()).serialize());
     value = Bitmask.update(value, Capabilities.SENDER_KEY,          Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isSenderKey()).serialize());
+    value = Bitmask.update(value, Capabilities.ANNOUNCEMENT_GROUPS, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isAnnouncementGroup()).serialize());
 
     ContentValues values = new ContentValues(1);
     values.put(CAPABILITIES, value);
@@ -3145,6 +3148,7 @@ public class RecipientDatabase extends Database {
     private final Recipient.Capability            groupsV2Capability;
     private final Recipient.Capability            groupsV1MigrationCapability;
     private final Recipient.Capability            senderKeyCapability;
+    private final Recipient.Capability            announcementGroupCapability;
     private final InsightsBannerTier              insightsBannerTier;
     private final byte[]                          storageId;
     private final MentionSetting                  mentionSetting;
@@ -3236,6 +3240,7 @@ public class RecipientDatabase extends Database {
       this.groupsV2Capability          = Recipient.Capability.deserialize((int) Bitmask.read(capabilities, Capabilities.GROUPS_V2, Capabilities.BIT_LENGTH));
       this.groupsV1MigrationCapability = Recipient.Capability.deserialize((int) Bitmask.read(capabilities, Capabilities.GROUPS_V1_MIGRATION, Capabilities.BIT_LENGTH));
       this.senderKeyCapability         = Recipient.Capability.deserialize((int) Bitmask.read(capabilities, Capabilities.SENDER_KEY, Capabilities.BIT_LENGTH));
+      this.announcementGroupCapability = Recipient.Capability.deserialize((int) Bitmask.read(capabilities, Capabilities.ANNOUNCEMENT_GROUPS, Capabilities.BIT_LENGTH));
       this.insightsBannerTier          = insightsBannerTier;
       this.storageId                   = storageId;
       this.mentionSetting              = mentionSetting;
@@ -3387,6 +3392,10 @@ public class RecipientDatabase extends Database {
 
     public @NonNull Recipient.Capability getSenderKeyCapability() {
       return senderKeyCapability;
+    }
+
+    public @NonNull Recipient.Capability getAnnouncementGroupCapability() {
+      return announcementGroupCapability;
     }
 
     public @Nullable byte[] getStorageId() {

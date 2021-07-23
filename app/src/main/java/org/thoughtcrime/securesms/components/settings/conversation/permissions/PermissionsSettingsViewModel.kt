@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.LiveGroup
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SingleLiveEvent
 import org.thoughtcrime.securesms.util.livedata.Store
 
@@ -33,6 +35,18 @@ class PermissionsSettingsViewModel(
     store.update(liveGroup.attributesAccessControl) { attributesAccessControl, state ->
       state.copy(nonAdminCanEditGroupInfo = attributesAccessControl == GroupAccessControl.ALL_MEMBERS)
     }
+
+    store.update(liveGroup.isAnnouncementGroup) { isAnnouncementGroup, state ->
+      state.copy(
+        announcementGroup = isAnnouncementGroup,
+        announcementGroupPermissionEnabled = state.announcementGroupPermissionEnabled || isAnnouncementGroup
+      )
+    }
+
+    store.update(liveGroup.groupRecipient) { groupRecipient, state ->
+      val allHaveCapability = groupRecipient.participants.map { it.announcementGroupCapability }.all { it == Recipient.Capability.SUPPORTED }
+      state.copy(announcementGroupPermissionEnabled = (FeatureFlags.announcementGroups() && allHaveCapability) || state.announcementGroup)
+    }
   }
 
   fun setNonAdminCanAddMembers(nonAdminCanAddMembers: Boolean) {
@@ -43,6 +57,12 @@ class PermissionsSettingsViewModel(
 
   fun setNonAdminCanEditGroupInfo(nonAdminCanEditGroupInfo: Boolean) {
     repository.applyAttributesRightsChange(groupId, nonAdminCanEditGroupInfo.asGroupAccessControl()) { reason ->
+      internalEvents.postValue(PermissionsSettingsEvents.GroupChangeError(reason))
+    }
+  }
+
+  fun setAnnouncementGroup(announcementGroup: Boolean) {
+    repository.applyAnnouncementGroupChange(groupId, announcementGroup) { reason ->
       internalEvents.postValue(PermissionsSettingsEvents.GroupChangeError(reason))
     }
   }

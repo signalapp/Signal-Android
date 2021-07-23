@@ -203,7 +203,7 @@ public class RetrieveProfileJob extends BaseJob {
     });
   }
 
-  private RetrieveProfileJob(@NonNull Set<RecipientId> recipientIds) {
+  public RetrieveProfileJob(@NonNull Set<RecipientId> recipientIds) {
     this(new Job.Parameters.Builder().addConstraint(NetworkConstraint.KEY)
                                      .setMaxAttempts(3)
                                      .build(),

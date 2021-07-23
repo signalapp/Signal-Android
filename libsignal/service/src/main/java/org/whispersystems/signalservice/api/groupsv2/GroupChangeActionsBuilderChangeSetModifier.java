@@ -107,4 +107,9 @@ final class GroupChangeActionsBuilderChangeSetModifier implements ChangeSetModif
   public void clearModifyDescription() {
     result.clearModifyDescription();
   }
+
+  @Override
+  public void clearModifyAnnouncementsOnly() {
+    result.clearModifyAnnouncementsOnly();
+  }
 }

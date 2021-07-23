@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,20 +31,18 @@ import org.thoughtcrime.securesms.profiles.spoofing.ReviewUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 final class ConversationGroupViewModel extends ViewModel {
 
   private final MutableLiveData<Recipient>          liveRecipient;
   private final LiveData<GroupActiveState>          groupActiveState;
-  private final LiveData<GroupDatabase.MemberLevel> selfMembershipLevel;
+  private final LiveData<ConversationMemberLevel>   selfMembershipLevel;
   private final LiveData<Integer>                   actionableRequestingMembers;
   private final LiveData<ReviewState>               reviewState;
   private final LiveData<List<RecipientId>>         gv1MigrationSuggestions;
@@ -75,7 +72,6 @@ final class ConversationGroupViewModel extends ViewModel {
                                                                   (record, dups) -> dups.isEmpty()
                                                                                     ? ReviewState.EMPTY
                                                                                     : new ReviewState(record.getId().requireV2(), dups.get(0), dups.size()));
-
   }
 
   void onRecipientChange(Recipient recipient) {
@@ -102,7 +98,7 @@ final class ConversationGroupViewModel extends ViewModel {
     return groupActiveState;
   }
 
-  LiveData<GroupDatabase.MemberLevel> getSelfMemberLevel() {
+  LiveData<ConversationMemberLevel> getSelfMemberLevel() {
     return selfMembershipLevel;
   }
 
@@ -112,6 +108,11 @@ final class ConversationGroupViewModel extends ViewModel {
 
   @NonNull LiveData<List<RecipientId>> getGroupV1MigrationSuggestions() {
     return gv1MigrationSuggestions;
+  }
+
+  boolean isNonAdminInAnnouncementGroup() {
+    ConversationMemberLevel level = selfMembershipLevel.getValue();
+    return level != null && level.getMemberLevel() != GroupDatabase.MemberLevel.ADMINISTRATOR && level.isAnnouncementGroup();
   }
 
   private static @Nullable GroupRecord getGroupRecordForRecipient(@Nullable Recipient recipient) {
@@ -144,11 +145,11 @@ final class ConversationGroupViewModel extends ViewModel {
     return new GroupActiveState(record.isActive(), record.isV2Group());
   }
 
-  private static GroupDatabase.MemberLevel mapToSelfMembershipLevel(@Nullable GroupRecord record) {
+  private static ConversationMemberLevel mapToSelfMembershipLevel(@Nullable GroupRecord record) {
     if (record == null) {
       return null;
     }
-    return record.memberLevel(Recipient.self());
+    return new ConversationMemberLevel(record.memberLevel(Recipient.self()), record.isAnnouncementGroup());
   }
 
   @WorkerThread
@@ -254,6 +255,24 @@ final class ConversationGroupViewModel extends ViewModel {
 
     public boolean isActiveV2Group() {
       return isActiveV2;
+    }
+  }
+
+  static final class ConversationMemberLevel {
+    private final GroupDatabase.MemberLevel memberLevel;
+    private final boolean                   isAnnouncementGroup;
+
+    private ConversationMemberLevel(GroupDatabase.MemberLevel memberLevel, boolean isAnnouncementGroup) {
+      this.memberLevel         = memberLevel;
+      this.isAnnouncementGroup = isAnnouncementGroup;
+    }
+
+    public @NonNull GroupDatabase.MemberLevel getMemberLevel() {
+      return memberLevel;
+    }
+
+    public boolean isAnnouncementGroup() {
+      return isAnnouncementGroup;
     }
   }
 

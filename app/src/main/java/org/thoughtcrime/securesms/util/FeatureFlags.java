@@ -80,6 +80,7 @@ public final class FeatureFlags {
   private static final String RETRY_RESPOND_MAX_AGE             = "android.retryRespondMaxAge";
   private static final String SENDER_KEY                        = "android.senderKey.3";
   private static final String SUGGEST_SMS_BLACKLIST             = "android.suggestSmsBlacklist";
+  private static final String ANNOUNCEMENT_GROUPS               = "android.announcementGroups";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -113,7 +114,8 @@ public final class FeatureFlags {
       RETRY_RECEIPT_LIFESPAN,
       RETRY_RESPOND_MAX_AGE,
       SENDER_KEY,
-      SUGGEST_SMS_BLACKLIST
+      SUGGEST_SMS_BLACKLIST,
+      ANNOUNCEMENT_GROUPS
   );
 
   @VisibleForTesting
@@ -360,6 +362,11 @@ public final class FeatureFlags {
   /** Whether or not sending using sender key is enabled. */
   public static boolean senderKey() {
     return getBoolean(SENDER_KEY, false);
+  }
+
+  /** Whether or not showing the announcement group setting in the UI is enabled . */
+  public static boolean announcementGroups() {
+    return getBoolean(ANNOUNCEMENT_GROUPS, false);
   }
 
   /** A comma-delimited list of country codes that should not be told about SMS during onboarding. */

@@ -18,6 +18,7 @@ import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
+import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.signal.zkgroup.InvalidInputException;
 import org.signal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
@@ -56,6 +57,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public final class GroupDatabase extends Database {
 
@@ -1037,15 +1040,32 @@ private static final String[] GROUP_PROJECTION = {
     }
 
     public @NonNull String getDescription() {
-      if (v2GroupProperties == null) {
-        return "";
-      } else {
+      if (v2GroupProperties != null) {
         return v2GroupProperties.getDecryptedGroup().getDescription();
+      } else {
+        return "";
+      }
+    }
+
+    public boolean isAnnouncementGroup() {
+      if (v2GroupProperties != null) {
+        return v2GroupProperties.getDecryptedGroup().getIsAnnouncementGroup() == EnabledState.ENABLED;
+      } else {
+        return false;
       }
     }
 
     public @NonNull List<RecipientId> getMembers() {
       return members;
+    }
+
+    @WorkerThread
+    public @NonNull List<Recipient> getAdmins() {
+      if (v2GroupProperties != null) {
+        return v2GroupProperties.getAdmins(members.stream().map(Recipient::resolved).collect(Collectors.toList()));
+      } else {
+        return Collections.emptyList();
+      }
     }
 
     /** V1 members that were lost during the V1->V2 migration */
@@ -1209,6 +1229,10 @@ private static final String[] GROUP_PROJECTION = {
       return DecryptedGroupUtil.findMemberByUuid(getDecryptedGroup().getMembersList(), uuid.get())
                                .transform(t -> t.getRole() == Member.Role.ADMINISTRATOR)
                                .or(false);
+    }
+
+    public @NonNull List<Recipient> getAdmins(@NonNull List<Recipient> members) {
+      return members.stream().filter(this::isAdmin).collect(Collectors.toList());
     }
 
     public MemberLevel memberLevel(@NonNull Recipient recipient) {
