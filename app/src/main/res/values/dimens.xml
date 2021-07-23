@@ -40,6 +40,7 @@
     <dimen name="message_bubble_content_top_padding">4dp</dimen>
     <dimen name="message_bubble_top_padding_audio">12dp</dimen>
     <dimen name="message_bubble_collapsed_footer_padding">6dp</dimen>
+    <dimen name="message_bubble_quote_negative_margin">-3dp</dimen>
     <dimen name="message_bubble_edge_margin">32dp</dimen>
     <dimen name="message_bubble_bottom_padding">7dp</dimen>
     <dimen name="media_bubble_remove_button_size">24dp</dimen>

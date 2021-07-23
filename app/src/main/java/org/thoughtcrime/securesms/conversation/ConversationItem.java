@@ -88,7 +88,6 @@ import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
@@ -727,14 +726,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       bodyText.setText(StringUtil.trim(styledText));
       bodyText.setVisibility(View.VISIBLE);
     }
-
-    if (!messageRecord.isOutgoing()) {
-      if (!messageRecord.isMms()) {
-        ViewUtil.setTopMargin(bodyText, readDimen(R.dimen.message_bubble_content_top_padding));
-      } else {
-        ViewUtil.setTopMargin(bodyText, readDimen(R.dimen.message_bubble_text_top_padding));
-      }
-    }
   }
 
   private void setMediaAttributes(@NonNull  MessageRecord                messageRecord,
@@ -1171,6 +1162,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       if (mediaThumbnailStub.resolved()) {
         ViewUtil.setTopMargin(mediaThumbnailStub.get(), readDimen(R.dimen.message_bubble_top_padding));
+      } else if (startOfCluster && !current.isOutgoing() && groupThread) {
+        ViewUtil.setTopMargin(quoteView, readDimen(R.dimen.message_bubble_quote_negative_margin));
+      } else {
+        ViewUtil.setTopMargin(quoteView, readDimen(R.dimen.message_bubble_top_padding));
       }
 
       if (linkPreviewStub.resolved() && !hasBigImageLinkPreview(current)) {
@@ -1181,13 +1176,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         quoteView.dismiss();
       }
 
-      int topMargin = (current.isOutgoing() || !startOfCluster || !groupThread) ? 0 : readDimen(R.dimen.message_bubble_content_top_padding);
       if (mediaThumbnailStub.resolved()) {
-        ViewUtil.setTopMargin(mediaThumbnailStub.get(), topMargin);
-      }
-
-      if (linkPreviewStub.resolved()) {
-        ViewUtil.setTopMargin(linkPreviewStub.get(), topMargin);
+        ViewUtil.setTopMargin(mediaThumbnailStub.get(), 0);
       }
     }
   }
