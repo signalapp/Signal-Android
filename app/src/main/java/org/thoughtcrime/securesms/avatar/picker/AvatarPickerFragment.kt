@@ -47,6 +47,8 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
 
   private val viewModel: AvatarPickerViewModel by viewModels(factoryProducer = this::createFactory)
 
+  private lateinit var recycler: RecyclerView
+
   private fun createFactory(): AvatarPickerViewModel.Factory {
     val args = AvatarPickerFragmentArgs.fromBundle(requireArguments())
     val groupId = ParcelableGroupId.get(args.groupId)
@@ -56,13 +58,13 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val toolbar: Toolbar = view.findViewById(R.id.avatar_picker_toolbar)
-    val recycler: RecyclerView = view.findViewById(R.id.avatar_picker_recycler)
     val cameraButton: ButtonStripItemView = view.findViewById(R.id.avatar_picker_camera)
     val photoButton: ButtonStripItemView = view.findViewById(R.id.avatar_picker_photo)
     val textButton: ButtonStripItemView = view.findViewById(R.id.avatar_picker_text)
     val saveButton: View = view.findViewById(R.id.avatar_picker_save)
     val clearButton: View = view.findViewById(R.id.avatar_picker_clear)
 
+    recycler = view.findViewById(R.id.avatar_picker_recycler)
     recycler.addItemDecoration(GridDividerDecoration(4, ViewUtil.dpToPx(16)))
 
     val adapter = MappingAdapter()
@@ -87,7 +89,13 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
         saveButton.animate().alpha(alpha)
       }
 
-      adapter.submitList(state.selectableAvatars.map { AvatarPickerItem.Model(it, it == state.currentAvatar) })
+      val items = state.selectableAvatars.map { AvatarPickerItem.Model(it, it == state.currentAvatar) }
+      val selectedPosition = items.indexOfFirst { it.isSelected }
+
+      adapter.submitList(items) {
+        if (selectedPosition > -1)
+          recycler.smoothScrollToPosition(selectedPosition)
+      }
     }
 
     toolbar.setNavigationOnClickListener { Navigation.findNavController(it).popBackStack() }
