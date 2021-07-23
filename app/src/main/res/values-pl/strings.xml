@@ -907,6 +907,7 @@
   <string name="Megaphones_invite_friends">Zaproś znajomych</string>
   <string name="Megaphones_use_sms">Użyj SMS</string>
   <string name="Megaphones_appearance">Wygląd</string>
+  <string name="Megaphones_add_photo">Dodaj zdjęcie</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Połączenie Signal w toku</string>
   <string name="NotificationBarManager__establishing_signal_call">Nawiązywanie połączenia Signal</string>
@@ -3222,6 +3223,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ContactFilterView__search_name_or_number">Szukaj po nazwie lub numerze</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Podgląd awatara</string>
   <string name="AvatarPickerFragment__camera">Aparat</string>
   <string name="AvatarPickerFragment__take_a_picture">Zrób zdjęcie</string>
@@ -3230,15 +3232,18 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="AvatarPickerFragment__text">Tekst</string>
   <string name="AvatarPickerFragment__save">Zapisz</string>
   <string name="AvatarPickerFragment__select_an_avatar">Wybierz awatar</string>
+  <string name="AvatarPickerFragment__clear_avatar">Usuń awatar</string>
+  <string name="AvatarPickerFragment__edit">Edytuj</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Nie udało się zapisać awatara</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Podgląd</string>
   <string name="TextAvatarCreationFragment__done">Gotowe</string>
   <string name="TextAvatarCreationFragment__text">Tekst</string>
   <string name="TextAvatarCreationFragment__color">Kolor</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Wybierz kolor</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__clear_avatar">Usuń awatar</string>
-  <string name="AvatarPickerFragment__edit">Edytuj</string>
-  <string name="AvatarPickerRepository__failed_to_save_avatar">Nie udało się zapisać awatara</string>
   <!--EOF-->
 </resources>

@@ -2163,13 +2163,24 @@
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">पेमेंटची पुष्टी करा</string>
   <string name="ConfirmPayment__network_fee">नेटवर्क फी</string>
+  <string name="ConfirmPayment__error_getting_fee">फी मिळवण्यात त्रुटी</string>
+  <string name="ConfirmPayment__estimated_s">अंदाजे %1$s</string>
   <string name="ConfirmPayment__to">याला</string>
+  <string name="ConfirmPayment__total_amount">एकूण रक्कम</string>
+  <string name="ConfirmPayment__balance_s">बॅलंस: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">पेमेंट सबमिट करत आहे…</string>
   <string name="ConfirmPayment__processing_payment">पेमेंटची प्रक्रिया करत आहे…</string>
   <string name="ConfirmPayment__payment_complete">पेमेंट पूर्ण झाले</string>
   <string name="ConfirmPayment__payment_failed">पेमेंट अयशस्वी झाले</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">पेमेंट प्रक्रिया करणे सुरू राहील</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">अवैध प्राप्तकर्ता</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">या व्यक्तीने पेमेंट सक्रिय केलेले नाही</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">नेटवर्क फीची विनंती करण्यात अक्षम. हे पेमेंट सुरू ठेवण्यासाठी पुन्हा प्रयत्न करण्यासाठी ठीक आहे वर टॅप करा.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%2$s वर %1$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">चलन सेट करा</string>
+  <string name="SetCurrencyFragment__all_currencies">सर्व चलन</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2406,9 +2417,13 @@
   <string name="backup_enable_dialog__folder">फोल्डर</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">मी हे पासफ्रेझ लिहून ठेवले आहे. याविना, मी बॅकअपची पुनर्स्थापना करण्यास अक्षम असेल.</string>
   <string name="registration_activity__restore_backup">बॅकअप पुनर्स्थापित करा</string>
+  <string name="registration_activity__transfer_or_restore_account">स्थानांतरित करा किंवा खाते पुनर्स्थापित करा</string>
+  <string name="registration_activity__transfer_account">खाते स्थानांतरित करा</string>
   <string name="registration_activity__skip">वगळा</string>
   <string name="preferences_chats__chat_backups">चॅट बॅकअप</string>
   <string name="preferences_chats__backup_chats_to_external_storage">बाह्य संचयनात चॅट बॅकअप करा</string>
+  <string name="preferences_chats__transfer_account">खाते स्थानांतरित करा</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">नवीन Android डिव्हाइसवर खाते स्थानांतरित करा</string>
   <string name="RegistrationActivity_enter_backup_passphrase">बॅकअप पासफ्रेझ प्रविष्ट करा</string>
   <string name="RegistrationActivity_restore">पुनर्स्थापना करा</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal च्या नवीन आवृत्त्यांवरून बॅकअप आयात करू शकत नाही</string>
@@ -2483,21 +2498,67 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">अनलॉक करण्यासाठी टॅप करा</string>
   <string name="Recipient_unknown">अज्ञात</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">स्थानांतरित करा किंवा खाते पुनर्स्थापित करा</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Android डिव्हाइसवरून स्थानांतरित करा</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">आपल्या जुन्या Android डिव्हाइसवरून आपले खाते आणि संदेश स्थानांतरित करा. आपल्याला आपल्या जुन्या डिव्हाइसचा अॅक्सेस आवश्यक आहे.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">आपल्याला आपल्या जुन्या डिव्हाइसचा अॅक्सेस आवश्यक आहे.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">बॅकअपवरून पुनर्स्थापित करा</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">आपल्या Android फोनवर Signal उघडा</string>
   <string name="NewDeviceTransferInstructions__continue">सुरू ठेवा</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">सेटिंग उघडण्यासाठी सर्वात वरती डावीकडे आपल्या प्रोफाइल फोटोवर टॅप करा</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">\"खाते\" वर टॅप करा</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">एक क्षण घेत आहे, लवकरच तयार असेल</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">जुन्या Android डिव्हाइसचा कनेक्ट करण्यासाठी प्रतीक्षा करत आहे…</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">बॅकअप पुनर्स्थापित करा</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">नवीन Android डिव्हाइससाठी शोधत आहे…</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">बॅकअप तयार करा</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">आपल्या नवीन Android डिव्हाइससोबत कनेक्ट करायचा प्रयत्न करताना एक अनेपक्षित त्रुटी आढळली.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi सेटिंग उघडण्यात अक्षम. कृपया Wi-Fi व्यक्तीचलितपणे चालू करा.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">स्थान परवानगी मान्य करा</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">स्थान सेवा चालू करा</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">स्थान सेटिंग उघडण्यात अक्षम.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi चालू करा</string>
+  <string name="DeviceTransferSetup__error_connecting">कनेक्ट करण्यात त्रुटी</string>
   <string name="DeviceTransferSetup__retry">पुन्हा प्रयत्न करा</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">डीबग लॉग प्रविष्ट करा</string>
+  <string name="DeviceTransferSetup__verify_code">कोड सत्यापित करा</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">खालील कोड आपल्या दोन्ही डिव्हाइसवर समान असल्याचे सत्यापित करा. नंतर सुरू ठेवा वर टॅप करा.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">नंबर जुळत नाही</string>
   <string name="DeviceTransferSetup__continue">सुरू ठेवा</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">नंबर समान नाही</string>
+  <string name="DeviceTransferSetup__stop_transfer">स्थानांतरण थांबवा</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">जुना डिव्हाइस डिस्कव्हर करण्यात अक्षम</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">नवीन डिव्हाइस डिस्कव्हर करण्यात अक्षम</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">पुढील परवानग्या आणि सेवा सक्षम असल्याची खात्री करा:</string>
+  <string name="DeviceTransferSetup__location_permission">स्थान परवानगी</string>
+  <string name="DeviceTransferSetup__location_services">स्थान सेवा</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi डिरेक्ट स्क्रीनवर, सर्व लक्षात असलेलेगट काढा आणि कुठलेही आमंत्रित केलेले किंवा कनेक्ट केलेले डिव्हाइस अनलिंक करा.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi डिरेक्ट स्क्रीन</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">दोन्ही डिव्हाइसवर, Wi-Fi चालू आणि बंद करून पहा.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">दोन्ही डिव्हाइस स्थानांतर मोडमध्ये असल्याची खात्री करा.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">समर्थन पृष्ठावर जा</string>
   <string name="DeviceTransferSetup__try_again">पुन्हा प्रयत्न करा</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">इतर डिव्हाइससाठी प्रतीक्षा करत आहे</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">स्थानांतरण चालू करण्यासाठी आपल्या इतर डिव्हाइसवर सुरू ठेवावर टॅप करा.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">आपल्या इतर डिव्हाइसवर सुरू ठेवावर टॅप करा…</string>
   <!--NewDeviceTransferFragment-->
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__cancel">रद्द करा</string>
   <string name="DeviceTransfer__try_again">पुन्हा प्रयत्न करा</string>
+  <string name="DeviceTransfer__stop_transfer">स्थानांतरण थांबवा</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">खाते स्थानांतरित करा</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
   <string name="OldDeviceTransferInstructions__continue">सुरू ठेवा</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__close">बंद करा</string>
@@ -2771,14 +2832,17 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">कॅमेरा</string>
   <string name="AvatarPickerFragment__photo">फोटो</string>
   <string name="AvatarPickerFragment__save">जतन करा</string>
+  <string name="AvatarPickerFragment__edit">संपादन</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">पुनरावलोकन</string>
   <string name="TextAvatarCreationFragment__done">ठीक</string>
   <string name="TextAvatarCreationFragment__color">रंग</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">संपादन</string>
   <!--EOF-->
 </resources>

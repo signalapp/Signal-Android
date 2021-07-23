@@ -861,6 +861,7 @@
   <string name="Megaphones_invite_friends">Invită prieteni</string>
   <string name="Megaphones_use_sms">Utilizați SMS</string>
   <string name="Megaphones_appearance">Aspect</string>
+  <string name="Megaphones_add_photo">Adăugare poză</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
   <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Signal</string>
@@ -3025,6 +3026,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ContactFilterView__search_name_or_number">Cautare nume sau număr</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Previzualizare avatar</string>
   <string name="AvatarPickerFragment__camera">Cameră foto</string>
   <string name="AvatarPickerFragment__take_a_picture">Faceți o poză</string>
@@ -3033,15 +3035,17 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="AvatarPickerFragment__text">Text</string>
   <string name="AvatarPickerFragment__save">Salvează</string>
   <string name="AvatarPickerFragment__select_an_avatar">Selectați un avatar</string>
+  <string name="AvatarPickerFragment__clear_avatar">Șterge avatarul</string>
+  <string name="AvatarPickerFragment__edit">Editează</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Eroare la salvarea avatarului</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Previzualizare</string>
   <string name="TextAvatarCreationFragment__done">Gata</string>
   <string name="TextAvatarCreationFragment__text">Text</string>
   <string name="TextAvatarCreationFragment__color">Culoare</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__clear_avatar">Șterge avatarul</string>
-  <string name="AvatarPickerFragment__edit">Editează</string>
-  <string name="AvatarPickerRepository__failed_to_save_avatar">Eroare la salvarea avatarului</string>
   <!--EOF-->
 </resources>

@@ -2705,14 +2705,17 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">ക്യാമറ</string>
   <string name="AvatarPickerFragment__photo">ഫോട്ടോ</string>
   <string name="AvatarPickerFragment__save">സംരക്ഷിക്കൂ</string>
+  <string name="AvatarPickerFragment__edit">തിരുത്തുക</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">പ്രിവ്യൂ</string>
   <string name="TextAvatarCreationFragment__done">ചെയ്‌തു</string>
   <string name="TextAvatarCreationFragment__color">നിറം</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">തിരുത്തുക</string>
   <!--EOF-->
 </resources>

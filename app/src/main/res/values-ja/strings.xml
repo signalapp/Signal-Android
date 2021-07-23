@@ -777,6 +777,7 @@
   <string name="Megaphones_invite_friends">友達を招待しましょう</string>
   <string name="Megaphones_use_sms">SMSを使用する</string>
   <string name="Megaphones_appearance">デザイン</string>
+  <string name="Megaphones_add_photo">画像を追加</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal通話を接続しています</string>
@@ -2881,6 +2882,7 @@
   <string name="ContactFilterView__search_name_or_number">名前か電話番号で検索</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">アバターのプレビュー</string>
   <string name="AvatarPickerFragment__camera">カメラ</string>
   <string name="AvatarPickerFragment__take_a_picture">写真を撮影</string>
@@ -2889,15 +2891,17 @@
   <string name="AvatarPickerFragment__text">テキスト</string>
   <string name="AvatarPickerFragment__save">保存</string>
   <string name="AvatarPickerFragment__select_an_avatar">アバターを選択してください</string>
+  <string name="AvatarPickerFragment__clear_avatar">アバターを削除</string>
+  <string name="AvatarPickerFragment__edit">編集</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">アバターの保存に失敗しました</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">プレビュー</string>
   <string name="TextAvatarCreationFragment__done">完了</string>
   <string name="TextAvatarCreationFragment__text">テキスト</string>
   <string name="TextAvatarCreationFragment__color">色</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__clear_avatar">アバターを削除</string>
-  <string name="AvatarPickerFragment__edit">編集</string>
-  <string name="AvatarPickerRepository__failed_to_save_avatar">アバターの保存に失敗しました</string>
   <!--EOF-->
 </resources>

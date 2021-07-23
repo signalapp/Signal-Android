@@ -817,6 +817,7 @@
   <string name="Megaphones_invite_friends">Покани приятели</string>
   <string name="Megaphones_use_sms">Ползвай SMS</string>
   <string name="Megaphones_appearance">Облик</string>
+  <string name="Megaphones_add_photo">Добави снимка</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Протича Signal разговор</string>
   <string name="NotificationBarManager__establishing_signal_call">Установяване на Signal разговор</string>
@@ -2893,6 +2894,7 @@
   <string name="ContactFilterView__search_name_or_number">Търси по име или номер</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Преглед на аватар</string>
   <string name="AvatarPickerFragment__camera">Камера</string>
   <string name="AvatarPickerFragment__take_a_picture">Направи снимка</string>
@@ -2901,15 +2903,17 @@
   <string name="AvatarPickerFragment__text">Текст</string>
   <string name="AvatarPickerFragment__save">Запази</string>
   <string name="AvatarPickerFragment__select_an_avatar">Избери аватар</string>
+  <string name="AvatarPickerFragment__clear_avatar">Премахни аватар</string>
+  <string name="AvatarPickerFragment__edit">Редакция</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Грешка при запазването на аватара</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Преглед</string>
   <string name="TextAvatarCreationFragment__done">Готово</string>
   <string name="TextAvatarCreationFragment__text">Текст</string>
   <string name="TextAvatarCreationFragment__color">Цвят</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">. %1$s</string>
-  <string name="AvatarPickerFragment__clear_avatar">Премахни аватар</string>
-  <string name="AvatarPickerFragment__edit">Редакция</string>
-  <string name="AvatarPickerRepository__failed_to_save_avatar">Грешка при запазването на аватара</string>
   <!--EOF-->
 </resources>

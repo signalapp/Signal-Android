@@ -3106,14 +3106,17 @@ broj telefona</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__photo">Fotografija</string>
   <string name="AvatarPickerFragment__save">Spremi</string>
+  <string name="AvatarPickerFragment__edit">Uredi</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Pregled</string>
   <string name="TextAvatarCreationFragment__done">Gotovo</string>
   <string name="TextAvatarCreationFragment__color">Boja</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">Uredi</string>
   <!--EOF-->
 </resources>

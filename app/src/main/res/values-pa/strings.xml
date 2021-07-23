@@ -2500,14 +2500,17 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">ਕੈਮਰਾ </string>
   <string name="AvatarPickerFragment__photo">ਫੋਟੋ</string>
   <string name="AvatarPickerFragment__save">ਸੰਭਾਲੋ</string>
+  <string name="AvatarPickerFragment__edit">ਸੋਧੋ</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">ਝਲਕ</string>
   <string name="TextAvatarCreationFragment__done">ਮੁਕੰਮਲ</string>
   <string name="TextAvatarCreationFragment__color">ਰੰਗ</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">ਸੋਧੋ</string>
   <!--EOF-->
 </resources>

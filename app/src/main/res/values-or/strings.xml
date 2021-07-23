@@ -2630,13 +2630,16 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">କ୍ୟାମେରା</string>
   <string name="AvatarPickerFragment__photo">ଛବି</string>
   <string name="AvatarPickerFragment__save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
+  <string name="AvatarPickerFragment__edit">ସମ୍ପାଦନ</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">ପୂର୍ବାବଲୋକନ</string>
   <string name="TextAvatarCreationFragment__done">ହେଇଗଲା</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">ଏସ୍ଏମ୍ଏସ୍</string>
-  <string name="AvatarPickerFragment__edit">ସମ୍ପାଦନ</string>
   <!--EOF-->
 </resources>

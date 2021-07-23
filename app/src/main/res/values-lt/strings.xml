@@ -907,6 +907,7 @@
   <string name="Megaphones_invite_friends">Pakviesti draugus</string>
   <string name="Megaphones_use_sms">Naudokite SMS</string>
   <string name="Megaphones_appearance">Išvaizda</string>
+  <string name="Megaphones_add_photo">Pridėti nuotrauką</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
   <string name="NotificationBarManager__establishing_signal_call">Užmezgiamas Signal skambutis</string>
@@ -3230,6 +3231,7 @@
   <string name="ContactFilterView__search_name_or_number">Ieškoti vardo ar numerio</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Avataro peržiūra</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__take_a_picture">Padaryti nuotrauką</string>
@@ -3238,15 +3240,18 @@
   <string name="AvatarPickerFragment__text">Tekstas</string>
   <string name="AvatarPickerFragment__save">Įrašyti</string>
   <string name="AvatarPickerFragment__select_an_avatar">Pasirinkti avatarą</string>
+  <string name="AvatarPickerFragment__clear_avatar">Išvalyti avatarą</string>
+  <string name="AvatarPickerFragment__edit">Taisyti</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Nepavyko įrašyti avataro</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Peržiūra</string>
   <string name="TextAvatarCreationFragment__done">Atlikta</string>
   <string name="TextAvatarCreationFragment__text">Tekstas</string>
   <string name="TextAvatarCreationFragment__color">Spalva</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Pasirinkti spalvą</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__clear_avatar">Išvalyti avatarą</string>
-  <string name="AvatarPickerFragment__edit">Taisyti</string>
-  <string name="AvatarPickerRepository__failed_to_save_avatar">Nepavyko įrašyti avataro</string>
   <!--EOF-->
 </resources>

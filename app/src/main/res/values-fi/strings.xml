@@ -2996,14 +2996,17 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__photo">Kuva</string>
   <string name="AvatarPickerFragment__save">Tallenna</string>
+  <string name="AvatarPickerFragment__edit">Muokkaa</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Esikatselu</string>
   <string name="TextAvatarCreationFragment__done">Valmis</string>
   <string name="TextAvatarCreationFragment__color">Väri</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">Muokkaa</string>
   <!--EOF-->
 </resources>

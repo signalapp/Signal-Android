@@ -3062,15 +3062,18 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="ContactFilterView__search_name_or_number">Søk etter namn eller nummer</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__photo">Bilde</string>
   <string name="AvatarPickerFragment__save">Lagra</string>
+  <string name="AvatarPickerFragment__edit">Endra</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Førehandsvisning</string>
   <string name="TextAvatarCreationFragment__done">Ferdig</string>
   <string name="TextAvatarCreationFragment__color">Farge</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__edit">Endra</string>
   <!--EOF-->
 </resources>

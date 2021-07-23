@@ -3056,17 +3056,20 @@
   <string name="ContactFilterView__search_name_or_number">Pesquise o nome ou número</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Câmera</string>
   <string name="AvatarPickerFragment__photo">Foto</string>
   <string name="AvatarPickerFragment__text">Texto</string>
   <string name="AvatarPickerFragment__save">Salvar</string>
+  <string name="AvatarPickerFragment__edit">Editar</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Pré-visualização</string>
   <string name="TextAvatarCreationFragment__done">Pronto</string>
   <string name="TextAvatarCreationFragment__text">Texto</string>
   <string name="TextAvatarCreationFragment__color">Cor</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__edit">Editar</string>
   <!--EOF-->
 </resources>

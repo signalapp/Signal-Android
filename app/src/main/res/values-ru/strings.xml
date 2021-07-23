@@ -907,6 +907,7 @@
   <string name="Megaphones_invite_friends">Пригласить друзей</string>
   <string name="Megaphones_use_sms">Использовать SMS</string>
   <string name="Megaphones_appearance">Внешний вид</string>
+  <string name="Megaphones_add_photo">Добавить фото</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Идёт звонок через Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Начинается звонок через Signal</string>
@@ -3223,6 +3224,7 @@
   <string name="ContactFilterView__search_name_or_number">Поиск по имени или номеру</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Предпросмотр аватара</string>
   <string name="AvatarPickerFragment__camera">Камера</string>
   <string name="AvatarPickerFragment__take_a_picture">Сделать снимок</string>
@@ -3231,15 +3233,18 @@
   <string name="AvatarPickerFragment__text">Текст</string>
   <string name="AvatarPickerFragment__save">Сохранить</string>
   <string name="AvatarPickerFragment__select_an_avatar">Выберите аватар</string>
+  <string name="AvatarPickerFragment__clear_avatar">Удалить аватар</string>
+  <string name="AvatarPickerFragment__edit">Изменить</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Не удалось сохранить аватар</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Предпросмотр</string>
   <string name="TextAvatarCreationFragment__done">Готово</string>
   <string name="TextAvatarCreationFragment__text">Текст</string>
   <string name="TextAvatarCreationFragment__color">Цвет</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Выберите цвет</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__clear_avatar">Удалить аватар</string>
-  <string name="AvatarPickerFragment__edit">Изменить</string>
-  <string name="AvatarPickerRepository__failed_to_save_avatar">Не удалось сохранить аватар</string>
   <!--EOF-->
 </resources>

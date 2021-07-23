@@ -2622,14 +2622,17 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__photo">Argazkia</string>
   <string name="AvatarPickerFragment__save">Gorde</string>
+  <string name="AvatarPickerFragment__edit">Editatu</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Aurrebista</string>
   <string name="TextAvatarCreationFragment__done">Eginda</string>
   <string name="TextAvatarCreationFragment__color">Kolorea</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">Editatu</string>
   <!--EOF-->
 </resources>

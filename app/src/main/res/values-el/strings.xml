@@ -817,6 +817,7 @@
   <string name="Megaphones_invite_friends">Πρόσκληση φίλων</string>
   <string name="Megaphones_use_sms">Χρήση SMS</string>
   <string name="Megaphones_appearance">Εμφάνιση</string>
+  <string name="Megaphones_add_photo">Προσθήκη φωτογραφίας</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal σε εξέλιξη</string>
   <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>
@@ -1334,6 +1335,7 @@
   <string name="SubmitDebugLogActivity_success">Επιτυχία!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Αντέγραψε αυτό το URL και προσθεσέ το στην αναφορά σφάλματος ή στο email υποστήριξης:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Διαμοιρασμός</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Αυτό το αρχείο καταγραφής συμβάντων θα αναρτηθεί δημόσια στο διαδίκτυο για προβολή από τους συνεισφέροντες. Μπορείς να το εξετάσεις πριν το υποβάλλεις.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Φίλτρο:</string>
   <string name="SupportEmailUtil_device_info">Πληροφορίες συσκευής:</string>
@@ -2842,7 +2844,10 @@
   <string name="ChatColorsMegaphone__appearance">Εμφάνιση</string>
   <string name="ChatColorsMegaphone__not_now">Όχι τώρα</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Προσθήκη φωτογραφίας πρφίλ</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Επέλεξε ένα στυλ και χρώμα, ή επεξεργάσου τα αρχικά σου.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Όχι τώρα</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Προσθήκη φωτογραφίας</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Άνοιγμα αναζήτησης emoji</string>
@@ -2915,17 +2920,27 @@
   <string name="ContactFilterView__search_name_or_number">Αναζήτηση ονόματος ή άριθμού</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Προεπισκόπηση εικόνας προφίλ</string>
   <string name="AvatarPickerFragment__camera">Κάμερα</string>
+  <string name="AvatarPickerFragment__take_a_picture">Λήψη φωτογραφίας</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Επιλογή φωτογραφίας</string>
   <string name="AvatarPickerFragment__photo">Φωτογραφία</string>
   <string name="AvatarPickerFragment__text">Κείμενο</string>
   <string name="AvatarPickerFragment__save">Αποθήκευση</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Επιλογή εικόνας προφίλ</string>
+  <string name="AvatarPickerFragment__clear_avatar">Εκκαθάριση εικόνας προφίλ</string>
+  <string name="AvatarPickerFragment__edit">Eπεξεργασία</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Αποτυχία αποθήκευσης της εικόνας προφίλ</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Προεπισκόπηση</string>
   <string name="TextAvatarCreationFragment__done">Τέλος</string>
   <string name="TextAvatarCreationFragment__text">Κείμενο</string>
   <string name="TextAvatarCreationFragment__color">Χρώμα</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Επιλογή χρώματος</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__edit">Eπεξεργασία</string>
   <!--EOF-->
 </resources>

@@ -778,6 +778,7 @@
   <string name="Megaphones_invite_friends">邀請好友</string>
   <string name="Megaphones_use_sms">使用短訊</string>
   <string name="Megaphones_appearance">外觀</string>
+  <string name="Megaphones_add_photo">新增照片</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">正在建立 Signal 通話</string>
@@ -1720,7 +1721,7 @@
   <string name="message_details_header__issues_need_your_attention">下列事宜需要您注意。</string>
   <string name="message_details_header__sent">已傳送</string>
   <string name="message_details_header__received">已接收</string>
-  <string name="message_details_header__disappears">消失</string>
+  <string name="message_details_header__disappears">消失前倒數</string>
   <string name="message_details_header__via">經由</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">待處理</string>
@@ -2071,7 +2072,7 @@
   <string name="PaymentsTransferFragment__check_the_wallet_address">請檢查您嘗試轉移至該處的錢包位址，然後再試一次。</string>
   <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">您不能轉移至您自己的 Signal 錢包位址。請輸入您在支援的交易平台上所屬帳戶的錢包位址。</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Signal 需要存取相機，以便掃描二維碼。</string>
-  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal 需要相機權限才可擷取二維碼，但已被永久拒絕。請前往設定，選擇 [權限]，然後啟用 [相機]。</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal 需要相機權限才可擷取二維碼。請前往設定，選擇 [權限]，然後啟用 [相機]。</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Signal 需要存取相機，以便掃描二維碼。</string>
   <string name="PaymentsTransferFragment__settings">設定</string>
   <!--PaymentsTransferQrScanFragment-->
@@ -2974,6 +2975,7 @@
   <string name="ContactFilterView__search_name_or_number">搜尋名稱或號碼</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">頭像預覽</string>
   <string name="AvatarPickerFragment__camera">相機</string>
   <string name="AvatarPickerFragment__take_a_picture">拍照</string>
@@ -2982,15 +2984,18 @@
   <string name="AvatarPickerFragment__text">文字</string>
   <string name="AvatarPickerFragment__save">儲存</string>
   <string name="AvatarPickerFragment__select_an_avatar">選取一個頭像</string>
+  <string name="AvatarPickerFragment__clear_avatar">清除頭像</string>
+  <string name="AvatarPickerFragment__edit">編輯</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">儲存頭像失敗</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">預覽</string>
   <string name="TextAvatarCreationFragment__done">完成</string>
   <string name="TextAvatarCreationFragment__text">文字</string>
   <string name="TextAvatarCreationFragment__color">色彩</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">選取一種色彩</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">短訊</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__clear_avatar">清除頭像</string>
-  <string name="AvatarPickerFragment__edit">編輯</string>
-  <string name="AvatarPickerRepository__failed_to_save_avatar">儲存頭像失敗</string>
   <!--EOF-->
 </resources>

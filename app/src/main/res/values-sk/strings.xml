@@ -907,6 +907,7 @@
   <string name="Megaphones_invite_friends">Pozvať priateľov</string>
   <string name="Megaphones_use_sms">Použiť SMS</string>
   <string name="Megaphones_appearance">Vzhľad</string>
+  <string name="Megaphones_add_photo">Pridať fotku</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Prebieha Signal hovor</string>
   <string name="NotificationBarManager__establishing_signal_call">Príprava na Signal hovor</string>
@@ -3229,6 +3230,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ContactFilterView__search_name_or_number">Vyhľadajte meno, alebo číslo</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Ukážka avataru</string>
   <string name="AvatarPickerFragment__camera">Fotoaparát</string>
   <string name="AvatarPickerFragment__take_a_picture">Odfoťte sa</string>
@@ -3237,15 +3239,18 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="AvatarPickerFragment__text">Text</string>
   <string name="AvatarPickerFragment__save">Uložiť</string>
   <string name="AvatarPickerFragment__select_an_avatar">Vyberte profilový obrázok</string>
+  <string name="AvatarPickerFragment__clear_avatar">Vymazať avatara</string>
+  <string name="AvatarPickerFragment__edit">Upraviť</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Avatar sa nepodarilo uložiť</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Náhľad</string>
   <string name="TextAvatarCreationFragment__done">Hotovo</string>
   <string name="TextAvatarCreationFragment__text">Text</string>
   <string name="TextAvatarCreationFragment__color">Farba</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Vyberte farbu</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__clear_avatar">Vymazať avatara</string>
-  <string name="AvatarPickerFragment__edit">Upraviť</string>
-  <string name="AvatarPickerRepository__failed_to_save_avatar">Avatar sa nepodarilo uložiť</string>
   <!--EOF-->
 </resources>

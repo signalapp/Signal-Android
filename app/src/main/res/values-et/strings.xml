@@ -2895,14 +2895,17 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kaamera</string>
   <string name="AvatarPickerFragment__photo">Foto</string>
   <string name="AvatarPickerFragment__save">Salvesta</string>
+  <string name="AvatarPickerFragment__edit">Muuda</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Eelvaade</string>
   <string name="TextAvatarCreationFragment__done">Tehtud</string>
   <string name="TextAvatarCreationFragment__color">Värv</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">Muuda</string>
   <!--EOF-->
 </resources>

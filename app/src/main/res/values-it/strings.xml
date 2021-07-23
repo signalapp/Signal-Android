@@ -821,6 +821,7 @@
   <string name="Megaphones_invite_friends">Invita amici</string>
   <string name="Megaphones_use_sms">Usa SMS</string>
   <string name="Megaphones_appearance">Aspetto</string>
+  <string name="Megaphones_add_photo">Aggiungi foto</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chiamata con Signal in corso</string>
   <string name="NotificationBarManager__establishing_signal_call">Preparazione chiamata Signal</string>
@@ -3060,6 +3061,7 @@
   <string name="ContactFilterView__search_name_or_number">Cerca nome o numero</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Anteprima avatar</string>
   <string name="AvatarPickerFragment__camera">Fotocamera</string>
   <string name="AvatarPickerFragment__take_a_picture">Scatta una foto</string>
@@ -3068,15 +3070,17 @@
   <string name="AvatarPickerFragment__text">Testo</string>
   <string name="AvatarPickerFragment__save">Salva</string>
   <string name="AvatarPickerFragment__select_an_avatar">Seleziona un avatar</string>
+  <string name="AvatarPickerFragment__clear_avatar">Rimuovi avatar</string>
+  <string name="AvatarPickerFragment__edit">Modifica</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Impossibile salvare l\'avatar</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Anteprima</string>
   <string name="TextAvatarCreationFragment__done">Fatto</string>
   <string name="TextAvatarCreationFragment__text">Testo</string>
   <string name="TextAvatarCreationFragment__color">Colore</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__clear_avatar">Rimuovi avatar</string>
-  <string name="AvatarPickerFragment__edit">Modifica</string>
-  <string name="AvatarPickerRepository__failed_to_save_avatar">Impossibile salvare l\'avatar</string>
   <!--EOF-->
 </resources>

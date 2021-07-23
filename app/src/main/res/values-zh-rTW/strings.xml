@@ -778,6 +778,7 @@
   <string name="Megaphones_invite_friends">邀請好友</string>
   <string name="Megaphones_use_sms">使用 SMS</string>
   <string name="Megaphones_appearance">介面設定</string>
+  <string name="Megaphones_add_photo">新增照片</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
@@ -2971,6 +2972,7 @@
   <string name="ContactFilterView__search_name_or_number">搜尋姓名或電話號碼</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">頭像預覽</string>
   <string name="AvatarPickerFragment__camera">相機</string>
   <string name="AvatarPickerFragment__take_a_picture">拍照</string>
@@ -2979,15 +2981,17 @@
   <string name="AvatarPickerFragment__text">文字</string>
   <string name="AvatarPickerFragment__save">儲存</string>
   <string name="AvatarPickerFragment__select_an_avatar">選擇頭像</string>
+  <string name="AvatarPickerFragment__clear_avatar">清除頭像</string>
+  <string name="AvatarPickerFragment__edit">編輯</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">儲存頭像失敗</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">預覽</string>
   <string name="TextAvatarCreationFragment__done">完成</string>
   <string name="TextAvatarCreationFragment__text">文字</string>
   <string name="TextAvatarCreationFragment__color">顏色</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">簡訊</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__clear_avatar">清除頭像</string>
-  <string name="AvatarPickerFragment__edit">編輯</string>
-  <string name="AvatarPickerRepository__failed_to_save_avatar">儲存頭像失敗</string>
   <!--EOF-->
 </resources>

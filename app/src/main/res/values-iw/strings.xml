@@ -907,6 +907,7 @@
   <string name="Megaphones_invite_friends">הזמן חברים</string>
   <string name="Megaphones_use_sms">השתמש במסרון</string>
   <string name="Megaphones_appearance">מראה</string>
+  <string name="Megaphones_add_photo">הוסף תמונה</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
@@ -3230,6 +3231,7 @@
   <string name="ContactFilterView__search_name_or_number">חפש שם או מספר</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">תצוגה מקדימה של יצגן</string>
   <string name="AvatarPickerFragment__camera">מצלמה</string>
   <string name="AvatarPickerFragment__take_a_picture">צלם</string>
@@ -3238,15 +3240,17 @@
   <string name="AvatarPickerFragment__text">מלל</string>
   <string name="AvatarPickerFragment__save">שמור</string>
   <string name="AvatarPickerFragment__select_an_avatar">בחר יצגן</string>
+  <string name="AvatarPickerFragment__clear_avatar">נקה יצגן</string>
+  <string name="AvatarPickerFragment__edit">ערוך</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">נכשל בשמירת יצגן</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">תצוגה מקדימה</string>
   <string name="TextAvatarCreationFragment__done">סיים</string>
   <string name="TextAvatarCreationFragment__text">מלל</string>
   <string name="TextAvatarCreationFragment__color">צבע</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">מסרון</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
-  <string name="AvatarPickerFragment__clear_avatar">נקה יצגן</string>
-  <string name="AvatarPickerFragment__edit">ערוך</string>
-  <string name="AvatarPickerRepository__failed_to_save_avatar">נכשל בשמירת יצגן</string>
   <!--EOF-->
 </resources>

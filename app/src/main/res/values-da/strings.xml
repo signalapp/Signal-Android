@@ -3027,14 +3027,17 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s - %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__photo">Billede</string>
   <string name="AvatarPickerFragment__save">Gem</string>
+  <string name="AvatarPickerFragment__edit">Redigér</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Eksempel</string>
   <string name="TextAvatarCreationFragment__done">Udført</string>
   <string name="TextAvatarCreationFragment__color">Farve</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">Redigér</string>
   <!--EOF-->
 </resources>

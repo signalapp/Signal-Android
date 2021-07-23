@@ -821,6 +821,7 @@
   <string name="Megaphones_invite_friends">دعوت دوستان</string>
   <string name="Megaphones_use_sms">استفاده از پیامک</string>
   <string name="Megaphones_appearance">ظاهر برنامه</string>
+  <string name="Megaphones_add_photo">افزودن عکس</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">تماس سیگنال در جریان است</string>
   <string name="NotificationBarManager__establishing_signal_call">در حال برقراری تماس سیگنال</string>
@@ -3058,6 +3059,7 @@
   <string name="ContactFilterView__search_name_or_number">نام یا شماره را جستجو کنید</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">پیش‌نمایش آواتار</string>
   <string name="AvatarPickerFragment__camera">دوربین</string>
   <string name="AvatarPickerFragment__take_a_picture">یک عکس بگیرید</string>
@@ -3066,15 +3068,17 @@
   <string name="AvatarPickerFragment__text">متن</string>
   <string name="AvatarPickerFragment__save">ذخیره</string>
   <string name="AvatarPickerFragment__select_an_avatar">یک آواتار انتخاب کنید</string>
+  <string name="AvatarPickerFragment__clear_avatar">پاک کردن آواتار</string>
+  <string name="AvatarPickerFragment__edit">ویرایش</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">ذخیره کردن آواتار موفق نبود</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">پیش‌نمایش</string>
   <string name="TextAvatarCreationFragment__done">تمام</string>
   <string name="TextAvatarCreationFragment__text">متن</string>
   <string name="TextAvatarCreationFragment__color">رنگ</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">پیامک</string>
   <string name="ContactSelectionListItem__dot_s">%1$s</string>
-  <string name="AvatarPickerFragment__clear_avatar">پاک کردن آواتار</string>
-  <string name="AvatarPickerFragment__edit">ویرایش</string>
-  <string name="AvatarPickerRepository__failed_to_save_avatar">ذخیره کردن آواتار موفق نبود</string>
   <!--EOF-->
 </resources>

@@ -3046,14 +3046,17 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__photo">Fotoğraf</string>
   <string name="AvatarPickerFragment__save">Kaydet</string>
+  <string name="AvatarPickerFragment__edit">Düzenle</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Ön izleme</string>
   <string name="TextAvatarCreationFragment__done">Tamam</string>
   <string name="TextAvatarCreationFragment__color">Renk</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">Düzenle</string>
   <!--EOF-->
 </resources>

@@ -2841,14 +2841,17 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">กล้อง</string>
   <string name="AvatarPickerFragment__photo">รูปถ่าย</string>
   <string name="AvatarPickerFragment__save">บันทึก</string>
+  <string name="AvatarPickerFragment__edit">แก้ไข</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">ภาพตัวอย่าง</string>
   <string name="TextAvatarCreationFragment__done">เสร็จสิ้น</string>
   <string name="TextAvatarCreationFragment__color">สี</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">แก้ไข</string>
   <!--EOF-->
 </resources>

@@ -2733,13 +2733,16 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Amḍiq n taɣdeft</string>
   <string name="AvatarPickerFragment__photo">Tawlaft</string>
   <string name="AvatarPickerFragment__save">Sekles</string>
+  <string name="AvatarPickerFragment__edit">Ẓreg</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Taskant</string>
   <string name="TextAvatarCreationFragment__done">Yemmed</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">Ẓreg</string>
   <!--EOF-->
 </resources>

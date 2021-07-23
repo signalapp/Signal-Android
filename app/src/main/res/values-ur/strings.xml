@@ -2597,14 +2597,17 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">کیمرہ</string>
   <string name="AvatarPickerFragment__photo">تصویر</string>
   <string name="AvatarPickerFragment__save">محفوظ کریں</string>
+  <string name="AvatarPickerFragment__edit">ترتیب دیں</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">پیش نظارہ</string>
   <string name="TextAvatarCreationFragment__done">ہو گیا</string>
   <string name="TextAvatarCreationFragment__color">رنگ</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">ایس ایم ایس</string>
-  <string name="AvatarPickerFragment__edit">ترتیب دیں</string>
   <!--EOF-->
 </resources>

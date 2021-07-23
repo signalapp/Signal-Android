@@ -2731,14 +2731,17 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Cámara</string>
   <string name="AvatarPickerFragment__photo">Fotografía</string>
   <string name="AvatarPickerFragment__save">Gardar</string>
+  <string name="AvatarPickerFragment__edit">Editar</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Visualización</string>
   <string name="TextAvatarCreationFragment__done">Feito</string>
   <string name="TextAvatarCreationFragment__color">Cor</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">Editar</string>
   <!--EOF-->
 </resources>

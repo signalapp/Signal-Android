@@ -3187,14 +3187,17 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">الكاميرا</string>
   <string name="AvatarPickerFragment__photo">صورة ضوئية</string>
   <string name="AvatarPickerFragment__save">حفظ</string>
+  <string name="AvatarPickerFragment__edit">تحرير</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">مُعاينة</string>
   <string name="TextAvatarCreationFragment__done">تمّ</string>
   <string name="TextAvatarCreationFragment__color">اللون</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">رسالة SMS</string>
-  <string name="AvatarPickerFragment__edit">تحرير</string>
   <!--EOF-->
 </resources>

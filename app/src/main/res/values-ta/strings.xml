@@ -56,6 +56,7 @@
   <string name="AttachmentKeyboard_location">இடம்</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">புகைப்படங்கள் மற்றும் காணொளிகளை காட்ட Signal-க்கு அனுமதி தேவை.</string>
   <string name="AttachmentKeyboard_give_access">அணுகல் கொடுங்கள்</string>
+  <string name="AttachmentKeyboard_payment">கட்டணம்</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">மீடியாவை தேர்வுசெய்யும் ஒரு பயன்பாட்டை கண்டுபிடிக்க முடியவில்லை.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">புகைப்படங்கள், காணொளிகள் அல்லது ஆடியோவை இணைக்கவும் Signal க்கு சேமிப்பக அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகள் மெனுவில் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"சேமிப்பகத்தை\" இயக்கவும்.</string>
@@ -2516,11 +2517,13 @@
   <string name="payment_info_card_update_pin">பின்னைப் புதுப்பிக்கவும்</string>
   <!--DeactivateWalletFragment-->
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__start">தொடங்கு</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">அடுத்தது</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">அடுத்தது</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">தொகு</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">முந்தையது</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">நகல்</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__done">முடிந்தது</string>
@@ -2602,6 +2605,7 @@
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">மீட்டமைக்க</string>
   <string name="EditReactionsFragment_save">சேமி</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">ஆட்டோ வண்ணத்துடன் பொருந்துகிறது வால்பேப்பர்</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">தோற்றம்</string>
   <string name="ChatColorsMegaphone__not_now">இப்போது இல்லை</string>
@@ -2652,14 +2656,19 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">புகைப்பட கருவி</string>
   <string name="AvatarPickerFragment__photo">புகைப்படம் </string>
+  <string name="AvatarPickerFragment__text">உரை</string>
   <string name="AvatarPickerFragment__save">சேமி</string>
+  <string name="AvatarPickerFragment__edit">தொகு</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">முன்னோட்டம்</string>
   <string name="TextAvatarCreationFragment__done">முடிந்தது</string>
+  <string name="TextAvatarCreationFragment__text">உரை</string>
   <string name="TextAvatarCreationFragment__color">நிறம்</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">தொகு</string>
   <!--EOF-->
 </resources>

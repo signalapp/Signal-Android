@@ -2601,14 +2601,17 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s, %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">카메라</string>
   <string name="AvatarPickerFragment__photo">사진</string>
   <string name="AvatarPickerFragment__save">저장</string>
+  <string name="AvatarPickerFragment__edit">수정</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">미리보기</string>
   <string name="TextAvatarCreationFragment__done">확인</string>
   <string name="TextAvatarCreationFragment__color">색상</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">수정</string>
   <!--EOF-->
 </resources>

@@ -2573,13 +2573,16 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">कैमरा</string>
   <string name="AvatarPickerFragment__photo">तस्वीर</string>
   <string name="AvatarPickerFragment__save">सेव</string>
+  <string name="AvatarPickerFragment__edit">बदलें</string>
+  <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__done">पूर्ण</string>
   <string name="TextAvatarCreationFragment__color">रंग </string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
-  <string name="AvatarPickerFragment__edit">बदलें</string>
   <!--EOF-->
 </resources>
