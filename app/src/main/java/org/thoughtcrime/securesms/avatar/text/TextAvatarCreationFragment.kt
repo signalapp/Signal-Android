@@ -13,6 +13,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.google.android.material.tabs.TabLayout
 import org.signal.core.util.EditTextUtil
@@ -24,6 +25,7 @@ import org.thoughtcrime.securesms.avatar.Avatars
 import org.thoughtcrime.securesms.avatar.picker.AvatarPickerItem
 import org.thoughtcrime.securesms.components.BoldSelectionTabItem
 import org.thoughtcrime.securesms.components.ControllableTabLayout
+import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.util.MappingAdapter
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -60,6 +62,7 @@ class TextAvatarCreationFragment : Fragment(R.layout.text_avatar_creation_fragme
     val toolbar: Toolbar = view.findViewById(R.id.text_avatar_creation_toolbar)
     val tabLayout: ControllableTabLayout = view.findViewById(R.id.text_avatar_creation_tabs)
     val doneButton: View = view.findViewById(R.id.text_avatar_creation_done)
+    val keyboardAwareLayout: KeyboardAwareLinearLayout = view.findViewById(R.id.keyboard_aware_layout)
 
     withRecyclerSet.load(requireContext(), R.layout.text_avatar_creation_fragment_content)
     withoutRecyclerSet.load(requireContext(), R.layout.text_avatar_creation_fragment_content_hidden_recycler)
@@ -111,6 +114,15 @@ class TextAvatarCreationFragment : Fragment(R.layout.text_avatar_creation_fragme
         false
       }
     }
+
+    keyboardAwareLayout.addOnKeyboardHiddenListener {
+      if (tabLayout.selectedTabPosition == 1) {
+        val transition = AutoTransition().setStartDelay(250L)
+        TransitionManager.endTransitions(content)
+        withRecyclerSet.applyTo(content)
+        TransitionManager.beginDelayedTransition(content, transition)
+      }
+    }
   }
 
   private inner class OnTabSelectedListener : TabLayout.OnTabSelectedListener {
@@ -120,18 +132,12 @@ class TextAvatarCreationFragment : Fragment(R.layout.text_avatar_creation_fragme
           textInput.isEnabled = true
           ViewUtil.focusAndShowKeyboard(textInput)
 
-          TransitionManager.endTransitions(content)
           withoutRecyclerSet.applyTo(content)
-          TransitionManager.beginDelayedTransition(content)
           textInput.setSelection(textInput.length())
         }
         1 -> {
           textInput.isEnabled = false
           ViewUtil.hideKeyboard(requireContext(), textInput)
-
-          TransitionManager.endTransitions(content)
-          withRecyclerSet.applyTo(content)
-          TransitionManager.beginDelayedTransition(content)
         }
       }
     }
