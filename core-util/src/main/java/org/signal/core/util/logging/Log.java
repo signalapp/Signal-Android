@@ -87,44 +87,44 @@ public final class Log {
     logger.e(tag, message, t);
   }
 
-  public static void v(String tag, String message, long duration) {
-    logger.v(tag, message, duration);
+  public static void v(String tag, String message, boolean keepLonger) {
+    logger.v(tag, message, keepLonger);
   }
 
-  public static void d(String tag, String message, long duration) {
-    logger.d(tag, message, duration);
+  public static void d(String tag, String message, boolean keepLonger) {
+    logger.d(tag, message, keepLonger);
   }
 
-  public static void i(String tag, String message, long duration) {
-    logger.i(tag, message, duration);
+  public static void i(String tag, String message, boolean keepLonger) {
+    logger.i(tag, message, keepLonger);
   }
 
-  public static void w(String tag, String message, long duration) {
-    logger.w(tag, message, duration);
+  public static void w(String tag, String message, boolean keepLonger) {
+    logger.w(tag, message, keepLonger);
   }
 
-  public static void e(String tag, String message, long duration) {
-    logger.e(tag, message, duration);
+  public static void e(String tag, String message, boolean keepLonger) {
+    logger.e(tag, message, keepLonger);
   }
 
-  public static void v(String tag, String message, Throwable t, long duration) {
-    logger.v(tag, message, t, duration);
+  public static void v(String tag, String message, Throwable t, boolean keepLonger) {
+    logger.v(tag, message, t, keepLonger);
   }
 
-  public static void d(String tag, String message, Throwable t, long duration) {
-    logger.d(tag, message, t, duration);
+  public static void d(String tag, String message, Throwable t, boolean keepLonger) {
+    logger.d(tag, message, t, keepLonger);
   }
 
-  public static void i(String tag, String message, Throwable t, long duration) {
-    logger.i(tag, message, t, duration);
+  public static void i(String tag, String message, Throwable t, boolean keepLonger) {
+    logger.i(tag, message, t, keepLonger);
   }
 
-  public static void w(String tag, String message, Throwable t, long duration) {
-    logger.w(tag, message, t, duration);
+  public static void w(String tag, String message, Throwable t, boolean keepLonger) {
+    logger.w(tag, message, t, keepLonger);
   }
 
-  public static void e(String tag, String message, Throwable t, long duration) {
-    logger.e(tag, message, t, duration);
+  public static void e(String tag, String message, Throwable t, boolean keepLonger) {
+    logger.e(tag, message, t, keepLonger);
   }
 
   public static String tag(Class<?> clazz) {
@@ -155,57 +155,51 @@ public final class Log {
 
   public static abstract class Logger {
 
-    private final long defaultLifespan;
-
-    protected Logger(long defaultLifespan) {
-      this.defaultLifespan = defaultLifespan;
-    }
-
-    public abstract void v(String tag, String message, Throwable t, long lifespan);
-    public abstract void d(String tag, String message, Throwable t, long lifespan);
-    public abstract void i(String tag, String message, Throwable t, long lifespan);
-    public abstract void w(String tag, String message, Throwable t, long lifespan);
-    public abstract void e(String tag, String message, Throwable t, long lifespan);
+    public abstract void v(String tag, String message, Throwable t, boolean keepLonger);
+    public abstract void d(String tag, String message, Throwable t, boolean keepLonger);
+    public abstract void i(String tag, String message, Throwable t, boolean keepLonger);
+    public abstract void w(String tag, String message, Throwable t, boolean keepLonger);
+    public abstract void e(String tag, String message, Throwable t, boolean keepLonger);
     public abstract void flush();
 
-    public void v(String tag, String message, long lifespan) {
-      v(tag, message, null, lifespan);
+    public void v(String tag, String message, boolean keepLonger) {
+      v(tag, message, null, keepLonger);
     }
 
-    public void d(String tag, String message, long lifespan) {
-      d(tag, message, null, lifespan);
+    public void d(String tag, String message, boolean keepLonger) {
+      d(tag, message, null, keepLonger);
     }
 
-    public void i(String tag, String message, long lifespan) {
-      i(tag, message, null, lifespan);
+    public void i(String tag, String message, boolean keepLonger) {
+      i(tag, message, null, keepLonger);
     }
 
-    public void w(String tag, String message, long lifespan) {
-      w(tag, message, null, lifespan);
+    public void w(String tag, String message, boolean keepLonger) {
+      w(tag, message, null, keepLonger);
     }
 
-    public void e(String tag, String message, long lifespan) {
-      e(tag, message, null, lifespan);
+    public void e(String tag, String message, boolean keepLonger) {
+      e(tag, message, null, keepLonger);
     }
 
     public void v(String tag, String message, Throwable t) {
-      v(tag, message, t, defaultLifespan);
+      v(tag, message, t, false);
     }
 
     public void d(String tag, String message, Throwable t) {
-      d(tag, message, t, defaultLifespan);
+      d(tag, message, t, false);
     }
 
     public void i(String tag, String message, Throwable t) {
-      i(tag, message, t, defaultLifespan);
+      i(tag, message, t, false);
     }
 
     public void w(String tag, String message, Throwable t) {
-      w(tag, message, t, defaultLifespan);
+      w(tag, message, t, false);
     }
 
     public void e(String tag, String message, Throwable t) {
-      e(tag, message, t, defaultLifespan);
+      e(tag, message, t, false);
     }
 
     public void v(String tag, String message) {

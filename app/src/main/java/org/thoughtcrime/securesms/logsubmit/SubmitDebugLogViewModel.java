@@ -13,6 +13,7 @@ import org.signal.paging.PagedData;
 import org.signal.paging.PagingConfig;
 import org.signal.paging.PagingController;
 import org.signal.paging.ProxyPagingController;
+import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -41,6 +42,8 @@ public class SubmitDebugLogViewModel extends ViewModel {
 
     repo.getPrefixLogLines(staticLines -> {
       this.staticLines.addAll(staticLines);
+
+      LogDatabase.getInstance(ApplicationDependencies.getApplication()).trimToSize();
 
       LogDataSource dataSource = new LogDataSource(ApplicationDependencies.getApplication(), staticLines, firstViewTime);
       PagingConfig  config     = new PagingConfig.Builder().setPageSize(100)

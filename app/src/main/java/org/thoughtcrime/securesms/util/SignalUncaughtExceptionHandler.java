@@ -20,7 +20,7 @@ public class SignalUncaughtExceptionHandler implements Thread.UncaughtExceptionH
 
   @Override
   public void uncaughtException(@NonNull Thread t, @NonNull Throwable e) {
-    Log.e(TAG, "", e, TimeUnit.DAYS.toMillis(7));
+    Log.e(TAG, "", e, true);
     SignalStore.blockUntilAllWritesFinished();
     Log.blockUntilAllWritesFinished();
     ApplicationDependencies.getJobManager().flush();

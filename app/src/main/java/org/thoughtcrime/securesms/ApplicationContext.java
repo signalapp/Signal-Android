@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.os.Build;
+import android.os.SystemClock;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +38,7 @@ import org.signal.glide.SignalGlideCodecs;
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.database.SqlCipherLibraryLoader;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -246,10 +248,12 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   }
 
   private void initializeLogging() {
-    persistentLogger = new PersistentLogger(this, TimeUnit.DAYS.toMillis(2));
+    persistentLogger = new PersistentLogger(this);
     org.signal.core.util.logging.Log.initialize(FeatureFlags::internalUser, new AndroidLogger(), persistentLogger);
 
     SignalProtocolLoggerProvider.setProvider(new CustomSignalProtocolLogger());
+
+    SignalExecutors.UNBOUNDED.execute(() -> LogDatabase.getInstance(this).trimToSize());
   }
 
   private void initializeCrashHandling() {
