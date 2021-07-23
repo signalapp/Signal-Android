@@ -281,6 +281,15 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
+  public void updateSentTimestamp(long messageId, long newTimestamp, long threadId) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.execSQL("UPDATE " + TABLE_NAME + " SET " + DATE_SENT + " = ? " +
+                    "WHERE " + ID + " = ?",
+            new String[] {newTimestamp + "", messageId + ""});
+    notifyConversationListeners(threadId);
+    notifyConversationListListeners();
+  }
+
   public long getThreadIdForMessage(long id) {
     String sql        = "SELECT " + THREAD_ID + " FROM " + TABLE_NAME + " WHERE " + ID + " = ?";
     String[] sqlArgs  = new String[] {id+""};

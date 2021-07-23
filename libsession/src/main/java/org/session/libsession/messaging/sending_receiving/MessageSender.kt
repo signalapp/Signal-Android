@@ -13,20 +13,19 @@ import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.messages.visible.*
 import org.session.libsession.messaging.open_groups.*
-import org.session.libsession.utilities.Address
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.RawResponsePromise
 import org.session.libsession.snode.SnodeAPI
-import org.session.libsession.snode.SnodeModule
 import org.session.libsession.snode.SnodeMessage
+import org.session.libsession.snode.SnodeModule
+import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsignal.crypto.PushTransportDetails
 import org.session.libsignal.protos.SignalServiceProtos
-import org.session.libsignal.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Log
-import java.lang.IllegalStateException
+import org.session.libsignal.utilities.hexEncodedPublicKey
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview as SignalLinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
@@ -235,7 +234,7 @@ object MessageSender {
                     )
                     OpenGroupAPIV2.send(openGroupMessage,room,server).success {
                         message.openGroupServerMessageID = it.serverID
-                        handleSuccessfulMessageSend(message, destination)
+                        handleSuccessfulMessageSend(message, destination, openGroupSentTimestamp = it.sentTimestamp)
                         deferred.resolve(Unit)
                     }.fail {
                         handleFailure(it)
@@ -249,12 +248,17 @@ object MessageSender {
     }
 
     // Result Handling
-    fun handleSuccessfulMessageSend(message: Message, destination: Destination, isSyncMessage: Boolean = false) {
+    fun handleSuccessfulMessageSend(message: Message, destination: Destination, isSyncMessage: Boolean = false, openGroupSentTimestamp: Long = -1) {
         val storage = MessagingModuleConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()!!
         val messageID = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender?:userPublicKey) ?: return
         // Ignore future self-sends
         storage.addReceivedMessageTimestamp(message.sentTimestamp!!)
+        if (openGroupSentTimestamp != -1L && message is VisibleMessage) {
+            storage.addReceivedMessageTimestamp(openGroupSentTimestamp)
+            storage.updateSentTimestamp(messageID, message.isMediaMessage(), openGroupSentTimestamp, message.threadID!!)
+            message.sentTimestamp = openGroupSentTimestamp
+        }
         // Track the open group server message ID
         if (message.openGroupServerMessageID != null && destination is Destination.OpenGroupV2) {
             val encoded = GroupUtil.getEncodedOpenGroupID("${destination.server}.${destination.room}".toByteArray())
