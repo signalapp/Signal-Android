@@ -14,7 +14,7 @@
         android:id="@+id/chat_wallpaper_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.WallpaperPreview"
         tools:src="@drawable/test_gradient" />
 

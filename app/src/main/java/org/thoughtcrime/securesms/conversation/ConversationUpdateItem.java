@@ -209,7 +209,7 @@ public final class ConversationUpdateItem extends FrameLayout
   }
 
   @Override
-  public @NonNull Projection getProjection(@NonNull ViewGroup recyclerView) {
+  public @NonNull Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerView) {
     throw new UnsupportedOperationException("ConversationUpdateItems cannot be projected into.");
   }
 

@@ -700,8 +700,8 @@ public class ConversationAdapter
     }
 
     @NonNull
-    public @Override Projection getProjection(@NonNull ViewGroup recyclerView) {
-      return getBindable().getProjection(recyclerView);
+    public @Override Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerView) {
+      return getBindable().getGiphyMp4PlayableProjection(recyclerView);
     }
 
     @Override

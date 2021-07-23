@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.thoughtcrime.securesms.conversation.ConversationItemSwipeCallback;
 import org.thoughtcrime.securesms.util.Projection;
 
 import java.util.ArrayList;
@@ -86,7 +85,7 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
   }
 
   private void updateDisplay(@NonNull RecyclerView recyclerView, @NonNull GiphyMp4ProjectionPlayerHolder holder, @NonNull GiphyMp4Playable giphyMp4Playable) {
-    Projection projection = giphyMp4Playable.getProjection(recyclerView);
+    Projection projection = giphyMp4Playable.getGiphyMp4PlayableProjection(recyclerView);
 
     holder.getContainer().setX(projection.getX());
     holder.getContainer().setY(projection.getY());

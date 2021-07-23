@@ -52,6 +52,7 @@
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:clipChildren="false"
         android:clipToPadding="false"
+        android:overScrollMode="never"
         android:paddingBottom="80dp"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

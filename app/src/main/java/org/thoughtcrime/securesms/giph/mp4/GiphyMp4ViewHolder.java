@@ -82,7 +82,7 @@ final class GiphyMp4ViewHolder extends RecyclerView.ViewHolder implements GiphyM
   }
 
   @Override
-  public @NonNull Projection getProjection(@NonNull ViewGroup recyclerView) {
+  public @NonNull Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerView) {
     return Projection.relativeToParent(recyclerView, container, CORNERS);
   }
 

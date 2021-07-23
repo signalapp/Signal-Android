@@ -45,7 +45,7 @@ public interface GiphyMp4Playable {
    * Width, height, and (x,y) of view which video player will "project" into
    * @param viewGroup
    */
-  @NonNull Projection getProjection(@NonNull ViewGroup viewGroup);
+  @NonNull Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup viewGroup);
 
   /**
    * Specifies whether the content can start playing.
