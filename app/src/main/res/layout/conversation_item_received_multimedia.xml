@@ -162,7 +162,9 @@
             android:id="@+id/conversation_body_footer_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false">
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                 android:id="@+id/conversation_item_body"
@@ -170,7 +172,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
-                android:layout_marginTop="@dimen/message_bubble_content_top_padding"
+                android:layout_marginTop="@dimen/message_bubble_top_padding"
                 android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
                 android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
                 android:ellipsize="end"
