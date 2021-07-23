@@ -140,16 +140,16 @@ public class OnboardingMegaphoneView extends FrameLayout {
         data.add(TYPE_INVITE);
       }
 
-      if (SignalStore.onboarding().shouldShowSms(context)) {
-        data.add(TYPE_SMS);
+      if (SignalStore.onboarding().shouldShowAddPhoto() && !SignalStore.misc().hasEverHadAnAvatar()) {
+        data.add(TYPE_ADD_PHOTO);
       }
 
       if (SignalStore.onboarding().shouldShowAppearance()) {
         data.add(TYPE_APPEARANCE);
       }
 
-      if (SignalStore.onboarding().shouldShowAddPhoto() && !SignalStore.misc().hasEverHadAnAvatar()) {
-        data.add(TYPE_ADD_PHOTO);
+      if (SignalStore.onboarding().shouldShowSms(context)) {
+        data.add(TYPE_SMS);
       }
 
       return data;
