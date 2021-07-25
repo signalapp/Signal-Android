@@ -111,23 +111,9 @@ import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.*
 import java.util.*
 import java.util.concurrent.ExecutionException
-import kotlin.collections.List
-import kotlin.collections.Set
 import kotlin.collections.component1
 import kotlin.collections.component2
-import kotlin.collections.filter
-import kotlin.collections.find
-import kotlin.collections.first
-import kotlin.collections.forEach
-import kotlin.collections.indices
-import kotlin.collections.isNotEmpty
-import kotlin.collections.iterator
-import kotlin.collections.listOf
-import kotlin.collections.mutableListOf
-import kotlin.collections.mutableMapOf
 import kotlin.collections.set
-import kotlin.collections.sortedBy
-import kotlin.collections.toTypedArray
 import kotlin.math.*
 
 // Some things that seemingly belong to the input bar (e.g. the voice message recording UI) are actually
@@ -732,7 +718,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         muteIconImageView.isVisible = thread.isMuted
         conversationSubtitleView.isVisible = true
         if (thread.isMuted) {
-            conversationSubtitleView.text = getString(R.string.ConversationActivity_muted_until_date, DateUtils.getFormattedDateTime(thread.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()))
+            if (thread.mutedUntil != Long.MAX_VALUE) {
+                conversationSubtitleView.text = getString(R.string.ConversationActivity_muted_until_date, DateUtils.getFormattedDateTime(thread.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()))
+            } else {
+                conversationSubtitleView.text = getString(R.string.ConversationActivity_muted_forever)
+            }
         } else if (thread.isGroupRecipient) {
             val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
             if (openGroup != null) {

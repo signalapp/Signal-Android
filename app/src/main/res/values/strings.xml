@@ -75,6 +75,7 @@
     <string name="ConversationActivity_message">Message</string>
     <string name="ConversationActivity_compose">Compose</string>
     <string name="ConversationActivity_muted_until_date">Muted until %1$s</string>
+    <string name="ConversationActivity_muted_forever">Muted forever</string>
     <string name="ConversationActivity_member_count">%1$d members</string>
     <string name="ConversationActivity_open_group_guidelines">Community Guidelines</string>
 
