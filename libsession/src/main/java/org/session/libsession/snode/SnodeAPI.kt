@@ -28,7 +28,6 @@ import kotlin.Pair
 
 object SnodeAPI {
     private val sodium by lazy { LazySodiumAndroid(SodiumAndroid()) }
-
     private val database: LokiAPIDatabaseProtocol
         get() = SnodeModule.shared.storage
     private val broadcaster: Broadcaster
@@ -38,6 +37,11 @@ object SnodeAPI {
     internal var snodePool: Set<Snode>
         get() = database.getSnodePool()
         set(newValue) { database.setSnodePool(newValue) }
+    /**
+     * The offset between the user's clock and the Service Node's clock. Used in cases where the
+     * user's clock is incorrect.
+     */
+    internal var clockOffset = 0L
 
     // Settings
     private val maxRetryCount = 6

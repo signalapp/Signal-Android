@@ -20,6 +20,8 @@ import org.session.libsignal.crypto.getRandomElementOrNull
 import org.session.libsignal.utilities.Broadcaster
 import org.session.libsignal.utilities.HTTP
 import org.session.libsignal.database.LokiAPIDatabaseProtocol
+import java.util.*
+import kotlin.math.abs
 
 private typealias Path = List<Snode>
 
@@ -306,7 +308,7 @@ object OnionRequestAPI {
     /**
      * Sends an onion request to `destination`. Builds new paths as needed.
      */
-    private fun sendOnionRequest(destination: Destination, payload: Map<*, *>, isJSONRequired: Boolean = true): Promise<Map<*, *>, Exception> {
+    private fun sendOnionRequest(destination: Destination, payload: Map<*, *>): Promise<Map<*, *>, Exception> {
         val deferred = deferred<Map<*, *>, Exception>()
         lateinit var guardSnode: Snode
         buildOnionForDestination(payload, destination).success { result ->
@@ -347,11 +349,12 @@ object OnionRequestAPI {
                                     body = json["body"] as Map<*, *>
                                 } else {
                                     val bodyAsString = json["body"] as String
-                                    if (!isJSONRequired) {
-                                        body = mapOf( "result" to bodyAsString )
-                                    } else {
-                                        body = JsonUtil.fromJson(bodyAsString, Map::class.java)
-                                    }
+                                    body = JsonUtil.fromJson(bodyAsString, Map::class.java)
+                                }
+                                if (body["t"] != null) {
+                                    val timestamp = body["t"] as Long
+                                    val offset = timestamp - Date().time
+                                    SnodeAPI.clockOffset = offset
                                 }
                                 if (statusCode != 200) {
                                     val exception = HTTPRequestFailedAtDestinationException(statusCode, body, destination.description)
@@ -455,7 +458,7 @@ object OnionRequestAPI {
      *
      * `publicKey` is the hex encoded public key of the user the call is associated with. This is needed for swarm cache maintenance.
      */
-    fun sendOnionRequest(request: Request, server: String, x25519PublicKey: String, target: String = "/loki/v3/lsrpc", isJSONRequired: Boolean = true): Promise<Map<*, *>, Exception> {
+    fun sendOnionRequest(request: Request, server: String, x25519PublicKey: String, target: String = "/loki/v3/lsrpc"): Promise<Map<*, *>, Exception> {
         val headers = request.getHeadersForOnionRequest()
         val url = request.url()
         val urlAsString = url.toString()
@@ -472,7 +475,7 @@ object OnionRequestAPI {
             "headers" to headers
         )
         val destination = Destination.Server(host, target, x25519PublicKey, url.scheme(), url.port())
-        return sendOnionRequest(destination, payload, isJSONRequired).recover { exception ->
+        return sendOnionRequest(destination, payload).recover { exception ->
             Log.d("Loki", "Couldn't reach server: $urlAsString due to error: $exception.")
             throw exception
         }
