@@ -394,6 +394,7 @@
     <string name="ChooseBackupFragment__icon_content_description">Restore from backup icon</string>
     <string name="ChooseBackupFragment__choose_backup">Choose backup</string>
     <string name="ChooseBackupFragment__learn_more">Learn more</string>
+    <string name="ChooseBackupFragment__no_file_browser_available">No file browser available</string>
 
     <!-- RestoreBackupFragment -->
     <string name="RestoreBackupFragment__restore_complete">Restore complete</string>
