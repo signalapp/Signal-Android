@@ -2,7 +2,6 @@
 
 package org.session.libsession.snode
 
-import android.content.Context
 import android.os.Build
 import com.goterl.lazysodium.LazySodiumAndroid
 import com.goterl.lazysodium.SodiumAndroid
@@ -66,6 +65,8 @@ object SnodeAPI {
     internal sealed class Error(val description: String) : Exception(description) {
         object Generic : Error("An error occurred.")
         object ClockOutOfSync : Error("Your clock is out of sync with the Service Node network.")
+        object NoKeyPair : Error("Missing user key pair.")
+        object SigningFailed : Error("Couldn't sign verification data.")
         // ONS
         object DecryptionFailed : Error("Couldn't decrypt ONS name.")
         object HashingFailed : Error("Couldn't compute ONS name hash.")
@@ -169,7 +170,7 @@ object SnodeAPI {
     }
 
     // Public API
-    fun getSessionIDFor(onsName: String): Promise<String, Exception> {
+    fun getSessionID(onsName: String): Promise<String, Exception> {
         val deferred = deferred<String, Exception>()
         val promise = deferred.promise
         val validationCount = 3
@@ -193,7 +194,6 @@ object SnodeAPI {
                 retryIfNeeded(maxRetryCount) {
                     invoke(Snode.Method.OxenDaemonRPCCall, snode, null, parameters)
                 }
-
             }
         }
         all(promises).success { results ->
@@ -278,8 +278,27 @@ object SnodeAPI {
     }
 
     fun getRawMessages(snode: Snode, publicKey: String): RawResponsePromise {
+        val userED25519KeyPair = MessagingModuleConfiguration.shared.getUserED25519KeyPair() ?: return Promise.ofFail(Error.NoKeyPair)
+        // Get last message hash
         val lastHashValue = database.getLastMessageHashValue(snode, publicKey) ?: ""
-        val parameters = mapOf( "pubKey" to if (useTestnet) publicKey.removing05PrefixIfNeeded() else publicKey, "lastHash" to lastHashValue )
+        // Construct signature
+        val timestamp = Date().time + SnodeAPI.clockOffset
+        val ed25519PublicKey = userED25519KeyPair.publicKey.asHexString
+        val verificationData = "retrieve$timestamp".toByteArray()
+        val signature = ByteArray(Sign.BYTES)
+        try {
+            sodium.cryptoSignDetached(signature, verificationData, verificationData.size.toLong(), userED25519KeyPair.secretKey.asBytes)
+        } catch (exception: Exception) {
+            return Promise.ofFail(Error.SigningFailed)
+        }
+        // Make the request
+        val parameters = mapOf(
+            "pubKey" to if (useTestnet) publicKey.removing05PrefixIfNeeded() else publicKey,
+            "lastHash" to lastHashValue,
+            "timestamp" to timestamp,
+            "pubkey_ed25519" to ed25519PublicKey,
+            "signature" to Base64.encodeBytes(signature)
+        )
         return invoke(Snode.Method.GetMessages, snode, publicKey, parameters)
     }
 
@@ -291,7 +310,7 @@ object SnodeAPI {
         }
     }
 
-    fun getNetworkTime(snode: Snode): Promise<Pair<Snode,Long>, Exception> {
+    private fun getNetworkTime(snode: Snode): Promise<Pair<Snode,Long>, Exception> {
         return invoke(Snode.Method.Info, snode, null, emptyMap()).map { rawResponse ->
             val timestamp = rawResponse["timestamp"] as? Long ?: -1
             snode to timestamp
@@ -335,27 +354,26 @@ object SnodeAPI {
         }
     }
 
-    fun deleteAllMessages(context: Context): Promise<Map<String,Boolean>, Exception> {
-
+    fun deleteAllMessages(): Promise<Map<String,Boolean>, Exception> {
         return retryIfNeeded(maxRetryCount) {
-            // considerations: timestamp off in retrying logic, not being able to re-sign with latest timestamp? do we just not retry this as it will be synchronous
             val module = MessagingModuleConfiguration.shared
-            val userED25519KeyPair = module.keyPairProvider() ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
-            val userPublicKey = module.storage.getUserPublicKey() ?: return@retryIfNeeded Promise.ofFail(Error.Generic)
-
+            val userED25519KeyPair = module.getUserED25519KeyPair() ?: return@retryIfNeeded Promise.ofFail(Error.NoKeyPair)
+            val userPublicKey = module.storage.getUserPublicKey() ?: return@retryIfNeeded Promise.ofFail(Error.NoKeyPair)
             getSingleTargetSnode(userPublicKey).bind { snode ->
                 retryIfNeeded(maxRetryCount) {
                     getNetworkTime(snode).bind { (_, timestamp) ->
                         val signature = ByteArray(Sign.BYTES)
-                        val data = (Snode.Method.DeleteAll.rawValue + timestamp.toString()).toByteArray()
-                        sodium.cryptoSignDetached(signature, data, data.size.toLong(), userED25519KeyPair.secretKey.asBytes)
+                        val verificationData = (Snode.Method.DeleteAll.rawValue + timestamp.toString()).toByteArray()
+                        sodium.cryptoSignDetached(signature, verificationData, verificationData.size.toLong(), userED25519KeyPair.secretKey.asBytes)
                         val deleteMessageParams = mapOf(
-                                "pubkey" to userPublicKey,
-                                "pubkey_ed25519" to userED25519KeyPair.publicKey.asHexString,
-                                "timestamp" to timestamp,
-                                "signature" to Base64.encodeBytes(signature)
+                            "pubkey" to userPublicKey,
+                            "pubkey_ed25519" to userED25519KeyPair.publicKey.asHexString,
+                            "timestamp" to timestamp,
+                            "signature" to Base64.encodeBytes(signature)
                         )
-                        invoke(Snode.Method.DeleteAll, snode, userPublicKey, deleteMessageParams).map { rawResponse -> parseDeletions(userPublicKey, timestamp, rawResponse) }.fail { e ->
+                        invoke(Snode.Method.DeleteAll, snode, userPublicKey, deleteMessageParams).map {
+                            rawResponse -> parseDeletions(userPublicKey, timestamp, rawResponse)
+                        }.fail { e ->
                             Log.e("Loki", "Failed to clear data", e)
                         }
                     }
@@ -425,37 +443,24 @@ object SnodeAPI {
     @Suppress("UNCHECKED_CAST")
     private fun parseDeletions(userPublicKey: String, timestamp: Long, rawResponse: RawResponse): Map<String, Boolean> {
         val swarms = rawResponse["swarm"] as? Map<String, Any> ?: return mapOf()
-        val swarmResponsesValid = swarms.mapNotNull { (nodePubKeyHex, rawMap) ->
-            val map = rawMap as? Map<String, Any> ?: return@mapNotNull null
-
-            /** Deletes all messages owned by the given pubkey on this SN and broadcasts the delete request to
-             *  all other swarm members.
-             *  Returns dict of:
-             *  - "swarms" dict mapping ed25519 pubkeys (in hex) of swarm members to dict values of:
-             *  - "failed" and other failure keys -- see `recursive`.
-             *  - "deleted": hashes of deleted messages.
-             *  - "signature": signature of ( PUBKEY_HEX || TIMESTAMP || DELETEDHASH[0] || ... || DELETEDHASH[N] ), signed
-             *  by the node's ed25519 pubkey.
-             */
-            // failure
-            val failed = map["failed"] as? Boolean ?: false
-            val code = map["code"] as? String
-            val reason = map["reason"] as? String
-
-            nodePubKeyHex to if (failed) {
-                Log.e("Loki", "Failed to delete all from $nodePubKeyHex with error code $code and reason $reason")
+        val result = swarms.mapNotNull { (hexSnodePublicKey, rawJSON) ->
+            val json = rawJSON as? Map<String, Any> ?: return@mapNotNull null
+            val isFailed = json["failed"] as? Boolean ?: false
+            val statusCode = json["code"] as? String
+            val reason = json["reason"] as? String
+            hexSnodePublicKey to if (isFailed) {
+                Log.e("Loki", "Failed to delete all messages from: $hexSnodePublicKey due to error: $reason ($statusCode).")
                 false
             } else {
-                // success
-                val deleted = map["deleted"] as List<String> // list of deleted hashes
-                val signature = map["signature"] as String
-                val nodePubKey = Key.fromHexString(nodePubKeyHex)
-                // signature of ( PUBKEY_HEX || TIMESTAMP || DELETEDHASH[0] || ... || DELETEDHASH[N] )
-                val message = (userPublicKey + timestamp.toString() + deleted.fold("") { a, v -> a + v }).toByteArray()
-                sodium.cryptoSignVerifyDetached(Base64.decode(signature), message, message.size, nodePubKey.asBytes)
+                val hashes = json["deleted"] as List<String> // Hashes of deleted messages
+                val signature = json["signature"] as String
+                val snodePublicKey = Key.fromHexString(hexSnodePublicKey)
+                // The signature looks like ( PUBKEY_HEX || TIMESTAMP || DELETEDHASH[0] || ... || DELETEDHASH[N] )
+                val message = (userPublicKey + timestamp.toString() + hashes.fold("") { a, v -> a + v }).toByteArray()
+                sodium.cryptoSignVerifyDetached(Base64.decode(signature), message, message.size, snodePublicKey.asBytes)
             }
         }
-        return swarmResponsesValid.toMap()
+        return result.toMap()
     }
 
     // endregion
