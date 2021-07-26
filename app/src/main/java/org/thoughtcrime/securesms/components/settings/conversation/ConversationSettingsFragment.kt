@@ -237,11 +237,13 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         AvatarPreference.Model(
           recipient = state.recipient,
           onAvatarClick = { avatar ->
-            requireActivity().apply {
-              startActivity(
-                AvatarPreviewActivity.intentFromRecipientId(this, state.recipient.id),
-                AvatarPreviewActivity.createTransitionBundle(this, avatar)
-              )
+            if (!state.recipient.isSelf) {
+              requireActivity().apply {
+                startActivity(
+                  AvatarPreviewActivity.intentFromRecipientId(this, state.recipient.id),
+                  AvatarPreviewActivity.createTransitionBundle(this, avatar)
+                )
+              }
             }
           }
         )
