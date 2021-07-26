@@ -9,16 +9,14 @@ class MessagingModuleConfiguration(
     val context: Context,
     val storage: StorageProtocol,
     val messageDataProvider: MessageDataProvider,
-    val keyPairProvider: ()-> KeyPair?
+    val getUserED25519KeyPair: ()-> KeyPair?
 ) {
 
     companion object {
         lateinit var shared: MessagingModuleConfiguration
 
-        fun configure(context: Context,
-                      storage: StorageProtocol,
-                      messageDataProvider: MessageDataProvider,
-                      keyPairProvider: () -> KeyPair?
+        fun configure(context: Context, storage: StorageProtocol,
+            messageDataProvider: MessageDataProvider, keyPairProvider: () -> KeyPair?
         ) {
             if (Companion::shared.isInitialized) { return }
             shared = MessagingModuleConfiguration(context, storage, messageDataProvider, keyPairProvider)

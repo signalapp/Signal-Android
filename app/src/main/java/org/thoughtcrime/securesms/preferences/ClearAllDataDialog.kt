@@ -104,7 +104,7 @@ class ClearAllDataDialog : BaseDialog() {
             } else {
                 // finish
                 val result = try {
-                    SnodeAPI.deleteAllMessages(requireContext()).get()
+                    SnodeAPI.deleteAllMessages().get()
                 } catch (e: Exception) {
                     null
                 }

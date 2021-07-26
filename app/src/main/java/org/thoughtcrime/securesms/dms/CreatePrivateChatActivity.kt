@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.view.inputmethod.EditorInfo
@@ -24,7 +23,6 @@ import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.Address
-import org.session.libsession.utilities.DistributionTypes
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsignal.utilities.PublicKeyValidation
@@ -96,7 +94,7 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
         } else {
             // This could be an ONS name
             showLoader()
-            SnodeAPI.getSessionIDFor(onsNameOrPublicKey).successUi { hexEncodedPublicKey ->
+            SnodeAPI.getSessionID(onsNameOrPublicKey).successUi { hexEncodedPublicKey ->
                 hideLoader()
                 this.createPrivateChat(hexEncodedPublicKey)
             }.failUi { exception ->

@@ -23,8 +23,7 @@ object MessageEncrypter {
      * @return the encrypted message.
      */
     internal fun encrypt(plaintext: ByteArray, recipientHexEncodedX25519PublicKey: String): ByteArray {
-        val context = MessagingModuleConfiguration.shared.context
-        val userED25519KeyPair = MessagingModuleConfiguration.shared.keyPairProvider() ?: throw Error.NoUserED25519KeyPair
+        val userED25519KeyPair = MessagingModuleConfiguration.shared.getUserED25519KeyPair() ?: throw Error.NoUserED25519KeyPair
         val recipientX25519PublicKey = Hex.fromStringCondensed(recipientHexEncodedX25519PublicKey.removing05PrefixIfNeeded())
 
         val verificationData = plaintext + userED25519KeyPair.publicKey.asBytes + recipientX25519PublicKey
