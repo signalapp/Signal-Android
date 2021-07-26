@@ -41,26 +41,26 @@ import androidx.core.app.NotificationManagerCompat;
 
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsession.utilities.Contact;
-import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsession.utilities.ServiceUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsignal.utilities.Util;
+import org.session.libsession.utilities.recipients.Recipient;
 import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.Util;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
-
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
+import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.util.SessionMetaProtocol;
-import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.SessionMetaProtocol;
 import org.thoughtcrime.securesms.util.SpanUtil;
 
 import java.util.HashSet;
@@ -87,6 +87,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
   private static final String TAG = DefaultMessageNotifier.class.getSimpleName();
 
   public static final  String EXTRA_REMOTE_REPLY = "extra_remote_reply";
+  public static final  String LATEST_MESSAGE_ID_TAG     = "extra_latest_message_id";
 
   private static final  int   FOREGROUND_ID             = 313399;
   private static final  int   SUMMARY_NOTIFICATION_ID   = 1338;
@@ -272,16 +273,9 @@ public class DefaultMessageNotifier implements MessageNotifier {
         lastAudibleNotification = System.currentTimeMillis();
       }
 
-      if (notificationState.hasMultipleThreads()) {
-        if (Build.VERSION.SDK_INT >= 23) {
-          for (long threadId : notificationState.getThreads()) {
-            sendSingleThreadNotification(context, new NotificationState(notificationState.getNotificationsForThread(threadId)), false, true);
-          }
-        }
-
-        sendMultipleThreadNotification(context, notificationState, signal);
-      } else {
-        sendSingleThreadNotification(context, notificationState, signal, false);
+      boolean hasMultipleThreads = notificationState.hasMultipleThreads();
+      for (long threadId : notificationState.getThreads()) {
+        sendSingleThreadNotification(context, new NotificationState(notificationState.getNotificationsForThread(threadId)), signal, hasMultipleThreads);
       }
 
       cancelOrphanedNotifications(context, notificationState);
@@ -312,7 +306,20 @@ public class DefaultMessageNotifier implements MessageNotifier {
     List<NotificationItem>             notifications  = notificationState.getNotifications();
     Recipient                          recipient      = notifications.get(0).getRecipient();
     int                                notificationId = (int) (SUMMARY_NOTIFICATION_ID + (bundled ? notifications.get(0).getThreadId() : 0));
+    String                             messageIdTag   = String.valueOf(notifications.get(0).getId());
 
+    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    for (StatusBarNotification notification: notificationManager.getActiveNotifications()) {
+
+      if (messageIdTag.equals(notification.getNotification().extras.getString(LATEST_MESSAGE_ID_TAG))) {
+        return;
+      }
+    }
+
+    long timestamp = notifications.get(0).getTimestamp();
+    if (timestamp != 0) builder.setWhen(timestamp);
+
+    builder.putStringExtra(LATEST_MESSAGE_ID_TAG, messageIdTag);
 
     builder.setThread(notifications.get(0).getRecipient());
     builder.setMessageCount(notificationState.getMessageCount());
@@ -324,11 +331,6 @@ public class DefaultMessageNotifier implements MessageNotifier {
     builder.setOnlyAlertOnce(!signal);
     builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
     builder.setAutoCancel(true);
-
-    long timestamp = notifications.get(0).getTimestamp();
-    if (timestamp != 0) builder.setWhen(timestamp);
-
-    long threadID = notifications.get(0).getThreadId();
 
     ReplyMethod replyMethod = ReplyMethod.forRecipient(context, recipient);
 
@@ -493,7 +495,16 @@ public class DefaultMessageNotifier implements MessageNotifier {
       }
 
       if (threadRecipients == null || !threadRecipients.isMuted()) {
-        notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
+        if (threadRecipients != null && threadRecipients.notifyType == RecipientDatabase.NOTIFY_TYPE_MENTIONS) {
+          // check if mentioned here
+          if (body.toString().contains("@"+TextSecurePreferences.getLocalNumber(context))) {
+            notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
+          }
+        } else if (threadRecipients != null && threadRecipients.notifyType == RecipientDatabase.NOTIFY_TYPE_NONE) {
+          // do nothing, no notifications
+        } else {
+          notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
+        }
       }
     }
 

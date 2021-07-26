@@ -14,9 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.recipients.Recipient
-import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities.highlightMentions
+import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.DateUtils
 import java.util.*
@@ -59,7 +60,14 @@ class ConversationView : LinearLayout {
         val senderDisplayName = getUserDisplayName(thread.recipient) ?: thread.recipient.address.toString()
         conversationViewDisplayNameTextView.text = senderDisplayName
         timestampTextView.text = DateUtils.getDisplayFormattedTimeSpanString(context, Locale.getDefault(), thread.date)
-        muteIndicatorImageView.visibility = if (thread.recipient.isMuted) VISIBLE else GONE
+        val recipient = thread.recipient
+        muteIndicatorImageView.isVisible = recipient.isMuted || recipient.notifyType != RecipientDatabase.NOTIFY_TYPE_ALL
+        val drawableRes = if (recipient.isMuted || recipient.notifyType == RecipientDatabase.NOTIFY_TYPE_NONE) {
+            R.drawable.ic_outline_notifications_off_24
+        } else {
+            R.drawable.ic_notifications_mentions
+        }
+        muteIndicatorImageView.setImageResource(drawableRes)
         val rawSnippet = thread.getDisplayBody(context)
         val snippet = highlightMentions(rawSnippet, thread.threadId, context)
         snippetTextView.text = snippet

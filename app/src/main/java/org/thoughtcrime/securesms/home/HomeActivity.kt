@@ -35,8 +35,10 @@ import org.session.libsession.utilities.Util
 import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.utilities.toHexString
 import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.MuteDialog
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
+import org.thoughtcrime.securesms.conversation.v2.utilities.NotificationUtils
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
@@ -44,14 +46,12 @@ import org.thoughtcrime.securesms.dms.CreatePrivateChatActivity
 import org.thoughtcrime.securesms.groups.CreateClosedGroupActivity
 import org.thoughtcrime.securesms.groups.JoinPublicChatActivity
 import org.thoughtcrime.securesms.groups.OpenGroupManager
-import org.thoughtcrime.securesms.util.ConfigurationMessageUtilities
-import org.thoughtcrime.securesms.util.*
-import org.thoughtcrime.securesms.onboarding.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.onboarding.SeedActivity
+import org.thoughtcrime.securesms.onboarding.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.preferences.SettingsActivity
-import org.thoughtcrime.securesms.util.IP2Country
+import org.thoughtcrime.securesms.util.*
 import java.io.IOException
 import java.util.*
 
@@ -257,6 +257,16 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
             bottomSheet.dismiss()
             deleteConversation(thread)
         }
+        bottomSheet.onSetMuteTapped = { muted ->
+            bottomSheet.dismiss()
+            setConversationMuted(thread, muted)
+        }
+        bottomSheet.onNotificationTapped = {
+            bottomSheet.dismiss()
+            NotificationUtils.showNotifyDialog(this, thread.recipient) { notifyType ->
+                setNotifyType(thread, notifyType)
+            }
+        }
         bottomSheet.show(supportFragmentManager, bottomSheet.tag)
     }
 
@@ -290,6 +300,35 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
                         }
                     }
                 }.show()
+    }
+
+    private fun setConversationMuted(thread: ThreadRecord, isMuted: Boolean) {
+        if (!isMuted) {
+            ThreadUtils.queue {
+                DatabaseFactory.getRecipientDatabase(this).setMuted(thread.recipient, 0)
+                Util.runOnMain {
+                    recyclerView.adapter!!.notifyDataSetChanged()
+                }
+            }
+        } else {
+            MuteDialog.show(this) { until: Long ->
+                ThreadUtils.queue {
+                    DatabaseFactory.getRecipientDatabase(this).setMuted(thread.recipient, until)
+                    Util.runOnMain {
+                        recyclerView.adapter!!.notifyDataSetChanged()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setNotifyType(thread: ThreadRecord, newNotifyType: Int) {
+        ThreadUtils.queue {
+            DatabaseFactory.getRecipientDatabase(this).setNotifyType(thread.recipient, newNotifyType)
+            Util.runOnMain {
+                recyclerView.adapter!!.notifyDataSetChanged()
+            }
+        }
     }
 
     private fun deleteConversation(thread: ThreadRecord) {

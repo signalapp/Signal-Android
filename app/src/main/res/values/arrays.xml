@@ -187,7 +187,7 @@
       <item>@string/arrays__mute_for_two_hours</item>
       <item>@string/arrays__mute_for_one_day</item>
       <item>@string/arrays__mute_for_seven_days</item>
-      <item>@string/arrays__mute_for_one_year</item>
+      <item>@string/arrays__mute_forever</item>
   </string-array>
 
     <string-array name="pref_notification_privacy_entries">
@@ -243,6 +243,11 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
+    </string-array>
+    <string-array name="notify_types">
+        <item>@string/notify_type_all</item>
+        <item>@string/notify_type_mentions</item>
+        <item>@string/notify_type_none</item>
     </string-array>
 
 </resources>

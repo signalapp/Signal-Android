@@ -26,29 +26,28 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.annimon.stream.function.Consumer;
-import com.esotericsoftware.kryo.util.Null;
 
 import org.greenrobot.eventbus.EventBus;
-import org.session.libsession.database.StorageProtocol;
-import org.session.libsession.messaging.MessagingModuleConfiguration;
-import org.session.libsession.avatars.TransparentContactPhoto;
-import org.session.libsession.messaging.contacts.Contact;
-import org.session.libsession.utilities.Address;
-import org.session.libsession.utilities.GroupRecord;
-import org.session.libsession.utilities.recipients.RecipientProvider.RecipientDetails;
-import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsession.utilities.Util;
-import org.session.libsession.utilities.MaterialColor;
-import org.session.libsignal.utilities.Log;
-import org.session.libsignal.utilities.guava.Optional;
 import org.session.libsession.avatars.ContactColors;
 import org.session.libsession.avatars.ContactPhoto;
 import org.session.libsession.avatars.GroupRecordContactPhoto;
 import org.session.libsession.avatars.ProfileContactPhoto;
 import org.session.libsession.avatars.SystemContactPhoto;
-import org.session.libsession.utilities.ProfilePictureModifiedEvent;
+import org.session.libsession.avatars.TransparentContactPhoto;
+import org.session.libsession.database.StorageProtocol;
+import org.session.libsession.messaging.MessagingModuleConfiguration;
+import org.session.libsession.messaging.contacts.Contact;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.FutureTaskListener;
+import org.session.libsession.utilities.GroupRecord;
 import org.session.libsession.utilities.ListenableFutureTask;
+import org.session.libsession.utilities.MaterialColor;
+import org.session.libsession.utilities.ProfilePictureModifiedEvent;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.recipients.RecipientProvider.RecipientDetails;
+import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -80,6 +79,7 @@ public class Recipient implements RecipientModifiedListener {
   private @Nullable Uri                  messageRingtone       = null;
   private @Nullable Uri                  callRingtone          = null;
   public            long                 mutedUntil            = 0;
+  public            int                  notifyType            = 0;
   private           boolean              blocked               = false;
   private           VibrateState         messageVibrate        = VibrateState.DEFAULT;
   private           VibrateState         callVibrate           = VibrateState.DEFAULT;
@@ -249,6 +249,7 @@ public class Recipient implements RecipientModifiedListener {
     this.messageRingtone        = details.messageRingtone;
     this.callRingtone           = details.callRingtone;
     this.mutedUntil             = details.mutedUntil;
+    this.notifyType             = details.notifyType;
     this.blocked                = details.blocked;
     this.messageVibrate         = details.messageVibrateState;
     this.callVibrate            = details.callVibrateState;
@@ -547,6 +548,14 @@ public class Recipient implements RecipientModifiedListener {
     notifyListeners();
   }
 
+  public void setNotifyType(int notifyType) {
+    synchronized (this) {
+      this.notifyType = notifyType;
+    }
+
+    notifyListeners();
+  }
+
   public synchronized boolean isBlocked() {
     return blocked;
   }
@@ -769,6 +778,7 @@ public class Recipient implements RecipientModifiedListener {
   public static class RecipientSettings {
     private final boolean                blocked;
     private final long                   muteUntil;
+    private final int                    notifyType;
     private final VibrateState           messageVibrateState;
     private final VibrateState           callVibrateState;
     private final Uri                    messageRingtone;
@@ -790,6 +800,7 @@ public class Recipient implements RecipientModifiedListener {
     private final boolean                forceSmsSelection;
 
     public RecipientSettings(boolean blocked, long muteUntil,
+                      int notifyType,
                       @NonNull VibrateState messageVibrateState,
                       @NonNull VibrateState callVibrateState,
                       @Nullable Uri messageRingtone,
@@ -812,6 +823,7 @@ public class Recipient implements RecipientModifiedListener {
     {
       this.blocked                = blocked;
       this.muteUntil              = muteUntil;
+      this.notifyType             = notifyType;
       this.messageVibrateState    = messageVibrateState;
       this.callVibrateState       = callVibrateState;
       this.messageRingtone        = messageRingtone;
@@ -843,6 +855,10 @@ public class Recipient implements RecipientModifiedListener {
 
     public long getMuteUntil() {
       return muteUntil;
+    }
+
+    public int getNotifyType() {
+      return notifyType;
     }
 
     public @NonNull VibrateState getMessageVibrateState() {

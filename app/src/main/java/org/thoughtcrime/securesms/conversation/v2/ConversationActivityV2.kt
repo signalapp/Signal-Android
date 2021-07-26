@@ -24,7 +24,6 @@ import android.widget.Toast
 import androidx.annotation.DimenRes
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.children
-import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -53,17 +52,13 @@ import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.messages.control.DataExtractionNotification
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
-import org.session.libsession.messaging.messages.visible.LinkPreview.Companion.from
 import org.session.libsession.messaging.messages.visible.OpenGroupInvitation
-import org.session.libsession.messaging.messages.visible.Quote.Companion.from
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
-import org.session.libsession.messaging.utilities.UpdateMessageData
-import org.session.libsession.messaging.utilities.UpdateMessageData.Companion.fromJSON
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.Address.Companion.fromSerialized
 import org.session.libsession.utilities.MediaTypes
@@ -116,6 +111,9 @@ import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.*
 import java.util.*
 import java.util.concurrent.ExecutionException
+import kotlin.collections.component1
+import kotlin.collections.component2
+import kotlin.collections.set
 import kotlin.math.*
 
 // Some things that seemingly belong to the input bar (e.g. the voice message recording UI) are actually
@@ -502,7 +500,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         } else {
             MarkReadReceiver.process(this, messages)
         }
-        ApplicationContext.getInstance(this).messageNotifier.updateNotification(this)
+        ApplicationContext.getInstance(this).messageNotifier.updateNotification(this, threadID)
     }
 
     override fun inputBarHeightChanged(newValue: Int) {
@@ -720,7 +718,11 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         muteIconImageView.isVisible = thread.isMuted
         conversationSubtitleView.isVisible = true
         if (thread.isMuted) {
-            conversationSubtitleView.text = getString(R.string.ConversationActivity_muted_until_date, DateUtils.getFormattedDateTime(thread.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()))
+            if (thread.mutedUntil != Long.MAX_VALUE) {
+                conversationSubtitleView.text = getString(R.string.ConversationActivity_muted_until_date, DateUtils.getFormattedDateTime(thread.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()))
+            } else {
+                conversationSubtitleView.text = getString(R.string.ConversationActivity_muted_forever)
+            }
         } else if (thread.isGroupRecipient) {
             val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
             if (openGroup != null) {

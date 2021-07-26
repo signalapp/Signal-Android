@@ -23,19 +23,20 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.session.libsession.R;
 import org.session.libsession.messaging.MessagingModuleConfiguration;
-import org.session.libsignal.utilities.guava.Optional;
-import org.session.libsession.utilities.MaterialColor;
 import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.GroupRecord;
+import org.session.libsession.utilities.ListenableFutureTask;
+import org.session.libsession.utilities.MaterialColor;
+import org.session.libsession.utilities.SoftHashMap;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.recipients.Recipient.RecipientSettings;
 import org.session.libsession.utilities.recipients.Recipient.RegisteredState;
 import org.session.libsession.utilities.recipients.Recipient.UnidentifiedAccessMode;
 import org.session.libsession.utilities.recipients.Recipient.VibrateState;
-import org.session.libsession.utilities.ListenableFutureTask;
-import org.session.libsession.utilities.SoftHashMap;
-import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsession.utilities.Util;
+import org.session.libsignal.utilities.guava.Optional;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -43,8 +44,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
-
-import org.session.libsession.R;
 
 class RecipientProvider {
 
@@ -168,6 +167,7 @@ class RecipientProvider {
     @Nullable final Uri                    messageRingtone;
     @Nullable final Uri                    callRingtone;
               final long                   mutedUntil;
+              final int                    notifyType;
     @Nullable final VibrateState           messageVibrateState;
     @Nullable final VibrateState           callVibrateState;
               final boolean                blocked;
@@ -197,6 +197,7 @@ class RecipientProvider {
       this.messageRingtone                 = settings     != null ? settings.getMessageRingtone() : null;
       this.callRingtone                    = settings     != null ? settings.getCallRingtone() : null;
       this.mutedUntil                      = settings     != null ? settings.getMuteUntil() : 0;
+      this.notifyType                      = settings     != null ? settings.getNotifyType() : 0;
       this.messageVibrateState             = settings     != null ? settings.getMessageVibrateState() : null;
       this.callVibrateState                = settings     != null ? settings.getCallVibrateState() : null;
       this.blocked                         = settings     != null && settings.isBlocked();
