@@ -75,7 +75,7 @@
     <string name="ConversationActivity_message">Message</string>
     <string name="ConversationActivity_compose">Compose</string>
     <string name="ConversationActivity_muted_until_date">Muted until %1$s</string>
-    <string name="ConversationActivity_muted_forever">Muted forever</string>
+    <string name="ConversationActivity_muted_forever">Muted</string>
     <string name="ConversationActivity_member_count">%1$d members</string>
     <string name="ConversationActivity_open_group_guidelines">Community Guidelines</string>
 
@@ -248,7 +248,7 @@
     <string name="RecipientPreferenceActivity_unblock_this_contact_question">Unblock this contact?</string>
     <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">You will once again be able to receive messages and calls from this contact.</string>
     <string name="RecipientPreferenceActivity_unblock">Unblock</string>
-    <string name="RecipientPreferenceActivity_notification_settings">Notification Settings</string>
+    <string name="RecipientPreferenceActivity_notification_settings">Notification settings</string>
 
     <!-- Slide -->
     <string name="Slide_image">Image</string>
