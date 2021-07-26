@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.util.SqlUtil
 class AvatarPickerDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) : Database(context, databaseHelper) {
 
   companion object {
-    private const val TABLE_NAME = "avatar_picker"
+    const val TABLE_NAME = "avatar_picker"
     private const val ID = "_id"
     private const val LAST_USED = "last_used"
     private const val GROUP_ID = "group_id"
