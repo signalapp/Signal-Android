@@ -88,6 +88,7 @@ import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
@@ -176,7 +177,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
             protected View                       replyIcon;
   @Nullable protected ViewGroup                  contactPhotoHolder;
   @Nullable private   QuoteView                  quoteView;
-            private   ViewGroup                  bodyFooterContainer;
             private   EmojiTextView              bodyText;
             private   ConversationItemFooter     footer;
             private   ConversationItemFooter     stickerFooter;
@@ -245,7 +245,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     this.backgroundDrawable      = new ClipProjectionDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getContext(),
                                                                                                                R.drawable.conversation_item_background)));
-    this.bodyFooterContainer     =                    findViewById(R.id.conversation_body_footer_container);
     this.bodyText                =                    findViewById(R.id.conversation_item_body);
     this.footer                  =                    findViewById(R.id.conversation_item_footer);
     this.stickerFooter           =                    findViewById(R.id.conversation_item_sticker_footer);
@@ -783,7 +782,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       setSharedContactCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
 
-      ViewUtil.updateLayoutParams(bodyFooterContainer, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       footer.setVisibility(GONE);
     } else if (hasLinkPreview(messageRecord) && messageRequestAccepted) {
@@ -811,13 +810,13 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         setThumbnailCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
         setLinkPreviewCorners(messageRecord, previousRecord, nextRecord, isGroupThread, true);
 
-        ViewUtil.updateLayoutParams(bodyFooterContainer, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       } else {
         linkPreviewStub.get().setLinkPreview(glideRequests, linkPreview, true);
         linkPreviewStub.get().setDownloadClickedListener(downloadClickListener);
         setLinkPreviewCorners(messageRecord, previousRecord, nextRecord, isGroupThread, false);
-        ViewUtil.updateLayoutParams(bodyFooterContainer, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       }
 
@@ -846,7 +845,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         Log.w(TAG, "setMediaAttributes: could not register listener for audio slide " + audioViewStub.get().getAudioSlideUri());
       }
 
-      ViewUtil.updateLayoutParams(bodyFooterContainer, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
       footer.setPlaybackSpeedListener(new AudioPlaybackSpeedToggleListener());
@@ -866,7 +865,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       documentViewStub.get().setDownloadClickListener(singleDownloadClickListener);
       documentViewStub.get().setOnLongClickListener(passthroughClickListener);
 
-      ViewUtil.updateLayoutParams(bodyFooterContainer, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
       footer.setVisibility(VISIBLE);
@@ -895,7 +894,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       stickerStub.get().setOnLongClickListener(passthroughClickListener);
       stickerStub.get().setOnClickListener(passthroughClickListener);
 
-      ViewUtil.updateLayoutParams(bodyFooterContainer, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
       footer.setVisibility(VISIBLE);
@@ -931,7 +930,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       setThumbnailCorners(messageRecord, previousRecord, nextRecord, isGroupThread);
 
-      ViewUtil.updateLayoutParams(bodyFooterContainer, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
       footer.setVisibility(VISIBLE);
@@ -960,15 +959,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (stickerStub.resolved())        stickerStub.get().setVisibility(View.GONE);
       if (revealableStub.resolved())     revealableStub.get().setVisibility(View.GONE);
 
-      ViewUtil.updateLayoutParams(bodyFooterContainer, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-      if (messageRecord.isMms() && !messageRecord.isOutgoing() && isGroupThread && !hasQuote(messageRecord)) {
-        boolean startOfCluster = isStartOfMessageCluster(messageRecord, previousRecord, isGroupThread);
-        int     margin         = startOfCluster ? readDimen(R.dimen.message_bubble_quote_negative_margin) : readDimen(R.dimen.message_bubble_top_padding);
-
-        ViewUtil.setTopMargin(bodyText, margin);
-      }
 
       footer.setVisibility(VISIBLE);
     }
@@ -1132,7 +1124,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setQuote(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread, @NonNull ChatColors chatColors) {
-    boolean startOfCluster = isStartOfMessageCluster(current, previous, isGroupThread);
     if (current.isMms() && !current.isMmsNotification() && ((MediaMmsMessageRecord)current).getQuote() != null) {
       if (quoteView == null) {
         throw new AssertionError();
@@ -1154,7 +1145,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       quoteView.setOnLongClickListener(passthroughClickListener);
 
-      if (startOfCluster) {
+      if (isStartOfMessageCluster(current, previous, isGroupThread)) {
         if (current.isOutgoing()) {
           quoteView.setTopCornerSizes(true, true);
         } else if (isGroupThread) {
@@ -1174,12 +1165,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         ViewUtil.setTopMargin(mediaThumbnailStub.require(), readDimen(R.dimen.message_bubble_top_padding));
       }
 
-      if (startOfCluster && !current.isOutgoing() && groupThread) {
-        ViewUtil.setTopMargin(quoteView, readDimen(R.dimen.message_bubble_quote_negative_margin));
-      } else {
-        ViewUtil.setTopMargin(quoteView, readDimen(R.dimen.message_bubble_top_padding));
-      }
-
       if (linkPreviewStub.resolved() && !hasBigImageLinkPreview(current)) {
         ViewUtil.setTopMargin(linkPreviewStub.get(), readDimen(R.dimen.message_bubble_top_padding));
       }
@@ -1190,6 +1175,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       if (mediaThumbnailStub.resolved()) {
         ViewUtil.setTopMargin(mediaThumbnailStub.require(), 0);
+      }
+
+      if (linkPreviewStub.resolved()) {
+        ViewUtil.setTopMargin(linkPreviewStub.get(), 0);
       }
     }
   }
