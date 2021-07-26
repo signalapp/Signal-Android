@@ -56,7 +56,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
-import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.home.HomeActivity;
 import org.thoughtcrime.securesms.notifications.BackgroundPollWorker;
@@ -118,7 +117,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     private ReadReceiptManager readReceiptManager;
     private ProfileManager profileManager;
     private ObjectGraph objectGraph;
-    private PersistentLogger persistentLogger;
     public MessageNotifier messageNotifier = null;
     public Poller poller = null;
     public Broadcaster broadcaster = null;
@@ -248,10 +246,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         return isAppVisible;
     }
 
-    public PersistentLogger getPersistentLogger() {
-        return persistentLogger;
-    }
-
     // Loki
 
     private void initializeSecurityProvider() {
@@ -279,8 +273,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }
 
     private void initializeLogging() {
-        persistentLogger = new PersistentLogger(this);
-        Log.initialize(new AndroidLogger(), persistentLogger);
+        Log.initialize(new AndroidLogger());
     }
 
     private void initializeCrashHandling() {

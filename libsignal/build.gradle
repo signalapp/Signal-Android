@@ -4,6 +4,10 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion androidCompileSdkVersion
 
+    defaultConfig {
+        minSdkVersion androidMinimumSdkVersion
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
