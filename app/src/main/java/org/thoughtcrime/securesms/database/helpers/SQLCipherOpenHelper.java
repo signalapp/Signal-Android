@@ -131,6 +131,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiMessageDatabase.getUpdateMessageIDTableForType());
     db.execSQL(LokiMessageDatabase.getUpdateMessageMappingTable());
     db.execSQL(SessionContactDatabase.getCreateSessionContactTableCommand());
+    db.execSQL(RecipientDatabase.getCreateNotificationTypeCommand());
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
