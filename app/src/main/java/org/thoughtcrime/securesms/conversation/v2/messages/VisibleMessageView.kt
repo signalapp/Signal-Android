@@ -94,7 +94,7 @@ class VisibleMessageView : LinearLayout {
             profilePictureContainer.visibility = if (isEndOfMessageCluster) View.VISIBLE else View.INVISIBLE
             profilePictureView.publicKey = senderSessionID
             profilePictureView.glide = glide
-            profilePictureView.update()
+            profilePictureView.update(message.individualRecipient, threadID)
             profilePictureView.setOnClickListener { showUserDetails(message.recipient.address.toString()) }
             if (thread.isOpenGroupRecipient) {
                 val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getOpenGroupChat(threadID) ?: return

@@ -247,7 +247,6 @@
     <string-array name="notify_types">
         <item>@string/notify_type_all</item>
         <item>@string/notify_type_mentions</item>
-        <item>@string/notify_type_none</item>
     </string-array>
 
 </resources>

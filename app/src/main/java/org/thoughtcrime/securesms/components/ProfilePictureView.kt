@@ -14,11 +14,11 @@ import org.session.libsession.avatars.ProfileContactPhoto
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.utilities.Address
-import org.session.libsession.utilities.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.util.AvatarPlaceholderGenerator
 import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.util.AvatarPlaceholderGenerator
 
 class ProfilePictureView : RelativeLayout {
     lateinit var glide: GlideRequests
@@ -111,7 +111,7 @@ class ProfilePictureView : RelativeLayout {
             val avatar = (signalProfilePicture as? ProfileContactPhoto)?.avatarObject
             if (signalProfilePicture != null && avatar != "0" && avatar != "") {
                 glide.clear(imageView)
-                glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).circleCrop().into(imageView)
+                glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.NONE).circleCrop().into(imageView)
                 profilePicturesCache[publicKey] = recipient.profileAvatar
             } else {
                 val sizeInPX = resources.getDimensionPixelSize(sizeResId)
