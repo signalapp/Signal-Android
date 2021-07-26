@@ -3078,6 +3078,7 @@
   <string name="TextAvatarCreationFragment__text">Texto</string>
   <string name="TextAvatarCreationFragment__color">Cor</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Selecione uma cor</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>

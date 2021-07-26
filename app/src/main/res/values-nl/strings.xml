@@ -1960,8 +1960,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__storage">Opslag</string>
   <string name="preferences__payments">Overschrijvingen</string>
   <string name="preferences__payments_beta">Overschrijvingen (Bèta)</string>
-  <string name="preferences__conversation_length_limit">Gesprekslengtelimiet</string>
-  <string name="preferences__keep_messages">Berichten bewaren</string>
+  <string name="preferences__conversation_length_limit">Aantal te bewaren berichten</string>
+  <string name="preferences__keep_messages">Bewaartermijn voor berichten</string>
   <string name="preferences__clear_message_history">Alle gespreksgeschiedenis wissen</string>
   <string name="preferences__linked_devices">Gekoppelde apparaten</string>
   <string name="preferences__light_theme">Licht</string>

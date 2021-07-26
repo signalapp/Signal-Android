@@ -905,6 +905,7 @@
   <string name="MediaRepository_all_media">Toate fișierele media</string>
   <string name="MediaRepository__camera">Cameră foto</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Mesajul nu a putut fi decriptat</string>
   <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Atingeți pentru a trimite un jurnal de depanare</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Necunoscut</string>
@@ -1400,6 +1401,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SubmitDebugLogActivity_success">Succes!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copiați acest URL și adăugați-l la raportul de probleme sau la mail-ul de suport:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Distribuiți</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Acest jurnal va fi publicat online pentru a fi vizualizat de către contributori. Poţi să-l examinezi înainte să fie încărcat. </string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtru:</string>
   <string name="SupportEmailUtil_device_info">Informații dispozitiv:</string>
@@ -2139,23 +2141,27 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsHomeFragment__activate_payments">Activare Plăți</string>
   <string name="PaymentsHomeFragment__recent_activity">Activități recente</string>
   <string name="PaymentsHomeFragment__see_all">Vezi tot</string>
+  <string name="PaymentsHomeFragment__add_funds">Adăugare fonduri</string>
   <string name="PaymentsHomeFragment__send">Trimiteți</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Frază de recuperare</string>
   <string name="PaymentsHomeFragment__help">Ajutor</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__deactivate">Dezactivare</string>
   <string name="PaymentsHomeFragment__continue">Continuă</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">Plățile au fost dezactivate.</string>
   <string name="PaymentsHomeFragment__payment_failed">Plata a eșuat</string>
   <string name="PaymentsHomeFragment__details">Detalii</string>
   <string name="PaymentsHomeFragment__activate">activare</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Vezi termenii MobileCoin</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">Adăugare fonduri</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Adresa portofelului dvs.</string>
   <string name="PaymentsAddMoneyFragment__copy">Copy</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">S-a copiat în clipboard</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detalii</string>
   <string name="PaymentsDetailsFragment__status">Stare</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Se procesează plată…</string>
   <string name="PaymentsDetailsFragment__payment_complete">Plată finalizată</string>
   <string name="PaymentsDetailsFragment__payment_failed">Plata a eșuat</string>
   <string name="PaymentsDetailsFragment__network_fee">Comision de rețea</string>
@@ -2196,6 +2202,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConfirmPayment__to">Către</string>
   <string name="ConfirmPayment__total_amount">Suma totală</string>
   <string name="ConfirmPayment__balance_s">Sold: %1$s</string>
+  <string name="ConfirmPayment__processing_payment">Se procesează plată…</string>
   <string name="ConfirmPayment__payment_complete">Plată finalizată</string>
   <string name="ConfirmPayment__payment_failed">Plata a eșuat</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Destinatar invalid</string>
@@ -2819,6 +2826,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Cuvânt %1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Gata</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">Introduceți cuvântul %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__word_d">Cuvânt %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Următorul</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">Cuvânt invalid</string>
@@ -2827,6 +2835,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Vizualizare</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s v-a trimis %2$s</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">Trimite mesaj</string>
   <!--GroupsInCommonMessageRequest-->
@@ -3044,6 +3053,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="TextAvatarCreationFragment__text">Text</string>
   <string name="TextAvatarCreationFragment__color">Culoare</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Selectați o culoare</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>

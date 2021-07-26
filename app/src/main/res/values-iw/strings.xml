@@ -3249,6 +3249,7 @@
   <string name="TextAvatarCreationFragment__text">מלל</string>
   <string name="TextAvatarCreationFragment__color">צבע</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">בחר צבע</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">מסרון</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>

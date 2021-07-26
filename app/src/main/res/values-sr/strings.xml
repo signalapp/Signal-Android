@@ -864,6 +864,7 @@
   <string name="Megaphones_invite_friends">Позивница пријатељима</string>
   <string name="Megaphones_use_sms">Користи СМС</string>
   <string name="Megaphones_appearance">Изглед</string>
+  <string name="Megaphones_add_photo">Додајте слику</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Позив преко Signal-a у току</string>
   <string name="NotificationBarManager__establishing_signal_call">Успостављам Signal позив</string>
@@ -1405,6 +1406,7 @@
   <string name="SubmitDebugLogActivity_success">Успех!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Копирајте овај УРЛ и додајте га и вашу пријаву или имејл:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Дели</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Овај извештај ће бити објављен и видљив пројектантима. Можете га прегледати пре преноса.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Филтер:</string>
   <string name="SupportEmailUtil_device_info">Инфо о уређају:</string>
@@ -3063,7 +3065,10 @@
   <string name="ChatColorsMegaphone__appearance">Изглед</string>
   <string name="ChatColorsMegaphone__not_now">Не сада</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Додајте фотографију за профил</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Изаберите изглед и боју или прилагодите своје иницијале.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Не сада</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Додајте слику</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Емоџи</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Отворите претрагу емоџија</string>
@@ -3142,17 +3147,24 @@
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Преглед аватара</string>
   <string name="AvatarPickerFragment__camera">Камера</string>
+  <string name="AvatarPickerFragment__take_a_picture">Усликајте се</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Одаберите слику</string>
   <string name="AvatarPickerFragment__photo">Фотографија</string>
   <string name="AvatarPickerFragment__text">Текст</string>
   <string name="AvatarPickerFragment__save">Сачувај</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Одаберите аватар</string>
+  <string name="AvatarPickerFragment__clear_avatar">Уклонити слику</string>
   <string name="AvatarPickerFragment__edit">Уреди</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Неуспех сачувавања аватара</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Преглед</string>
   <string name="TextAvatarCreationFragment__done">Готово</string>
   <string name="TextAvatarCreationFragment__text">Текст</string>
   <string name="TextAvatarCreationFragment__color">Боја</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Одаберите боју</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">СМС</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>

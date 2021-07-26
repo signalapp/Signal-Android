@@ -1672,8 +1672,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Untuk mengirim pesan media dan pesan grup, ketuk \'OK\' dan selesaikan pengaturan yang diminta. Pengaturan MMS untuk operator Anda biasanya dapat ditemukan dengan mencari \'APN operator Anda\'. Anda hanya perlu melakukan ini sekali saja.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Masalah Pengiriman</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Sebuah pesan, stiker, reaksi, atau tanda pesan terbaca tidak dapat Anda terima dari %s. Mereka mungkin mencoba mengirimkannya secara langsung, atau di dalam grup.</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Sebuah pesan, stiker, reaksi, atau tanda pesan terbaca tidak dapat Anda terima dari %s.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Sebuah pesan, stiker, tanggapan, atau tanda pesan terbaca tidak dapat Anda terima dari %s. Mereka mungkin mencoba mengirimkannya secara langsung, atau di dalam grup.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Sebuah pesan, stiker, tanggapan, atau tanda pesan terbaca tidak dapat Anda terima dari %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Nama depan (diperlukan)</string>
   <string name="CreateProfileActivity_last_name_optional">Nama belakang (opsional)</string>
@@ -2056,7 +2056,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="PaymentsDetailsFragment__information">Detil transaksi termasuk jumlah pembayaran dan waktu dari transaksi adalah bagian dari Ledger MobileCoin.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Tidak ada detail lebih untuk transaksi ini</string>
   <string name="PaymentsDetailsFragment__sent_payment">Kirim pembayaran</string>
-  <string name="PaymentsDetailsFragment__received_payment">Pembauaran diterima</string>
+  <string name="PaymentsDetailsFragment__received_payment">Pembayaran diterima</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">Pembayaran selesai %1$s</string>
   <string name="PaymentsDetailsFragment__block_number">Blokir nomor</string>
   <!--PaymentsTransferFragment-->
@@ -2108,6 +2108,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ConfirmPayment__processing_payment">Memproses pembayaran…</string>
   <string name="ConfirmPayment__payment_complete">Pembayaran selesai</string>
   <string name="ConfirmPayment__payment_failed">Pembayaran gagal</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Pembayaran akan dilanjutkan untuk diproses</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Penerima tidak valid</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Orang ini belum mengaktifkan pembayaran</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Tidak dapat meminta biaya jaringan. Untuk melanjutkan pembayaran ini ketuk oke untuk mencoba lagi.</string>
@@ -2697,11 +2698,14 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin adalah mata uang digital yang berfokus pada privasi.</string>
   <string name="payment_info_card_adding_funds">Menambahkan dana</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">Anda dapat menambahkan dana untuk digunakan di Signal dengan mengirimkan MobileCoin ke alamat wallet Anda.</string>
+  <string name="payment_info_card_cashing_out">Menarik saldo</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Anda dapat menarik saldo MobileCoin kapan saja pada layanan exchange yang mendukung MobileCoin. Hanya dengan melakukan transfer ke akun Anda di exchange tersebut.</string>
   <string name="payment_info_card_hide">Sembunyikan</string>
   <string name="payment_info_card_record_recovery_phrase">Rekam frasa pemulihan</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">Frasa pemulihan Anda memberikan cara lain untuk Anda memulihkan akun pembayaran Anda.</string>
   <string name="payment_info_card_record_your_phrase">Rekam frasa Anda</string>
   <string name="payment_info_card_update_your_pin">Perbarui PIN Anda</string>
+  <string name="payment_info_card_with_a_high_balance">Dengan saldo yang tinggi, Anda mungkin ingin memperbarui PIN alfanumerik untuk menambah perlindungan tambahan atas akun Anda.</string>
   <string name="payment_info_card_update_pin">Perbarui PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Nonaktifkan Wallet</string>
@@ -2734,6 +2738,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Frasa pemulihan Anda</string>
   <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Tuliskan %1$d kata-kata berikut secara berurutan. Simpan di tempat yang aman.</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Pastikan Anda memasukkan frasa secara benar.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Jangan lakukan tangkapan layara atau mengirimkannya dengan surel.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Akun pembayaran dipulihkan.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Frasa pemulihan tidak valid</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Pastikan Anda memasukkan frasa Anda secara benar dan coba lagi.</string>
@@ -2849,6 +2854,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   </plurals>
   <string name="ChatColorSelectionFragment__delete_chat_color">Hapus warna percakapan?</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Solid</string>
+  <string name="CustomChatColorCreatorFragment__gradient">Gradasi</string>
+  <string name="CustomChatColorCreatorFragment__hue">Warna</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Saturasi</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Simpan</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Sunting warna</string>
@@ -2859,6 +2868,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__reset">Atur ulang</string>
   <string name="EditReactionsFragment_save">Simpan</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Cocokan warna dengan gambar latar secara otomatis</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Geser untuk mengubah arah gradasi warna</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">Penampilan</string>
   <string name="ChatColorsMegaphone__not_now">Nanti saja</string>

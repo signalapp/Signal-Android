@@ -184,9 +184,9 @@
   <string name="ConversationItem_this_message_was_deleted">Detta meddelande togs bort.</string>
   <string name="ConversationItem_you_deleted_this_message">Du tog bort detta meddelande.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Starta om säker session?</string>
+  <string name="ConversationActivity_reset_secure_session_question">Återställ säker session?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Detta kan hjälpa om du har krypteringsproblem i denna konversation. Dina meddelanden bevaras.</string>
-  <string name="ConversationActivity_reset">Starta om</string>
+  <string name="ConversationActivity_reset">Återställ</string>
   <string name="ConversationActivity_add_attachment">Lägg till bilaga</string>
   <string name="ConversationActivity_select_contact_info">Välj kontaktinformation</string>
   <string name="ConversationActivity_compose_message">Skriv meddelande</string>
@@ -654,7 +654,7 @@
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">Skriv några ord om dig själv</string>
   <string name="ManageProfileFragment_your_name">Ditt namn</string>
   <string name="ManageProfileFragment_your_username">Ditt användarnamn</string>
-  <string name="ManageProfileFragment_failed_to_set_avatar">Misslyckades med att ställa in avatar</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Det gick inte att ställa in avataren</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Inga gemensamma grupper</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -821,6 +821,7 @@
   <string name="Megaphones_invite_friends">Bjud in vänner</string>
   <string name="Megaphones_use_sms">Använd SMS</string>
   <string name="Megaphones_appearance">Utseende</string>
+  <string name="Megaphones_add_photo">Lägg till foto</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtal pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>
@@ -997,8 +998,8 @@
   <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s aktiverat administratörsgodkännande för grupplänken.</string>
   <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Administratörsgodkännandet för grupplänken har aktiverats.</string>
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_group_link">Du återställer grupplänken.</string>
-  <string name="MessageRecord_s_reset_the_group_link">%1$s återställde grupplänken.</string>
+  <string name="MessageRecord_you_reset_the_group_link">Du har återställt grupplänken.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s har återställt grupplänken.</string>
   <string name="MessageRecord_the_group_link_has_been_reset">Grupplänken har återställts.</string>
   <!--GV2 group link joins-->
   <string name="MessageRecord_you_joined_the_group_via_the_group_link">Du gick med i gruppen via grupplänken.</string>
@@ -1309,8 +1310,8 @@ för nyckelutbyte!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Tog emot meddelande med nytt säkerhetsnummer. Tryck för att bearbeta och visa.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Du startar om den säkra sessionen.</string>
-  <string name="SmsMessageRecord_secure_session_reset_s">%s startar om den säkra sessionen.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Du har återställt den säkra sessionen.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s har återställt den säkra sessionen.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicerat meddelande.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Detta meddelande kunde inte behandlas eftersom det skickades från en nyare version av Signal. Du kan be din kontakt att skicka detta meddelande igen när du har uppdaterat.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Felhantering av inkommande meddelande.</string>
@@ -1340,6 +1341,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SubmitDebugLogActivity_success">Klart!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopiera webbadressen och lägg till den i din felanmälan eller support-e-post:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Dela</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Denna logg publiceras på nätet för bidragsgivarna att se. Du kan granska den innan du laddar upp den.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Enhetsinformation:</string>
@@ -1351,7 +1353,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppen uppdaterad</string>
   <string name="ThreadRecord_left_the_group">Lämnade gruppen</string>
-  <string name="ThreadRecord_secure_session_reset">Säker session nollställd.</string>
+  <string name="ThreadRecord_secure_session_reset">Säker session har återställts.</string>
   <string name="ThreadRecord_draft">Utkast:</string>
   <string name="ThreadRecord_called">Du ringde</string>
   <string name="ThreadRecord_called_you">Ringde dig</string>
@@ -2104,7 +2106,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="PaymentsAddMoneyFragment__add_funds">Lägg till pengar</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Din plånboksadress</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopiera</string>
-  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopierade till urklipp</string>
+  <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopierad till urklipp</string>
   <string name="PaymentsAddMoneyFragment__to_add_funds">För att lägga till pengar, skicka MobileCoin till din plånboksadress. Starta en transaktion från ditt konto på en börs som stöder MobileCoin, skanna sedan QR-koden eller kopiera din plånboksadress.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detaljer</string>
@@ -2238,7 +2240,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_list_fragment__open_camera_description">Öppna kameran</string>
   <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Inga chattar ännu.\nKom igång genom att skriva till en vän.</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_reset_secure_session">Starta om säker session</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">Återställ säker session</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Ljud på</string>
   <!--conversation_unmuted-->
@@ -2750,7 +2752,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Ställ in bakgrund</string>
   <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Mörkt läge dämpar bakgrunden</string>
   <string name="ChatWallpaperFragment__contact_name">Kontaktnamn</string>
-  <string name="ChatWallpaperFragment__reset">Starta om</string>
+  <string name="ChatWallpaperFragment__reset">Återställ</string>
   <string name="ChatWallpaperFragment__clear">Rensa</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Förhandsgranskning av bakgrund</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vill du åsidosätta alla chattfärger?</string>
@@ -2972,7 +2974,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ChatColorsMegaphone__appearance">Utseende</string>
   <string name="ChatColorsMegaphone__not_now">Inte nu</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Lägg till ett profilfoto</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Välj ett utseende och en färg eller anpassa dina initialer.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Inte nu</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Lägg till foto</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Öppna emoji-sökning</string>
@@ -3051,17 +3056,24 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Avatar-förhandsgranskning</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>
+  <string name="AvatarPickerFragment__take_a_picture">Ta en bild</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Välj ett foto</string>
   <string name="AvatarPickerFragment__photo">Foto</string>
   <string name="AvatarPickerFragment__text">Text</string>
   <string name="AvatarPickerFragment__save">Spara</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Välj en avatar</string>
+  <string name="AvatarPickerFragment__clear_avatar">Ta bort avatar</string>
   <string name="AvatarPickerFragment__edit">Ändra</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Det gick inte att spara avataren</string>
   <!--TextAvatarCreationFragment-->
-  <string name="TextAvatarCreationFragment__preview">Förhandsvisning</string>
+  <string name="TextAvatarCreationFragment__preview">Förhandsgranskning</string>
   <string name="TextAvatarCreationFragment__done">Klar</string>
   <string name="TextAvatarCreationFragment__text">Text</string>
   <string name="TextAvatarCreationFragment__color">Färg</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Välj en färg</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>

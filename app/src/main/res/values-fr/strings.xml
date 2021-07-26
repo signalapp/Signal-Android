@@ -169,7 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">Échec d’envoi</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Vous avez reçu un message d’échange de clés. Touchez pour le traiter.</string>
   <string name="ConversationItem_group_action_left">%1$s a quitté le groupe.</string>
-  <string name="ConversationItem_send_paused">Envoi en attente</string>
+  <string name="ConversationItem_send_paused">L’envoi a été mis en pause</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Échec d’envoi, touchez pour utiliser la solution de rechange non sécurisée</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Se replier sur un texto non chiffré ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Se replier sur un message multimédia non chiffré ?</string>
@@ -195,7 +195,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">Le message est vide.</string>
   <string name="ConversationActivity_group_members">Membres du groupe</string>
   <string name="ConversationActivity__tap_here_to_start_a_group_call">Touchez ici pour lancer un appel de groupe</string>
-  <string name="ConversationActivity_invalid_recipient">Le destinataire est invalide.</string>
+  <string name="ConversationActivity_invalid_recipient">Le destinataire est invalide</string>
   <string name="ConversationActivity_added_to_home_screen">A été ajoutée à l’écran d’accueil</string>
   <string name="ConversationActivity_calls_not_supported">Les appels ne sont pas pris en charge</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Cet appareil ne semble pas prendre en charge les actions de numérotation.</string>
@@ -395,7 +395,7 @@
   <string name="DocumentView_unnamed_file">Fichier sans nom</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Faire un don à Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal est alimenté par des personnes telles que vous. Montrez votre soutien dès aujourd’hui.</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal est propulsé par des personnes telles que vous. Montrez votre soutien dès aujourd’hui.</string>
   <string name="DonateMegaphone_donate">Faire un don</string>
   <string name="DonateMegaphone_no_thanks">Non merci</string>
   <!--GroupCallingMegaphone-->
@@ -1187,7 +1187,7 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Appel vocal Signal…</string>
   <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal…</string>
-  <string name="WebRtcCallView__start_call">Lancer un appel</string>
+  <string name="WebRtcCallView__start_call">Démarrer un appel</string>
   <string name="WebRtcCallView__join_call">Me joindre à l’appel</string>
   <string name="WebRtcCallView__call_is_full">L’appel est complet</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Le nombre maximal de %1$d participants a été atteint pour cet appel. Veuillez réessayer plus tard.</string>
@@ -1370,7 +1370,7 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Votre numéro de sécurité avec %s a changé.</string>
   <string name="ThreadRecord_you_marked_verified">Vous avez marqué comme confirmé</string>
   <string name="ThreadRecord_you_marked_unverified">Vous avez marqué comme non confirmé</string>
-  <string name="ThreadRecord_message_could_not_be_processed">Impossible de traiter le message</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Le message n’a pas pu être traité</string>
   <string name="ThreadRecord_delivery_issue">Problème de remise</string>
   <string name="ThreadRecord_message_request">Demande de message</string>
   <string name="ThreadRecord_photo">Photo</string>
@@ -1428,7 +1428,7 @@
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">Importation en cours</string>
   <string name="ApplicationMigrationService_importing_text_messages">Importation des textos</string>
-  <string name="ApplicationMigrationService_import_complete">L’importation est achevée</string>
+  <string name="ApplicationMigrationService_import_complete">L’importation est terminée</string>
   <string name="ApplicationMigrationService_system_database_import_is_complete">L’importation de la base de données du système est terminée.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Touchez pour ouvrir</string>
@@ -1589,7 +1589,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Enregistrer et envoyer une fichier son joint</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Verrouiller l’enregistrement de fichiers son joints</string>
   <string name="conversation_activity__enable_signal_for_sms">Gérer les textos avec Signal</string>
-  <string name="conversation_activity__message_could_not_be_sent">Impossible d’envoyer le message. Vérifiez votre connexion et réessayez.</string>
+  <string name="conversation_activity__message_could_not_be_sent">Le message n’a pas pu être envoyé. Veuillez vérifier votre connexion et réessayez.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Faire glisser pour annuler</string>
   <string name="conversation_input_panel__cancel">Annuler</string>
@@ -2110,7 +2110,7 @@
   <string name="PaymentsDetailsFragment__status">État</string>
   <string name="PaymentsDetailsFragment__submitting_payment">Soumission du paiement…</string>
   <string name="PaymentsDetailsFragment__processing_payment">Traitement du paiement…</string>
-  <string name="PaymentsDetailsFragment__payment_complete">Paiement effectué</string>
+  <string name="PaymentsDetailsFragment__payment_complete">Le paiement est finalisé</string>
   <string name="PaymentsDetailsFragment__payment_failed">Échec du paiement</string>
   <string name="PaymentsDetailsFragment__network_fee">Frais de réseau</string>
   <string name="PaymentsDetailsFragment__sent_by">Envoyé par</string>
@@ -2125,7 +2125,7 @@
   <string name="PaymentsDetailsFragment__no_details_available">Aucun autre détail disponible pour cette transaction</string>
   <string name="PaymentsDetailsFragment__sent_payment">Paiement envoyé</string>
   <string name="PaymentsDetailsFragment__received_payment">Paiement reçu</string>
-  <string name="PaymentsDeatilsFragment__payment_completed_s">Paiement effectué %1$s</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">Le paiement est finalisé %1$s</string>
   <string name="PaymentsDetailsFragment__block_number">Bloquer le numéro</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Transférer</string>
@@ -2175,10 +2175,10 @@
   <string name="ConfirmPayment__balance_s">Solde : %1$s</string>
   <string name="ConfirmPayment__submitting_payment">Soumission du paiement…</string>
   <string name="ConfirmPayment__processing_payment">Traitement du paiement…</string>
-  <string name="ConfirmPayment__payment_complete">Paiement effectué</string>
-  <string name="ConfirmPayment__payment_failed">Échec du paiement</string>
+  <string name="ConfirmPayment__payment_complete">Le paiement est finalisé</string>
+  <string name="ConfirmPayment__payment_failed">Échec de paiement</string>
   <string name="ConfirmPayment__payment_will_continue_processing">Le traitement du paiement va se poursuivre</string>
-  <string name="ConfirmPaymentFragment__invalid_recipient">Destinataire invalide</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">Le destinataire est invalide</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Cette personne n’a pas activé les paiements</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Impossible de demander des frais de réseau. Pour poursuivre ce paiement, touchez Valider pour réessayer.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -2752,8 +2752,8 @@
   <string name="ChatWallpaperFragment__reset">Réinitialiser</string>
   <string name="ChatWallpaperFragment__clear">Réinitialiser</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Aperçu du fond d’écran</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Souhaitez-vous remplacer toutes les couleurs des conversations ?</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Souhaitez-vous remplacer tous les fonds d’écran ?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Voulez-vous remplacer toutes les couleurs des conversations ?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Voulez-vous remplacer tous les fonds d’écran ?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">Réinitialiser les couleurs par défaut</string>
   <string name="ChatWallpaperFragment__reset_all_colors">Réinitialiser toutes les couleurs</string>
   <string name="ChatWallpaperFragment__reset_default_wallpaper">Réinitialiser le fond d’écran par défaut</string>
@@ -2854,8 +2854,8 @@
   <string name="UnreadPayments__s_sent_you_s">%1$s vous a envoyé %2$s</string>
   <string name="UnreadPayments__d_new_payment_notifications">%1$d nouvelles notifications de paiement</string>
   <!--CanNotSendPaymentDialog-->
-  <string name="CanNotSendPaymentDialog__cant_send_payment">Impossible d’effectuer le paiement</string>
-  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Pour effectuer un paiement à cet utilisateur, il doit accepter votre demande d’échange de messages. Envoyez-lui un message pour faire une demande d’échange de messages.</string>
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Impossible d’envoyer le paiement</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Pour envoyer un paiement à cet utilisateur, la personne doit accepter votre demande d’échange de messages. Envoyez-lui un message pour créer une demande d’échange de messages.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Envoyez un message</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Vous n’avez aucun groupe en commun avec cette personne. Examinez attentivement les demandes avant d’accepter pour éviter les messages indésirés.</string>
@@ -2939,8 +2939,8 @@
   <string name="ChatColorSelectionFragment__delete">Supprimer</string>
   <string name="ChatColorSelectionFragment__delete_color">Supprimer la couleur</string>
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-    <item quantity="one">Cette couleur personnalisée est utilisée dans %1$d conversation. Souhaitez-vous la supprimer pour toutes les conversations ?</item>
-    <item quantity="other">Cette couleur personnalisée est utilisée dans %1$d conversations. Souhaitez-vous la supprimer pour toutes les conversations ?</item>
+    <item quantity="one">Cette couleur personnalisée est utilisée dans %1$d conversation. Voulez-vous la supprimer pour toutes les conversations ?</item>
+    <item quantity="other">Cette couleur personnalisée est utilisée dans %1$d conversations. Voulez-vous la supprimer pour toutes les conversations ?</item>
   </plurals>
   <string name="ChatColorSelectionFragment__delete_chat_color">Supprimer la couleur de la conversation ?</string>
   <!--CustomChatColorCreatorFragment-->
@@ -2952,8 +2952,8 @@
   <string name="CustomChatColorCreatorFragmentPage__save">Enregistrer</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Modifier la couleur</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-    <item quantity="one">Cette couleur est utilisée dans %1$d conversation. Souhaitez-vous enregistrer les changements pour toutes les conversations ?</item>
-    <item quantity="other">Cette couleur est utilisée dans %1$d conversations. Souhaitez-vous enregistrer les changements pour toutes les conversations ?</item>
+    <item quantity="one">Cette couleur est utilisée dans %1$d conversation. Voulez-vous enregistrer les changements pour toutes les conversations ?</item>
+    <item quantity="other">Cette couleur est utilisée dans %1$d conversations. Voulez-vous enregistrer les changements pour toutes les conversations ?</item>
   </plurals>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Sélecteur de bord supérieur</string>
@@ -2995,7 +2995,7 @@
   <!--ConversationSettingsFragment-->
   <string name="ConversationSettingsFragment__send_message">Envoyer un message</string>
   <string name="ConversationSettingsFragment__start_video_call">Lancer un appel vidéo</string>
-  <string name="ConversationSettingsFragment__start_audio_call">Lancer un appel audio</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Lancer un appel vocal</string>
   <string name="ConversationSettingsFragment__message">Message</string>
   <string name="ConversationSettingsFragment__video">Vidéo</string>
   <string name="ConversationSettingsFragment__audio">Son</string>
@@ -3070,6 +3070,7 @@
   <string name="TextAvatarCreationFragment__text">Texte</string>
   <string name="TextAvatarCreationFragment__color">Couleur</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Choisir une couleur</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">Texto</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>

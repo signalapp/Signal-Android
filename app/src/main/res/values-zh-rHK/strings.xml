@@ -1633,8 +1633,8 @@
   <string name="IdentityUtil_unverified_banner_two">您與 %1$s 和 %2$s 之間的安全碼不再已驗證</string>
   <string name="IdentityUtil_unverified_banner_many">您與 %1$s、%2$s 和 %3$s 之間的安全碼不再已驗證</string>
   <string name="IdentityUtil_unverified_dialog_one">您與 %1$s 之間的安全碼已變更，故不再已驗證。這可能代表有人正嘗試截取您的通訊，又或者不過是 %1$s 已重新安裝 Signal。</string>
-  <string name="IdentityUtil_unverified_dialog_two">您與 %1$s 和 %2$s 之間的安全碼已變更，故不再已驗證。這可能代表有人正嘗試截取您的通訊，又或者不過是他們各自已重新安裝 Signal。</string>
-  <string name="IdentityUtil_unverified_dialog_many">您與 %1$s、%2$s 和 %3$s 之間的安全碼已變更，故不再已驗證。這可能代表有人正嘗試截取您的通訊，又或者不過是他們各自已重新安裝 Signal。</string>
+  <string name="IdentityUtil_unverified_dialog_two">您與 %1$s 和 %2$s 之間的安全碼不再已驗證。這可能代表有人正嘗試截取您的通訊，又或者不過是他們各自已重新安裝 Signal。</string>
+  <string name="IdentityUtil_unverified_dialog_many">您與 %1$s、%2$s 和 %3$s 之間的安全碼不再已驗證。這可能代表有人正嘗試截取您的通訊，又或者不過是他們各自已重新安裝 Signal。</string>
   <string name="IdentityUtil_untrusted_dialog_one">您與 %s 之間的安全碼剛剛已變更。</string>
   <string name="IdentityUtil_untrusted_dialog_two">您與 %1$s 和 %2$s 之間的安全碼剛剛已變更。</string>
   <string name="IdentityUtil_untrusted_dialog_many">您與 %1$s、%2$s 和 %3$s 之間的安全碼剛剛已變更。</string>
@@ -1754,7 +1754,7 @@
   <string name="HelpFragment__have_you_read_our_faq_yet">您看過我們的常見問答嗎？</string>
   <string name="HelpFragment__next">下一步</string>
   <string name="HelpFragment__contact_us">聯絡我們</string>
-  <string name="HelpFragment__tell_us_whats_going_on">告訴我們發生了甚麼事</string>
+  <string name="HelpFragment__tell_us_whats_going_on">請向我們述說何事</string>
   <string name="HelpFragment__include_debug_log">包含除錯記錄檔。</string>
   <string name="HelpFragment__whats_this">這是甚麼？</string>
   <string name="HelpFragment__how_do_you_feel">您覺得怎麼看？ (選用)</string>
