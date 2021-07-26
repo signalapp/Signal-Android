@@ -30,6 +30,7 @@ class TextAvatarDrawable(
     textView.text = avatar.text
     textView.gravity = Gravity.CENTER
     textView.setTextColor(if (inverted) avatar.color.backgroundColor else avatar.color.foregroundColor)
+    textView.setForceCustomEmoji(true)
 
     layout.addView(textView)
 
