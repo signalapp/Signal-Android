@@ -101,8 +101,8 @@ class LogDatabase private constructor(
     if (oldVersion < 2) {
       db.execSQL("DROP TABLE log")
       db.execSQL("CREATE TABLE log (_id INTEGER PRIMARY KEY, created_at INTEGER, keep_longer INTEGER DEFAULT 0, body TEXT, size INTEGER)")
-      db.execSQL("CREATE INDEX keep_longer_index ON $TABLE_NAME ($KEEP_LONGER)")
-      db.execSQL("CREATE INDEX log_created_at_keep_longer_index ON $TABLE_NAME ($CREATED_AT, $KEEP_LONGER)")
+      db.execSQL("CREATE INDEX keep_longer_index ON log (keep_longer)")
+      db.execSQL("CREATE INDEX log_created_at_keep_longer_index ON log (created_at, keep_longer)")
     }
   }
 
