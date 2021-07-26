@@ -122,10 +122,10 @@ class EmojiProvider {
       final int xStart      = (index % emojiPerRow) * glyphWidth;
       final int yStart      = (index / emojiPerRow) * glyphHeight;
 
-      this.emojiBounds = new Rect(xStart,
-                                  yStart,
-                                  xStart + glyphWidth,
-                                  yStart + glyphHeight);
+      this.emojiBounds = new Rect(xStart + 1,
+                                  yStart + 1,
+                                  xStart + glyphWidth - 1,
+                                  yStart + glyphHeight - 1);
     }
 
     @Override
