@@ -893,5 +893,4 @@
     <string name="dialog_send_seed_send_button_title">Send</string>
     <string name="notify_type_all">All</string>
     <string name="notify_type_mentions">Mentions</string>
-    <string name="notify_type_none">None</string>
 </resources>

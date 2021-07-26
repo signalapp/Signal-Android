@@ -59,7 +59,7 @@ public class ConversationOptionsBottomSheet : BottomSheetDialogFragment(), View.
         muteNotificationsTextView.isVisible = !recipient.isMuted && !recipient.isLocalNumber
         unMuteNotificationsTextView.setOnClickListener(this)
         muteNotificationsTextView.setOnClickListener(this)
-        notificationsTextView.isVisible = recipient.isGroupRecipient
+        notificationsTextView.isVisible = recipient.isGroupRecipient && !recipient.isMuted
         notificationsTextView.setOnClickListener(this)
         deleteTextView.setOnClickListener(this)
     }

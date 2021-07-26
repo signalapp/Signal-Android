@@ -13,8 +13,4 @@
         android:title="@string/conversation__menu_leave_group"
         app:showAsAction="collapseActionView"/>
 
-    <item
-        android:title="@string/RecipientPreferenceActivity_notification_settings"
-        android:id="@+id/menu_notification_settings"/>
-
 </menu>

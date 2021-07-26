@@ -237,6 +237,7 @@ public class RecipientDatabase extends Database {
     values.put(NOTIFY_TYPE, notifyType);
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setNotifyType(notifyType);
+    notifyConversationListListeners();
   }
 
   public void setExpireMessages(@NonNull Recipient recipient, int expiration) {
