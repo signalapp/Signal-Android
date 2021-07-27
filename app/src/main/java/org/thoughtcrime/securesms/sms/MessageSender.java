@@ -162,7 +162,7 @@ public class MessageSender {
       long allocatedThreadId;
 
       if (threadId == -1) {
-        allocatedThreadId = threadDatabase.getThreadIdFor(message.getRecipient(), message.getDistributionType());
+        allocatedThreadId = threadDatabase.getOrCreateThreadIdFor(message.getRecipient(), message.getDistributionType());
       } else {
         allocatedThreadId = threadId;
       }
@@ -205,7 +205,7 @@ public class MessageSender {
     mmsDatabase.beginTransaction();
     try {
       OutgoingSecureMediaMessage primaryMessage   = messages.get(0);
-      long                       primaryThreadId  = threadDatabase.getThreadIdFor(primaryMessage.getRecipient(), primaryMessage.getDistributionType());
+      long                       primaryThreadId  = threadDatabase.getOrCreateThreadIdFor(primaryMessage.getRecipient(), primaryMessage.getDistributionType());
       long                       primaryMessageId = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, primaryMessage.getRecipient(), primaryMessage, primaryThreadId),
                                                                                     primaryThreadId,
                                                                                     false,
@@ -226,7 +226,7 @@ public class MessageSender {
         }
 
         for (OutgoingSecureMediaMessage secondaryMessage : secondaryMessages) {
-          long               allocatedThreadId = threadDatabase.getThreadIdFor(secondaryMessage.getRecipient(), secondaryMessage.getDistributionType());
+          long               allocatedThreadId = threadDatabase.getOrCreateThreadIdFor(secondaryMessage.getRecipient(), secondaryMessage.getDistributionType());
           long               messageId         = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, secondaryMessage.getRecipient(), secondaryMessage, allocatedThreadId),
                                                                                  allocatedThreadId,
                                                                                  false,

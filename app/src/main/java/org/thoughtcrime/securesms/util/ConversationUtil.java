@@ -193,13 +193,13 @@ public final class ConversationUtil {
   {
     Recipient resolved  = recipient.resolve();
     Person[]  persons   = buildPersons(context, resolved);
-    long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(resolved);
+    Long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(resolved.getId());
     String    shortName = resolved.isSelf() ? context.getString(R.string.note_to_self) : resolved.getShortDisplayName(context);
     String    longName  = resolved.isSelf() ? context.getString(R.string.note_to_self) : resolved.getDisplayName(context);
 
     return new ShortcutInfoCompat.Builder(context, getShortcutId(resolved))
                                  .setLongLived(true)
-                                 .setIntent(ConversationIntents.createBuilder(context, resolved.getId(), threadId).build())
+                                 .setIntent(ConversationIntents.createBuilder(context, resolved.getId(), threadId != null ? threadId : -1).build())
                                  .setShortLabel(shortName)
                                  .setLongLabel(longName)
                                  .setIcon(AvatarUtil.getIconCompatForShortcut(context, resolved))

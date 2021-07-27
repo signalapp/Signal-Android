@@ -79,9 +79,10 @@ public class ApplicationMigrations {
     static final int DB_AUTOINCREMENT       = 37;
     static final int ATTACHMENT_CLEANUP     = 38;
     static final int LOG_CLEANUP            = 39;
+    static final int ATTACHMENT_CLEANUP_2   = 40;
   }
 
-  public static final int CURRENT_VERSION = 39;
+  public static final int CURRENT_VERSION = 40;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -345,6 +346,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.LOG_CLEANUP) {
       jobs.put(Version.LOG_CLEANUP, new DeleteDeprecatedLogsMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.ATTACHMENT_CLEANUP_2) {
+      jobs.put(Version.ATTACHMENT_CLEANUP_2, new AttachmentCleanupMigrationJob());
     }
 
     return jobs;

@@ -152,7 +152,7 @@ public final class GroupsV1MigrationUtil {
       }
 
       Recipient recipient = Recipient.externalGroupExact(context, gv1Id);
-      long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+      long      threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
 
       performLocalMigration(context, gv1Id, threadId, recipient);
       Log.i(TAG, "Migration complete! (" + gv1Id + ", " + threadId + ", " + recipient.getId() + ")", new Throwable());

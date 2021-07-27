@@ -209,8 +209,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int MMS_AUTOINCREMENT                = 109;
   private static final int ABANDONED_ATTACHMENT_CLEANUP     = 110;
   private static final int AVATAR_PICKER                    = 111;
+  private static final int THREAD_CLEANUP                   = 112;
 
-  private static final int    DATABASE_VERSION = 111;
+  private static final int    DATABASE_VERSION = 112;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1953,6 +1954,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
             db.update("recipient", values, "_id = ?", new String[] { String.valueOf(id) });
           }
         }
+      }
+
+      if (oldVersion < THREAD_CLEANUP) {
+        db.delete("mms", "thread_id NOT IN (SELECT _id FROM thread)", null);
+        db.delete("part", "mid != -8675309 AND mid NOT IN (SELECT _id FROM mms)", null);
       }
 
       db.setTransactionSuccessful();

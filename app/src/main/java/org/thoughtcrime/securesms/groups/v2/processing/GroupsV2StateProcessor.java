@@ -311,7 +311,7 @@ public final class GroupsV2StateProcessor {
 
       try {
         MessageDatabase mmsDatabase = DatabaseFactory.getMmsDatabase(context);
-        long            threadId    = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+        long            threadId    = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
         long            id          = mmsDatabase.insertMessageOutbox(leaveMessage, threadId, false, null);
         mmsDatabase.markAsSent(id, true);
       } catch (MmsException e) {
@@ -511,7 +511,7 @@ public final class GroupsV2StateProcessor {
           RecipientId                recipientId     = recipientDatabase.getOrInsertFromGroupId(groupId);
           Recipient                  recipient       = Recipient.resolved(recipientId);
           OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, decryptedGroupV2Context, null, timestamp, 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
-          long                       threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+          long                       threadId        = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
           long                       messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 
           mmsDatabase.markAsSent(messageId, true);

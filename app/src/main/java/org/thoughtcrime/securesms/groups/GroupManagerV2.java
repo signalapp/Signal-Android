@@ -561,7 +561,7 @@ final class GroupManagerV2 {
           if (GroupChangeUtil.changeIsEmpty(change.build())) {
             Log.i(TAG, "Change is empty after conflict resolution");
             Recipient groupRecipient = Recipient.externalGroupExact(context, groupId);
-            long      threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+            long      threadId       = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
 
             return new GroupManager.GroupActionResult(groupRecipient, threadId, 0, Collections.emptyList());
           }

@@ -48,6 +48,6 @@ class ExpireTimerSettingsRepository(val context: Context) {
   private fun getThreadId(recipientId: RecipientId): Long {
     val threadDatabase: ThreadDatabase = DatabaseFactory.getThreadDatabase(context)
     val recipient: Recipient = Recipient.resolved(recipientId)
-    return threadDatabase.getThreadIdFor(recipient)
+    return threadDatabase.getOrCreateThreadIdFor(recipient)
   }
 }

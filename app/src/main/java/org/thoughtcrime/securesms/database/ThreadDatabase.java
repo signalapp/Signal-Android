@@ -371,7 +371,7 @@ public class ThreadDatabase extends Database {
   }
 
   public boolean hasCalledSince(@NonNull Recipient recipient, long timestamp) {
-    return hasReceivedAnyCallsSince(getThreadIdFor(recipient), timestamp);
+    return hasReceivedAnyCallsSince(getOrCreateThreadIdFor(recipient), timestamp);
   }
 
   public boolean hasReceivedAnyCallsSince(long threadId, long timestamp) {
@@ -1035,15 +1035,15 @@ public class ThreadDatabase extends Database {
         return candidateId;
       }
     } else {
-      return getThreadIdFor(recipient, distributionType);
+      return getOrCreateThreadIdFor(recipient, distributionType);
     }
   }
 
-  public long getThreadIdFor(@NonNull Recipient recipient) {
-    return getThreadIdFor(recipient, DistributionTypes.DEFAULT);
+  public long getOrCreateThreadIdFor(@NonNull Recipient recipient) {
+    return getOrCreateThreadIdFor(recipient, DistributionTypes.DEFAULT);
   }
 
-  public long getThreadIdFor(@NonNull Recipient recipient, int distributionType) {
+  public long getOrCreateThreadIdFor(@NonNull Recipient recipient, int distributionType) {
     Long threadId = getThreadIdFor(recipient.getId());
     if (threadId != null) {
       return threadId;
@@ -1260,7 +1260,7 @@ public class ThreadDatabase extends Database {
   }
 
   public @NonNull ThreadRecord getThreadRecordFor(@NonNull Recipient recipient) {
-    return Objects.requireNonNull(getThreadRecord(getThreadIdFor(recipient)));
+    return Objects.requireNonNull(getThreadRecord(getOrCreateThreadIdFor(recipient)));
   }
 
   public @NonNull Set<RecipientId> getAllThreadRecipients() {

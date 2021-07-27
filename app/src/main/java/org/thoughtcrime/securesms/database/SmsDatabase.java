@@ -741,7 +741,7 @@ public class SmsDatabase extends MessageDatabase {
   {
     SQLiteDatabase db                      = databaseHelper.getWritableDatabase();
     Recipient      recipient               = Recipient.resolved(groupRecipientId);
-    long           threadId                = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    long           threadId                = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
     boolean        peerEraIdSameAsPrevious = updatePreviousGroupCall(threadId, peekGroupCallEraId, peekJoinedUuids, isCallFull);
 
     try {
@@ -803,7 +803,7 @@ public class SmsDatabase extends MessageDatabase {
 
       Recipient recipient = Recipient.resolved(groupRecipientId);
 
-      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
 
       String   where     = TYPE + " = ? AND " + THREAD_ID + " = ?";
       String[] args      = SqlUtil.buildArgs(Types.GROUP_CALL_TYPE, threadId);
@@ -908,7 +908,7 @@ public class SmsDatabase extends MessageDatabase {
 
   private @NonNull Pair<Long, Long> insertCallLog(@NonNull RecipientId recipientId, long type, boolean unread, long timestamp) {
     Recipient recipient = Recipient.resolved(recipientId);
-    long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    long      threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
 
     ContentValues values = new ContentValues(6);
     values.put(RECIPIENT_ID, recipientId.serialize());
@@ -1108,8 +1108,8 @@ public class SmsDatabase extends MessageDatabase {
 
     long       threadId;
 
-    if (groupRecipient == null) threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
-    else                        threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+    if (groupRecipient == null) threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+    else                        threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
 
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, message.getSender().serialize());
@@ -1170,7 +1170,7 @@ public class SmsDatabase extends MessageDatabase {
   @Override
   public @NonNull InsertResult insertChatSessionRefreshedMessage(@NonNull RecipientId recipientId, long senderDeviceId, long sentTimestamp) {
     SQLiteDatabase db       = databaseHelper.getWritableDatabase();
-    long           threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.resolved(recipientId));
+    long           threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.resolved(recipientId));
     long           type     = Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT;
 
     type = type & (Types.TOTAL_MASK - Types.ENCRYPTION_MASK) | Types.ENCRYPTION_REMOTE_FAILED_BIT;

@@ -25,7 +25,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
-import android.content.pm.ShortcutManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -87,7 +86,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -2650,7 +2648,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
         long           threadId       = params[0];
 
         if (drafts.size() > 0) {
-          if (threadId == -1) threadId = threadDatabase.getThreadIdFor(getRecipient(), thisDistributionType);
+          if (threadId == -1) threadId = threadDatabase.getOrCreateThreadIdFor(getRecipient(), thisDistributionType);
 
           draftDatabase.replaceDrafts(threadId, drafts);
           threadDatabase.updateSnippet(threadId, drafts.getSnippet(ConversationActivity.this),

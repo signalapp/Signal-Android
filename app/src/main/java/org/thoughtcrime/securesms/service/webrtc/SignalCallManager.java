@@ -287,7 +287,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                         .toList();
 
         callManager.peekGroupCall(SignalStore.internalValues().groupCallingServer(), credential.getTokenBytes().toByteArray(), members, peekInfo -> {
-          long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(group);
+          long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(group);
 
           DatabaseFactory.getSmsDatabase(context)
                          .updatePreviousGroupCall(threadId,

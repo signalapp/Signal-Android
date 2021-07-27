@@ -239,7 +239,7 @@ public final class GroupV1MessageProcessor {
         RecipientId                recipientId     = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupId.v1orThrow(group.getGroupId()));
         Recipient                  recipient       = Recipient.resolved(recipientId);
         OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, storage, null, content.getTimestamp(), 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
-        long                       threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+        long                       threadId        = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
         long                       messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 
         mmsDatabase.markAsSent(messageId, true);

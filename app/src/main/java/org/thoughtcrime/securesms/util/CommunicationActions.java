@@ -101,12 +101,12 @@ public class CommunicationActions {
     new AsyncTask<Void, Void, Long>() {
       @Override
       protected Long doInBackground(Void... voids) {
-        return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+        return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient.getId());
       }
 
       @Override
-      protected void onPostExecute(Long threadId) {
-        ConversationIntents.Builder builder = ConversationIntents.createBuilder(context, recipient.getId(), threadId);
+      protected void onPostExecute(@Nullable Long threadId) {
+        ConversationIntents.Builder builder = ConversationIntents.createBuilder(context, recipient.getId(), threadId != null ? threadId : -1);
         if (!TextUtils.isEmpty(text)) {
           builder.withDraftText(text);
         }

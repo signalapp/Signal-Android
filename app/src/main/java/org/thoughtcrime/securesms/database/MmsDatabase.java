@@ -697,10 +697,10 @@ public class MmsDatabase extends MessageDatabase {
     if (retrieved.getGroupId() != null) {
       RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(retrieved.getGroupId());
       Recipient   groupRecipients  = Recipient.resolved(groupRecipientId);
-      return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipients);
+      return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipients);
     } else {
       Recipient sender = Recipient.resolved(retrieved.getFrom());
-      return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(sender);
+      return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(sender);
     }
   }
 
@@ -709,7 +709,7 @@ public class MmsDatabase extends MessageDatabase {
                       ? Util.toIsoString(notification.getFrom().getTextString())
                       : "";
     Recipient recipient = Recipient.external(context, fromString);
-    return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
   }
 
   private Cursor rawQuery(@NonNull String where, @Nullable String[] arguments) {

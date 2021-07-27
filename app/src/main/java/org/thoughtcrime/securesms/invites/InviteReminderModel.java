@@ -50,7 +50,7 @@ public final class InviteReminderModel {
     }
 
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
-    long threadId                 = threadDatabase.getThreadIdFor(recipient);
+    long threadId                 = threadDatabase.getOrCreateThreadIdFor(recipient);
 
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     int conversationCount         = mmsSmsDatabase.getInsecureSentCount(threadId);

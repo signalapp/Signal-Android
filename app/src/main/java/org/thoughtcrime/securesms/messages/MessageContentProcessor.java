@@ -121,11 +121,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
-import org.whispersystems.libsignal.protocol.SenderKeyDistributionMessage;
 import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
@@ -288,7 +286,7 @@ public final class MessageContentProcessor {
             } else if (!threadRecipient.isGroup()) {
               Log.i(TAG, "Message was to a 1:1. Ensuring this user has our profile key.");
               ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob(false))
-                                     .then(ProfileKeySendJob.create(context, DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient), true))
+                                     .then(ProfileKeySendJob.create(context, DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(threadRecipient), true))
                                      .enqueue();
             }
           }
@@ -693,7 +691,7 @@ public final class MessageContentProcessor {
     OutgoingTextMessage outgoingTextMessage       = new OutgoingTextMessage(recipient, "", -1);
     OutgoingEndSessionMessage outgoingEndSessionMessage = new OutgoingEndSessionMessage(outgoingTextMessage);
 
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
 
     if (!recipient.isGroup()) {
       SessionStore sessionStore = new TextSecureSessionStore(context);
@@ -968,7 +966,7 @@ public final class MessageContentProcessor {
       return;
     }
 
-    long threadId = threadDatabase.getThreadIdFor(recipient);
+    long threadId = threadDatabase.getOrCreateThreadIdFor(recipient);
 
     switch (response.getType()) {
       case ACCEPT:
@@ -1054,7 +1052,7 @@ public final class MessageContentProcessor {
         threadId = gv1ThreadId == null ? -1 : gv1ThreadId;
       } else if (message.getMessage().isGroupV2Update()) {
         handleSynchronizeSentGv2Update(content, message);
-        threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(getSyncMessageDestination(message));
+        threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(getSyncMessageDestination(message));
       } else if (Build.VERSION.SDK_INT > 19 && message.getMessage().getGroupCallUpdate().isPresent()) {
         handleGroupCallUpdateMessage(content, message.getMessage(), GroupUtil.idFromGroupContext(message.getMessage().getGroupContext()), senderRecipient);
       } else if (message.getMessage().isEmptyGroupV2Message()) {
@@ -1063,7 +1061,7 @@ public final class MessageContentProcessor {
         threadId = handleSynchronizeSentExpirationUpdate(message);
       } else if (message.getMessage().getReaction().isPresent()) {
         handleReaction(content, message.getMessage(), senderRecipient);
-        threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(getSyncMessageDestination(message));
+        threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(getSyncMessageDestination(message));
       } else if (message.getMessage().getRemoteDelete().isPresent()) {
         handleRemoteDelete(content, message.getMessage(), senderRecipient);
       } else if (message.getMessage().getAttachments().isPresent() || message.getMessage().getQuote().isPresent() || message.getMessage().getPreviews().isPresent() || message.getMessage().getSticker().isPresent() || message.getMessage().isViewOnce() || message.getMessage().getMentions().isPresent()) {
@@ -1300,7 +1298,7 @@ public final class MessageContentProcessor {
         message.getTimestamp(),
         message.getMessage().getExpiresInSeconds() * 1000L);
 
-    long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    long threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
     long messageId = database.insertMessageOutbox(expirationUpdateMessage, threadId, false, null);
 
     database.markAsSent(messageId, true);
@@ -1345,7 +1343,7 @@ public final class MessageContentProcessor {
       handleSynchronizeSentExpirationUpdate(message);
     }
 
-    long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+    long threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipients);
 
     database.beginTransaction();
 
@@ -1499,7 +1497,7 @@ public final class MessageContentProcessor {
       handleSynchronizeSentExpirationUpdate(message);
     }
 
-    long    threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    long    threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
     boolean isGroup   = recipient.isGroup();
 
     MessageDatabase database;
@@ -1747,9 +1745,9 @@ public final class MessageContentProcessor {
 
       Recipient groupRecipient = Recipient.externalPossiblyMigratedGroup(context, groupId);
 
-      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
     } else {
-      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(senderRecipient);
+      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(senderRecipient);
     }
 
     if (threadId <= 0) {
@@ -2096,7 +2094,7 @@ public final class MessageContentProcessor {
   }
 
   private void notifyTypingStoppedFromIncomingMessage(@NonNull Recipient senderRecipient, @NonNull Recipient conversationRecipient, int device) {
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(conversationRecipient);
+    long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(conversationRecipient);
 
     if (threadId > 0 && TextSecurePreferences.isTypingIndicatorsEnabled(context)) {
       Log.d(TAG, "Typing stopped on thread " + threadId + " due to an incoming message.");
