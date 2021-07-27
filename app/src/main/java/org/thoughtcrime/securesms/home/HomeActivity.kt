@@ -10,9 +10,7 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.util.DisplayMetrics
 import android.view.View
-import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -75,7 +73,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         glide = GlideApp.with(this)
         // Set up toolbar buttons
         profileButton.glide = glide
-        updateProfileButton()
         profileButton.setOnClickListener { openSettings() }
         pathStatusViewContainer.disableClipping()
         pathStatusViewContainer.setOnClickListener { showPath() }
@@ -117,12 +114,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
                 homeAdapter.changeCursor(null)
             }
         })
-        // Set up gradient view
-        val gradientViewLayoutParams = gradientView.layoutParams as RelativeLayout.LayoutParams
-        val displayMetrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(displayMetrics)
-        val height = displayMetrics.heightPixels
-        gradientViewLayoutParams.topMargin = (0.15 * height.toFloat()).toInt()
         // Set up new conversation button set
         newConversationButtonSet.delegate = this
         // Set up typing observer
@@ -137,7 +128,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
             OpenGroupManager.startPolling()
             JobQueue.shared.resumePendingJobs()
         }
-        IP2Country.configureIfNeeded(this)
         application.registerForFCMIfNeeded(false)
         // Observe blocked contacts changed events
         val broadcastReceiver = object : BroadcastReceiver() {
@@ -150,6 +140,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, IntentFilter("blockedContactsChanged"))
         lifecycleScope.launch {
             // update things based on TextSecurePrefs (profile info etc)
+            updateProfileButton()
+            IP2Country.configureIfNeeded(this@HomeActivity)
             TextSecurePreferences.events.filter { it == TextSecurePreferences.PROFILE_NAME_PREF }.collect {
                 updateProfileButton()
             }
