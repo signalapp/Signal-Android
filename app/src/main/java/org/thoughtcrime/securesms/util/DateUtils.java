@@ -40,9 +40,10 @@ import java.util.concurrent.TimeUnit;
 public class DateUtils extends android.text.format.DateUtils {
 
   @SuppressWarnings("unused")
-  private static final String                        TAG                = Log.tag(DateUtils.class);
-  private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT        = new ThreadLocal<>();
-  private static final ThreadLocal<SimpleDateFormat> BRIEF_EXACT_FORMAT = new ThreadLocal<>();
+  private static final String                        TAG                    = Log.tag(DateUtils.class);
+  private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT            = new ThreadLocal<>();
+  private static final ThreadLocal<SimpleDateFormat> BRIEF_EXACT_FORMAT     = new ThreadLocal<>();
+  private static final long                          MAX_RELATIVE_TIMESTAMP = TimeUnit.MINUTES.toMillis(3);
 
   private static boolean isWithin(final long millis, final long span, final TimeUnit unit) {
     return System.currentTimeMillis() - millis <= unit.toMillis(span);
@@ -172,8 +173,8 @@ public class DateUtils extends android.text.format.DateUtils {
     return d1.equals(d2);
   }
 
-  public static boolean isSameExtendedRelativeTimestamp(@NonNull Context context, @NonNull Locale locale, long t1, long t2) {
-    return getExtendedRelativeTimeSpanString(context, locale, t1).equals(getExtendedRelativeTimeSpanString(context, locale, t2));
+  public static boolean isSameExtendedRelativeTimestamp(long second, long first) {
+    return second - first < MAX_RELATIVE_TIMESTAMP;
   }
 
   private static String getLocalizedPattern(String template, Locale locale) {
