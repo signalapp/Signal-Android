@@ -4,6 +4,7 @@ import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
+import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
@@ -15,7 +16,12 @@ import org.whispersystems.util.Base64;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.subjects.BehaviorSubject;
 
 /**
  * Provide a general interface to the WebSocket for making requests and reading messages sent by the server.
@@ -29,14 +35,43 @@ public final class SignalWebSocket {
 
   private final WebSocketFactory webSocketFactory;
 
-  private WebSocketConnection webSocket;
-  private WebSocketConnection unidentifiedWebSocket;
-  private boolean             canConnect;
+  private       WebSocketConnection                       webSocket;
+  private final BehaviorSubject<WebSocketConnectionState> webSocketState;
+  private       CompositeDisposable                       webSocketStateDisposable;
+
+  private       WebSocketConnection                       unidentifiedWebSocket;
+  private final BehaviorSubject<WebSocketConnectionState> unidentifiedWebSocketState;
+  private       CompositeDisposable                       unidentifiedWebSocketStateDisposable;
+
+  private boolean canConnect;
 
   public SignalWebSocket(WebSocketFactory webSocketFactory) {
-    this.webSocketFactory = webSocketFactory;
+    this.webSocketFactory                     = webSocketFactory;
+    this.webSocketState                       = BehaviorSubject.createDefault(WebSocketConnectionState.DISCONNECTED);
+    this.unidentifiedWebSocketState           = BehaviorSubject.createDefault(WebSocketConnectionState.DISCONNECTED);
+    this.webSocketStateDisposable             = new CompositeDisposable();
+    this.unidentifiedWebSocketStateDisposable = new CompositeDisposable();
   }
 
+  /**
+   * Get an observable stream of the identified WebSocket state. This observable is valid for the lifetime of
+   * the instance, and will update as WebSocketConnections are remade.
+   */
+  public Observable<WebSocketConnectionState> getWebSocketState() {
+    return webSocketState;
+  }
+
+  /**
+   * Get an observable stream of the unidentified WebSocket state. This observable is valid for the lifetime of
+   * the instance, and will update as WebSocketConnections are remade.
+   */
+  public Observable<WebSocketConnectionState> getUnidentifiedWebSocketState() {
+    return unidentifiedWebSocketState;
+  }
+
+  /**
+   * Indicate that WebSocketConnections can now be made and attempt to connect both of them.
+   */
   public synchronized void connect() {
     canConnect = true;
     try {
@@ -47,17 +82,54 @@ public final class SignalWebSocket {
     }
   }
 
+  /**
+   * Indicate that WebSocketConnections can no longer be made and disconnect both of them.
+   */
   public synchronized void disconnect() {
     canConnect = false;
+    disconnectIdentified();
+    disconnectUnidentified();
+  }
 
+  /**
+   * Indicate that the current WebSocket instances need to be destroyed and new ones should be created the
+   * next time a connection is required. Intended to be used by the health monitor to cycle a WebSocket.
+   */
+  public synchronized void forceNewWebSockets() {
+    Log.i(TAG, "Forcing new WebSockets " +
+               " identified: " + (webSocket != null ? webSocket.getName() : "[null]") +
+               " unidentified: " + (unidentifiedWebSocket != null ? unidentifiedWebSocket.getName() : "[null]") +
+               " canConnect: " + canConnect);
+
+    disconnectIdentified();
+    disconnectUnidentified();
+  }
+
+  private void disconnectIdentified() {
     if (webSocket != null) {
+      webSocketStateDisposable.dispose();
+
       webSocket.disconnect();
       webSocket = null;
-    }
 
+      //noinspection ConstantConditions
+      if (!webSocketState.getValue().isFailure()) {
+        webSocketState.onNext(WebSocketConnectionState.DISCONNECTED);
+      }
+    }
+  }
+
+  private void disconnectUnidentified() {
     if (unidentifiedWebSocket != null) {
+      unidentifiedWebSocketStateDisposable.dispose();
+
       unidentifiedWebSocket.disconnect();
       unidentifiedWebSocket = null;
+
+      //noinspection ConstantConditions
+      if (!unidentifiedWebSocketState.getValue().isFailure()) {
+        unidentifiedWebSocketState.onNext(WebSocketConnectionState.DISCONNECTED);
+      }
     }
   }
 
@@ -67,8 +139,16 @@ public final class SignalWebSocket {
     }
 
     if (webSocket == null || webSocket.isDead()) {
-      webSocket = webSocketFactory.createWebSocket();
-      webSocket.connect();
+      webSocketStateDisposable.dispose();
+
+      webSocket                = webSocketFactory.createWebSocket();
+      webSocketStateDisposable = new CompositeDisposable();
+
+      Disposable state = webSocket.connect()
+                                  .subscribeOn(Schedulers.computation())
+                                  .observeOn(Schedulers.computation())
+                                  .subscribe(webSocketState::onNext);
+      webSocketStateDisposable.add(state);
     }
     return webSocket;
   }
@@ -79,10 +159,32 @@ public final class SignalWebSocket {
     }
 
     if (unidentifiedWebSocket == null || unidentifiedWebSocket.isDead()) {
-      unidentifiedWebSocket = webSocketFactory.createUnidentifiedWebSocket();
-      unidentifiedWebSocket.connect();
+      unidentifiedWebSocketStateDisposable.dispose();
+
+      unidentifiedWebSocket                = webSocketFactory.createUnidentifiedWebSocket();
+      unidentifiedWebSocketStateDisposable = new CompositeDisposable();
+
+      Disposable state = unidentifiedWebSocket.connect()
+                                              .subscribeOn(Schedulers.computation())
+                                              .observeOn(Schedulers.computation())
+                                              .subscribe(unidentifiedWebSocketState::onNext);
+      unidentifiedWebSocketStateDisposable.add(state);
     }
     return unidentifiedWebSocket;
+  }
+
+  /**
+   * Send keep-alive messages over both WebSocketConnections.
+   */
+  public synchronized void sendKeepAlive() throws IOException {
+    if (canConnect) {
+      try {
+        getWebSocket().sendKeepAlive();
+        getUnidentifiedWebSocket().sendKeepAlive();
+      } catch (WebSocketUnavailableException e) {
+        throw new AssertionError(e);
+      }
+    }
   }
 
   public Single<WebsocketResponse> request(WebSocketRequestMessage requestMessage) {
@@ -98,20 +200,18 @@ public final class SignalWebSocket {
       WebSocketRequestMessage message = WebSocketRequestMessage.newBuilder(requestMessage)
                                                                .addHeaders("Unidentified-Access-Key:" + Base64.encodeBytes(unidentifiedAccess.get().getUnidentifiedAccessKey()))
                                                                .build();
-      Single<WebsocketResponse> response;
       try {
-        response = getUnidentifiedWebSocket().sendRequest(message);
+        return getUnidentifiedWebSocket().sendRequest(message)
+                                         .flatMap(r -> {
+                                           if (r.getStatus() == 401) {
+                                             return request(requestMessage);
+                                           }
+                                           return Single.just(r);
+                                         })
+                                         .onErrorResumeNext(t -> request(requestMessage));
       } catch (IOException e) {
         return Single.error(e);
       }
-
-      return response.flatMap(r -> {
-                       if (r.getStatus() == 401) {
-                         return request(requestMessage);
-                       }
-                       return Single.just(r);
-                     })
-                     .onErrorResumeNext(t -> request(requestMessage));
     } else {
       return request(requestMessage);
     }

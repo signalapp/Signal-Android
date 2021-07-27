@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,7 +15,6 @@ import org.signal.paging.PagedData;
 import org.signal.paging.PagingConfig;
 import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
-import org.thoughtcrime.securesms.search.SearchResult;
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPayments;
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPaymentsLiveData;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -23,16 +23,19 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.megaphone.Megaphone;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
-import org.thoughtcrime.securesms.net.PipeConnectivityListener;
 import org.thoughtcrime.securesms.payments.UnreadPaymentsRepository;
 import org.thoughtcrime.securesms.search.SearchRepository;
+import org.thoughtcrime.securesms.search.SearchResult;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.paging.Invalidator;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
 import java.util.List;
+
+import io.reactivex.rxjava3.core.BackpressureStrategy;
 
 class ConversationListViewModel extends ViewModel {
 
@@ -117,8 +120,8 @@ class ConversationListViewModel extends ViewModel {
     return pagedData.getController();
   }
 
-  @NonNull LiveData<PipeConnectivityListener.State> getPipeState() {
-    return ApplicationDependencies.getPipeListener().getState();
+  @NonNull LiveData<WebSocketConnectionState> getPipeState() {
+    return LiveDataReactiveStreams.fromPublisher(ApplicationDependencies.getSignalWebSocket().getWebSocketState().toFlowable(BackpressureStrategy.LATEST));
   }
 
   @NonNull LiveData<Optional<UnreadPayments>> getUnreadPaymentsLiveData() {

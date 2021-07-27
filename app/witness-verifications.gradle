@@ -141,6 +141,12 @@ dependencyVerification {
         ['androidx.lifecycle:lifecycle-process:2.1.0',
          '8cddd0c7f4927bbf71fb71fca000786df82cc597c99463d6916ccbe4a205a9ac'],
 
+        ['androidx.lifecycle:lifecycle-reactivestreams-ktx:2.1.0',
+         '8729895193f5fa36814bd399c866a81a87270b802979869b1082127281bd2836'],
+
+        ['androidx.lifecycle:lifecycle-reactivestreams:2.1.0',
+         '4b974fa3e691a6d205fccecfa930aa7880aabf9d80159de91bbaed1d351bc4ab'],
+
         ['androidx.lifecycle:lifecycle-runtime-ktx:2.3.1',
          '7ad2987dd7f4075c0871a72cf07e9649d9cd790fc23dfab1972eca4710373873'],
 

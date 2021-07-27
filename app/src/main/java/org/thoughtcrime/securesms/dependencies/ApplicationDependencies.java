@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.messages.IncomingMessageProcessor;
-import org.thoughtcrime.securesms.net.PipeConnectivityListener;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.payments.Payments;
@@ -110,10 +109,6 @@ public class ApplicationDependencies {
 
   public static @NonNull Application getApplication() {
     return application;
-  }
-
-  public static @NonNull PipeConnectivityListener getPipeListener() {
-    return provider.providePipeListener();
   }
 
   public static @NonNull SignalServiceAccountManager getSignalServiceAccountManager() {
@@ -227,7 +222,6 @@ public class ApplicationDependencies {
 
   public static void resetNetworkConnectionsAfterProxyChange() {
     synchronized (LOCK) {
-      getPipeListener().reset();
       closeConnections();
     }
   }
@@ -509,7 +503,6 @@ public class ApplicationDependencies {
   }
 
   public interface Provider {
-    @NonNull PipeConnectivityListener providePipeListener();
     @NonNull GroupsV2Operations provideGroupsV2Operations();
     @NonNull SignalServiceAccountManager provideSignalServiceAccountManager();
     @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket signalWebSocket);
