@@ -212,16 +212,23 @@ public class ThreadDatabase extends Database {
     contentValues.put(READ_RECEIPT_COUNT, readReceiptCount);
     contentValues.put(EXPIRES_IN, expiresIn);
 
-    if (unarchive) {
-      contentValues.put(ARCHIVED, 0);
-    }
-
     if (count != getConversationMessageCount(threadId)) {
       contentValues.put(LAST_SCROLLED, 0);
     }
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.update(TABLE_NAME, contentValues, ID + " = ?", new String[] {threadId + ""});
+
+    if (unarchive) {
+      ContentValues archiveValues = new ContentValues();
+      archiveValues.put(ARCHIVED, 0);
+
+      SqlUtil.Query query = SqlUtil.buildTrueUpdateQuery(ID_WHERE, SqlUtil.buildArgs(threadId), archiveValues);
+      if (db.update(TABLE_NAME, archiveValues, query.getWhere(), query.getWhereArgs()) > 0) {
+        StorageSyncHelper.scheduleSyncForDataChange();
+      }
+    }
+
     notifyConversationListListeners();
   }
 
