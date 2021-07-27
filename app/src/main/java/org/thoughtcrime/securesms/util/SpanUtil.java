@@ -99,6 +99,13 @@ public final class SpanUtil {
     return imageSpan;
   }
 
+  public static CharSequence buildImageSpanBottomAligned(@NonNull Drawable drawable) {
+    SpannableString imageSpan = new SpannableString(" ");
+    imageSpan.setSpan(new ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM), 0, imageSpan.length(), 0);
+
+    return imageSpan;
+  }
+
   public static CharSequence learnMore(@NonNull Context context,
                                        @ColorInt int color,
                                        @NonNull View.OnClickListener onLearnMoreClicked)

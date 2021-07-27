@@ -410,7 +410,7 @@ public final class ConversationUpdateItem extends FrameLayout
       ViewUtil.setTopMargin(background, marginCollapsed);
       ViewUtil.setBottomMargin(background, marginDefault);
 
-      ViewUtil.setPaddingTop(background, paddingCollapsed);
+      ViewUtil.setPaddingTop(background, paddingDefault);
       ViewUtil.setPaddingBottom(background, paddingDefault);
 
       ViewUtil.updateLayoutParams(background, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
