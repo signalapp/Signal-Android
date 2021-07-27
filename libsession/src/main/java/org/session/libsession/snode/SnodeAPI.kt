@@ -278,26 +278,26 @@ object SnodeAPI {
     }
 
     fun getRawMessages(snode: Snode, publicKey: String): RawResponsePromise {
-        val userED25519KeyPair = MessagingModuleConfiguration.shared.getUserED25519KeyPair() ?: return Promise.ofFail(Error.NoKeyPair)
+//        val userED25519KeyPair = MessagingModuleConfiguration.shared.getUserED25519KeyPair() ?: return Promise.ofFail(Error.NoKeyPair)
         // Get last message hash
         val lastHashValue = database.getLastMessageHashValue(snode, publicKey) ?: ""
         // Construct signature
-        val timestamp = Date().time + SnodeAPI.clockOffset
-        val ed25519PublicKey = userED25519KeyPair.publicKey.asHexString
-        val verificationData = "retrieve$timestamp".toByteArray()
-        val signature = ByteArray(Sign.BYTES)
-        try {
-            sodium.cryptoSignDetached(signature, verificationData, verificationData.size.toLong(), userED25519KeyPair.secretKey.asBytes)
-        } catch (exception: Exception) {
-            return Promise.ofFail(Error.SigningFailed)
-        }
+//        val timestamp = Date().time + SnodeAPI.clockOffset
+//        val ed25519PublicKey = userED25519KeyPair.publicKey.asHexString
+//        val verificationData = "retrieve$timestamp".toByteArray()
+//        val signature = ByteArray(Sign.BYTES)
+//        try {
+//            sodium.cryptoSignDetached(signature, verificationData, verificationData.size.toLong(), userED25519KeyPair.secretKey.asBytes)
+//        } catch (exception: Exception) {
+//            return Promise.ofFail(Error.SigningFailed)
+//        }
         // Make the request
         val parameters = mapOf(
             "pubKey" to if (useTestnet) publicKey.removing05PrefixIfNeeded() else publicKey,
             "lastHash" to lastHashValue,
-            "timestamp" to timestamp,
-            "pubkey_ed25519" to ed25519PublicKey,
-            "signature" to Base64.encodeBytes(signature)
+//            "timestamp" to timestamp,
+//            "pubkey_ed25519" to ed25519PublicKey,
+//            "signature" to Base64.encodeBytes(signature)
         )
         return invoke(Snode.Method.GetMessages, snode, publicKey, parameters)
     }
