@@ -275,6 +275,16 @@
             <data android:scheme="sgnl"
                   android:host="signal.tube" />
         </intent-filter>
+
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https"
+                android:host="signal.me" />
+            <data android:scheme="sgnl"
+                android:host="signal.me" />
+        </intent-filter>
     </activity>
 
     <activity android:name=".conversation.ConversationActivity"
