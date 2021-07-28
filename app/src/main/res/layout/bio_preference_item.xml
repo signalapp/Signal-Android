@@ -30,7 +30,7 @@
         app:layout_constraintStart_toEndOf="@id/icon"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             android:ellipsize="end"
             tools:text="Crusin' the web" />
 
-        <TextView
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
