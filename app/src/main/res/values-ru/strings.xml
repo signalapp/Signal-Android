@@ -361,6 +361,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Значок восстановления из резервной копии</string>
   <string name="ChooseBackupFragment__choose_backup">Выбрать резервную копию</string>
   <string name="ChooseBackupFragment__learn_more">Узнать больше</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Нет менеджера файлов</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Восстановление завершено</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Чтобы продолжить резервное копирование, пожалуйста, выберите папку. Новые резервные копии будут сохраняться в ней.</string>

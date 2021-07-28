@@ -339,6 +339,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Yedekten geri yükle simgesi</string>
   <string name="ChooseBackupFragment__choose_backup">Yedeği seç</string>
   <string name="ChooseBackupFragment__learn_more">Dahasını öğrenin</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Dosya tarayıcısı yok</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Geri yükleme tamamlandı</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Yedekleri kullanmayı sürdürmek için, bir dizin seçin. Yeni yedekler bu seçilen konuma kaydedilecektir.</string>

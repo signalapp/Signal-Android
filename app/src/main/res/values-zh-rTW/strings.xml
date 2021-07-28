@@ -328,6 +328,7 @@
   <string name="ChooseBackupFragment__icon_content_description">從備份還原圖示</string>
   <string name="ChooseBackupFragment__choose_backup">選擇備份</string>
   <string name="ChooseBackupFragment__learn_more">了解更多</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">沒有可用的檔案瀏覽器</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">回復完成</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">要繼續使用備份，請選擇一個資料夾。 新備份將保存到該位置。</string>

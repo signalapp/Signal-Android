@@ -339,6 +339,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Restaurez à partir de l’icône de sauvegarde</string>
   <string name="ChooseBackupFragment__choose_backup">Choisir une sauvegarde</string>
   <string name="ChooseBackupFragment__learn_more">En apprendre davantage</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Aucun navigateur de fichiers n’est proposé</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">La restauration est terminée.</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Pour continuer à utiliser les sauvegardes, veuillez choisir un dossier. Les nouvelles sauvegardes seront enregistrées dans cet emplacement.</string>

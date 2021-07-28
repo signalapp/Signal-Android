@@ -339,6 +339,7 @@
   <string name="ChooseBackupFragment__icon_content_description">बॅकअप चिन्हावरून पुनर्स्थापना करा</string>
   <string name="ChooseBackupFragment__choose_backup">बॅकअप निवडा</string>
   <string name="ChooseBackupFragment__learn_more">अधिक जाणा</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">कुठलेही फाईल ब्राउझर उपलब्ध नाही</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">पुनर्संचयन पूर्ण</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">बॅकअप वापरणे सुरू ठेवण्यासाठी, कृपया एक फोल्डर निवडा. या ठिकाणी नवीन बॅकअप जतन केले जातील.</string>
@@ -2531,9 +2532,16 @@
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">जुन्या Android डिव्हाइसचा कनेक्ट करण्यासाठी प्रतीक्षा करत आहे…</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">आपल्या जुन्या Android डिव्हाइसला शोधण्यासाठी आणि कनेक्ट करण्यासाठी Signal ला स्थान परवानगीची आवश्यकता आहे.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">आपल्या जुन्या Android डिव्हाइसला शोधण्यासाठी आणि कनेक्ट करण्यासाठी Signal ला स्थान सेवा सक्षम असल्याची आवश्यकता आहे.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal ला आपल्या जुन्या Android डिव्हाससोबत शोधण्यासाठी आणि कनेक्ट करण्यासाठी Wi-Fi आवश्यक आहे. Wi-Fi चालू असायला हवे पण Wi-Fi नेटवर्कसोबत कनेक्ट केलेले असणे गरजेचे नाही.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">क्षमस्व, हा डिव्हाइस Wi-Fi डायरेक्टचे समर्थन करत नसल्याचे दिसते. आपल्या जुन्या Android डिव्हाइससोबत शोधण्यासाठी आणि कनेक्ट करण्यासाठी Signal Wi-Fi डायरेक्ट वापरते. आपल्या जुन्या Android डिव्हाइसवरून आपण तरीही आपले खाते पुनर्स्थापित करण्यासाठी बॅकअप पुनर्स्थापित करू शकता.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">बॅकअप पुनर्स्थापित करा</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">आपल्या जुन्या Android डिव्हाइससोबत कनेक्ट करायचा प्रयत्न करताना एक अनेपक्षित त्रुटी आढळली.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">नवीन Android डिव्हाइससाठी शोधत आहे…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">आपल्या नवीन Android डिव्हाइसला शोधण्यासाठी आणि कनेक्ट करण्यासाठी Signal ला स्थान परवानगीची आवश्यकता आहे.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">आपल्या नवीन Android डिव्हाइसला शोधण्यासाठी आणि कनेक्ट करण्यासाठी Signal ला स्थान सेवा सक्षम असल्याची आवश्यकता आहे.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal ला आपल्या नवीन Android डिव्हाससोबत शोधण्यासाठी आणि कनेक्ट करण्यासाठी Wi-Fi आवश्यक आहे. Wi-Fi चालू असायला हवे पण Wi-Fi नेटवर्कसोबत कनेक्ट केलेले असणे गरजेचे नाही.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">क्षमस्व, हा डिव्हाइस Wi-Fi डायरेक्टचे समर्थन करत नसल्याचे दिसते. आपल्या नवीन Android डिव्हाइससोबत शोधण्यासाठी आणि कनेक्ट करण्यासाठी Signal Wi-Fi डायरेक्ट वापरते. आपल्या नवीन Android डिव्हाइसवर आपण तरीही आपले खाते पुनर्स्थापित करण्यासाठी बॅकअप तयार करू शकता.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">बॅकअप तयार करा</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">आपल्या नवीन Android डिव्हाइससोबत कनेक्ट करायचा प्रयत्न करताना एक अनेपक्षित त्रुटी आढळली.</string>
   <!--DeviceTransferSetupFragment-->
@@ -2550,6 +2558,7 @@
   <string name="DeviceTransferSetup__the_numbers_do_not_match">नंबर जुळत नाही</string>
   <string name="DeviceTransferSetup__continue">सुरू ठेवा</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">नंबर समान नाही</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">आपल्या डिव्हाइसवरील नंबर जुळत नसल्यास, आपण चुकीच्या डिव्हाइससोबत कनेक्ट केले असल्याची शक्यता आहे. हे ठीक करण्यासाठी, स्थानांतरण थांबवा आणि पुन्हा प्रयत्न करा आणि आपले दोन्ही डिव्हाइस जवळ ठेवा.</string>
   <string name="DeviceTransferSetup__stop_transfer">स्थानांतरण थांबवा</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">जुना डिव्हाइस डिस्कव्हर करण्यात अक्षम</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">नवीन डिव्हाइस डिस्कव्हर करण्यात अक्षम</string>
@@ -2587,6 +2596,7 @@
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
   <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">\"खाते स्थानांतरित करा किंवा पुनर्स्थापित करा\" वर टॅप करा</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">सूचित केल्यावर \"Android डिव्हाइसवरून स्थानांतरित करा\" आणि नंतर \"सुरू ठेवा\" निवडा. दोन्ही डिव्हाइस जवळपास ठेवा.</string>
   <string name="OldDeviceTransferInstructions__continue">सुरू ठेवा</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">स्थानांतरण पूर्ण झाले</string>
@@ -2608,10 +2618,12 @@
   <string name="DeviceToDeviceTransferService_status_service_connected">खाते स्थानांतरित करत आहे…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">आपल्या नवीन डिव्हाइसवर नोंदणी पूर्ण करा</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">आपले Signal खाते आपल्या नवीन डिव्हाइसवर स्थानांतरित केले गेले आहे, पण ते सुरू ठेवण्यासाठी आपल्याला नोंदणी पूर्ण करणे आवश्यक आहे. या डिव्हाइसवर Signal निष्क्रिय असेल.</string>
   <string name="OldDeviceTransferLockedDialog__done">ठीक</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">रद्द करा आणि हा डिव्हाइस सक्रिय करा</string>
   <!--AdvancedPreferenceFragment-->
   <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB बॅलंस स्थानांतरित करायचा?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">आपल्याकडे %1$s चा बॅलंस आहे. आपण इतर वॉलेट पत्त्यावर आपले खाते हटवण्यापूर्वी आपले फंड स्थानांतरित न केल्यास, आपण ते कायमचे गमवाल.</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">स्थानांतरित करू नका</string>
   <string name="AdvancedPreferenceFragment__transfer">स्थानांतरित करा</string>
   <!--RecipientBottomSheet-->
@@ -2644,6 +2656,8 @@
   <string name="GroupsLearnMore_paragraph_2">लेगसी गट अजूनतरी नवीन गटांमध्ये श्रेणीसुधारित केले जाऊ शकत नाही, पण ते Signal च्या नवीनतम आवृत्तीवर असल्यास आपण त्याच सदस्यांसोबत नवीन गट तयार करू शकता.</string>
   <string name="GroupsLearnMore_paragraph_3">भविष्यात लेगसी गटांना श्रेणीसुधारित करण्यासाठी Signal एक मार्ग ऑफर करेल.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">ही लिंक असलेला कुणीही या गटाचे नाव आणि फोटो आणि सामील होण्याची विनंती पाहू शकतो. याला आपल्या विश्वासातल्या लोकांसह सामायिक करा.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">ही लिंक असलेला कुणीही या गटाचा नाव आणि फोटो आणि गटात सामील होऊ शकतो. याला आपल्या विश्वासातल्या लोकांसह सामायिक करा.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Signal द्वारा शेअर करा</string>
   <string name="GroupLinkBottomSheet_copy">कॉपी करा</string>
   <string name="GroupLinkBottomSheet_qr_code">QR कोड</string>
@@ -2790,15 +2804,19 @@
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">वॉलेट निष्क्रिय करा</string>
   <string name="DeactivateWalletFragment__your_balance">आपला बॅलंस</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">पेमेंट निष्क्रिय करण्यापूर्वी आपण आपले फंड इतर वॉलेट पत्त्यावर स्थानांतरित करण्याची शिफारस केलेली आहे. आपण आपले फंड स्थानांतरित नाही करण्याचे निवडल्यास, आपण पेमेंट पुन्हा सक्रिय केल्यास ते आपल्या वॉलेट मध्ये Signal ला लिंक केलेले राहतील.</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">उर्वरित बॅलंस स्थानांतरित करा</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">स्थानांतरित न करता निष्क्रिय करा</string>
   <string name="DeactivateWalletFragment__deactivate">निष्क्रिय करा</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">स्थानांतरित न करता निष्क्रिय करायचा?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">आपण पेमेंट पुन्हा सक्रिय करण्याचे निवडल्यास आपला बॅलंस आपल्या वॉलेट मध्ये Signal ला लिंक केलेला राहील.</string>
   <string name="DeactivateWalletFragment__error_deactivating_wallet">वॉलेट निष्क्रिय करण्यात त्रुटी.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">रिकव्हरी फ्रेझ</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">रिकव्हरी फ्रेझ पहा</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">रिकव्हरी फ्रेझ प्रविष्ट करा</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">आपण आपल्या Signal PIN ची पुष्टी केल्यास, आपण Signal पुन्हा स्थापित केल्यावर आपला बॅलंस स्वयंचलितपणे पुनर्स्थापित होईल. आपण आपला बॅलंस रिकव्हरी फ्रेझ वापरून देखील पुनर्स्थापित करू शकता, जी %1$d-शब्द फ्रेझ आपल्यासाठी ऐकमेव आहे. ती लिहून ठेवा आणि त्यास एका सुरक्षित जागेवर ठेवा. </string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">आपली रिकव्हरी फ्रेझ %1$d-शब्दांची फ्रेझ आपल्यासाठी ऐकमेव आहे. आपला बॅलंस पुनर्स्थापित करण्यासाठी ही फ्रेझ वापरा.</string>
   <string name="PaymentsRecoveryStartFragment__start">चालू करा</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">व्यक्तिचलितपणे प्रविष्ट करा</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">क्लिपबोर्ड वरून पेस्ट करा</string>
@@ -2807,11 +2825,13 @@
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">रिकव्हरी फ्रेझ</string>
   <string name="PaymentsRecoveryPasteFragment__next">पुढे</string>
   <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">अवैध रिकव्हरी फ्रेझ</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">आपण %1$d शब्द प्रविष्ट केले असल्याची खात्री करा आणि पुन्हा प्रयत्न करा.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">पुढे</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">संपादन</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">मागील</string>
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">आपला रिकव्हरी फ्रेझ</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">पुढील %1$d शब्द ओळीत लिहून ठेवा. आपली यादी सुरक्षित ठिकाणी ठेवा.</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">आपला फ्रेझ आपण योग्यरित्या प्रविष्ट केला असल्याची खात्री करा.</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">स्क्रीनशॉट घेऊ नका किंवा ईमेलद्वारा पाठवू नका.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">पेमेंट खाते पुनर्स्थापित केले गेले.</string>
@@ -2842,8 +2862,11 @@
   <string name="UnreadPayments__d_new_payment_notifications">%1$d नवीन पेमेंट सूचना</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">पेमेंट पाठवू शकत नाही</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">या वापरकर्त्याला पेमेंट पाठवण्यासाठी त्यांनी आपल्याकडील संदेश विनंती स्वीकार करणे आवश्यक आहे. संदेश विनंती तयार करण्यासाठी त्यांना संदेश पाठवा.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">एक संदेश पाठवा</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">आपले या व्यक्तीसोबत कुठलेही गट समाईक नाहीत. नको असलेले संदेश टाळण्यासाठी विनंत्याचे काळजीपूर्वक पुनरावलोकन करा.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">आपले कुठलेही संपर्क किंवा आपल्यासोबत चॅट करत असलेल्या व्यक्ती या गटामध्ये नाहीत. नको असलेले संदेश टाळण्यासाठी विनंत्याचे काळजीपूर्वक पुनरावलोकन करा.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">संदेश विनंत्यांबद्दल</string>
   <string name="GroupsInCommonMessageRequest__okay">ठीक आहे</string>
   <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">चॅट रंगाचा हे एक पुनरावलोकन आहे.</string>
@@ -2861,6 +2884,7 @@
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">खाते</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">वेळेनुसार आपल्याला कमी वारंवार विचारले जाईल</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Signal सोबत पुन्हा नोंदणी करताना आपला Signal PIN आवश्यक करा.</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">कीबोर्ड</string>
   <string name="ChatsSettingsFragment__enter_key_sends">प्रविष्ट करा की पाठवते</string>
@@ -2880,9 +2904,12 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">अलीकडील यादीमध्ये आणि अॅपच्या आत स्क्रीनशॉट अवरोधित करा</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal संदेश आणि कॉल, कॉल नेहमी रिले करा आणि सील केलेला प्रेषक </string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">नवीन चॅटसाठी पूर्वनिर्धारित टायमर</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">आपल्याद्वारा चालू केलेल्या सर्व नवीन चॅटसाठी पूर्वनिर्धारित हरवणारे संदेश टायमर सेट करा.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">स्टेटस चिन्ह दाखवा</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">सीलबंद प्रेषकद्वारे पोहोचवले गेल्यावर संदेश तपशीलामध्ये चिन्ह दाखवा.</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">सक्षम केल्यानंतर, या चॅटमधील आपल्याद्वारा  पाठवलेले आणि प्राप्त झालेले नवीन संदेश पाहिल्यानंतर हरवतील.</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">सक्षम केल्यानंतर, या चॅट मधील पाठविलेले आणि प्राप्त झालेले नवीन संदेश पाहिल्यानंतर हरवतील.</string>
   <string name="ExpireTimerSettingsFragment__off">बंद</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 आठवडे</string>
@@ -2947,6 +2974,7 @@
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">ग्रेडिएंटची दिशा बदलण्यासाठी ओढा</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">नवीन चॅट रंग</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">आपल्याला अधिक पर्याय देण्यासाठी आणि चॅट वाचणे सोपे करण्यासाठी आम्ही चॅट रंग स्विच केले.</string>
   <string name="ChatColorsMegaphone__appearance">स्वरूप</string>
   <string name="ChatColorsMegaphone__not_now">आता नाही</string>
   <!--AddAProfilePhotoMegaphone-->

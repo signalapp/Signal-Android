@@ -339,6 +339,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Återställ från säkerhetskopieringsikonen</string>
   <string name="ChooseBackupFragment__choose_backup">Välj säkerhetskopia</string>
   <string name="ChooseBackupFragment__learn_more">Läs mer</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Ingen filhanterare tillgänglig</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Återställningen är klar</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Vänligen välj en mapp för att fortsätta använda säkerhetskopior. Nya säkerhetskopior sparas på denna plats.</string>

@@ -339,6 +339,7 @@
   <string name="ChooseBackupFragment__icon_content_description">بازگردانی از طریق آیکون پشتیبان</string>
   <string name="ChooseBackupFragment__choose_backup">پشتیبان را انتخاب کنید</string>
   <string name="ChooseBackupFragment__learn_more">بیشتر یاد بگیرید</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">انتخاب کنندهٔ فایل در دسترس نیست.</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">بازگردانی کامل شد</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">برای ادامهٔ استفاده از پشتیبان‌ها، لطفاً یک پوشه انتخاب کنید. پشتیبان‌های جدید در این محل ذخیره خواهند شد.</string>

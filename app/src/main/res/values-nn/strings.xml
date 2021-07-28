@@ -340,6 +340,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <string name="ChooseBackupFragment__icon_content_description">Gjenopprett frå reservekopi-ikon</string>
   <string name="ChooseBackupFragment__choose_backup">Vel reservekopi</string>
   <string name="ChooseBackupFragment__learn_more">Lær meir</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Fann ingen filveljar</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Gjenoppretting utført</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">For å fortsetja å ta reservekopiar må du velja ei mappe. Nye kopiar blir lagra der.</string>

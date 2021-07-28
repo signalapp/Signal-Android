@@ -339,6 +339,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Restaura des de la icona de còpia de seguretat</string>
   <string name="ChooseBackupFragment__choose_backup">Trieu la còpia de seguretat</string>
   <string name="ChooseBackupFragment__learn_more">Més informació</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">No hi ha gestor de fitxers disponible.</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Restauració completa</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Per continuar usant les còpies de seguretat, trieu una carpeta. S\'hi desaran les còpies noves.</string>
@@ -3073,6 +3074,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="TextAvatarCreationFragment__text">Text</string>
   <string name="TextAvatarCreationFragment__color">Color</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Seleccioneu un color</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>

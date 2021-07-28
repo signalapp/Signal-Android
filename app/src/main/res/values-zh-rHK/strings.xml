@@ -328,6 +328,7 @@
   <string name="ChooseBackupFragment__icon_content_description">[從備份還原] 圖示</string>
   <string name="ChooseBackupFragment__choose_backup">請選擇備份</string>
   <string name="ChooseBackupFragment__learn_more">了解更多</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">無任何檔案瀏覽器可用</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">還原完成</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">如要繼續使用備份，請選擇一個資料夾。新的備份將會儲存到此位置。</string>
@@ -2507,7 +2508,7 @@
   <string name="DeviceTransfer__stop_transfer_question">要停止轉移嗎？</string>
   <string name="DeviceTransfer__stop_transfer">停止轉移</string>
   <string name="DeviceTransfer__all_transfer_progress_will_be_lost">所有轉移進度將會消失。</string>
-  <string name="DeviceTransfer__transfer_failed">轉移失敗。</string>
+  <string name="DeviceTransfer__transfer_failed">轉移失敗</string>
   <string name="DeviceTransfer__unable_to_transfer">無法轉移</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">轉移帳戶</string>

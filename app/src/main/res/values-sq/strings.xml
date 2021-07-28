@@ -339,6 +339,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Ikonë rikthe prej kopjeruajtjeje</string>
   <string name="ChooseBackupFragment__choose_backup">Zgjidhni kopjeruajtje</string>
   <string name="ChooseBackupFragment__learn_more">Mësoni më tepër</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">S’ka shfletues kartelash </string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Rikthim i plotësuar</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Që të vazhdoni të përdorni kopjeruajtje, ju lutemi, zgjidhni një dosje. Kopjeruajtjet e reja do të ruhen te kjo vendndodhje.</string>

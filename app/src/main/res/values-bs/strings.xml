@@ -350,6 +350,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Sličica za vraćanje podataka</string>
   <string name="ChooseBackupFragment__choose_backup">Odaberi rezervnu kopiju</string>
   <string name="ChooseBackupFragment__learn_more">Saznajte više</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Nema aplikacije za pregled datoteka</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Vraćanje podataka je završeno</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Da biste i dalje mogli kreirati rezervne kopije, izaberite direktorij. Nove rezervne kopije bit će pohranjene na toj lokaciji.</string>

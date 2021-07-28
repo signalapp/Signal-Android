@@ -361,6 +361,7 @@
   <string name="ChooseBackupFragment__icon_content_description">ikona Obnoviť zo zálohy</string>
   <string name="ChooseBackupFragment__choose_backup">Vyberte zálohu</string>
   <string name="ChooseBackupFragment__learn_more">Dozvedieť sa viac</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Nie je k dispozícii žiadny prehľadávač súborov</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Obnova dokončená</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Ak chcete ďalej používať zálohy, zvoľte, prosím, priečinok. Nové zálohy budú ukladané do tejto lokácie.</string>

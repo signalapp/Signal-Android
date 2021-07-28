@@ -361,6 +361,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Ikona przywracania kopii zapasowej</string>
   <string name="ChooseBackupFragment__choose_backup">Wybierz kopię zapasową</string>
   <string name="ChooseBackupFragment__learn_more">Dowiedz się więcej</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Brak dostępnej przeglądarki plików</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Przywracanie zakończone</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Wybierz folder, aby nadal wykonywać kopie zapasowe. Nowe kopie będą zapisywane w wybranym miejscu.</string>

@@ -328,6 +328,7 @@
   <string name="ChooseBackupFragment__icon_content_description">用備份還原公仔</string>
   <string name="ChooseBackupFragment__choose_backup">揀一個備份</string>
   <string name="ChooseBackupFragment__learn_more">講多啲畀我聽</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">部機無檔案瀏覽器用得到</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">還原搞掂</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">要繼續備份嘅話，請先揀選一個資料夾。新嘅備份會儲存喺呢個位置。</string>
@@ -1352,7 +1353,7 @@
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">訊息所屬嘅加密階段唔存在</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">加密嘅1多媒體短訊訊息爛鬼咗</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">加密嘅多媒體短訊訊息軭咗</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">多媒體短訊訊息所屬嘅加密階段唔存在</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">沈默地通知</string>
@@ -2004,6 +2005,7 @@
   <string name="PaymentsHomeFragment__details">詳情</string>
   <string name="PaymentsHomeFragment__activate">啟用</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">檢視 MobileCoin 條款</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Signal 付款已經曲終人散。您仍然可以將款項轉移去交易平台，但唔再能夠傳送或接收付款，又或增加款項。</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">增加款項</string>
   <string name="PaymentsAddMoneyFragment__copy">複製</string>
@@ -2032,6 +2034,8 @@
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">要掃二維碼嘅話，Signal 需要存取您部機嘅相機。</string>
   <string name="PaymentsTransferFragment__settings">設定</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">掃描位址二維碼</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">掃描收款人嘅位址二維碼</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">請求</string>
   <string name="CreatePaymentFragment__pay">支付</string>
@@ -2258,12 +2262,16 @@
   <string name="preferences_chats__chat_backups">傾偈備份</string>
   <string name="preferences_chats__backup_chats_to_external_storage">將傾過嘅偈備份去外置儲存裝置</string>
   <string name="preferences_chats__transfer_account">轉移帳戶</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">將帳戶轉移去一部新嘅 Android 機度</string>
   <string name="RegistrationActivity_enter_backup_passphrase">輸入備份密碼</string>
   <string name="RegistrationActivity_restore">還原</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">備份密碼唔啱</string>
   <string name="RegistrationActivity_checking">檢查緊…</string>
+  <string name="RegistrationActivity_d_messages_so_far">目前為止 %d 個訊息…</string>
   <string name="RegistrationActivity_restore_from_backup">係咪要攞番備份嚟還原？</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">攞番本機備份嚟還原您嘅訊息同埋多媒體檔案。如果您而家唔做嘅話，遲啲就冇得再還原㗎喇。</string>
+  <string name="RegistrationActivity_backup_size_s">備份大小：%s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">備份時間戳：%s</string>
   <string name="BackupDialog_enable_local_backups">係咪要啟用本機備份？</string>
   <string name="BackupDialog_enable_backups">啟用備份</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">您清楚明白佢講啲咩嘅話，麻煩您喺確認嘅格仔度打剔。</string>
@@ -2273,16 +2281,22 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">揀一個資料夾去啟用備份。啲備份會儲存喺呢個位置度。</string>
   <string name="BackupDialog_choose_folder">揀一個資料夾</string>
   <string name="BackupDialog_copied_to_clipboard">複製咗去剪貼簿</string>
+  <string name="BackupDialog_no_file_picker_available">部機無檔案挑選器用得到。</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">打番您個備份密碼去驗證下</string>
   <string name="BackupDialog_verify">驗證</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">您輸入嘅備份密碼正確無誤</string>
   <string name="BackupDialog_passphrase_was_not_correct">密碼有誤</string>
   <string name="LocalBackupJob_creating_backup">建立緊備份…</string>
   <string name="LocalBackupJobApi29_backup_failed">備份唔到</string>
+  <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">您嘅備份目錄已經刪除或移動咗。</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">您個備份檔案大得滯，裝唔落呢一度喎。</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">唔夠空間，儲存唔到您嘅備份。</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">撳一下去管理備份。</string>
+  <string name="ProgressPreference_d_messages_so_far">目前為止 %d 個訊息</string>
   <string name="RegistrationActivity_wrong_number">個冧把錯咗</string>
   <string name="RegistrationActivity_call_me_instead_available_in">都係打畀我喇 \n (撥個輪要等等 %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">聯絡 Signal 支援</string>
+  <string name="RegistrationActivity_code_support_subject">Signal 註冊 - Android 版驗證碼</string>
   <string name="BackupUtil_never">唔使喇</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__see_my_phone_number">見到我嘅電話冧把</string>
@@ -2290,6 +2304,7 @@
   <string name="PhoneNumberPrivacy_everyone">任何人都得</string>
   <string name="PhoneNumberPrivacy_my_contacts">我嘅聯絡人</string>
   <string name="PhoneNumberPrivacy_nobody">邊個都唔得</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">您傳訊息嘅所有人同谷，都會睇到您個電話冧把。</string>
   <string name="preferences_app_protection__screen_lock">螢幕鎖</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">用 Android 嘅螢幕鎖定或指紋，為存取 Signal 上鎖</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">閒置幾耐謂之逾時等畫面鎖嚟料</string>
@@ -2309,12 +2324,16 @@
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">您嘅 PIN 碼至少有 %d 個數字或字元</string>
   <string name="RegistrationActivity_too_many_attempts">白撞太多次</string>
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">您試過太多次喇。請您晏啲再試下啦。</string>
+  <string name="RegistrationActivity_error_connecting_to_service">服務連唔到線</string>
   <string name="preferences_chats__backups">備份</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal 已經上鎖</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">撳一下去解鎖</string>
   <string name="Recipient_unknown">未知</string>
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">轉移或還原帳戶</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">若果您先前已經註冊咗 Signal 帳戶，您可以轉移或還原您嘅帳戶同訊息</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">由另一部 Android 機搬過嚟</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">由您部舊嘅 Android 機轉移您嘅帳戶同訊息過嚟。您部舊機要喺您手先得。</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">您部舊機要喺您手先得。</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">用備份還原</string>
   <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">攞番本機備份嚟還原您嘅訊息。如果您而家唔做嘅話，遲啲就冇得再還原㗎喇。</string>
@@ -2324,7 +2343,9 @@
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">撳一下左上角嗰度您嘅個人資料相片去開啟 [設定]</string>
   <string name="NewDeviceTransferInstructions__second_bullet">二、</string>
   <string name="NewDeviceTransferInstructions__third_bullet">三、</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">撳一下「轉移帳戶」，然後「繼續」，兩部機都係</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">請等等，部機繽紛樂緊</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal 要攞「位置」權限，先可以探索同連接您部舊嘅 Android 機。</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">攞番備份嚟還原</string>
   <!--OldDeviceTransferSetupFragment-->
@@ -2343,29 +2364,54 @@
   <string name="DeviceTransferSetup__the_numbers_do_not_match">啲數字唔夾</string>
   <string name="DeviceTransferSetup__continue">繼續</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">數字唔同</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">若果兩部機上面嘅數字唔一樣，咁可能係搭錯線駁咗落另一部機度。要掹番正佢，首先停止轉移先，然後再試一次，並且將兩部機泊埋一齊。</string>
+  <string name="DeviceTransferSetup__stop_transfer">停止轉移</string>
   <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">請確定下列權限同服務已經啟用：</string>
   <string name="DeviceTransferSetup__location_permission">位置權限</string>
   <string name="DeviceTransferSetup__location_services">定位服務</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct 畫面</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">請確保兩部機都處於轉移模式中。</string>
   <string name="DeviceTransferSetup__try_again">再試一次</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">喺對面部機撳一下 [繼續] 以開始轉移。</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">由較新版本嘅 Sigmal 轉移過嚟係唔得嘅</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">轉移緊資料</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">將兩部機保持靠近。唔好熄機、開住 Signal。轉移經端對端加密。</string>
+  <string name="DeviceTransfer__d_messages_so_far">目前為止 %1$d 個訊息…</string>
   <string name="DeviceTransfer__cancel">取消</string>
   <string name="DeviceTransfer__try_again">再試一次</string>
+  <string name="DeviceTransfer__stop_transfer_question">係咪要停止轉移？</string>
+  <string name="DeviceTransfer__stop_transfer">停止轉移</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">所有嘅轉移進度將會消失。</string>
+  <string name="DeviceTransfer__transfer_failed">轉移失敗</string>
+  <string name="DeviceTransfer__unable_to_transfer">轉移唔到</string>
   <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">轉移帳戶</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">當您喺部新嘅 Android 機度設定 Signal 嘅時候，您可以轉移您嘅 Signal 帳戶。咁係繼續之前：</string>
   <string name="OldDeviceTransferInstructions__first_bullet">一、</string>
   <string name="OldDeviceTransferInstructions__second_bullet">二、</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">撳一下「轉移或還原帳戶」</string>
   <string name="OldDeviceTransferInstructions__third_bullet">三、</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">當出現提示嘅時候揀選「由另一部 Android 機搬過嚟」，然後「繼續」。將兩部機保持喺左近。</string>
   <string name="OldDeviceTransferInstructions__continue">繼續</string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">轉移完成</string>
   <string name="OldDeviceTransferComplete__close">關閉</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">轉移成功</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">轉移完成</string>
   <string name="NewDeviceTransferComplete__continue_registration">繼續註冊</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">帳戶轉移</string>
+  <string name="DeviceToDeviceTransferService_status_ready">準備緊同您另一部 Android 機連線…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">準備緊同您另一部 Android 機連線…</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">轉移緊帳戶…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__done">搞掂</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__dont_transfer">唔好轉移</string>
   <string name="AdvancedPreferenceFragment__transfer">轉移</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">封鎖</string>

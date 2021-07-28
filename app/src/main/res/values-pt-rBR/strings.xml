@@ -57,7 +57,7 @@
   <string name="AttachmentKeyboard_gallery">Galeria</string>
   <string name="AttachmentKeyboard_file">Arquivo</string>
   <string name="AttachmentKeyboard_contact">Contato</string>
-  <string name="AttachmentKeyboard_location">Local</string>
+  <string name="AttachmentKeyboard_location">Localização</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal precisa de permissão para mostrar suas fotos e vídeos.</string>
   <string name="AttachmentKeyboard_give_access">Permitir acesso</string>
   <string name="AttachmentKeyboard_payment">Pagamento</string>
@@ -124,11 +124,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Remover a foto do grupo?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Atualizar o Signal</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Esta versão do aplicativo já não é suportada. Para poder enviar e receber as mensagens, atualize para a versão mais recente.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Esta versão do aplicativo já não é mais suportada. Para continuar enviando e recebendo mensagens, atualize para a versão mais recente.</string>
   <string name="ClientDeprecatedActivity_update">Atualizar</string>
   <string name="ClientDeprecatedActivity_dont_update">Não atualizar</string>
   <string name="ClientDeprecatedActivity_warning">Cuidado</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">A sua versão do Signal não é mais suportada. Ainda pode ver seu histórico de mensagens mas não poderá enviar ou receber mensagens até que atualize o Signal.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Sua versão do Signal não é mais suportada. Você pode ver seu histórico de mensagens, mas não poderá enviar ou receber mensagens até baixar a nova atualização.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nenhum navegador encontrado.</string>
   <string name="CommunicationActions_send_email">Enviar e-mail</string>
@@ -136,8 +136,8 @@
   <string name="CommunicationActions_start_voice_call">Iniciar chamada de voz?</string>
   <string name="CommunicationActions_cancel">Cancelar</string>
   <string name="CommunicationActions_call">Ligar</string>
-  <string name="CommunicationActions_insecure_call">Chamada insegura</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">Taxas da operadora podem ser cobradas. O número que você está ligando não está registrado no Signal. Essa chamada será feita por meio da sua operadora, não por meio da internet.</string>
+  <string name="CommunicationActions_insecure_call">Chamada desconhecida</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Taxas da operadora podem ser cobradas. O número para o qual você está ligando não possui registro no Signal. Esta chamada será feita por meio da sua operadora, e não por meio da internet.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Seu número de segurança com %1$s mudou. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que %2$s simplesmente reinstalou o Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Talvez você queira verificar seu número de segurança com esse contato.</string>
@@ -182,7 +182,7 @@
   <string name="ConversationItem_download_more">  Baixe mais</string>
   <string name="ConversationItem_pending">  Pendente</string>
   <string name="ConversationItem_this_message_was_deleted">Essa mensagem foi suprimida.</string>
-  <string name="ConversationItem_you_deleted_this_message">Você apagou essa mensagem.</string>
+  <string name="ConversationItem_you_deleted_this_message">Você apagou esta mensagem.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão segura?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode ajudar se você está tendo problemas de criptografia nesta conversa. Suas mensagens serão mantidas.</string>
@@ -207,7 +207,7 @@
   <string name="ConversationActivity_unblock">Desbloquear</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo excede os limites de tamanho para o tipo de mensagem sendo enviada.</string>
   <string name="ConversationActivity_unable_to_record_audio">Não foi possível gravar o áudio!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Você não pode enviar as mensagens para este grupo porque não é mais um membro.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Você não pode enviar mensagens para este grupo, porque não é mais um membro.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Não há nenhum aplicativo disponível no seu dispositivo para abrir este link.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Seu pedido para participar foi enviado ao administrador do grupo. Você será notificado quando a decisão for tomada.</string>
   <string name="ConversationActivity_cancel_request">Cancelar pedido</string>
@@ -339,6 +339,7 @@
   <string name="ChooseBackupFragment__icon_content_description">O ícone Restaurar do backup</string>
   <string name="ChooseBackupFragment__choose_backup">Escolha o backup</string>
   <string name="ChooseBackupFragment__learn_more">Saiba mais</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Nenhum gerenciador de arquivos está instalado</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Restauração concluída</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Para continuar usando os backups, por favor, escolha uma pasta. Novos backups serão salvos neste local.</string>
@@ -821,6 +822,7 @@
   <string name="Megaphones_invite_friends">Convidar amigos(as)</string>
   <string name="Megaphones_use_sms">Usar SMS</string>
   <string name="Megaphones_appearance">Aparência</string>
+  <string name="Megaphones_add_photo">Adicionar foto</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal em andamento</string>
   <string name="NotificationBarManager__establishing_signal_call">Estabelecendo chamada Signal</string>
@@ -1346,6 +1348,7 @@
   <string name="SubmitDebugLogActivity_success">Sucesso!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copie esse URL e adicione-o ao seu relatório de problemas ou e-mail de suporte: \n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Compartilhar</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Este registro será postado publicamente on-line para que os contribuidores possam vê-lo. Você pode analisá-lo antes de enviar.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Info do aparelho:</string>
@@ -1760,7 +1763,7 @@
   <string name="EditAboutFragment_speak_freely">Fale livremente</string>
   <string name="EditAboutFragment_encrypted">Criptografado</string>
   <string name="EditAboutFragment_be_kind">Seja gentil</string>
-  <string name="EditAboutFragment_coffee_lover">Eu amo café</string>
+  <string name="EditAboutFragment_coffee_lover">Amante de café</string>
   <string name="EditAboutFragment_free_to_chat">Disponível para conversar</string>
   <string name="EditAboutFragment_taking_a_break">Relaxando</string>
   <string name="EditAboutFragment_working_on_something_new">Trabalhando em algo novo</string>
@@ -2080,7 +2083,7 @@
   <string name="PaymentsHomeFragment__send">Enviar</string>
   <string name="PaymentsHomeFragment__sent_s">Enviou %1$s</string>
   <string name="PaymentsHomeFragment__received_s">Recebeu %1$s</string>
-  <string name="PaymentsHomeFragment__transfer_to_exchange">Transferir para exchange</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">Transferir para intermediação de troca</string>
   <string name="PaymentsHomeFragment__currency_conversion">Conversão de moeda</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Desativar o módulo de pagamentos</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Senha de recuperação</string>
@@ -2105,13 +2108,13 @@
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Você pode usar o Signal para enviar e receber MobileCoin. Todos os pagamentos estão sujeitos aos Termos de Uso de MobileCoins e de uma Carteira MobileCoin. Esse recurso está sendo testado, portanto você poderá encontrar alguns problemas. Pagamentos que você realizar ou saldos que você perder não podem ser recuperados.</string>
   <string name="PaymentsHomeFragment__activate">Ativar</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ver os termos da MobileCoin</string>
-  <string name="PaymentsHomeFragment__payments_not_available">Pagamentos no Signal não estão mais disponíveis. Você ainda pode transferir fundos para uma exchange, mas não pode mais enviar e receber pagamentos ou adicionar fundos.</string>
+  <string name="PaymentsHomeFragment__payments_not_available">O módulo de Pagamentos não está mais disponível no Signal. Você ainda pode transferir fundos para uma intermediação de troca, mas não pode mais enviar e receber pagamentos ou adicionar fundos.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Adicionar fundos</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Endereço da sua carteira</string>
   <string name="PaymentsAddMoneyFragment__copy">Copiar</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copiado para a área de transferência</string>
-  <string name="PaymentsAddMoneyFragment__to_add_funds">Para adicionar fundos, envie MobileCoin para o endereço da sua carteira. Inicie uma transação de sua conta em uma exchange que suporte MobileCoin, depois escaneie o código QR ou copie o endereço da sua carteira.</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Para adicionar fundos, envie MobileCoin para o endereço da sua carteira. Inicie uma transação em sua conta com uma intermediação de troca que suporte MobileCoin, depois escaneie o código QR ou copie o endereço da sua carteira.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detalhes</string>
   <string name="PaymentsDetailsFragment__status">Status</string>
@@ -2138,11 +2141,11 @@
   <string name="PaymentsTransferFragment__transfer">Transferir</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Escanear o código QR</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Para: escaneie ou insira o endereço da carteira</string>
-  <string name="PaymentsTransferFragment__you_can_transfer">Você pode transferir MobileCoin fazendo uma transferência para o endereço da carteira fornecido pela exchange. O endereço da carteira é a sequência de números e letras comumente encontrada abaixo do código QR.</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Você pode transferir MobileCoin fazendo uma transferência para o endereço da carteira fornecido pela intermediação de troca. O endereço da carteira é a sequência de números e letras comumente encontrada abaixo do código QR.</string>
   <string name="PaymentsTransferFragment__next">Próximo</string>
   <string name="PaymentsTransferFragment__invalid_address">Endereço inválido</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">Verifique o endereço da carteira para o qual você está tentando transferir e tente novamente.</string>
-  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Você não pode transferir para seu próprio endereço de carteira Signal. Digite o endereço da carteira de sua conta em uma exchange válida.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Você não pode transferir para o endereço da sua própria carteira Signal. Digite o endereço de uma carteira sua que esteja em uma intermediação de troca válida.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Para escanear um código QR, o Signal precisa de acesso à sua câmera.</string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal precisa da permissão da Câmera para escanear um código QR. Vá para as configurações, selecione \"Permissões\", e habilite \"Câmera\".</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Para escanear um código QR, o Signal precisa de acesso à sua câmera.</string>
@@ -2792,7 +2795,7 @@
   <string name="payment_info_card_adding_funds">Adicionando fundos</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">Você pode enviar MobileCoin para o endereço da sua carteira, de modo a usá-lo no Signal.</string>
   <string name="payment_info_card_cashing_out">Sacar</string>
-  <string name="payment_info_card_you_can_cash_out_mobilecoin">Você pode sacar MobileCoin a qualquer momento em uma exchange que aceite MobileCoin. Basta fazer uma transferência para sua conta nessa exchange.</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Você pode sacar MobileCoin a qualquer momento em uma intermediação de troca que aceite MobileCoin. Basta fazer uma transferência para a sua conta nessa intermediação de troca.</string>
   <string name="payment_info_card_hide_this_card">Esconder este cartão?</string>
   <string name="payment_info_card_hide">Ocultar</string>
   <string name="payment_info_card_record_recovery_phrase">Gravar senha de recuperação</string>
@@ -2978,7 +2981,10 @@
   <string name="ChatColorsMegaphone__appearance">Aparência</string>
   <string name="ChatColorsMegaphone__not_now">Agora não</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Adicionar uma foto de perfil</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Escolha uma imagem e uma cor ou escreva suas iniciais.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Agora não</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Adicionar foto</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emojis</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Fazer pesquisa de emoji</string>
@@ -3057,17 +3063,24 @@
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Pré-visualização da foto de perfil</string>
   <string name="AvatarPickerFragment__camera">Câmera</string>
+  <string name="AvatarPickerFragment__take_a_picture">Tirar uma foto</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Escolher uma foto</string>
   <string name="AvatarPickerFragment__photo">Foto</string>
   <string name="AvatarPickerFragment__text">Texto</string>
   <string name="AvatarPickerFragment__save">Salvar</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Escolher uma foto</string>
+  <string name="AvatarPickerFragment__clear_avatar">Remover foto</string>
   <string name="AvatarPickerFragment__edit">Editar</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Falha ao salvar a foto</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Pré-visualização</string>
   <string name="TextAvatarCreationFragment__done">Pronto</string>
   <string name="TextAvatarCreationFragment__text">Texto</string>
   <string name="TextAvatarCreationFragment__color">Cor</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Escolher uma cor</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>

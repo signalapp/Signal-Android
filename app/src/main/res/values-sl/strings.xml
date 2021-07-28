@@ -358,6 +358,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Obnovi iz ikone varnostne kopije</string>
   <string name="ChooseBackupFragment__choose_backup">Izberi varnostno kopijo</string>
   <string name="ChooseBackupFragment__learn_more">Izvedite več</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Ni nameščene aplikacije za upravljanje datotek</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Obnovitev uspešna</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Če želite nadaljevati z varnostnim kopiranjem, izberite željeno mapo. Nove varnostne kopije bodo shranjene na to mesto.</string>

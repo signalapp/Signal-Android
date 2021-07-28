@@ -340,6 +340,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Back-upgegevens terugzetten pictogram</string>
   <string name="ChooseBackupFragment__choose_backup">Back-upbestand kiezen</string>
   <string name="ChooseBackupFragment__learn_more">Meer leren hierover</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Geen bestandsbrowser beschikbaar</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Gegevens herstellen vanuit een back-upbestand is voltooid</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Om back-upbestanden te blijven maken, kies een directory waar je back-upbestanden vanaf nu in wilt opslaan.</string>

@@ -339,6 +339,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Símbolo de restaurar desde copia de seguridad</string>
   <string name="ChooseBackupFragment__choose_backup">Selecciona copia</string>
   <string name="ChooseBackupFragment__learn_more">Saber más</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Navegador de archivos no disponible</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Recuperación completada</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Selecciona una carpeta para continuar usando las copias de seguridad. Las nuevas copias se guardarán en esa carpeta.</string>

@@ -361,6 +361,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Atkūrimo iš atsarginės kopijos piktograma</string>
   <string name="ChooseBackupFragment__choose_backup">Pasirinkti atsarginę kopiją</string>
   <string name="ChooseBackupFragment__learn_more">Sužinoti daugiau</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Neprieinama jokia failų naršyklė</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Atkūrimas užbaigtas</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Norėdami ir toliau naudoti atsargines kopijas, pasirinkite aplanką. Šioje vietoje bus įrašytos naujos atsarginės kopijos.</string>

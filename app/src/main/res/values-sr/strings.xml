@@ -350,6 +350,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Икона за враћање из резервне копије</string>
   <string name="ChooseBackupFragment__choose_backup">Одабери резервну копију</string>
   <string name="ChooseBackupFragment__learn_more">Сазнај више</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Није доступан претраживач датотека.</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Враћање је завршено</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Да бисте наставили да користите резервне копије, одаберите фасциклу. Нове резервне копије ће се чувати на овој локацији.</string>

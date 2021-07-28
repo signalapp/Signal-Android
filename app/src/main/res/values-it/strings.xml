@@ -339,6 +339,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Icona ripristina da backup</string>
   <string name="ChooseBackupFragment__choose_backup">Scegli backup</string>
   <string name="ChooseBackupFragment__learn_more">Scopri di più</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Nessun browser di file disponibile</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Ripristino completato</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Per continuare a utilizzare i backup, scegli una cartella. I nuovi backup verranno salvati in questa posizione.</string>

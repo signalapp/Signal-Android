@@ -361,6 +361,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Ikona obnovení ze zálohy</string>
   <string name="ChooseBackupFragment__choose_backup">Vyberte zálohu</string>
   <string name="ChooseBackupFragment__learn_more">Zjistit více</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Není k dispozici žádná aplikace pro prohlížení souborů</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Obnova dokončena</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Vyberte složku, abyste mohli nadále využívat zálohy. Nové zálohy budou uloženy v tomto umístění.</string>

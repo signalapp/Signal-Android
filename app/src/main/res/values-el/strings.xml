@@ -336,6 +336,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Εικονίδιο ανάκτησης από αντίγραφο ασφαλείας</string>
   <string name="ChooseBackupFragment__choose_backup">Επιλογή αντιγράφου ασφαλείας</string>
   <string name="ChooseBackupFragment__learn_more">Μάθε περισσότερα</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Δεν υπάρχει διαθέσιμη εφαρμογή περιήγησης αρχείων</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Η ανάκτηση ολοκληρώθηκε</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Για να συνεχίσεις να χρησιμοποιείς τα αντίγραφα ασφαλείας, παρακαλώ επέλεξε ένα φάκελο. Τα νέα αντίγραφα θα αποθηκεύονται σε αυτή την τοποθεσία.</string>
