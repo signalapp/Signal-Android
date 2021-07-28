@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.mms.GlideRequests
 
-class HomeAdapter(context: Context, cursor: Cursor) : CursorRecyclerViewAdapter<HomeAdapter.ViewHolder>(context, cursor) {
+class HomeAdapter(context: Context, cursor: Cursor?) : CursorRecyclerViewAdapter<HomeAdapter.ViewHolder>(context, cursor) {
     private val threadDatabase = DatabaseFactory.getThreadDatabase(context)
     lateinit var glide: GlideRequests
     var typingThreadIDs = setOf<Long>()

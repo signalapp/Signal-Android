@@ -116,19 +116,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         })
         // Set up new conversation button set
         newConversationButtonSet.delegate = this
-        // Set up typing observer
-        ApplicationContext.getInstance(this).typingStatusRepository.typingThreads.observe(this, Observer<Set<Long>> { threadIDs ->
-            val adapter = recyclerView.adapter as HomeAdapter
-            adapter.typingThreadIDs = threadIDs ?: setOf()
-        })
-        // Set up remaining components if needed
-        val application = ApplicationContext.getInstance(this)
-        val userPublicKey = TextSecurePreferences.getLocalNumber(this)
-        if (userPublicKey != null) {
-            OpenGroupManager.startPolling()
-            JobQueue.shared.resumePendingJobs()
-        }
-        application.registerForFCMIfNeeded(false)
         // Observe blocked contacts changed events
         val broadcastReceiver = object : BroadcastReceiver() {
 
@@ -138,8 +125,21 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         }
         this.broadcastReceiver = broadcastReceiver
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, IntentFilter("blockedContactsChanged"))
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenResumed {
             // update things based on TextSecurePrefs (profile info etc)
+            // Set up typing observer
+            ApplicationContext.getInstance(this@HomeActivity).typingStatusRepository.typingThreads.observe(this@HomeActivity, Observer<Set<Long>> { threadIDs ->
+                val adapter = recyclerView.adapter as HomeAdapter
+                adapter.typingThreadIDs = threadIDs ?: setOf()
+            })
+            // Set up remaining components if needed
+            val application = ApplicationContext.getInstance(this@HomeActivity)
+            application.registerForFCMIfNeeded(false)
+            val userPublicKey = TextSecurePreferences.getLocalNumber(this@HomeActivity)
+            if (userPublicKey != null) {
+                OpenGroupManager.startPolling()
+                JobQueue.shared.resumePendingJobs()
+            }
             updateProfileButton()
             IP2Country.configureIfNeeded(this@HomeActivity)
             TextSecurePreferences.events.filter { it == TextSecurePreferences.PROFILE_NAME_PREF }.collect {
