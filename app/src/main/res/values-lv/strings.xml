@@ -1514,6 +1514,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences__five_times">Piecreiz</string>
   <string name="preferences__ten_times">Desmit reizes</string>
   <string name="preferences__vibrate">Vibrācija</string>
+  <string name="preferences__notdisturb">Netraucēt</string>
   <string name="preferences__green">Zaļš</string>
   <string name="preferences__red">Sarkans</string>
   <string name="preferences__blue">Zils</string>

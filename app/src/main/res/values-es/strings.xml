@@ -1926,6 +1926,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__five_times">Cinco veces</string>
   <string name="preferences__ten_times">Diez veces</string>
   <string name="preferences__vibrate">Vibración</string>
+  <string name="preferences__notdisturb">No molestar</string>
   <string name="preferences__green">Verde</string>
   <string name="preferences__red">Rojo</string>
   <string name="preferences__blue">Azul</string>

@@ -141,6 +141,7 @@ public class TextSecurePreferences {
   public static final String CALL_NOTIFICATIONS_PREF = "pref_call_notifications";
   public static final String CALL_RINGTONE_PREF      = "pref_call_ringtone";
   public static final String CALL_VIBRATE_PREF       = "pref_call_vibrate";
+  public static final String CALL_NOT_DISTURB_PREF       = "pref_call_notdisturb";
 
   private static final String NEXT_PRE_KEY_ID          = "pref_next_pre_key_id";
   private static final String ACTIVE_SIGNED_PRE_KEY_ID = "pref_active_signed_pre_key_id";
@@ -1042,6 +1043,10 @@ public class TextSecurePreferences {
     }
 
     return getBooleanPreference(context, CALL_VIBRATE_PREF, defaultValue);
+  }
+
+  public static boolean isCallNotDisturbVibrateEnabled(Context context) {
+    return getBooleanPreference(context, CALL_NOT_DISTURB_PREF, false);
   }
 
   @Deprecated

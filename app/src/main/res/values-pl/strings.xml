@@ -2064,6 +2064,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__five_times">Pięć razy</string>
   <string name="preferences__ten_times">Dziesięć razy</string>
   <string name="preferences__vibrate">Wibracja</string>
+  <string name="preferences__notdisturb">Nie przeszkadzać</string>
   <string name="preferences__green">Zielony</string>
   <string name="preferences__red">Czerwony</string>
   <string name="preferences__blue">Niebieski</string>

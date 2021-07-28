@@ -1930,6 +1930,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences__five_times">Fem gongar</string>
   <string name="preferences__ten_times">Ti gongar</string>
   <string name="preferences__vibrate">Vibrer</string>
+  <string name="preferences__notdisturb">Stör inte</string>
   <string name="preferences__green">Grøn</string>
   <string name="preferences__red">Raud</string>
   <string name="preferences__blue">Blå</string>

@@ -1883,6 +1883,7 @@
   <string name="preferences__five_times">ఐదు సార్లు</string>
   <string name="preferences__ten_times">పది సార్లు</string>
   <string name="preferences__vibrate">ప్రకంపన</string>
+  <string name="preferences__notdisturb">డిస్టర్బ్ చేయకు</string>
   <string name="preferences__green">ఆకు పచ్చ</string>
   <string name="preferences__red">ఎరుపు</string>
   <string name="preferences__blue">నీలం</string>

@@ -89,6 +89,11 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
     store.update { getState() }
   }
 
+  fun setCallNotDisturbEnabled(enabled: Boolean) {
+    SignalStore.settings().isCallNotDisturbEnabled = enabled
+    store.update { getState() }
+  }
+
   fun setNotifyWhenContactJoinsSignal(enabled: Boolean) {
     SignalStore.settings().isNotifyWhenContactJoinsSignal = enabled
     store.update { getState() }
@@ -109,7 +114,8 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
     callNotificationsState = CallNotificationsState(
       notificationsEnabled = SignalStore.settings().isCallNotificationsEnabled,
       ringtone = SignalStore.settings().callRingtone,
-      vibrateEnabled = SignalStore.settings().isCallVibrateEnabled
+      vibrateEnabled = SignalStore.settings().isCallVibrateEnabled,
+      notDisturbEnabled = SignalStore.settings().isCallNotDisturbEnabled
     ),
     notifyWhenContactJoinsSignal = SignalStore.settings().isNotifyWhenContactJoinsSignal
   )

@@ -1924,7 +1924,8 @@
   <string name="preferences__three_times">Þrisvar sinnum</string>
   <string name="preferences__five_times">Fimm sinnum</string>
   <string name="preferences__ten_times">Tíu sinnum</string>
-  <string name="preferences__vibrate">Titra</string>
+  <string name="preferences__vibrate">Mos shqeteso</string>
+  <string name="preferences__notdisturb">Do not disturb</string>
   <string name="preferences__green">Grænt</string>
   <string name="preferences__red">Rautt</string>
   <string name="preferences__blue">Blátt</string>

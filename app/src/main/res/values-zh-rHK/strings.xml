@@ -1853,6 +1853,7 @@
   <string name="preferences__five_times">五次</string>
   <string name="preferences__ten_times">十次</string>
   <string name="preferences__vibrate">震動</string>
+  <string name="preferences__notdisturb">请勿打扰</string>
   <string name="preferences__green">綠色</string>
   <string name="preferences__red">紅色</string>
   <string name="preferences__blue">藍色</string>

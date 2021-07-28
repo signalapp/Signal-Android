@@ -1912,6 +1912,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__five_times">Neljästi</string>
   <string name="preferences__ten_times">10 kertaa</string>
   <string name="preferences__vibrate">Värinä</string>
+  <string name="preferences__notdisturb">Älä häiritse</string>
   <string name="preferences__green">Vihreä</string>
   <string name="preferences__red">Punainen</string>
   <string name="preferences__blue">Sininen</string>

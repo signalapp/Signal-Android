@@ -2272,6 +2272,7 @@
     <string name="preferences__five_times">Five times</string>
     <string name="preferences__ten_times">Ten times</string>
     <string name="preferences__vibrate">Vibrate</string>
+    <string name="preferences__notdisturb">Do not disturb</string>
     <string name="preferences__green">Green</string>
     <string name="preferences__red">Red</string>
     <string name="preferences__blue">Blue</string>

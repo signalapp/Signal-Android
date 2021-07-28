@@ -1918,6 +1918,7 @@
   <string name="preferences__five_times">Cinq fois</string>
   <string name="preferences__ten_times">Dix fois</string>
   <string name="preferences__vibrate">Vibrer</string>
+  <string name="preferences__notdisturb">Ne pas déranger</string>
   <string name="preferences__green">Verte</string>
   <string name="preferences__red">Rouge</string>
   <string name="preferences__blue">Bleue</string>

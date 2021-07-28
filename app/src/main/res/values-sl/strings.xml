@@ -2060,6 +2060,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__five_times">Petkrat</string>
   <string name="preferences__ten_times">Desetkrat</string>
   <string name="preferences__vibrate">Vibriranje</string>
+  <string name="preferences__notdisturb">Ne moti</string>
   <string name="preferences__green">Zelena</string>
   <string name="preferences__red">Rdeča</string>
   <string name="preferences__blue">Modra</string>

@@ -1998,6 +1998,7 @@
   <string name="preferences__five_times">Пет пута</string>
   <string name="preferences__ten_times">Десет пута</string>
   <string name="preferences__vibrate">Вибрирање</string>
+  <string name="preferences__notdisturb">Не узнемиравају</string>
   <string name="preferences__green">Зелена</string>
   <string name="preferences__red">Црвена</string>
   <string name="preferences__blue">Плава</string>

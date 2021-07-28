@@ -214,6 +214,14 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
         }
       )
 
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences__notdisturb),
+        isChecked = state.callNotificationsState.notDisturbEnabled,
+        onClick = {
+          viewModel.setCallNotDisturbEnabled(!state.callNotificationsState.notDisturbEnabled)
+        }
+      )
+
       dividerPref()
 
       sectionHeaderPref(R.string.NotificationsSettingsFragment__notify_when)

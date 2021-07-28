@@ -1282,6 +1282,7 @@ nambari yako ya simu</string>
   <string name="preferences__five_times">Mara tano</string>
   <string name="preferences__ten_times">Mara kumi</string>
   <string name="preferences__vibrate">Tetemeka</string>
+  <string name="preferences__notdisturb">Usisumbue</string>
   <string name="preferences__green">Kijani</string>
   <string name="preferences__red">Nyekundu</string>
   <string name="preferences__blue">Buluu</string>

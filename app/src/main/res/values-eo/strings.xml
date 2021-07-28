@@ -1920,6 +1920,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__five_times">Kvinfoje</string>
   <string name="preferences__ten_times">Dekfoje</string>
   <string name="preferences__vibrate">Vibrado</string>
+  <string name="preferences__notdisturb">Ne ĝenu</string>
   <string name="preferences__green">Verda</string>
   <string name="preferences__red">Ruĝa</string>
   <string name="preferences__blue">Blua</string>

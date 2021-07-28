@@ -1843,6 +1843,7 @@
   <string name="preferences__five_times">5回</string>
   <string name="preferences__ten_times">10回</string>
   <string name="preferences__vibrate">バイブレーション</string>
+  <string name="preferences__notdisturb">邪魔しないでください</string>
   <string name="preferences__green">緑</string>
   <string name="preferences__red">赤</string>
   <string name="preferences__blue">青</string>

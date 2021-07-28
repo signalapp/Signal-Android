@@ -327,6 +327,11 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
       return;
     }
 
+    if(SignalStore.settings().isCallNotDisturbEnabled()){
+      Log.w(TAG, "Unable to start call, do not disturb option is enabled");
+      return;
+    }
+
     if (remote == null) {
       return;
     }

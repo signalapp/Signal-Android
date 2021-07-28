@@ -1902,6 +1902,7 @@
   <string name="preferences__five_times">Πέντε φορές</string>
   <string name="preferences__ten_times">Δέκα φορές</string>
   <string name="preferences__vibrate">Δόνηση</string>
+  <string name="preferences__notdisturb">Μην ενοχλείτε</string>
   <string name="preferences__green">Πράσινο</string>
   <string name="preferences__red">Κόκκινο</string>
   <string name="preferences__blue">Μπλε</string>

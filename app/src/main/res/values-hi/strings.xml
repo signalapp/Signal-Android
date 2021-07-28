@@ -1841,6 +1841,7 @@
   <string name="preferences__five_times">पांच बार </string>
   <string name="preferences__ten_times">दस बार </string>
   <string name="preferences__vibrate"> वाइब्रेट</string>
+  <string name="preferences__notdisturb">परेशान न करें</string>
   <string name="preferences__green">हरा</string>
   <string name="preferences__red">लाल</string>
   <string name="preferences__blue">नीला</string>

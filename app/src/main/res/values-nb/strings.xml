@@ -1903,6 +1903,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__five_times">Fem ganger</string>
   <string name="preferences__ten_times">Ti ganger</string>
   <string name="preferences__vibrate">Vibrer</string>
+  <string name="preferences__notdisturb">Ikke forstyrr</string>
   <string name="preferences__green">Grønn</string>
   <string name="preferences__red">Rød</string>
   <string name="preferences__blue">Blå</string>

@@ -2071,6 +2071,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__five_times">Pětkrát</string>
   <string name="preferences__ten_times">Desetkrát</string>
   <string name="preferences__vibrate">Vibrovat</string>
+  <string name="preferences__notdisturb">Nerušit</string>
   <string name="preferences__green">Zelená</string>
   <string name="preferences__red">Červená</string>
   <string name="preferences__blue">Modrá</string>

@@ -2071,6 +2071,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__five_times">Päťkrát</string>
   <string name="preferences__ten_times">Desaťkrát</string>
   <string name="preferences__vibrate">Vibrácie</string>
+  <string name="preferences__notdisturb">Nevyrušujte</string>
   <string name="preferences__green">Zelená</string>
   <string name="preferences__red">Červená</string>
   <string name="preferences__blue">Modrá</string>

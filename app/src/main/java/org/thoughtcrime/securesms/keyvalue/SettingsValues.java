@@ -61,6 +61,7 @@ public final class SettingsValues extends SignalStoreValues {
   public static final  String CALL_NOTIFICATIONS_ENABLED              = "settings.call.notifications.enabled";
   public static final  String CALL_RINGTONE                           = "settings.call.ringtone";
   public static final  String CALL_VIBRATE_ENABLED                    = "settings.call.vibrate.enabled";
+  public static final  String CALL_NOT_DISTURB_ENABLED                = "settings.call.notdisturb.enabled";
   public static final  String NOTIFY_WHEN_CONTACT_JOINS_SIGNAL        = "settings.notify.when.contact.joins.signal";
   private static final String DEFAULT_SMS                             = "settings.default_sms";
   private static final String UNIVERSAL_EXPIRE_TIMER                  = "settings.universal.expire.timer";
@@ -105,6 +106,7 @@ public final class SettingsValues extends SignalStoreValues {
                          CALL_NOTIFICATIONS_ENABLED,
                          CALL_RINGTONE,
                          CALL_VIBRATE_ENABLED,
+                         CALL_NOT_DISTURB_ENABLED,
                          NOTIFY_WHEN_CONTACT_JOINS_SIGNAL,
                          UNIVERSAL_EXPIRE_TIMER);
   }
@@ -342,6 +344,14 @@ public final class SettingsValues extends SignalStoreValues {
 
   public void setCallVibrateEnabled(boolean callVibrateEnabled) {
     putBoolean(CALL_VIBRATE_ENABLED, callVibrateEnabled);
+  }
+
+  public boolean isCallNotDisturbEnabled() {
+    return getBoolean(CALL_NOT_DISTURB_ENABLED, TextSecurePreferences.isCallNotDisturbVibrateEnabled(ApplicationDependencies.getApplication()));
+  }
+
+  public void setCallNotDisturbEnabled(boolean callVibrateEnabled) {
+    putBoolean(CALL_NOT_DISTURB_ENABLED, callVibrateEnabled);
   }
 
   public boolean isNotifyWhenContactJoinsSignal() {

@@ -1991,6 +1991,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__five_times">De cinci ori</string>
   <string name="preferences__ten_times">De zece ori</string>
   <string name="preferences__vibrate">Vibrații</string>
+  <string name="preferences__notdisturb">Nu deranjați</string>
   <string name="preferences__green">Verde</string>
   <string name="preferences__red">Roşu</string>
   <string name="preferences__blue">Albastru</string>

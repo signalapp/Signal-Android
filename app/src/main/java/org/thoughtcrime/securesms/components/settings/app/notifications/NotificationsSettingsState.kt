@@ -23,5 +23,6 @@ data class MessageNotificationsState(
 data class CallNotificationsState(
   val notificationsEnabled: Boolean,
   val ringtone: Uri,
-  val vibrateEnabled: Boolean
+  val vibrateEnabled: Boolean,
+  val notDisturbEnabled: Boolean
 )

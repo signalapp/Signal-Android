@@ -1922,6 +1922,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__five_times">4 gange</string>
   <string name="preferences__ten_times">10 gange</string>
   <string name="preferences__vibrate">Vibration</string>
+  <string name="preferences__notdisturb">Forstyr ikke</string>
   <string name="preferences__green">Grøn</string>
   <string name="preferences__red">Rød</string>
   <string name="preferences__blue">Blå</string>

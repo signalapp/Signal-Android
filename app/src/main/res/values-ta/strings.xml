@@ -1857,6 +1857,7 @@
   <string name="preferences__five_times">ஐந்து முறை</string>
   <string name="preferences__ten_times">பத்து முறை</string>
   <string name="preferences__vibrate">அதிர்வு</string>
+  <string name="preferences__notdisturb">தொந்தரவு செய்யாதீர்</string>
   <string name="preferences__green">பச்சை</string>
   <string name="preferences__red">சிவப்பு</string>
   <string name="preferences__blue">நீலம்</string>

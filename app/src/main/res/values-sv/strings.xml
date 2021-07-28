@@ -1920,6 +1920,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__five_times">Fem gånger</string>
   <string name="preferences__ten_times">Tio gånger</string>
   <string name="preferences__vibrate">Vibrera</string>
+  <string name="preferences__notdisturb">Stör inte</string>
   <string name="preferences__green">Grön</string>
   <string name="preferences__red">Röd</string>
   <string name="preferences__blue">Blå</string>

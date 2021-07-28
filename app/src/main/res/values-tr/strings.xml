@@ -1923,6 +1923,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__five_times">Beş kez</string>
   <string name="preferences__ten_times">On kez</string>
   <string name="preferences__vibrate">Titreşim</string>
+  <string name="preferences__notdisturb">Rahatsız etmeyin</string>
   <string name="preferences__green">Yeşil</string>
   <string name="preferences__red">Kırmızı</string>
   <string name="preferences__blue">Mavi</string>

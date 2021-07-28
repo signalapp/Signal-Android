@@ -1915,6 +1915,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__five_times">Fünfmal</string>
   <string name="preferences__ten_times">Zehnmal</string>
   <string name="preferences__vibrate">Vibration</string>
+  <string name="preferences__notdisturb">Störe nicht</string>
   <string name="preferences__green">Grün</string>
   <string name="preferences__red">Rot</string>
   <string name="preferences__blue">Blau</string>

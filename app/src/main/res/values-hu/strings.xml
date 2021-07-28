@@ -1922,6 +1922,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__five_times">Ötször</string>
   <string name="preferences__ten_times">Tízszer</string>
   <string name="preferences__vibrate">Rezgés</string>
+  <string name="preferences__notdisturb">Ne zavarj</string>
   <string name="preferences__green">Zöld</string>
   <string name="preferences__red">Vörös</string>
   <string name="preferences__blue">Kék</string>

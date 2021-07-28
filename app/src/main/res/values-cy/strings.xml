@@ -2074,6 +2074,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__five_times">Pumwaith</string>
   <string name="preferences__ten_times">Degwaith</string>
   <string name="preferences__vibrate">Dirgrynu</string>
+  <string name="preferences__notdisturb">Peidiwch ag aflonyddu</string>
   <string name="preferences__green">Gwyrdd</string>
   <string name="preferences__red">Coch</string>
   <string name="preferences__blue">Glas</string>

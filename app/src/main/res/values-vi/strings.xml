@@ -1847,6 +1847,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__five_times">Năm lần</string>
   <string name="preferences__ten_times">Mười lần</string>
   <string name="preferences__vibrate">Rung</string>
+  <string name="preferences__notdisturb">Đừng làm phiền</string>
   <string name="preferences__green">Xanh lục</string>
   <string name="preferences__red">Đỏ</string>
   <string name="preferences__blue">Xanh lam</string>

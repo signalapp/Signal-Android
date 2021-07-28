@@ -1931,6 +1931,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__five_times">Vijf keer</string>
   <string name="preferences__ten_times">Tien keer</string>
   <string name="preferences__vibrate">Trillen</string>
+  <string name="preferences__notdisturb">Niet storen</string>
   <string name="preferences__green">Groen</string>
   <string name="preferences__red">Rood</string>
   <string name="preferences__blue">Blauw</string>

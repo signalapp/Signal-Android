@@ -1800,6 +1800,7 @@
   <string name="preferences__five_times">5번</string>
   <string name="preferences__ten_times">10번</string>
   <string name="preferences__vibrate">진동</string>
+  <string name="preferences__notdisturb">방해하지 마</string>
   <string name="preferences__green">초록색</string>
   <string name="preferences__red">빨간색</string>
   <string name="preferences__blue">파란색</string>

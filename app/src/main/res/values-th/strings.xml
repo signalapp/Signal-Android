@@ -1830,6 +1830,7 @@
   <string name="preferences__five_times">ห้าครั้ง</string>
   <string name="preferences__ten_times">สิบครั้ง</string>
   <string name="preferences__vibrate">สั่น</string>
+  <string name="preferences__notdisturb">ห้ามรบกวน</string>
   <string name="preferences__green">เขียว</string>
   <string name="preferences__red">แดง</string>
   <string name="preferences__blue">น้ำเงิน</string>

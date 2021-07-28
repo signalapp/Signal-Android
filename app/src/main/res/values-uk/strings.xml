@@ -1062,6 +1062,7 @@
   <string name="preferences__five_times">П\'ять разів</string>
   <string name="preferences__ten_times">Десять разів</string>
   <string name="preferences__vibrate">Вібрувати</string>
+    <string name="preferences__notdisturb">Не турбувати</string>
   <string name="preferences__green">Зелений</string>
   <string name="preferences__red">Червоний</string>
   <string name="preferences__blue">Синій</string>

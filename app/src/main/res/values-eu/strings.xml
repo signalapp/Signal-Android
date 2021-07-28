@@ -1858,6 +1858,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences__five_times">Bost aldiz</string>
   <string name="preferences__ten_times">Hamar aldiz</string>
   <string name="preferences__vibrate">Bibratu</string>
+  <string name="preferences__notdisturb">Ittellifx</string>
   <string name="preferences__green">Berdea</string>
   <string name="preferences__red">Gorria</string>
   <string name="preferences__blue">Urdina</string>

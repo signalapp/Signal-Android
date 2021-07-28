@@ -1805,6 +1805,7 @@
   <string name="preferences__five_times">ငါးကြိမ်</string>
   <string name="preferences__ten_times">ဆယ်ကြိမ်</string>
   <string name="preferences__vibrate">တုန်ခါသည်</string>
+  <string name="preferences__notdisturb">မနှောက်ယှက်ပါနှင့်</string>
   <string name="preferences__green">အစိမ်း</string>
   <string name="preferences__red">အနီ</string>
   <string name="preferences__blue">အပြာ</string>

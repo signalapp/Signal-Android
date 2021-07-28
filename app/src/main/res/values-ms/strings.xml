@@ -1132,6 +1132,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences__five_times">Empat kali</string>
   <string name="preferences__ten_times">Sepuluh kali</string>
   <string name="preferences__vibrate">Bergetar</string>
+  <string name="preferences__notdisturb">Jangan ganggu</string>
   <string name="preferences__green">Hijau</string>
   <string name="preferences__red">Merah</string>
   <string name="preferences__blue">Biru</string>

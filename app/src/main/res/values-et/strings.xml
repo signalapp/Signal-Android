@@ -1908,6 +1908,7 @@
   <string name="preferences__five_times">Viis korda</string>
   <string name="preferences__ten_times">Kümme korda</string>
   <string name="preferences__vibrate">Vibratsioon</string>
+  <string name="preferences__notdisturb">Ära sega</string>
   <string name="preferences__green">Roheline</string>
   <string name="preferences__red">Punane</string>
   <string name="preferences__blue">Sinine</string>
