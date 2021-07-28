@@ -307,7 +307,7 @@ public class ConversationItemFooter extends ConstraintLayout {
     } else if (messageRecord.isRateLimited()) {
       dateView.setText(R.string.ConversationItem_send_paused);
     } else {
-      dateView.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getTimestamp()));
+      dateView.setText(DateUtils.getSimpleRelativeTimeSpanString(getContext(), locale, messageRecord.getTimestamp()));
     }
   }
 

@@ -352,7 +352,7 @@ public class ConversationAdapter
     Context             context             = viewHolder.itemView.getContext();
     ConversationMessage conversationMessage = Objects.requireNonNull(getItem(position));
 
-    viewHolder.setText(DateUtils.getRelativeDate(viewHolder.itemView.getContext(), locale, conversationMessage.getMessageRecord().getDateReceived()));
+    viewHolder.setText(DateUtils.getConversationDateHeaderString(viewHolder.itemView.getContext(), locale, conversationMessage.getMessageRecord().getDateReceived()));
 
     if (type == HEADER_TYPE_POPOVER_DATE) {
       if (hasWallpaper) {
