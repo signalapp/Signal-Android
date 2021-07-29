@@ -2447,6 +2447,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Ketuk \"Transfer Akun\" dan kemudian \"Lanjutkan\" pada kedua perangkat</string>
   <!--NewDeviceTransferSetupFragment-->
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Menyiapkan untuk menghubungkan ke perangkat Android lama…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Sedang dalam proses, akan siap segera</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Menunggu perangkat Android lama tersambung…</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal memerlukan akses ke perijinan lokasi untuk menemukan dan menyambungkan dengan perangkat Android lama Anda.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal memerluhkan layanan lokasi diaktifkan untuk menemukan dan menyambungkan dengan perangkat Android lama Anda.</string>
@@ -2885,6 +2886,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Geser untuk mengubah arah gradasi warna</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Warna Percakapan Baru</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Kami mengaktifkan warna percakapan untuk membeikan Anda pilihan lebih dan membuat percakapan lebih mudah dibaca.</string>
   <string name="ChatColorsMegaphone__appearance">Penampilan</string>
   <string name="ChatColorsMegaphone__not_now">Nanti saja</string>
   <!--AddAProfilePhotoMegaphone-->
@@ -2951,8 +2953,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Tidak Senyap</string>
   <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Disenyapkan sampai %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Menyebut</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Selalu berikan notifikasi</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Jangan berikan notifikasi</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notifikasi khusus</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Terakhir digunakan</string>
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>

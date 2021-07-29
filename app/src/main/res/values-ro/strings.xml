@@ -20,7 +20,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">Se anulează înregistrarea</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Se dezabonează de la mesajele și apelurile Signal…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivați mesajele și apelurile Signal? </string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivați mesajele și apeluri Signal prin dezabonarea de la server. Va trebui să vă re-înregistrezi numărul dvs. de telefon pentru a putea să le folosiți din nou în viitor.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivați mesajele și apelurile Signal prin anularea înregistrării în server. Va trebui sa reînregistați numărul dvs. de telefon pentru a le folosi din nou în viitor.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare la server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activat</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Atinge pentru a schimba aplicaţia implicită de SMS </string>
@@ -292,7 +292,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Puteți glisa la stânga pe orice mesaj pentru a răspunde rapid</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Fișierele trimise de tip media vizibile o singură dată sunt eliminate automat după ce sunt trimise</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Ați văzut deja acest mesaj</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Puteți adăuga notiţe pentru dvs. în această conversație.\nDacă sunt dispozitive asociate contului dvs, notiţele noi vor fi sincronizate.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Puteți adăuga notiţe pentru dvs. în această conversație.\nDacă aveți dispozitive asociate contului notiţele noi vor fi sincronizate.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membri ai grupului au același nume.</string>
   <string name="ConversationFragment__tap_to_review">Atingeți pentru examinare</string>
   <string name="ConversationFragment__review_requests_carefully">Examinați cu atenție solicitările</string>
@@ -2145,7 +2145,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsHomeFragment__activate_payments">Activare Plăți</string>
   <string name="PaymentsHomeFragment__activating_payments">Se activează plățile…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Restaurează contul de plăți</string>
-  <string name="PaymentsHomeFragment__no_recent_activity_yet">Nicio activitate recentă incă</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Nu există activitați recente încă</string>
   <string name="PaymentsHomeFragment__pending_requests">Solicitări în așteptare</string>
   <string name="PaymentsHomeFragment__recent_activity">Activități recente</string>
   <string name="PaymentsHomeFragment__see_all">Vezi tot</string>
@@ -2154,28 +2154,28 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsHomeFragment__sent_s">Trimis %1$s</string>
   <string name="PaymentsHomeFragment__received_s">Primit %1$s</string>
   <string name="PaymentsHomeFragment__transfer_to_exchange">Transferați către exchange</string>
-  <string name="PaymentsHomeFragment__currency_conversion">Conversie valutară</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Convertiți moneda</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Dezactivați plățile</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Frază de recuperare</string>
   <string name="PaymentsHomeFragment__help">Ajutor</string>
   <string name="PaymentsHomeFragment__coin_cleanup_fee">Comision curățare monedă</string>
   <string name="PaymentsHomeFragment__sent_payment">Plată trimisă</string>
   <string name="PaymentsHomeFragment__received_payment">Plată primită</string>
-  <string name="PaymentsHomeFragment__processing_payment">Plată în procesare</string>
+  <string name="PaymentsHomeFragment__processing_payment">Se procesează plata</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Conversie valutară indisponibilă</string>
   <string name="PaymentsHomeFragment__cant_display_currency_conversion">Nu se poate afișa conversia valutară. Verificați conexiunea telefonului și încercați din nou</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Plățile nu sunt disponibile in regiunea dvs.</string>
-  <string name="PaymentsHomeFragment__could_not_enable_payments">Nu s-au putut activa plățile. Încercați din nou mai târziu</string>
-  <string name="PaymentsHomeFragment__deactivate_payments_question">Dezactivați Plățile ?</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">Nu s-au putut activa plățile. Încercați din nou mai târziu.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">Dezactivați Plățile?</string>
   <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Nu veti putea trimite sau primi MobileCoin în Signal, dacă dezactivați plățile.</string>
   <string name="PaymentsHomeFragment__deactivate">Dezactivare</string>
   <string name="PaymentsHomeFragment__continue">Continuă</string>
-  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Soldul nu este disponibil momentan</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Soldul nu este disponibil momentan.</string>
   <string name="PaymentsHomeFragment__payments_deactivated">Plățile au fost dezactivate.</string>
   <string name="PaymentsHomeFragment__payment_failed">Plata a eșuat</string>
   <string name="PaymentsHomeFragment__details">Detalii</string>
-  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Puteți folosi Signal pentru a trimite si primi MobileCoin. Toate plățile sunt supuse Termenilor de Utilizare ai Monedei virtuale și Portofelului MobileCoin. Aceasta este o caracteristică beta, prin urmare puteți întâmpina probleme, iar plățile sau soldul pierdut nu pot fi recuperate.</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Puteți utiliza Signal pentru a trimite si primi MobileCoin. Toate plățile sunt supuse Termenilor de Utilizare ai Monedei virtuale și Portofelului MobileCoin. Aceasta este o caracteristică beta, prin urmare puteți întâmpina probleme, iar plățile sau soldul pierdut nu pot fi recuperate.</string>
   <string name="PaymentsHomeFragment__activate">Activare</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Vezi termenii MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Plățile în Signal nu mai sunt disponibile. Puteți transfera în continuare fonduri către un exchange, dar nu mai puteți trimite sau primi plăți ori adăuga fonduri.</string>
@@ -2188,8 +2188,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Detalii</string>
   <string name="PaymentsDetailsFragment__status">Stare</string>
-  <string name="PaymentsDetailsFragment__submitting_payment">Se trimite spre procesare…</string>
-  <string name="PaymentsDetailsFragment__processing_payment">Se procesează…</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">Se trimite plata spre procesare…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">Se procesează plata…</string>
   <string name="PaymentsDetailsFragment__payment_complete">Plată finalizată</string>
   <string name="PaymentsDetailsFragment__payment_failed">Plata a eșuat</string>
   <string name="PaymentsDetailsFragment__network_fee">Comision de rețea</string>
@@ -2199,21 +2199,30 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s la %3$s</string>
   <string name="PaymentsDetailsFragment__to">Către</string>
   <string name="PaymentsDetailsFragment__from">De la</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Comision curățare monedă</string>
+  <string name="PaymentsDetailsFragment__information">Detaliile tranzacției inclusiv valoarea și data acesteia, fac parte din registrul MobileCoin</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">Comision de curățare monedă</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">Un “comision de curațare monedă” este perceput când monedele pe care le dețineți nu pot fi combinate pentru a finaliza o tranzacție. Curățarea vă permite să continuați efectuarea de plăți.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">Nu mai sunt detalii disponibile pentru această tranzacție</string>
   <string name="PaymentsDetailsFragment__sent_payment">Plată efectuată</string>
   <string name="PaymentsDetailsFragment__received_payment">Plată încasată</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">Plată finalizată %1$s</string>
   <string name="PaymentsDetailsFragment__block_number">Blocare număr</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">Transfer</string>
-  <string name="PaymentsTransferFragment__scan_qr_code">Scanează codul QR</string>
+  <string name="PaymentsTransferFragment__scan_qr_code">Scanați codul QR</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Către: Scanați sau introduceți adresa portofelului</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Puteți vira MobileCoin efectuând un transfer către adresa portofelului furnizat de exchange. Adresa portofelului este șirul de cifre și litere situat în mod obișnuit sub codul QR.</string>
   <string name="PaymentsTransferFragment__next">Următorul</string>
   <string name="PaymentsTransferFragment__invalid_address">Adresă invalidă</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Verificați adresa portofelului spre care doriți să transferați și încercați din nou.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Nu puteți transfera către adresa propriului portofel Signal. Introduceți adresa portofelului din contul dvs. la un exchange acceptat.</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Pentru a scana un cod QR, Signal are nevoie de acces la cameră.</string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal are nevoie de permisiunea pentru Cameră pentru a scana un cod QR. Navigați în setări, selectați \"Permisiuni\" și activați \"Cameră\".</string>
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Pentru a scana un cod QR, Signal are nevoie de acces la cameră.</string>
   <string name="PaymentsTransferFragment__settings">Setări</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Scanați codul QR al adresei</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scanați codul QR al adresei beneficiarului</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Cerere</string>
   <string name="CreatePaymentFragment__pay">Plătește</string>
@@ -2233,15 +2242,19 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">Adăugați o notiță</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Conversiile sunt doar estimări și este posibil să nu fie precise.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Notă</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">Confirmați plata</string>
   <string name="ConfirmPayment__network_fee">Comision de rețea</string>
+  <string name="ConfirmPayment__error_getting_fee">Eroare la obținerea comisionului </string>
+  <string name="ConfirmPayment__estimated_s">Estimat %1$s</string>
   <string name="ConfirmPayment__to">Către</string>
   <string name="ConfirmPayment__total_amount">Suma totală</string>
   <string name="ConfirmPayment__balance_s">Sold: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">Se trimite spre procesare…</string>
-  <string name="ConfirmPayment__processing_payment">Se procesează plată…</string>
+  <string name="ConfirmPayment__processing_payment">Se procesează…</string>
   <string name="ConfirmPayment__payment_complete">Plată finalizată</string>
   <string name="ConfirmPayment__payment_failed">Plata a eșuat</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Destinatar invalid</string>

@@ -339,7 +339,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Symbol: Aus Datensicherung wiederherstellen</string>
   <string name="ChooseBackupFragment__choose_backup">Datensicherung wählen</string>
   <string name="ChooseBackupFragment__learn_more">Mehr erfahren</string>
-  <string name="ChooseBackupFragment__no_file_browser_available">Kein Dateibrowser verfügbar</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Kein Dateimanager verfügbar</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Wiederherstellung abgeschlossen</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Um weiterhin Datensicherungen zu verwenden, wähle bitte einen Ordner. Neue Sicherungen werden dort gespeichert.</string>
@@ -1337,7 +1337,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubmitDebugLogActivity_success">Erfolgreich!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bitte kopiere diese Internetadresse und füge sie deinem Fehlerbericht oder deiner E-Mail an den Support hinzu:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Teilen</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dieses Diagnoseprotokoll wird im Internet veröffentlicht, damit Mitwirkende es einsehen können. Bevor du das Protokoll hochlädst, kannst du es noch einmal überprüfen.</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dieses Diagnoseprotokoll wird im Internet veröffentlicht, sodass Mitwirkende es einsehen können. Bevor du das Protokoll hochlädst, kannst du es noch einmal überprüfen.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Geräteinformationen:</string>
@@ -2447,7 +2447,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Um Datensicherungen zu aktivieren, wähle einen Ordner. Sicherungen werden dort gespeichert.</string>
   <string name="BackupDialog_choose_folder">Ordner wählen</string>
   <string name="BackupDialog_copied_to_clipboard">In Zwischenablage kopiert</string>
-  <string name="BackupDialog_no_file_picker_available">Keine Dateiauswahl verfügbar.</string>
+  <string name="BackupDialog_no_file_picker_available">Keine Dateimanager verfügbar.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Gib deine Sicherungspassphrase ein</string>
   <string name="BackupDialog_verify">Bestätigen</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du hast deine Sicherungspassphrase richtig eingegeben</string>

@@ -1747,7 +1747,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Fallo en la entrega</string>
   <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Un mensaje, sticker, reacción, justificante de recibo o adjunto de %s no se ha podido entregar. Lo ha enviado en un chat o en un grupo común.</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Un mensaje, sticker, reacción, justificante de recibo o adjunto de %s no se ha podido entregar.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">No se ha podido entregar un mensaje, sticker, adjunto, reacción, justificante de recibo de %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Nombre (necesario)</string>
   <string name="CreateProfileActivity_last_name_optional">Apellido(s) (opcional)</string>

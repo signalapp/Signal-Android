@@ -2338,20 +2338,27 @@
   <string name="TransferOrRestoreFragment__restore_from_backup">用備份還原</string>
   <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">攞番本機備份嚟還原您嘅訊息。如果您而家唔做嘅話，遲啲就冇得再還原㗎喇。</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">喺您部舊嘅 Android 手機開啟 Signal</string>
   <string name="NewDeviceTransferInstructions__continue">繼續</string>
   <string name="NewDeviceTransferInstructions__first_bullet">一、</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">撳一下左上角嗰度您嘅個人資料相片去開啟 [設定]</string>
   <string name="NewDeviceTransferInstructions__second_bullet">二、</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">撳一下「帳戶」</string>
   <string name="NewDeviceTransferInstructions__third_bullet">三、</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">撳一下「轉移帳戶」，然後「繼續」，兩部機都係</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">準備緊同部舊嘅 Android 機連線…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">請等等，部機繽紛樂緊</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">等緊部舊嘅 Android 機連線…</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal 要攞「位置」權限，先可以探索同連接您部舊嘅 Android 機。</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">攞番備份嚟還原</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">搵緊部新嘅 Android 機…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal 要攞「位置」權限，先可以探索同連接您部新嘅 Android 機。</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal 要啟用定位服務，先可以探索同連接您部新嘅 Android 機。</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal 要開啟 Wi-Fi，先可以探索同連接您部新嘅 Android 機。Wi-Fi 著咗就得，唔需要連接到 Wi-Fi 網絡。</string>
   <string name="OldDeviceTransferSetup__create_a_backup">建立一個備份</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">嘗試同您部新嘅 Android 機連線嘅時候，發生未預期嘅錯誤。</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__unable_to_open_wifi_settings">開啟唔到 Wi-Fi 設定。麻煩您自己開啟 Wi-Fi。</string>
   <string name="DeviceTransferSetup__grant_location_permission">畀「位置」權限</string>
@@ -2361,19 +2368,27 @@
   <string name="DeviceTransferSetup__error_connecting">連線錯誤</string>
   <string name="DeviceTransferSetup__retry">再試一次</string>
   <string name="DeviceTransferSetup__submit_debug_logs">提交除錯記錄檔</string>
+  <string name="DeviceTransferSetup__verify_code">驗證代碼</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">請驗證下面嘅代碼係咪喺您兩部機都一樣。然後撳一下「繼續」。</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">啲數字唔夾</string>
   <string name="DeviceTransferSetup__continue">繼續</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">數字唔同</string>
   <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">若果兩部機上面嘅數字唔一樣，咁可能係搭錯線駁咗落另一部機度。要掹番正佢，首先停止轉移先，然後再試一次，並且將兩部機泊埋一齊。</string>
   <string name="DeviceTransferSetup__stop_transfer">停止轉移</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">探索唔到部舊機</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">探索唔到部新機</string>
   <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">請確定下列權限同服務已經啟用：</string>
   <string name="DeviceTransferSetup__location_permission">位置權限</string>
   <string name="DeviceTransferSetup__location_services">定位服務</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct 畫面</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">試下熄咗再開番 Wi-Fi，兩部機都係。</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">請確保兩部機都處於轉移模式中。</string>
+  <string name="DeviceTransferSetup__go_to_support_page">前往支援網頁</string>
   <string name="DeviceTransferSetup__try_again">再試一次</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">等緊另一部機</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">喺對面部機撳一下 [繼續] 以開始轉移。</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">喺對面部機撳一下 [繼續]…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">由較新版本嘅 Sigmal 轉移過嚟係唔得嘅</string>
   <!--DeviceTransferFragment-->
@@ -2391,6 +2406,7 @@
   <string name="OldDeviceTransferInstructions__transfer_account">轉移帳戶</string>
   <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">當您喺部新嘅 Android 機度設定 Signal 嘅時候，您可以轉移您嘅 Signal 帳戶。咁係繼續之前：</string>
   <string name="OldDeviceTransferInstructions__first_bullet">一、</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">喺您部新嘅 Android 機度下載 Signal</string>
   <string name="OldDeviceTransferInstructions__second_bullet">二、</string>
   <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">撳一下「轉移或還原帳戶」</string>
   <string name="OldDeviceTransferInstructions__third_bullet">三、</string>
@@ -2398,19 +2414,28 @@
   <string name="OldDeviceTransferInstructions__continue">繼續</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">轉移完成</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">跟住拎番起您部新機</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">您嘅 Signal 資料已經轉移到您部新機度。您要喺新機繼續搞掂埋註冊，成個轉移程序先算功德圓滿。</string>
   <string name="OldDeviceTransferComplete__close">關閉</string>
   <!--NewDeviceTransferComplete-->
   <string name="NewDeviceTransferComplete__transfer_successful">轉移成功</string>
   <string name="NewDeviceTransferComplete__transfer_complete">轉移完成</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">您要繼續搞掂埋註冊，成個轉移程序先算功德圓滿。</string>
   <string name="NewDeviceTransferComplete__continue_registration">繼續註冊</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">帳戶轉移</string>
   <string name="DeviceToDeviceTransferService_status_ready">準備緊同您另一部 Android 機連線…</string>
   <string name="DeviceToDeviceTransferService_status_starting_up">準備緊同您另一部 Android 機連線…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">搵緊您另一部 Android 機…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">同您另一部 Android 機連緊線…</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">轉移緊帳戶…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">喺您部新機度完成註冊</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">您嘅 Signal 帳戶已經轉移到您部新機度，但您要喺新機完成埋註冊先可以繼續。呢部機嘅 Signal 將會停用。</string>
   <string name="OldDeviceTransferLockedDialog__done">搞掂</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">取消並啟用呢部機</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">係咪要轉移 MOB 結餘？</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">唔好轉移</string>
   <string name="AdvancedPreferenceFragment__transfer">轉移</string>
   <!--RecipientBottomSheet-->
@@ -2521,7 +2546,10 @@
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">停用銀包</string>
   <string name="DeactivateWalletFragment__your_balance">您嘅結餘</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">轉移剩番嘅結餘</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">唔轉移就停用</string>
   <string name="DeactivateWalletFragment__deactivate">停用</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">係咪要唔轉移就停用？</string>
   <string name="DeactivateWalletFragment__error_deactivating_wallet">停用銀包嘅時候發生錯誤。</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">恢復口訣</string>

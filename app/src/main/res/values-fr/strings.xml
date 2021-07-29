@@ -2999,7 +2999,7 @@
   <string name="ConversationSettingsFragment__start_audio_call">Lancer un appel vocal</string>
   <string name="ConversationSettingsFragment__message">Message</string>
   <string name="ConversationSettingsFragment__video">Vidéo</string>
-  <string name="ConversationSettingsFragment__audio">Son</string>
+  <string name="ConversationSettingsFragment__audio">Vocal</string>
   <string name="ConversationSettingsFragment__call">Appeler</string>
   <string name="ConversationSettingsFragment__mute">Sourdine</string>
   <string name="ConversationSettingsFragment__muted">En sourdine</string>

@@ -334,6 +334,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Икона за враќање на резервна копија</string>
   <string name="ChooseBackupFragment__choose_backup">Изберете резервна копија</string>
   <string name="ChooseBackupFragment__learn_more">Дознајте повеќе</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Не е достапен прелистувач за датотеки</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Враќањето е завршено</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Да продолжите со употреба на резервната копија, Ве молиме изберете папка. Новите резервни копии ќе бидат зачувани на оваа локација.</string>
@@ -816,6 +817,7 @@
   <string name="Megaphones_invite_friends">Покани пријатели</string>
   <string name="Megaphones_use_sms">Користи SMS</string>
   <string name="Megaphones_appearance">Изглед</string>
+  <string name="Megaphones_add_photo">Додај слика</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal повик во тек</string>
   <string name="NotificationBarManager__establishing_signal_call">Воспоставување на повик на Signal</string>
@@ -856,6 +858,8 @@
   <string name="MediaRepository_all_media">Цела медија</string>
   <string name="MediaRepository__camera">Камера</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Не успеав да ја декриптирам пораката</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Допрете да испратите запис за дебагирање</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Непознато</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Добивте порака која е енкриптирана користејќи стара верзија на Signal која веќе не е поддржана. Ве молиме побајте од праќачот пораката да ја апдејтира апликацијата на најновата верзија и пак да ја препрати пораката.</string>
@@ -1015,6 +1019,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Го обележавте сигурносниот број со %s како проверен од друг уред</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Го обележавте сигурносниот број со %s како непроверен</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Го обележавте Вашиот сигурносен број со %s како непроверен од друг уред.</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Порака од %s не може да биде испорачана</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s започна групен повик · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s е во групниот повик · %2$s</string>
@@ -1358,6 +1363,7 @@
   <string name="ThreadRecord_you_marked_verified">Одбележавте проверено</string>
   <string name="ThreadRecord_you_marked_unverified">Одбележавте непроверено</string>
   <string name="ThreadRecord_message_could_not_be_processed">Пораката не можеше да биде процесирана</string>
+  <string name="ThreadRecord_delivery_issue">Проблем со испорака</string>
   <string name="ThreadRecord_message_request">Барање за порака</string>
   <string name="ThreadRecord_photo">Слика</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1713,6 +1719,7 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal има потреба од MMS поставувања за да испорачува медија и групни пораки преку Вашиот мобилен оператор. Вашиот уред не ги прави достапни овие информации, понекогаш ова се случува поради тоа што уредите се заклучени или поради рестриктивна конфигурација.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">За да испратите медија и групни пораки допрете „Во ред“  и довршете ги поставувањата. MMS поставувањата за Вашиот оператор можат да бидат пронајдени преку пребарување на „Вашиот APN за операторот“. Ова ќе треба да го направите само еднаш.</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">Проблем со испорака</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Име (задолжително)</string>
   <string name="CreateProfileActivity_last_name_optional">Презиме (опционално)</string>
@@ -1768,6 +1775,7 @@
   <string name="message_details_recipient_header__delivered_to">Испорачано на</string>
   <string name="message_details_recipient_header__read_by">Прочитано од</string>
   <string name="message_details_recipient_header__not_sent">Не е испратено на</string>
+  <string name="message_details_recipient_header__viewed">Видено од</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Неуспешно праќање</string>
   <string name="message_details_recipient__new_safety_number">Нов сигурносен број</string>
@@ -2809,6 +2817,7 @@
   <string name="ChatColorsMegaphone__not_now">Не сега</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">Не сега</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Додај слика</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Емоџи</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Отвори пребарување на емоџи</string>
