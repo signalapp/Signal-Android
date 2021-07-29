@@ -252,7 +252,7 @@ public final class GroupSendUtil {
       allResults.addAll(results);
 
       int successCount = (int) results.stream().filter(SendMessageResult::isSuccess).count();
-      Log.d(TAG, "Successfully using 1:1 to " + successCount + "/" + targets.size() + " legacy targets.");
+      Log.d(TAG, "Successfully sent using 1:1 to " + successCount + "/" + targets.size() + " legacy targets.");
     }
 
     return allResults;

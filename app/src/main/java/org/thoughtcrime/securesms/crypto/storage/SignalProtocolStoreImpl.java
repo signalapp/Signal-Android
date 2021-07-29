@@ -12,8 +12,6 @@ import org.whispersystems.libsignal.state.IdentityKeyStore;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.PreKeyStore;
 import org.whispersystems.libsignal.state.SessionRecord;
-import org.whispersystems.libsignal.state.SessionStore;
-import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyStore;
 import org.whispersystems.signalservice.api.SignalServiceProtocolStore;
@@ -172,7 +170,7 @@ public class SignalProtocolStoreImpl implements SignalServiceProtocolStore {
   }
 
   @Override
-  public void clearSenderKeySharedWith(DistributionId distributionId, Collection<SignalProtocolAddress> addresses) {
-    senderKeyStore.clearSenderKeySharedWith(distributionId, addresses);
+  public void clearSenderKeySharedWith(Collection<SignalProtocolAddress> addresses) {
+    senderKeyStore.clearSenderKeySharedWith(addresses);
   }
 }

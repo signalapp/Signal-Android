@@ -119,6 +119,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -1800,20 +1801,12 @@ public class SignalServiceMessageSender {
         for (GroupMismatchedDevices mismatched : e.getMismatchedDevices()) {
           SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parse(mismatched.getUuid()), Optional.absent());
           handleMismatchedDevices(socket, address, mismatched.getDevices());
-          List<SignalProtocolAddress> clearAddresses = mismatched.getDevices().getExtraDevices().stream()
-                                                                                                .map(device -> new SignalProtocolAddress(address.getIdentifier(), device))
-                                                                                                .collect(Collectors.toList());
-          store.clearSenderKeySharedWith(distributionId, clearAddresses);
         }
       } catch (GroupStaleDevicesException e) {
         Log.w(TAG, "[sendGroupMessage] Handling stale devices.", e);
         for (GroupStaleDevices stale : e.getStaleDevices()) {
           SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parse(stale.getUuid()), Optional.absent());
           handleStaleDevices(address, stale.getDevices());
-          List<SignalProtocolAddress> clearAddresses = stale.getDevices().getStaleDevices().stream()
-                                                                                           .map(device -> new SignalProtocolAddress(address.getIdentifier(), device))
-                                                                                           .collect(Collectors.toList());
-          store.clearSenderKeySharedWith(distributionId, clearAddresses);
         }
       }
 
@@ -1998,14 +1991,7 @@ public class SignalServiceMessageSender {
       throws IOException, UntrustedIdentityException
   {
     try {
-      for (int extraDeviceId : mismatchedDevices.getExtraDevices()) {
-        if (recipient.getUuid().isPresent()) {
-          store.archiveSession(new SignalProtocolAddress(recipient.getUuid().get().toString(), extraDeviceId));
-        }
-        if (recipient.getNumber().isPresent()) {
-          store.archiveSession(new SignalProtocolAddress(recipient.getNumber().get(), extraDeviceId));
-        }
-      }
+      archiveSessions(recipient, mismatchedDevices.getExtraDevices());
 
       for (int missingDeviceId : mismatchedDevices.getMissingDevices()) {
         PreKeyBundle preKey = socket.getPreKey(recipient, missingDeviceId);
@@ -2023,14 +2009,32 @@ public class SignalServiceMessageSender {
   }
 
   private void handleStaleDevices(SignalServiceAddress recipient, StaleDevices staleDevices) {
-    for (int staleDeviceId : staleDevices.getStaleDevices()) {
+    archiveSessions(recipient, staleDevices.getStaleDevices());
+  }
+
+  private void archiveSessions(SignalServiceAddress recipient, List<Integer> devices) {
+    List<SignalProtocolAddress> addressesToClear = convertToProtocolAddresses(recipient, devices);
+
+    for (SignalProtocolAddress address : addressesToClear) {
+      store.archiveSession(address);
+    }
+
+    store.clearSenderKeySharedWith(addressesToClear);
+  }
+
+  private List<SignalProtocolAddress> convertToProtocolAddresses(SignalServiceAddress recipient, List<Integer> devices) {
+    List<SignalProtocolAddress> addresses = new ArrayList<>(devices.size());
+
+    for (int staleDeviceId : devices) {
       if (recipient.getUuid().isPresent()) {
-        store.archiveSession(new SignalProtocolAddress(recipient.getUuid().get().toString(), staleDeviceId));
+        addresses.add(new SignalProtocolAddress(recipient.getUuid().get().toString(), staleDeviceId));
       }
       if (recipient.getNumber().isPresent()) {
-        store.archiveSession(new SignalProtocolAddress(recipient.getNumber().get(), staleDeviceId));
+        addresses.add(new SignalProtocolAddress(recipient.getNumber().get(), staleDeviceId));
       }
     }
+
+    return addresses;
   }
 
   private Optional<UnidentifiedAccess> getTargetUnidentifiedAccess(Optional<UnidentifiedAccessPair> unidentifiedAccess) {
