@@ -143,8 +143,9 @@ public class EmojiPageView extends RecyclerView implements VariationSelectorList
   @Override
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     if (layoutManager instanceof GridLayoutManager) {
+      int viewWidth  = w - getPaddingStart() - getPaddingEnd();
       int idealWidth = getContext().getResources().getDimensionPixelOffset(R.dimen.emoji_drawer_item_width);
-      int spanCount  = Math.max(w / idealWidth, 1);
+      int spanCount  = Math.max(viewWidth / idealWidth, 1);
 
       ((GridLayoutManager) layoutManager).setSpanCount(spanCount);
     }
