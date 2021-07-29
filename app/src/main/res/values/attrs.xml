@@ -203,8 +203,11 @@
     </declare-styleable>
 
     <declare-styleable name="ViewOnceMessageView">
-        <attr name="revealable_unopenedForegroundColor" format="color" />
-        <attr name="revealable_openedForegroundColor" format="color" />
+        <attr name="revealable_textColor" format="color" />
+        <attr name="revealable_openedIconColor" format="color" />
+        <attr name="revealable_unopenedIconColor" format="color" />
+        <attr name="revealable_circleColor" format="color" />
+        <attr name="revealable_circleColorWithWallpaper" format="color" />
     </declare-styleable>
 
     <declare-styleable name="MediaKeyboard">

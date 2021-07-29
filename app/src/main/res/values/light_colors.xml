@@ -83,6 +83,14 @@
     <color name="conversation_item_incoming_audio_foreground_tint">@color/core_grey_60</color>
     <color name="conversation_item_incoming_audio_play_pause_background_tint_normal">@color/transparent_white_80</color>
     <color name="conversation_item_incoming_audio_play_pause_background_tint_wallpaper">@color/core_grey_05</color>
+    <color name="conversation_item_incoming_view_once_circle">@color/transparent_white_80</color>
+    <color name="conversation_item_incoming_view_once_circle_wallpaper">@color/core_grey_05</color>
+    <color name="conversation_item_incoming_view_once_unopened">@color/core_grey_90</color>
+    <color name="conversation_item_incoming_view_once_opened">@color/core_grey_50</color>
+    <color name="conversation_item_sent_view_once_circle">@color/transparent_white_20</color>
+    <color name="conversation_item_sent_view_once_circle_wallpaper">@color/transparent_white_20</color>
+    <color name="conversation_item_sent_view_once_unopened">@color/core_white</color>
+    <color name="conversation_item_sent_view_once_opened">@color/transparent_white_90</color>
 
     <color name="wallpaper_bubble_color">@color/transparent_white_80</color>
 
