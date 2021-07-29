@@ -15,6 +15,7 @@
  */
 package org.thoughtcrime.securesms;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -26,7 +27,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
-import androidx.multidex.MultiDexApplication;
 
 import org.conscrypt.Conscrypt;
 import org.session.libsession.avatars.AvatarHelper;
@@ -104,7 +104,7 @@ import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
  *
  * @author Moxie Marlinspike
  */
-public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver {
+public class ApplicationContext extends Application implements DependencyInjector, DefaultLifecycleObserver {
 
     public static final String PREFERENCES_NAME = "SecureSMS-Preferences";
 
@@ -180,12 +180,15 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         Log.i(TAG, "App is now visible.");
         KeyCachingService.onAppForegrounded(this);
 
-        if (poller != null) {
-            poller.setCaughtUp(false);
-        }
-        startPollingIfNeeded();
+        ThreadUtils.queue(()->{
+            if (poller != null) {
+                poller.setCaughtUp(false);
+            }
 
-        OpenGroupManager.INSTANCE.startPolling();
+            startPollingIfNeeded();
+
+            OpenGroupManager.INSTANCE.startPolling();
+        });
     }
 
     @Override

@@ -19,15 +19,13 @@ import java.util.regex.Pattern
 object MentionUtilities {
 
     @JvmStatic
-    fun highlightMentions(text: CharSequence, threadID: Long, context: Context): String {
-        return highlightMentions(text, false, threadID, context).toString() // isOutgoingMessage is irrelevant
+    fun highlightMentions(text: CharSequence, context: Context): String {
+        return highlightMentions(text, false, context).toString() // isOutgoingMessage is irrelevant
     }
 
     @JvmStatic
-    fun highlightMentions(text: CharSequence, isOutgoingMessage: Boolean, threadID: Long, context: Context): SpannableString {
+    fun highlightMentions(text: CharSequence, isOutgoingMessage: Boolean, context: Context): SpannableString {
         @Suppress("NAME_SHADOWING") var text = text
-        val threadDB = DatabaseFactory.getThreadDatabase(context)
-        val isOpenGroup = threadDB.getRecipientForThreadId(threadID)?.isOpenGroupRecipient ?: false
         val pattern = Pattern.compile("@[0-9a-fA-F]*")
         var matcher = pattern.matcher(text)
         val mentions = mutableListOf<Tuple2<Range<Int>, String>>()
@@ -40,8 +38,7 @@ object MentionUtilities {
                     TextSecurePreferences.getProfileName(context)
                 } else {
                     val contact = DatabaseFactory.getSessionContactDatabase(context).getContactWithSessionID(publicKey)
-                    @Suppress("NAME_SHADOWING") val context = if (isOpenGroup) Contact.ContactContext.OPEN_GROUP else Contact.ContactContext.REGULAR
-                    contact?.displayName(context)
+                    contact?.displayName(Contact.ContactContext.REGULAR)
                 }
                 if (userDisplayName != null) {
                     text = text.subSequence(0, matcher.start()).toString() + "@" + userDisplayName + text.subSequence(matcher.end(), text.length)

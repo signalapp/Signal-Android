@@ -12,6 +12,7 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.loader.app.LoaderManager
@@ -19,9 +20,11 @@ import androidx.loader.content.Loader
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.seed_reminder_stub.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import network.loki.messenger.R
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -63,8 +66,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
-        // Double check that the long poller is up
-        (applicationContext as ApplicationContext).startPollingIfNeeded()
         // Set content view
         setContentView(R.layout.activity_home)
         // Set custom toolbar
@@ -79,14 +80,18 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         // Set up seed reminder view
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
         if (!hasViewedSeed) {
-            val seedReminderViewTitle = SpannableString("You're almost finished! 80%") // Intentionally not yet translated
-            seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 24, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            seedReminderView.title = seedReminderViewTitle
-            seedReminderView.subtitle = resources.getString(R.string.view_seed_reminder_subtitle_1)
-            seedReminderView.setProgress(80, false)
-            seedReminderView.delegate = this
+            seedReminderStub.isVisible = true
+            seedReminderStub.apply {
+                val seedReminderView = this.seedReminderView
+                val seedReminderViewTitle = SpannableString("You're almost finished! 80%") // Intentionally not yet translated
+                seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 24, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                seedReminderView.title = seedReminderViewTitle
+                seedReminderView.subtitle = resources.getString(R.string.view_seed_reminder_subtitle_1)
+                seedReminderView.setProgress(80, false)
+                seedReminderView.delegate = this@HomeActivity
+            }
         } else {
-            seedReminderView.visibility = View.GONE
+            seedReminderStub.isVisible = false
         }
         // Set up recycler view
         val cursor = DatabaseFactory.getThreadDatabase(this).conversationList
@@ -126,24 +131,30 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         this.broadcastReceiver = broadcastReceiver
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, IntentFilter("blockedContactsChanged"))
         lifecycleScope.launchWhenResumed {
-            // update things based on TextSecurePrefs (profile info etc)
-            // Set up typing observer
-            ApplicationContext.getInstance(this@HomeActivity).typingStatusRepository.typingThreads.observe(this@HomeActivity, Observer<Set<Long>> { threadIDs ->
-                val adapter = recyclerView.adapter as HomeAdapter
-                adapter.typingThreadIDs = threadIDs ?: setOf()
-            })
-            // Set up remaining components if needed
-            val application = ApplicationContext.getInstance(this@HomeActivity)
-            application.registerForFCMIfNeeded(false)
-            val userPublicKey = TextSecurePreferences.getLocalNumber(this@HomeActivity)
-            if (userPublicKey != null) {
-                OpenGroupManager.startPolling()
-                JobQueue.shared.resumePendingJobs()
-            }
-            updateProfileButton()
-            IP2Country.configureIfNeeded(this@HomeActivity)
-            TextSecurePreferences.events.filter { it == TextSecurePreferences.PROFILE_NAME_PREF }.collect {
-                updateProfileButton()
+            launch(Dispatchers.IO) {
+                // Double check that the long poller is up
+                (applicationContext as ApplicationContext).startPollingIfNeeded()
+                // update things based on TextSecurePrefs (profile info etc)
+                // Set up typing observer
+                withContext(Dispatchers.Main) {
+                    ApplicationContext.getInstance(this@HomeActivity).typingStatusRepository.typingThreads.observe(this@HomeActivity, Observer<Set<Long>> { threadIDs ->
+                        val adapter = recyclerView.adapter as HomeAdapter
+                        adapter.typingThreadIDs = threadIDs ?: setOf()
+                    })
+                    updateProfileButton()
+                    TextSecurePreferences.events.filter { it == TextSecurePreferences.PROFILE_NAME_PREF }.collect {
+                        updateProfileButton()
+                    }
+                }
+                // Set up remaining components if needed
+                val application = ApplicationContext.getInstance(this@HomeActivity)
+                application.registerForFCMIfNeeded(false)
+                val userPublicKey = TextSecurePreferences.getLocalNumber(this@HomeActivity)
+                if (userPublicKey != null) {
+                    OpenGroupManager.startPolling()
+                    JobQueue.shared.resumePendingJobs()
+                }
+                IP2Country.configureIfNeeded(this@HomeActivity)
             }
         }
         EventBus.getDefault().register(this@HomeActivity)
@@ -158,7 +169,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         profileButton.update()
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
         if (hasViewedSeed) {
-            seedReminderView.visibility = View.GONE
+            seedReminderStub.visibility = View.GONE
         }
         if (TextSecurePreferences.getConfigurationMessageSynced(this)) {
             lifecycleScope.launch(Dispatchers.IO) {

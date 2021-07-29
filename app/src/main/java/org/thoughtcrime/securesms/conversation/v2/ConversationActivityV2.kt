@@ -1206,7 +1206,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val sortedMessages = messages.sortedBy { it.dateSent }
         val builder = StringBuilder()
         for (message in sortedMessages) {
-            val body = MentionUtilities.highlightMentions(message.body, message.threadId, this)
+            val body = MentionUtilities.highlightMentions(message.body, this)
             if (TextUtils.isEmpty(body)) { continue }
             val formattedTimestamp = DateUtils.getDisplayFormattedTimeSpanString(this, Locale.getDefault(), message.timestamp)
             builder.append("$formattedTimestamp: $body").append('\n')

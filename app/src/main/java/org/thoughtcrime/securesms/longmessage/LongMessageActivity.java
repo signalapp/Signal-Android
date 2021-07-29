@@ -83,7 +83,7 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity {
       }
 
       String trimmedBody = getTrimmedBody(message.get().getFullBody());
-      String mentionBody = MentionUtilities.highlightMentions(trimmedBody, message.get().getMessageRecord().getThreadId(), this);
+      String mentionBody = MentionUtilities.highlightMentions(trimmedBody, this);
 
       textBody.setText(mentionBody);
       textBody.setMovementMethod(LinkMovementMethod.getInstance());

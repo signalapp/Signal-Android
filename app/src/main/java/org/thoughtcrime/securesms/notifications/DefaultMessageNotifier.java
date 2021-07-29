@@ -324,7 +324,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
     builder.setThread(notifications.get(0).getRecipient());
     builder.setMessageCount(notificationState.getMessageCount());
     builder.setPrimaryMessageBody(recipient, notifications.get(0).getIndividualRecipient(),
-                                  MentionUtilities.highlightMentions(notifications.get(0).getText(), notifications.get(0).getThreadId(), context),
+                                  MentionUtilities.highlightMentions(notifications.get(0).getText(), context),
                                   notifications.get(0).getSlideDeck());
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
     builder.setDeleteIntent(notificationState.getDeleteIntent(context));
@@ -400,13 +400,13 @@ public class DefaultMessageNotifier implements MessageNotifier {
     while(iterator.hasPrevious()) {
       NotificationItem item = iterator.previous();
       builder.addMessageBody(item.getIndividualRecipient(), item.getRecipient(),
-                             MentionUtilities.highlightMentions(item.getText(), item.getThreadId(), context));
+                             MentionUtilities.highlightMentions(item.getText(), context));
     }
 
     if (signal) {
       builder.setAlarms(notificationState.getRingtone(context), notificationState.getVibrate());
       builder.setTicker(notifications.get(0).getIndividualRecipient(),
-                        MentionUtilities.highlightMentions(notifications.get(0).getText(), notifications.get(0).getThreadId(), context));
+                        MentionUtilities.highlightMentions(notifications.get(0).getText(), context));
     }
 
     Notification notification = builder.build();

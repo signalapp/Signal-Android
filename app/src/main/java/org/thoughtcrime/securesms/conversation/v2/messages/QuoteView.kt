@@ -10,7 +10,6 @@ import androidx.annotation.ColorInt
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.text.toSpannable
 import androidx.core.view.isVisible
-import kotlinx.android.synthetic.main.view_link_preview.view.*
 import kotlinx.android.synthetic.main.view_quote.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.contacts.Contact
@@ -120,7 +119,7 @@ class QuoteView : LinearLayout {
         }
         quoteViewAuthorTextView.isVisible = thread.isGroupRecipient
         // Body
-        quoteViewBodyTextView.text = if (isOpenGroupInvitation) resources.getString(R.string.open_group_invitation_view__open_group_invitation) else MentionUtilities.highlightMentions((body ?: "").toSpannable(), threadID, context);
+        quoteViewBodyTextView.text = if (isOpenGroupInvitation) resources.getString(R.string.open_group_invitation_view__open_group_invitation) else MentionUtilities.highlightMentions((body ?: "").toSpannable(), context);
         quoteViewBodyTextView.setTextColor(getTextColor(isOutgoingMessage))
         // Accent line / attachment preview
         val hasAttachments = (attachments != null && attachments.asAttachments().isNotEmpty()) && !isOriginalMissing
