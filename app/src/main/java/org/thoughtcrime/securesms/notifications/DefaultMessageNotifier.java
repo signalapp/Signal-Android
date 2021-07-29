@@ -49,6 +49,7 @@ import org.session.libsignal.utilities.Util;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
+import org.thoughtcrime.securesms.conversation.v2.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
@@ -273,9 +274,13 @@ public class DefaultMessageNotifier implements MessageNotifier {
         lastAudibleNotification = System.currentTimeMillis();
       }
 
-      boolean hasMultipleThreads = notificationState.hasMultipleThreads();
-      for (long threadId : notificationState.getThreads()) {
-        sendSingleThreadNotification(context, new NotificationState(notificationState.getNotificationsForThread(threadId)), signal, hasMultipleThreads);
+      if (notificationState.hasMultipleThreads()) {
+        for (long threadId : notificationState.getThreads()) {
+          sendSingleThreadNotification(context, new NotificationState(notificationState.getNotificationsForThread(threadId)), false, true);
+        }
+        sendMultipleThreadNotification(context, notificationState, signal);
+      } else if (notificationState.getMessageCount() > 0){
+        sendSingleThreadNotification(context, notificationState, signal, false);
       }
 
       cancelOrphanedNotifications(context, notificationState);
@@ -323,6 +328,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     builder.setThread(notifications.get(0).getRecipient());
     builder.setMessageCount(notificationState.getMessageCount());
+    MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(notifications.get(0).getThreadId(),context);
     builder.setPrimaryMessageBody(recipient, notifications.get(0).getIndividualRecipient(),
                                   MentionUtilities.highlightMentions(notifications.get(0).getText(), context),
                                   notifications.get(0).getSlideDeck());
