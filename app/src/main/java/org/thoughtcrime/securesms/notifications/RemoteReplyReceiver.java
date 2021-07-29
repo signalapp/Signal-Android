@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Get the response text from the Wearable Device and sends an message as a reply
@@ -73,7 +74,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
 
         Recipient recipient      = Recipient.resolved(recipientId);
         int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
-        long      expiresIn      = recipient.getExpireMessages() * 1000L;
+        long      expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
 
         switch (replyMethod) {
           case GroupMessage: {

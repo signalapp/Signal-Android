@@ -863,7 +863,7 @@ public class Recipient {
     return callVibrate;
   }
 
-  public int getExpireMessages() {
+  public int getExpiresInSeconds() {
     return expireMessages;
   }
 

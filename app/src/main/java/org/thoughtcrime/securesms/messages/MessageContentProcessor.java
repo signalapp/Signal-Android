@@ -167,6 +167,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Takes data about a decrypted message, transforms it into user-presentable data, and writes that
@@ -740,7 +741,7 @@ public final class MessageContentProcessor {
   {
     GroupV1MessageProcessor.process(context, content, message, false);
 
-    if (message.getExpiresInSeconds() != 0 && message.getExpiresInSeconds() != threadRecipient.getExpireMessages()) {
+    if (message.getExpiresInSeconds() != 0 && message.getExpiresInSeconds() != threadRecipient.getExpiresInSeconds()) {
       handleExpirationUpdate(content, message, Optional.absent(), Optional.of(groupId), senderRecipient, threadRecipient, receivedTime);
     }
 
@@ -786,7 +787,7 @@ public final class MessageContentProcessor {
     int                                 expiresInSeconds = message.getExpiresInSeconds();
     Optional<SignalServiceGroupContext> groupContext     = message.getGroupContext();
 
-    if (threadRecipient.getExpireMessages() == expiresInSeconds) {
+    if (threadRecipient.getExpiresInSeconds() == expiresInSeconds) {
       log(String.valueOf(content.getTimestamp()), "No change in message expiry for group. Ignoring.");
       return null;
     }
@@ -1256,7 +1257,7 @@ public final class MessageContentProcessor {
                                                                    content.getServerReceivedTimestamp(),
                                                                    receivedTime,
                                                                    -1,
-                                                                   message.getExpiresInSeconds() * 1000L,
+                                                                   TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds()),
                                                                    false,
                                                                    message.isViewOnce(),
                                                                    content.isNeedsReceipt(),
@@ -1317,7 +1318,7 @@ public final class MessageContentProcessor {
 
     OutgoingExpirationUpdateMessage expirationUpdateMessage = new OutgoingExpirationUpdateMessage(recipient,
         message.getTimestamp(),
-        message.getMessage().getExpiresInSeconds() * 1000L);
+        TimeUnit.SECONDS.toMillis(message.getMessage().getExpiresInSeconds()));
 
     long threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
     long messageId = database.insertMessageOutbox(expirationUpdateMessage, threadId, false, null);
@@ -1350,7 +1351,7 @@ public final class MessageContentProcessor {
     OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(recipients, message.getMessage().getBody().orNull(),
         syncAttachments,
         message.getTimestamp(), -1,
-        message.getMessage().getExpiresInSeconds() * 1000,
+        TimeUnit.SECONDS.toMillis(message.getMessage().getExpiresInSeconds()),
         viewOnce,
         ThreadDatabase.DistributionTypes.DEFAULT, quote.orNull(),
         sharedContacts.or(Collections.emptyList()),
@@ -1360,7 +1361,7 @@ public final class MessageContentProcessor {
 
     mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
 
-    if (recipients.getExpireMessages() != message.getMessage().getExpiresInSeconds()) {
+    if (recipients.getExpiresInSeconds() != message.getMessage().getExpiresInSeconds()) {
       handleSynchronizeSentExpirationUpdate(message);
     }
 
@@ -1395,7 +1396,7 @@ public final class MessageContentProcessor {
                                .scheduleDeletion(messageId,
                                                  true,
                                                  message.getExpirationStartTimestamp(),
-                                                 message.getMessage().getExpiresInSeconds() * 1000L);
+                                                 TimeUnit.SECONDS.toMillis(message.getMessage().getExpiresInSeconds()));
       }
 
       if (recipients.isSelf()) {
@@ -1471,7 +1472,7 @@ public final class MessageContentProcessor {
     MessageDatabase database = DatabaseFactory.getSmsDatabase(context);
     String          body     = message.getBody().isPresent() ? message.getBody().get() : "";
 
-    if (message.getExpiresInSeconds() != threadRecipient.getExpireMessages()) {
+    if (message.getExpiresInSeconds() != threadRecipient.getExpiresInSeconds()) {
       handleExpirationUpdate(content, message, Optional.absent(), groupId, senderRecipient, threadRecipient, receivedTime);
     }
 
@@ -1489,7 +1490,7 @@ public final class MessageContentProcessor {
                                                                 receivedTime,
                                                                 body,
                                                                 groupId,
-                                                                message.getExpiresInSeconds() * 1000L,
+                                                                TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds()),
                                                                 content.isNeedsReceipt(),
                                                                 content.getServerUuid());
 
@@ -1512,9 +1513,9 @@ public final class MessageContentProcessor {
   {
     Recipient recipient       = getSyncMessageDestination(message);
     String    body            = message.getMessage().getBody().or("");
-    long      expiresInMillis = message.getMessage().getExpiresInSeconds() * 1000L;
+    long      expiresInMillis = TimeUnit.SECONDS.toMillis(message.getMessage().getExpiresInSeconds());
 
-    if (recipient.getExpireMessages() != message.getMessage().getExpiresInSeconds()) {
+    if (recipient.getExpiresInSeconds() != message.getMessage().getExpiresInSeconds()) {
       handleSynchronizeSentExpirationUpdate(message);
     }
 

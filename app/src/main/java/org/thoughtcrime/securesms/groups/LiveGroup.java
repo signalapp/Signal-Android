@@ -188,7 +188,7 @@ public final class LiveGroup {
   }
 
   public LiveData<Integer> getExpireMessages() {
-    return Transformations.map(recipient, Recipient::getExpireMessages);
+    return Transformations.map(recipient, Recipient::getExpiresInSeconds);
   }
 
   public LiveData<Boolean> selfCanEditGroupAttributes() {

@@ -107,7 +107,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
 
           RecipientId               recipientId     = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(record.getId());
           Recipient                 recipient       = Recipient.resolved(recipientId);
-          Optional<Integer>         expirationTimer = recipient.getExpireMessages() > 0 ? Optional.of(recipient.getExpireMessages()) : Optional.absent();
+          Optional<Integer>         expirationTimer = recipient.getExpiresInSeconds() > 0 ? Optional.of(recipient.getExpiresInSeconds()) : Optional.absent();
           Map<RecipientId, Integer> inboxPositions  = DatabaseFactory.getThreadDatabase(context).getInboxPositions();
           Set<RecipientId>          archived        = DatabaseFactory.getThreadDatabase(context).getArchivedRecipients();
 

@@ -82,6 +82,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MessageSender {
 
@@ -371,14 +372,14 @@ public class MessageSender {
 
   private static @NonNull OutgoingTextMessage applyUniversalExpireTimerIfNecessary(@NonNull Context context, @NonNull Recipient recipient, @NonNull OutgoingTextMessage outgoingTextMessage, long threadId) {
     if (outgoingTextMessage.getExpiresIn() == 0 && RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, recipient, threadId)) {
-      return new OutgoingTextMessage(outgoingTextMessage, SignalStore.settings().getUniversalExpireTimer() * 1000L);
+      return new OutgoingTextMessage(outgoingTextMessage, TimeUnit.SECONDS.toMillis(SignalStore.settings().getUniversalExpireTimer()));
     }
     return outgoingTextMessage;
   }
 
   private static @NonNull OutgoingMediaMessage applyUniversalExpireTimerIfNecessary(@NonNull Context context, @NonNull Recipient recipient, @NonNull OutgoingMediaMessage outgoingMediaMessage, long threadId) {
     if (!outgoingMediaMessage.isExpirationUpdate() && outgoingMediaMessage.getExpiresIn() == 0 && RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, recipient, threadId)) {
-      return new OutgoingMediaMessage(outgoingMediaMessage, SignalStore.settings().getUniversalExpireTimer() * 1000L);
+      return new OutgoingMediaMessage(outgoingMediaMessage, TimeUnit.SECONDS.toMillis(SignalStore.settings().getUniversalExpireTimer()));
     }
     return outgoingMediaMessage;
   }

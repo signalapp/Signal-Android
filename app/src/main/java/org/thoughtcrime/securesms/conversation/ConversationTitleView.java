@@ -2,9 +2,6 @@ package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -68,7 +65,7 @@ public class ConversationTitleView extends RelativeLayout {
   }
 
   public void showExpiring(@NonNull LiveRecipient recipient) {
-    expirationBadgeTime.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(getContext(), recipient.get().getExpireMessages()));
+    expirationBadgeTime.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(getContext(), recipient.get().getExpiresInSeconds()));
     expirationBadgeContainer.setVisibility(View.VISIBLE);
     updateSubtitleVisibility();
   }

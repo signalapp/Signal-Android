@@ -220,7 +220,7 @@ final class GroupManagerV2 {
       GroupDatabase.GroupRecord groupRecord       = groupDatabase.requireGroup(groupIdV1);
       String                    name              = Util.emptyIfNull(groupRecord.getTitle());
       byte[]                    avatar            = groupRecord.hasAvatar() ? AvatarHelper.getAvatarBytes(context, groupRecord.getRecipientId()) : null;
-      int                       messageTimer      = Recipient.resolved(groupRecord.getRecipientId()).getExpireMessages();
+      int                       messageTimer      = Recipient.resolved(groupRecord.getRecipientId()).getExpiresInSeconds();
       Set<RecipientId>          memberIds         = Stream.of(members)
                                                           .map(Recipient::getId)
                                                           .filterNot(m -> m.equals(Recipient.self().getId()))

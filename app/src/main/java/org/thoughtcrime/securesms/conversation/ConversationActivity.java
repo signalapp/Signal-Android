@@ -755,7 +755,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
         return;
       }
 
-      long       expiresIn      = recipient.get().getExpireMessages() * 1000L;
+      long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
       int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
       boolean    initiating     = threadId == -1;
       QuoteModel quote          = result.isViewOnce() ? null : inputPanel.getQuote().orNull();
@@ -890,7 +890,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }
 
     if (isSecureText) {
-      if (recipient.get().getExpireMessages() > 0) {
+      if (recipient.get().getExpiresInSeconds() > 0) {
         if (!isInActiveGroup) {
           inflater.inflate(R.menu.conversation_expiring_on, menu);
         }
@@ -2584,7 +2584,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   private void sendSharedContact(List<Contact> contacts) {
     int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
-    long       expiresIn      = recipient.get().getExpireMessages() * 1000L;
+    long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     boolean    initiating     = threadId == -1;
 
     sendMediaMessage(recipient.getId(), isSmsForced(), "", attachmentManager.buildSlideDeck(), null, contacts, Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, false);
@@ -2875,7 +2875,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       TransportOption transport      = sendButton.getSelectedTransport();
       boolean         forceSms       = (recipient.isForceSmsSelection() || sendButton.isManualSelection()) && transport.isSms();
       int             subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
-      long            expiresIn      = recipient.getExpireMessages() * 1000L;
+      long            expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
       boolean         initiating     = threadId == -1;
       boolean         needsSplit     = !transport.isSms() && message.length() > transport.calculateCharacters(message).maxPrimaryMessageSize;
       boolean         isMediaMessage = attachmentManager.isAttachmentPresent() ||
@@ -2911,7 +2911,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   private void sendMediaMessage(@NonNull MediaSendActivityResult result) {
     long                 thread        = this.threadId;
-    long                 expiresIn     = recipient.get().getExpireMessages() * 1000L;
+    long                 expiresIn     = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     QuoteModel           quote         = result.isViewOnce() ? null : inputPanel.getQuote().orNull();
     List<Mention>        mentions      = new ArrayList<>(result.getMentions());
     OutgoingMediaMessage message       = new OutgoingMediaMessage(recipient.get(), new SlideDeck(), result.getBody(), System.currentTimeMillis(), -1, expiresIn, result.isViewOnce(), distributionType, quote, Collections.emptyList(), Collections.emptyList(), mentions);
@@ -3266,7 +3266,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     boolean    forceSms       = sendButton.isManualSelection() && sendButton.getSelectedTransport().isSms();
     boolean    initiating     = threadId == -1;
     int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
-    long       expiresIn      = recipient.get().getExpireMessages() * 1000L;
+    long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     AudioSlide audioSlide     = new AudioSlide(ConversationActivity.this, uri, size, MediaUtil.AUDIO_AAC, true);
     SlideDeck  slideDeck      = new SlideDeck();
     slideDeck.addSlide(audioSlide);
@@ -3310,7 +3310,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       return;
     }
 
-    long            expiresIn      = recipient.get().getExpireMessages() * 1000L;
+    long            expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     int             subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
     boolean         initiating     = threadId == -1;
     TransportOption transport      = sendButton.getSelectedTransport();
@@ -3915,7 +3915,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       return;
     }
 
-    long       expiresIn      = recipient.get().getExpireMessages() * 1000L;
+    long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     int        subscriptionId = sendButton.getSelectedTransport().getSimSubscriptionId().or(-1);
     boolean    initiating     = threadId == -1;
     SlideDeck  slideDeck      = new SlideDeck();
