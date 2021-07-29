@@ -169,6 +169,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Takes data about a decrypted message, transforms it into user-presentable data, and writes that
@@ -1331,7 +1332,7 @@ public final class MessageContentProcessor {
     OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(recipients, message.getMessage().getBody().orNull(),
         syncAttachments,
         message.getTimestamp(), -1,
-        message.getMessage().getExpiresInSeconds() * 1000,
+        TimeUnit.SECONDS.toMillis(message.getMessage().getExpiresInSeconds()),
         viewOnce,
         ThreadDatabase.DistributionTypes.DEFAULT, quote.orNull(),
         sharedContacts.or(Collections.emptyList()),
