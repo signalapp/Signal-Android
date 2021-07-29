@@ -410,8 +410,7 @@ public class MessageSender {
   }
 
   private static void sendTextPush(Recipient recipient, long messageId) {
-    JobManager jobManager = ApplicationDependencies.getJobManager();
-    jobManager.add(new PushTextSendJob(messageId, recipient));
+    ApplicationDependencies.getJobManager().add(new PushTextSendJob(messageId, recipient));
   }
 
   private static void sendMediaPush(Context context, Recipient recipient, long messageId, @NonNull Collection<String> uploadJobIds) {

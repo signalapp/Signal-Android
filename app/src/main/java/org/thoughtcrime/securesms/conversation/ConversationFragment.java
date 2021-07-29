@@ -1088,8 +1088,8 @@ public class ConversationFragment extends LoggingFragment {
     return messageRecord.getId();
   }
 
-  public long stageOutgoingMessage(OutgoingTextMessage message) {
-    MessageRecord messageRecord = SmsDatabase.readerFor(message, threadId).getCurrent();
+  public long stageOutgoingMessage(OutgoingTextMessage message, long messageId) {
+    MessageRecord messageRecord = SmsDatabase.readerFor(message, threadId, messageId).getCurrent();
 
     if (getListAdapter() != null) {
       clearHeaderIfNotTyping(getListAdapter());

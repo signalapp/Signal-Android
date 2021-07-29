@@ -94,6 +94,10 @@ public final class SqlUtil {
     return args;
   }
 
+  public static String[] buildArgs(long argument) {
+    return new String[] { Long.toString(argument) };
+  }
+
   /**
    * Returns an updated query and args pairing that will only update rows that would *actually*
    * change. In other words, if {@link SQLiteDatabase#update(String, ContentValues, String, String[])}

@@ -308,8 +308,9 @@ public class RecipientUtil {
   }
 
   @WorkerThread
-  private static boolean isMessageRequestAccepted(@NonNull Context context, @Nullable Long threadId, @NonNull Recipient threadRecipient) {
-    return threadRecipient.isSelf()                              ||
+  public static boolean isMessageRequestAccepted(@NonNull Context context, @Nullable Long threadId, @Nullable Recipient threadRecipient) {
+    return threadRecipient == null                               ||
+           threadRecipient.isSelf()                              ||
            threadRecipient.isProfileSharing()                    ||
            threadRecipient.isSystemContact()                     ||
            threadRecipient.isForceSmsSelection()                 ||

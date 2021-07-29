@@ -103,22 +103,22 @@ public final class DatabaseObserver {
         notifyMapped(conversationObservers, threadId);
         notifyMapped(verboseConversationObservers, threadId);
       }
-    });
 
-    for (long threadId : threadIds) {
-      application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getUriForThread(threadId), null);
-      application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
-    }
+      for (long threadId : threadIds) {
+        application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getUriForThread(threadId), null);
+        application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
+      }
+    });
   }
 
   public void notifyConversationListeners(long threadId) {
     executor.execute(() -> {
       notifyMapped(conversationObservers, threadId);
       notifyMapped(verboseConversationObservers, threadId);
-    });
 
-    application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getUriForThread(threadId), null);
-    application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
+      application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getUriForThread(threadId), null);
+      application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
+    });
   }
 
   public void notifyVerboseConversationListeners(Set<Long> threadIds) {
@@ -126,19 +126,19 @@ public final class DatabaseObserver {
       for (long threadId : threadIds) {
         notifyMapped(verboseConversationObservers, threadId);
       }
-    });
 
-    for (long threadId : threadIds) {
-      application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
-    }
+      for (long threadId : threadIds) {
+        application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
+      }
+    });
   }
 
   public void notifyVerboseConversationListeners(long threadId) {
     executor.execute(() -> {
       notifyMapped(verboseConversationObservers, threadId);
-    });
 
-    application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
+      application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
+    });
   }
 
   public void notifyConversationListListeners() {
@@ -172,6 +172,8 @@ public final class DatabaseObserver {
   public void notifyStickerPackObservers() {
     executor.execute(() -> {
       notifySet(stickerPackObservers);
+
+      application.getContentResolver().notifyChange(DatabaseContentProviders.StickerPack.CONTENT_URI, null);
     });
   }
 

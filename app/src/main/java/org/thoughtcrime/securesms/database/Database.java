@@ -29,7 +29,8 @@ import java.util.Set;
 
 public abstract class Database {
 
-  protected static final String ID_WHERE = "_id = ?";
+  protected static final String   ID_WHERE = "_id = ?";
+  protected static final String[] COUNT    = new String[] { "COUNT(*)" };
 
   protected       SQLCipherOpenHelper databaseHelper;
   protected final Context             context;
@@ -49,22 +50,14 @@ public abstract class Database {
 
   protected void notifyConversationListeners(long threadId) {
     ApplicationDependencies.getDatabaseObserver().notifyConversationListeners(threadId);
-
-    context.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getUriForThread(threadId), null);
-    notifyVerboseConversationListeners(threadId);
   }
 
   protected void notifyVerboseConversationListeners(Set<Long> threadIds) {
     ApplicationDependencies.getDatabaseObserver().notifyVerboseConversationListeners(threadIds);
-
-    for (long threadId : threadIds) {
-      notifyVerboseConversationListeners(threadId);
-    }
   }
 
   protected void notifyVerboseConversationListeners(long threadId) {
     ApplicationDependencies.getDatabaseObserver().notifyVerboseConversationListeners(threadId);
-    context.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
   }
 
   protected void notifyConversationListListeners() {
@@ -77,7 +70,6 @@ public abstract class Database {
 
   protected void notifyStickerPackListeners() {
     ApplicationDependencies.getDatabaseObserver().notifyStickerPackObservers();
-    context.getContentResolver().notifyChange(DatabaseContentProviders.StickerPack.CONTENT_URI, null);
   }
 
   @Deprecated

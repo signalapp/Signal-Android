@@ -296,6 +296,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -3051,12 +3052,13 @@ public class ConversationActivity extends PassphraseRequiredActivity
                .ifNecessary(!sendPush)
                .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms))
                .onAllGranted(() -> {
-                 silentlySetComposeText("");
-                 final long id = fragment.stageOutgoingMessage(message);
-
+                 final long id = new SecureRandom().nextLong();
                  SimpleTask.run(() -> {
                    return MessageSender.send(context, message, thread, forceSms, () -> fragment.releaseOutgoingMessage(id));
                  }, this::sendComplete);
+
+                 silentlySetComposeText("");
+                 fragment.stageOutgoingMessage(message, id);
                })
                .execute();
   }
