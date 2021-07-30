@@ -230,6 +230,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         setUpRecyclerView()
         setUpToolBar()
         setUpInputBar()
+        setUpLinkPreviewObserver()
         restoreDraftIfNeeded()
         addOpenGroupGuidelinesIfNeeded()
         scrollToBottomButton.setOnClickListener { conversationRecyclerView.smoothScrollToPosition(0) }
@@ -240,7 +241,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         updateSubtitle()
         getLatestOpenGroupInfoIfNeeded()
         setUpBlockedBanner()
-        setUpLinkPreviewObserver()
         searchBottomBar.setEventListener(this)
         setUpSearchResultObserver()
         scrollToFirstUnreadMessageIfNeeded()
