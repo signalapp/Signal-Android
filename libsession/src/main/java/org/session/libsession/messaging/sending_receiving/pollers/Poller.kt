@@ -22,7 +22,7 @@ class Poller {
 
     // region Settings
     companion object {
-        private val retryInterval: Long = 3 * 1000
+        private val retryInterval: Long = 1 * 1000
     }
     // endregion
 
