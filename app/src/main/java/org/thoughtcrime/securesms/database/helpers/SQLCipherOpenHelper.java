@@ -143,10 +143,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   }
 
   @Override
-  public void onOpen(SQLiteDatabase db) {
-    super.onOpen(db);
+  public void onConfigure(SQLiteDatabase db) {
+    super.onConfigure(db);
     // Loki - Enable write ahead logging mode and increase the cache size.
     // This should be disabled if we ever run into serious race condition bugs.
+    db.enableWriteAheadLogging();
     db.execSQL("PRAGMA cache_size = 10000");
   }
 
@@ -191,7 +192,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < lokiV14_BACKUP_FILES) {
         db.execSQL(LokiBackupFilesDatabase.getCreateTableCommand());
       }
-      
+
       if (oldVersion < lokiV16) {
         db.execSQL(LokiAPIDatabase.getCreateOpenGroupProfilePictureTableCommand());
       }
