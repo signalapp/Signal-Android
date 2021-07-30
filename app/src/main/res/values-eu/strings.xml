@@ -960,6 +960,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Aldatu duzu taldearen kidetza aldatu dezakeen pertsona. Orain \"%1$s\" da.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s erabiltzaileak aldatu du taldearen kidetza aldatu dezakeen pertsona. Orain \"%2$s\" da.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Taldearen kidetza aldatu dezakeena aldatu da. Orain \"%1$s\" da.</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Talde esteka aktibatu duzu administratzailearen baimena behar ez delarik.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Talde esteka aktibatu duzu administratzailearen baimena behar delarik.</string>

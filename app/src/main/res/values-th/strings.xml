@@ -922,6 +922,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">คุณได้เปลี่ยนว่าใครสามารถแก้ไขสมาชิกภาพเป็น \"%1$s\"</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ได้เปลี่ยนแปลงว่าใครสามารถแก้ไขสมาชิกภาพกลุ่มเป็น \"%2$s\"</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">บุคคลที่สามารถแก้ไขสมาชิกภาพได้เปลี่ยนเป็น \"%1$s\"</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">คุณได้เปิดลิงก์กลุ่ม โดยการอนุมัติโดยผู้ดูแลปิดอยู่</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">คุณได้เปิดลิงก์กลุ่ม โดยการอนุมัติโดยผู้ดูแลเปิดอยู่</string>

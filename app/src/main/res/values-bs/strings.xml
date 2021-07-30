@@ -13,7 +13,7 @@
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal se ažurira …</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Još niste postavili lozinku!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Još niste zadali lozinku!</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Isključiti lozinku?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Ovo će trajno otključati Signal i obavještenja o porukama.</string>
   <string name="ApplicationPreferencesActivity_disable">Onemogući</string>
@@ -209,6 +209,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Veličina priloga veća je od dopuštene za vrstu poruke koju šaljete.</string>
   <string name="ConversationActivity_unable_to_record_audio">Nije moguće snimiti zvuk!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Ne možete slati poruke ovoj grupi jer više niste njen član.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Samo %1$s može slati poruke.</string>
+  <string name="ConversationActivity_admins">administratori</string>
+  <string name="ConversationActivity_message_an_admin">Pošalji poruku administratoru</string>
+  <string name="ConversationActivity_cant_start_group_call">Ne može se započeti grupni poziv</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Samo administratori ove grupe mogu započeti poziv.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Na Vašem uređaju nema aplikacije koja bi mogla otvoriti ovaj link.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Vaš zahtjev za pristupanje poslan je administratoru grupe. Bit ćete obaviješteni kad ga on/a razmotri.</string>
   <string name="ConversationActivity_cancel_request">Poništi zahtjev</string>
@@ -429,6 +434,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dijeli sa</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Višestruki prilozi podržani su samo za slike i videozapise</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Niste ovlašteni da šaljete ovoj grupi</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Stalna greška u komunikaciji Signalom!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Nije uspjela registracija Signala na Google Play Services. Onemogućene su sve poruke i pozivi putem Signala. Molimo pokušajte ponovo se registrovati kroz Postavke &gt; Napredno.</string>
@@ -586,13 +592,14 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Uredu</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ovu osobu nije moguće uvrstiti u stare grupe.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Ova osoba ne može biti uvrštena u proglasne grupe.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Uvrstiti \"%1$s\" u \"%2$s\"?</item>
     <item quantity="few">Uvrstiti %3$d člana u \"%2$s\"?</item>
     <item quantity="other">Uvrstiti %3$d članova u \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Dodaj</string>
-  <string name="AddMembersActivity__add_members">Uvrštavanje članova</string>
+  <string name="AddMembersActivity__add_members">Uvrsti članove</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Dodijelite naziv grupi</string>
   <string name="AddGroupDetailsFragment__create_group">Kreiraj grupu</string>
@@ -634,7 +641,7 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Zahtjevi za članstvo i pozivnice</string>
-  <string name="ManageGroupActivity_add_members">Uvrštavanje članova</string>
+  <string name="ManageGroupActivity_add_members">Uvrsti članove</string>
   <string name="ManageGroupActivity_edit_group_info">Izmjene informacija o grupi</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Ko može uvrstiti nove članove?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Ko može mijenjati informacije o ovoj grupi?</string>
@@ -662,6 +669,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Samo administratori mogu kreirati novi link za pristup grupi.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Niste ovlašteni za to</string>
   <string name="ManageGroupActivity_not_capable">Neko koga ste uvrstili ne podržava nove grupe i treba ažurirati verziju Signala</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Neko koga ste uvrstili nema podrške za proglasne grupe i treba ažurirati Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Neuspjelo ažuriranje grupe</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Niste član ove grupe</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Neuspjelo ažuriranje grupe, molimo, pokušajte kasnije</string>
@@ -675,7 +683,7 @@
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ovo je nezaštićena MMS grupa. Da biste razgovarali u privatnosti, pozovite svoje kontakte da koriste Signal.</string>
   <string name="ManageGroupActivity_invite_now">Pozovi odmah</string>
   <string name="ManageGroupActivity_more">više</string>
-  <string name="ManageGroupActivity_add_group_description">Unesi opis grupe…</string>
+  <string name="ManageGroupActivity_add_group_description">Unesite opis grupe…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obavijesti me kad me neko spomene</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Primiti obavještenja kad Vas neko spomene u prigušenim konverzacijama?</string>
@@ -1033,6 +1041,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Promijenili ste ovlasti za upravljanje članstvom u grupi na \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s je promijenio/la ovlasti za upravljanje članstvom u grupi na \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ko može upravljati članstvom u grupi promijenjeno je u \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Izmijenili ste grupne postavke i dopustili svim članovima da šalju poruke.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Izmijenili ste grupne postavke i dopustili samo administratorima da šalju poruke.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s je izmijenio/la grupne postavke i dopustio/la svim članovima da šalju poruke.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s je izmijenio/la grupne postavke i dopustio/la samo administratorima da šalju poruke.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Grupne su postavke promijenjene i svi članovi mogu slati poruke.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Grupne su postavke promijenjene i samo administratori mogu slati poruke.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Aktivirali ste link za pristupanje grupi bez potrebe za administratorskim odobrenjem.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Aktivirali ste link za pristupanje grupi samo sa administratorskim odobrenjem.</string>
@@ -3113,7 +3128,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="ConversationSettingsFragment__unblock_group">Prestani s blokiranjem grupe</string>
   <string name="ConversationSettingsFragment__add_to_a_group">Uvrsti u grupu</string>
   <string name="ConversationSettingsFragment__see_all">Vidi sve</string>
-  <string name="ConversationSettingsFragment__add_members">Uvrštavanje članova</string>
+  <string name="ConversationSettingsFragment__add_members">Uvrsti članove</string>
   <string name="ConversationSettingsFragment__permissions">Dopuštenja</string>
   <string name="ConversationSettingsFragment__requests_and_invites">Zahtjevi i pozivnice</string>
   <string name="ConversationSettingsFragment__group_link">Link za grupu</string>
@@ -3126,10 +3141,12 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Uvrštavanje članova</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Izmjene informacija o grupi</string>
+  <string name="PermissionsSettingsFragment__send_messages">Pošalji poruke</string>
   <string name="PermissionsSettingsFragment__all_members">Svi članovi</string>
   <string name="PermissionsSettingsFragment__only_admins">Samo administratori</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Ko može uvrstiti nove članove?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Ko može mijenjati informacije o ovoj grupi?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Ko može slati poruke?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Stišaj obavještenja</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nije stišano</string>

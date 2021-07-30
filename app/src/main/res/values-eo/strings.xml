@@ -975,6 +975,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Vi ŝanĝis, kiu povas modifi la grupan membrecon al „%1$s“.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ŝanĝis, kiu povas modifi la grupan membrecon al „%2$s“.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Tiuj, kiuj povas modifi la grupan membrecon ŝanĝiĝis al „%1$s“.</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Vi ŝaltis la grupligilon sen bezono de administranto-aprobo.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Vi ŝaltis la grupligilon kun administranto-aprobo.</string>

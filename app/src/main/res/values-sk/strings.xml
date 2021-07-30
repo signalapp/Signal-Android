@@ -210,6 +210,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Príloha presahuje limit veľkosti pre tento typ správy.</string>
   <string name="ConversationActivity_unable_to_record_audio">Nemôžem zaznamenať zvuk!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Do tejto skupiny nemôžete posielať správy, pretože už nie ste jej členom.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Iba %1$s môže odosielať správy.</string>
+  <string name="ConversationActivity_admins">administrátori</string>
+  <string name="ConversationActivity_message_an_admin">Pošlite správu správcovi</string>
+  <string name="ConversationActivity_cant_start_group_call">Skupinový hovor sa nedá začať</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Len administrátori z tejto skupiny môžu zahájiť hovor.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Vo vašom zariadení nie je aplikácia schopná otvoriť tento odkaz.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Vaša žiadosť o členstvo bola odoslaná administrátorovi skupiny. Keď na ňu zareaguje, dostanete oznámenie.</string>
   <string name="ConversationActivity_cancel_request">Zrušiť žiadosť</string>
@@ -441,6 +446,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Zdieľať s</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Viaceré prílohy sú podporované iba pre obrázky a videá</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Na odosielanie do tejto skupiny nemáte povolenie</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trvalá chyba komunikácie Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal sa nebol schopný registrovať k službám Google Play. Signal správy a hovory boli vypnuté, prosím zaregistrujte sa opätovne cez Nastavenia &gt; Rozšírené.</string>
@@ -613,6 +619,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Hotovo</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Táto osoba nemôže byť pridaná do zastaraných skupín.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Túto osobu nemožno pridať do skupín oznámení.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Pridať \"%1$s\" do \"%2$s\"?</item>
     <item quantity="few">Pridať %3$d členov do \"%2$s\"?</item>
@@ -695,6 +702,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Iba administrátori môžu zresetovať zdieľateľný odkaz do skupiny.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nemáte oprávnenia na vykonanie tejto akcie</string>
   <string name="ManageGroupActivity_not_capable">Niekto, koho ste pridali, nepodporuje nové skupiny a potrebuje si aktualizovať Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Niekto, koho ste pridali, nepodporuje skupiny oznámení a potrebuje aktualizovať Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nepodarilo sa aktualizovať skupinu</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nie ste členom tejto skupiny</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Nepodarilo sa aktualizovať skupinu, prosím, skúste to neskôr</string>
@@ -1084,6 +1092,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Zmenili ste, kto môže upravovať členstvo v skupine na \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s zmenil/a, kto môže upravovať členstvo v skupine na \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Kto môže meniť členstvo v skupine, sa zmenilo na \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Zmenili ste nastavenia skupiny, aby všetci členovia mohli posielať správy.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Zmenili ste nastavenia skupiny, aby len administrátori mohli posielať správy.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s zmenil skupinové nastavenia tak, aby umožňovali všetkým členom odosielať správy.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s zmenil nastavenie skupiny tak, aby umožňoval posielanie správ iba správcom.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Zmenili sa nastavenia skupiny, aby všetci členovia mohli posielať správy.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Zmenili sa nastavenia skupiny, aby len administrátori mohli posielať správy.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Zapli ste odkaz do skupiny so schválením administrátorom neaktívnym.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Zapli ste odkaz do skupiny so schválením administrátorom aktívnym.</string>
@@ -3205,10 +3220,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Pridať členov</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Upraviť informácie o skupine</string>
+  <string name="PermissionsSettingsFragment__send_messages">Posielať správy</string>
   <string name="PermissionsSettingsFragment__all_members">Všetci členovia</string>
   <string name="PermissionsSettingsFragment__only_admins">Iba správcovia</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Kto môže pridávať nových členov?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kto môže upraviť informácie o tejto skupine?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Kto môže posielať správy?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Stlmiť upozornenia</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nestlmené</string>

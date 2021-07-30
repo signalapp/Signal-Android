@@ -208,6 +208,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Le fichier joint dépasse la limite de taille pour le type de message que vous envoyez.</string>
   <string name="ConversationActivity_unable_to_record_audio">Impossible d’enregistrer le son.</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Vous ne pouvez pas envoyer de messages à ce groupe, car vous n’en faites plus partie.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Seuls les %1$s peuvent envoyer des messages.</string>
+  <string name="ConversationActivity_admins">administrateurs</string>
+  <string name="ConversationActivity_message_an_admin">Envoyer un message à un administrateur</string>
+  <string name="ConversationActivity_cant_start_group_call">Impossible de démarrer l’appel de groupe</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Seuls les administrateurs de ce groupe peuvent démarrer un appel.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Il n’y a aucune appli pour gérer ce lien sur votre appareil.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Votre demande de vous joindre au groupe a été envoyée à son administrateur. Vous serez averti de sa décision.</string>
   <string name="ConversationActivity_cancel_request">Annuler la demande</string>
@@ -559,6 +564,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Terminé</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Cette personne ne peut pas être ajoutée à des groupes hérités.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Cette personne ne peut pas être ajoutée à des groupes de diffusion.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Ajouter « %1$s » à « %2$s » ?</item>
     <item quantity="other">Ajouter %3$d membres à « %2$s » ?</item>
@@ -629,6 +635,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Seuls les administrateurs peuvent réinitialiser le lien de groupe partageable.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vous n’avez pas les droits pour ce faire</string>
   <string name="ManageGroupActivity_not_capable">Une personne que vous avez ajoutée ne prend pas en charge les Nouveaux groupes et doit mettre Signal à jour.</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Une personne que vous avez ajoutée ne prend pas en charge les groupes de diffusion et doit mettre Signal à jour</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Échec de mise à jour du groupe</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Vous n’êtes pas un membre du groupe</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Échec de mise à jour du groupe, veuillez réessayer plus tard</string>
@@ -982,6 +989,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Vous avez changé qui peut modifier les membres du groupe en « %1$s ».</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s a changé qui peut modifier les membres du groupe en « %2$s ».</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Qui peut modifier les membres du groupe a été changé en « %1$s ».</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Vous avez changé les paramètres du groupe afin d’autoriser tous les membres à envoyer des messages.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Vous avez changé les paramètres du groupe afin d’autoriser seulement les administrateurs à envoyer des messages.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s a changé les paramètres du groupe afin d\'autoriser tous les membres à envoyer des messages.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s a changé les paramètres du groupe afin de n’autoriser que les administrateurs à envoyer des messages.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Les paramètres du groupe ont été changés afin d’autoriser tous les membres à envoyer des messages.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Les paramètres du groupe ont été changés afin de n’autoriser que les administrateurs à envoyer des messages.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Vous avez activé le lien du groupe et l’approbation d’un administrateur est désactivée.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Vous avez activé le lien du groupe et l’approbation d’un administrateur est activée.</string>
@@ -3027,10 +3041,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Ajouter des membres</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Modifier les renseignements</string>
+  <string name="PermissionsSettingsFragment__send_messages">Envoyer des messages</string>
   <string name="PermissionsSettingsFragment__all_members">Tous les membres</string>
   <string name="PermissionsSettingsFragment__only_admins">Les administrateurs</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Qui peut ajouter de nouveaux membres ?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Qui peut modifier les renseignements de ce groupe ?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Qui peut envoyer des messages ?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Mettre les notifications en sourdine</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Désactivée</string>
@@ -3042,9 +3058,9 @@
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Récemment utilisés</string>
   <!--PlaybackSpeedToggleTextView-->
-  <string name="PlaybackSpeedToggleTextView__p5x">0,5 x</string>
-  <string name="PlaybackSpeedToggleTextView__1x">1 x</string>
-  <string name="PlaybackSpeedToggleTextView__2x">2 x</string>
+  <string name="PlaybackSpeedToggleTextView__p5x">x 0,5</string>
+  <string name="PlaybackSpeedToggleTextView__1x">x 1</string>
+  <string name="PlaybackSpeedToggleTextView__2x">x 2</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Nouveau paiement</string>
   <!--NewConversationActivity-->

@@ -208,6 +208,9 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bilagan överskrider storleksgränserna för den typ av meddelande du skickar.</string>
   <string name="ConversationActivity_unable_to_record_audio">Det går inte att spela in ljud!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan inte skicka meddelanden till denna grupp eftersom du inte längre är medlem.</string>
+  <string name="ConversationActivity_admins">administratörer</string>
+  <string name="ConversationActivity_message_an_admin">Skicka ett meddelande till en administratör</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Endast administratörer för denna grupp kan starta ett samtal.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det finns ingen app tillgänglig för att hantera denna länk på din enhet.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din förfrågan om att gå med har skickats till gruppadministratören. Du får ett meddelande när administratören vidtar åtgärder.</string>
   <string name="ConversationActivity_cancel_request">Avbryt förfrågan</string>
@@ -982,6 +985,11 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Du ändrade vem som kan redigera gruppmedlemskap till \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ändrade vem som kan redigera gruppmedlemskap till \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Vem som kan redigera gruppmedlemskap har ändrats till \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Du ändrade gruppinställningarna så att alla medlemmar tillåts skicka meddelanden.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Du ändrade gruppinställningarna så att endast administratörer tillåts skicka meddelanden.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Gruppinställningarna ändrades så att alla medlemmar tillåts skicka meddelanden.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Gruppinställningarna ändrades så att endast administratörer tillåts skicka meddelanden.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Du aktiverade grupplänken med administratörsgodkännande av.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Du aktiverade grupplänken med administratörsgodkännande.</string>

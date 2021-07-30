@@ -962,6 +962,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">ଆପଣ ଗୋଷ୍ଠୀ ସଦସ୍ୟତାକୁ କିଏ ସଂପାଦନ କରିପାରିବ \"%1$s\" ରେ  ପରିବର୍ତ୍ତନ କରିଛନ୍ତି</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ଗୋଷ୍ଠୀ ସଦସ୍ୟତାକୁ କିଏ ସଂପାଦନ କରିପାରିବ \"%2$s\" ରେ ପରିବର୍ତ୍ତନ କରିଛନ୍ତି</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">ଗୋଷ୍ଠୀ ସଦସ୍ୟତାକୁ କିଏ ସଂପାଦନ କରିପାରିବ \"%1$s\" ରେ ପରିବର୍ତ୍ତନ କରାଯାଇଛି</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">ଆପଣ ପରିଚାଳକ ଅନୁମୋଦନ ବନ୍ଦ କରି ଗୋଷ୍ଠି ଲିଙ୍କ୍ ଚାଲୁ କରିଛନ୍ତି</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">ଆପଣ ପରିଚାଳକ ଅନୁମୋଦନ ଚାଲୁ କରି ଗୋଷ୍ଠି ଲିଙ୍କ୍ ଚାଲୁ କରିଛନ୍ତି</string>

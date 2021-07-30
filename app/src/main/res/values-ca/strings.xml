@@ -208,6 +208,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">El fitxer adjunt excedeix la mida màxima per a aquest tipus de missatges.</string>
   <string name="ConversationActivity_unable_to_record_audio">No s\'ha pogut enregistrar l\'àudio.</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">No podeu enviar missatges a aquest grup perquè ja no en sou membre.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Només els %1$s poden enviar missatges. </string>
+  <string name="ConversationActivity_admins">administradors</string>
+  <string name="ConversationActivity_message_an_admin">Envia un missatge a un administrador</string>
+  <string name="ConversationActivity_cant_start_group_call">No es pot iniciar la trucada de grup.</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Només els administradors d\'aquest grup poden iniciar una trucada.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">No hi ha cap aplicació que pugui obrir aquest enllaç.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">La sol·licitud per afegir-vos-hi s\'ha enviat a l\'administrador/a del grup. Rebreu una notificació quan la resolguin.</string>
   <string name="ConversationActivity_cancel_request">Cancel·la la sol·licitud</string>
@@ -417,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Comparteix amb</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Els adjunts múltiples només s\'admeten per a imatges i vídeos.</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">No teniu permís per enviar a aquest grup.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">La comunicació del Signal falla contínuament!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">El Signal no s\'ha pogut registrar al Google Play Services. Els missatges i les trucades del Signal s\'han desactivat, registreu-vos de nou a Configuració &gt; Avançada.</string>
@@ -559,6 +565,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Fet</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Aquesta persona no es pot afegir a grups de llegat.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Aquesta persona no es pot afegir als anuncis dels grups.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Voleu afegir %1$s a \"%2$s\"?</item>
     <item quantity="other">Voleu afegir %3$d membres a \"%2$s\"?</item>
@@ -629,6 +636,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Només els administradors poden restablir l\'enllaç de grup que es pot compartir.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">No teniu permís per fer això.</string>
   <string name="ManageGroupActivity_not_capable">Algú que heu afegit no admet grups nous i cal que actualitzi el Signal.</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Algú que heu afegit no admet els anuncis de grups i cal que actualitzi el Signal.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Ha fallat actualitzar el grup.</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">No sou membre del grup.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Ha fallat actualitzar el grup. Torneu-ho a provar més tard.</string>
@@ -982,6 +990,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Heu canviat qui pot editar els membres del grup a \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha canviat qui pot editar els membres del grup a \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">S\'ha canviat qui pot editar els membres del grup a \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Heu canviat la configuració del grup per permetre enviar missatges a tots els membres.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Heu canviat la configuració del grup per permetre enviar missatges només als administradors.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s ha canviat la configuració del grup per permetre enviar missatges a tots els membres.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ha canviat la configuració del grup per permetre enviar missatges només als administradors.</string>
+  <string name="MessageRecord_allow_all_members_to_send">La configuració del grup s\'ha canviat per permetre enviar missatges a tots els membres.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">La configuració del grup s\'ha canviat per permetre enviar missatges només als administradors.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Heu activat l\'enllaç de grup amb l\'aprovació de l\'administrador desactivada.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Heu activat l\'enllaç de grup amb l\'aprovació de l\'administrador activada.</string>
@@ -3030,10 +3045,12 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Afegeix-hi membres</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Edita la informació del grup</string>
+  <string name="PermissionsSettingsFragment__send_messages">Enviament de missatges</string>
   <string name="PermissionsSettingsFragment__all_members">Tots els membres</string>
   <string name="PermissionsSettingsFragment__only_admins">Només els administradors</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Qui pot afegir membres nous?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Qui pot editar la informació del grup?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Qui pot enviar missatges?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Silencia les notificacions</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">No silenciat</string>

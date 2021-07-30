@@ -20,7 +20,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">Se anulează înregistrarea</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Se dezabonează de la mesajele și apelurile Signal…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivați mesajele și apelurile Signal? </string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivați mesajele și apelurile Signal prin anularea înregistrării în server. Va trebui sa reînregistați numărul dvs. de telefon pentru a le folosi din nou în viitor.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivați mesajele și apelurile Signal prin anularea înregistrării în server. Va trebui să reînregistați numărul dvs. de telefon pentru a le folosi din nou în viitor.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare la server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activat</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Atinge pentru a schimba aplicaţia implicită de SMS </string>
@@ -209,6 +209,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Atașamentul depășește limita de mărime pentru tipul de mesaj pe care vreți să-l trimiteți.</string>
   <string name="ConversationActivity_unable_to_record_audio">Nu se poate înregistra audio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nu puteți trimite mesaje acestui grup, deoarece nu mai sunteți membru.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Doar %1$s poate trimite mesaje.</string>
+  <string name="ConversationActivity_admins">administratori</string>
+  <string name="ConversationActivity_message_an_admin">Trimiteți un mesaj unui administrator</string>
+  <string name="ConversationActivity_cant_start_group_call">Nu se poate initția apelul de grup</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Numai administratorii acestui grup pot iniția un apel.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nu există nici o aplicație disponibilă pe dispozitivul tău care să poată deschide acest link.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Solicitarea dvs. de înscriere a fost trimisă administratorului grupului. Veți fi anunțat când vor lua acțiuni.</string>
   <string name="ConversationActivity_cancel_request">Anulați cererea</string>
@@ -429,6 +434,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Distribuie cu</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Atașamentele multiple sunt suportate doar pentru imagini și videouri</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Nu aveți permisiunea de a trimite acestui grup</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Eroare permanentă de comunicare cu Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nu s-a putut înregistra la Google Play Services. Mesajele și apelurile Signal au fost dezactivate, te rog încearcă să te înregistrezi din nou din meniul Setări &gt; Avansat.</string>
@@ -586,6 +592,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Gata</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Această persoană nu poate fi adăugată la grupurile vechi.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Această persoană nu poate fi adăugată la grupuri de anunț</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Adăugaţi \"%1$s\" la \"%2$s\"?</item>
     <item quantity="few">Adăugați %3$d membri la \"%2$s\"?</item>
@@ -661,7 +668,8 @@
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Numai administratorii pot activa sau dezactiva opțiunea de aprobare a noilor membri.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Numai administratorii pot reseta linkul partajabil către grup.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nu aveți drepturile pentru a face acest lucru</string>
-  <string name="ManageGroupActivity_not_capable">Cineva pe care l-ai adăugat nu acceptă noile grupuri și trebuie să-și actualizeze Signal</string>
+  <string name="ManageGroupActivity_not_capable">Cineva adăugat de dvs. nu acceptă noile grupuri și trebuie să actualizeze Signal.</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Cineva adăugat de dvs. nu acceptă grupuri de anunț și trebuie să actualizeze Signal.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Actualizarea grupului a eșuat.</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nu sunteți membru în acest grup</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Grupul nu a putut fi actualizat, vă rugăm să încercați mai târziu</string>
@@ -1033,6 +1041,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Ați modificat cine poate edita apartenența la grup la \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s a modificat cine poate edita apartenența la grup la \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Persoana care poate edita apartenența la grup este acum \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Ați modificat setările grupului pentru a permite tuturor membrilor să trimită mesaje.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Ați modificat setările grupului pentru a permite doar administratorilor să trimită mesaje.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s a modificat setările grupului pentru a permite tuturor membrilor să trimită mesaje.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s a modificat setările grupului pentru a permite doar administratorilor să trimită mesaje.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Setările grupului au fost modificate pentru a permite tuturor membrilor să trimită mesaje.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Setările grupului au fost modificate pentru a permite doar administratorilor să trimită mesaje.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Ați activat linkul de grup cu aprobarea administratorului dezactivată.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Ați activat linkul de grup cu aprobarea administratorului.</string>
@@ -2180,7 +2195,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Vezi termenii MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Plățile în Signal nu mai sunt disponibile. Puteți transfera în continuare fonduri către un exchange, dar nu mai puteți trimite sau primi plăți ori adăuga fonduri.</string>
   <!--PaymentsAddMoneyFragment-->
-  <string name="PaymentsAddMoneyFragment__add_funds">Adăugare fonduri</string>
+  <string name="PaymentsAddMoneyFragment__add_funds">Adăugați fonduri</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Adresa portofelului dvs.</string>
   <string name="PaymentsAddMoneyFragment__copy">Copy</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">S-a copiat în clipboard</string>
@@ -2257,7 +2272,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConfirmPayment__processing_payment">Se procesează…</string>
   <string name="ConfirmPayment__payment_complete">Plată finalizată</string>
   <string name="ConfirmPayment__payment_failed">Plata a eșuat</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">Plata va continua procesarea</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Destinatar invalid</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Aceasta persoană nu a activat plățile</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s la %2$s</string>
   <!--SetCurrencyFragment-->
@@ -2597,7 +2614,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Deschideți Signal pe vechiul dvs. telefon Android</string>
   <string name="NewDeviceTransferInstructions__continue">Continuare</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Atingeți poza dvs. de profil în colțul din stânga sus pentru a deschide Setările</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Atingeți poza dvs. de profil din stânga sus pentru a deschide Setările</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
   <string name="NewDeviceTransferInstructions__tap_on_account">Apăsați pe \"Cont\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
@@ -2608,12 +2625,14 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Se așteaptă conectarea vechiul dispozitiv Android…</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal are nevoie de permisiunea de localizare pentru a descoperi și a se conecta la vechiul dispozitiv Android.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal are nevoie de servicii de localizare activate pentru a descoperi și a vă conecta cu vechiul dispozitiv Android.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal are nevoie de Wi-Fi activat pentru a descoperi și a se conecta la vechiul dispozitiv Android. Wi-Fi trebuie să fie activat dar nu neapărat conectat la o rețea fără fir.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Restaurare backup</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">A apărut o eroare neașteptată în timpul încercării de a vă conecta la vechiul dispozitiv Android.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Se caută un dispozitiv nou Android …</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal are nevoie de permisiunea de localizare pentru a descoperi și a se conecta la noul dispozitiv Android.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal are nevoie de servicii de localizare activate pentru a descoperi și a vă conecta cu noul dispozitiv Android.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal are nevoie de Wi-Fi activat pentru a descoperi și a se conecta la noul dispozitiv Android. Wi-Fi trebuie să fie activat dar nu neapărat conectat la o rețea fără fir.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Creați un backup</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__grant_location_permission">Acordați permisiunea pentru locație</string>
@@ -2636,7 +2655,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="DeviceTransferSetup__location_permission">Permisie locație</string>
   <string name="DeviceTransferSetup__location_services">Servicii locație</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">În ecranul WiFi Direct, eliminați toate grupurile reținute și decuplați toate dispozitivele invitate sau conectate.</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">În ecranul WiFi Direct, eliminați toate grupurile memorate și decuplați toate dispozitivele invitate sau conectate.</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">Ecran WiFi Direct</string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Încercați să dezactivați și să activați Wi-Fi pe ambele dispozitive.</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Asigurați-vă că ambele dispozitive sunt în modul de transfer.</string>
@@ -2728,6 +2747,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="GroupLinkBottomSheet_copied_to_clipboard">S-a copiat în clipboard</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Linkul nu este activ momentan</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Mesajul vocal nu a putut fi redat</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Mesaj vocal · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s la %2$s</string>
@@ -2852,6 +2872,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="WallpaperCropActivity__blur_photo">Estompare poză</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Despre MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin este o nouă monedă digitală axată pe confidențialitate.</string>
   <string name="payment_info_card_hide">Ascunde</string>
   <string name="payment_info_card_update_your_pin">Actualizați-vă PIN-ul</string>
   <string name="payment_info_card_update_pin">Actualizați PIN</string>
@@ -2876,6 +2897,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsRecoveryPhraseFragment__next">Următorul</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Editează</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Înapoi</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Nu faceți capturi de ecran și nu trimiteți prin e-mail.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Frază de recuperare invalidă</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Copiere în clipboard?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Copy</string>
@@ -3066,10 +3088,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Adăugare membri</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Editare informații despre grup</string>
+  <string name="PermissionsSettingsFragment__send_messages">Trimitere mesaje</string>
   <string name="PermissionsSettingsFragment__all_members">Toți membri</string>
   <string name="PermissionsSettingsFragment__only_admins">Doar administratorii</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Cine poate adăuga membri?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Cine poate edita informațiile grupului?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Cine poate să trimită mesaje</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Notificări fără sunet</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nu este pe silențios</string>

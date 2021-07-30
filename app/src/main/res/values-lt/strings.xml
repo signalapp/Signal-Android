@@ -210,6 +210,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Priedas viršija jūsų siunčiamos žinutės tipui leidžiamą dydį.</string>
   <string name="ConversationActivity_unable_to_record_audio">Nepavyksta įrašyti garso!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Negalite siųsti žinučių į šią grupę, nes daugiau nebesate jos narys.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Tik %1$s gali siųsti žinutes.</string>
+  <string name="ConversationActivity_admins">administratoriai</string>
+  <string name="ConversationActivity_message_an_admin">Rašyti žinutę administratoriui</string>
+  <string name="ConversationActivity_cant_start_group_call">Negalima pradėti grupės skambučio</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Tik šios grupės administratoriai gali pradėti skambutį.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nėra prieinamos programėlės, kuri galėtų apdoroti šią nuorodą jūsų įrenginyje.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Jūsų prašymas prisijungti prie grupės buvo išsiųstas grupės administratoriui. Jums bus pranešta, kai jis atliks tam tikrus veiksmus.</string>
   <string name="ConversationActivity_cancel_request">Panaikinti prašymą</string>
@@ -441,6 +446,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Bendrinti su</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Keli priedai yra palaikomi tik paveikslams ir vaizdo įrašams</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Jūs neturite leidimo siųsti į šią grupę</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Ilgalaikė Signal susisiekimo triktis!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nepavyko prisiregistruoti prie „Google Play“ paslaugų. Signal žinutės ir skambučiai buvo išjungti, prašome pabandyti iš naujo registruotis skyrelyje Nustatymai (angl. Settings) &gt; Išplėstiniai (angl. Advanced).</string>
@@ -613,6 +619,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Atlikta</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Šis žmogus negali būti pridėtas į pasenusias grupes.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Šis žmogus negali būti pridėtas į skelbimų grupes.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Pridėti „%1$s“ į „%2$s“?</item>
     <item quantity="few">Pridėti %3$d narius į „%2$s“?</item>
@@ -695,6 +702,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Tik administratoriai gali atstatyti bendrinamą grupės nuorodą.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Jūs neturite teisių to daryti</string>
   <string name="ManageGroupActivity_not_capable">Kažkas iš jūsų pridėtų asmenų nepalaiko naujų grupių ir turi atsinaujinti Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Kažkas iš jūsų pridėtų žmonių nepalaiko skelbimų grupių ir turi atsinaujinti Signal programėlę</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nepavyko atnaujinti grupės</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Jūs nesate šios grupės narys</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Nepavyko atnaujinti grupės, vėliau bandykite dar kartą</string>
@@ -1084,6 +1092,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Jūs pakeitėte asmenis, kurie gali keisti grupės narystes į „%1$s“.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s pakeitė asmenis, kurie gali keisti grupės narystes į „%2$s“.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Buvo pakeista, kad „%1$s“ gali keisti grupės narystes.</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Jūs pakeitėte grupės nustatymus taip, kad visiems nariams būtų leista siųsti žinutes.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Jūs pakeitėte grupės nustatymus taip, kad tik administratoriams būtų leista siųsti žinutes.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s pakeitė grupės nustatymus taip, kad visiems nariams būtų leista siųsti žinutes.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s pakeitė grupės nustatymus taip, kad tik administratoriams būtų leista siųsti žinutes.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Grupės nustatymai buvo pakeisti taip, kad visiems nariams būtų leista siųsti žinutes.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Grupės nustatymai buvo pakeisti taip, kad tik administratoriams būtų leista siųsti žinutes.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Jūs įjungėte grupės nuorodą su išjungtais administratoriaus patvirtinimais.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Jūs įjungėte grupės nuorodą su įjungtais administratoriaus patvirtinimais.</string>
@@ -3206,10 +3221,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Pridėti narius</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Taisyti grupės informaciją</string>
+  <string name="PermissionsSettingsFragment__send_messages">Siųsti žinutes</string>
   <string name="PermissionsSettingsFragment__all_members">Visi nariai</string>
   <string name="PermissionsSettingsFragment__only_admins">Tik administratoriai</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Kas gali pridėti naujus narius?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kas gali taisyti šios grupės informaciją?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Kas gali siųsti žinutes?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Išjungti pranešimus</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Pranešimai neišjungti</string>

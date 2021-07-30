@@ -210,6 +210,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Вложение превышает предельный размер для того типа сообщения, которое вы отправляете.</string>
   <string name="ConversationActivity_unable_to_record_audio">Не удалось записать аудио!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Вы не можете отправлять сообщения в этой группе, потому что уже не являетесь её участником.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Только %1$s могут отправлять сообщения.</string>
+  <string name="ConversationActivity_admins">администраторы</string>
+  <string name="ConversationActivity_message_an_admin">Написать сообщение администратору</string>
+  <string name="ConversationActivity_cant_start_group_call">Невозможно начать групповой звонок</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Только администраторы этой группы могут начать звонок.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">На вашем устройстве нет приложения для открытия этой ссылки.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ваш запрос на присоединение был отправлен администратору группы. Вы будете уведомлены, когда он примет решение.</string>
   <string name="ConversationActivity_cancel_request">Отменить запрос</string>
@@ -441,6 +446,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Поделиться с</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Несколько вложений поддерживаются только для изображений и видео</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Вы не можете отправлять сообщения в эту группу</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Неустранимая ошибка соединения!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не смог зарегистрироваться в Службах Google Play. Сообщения и звонки через Signal отключены, пожалуйста, попробуйте зарегистрироваться снова через Наcтройки &gt; Расширенные.</string>
@@ -613,6 +619,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Готово</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Этот человек не может быть добавлен в старые группы.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Этот человек не может быть добавлен в группы для объявлений.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Добавить «%1$s» в «%2$s»?</item>
     <item quantity="few">Добавить %3$d участника в «%2$s»?</item>
@@ -695,6 +702,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Только администраторы могут сбрасывать ссылку на группу.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">У вас нет прав, чтобы сделать это</string>
   <string name="ManageGroupActivity_not_capable">Кто-то из тех, кого вы добавили, не поддерживает новые группы и должен(-на) обновить Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Кто-то из тех, кого вы добавили, не поддерживает группы для объявлений и должен(-на) обновить Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Не удалось обновить группу</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Вы не являетесь участником этой группы</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Не удалось обновить группу, пожалуйста, попробуйте позже</string>
@@ -1084,6 +1092,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Вы изменили, кто может редактировать членство в группе, на «%1$s».</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s изменил(-а), кто может редактировать членство в группе, на «%2$s».</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Кто может редактировать членство в группе было изменено на «%1$s».</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Вы изменили настройки группы, чтобы отправлять сообщения могли все участники.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Вы изменили настройки группы, чтобы отправлять сообщения могли только администраторы.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s изменил(-а) настройки группы, чтобы отправлять сообщения могли все участники.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s изменил(-а) настройки группы, чтобы отправлять сообщения могли только администраторы.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Настройки группы были изменены, чтобы отправлять сообщения могли все участники.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Настройки группы были изменены, чтобы отправлять сообщения могли только администраторы.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Вы включили ссылку на группу с отключённым одобрением администратора.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Вы включили ссылку на группу с включённым одобрением администратора.</string>
@@ -3199,10 +3214,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Добавлять участников</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Редактировать информацию</string>
+  <string name="PermissionsSettingsFragment__send_messages">Отправлять сообщения</string>
   <string name="PermissionsSettingsFragment__all_members">Все участники</string>
   <string name="PermissionsSettingsFragment__only_admins">Только администраторы</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Кто может добавлять новых участников?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Кто может редактировать информацию группы?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Кто может отправлять сообщения?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Отключить уведомления</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Звуки включены</string>

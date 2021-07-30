@@ -912,6 +912,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">그룹 멤버십을 수정할 수 있는 사용자를 \'%1$s\' 님으로 변경했습니다.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s 님이 그룹 멤버십을 수정할 수 있는 사용자를 \'%2$s\' 님으로 변경했습니다.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">그룹 멤버십을 수정할 수 있는 사람이 \'%1$s\' 님으로 변경되었습니다.</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">내가 그룹 링크를 켰습니다. (관리자 참가 승인 불필요)</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">내가 그룹 링크를 켰습니다. (관리자 참가 승인 필요)</string>

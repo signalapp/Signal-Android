@@ -206,6 +206,8 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">జోడింపు మీరు పంపే సందేశం రకం పరిమాణ పరిమితి మించిపోయింది.</string>
   <string name="ConversationActivity_unable_to_record_audio">ఆడియో రికార్డ్ చేయడం సాధ్యపడలేదు!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">మీరు ఇకపై ఈ సమూహం సభ్యులు కానందున మీరు ఈ సమూహంకు సందేశాలను పంపలేరు.</string>
+  <string name="ConversationActivity_admins">నిర్వాహకులు</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">ఈ గుంపు యొక్క నిర్వాహకులు మాత్రమే కాల్ ప్రారంభించగలరు.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">మీ పరికరం ఈ లింక్ నిర్వహించడానికి ఎలాంటి అనువర్తనం లేదు.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">గ్రూప్ లో చేరడానికి మీ అభ్యర్థన  నిర్వాహకుడికి పంపబడింది. వారు చర్య తీసుకున్నప్పుడు మీకు తెలియజేయబడుతుంది.</string>
   <string name="ConversationActivity_cancel_request">అభ్యర్ధన రద్దు చేయు</string>
@@ -977,6 +979,11 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">మీరు సమూహ సభ్యత్వాన్ని మార్చగలిగినవారు ని \"%1$s\"కు మార్చారు. </string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s సమూహ సభ్యత్వాన్ని మార్చగలిగినవారు ని \"%2$s\"కు మార్చారు. </string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">సమూహ సభ్యత్వాన్ని ఎవరు సవరించగలరు \"%1$s\" గా మార్చబడింది.</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">సభ్యులందరికీ సందేశాలను పంపడానికి మీరు సమూహ సెట్టింగులను మార్చారు.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">సందేశాలను పంపడానికి నిర్వాహకులను మాత్రమే అనుమతించడానికి మీరు సమూహ సెట్టింగులను మార్చారు.</string>
+  <string name="MessageRecord_allow_all_members_to_send">సభ్యులందరికీ సందేశాలను పంపడానికి వీలుగా సమూహ సెట్టింగ్‌లు మార్చబడ్డాయి.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">నిర్వాహకులను సందేశాలను పంపడానికి మాత్రమే అనుమతించడానికి సమూహ సెట్టింగ్‌లు మార్చబడ్డాయి.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">మీరు నిర్వాహక ఆమోదంతో సమూహ లింక్‌ను ఆన్ చేశారు.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">మీరు నిర్వాహక ఆమోదంతో సమూహ లింక్‌ను ఆన్ చేసారు.</string>

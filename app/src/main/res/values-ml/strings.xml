@@ -967,6 +967,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">ആർക്കാണ് ഗ്രൂപ്പ് അംഗത്വം എഡിറ്റുചെയ്യാനാകുമെന്ന് നിങ്ങൾ  \"%1$s\" എന്നതിലേക്ക് മാറ്റി.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">ആർക്കാണ് ഗ്രൂപ്പ് അംഗത്വം എഡിറ്റുചെയ്യാനാകുമെന്ന് %1$s \"%2$s\" എന്നതിലേക്ക് മാറ്റി.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">ഗ്രൂപ്പ് അംഗത്വം ആർക്കൊക്കെ എഡിറ്റുചെയ്യാനാകും എന്നത്  \"%1$s\" ലേക്ക് മാറ്റി.</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">അഡ്‌മിൻ അംഗീകാരം ഓഫായിരിക്കെ നിങ്ങൾ ഗ്രൂപ്പ് ലിങ്ക് ഓണാക്കി.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">അഡ്‌മിൻ അംഗീകാരം ഓണായിരിക്കെ നിങ്ങൾ ഗ്രൂപ്പ് ലിങ്ക് ഓണാക്കി.</string>

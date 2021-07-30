@@ -209,6 +209,9 @@
   <string name="ConversationActivity_unable_to_record_audio">آڈیو ریکارڈ کرنے کے قابل نہیں ہے!
 ؐ</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">آپ اس گروپ کو پیغامات نہیں بھیج سکتے کیونکہ آپ اب ممبر نہیں رہیں۔</string>
+  <string name="ConversationActivity_admins">منتظمین</string>
+  <string name="ConversationActivity_message_an_admin">کسی ایڈمن کو پیغام دیں</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">صرف اس گروپ کے ایڈمن کال شروع کرسکتے ہیں۔</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">ایسی کوئی ایپ موجود نہیں ہے جو آپ کی اس ڈیوائس پر اس لنک کو استعمال کر سکے۔</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">آپ کی شمولیت کی درخواست گروپ منتظم کو بھیج دی گئی ہے۔ جب وہ کارروائی کریں گے تو آپ کو مطلع کیا جائے گا۔</string>
   <string name="ConversationActivity_cancel_request">درخواست منسوخ</string>
@@ -983,6 +986,11 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">آپ نے تبدیل کردیا کہ کون کون سے گروپ کی ممبرشپ کو \"%1$s\" میں ترمیم کرسکتا ہے؟</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s نے تبدیل کردیا کہ کون کون سے گروپ کی ممبرشپ کو \"%2$s\" میں ترمیم کرسکتا ہے؟</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">گروپ ممبرشپ کون ترمیم کرسکتا ہے اسے تبدیل کر کے \"%1$s\" کردیا گیا ہے۔</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">آپ نے تمام ممبروں کو پیغامات بھیجنے کی اجازت دینے کے لئے گروپ کی ترتیبات کو تبدیل کردیا۔</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">آپ نے منتظمین کو صرف پیغامات بھیجنے کی اجازت دینے کے لئے گروپ کی ترتیبات کو تبدیل کردیا۔</string>
+  <string name="MessageRecord_allow_all_members_to_send">تمام ممبروں کو پیغامات بھیجنے کی اجازت دینے کے لئے گروپ کی ترتیبات تبدیل کردی گئیں۔</string>
+  <string name="MessageRecord_allow_only_admins_to_send">گروپ کی ترتیبات کو تبدیل کیا گیا تھا تاکہ صرف منتظمین کو پیغامات بھیج سکیں۔</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">آپ نے منتظم کی منظوری کے ساتھ گروپ لنک آن کردیا۔</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">آپ نے منتظم کی منظوری کے ساتھ گروپ لنک آن کردیا۔</string>

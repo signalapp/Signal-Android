@@ -212,6 +212,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Mae atodiad yn fwy na therfynau maint y math o neges rydych chi\'n ei hanfon.</string>
   <string name="ConversationActivity_unable_to_record_audio">Methu recordio sain!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nid oes modd i chi anfon negeseuon i\'r grŵp hwn oherwydd nid ydych yn aelod mwyach.</string>
+  <string name="ConversationActivity_admins">gweinyddwyr</string>
+  <string name="ConversationActivity_message_an_admin">Anfon neges i weinyddwr</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Gweinyddwyr y grŵp hwn yn unig gall ddechrau galwadau.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nid oes ap ar gael i drin y ddolen hon ar eich dyfais.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Mae eich cais i ymuno wedi\'i anfon at weinyddiaeth y grŵp. Fe gewch hysbysiad pan fyddan nhw\'n gweithredu.</string>
   <string name="ConversationActivity_cancel_request">Diddymu\'r Cais</string>
@@ -1085,6 +1088,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Fe wnaethoch chi newid pwy all olygu aelodaeth grŵp i \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">Fe wnaeth %1$s newid pwy all olygu aelodaeth y grŵp i \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Mae pwy all olygu manylion y grŵp wedi\'i newid i \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Newidiasoch gosodiadau\'r grŵp i ganiatáu pob aelod i anfon negeseuon.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Newidiasoch gosodiadau\'r grŵp i ganiatáu gweinyddwyr un unig i anfon negeseuon.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Newidiwyd gosodiadau\'r grŵp i ganiatáu pob aelod i anfon negeseuon.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Newidiwyd gosodiadau\'r grŵp i ganiatáu gweinyddwyr un unig i anfon negeseuon.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Galluogasoch y ddolen grŵp gyda chaniatâd gewinyddwr i ffwrdd.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Galluogasoch y ddolen grŵp gyda chaniatâd gewinyddwr ymlaen.</string>

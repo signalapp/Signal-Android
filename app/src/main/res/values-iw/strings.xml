@@ -210,6 +210,9 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">הצרופה חורגת ממגבלות הגודל עבור הסוג של ההודעה שאתה שולח.</string>
   <string name="ConversationActivity_unable_to_record_audio">לא היה ניתן להקליט שמע!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">אינך יכול לשלוח הודעות אל קבוצה זו מאחר שאינך חבר קבוצה יותר.</string>
+  <string name="ConversationActivity_admins">מנהלנים</string>
+  <string name="ConversationActivity_message_an_admin">שלח הודעה אל מנהלן</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">רק מנהלנים של קבוצה זו יכולים להתחיל שיחה.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">אין יישום זמין לטיפול בקישור זה במכשיר שלך.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">בקשתך להצטרף נשלחה אל מנהלן הקבוצה. תיודע כאשר הוא מחליט.</string>
   <string name="ConversationActivity_cancel_request">בטל בקשה</string>
@@ -1083,6 +1086,11 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">שינית מי יכול לערוך חברות קבוצה אל \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s שינה מי יכול לערוך חברות קבוצה אל \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">מי יכול לערוך חברות קבוצה השתנה אל \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">שינית את הגדרות הקבוצה אל התרה לכל חברי הקבוצה לשלוח הודעות.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">שינית את הגדרות הקבוצה אל התרה רק למנהלנים לשלוח הודעות.</string>
+  <string name="MessageRecord_allow_all_members_to_send">הגדרות הקבוצה השתנו אל התרה לכל חברי הקבוצה לשלוח הודעות.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">הגדרות הקבוצה השתנו אל התרה רק למנהלנים לשלוח הודעות.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">הפעלת את קישור הקבוצה עם אישור מנהלן כבוי.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">הפעלת את קישור הקבוצה עם אישור מנהלן מופעל.</string>

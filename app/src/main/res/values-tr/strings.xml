@@ -208,6 +208,9 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Eklenti gönderdiğiniz ileti türü için olan boyut limitini aşıyor.</string>
   <string name="ConversationActivity_unable_to_record_audio">Ses kaydedilemedi!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Bu gruba ileti gönderemezsiniz çünkü artık bu gruba üye değilsiniz.</string>
+  <string name="ConversationActivity_admins">yöneticiler</string>
+  <string name="ConversationActivity_message_an_admin">Bir yöneticiye yazın</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Yalnızca bu grubun yöneticileri arama başlatabilir.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Cihazınızda bu bağlantıyı işleyebilecek uygulama bulunmamaktadır.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Katılma isteğiniz grup yöneticisine gönderildi. İsteğiniz yanıtlandığı zaman haberdar edileceksiniz.</string>
   <string name="ConversationActivity_cancel_request">İsteği İptal Et</string>
@@ -982,6 +985,11 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Grup üyeliğini kimlerin düzenleyebileceğini \"%1$s\" olarak değiştirdiniz.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s grup üyeliğini kimlerin düzenleyebileceğini \"%2$s\" olarak değiştirdi.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Grup üyelerini kimlerin düzenleyebileceği \"%1$s\" olarak değiştirildi.</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Grup ayarlarını herkesin ileti gönderebileceği şekilde değiştirdiniz.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Grup ayarlarını yalnızca yöneticilerin ileti gönderebileceği şekilde değiştirdiniz.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Grup ayarları herkesin ileti gönderebileceği şekilde değiştirildi.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Grup ayarları yalnızca yöneticilerin ileti gönderebileceği şekilde değiştirildi.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Grup bağlantısını, yönetici onayı kapalı şekilde etkinleştirdiniz.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Grup bağlantısını, yönetici onayı ile birlikte etkinleştirdiniz.</string>

@@ -165,6 +165,7 @@
   <string name="ConversationItem_error_network_not_delivered">ਭੇਜਣ ਲਈ ਅਸਫ਼ਲ</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">ਮੁੱਖ ਐਸਚੇਂਜ ਸੁਨੇਹਾ ਪ੍ਰਾਪਤ ਕੀਤਾ, ਕਾਰਵਾਈ ਲਈ ਛੂਹੋ।</string>
   <string name="ConversationItem_group_action_left">%1$s ਨੇ ਗਰੁੱਪ ਛੱਡਿਆ।</string>
+  <string name="ConversationItem_send_paused">ਭੇਜਣ ਨੂੰ ਰੋਕਿਆ ਗਿਆ</string>
   <string name="ConversationItem_click_to_approve_unencrypted">ਭੇਜਣਾ ਅਸਫਲ, ਅਸੁਰੱਖਿਅਤ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">ਨਾ-ਇੰਕ੍ਰਿਪਟ ਕੀਤੇ SMS ਉੱਤੇ ਵਾਪਸ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">ਨਾ-ਇੰਕ੍ਰਿਪਟ ਕੀਤੇ MMS ਉੱਤੇ ਵਾਪਸ?</string>
@@ -203,6 +204,8 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">ਅਟੈਚਮੈਂਟ ਦਾ ਅਕਾਰ ਸੀਮਾ ਤੋਂ ਵੱਧ ਹੈ</string>
   <string name="ConversationActivity_unable_to_record_audio">ਆਡੀਓ ਰਿਕਾਰਡ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">ਤੁਸੀਂ ਇਸ ਸਮੂਹ ਨੂੰ ਸੁਨੇਹੇ ਨਹੀਂ ਭੇਜ ਸਕਦੇ ਕਿਉਂਕਿ ਤੁਸੀਂ ਹੁਣ ਮੈਂਬਰ ਨਹੀਂ ਹੋ.</string>
+  <string name="ConversationActivity_admins">ਐਡਮਿਨਜ਼</string>
+  <string name="ConversationActivity_message_an_admin">ਕਿਸੇ ਐਡਮਿਨ ਨੂੰ ਸੁਨੇਹਾ ਭੇਜੋ</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">ਇਸ ਲਿੰਕ ਨੂੰ ਚਲੌਨ ਲਈ ਕੋਈ ਐੱਪ ਨਹੀਂ ਹੈ ਤੁਹਾਡੇ ਫੋਨ ਤੇ </string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">ਤੁਹਾਡੀ ਜੁੜਨ ਦੀ ਬੇਨਤੀ ਗਰੁੱਪ ਐਡਮਿਨ ਨੂੰ ਭੇਜ ਦਿੱਤੀ ਗਈ ਹੈ । ਜਦੋੰ ਉਹ ਕਾਰਵਾਈ ਕਰਨਗੇ ਤਾਂ ਤੂਹਾਨੂੰ ਸੂਚਿਤ ਕਰ ਦਿੱਤਾ ਜਾਏਗਾ । </string>
   <string name="ConversationActivity_cancel_request">ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕਰੋ</string>
@@ -272,6 +275,7 @@
   <string name="ConversationFragment_deleting_messages">ਸੁਨੇਹਿਆਂ ਨੂੰ ਹਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
   <string name="ConversationFragment_delete_for_me">ਮੇਰੇ ਲਈ ਹਟਾਓ</string>
   <string name="ConversationFragment_delete_for_everyone">ਹਰ ਕਿਸੇ ਲਈ ਹਟਾਓ</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ਗੱਲਬਾਤ ਵਿੱਚ ਸ਼ਾਮਲ ਸਾਰੇ ਵਿਅਕਤੀਆਂ ਲਈ ਇਹ ਸੁਨੇਹਾ ਹਟਾਇਆ ਜਾਵੇਗਾ ਜੇ ਉਹ Signal ਦੇ ਤਾਜ਼ਾ ਸੰਸਕਰਣ ’ਤੇ ਹਨ। ਇਹ ਇਹ ਦੇਖ ਸਕਣਗੇ ਕਿ ਤੁਸੀਂ ਸੁਨੇਹਾ ਹਟਾਇਆ ਸੀ।</string>
   <string name="ConversationFragment_quoted_message_not_found">ਅਸਲੀ ਸੁਨੇਹਾ ਨਹੀਂ ਲੱਭਿਆ </string>
   <string name="ConversationFragment_quoted_message_no_longer_available">ਮੂਲ ਸੁਨੇਹਾ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
   <string name="ConversationFragment_failed_to_open_message">ਸੁਨੇਹਾ ਖੋਲ੍ਹਣ ਵਿੱਚ ਅਸਫਲ</string>
@@ -444,10 +448,13 @@
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">ਨਵੇਂ ਸਮੂਹ ਕੀ ਹਨ?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">ਨਵੇਂ ਸਮੂਹਾਂ ਵਿੱਚ @mentions ਅਤੇ ਸਮੂਹ ਪ੍ਰਬੰਧਕਾਂ ਵਰਗੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਹਨ, ਅਤੇ ਭਵਿੱਖ ਵਿੱਚ ਹੋਰ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਦਾ ਸਮਰਥਨ ਕਰਨਗੀਆਂ.</string>
+  <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">ਸੁਨੇਹਿਆਂ ਦੇ ਸਾਰੇ ਪਿਛੋਕੜ ਅਤੇ ਮੀਡੀਆ ਨੂੰ ਅੱਪਗ੍ਰੇਡ ਤੋਂ ਪਹਿਲਾਂ ਹੀ ਰੱਖ ਲਿਆ ਗਿਆ ਹੈ।</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">ਤੁਹਾਨੂੰ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਦੁਬਾਰਾ ਸ਼ਾਮਲ ਹੋਣ ਦੇ ਸੱਦੇ ਨੂੰ ਸਵੀਕਾਰ ਕਰਨਾ ਪਵੇਗਾ, ਅਤੇ ਜਦੋਂ ਤਕ ਤੁਸੀਂ ਸਵੀਕਾਰ ਨਹੀਂ ਕਰਦੇ ਉਦੋਂ ਤੱਕ ਗਰੁੱਪ ਦੇ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</string>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">ਨਵੇਂ ਸਮੂਹ ਵਿੱਚ ਅਪਗ੍ਰੇਡ ਕਰੋ</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">ਇਸ ਸਮੂਹ ਨੂੰ ਅਪਗ੍ਰੇਡ ਕਰੋ</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">ਨਵੇਂ ਸਮੂਹਾਂ ਵਿੱਚ @mentions ਅਤੇ ਸਮੂਹ ਪ੍ਰਬੰਧਕਾਂ ਵਰਗੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਹਨ, ਅਤੇ ਭਵਿੱਖ ਵਿੱਚ ਹੋਰ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਦਾ ਸਮਰਥਨ ਕਰਨਗੀਆਂ.</string>
+  <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">ਸੁਨੇਹਿਆਂ ਦੇ ਸਾਰੇ ਪਿਛੋਕੜ ਅਤੇ ਮੀਡੀਆ ਨੂੰ ਅੱਪਗ੍ਰੇਡ ਤੋਂ ਪਹਿਲਾਂ ਹੀ ਰੱਖ ਲਿਆ ਜਾਵੇਗਾ।</string>
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">ਨੈਟਵਰਕ ਤਰੁਟੀ ਹੋਈ. ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">ਅਪਗ੍ਰੇਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ.</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
@@ -478,6 +485,7 @@
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">ਤੁਸੀਂ ਹੁਣ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸੁਨੇਹੇ ਭੇਜ ਜਾਂ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰ ਸਕੋਗੇ.</string>
   <string name="LeaveGroupDialog_leave">ਛੱਡੋ</string>
   <string name="LeaveGroupDialog_choose_new_admin">ਨਵਾਂ ਐਡਮਿਨ ਚੁਣੋ</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">ਗਰੁੱਪ ਨੂੰ ਛੱਡਣ ਤੋਂ ਪਹਿਲਾਂ, ਲਾਜ਼ਮੀ ਹੈ ਕਿ ਤੁਸੀਂ ਇਸ ਗਰੁੱਪ ਲਈ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਨਵਾਂ ਐਡਮਿਨ ਚੁਣੋ।</string>
   <string name="LeaveGroupDialog_choose_admin">ਐਡਮਿਨ ਚੁਣੋ</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">ਅਸਮਰੱਥ ਕਰੋ</string>
@@ -582,8 +590,10 @@
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">ਇੰਤਜ਼ਾਮ ਤੇ ਸਾਂਝਾ ਕਰੋ</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">ਸਮੂਹ ਲਿੰਕ</string>
   <string name="ShareableGroupLinkDialogFragment__share">ਸਾਂਝਾ ਕਰੋ</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">ਲਿੰਕ ਰੀਸੈੱਟ ਕਰੋ</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">ਮੈਂਬਰੀ ਲਈ ਬੇਨਤੀਆਂ</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">ਨਵੇਂ ਮੈਂਬਰਾਂ ਨੂੰ ਮਨਜ਼ੂਰੀ ਦਿਓ</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">ਕੀ ਤੁਸੀਂ ਯਕੀਨਨ ਗਰੁੱਪ ਲਿੰਕ ਨੂੰ ਰੀਸੈੱਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਲੋਕ ਹੁਣ ਮੌਜੂਦਾ ਲਿੰਕ ਦੀ ਵਰਤੋਂ ਨਾਲ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਹੋ ਸਕਣਗੇੇ। </string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR ਕੋਡ</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">ਕੋਡ ਸਾਂਝਾ ਕਰੋ</string>
@@ -595,6 +605,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">ਸਮੂਹ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਵਿੱਚ ਅਸਮਰੱਥ. ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ਨੈਟਵਰਕ ਤਰੁਟੀ ਹੋਈ.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ਇਹ ਸਮੂਹ ਲਿੰਕ ਸਰਗਰਮ ਨਹੀਂ ਹੈ </string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">ਕੀ ਤੁਸੀਂ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣਾ ਅਤੇ ਇਸਦੇ ਮੈਂਬਰਾਂ ਨਾਲ ਆਪਣਾ ਨਾਮ ਅਤੇ ਤਸਵੀਰ ਸਾਂਝੀ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ?</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">ਗਰੁੱਪ · %1$d ਮੈਂਬਰ</item>
     <item quantity="other">ਗਰੁੱਪ · %1$d ਮੈਂਬਰ</item>
@@ -756,6 +767,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ਨੇ ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹਾ ਟਾਈਮਰ ਨੂੰ %2$s ਤੇ ਸੈਟ ਕਰ ਦਿੱਤਾ ਹੈ।</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">ਅਲੋਪ ਹੋ ਰਹੇ ਸੁਨੇਹਾ ਟਾਈਮਰ ਨੂੰ %1$s ਨਿਰਧਾਰਤ ਕੀਤਾ ਗਿਆ ਹੈ।</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">ਇਹ ਗਰੁੱਪ ਨਵੇਂ ਗਰੁੱਪ ਲਈ ਅੱਪਡੇਟ ਕੀਤਾ ਗਿਆ ਸੀ।</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">ਤੁਹਾਨੂੰ ਨਵੇਂ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ ਅਤੇ ਸ਼ਾਮਲ ਹੋਣ ਲਈ ਸੱਦਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।</string>
   <string name="MessageRecord_chat_session_refreshed">ਚੈਟ ਸੈਸ਼ਨ ਤਾਜ਼ਾ ਕੀਤਾ ਗਿਆ</string>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s ਨੇ ਆਪਣੇ ਪ੍ਰੋਫਾਈਲ ਨਾਂ ਨੂੰ %2$s ਵਿੱਚ ਬਦਲ ਦਿੱਤਾ ਹੈ।</string>
@@ -798,20 +810,34 @@
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">ਤੁਹਾਨੂੰ ਗਰੁੱਪ ਵਿੱਚ ਸੱਦਾ ਭੇਜਿਆ ਗਿਆ ਸੀ.</string>
   <!--GV2 invitation revokes-->
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">ਤੁਸੀਂ ਗਰੁੱਪ ਲਈ ਸੱਦੇ ਨੂੰ ਅਸਵੀਕਾਰ ਕਰ ਦਿੱਤਾ।</string>
   <!--GV2 invitation acceptance-->
   <!--GV2 title change-->
   <!--GV2 description change-->
   <string name="MessageRecord_you_changed_the_group_description">ਤੁਸੀਂ ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਨੂੰ ਬਦਲਿਆ ਹੈ।</string>
   <string name="MessageRecord_the_group_description_has_changed">ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਬਦਲੀ ਗਈ ਹੈ।</string>
   <!--GV2 avatar change-->
+  <string name="MessageRecord_you_changed_the_group_avatar">ਤੁਸੀਂ ਗਰੁੱਪ ਦੇ ਅਵਤਾਰ ਨੂੰ ਬਦਲਿਆ।</string>
   <!--GV2 attribute access level change-->
   <!--GV2 membership access level change-->
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">ਤੁਸੀਂ ਗਰੁੱਪ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਬਦਲ ਦਿੱਤਾ ਤਾਂ ਜੋ ਸਾਰੇ ਮੈਂਬਰ ਹੀ ਸੁਨੇਹੇ ਭੇਜ ਸਕਣ।</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">ਤੁਸੀਂ ਗਰੁੱਪ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਬਦਲ ਦਿੱਤਾ ਤਾਂ ਜੋ ਸਿਰਫ਼ ਐਡਮਿਨ ਹੀ ਸੁਨੇਹੇ ਭੇਜ ਸਕਣ।</string>
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_off_the_group_link">ਤੁਸੀਂ ਗਰੁੱਪ ਲਿੰਕ ਨੂੰ ਬੰਦ ਕਰ ਦਿੱਤਾ</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">ਗਰੁੱਪ ਲਿੰਕ ਨੂੰ ਬੰਦ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।</string>
   <!--GV2 group link reset-->
+  <string name="MessageRecord_you_reset_the_group_link">ਤੁਸੀਂ ਗਰੁੱਪ ਦੇ ਲਿੰਕ ਨੂੰ ਰੀਸੈੱਟ ਕੀਤਾ।</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">ਗਰੁੱਪ ਲਿੰਕ ਨੂੰ ਰੀਸੈੱਟ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।</string>
   <!--GV2 group link joins-->
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">ਤੁਸੀਂ ਗਰੁੱਪ ਦੇ ਲਿੰਕ ਰਾਹੀਂ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਏ।</string>
   <!--GV2 group link requests-->
+  <string name="MessageRecord_you_sent_a_request_to_join_the_group">ਤੁਸੀਂ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਲਈ ਬੇਨਤੀ ਭੇਜੀ।</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਦੀ ਤੁਹਾਡੀ ਬੇਨਤੀ ਮਨਜ਼ੂਰ ਕਰ ਲਈ ਗਈ ਹੈ।</string>
   <!--GV2 group link deny-->
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਦੀ ਤੁਹਾਡੀ ਬੇਨਤੀ ਕਿਸੇ ਐਡਮਿਨ ਦੁਆਰਾ ਨਮਨਜ਼ੂਰ ਕਰ ਦਿੱਤੀ ਗਈ ਹੈ।</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">ਤੁਸੀਂ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਦੀ ਆਪਣੀ ਬੇਨਤੀ ਰੱਦ ਕੀਤੀ।</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s ਨਾਲ ਤੁਹਾਡਾ ਸੁਰੱਖਿਆ ਨੰਬਰ ਬਦਲ ਗਿਆ ਹੈ</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">ਤੁਸੀਂ %s ਨਾਲ ਆਪਣੇ ਸੁਰੱਖਿਆ ਨੰਬਰ ਨੂੰ ਚਿੰਨ੍ਹਿਤ ਕੀਤਾ ਹੈ</string>
@@ -830,6 +856,7 @@
   <string name="MessageRequestBottomView_delete">ਹਟਾਓ</string>
   <string name="MessageRequestBottomView_block">ਪਾਬੰਦੀ</string>
   <string name="MessageRequestBottomView_unblock">ਪਾਬੰਦੀ ਹਟਾਓ</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ਇਸ ਗਰੁੱਪ ਨੂੰ ਅਨਬਲੌਕ ਕਰਨਾ ਅਤੇ ਇਸਦੇ ਮੈਂਬਰਾਂ ਨਾਲ ਆਪਣਾ ਨਾਮ ਅਤੇ ਤਸਵੀਰ ਸਾਂਝੀ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ? ਜਦੋਂ ਤਕ ਤੁਸੀਂ ਉਹਨਾਂ ਨੂੰ ਅਨਬਲੌਕ ਨਹੀਂ ਕਰ ਦਿੰਦੇ ਉਦੋਂ ਤਕ ਤੁਹਾਨੂੰ ਕੋਈ ਵੀ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</string>
   <string name="MessageRequestProfileView_view">ਵੇਖੋ</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s ਦੇ ਮੈਂਬਰ</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s ਅਤੇ %2$s ਦੇ ਮੈਂਬਰ</string>
@@ -908,6 +935,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">ਤੁਸੀਂ</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">ਮੈਸੇਜਿੰਗ ਨੂੰ ਜਾਰੀ ਰੱਖਣ ਲਈ ਪ੍ਰਮਾਣਿਤ ਕਰੋ</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal ’ਤੇ ਸਪੈਮ ਨੂੰ ਰੋਕਣ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਪ੍ਰਮਾਣੀਕਰਣ ਪੂਰਾ ਕਰੋ।</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">ਪ੍ਰਮਾਣਤ ਕਰਨ ਤੋਂ ਬਾਅਦ, ਤੁਸੀਂ ਮੈਸੇਜਿੰਗ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ। ਕੋਈ ਵੀ ਰੁਕੇ ਹੋਏ ਸੁਨੇਹੇ ਆਪਣੇ ਆਪ ਹੀ ਭੇਜ ਦਿੱਤੇ ਜਾਣਗੇ।</string>
   <!--Recipient-->
   <string name="Recipient_you">ਤੁਸੀਂ</string>
   <!--RecipientPreferencesActivity-->
@@ -1280,6 +1310,8 @@
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal ਨੂੰ ਸੰਪਰਕ ਜਾਣਕਾਰੀ  ਦਿਖਾਉਣ ਲਈ ਸੰਪਰਕਾਂ ਦੀ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ, ਜੋ ਇਸ ਕੋਲ ਨਹੀਂ ਹਨ | ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗ ਮੇਨੂ  ਤੇ ਜਾਓ, \"ਅਨੁਮਤੀਆਂ\" ਚੁਣੋ ਅਤੇ \"ਸੰਪਰਕ\" ਸਮਰੱਥ ਕਰੋ.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">ਸੰਪਰਕਾਂ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਤਰੁੱਟੀ, ਆਪਣੇ ਨੈਟਵਰਕ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ</string>
   <string name="ContactSelectionListFragment_username_not_found">ਉਪਭੋਗਤਾ ਨਾਮ ਨਹੀਂ ਮਿਲਿਆ</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">ਗਰੁੱਪ ਦੇ ਵੱਧ ਤੋਂ ਵੱਧ ਅਕਾਰ ਦੀ ਸੀਮਾ ਪੂਰੀ ਹੋਈ।</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">ਸਿਫਾਰਸ਼ ਕੀਤੀ ਮੈਂਬਰ ਸੀਮਾ ਪੂਰੀ ਹੋਈ</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d ਮੈਂਬਰ</item>
     <item quantity="other">%1$d ਮੈਂਬਰ</item>
@@ -1327,6 +1359,7 @@
   <string name="ConversationUpdateItem_call_is_full">ਕਾਲ ਭਰੀ ਹੋਈ ਹੈ</string>
   <string name="ConversationUpdateItem_invite_friends">ਦੋਸਤਾਂ ਨੂੰ ਸੱਦਾ ਦਿਓ</string>
   <string name="ConversationUpdateItem_enable_call_notifications">ਕਾਲ ਨੋਟੀਫਿਕੇਸ਼ਨ ਸਮਰੱਥ ਕਰੋ</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ਕੋਈ ਸਾਂਝੇ ਗਰੁੱਪ ਨਹੀਂ। ਬੇਨਤੀਆਂ ਦੀ ਧਿਆਨ ਨਾਲ ਸਮੀਖਿਆ ਕਰੋ।</string>
   <string name="ConversationUpdateItem_view">ਵੇਖੋ</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">ਚਲਾਓ … ਰੋਕੋ </string>
@@ -1440,12 +1473,14 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal ਲਈ ਤੁਹਾਡੇ ਵਾਇਰਲੈੱਸ ਕੈਰੀਅਰ ਦੁਆਰਾ ਮੀਡੀਆ ਅਤੇ ਸਮੂਹ ਸੁਨੇਹਿਆਂ ਨੂੰ ਭੇਜਣ ਲਈ MMS ਸੈਟਿੰਗਾਂ ਦੀ ਲੋੜ ਹੈ | ਤੁਹਾਡਾ ਡਿਵਾਈਸ ਇਹ ਜਾਣਕਾਰੀ ਉਪਲਬਧ ਨਹੀਂ ਕਰਵਾਉਂਦਾ , ਜੋ ਕਦੇ-ਕਦਾਈਂ ਬੰਦ ਕੀਤੀਆਂ ਡਿਵਾਈਸਾਂ ਅਤੇ ਹੋਰ ਪ੍ਰਤਿਬੰਧਿਤ ਕੌਨਫਿਗ੍ਰੇਸ਼ਨਾਂ ਲਈ ਸਹੀ ਹੈ.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">ਮੀਡੀਆ ਅਤੇ ਸਮੂਹ ਸੁਨੇਹਿਆਂ ਨੂੰ ਭੇਜਣ ਲਈ, \'ਠੀਕ ਹੈ\' ਤੇ ਟੈਪ ਕਰੋ ਅਤੇ ਬੇਨਤੀ ਕੀਤੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਪੂਰਾ ਕਰੋ. ਤੁਹਾਡੇ ਕੈਰੀਅਰ ਲਈ ਐਮਐਮਐਸ ਸੈਟਿੰਗਾਂ ਆਮ ਤੌਰ ਤੇ \'ਤੁਹਾਡਾ ਕੈਰੀਅਰ ਏਪੀਐਨ\' ਦੀ ਭਾਲ ਕਰਕੇ ਲੱਭੀਆਂ ਜਾ ਸਕਦੀਆਂ ਹਨ. ਤੁਹਾਨੂੰ ਕੇਵਲ ਇੱਕ ਵਾਰ ਇਸਦੀ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੋਏਗੀ.</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">ਡਿਲਿਵਰੀ ਮਸਲਾ</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">ਨਾਂ ਦਾ ਪਹਿਲਾਂ ਹਿੱਸਾ (ਲਾਜ਼ਮੀ)</string>
   <string name="CreateProfileActivity_last_name_optional">ਨਾਂ ਦਾ ਆਖਰੀ ਹਿੱਸਾ (ਚੋਣਵਾਂ)</string>
   <string name="CreateProfileActivity_next">ਅਗਲਾ</string>
   <string name="CreateProfileActivity__username">ਯੂਜ਼ਰਨੇਮ</string>
   <string name="CreateProfileActivity__create_a_username">ਵਰਤੋਂਕਾਰ-ਨਾਂ ਬਣਾਓ</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">ਗਰੁੱਪ ਵੇਰਵੇ ਇਸ ਗਰੁੱਪ ਦੇ ਮੈਂਬਰਾਂ ਅਤੇ ਉਹਨਾਂ ਲੋਕਾਂ ਲਈ ਦਿੱਸਣਯੋਗ ਹੋਣਗੇ ਜਿਹਨਾਂ ਨੂੰ ਸੱਦਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">ਇਸ ਬਾਰੇ</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">ਆਪਣੇ ਬਾਰੇ ਕੁਝ ਜਾਣਕਾਰੀ ਲਿਖੋ…</string>
@@ -1493,6 +1528,7 @@
   <string name="message_details_recipient_header__delivered_to">ਇਸ ਲਈ ਪਹੁੰਚਾਏ</string>
   <string name="message_details_recipient_header__read_by">ਪੜ੍ਹੇ</string>
   <string name="message_details_recipient_header__not_sent">ਨਾ ਭੇਜੇ</string>
+  <string name="message_details_recipient_header__viewed">ਦੁਆਰਾ ਦੇਖਿਆ ਗਿਆ</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">ਭੇਜ ਨਾ ਸਕਿਆ</string>
   <string name="message_details_recipient__new_safety_number">ਨਵਾਂ ਸੁਰੱਖਿਆ ਨੰਬਰ</string>
@@ -1807,6 +1843,7 @@
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">ਬੈਕਸਪੇਸ</string>
   <string name="CreatePaymentFragment__add_note">ਨੋਟ ਜੋੜੋ</string>
   <string name="CreatePaymentFragment__conversions_are_just_estimates">ਤਬਾਦਲਾ ਸਿਰਫ਼ ਅੰਦਾਜ਼ਨ ਹੈ ਅਤੇ ਦਰੁਸਤ ਨਹੀਂ ਵੀ ਹੋ ਸਕਦਾ ਹੈ।</string>
   <!--EditNoteFragment-->
@@ -2248,6 +2285,7 @@
   <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" ਤੋਂ ਪਾਬੰਦੀ ਹਟਾਈ ਜਾ ਚੁੱਕੀ ਹੈ।</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">ਮੈਂਬਰ ਦੀ ਪੜਤਾਲ</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">ਜੇ ਤੁਹਾਨੂੰ ਇਹ ਪੱਕਾ ਨਹੀਂ ਪਤਾ ਹੈ ਕਿ ਬੇਨਤੀ ਕਿਸ ਤੋਂ ਆਈ ਹੈ, ਤਾਂ ਹੇਠਲੇ ਸੰਪਰਕਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ ਅਤੇ ਕਾਰਵਾਈ ਕਰੋ।</string>
   <string name="ReviewCardDialogFragment__remove">ਹਟਾਓ </string>
   <string name="ReviewCardDialogFragment__failed_to_remove_group_member">ਗਰੁੱਪ ਮੈਂਬਰ ਹਟਾਉਣ ਲਈ ਅਸਫ਼ਲ ਹੈ।</string>
   <!--ReviewCard-->
@@ -2295,11 +2333,13 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">ਗੱਲਬਾਤ ਵਾਲਪੇਪਰ</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">ਗੱਲਬਾਤ ਦਾ ਰੰਗ</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">ਚੈਟ ਦੇ ਰੰਗ ਨੂੰ ਰੀਸੈੱਟ ਕਰੋ</string>
   <string name="ChatWallpaperFragment__set_wallpaper">ਵਾਲਪੇਪਰ ਲਾਓ</string>
   <string name="ChatWallpaperFragment__contact_name">ਸੰਪਰਕ ਦਾ ਨਾਂ</string>
   <string name="ChatWallpaperFragment__reset">ਮੁੜ-ਸੈੱਟ ਕਰੋ</string>
   <string name="ChatWallpaperFragment__clear">ਮਿਟਾਓ</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">ਵਾਲਪੇਪਰ ਦੀ ਝਲਕ</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">ਕੀ ਤੁਸੀਂ ਸਾਰੇ ਚੈਟ ਰੰਗਾਂ ਨੂੰ ਰੱਦ ਕਰਨਾ ਚਾਹੋਗੇ?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">ਮੂਲ ਰੰਗ ਮੁੜ-ਸੈੱਟ ਕਰੋ</string>
   <string name="ChatWallpaperFragment__reset_all_colors">ਸਾਰੇ ਰੰਗ ਮੁੜ-ਸੈੱਟ ਕਰੋ</string>
   <string name="ChatWallpaperFragment__reset_default_wallpaper">ਮੂਲ ਵਾਲਪੇਪਰ ਮੁੜ-ਸੈੱਟ ਕਰੋ</string>
@@ -2369,7 +2409,10 @@
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__send_a_message">ਸੁਨੇਹਾ ਭੇਜੋ</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">ਇਸ ਵਿਅਕਤੀ ਨਾਲ ਤੁਹਾਡੇ ਕੋਈ ਸਾਂਝੇ ਗਰੁੱਪ ਨਹੀਂ ਹਨ। ਅਣਚਾਹੇ ਸੁਨੇਹਿਆਂ ਤੋਂ ਬਚਣ ਲਈ ਬੇਨਤੀਆਂ ਨੂੰ ਸਵੀਕਾਰ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸਾਵਧਾਨੀ ਨਾਲ ਇਹਨਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ।</string>
   <string name="GroupsInCommonMessageRequest__okay">ਠੀਕ ਹੈ</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">ਇਹ ਹੈ ਚੈਟ ਰੰਗ ਦੀ ਝਲਕ।</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">ਇਹ ਰੰਗ ਸਿਰਫ਼ ਤੁਹਾਨੂੰ ਦਿਖਾਈ ਦਿੰਦਾ ਹੈ।</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">ਗਰੁੱਪ ਬਾਰੇ ਜਾਣਕਾਰੀ</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2398,6 +2441,8 @@
   <string name="PrivacySettingsFragment__disappearing_messages">ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ</string>
   <string name="PrivacySettingsFragment__app_security">ਐਪ ਦੀ ਸੁਰੱਖਿਆ</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Recents ਸੂਚੀ ਵਿੱਚ ਅਤੇ ਐਪ ਦੇ ਅੰਦਰ ਸਕ੍ਰੀਨਸ਼ਾਟ ਨੂੰ ਬਲੌਕ ਕਰੋ</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">ਨਵੀਆਂ ਚੈਟਾਂ ਲਈ ਡਿਫ਼ਾਲਟ ਟਾਈਮਰ</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ਤੁਹਾਡੇ ਦੁਆਰਾ ਸ਼ੁਰੂ ਕੀਤੀਆਂ ਸਾਰੀਆਂ ਨਵੀਆਂ ਚੈਟਾਂ ਲਈ ਅਲੋਪ ਹੋ ਰਹੇ ਸੁਨੇਹੇ ਦਾ ਡਿਫ਼ਾਲਟ ਟਾਈਮਰ ਤੈਅ ਕਰੋ।</string>
   <!--AdvancedPrivacySettingsFragment-->
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__off">ਬੰਦ </string>
@@ -2452,6 +2497,7 @@
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ਈਮੋਜ਼ੀ</string>
   <string name="KeyboardPagerFragment_stickers">ਸਟਿੱਕਰ</string>
+  <string name="KeyboardPagerFragment_backspace">ਬੈਕਸਪੇਸ</string>
   <string name="KeyboardPagerFragment_gifs">Gif</string>
   <string name="KeyboardPagerFragment_search_emoji">ਇਮੋਜ਼ੀ ਖੋਜੋ</string>
   <string name="KeyboardPagerFragment_search_giphy">GIPHY ਖੋਜੋ</string>
@@ -2459,7 +2505,11 @@
   <string name="StickerSearchDialogFragment_search_stickers">ਸਟਿੱਕਰ ਖੋਜੋ</string>
   <string name="StickerSearchDialogFragment_no_results_found">ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਲੱਭੇ</string>
   <string name="EmojiSearchFragment__no_results_found">ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਲੱਭੇ</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">ਅਣਪਛਾਤੀ ਰਿੰਗਟੋਨ</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">ਸੁਨੇਹਾ ਭੇਜੋ</string>
+  <string name="ConversationSettingsFragment__start_video_call">ਵੀਡੀਓ ਕਾਲ ਸ਼ੁਰੂ ਕਰੋ</string>
+  <string name="ConversationSettingsFragment__start_audio_call">ਆਡੀਓ ਕਾਲ ਸ਼ੁਰੂ ਕਰੋ</string>
   <string name="ConversationSettingsFragment__message">ਸੁਨੇਹਾ</string>
   <string name="ConversationSettingsFragment__video">ਵੀਡੀਓ</string>
   <string name="ConversationSettingsFragment__audio">ਆਡੀਓ</string>
@@ -2468,6 +2518,8 @@
   <string name="ConversationSettingsFragment__muted">ਚੁੱਪ ਕਰਾਏ</string>
   <string name="ConversationSettingsFragment__search">ਖੋਜੋ</string>
   <string name="ConversationSettingsFragment__disappearing_messages">ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">ਸਾਂਊਂਡਜ਼ &amp; ਸੂਚਨਾਵਾਂ</string>
+  <string name="ConversationSettingsFragment__contact_details">ਸੰਪਰਕ ਵੇਰਵੇ</string>
   <string name="ConversationSettingsFragment__view_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਵੇਖੋ</string>
   <string name="ConversationSettingsFragment__block">ਪਾਬੰਦੀ ਲਾਓ</string>
   <string name="ConversationSettingsFragment__block_group">ਗਰੁੱਪ ਨੂੰ ਬਲੌਕ ਕਰੋ</string>
@@ -2477,6 +2529,7 @@
   <string name="ConversationSettingsFragment__see_all">ਸਾਰੇ ਵੇਖੋ</string>
   <string name="ConversationSettingsFragment__add_members">ਮੈਂਬਰ ਜੋੜੋ</string>
   <string name="ConversationSettingsFragment__permissions">ਇਜਾਜ਼ਤਾਂ</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">ਬੇਨਤੀਆਂ &amp; ਸੱਦੇ</string>
   <string name="ConversationSettingsFragment__group_link">ਸਮੂਹ ਲਿੰਕ</string>
   <string name="ConversationSettingsFragment__unmute">ਅਨਮਿਊਟ ਕਰੋ</string>
   <string name="ConversationSettingsFragment__phone_number">ਫੋਨ ਨੰਬਰ</string>

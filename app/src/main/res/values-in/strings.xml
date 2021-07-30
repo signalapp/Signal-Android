@@ -207,6 +207,9 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Lampiran melebihi batas ukuran untuk tipe pesan yang Anda kirimkan.</string>
   <string name="ConversationActivity_unable_to_record_audio">Tidak bisa merekam audio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Anda tidak dapat mengirim pesan kepada grup ini karena Anda sudah bukan anggota.</string>
+  <string name="ConversationActivity_admins">admin</string>
+  <string name="ConversationActivity_message_an_admin">Kirimkan pesan ke admin</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Hanya admin grup ini yang dapat memulai panggilan.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Tidak ada aplikasi tersedia untuk menangani tautan ini pada perangkat Anda</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Permintaan Anda untuk bergabung telah terkirim kepada admin grup. Anda akan diberitahu saat mereka meresponnya.</string>
   <string name="ConversationActivity_cancel_request">Batalkan Permintaan</string>
@@ -931,6 +934,11 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Anda mengganti siapa yang dapat mengubah keanggotaan grup menjadi \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s memberikan akses untuk mengubah keanggotaan grup kepada \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Anggota yang dapat menyunting keanggotaan grup berubah menjadi \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Anda mengubah pengaturan grup mengizinkan semua anggota untuk mengirimkan pesan.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Anda mengubah pengaturan grup hanya mengizinkan admin untuk mengirimkan pesan.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Pengaturan grup telah diubah mengizinkan semua anggota untuk mengirimkan pesan.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Pengaturan grup telah diubah hanya mengizinkan admin untuk mengirimkan pesan.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Anda menyalakan tautan grup tanpa persetujuan admin.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Anda menyalakan tautan grup dengan persetujuan admin.</string>

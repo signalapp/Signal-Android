@@ -209,6 +209,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bijlage overschrijdt de maximale grootte voor het type bericht dat je wilt verzenden.</string>
   <string name="ConversationActivity_unable_to_record_audio">Kan audio niet opnemen!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Je kunt naar dit groepsgesprek geen berichten verzenden omdat je niet langer een lid van deze groep bent.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Alleen %1$s kunnen berichten verzenden.</string>
+  <string name="ConversationActivity_admins">beheerders</string>
+  <string name="ConversationActivity_message_an_admin">Bericht verzenden naar een beheerder</string>
+  <string name="ConversationActivity_cant_start_group_call">Kan groepsgesprek niet beginnen</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Alleen beheerders kunnen in deze groep oproepen beginnen.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Er is geen app beschikbaar op je apparaat om deze verwijzing te openen.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Je verzoek om lid te worden van de groep is doorgestuurd naar een beheerder. Je krijgt een melding zodra deze een besluit heeft genomen.</string>
   <string name="ConversationActivity_cancel_request">Verzoek annuleren</string>
@@ -418,6 +423,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Doorsturen naar</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Het verzenden van meerdere bijlagen is alleen mogelijk voor afbeeldingen en video\'s</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Je bent niet gemachtigd om iets naar deze groep te verzenden</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Pertinente Signal-communicatiefout!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was niet in staat zich bij de Google Play services op je telefoon te registreren. Signal-berichten en -oproepen zijn nu uitgeschakeld, probeer opnieuw te registreren via Instellingen &gt; Privacy &gt; Geavanceerd.</string>
@@ -561,6 +567,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Klaar</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan verouderde groepen.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Deze persoon kan niet aan mededelingsgroepen worden toegevoegd.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">%1$s toevoegen aan “%2$s”?</item>
     <item quantity="other">%3$d personen toevoegen aan “%2$s”?</item>
@@ -631,6 +638,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Uitsluitend beheerders kunnen de groepsverwijzing vernieuwen.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
   <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de vernieuwde groepsgesprekken nog niet. Zij moeten Signal bijwerken.</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Tenminste een persoon die je hebt toegevoegd moet eerst Signal bijwerken voordat ze aan mededelingsgroepen kunnen worden toegevoegd.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Bijwerken van de groep is mislukt</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Je bent geen lid van deze groep</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Het bijwerken van de groep is mislukt. Probeer het later opnieuw</string>
@@ -984,6 +992,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Je hebt de instelling voor wie de groepslidmaatschap kan aanpassen op ‘%1$s’ ingesteld.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s heeft de instelling voor wie de groepslidmaatschap kan aanpassen op ‘%2$s’ ingesteld.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">De instelling voor wie de groepslidmaatschap kan aanpassen is op ‘%1$s’ ingesteld.</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Je hebt de groepsinstellingen aangepast om alle groepsleden de mogelijkheid te geven om berichten te verzenden.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Je hebt de groepsinstellingen aangepast om alleen beheerders de mogelijkheid te geven om berichten te verzenden.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s heeft de groepsinstellingen aangepast om alle groepsleden de mogelijkheid te geven om berichten te verzenden.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s heeft de groepsinstellingen aangepast om alleen beheerders de mogelijkheid te geven om berichten te verzenden.</string>
+  <string name="MessageRecord_allow_all_members_to_send">De groepsinstellingen zijn aangepast om alle groepsleden de mogelijkheid te geven om berichten te verzenden.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">De groepsinstellingen zijn aangepast om alleen beheerders de mogelijkheid te geven om berichten te verzenden.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Je hebt de groepsverwijzingen ingeschakeld zonder beheerderstoestemming-vereiste om lid te mogen worden.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Je hebt de groepsverwijzing ingeschakeld met beheerderstoestemming-vereiste om lid te mogen worden ook ingeschakeld.</string>
@@ -3040,10 +3055,12 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Groepsleden toevoegen</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Groepsinformatie aanpassen</string>
+  <string name="PermissionsSettingsFragment__send_messages">Berichten verzenden</string>
   <string name="PermissionsSettingsFragment__all_members">Alle groepsleden</string>
   <string name="PermissionsSettingsFragment__only_admins">Uitsluitend beheerders</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Wie mag nieuwe leden toevoegen?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Wie mag de groepsinformatie aanpassen?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Wie kunnen berichten verzenden?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Meldingen dempen</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Niet gedempt</string>

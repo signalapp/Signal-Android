@@ -208,6 +208,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">حجم فایل پیوست شده بیش از اندازۀ مجاز برای این نوع پیامی است که در حال ارسال آن هستید.</string>
   <string name="ConversationActivity_unable_to_record_audio">ضبط صدا ممکن نیست!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">نمی‌توانید به این گروه پیام ارسال کنید، چون دیگر عضو آن نیستید.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">فقط %1$s می‌تواند پیام بفرستد.</string>
+  <string name="ConversationActivity_admins">مدیران</string>
+  <string name="ConversationActivity_message_an_admin">به یک مدیر پیام دهید</string>
+  <string name="ConversationActivity_cant_start_group_call">امکان آغاز تماس گروهی وجود ندارد</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">فقط مدیران این گروه می‌توانند یک تماس آغاز کنند.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">هیچ برنامه‌‌ای برای باز کردن این پیوند بر روی دستگاه شما وجود ندارد.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">درخواست شما برای پیوستن به مدیر گروه ارسال شد. هنگامی که اقدامی انجام دهند مطلع خواهید شد.</string>
   <string name="ConversationActivity_cancel_request">لغو درخواست</string>
@@ -417,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">اشتراک‌گذاری با</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">انتخاب چندگانهٔ پیوست‌ها فقط برای عکس‌ها و ویدئوها پشتیبانی می‌شود.</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">شما اجازهٔ ارسال به این گروه را ندارید.</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">خرابی دائم در ارتباط سیگنال!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">سیگنال قادر نبود تا با خدمات ‌Google Play ثبت‌نام کند. پیام‌ها و تماس‌های سیگنال غیرفعال شده‌اند، لطفاً از طریق تنظیمات &gt; پیشرفته دوباره ثبت‌نام کنید.</string>
@@ -559,6 +565,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">انجام شد</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">این فرد نمی‌تواند به گروه‌های قدیمی اضافه شود.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">این فرد نمی‌تواند به گروه‌های اطلاع‌رسانی اضافه شود.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">افزودن «%1$s» به «%2$s»؟</item>
     <item quantity="other">افزودن %3$d عضو به «%2$s»؟</item>
@@ -628,7 +635,8 @@
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">فقط مدیران می‌توانند امکان تأیید کاربران جدید را فعال یا غیرفعال کنند.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">فقط مدیران می‌توانند پیوند قابل اشتراک گروه را بازنشانی کنند.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">شما اجازهٔ انجام این کار را ندارید</string>
-  <string name="ManageGroupActivity_not_capable">کسی که شما به گروه اضافه کردید از گروه‌های جدید پشتیبانی نمی‌کند و باید سیگنال را به‌روزرسانی کند</string>
+  <string name="ManageGroupActivity_not_capable">یکی از کسانی که شما اضافه کردید از گروه‌های جدید پشتیبانی نمی‌کند و باید سیگنال را به‌روزرسانی کند</string>
+  <string name="ManageGroupActivity_not_announcement_capable">یکی از کسانی که شما اضافه کردید از گروه‌های اطلا‌ع‌رسانی پشتیبانی نمی‌کند و باید سیگنال را به‌روزرسانی کند</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">به‌روزرسانی گروه ناموفق بود.</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">شما عضو گروه نیستید</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">به‌روزرسانی گروه موفق نبود، لطفاً بعداً دوباره امتحان کنید</string>
@@ -982,6 +990,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">شما قابلیت ویرایش اعضای گروه را به «%1$s» انتقال دادید.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s قابلیت ویرایش اعضای گروه را به «%2$s» انتقال داد.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">قابلیت ویرایش اعضای گروه به «%1$s» انتقال یافت.</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">شما تنظیمات گروه را تغییر دادید تا به همهٔ اعضا اجازهٔ ارسال پیام بدهید.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">شما تنظیمات گروه را تغییر دادید تا فقط به مدیران اجازهٔ ارسال پیام بدهید.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s تنظیمات گروه را تغییر داد تا به همهٔ اعضا اجازهٔ ارسال پیام بدهد.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s تنظیمات گروه را تغییر داد تا فقط به مدیران اجازهٔ ارسال پیام بدهد.</string>
+  <string name="MessageRecord_allow_all_members_to_send">تنظیمات گروه تغییر داده شدند تا به اعضا اجازهٔ ارسال پیام داده شود.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">تنظیمات گروه تغییر داده شدند تا به مدیران اجازهٔ ارسال پیام داده شود.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">شما پیوند گروه را بدون موافقت مدیر فعال کردید.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">شما پیوند گروه را با موافقت مدیر فعال کردید.</string>
@@ -3034,10 +3049,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">افزودن اعضا</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ویرایش اطلاعات گروه</string>
+  <string name="PermissionsSettingsFragment__send_messages">ارسال پیام‌ها</string>
   <string name="PermissionsSettingsFragment__all_members">همهٔ اعضا</string>
   <string name="PermissionsSettingsFragment__only_admins">فقط مدیران</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">چه کسی می‌تواند اعضای جدید اضافه کند؟</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">چه کسی می‌تواند اطلاعات این گروه را ویرایش کند؟</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">چه کسی ‌می‌تواند پیام ارسال کنند؟</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">بستن اعلان‌ها</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">بسته شده نیست</string>

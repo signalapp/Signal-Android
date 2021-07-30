@@ -209,6 +209,8 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">A melléklet mérete meghaladja az adott típushoz tartozó mérethatárt.</string>
   <string name="ConversationActivity_unable_to_record_audio">Nem lehet hangot rögzíteni!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nem küldhetsz ebbe a csoportba üzenetet, mivel nem vagy a tagja.</string>
+  <string name="ConversationActivity_admins">adminok</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Csak adminok indíthatnak hívást ebben a csoportban.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nem található eszközödön megfelelő alkalmazás a hivatkozás kezeléséhez.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">A csatlakozási kérésed el lett küldve a csoportadmin részére. Értesítést fogsz kapni, amint reagálnak rá.</string>
   <string name="ConversationActivity_cancel_request">Kérés törlése</string>
@@ -979,6 +981,11 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Megváltoztattad a csoport tagjainak szerkeszthetőségét erre: \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s megváltoztatta a csoport tagjainak szerkeszthetőségét erre: \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">A csoporttagságot szerkeszthetők köre megváltozott erre: \"%1$s\"</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Megváltoztattad a csoportbeállításokat: mostantól minden tag küldhet üzenetet a csoportba.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Megváltoztattad a csoportbeállításokat: mostantól csak adminok küldhetnek üzenetet a csoportba.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Megváltozott csoportbeállítások: mostantól minden tag küldhet üzenetet a csoportba.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Megváltozott csoportbeállítások: mostantól csak adminok küldhetnek üzenetet a csoportba.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Bekapcsoltad a megosztható csoporthivatkozást (adminisztrátori jóváhagyás jelenleg kikapcsolva).</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Bekapcsoltad a megosztható csoporthivatkozást adminisztrátori jóváhagyással.</string>

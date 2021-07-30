@@ -976,6 +976,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Sa muutsid grupi liikmete muutmise tasemeks “%1$s“.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s muutis grupi liikmete muutmise tasemeks “%2$s“.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Grupi liikmete muutjateks on nüüd \"%1$s\".</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Sa lülitasid administraatori kinnituseta grupilingi sisse.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Sa lülitasid administraatori kinnitusega grupilingi sisse.</string>

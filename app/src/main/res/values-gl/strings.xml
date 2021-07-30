@@ -977,6 +977,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Cambiaches quen pode editar a membresía do grupo a \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s cambiou quen pode cambiar a membresía do grupo a \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">O permiso de edición da membresía do grupo cambiou a \"%1$s\".</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Activaches a ligazón ao grupo con aprobación por admin desactivada.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Activaches a ligazón ao grupo con aprobación por admin activada.</string>

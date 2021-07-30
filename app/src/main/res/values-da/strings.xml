@@ -977,6 +977,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Du ændrede, hvem som kan redigere medlemskab af gruppen til \"%1$s\"</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ændrede, hvem som kan redigere medlemskab af gruppen til \"%2$s\"</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Hvem som kan redigere medlemskaber af gruppen er blevet ændret til \"%1$s\"</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Du aktiverede gruppelinket med administratorgodkendelse slået fra</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Du aktiverede gruppelinket med administratorgodkendelse slået til</string>

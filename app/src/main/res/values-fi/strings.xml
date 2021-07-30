@@ -974,6 +974,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Muutit kuka voi muokata ryhmän jäsenyyttä käyttäjiin \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s muutti kuka voi muokata ryhmän jäsenyyttä käyttäjiin \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ryhmän jäsenyyttä voi nyt muokata \"%1$s\".</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Otit ryhmälinkin käyttöön ilman ryhmäänliittymispyyntöjä.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Otit ryhmälinkin käyttöön. Ylläpitäjä tarkistaa liittymispyynnöt.</string>

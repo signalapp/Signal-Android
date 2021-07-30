@@ -208,6 +208,9 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">संलग्नचा आकार आपण पाठवत असलेल्या संदेशाच्या प्रकारासाठीच्या मर्यादेपेक्षा जास्त आहे</string>
   <string name="ConversationActivity_unable_to_record_audio">ऑडिओ रेकॉर्ड करण्यास अक्षम!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">आपण या गटास संदेश पाठवू शकत नाही कारण आपण यापुढे सदस्‍य नाही.</string>
+  <string name="ConversationActivity_admins">प्रशासक</string>
+  <string name="ConversationActivity_message_an_admin">प्रशासकाला संदेश पाठवा</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">या गटातील फक्त प्रशासक कॉल चालू करू शकतात.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">आपल्या डिव्हाईस वर हा दुवा हाताळण्यासाठी कुठलाही अॅप नाही.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">आपली सामील होण्याची विनंती गट प्रशासकाकडे पाठविली गेली आहे. जेव्हा ते कारवाई करतात तेव्हा आपल्याला सूचित केले जाईल.</string>
   <string name="ConversationActivity_cancel_request">विनंती रद्द करा</string>
@@ -982,6 +985,11 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">आपण गट सदस्यता जो संपादित करू शकतो तो \"%1$s\" वर बदलला आहे.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ने गट सदस्यता जो संपादित करू शकतो तो \"%2$s\" वर बदलला आहे.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">गट सदस्यता जो संपादित करू शकतो तो \"%1$s\" वर बदलला गेला आहे.</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">सर्व सदस्यांना संदेश पाठवण्याची अनुमती देण्यासाठी आपण गट सेटिंग बदलल्या.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">फक्त प्रशासकांना संदेश पाठवण्याची अनुमती देण्यासाठी आपण गट सेटिंग बदलल्या.</string>
+  <string name="MessageRecord_allow_all_members_to_send">सर्व सदस्यांना संदेश पाठवण्याची अनुमती देण्यासाठी गट सेटिंग बदलल्या गेल्या.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">फक्त प्रशासकांना संदेश पाठवण्याची अनुमती देण्यासाठी गट सेटिंग बदलल्या गेल्या.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">अॅडमिन मान्यता बंद असलेली गट लिंक आपण चालू केली आहे.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">अॅडमिन मान्यता चालू असलेली गट लिंक आपण चालू केली आहे.</string>

@@ -208,6 +208,9 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo tem um tamanho superior ao limite do tipo de mensagem que está a enviar.</string>
   <string name="ConversationActivity_unable_to_record_audio">Não é possível gravar áudio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Não pode enviar mensagens para este grupo pois já não é membro.</string>
+  <string name="ConversationActivity_admins">administradores</string>
+  <string name="ConversationActivity_message_an_admin">Envie uma mensagem para um administrador</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Apenas os administradores deste grupo podem começar uma chamada.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Não existe no seu dispositivo nenhuma aplicação capaz de lidar com este tipo de ligação.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">O seu pedido para entrar foi enviado ao administrador do grupo. Será notificado quando ele tomar uma decisão.</string>
   <string name="ConversationActivity_cancel_request">Cancelar pedido</string>
@@ -982,6 +985,11 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Você alterou quem pode editar a participação do grupo para \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s alterou quem pode editar os membros do grupo para \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Quem pode editar os membros do grupo foi alterado para \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Você modificou as definições de grupo de forma a permitir que todos os membros possam enviar mensagens.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Você modificou as definições de grupo de forma a permitir que apenas os administradores possam enviar mensagens.</string>
+  <string name="MessageRecord_allow_all_members_to_send">As definições do grupo foram modificadas para permitir que todos os membros possam enviar mensagens.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">As definições de grupo foram modificadas para permitir que apenas os administradores possam enviar mensagens.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Ativou o link de grupo sem aprovação de administrador.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Ativou o link do grupo com aprovação de administrador.</string>

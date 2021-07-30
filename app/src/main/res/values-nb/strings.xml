@@ -971,6 +971,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Du endret hvem som kan redigere gruppemedlemskap til \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s endret hvem som kan redigere gruppemedlemskap til \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Den som kan redigere gruppemedlemskap er endret til \"%1$s\".</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Du slo på gruppelenken med administrativ godkjenning avslått.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Du slo på gruppelenken med administrativ godkjenning skrudd på.</string>

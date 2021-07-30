@@ -38,6 +38,7 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">पिन अक्षम है।</string>
   <string name="ApplicationPreferencesActivity_hide">छुपा दें</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">अनुस्मारक को छिपाएं?</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">वाक्यांश रिकॉर्ड करें</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d मिनट</item>
@@ -49,6 +50,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(वीडियो)</string>
   <string name="DraftDatabase_Draft_location_snippet">( स्थान )</string>
   <string name="DraftDatabase_Draft_quote_snippet">( उत्तर ) </string>
+  <string name="DraftDatabase_Draft_voice_note">(ऑडियो मेसेज)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">गैलरी</string>
   <string name="AttachmentKeyboard_file">फ़ाइल</string>
@@ -56,6 +58,7 @@
   <string name="AttachmentKeyboard_location">स्थान</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal को आपके फ़ोटो और वीडियो दिखाने के लिय अनुमति चाहिए।</string>
   <string name="AttachmentKeyboard_give_access">अनुमति दें</string>
+  <string name="AttachmentKeyboard_payment">भुगतान</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">मीडिया का चयन करने के लिए कोई ऐप नहीं मिल सकता है</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">फ़ोटो, वीडियो या ऑडियो संलग्न करने के लिए Signal को संग्रहण अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"संग्रहण\" सक्षम करें।</string>
@@ -87,6 +90,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$sको अनब्लॉक करें ?</string>
   <string name="BlockUnblockDialog_block">ब्लॉक</string>
   <string name="BlockUnblockDialog_block_and_leave">ब्लॉक करें और छोड़ें </string>
+  <string name="BlockUnblockDialog_report_spam_and_block">स्पैम रिपोर्ट करें और ब्लॉक करें</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">आज</string>
   <string name="BucketedThreadMedia_Yesterday">कल</string>
@@ -201,6 +205,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">आपके द्वारा भेजे जा रहे मेसेज के प्रकार के लिए अनुलग्नक आकार सीमा से अधिक है।</string>
   <string name="ConversationActivity_unable_to_record_audio">ऑडियो रिकॉर्ड करने में असमर्थ</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">आप इस समूह को संदेश नहीं भेज सकते क्योंकि आप अब सदस्य नहीं हैं।</string>
+  <string name="ConversationActivity_only_s_can_send_messages">केवल %1$s संदेश भेज सकते हैं।</string>
+  <string name="ConversationActivity_admins">व्यवस्थापक</string>
+  <string name="ConversationActivity_message_an_admin">व्यवस्थापक को संदेश भेजें</string>
+  <string name="ConversationActivity_cant_start_group_call">ग्रुप कॉल प्रारंभ नहीं हो सकता</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">केवल इस ग्रुप के व्यवस्थापक ही कॉल शुरू कर सकते हैं।</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">आपके डिवाइस पर इस लिंक को संभालने के लिए कोई ऐप उपलब्ध नहीं है।</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">समूह से जुड़ने का आपका अनुरोध समूह संचालक को भेज दिया गया है। जब वे जवाब देंगे तो आपको सूचित किया जाएगा।</string>
   <string name="ConversationActivity_cancel_request">निवेदन रद्द करें</string>
@@ -232,6 +241,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">समूह सेटिंग्स में अब और विकल्प</string>
   <string name="ConversationActivity_join">जुड़ें</string>
   <string name="ConversationActivity_full">पूर्ण</string>
+  <string name="ConversationActivity_error_sending_media">मीडिया भेजने में त्रुटि</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">स्पैम के रूप में रिपोर्ट किया गया और अवरुद्ध कर दिया गया।</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -317,6 +327,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">कुछ संपर्क लेगेसी ग्रुप्स में नहीं हो सकते।</string>
+  <string name="CreateGroupActivity__select_members">सदस्य चुनें</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">प्रोफ़ाइल</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाइल फोटो सेट करने में त्रुटि</string>
@@ -330,6 +341,7 @@
   <string name="ChooseBackupFragment__icon_content_description">बैकअप आइकन से बहाल करें</string>
   <string name="ChooseBackupFragment__choose_backup">बैकअप चुनें</string>
   <string name="ChooseBackupFragment__learn_more">अधिक जानें</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">कोई फ़ाइल ब्राउज़र उपलब्ध नहीं है</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">पुनर्स्थापित पूर्ण</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">बैकअप का उपयोग करना जारी रखने के लिए, कृपया एक फोल्डर चुनें। नए बैकअप इस जगह पर संगृहीत किए जाएंगे।</string>
@@ -407,6 +419,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">साझा करें</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">एक से अधिक एटेचमेंट केवल तस्वीरों और वीडियोज के लिए समर्थित हैं।</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">आपको इस ग्रुप में भेजने की अनुमति नहीं है</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">स्थायी Signal संचार विफलता</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play सेवाओं के साथ पंजीकरण करने में असमर्थ था। Signal मेसेज और कॉल अक्षम कर दिए गए हैं, कृपया सेटिंग्स &gt; उन्नत में पुनः पंजीकरण करने का प्रयास करें।</string>
@@ -549,6 +562,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">पूर्ण</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">इस व्यक्ति को लेगेसी ग्रुप्स में नहीं शामिल किया जा सकता।</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">इस व्यक्ति को घोषणा ग्रुप में शामिल नहीं किया जा सकता।</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">%1$s मेंबर को \"%2$s\" में जोड़ना है?</item>
     <item quantity="other">%3$d मेंबर्स को \"%2$s\" में जोड़ना है?</item>
@@ -603,7 +617,9 @@
   <string name="ManageGroupActivity_mute_notifications">नोटिफिकेशन म्यूट करें</string>
   <string name="ManageGroupActivity_custom_notifications">कस्टम अधिसूचनाएं</string>
   <string name="ManageGroupActivity_mentions">मेंछन</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">संदेश का रंग &amp; वॉलपेपर</string>
   <string name="ManageGroupActivity_until_s">%1$s तक</string>
+  <string name="ManageGroupActivity_always">हमेशा</string>
   <string name="ManageGroupActivity_off">बंद </string>
   <string name="ManageGroupActivity_on">पर</string>
   <string name="ManageGroupActivity_view_all_members">सारे सदस्य देखें</string>
@@ -617,6 +633,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">केवल एडमिन ही साझा किए जाने योग्य ग्रुप के लिंक को रीसेट कर सकते हैं।</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">आपके पास ऐसा करने का अधिकार नहीं है</string>
   <string name="ManageGroupActivity_not_capable">आपने किसी ऐसे व्यक्ति को शामिल किया है जिसके पास नए ग्रुप्स समर्थित नहीं हैं और उसे Signal को अपडेट करने की ज़रूरत है</string>
+  <string name="ManageGroupActivity_not_announcement_capable">आपने किसी ऐसे व्यक्ति को शामिल किया है जिसके पास नए ग्रुप्स समर्थित नहीं हैं और उसे Signal को अपडेट करने की ज़रूरत है</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">ग्रुप को अपडेट करना असफल रहा</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">आपने इस समूह के सदस्य नहीं हैं</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">ग्रुप को अपडेट करना असफल रहा कृपया बाद में दोबारा प्रयास करें</string>
@@ -629,6 +646,8 @@
   <string name="ManageGroupActivity_upgrade_this_group">इस समूह को अपग्रेड करें।</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">यह एक असुरक्षित MMS ग्रुप है। प्राइवेट रूप से चैट करने के लिए, अपने संपर्कों को Signal पर आमंत्रित करें।</string>
   <string name="ManageGroupActivity_invite_now">अब आमंत्रित करें</string>
+  <string name="ManageGroupActivity_more">अधिक</string>
+  <string name="ManageGroupActivity_add_group_description">ग्रुप विवरण जोड़ें…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">मेंछन किए जाने पर मुझे सूचित करें</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">म्यूट की हुई चैट में आपको मेंछन किए जाने पर सूचनाएँ प्राप्त करनी हैं?</string>
@@ -638,7 +657,10 @@
   <string name="ManageProfileFragment_profile_name">प्रोफ़ाइल नाम</string>
   <string name="ManageProfileFragment_username">उपयोगकर्ता नाम</string>
   <string name="ManageProfileFragment_about">हमारे बारे में</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">अपने बारे में कुछ शब्द लिखें</string>
   <string name="ManageProfileFragment_your_name">आपका नाम?</string>
+  <string name="ManageProfileFragment_your_username">आपका उपयोगकर्ता नाम</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">अवतार सेट करने में विफल</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">कोई साझा समूह नहीं </string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -788,6 +810,7 @@
   <string name="MediaOverviewActivity_audio">ऑडियो</string>
   <string name="MediaOverviewActivity_video">वीडियो</string>
   <string name="MediaOverviewActivity_image">तस्वीर</string>
+  <string name="MediaOverviewActivity_voice_message">ऑडियो मेसेज</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s द्वारा भेजा</string>
   <string name="MediaOverviewActivity_sent_by_you">आपके द्वारा भेजा गया</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s द्वारा %2$s को भेजा गया</string>
@@ -804,10 +827,12 @@
   <string name="Megaphones_invite_friends">मित्रों को आमंत्रित करें</string>
   <string name="Megaphones_use_sms">SMS का उपयोग करें</string>
   <string name="Megaphones_appearance">दिखावट</string>
+  <string name="Megaphones_add_photo">तस्वीर लगाएं</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal कॉल प्रगति पर है</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal कॉल की स्थापना की जा रही है</string>
   <string name="NotificationBarManager__incoming_signal_call">आने वाली Signal कॉल</string>
+  <string name="NotificationBarManager__stopping_signal_call_service">Signal कॉल सेवा बंद की जा रही है</string>
   <string name="NotificationBarManager__deny_call">कॉल अस्वीकार करें</string>
   <string name="NotificationBarManager__answer_call">कॉल का उत्तर दें</string>
   <string name="NotificationBarManager__end_call">कॉल बंद</string>
@@ -843,6 +868,8 @@
   <string name="MediaRepository_all_media">सभी मीडिया</string>
   <string name="MediaRepository__camera">कैमरा</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">संदेश को डिक्रिप्ट करने में विफल</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">debug log भेजने के लिए टैप करें</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">अनजान</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal के पुराने वर्ज़न का उपयोग करके एन्क्रिप्ट किया गया एक संदेश प्राप्त हुआ जो अब समर्थित नहीं है। कृपया प्रेषक से नवीनतम वर्ज़न में अपडेट करने और संदेश भेजने के लिए कहें।</string>
@@ -944,6 +971,8 @@
   <string name="MessageRecord_the_group_name_has_changed_to_s">ग्रुप का नाम बदल कर \"%1$s\" हो गया है।</string>
   <!--GV2 description change-->
   <string name="MessageRecord_you_changed_the_group_description">आपने समूह विवरण बदल दिया है।</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s ने ग्रुप विवरण बदला</string>
+  <string name="MessageRecord_the_group_description_has_changed">ग्रुप विवरण बदल दिया गया है।</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">आपने ग्रुप का अवतार बदल दिया है।</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ने ग्रुप का अवतार बदल दिया है।</string>
@@ -956,6 +985,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">आपने ग्रुप की मेंबरशिप को बदलने का अधिकार \"%1$s\" को दे दिया है।</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ने ग्रुप की मेंबरशिप को बदलने का अधिकार \"%2$s\" को दे दिया है।</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">ग्रुप की मेंबरशिप को बदल पाने का अधिकार \"%1$s\" को दे दिया गया है।</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">आपने सभी सदस्यों को संदेश भेजने की अनुमति देने के लिए ग्रुप सेटिंग्स बदल दी हैं।</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">आपने ग्रुप सेटिंग को केवल व्यवस्थापकों को संदेश भेजने की अनुमति देने के लिए बदल दिया है।</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s ने सभी सदस्यों को संदेश भेजने की अनुमति देने के लिए ग्रुप सेटिंग्स को बदल दिया।</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ने ग्रुप सेटिंग्स को केवल व्यवस्थापकों को संदेश भेजने की अनुमति देने के लिए बदल दिया।</string>
+  <string name="MessageRecord_allow_all_members_to_send">सभी सदस्यों को संदेश भेजने की अनुमति देने के लिए ग्रुप सेटिंग्स बदली गईं।</string>
+  <string name="MessageRecord_allow_only_admins_to_send">केवल व्यवस्थापकों को संदेश भेजने की अनुमति देने के लिए ग्रुप सेटिंग्स बदली गईं।</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">आपने एडमिन के एप्रूवल के बिना ग्रुप लिंक को चालू कर दिया है।</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">आपने एडमिन के एप्रूवल के साथ ग्रुप लिंक को चालू कर दिया है।</string>
@@ -1000,6 +1036,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">आपने %s के साथ अपना सुरक्षा नंबर किसी और डिवाइस से सत्यापित चिह्नित किया है </string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">आपने %s के साथ अपना सुरक्षा नंबर असत्यापित मार्क करा हुआ है</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">आपने %s के साथ अपना सुरक्षा नंबर किसी और डिवाइस से असत्यापित मार्क करा हुआ है</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s से एक संदेश डिलीवर नहीं किया जा सका</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ने एक ग्रुप कॉल शुरू की · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ग्रुप कॉल में है · %2$s</string>
@@ -1087,6 +1124,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">पासफ्रेज जमा करें</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">अमान्य पासफ्रेज</string>
   <string name="PassphrasePromptActivity_unlock_signal">Signal खोलो</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - लॉक स्क्रीन</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">नक्शा</string>
   <string name="PlacePickerActivity_drop_pin">पीन दें</string>
@@ -1172,6 +1210,7 @@
   <string name="WebRtcCallView__no_one_else_is_here">यहाँ और कोई नहीं है</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s इस कॉल में है</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s और %2$s इस कॉल में हैं</string>
+  <string name="WebRtcCallView__s_is_presenting">%1$s प्रस्तुत कर रहा है</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s, और %3$d अन्य लोग इस कॉल में हैं</item>
     <item quantity="other">%1$s, %2$s, और %3$d अन्य लोग इस कॉल में हैं</item>
@@ -1189,8 +1228,16 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s से ऑडियो और वीडियो नहीं प्राप्त की जा सकती</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">यह इसलिए हो सकता है क्योंकि उन्होंने आपके सुरक्षा नंबर में परिवर्तन को वेरिफाई नहीं किया है, उनके डिवाइस के साथ कोई समस्या है, या उन्होंने आपको ब्लॉक कर दिया है।</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">स्क्रीन शेयर करने के लिए स्वाइप करें</string>
   <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">प्रॉक्सी सर्वर</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">प्रॉक्सी पता</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">क्या आप प्रॉक्सी पते का उपयोग करना चाहते हैं?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">प्रॉक्सी का उपयोग करें</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">सफलतापूर्वक प्रॉक्सी से कनेक्ट हो गया है।</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">सबमिट करने में विफल</string>
+  <string name="RecaptchaProofActivity_complete_verification">सत्यापन पूरा करें</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">अपने देश का चयन करें</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">आपको अपना देश कोड निर्दिष्ट करना होगा</string>
@@ -1303,7 +1350,9 @@
   <string name="SubmitDebugLogActivity_success">सफलता</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">इस URL को कॉपी करें और इसे अपनी समस्या रिपोर्ट या समर्थन ईमेल में शामिल करें:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">साझा करें</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">योगदानकर्ताओं को देखने के लिए यह लॉग सार्वजनिक रूप से ऑनलाइन पोस्ट किया जाएगा। अपलोड करने से पहले आप इसकी जांच कर सकते हैं।</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">फिल्टर:</string>
   <string name="SupportEmailUtil_device_info">डिवाइस की जानकारी:</string>
   <string name="SupportEmailUtil_android_version">Android वर्ज़न:</string>
   <string name="SupportEmailUtil_signal_version">Signal वर्ज़न:</string>
@@ -1415,6 +1464,8 @@
   <string name="MessageNotifier_message_delivery_failed">मेसेज प्रेषण असफल हुआ</string>
   <string name="MessageNotifier_failed_to_deliver_message">मेसेज देने में विफल रहा</string>
   <string name="MessageNotifier_error_delivering_message">मेसेज देने में त्रुटि</string>
+  <string name="MessageNotifier_message_delivery_paused">संदेश प्रेषण रोका गया</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Signal पर संदेश भेजना जारी रखने के लिए सत्यापित करें</string>
   <string name="MessageNotifier_mark_all_as_read">सभी को पढ़ा हुआ मार्क करें</string>
   <string name="MessageNotifier_mark_read">पढ़ा हुआ मार्क करें</string>
   <string name="MessageNotifier_turn_off_these_notifications">इन सूचनाओं को बंद करें</string>
@@ -1463,6 +1514,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">नया Signal मेसेज</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">संदेश अनुरोध</string>
   <string name="SingleRecipientNotificationBuilder_you">आप</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">वीडियो चलाएं</string>
@@ -1569,7 +1621,9 @@
   <string name="ConversationUpdateItem_return_to_call">कॉल पर वापस जाएँ</string>
   <string name="ConversationUpdateItem_call_is_full">कॉल पूर्ण है</string>
   <string name="ConversationUpdateItem_invite_friends">मित्रों को आमंत्रित करें</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">कॉल सूचनाएं चालू करें</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">कोई समूह सामान्य नहीं है। अनुरोधों की सावधानीपूर्वक समीक्षा करें।</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">इस ग्रुप में कोई संपर्क नहीं है। अनुरोधों की सावधानीपूर्वक समीक्षा करें।</string>
   <string name="ConversationUpdateItem_view">देखना</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">चलाएं … रोकें</string>
@@ -1596,6 +1650,7 @@
   <string name="safety_number_change_dialog__view">देखना</string>
   <string name="safety_number_change_dialog__previous_verified">पहले से वेरिफाई किया हुआ</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">कॉल नोटिफिकेशन चालू किया।</string>
   <string name="EnableCallNotificationSettingsDialog__settings">सेटिंग्स</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">देशों को लोड किया जा रहा है</string>
@@ -1781,6 +1836,7 @@
   <string name="arrays__mute_for_one_hour">1 घंटे के लिए म्यूट करें</string>
   <string name="arrays__mute_for_one_day">1 दिन के लिए म्यूट करें</string>
   <string name="arrays__mute_for_seven_days">7 दिन के लिए म्यूट करें</string>
+  <string name="arrays__always">हमेशा</string>
   <string name="arrays__settings_default">सेटिंग्स डिफ़ॉल्ट</string>
   <string name="arrays__enabled">सक्षम</string>
   <string name="arrays__disabled">अक्षम</string>
@@ -1875,6 +1931,7 @@
   <string name="preferences__dark_theme">अँधेरा </string>
   <string name="preferences__appearance">दिखावट</string>
   <string name="preferences__theme">विषय</string>
+  <string name="preferences__chat_color_and_wallpaper">संदेश का रंग &amp; वॉलपेपर</string>
   <string name="preferences__disable_pin">पिन को डिसेबल करें</string>
   <string name="preferences__enable_pin">पिन एनेबल करें</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">यदि आप पिन को डिसेबल कर देते हैं, तो आप Signal के साथ दोबारा रजिस्टर करने पर अपना सारा डेटा खो बैठेंगे यदि आप मैन्युअल तरीके से बैक अप और रीस्टोर नहीं करते हैं। आप पिन के डिसेबल होते हुए रजिस्ट्रेशन लॉक को चालू नहीं कर सकते।</string>
@@ -1951,8 +2008,10 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">सील्ड सेंडर फी़चर आने वाले मेसेजों के लिये शुरु कर दिया जाऐगा जिसके अनुसार वो लोग जो आपके संपर्क में नहीं  हैं या जिनसे आपने अपना प्रोफ़ाइल साझा नहीं किया है, वो भी आपको मेसेज भेज पाएंगे|</string>
   <string name="preferences_communication__sealed_sender_learn_more">अधिक जानें</string>
   <string name="preferences_setup_a_username">उपयोगकर्ता नाम सेट अप करें</string>
+  <string name="preferences_use_proxy">प्रॉक्सी का उपयोग करें</string>
   <string name="preferences_off">बंद </string>
   <string name="preferences_on">पर</string>
+  <string name="preferences_proxy_address">प्रॉक्सी पता</string>
   <string name="preferences_share">साझा करें</string>
   <string name="preferences_save">सेव</string>
   <string name="configurable_single_select__customize_option">अनुकूलित करने का विकल्प</string>
@@ -2528,6 +2587,7 @@
   <string name="ChatColorsMegaphone__not_now">अभी नहीं</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">अभी नहीं</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">तस्वीर लगाएं</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">इमोजी</string>
   <string name="KeyboardPagerFragment_stickers">स्टिकर</string>

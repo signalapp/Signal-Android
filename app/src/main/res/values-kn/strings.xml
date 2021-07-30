@@ -294,7 +294,7 @@
   <string name="ConversationFragment_verify">ದೃಢೀಕರಿಸಿ</string>
   <string name="ConversationFragment_not_now">ಈಗಲ್ಲ</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s ನೊಂದಿಗೆ ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಬದಲಾಯಿಸಲಾಗಿದೆ.</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s ಜೊತೆಗಿನ ನಿಮ್ಮ ಸುರಕ್ಷತೆ ಸಂಖ್ಯೆ ಬದಲಾಗಿದೆ. ಯಾಕೆಂದರೆ, ಅವರು Signal ಅನ್ನು ಪುನಃ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದ್ದಾರೆ ಅಥವಾ ಸಾಧನಗಳನ್ನು ಬದಲಿಸಿದ್ದಾರೆ. ಹೊಸ ಸುರಕ್ಷತೆ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಸಲು ಪರಿಶೀಲಿಸಿ ಎಂಬುದನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ. ಇದು ಐಚ್ಛಿಕವಾಗಿದೆ.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s ರೊಂದಿಗಿನ ನಿಮ್ಮ ಸುರಕ್ಷತೆ ಸಂಖ್ಯೆ ಬದಲಾಗಿದೆ. ಏಕೆಂದರೆ, ಅವರು Signal ಅನ್ನು ಪುನಃ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದ್ದಾರೆ ಅಥವಾ ಸಾಧನಗಳನ್ನು ಬದಲಿಸಿದ್ದಾರೆ. ಹೊಸ ಸುರಕ್ಷತೆ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಸಲು ಪರಿಶೀಲಿಸಿ ಎಂಬುದನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ. ಇದು ಐಚ್ಛಿಕವಾಗಿದೆ.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಭಾಷಣೆಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
     <item quantity="other">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಭಾಷಣೆಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
@@ -396,7 +396,7 @@
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">ಹೆಸರಿಸದ ಫೈಲ್</string>
   <!--DonateMegaphone-->
-  <string name="DonateMegaphone_donate_to_signal">Signalಗೆ ದಾನ ಮಾಡಿ</string>
+  <string name="DonateMegaphone_donate_to_signal">Signal ಗೆ ದಾನ ಮಾಡಿ</string>
   <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal ನಿಮ್ಮಂತಹ ಜನರಿಂದ ನಡೆಯುತ್ತದೆ . ಇಂದು ನಿಮ್ಮ ಬೆಂಬಲವನ್ನು ತೋರಿಸಿ!</string>
   <string name="DonateMegaphone_donate">ದಾನ</string>
   <string name="DonateMegaphone_no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string>
@@ -597,6 +597,10 @@
     <item quantity="other">%1$d ಸದಸ್ಯರು Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತಿರುವುದರಿಂದ ಹಳೆಯ ಗುಂಪನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ. ಅವರು Signal ಅನ್ನು ನವೀಕರಣ ಮಾಡಿದ ಬಳಿಕ ಹೊಸ ಶೈಲಿಯ ಗುಂಪನ್ನು ನೀವು ರಚಿಸಬಹುದು ಅಥವಾ ಗುಂಪನ್ನು ರಚಿಸುವ ಮುನ್ನ ಅವರನ್ನು ತೆಗೆದುಹಾಕಬಹುದು.</item>
   </plurals>
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">ಈ ಗುಂಪನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಏಕೆಂದರೆ \"%1$s\"\' Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತಿದ್ದಾರೆ. ಗುಂಪನ್ನು ರಚಿಸುವ ಮುನ್ನ ಅವರನ್ನು ತೆಗೆದುಹಾಕಬೇಕು.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">ಈ ಗುಂಪನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಏಕೆಂದರೆ %1$d ಸದಸ್ಯರು Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತಿದ್ದಾರೆ. ಗುಂಪನ್ನು ರಚಿಸುವ ಮುನ್ನ ಅವರನ್ನು ತೆಗೆದುಹಾಕಬೇಕು.</item>
+    <item quantity="other">ಈ ಗುಂಪನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಏಕೆಂದರೆ %1$d ಸದಸ್ಯರು Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತಿದ್ದಾರೆ. ಗುಂಪನ್ನು ರಚಿಸುವ ಮುನ್ನ ಅವರನ್ನು ತೆಗೆದುಹಾಕಬೇಕು.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">ಸದಸ್ಯ ವಿನಂತಿಗಳು &amp; ಆಹ್ವಾನಗಳು</string>
   <string name="ManageGroupActivity_add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
@@ -978,6 +982,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">\"%1$s\" ಗೆ ಗ್ರೂಪ್ ಸದಸ್ಯತ್ವವನ್ನು ಯಾರು ಎಡಿಟ್ ಮಾಡಬಹುದು ಎಂಬುದನ್ನು ನೀವು ಬದಲಿಸಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">\"%2$s\" ಗೆ ಗ್ರೂಪ್ ಸದಸ್ಯತ್ವವನ್ನು ಯಾರು ಎಡಿಟ್ ಮಾಡಬಹುದು ಎಂಬುದನ್ನು %1$s ಬದಲಿಸಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">ಯಾರು ಗ್ರೂಪ್ ಸದಸ್ಯತ್ವವನ್ನು ಎಡಿಟ್ ಮಾಡಬಹುದು ಎಂಬುದನ್ನು \"%1$s\" ಗೆ ಬದಲಿಸಲಾಗಿದೆ.</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">ನೀವು ಅಡ್ಮಿನ್ ಅನುಮೋದನೆಯನ್ನು ಆಫ್ ಮಾಡುವುದರೊಂದಿಗೆ ಗುಂಪಿನ ಲಿಂಕ್ ಅನ್ನು ಆನ್ ಮಾಡಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">ನೀವು ಅಡ್ಮಿನ್ ಅನುಮೋದನೆಯೊಂದಿಗೆ ಗುಂಪಿನ ಲಿಂಕ್ ಅನ್ನು ಆನ್ ಮಾಡಿದ್ದೀರಿ.</string>
@@ -2783,87 +2788,216 @@
   <string name="payment_info_card_about_mobilecoin">ಮೊಬೈಲ್‌ಕಾಯಿನ್‌ ಬಗ್ಗೆ</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">ಮೊಬೈಲ್ ಕಾಯಿನ್ ಹೊಸ ಗೌಪ್ಯತೆ ಆಧರಿತ ಡಿಜಿಟಲ್ ಕರೆನ್ಸಿ.</string>
   <string name="payment_info_card_adding_funds">ಫಂಡ್‌ಗಳನ್ನು ಸೇರಿಸಲಾಗುತ್ತಿದೆ</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">ನಿಮ್ಮ ವಾಲೆಟ್ ವಿಳಾಸಕ್ಕೆ ಮೊಬೈಲ್‌ಕಾಯಿನ್ ಅನ್ನು ಕಳುಹಿಸುವ ಮೂಲಕ Signal ನಲ್ಲಿ ಬಳಸಲು ನೀವು ಫಂಡ್‌ಗಳನ್ನು ಸೇರಿಸಬಹುದು.</string>
+  <string name="payment_info_card_cashing_out">ನಗದು ಮಾಡಿಕೊಳ್ಳಲಾಗುತ್ತಿದೆ</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">ಮೊಬೈಲ್‌ಕಾಯಿನ್ ಬೆಂಬಲಿಸುವ ವಿನಿಮಯದಲ್ಲಿ ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ನೀವು ಮೊಬೈಲ್‌ಕಾಯಿನ್ ಅನ್ನು ನಗದು ಮಾಡಿಕೊಳ್ಳಬಹುದು. ಆ ವಿನಿಮಯದಲ್ಲಿ ನಿಮ್ಮ ಖಾತೆಗೆ ಕೇವಲ ವರ್ಗಾವಣೆ ಮಾಡಿಕೊಳ್ಳಿ.</string>
+  <string name="payment_info_card_hide_this_card">ಈ ಕಾರ್ಡ್ ಮರೆ ಮಾಡುವುದೇ?</string>
   <string name="payment_info_card_hide">ಅಡಗಿಸು</string>
+  <string name="payment_info_card_record_recovery_phrase">ಪ್ರತಿ ಹಂತವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">ನಿಮ್ಮ ಪೇಮೆಂಟ್‌ಗಳ ಖಾತೆಯನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಲು ನಿಮ್ಮ ರಿಕವರಿ ಪದಗುಚ್ಛವು ಇನ್ನೊಂದು ವಿಧಾನವಾಗಿರುತ್ತದೆ.</string>
+  <string name="payment_info_card_record_your_phrase">ನಿಮ್ಮ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಿ</string>
+  <string name="payment_info_card_update_your_pin">ನಿಮ್ಮ ಪಿನ್‌ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ</string>
+  <string name="payment_info_card_with_a_high_balance">ಹೆಚ್ಚು ಬ್ಯಾಲೆನ್ಸ್‌ ಇರುವುದರಿಂದ, ನೀವು ನಿಮ್ಮ ಖಾತೆಗೆ ಹೆಚ್ಚು ರಕ್ಷಣೆ ಒದಗಿಸಲು ಸಂಖ್ಯೆ ಮತ್ತು ಅಕ್ಷರ ಇರುವ ಪಿನ್ ಅನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಲು ನೀವು ಬಯಸಬಹುದು.</string>
   <string name="payment_info_card_update_pin">ಪಿನ್ ನವೀಕರಿಸಿ</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">ವಾಲೆಟ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
+  <string name="DeactivateWalletFragment__your_balance">ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">ಪೇಮೆಂಟ್ಸ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವದಕ್ಕೂ ಮುನ್ನ ಇನ್ನೊಂದು ವಾಲೆಟ್‌ಗೆ ನಿಮ್ಮ ಹಣವನ್ನು ವರ್ಗಾವಣೆ ಮಾಡಿಕೊಳ್ಳುವುದನ್ನು ನಿಮಗೆ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಈಗ ನಿಮ್ಮ ಹಣವನ್ನು ವರ್ಗಾವಣೆ ಮಾಡದಿರಲು ನೀವು ಆಯ್ಕೆ ಮಾಡಿಕೊಂಡರೆ, ಪೇಮೆಂಟ್‌ಗಳನ್ನು ನೀವು ಪುನಃ ಸಕ್ರಿಯಗೊಳಿಸಿದರೆ Signal ಗೆ ಲಿಂಕ್‌ ಮಾಡಿದ ನಿಮ್ಮ ವಾಲೆಟ್‌ನಲ್ಲಿಯೇ ಅವು ಇರುತ್ತವೆ.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">ಉಳಿದ ಬ್ಯಾಲೆನ್ಸ್ ಅನ್ನು ವರ್ಗಾವಣೆ ಮಾಡಿ</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">ವರ್ಗಾವಣೆ ಮಾಡದೇ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="DeactivateWalletFragment__deactivate">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">ವರ್ಗಾವಣೆ ಮಾಡದೇ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದೇ?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">ನೀವು ಪೇಮೆಂಟ್ಸ್ ಪುನಃ ಸಕ್ರಿಯಗೊಳಿಸಲು ನೀವು ಆಯ್ಕೆ ಮಾಡಿಕೊಂಡರೆ, Signal ಗೆ ಲಿಂಕ್ ಮಾಡಿದ ನಿಮ್ಮ ವಾಲೆಟ್‌ನಲ್ಲಿ ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಇರುತ್ತದೆ.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">ವಾಲೆಟ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವಲ್ಲಿ ದೋಷ.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">ರಿಕವರಿ ಪದಗುಚ್ಛ</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ನೋಡಿ</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ನಮೂದಿಸಿ</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">ನಿಮ್ಮ Signal ಪಿನ್ ಅನ್ನು ನೀವು ದೃಢೀಕರಿಸಿದರೆ Signal ಅನ್ನು ನೀವು ಪುನಃ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದಾಗ ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ರಿಸ್ಟೋರ್ ಆಗುತ್ತದೆ. ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ಬಳಸಿ ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಅನ್ನು ಕೂಡಾ ನೀವು ರಿಸ್ಟೋರ್ ಮಾಡಬಹುದು. ಇದು %1$d - ಶಬ್ದದ ಪದಗುಚ್ಛವಾಗಿದ್ದು ನಿಮಗೆ ವಿಶಿಷ್ಟವಾಗಿದೆ. ಇದನ್ನು ಬರೆದಿಟ್ಟುಕೊಳ್ಳಿ ಮತ್ತು ಸುರಕ್ಷಿತ ಸ್ಥಳದಲ್ಲಿ ಶೇಖರಿಸಿಡಿ.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ನಿಮ್ಮ ರಿಕವರಿ ಪದಗುಚ್ಛವು %1$d- ಶಬ್ದದ ಪದಗುಚ್ಛವಾಗಿದ್ದು, ನಿಮಗೆ ವಿಶಿಷ್ಟವಾಗಿದೆ. ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಲು ಈ ಪದಗುಚ್ಛವನ್ನು ಬಳಸಿ.</string>
+  <string name="PaymentsRecoveryStartFragment__start">ಆರಂಭಿಸಿ</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">ಮ್ಯಾನ್ಯುಅಲ್‌ ಆಗಿ ನಮೂದಿಸಿ</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ನಿಂದ ಅಂಟಿಸಿ</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ಅಂಟಿಸಿ</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">ರಿಕವರಿ ಪದಗುಚ್ಛ</string>
   <string name="PaymentsRecoveryPasteFragment__next">ಮುಂದೆ</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">ಅಮಾನ್ಯ ರಿಕವರಿ ಪದಗುಚ್ಛ</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">%1$d ಶಬ್ದಗಳನ್ನು ನೀವು ನಮೂದಿಸಿದ್ದೀರಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿದ್ದೀರಿ ಎಂದು ಖಚಿತಪಡಿಸಿ.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">ಮುಂದೆ</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">ತಿದ್ದಿ</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">ಹಿಂದಿನ</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">ನಿಮ್ಮ ರಿಕವರಿ ಪದಗುಚ್ಛ</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">ಈ ಮುಂದಿನ %1$d ಶಬ್ದಗಳನ್ನು ಅನುಕ್ರಮದಲ್ಲಿ ಬರೆಯಿರಿ. ನಿಮ್ಮ ಪಟ್ಟಿಯನ್ನು ಸುರಕ್ಷಿತ ಸ್ಥಳದಲ್ಲಿ ಲಿಸ್ಟ್ ಮಾಡಿ.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">ನಿಮ್ಮ ಪದಗುಚ್ಛವನ್ನು ಸರಿಯಾಗಿ ನಮೂದಿಸಿದ್ದೀರಿ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">ಸ್ಕ್ರೀನ್‌ಶಾಟ್ ತೆಗೆದುಕೊಳ್ಳಬೇಡಿ ಅಥವಾ ಇಮೇಲ್ ಮೂಲಕ ಕಳುಹಿಸಬೇಡಿ.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">ಪೇಮೆಂಟ್ಸ್‌ ಖಾತೆಯನ್ನು ರಿಸ್ಟೋರ್‌ ಮಾಡಲಾಗಿದೆ.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">ಅಮಾನ್ಯ ರಿಕವರಿ ಪದಗುಚ್ಛ</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">ನೀವು ನಿಮ್ಮ ಪದಗುಚ್ಛವನ್ನು ಸರಿಯಾಗಿ ನಮೂದಿಸಿದ್ದೀರಿ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲಿಸುವುದೇ?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">ನಿಮ್ಮ ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ಡಿಜಿಟಲ್ ರೂಪದಲ್ಲಿ ಸಂಗ್ರಹಿಸಲು ನೀವು ಆಯ್ಕೆ ಮಾಡಿಕೊಂಡರೆ, ನೀವು ವಿಶ್ವಾಸ ಹೊಂದಿರುವಲ್ಲಿ ಇದು ಸುರಕ್ಷಿತವಾಗಿದೆ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">ನಕಲಿಸು</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ದೃಢೀಕರಿಸಿ</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">ನಿಮ್ಮ ರಿವಕರಿ ಪದಗುಚ್ಛದಿಂದ ಈ ಮುಂದಿನ ಶಬ್ದಗಳನ್ನು ನಮೂದಿಸಿ.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">ಶಬ್ದ %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">ಪದಗುಚ್ಛವನ್ನು ಪುನಃ ನೋಡಿ</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">ಮುಗಿದಿದೆ</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ದೃಢೀಕರಿಸಲಾಗಿದೆ</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ನಮೂದಿಸಿ</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d"> %1$d ಶಬ್ದ ನಮೂದಿಸಲಾಗಿದೆ</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">ಶಬ್ದ %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">ಮುಂದೆ</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">ಅಮಾನ್ಯ ಶಬ್ದ</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ ತೆರವುಗೊಳಿಸಲಾಗಿದೆ.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">ತೋರಿಸು</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s ಅವರು ನಿಮಗೆ %2$s ಕಳುಹಿಸಿದ್ದಾರೆ</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d ಹೊಸ ಪೇಮೆಂಟ್ ನೊಟಿಫಿಕೇಶನ್‌ಗಳು</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">ಪೇಮೆಂಟ್ ಕಳುಹಿಸಲಾಗದು</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">ಈ ಬಳಕೆದಾರರಿಗೆ ಪೇಮೆಂಟ್ ಕಳುಹಿಸಲು, ನಿಮ್ಮಿಂದ ಮೆಸೇಜ್ ವಿನಂತಿಯನ್ನು ಅವರು ಸಮ್ಮತಿಸಬೇಕು. ಮೆಸೇಜ್ ವಿನಂತಿಯನ್ನು ರಚಿಸಲು ಅವರಿಗೆ ಮೆಸೇಜ್ ಕಳುಹಿಸಿ.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">ಒಂದು ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಿ</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">ಈ ವ್ಯಕ್ತಿಯ ಜೊತೆಗೆ ನೀವು ಯಾವುದೇ ಗ್ರೂಪ್‌ನಲ್ಲಿಲ್ಲ. ಅನಗತ್ಯ ಮೆಸೇಜ್‌ಗಳನ್ನು ದೂರವಿಡಲು ಸಮ್ಮತಿಸುವುದಕ್ಕೂ ಮೊದಲು ಗಮನವಿಟ್ಟು ವಿನಂತಿಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">ನಿಮ್ಮ ಯಾವುದೇ ಕಾಂಟ್ಯಾಕ್ಟ್‌ಗಳು ಅಥವಾ ನೀವು ಚಾಟ್‌ ಮಾಡುವ ಯಾವುದೇ ವ್ಯಕ್ತಿಗಳು ಈ ಗ್ರೂಪ್‌ನಲ್ಲಿಲ್ಲ. ಅನಗತ್ಯ ಮೆಸೇಜ್‌ಗಳನ್ನು ದೂರವಿಡಲು ಸಮ್ಮತಿಸುವುದಕ್ಕೂ ಮೊದಲು ಗಮನವಿಟ್ಟು ವಿನಂತಿಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">ಮೆಸೇಜ್ ವಿನಂತಿಗಳ ಬಗ್ಗೆ</string>
   <string name="GroupsInCommonMessageRequest__okay">ಸರಿ</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">ಚಾಟ್ ಬಣ್ಣದ ಪೂರ್ವವೀಕ್ಷಣೆ ಇಲ್ಲಿದೆ.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">ಬಣ್ಣ ನಿಮಗೆ ಮಾತ್ರ ಕಾಣಿಸುತ್ತದೆ.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">ಗ್ರೂಪ್ ವಿವರಣೆ</string>
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">ಪ್ರಮಾಣಿತ</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">ತ್ವರಿತ, ಕಡಿಮೆ ಡೇಟಾ</string>
   <string name="QualitySelectorBottomSheetDialog__high">ಹೆಚ್ಚು</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">ನಿಧಾನ, ಹೆಚ್ಚು ಡೇಟಾ</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">ಫೋಟೋ ಗುಣಮಟ್ಟ</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">ನಿಮ್ಮ ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
   <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">ಖಾತೆ</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">ಕಾಲಾನಂತರದಲ್ಲಿ ಕಡಿಮೆ ಆವರ್ತನದಲ್ಲಿ ನಿಮ್ಮನ್ನು ಕೇಳಲಾಗುತ್ತದೆ</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Signal ಜೊತೆಗೆ ಪುನಃ ನಿಮ್ಮ ಫೋನ್ ನಂಬರ್ ನೋಂದಣಿ ಮಾಡಲು ನಿಮ್ಮ Signal ಪಿನ್ ಅಗತ್ಯವಿದೆ</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">ಕೀಬೋರ್ಡ್‌</string>
   <string name="ChatsSettingsFragment__enter_key_sends">ಎಂಟರ್ ಕೀ ಕಳುಹಿಸುತ್ತದೆ </string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">ಡೀಫಾಲ್ಟ್ ಎಸ್‌ಎಂಎಸ್ ಆ್ಯಪ್ ಆಗಿ ಬಳಸಿ </string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">ಸಂದೇಶಗಳು</string>
   <string name="NotificationsSettingsFragment__calls">ಕರೆಗಳು</string>
+  <string name="NotificationsSettingsFragment__notify_when">ಈ ಸಮಯದಲ್ಲಿ ನನಗೆ ತಿಳಿಸಿ…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">ಸಂಪರ್ಕಗಳು Signal ಗೆ ಸೇರುವುದು</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d ಸಂಪರ್ಕಗಳು</string>
   <string name="PrivacySettingsFragment__messaging">ಸಂದೇಶ ಕಳುಹಿಸುವಿಕೆ</string>
   <string name="PrivacySettingsFragment__disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
+  <string name="PrivacySettingsFragment__app_security">ಆಪ್ ಸುರಕ್ಷತೆ</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ಇತ್ತೀಚಿನ ಪಟ್ಟಿಯಲ್ಲಿ ಮತ್ತು ಆ್ಯಪ್ ಒಳಗೆ ಸ್ಕ್ರೀನ್ ಶಾಟ್ ನಿರ್ಬಂಧಿಸಿ</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ಮೆಸೇಜ್‌ಗಳು ಮತ್ತು ಕಾಲ್‌ಗಳು, ಎಂದಿಗೂ ಕಾಲ್‌ಗಳನ್ನು ರಿಲೇ ಮಾಡಿ ಮತ್ತು ಸೀಲ್ ಮಾಡಿದ ಕಳುಹಿಸುವವರು</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">ಹೊಸ ಚಾಟ್‌ಗಳಿಗೆ ಡೀಫಾಲ್ಟ್ ಟೈಮರ್</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ನೀವು ಆರಂಭಿಸಿದ ಎಲ್ಲ ಹೊಸ ಚಾಟ್‌ಗಳಿಗೆ ಡೀಫಾಲ್ಟ್ ಕಣ್ಮರೆಯಾಗುವ ಮೆಸೇಜ್ ಟೈಮರ್ ಅನ್ನು ನಿಗದಿಸಿ.</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">ಸ್ಟೇಟಸ್ ಐಕಾನ್ ತೋರಿಸಿ</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">ಸೀಲ್ ಮಾಡಿದ ಸೆಂಡರ್ ಬಳಸಿಕೊಂಡು ಡೆಲಿವರಿಯಾದಾಗ ಮೆಸೇಜ್‌ ವಿವರಗಳಲ್ಲಿ ಐಕಾನ್ ಅನ್ನು ತೋರಿಸಿ.</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ, ನೀವು ಆರಂಭಿಸಿದ ಕಳುಹಿಸಿದ ಹೊಸ ಮೆಸೇಜ್‌ಗಳು ಮತ್ತು ಸ್ವೀಕರಿಸಿದ ಹೊಸ ಚಾಟ್‌ಗಳು ನೋಡಿದ ನಂತರ ಅವು ಕಣ್ಮರೆಯಾಗುತ್ತವೆ.</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ, ಈ ಚಾಟ್‌ನಲ್ಲಿ ಕಳುಹಿಸಿದ ಮತ್ತು ಸ್ವೀಕರಿಸಿದ ಹೊಸ ಸಂದೇಶಗಳು ಅವರು ನೋಡಿದ ನಂತರ ಕಣ್ಮರೆಯಾಗುತ್ತವೆ.</string>
   <string name="ExpireTimerSettingsFragment__off">ಆಫ಼್</string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 ವಾರಗಳು</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 ವಾರ</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 ದಿನ</string>
+  <string name="ExpireTimerSettingsFragment__8_hours">8 ಗಂಟೆಗಳು</string>
   <string name="ExpireTimerSettingsFragment__1_hour">1 ಗಂಟೆ</string>
+  <string name="ExpireTimerSettingsFragment__5_minutes">5 ನಿಮಿಷಗಳು</string>
+  <string name="ExpireTimerSettingsFragment__30_seconds">30 ಸೆಕೆಂಡುಗಳು</string>
+  <string name="ExpireTimerSettingsFragment__custom_time">ಕಸ್ಟಮ್ ಸಮಯ</string>
+  <string name="ExpireTimerSettingsFragment__set">ನಿಗದಿಸಿ</string>
   <string name="ExpireTimerSettingsFragment__save">ಉಳಿಸಿ</string>
+  <string name="CustomExpireTimerSelectorView__seconds">ಸೆಕೆಂಡುಗಳು</string>
+  <string name="CustomExpireTimerSelectorView__minutes">ನಿಮಿಷಗಳು</string>
+  <string name="CustomExpireTimerSelectorView__hours">ಗಂಟೆಗಳು</string>
+  <string name="CustomExpireTimerSelectorView__days">ದಿನಗಳು</string>
+  <string name="CustomExpireTimerSelectorView__weeks">ವಾರಗಳು</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">ಬೆಂಬಲ ಕೇಂದ್ರ</string>
   <string name="HelpSettingsFragment__contact_us">ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
   <string name="HelpSettingsFragment__version">ಆವೃತ್ತಿ</string>
   <string name="HelpSettingsFragment__debug_log">ಡೀಬಗ್ ಲಾಗ್</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">ನಿಯಮಗಳು &amp; ಖಾಸಗಿತನ ನೀತಿ</string>
+  <string name="HelpFragment__copyright_signal_messenger">ಹಕ್ಕುಸ್ವಾಮ್ಯ Signal ಮೆಸೆಂಜರ್</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 ಅಡಿಯಲ್ಲಿ ಲೈಸೆನ್ಸ್‌ ಪಡೆದಿದೆ</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">ಕರೆಗಳು</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">ಅಟೋ</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">ಕಸ್ಟಮ್ ಬಣ್ಣಗಳನ್ನು ಬಳಸಿ</string>
   <string name="ChatColorSelectionFragment__chat_color">ಚಾಟ್ ಬಣ್ಣ</string>
   <string name="ChatColorSelectionFragment__edit">ತಿದ್ದಿ</string>
+  <string name="ChatColorSelectionFragment__duplicate">ನಕಲಿ</string>
   <string name="ChatColorSelectionFragment__delete">ಅಳಿಸು</string>
+  <string name="ChatColorSelectionFragment__delete_color">ಬಣ್ಣ ಅಳಿಸಿ</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">ಈ ಕಸ್ಟಮ್ ಬಣ್ಣವನ್ನು %1$d ಚಾಟ್‌ನಲ್ಲಿ ಬಳಸಲಾಗಿದೆ. ಎಲ್ಲ ಚಾಟ್‌ಗಳಿಗೆ ಇದನ್ನು ಬಳಸಲು ಬಯಸಿದ್ದೀರಾ?</item>
+    <item quantity="other">ಈ ಕಸ್ಟಮ್ ಬಣ್ಣವನ್ನು %1$d ಚಾಟ್‌ಗಳಲ್ಲಿ ಬಳಸಲಾಗಿದೆ. ಎಲ್ಲ ಚಾಟ್‌ಗಳಿಗೆ ಇದನ್ನು ಬಳಸಲು ಬಯಸುತ್ತೀರಾ?</item>
+  </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">ಚಾಟ್ ಬಣ್ಣ ಅಳಿಸುವುದೇ?</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">ಸಾಲಿಡ್</string>
+  <string name="CustomChatColorCreatorFragment__gradient">ಗ್ರೇಡಿಯೆಂಟ್</string>
+  <string name="CustomChatColorCreatorFragment__hue">ಹ್ಯೂ</string>
+  <string name="CustomChatColorCreatorFragment__saturation">ಸ್ಯಾಚುರೇಶನ್</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">ಉಳಿಸಿ</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">ಬಣ್ಣ ಎಡಿಟ್ ಮಾಡಿ</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">ಈ ಬಣ್ಣವನ್ನು %1$d ಚಾಟ್‌ನಲ್ಲಿ ಬಳಸಲಾಗಿದೆ. ಎಲ್ಲ ಚಾಟ್‌ಗಳಿಗೆ ನೀವು ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಬಯಸುತ್ತೀರಾ?</item>
+    <item quantity="other">ಈ ಬಣ್ಣವನ್ನು %1$d ಚಾಟ್‌ಗಳಲ್ಲಿ ಬಳಸಲಾಗಿದೆ. ಎಲ್ಲ ಚಾಟ್‌ಗಳಿಗೆ ನೀವು ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ಬಯಸುತ್ತೀರಾ?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">ಟಾಪ್ ಎಡ್ಜ್ ಸೆಲೆಕ್ಟರ್</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">ಬಾಟಮ್ ಎಡ್ಜ್‌ ಸೆಲೆಕ್ಟರ್</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">ಪ್ರತಿಸ್ಪಂದನೆಗಳನ್ನು ಕಸ್ಟಮೈಸ್ ಮಾಡಿ</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">ಎಮೋಜಿ ಬದಲಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <string name="EditReactionsFragment__reset">ಮರುಹೊಂದಿಸಿ</string>
   <string name="EditReactionsFragment_save">ಉಳಿಸಿ</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">ವಾಲ್‌ಪೇಪರ್‌ಗೆ ಬಣ್ಣ ಸ್ವಯಂ ಹೊಂದಿಕೆಯಾಗುತ್ತದೆ</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">ಗ್ರೇಡಿಯಂಟ್‌ ದಿಕ್ಕು ಬದಲಿಸಲು ಎಳೆಯಿರಿ</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">ಹೊಸ ಚಾಟ್ ಬಣ್ಣಗಳು</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">ನಿಮಗೆ ಹೆಚ್ಚು ಆಯ್ಕೆಗಳನ್ನು ನೀಡಲು ನಾವು ಚಾಟ್ ಬಣ್ಣಗಳನ್ನು ಮೇಲಕ್ಕೆ ಬದಲಿಸಿದ್ದೇವೆ ಮತ್ತು ಚಾಟ್‌ಗಳನ್ನು ಓದಲು ಸುಲಭವಾಗಿಸಿದ್ದೇವೆ.</string>
   <string name="ChatColorsMegaphone__appearance">ಲಕ್ಷಣ</string>
   <string name="ChatColorsMegaphone__not_now">ಈಗಲ್ಲ</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">ಈಗಲ್ಲ</string>
   <!--KeyboardPagerFragment-->
+  <string name="KeyboardPagerFragment_emoji">ಎಮೋಜಿ</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">ಎಮೋಜಿ ಹುಡುಕಾಟ ತೆರೆಯಿರಿ</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">ಸ್ಟಿಕ್ಕರ್ ಹುಡುಕಾಟ ತೆರೆಯಿರಿ</string>
+  <string name="KeyboardPagerFragment_open_gif_search">ಜಿಫ್ ಹುಡುಕಾಟ ತೆರೆಯಿರಿ</string>
   <string name="KeyboardPagerFragment_stickers">ಸ್ಟಿಕ್ಕರುಗಳು</string>
   <string name="KeyboardPagerFragment_backspace">ಬ್ಯಾಕ್‌ಸ್ಪೇಸ್</string>
+  <string name="KeyboardPagerFragment_gifs">ಜಿಫ್‌ಗಳು</string>
+  <string name="KeyboardPagerFragment_search_emoji">ಎಮೋಜಿ ಹುಡುಕಿ</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">ಎಮೋಜಿಗೆ ವಾಪಸ್</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">ಹುಡುಕಾಟ ನಮೂದು ತೆರವುಗೊಳಿಸಿ</string>
+  <string name="KeyboardPagerFragment_search_giphy">ಜಿಫಿ ಹುಡುಕಾಟ</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">ಸ್ಟಿಕ್ಕರ್‌ಗಳ ಹುಡುಕಾಟ</string>
   <string name="StickerSearchDialogFragment_no_results_found">ಯಾವುದೇ ಫಲಿತಾಂಶ ಕಂಡುಬಂದಿಲ್ಲ</string>
   <string name="EmojiSearchFragment__no_results_found">ಯಾವುದೇ ಫಲಿತಾಂಶ ಕಂಡುಬಂದಿಲ್ಲ</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">ಅನಾಮಿಕ ರಿಂಗ್‌ಟೋನ್</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">ಮೆಸೇಜ್ ಕಳುಹಿಸಿ</string>
+  <string name="ConversationSettingsFragment__start_video_call">ವೀಡಿಯೋ ಕಾಲ್ ಆರಂಭಿಸಿ</string>
+  <string name="ConversationSettingsFragment__start_audio_call">ಆಡಿಯೋ ಕಾಲ್‌ ಆರಂಭಿಸಿ</string>
   <string name="ConversationSettingsFragment__message">ಸಂದೇಶ</string>
   <string name="ConversationSettingsFragment__video">ವೀಡಿಯೊ</string>
   <string name="ConversationSettingsFragment__audio">ಆಡಿಯೋ</string>
@@ -2872,6 +3006,8 @@
   <string name="ConversationSettingsFragment__muted">ಮ್ಯೂಟ್ ಮಾಡಲಾಗಿದೆ</string>
   <string name="ConversationSettingsFragment__search">ಹುಡುಕಿ</string>
   <string name="ConversationSettingsFragment__disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">ಧ್ವನಿಗಳು ಮತ್ತು ನೊಟಿಫಿಕೇಶನ್‌ಗಳು</string>
+  <string name="ConversationSettingsFragment__contact_details">ಸಂಪರ್ಕ ವಿವರಗಳು</string>
   <string name="ConversationSettingsFragment__view_safety_number">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ನೋಡಿ</string>
   <string name="ConversationSettingsFragment__block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="ConversationSettingsFragment__block_group">ಗುಂಪನ್ನು ನಿರ್ಬಂಧಿಸಿ</string>
@@ -2880,8 +3016,14 @@
   <string name="ConversationSettingsFragment__add_to_a_group">ಗುಂಪಿಗೆ ಸೇರಿಸಿ</string>
   <string name="ConversationSettingsFragment__see_all">ಎಲ್ಲವನ್ನು ನೋಡಿ</string>
   <string name="ConversationSettingsFragment__add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
+  <string name="ConversationSettingsFragment__permissions">ಅನುಮತಿಗಳು</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">ವಿನಂತಿಗಳು ಮತ್ತು ಆಹ್ವಾನಗಳು</string>
   <string name="ConversationSettingsFragment__group_link">ಗುಂಪಿನ ಲಿಂಕ್</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">ಸಂಪರ್ಕವಾಗಿ ಸೇರಿಸಿ</string>
   <string name="ConversationSettingsFragment__unmute">ಅನ್‌ಮ್ಯೂಟ್ ಮಾಡಿ</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s ವರೆಗೆ ಸಂಭಾಷಣೆಯನ್ನು ಮ್ಯೂಟ್ ಮಾಡಲಾಗಿದೆ</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">ಸಂಭಾಷಣೆಯನ್ನು ಎಂದಿಗೂ ಮ್ಯೂಟ್ ಮಾಡಲಾಗಿದೆ</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ಫೋನ್ ನಂಬರ್ ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ</string>
   <string name="ConversationSettingsFragment__phone_number">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
@@ -2893,14 +3035,23 @@
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿ</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">ಮ್ಯೂಟ್ ಮಾಡಲಾಗಿಲ್ಲ</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">%1$s ವರೆಗೆ ಮ್ಯೂಟ್ ಮಾಡಲಾಗಿದೆ</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">ಉಲ್ಲೇಖಗಳು</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">ಎಂದಿಗೂ ಸೂಚನೆ ನೀಡಿ</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">ಸೂಚನೆ ನೀಡಬೇಡಿ</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ಕಸ್ಟಮ್ ಅಧಿಸೂಚನೆಗಳು</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">ಇತ್ತೀಚೆಗೆ ಬಳಸಲಾಗಿದೆ</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">ಹೊಸ ಪೇಮೆಂಟ್</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">ಹೊಸ ಸಂದೇಶ</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">ಹೆಸರು ಅಥವಾ ಸಂಖ್ಯೆ ಹುಡುಕಾಟ ನಡೆಸಿ</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--AvatarPickerFragment-->
@@ -2915,5 +3066,6 @@
   <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">ಎಸ್‌ಎಂಎಸ್‌</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--EOF-->
 </resources>

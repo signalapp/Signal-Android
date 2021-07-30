@@ -208,6 +208,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Stærð viðhengis er meiri en leyfilegt er fyrir þá gerð skilaboða sem þú ert að senda.</string>
   <string name="ConversationActivity_unable_to_record_audio">Get ekki tekið upp hljóð!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Þú getur ekki sent skilaboð á þennan hóp því þú ert ekki lengur meðlimur.</string>
+  <string name="ConversationActivity_admins">stjórnendur</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Ekkert forrit sem getur meðhöndlað þennan tengil er tiltækt á tækinu þínu.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Beiðni þín um þátttöku hefur verið send til stjórnenda hópsins. Þú munt fá að vita þegar þeir hafa brugðist við.</string>
   <string name="ConversationActivity_cancel_request">Hætta við beiðni</string>
@@ -980,6 +981,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Þú breyttir þeim sem geta sýslað með meðlimi hóps yfir í \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s breytti þeim sem geta sýslað með meðlimi hóps yfir í \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Þeim sem geta sýslað með meðlimi hóps var breytt yfir í \"%1$s\".</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Þú kveiktir á hóptenglinum með samþykki stjórnanda óvirku.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Þú kveiktir á hóptenglinum með samþykki stjórnanda virku.</string>

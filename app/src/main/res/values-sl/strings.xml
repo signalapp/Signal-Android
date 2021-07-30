@@ -207,6 +207,8 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost priponke presega omejitev velikosti za ta tip sporočil.</string>
   <string name="ConversationActivity_unable_to_record_audio">Snemanje zvoka ni mogoče!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Niste več član/ica te skupine, zato ji tudi ne morete več pošiljati sporočil.</string>
+  <string name="ConversationActivity_admins">skrbniki/ce</string>
+  <string name="ConversationActivity_message_an_admin">Sporočilo skrbniku/ci skupine</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Na svoji napravi nimate nameščene aplikacije, ki bi odpirala to povezavo.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Vaša prošnja za pridružitev je bila posredovana skrbniku/ci skupine. Ob njegovem/njenem odzivu boste obveščeni.</string>
   <string name="ConversationActivity_cancel_request">Preklic prošnje</string>
@@ -1081,6 +1083,9 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Spremenili ste, kdo lahko ureja članstvo v skupini: \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">Oseba %1$s je spremenila, kdo lahko ureja članstvo v skupini: \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Sprememba: članstvo v skupini lahko odslej ureja uporabnik/ca \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Nastavitve skupine ste spremenili tako, da lahko vsi/e uporabniki/ce pošiljajo sporočila.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Nastavitve skupine ste spremenili tako, da lahko le skrbniki/ce pošiljajo sporočila.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Vklopili ste povezavo do skupine brez zahtevanega skrbniškega privoljenja.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Vklopili ste povezavo do skupine z obveznim skrbniškim potrjevanjem novih članov/ic.</string>

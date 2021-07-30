@@ -966,6 +966,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Tbeddleḍ d anwa i izemren ad yeẓreg attekki ɣer ugraw ɣer \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ibeddel d anwa i izemren ad yeẓreg attekki ɣer ugraw ɣer \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Win i izemren ad yeẓreg attekki ɣer ugraw yettubeddel ɣer \"%1$s\".</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Tremdeḍ aseɣwen n ugraw s usensi n uqbal n unedbal.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Tremdeḍ aseɣwen n ugraw s urmad n uqbal n unedbal.</string>

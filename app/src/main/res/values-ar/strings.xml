@@ -212,6 +212,9 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">حجم المرفق تجاوز الحد المسموح بهذا النوع من الرسائل.</string>
   <string name="ConversationActivity_unable_to_record_audio">تعذر تسجيل الصوت!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">لا تستطيع إرسال الرسائل لهذه المجموعة لأنك لم تعد عضواً.</string>
+  <string name="ConversationActivity_admins">المُشرِفون</string>
+  <string name="ConversationActivity_message_an_admin">مراسلة مشرف على المجموعة</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">يمكنك للمشرفين على المجموعة فقط بدء المكالمات.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">لا يوجد تطبيق لمعالجة هذا الرابط على جهازك.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">تم إرسال طلبك للانضمام إلى المشرفين على المجموعة. سيتم تنبيهك عند اتخاذهم الإجراء المناسب لهم.</string>
   <string name="ConversationActivity_cancel_request">إلغاء الطلب</string>
@@ -1187,6 +1190,11 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">أنت غيرت الأشخاص الذين يستطيعون تعديل عضوية المجموعة إلى \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">غير %1$s أشخاص الذين يستطيعون تعديل عضوية المجموعة إلى \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">تم تغيير من يمكنهم تعديل عضوية المجموعة ليصبح : \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">لقد قمت بتغيير إعدادات المجموعة للسماح للمشرفين فقط بإرسال الرسائل.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">لقد قمت بتغيير إعدادات المجموعة للسماح للمشرفين فقط بإرسال الرسائل.</string>
+  <string name="MessageRecord_allow_all_members_to_send">لقد تغيرت إعدادات المجموعة للسماح لجميع الأعضاء بإرسال الرسائل.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">لقد تغيرت إعدادات المجموعة للسماح فقط للمشرفين بإرسال الرسائل.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">لقد قمت بتفعيل وصلة المجموعة مع إيقاف موافقة المشرف.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">لقد قمت بتشغيل وصلة المجموعة مع تفعيل موافقة المشرف.</string>

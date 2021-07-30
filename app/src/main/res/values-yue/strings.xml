@@ -207,6 +207,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">附件太大，擠唔落您而家寫緊嘅呢類訊息度。</string>
   <string name="ConversationActivity_unable_to_record_audio">錄唔到音噃！</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">您無得寫訊息去呢個谷，因為您已經唔係成員嘞。</string>
+  <string name="ConversationActivity_only_s_can_send_messages">淨係得 %1$s 先可以傳送訊息。</string>
+  <string name="ConversationActivity_admins">話事人</string>
+  <string name="ConversationActivity_message_an_admin">講低句搵話事人聽</string>
+  <string name="ConversationActivity_cant_start_group_call">冇得開始成谷通話</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">淨係得呢個谷嘅話事人先可以開始通話。</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">您部機無個 app 處理到呢個連結。</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">已經話咗畀個谷嘅話事人知，您要求加入呢個谷。一有消息會通知您㗎喇。</string>
   <string name="ConversationActivity_cancel_request">取消請求</string>
@@ -403,8 +408,9 @@
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">睇下</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">分享去</string>
+  <string name="ShareActivity_share_with">分享畀</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">多個附件僅限於啲相同埋片</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">您未准傳送去呢個谷度</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal 通訊有非暫時嘅失敗！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 註冊唔到 Google Play 服務。Signal 訊息同通話已經停用，請到 [設定] &gt; [進階] 試下重新註冊。</string>
@@ -532,6 +538,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">搞掂</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">舊版嘅谷加唔到呢個人。</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">佈告谷加唔到呢個人。</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="other">係咪要加 %3$d 個成員入去「%2$s」度？</item>
   </plurals>
@@ -596,6 +603,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">只有話事人先可以重設可分享嘅谷拎。</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">您冇得咁樣做</string>
   <string name="ManageGroupActivity_not_capable">您加嘅某個人唔支援新版谷，佢需要更新 Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">您加嘅某個人唔支援佈告谷，佢需要更新 Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">更新唔到個谷</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">您唔係呢個谷嘅成員。</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">更新唔到個谷，麻煩陣間再試下啦</string>
@@ -619,6 +627,7 @@
   <string name="ManageProfileFragment_profile_name">個人資料名稱</string>
   <string name="ManageProfileFragment_username">使用者名稱</string>
   <string name="ManageProfileFragment_about">關於</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">係咁咦寫番句自介吖</string>
   <string name="ManageProfileFragment_your_name">您嘅名稱</string>
   <string name="ManageProfileFragment_your_username">您嘅使用者名稱</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">頭像設定唔到</string>
@@ -924,6 +933,7 @@
   <string name="MessageRecord_the_group_group_avatar_has_been_changed">個谷嘅頭像而家已改咗。</string>
   <!--GV2 attribute access level change-->
   <!--GV2 membership access level change-->
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">您開啟咗條谷拎，但唔使送交話事人審批。</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">您開啟咗條谷拎，但會送交話事人審批。</string>
@@ -1271,7 +1281,7 @@
   <string name="SubmitDebugLogActivity_success">成功！</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">請複製呢個 URL，然後擺埋落去您個問題報告或者支援電郵度吖：\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">分享</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">下面呢個記錄檔將會公開擺上網，畀有心貢獻嘅人睇到。您可以自己睇一次先，先至揀係咪上載上去。</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">下低呢個記錄檔將會公開擺上網，畀有心貢獻嘅人睇到。您可以自己睇一次先，上載嘅話先至撳掣。</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">篩選：</string>
   <string name="SupportEmailUtil_device_info">部機嘅資訊：</string>
@@ -1694,7 +1704,7 @@
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">有事請您注意。</string>
   <string name="message_details_header__sent">送出</string>
-  <string name="message_details_header__received">已收到</string>
+  <string name="message_details_header__received">收到</string>
   <string name="message_details_header__disappears">過目化作雲煙</string>
   <string name="message_details_header__via">透過</string>
   <!--message_details_recipient_header-->
@@ -2159,6 +2169,7 @@
   <string name="reminder_header_sms_import_title">匯入系統短訊</string>
   <string name="reminder_header_sms_import_text">撳一下將您電話入面嘅短訊訊息抄入去 Signal 嘅加密資料庫入面。</string>
   <string name="reminder_header_push_title">啟用 Signal 訊息同通話</string>
+  <string name="reminder_header_push_text">為您嘅通訊體驗翻開新篇章。</string>
   <string name="reminder_header_service_outage_text">Signal 發生技術問題。我哋現正搶修，務求儘快回復服務。</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
@@ -2231,8 +2242,11 @@
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">建立一個 PIN 碼</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">有 PIN 碼，儲存喺 Signal 嘅資訊就安心加密。</string>
   <string name="KbsMegaphone__create_pin">建立 PIN 碼</string>
   <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">您點諗，同 Signal 有得 say</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">抱歉我要話你知，Signal 想做宇宙最強嘅通訊軟件。所以想想你都講我聽，聽聽您嘅意見反映。</string>
   <string name="ResearchMegaphone_learn_more">講多啲畀我聽</string>
   <string name="ResearchMegaphone_dismiss">收到</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal 問卷調查</string>
@@ -2633,8 +2647,8 @@
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">擺放狀態標誌</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">喺訊息詳情度顯示標誌，以表示呢個訊息係用封密發送人送遞嘅。</string>
   <!--ExpireTimerSettingsFragment-->
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">啟用嘅時候，喺您發起嘅新對話當中收發嘅新訊息，都會喺過目之後化為雲煙。</string>
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">啟用嘅時候，喺呢個對話入面收發嘅新訊息，都會喺過目之後化為雲煙。</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">啟用嘅時候，喺您發起嘅新對話當中收發嘅新訊息，過目之後就會開始倒數，夠鐘就會化為雲煙。</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">啟用嘅時候，喺呢個對話入面收發嘅新訊息，過目之後就會開始倒數，夠鐘就會化為雲煙。</string>
   <string name="ExpireTimerSettingsFragment__off">唔用</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 星期</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 星期</string>
@@ -2682,6 +2696,8 @@
   <string name="EditReactionsFragment__reset">重設</string>
   <string name="EditReactionsFragment_save">儲存</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">傾偈有新顏色</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">我哋畀啲顏色過佢：傾偈顏色有得揀新色水，而且望落去對眼都舒服啲。</string>
   <string name="ChatColorsMegaphone__appearance">外觀</string>
   <string name="ChatColorsMegaphone__not_now">遲啲先啦</string>
   <!--AddAProfilePhotoMegaphone-->

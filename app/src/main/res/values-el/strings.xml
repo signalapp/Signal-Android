@@ -205,6 +205,9 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Το συνημμένο υπερβαίνει τα όρια μεγέθους για τον τύπο μηνύματος που στέλνεις.</string>
   <string name="ConversationActivity_unable_to_record_audio">Η ηχογράφηση απέτυχε!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Δεν μπορείς να στείλεις μηνύματα σε αυτή την ομάδα γιατί δεν είσαι πια μέλος.</string>
+  <string name="ConversationActivity_admins">διαχειριστές</string>
+  <string name="ConversationActivity_message_an_admin">Μήνυμα σε διαχειριστή</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Μόνο οι διαχειριστές της ομάδας μπορούν να ξεκινήσουν μια κλήση.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Δεν έχεις κάποια εφαρμογή στην συσκευή σου που να μπορεί να διαχειριστεί αυτό τον σύνδεσμο.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Το αίτημά σου για να μπεις στην ομάδα στάλθηκε στον διαχειριστή/τρια της ομάδας. Θα ενημερωθείς όταν λάβει απόφαση.</string>
   <string name="ConversationActivity_cancel_request">Ακύρωση αιτήματος</string>
@@ -976,6 +979,11 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Άλλαξες το ποιός μπορεί να επεξεργάζεται τα μέλη της ομάδας σε \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">Ο/Η %1$s άλλαξε το ποιός μπορεί να επεξεργάζεται τα μέλη της ομάδας σε \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Άλλαξε το ποιός μπορεί να επεξεργάζεται τα μέλη της ομάδας σε \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Άλλαξες τις ρυθμίσεις της ομάδας για να επιτρέπεται σε όλα τα μέλη να στέλνουν μηνύματα.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Άλλαξες τις ρυθμίσεις της ομάδας για να επιτρέπεται μόνο σε διαχειριστές να στέλνουν μηνύματα.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Οι ρυθμίσεις της ομάδας άλλαξαν για να επιτρέπεται σε όλα τα μέλη να στέλνουν μηνύματα.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Οι ρυθμίσεις της ομάδας άλλαξαν για να επιτρέπεται μόνο σε διαχειριστές να στέλνουν μηνύματα.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Ενεργοποίησες το σύνδεσμο της ομάδας με απενεργοποιημένη την έγκριση διαχειριστή.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Ενεργοποίησες το σύνδεσμο της ομάδας με ενεργοποιημένη την έγκριση διαχειριστή.</string>

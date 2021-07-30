@@ -208,6 +208,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bashkëngjitja tejkalon kufij madhësie për llojin e mesazhit që po dërgoni.</string>
   <string name="ConversationActivity_unable_to_record_audio">S\’arrihet të incizohet audio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">S’mund të dërgoni mesazhe te ky grup, ngaqë s’jeni më anëtar.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Vetëm %1$s mund të dërgojë mesazhe.</string>
+  <string name="ConversationActivity_admins">përgjegjësit</string>
+  <string name="ConversationActivity_message_an_admin">Dërgojini mesazh një përgjegjësi</string>
+  <string name="ConversationActivity_cant_start_group_call">S’mund të niset thirrje grupi</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Vetëm përgjegjësit e këtij grupi mund të fillojnë një thirrje.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">S\’ka aplikacion të gatshëm në celularin tuaj për trajtim të kësaj në pajisjen tuaj.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Kërkesa juaj për t’u bërë pjesë e grupit i është dërguar përgjegjësit të grupit. Kur të veprohet prej tij, do të njoftoheni.</string>
   <string name="ConversationActivity_cancel_request">Anuloje Kërkesën</string>
@@ -417,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Ndaje me</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Disa bashkëngjitje njëherësh mbulohen vetëm për figura dhe video</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">S’keni leje të dërgoni në këtë grup</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dështim i përhershëm komunikimi nga Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal-i s\’arriti të bëjë regjistrimin me Google Play Services. Mesashet dhe thirrjet Signal janë çaktivizuar, ju lutemi, provoni riregjistrimin që nga Rregullime &gt; Të mëtejshme.</string>
@@ -560,6 +566,7 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">U bë</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ky përdorues s’mund të shtohet te grupe të dikurshëm.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Ky person s’mund të shtohet te grupe njoftimesh.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Të shtohet \"%1$s\" te \"%2$s\"?</item>
     <item quantity="other">Të shtohen %3$d anëtarë te \"%2$s\"?</item>
@@ -633,6 +640,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Lidhjen e ndashme të grupit mund ta ricaktojnë vetëm përgjegjësit.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">S’keni të drejta për ta bërë këtë</string>
   <string name="ManageGroupActivity_not_capable">Dikush që shtuat, nuk mbulon grupe të reja dhe lypset të përditësojë Signal-in</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Dikush, të cilin e shtuat ju, nuk mbulon grupe njoftimesh dhe duhet të përditësojë Signal-in</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">S’u arrit të përditësohej grupi</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">S’jeni anëtar i grupit</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">S’u arrit të përditësohet grupi, ju lutemi, riprovoni më vonë</string>
@@ -986,6 +994,13 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Ndryshuat cilët mund të përpunojnë anëtarësi grupi te \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ndryshoi se cilët mund të përpunojnë anëtarësi grupi te \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Te \"%1$s\" është ndryshuas se kush mund të përpunojë anëtarësi te grupi.</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Ndryshuat rregullimet e grupit për të lejuar krejt anëtarët të dërgojnë mesazhe.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Ndryshuat rregullimet e grupit për të lejuar vetëm përgjegjësit të dërgojnë mesazhe.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s ndryshoi rregullimet e grupit për të lejuar krejt anëtarët të dërgojnë mesazhe.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ndryshoi rregullimet e grupit për të lejuar vetëm përgjegjësit të dërgojnë mesazhe.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Rregullimet e grupit u ndryshuan për të lejuar krejt anëtarët të dërgojnë mesazhe.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Rregullimet e grupit u ndryshuan për të lejuar vetëm përgjegjësit të dërgojnë mesazhe.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Aktivizuat lidhjen e grupit me miratim nga përgjegjësi të çaktivizuar.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Aktivizuat lidhjen e grupit me miratim nga përgjegjësi të aktivizuar.</string>
@@ -3040,10 +3055,12 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Shtoni anëtarë</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Përpunoni të dhëna grupi</string>
+  <string name="PermissionsSettingsFragment__send_messages">Dërgo mesazhe</string>
   <string name="PermissionsSettingsFragment__all_members">Krejt anëtarët</string>
   <string name="PermissionsSettingsFragment__only_admins">Vetëm përgjegjësit</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Cilët mund të shtojnë anëtarë të rinj?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Cilët mund të përpunojnë të dhënat mbi këtë grup?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Cilët mund të dërgojnë mesazhe?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Heshtoji njoftimet</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">S’është heshtuar</string>

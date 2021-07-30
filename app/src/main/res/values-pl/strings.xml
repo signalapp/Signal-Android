@@ -210,6 +210,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Rozmiar tego załącznika przekracza limit wiadomości.</string>
   <string name="ConversationActivity_unable_to_record_audio">Nie udało się nagrać dźwięku!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nie możesz wysyłać wiadomości do tej grupy, ponieważ nie jesteś już jej członkiem.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Tylko %1$s mogą wysyłać wiadomości</string>
+  <string name="ConversationActivity_admins">administratorzy</string>
+  <string name="ConversationActivity_message_an_admin">Wyślij do administratora</string>
+  <string name="ConversationActivity_cant_start_group_call">Nie można rozpocząć połączenia grupowego</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Tylko administratorzy mogą rozpoczynać połączenia w tej grupie.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Brak aplikacji do obsługi tego linku na Twoim urządzeniu.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Twoja prośba o przyjęcie do grupy została wysłana do administratora. Zostaniesz powiadomiony(a), gdy podejmie decyzję.</string>
   <string name="ConversationActivity_cancel_request">Anuluj prośbę</string>
@@ -441,6 +446,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Podziel się z</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Wysyłanie kilku załączników na raz jest obsługiwane tylko dla zdjęć i filmów.</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Nie masz uprawnień, aby wysyłać wiadomości do tej grupy</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanentny błąd komunikacji Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nie był w stanie zarejestrować się w Google Play Services. Wiadomości i połączenia Signal zostały wyłączone. Spróbuj zarejestrować się ponownie w Ustawienia &gt; Zaawansowane.</string>
@@ -613,6 +619,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Gotowe</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Nie można dodać tej osoby do Starych grup.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Ta osoba nie może być dodana do grup ogłoszeniowych.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Dodać \"%1$s\" do \"%2$s\"?</item>
     <item quantity="few">Dodać %3$d członków do \"%2$s\"?</item>
@@ -695,6 +702,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Tylko administratorzy mogą zresetować link do grupy.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nie masz uprawnień, aby to zrobić</string>
   <string name="ManageGroupActivity_not_capable">Ktoś, kogo dodałeś, nie obsługuje nowych grup i musi zaktualizować Signal.</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Ktoś, kogo dodałeś(aś), nie obsługuje grup ogłoszeniowych i musi zaktualizować Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Aktualizacja grupy nie powiodła się</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nie jesteś członkiem tej grupy</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Aktualizacja grupy nie powiodła się, spróbuj później</string>
@@ -1084,6 +1092,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Zmieniłeś(aś), kto może edytować członkostwo w grupie na \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s zmienił(a), kto może edytować członkostwo w grupie na \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Zmieniono, kto może edytować członkostwo w grupie na \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Zmieniłeś(aś) ustawienia grupy, aby wszyscy członkowie mogli wysyłać wiadomości.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Zmieniłeś(aś) ustawienia grupy, aby tylko administratorzy mogli wysyłać wiadomości.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s zmienił(a) ustawienia grupy, aby wszyscy członkowie mogli wysyłać wiadomości.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s zmienił(a) ustawienia grupy, aby tylko administratorzy mogli wysyłać wiadomości.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Ustawienia tej grupy zostały zmienione, aby wszyscy członkowie mogli wysyłać wiadomości.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Ustawienia tej grupy zostały zmienione, aby tylko administratorzy mogli wysyłać wiadomości.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Włączyłeś(aś) link do grupy, niewymagający zatwierdzenia przez administratora.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Włączyłeś(aś) link do grupy, wymagający zatwierdzenia przez administratora.</string>
@@ -3198,10 +3213,12 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Dodaj członków</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Edytuj informacje o grupie</string>
+  <string name="PermissionsSettingsFragment__send_messages">Wysyłanie wiadomości</string>
   <string name="PermissionsSettingsFragment__all_members">Wszyscy członkowie</string>
   <string name="PermissionsSettingsFragment__only_admins">Tylko administratorzy</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Kto może dodawać nowych członków?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kto może edytować informacje o tej grupie?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Kto może wysyłać wiadomości?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Wycisz powiadomienia</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Niewyciszony</string>

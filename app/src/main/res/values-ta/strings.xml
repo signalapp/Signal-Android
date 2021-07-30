@@ -208,6 +208,9 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">நீங்கள் அனுப்பும் இணைப்பு செய்தி அளவு வரம்பை மீறுகிறது .</string>
   <string name="ConversationActivity_unable_to_record_audio">ஒலி பதிவுச் செய்ய  இயலவில்லை!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">நீங்கள் இனி உறுப்பினராக இல்லாததால் இந்த குழுவிற்கு செய்திகளை அனுப்ப முடியாது.</string>
+  <string name="ConversationActivity_admins">நிர்வாகிகள்</string>
+  <string name="ConversationActivity_message_an_admin">ஒரு நிர்வாகிக்கு செய்தி அனுப்புங்கள்</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">மட்டும் நிர்வாகிகள் இதனுடைய குழு அழைப்பைத் தொடங்கலாம்.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">உஙகள் சாதனத்தில் இந்த இணைப்பை பெறக்கூடிய  செயலி கிடைப்பில்  இல்லை  .</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">குழுவில் சேர உங்கள் கோரிக்கை குழு நிர்வாகிக்கு அனுப்பப்பட்டுள்ளது. அவர்கள் நடவடிக்கை எடுக்கும்போது உங்களுக்கு அறிவிக்கப்படும்.</string>
   <string name="ConversationActivity_cancel_request">கோரிக்கையை ரத்துசெய்</string>
@@ -982,6 +985,12 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">குழு உறுப்பினர்களை யார் திருத்தலாம் என்பதை நீங்கள் \"%1$s\" அவர்களுக்கு மாற்றியுள்ளீர்கள் </string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s"> குழு உறுப்பினர்களை தங்களுக்கு யார் திருத்தலாம் என்பதை %1$s அவர்கள் \"%2$s\" அவர்களுக்கு மாற்றினர்.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">குழு உறுப்பினர்களை யார் திருத்தலாம் என்பது \"%1$s\" கு மாற்றப்பட்டுள்ளது</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">நீங்கள் மாற்றினீர்கள் குழு அமைப்புகள் க்கு அனுமதிஅனைத்து உறுப்பினர்கள்அனுப்பு செய்திகள்.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">நீங்கள் மாற்றினீர்கள் குழு அமைப்புகள் மட்டும் அனுமதி நிர்வாகிகள் க்கு அனுப்பு செய்திகள்.</string>
+  <string name="MessageRecord_allow_all_members_to_send">தி குழு அமைப்புகள் என மாற்றப்பட்டது அனுமதி அனைத்து உறுப்பினர்கள் அனுப்பு செய்திகள்.
+ </string>
+  <string name="MessageRecord_allow_only_admins_to_send">தி குழு அமைப்புகள் மட்டுமே மாற்றப்பட்டது அனுமதி நிர்வாகிகள் க்கு அனுப்பு செய்திகள்.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">நிர்வாகி ஒப்புதல் இல்லாமல் குழு இணைப்பை இயக்கியுள்ளீர்கள்.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">நிர்வாகி ஒப்புதலுடன் குழு இணைப்பை இயக்கியுள்ளீர்கள்.</string>

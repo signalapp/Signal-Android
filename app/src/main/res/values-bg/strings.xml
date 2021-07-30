@@ -974,6 +974,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Променихте кой може да редактира членство в групата на \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s промени кой може да редактира членството в групата на \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Кой може да редактира членството в групата е променено на \"%1$s\".</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Включихте връзката към групата с изключено одобрение от администратора.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Включихте връзката към групата с включено одобрение от администратора.</string>
