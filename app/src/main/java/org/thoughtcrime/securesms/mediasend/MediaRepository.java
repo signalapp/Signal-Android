@@ -16,15 +16,16 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsession.utilities.Util;
 import org.session.libsignal.utilities.guava.Optional;
+import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -78,12 +79,18 @@ class MediaRepository {
       }
     }
 
+    Comparator<MediaFolder> folderNameSorter = (Comparator<MediaFolder>) (first, second) -> {
+      if (first == null || first.getTitle() == null) return 1;
+      if (second == null || second.getTitle() == null) return -1;
+      return first.getTitle().toLowerCase().compareTo(second.getTitle().toLowerCase());
+    };
+
     List<MediaFolder> mediaFolders = Stream.of(folders.values()).map(folder -> new MediaFolder(folder.getThumbnail(),
-                                                                                                 folder.getTitle(),
-                                                                                                 folder.getCount(),
-                                                                                                 folder.getBucketId()))
-                                                                  .sorted((o1, o2) -> o1.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase()))
-                                                                  .toList();
+            folder.getTitle(),
+            folder.getCount(),
+            folder.getBucketId()))
+            .sorted(folderNameSorter)
+            .toList();
 
     Uri allMediaThumbnail = imageFolders.getThumbnailTimestamp() > videoFolders.getThumbnailTimestamp() ? imageFolders.getThumbnail() : videoFolders.getThumbnail();
     if (allMediaThumbnail != null) {
