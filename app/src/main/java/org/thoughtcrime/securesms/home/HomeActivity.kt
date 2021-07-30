@@ -103,6 +103,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         recyclerView.layoutManager = LinearLayoutManager(this)
         // Set up empty state view
         createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
+        IP2Country.configureIfNeeded(this@HomeActivity)
         // This is a workaround for the fact that CursorRecyclerViewAdapter doesn't actually auto-update (even though it says it will)
         LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -154,7 +155,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
                     OpenGroupManager.startPolling()
                     JobQueue.shared.resumePendingJobs()
                 }
-                IP2Country.configureIfNeeded(this@HomeActivity)
             }
         }
         EventBus.getDefault().register(this@HomeActivity)

@@ -223,7 +223,7 @@ class VisibleMessageContentView : LinearLayout {
                 body.setSpan(replacementSpan, start, end, flags)
             }
             
-            body = MentionUtilities.highlightMentions(body, message.isOutgoing, context)
+            body = MentionUtilities.highlightMentions(body, message.isOutgoing, message.threadId, context)
             body = SearchUtil.getHighlightedSpan(Locale.getDefault(), StyleFactory { BackgroundColorSpan(Color.WHITE) }, body, searchQuery)
             body = SearchUtil.getHighlightedSpan(Locale.getDefault(), StyleFactory { ForegroundColorSpan(Color.BLACK) }, body, searchQuery)
 

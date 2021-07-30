@@ -119,7 +119,7 @@ class QuoteView : LinearLayout {
         }
         quoteViewAuthorTextView.isVisible = thread.isGroupRecipient
         // Body
-        quoteViewBodyTextView.text = if (isOpenGroupInvitation) resources.getString(R.string.open_group_invitation_view__open_group_invitation) else MentionUtilities.highlightMentions((body ?: "").toSpannable(), context);
+        quoteViewBodyTextView.text = if (isOpenGroupInvitation) resources.getString(R.string.open_group_invitation_view__open_group_invitation) else MentionUtilities.highlightMentions((body ?: "").toSpannable(), threadID, context);
         quoteViewBodyTextView.setTextColor(getTextColor(isOutgoingMessage))
         // Accent line / attachment preview
         val hasAttachments = (attachments != null && attachments.asAttachments().isNotEmpty()) && !isOriginalMissing
