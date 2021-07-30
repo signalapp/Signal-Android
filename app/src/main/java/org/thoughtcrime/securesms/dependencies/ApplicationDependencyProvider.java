@@ -105,7 +105,6 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                             new SignalProtocolStoreImpl(context),
                                             ReentrantSessionLock.INSTANCE,
                                             BuildConfig.SIGNAL_AGENT,
-                                            TextSecurePreferences.isMultiDevice(context),
                                             signalWebSocket,
                                             Optional.of(new SecurityEventListener(context)),
                                             provideClientZkOperations().getProfileOperations(),

@@ -181,8 +181,6 @@ public class ApplicationDependencies {
     synchronized (LOCK) {
       if (messageSender == null) {
         messageSender = provider.provideSignalServiceMessageSender(getSignalWebSocket());
-      } else {
-        messageSender.update(TextSecurePreferences.isMultiDevice(application));
       }
       return messageSender;
     }

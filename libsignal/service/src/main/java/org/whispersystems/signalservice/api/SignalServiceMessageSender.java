@@ -145,25 +145,23 @@ public class SignalServiceMessageSender {
 
   private static final int RETRY_COUNT = 4;
 
-  private final PushServiceSocket          socket;
-  private final SignalServiceProtocolStore store;
-  private final SignalSessionLock          sessionLock;
-  private final SignalServiceAddress       localAddress;
-  private final Optional<EventListener>    eventListener;
+  private final PushServiceSocket       socket;
+  private final SignalServiceDataStore  store;
+  private final SignalSessionLock       sessionLock;
+  private final SignalServiceAddress    localAddress;
+  private final Optional<EventListener> eventListener;
 
   private final AttachmentService attachmentService;
   private final MessagingService  messagingService;
-  private final AtomicBoolean     isMultiDevice;
 
   private final ExecutorService executor;
   private final long            maxEnvelopeSize;
 
   public SignalServiceMessageSender(SignalServiceConfiguration urls,
                                     CredentialsProvider credentialsProvider,
-                                    SignalServiceProtocolStore store,
+                                    SignalServiceDataStore store,
                                     SignalSessionLock sessionLock,
                                     String signalAgent,
-                                    boolean isMultiDevice,
                                     SignalWebSocket signalWebSocket,
                                     Optional<EventListener> eventListener,
                                     ClientZkProfileOperations clientZkProfileOperations,
@@ -177,7 +175,6 @@ public class SignalServiceMessageSender {
     this.localAddress      = new SignalServiceAddress(credentialsProvider.getUuid(), credentialsProvider.getE164());
     this.attachmentService = new AttachmentService(signalWebSocket);
     this.messagingService  = new MessagingService(signalWebSocket);
-    this.isMultiDevice     = new AtomicBoolean(isMultiDevice);
     this.eventListener     = eventListener;
     this.executor          = executor != null ? executor : Executors.newSingleThreadExecutor();
     this.maxEnvelopeSize   = maxEnvelopeSize;
@@ -403,7 +400,7 @@ public class SignalServiceMessageSender {
     Optional<byte[]>        groupId = message.getGroupId();
     List<SendMessageResult> results = sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, contentHint, groupId.orNull(), false);
 
-    if (isMultiDevice.get()) {
+    if (store.isMultiDevice()) {
       Content         syncMessage        = createMultiDeviceSentTranscriptContent(content, Optional.absent(), message.getTimestamp(), results, isRecipientUpdate);
       EnvelopeContent syncMessageContent = EnvelopeContent.encrypted(syncMessage, ContentHint.IMPLICIT, Optional.absent());
 
@@ -443,7 +440,7 @@ public class SignalServiceMessageSender {
       }
     }
 
-    if (needsSyncInResults || isMultiDevice.get()) {
+    if (needsSyncInResults || store.isMultiDevice()) {
       Optional<SignalServiceAddress> recipient = Optional.absent();
       if (!message.getGroupContext().isPresent() && recipients.size() == 1) {
         recipient = Optional.of(recipients.get(0));
@@ -510,10 +507,6 @@ public class SignalServiceMessageSender {
 
   public void cancelInFlightRequests() {
     socket.cancelInFlightRequests();
-  }
-
-  public void update(boolean isMultiDevice) {
-    this.isMultiDevice.set(isMultiDevice);
   }
 
   public SignalServiceAttachmentPointer uploadAttachment(SignalServiceAttachmentStream attachment) throws IOException {
@@ -1608,7 +1601,7 @@ public class SignalServiceMessageSender {
         if (!unidentifiedAccess.isPresent()) {
           try {
             SendMessageResponse response = new MessagingService.SendResponseProcessor<>(messagingService.send(messages, Optional.absent()).blockingGet()).getResultOrThrow();
-            return SendMessageResult.success(recipient, messages.getDevices(), false, response.getNeedsSync() || isMultiDevice.get(), System.currentTimeMillis() - startTime, content.getContent());
+            return SendMessageResult.success(recipient, messages.getDevices(), false, response.getNeedsSync() || store.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
           } catch (WebSocketUnavailableException e) {
             Log.i(TAG, "[sendMessage] Pipe unavailable, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
           } catch (IOException e) {
@@ -1618,7 +1611,7 @@ public class SignalServiceMessageSender {
         } else if (unidentifiedAccess.isPresent()) {
           try {
             SendMessageResponse response = new MessagingService.SendResponseProcessor<>(messagingService.send(messages, unidentifiedAccess).blockingGet()).getResultOrThrow();
-            return SendMessageResult.success(recipient, messages.getDevices(), true, response.getNeedsSync() || isMultiDevice.get(), System.currentTimeMillis() - startTime, content.getContent());
+            return SendMessageResult.success(recipient, messages.getDevices(), true, response.getNeedsSync() || store.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
           } catch (WebSocketUnavailableException e) {
             Log.i(TAG, "[sendMessage] Unidentified pipe unavailable, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
           } catch (IOException e) {
@@ -1633,7 +1626,7 @@ public class SignalServiceMessageSender {
 
         SendMessageResponse response = socket.sendMessage(messages, unidentifiedAccess);
 
-        return SendMessageResult.success(recipient, messages.getDevices(), unidentifiedAccess.isPresent(), response.getNeedsSync() || isMultiDevice.get(), System.currentTimeMillis() - startTime, content.getContent());
+        return SendMessageResult.success(recipient, messages.getDevices(), unidentifiedAccess.isPresent(), response.getNeedsSync() || store.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
 
       } catch (InvalidKeyException ike) {
         Log.w(TAG, ike);
@@ -1843,7 +1836,7 @@ public class SignalServiceMessageSender {
     List<SendMessageResult> success = recipients.keySet()
                                                 .stream()
                                                 .filter(r -> !unregistered.contains(r.getUuid().get()))
-                                                .map(a -> SendMessageResult.success(a, recipients.get(a), true, isMultiDevice.get(), -1, Optional.of(content)))
+                                                .map(a -> SendMessageResult.success(a, recipients.get(a), true, store.isMultiDevice(), -1, Optional.of(content)))
                                                 .collect(Collectors.toList());
 
     List<SendMessageResult> results = new ArrayList<>(success.size() + failures.size());
