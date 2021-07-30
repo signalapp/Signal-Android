@@ -130,7 +130,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         }
         this.broadcastReceiver = broadcastReceiver
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, IntentFilter("blockedContactsChanged"))
-        lifecycleScope.launchWhenResumed {
+        lifecycleScope.launchWhenStarted {
             launch(Dispatchers.IO) {
                 // Double check that the long poller is up
                 (applicationContext as ApplicationContext).startPollingIfNeeded()
