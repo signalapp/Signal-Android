@@ -10,10 +10,9 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.util.DisplayMetrics
 import android.view.View
-import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.loader.app.LoaderManager
@@ -21,9 +20,11 @@ import androidx.loader.content.Loader
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.seed_reminder_stub.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import network.loki.messenger.R
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -65,8 +66,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
-        // Double check that the long poller is up
-        (applicationContext as ApplicationContext).startPollingIfNeeded()
         // Set content view
         setContentView(R.layout.activity_home)
         // Set custom toolbar
@@ -75,21 +74,24 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         glide = GlideApp.with(this)
         // Set up toolbar buttons
         profileButton.glide = glide
-        updateProfileButton()
         profileButton.setOnClickListener { openSettings() }
         pathStatusViewContainer.disableClipping()
         pathStatusViewContainer.setOnClickListener { showPath() }
         // Set up seed reminder view
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
         if (!hasViewedSeed) {
-            val seedReminderViewTitle = SpannableString("You're almost finished! 80%") // Intentionally not yet translated
-            seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 24, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-            seedReminderView.title = seedReminderViewTitle
-            seedReminderView.subtitle = resources.getString(R.string.view_seed_reminder_subtitle_1)
-            seedReminderView.setProgress(80, false)
-            seedReminderView.delegate = this
+            seedReminderStub.isVisible = true
+            seedReminderStub.apply {
+                val seedReminderView = this.seedReminderView
+                val seedReminderViewTitle = SpannableString("You're almost finished! 80%") // Intentionally not yet translated
+                seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 24, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                seedReminderView.title = seedReminderViewTitle
+                seedReminderView.subtitle = resources.getString(R.string.view_seed_reminder_subtitle_1)
+                seedReminderView.setProgress(80, false)
+                seedReminderView.delegate = this@HomeActivity
+            }
         } else {
-            seedReminderView.visibility = View.GONE
+            seedReminderStub.isVisible = false
         }
         // Set up recycler view
         val cursor = DatabaseFactory.getThreadDatabase(this).conversationList
@@ -101,6 +103,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         recyclerView.layoutManager = LinearLayoutManager(this)
         // Set up empty state view
         createNewPrivateChatButton.setOnClickListener { createNewPrivateChat() }
+        IP2Country.configureIfNeeded(this@HomeActivity)
         // This is a workaround for the fact that CursorRecyclerViewAdapter doesn't actually auto-update (even though it says it will)
         LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -117,28 +120,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
                 homeAdapter.changeCursor(null)
             }
         })
-        // Set up gradient view
-        val gradientViewLayoutParams = gradientView.layoutParams as RelativeLayout.LayoutParams
-        val displayMetrics = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(displayMetrics)
-        val height = displayMetrics.heightPixels
-        gradientViewLayoutParams.topMargin = (0.15 * height.toFloat()).toInt()
         // Set up new conversation button set
         newConversationButtonSet.delegate = this
-        // Set up typing observer
-        ApplicationContext.getInstance(this).typingStatusRepository.typingThreads.observe(this, Observer<Set<Long>> { threadIDs ->
-            val adapter = recyclerView.adapter as HomeAdapter
-            adapter.typingThreadIDs = threadIDs ?: setOf()
-        })
-        // Set up remaining components if needed
-        val application = ApplicationContext.getInstance(this)
-        val userPublicKey = TextSecurePreferences.getLocalNumber(this)
-        if (userPublicKey != null) {
-            OpenGroupManager.startPolling()
-            JobQueue.shared.resumePendingJobs()
-        }
-        IP2Country.configureIfNeeded(this)
-        application.registerForFCMIfNeeded(false)
         // Observe blocked contacts changed events
         val broadcastReceiver = object : BroadcastReceiver() {
 
@@ -148,10 +131,30 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         }
         this.broadcastReceiver = broadcastReceiver
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, IntentFilter("blockedContactsChanged"))
-        lifecycleScope.launch {
-            // update things based on TextSecurePrefs (profile info etc)
-            TextSecurePreferences.events.filter { it == TextSecurePreferences.PROFILE_NAME_PREF }.collect {
-                updateProfileButton()
+        lifecycleScope.launchWhenStarted {
+            launch(Dispatchers.IO) {
+                // Double check that the long poller is up
+                (applicationContext as ApplicationContext).startPollingIfNeeded()
+                // update things based on TextSecurePrefs (profile info etc)
+                // Set up typing observer
+                withContext(Dispatchers.Main) {
+                    ApplicationContext.getInstance(this@HomeActivity).typingStatusRepository.typingThreads.observe(this@HomeActivity, Observer<Set<Long>> { threadIDs ->
+                        val adapter = recyclerView.adapter as HomeAdapter
+                        adapter.typingThreadIDs = threadIDs ?: setOf()
+                    })
+                    updateProfileButton()
+                    TextSecurePreferences.events.filter { it == TextSecurePreferences.PROFILE_NAME_PREF }.collect {
+                        updateProfileButton()
+                    }
+                }
+                // Set up remaining components if needed
+                val application = ApplicationContext.getInstance(this@HomeActivity)
+                application.registerForFCMIfNeeded(false)
+                val userPublicKey = TextSecurePreferences.getLocalNumber(this@HomeActivity)
+                if (userPublicKey != null) {
+                    OpenGroupManager.startPolling()
+                    JobQueue.shared.resumePendingJobs()
+                }
             }
         }
         EventBus.getDefault().register(this@HomeActivity)
@@ -166,7 +169,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         profileButton.update()
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
         if (hasViewedSeed) {
-            seedReminderView.visibility = View.GONE
+            seedReminderStub.visibility = View.GONE
         }
         if (TextSecurePreferences.getConfigurationMessageSynced(this)) {
             lifecycleScope.launch(Dispatchers.IO) {

@@ -70,10 +70,11 @@
                 android:background="?android:dividerHorizontal"
                 android:elevation="1dp" />
 
-            <org.thoughtcrime.securesms.onboarding.SeedReminderView
-                android:id="@+id/seedReminderView"
+            <ViewStub
+                android:id="@+id/seedReminderStub"
+                android:layout="@layout/seed_reminder_stub"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

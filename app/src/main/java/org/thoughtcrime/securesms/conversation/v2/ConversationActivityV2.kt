@@ -87,10 +87,7 @@ import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.conversation.v2.messages.*
 import org.thoughtcrime.securesms.conversation.v2.search.SearchBottomBar
 import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
-import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager
-import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
-import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
-import org.thoughtcrime.securesms.conversation.v2.utilities.ResendMessageUtilities
+import org.thoughtcrime.securesms.conversation.v2.utilities.*
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MnemonicUtilities
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -230,6 +227,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         setUpRecyclerView()
         setUpToolBar()
         setUpInputBar()
+        setUpLinkPreviewObserver()
         restoreDraftIfNeeded()
         addOpenGroupGuidelinesIfNeeded()
         scrollToBottomButton.setOnClickListener { conversationRecyclerView.smoothScrollToPosition(0) }
@@ -240,7 +238,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         updateSubtitle()
         getLatestOpenGroupInfoIfNeeded()
         setUpBlockedBanner()
-        setUpLinkPreviewObserver()
         searchBottomBar.setEventListener(this)
         setUpSearchResultObserver()
         scrollToFirstUnreadMessageIfNeeded()
@@ -322,6 +319,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val size = resources.getDimension(sizeID).roundToInt()
         profilePictureView.layoutParams = LinearLayout.LayoutParams(size, size)
         profilePictureView.glide = glide
+        MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded(threadID, this)
         profilePictureView.update(thread, threadID)
     }
 
@@ -1206,7 +1204,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val sortedMessages = messages.sortedBy { it.dateSent }
         val builder = StringBuilder()
         for (message in sortedMessages) {
-            val body = MentionUtilities.highlightMentions(message.body, message.threadId, this)
+            val body = MentionUtilities.highlightMentions(message.body, threadID, this)
             if (TextUtils.isEmpty(body)) { continue }
             val formattedTimestamp = DateUtils.getDisplayFormattedTimeSpanString(this, Locale.getDefault(), message.timestamp)
             builder.append("$formattedTimestamp: $body").append('\n')

@@ -40,6 +40,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.Contact;
 import org.session.libsession.utilities.ServiceUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
@@ -49,6 +50,7 @@ import org.session.libsignal.utilities.Util;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2;
+import org.thoughtcrime.securesms.conversation.v2.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
@@ -58,6 +60,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.SessionMetaProtocol;
@@ -66,6 +69,7 @@ import org.thoughtcrime.securesms.util.SpanUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -273,9 +277,13 @@ public class DefaultMessageNotifier implements MessageNotifier {
         lastAudibleNotification = System.currentTimeMillis();
       }
 
-      boolean hasMultipleThreads = notificationState.hasMultipleThreads();
-      for (long threadId : notificationState.getThreads()) {
-        sendSingleThreadNotification(context, new NotificationState(notificationState.getNotificationsForThread(threadId)), signal, hasMultipleThreads);
+      if (notificationState.hasMultipleThreads()) {
+        for (long threadId : notificationState.getThreads()) {
+          sendSingleThreadNotification(context, new NotificationState(notificationState.getNotificationsForThread(threadId)), false, true);
+        }
+        sendMultipleThreadNotification(context, notificationState, signal);
+      } else if (notificationState.getMessageCount() > 0){
+        sendSingleThreadNotification(context, notificationState, signal, false);
       }
 
       cancelOrphanedNotifications(context, notificationState);
@@ -323,8 +331,11 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     builder.setThread(notifications.get(0).getRecipient());
     builder.setMessageCount(notificationState.getMessageCount());
+    MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(notifications.get(0).getThreadId(),context);
     builder.setPrimaryMessageBody(recipient, notifications.get(0).getIndividualRecipient(),
-                                  MentionUtilities.highlightMentions(notifications.get(0).getText(), notifications.get(0).getThreadId(), context),
+                                  MentionUtilities.highlightMentions(notifications.get(0).getText(),
+                                          notifications.get(0).getThreadId(),
+                                          context),
                                   notifications.get(0).getSlideDeck());
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
     builder.setDeleteIntent(notificationState.getDeleteIntent(context));
@@ -497,7 +508,15 @@ public class DefaultMessageNotifier implements MessageNotifier {
       if (threadRecipients == null || !threadRecipients.isMuted()) {
         if (threadRecipients != null && threadRecipients.notifyType == RecipientDatabase.NOTIFY_TYPE_MENTIONS) {
           // check if mentioned here
-          if (body.toString().contains("@"+TextSecurePreferences.getLocalNumber(context))) {
+          boolean isQuoteMentioned = false;
+          if (record instanceof MmsMessageRecord) {
+            Quote quote = ((MmsMessageRecord) record).getQuote();
+            Address quoteAddress = quote != null ? quote.getAuthor() : null;
+            String serializedAddress = quoteAddress != null ? quoteAddress.serialize() : null;
+            isQuoteMentioned = serializedAddress != null && Objects.equals(TextSecurePreferences.getLocalNumber(context), serializedAddress);
+          }
+          if (body.toString().contains("@"+TextSecurePreferences.getLocalNumber(context))
+                  || isQuoteMentioned) {
             notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
           }
         } else if (threadRecipients != null && threadRecipients.notifyType == RecipientDatabase.NOTIFY_TYPE_NONE) {

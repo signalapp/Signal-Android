@@ -192,7 +192,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < lokiV14_BACKUP_FILES) {
         db.execSQL(LokiBackupFilesDatabase.getCreateTableCommand());
       }
-      
+
       if (oldVersion < lokiV16) {
         db.execSQL(LokiAPIDatabase.getCreateOpenGroupProfilePictureTableCommand());
       }
