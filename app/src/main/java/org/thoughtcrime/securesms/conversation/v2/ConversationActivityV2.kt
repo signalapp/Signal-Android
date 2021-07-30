@@ -87,10 +87,7 @@ import org.thoughtcrime.securesms.conversation.v2.menus.ConversationMenuHelper
 import org.thoughtcrime.securesms.conversation.v2.messages.*
 import org.thoughtcrime.securesms.conversation.v2.search.SearchBottomBar
 import org.thoughtcrime.securesms.conversation.v2.search.SearchViewModel
-import org.thoughtcrime.securesms.conversation.v2.utilities.AttachmentManager
-import org.thoughtcrime.securesms.conversation.v2.utilities.BaseDialog
-import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities
-import org.thoughtcrime.securesms.conversation.v2.utilities.ResendMessageUtilities
+import org.thoughtcrime.securesms.conversation.v2.utilities.*
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MnemonicUtilities
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -322,6 +319,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         val size = resources.getDimension(sizeID).roundToInt()
         profilePictureView.layoutParams = LinearLayout.LayoutParams(size, size)
         profilePictureView.glide = glide
+        MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded(threadID, this)
         profilePictureView.update(thread, threadID)
     }
 

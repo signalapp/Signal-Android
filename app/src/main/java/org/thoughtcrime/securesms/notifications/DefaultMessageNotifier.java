@@ -40,6 +40,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.Contact;
 import org.session.libsession.utilities.ServiceUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
@@ -59,6 +60,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.SessionMetaProtocol;
@@ -67,6 +69,7 @@ import org.thoughtcrime.securesms.util.SpanUtil;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -503,7 +506,15 @@ public class DefaultMessageNotifier implements MessageNotifier {
       if (threadRecipients == null || !threadRecipients.isMuted()) {
         if (threadRecipients != null && threadRecipients.notifyType == RecipientDatabase.NOTIFY_TYPE_MENTIONS) {
           // check if mentioned here
-          if (body.toString().contains("@"+TextSecurePreferences.getLocalNumber(context))) {
+          boolean isQuoteMentioned = false;
+          if (record instanceof MmsMessageRecord) {
+            Quote quote = ((MmsMessageRecord) record).getQuote();
+            Address quoteAddress = quote != null ? quote.getAuthor() : null;
+            String serializedAddress = quoteAddress != null ? quoteAddress.serialize() : null;
+            isQuoteMentioned = serializedAddress != null && Objects.equals(TextSecurePreferences.getLocalNumber(context), serializedAddress);
+          }
+          if (body.toString().contains("@"+TextSecurePreferences.getLocalNumber(context))
+                  || isQuoteMentioned) {
             notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
           }
         } else if (threadRecipients != null && threadRecipients.notifyType == RecipientDatabase.NOTIFY_TYPE_NONE) {
