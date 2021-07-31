@@ -99,9 +99,11 @@
                  android:resizeableActivity="true"
                  android:allowBackup="false"
                  android:theme="@style/TextSecure.LightTheme"
-                 android:largeHeap="true">
+                 android:largeHeap="true"
+                 android:requestLegacyExternalStorage="true">
 
-    <meta-data
+
+        <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCSx9xea86GwDKGznCAULE9Y5a8b-TfN9U"/>
 
