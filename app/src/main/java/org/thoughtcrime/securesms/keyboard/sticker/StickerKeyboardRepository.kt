@@ -72,7 +72,7 @@ class StickerKeyboardRepository(private val stickerDatabase: StickerDatabase) {
   data class KeyboardStickerPack(
     val packId: String,
     val title: String?,
-    val titleResource: Int? = 0,
+    val titleResource: Int? = null,
     val coverUri: Uri?,
     val coverResource: Int? = null,
     val stickers: List<StickerRecord> = emptyList()
