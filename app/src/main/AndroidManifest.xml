@@ -491,6 +491,7 @@
 
     <activity android:name="org.thoughtcrime.securesms.webrtc.VoiceCallShare"
               android:excludeFromRecents="true"
+              android:permission="android.permission.CALL_PHONE"
               android:theme="@style/NoAnimation.Theme.BlackScreen"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
