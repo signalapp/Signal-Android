@@ -256,9 +256,11 @@ class MessageNotifierV2(context: Application) : MessageNotifier {
     lastScheduledReminder = 0
     threadReminders.clear()
 
-    val pendingIntent: PendingIntent = PendingIntent.getBroadcast(context, 0, Intent(context, ReminderReceiver::class.java), PendingIntent.FLAG_CANCEL_CURRENT)
-    val alarmManager: AlarmManager? = ContextCompat.getSystemService(context, AlarmManager::class.java)
-    alarmManager?.cancel(pendingIntent)
+    val pendingIntent: PendingIntent? = PendingIntent.getBroadcast(context, 0, Intent(context, ReminderReceiver::class.java), PendingIntent.FLAG_CANCEL_CURRENT)
+    if (pendingIntent != null) {
+      val alarmManager: AlarmManager? = ContextCompat.getSystemService(context, AlarmManager::class.java)
+      alarmManager?.cancel(pendingIntent)
+    }
   }
 
   companion object {
