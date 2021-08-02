@@ -17,6 +17,8 @@
 
 package org.thoughtcrime.securesms;
 
+import static org.thoughtcrime.securesms.components.sensors.Orientation.PORTRAIT_BOTTOM_EDGE;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.PictureInPictureParams;
@@ -73,14 +75,12 @@ import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
+import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState;
 import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
 import java.util.List;
 import java.util.Optional;
-
-import static org.thoughtcrime.securesms.components.sensors.Orientation.PORTRAIT_BOTTOM_EDGE;
 
 public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChangeDialog.Callback {
 
@@ -111,18 +111,6 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     super.attachBaseContext(newBase);
   }
 
-  @Override
-  public void onConfigurationChanged(@NonNull Configuration newConfig) {
-    super.onConfigurationChanged(newConfig);
-
-    if (newConfig.densityDpi >= 480 && getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-      viewModel.setIsLandscapeEnabled(true);
-      setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-    } else if (newConfig.densityDpi < 480){
-      viewModel.setIsLandscapeEnabled(false);
-    }
-  }
-
   @SuppressLint("SourceLockedOrientationActivity")
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -131,7 +119,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     super.onCreate(savedInstanceState);
 
-    boolean isLandscapeEnabled = getResources().getConfiguration().densityDpi >= 480;
+    boolean isLandscapeEnabled = getResources().getConfiguration().smallestScreenWidthDp >= 480;
     if (!isLandscapeEnabled) {
       setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
@@ -152,7 +140,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     getIntent().removeExtra(EXTRA_ENABLE_VIDEO_IF_AVAILABLE);
 
     windowManager            = new androidx.window.WindowManager(this);
-    windowLayoutInfoConsumer = new WindowLayoutInfoConsumer(windowManager);
+    windowLayoutInfoConsumer = new WindowLayoutInfoConsumer();
 
     windowManager.registerLayoutChangeCallback(SignalExecutors.BOUNDED, windowLayoutInfoConsumer);
   }
@@ -296,8 +284,10 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     viewModel.getWebRtcControls().observe(this, callScreen::setWebRtcControls);
     viewModel.getEvents().observe(this, this::handleViewModelEvent);
     viewModel.getCallTime().observe(this, this::handleCallTime);
-    LiveDataUtil.combineLatest(viewModel.getCallParticipantsState(), viewModel.getOrientation(), (s, o) -> new Pair<>(s, o == PORTRAIT_BOTTOM_EDGE))
-                .observe(this, p -> callScreen.updateCallParticipants(p.first(), p.second()));
+    LiveDataUtil.combineLatest(viewModel.getCallParticipantsState(),
+                               viewModel.getOrientationAndLandscapeEnabled(),
+                               (s, o) -> new CallParticipantsViewState(s, o.first == PORTRAIT_BOTTOM_EDGE, o.second))
+                .observe(this, p -> callScreen.updateCallParticipants(p));
     viewModel.getCallParticipantListUpdate().observe(this, participantUpdateWindow::addCallParticipantListUpdate);
     viewModel.getSafetyNumberChangeEvent().observe(this, this::handleSafetyNumberChangeEvent);
     viewModel.getGroupMembers().observe(this, unused -> updateGroupMembersForGroupCall());
@@ -773,17 +763,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   private class WindowLayoutInfoConsumer implements Consumer<WindowLayoutInfo> {
 
-    private final androidx.window.WindowManager windowManager;
-
-    private WindowLayoutInfoConsumer(androidx.window.WindowManager windowManager) {
-      this.windowManager = windowManager;
-    }
-
     @Override
     public void accept(WindowLayoutInfo windowLayoutInfo) {
       Log.d(TAG, "On WindowLayoutInfo accepted: " + windowLayoutInfo.toString());
 
       Optional<DisplayFeature> feature = windowLayoutInfo.getDisplayFeatures().stream().filter(f -> f instanceof FoldingFeature).findFirst();
+      viewModel.setIsLandscapeEnabled(feature.isPresent());
+      setRequestedOrientation(feature.isPresent() ? ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
       if (feature.isPresent()) {
         FoldingFeature foldingFeature = (FoldingFeature) feature.get();
         Rect bounds = foldingFeature.getBounds();

@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
+import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState;
 import org.webrtc.RendererCommon;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
@@ -318,15 +319,18 @@ public class WebRtcCallView extends ConstraintLayout {
     micToggle.setChecked(isMicEnabled, false);
   }
 
-  public void updateCallParticipants(@NonNull CallParticipantsState state, boolean isPortrait) {
-    List<WebRtcCallParticipantsPage> pages = new ArrayList<>(2);
+  public void updateCallParticipants(@NonNull CallParticipantsViewState callParticipantsViewState) {
+    CallParticipantsState            state              = callParticipantsViewState.getCallParticipantsState();
+    boolean                          isPortrait         = callParticipantsViewState.isPortrait();
+    boolean                          isLandscapeEnabled = callParticipantsViewState.isLandscapeEnabled();
+    List<WebRtcCallParticipantsPage> pages              = new ArrayList<>(2);
 
     if (!state.getGridParticipants().isEmpty()) {
-      pages.add(WebRtcCallParticipantsPage.forMultipleParticipants(state.getGridParticipants(), state.getFocusedParticipant(), state.isInPipMode(), isPortrait));
+      pages.add(WebRtcCallParticipantsPage.forMultipleParticipants(state.getGridParticipants(), state.getFocusedParticipant(), state.isInPipMode(), isPortrait, isLandscapeEnabled));
     }
 
     if (state.getFocusedParticipant() != CallParticipant.EMPTY && state.getAllRemoteParticipants().size() > 1) {
-      pages.add(WebRtcCallParticipantsPage.forSingleParticipant(state.getFocusedParticipant(), state.isInPipMode(), isPortrait));
+      pages.add(WebRtcCallParticipantsPage.forSingleParticipant(state.getFocusedParticipant(), state.isInPipMode(), isPortrait, isLandscapeEnabled));
     }
 
     if ((state.getGroupCallState().isNotIdle() && state.getRemoteDevicesCount().orElse(0) > 0) || state.getGroupCallState().isConnected()) {
