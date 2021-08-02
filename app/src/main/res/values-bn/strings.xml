@@ -40,7 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">রিমাইন্ডার লুকাবেন?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">পেমেন্ট পুনরুদ্ধারের জন্য এই তথ্য সেভ করুন</string>
   <string name="ApplicationPreferencesActivity_record_phrase">বাক্যাংশ সংরক্ষণ</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">আপনি আপনার পিনটি নিষ্ক্রিয় করার আগে, আপনার পেমেন্ট অ্যাকাউন্টটি পুনরুদ্ধার করতে পারেন তা নিশ্চিত করতে আপনাকে অবশ্যই আপনার অর্থ প্রদানের তথ্য পুনরুদ্ধারের ফ্রেজ সংরক্ষণ করতে হবে।</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">আপনি আপনার পিনটি নিষ্ক্রিয় করার পূর্বে, আপনার পেমেন্ট অ্যাকাউন্টটি পুনরুদ্ধার করতে সক্ষম কিনা  তা নিশ্চিত করতে আপনাকে অবশ্যই আপনার পেমেন্টের তথ্য পুনরুদ্ধারের ফ্রেজ সংরক্ষণ করতে হবে।</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d মিনিট</item>
@@ -68,7 +68,7 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">স্থান সংযুক্ত করার জন্য Signal এর স্থান ব্যাবহারের অনুমতির প্রয়োজন কিন্তু এর উপর স্থায়ী নিষেধাজ্ঞা জারি করা হয়েছে। দয়া করে আ্যপ সেটিংসে যান, \"অনুমতি\" নির্বাচন করুন এবং \"স্থান\" সক্ষম করুন।</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">মিডিয়া আপলোড হচ্ছে…</string>
-  <string name="AttachmentUploadJob_compressing_video_start">ভিডিও সংকুচিত হচ্ছে…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">ভিডিও সংকোচন করা হচ্ছে…</string>
   <!--BackgroundMessageRetriever-->
   <string name="BackgroundMessageRetriever_checking_for_messages">মেসেজ খোঁজা হচ্ছে…</string>
   <!--BlockedUsersActivity-->
@@ -636,7 +636,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">কেবল প্রশাসকগণই শেয়ার করার উপযোগী গ্রুপের লিঙ্কটি পুনরায় সেট করতে পারবেন।</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">আপনার এটা করার অধিকার নেই</string>
   <string name="ManageGroupActivity_not_capable">আপনি এমন কাউকে যুক্ত করেছেন যার Signal App নতুন গ্রুপ সহায়ক নয়। তার Signal আপডেট করা প্রয়োজন।</string>
-  <string name="ManageGroupActivity_not_announcement_capable">আপনি এমন কাউকে যুক্ত করেছেন যে প্রচার গ্রুপ সহায়ক নয়।। তার Signal আপডেট করা প্রয়োজন।</string>
+  <string name="ManageGroupActivity_not_announcement_capable">আপনি এমন কাউকে যুক্ত করেছেন যে প্রচার গ্রুপ সহায়ক নয়। তার Signal আপডেট করা প্রয়োজন।</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">গ্রুপ আপডেটকরণ ব্যার্থ হয়েছে</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">আপনি গ্রুপটির সদস্য নন</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">গ্রুপটি আপডেট করতে ব্যর্থ হয়েছে দয়া করে পরে আবার চেষ্টা করুন</string>
@@ -991,12 +991,12 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">কারা গ্রুপের সদস্যতা সম্পাদনা করতে পারবেন তা %1$s \"%2$s\" এ পরিবর্তন করেছে।</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">গ্রুপের সদস্যতা কে সম্পাদনা করতে পারে তাকে \"%1$s\" এ পরিবর্তন করা হয়েছে।</string>
   <!--GV2 announcement group change-->
-  <string name="MessageRecord_you_allow_all_members_to_send">সকল সদস্যদের বার্তা পাঠানোর অনুমতি দিতে আপনি গ্রুপ সেটিংস পরিবর্তন করেছেন।</string>
-  <string name="MessageRecord_you_allow_only_admins_to_send">আপনি গ্রুপ সেটিংস পরিবর্তন করে কেবল এডমিনদের বার্তা পাঠানোর অনুমতি দিয়েছেন।</string>
-  <string name="MessageRecord_s_allow_all_members_to_send">%1$s গ্রুপের সকল সদস্যদের বার্তা পাঠানোর অনুমতি দিয়ে সেটিংস পরিবর্তন করেছেন।</string>
-  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s গ্রুপের কেবল অ্যাডমিনদের বার্তা পাঠানোর অনুমতি দিয়ে সেটিংস পরিবর্তন করেছেন।</string>
-  <string name="MessageRecord_allow_all_members_to_send">সকল সদস্যদের বার্তা পাঠানোর অনুমতি দিয়ে গ্রুপের সেটিংস পরিবর্তন করা হয়েছে।</string>
-  <string name="MessageRecord_allow_only_admins_to_send">কেবল অ্যাডমিনদের বার্তা পাঠানোর অনুমতি দিয়ে গ্রুপের সেটিংস পরিবর্তন করা হয়েছে।</string>
+  <string name="MessageRecord_you_allow_all_members_to_send">সকল সদস্যদের বার্তা পাঠানোর অনুমতি প্রদান করতে আপনি গ্রুপ সেটিংস পরিবর্তন করেছেন।</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">আপনি গ্রুপ সেটিংস পরিবর্তন করে কেবল মাত্র এডমিনদের বার্তা পাঠানোর অনুমতি দিয়েছেন।</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s গ্রুপের সকল সদস্যদের বার্তা পাঠানোর অনুমতি প্রদানের জন্য সেটিংস পরিবর্তন করেছেন।</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s গ্রুপের কেবল অ্যাডমিনদের বার্তা পাঠানোর অনুমতি দিতে সেটিংস পরিবর্তন করেছেন।</string>
+  <string name="MessageRecord_allow_all_members_to_send">সকল সদস্যদের বার্তা পাঠানোর অনুমতি দিতে গ্রুপের সেটিংস পরিবর্তন করা হয়েছে।</string>
+  <string name="MessageRecord_allow_only_admins_to_send">কেবল অ্যাডমিনদের বার্তা পাঠানোর অনুমতি দিতে গ্রুপের সেটিংস পরিবর্তন করা হয়েছে।</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">আপনি এডমিনের অনুমোদন ছাড়ায় গ্রুপ লিঙ্কটি চালু করেছেন।</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">আপনি এডমিনের অনুমোদন সহ গ্রুপ লিঙ্কটি চালু করেছেন।</string>
@@ -1357,7 +1357,7 @@
   <string name="SubmitDebugLogActivity_success">সফল!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">এই ইউআরএল টি কপি করুন এবং এটি আপনার সমস্যা প্রতিবেদন বা সাপোর্ট ইমে‌ইলে যোগ করুন:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">শেয়ার করুন</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">এই লগটি কন্ট্রিবিউটরদের দেখার জন্য উন্মুক্তভাবে অনলাইনে পোস্ট করা হবে। আপলোড করার পূর্বে আপনি যাচাই করে দেখতে পারেন।</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">এই লগটি অবদানকারীদের দেখার জন্য উন্মুক্তভাবে অনলাইনে পোস্ট করা হবে। আপলোড করার পূর্বে আপনি যাচাই করে দেখতে পারেন।</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">ফিল্টার:</string>
   <string name="SupportEmailUtil_device_info">ডিভাইস এর তথ্যঃ</string>
@@ -1669,7 +1669,7 @@
   <string name="EnableCallNotificationSettingsDialog__settings">সেটিংস</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">কল নোটিফিকেশন পেতে, সেটিংস-এ ট্যাপ করুন এবং “নোটিফিকেশন দেখান” অপশনটি চালু করুন।</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">কল নোটিফিকেশন পেতে, সেটিংস-এ ট্যাপ করুন ও নোটিফিকেশন অপশনটি চালু করুন এবং নিশ্চিত করুন যে সাউন্ড ও পপ-আপ চালু আছে।</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">কল নোটিফিকেশন পেতে, সেটিংস-এ ট্যাপ করুন এবং “ব্যাটারি” সেটিংস-এ গিয়ে ব্যাকগ্রাউন্ড কার্যকলাপ চালু করুন।</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">কল নোটিফিকেশনগুলো পেতে, সেটিংস-এ ট্যাপ করুন এবং “ব্যাটারি” সেটিংস-এ গিয়ে ব্যাকগ্রাউন্ড কার্যকলাপ চালু করুন।</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">দেশগুলি লোড হচ্ছে …</string>
   <string name="country_selection_fragment__search">খোঁজা</string>
@@ -1785,7 +1785,7 @@
   <string name="EditProfileNameFragment_first_name">নামের প্রথম অংশ</string>
   <string name="EditProfileNameFragment_last_name_optional">নামের শেষ অংশ (ঐচ্ছিক)</string>
   <string name="EditProfileNameFragment_save">সংরক্ষন</string>
-  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">নেটওয়ার্কের সমস্যার কারণে সেভ করতে ব্যর্থ হয়েছে। পরে আবার চেষ্টা করুন।</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">নেটওয়ার্কের সমস্যার কারণে সংরক্ষণ করতে ব্যর্থ হয়েছে। পরে আবার চেষ্টা করুন।</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">শেয়ার করা মিডিয়া</string>
   <!--recipients_panel-->
@@ -1909,7 +1909,7 @@
   <string name="preferences__pref_enter_sends_title">এন্টার কী পাঠাবে</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">এন্টার কী টিপলে পাঠ্য বার্তা প্রেরণ করা হবে</string>
   <string name="preferences__pref_use_address_book_photos">অ্যাড্রেস বুকের ছবি ব্যবহার করুন</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">উপলভ্য থাকলে আপনার অ্যাড্রেস বুক থেকে কন্ট্যাক্টের ছবি দেখান</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">উপলভ্য থাকলে আপনার অ্যাড্রেস বুক থেকে পরিচিতির ছবিগুলো দেখান</string>
   <string name="preferences__generate_link_previews">লিংক প্রিভিউ তৈরি করুন</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">আপনার পাঠানো মেসেজের জন্য সরাসরি ওয়েবসাইট থেকে লিংক প্রিভিউ পুনরুদ্ধার করুন।</string>
   <string name="preferences__choose_identity">পরিচয় বাছুন</string>
@@ -2114,7 +2114,7 @@
   <string name="PaymentsHomeFragment__payments_deactivated">পেমেন্ট বন্ধ করা হয়েছে।</string>
   <string name="PaymentsHomeFragment__payment_failed">পেমেন্ট ব্যর্থ হয়েছে</string>
   <string name="PaymentsHomeFragment__details">খুঁটিনাটি</string>
-  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">আপনি MobileCoin পাঠাতে এবং গ্রহণ করতে Signal ব্যবহার করতে পারেন। সমস্ত পেমেন্ট MobileCoin এবং MobileCoin ওয়ালেটের ব্যবহারের শর্তাবলীর উপর নির্ভর করবে। এটি একটি বিটা ফিচার তাই আপনি কিছু সমস্যার মুখোমুখি হতে পারেন এবং আপনার পেমেন্ট বা ব্যালেন্স হারিয়ে যেতে পারে যা পুনরুদ্ধার করা যাবে না।</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">আপনি MobileCoin পাঠাতে এবং গ্রহণ করতে Signal ব্যবহার করতে পারেন। সমস্ত পেমেন্ট MobileCoin এবং MobileCoin ওয়ালেট ব্যবহারের শর্তাবলীর উপর নির্ভর করবে। এটি একটি বিটা ফিচার তাই আপনি কিছু সমস্যার মুখোমুখি হতে পারেন এবং আপনার পেমেন্ট বা ব্যালেন্স হারিয়ে যেতে পারে যা পুনরুদ্ধার করা যাবে না।</string>
   <string name="PaymentsHomeFragment__activate">সক্রিয় করুন</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin-এর শর্তাবলী দেখুন</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal -এ পেমেন্ট আর উপলভ্য নেই। আপনি এখনও যে কোনও এক্সচেঞ্জে আপনার ফান্ড স্থানান্তর করতে পারেন তবে আপনি আর অর্থ পাঠাতে এবং গ্রহণ করতে বা ফান্ড যোগ করতে পারবেন না।</string>
@@ -2147,10 +2147,10 @@
   <string name="PaymentsDeatilsFragment__payment_completed_s">%1$s পেমেন্ট সম্পন্ন হয়েছে</string>
   <string name="PaymentsDetailsFragment__block_number">নাম্বার ব্লক করুন</string>
   <!--PaymentsTransferFragment-->
-  <string name="PaymentsTransferFragment__transfer">স্থানান্তর করুন</string>
+  <string name="PaymentsTransferFragment__transfer">ট্রান্সফার করুন</string>
   <string name="PaymentsTransferFragment__scan_qr_code">কিউআর কোড স্ক্যান করুন</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">প্রতি: ওয়ালেটের ঠিকানা স্ক্যান করুন বা লিখুন</string>
-  <string name="PaymentsTransferFragment__you_can_transfer">এক্সচেঞ্জের সরবরাহিত ওয়ালেট ঠিকানায় স্থানান্তর সম্পন্ন করে আপনি MobileCoin স্থানান্তর করতে পারেন। ওয়ালেট ঠিকানাটি সাধারণত কিউআর কোডের নীচে সবচেয়ে বেশি সংখ্যা এবং বর্ণগুলির লাইন।</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">এক্সচেঞ্জের দেওয়া ওয়ালেটের ঠিকানায় ট্রান্সফার সম্পন্ন করে আপনি MobileCoin ট্রান্সফার করতে পারেন। ওয়ালেটের ঠিকানাটি হল সাধারণত QR কোডের নিচে থাকা সবচেয়ে বেশি সংখ্যা এবং বর্ণগুলির একটি লাইন।</string>
   <string name="PaymentsTransferFragment__next">পরবর্তী</string>
   <string name="PaymentsTransferFragment__invalid_address">ভুল ঠিকানা</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">আপনি যে ওয়ালেটের ঠিকানাতে স্থানান্তর করার চেষ্টা করছেন তা পরীক্ষা করে আবার চেষ্টা করুন।</string>
@@ -2199,9 +2199,9 @@
   <string name="ConfirmPayment__payment_will_continue_processing">অর্থ প্রদান প্রক্রিয়া চালিয়ে যাবে</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">প্রাপক সঠিক নয়</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">এই ব্যক্তি পেমেন্ট সক্রিয় করেনি</string>
-  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">একটি নেটওয়ার্ক ফিসের অনুরোধ করতে ব্যর্থ। পেমেন্টটিতে অগ্রসর হওয়ার জন্য পুনরায় চেষ্টা করতে ‘ঠিক আছে’-তে ট্যাপ করুন।</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">একটি নেটওয়ার্ক ফি-এর অনুরোধ করতে পারেনি। পেমেন্টটি চালিয়ে যাওয়ার জন্য পুনরায় চেষ্টা করতে ‘ঠিক আছে’-তে ট্যাপ করুন।</string>
   <!--CurrencyAmountFormatter_s_at_s-->
-  <string name="CurrencyAmountFormatter_s_at_s">%1$s %2$s-তে</string>
+  <string name="CurrencyAmountFormatter_s_at_s">%2$s-তে %1$s</string>
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__set_currency">মুদ্রা নির্ধারণ করুন</string>
   <string name="SetCurrencyFragment__all_currencies">সকল মুদ্রা</string>
@@ -2386,7 +2386,7 @@
   <string name="RegistrationLockFragment__forgot_your_pin">পিন ভুলে গেছেন?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">খুব একটা বেশী সুযোগ বাকি নেই</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal নিবন্ধকরণ - অ্যান্ড্রয়েডের জন্য পিনের সাহায্য প্রয়োজন (v1 পিন)</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal নিবন্ধন - অ্যান্ড্রয়েডের জন্য পিনের সাহায্য প্রয়োজন (v2 পিন)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal রেজিস্ট্রেশন - Android-এর জন্য পিনের সাহায্য প্রয়োজন (v2 পিন)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">আপনার গোপনীয়তা এবং সুরক্ষার জন্য, আপনার পিনটি পুনরুদ্ধার করার কোনও উপায় নেই। আপনি যদি আপনার পিনটি ভুলে যান তবে আপনি নিষ্ক্রিয়তার %1$d দিন পরে এসএমএস\'র মাধ্যমে পুনরায় যাচাই করতে পারবেন। এই ক্ষেত্রে, আপনার অ্যাকাউন্টটি পরিস্কার করার পাশাপাশি সমস্ত সামগ্রী মুছে ফেলা হবে।</item>
     <item quantity="other">আপনার গোপনীয়তা এবং সুরক্ষার জন্য, আপনার পিনটি পুনরুদ্ধার করার কোনও উপায় নেই। আপনি যদি আপনার পিনটি ভুলে যান তবে আপনি নিষ্ক্রিয়তার %1$d দিন পরে এসএমএস\'র মাধ্যমে পুনরায় যাচাই করতে পারবেন। এই ক্ষেত্রে, আপনার অ্যাকাউন্টটি পরিস্কার করার পাশাপাশি সমস্ত সামগ্রী মুছে ফেলা হবে।</item>
@@ -2437,7 +2437,7 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">মুলতুবি থাকা বার্তাগুলি দেখার জন্য লক্ খুলুন</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">পাসফ্রেজ ব্যাকঅাপ করুন</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ব্যাকআপগুলি বাহ্যিক স্টোরেজে সংরক্ষণ করা হবে এবং নীচের পাসফ্রেজের সাহায্যে এনক্রিপ্ট করা হবে। ব্যাকঅাপ পুনরুদ্ধার করতে আপনার অবশ্যই এই পাসফ্রেজ থাকতে হবে।</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">ব্যাকআপটি পুনর্বহাল করতে আপনার অবশ্যই এই পাসফ্রেজ থাকতে হবে।</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">ব্যাকআপটি পুনরুদ্ধার করতে আপনার অবশ্যই এই পাসফ্রেজটি থাকতে হবে।</string>
   <string name="backup_enable_dialog__folder">ফোল্ডার</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">আমি এই পাসফ্রেজ লিখে রেখেছি। এটি ছাড়া, আমি একটি ব্যাকঅাপ পুনরুদ্ধার করতে পারব না।</string>
   <string name="registration_activity__restore_backup">ব্যাকঅাপ পুনরুদ্ধার</string>
@@ -2500,12 +2500,12 @@
   <string name="preferences_app_protection__change_your_pin">আপনার পিন পরিবর্তন করুন</string>
   <string name="preferences_app_protection__pin_reminders">PIN অনুস্মারক</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">পিনগুলি Signal-এ সঞ্চিত তথ্য এনক্রিপ্ট করে রাখে যাতে কেবল আপনি এটি অ্যাক্সেস করতে পারবেন। আপনি যখন Signal পুনরায় ইনস্টল করবেন তখন আপনার প্রোফাইল, সেটিংস এবং পরিচিতিগুলি পুনরুদ্ধার করবে।</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Signal-এ আপনার ফোন নাম্বারটি পুনরায় নিবন্ধন করতে আপনার Signal PIN আবশ্যক করার মাধ্যমে বাড়তি সুরক্ষা যুক্ত করুন।</string>
-  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">পিন পুনরুদ্ধার করা যাবে না বিধায় অনুস্মারক আপনার পিন স্মরণ রাখতে সহায়তা করে। ধীরে ধীরে আপনাকে পিন জিজ্ঞেস করার হার কমে যাবে।</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Signal-এ আপনার ফোন নাম্বারটি পুনরায় রেজিস্টার করতে আপনার Signal PIN আবশ্যক করার মাধ্যমে বাড়তি নিরাপত্তা যোগ করুন।</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">পিনটি পুনরুদ্ধার করা যাবে না বিধায় রিমাইন্ডার আপনার পিন মনে রাখতে সহায়তা করে। ধীরে ধীরে আপনাকে পিন কম জিজ্ঞেস করা হবে।</string>
   <string name="preferences_app_protection__turn_off">বন্ধ করুন</string>
   <string name="preferences_app_protection__confirm_pin">পিনটি সমর্থন করুন</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">আপনার Signal পিনটি নিশ্চিত করুন</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">পিনটি পুনরুদ্ধার করা যাবে না বিধায় নিশ্চিত করুন যে আপনি এটি মুখস্ত করেছেন বা সুরক্ষিতভাবে সংরক্ষণ করেছেন। পিন ভুলে গেলে, আপনার Signal অ্যাকাউন্ট পুনরায় নিবন্ধনের সময় আপনি ডেটা হারাতে পারেন।</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">পিনটি পুনরুদ্ধার করা যাবে না বিধায় নিশ্চিত করুন যে আপনি এটি মুখস্ত করেছেন বা সুরক্ষিতভাবে সংরক্ষণ করেছেন। পিনটি ভুলে গেলে, আপনার Signal অ্যাকাউন্ট পুনরায় রেজিস্টার  করার সময় আপনি ডেটা হারাতে পারেন।</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">ভুল পিন। আবার চেষ্টা করুন|</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">রেজিস্ট্রেশন লক সক্রিয় করতে ব্যার্থ।</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">রেজিস্ট্রেশন লক নিষ্ক্রিয় করতে ব্যার্থ।</string>
@@ -2522,55 +2522,55 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">লক্ খুলতে ট্যাপ করুন</string>
   <string name="Recipient_unknown">অজানা</string>
   <!--TransferOrRestoreFragment-->
-  <string name="TransferOrRestoreFragment__transfer_or_restore_account">অ্যাকাউন্ট স্থানান্তর করুন বা পুনর্বহাল করুন</string>
-  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">আপনি আগে একটি Signal অ্যাকাউন্ট নিবন্ধন করেছেন, আপনি আপনার অ্যাকাউন্ট বা বার্তাসমূহ স্থানান্তর বা পুনর্বহাল করতে পারেন</string>
-  <string name="TransferOrRestoreFragment__transfer_from_android_device">Android ডিভাইস থেকে স্থানান্তর করুন</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">আপনার পুরনো Android ডিভাইস থেকে আপনার অ্যাকাউন্ট ও বার্তাসমূহ স্থানান্তর করুন। আপনার পুরনো ডিভাইসে আপনার প্রবেশাধিকার থাকতে হবে।</string>
-  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">আপনার পুরনো ডিভাইসে আপনার প্রবেশাধিকার থাকতে হবে।</string>
-  <string name="TransferOrRestoreFragment__restore_from_backup">ব্যাকআপ থেকে পুনর্বহাল করুন</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">একটি স্থানীয় ব্যাকআপ থেকে আপনার বার্তাগুলো পুনর্বহাল করুন। আপনি এখনই পুনর্বহাল না করলে, পরে পুনর্বহাল করতে পারবেন না।</string>
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">অ্যাকাউন্ট ট্রান্সফার করুন বা পুনরুদ্ধার করুন</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">আপনি আগে একটি Signal অ্যাকাউন্টে রেজিস্টার করলে, আপনি আপনার অ্যাকাউন্ট বা মেসেজ ট্রান্সফার বা পুনরুদ্ধার করতে পারবেন</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Android ডিভাইস থেকে ট্রান্সফার করুন</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">আপনার পুরনো Android ডিভাইস থেকে আপনার অ্যাকাউন্ট ও মেসেজ ট্রান্সফার করুন। আপনার পুরনো ডিভাইসে আপনার অ্যাক্সেস থাকতে হবে।</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">আপনার পুরনো ডিভাইসে আপনার অ্যাক্সেস থাকতে হবে।</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">ব্যাকআপ থেকে পুনরুদ্ধার করুন</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">একটি স্থানীয় ব্যাকআপ থেকে আপনার মেসেজগুলো পুনরুদ্ধার করুন। আপনি এখনই পুনরুদ্ধার না করলে, পরে আর করতে পারবেন না।</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">আপনার পুরনো Android ফোনে Signal খুলুন</string>
   <string name="NewDeviceTransferInstructions__continue">চলতে থাকুন</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">সেটিংস খুলতে উপরের বাম কোণে আপনার প্রোফাইল ছবির উপর ট্যাপ করুন</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_account">“অ্যাকাউন্ট” অপশনে ট্যাপ করুন</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">“অ্যাকাউন্ট”-এ ট্যাপ করুন</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">“অ্যাকাউন্ট স্থানান্তর করুন” অপশনে ট্যাপ করুন, অতঃপর উভয় ডিভাইসে “অগ্রসর হোন” অপশনে ট্যাপ করুন</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">“অ্যাকাউন্ট ট্রান্সফার করুন”-এ ট্যাপ করে উভয় ডিভাইসে “চালিয়ে যান”-এ ট্যাপ করুন</string>
   <!--NewDeviceTransferSetupFragment-->
-  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">পুরনো Android ডিভাইসে সংযোগের প্রস্তুতি নিচ্ছে…</string>
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">পুরনো Android ডিভাইসের সাথে সংযোগের প্রস্তুতি নিচ্ছে…</string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">কিছু সময় নিচ্ছে, শীঘ্রই প্রস্তুত হয়ে যাবে</string>
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">পুরনো Android ডিভাইসের সংযোগের জন্য অপেক্ষা করছে…</string>
-  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">আপনার পুরনো Android ডিভাইস আবিষ্কার ও সংযুক্ত করতে Signal-এর অবস্থান অনুমতি আবশ্যক।</string>
-  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">আপনার পুরনো Android ডিভাইস আবিষ্কার করতে ও সংযুক্ত করতে Signal-এর জন্য অবস্থান পরিষেবাটি সক্রিয় থাকা আবশ্যক।</string>
-  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">আপনার পুরনো Android ডিভাইস আবিষ্কার করতে ও সংযুক্ত করতে Signal-এর ওয়াই-ফাই আবশ্যক। ওয়াই-ফাই চালু থাকতে হবে, কিন্তু এটি কোন ওয়াই-ফাই নেটওয়ার্কের সাথে সংযুক্ত থাকা আবশ্যক নয়।</string>
-  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">দুঃখিত, মনে হচ্ছে এটি এই ডিভাইসটি Wi-Fi ডাইরেক্টকে সমর্থন করে না। Signal আপনার পুরানো Android ডিভাইসটি খুঁজে পেতে এবং সংযোগ করতে Wi-Fi ডাইরেক্ট ব্যবহার করে। আপনার পুরানো Android ডিভাইস থেকে আপনার অ্যাকাউন্টটি পুনরুদ্ধার করতে আপনি এখনও একটি ব্যাকআপ পুনরুদ্ধার করতে পারেন।</string>
-  <string name="NewDeviceTransferSetup__restore_a_backup">একটি ব্যাকআপ পুনর্বহাল করুন</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">আপনার পুরনো Android ডিভাইস খুঁজে পেতে  ও সংযুক্ত করতে Signal-এর লোকেশনের অনুমতি আবশ্যক।</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">আপনার পুরনো Android ডিভাইস খুঁজে পেতে ও সংযুক্ত করতে Signal-এর জন্য লোকেশন পরিষেবাটি চালু থাকতে হবে।</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">আপনার পুরনো Android ডিভাইস খুঁজে পেতে ও সংযুক্ত করতে Signal-এর ওয়াই-ফাই চালু থাকতে হবে। ওয়াই-ফাই চালু থাকতে হবে, কিন্তু এটি কোন ওয়াই-ফাই নেটওয়ার্কের সাথে সংযুক্ত থাকার দরকার নেই।</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">দুঃখিত, মনে হচ্ছে এই ডিভাইসটি Wi-Fi Direct-কে সমর্থন করে না। Signal আপনার পুরানো Android ডিভাইসটি খুঁজে পেতে এবং সংযোগ করতে Wi-Fi Direct ব্যবহার করে। আপনার পুরানো Android ডিভাইস থেকে আপনার অ্যাকাউন্টটি পুনরুদ্ধার করতে আপনি এখনও একটি ব্যাকআপ পুনরুদ্ধার করতে পারেন।</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">একটি ব্যাকআপ পুনরুদ্ধার করুন</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">আপনার পুরনো Android ডিভাইসে সংযুক্ত হওয়ার চেষ্টাকালীন একটি অপ্রত্যাশিত সমস্যা হয়েছে।</string>
   <!--OldDeviceTransferSetupFragment-->
-  <string name="OldDeviceTransferSetup__searching_for_new_android_device">নতুন Android ডিভাইস অনুসন্ধান করা হচ্ছে…</string>
-  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">আপনার নতুন Android ডিভাইসটি খুঁজে পেতে এবং সংযোগ করতে Signal এর অবস্থানের অনুমতি প্রয়োজন।</string>
-  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">আপনার নতুন Android ডিভাইসটি আবিষ্কার এবং সংযোগের জন্য Signal এর জন্য অবস্থান পরিষেবা সক্ষম হওয়া দরকার।</string>
-  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">আপনার নতুন Android ডিভাইসটি খুঁজে পেতে এবং সংযুক্ত করতে Signal এর ওয়াই-ফাই প্রয়োজন। ওয়াই-ফাই চালু থাকা প্রয়োজন তবে এটি কোনও ওয়াই-ফাই নেটওয়ার্কের সাথে সংযুক্ত থাকতে হবে না।</string>
-  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">দুঃখিত, মনে হচ্ছে এটি এই ডিভাইসটি Wi-Fi ডাইরেক্টকে সমর্থন করে না। Signal আপনার নতুন Android ডিভাইসটি খুঁজে পেতে এবং সংযুক্ত করতে Wi-Fi ডাইরেক্ট ব্যবহার করে। আপনার নতুন Android ডিভাইসে আপনার অ্যাকাউন্টটি পুনর্বহাল করতে আপনি এখনও একটি ব্যাকআপ তৈরি করতে পারেন।</string>
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">নতুন Android ডিভাইস খোঁজা হচ্ছে…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">আপনার নতুন Android ডিভাইসটি খুঁজে পেতে এবং সংযোগ করতে Signal-এর লোকেশনের অনুমতি প্রয়োজন।</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">আপনার নতুন Android ডিভাইসটি খুঁজে পেতে এবং সংযোগের জন্য Signal-এর জন্য লোকেশন পরিষেবা চালু থাকতে হবে।</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">আপনার নতুন Android ডিভাইসটি খুঁজে পেতে এবং সংযুক্ত করতে Signal-এর ওয়াই-ফাই প্রয়োজন। ওয়াই-ফাই চালু থাকা প্রয়োজন তবে এটি কোনও ওয়াই-ফাই নেটওয়ার্কের সাথে সংযুক্ত থাকার দরকার নেই।</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">দুঃখিত, মনে হচ্ছে এটি এই ডিভাইসটি Wi-Fi Direct-কে সমর্থন করে না। Signal আপনার নতুন Android ডিভাইসটি খুঁজে পেতে এবং সংযুক্ত করতে Wi-Fi Direct ব্যবহার করে। আপনার নতুন Android ডিভাইসে আপনার অ্যাকাউন্টটি পুনরুদ্ধার করতে আপনি এখনও একটি ব্যাকআপ তৈরি করতে পারেন।</string>
   <string name="OldDeviceTransferSetup__create_a_backup">একটি ব্যাকআপ তৈরি করুন</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">আপনার নতুন Android ডিভাইসে সংযোগ দেওয়ার চেষ্টা করার সময় একটি অপ্রত্যাশিত ত্রুটি ঘটেছে।</string>
   <!--DeviceTransferSetupFragment-->
   <string name="DeviceTransferSetup__unable_to_open_wifi_settings">ওয়াইফাই সেটিংস খুলতে অক্ষম। ম্যানুয়ালি ওয়াইফাই চালু করুন।</string>
   <string name="DeviceTransferSetup__grant_location_permission">লোকেশন অনুমতি দিন</string>
-  <string name="DeviceTransferSetup__turn_on_location_services">লোকেশন পরিষেবাগুলো চালু করুন</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">লোকেশন পরিষেবা চালু করুন</string>
   <string name="DeviceTransferSetup__unable_to_open_location_settings">লোকেশন সেটিংস খুলতে অক্ষম।</string>
   <string name="DeviceTransferSetup__turn_on_wifi">ওয়াই-ফাই চালু করুন</string>
   <string name="DeviceTransferSetup__error_connecting">সংযোগ করার সময় ত্রুটি</string>
   <string name="DeviceTransferSetup__retry">পুনরায় চেষ্টা করুন</string>
   <string name="DeviceTransferSetup__submit_debug_logs">ডিবাগ লগ জমা দিন</string>
   <string name="DeviceTransferSetup__verify_code">কোড যাচাই করুন</string>
-  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">নীচের কোডটি আপনার উভয় ডিভাইসে মেলে কিনা তা যাচাই করুন। তারপরে অগ্রসর হতে ট্যাপ করুন।</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">নীচের কোডটি আপনার উভয় ডিভাইসেম্যাচ করে কিনা তা ভেরিফাই করুন। তারপরে চালিয়ে যেতে ট্যাপ করুন।</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">সংখ্যা মিলছে না</string>
   <string name="DeviceTransferSetup__continue">চলতে থাকুন</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">সংখ্যাটি এক নয়</string>
-  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">যদি আপনার ডিভাইসগুলোর সংখ্যা না মিলে, সম্ভবত আপনি ভুল ডিভাইসে সংযুক্ত হয়েছেন। সমস্যা সমাধানে, স্থানান্তরটি থামান ও পুনরায় চেষ্টা করুন এবং আপনার উভয় ডিভাইসকে কাছাকাছি রাখুন।</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">যদি আপনার ডিভাইসগুলোর সংখ্যা না মিলে, তাহলে সম্ভবত আপনি ভুল ডিভাইসে সংযুক্ত হয়েছেন। এই সমস্যাটির সমাধান করতে, ট্রান্সফারটি থামিয়ে পুনরায় চেষ্টা করুন এবং আপনার উভয় ডিভাইসকে কাছাকাছি রাখুন।</string>
   <string name="DeviceTransferSetup__stop_transfer">স্থানান্তর বন্ধ করুন</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">পুরানো ডিভাইস খুঁজে পেতে অক্ষম</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">নতুন ডিভাইস খুঁজে পেতে অক্ষম</string>
@@ -2853,7 +2853,7 @@
   <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">আপনি আপনার রিকভার করার বাক্যাংশটি ডিজিটালি সেভ করতে চাইলে, নিশ্চিত করুন যে এটি আপনার বিশ্বস্ত কোন স্থানে নিরাপদভাবে সেভ করে রাখা হয়েছে।</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">অনুলিপি</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
-  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">রিকভার করার বাক্যাংশটি নিশ্চিত করুন</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">রিকভার করার ফ্রেজ নিশ্চিত করুন</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">আপনার রিকভার করার বাক্যাংশ থেকে নিম্নোক্ত শব্দগুলি লিখুন।</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">%1$d শব্দ</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">বাক্যাংশটি পুনরায় দেখুন</string>
@@ -2991,7 +2991,7 @@
   <string name="ChatColorsMegaphone__not_now">এখন না</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">একটি প্রোফাইল ছবি যুক্ত করুন</string>
-  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">একটি লুক ও রং বেছে নিন অথবা আপনার নামের অদ্যাক্ষর কাস্টমাইজ করুন।</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">একটি ধরন ও রং বেছে নিন অথবা আপনার নামের অদ্যাক্ষর কাস্টমাইজ করুন।</string>
   <string name="AddAProfilePhotoMegaphone__not_now">এখন না</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">ছবি যুক্ত করুন</string>
   <!--KeyboardPagerFragment-->
@@ -3007,7 +3007,7 @@
   <string name="KeyboardPagerfragment_clear_search_entry">সার্চ এন্ট্রি মুছে ফেলুন</string>
   <string name="KeyboardPagerFragment_search_giphy">GIPHY খুঁজুন</string>
   <!--StickerSearchDialogFragment-->
-  <string name="StickerSearchDialogFragment_search_stickers">স্টিকার খুঁজুন</string>
+  <string name="StickerSearchDialogFragment_search_stickers">স্টিকারগুলি খুঁজুন</string>
   <string name="StickerSearchDialogFragment_no_results_found">কোনও ফলাফল পাওয়া যায়নি</string>
   <string name="EmojiSearchFragment__no_results_found">কোনও ফলাফল পাওয়া যায়নি</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">অপরিচিত রিংটোন</string>
@@ -3074,24 +3074,24 @@
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--AvatarPickerFragment-->
-  <string name="AvatarPickerFragment__avatar_preview">আবাতার প্রিভিউ</string>
+  <string name="AvatarPickerFragment__avatar_preview">অবতারের পূর্বরূপ</string>
   <string name="AvatarPickerFragment__camera">ক্যামেরা</string>
   <string name="AvatarPickerFragment__take_a_picture">একটি ছবি তুলুন</string>
-  <string name="AvatarPickerFragment__choose_a_photo">একটি ছবি বেছে নিন</string>
+  <string name="AvatarPickerFragment__choose_a_photo">একটি ছবি চয়ন করুন</string>
   <string name="AvatarPickerFragment__photo">ছবি</string>
   <string name="AvatarPickerFragment__text">টেক্সট</string>
   <string name="AvatarPickerFragment__save">সংরক্ষন</string>
-  <string name="AvatarPickerFragment__select_an_avatar">একটি আবাতার নির্বাচন করুন</string>
-  <string name="AvatarPickerFragment__clear_avatar">আবাতার সাফ করুন</string>
+  <string name="AvatarPickerFragment__select_an_avatar">একটি অবতার নির্বাচন করুন</string>
+  <string name="AvatarPickerFragment__clear_avatar">অবতার সাফ করুন</string>
   <string name="AvatarPickerFragment__edit">সম্পাদনা</string>
-  <string name="AvatarPickerRepository__failed_to_save_avatar">আবাতার সংরক্ষণে ব্যর্থ</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">অবতার সংরক্ষণে ব্যর্থ</string>
   <!--TextAvatarCreationFragment-->
-  <string name="TextAvatarCreationFragment__preview">প্রিভিউ</string>
+  <string name="TextAvatarCreationFragment__preview">পূর্বরূপ</string>
   <string name="TextAvatarCreationFragment__done">শেষ</string>
   <string name="TextAvatarCreationFragment__text">টেক্সট</string>
   <string name="TextAvatarCreationFragment__color">রঙ</string>
   <!--VectorAvatarCreationFragment-->
-  <string name="VectorAvatarCreationFragment__select_a_color">একটি রং নির্বাচন করুন</string>
+  <string name="VectorAvatarCreationFragment__select_a_color">একটি রঙ নির্বাচন করুন</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">এসএমএস</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>

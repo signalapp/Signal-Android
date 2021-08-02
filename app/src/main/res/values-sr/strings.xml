@@ -209,8 +209,10 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Прилог прекорачује ограничење величине за тип поруке коју шаљете.</string>
   <string name="ConversationActivity_unable_to_record_audio">Не могу да снимим звук!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Не можете да шаљете поруке овој групи зато што више нисте члан.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Само %1$s може да шаље поруке.</string>
   <string name="ConversationActivity_admins">админи</string>
   <string name="ConversationActivity_message_an_admin">Послати поруку админу</string>
+  <string name="ConversationActivity_cant_start_group_call">Не може да се покрене групни позив</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Само админи ове групе могу започети позив.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Нема апликације за руковање овом везом на вашем уређају.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ваш захтев за придруживање је послат администратору групе. Бићете обавештени када администратори предузму мере.</string>
@@ -432,6 +434,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Подели са</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Вишеструки прилози су само подржани за слике и видео снимке</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Немате дозволу за слање овој групи</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Трајни неуспех комуникације Signal-a!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal није успео да се пријави на Гуглов Плеј сервис. Комуникација преко канала података је онемогућена, покушајте поново да се пријавите преко Поставке &gt; Напредно.</string>
@@ -589,6 +592,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Готово</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ова особа не може да се дода у застареле групе.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Ова особа се не може додати у огласне групе.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Додати контакт „%1$s“ у групу „%2$s“?</item>
     <item quantity="few">Додати %3$d члана у групу „%2$s“?</item>
@@ -665,6 +669,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Само администратори могу да онемогуће везу за дељење групе.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Немате дозволу да урадите ово.</string>
   <string name="ManageGroupActivity_not_capable">Неко кога сте додали не подржава нове групе и мора да ажурира Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Неко кога сте додали не подржава огласне групе и треба да ажурира Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Ажурирање групе није успело</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Ви нисте члан групе</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Ажурирање групе није успело, покушајте касније</string>
@@ -1039,6 +1044,8 @@
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">Променили сте подешавања групе како би се омогућили свим члановима да шаљу поруке.</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">Променили сте подешавања групе како би се омогућили да само админи шаљу поруке.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s је изменио/ла како би се омогућили свим члановима да шаљу поруке.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s је променио/ла подешавања групе како би се омогућили да само админи шаљу поруке.</string>
   <string name="MessageRecord_allow_all_members_to_send">Подешавања групе су измењена како би се омогућили свим члановима да шаљу поруке.</string>
   <string name="MessageRecord_allow_only_admins_to_send">Подешавања групе су измењена како би се омогућили да само админи шаљу поруке.</string>
   <!--GV2 group link invite access level change-->
@@ -3129,10 +3136,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Додај чланове</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Уреди информације о групи</string>
+  <string name="PermissionsSettingsFragment__send_messages">Слање поруке</string>
   <string name="PermissionsSettingsFragment__all_members">Сви чланови</string>
   <string name="PermissionsSettingsFragment__only_admins">Само администратори</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Ко може додати нове чланове?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Ко може мењати информације о групи?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Ко може да шаље поруке?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Утишај обавештења</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Није утишано</string>

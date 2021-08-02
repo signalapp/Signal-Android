@@ -39,6 +39,7 @@
   <string name="ApplicationPreferencesActivity_hide">దాచు</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">జ్ఞాపిక దాచివేయాల?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">రికార్డ్ చెల్లింపులు రికవరీ పదబంధం</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">రికార్డ్ పదబంధం</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">మీరు మీ పిన్ను నిలిపివేయడానికి ముందు, మీరు మీ చెల్లింపుల ఖాతాను తిరిగి పొందగలరని నిర్ధారించుకోవడానికి మీ చెల్లింపుల రికవరీ పదబంధాన్ని రికార్డ్ చేయాలి.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -51,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(వీడియో)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ప్రదేశం)</string>
   <string name="DraftDatabase_Draft_quote_snippet">స్పంధించు</string>
+  <string name="DraftDatabase_Draft_voice_note">(వాయిస్ మెసేజ్)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">చిత్రశాల</string>
   <string name="AttachmentKeyboard_file">పత్రం</string>
@@ -207,6 +209,8 @@
   <string name="ConversationActivity_unable_to_record_audio">ఆడియో రికార్డ్ చేయడం సాధ్యపడలేదు!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">మీరు ఇకపై ఈ సమూహం సభ్యులు కానందున మీరు ఈ సమూహంకు సందేశాలను పంపలేరు.</string>
   <string name="ConversationActivity_admins">నిర్వాహకులు</string>
+  <string name="ConversationActivity_message_an_admin">నిర్వాహకుడికి సందేశం పంపండి</string>
+  <string name="ConversationActivity_cant_start_group_call">ప్రారంభించలేము సమూహం కాల్</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">ఈ గుంపు యొక్క నిర్వాహకులు మాత్రమే కాల్ ప్రారంభించగలరు.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">మీ పరికరం ఈ లింక్ నిర్వహించడానికి ఎలాంటి అనువర్తనం లేదు.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">గ్రూప్ లో చేరడానికి మీ అభ్యర్థన  నిర్వాహకుడికి పంపబడింది. వారు చర్య తీసుకున్నప్పుడు మీకు తెలియజేయబడుతుంది.</string>
@@ -343,6 +347,7 @@
   <string name="ChooseBackupFragment__icon_content_description">బ్యాకప్ చిహ్నం నుండి పునరుద్ధరించండి</string>
   <string name="ChooseBackupFragment__choose_backup">బ్యాకప్ ఎంచుకోండి</string>
   <string name="ChooseBackupFragment__learn_more">ఇంకా నేర్చుకో</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">లేదు ఫైల్ బ్రౌజర్ అందుబాటులో ఉంది</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">పునరుద్ధరణ పూర్తయింది</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">ప్రత్యామ్నాయములను ఉపయోగించడం కొనసాగించడానికి, దయచేసి ఫోల్డర్‌ను ఎంచుకోండి. క్రొత్త బ్యాకప్‌లు ఈ స్థానానికి సేవ్ చేయబడతాయి.</string>
@@ -421,6 +426,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">తో పంచు</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">కేవలం ఛాయాచిత్రములు మరియు చలనచిత్రములు మాత్రమే ఒకటి కన్నా ఎక్కువ పంపగలం</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">నీకు లేదు అనుమతి కు పంపండి దీనికి సమూహం</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal లో శాశ్వత సమాచార వైఫల్యం!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">గూగ్లె ప్లే సదుపాయలతొ Signal నమోదు కాలెదు. Signal సందెశాలు మరియు  కాల్స్ నిలిపివేయబడ్డాయి. దయచేసి ఆధునిక అమరికలు లో మళ్ళి నమోదు చెసుకొనగలరు.</string>

@@ -208,8 +208,10 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bilagan överskrider storleksgränserna för den typ av meddelande du skickar.</string>
   <string name="ConversationActivity_unable_to_record_audio">Det går inte att spela in ljud!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan inte skicka meddelanden till denna grupp eftersom du inte längre är medlem.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Endast %1$s kan skicka meddelanden.</string>
   <string name="ConversationActivity_admins">administratörer</string>
   <string name="ConversationActivity_message_an_admin">Skicka ett meddelande till en administratör</string>
+  <string name="ConversationActivity_cant_start_group_call">Kan inte starta gruppsamtal</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Endast administratörer för denna grupp kan starta ett samtal.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det finns ingen app tillgänglig för att hantera denna länk på din enhet.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din förfrågan om att gå med har skickats till gruppadministratören. Du får ett meddelande när administratören vidtar åtgärder.</string>
@@ -420,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Dela med</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Flera bilagor stöds endast för bilder och videoklipp</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Du har inte behörighet att skicka till denna grupp</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent kommunikationsfel med Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal kunde inte registrera sig på Google Play-tjänster. Signal-meddelanden och -samtal har inaktiverats, vänligen försök att återregistrera i Inställningar &gt; Avancerat.</string>
@@ -562,6 +565,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Klar</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Denna person kan inte läggas till i äldre grupper.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Denna person kan inte läggas till i tillkännagivande grupper.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Lägg till \"%1$s\" i \"%2$s\"?</item>
     <item quantity="other">Lägg till %3$d medlemmar i \"%2$s\"?</item>
@@ -632,6 +636,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Endast administratörer kan återställa den delbara grupplänken.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Du har inte rätten att göra detta</string>
   <string name="ManageGroupActivity_not_capable">Någon som du har lagt till stöder inte nya grupper och behöver uppdatera Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Någon du har lagt till stöder inte tillkännagivande grupper och behöver uppdatera Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Det gick inte att uppdatera gruppen</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Du är inte medlem i gruppen</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Det gick inte att uppdatera gruppen. Vänligen försök igen senare</string>
@@ -988,6 +993,8 @@
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">Du ändrade gruppinställningarna så att alla medlemmar tillåts skicka meddelanden.</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">Du ändrade gruppinställningarna så att endast administratörer tillåts skicka meddelanden.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s ändrade gruppinställningarna så att alla medlemmar tillåts skicka meddelanden.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ändrade gruppinställningarna så att endast administratörer tillåts skicka meddelanden.</string>
   <string name="MessageRecord_allow_all_members_to_send">Gruppinställningarna ändrades så att alla medlemmar tillåts skicka meddelanden.</string>
   <string name="MessageRecord_allow_only_admins_to_send">Gruppinställningarna ändrades så att endast administratörer tillåts skicka meddelanden.</string>
   <!--GV2 group link invite access level change-->
@@ -1757,7 +1764,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="CreateProfileActivity__username">Användarnamn</string>
   <string name="CreateProfileActivity__create_a_username">Skapa ett användarnamn</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Anpassade MMS-gruppnamn och foton är bara synliga för dig.</string>
-  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Gruppbeskrivningar kommer att vara synliga för medlemmar i denna grupp och personer som har bjudits in.</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Gruppbeskrivningar kommer att vara synliga för medlemmar i denna grupp och inbjudna personer.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Om</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv några ord om dig själv…</string>
@@ -3038,10 +3045,12 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Lägg till medlemmar</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Redigera gruppinformation</string>
+  <string name="PermissionsSettingsFragment__send_messages">Skicka meddelanden</string>
   <string name="PermissionsSettingsFragment__all_members">Alla medlemmar</string>
   <string name="PermissionsSettingsFragment__only_admins">Endast administratörer</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Vem kan lägga till nya medlemmar?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Vem kan redigera denna grupps information?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Vem kan skicka meddelanden?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Tysta aviseringar</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Inte tystad</string>

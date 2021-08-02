@@ -208,6 +208,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Vedlegg overskrid maksimal storleiksgrense for gjeldande meldingstype.</string>
   <string name="ConversationActivity_unable_to_record_audio">Klarte ikkje å ta opp lydar.</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan ikkje senda meldingar til denne gruppa sidan du ikkje lenger er medlem.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Berre %1$s kan senda meldingar.</string>
+  <string name="ConversationActivity_admins">administratorar</string>
+  <string name="ConversationActivity_message_an_admin">Send melding til ein administrator</string>
+  <string name="ConversationActivity_cant_start_group_call">Klarte ikkje starta gruppesamtale</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Berre gruppeadministratorar kan starta ein samtale.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har inga program på denne eininga som kan handtera denne lenka.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Førespurnaden din om å bli med er sendt til gruppeadministratoren. Du får eit varsel når dei gjer noko med det.</string>
   <string name="ConversationActivity_cancel_request">Avslå førespurnad</string>
@@ -418,6 +423,7 @@ Viss kontoen din har lenka einingar, så vil nye notat bli synkroniserte.</strin
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Fleire vedlegg er berre støtta for bilde og film</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Du har ikkje tilgang til å senda til denne gruppa</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Varig Signal-kommunikasjonsfeil.</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal klarte ikkje å registrera seg som Google Play-teneste. Signal-meldingar og samtalar er difor slått av. Prøv å registrera programmet på nytt under Innstillingar &gt; Avansert.</string>
@@ -564,6 +570,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Ferdig</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Denne kontakten kan ikkje vera med i eldre grupper.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Denne personen kan ikkje leggast til kunngjeringsgrupper.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Legg til %1$s medlem til «%2$s»?</item>
     <item quantity="other">Legg til %3$d medlemmar til «%2$s»?</item>
@@ -634,6 +641,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Berre administratorar kan nullstilla den delbare gruppelenka.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Du har ikkje rettar til å gjera dette</string>
   <string name="ManageGroupActivity_not_capable">Nokon du la til må oppdatera Signal for å få støtte for nye grupper</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Ein person du la til har ikkje støtte for kunngjeringsgrupper og må oppdatera Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Klarte ikkje oppdatera gruppa</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Du er ikkje medlem av gruppa</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Klarte ikkje oppdatera gruppa, prøv igjen seinare</string>
@@ -889,7 +897,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du stilte inn utløpstida for forsvinnande meldingar til %1$s</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s stilte inn utløpstida for forsvinnande meldingar til %2$s</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Nedtellinga for forsvinnande meldingar er stilt til %1$s.</string>
-  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Denne gruppa blei oppgradert til ei Ny gruppe.</string>
+  <string name="MessageRecord_this_group_was_updated_to_a_new_group">Denne gruppa vart oppgradert til ei Ny gruppe.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du er ikkje lagt til i den Nye gruppa, men er invitert til å bli med.</string>
   <string name="MessageRecord_chat_session_refreshed">Samtaleøkta er oppfriska</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
@@ -912,7 +920,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_you_added_s">Du la til %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s la til %2$s</string>
   <string name="MessageRecord_s_added_you">%1$s la deg til i gruppa.</string>
-  <string name="MessageRecord_you_joined_the_group">Du blei med i gruppa.</string>
+  <string name="MessageRecord_you_joined_the_group">Du vart med i gruppa.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s vart med i gruppa.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">Du fjerna %1$s.</string>
@@ -988,6 +996,12 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s endra kven som kan redigera gruppemedlemskap til «%2$s».</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Kven som kan endra gruppemedlemskap er endra til «%1$s».</string>
   <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Du endra gruppeinnstillingane til å la alle medlemmar senda meldingar.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Du endra gruppeinnstillingane til at berre administratorar kan senda meldingar.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s endra gruppeinnstillingane til å la alle medlemmar senda meldingar.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s endra gruppeinnstillingane til at berre administratorar kan senda meldingar.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Gruppeinnstillingane vart endra til at alle medlemmar kan senda meldingar.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Gruppeinnstillingane vart endra til at berre administratorar kan senda meldingar.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Du aktiverte gruppelenka utan admin-godkjenning.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Du aktiverte gruppelenka med admin-godkjenning.</string>
@@ -1009,8 +1023,8 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s nullstilte gruppelenka.</string>
   <string name="MessageRecord_the_group_link_has_been_reset">Gruppelenka er nullstilt.</string>
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Du blei med i gruppa via gruppelenka.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s blei med i gruppa via gruppelenka.</string>
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Du vart med i gruppa via gruppelenka.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s vart med i gruppa via gruppelenka.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Du spurde om å bli med i gruppa.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s spurde om å bli med via gruppelenka.</string>
@@ -2310,12 +2324,12 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Prosentane i oversikta er rekna ut frå utgåande meldingar dei siste %1$d dagane som ikkje har forsvunne eller blitt sletta.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start ein samtale</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Start å kommunisera trygt og skru på nye funksjonar som går forbi begrensningane til ukrypterte SMS-meldingar, ved å invitera fleire kontaktar til Signal.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Denne statistikken blei generert på di eining, det er berre du som kan sjå han. Den blir aldri sendt nokon stad.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Denne statistikken vart generert på di eining, det er berre du som kan sjå han. Den blir aldri sendt nokon stad.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterte meldingar</string>
   <string name="InsightsDashboardFragment__cancel">Avbryt</string>
   <string name="InsightsDashboardFragment__send">Send</string>
   <string name="InsightsModalFragment__title">Her kjem Oversikt</string>
-  <string name="InsightsModalFragment__description">Finn ut kor mange av dine utgåande meldingar som blei sendt trygt, og inviter enkelt nye kontaktar for å auka Signal-prosenten din.</string>
+  <string name="InsightsModalFragment__description">Finn ut kor mange av dine utgåande meldingar som vart sendt trygt, og inviter enkelt nye kontaktar for å auka Signal-prosenten din.</string>
   <string name="InsightsModalFragment__view_insights">Vis Oversikt</string>
   <string name="FirstInviteReminder__title">Inviter til Signal</string>
   <string name="FirstInviteReminder__description">Du kan auka kor mange krypterte meldingar du sender med %1$d%%</string>
@@ -2712,10 +2726,10 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="ReviewCard__delete">Slett</string>
   <string name="ReviewCard__recently_changed">Endra nyleg profilnamnet sitt frå %1$s til %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
-  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s blei med</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s og %2$s blei med</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s og %3$s blei med </string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s og %3$d til blei med </string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s vart med</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s og %2$s vart med</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s og %3$s vart med </string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s og %3$d til vart med </string>
   <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s la på</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s og %2$s la på</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s og %3$s la på</string>
@@ -3043,10 +3057,12 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Legg til medlemmar</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Endra gruppeinfo</string>
+  <string name="PermissionsSettingsFragment__send_messages">Send meldingar</string>
   <string name="PermissionsSettingsFragment__all_members">Alle medlemmar</string>
   <string name="PermissionsSettingsFragment__only_admins">Berre administratorar</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Kven kan legga til nye medlemmar?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kven kan redigera infoen til denne gruppa?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Kven kan senda meldingar?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Ikkje vis varsel</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Ikkje dempa</string>

@@ -20,7 +20,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">Se anulează înregistrarea</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Se dezabonează de la mesajele și apelurile Signal…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivați mesajele și apelurile Signal? </string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivați mesajele și apelurile Signal prin anularea înregistrării în server. Va trebui să reînregistați numărul dvs. de telefon pentru a le folosi din nou în viitor.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivați mesajele și apelurile Signal prin anularea înregistrării din server. Va trebui să reînregistrați numărul dvs. de telefon pentru a le folosi din nou în viitor.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare la server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activat</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Atinge pentru a schimba aplicaţia implicită de SMS </string>
@@ -40,7 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">Ascundeți memento?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Transcrie fraza de recuperare plăți</string>
   <string name="ApplicationPreferencesActivity_record_phrase">Transcrie fraza</string>
-  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Înainte de a putea dezactiva PIN-ul, trebuie să transcrieți fraza de recuperare, pentru a vă asigura că puteti recăpăta contul de plăți.</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Înainte de a putea dezactiva PIN-ul, trebuie să transcrieți fraza de recuperare, pentru a vă asigura că puteți recăpăta accesul la contul de plăți.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minut</item>
@@ -209,10 +209,10 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Atașamentul depășește limita de mărime pentru tipul de mesaj pe care vreți să-l trimiteți.</string>
   <string name="ConversationActivity_unable_to_record_audio">Nu se poate înregistra audio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nu puteți trimite mesaje acestui grup, deoarece nu mai sunteți membru.</string>
-  <string name="ConversationActivity_only_s_can_send_messages">Doar %1$s poate trimite mesaje.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Doar %1$s pot trimite mesaje.</string>
   <string name="ConversationActivity_admins">administratori</string>
   <string name="ConversationActivity_message_an_admin">Trimiteți un mesaj unui administrator</string>
-  <string name="ConversationActivity_cant_start_group_call">Nu se poate initția apelul de grup</string>
+  <string name="ConversationActivity_cant_start_group_call">Nu pot iniția apelul de grup</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Numai administratorii acestui grup pot iniția un apel.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nu există nici o aplicație disponibilă pe dispozitivul tău care să poată deschide acest link.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Solicitarea dvs. de înscriere a fost trimisă administratorului grupului. Veți fi anunțat când vor lua acțiuni.</string>
@@ -1158,8 +1158,8 @@
   <string name="DeviceProvisioningActivity_continue">CONTINUAȚI</string>
   <string name="DeviceProvisioningActivity_content_intro">Va putea</string>
   <string name="DeviceProvisioningActivity_content_bullets">
-        • Citirea tuturor mesajelor dvs.
-        \n• Trimiterea mesajelor în numele dvs.
+        • Citi toate mesajelor dvs.
+        \n• Trimite mesaje în numele dvs.
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Se asociază dispozitivul</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Se asociază noul dispozitiv…</string>
@@ -1454,7 +1454,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_you_marked_unverified">Ați marcat ca și neverificat</string>
   <string name="ThreadRecord_message_could_not_be_processed">Mesajul nu a putut fi procesat</string>
   <string name="ThreadRecord_delivery_issue">Problemă de livrare</string>
-  <string name="ThreadRecord_message_request">Cerere mesaj</string>
+  <string name="ThreadRecord_message_request">Solicitare mesaj</string>
   <string name="ThreadRecord_photo">Poză</string>
   <string name="ThreadRecord_gif">GIF</string>
   <string name="ThreadRecord_voice_message">Mesaj vocal</string>
@@ -1586,7 +1586,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
-  <string name="SingleRecipientNotificationBuilder_message_request">Cerere mesaj</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">Solicitare mesaj</string>
   <string name="SingleRecipientNotificationBuilder_you">Dvs.</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Redați video</string>
@@ -1904,7 +1904,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="AndroidManifest_archived_conversations">Conversații arhivate</string>
   <string name="AndroidManifest_remove_photo">Eliminați poza</string>
   <!--Message Requests Megaphone-->
-  <string name="MessageRequestsMegaphone__message_requests">Solicitări mesaje</string>
+  <string name="MessageRequestsMegaphone__message_requests">Solicitări mesaj</string>
   <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Utilizatorii pot alege acum să accepte o nouă conversație. Prin intermediul numelui de profil puteți știi cine vă scrie. </string>
   <string name="MessageRequestsMegaphone__add_profile_name">Adăugați nume de profil</string>
   <!--HelpFragment-->
@@ -2160,16 +2160,16 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsHomeFragment__activate_payments">Activare Plăți</string>
   <string name="PaymentsHomeFragment__activating_payments">Se activează plățile…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Restaurează contul de plăți</string>
-  <string name="PaymentsHomeFragment__no_recent_activity_yet">Nu există activitați recente încă</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">Nu există activități recente deocamdată</string>
   <string name="PaymentsHomeFragment__pending_requests">Solicitări în așteptare</string>
   <string name="PaymentsHomeFragment__recent_activity">Activități recente</string>
   <string name="PaymentsHomeFragment__see_all">Vezi tot</string>
-  <string name="PaymentsHomeFragment__add_funds">Adăugare fonduri</string>
+  <string name="PaymentsHomeFragment__add_funds">Adăugați fonduri</string>
   <string name="PaymentsHomeFragment__send">Trimiteți</string>
   <string name="PaymentsHomeFragment__sent_s">Trimis %1$s</string>
   <string name="PaymentsHomeFragment__received_s">Primit %1$s</string>
   <string name="PaymentsHomeFragment__transfer_to_exchange">Transferați către exchange</string>
-  <string name="PaymentsHomeFragment__currency_conversion">Convertiți moneda</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Conversie monedă</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Dezactivați plățile</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Frază de recuperare</string>
   <string name="PaymentsHomeFragment__help">Ajutor</string>
@@ -2178,8 +2178,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsHomeFragment__received_payment">Plată primită</string>
   <string name="PaymentsHomeFragment__processing_payment">Se procesează plata</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
-  <string name="PaymentsHomeFragment__currency_conversion_not_available">Conversie valutară indisponibilă</string>
-  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Nu se poate afișa conversia valutară. Verificați conexiunea telefonului și încercați din nou</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Conversie monetară indisponibilă</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Nu se poate afișa conversia monetară. Verificați conexiunea telefonului și încercați din nou</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Plățile nu sunt disponibile in regiunea dvs.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Nu s-au putut activa plățile. Încercați din nou mai târziu.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Dezactivați Plățile?</string>
@@ -2190,7 +2190,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsHomeFragment__payments_deactivated">Plățile au fost dezactivate.</string>
   <string name="PaymentsHomeFragment__payment_failed">Plata a eșuat</string>
   <string name="PaymentsHomeFragment__details">Detalii</string>
-  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Puteți utiliza Signal pentru a trimite si primi MobileCoin. Toate plățile sunt supuse Termenilor de Utilizare ai Monedei virtuale și Portofelului MobileCoin. Aceasta este o caracteristică beta, prin urmare puteți întâmpina probleme, iar plățile sau soldul pierdut nu pot fi recuperate.</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Puteți utiliza Signal pentru a trimite si primi MobileCoin. Toate plățile sunt supuse Termenilor de Utilizare ai monedei virtuale și portofelului MobileCoin. Aceasta este o caracteristică beta, prin urmare puteți întâmpina probleme, iar plățile sau soldul pierdut nu pot fi recuperate.</string>
   <string name="PaymentsHomeFragment__activate">Activare</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Vezi termenii MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Plățile în Signal nu mai sunt disponibile. Puteți transfera în continuare fonduri către un exchange, dar nu mai puteți trimite sau primi plăți ori adăuga fonduri.</string>
@@ -2210,11 +2210,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentsDetailsFragment__network_fee">Comision de rețea</string>
   <string name="PaymentsDetailsFragment__sent_by">Trimis de</string>
   <string name="PaymentsDetailsFragment__sent_to_s">Trimis către %1$s</string>
-  <string name="PaymentsDetailsFragment__you_on_s_at_s">Tine %1$s la %2$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Dvs. %1$s la %2$s</string>
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s la %3$s</string>
   <string name="PaymentsDetailsFragment__to">Către</string>
   <string name="PaymentsDetailsFragment__from">De la</string>
-  <string name="PaymentsDetailsFragment__information">Detaliile tranzacției inclusiv valoarea și data acesteia, fac parte din registrul MobileCoin</string>
+  <string name="PaymentsDetailsFragment__information">Detaliile tranzacției inclusiv valoarea și data acesteia, fac parte din registrul MobileCoin.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Comision de curățare monedă</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">Un “comision de curațare monedă” este perceput când monedele pe care le dețineți nu pot fi combinate pentru a finaliza o tranzacție. Curățarea vă permite să continuați efectuarea de plăți.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Nu mai sunt detalii disponibile pentru această tranzacție</string>
@@ -2263,7 +2263,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">Confirmați plata</string>
   <string name="ConfirmPayment__network_fee">Comision de rețea</string>
-  <string name="ConfirmPayment__error_getting_fee">Eroare la obținerea comisionului </string>
+  <string name="ConfirmPayment__error_getting_fee">Eroare obținere comision</string>
   <string name="ConfirmPayment__estimated_s">Estimat %1$s</string>
   <string name="ConfirmPayment__to">Către</string>
   <string name="ConfirmPayment__total_amount">Suma totală</string>
@@ -2275,9 +2275,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConfirmPayment__payment_will_continue_processing">Plata va continua procesarea</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Destinatar invalid</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Aceasta persoană nu a activat plățile</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Nu s-a putut solicita un comision de rețea. Pentru a continua această plată apăsați okay să încercați din nou</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s la %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">Setați Moneda</string>
   <string name="SetCurrencyFragment__all_currencies">Toate monedele</string>
   <!--****************************************-->
   <!--menus-->
@@ -2579,7 +2581,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_app_protection__signal_pin">PIN Signal</string>
   <string name="preferences_app_protection__create_a_pin">Creați un PIN</string>
   <string name="preferences_app_protection__change_your_pin">Modificare PIN</string>
-  <string name="preferences_app_protection__pin_reminders">Memento-uri PIN</string>
+  <string name="preferences_app_protection__pin_reminders">Mementouri PIN</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-urile păstrează informațiile stocate în Signal criptate, astfel încât numai tu să le poți accesa. Profilul, setările și contactele se vor restabili atunci când reinstalați Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Adăugați securitate suplimentară necesitând PIN-ul dvs. Signal pentru a vă înregistra din nou numărul de telefon la Signal.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Memento-urile vă ajută să vă amintiți codul PIN deoarece nu poate fi recuperat. Vi se va cere mai rar în timp.</string>
@@ -2625,16 +2627,20 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Se așteaptă conectarea vechiul dispozitiv Android…</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal are nevoie de permisiunea de localizare pentru a descoperi și a se conecta la vechiul dispozitiv Android.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal are nevoie de servicii de localizare activate pentru a descoperi și a vă conecta cu vechiul dispozitiv Android.</string>
-  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal are nevoie de Wi-Fi activat pentru a descoperi și a se conecta la vechiul dispozitiv Android. Wi-Fi trebuie să fie activat dar nu neapărat conectat la o rețea fără fir.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal are nevoie de Wi-Fi activat pentru a descoperi și a se conecta cu vechiul dispozitiv Android. Wi-Fi trebuie să fie activat dar nu neapărat conectat la o rețea fără fir.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Ne cerem scuze, se pare că acest dispozitiv nu acceptă Wi-Fi Direct. Signal folosește Wi-Fi Direct pentru a descoperi și a se conecta cu vechiul dispozitiv Android. Încă mai puteți recupera contul din vechiul dispozitiv Android, restaurând un backup.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Restaurare backup</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">A apărut o eroare neașteptată în timpul încercării de a vă conecta la vechiul dispozitiv Android.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Se caută un dispozitiv nou Android …</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal are nevoie de permisiunea de localizare pentru a descoperi și a se conecta la noul dispozitiv Android.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal are nevoie de servicii de localizare activate pentru a descoperi și a vă conecta cu noul dispozitiv Android.</string>
-  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal are nevoie de Wi-Fi activat pentru a descoperi și a se conecta la noul dispozitiv Android. Wi-Fi trebuie să fie activat dar nu neapărat conectat la o rețea fără fir.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal are nevoie de Wi-Fi activat pentru a descoperi și a se conecta cu noul dispozitiv Android. Wi-Fi trebuie să fie activat dar nu neapărat conectat la o rețea fără fir.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Ne cerem scuze, se pare că acest dispozitiv nu accepta Wi-Fi Direct. Signal folosește Wi-Fi Direct pentru a descoperi și a se conecta cu noul dispozitiv Android. Încă mai puteți crea un backup pentru a vă restaura contul pe noul dispozitiv Android.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Creați un backup</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">O eroare neașteptată a apărut în timpul încercării de conectare la noul dispozitiv Android.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Nu se pot deschide setările Wi-Fi. Vă rugăm activați Wi-Fi manual.</string>
   <string name="DeviceTransferSetup__grant_location_permission">Acordați permisiunea pentru locație</string>
   <string name="DeviceTransferSetup__turn_on_location_services">Activare servicii de localizare</string>
   <string name="DeviceTransferSetup__unable_to_open_location_settings">Nu se pot deschide setările de locație.</string>
@@ -2699,6 +2705,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NewDeviceTransferComplete__continue_registration">Continuați înregistrarea</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Transfer cont</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Se pregătește conectarea la celălalt dispozitiv Android al dvs…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Se pregătește conectarea la celălalt dispozitiv Android al dvs…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Se caută celălalt dispozitiv Android al dvs…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Se conectează la celălalt dispozitiv Android al dvs…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">Este necesară o verificare</string>
   <string name="DeviceToDeviceTransferService_status_service_connected">Se transferă contul…</string>
   <!--OldDeviceTransferLockedDialog-->
@@ -2707,6 +2717,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="OldDeviceTransferLockedDialog__done">Gata</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Anulați și activați acest dispozitiv</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Transferați soldul MOB?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Aveți un sold de %1$s. Dacă nu vă transferați fondurile către adresa unui alt portofel înainte de a vă șterge contul, acestea vor fi pierdute definitiv.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">Nu transfera</string>
   <string name="AdvancedPreferenceFragment__transfer">Transfer</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blochează</string>
@@ -2802,7 +2815,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="DeleteAccountFragment__enter_your_phone_number">Introduceți numărul dvs. de telefon</string>
   <string name="DeleteAccountFragment__delete_account">Ștergere cont</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Ștergerea informațiilor despre contul dvs. și poza de profil</string>
-  <string name="DeleteAccountFragment__delete_all_your_messages">Ștergeți toate mesajele dvs.</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">Ștergerea tuturor mesajelor dvs.</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Ștergerea a %1$s din contul dvs. de plăți</string>
   <string name="DeleteAccountFragment__no_country_code">Codul țării nu este specificat</string>
   <string name="DeleteAccountFragment__no_number">Niciun număr specificat</string>
   <string name="DeleteAccountFragment__the_phone_number">Numărul de telefon pe care l-ați introdus nu se potrivește cu cel al contului dvs.</string>
@@ -2873,40 +2887,68 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Despre MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin este o nouă monedă digitală axată pe confidențialitate.</string>
+  <string name="payment_info_card_adding_funds">Adăugarea fondurilor</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Puteți adăuga fonduri pentru a le folosi în Signal transferând MobileCoin către adresa portofelului dvs.</string>
+  <string name="payment_info_card_cashing_out">Schimbul în numerar</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Puteți schimba oricând MobileCoin în numerar la un exchange care acceptă MobileCoin. Nu trebuie decât să faceți un transfer către contul dvs. de la acel exchange.</string>
+  <string name="payment_info_card_hide_this_card">Ascundeți această fișă?</string>
   <string name="payment_info_card_hide">Ascunde</string>
+  <string name="payment_info_card_record_recovery_phrase">Transcrie fraza de recuperare</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Fraza dvs. de recuperare vă oferă încă o metodă de a vă restaura contul de plăți</string>
+  <string name="payment_info_card_record_your_phrase">Transcrieți fraza</string>
   <string name="payment_info_card_update_your_pin">Actualizați-vă PIN-ul</string>
+  <string name="payment_info_card_with_a_high_balance">Având un sold ridicat, vă este recomandat să treceți la un PIN alfanumeric pentru a asigura mai multă protecție contului dvs.</string>
   <string name="payment_info_card_update_pin">Actualizați PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Dezactivare portofel</string>
   <string name="DeactivateWalletFragment__your_balance">Soldul dvs.</string>
-  <string name="DeactivateWalletFragment__its_recommended_that_you">Este recomandat să vă transferați fondurile pe o altă adresă de portofel înainte de a dezactiva plățile. Dacă alegeți să nu vă transferați fondurile acum, acestea vor rămâne în portofelul dvs. legat la Signal dacă reactivați plățile.</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Este recomandat să vă transferați fondurile către o altă adresă de portofel înainte de a dezactiva plățile. Dacă alegeți să nu vă transferați fondurile acum, acestea vor rămâne în portofelul dvs. asociat cu Signal dacă reactivați plățile.</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">Transferați soldul rămas</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">Dezactivați fără transfer</string>
   <string name="DeactivateWalletFragment__deactivate">Dezactivare</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Dezactivați fără transfer?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Soldul dvs. va rămâne în portofelul asociat cu Signal, dacă alegeți sa reactivați plățile</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Eroare la dezactivarea portofelului.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Frază de recuperare</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Afișare frază de recuperare</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Introdu fraza de recuperare</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Soldul dvs. va fi restituit automat când reinstalați Signal dacă vă confirmați PIN-ul Signal. De asemenea vă puteți recupera soldul utilizând o frază de recuperare, aceasta este formată din %1$d cuvinte și este unică pentru dvs. Ar trebui să o scrieți pe hârtie si să o păstrați într-un loc sigur.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Fraza dvs. de recuperare este formată din %1$d de cuvinte și este unică pentru dvs. Utilizați această frază pentru a vă recupera soldul.</string>
   <string name="PaymentsRecoveryStartFragment__start">Start</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Introduceți manual</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Lipire din clipboard</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Lipiți fraza de recuperare</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Frază de recuperare</string>
   <string name="PaymentsRecoveryPasteFragment__next">Următorul</string>
   <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Frază de recuperare invalidă</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Asigurați-vă că ați introdus %1$d de cuvinte și încercați din nou.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Următorul</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Editează</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Înapoi</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Fraza dvs. de recuperare</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Notați următoarele %1$d de cuvinte în ordinea în care apar. Și păstrați nota într-un loc sigur.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Asigurați-vă că ați introdus corect fraza dvs.</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Nu faceți capturi de ecran și nu trimiteți prin e-mail.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Contul de plăți a fost restaurat.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Frază de recuperare invalidă</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Asigurați-vă că ați introdus corect fraza de recuperare și încercați din nou.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Copiere în clipboard?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Dacă alegeți să păstrați fraza dvs. de recuperare în mod digital, asigurați-vă că este stocată în siguranță undeva de încredere.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Copy</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
-  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Cuvânt %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Confirmați fraza de recuperare</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Introduceți următoarele cuvinte din fraza dvs. de recuperare.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Cuvântul %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Vedeți din nou fraza</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Gata</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">S-a confirmat fraza de recuperare</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Introduceți fraza de recuperare</string>
   <string name="PaymentsRecoveryEntryFragment__enter_word_d">Introduceți cuvântul %1$d</string>
-  <string name="PaymentsRecoveryEntryFragment__word_d">Cuvânt %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">Cuvântul %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">Următorul</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">Cuvânt invalid</string>
   <!--ClearClipboardAlarmReceiver-->
@@ -2915,7 +2957,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PaymentNotificationsView__view">Vizualizare</string>
   <!--UnreadPayments-->
   <string name="UnreadPayments__s_sent_you_s">%1$s v-a trimis %2$s</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d notificări noi de plată</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">Nu puteți trimite plata</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Pentru a trimite o plată acestui utilizator, el trebuie să accepte o solicitare de mesaj din partea dvs. Pentru a crea o solicitare trebuie să-i trimiteți un mesaj.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Trimite mesaj</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Nu aveți grupuri în comun cu această persoană. Examinați cu atenție solicitările înainte de a accepta pentru a evita mesajele nedorite.</string>
@@ -3093,7 +3138,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PermissionsSettingsFragment__only_admins">Doar administratorii</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Cine poate adăuga membri?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Cine poate edita informațiile grupului?</string>
-  <string name="PermissionsSettingsFragment__who_can_send_messages">Cine poate să trimită mesaje</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Cine poate să trimită mesaje?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Notificări fără sunet</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nu este pe silențios</string>

@@ -207,8 +207,10 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Lampiran melebihi batas ukuran untuk tipe pesan yang Anda kirimkan.</string>
   <string name="ConversationActivity_unable_to_record_audio">Tidak bisa merekam audio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Anda tidak dapat mengirim pesan kepada grup ini karena Anda sudah bukan anggota.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Hanya %1$s yang dapat mengirimkan pesan.</string>
   <string name="ConversationActivity_admins">admin</string>
   <string name="ConversationActivity_message_an_admin">Kirimkan pesan ke admin</string>
+  <string name="ConversationActivity_cant_start_group_call">Tidak dapat memulai panggilan grup</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Hanya admin grup ini yang dapat memulai panggilan.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Tidak ada aplikasi tersedia untuk menangani tautan ini pada perangkat Anda</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Permintaan Anda untuk bergabung telah terkirim kepada admin grup. Anda akan diberitahu saat mereka meresponnya.</string>
@@ -408,6 +410,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Berbagi dengan</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Lampiran jamak hanya berupa gambar dan video</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Anda tidak memiliki izin untuk mengirim ke grup ini</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kegagalan komunikasi Signal permanen!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal tidak dapat melakukan registrasi melalui Google Play Services. Fitur Signal seperti pesan dan panggilan dinonaktifkan, mohon registrasi ulang melalui Pengaturan &gt; Lanjutan.</string>
@@ -535,6 +538,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Selesai</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Pengguna ini tidak dapat ditambahkan ke grup lama.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Orang ini tidak dapat ditambahkan ke grup pemberitahuan.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="other">Tambahkan %3$d anggota ke \"%2$s\"?</item>
   </plurals>
@@ -599,6 +603,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Hanya admin yang dapat mengatur ulang tautan grup yang dapat dibagikan.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Anda tidak memiliki hak untuk melakukan hal ini</string>
   <string name="ManageGroupActivity_not_capable">Seseorang yang Anda tambahkan belum menunjang fitur grup baru dan perlu memperbarui Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Seseorang yang Anda tambahkan tidak dapat membuka grup pemberitahuan dan perlu memperbarui Signal.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Gagal untuk memperbarui grup</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Anda bukan member grup ini</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Gagal memperbarui grup mohon coba lagi nanti</string>
@@ -937,6 +942,8 @@
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">Anda mengubah pengaturan grup mengizinkan semua anggota untuk mengirimkan pesan.</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">Anda mengubah pengaturan grup hanya mengizinkan admin untuk mengirimkan pesan.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s mengubah pengaturan grup untuk mengizinkan semua pengguna untuk mengirimkan pesan.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s mengubah pengaturan grup hanya mengizinkan admin untuk mengirimkan pesan.</string>
   <string name="MessageRecord_allow_all_members_to_send">Pengaturan grup telah diubah mengizinkan semua anggota untuk mengirimkan pesan.</string>
   <string name="MessageRecord_allow_only_admins_to_send">Pengaturan grup telah diubah hanya mengizinkan admin untuk mengirimkan pesan.</string>
   <!--GV2 group link invite access level change-->
@@ -2952,10 +2959,12 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Tambahkan anggota</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Sunting informasi grup</string>
+  <string name="PermissionsSettingsFragment__send_messages">Kirim pesan</string>
   <string name="PermissionsSettingsFragment__all_members">Semua anggota</string>
   <string name="PermissionsSettingsFragment__only_admins">Khusus para admin</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Siapa yang dapat menambahkan anggota baru?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Siapa yang dapat menyunting informasi grup?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Siapa yang dapat mengirimkan pesan?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Senyapkan pemberitahuan</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Tidak Senyap</string>
@@ -2996,6 +3005,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="TextAvatarCreationFragment__text">Teks</string>
   <string name="TextAvatarCreationFragment__color">Warna</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Pilih warna</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>

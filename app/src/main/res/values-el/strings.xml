@@ -205,8 +205,10 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Το συνημμένο υπερβαίνει τα όρια μεγέθους για τον τύπο μηνύματος που στέλνεις.</string>
   <string name="ConversationActivity_unable_to_record_audio">Η ηχογράφηση απέτυχε!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Δεν μπορείς να στείλεις μηνύματα σε αυτή την ομάδα γιατί δεν είσαι πια μέλος.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Μόνο %1$s μπορούν να στέλνουν μηνύματα.</string>
   <string name="ConversationActivity_admins">διαχειριστές</string>
-  <string name="ConversationActivity_message_an_admin">Μήνυμα σε διαχειριστή</string>
+  <string name="ConversationActivity_message_an_admin">Αποστολή μηνύματος σε διαχειριστή</string>
+  <string name="ConversationActivity_cant_start_group_call">Αδυναμία πραγματοποίησης ομαδικής κλήσης</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Μόνο οι διαχειριστές της ομάδας μπορούν να ξεκινήσουν μια κλήση.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Δεν έχεις κάποια εφαρμογή στην συσκευή σου που να μπορεί να διαχειριστεί αυτό τον σύνδεσμο.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Το αίτημά σου για να μπεις στην ομάδα στάλθηκε στον διαχειριστή/τρια της ομάδας. Θα ενημερωθείς όταν λάβει απόφαση.</string>
@@ -417,6 +419,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Μοιράσου με</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Τα πολλαπλά συνημμένα υποστηρίζονται μόνο για εικόνες και βίντεο</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Δεν έχεις άδεια να στείλεις σε αυτή την ομάδα</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Μόνιμη αποτυχία επικοινωνίας του Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Το Signal δεν μπόρεσε να εγγραφτεί στις Υπηρεσίες Google Play. Τα μηνύματα και οι κλήσεις του Signal έχουν απενεργοποιηθεί. Παρακαλώ προσπάθησε να επανεγγραφτείς στις Ρυθμίσεις &gt; Προχωρημένες Ρυθμίσεις.</string>
@@ -559,6 +562,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Τέλος</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Αυτό το άτομο δεν μπορεί να προστεθεί σε ομάδες παλαιού τύπου.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Αυτό το άτομο δεν μπορεί να προστεθεί στην ομάδα ανακοινώσεων.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Προσθήκη του/της \"%1$s\" στο \"%2$s\";</item>
     <item quantity="other">Προσθήκη %3$d μελών στο \"%2$s\";</item>
@@ -629,6 +633,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Μόνο οι διαχειριστές μπορούν να επαναφέρουν σον σύνδεσμο της ομάδας.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Δεν έχεις το δικαίωμα να το κάνεις</string>
   <string name="ManageGroupActivity_not_capable">Κάποιος/α που πρόσθεσες δεν υποστηρίζει τις νέες ομάδες και πρέπει να αναβαθμίσει το Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Κάποιος που πρόσθεσες δεν έχει υποστήριξη για ομάδες ανακοινώσεων και θα πρέπει να αναβαθμίσει το Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Αποτυχία ενημέρωσης της ομάδας</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Δεν είσαι μέλος της ομάδας</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Αποτυχία ανανέωσης της ομάδας, παρακαλώ προσπάθησε ξανά αργότερα</string>
@@ -982,6 +987,8 @@
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">Άλλαξες τις ρυθμίσεις της ομάδας για να επιτρέπεται σε όλα τα μέλη να στέλνουν μηνύματα.</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">Άλλαξες τις ρυθμίσεις της ομάδας για να επιτρέπεται μόνο σε διαχειριστές να στέλνουν μηνύματα.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">Ο/Η %1$s άλλαξε τις ρυθμίσεις της ομάδας για να επιτρέπεται σε όλα τα μέλη να στέλνουν μηνύματα.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">O/H %1$s άλλαξε τις ρυθμίσεις της ομάδας για να επιτρέπεται μόνο σε διαχειριστές να στέλνουν μηνύματα.</string>
   <string name="MessageRecord_allow_all_members_to_send">Οι ρυθμίσεις της ομάδας άλλαξαν για να επιτρέπεται σε όλα τα μέλη να στέλνουν μηνύματα.</string>
   <string name="MessageRecord_allow_only_admins_to_send">Οι ρυθμίσεις της ομάδας άλλαξαν για να επιτρέπεται μόνο σε διαχειριστές να στέλνουν μηνύματα.</string>
   <!--GV2 group link invite access level change-->
@@ -2907,10 +2914,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Προσθήκη μελών</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Επεξεργασία πληροφοριών ομάδας</string>
+  <string name="PermissionsSettingsFragment__send_messages">Αποστολή μηνυμάτων</string>
   <string name="PermissionsSettingsFragment__all_members">Όλα τα μέλη</string>
   <string name="PermissionsSettingsFragment__only_admins">Μόνο διαχειριστές</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Ποιοί μπορούν να προσθέσουν νέα μέλη;</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Ποιοί μπορούν να επεξεργαστούν τις πληροφορίες της ομάδας;</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Ποιοί μπορούν να στέλνουν μηνύματα;</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Σίγαση ειδοποιήσεων</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Μη σιγασμένο</string>

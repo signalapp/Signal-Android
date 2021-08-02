@@ -2120,7 +2120,7 @@
   <string name="ConfirmPayment__confirm_payment">確認付款</string>
   <string name="ConfirmPayment__network_fee">網絡費用</string>
   <string name="ConfirmPayment__error_getting_fee">取得費用時發生錯誤</string>
-  <string name="ConfirmPayment__estimated_s">佔算 %1$s</string>
+  <string name="ConfirmPayment__estimated_s">估算 %1$s</string>
   <string name="ConfirmPayment__to">收款人：</string>
   <string name="ConfirmPayment__total_amount">合計金額</string>
   <string name="ConfirmPayment__balance_s">餘額：%1$s</string>
@@ -2133,7 +2133,7 @@
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">此人未啟用付款</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">無法請求網絡費用。如要繼續此付款，請輕觸「確定」以重試。</string>
   <!--CurrencyAmountFormatter_s_at_s-->
-  <string name="CurrencyAmountFormatter_s_at_s">%1$s 於 %2$s</string>
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s，匯率為 %2$s</string>
   <!--SetCurrencyFragment-->
   <string name="SetCurrencyFragment__set_currency">設定貨幣</string>
   <string name="SetCurrencyFragment__all_currencies">所有貨幣</string>

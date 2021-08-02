@@ -38,6 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN പ്രവർത്തനരഹിതമാക്കി.</string>
   <string name="ApplicationPreferencesActivity_hide">മറയ്ക്കുക</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">ഓർമ്മപ്പെടുത്തൽ മറയ്‌ക്കുക</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">പേയ്മെന്റുകൾ വീണ്ടെടുക്കൽ വാക്യം രേഖപ്പെടുത്തുക</string>
+  <string name="ApplicationPreferencesActivity_record_phrase">വാക്യാംശം രേഖപ്പെടുത്തുക</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">നിങ്ങളുടെ പിന് പ്രവർത്തനരഹിതമാക്കുന്നതിന് മുമ്പ്, നിങ്ങളുടെ പേയ്മെന്റ് അക്കൗണ്ട് വീണ്ടെടുക്കാൻ കഴിയുമെന്ന് ഉറപ്പാക്കുന്നതിന് നിങ്ങളുടെ പേയ്മെന്റുകൾ വീണ്ടെടുക്കൽ വാക്യം നിങ്ങൾ റെക്കോർഡ് ചെയ്യണം.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d മിനിറ്റ്</item>
@@ -49,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(വീഡിയോ)</string>
   <string name="DraftDatabase_Draft_location_snippet">(സ്ഥലം)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(മറുപടി)</string>
+  <string name="DraftDatabase_Draft_voice_note">(ശബ്ദ സന്ദേശം)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ഗാലറി</string>
   <string name="AttachmentKeyboard_file">ഫയൽ</string>
@@ -56,6 +60,7 @@
   <string name="AttachmentKeyboard_location">സ്ഥാനം</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">നിങ്ങളുടെ ഫോട്ടോകളും വീഡിയോകളും കാണിക്കാൻ Signal ന് അനുമതി ആവശ്യമാണ്.</string>
   <string name="AttachmentKeyboard_give_access">ആക്സസ് നൽകുക</string>
+  <string name="AttachmentKeyboard_payment">പേയ്മെന്റ്</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">മീഡിയ തിരഞ്ഞെടുക്കുന്നതിന് ഒരു അപ്ലിക്കേഷൻ കണ്ടെത്താനായില്ല.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ചിത്രങ്ങൾ‌, ദൃശ്യങ്ങൾ‌ അല്ലെങ്കിൽ‌ ശബ്ദങ്ങൾ ബന്ധിപ്പിക്കുന്നതിന് Signal-ന് സ്റ്റോറേജ് അനുമതി ആവശ്യമാണ്. പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണ മെനുവിൽ ചെന്ന്, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"സ്റ്റോറേജ് \" പ്രവർത്തനക്ഷമമാക്കുക.</string>
@@ -88,6 +93,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s-നെ തടഞ്ഞത് മാറ്റണോ?</string>
   <string name="BlockUnblockDialog_block">തടയുക</string>
   <string name="BlockUnblockDialog_block_and_leave">ബ്ലോക്ക് ചെയ്ത് വിടുക</string>
+  <string name="BlockUnblockDialog_report_spam_and_block">സ്പാം റിപ്പോർട്ട് ചെയ്യുക തടയുക</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ഇന്ന്</string>
   <string name="BucketedThreadMedia_Yesterday">ഇന്നലെ</string>
@@ -163,6 +169,7 @@
   <string name="ConversationItem_error_network_not_delivered">അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">കീ കൈമാറ്റ സന്ദേശം ലഭിച്ചു, പ്രോസസ്സുചെയ്യാൻ തൊടുക</string>
   <string name="ConversationItem_group_action_left">%1$s ഈ ഗ്രൂപ്പില്‍ നിന്നും പോയി.</string>
+  <string name="ConversationItem_send_paused">അയയ്‌ക്കുന്നത് താൽക്കാലികമായി നിർത്തി</string>
   <string name="ConversationItem_click_to_approve_unencrypted">അയയ്ക്കാൻ പറ്റിയില്ല, ഭദ്രമല്ലാത്ത ഇതരരീതിക്കായി തൊടുക</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത SMS പകരം ഉപയോഗിക്കട്ടെ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത MMS പകരം ഉപയോഗിക്കട്ടെ?</string>
@@ -201,6 +208,10 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">അറ്റാച്ചുമെന്റ് നിങ്ങൾ അയയ്‌ക്കുന്ന സന്ദേശ ഇനത്തിന്റെ വലുപ്പ പരിധി കവിയുന്നു.</string>
   <string name="ConversationActivity_unable_to_record_audio">ഓഡിയോ റെക്കോർഡുചെയ്യാനായില്ല!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">നിങ്ങൾ മേലിൽ അംഗമല്ലാത്തതിനാൽ നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിലേക്ക് സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയില്ല.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">%1$s-ന് മാത്രമേ സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയൂ</string>
+  <string name="ConversationActivity_admins">അഡ്മിൻസ്</string>
+  <string name="ConversationActivity_message_an_admin">ഒരു അഡ്മിനു സന്ദേശം അയക്കുക</string>
+  <string name="ConversationActivity_cant_start_group_call">ഗ്രൂപ്പ് കോൾ ആരംഭിക്കാൻ കഴിയില്ല</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ ഈ ലിങ്ക് കൈകാര്യം ചെയ്യാൻ ഒരു അപ്ലിക്കേഷനും ലഭ്യമല്ല.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">ഗ്രൂപ്പില്‍ ചേരുന്നതിനുള്ള നിങ്ങളുടെ അഭ്യർത്ഥന അഡ്മിന് അയച്ചു. അവർ നടപടിയെടുക്കുമ്പോൾ നിങ്ങളെ അറിയിക്കും.</string>
   <string name="ConversationActivity_cancel_request">അഭ്യർത്ഥന റദ്ദാക്കുക</string>

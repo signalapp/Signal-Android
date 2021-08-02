@@ -207,7 +207,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">添付ファイルのサイズが、送信するメッセージタイプに応じた制限を超えています。</string>
   <string name="ConversationActivity_unable_to_record_audio">録音できません！</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">メンバーではなくなったので、このグループにメッセージを送ることはできません。</string>
-  <string name="ConversationActivity_only_s_can_send_messages">%1$sのみがメッセージを送信できます</string>
+  <string name="ConversationActivity_only_s_can_send_messages">%1$s のみがメッセージを送信できます。</string>
   <string name="ConversationActivity_admins">管理者</string>
   <string name="ConversationActivity_message_an_admin">管理者に連絡</string>
   <string name="ConversationActivity_cant_start_group_call">グループ通話を開始できません</string>
@@ -333,7 +333,7 @@
   <string name="ChooseBackupFragment__icon_content_description">バックアップアイコンから復元</string>
   <string name="ChooseBackupFragment__choose_backup">バックアップを選択する</string>
   <string name="ChooseBackupFragment__learn_more">詳しく見る</string>
-  <string name="ChooseBackupFragment__no_file_browser_available">ファイルブラウザーが使用できません</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">ファイルブラウザーを使用できません</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">復元が完了しました</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">バックアップを続けるには、フォルダを選択してください。新しいバックアップはこの場所に保存されます。</string>
@@ -603,7 +603,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">管理者のみがグループリンクをリセットできます。</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">これを実行する権限がありません</string>
   <string name="ManageGroupActivity_not_capable">あなたが追加した相手は新しいグループに対応していないので、Signalをアップデートする必要があります</string>
-  <string name="ManageGroupActivity_not_announcement_capable">あなたが追加した相手はアナウンスグループに対応していないので、Signalをアップデートする必要があります</string>
+  <string name="ManageGroupActivity_not_announcement_capable">あなたが追加したユーザーは、アナウンスグループに対応していないため、Signalをアップデートする必要があります。</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">グループの更新に失敗しました</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">あなたはこのグループのメンバーではありません</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">グループを更新できませんでした。のちほど再度試してください。</string>
@@ -942,8 +942,8 @@
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">グループ設定を変更し、すべてのメンバーがメッセージ送信を可能にしました。</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">グループ設定を変更し、メッセージ送信を管理者に限定しました。</string>
-  <string name="MessageRecord_s_allow_all_members_to_send">%1$sがグループ設定を変更し、すべてのメンバーがメッセージを送信できるようになりました。</string>
-  <string name="MessageRecord_s_allow_only_admins_to_send">%1$sグループ設定を変更し、管理者のみがメッセージを送信できるようになりました。</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s がグループ設定を変更し、すべてのメンバーがメッセージを送信可能になりました。</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s がグループ設定を変更し、メッセージ送信を管理者に限定しました。</string>
   <string name="MessageRecord_allow_all_members_to_send">グループ設定が変更され、すべてのメンバーがメッセージを送信可能になりました。</string>
   <string name="MessageRecord_allow_only_admins_to_send">グループ設定が変更され、メッセージ送信は管理者に限定されました。</string>
   <!--GV2 group link invite access level change-->
@@ -2956,7 +2956,7 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">メンバーの追加</string>
   <string name="PermissionsSettingsFragment__edit_group_info">グループ情報を編集</string>
-  <string name="PermissionsSettingsFragment__send_messages">メッセージを送信</string>
+  <string name="PermissionsSettingsFragment__send_messages">メッセージ送信</string>
   <string name="PermissionsSettingsFragment__all_members">すべてのメンバー</string>
   <string name="PermissionsSettingsFragment__only_admins">管理者のみ</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">メンバーを追加できるユーザーは？</string>

@@ -212,8 +212,10 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">حجم المرفق تجاوز الحد المسموح بهذا النوع من الرسائل.</string>
   <string name="ConversationActivity_unable_to_record_audio">تعذر تسجيل الصوت!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">لا تستطيع إرسال الرسائل لهذه المجموعة لأنك لم تعد عضواً.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">يمكن فقط لـ %1$s إرسال الرسائل.</string>
   <string name="ConversationActivity_admins">المُشرِفون</string>
   <string name="ConversationActivity_message_an_admin">مراسلة مشرف على المجموعة</string>
+  <string name="ConversationActivity_cant_start_group_call">تعذر بدء المكالمة الجماعية</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">يمكنك للمشرفين على المجموعة فقط بدء المكالمات.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">لا يوجد تطبيق لمعالجة هذا الرابط على جهازك.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">تم إرسال طلبك للانضمام إلى المشرفين على المجموعة. سيتم تنبيهك عند اتخاذهم الإجراء المناسب لهم.</string>
@@ -469,6 +471,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">شارك مع</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">المرفقات المتعددة مدعومة فقط مع الصور والفيديو</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">ليس لديك إذن الإرسال إلى هذه المجموعة</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائم في الاتصال ب Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">لم يتمكن Signal من التسجيل عبر خدمات Google Play، وتم تعطيل رسائل ومكالمات Signal. الرجاء محاولة إعادة التسجيل عبر قائمة الإعدادات &gt; ثم اختيار متقدم.</string>
@@ -671,6 +674,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">تم</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">لا يمكن إضافة هذا الشخص إلى المجموعات من الطراز القديم.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">لا يمكن إضافة هذا الشخص إلى مجموعات الإعلان.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="zero">إضافة %3$d إلى \"%2$s\"؟</item>
     <item quantity="one">إضافة \"%1$s\" إلى \"%2$s\"؟</item>
@@ -765,6 +769,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">للمشرفين فقط الحق في إعادة تعيين وصلة المجموعة القابلة للمشاركة.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ليس لديك الصلاحية للقيام بذلك</string>
   <string name="ManageGroupActivity_not_capable">أحد الذين دعوتهم لا يدعم المجموعات الجديدة ويتعيّن عليه تحديث Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">أحد الذين أضفتهم لا يدعم مجموعات الإعلان ويتعيّن عليه تحديث Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">فشل تحديث المجموعة</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">لست عضوا في المجموعة</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">فشل تحديث المجموعة، الرجاء المحاولة لاحقاً</string>
@@ -1193,6 +1198,8 @@
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">لقد قمت بتغيير إعدادات المجموعة للسماح للمشرفين فقط بإرسال الرسائل.</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">لقد قمت بتغيير إعدادات المجموعة للسماح للمشرفين فقط بإرسال الرسائل.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">لقد غيَّر العضو %1$s إعدادات المجموعة للسماح لجميع الأعضاء بإرسال الرسائل.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">لقد غيَّر العضو %1$s إعدادات المجموعة للسماح للمشرفين فقط بإرسال الرسائل.</string>
   <string name="MessageRecord_allow_all_members_to_send">لقد تغيرت إعدادات المجموعة للسماح لجميع الأعضاء بإرسال الرسائل.</string>
   <string name="MessageRecord_allow_only_admins_to_send">لقد تغيرت إعدادات المجموعة للسماح فقط للمشرفين بإرسال الرسائل.</string>
   <!--GV2 group link invite access level change-->
@@ -3381,10 +3388,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">إضافة أعضاء</string>
   <string name="PermissionsSettingsFragment__edit_group_info">تعديل معلومات المجموعة</string>
+  <string name="PermissionsSettingsFragment__send_messages">إرسال الرسائل</string>
   <string name="PermissionsSettingsFragment__all_members">جميع الأعضاء</string>
   <string name="PermissionsSettingsFragment__only_admins">للمشرفين فقط</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">من يمكنه إضافة أعضاء جدد ؟</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">من يمكنه تعديل معلومات هذه المجموعة ؟</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">من يمكنه إرسال الرسائل ؟</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">كتم الإشعارات</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">لم يُكتم </string>

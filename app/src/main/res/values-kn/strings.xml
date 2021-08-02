@@ -208,6 +208,8 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">ನೀವು ಕಳುಹಿಸುತ್ತಿರುವ ಲಗತ್ತು ಸಂದೇಶದ ವಿಧವು ಗಾತ್ರದ ಮಿತಿಗಳನ್ನು ಮೀರಿದೆ.</string>
   <string name="ConversationActivity_unable_to_record_audio">ಆಡಿಯೋ ರೆಕಾರ್ಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">ಈ ಗುಂಪಿಗೆ ನೀವು ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಇನ್ನು ಮುಂದೆ ನೀವು ಸದಸ್ಯರಾಗಿಲ್ಲ.</string>
+  <string name="ConversationActivity_admins">ಅಡ್ಮಿನ್‌‌ಗಳು</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">ಈ ಗುಂಪಿನ ಅಡ್ಮಿನ್‌ಗಳು ಮಾತ್ರ ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಬಹುದು.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">ಈ ಲಿಂಕ್ ನಿರ್ವಹಿಸಲು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಆ್ಯಪ್ ಲಭ್ಯವಿಲ್ಲ.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">ಗುಂಪು ಸೇರಲು ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ನಿರ್ವಾಹಕರಿಗೆ ಕಳುಹಿಸಲಾಗಿದೆ. ಅವರು ಕ್ರಮ ಕೈಗೊಂಡಾಗ ನಿಮಗೆ ಸೂಚಿಸಲಾಗುತ್ತದೆ.</string>
   <string name="ConversationActivity_cancel_request">ಕೋರಿಕೆಯನ್ನು ರದ್ದುಮಾಡಿ</string>
@@ -627,7 +629,7 @@
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">ಹಂಚಿಕೊಳ್ಳಬಹುದಾದ ಗ್ರೂಪ್ ಲಿಂಕ್ ಅನ್ನು ಕೇವಲ ಅಡ್ಮಿನ್‌ಗಳು ಸಕ್ರಿಯಗೊಳಿಸಬಹುದು ಅಥವಾ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಬಹುದು.</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">ಹೊಸ ಸದಸ್ಯರುಗಳನ್ನು ಅನುಮತಿಸುವ ಆಯ್ಕೆಯನ್ನು ಕೇವಲ ಅಡ್ಮಿನ್‌ಗಳು ಸಕ್ರಿಯಗೊಳಿಸಬಹುದು ಅಥವಾ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಬಹುದು.</string>
-  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">ಹಂಚಿಕೊಳ್ಳಬಹುದಾದ ಗ್ರೂಪ್ ಲಿಂಕ್ ಅನ್ನು ಕೇವಲ ಅಡ್ಮಿನ್‌ಗಳು ರಿಸೆಟ್ ಮಾಡಬಹುದು.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">ಹಂಚಿಕೊಳ್ಳಬಹುದಾದ ಗ್ರೂಪ್ ಲಿಂಕ್ ಅನ್ನು ಕೇವಲ ಅಡ್ಮಿನ್‌ಗಳು ರೀಸೆಟ್ ಮಾಡಬಹುದು.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ಇದನ್ನು  ಮಾಡಲು  ನಿಮಗೆ ಅನುಮತಿ ಇಲ್ಲ </string>
   <string name="ManageGroupActivity_not_capable">ನೀವು ಸೇರಿಸಿದ ಯಾರೋ ಹೊಸ ಗ್ರೂಪ್‌ಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ ಮತ್ತು ಅವರು Signal ಅಪ್‌ಡೇಟ್‌ ಮಾಡಬೇಕಿದೆ</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">ಗ್ರೂಪ್‌ ಅಪ್‌ಡೇಟ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
@@ -636,27 +638,27 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">ನೆಟ್‌ವರ್ಕ್‌ ದೋಷದಿಂದಾಗಿ ಗ್ರೂಪ್ ಅಪ್‌ಡೇಟ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ, ದಯವಿಟ್ಟು ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ</string>
   <string name="ManageGroupActivity_edit_name_and_picture">ಹೆಸರು ಮತ್ತು ಚಿತ್ರವನ್ನು ಎಡಿಟ್ ಮಾಡಿ</string>
   <string name="ManageGroupActivity_legacy_group">ಹಳೆಯ ಗುಂಪು</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">ಇದು ಲೆಗಸಿ ಗ್ರೂಪ್. ಗ್ರೂಪ್‌ ಅಡ್ಮಿನ್‌ಗಳಂತಹ ವೈಶಿಷ್ಟ್ಯಗಳು ಹೊಸ ಗ್ರೂಪ್‌ಗಳಲ್ಲಿ ಮಾತ್ರ ಲಭ್ಯವಿವೆ.</string>
-  <string name="ManageGroupActivity_legacy_group_upgrade">ಇದು ಲೆಗಸಿ ಗ್ರೂಪ್. @ಮೆನ್ಷನ್‌ಗಳು ಮತ್ತು ಅಡ್ಮಿನ್‌ಗಳಂತಹ ಹೊಸ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಪ್ರವೇಶಿಸಲು,</string>
-  <string name="ManageGroupActivity_legacy_group_too_large">ಈ ಹಳೆಯ ಗ್ರೂಪ್‌ ಅನ್ನು ಹೊಸ ಗ್ರೂಪ್‌ಗೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಲಾಗದು. ಯಾಕೆಂದರೆ ಇದು ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ. ಗರಿಷ್ಠ ಗ್ರೂಪ್ ಗಾತ್ರವು %1$d.</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">ಇದು ಲೆಗಸಿ ಗ್ರೂಪ್. ಗ್ರೂಪ್‌ ಅಡ್ಮಿನ್‌ಗಳಂತಹ ವೈಶಿಷ್ಟ್ಯಗಳು ಹೊಸ ಗ್ರೂಪ್‌ಗಳಲ್ಲಿ ಮಾತ್ರ ಲಭ್ಯವಿರುತ್ತವೆ.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">ಇದು ಲೆಗಸಿ ಗ್ರೂಪ್. @mentions ಮತ್ತು ಅಡ್ಮಿನ್‌ಗಳಂತಹ ಹೊಸ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಪ್ರವೇಶಿಸಲು,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">ಈ ಹಳೆಯ ಗ್ರೂಪ್‌ ಅನ್ನು ಹೊಸ ಗ್ರೂಪ್‌ಗೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಲಾಗದು. ಏಕೆಂದರೆ ಇದು ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ. ಗರಿಷ್ಠ ಗ್ರೂಪ್ ಗಾತ್ರವು %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">ಈ ಗ್ರೂಪ್‌ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">ಇದು ಅಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್ ಗ್ರೂಪ್. ಖಾಸಗಿಯಾಗಿ ಚಾಟ್ ಮಾಡಲು, ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು Signal ಗೆ ಆಹ್ವಾನಿಸಿ</string>
   <string name="ManageGroupActivity_invite_now">ಈಗಲೇ ಆಹ್ವಾನಿಸಿ</string>
   <string name="ManageGroupActivity_more">ಇನ್ನಷ್ಟು</string>
-  <string name="ManageGroupActivity_add_group_description">ಗ್ರೂಪ್ ವಿವರಗಳನ್ನು ಸೇರಿಸಿ…</string>
+  <string name="ManageGroupActivity_add_group_description">ಗ್ರೂಪ್ ವಿವರವನ್ನು ಸೇರಿಸಿ…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">@ಉಲ್ಲೇಖಗಳು ಬಂದರೆ  ಎಚ್ಚರಿಸು </string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ಮ್ಯೂಟ್ ಮಾಡಿದ ಚಾಟ್‌ಗಳಲ್ಲಿ ನಿಮ್ಮನ್ನು ಉಲ್ಲೇಖಿಸಿದಾಗ ಅಧಿಸೂಚನೆಗಳನ್ನು ಸ್ವೀಕರಿಸಿ</string>
-  <string name="GroupMentionSettingDialog_always_notify_me">ಎಂದಿಗೂ ನನಗೆ ಸೂಚನೆ ನೀಡಿ</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">ಯಾವಾಗಲೂ ನನಗೆ ಸೂಚನೆ ನೀಡಿ</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">ನನಗೆ ಸೂಚನೆ ನೀಡಬೇಡಿ</string>
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು</string>
   <string name="ManageProfileFragment_username">ಬಳಕೆದಾರ ಹೆಸರು</string>
   <string name="ManageProfileFragment_about">ಬಗ್ಗೆ</string>
-  <string name="ManageProfileFragment_write_a_few_words_about_yourself">ನಿಮ್ಮ ಬಗ್ಗೆ ಕೆಲವು ಮಾತುಗಳನ್ನು ಬರೆಯಿರಿ</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">ನಿಮ್ಮ ಕುರಿತು ಕೆಲವು ಪದಗಳನ್ನು ಬರೆಯಿರಿ</string>
   <string name="ManageProfileFragment_your_name">ನಿಮ್ಮ ಹೆಸರು</string>
   <string name="ManageProfileFragment_your_username">ನಿಮ್ಮ ಬಳಕೆದಾರರ ಹೆಸರು</string>
-  <string name="ManageProfileFragment_failed_to_set_avatar">ಅವತಾರ್ ನಿಗದಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">ಅವತಾರ್ ನಿಗದಿಪಡಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">ನೀವಿಬ್ಬರೂ ಯಾವುದೇ ಗ್ರೂಪ್‌ಗಳಲ್ಲಿಲ್ಲ</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
@@ -683,20 +685,20 @@
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">ನಿರ್ವಹಿಸಿ ಮತ್ತು ಹಂಚಿಕೊಳ್ಳಿ</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">ಗುಂಪಿನ ಲಿಂಕ್</string>
   <string name="ShareableGroupLinkDialogFragment__share">ಹಂಚಿಕೊಳ್ಳಿ </string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">ಲಿಂಕ್ ರಿಸೆಟ್ ಮಾಡಿ</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">ಲಿಂಕ್ ರೀಸೆಟ್ ಮಾಡಿ</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">ಸದಸ್ಯರ ವಿನಂತಿಗಳು</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">ಹೊಸ ಸದಸ್ಯರನ್ನು ಅನುಮೋದಿಸಿ</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">ಗುಂಪಿನ ಲಿಂಕ್ ಮೂಲಕ ಹೊಸ ಸದಸ್ಯರು ಸೇರುವುದನ್ನು ಅನುಮೋದಿಸಲು ಅಡ್ಮಿನ್ ಅಗತ್ಯವಿರುತ್ತದೆ.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">ನೀವು ಖಚಿತವಾಗಿ ಗುಂಪಿನ ಲಿಂಕ್ ಅನ್ನು ಮರುಹೊಂದಿಸಲು ಬಯಸುತ್ತೀರಾ? ಪ್ರಸ್ತುತ ಲಿಂಕ್ ಅನ್ನು ಬಳಸಿ ಇನ್ನು ಮುಂದೆ ಗುಂಪನ್ನು ಸೇರಲು ಜನರಿಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <!--GroupLinkShareQrDialogFragment-->
-  <string name="GroupLinkShareQrDialogFragment__qr_code">ಕ್ಯೂಆರ್ ಕೋಡ್</string>
+  <string name="GroupLinkShareQrDialogFragment__qr_code">ಕ್ಯುಆರ್ ಕೋಡ್</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">ಈ ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡುವ ಜನರಿಗೆ ನಿಮ್ಮ ಗುಂಪನ್ನು ಸೇರಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ. ನೀವು ಆ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ಆನ್ ಮಾಡಿದ್ದರೆ ಅಡ್ಮಿನ್‌ಗಳು ಇನ್ನೂ ಹೊಸ ಸದಸ್ಯರನ್ನು ಅನುಮೋದಿಸಬೇಕಾಗುತ್ತದೆ.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">ಕೋಡ್ ಹಂಚಿಕೊಳ್ಳಿ</string>
   <!--GV2 Invite Revoke confirmation dialog-->
-  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">%1$s ಗೆ ನೀವು ಕಳುಹಿಸಿದ ಆಹ್ವಾನವನ್ನು ಹಿಂಪಡೆಯಲು ನೀವು ಬಯಸಿದ್ದೀರಾ?</string>
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">%1$s ಗೆ ನೀವು ಕಳುಹಿಸಿದ ಆಹ್ವಾನವನ್ನು ಹಿಂಪಡೆಯಲು ನೀವು ಬಯಸುತ್ತೀರಾ?</string>
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
     <item quantity="one">%1$s ಕಳುಹಿಸಿದ ಆಹ್ವಾನವನ್ನು ನೀವು ಹಿಂಪಡೆಯಲು ಬಯಸುತ್ತೀರಾ?</item>
-    <item quantity="other">%1$s ಕಳುಹಿಸಿದ %2$d ಆಹ್ವಾನಗಳನ್ನು ನೀವು ಹಿಂಪಡೆಯಲು ಬಯಸಿದ್ದೀರಾ?</item>
+    <item quantity="other">%1$s ಕಳುಹಿಸಿದ %2$d ಆಹ್ವಾನಗಳನ್ನು ನೀವು ಹಿಂಪಡೆಯಲು ಬಯಸುತ್ತೀರಾ?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">ನೀವು ಈಗಾಗಲೇ ಸದಸ್ಯರಾಗಿದ್ದೀರಿ</string>
@@ -705,9 +707,9 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">ಗ್ರೂಪ್‌ಗೆ ಸೇರಲು ಅಸಾಧ್ಯ. ದಯವಿಟ್ಟು ಪುನಃ ನಂತರ ಪ್ರಯತ್ನಿಸಿ</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ನೆಟ್‌ವರ್ಕ್ ದೋಷವನ್ನು ಎದುರಿಸಿದೆ.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ಗುಂಪಿನ ಲಿಂಕ್ ಸಕ್ರಿಯವಾಗಿಲ್ಲ</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">ಗ್ರೂಪ್‌ ಮಾಹಿತಿ ಪಡೆಯಲು ಅಸಾಧ್ಯ, ದಯವಿಟ್ಟು ಪುನಃ ನಂತರ ಪ್ರಯತ್ನಿಸಿ</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">ಗ್ರೂಪ್‌ ಮಾಹಿತಿ ಪಡೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ, ದಯವಿಟ್ಟು ಪುನಃ ನಂತರ ಪ್ರಯತ್ನಿಸಿ</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">ನೀವು ಈ ಗುಂಪನ್ನು ಸೇರಲು ಹಾಗೂ ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಇದರ ಸದಸ್ಯರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲು ಬಯಸುತ್ತೀರಾ?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">ಈ ಗ್ರೂಪ್‌ಗೆ ನೀವು ಸೇರುವುದಕ್ಕೂ ಮೊದಲು ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ಈ ಗ್ರೂಪ್‌ನ ಒಬ್ಬ ಅಡ್ಮಿನ್ ಅನುಮತಿಸಬೇಕು. ನೀವು ಸೇರಲು ವಿನಂತಿ ಮಾಡುವಾಗ, ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಅದರ ಸದಸ್ಯರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">ಈ ಗ್ರೂಪ್‌ಗೆ ನೀವು ಸೇರುವುದಕ್ಕೂ ಮೊದಲು ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ಈ ಗ್ರೂಪ್‌ನ ಒಬ್ಬ ಅಡ್ಮಿನ್ ಅನುಮತಿಸಬೇಕು. ನೀವು ಸೇರಲು ವಿನಂತಿಸಿದಾಗ, ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಅದರ ಸದಸ್ಯರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">ಗ್ರೂಪ್‌ · %1$d ಸದಸ್ಯರು</item>
     <item quantity="other">ಗ್ರೂಪ್‌ · %1$d ಸದಸ್ಯರು</item>
@@ -717,19 +719,19 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">ನೀವು ಬಳಸುತ್ತಿರುವ Signal ಆವೃತ್ತಿಯು ಈ ಗ್ರೂಪ್ ಲಿಂಕ್‌ಗೆ ಬೆಂಬಲಿಸುವುದಿಲ್ಲ. ಲಿಂಕ್ ಮೂಲಕ ಈ ಗ್ರೂಪ್‌ಗೆ ಸೇರಲು ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ಅಪ್‌ಡೇಟ್‌ ಮಾಡಿ.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal ಅನ್ನು ನವೀಕರಿಸಿ</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">ನಿಮ್ಮ ಒಂದು ಅಥವಾ ಹೆಚ್ಚು ಲಿಂಕ್ ಮಾಡಿದ ಸಾಧನಗಳು ಗ್ರೂಪ್ ಲಿಂಕ್‌ಗಳನ್ನು ಬೆಂಬಲಿಸದ Signal ಆವೃತ್ತಿಯಲ್ಲಿದೆ. ಈ ಗ್ರೂಪ್‌ಗೆ ಸೇರಿಸಲು ನಿಮ್ಮ ಲಿಂಕ್ ಮಾಡಿದ ಸಾಧನ(ಗಳಲ್ಲಿ) Signal ಅಪ್‌ಡೇಟ್ ಮಾಡಿ.</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">ಗ್ರೂಪ್ ಲಿಂಕ್ ಮಾನ್ಯವಲ್ಲ</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">ಗ್ರೂಪ್ ಲಿಂಕ್ ಮಾನ್ಯವಾಗಿಲ್ಲ</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">ಈ ಗ್ರೂಪ್‌ಗೆ ಸ್ನೇಹಿತರು ತ್ವರಿತವಾಗಿ ಸೇರುವುದಕ್ಕಾಗಿ ಅವರೊಂದಿಗೆ ಲಿಂಕ್‌ ಹಂಚಿಕೊಳ್ಳಿ.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">ಸಕ್ರಿಯಗೊಳಿಸಿ ಮತ್ತು ಲಿಂಕ್ ಹಂಚಿಕೊಳ್ಳಿ</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">ಲಿಂಕ್ ಹಂಚಿಕೊಳ್ಳಿ</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">ಗ್ರೂಪ್ ಲಿಂಕ್ ಸಕ್ರಿಯಗೊಳಿಸಲು ಅಸಾಧ್ಯ. ದಯವಿಟ್ಟು ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">ಗ್ರೂಪ್ ಲಿಂಕ್ ಸಕ್ರಿಯಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">ನೆಟ್‌ವರ್ಕ್ ದೋಷವನ್ನು ಎದುರಿಸಿದೆ.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">ಗ್ರೂಪ್ ಲಿಂಕ್ ಸಕ್ರಿಯಗೊಳಿಸಲು ನೀವು ಹಕ್ಕು ಹೊಂದಿಲ್ಲ. ದಯವಿಟ್ಟು ಒಬ್ಬ ಅಡ್ಮಿನ್‌ರನ್ನು ಕೇಳಿ.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">ಗ್ರೂಪ್ ಲಿಂಕ್ ಸಕ್ರಿಯಗೊಳಿಸಲು ನೀವು ಹಕ್ಕು ಹೊಂದಿಲ್ಲ. ದಯವಿಟ್ಟು ಅಡ್ಮಿನ್‌ರನ್ನು ಕೇಳಿ.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">ನೀವು ಪ್ರಸ್ತುತ ಗ್ರೂಪ್ ಸದಸ್ಯರಲ್ಲ.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">ಗ್ರೂಪ್‌ಗೆ “%1$s” ಅವರನ್ನು ಸೇರಿಸುವುದೇ?</string>
-  <string name="RequestConfirmationDialog_deny_request_from_s">“%1$s” ವಿನಂತಿ ನಿರಾಕರಿಸುವುದೇ?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">“%1$s” ಅವರಿಂದ ವಿನಂತಿಯನ್ನು ನಿರಾಕರಿಸುವುದೇ?</string>
   <string name="RequestConfirmationDialog_add">ಸೇರಿಸಿ</string>
   <string name="RequestConfirmationDialog_deny">ನಿರಾಕರಿಸಿ</string>
   <!--ImageEditorHud-->
@@ -847,8 +849,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">ಕ್ಯಾಪ್ಷನ್ ಸೇರಿಸಿ</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ಗಾತ್ರದ ಮಿತಿಯನ್ನು ಮೀರಿದ ಕಾರಣ ಐಟಂ ಅನ್ನು ತೆಗೆಯಲಾಗಿದೆ</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">ಇದು ಅನಾಮಿಕ ವಿಧವನ್ನು ಹೊಂದಿರುವುದರಿಂದ ಒಂದು ಐಟಂ ಅನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">ಒಂದು ಐಟಂ ಅನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ. ಯಾಕೆಂದರೆ, ಇದು ಗಾತ್ರ ಮಿತಿಯನ್ನು ಮೀರಿದೆ ಅಥವಾ ಅನಾಮಿಕ ವಿಧವನ್ನು ಹೊಂದಿದೆ</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">ಇದು ಅನಾಮಧೇಯ ಪ್ರಕಾರವನ್ನು ಹೊಂದಿರುವುದರಿಂದ ಒಂದು ಐಟಂ ಅನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">ಐಟಂ ಅನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ. ಏಕೆಂದರೆ, ಇದು ಗಾತ್ರ ಮಿತಿಯನ್ನು ಮೀರಿದೆ ಅಥವಾ ಅನಾಮಧೇಯ ಪ್ರಕಾರವನ್ನು ಹೊಂದಿದೆ</string>
   <string name="MediaSendActivity_camera_unavailable">ಕ್ಯಾಮೆರಾ ಲಭ್ಯವಿಲ್ಲ.</string>
   <string name="MediaSendActivity_message_to_s">%sಗೆ ಸಂದೇಶ</string>
   <string name="MediaSendActivity_message">ಸಂದೇಶ</string>
@@ -866,7 +868,7 @@
   <string name="MediaRepository__camera">ಕ್ಯಾಮರಾ</string>
   <!--MessageDecryptionUtil-->
   <string name="MessageDecryptionUtil_failed_to_decrypt_message">ಮೆಸೇಜ್ ಡಿಕ್ರಿಪ್ಟ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
-  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">ಡಿಬಗ್ ಲಾಗ್ ಕಳುಹಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">ಡೀಬಗ್ ಲಾಗ್ ಕಳುಹಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">ತಿಳಿದಿಲ್ಲ</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ಈಗ ಬೆಂಬಲವಿಲ್ಲದ Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸಿಕೊಂಡು ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಸಂದೇಶವನ್ನು ಸ್ವೀಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ನವೀಕರಿಸಲು ಮತ್ತು ಸಂದೇಶವನ್ನು ಮತ್ತೆ ಕಳುಹಿಸಲು ಕಳುಹಿಸುವವರಿಗೆ ಹೇಳಿ.</string>
@@ -905,7 +907,7 @@
   <string name="MessageRecord_invite_friends_to_this_group">ಗ್ರೂಪ್ ಲಿಂಕ್ ಮೂಲಕ ಈ ಗ್ರೂಪ್‌ಗೆ ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">ನೀವು %1$s ಸೇರಿಸಿದ್ದೀರಿ</string>
-  <string name="MessageRecord_s_added_s">%1$s ಅವರು %2$s ರನ್ನು ಸೇರಿಸಿದ್ದಾರೆ</string>
+  <string name="MessageRecord_s_added_s">%1$s ಅವರು %2$s ಅವರನ್ನು ಸೇರಿಸಿದ್ದಾರೆ</string>
   <string name="MessageRecord_s_added_you">%1$s ಅವರು ನಿಮ್ಮನ್ನು ಗ್ರೂಪ್‌ಗೆ ಸೇರಿಸಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_you_joined_the_group">ನೀವು ಗುಂಪಿಗೆ ಸೇರಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s ಗುಂಪನ್ನು ಸೇರಿದ್ದಾರೆ </string>
@@ -915,8 +917,8 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s ಅವರು ಗ್ರೂಪ್‌ನಿಂದ ನಿಮ್ಮನ್ನು ತೆಗೆದುಹಾಕಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_you_left_the_group">ನೀವು ಗ್ರೂಪ್ ತೊರೆದಿದ್ದೀರಿ</string>
   <string name="MessageRecord_s_left_the_group">%1$s ಅವರು ಗ್ರೂಪ್ ತೊರೆದಿದ್ದಾರೆ.</string>
-  <string name="MessageRecord_you_are_no_longer_in_the_group">ನೀವು ಇನ್ನು ಗ್ರೂಪ್‌ನಲ್ಲಿ ಇಲ್ಲ.</string>
-  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s ಅವರು ಇನ್ನು ಗ್ರೂಪ್‌ನಲ್ಲಿ ಇಲ್ಲ.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">ನೀವು ಇನ್ನು ಮುಂದೆ ಎಂದಿಗೂ ಗ್ರೂಪ್‌ನಲ್ಲಿ ಇರುವುದಿಲ್ಲ.</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s ಅವರು ಇನ್ನು ಮುಂದೆ ಎಂದಿಗೂ ಗ್ರೂಪ್‌ನಲ್ಲಿ ಇರುವುದಿಲ್ಲ.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">ನೀವು %1$s ಅವರನ್ನು ಅಡ್ಮಿನ್‌ ಆಗಿ ಮಾಡಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s ಅವರು %2$s ಅವರನ್ನು ಅಡ್ಮಿನ್ ಆಗಿ ಮಾಡಿದ್ದಾರೆ.</string>
@@ -926,8 +928,8 @@
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ಅವರು %2$s ಅವರಿಂದ ಅಡ್ಮಿನ್ ಸವಲತ್ತುಗಳನ್ನು ಹಿಂಪಡೆದಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s ಅವರು ಈಗ ಅಡ್ಮಿನ್ ಆಗಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_you_are_now_an_admin">ನೀವು ಈಗ ಆಡ್ಮಿನ್ ಆಗಿದ್ದೀರಿ.</string>
-  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s ಅವರು ಇನ್ನು ಅಡ್ಮಿನ್ ಆಗಿಲ್ಲ.</string>
-  <string name="MessageRecord_you_are_no_longer_an_admin">ನೀವು ಇನ್ನು ಅಡ್ಮಿನ್ ಆಗಿಲ್ಲ.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">%1$s ಅವರು ಇನ್ನು ಎಂದಿಗೂ ಅಡ್ಮಿನ್ ಆಗಿರುವುದಿಲ್ಲ.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">ನೀವು ಇನ್ನು ಎಂದಿಗೂ ಅಡ್ಮಿನ್ ಆಗಿರುವುದಿಲ್ಲ.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">ನೀವು %1$s ಅವರನ್ನು ಗ್ರೂಪ್‌ಗೆ ಆಹ್ವಾನಿಸಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s ಅವರು ನಿಮ್ಮನ್ನು ಗ್ರೂಪ್‌ಗೆ ಆಹ್ವಾನಿಸಿದ್ದಾರೆ.</string>
@@ -952,7 +954,7 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">ಗ್ರೂಪ್‌ಗೆ ಆಹ್ವಾನವನ್ನು ಯಾರೋ ನಿರಾಕರಿಸಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">ಗ್ರೂಪ್‌ಗೆ ನೀವು ಆಹ್ವಾನವನ್ನು ನಿರಾಕರಿಸಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s ಅವರು ಗ್ರೂಪ್‌ಗೆ ನಿಮ್ಮ ಆಹ್ವಾನವನ್ನು ಹಿಂಪಡೆದಿದ್ದಾರೆ.</string>
-  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">ಗ್ರೂಪ್‌ಗೆ ನಿಮ್ಮ ಆಹ್ವಾನವನ್ನು ಒಬ್ಬ ಅಡ್ಮಿನ್ ಹಿಂಪಡೆದಿದ್ದಾರೆ.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">ಗ್ರೂಪ್‌ಗೆ ನಿಮ್ಮ ಆಹ್ವಾನವನ್ನು ಅಡ್ಮಿನ್ ಹಿಂಪಡೆದಿದ್ದಾರೆ.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">ಗ್ರೂಪ್‌ಗೆ ಒಂದು ಆಹ್ವಾನವನ್ನು ಹಿಂಪಡೆಯಲಾಗಿದೆ.</item>
     <item quantity="other">ಗ್ರೂಪ್‌ಗೆ %1$d ಆಹ್ವಾನಗಳನ್ನು ಹಿಂಪಡೆಯಲಾಗಿದೆ.</item>
@@ -960,35 +962,39 @@
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">ಗ್ರೂಪ್‌ಗೆ ಆಹ್ವಾನವನ್ನು ನೀವು ಸಮ್ಮತಿಸಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s ಅವರು ಗ್ರೂಪ್‌ಗೆ ಆಹ್ವಾನವನ್ನು ಸಮ್ಮತಿಸಿದ್ದಾರೆ.</string>
-  <string name="MessageRecord_you_added_invited_member_s">ನೀವು ಆಹ್ವಾನಿತ ಸದಸ್ಯ %1$s ಸೇರಿಸಿದ್ದೀರಿ.</string>
+  <string name="MessageRecord_you_added_invited_member_s">ನೀವು ಆಹ್ವಾನಿತ %1$s ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_s_added_invited_member_s">%1$s ಅವರು %2$s ಆಹ್ವಾನಿತ ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿದ್ದಾರೆ.</string>
   <!--GV2 title change-->
-  <string name="MessageRecord_you_changed_the_group_name_to_s">ನೀವು ಗ್ರೂಪ್‌ ಹೆಸರನ್ನು \"%1$s\" ಗೆ ಬದಲಿಸಿದ್ದೀರಿ.</string>
+  <string name="MessageRecord_you_changed_the_group_name_to_s">ನೀವು ಗ್ರೂಪ್‌ ಹೆಸರನ್ನು \"%1$s\" ಗೆ ಬದಲಾಯಿಸಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ಅವರು ಗ್ರೂಪ್ ಹೆಸರನ್ನು \"%2$s\" ಗೆ ಬದಲಿಸಿದ್ದಾರೆ.</string>
-  <string name="MessageRecord_the_group_name_has_changed_to_s">ಗ್ರೂಪ್ ಹೆಸರನ್ನು \"%1$s\" ಗೆ ಬದಲಿಸಲಾಗಿದೆ.</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">ಗ್ರೂಪ್ ಹೆಸರನ್ನು \"%1$s\" ಗೆ ಬದಲಾಯಿಸಲಾಗಿದೆ.</string>
   <!--GV2 description change-->
   <string name="MessageRecord_you_changed_the_group_description">ಗ್ರೂಪ್ ವಿವರಣೆಯನ್ನು ನೀವು ಬದಲಿಸಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_s_changed_the_group_description">%1$s ಅವರು ಗ್ರೂಪ್ ವಿವರಣೆಯನ್ನು ಬದಲಿಸಿದ್ದಾರೆ.</string>
-  <string name="MessageRecord_the_group_description_has_changed">ಗ್ರೂಪ್ ವಿವರಗಣೆಯನ್ನು ಬದಲಿಸಲಾಗಿದೆ.</string>
+  <string name="MessageRecord_the_group_description_has_changed">ಗ್ರೂಪ್ ವಿವರಗಣೆಯು ಬದಲಾಗಿದೆ.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">ಗ್ರೂಪ್ ಅವತಾರ್ ಅನ್ನು ಬದಲಿಸಲಾಗಿದೆ.</string>
-  <string name="MessageRecord_s_changed_the_group_avatar">%1$s ಅವರು ಗ್ರೂಪ್ ಅವತಾರ್‌ ಬದಲಿಸಲಾಗಿದೆ.</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s ಅವರು ಗ್ರೂಪ್ ಅವತಾರ್‌ ಅನ್ನು ಬದಲಿಸಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_the_group_group_avatar_has_been_changed">ಗ್ರೂಪ್ ಅವತಾರ್ ಅನ್ನು ಬದಲಿಸಲಾಗಿದೆ.</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">\"%1$s\" ಗೆ ಗ್ರೂಪ್ ಮಾಹಿತಿಯನ್ನು ಯಾರು ಎಡಿಟ್ ಮಾಡಬಹುದು ಎಂಬುದನ್ನು ನೀವು ಬದಲಿಸಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">\"%2$s\" ಗೆ ಗ್ರೂಪ್ ಮಾಹಿತಿಯನ್ನು ಯಾರು ಎಡಿಟ್ ಮಾಡಬಹುದು ಎಂಬುದನ್ನು %1$s ಬದಲಿಸಿದ್ದಾರೆ.</string>
-  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">\"%1$s\" ಗೆ ಗ್ರೂಪ್ ಮಾಹಿತಿಯನ್ನು ಯಾರು ಎಡಿಟ್ ಮಾಡಬಹದು ಎಂಬುದನ್ನು ಬದಲಿಸಲಾಗಿದೆ.</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">\"%1$s\" ಗೆ ಗ್ರೂಪ್ ಮಾಹಿತಿಯನ್ನು ಯಾರು ಎಡಿಟ್ ಮಾಡಬಹುದು ಎಂಬುದನ್ನು ಬದಲಿಸಲಾಗಿದೆ.</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">\"%1$s\" ಗೆ ಗ್ರೂಪ್ ಸದಸ್ಯತ್ವವನ್ನು ಯಾರು ಎಡಿಟ್ ಮಾಡಬಹುದು ಎಂಬುದನ್ನು ನೀವು ಬದಲಿಸಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">\"%2$s\" ಗೆ ಗ್ರೂಪ್ ಸದಸ್ಯತ್ವವನ್ನು ಯಾರು ಎಡಿಟ್ ಮಾಡಬಹುದು ಎಂಬುದನ್ನು %1$s ಬದಲಿಸಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">ಯಾರು ಗ್ರೂಪ್ ಸದಸ್ಯತ್ವವನ್ನು ಎಡಿಟ್ ಮಾಡಬಹುದು ಎಂಬುದನ್ನು \"%1$s\" ಗೆ ಬದಲಿಸಲಾಗಿದೆ.</string>
   <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಎಲ್ಲಾ ಸದಸ್ಯರಿಗೂ ಅವಕಾಶವಾಗುವಂತೆ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೀವು ಬದಲಾಯಿಸಿರುವಿರಿ.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಡ್ಮಿನ್‌ಗಳಿಗೆ ಮಾತ್ರ  ಅವಕಾಶ ಮಾಡಿಕೊಡುವಂತೆ ಈ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೀವು ಬದಲಾಯಿಸಿದ್ದೀರಿ.</string>
+  <string name="MessageRecord_allow_all_members_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಎಲ್ಲಾ ಸದಸ್ಯರಿಗೂ ಅನುವು ಮಾಡಿಕೊಡುವಂತೆ ಈ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿದೆ.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಡ್ಮಿನ್‌ಗಳಿಗೆ ಮಾತ್ರ ಅವಕಾಶ ಮಾಡಿಕೊಡುವಂತೆ ಈ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿದೆ.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">ನೀವು ಅಡ್ಮಿನ್ ಅನುಮೋದನೆಯನ್ನು ಆಫ್ ಮಾಡುವುದರೊಂದಿಗೆ ಗುಂಪಿನ ಲಿಂಕ್ ಅನ್ನು ಆನ್ ಮಾಡಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">ನೀವು ಅಡ್ಮಿನ್ ಅನುಮೋದನೆಯೊಂದಿಗೆ ಗುಂಪಿನ ಲಿಂಕ್ ಅನ್ನು ಆನ್ ಮಾಡಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">ನೀವು ಗುಂಪಿನ ಲಿಂಕ್ ಅನ್ನು ಆಫ್ ಮಾಡಿದ್ದೀರಿ.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">ಅಡ್ಮಿನ್ ಅನುಮತಿ ಆಫ್‌ ಮಾಡಿ ಗ್ರೂಪ್ ಲಿಂಕ್ ಅನ್ನು %1$s ಆನ್ ಮಾಡಿದ್ದಾರೆ.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">ಅಡ್ಮಿನ್ ಅನುತಿ ಆನ್ ಮಾಡಿ ಗ್ರೂಪ್ ಲಿಂಕ್ ಅನ್ನು %1$s ಆನ್ ಮಾಡಿದ್ದಾರೆ.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">ಅಡ್ಮಿನ್ ಅನುಮತಿ ಆಫ್‌ ಮಾಡಿರುವುದರೊಂದಿಗೆ ಗ್ರೂಪ್ ಲಿಂಕ್ ಅನ್ನು %1$s ಆನ್ ಮಾಡಿದ್ದಾರೆ.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">ಅಡ್ಮಿನ್ ಅನುಮತಿ ಆನ್ ಮಾಡಿ ಗ್ರೂಪ್ ಲಿಂಕ್ ಅನ್ನು %1$s ಆನ್ ಮಾಡಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_s_turned_off_the_group_link">ಗ್ರೂಪ್ ಲಿಂಕ್ ಅನ್ನು %1$s ಆಫ್ ಮಾಡಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">ಅಡ್ಮಿನ್ ಅನುಮತಿ ಆಫ್ ಮಾಡಿ ಗ್ರೂಪ್ ಲಿಂಕ್ ಆನ್ ಮಾಡಲಾಗಿದೆ.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">ಅಡ್ಮಿನ್ ಅನುಮತಿ ಆನ್ ಮಾಡಿದ ಗ್ರೂಪ್ ಲಿಂಕ್ ಆನ್ ಮಾಡಲಾಗಿದೆ.</string>
@@ -2092,7 +2098,7 @@
   <string name="PaymentsHomeFragment__cant_display_currency_conversion">ಕರೆನ್ಸಿ ಪರಿವರ್ತನೆಯನ್ನು ಡಿಸ್‌ಪ್ಲೇ ಮಾಡಲಾಗದು, ನಿಮ್ಮ ಫೋನ್‌ನ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">ನಿಮ್ಮ ವಲಯದಲ್ಲಿ ಪೇಮೆಂಟ್ಸ್ ಲಭ್ಯವಿಲ್ಲ.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">ಪೇಮೆಂಟ್ಸ್ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗದು. ದಯವಿಟ್ಟು ಪುನಃ ನಂತರ ಪ್ರಯತ್ನಿಸಿ.</string>
-  <string name="PaymentsHomeFragment__deactivate_payments_question">ಪೇಮೆಂಟ್ಸ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದೇ?</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">ಪೇಮೆಂಟ್‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದೇ?</string>
   <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">ನೀವು ಪೇಮೆಂಟ್ಸ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದರೆ Signal ನಲ್ಲಿ ಮೊಬೈಲ್‌ಕಾಯಿನ್ ಕಳುಹಿಸಲು ಅಥವಾ ಸ್ವೀಕರಿಸಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <string name="PaymentsHomeFragment__deactivate">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="PaymentsHomeFragment__continue">ಮುಂದುವರಿಸಿ</string>
@@ -2783,7 +2789,7 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">ಎಲ್ಲ ಚಾಟ್‌ಗಳಿಗೆ ವಾಲ್‌ಪೇಪರ್ ನಿಗದಿಸಿ.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%s ಗೆ ವಾಲ್‌ಪೇಪರ್ ಸೆಟ್ ಮಾಡಿ.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">ವಾಲ್‌ಪೇಪರ್ ಸೆಟ್ಟಿಂಗ್ ದೋಷ.</string>
-  <string name="WallpaperCropActivity__blur_photo">ಬ್ಲರ್ ಫೋಟೋ</string>
+  <string name="WallpaperCropActivity__blur_photo">ಮಸುಕಾದ ಫೋಟೋ</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">ಮೊಬೈಲ್‌ಕಾಯಿನ್‌ ಬಗ್ಗೆ</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">ಮೊಬೈಲ್ ಕಾಯಿನ್ ಹೊಸ ಗೌಪ್ಯತೆ ಆಧರಿತ ಡಿಜಿಟಲ್ ಕರೆನ್ಸಿ.</string>
@@ -2847,8 +2853,8 @@
   <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ದೃಢೀಕರಿಸಲಾಗಿದೆ</string>
   <!--PaymentsRecoveryEntryFragment-->
   <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ನಮೂದಿಸಿ</string>
-  <string name="PaymentsRecoveryEntryFragment__enter_word_d"> %1$d ಶಬ್ದ ನಮೂದಿಸಲಾಗಿದೆ</string>
-  <string name="PaymentsRecoveryEntryFragment__word_d">ಶಬ್ದ %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d"> %1$d ಪದವನ್ನು ನಮೂದಿಸಲಾಗಿದೆ</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">ಪದ %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">ಮುಂದೆ</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">ಅಮಾನ್ಯ ಶಬ್ದ</string>
   <!--ClearClipboardAlarmReceiver-->
@@ -3057,11 +3063,13 @@
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">ಕ್ಯಾಮರಾ</string>
   <string name="AvatarPickerFragment__photo">ಫೋಟೋ</string>
+  <string name="AvatarPickerFragment__text">ಪಠ್ಯ</string>
   <string name="AvatarPickerFragment__save">ಉಳಿಸಿ</string>
   <string name="AvatarPickerFragment__edit">ತಿದ್ದಿ</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">ಪ್ರಿವ್ಯೂ</string>
   <string name="TextAvatarCreationFragment__done">ಮುಗಿದಿದೆ</string>
+  <string name="TextAvatarCreationFragment__text">ಪಠ್ಯ</string>
   <string name="TextAvatarCreationFragment__color">ಬಣ್ಣ</string>
   <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->

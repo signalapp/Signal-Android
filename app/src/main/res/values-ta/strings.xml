@@ -208,8 +208,10 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">நீங்கள் அனுப்பும் இணைப்பு செய்தி அளவு வரம்பை மீறுகிறது .</string>
   <string name="ConversationActivity_unable_to_record_audio">ஒலி பதிவுச் செய்ய  இயலவில்லை!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">நீங்கள் இனி உறுப்பினராக இல்லாததால் இந்த குழுவிற்கு செய்திகளை அனுப்ப முடியாது.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">மட்டும் %1$s முடியும் அனுப்பு செய்திகள்.</string>
   <string name="ConversationActivity_admins">நிர்வாகிகள்</string>
   <string name="ConversationActivity_message_an_admin">ஒரு நிர்வாகிக்கு செய்தி அனுப்புங்கள்</string>
+  <string name="ConversationActivity_cant_start_group_call">தொடங்க முடியாது குழு அழைப்பு</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">மட்டும் நிர்வாகிகள் இதனுடைய குழு அழைப்பைத் தொடங்கலாம்.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">உஙகள் சாதனத்தில் இந்த இணைப்பை பெறக்கூடிய  செயலி கிடைப்பில்  இல்லை  .</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">குழுவில் சேர உங்கள் கோரிக்கை குழு நிர்வாகிக்கு அனுப்பப்பட்டுள்ளது. அவர்கள் நடவடிக்கை எடுக்கும்போது உங்களுக்கு அறிவிக்கப்படும்.</string>
@@ -420,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">பகிர்</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">பல இணைப்புகள் படங்கள் மற்றும் வீடியோக்களுக்கு மட்டுமே துணைபுரிகின்றன</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">உன்னிடம் இல்லை அனுமதி க்கு அனுப்பு இந்த குழு</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">நிரந்தர Signal தொடர்பு தோல்வி!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google Play சேவை உடன் TextSecure-ஐ பதிவு செய்ய இயலவில்லை. இணையதளம் வழியாக தொடர்புடையாடல் முடக்கப்பட்டுள்ளது, TextSecure அமைப்புகள் மெனுவில் மறுபதிவுச்செய்ய முயற்சிக்கவும்</string>
@@ -562,6 +565,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">முடிந்தது</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">இந்த நபரை பழைய மரபு குழுக்களில் சேர்க்க முடியாது.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">இந்த நபரை அறிவிப்பில் சேர்க்க முடியாது குழுக்கள்.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">\"%1$s\" உறுப்பினர்களை \"%2$s\" இல் சேர்க்கவா?</item>
     <item quantity="other">\"%3$d\" உறுப்பினர்களை %2$s\" இல் சேர்க்கவா?</item>
@@ -632,6 +636,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">நிர்வாகிகள் மட்டுமே பகிரக்கூடிய குழு இணைப்பை மீட்டமைக்க முடியும்.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">இதைச் செய்ய உங்களுக்கு உரிமை இல்லை</string>
   <string name="ManageGroupActivity_not_capable">நீங்கள் சேர்த்த ஒருவரின் தொலைபேசி புதிய குழுக்களை ஆதரிக்காது, அவர்கள் சிக்னல் பயன்பாட்டைப் Signal update புதுப்பிக்க வேண்டும்</string>
+  <string name="ManageGroupActivity_not_announcement_capable">நீங்கள் சேர்த்த ஒருவர் இல்லை ஆதரவு அறிவிப்பு குழுக்கள் மற்றும் வேண்டும் புதுப்பி Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">குழுவைப் புதுப்பிப்பதில் தோல்வி</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">நீங்கள் இந்த குழுவில் உறுப்பினராக இல்லை</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">குழுவைப் புதுப்பிப்பதில் தோல்வி, பின்னர் மீண்டும் முயற்சிக்கவும்</string>
@@ -988,6 +993,8 @@
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">நீங்கள் மாற்றினீர்கள் குழு அமைப்புகள் க்கு அனுமதிஅனைத்து உறுப்பினர்கள்அனுப்பு செய்திகள்.</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">நீங்கள் மாற்றினீர்கள் குழு அமைப்புகள் மட்டும் அனுமதி நிர்வாகிகள் க்கு அனுப்பு செய்திகள்.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s மாற்றப்பட்டது குழு அமைப்புகள் க்கு அனுமதி அனைத்து உறுப்பினர்களுக்கும் அனுப்பு செய்திகள்.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s மாற்றப்பட்டது குழு அமைப்புகள் மட்டும் அனுமதி நிர்வாகிகள் க்கு அனுப்பு செய்திகள்.</string>
   <string name="MessageRecord_allow_all_members_to_send">தி குழு அமைப்புகள் என மாற்றப்பட்டது அனுமதி அனைத்து உறுப்பினர்கள் அனுப்பு செய்திகள்.
  </string>
   <string name="MessageRecord_allow_only_admins_to_send">தி குழு அமைப்புகள் மட்டுமே மாற்றப்பட்டது அனுமதி நிர்வாகிகள் க்கு அனுப்பு செய்திகள்.</string>
@@ -3047,10 +3054,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
   <string name="PermissionsSettingsFragment__edit_group_info">குழு தகவலைத் திருத்தல்</string>
+  <string name="PermissionsSettingsFragment__send_messages">செய்திகளை அனுப்பவும்</string>
   <string name="PermissionsSettingsFragment__all_members">அனைத்து உறுப்பினர்கள்</string>
   <string name="PermissionsSettingsFragment__only_admins">நிர்வாகிகள் மட்டுமே</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">புதிய உறுப்பினர்களை யார் சேர்க்க முடியும்?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">இந்த குழுவின் தகவலை யார் திருத்தலாம்?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">யாரால் முடியும் அனுப்பு செய்திகள்?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">அறிவிப்பை ஒலியடக்கு</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">முடக்கப்படவில்லை</string>
