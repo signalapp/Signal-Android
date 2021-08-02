@@ -43,6 +43,11 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
     }
   }
 
+  override fun onResume() {
+    super.onResume()
+    viewModel.refreshState()
+  }
+
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     viewModel = ViewModelProviders.of(this)[AccountSettingsViewModel::class.java]
 
@@ -70,7 +75,8 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
       switchPref(
         title = DSLSettingsText.from(R.string.preferences_app_protection__pin_reminders),
         summary = DSLSettingsText.from(R.string.AccountSettingsFragment__youll_be_asked_less_frequently),
-        isChecked = state.pinRemindersEnabled,
+        isChecked = state.hasPin && state.pinRemindersEnabled,
+        isEnabled = state.hasPin,
         onClick = {
           setPinRemindersEnabled(!state.pinRemindersEnabled)
         }
@@ -80,6 +86,7 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
         title = DSLSettingsText.from(R.string.preferences_app_protection__registration_lock),
         summary = DSLSettingsText.from(R.string.AccountSettingsFragment__require_your_signal_pin),
         isChecked = state.registrationLockEnabled,
+        isEnabled = state.hasPin,
         onClick = {
           setRegistrationLockEnabled(!state.registrationLockEnabled)
         }
