@@ -12,6 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.view_conversation.view.*
+import kotlinx.android.synthetic.main.view_profile_picture.view.*
+import kotlinx.coroutines.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded
@@ -40,56 +42,63 @@ class ConversationView : LinearLayout {
     // region Updating
     fun bind(thread: ThreadRecord, isTyping: Boolean, glide: GlideRequests) {
         this.thread = thread
-        populateUserPublicKeyCacheIfNeeded(thread.threadId, context) // FIXME: This is a bad place to do this
-        val unreadCount = thread.unreadCount
-        if (thread.recipient.isBlocked) {
-            accentView.setBackgroundResource(R.color.destructive)
-            accentView.visibility = View.VISIBLE
-        } else {
-            accentView.setBackgroundResource(R.color.accent)
-            accentView.visibility = if (unreadCount > 0) View.VISIBLE else View.INVISIBLE
-        }
-        val formattedUnreadCount = if (unreadCount < 100) unreadCount.toString() else "99+"
-        unreadCountTextView.text = formattedUnreadCount
-        val textSize = if (unreadCount < 100) 12.0f else 9.0f
-        unreadCountTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize)
-        unreadCountTextView.setTypeface(Typeface.DEFAULT, if (unreadCount < 100) Typeface.BOLD else Typeface.NORMAL)
-        unreadCountIndicator.isVisible = (unreadCount != 0)
         profilePictureView.glide = glide
-        profilePictureView.update(thread.recipient, thread.threadId)
-        val senderDisplayName = getUserDisplayName(thread.recipient) ?: thread.recipient.address.toString()
-        conversationViewDisplayNameTextView.text = senderDisplayName
-        timestampTextView.text = DateUtils.getDisplayFormattedTimeSpanString(context, Locale.getDefault(), thread.date)
-        val recipient = thread.recipient
-        muteIndicatorImageView.isVisible = recipient.isMuted || recipient.notifyType != RecipientDatabase.NOTIFY_TYPE_ALL
-        val drawableRes = if (recipient.isMuted || recipient.notifyType == RecipientDatabase.NOTIFY_TYPE_NONE) {
-            R.drawable.ic_outline_notifications_off_24
-        } else {
-            R.drawable.ic_notifications_mentions
-        }
-        muteIndicatorImageView.setImageResource(drawableRes)
-        val rawSnippet = thread.getDisplayBody(context)
-        val snippet = highlightMentions(rawSnippet, thread.threadId, context)
-        snippetTextView.text = snippet
-        snippetTextView.typeface = if (unreadCount > 0) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
-        snippetTextView.visibility = if (isTyping) View.GONE else View.VISIBLE
-        if (isTyping) {
-            typingIndicatorView.startAnimation()
-        } else {
-            typingIndicatorView.stopAnimation()
-        }
-        typingIndicatorView.visibility = if (isTyping) View.VISIBLE else View.GONE
-        statusIndicatorImageView.visibility = View.VISIBLE
-        when {
-            !thread.isOutgoing -> statusIndicatorImageView.visibility = View.GONE
-            thread.isFailed -> {
-                val drawable = ContextCompat.getDrawable(context, R.drawable.ic_error)?.mutate()
-                drawable?.setTint(ContextCompat.getColor(context,R.color.destructive))
-                statusIndicatorImageView.setImageDrawable(drawable)
+        post {
+            val unreadCount = thread.unreadCount
+            if (thread.recipient.isBlocked) {
+                accentView.setBackgroundResource(R.color.destructive)
+                accentView.visibility = View.VISIBLE
+            } else {
+                accentView.setBackgroundResource(R.color.accent)
+                accentView.visibility = if (unreadCount > 0) View.VISIBLE else View.INVISIBLE
             }
-            thread.isPending -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_dot_dot_dot)
-            thread.isRead -> statusIndicatorImageView.setImageResource(R.drawable.ic_filled_circle_check)
-            else -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_check)
+            val formattedUnreadCount = if (unreadCount < 100) unreadCount.toString() else "99+"
+            unreadCountTextView.text = formattedUnreadCount
+            val textSize = if (unreadCount < 100) 12.0f else 9.0f
+            unreadCountTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize)
+            unreadCountTextView.setTypeface(Typeface.DEFAULT, if (unreadCount < 100) Typeface.BOLD else Typeface.NORMAL)
+            unreadCountIndicator.isVisible = (unreadCount != 0)
+            val senderDisplayName = getUserDisplayName(thread.recipient)
+                    ?: thread.recipient.address.toString()
+            conversationViewDisplayNameTextView.text = senderDisplayName
+            timestampTextView.text = DateUtils.getDisplayFormattedTimeSpanString(context, Locale.getDefault(), thread.date)
+            val recipient = thread.recipient
+            muteIndicatorImageView.isVisible = recipient.isMuted || recipient.notifyType != RecipientDatabase.NOTIFY_TYPE_ALL
+            val drawableRes = if (recipient.isMuted || recipient.notifyType == RecipientDatabase.NOTIFY_TYPE_NONE) {
+                R.drawable.ic_outline_notifications_off_24
+            } else {
+                R.drawable.ic_notifications_mentions
+            }
+            muteIndicatorImageView.setImageResource(drawableRes)
+            val rawSnippet = thread.getDisplayBody(context)
+            val snippet = highlightMentions(rawSnippet, thread.threadId, context)
+            snippetTextView.text = snippet
+            snippetTextView.typeface = if (unreadCount > 0) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
+            snippetTextView.visibility = if (isTyping) View.GONE else View.VISIBLE
+            if (isTyping) {
+                typingIndicatorView.startAnimation()
+            } else {
+                typingIndicatorView.stopAnimation()
+            }
+            typingIndicatorView.visibility = if (isTyping) View.VISIBLE else View.GONE
+            statusIndicatorImageView.visibility = View.VISIBLE
+            when {
+                !thread.isOutgoing -> statusIndicatorImageView.visibility = View.GONE
+                thread.isFailed -> {
+                    val drawable = ContextCompat.getDrawable(context, R.drawable.ic_error)?.mutate()
+                    drawable?.setTint(ContextCompat.getColor(context, R.color.destructive))
+                    statusIndicatorImageView.setImageDrawable(drawable)
+                }
+                thread.isPending -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_dot_dot_dot)
+                thread.isRead -> statusIndicatorImageView.setImageResource(R.drawable.ic_filled_circle_check)
+                else -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_check)
+            }
+            GlobalScope.launch(Dispatchers.IO) {
+                populateUserPublicKeyCacheIfNeeded(thread.threadId, context) // FIXME: This is a bad place to do this
+                withContext(Dispatchers.Main) {
+                    profilePictureView.update(thread.recipient, thread.threadId)
+                }
+            }
         }
     }
 
