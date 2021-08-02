@@ -346,7 +346,7 @@ public final class AudioView extends FrameLayout {
     }
 
     if (duration != null && durationMillis > 0) {
-      long remainingSecs = TimeUnit.MILLISECONDS.toSeconds(durationMillis - millis);
+      long remainingSecs = Math.max(0, TimeUnit.MILLISECONDS.toSeconds(durationMillis - millis));
       duration.setText(getResources().getString(R.string.AudioView_duration, remainingSecs / 60, remainingSecs % 60));
     }
 
