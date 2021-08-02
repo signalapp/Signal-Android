@@ -651,7 +651,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Override
   public void onFullyInitialized() {
-    process((s, p) -> p.handleOrientationChanged(s, false, s.getLocalDeviceState().getOrientation().getDegrees()));
+    process((s, p) -> p.handleOrientationChanged(s, s.getLocalDeviceState().isLandscapeEnabled(), s.getLocalDeviceState().getDeviceOrientation().getDegrees()));
   }
 
   @Override

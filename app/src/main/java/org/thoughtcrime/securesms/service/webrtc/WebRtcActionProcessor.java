@@ -461,8 +461,8 @@ public abstract class WebRtcActionProcessor {
       camera.setOrientation(orientationDegrees);
     }
 
-    int     sinkRotationDegrees      = isLandscapeEnabled ? BroadcastVideoSink.DEVICE_ROTATION_IGNORE : orientationDegrees;
-    int     stateRotationDegrees     = isLandscapeEnabled ? 0 : orientationDegrees;
+    int sinkRotationDegrees  = isLandscapeEnabled ? BroadcastVideoSink.DEVICE_ROTATION_IGNORE : orientationDegrees;
+    int stateRotationDegrees = isLandscapeEnabled ? 0 : orientationDegrees;
 
     BroadcastVideoSink sink = currentState.getVideoState().getLocalSink();
     if (sink != null) {
@@ -476,6 +476,8 @@ public abstract class WebRtcActionProcessor {
     return currentState.builder()
                        .changeLocalDeviceState()
                        .setOrientation(Orientation.fromDegrees(stateRotationDegrees))
+                       .setLandscapeEnabled(isLandscapeEnabled)
+                       .setDeviceOrientation(Orientation.fromDegrees(orientationDegrees))
                        .build();
   }
 

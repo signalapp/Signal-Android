@@ -14,26 +14,32 @@ public final class LocalDeviceState {
   boolean     bluetoothAvailable;
   boolean     wantsBluetooth;
   Orientation orientation;
+  boolean     isLandscapeEnabled;
+  Orientation deviceOrientation;
 
   LocalDeviceState() {
-    this(CameraState.UNKNOWN, true, false, false, Orientation.PORTRAIT_BOTTOM_EDGE);
+    this(CameraState.UNKNOWN, true, false, false, Orientation.PORTRAIT_BOTTOM_EDGE, false, Orientation.PORTRAIT_BOTTOM_EDGE);
   }
 
   LocalDeviceState(@NonNull LocalDeviceState toCopy) {
-    this(toCopy.cameraState, toCopy.microphoneEnabled, toCopy.bluetoothAvailable, toCopy.wantsBluetooth, toCopy.orientation);
+    this(toCopy.cameraState, toCopy.microphoneEnabled, toCopy.bluetoothAvailable, toCopy.wantsBluetooth, toCopy.orientation, toCopy.isLandscapeEnabled, toCopy.deviceOrientation);
   }
 
   LocalDeviceState(@NonNull CameraState cameraState,
                    boolean microphoneEnabled,
                    boolean bluetoothAvailable,
                    boolean wantsBluetooth,
-                   @NonNull Orientation orientation)
+                   @NonNull Orientation orientation,
+                   boolean isLandscapeEnabled,
+                   @NonNull Orientation deviceOrientation)
   {
     this.cameraState        = cameraState;
     this.microphoneEnabled  = microphoneEnabled;
     this.bluetoothAvailable = bluetoothAvailable;
     this.wantsBluetooth     = wantsBluetooth;
     this.orientation        = orientation;
+    this.isLandscapeEnabled = isLandscapeEnabled;
+    this.deviceOrientation  = deviceOrientation;
   }
 
   public @NonNull CameraState getCameraState() {
@@ -54,5 +60,13 @@ public final class LocalDeviceState {
 
   public @NonNull Orientation getOrientation() {
     return orientation;
+  }
+
+  public boolean isLandscapeEnabled() {
+    return isLandscapeEnabled;
+  }
+
+  public @NonNull Orientation getDeviceOrientation() {
+    return deviceOrientation;
   }
 }
