@@ -210,22 +210,12 @@ public class SmsDatabase extends MessageDatabase {
 
   @Override
   public long getThreadIdForMessage(long id) {
-    String sql        = "SELECT " + THREAD_ID + " FROM " + TABLE_NAME + " WHERE " + ID + " = ?";
-    String[] sqlArgs  = new String[] {id+""};
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-
-    Cursor cursor = null;
-
-    try {
-      cursor = db.rawQuery(sql, sqlArgs);
-      if (cursor != null && cursor.moveToFirst())
-        return cursor.getLong(0);
-      else
-        return -1;
-    } finally {
-      if (cursor != null)
-        cursor.close();
+    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, THREAD_ID_PROJECTION, ID_WHERE, SqlUtil.buildArgs(id), null, null, null)) {
+      if (cursor.moveToFirst()) {
+        return CursorUtil.requireLong(cursor, THREAD_ID);
+      }
     }
+    return -1;
   }
 
   @Override

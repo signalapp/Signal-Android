@@ -1278,14 +1278,10 @@ public class ThreadDatabase extends Database {
   }
 
   public void updateSnippetTypeSilently(long threadId) {
-    MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
-
-    try (MmsSmsDatabase.Reader reader = MmsSmsDatabase.readerFor(mmsSmsDatabase.getConversationSnippet(threadId))) {
-      MessageRecord record = reader.getNext();
-
-      if (record != null) {
+    try (Cursor cursor = DatabaseFactory.getMmsSmsDatabase(context).getConversationSnippet(threadId)) {
+      if (cursor.moveToFirst()) {
         ContentValues contentValues = new ContentValues(1);
-        contentValues.put(SNIPPET_TYPE, record.getType());
+        contentValues.put(SNIPPET_TYPE, MmsSmsDatabase.getType(cursor));
 
         databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(threadId));
       }

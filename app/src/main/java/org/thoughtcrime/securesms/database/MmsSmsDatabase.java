@@ -797,6 +797,18 @@ public class MmsSmsDatabase extends Database {
     return databaseHelper.getReadableDatabase().rawQuery(query, null);
   }
 
+  public static long getType(@NonNull Cursor cursor) {
+    String transportType = CursorUtil.requireString(cursor, TRANSPORT);
+
+    if (MmsSmsDatabase.MMS_TRANSPORT.equals(transportType)) {
+      return CursorUtil.requireLong(cursor, MmsDatabase.MESSAGE_BOX);
+    } else if (MmsSmsDatabase.SMS_TRANSPORT.equals(transportType)) {
+      return CursorUtil.requireLong(cursor, SmsDatabase.TYPE);
+    } else {
+      throw new AssertionError("Bad transport type: " + transportType);
+    }
+  }
+
   public static Reader readerFor(@NonNull Cursor cursor) {
     return new Reader(cursor);
   }
