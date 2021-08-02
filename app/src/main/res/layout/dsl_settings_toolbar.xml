@@ -14,6 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_arrow_left_24"
         app:titleTextAppearance="@style/Signal.Text.Title"
+        app:navigationContentDescription="@string/DSLSettingsToolbar__navigate_up"
         tools:title="Settings" />
 
     <View
