@@ -75,6 +75,7 @@ import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -1505,6 +1506,10 @@ public class MmsDatabase extends MessageDatabase {
     contentValues.put(RECIPIENT_ID, message.getRecipient().getId().serialize());
     contentValues.put(DELIVERY_RECEIPT_COUNT, Stream.of(earlyDeliveryReceipts.values()).mapToLong(Long::longValue).sum());
 
+    if (message.getRecipient().isSelf() && hasAudioAttachment(message.getAttachments())) {
+      contentValues.put(VIEWED_RECEIPT_COUNT, 1L);
+    }
+
     List<Attachment> quoteAttachments = new LinkedList<>();
 
     if (message.getOutgoingQuote() != null) {
@@ -1557,6 +1562,16 @@ public class MmsDatabase extends MessageDatabase {
     TrimThreadJob.enqueueAsync(threadId);
 
     return messageId;
+  }
+
+  private boolean hasAudioAttachment(@NonNull List<Attachment> attachments) {
+    for (Attachment attachment : attachments) {
+      if (MediaUtil.isAudio(attachment)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   private long insertMediaMessage(long threadId,
