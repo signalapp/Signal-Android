@@ -6,6 +6,7 @@ public interface MmsSmsColumns {
   public static final String ID                       = "_id";
   public static final String NORMALIZED_DATE_SENT     = "date_sent";
   public static final String NORMALIZED_DATE_RECEIVED = "date_received";
+  public static final String NORMALIZED_TYPE          = "type";
   public static final String DATE_SERVER              = "date_server";
   public static final String THREAD_ID                = "thread_id";
   public static final String READ                     = "read";

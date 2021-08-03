@@ -1226,8 +1226,8 @@ public class ThreadDatabase extends Database {
   }
 
   private boolean update(long threadId, boolean unarchive, boolean allowDeletion, boolean notifyListeners) {
-    MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
-    boolean meaningfulMessages    = mmsSmsDatabase.hasMeaningfulMessage(threadId);
+    MmsSmsDatabase mmsSmsDatabase     = DatabaseFactory.getMmsSmsDatabase(context);
+    boolean        meaningfulMessages = mmsSmsDatabase.hasMeaningfulMessage(threadId);
 
     if (!meaningfulMessages) {
       if (allowDeletion) {
@@ -1236,43 +1236,49 @@ public class ThreadDatabase extends Database {
       return true;
     }
 
-    try (MmsSmsDatabase.Reader reader = MmsSmsDatabase.readerFor(mmsSmsDatabase.getConversationSnippet(threadId))) {
-      MessageRecord record = reader.getNext();
-
-      if (record != null) {
-        updateThread(threadId,
-                     meaningfulMessages,
-                     ThreadBodyUtil.getFormattedBodyFor(context, record),
-                     getAttachmentUriFor(record),
-                     getContentTypeFor(record),
-                     getExtrasFor(record),
-                     record.getTimestamp(),
-                     record.getDeliveryStatus(),
-                     record.getDeliveryReceiptCount(),
-                     record.getType(),
-                     unarchive,
-                     record.getExpiresIn(),
-                     record.getReadReceiptCount());
-        if (notifyListeners) {
-          notifyConversationListListeners();
-        }
-        return false;
-      } else {
+    MessageRecord record;
+    try {
+      record = mmsSmsDatabase.getConversationSnippet(threadId);
+    } catch (NoSuchMessageException e) {
+      if (allowDeletion) {
         deleteConversation(threadId);
-        return true;
       }
+      return true;
     }
+
+    updateThread(threadId,
+                 meaningfulMessages,
+                 ThreadBodyUtil.getFormattedBodyFor(context, record),
+                 getAttachmentUriFor(record),
+                 getContentTypeFor(record),
+                 getExtrasFor(record),
+                 record.getTimestamp(),
+                 record.getDeliveryStatus(),
+                 record.getDeliveryReceiptCount(),
+                 record.getType(),
+                 unarchive,
+                 record.getExpiresIn(),
+                 record.getReadReceiptCount());
+
+    if (notifyListeners) {
+      notifyConversationListListeners();
+    }
+
+    return false;
   }
 
   public void updateSnippetTypeSilently(long threadId) {
-    try (Cursor cursor = DatabaseFactory.getMmsSmsDatabase(context).getConversationSnippet(threadId)) {
-      if (cursor.moveToFirst()) {
-        ContentValues contentValues = new ContentValues(1);
-        contentValues.put(SNIPPET_TYPE, MmsSmsDatabase.getType(cursor));
-
-        databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(threadId));
-      }
+    long type;
+    try {
+      type = DatabaseFactory.getMmsSmsDatabase(context).getConversationSnippetType(threadId);
+    } catch (NoSuchMessageException e) {
+      throw new AssertionError(e);
     }
+
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(SNIPPET_TYPE, type);
+
+    databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(threadId));
   }
 
   public @NonNull ThreadRecord getThreadRecordFor(@NonNull Recipient recipient) {
