@@ -283,7 +283,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   private @NonNull String getCallDateString(@NonNull Context context) {
-    return DateUtils.getExtendedRelativeTimeSpanString(context, Locale.getDefault(), getDateSent());
+    return DateUtils.getSimpleRelativeTimeSpanString(context, Locale.getDefault(), getDateSent());
   }
 
   private static @NonNull UpdateDescription fromRecipient(@NonNull Recipient recipient,
