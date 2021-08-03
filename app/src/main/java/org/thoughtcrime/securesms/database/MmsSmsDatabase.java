@@ -299,13 +299,6 @@ public class MmsSmsDatabase extends Database {
            DatabaseFactory.getMmsDatabase(context).getMessageCountForThread(threadId, beforeTime);
   }
 
-  public int getConversationCountForThreadSummary(long threadId) {
-    int count = DatabaseFactory.getSmsDatabase(context).getMessageCountForThreadSummary(threadId);
-    count    += DatabaseFactory.getMmsDatabase(context).getMessageCountForThreadSummary(threadId);
-
-    return count;
-  }
-
   public int getInsecureSentCount(long threadId) {
     int count  = DatabaseFactory.getSmsDatabase(context).getInsecureMessagesSentForThread(threadId);
     count     += DatabaseFactory.getMmsDatabase(context).getInsecureMessagesSentForThread(threadId);
@@ -565,10 +558,11 @@ public class MmsSmsDatabase extends Database {
     DatabaseFactory.getMmsDatabase(context).setNotifiedTimestamp(timestamp, mmsIds);
   }
 
-  public void deleteMessagesInThreadBeforeDate(long threadId, long trimBeforeDate) {
+  public boolean deleteMessagesInThreadBeforeDate(long threadId, long trimBeforeDate) {
     Log.d(TAG, "deleteMessagesInThreadBeforeData(" + threadId + ", " + trimBeforeDate + ")");
-    DatabaseFactory.getSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
-    DatabaseFactory.getMmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
+    boolean deletedSms = DatabaseFactory.getSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
+    boolean deletedMms = DatabaseFactory.getMmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
+    return deletedSms || deletedMms;
   }
 
   public void deleteAbandonedMessages() {

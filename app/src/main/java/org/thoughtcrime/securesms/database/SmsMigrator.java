@@ -195,6 +195,7 @@ public class SmsMigrator {
 
       ourSmsDatabase.endTransaction(transaction);
       DatabaseFactory.getThreadDatabase(context).update(ourThreadId, true);
+      DatabaseFactory.getThreadDatabase(context).setLastScrolled(ourThreadId, 0);
       DatabaseFactory.getThreadDatabase(context).notifyConversationListeners(ourThreadId);
 
     } finally {
