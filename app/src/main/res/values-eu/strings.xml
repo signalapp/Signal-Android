@@ -2635,5 +2635,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

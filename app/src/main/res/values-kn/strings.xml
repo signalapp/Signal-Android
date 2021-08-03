@@ -3075,5 +3075,6 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">ಎಸ್‌ಎಂಎಸ್‌</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

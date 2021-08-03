@@ -3009,5 +3009,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

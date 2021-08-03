@@ -3095,5 +3095,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

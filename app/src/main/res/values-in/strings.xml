@@ -2892,6 +2892,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
     <item quantity="other">Warna ini digunakan di %1$d percakapan. Apakah anda ingin menyimpan perubahan untuk semua percakapan?</item>
   </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Pemilih pojok atas</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Pemilih pojok bawah</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Kustomisasi tanggapan</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Ketuk untuk mengganti emoji</string>
@@ -3009,5 +3011,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

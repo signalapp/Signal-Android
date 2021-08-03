@@ -2987,5 +2987,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">. %1$s</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

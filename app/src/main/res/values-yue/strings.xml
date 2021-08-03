@@ -1429,13 +1429,13 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">開啟 Signal 嚟檢查最近嘅通知。</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">聯絡人</string>
-  <string name="MessageNotifier_reacted_s_to_s">對「%2$s」畀咗心情 %1$s。</string>
-  <string name="MessageNotifier_reacted_s_to_your_video">對您條片畀咗心情 %1$s。</string>
-  <string name="MessageNotifier_reacted_s_to_your_image">對您幅圖畀咗心情 %1$s。</string>
-  <string name="MessageNotifier_reacted_s_to_your_file">對您個檔案畀咗心情 %1$s。</string>
-  <string name="MessageNotifier_reacted_s_to_your_audio">對您嘅音訊畀咗心情 %1$s。</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_media">對您嘅流聲掠影多媒體檔案畀咗心情 %1$s。</string>
-  <string name="MessageNotifier_reacted_s_to_your_sticker">對您嘅貼圖畀咗心情 %1$s。</string>
+  <string name="MessageNotifier_reacted_s_to_s">對「%2$s」畀咗 %1$s 心情。</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">對您條片畀咗 %1$s 心情。</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">對您幅圖畀咗 %1$s 心情。</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">對您個檔案畀咗 %1$s 心情。</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">對您嘅音訊畀咗 %1$s 心情。</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">對您嘅流聲掠影多媒體檔案畀咗 %1$s 心情。</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">對您嘅貼圖畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_this_message_was_deleted">呢個訊息已被刪除。</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">係咪要閂咗聯絡人加入 Signal 嘅通知？您可以喺 Signal &gt; 設定 &gt; 通知 度再啟用番。</string>
   <!--Notification Channels-->
@@ -1703,7 +1703,7 @@
   <string name="EditAboutFragment_about">關於</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">我鏡裡看見了新生…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
-  <string name="EditAboutFragment_speak_freely">從不想作假 只活這一次</string>
+  <string name="EditAboutFragment_speak_freely">從不想作假 只活這☝️次</string>
   <string name="EditAboutFragment_encrypted">誰人如常 問我今天驚心度</string>
   <string name="EditAboutFragment_be_kind">活著無對錯</string>
   <string name="EditAboutFragment_coffee_lover">茶杯未滿 仍然裝著大半</string>
@@ -3016,5 +3016,7 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">短訊</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">返番轉頭</string>
   <!--EOF-->
 </resources>

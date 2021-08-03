@@ -1829,8 +1829,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pentru a putea trimite mesaje multimedia cât și mesaje într-un grup, apăsați \'OK\' și completați setările solicitate. Setările MMS pentru operatorul tău pot fi găsite căutând după \'APN operatorul tău\'. Această operațiune este necesară o singură dată.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Problemă de livrare</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Un mesaj, autocolant, reacție sau confirmare de citire nu a putut fi livrată către tine de la %s. Este posibil să fi încercat să trimită direct sau într-un grup.</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Un mesaj, autocolant, reacție sau confirmare de citire nu a putut fi livrată către tine de la %s.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Un mesaj, autocolant, reacție sau confirmare de citire nu v-a putut fi livrat de la %s. Este posibil ca utilizatorul să fi încercat să vă trimită mesajul direct sau într-un grup.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Un mesaj, autocolant, reacție sau confirmare de citire nu v-a putut fi livrată de la %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Prenume (obligatoriu)</string>
   <string name="CreateProfileActivity_last_name_optional">Nume (opțional)</string>
@@ -3183,5 +3183,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Navigați în sus</string>
   <!--EOF-->
 </resources>

@@ -3105,5 +3105,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">Sms (onbeveiligd)</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Omhoog navigeren</string>
   <!--EOF-->
 </resources>

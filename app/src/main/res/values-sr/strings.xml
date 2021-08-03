@@ -3186,5 +3186,6 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">СМС</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

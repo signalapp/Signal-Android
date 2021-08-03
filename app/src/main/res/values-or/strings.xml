@@ -2642,5 +2642,6 @@
   <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">ଏସ୍ଏମ୍ଏସ୍</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

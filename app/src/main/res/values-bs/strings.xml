@@ -3191,5 +3191,7 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Prema gore</string>
   <!--EOF-->
 </resources>

@@ -2994,5 +2994,6 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">短信</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

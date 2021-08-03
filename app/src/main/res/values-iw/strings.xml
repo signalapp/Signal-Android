@@ -3271,5 +3271,6 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">מסרון</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

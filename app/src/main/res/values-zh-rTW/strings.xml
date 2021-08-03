@@ -3012,5 +3012,7 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">簡訊</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">向上導覽</string>
   <!--EOF-->
 </resources>

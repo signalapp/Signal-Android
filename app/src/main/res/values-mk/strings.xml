@@ -167,6 +167,7 @@
   <string name="ConversationItem_error_network_not_delivered">Испраќањето е неуспешно</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Добиена порака за размена на клучеви, допрете за обработка.</string>
   <string name="ConversationItem_group_action_left">%1$s ја напушти групата.</string>
+  <string name="ConversationItem_send_paused">Испраќањето е паузирано</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Испраќањето не успеа, допрете за необезбеден одговор</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Враќање на неенкриптирани SMS пораки?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Враќање на неенкриптирани MMS пораки?</string>
@@ -209,6 +210,7 @@
   <string name="ConversationActivity_admins">администратори</string>
   <string name="ConversationActivity_message_an_admin">Испрати порака на админ</string>
   <string name="ConversationActivity_cant_start_group_call">Не можам да започнам групен повик</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Само администраторите на оваа група можат да започнат повик.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Не постои апликација на Вашиот уред која што може да се справи со линкот.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Вашето барање за да се приклучите е испратено до администраторот на групата. Ќе бидете известени штом превземат нешто околу тоа.</string>
   <string name="ConversationActivity_cancel_request">Откажи барање</string>
@@ -852,6 +854,7 @@
   <string name="MediaSendActivity_add_a_caption">Додај наслов…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Предметот беше отстранет бидејќи ја надмина дозволената големина</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Предметот беше отстранет бидејќи е од непознат тип</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Предмет беше отстранет бидејќи ја надмина дозволената големина или имаше непознат тип</string>
   <string name="MediaSendActivity_camera_unavailable">Камерата е недостапна.</string>
   <string name="MediaSendActivity_message_to_s">Порака до %s</string>
   <string name="MediaSendActivity_message">Порака</string>
@@ -1236,6 +1239,7 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Користи proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Успешно се поврзав со proxy серверот.</string>
   <!--RecaptchaProofActivity-->
+  <string name="RecaptchaProofActivity_failed_to_submit">Не успеа испраќањето</string>
   <string name="RecaptchaProofActivity_complete_verification">Заврши проверка</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Изберете држава</string>
@@ -1465,6 +1469,7 @@
   <string name="MessageNotifier_message_delivery_failed">Доставувањето на пораката е неуспешно.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Неуспешно доставување на пораката.</string>
   <string name="MessageNotifier_error_delivering_message">Грешка при доставувањето на пораката.</string>
+  <string name="MessageNotifier_message_delivery_paused">Испораката на пораката е паузирана.</string>
   <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Потврдете за да продолжите со испраќање пораки на Signal.</string>
   <string name="MessageNotifier_mark_all_as_read">Обележи сѐ како прочитано</string>
   <string name="MessageNotifier_mark_read">Обележи како прочитано</string>
@@ -1626,6 +1631,7 @@
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Немате заеднички групи. Прегледувајте ги барањата внимателно.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Нема контакти во оваа група. Внимателно разгледајте ги барањата.</string>
   <string name="ConversationUpdateItem_view">Поглед</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Времето на исчезнувачките пораки ќе биде поставено на %1$s  кога ќе им испратите порака.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Пушти … Пауза</string>
   <string name="audio_view__download_accessibility_description">Преземи</string>
@@ -1656,9 +1662,11 @@
   <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Вклучи позадинска активност</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Сѐ изгледа добро сега!</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">За да добивате известувања за повици допрете тука и вклучете „Покажувај известувања“</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">За да примате известувања за повици, допрете тука и вклучете ги известувањата и проверете дали звук и скокачки прозорци се вклучени.</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">За да примате известувања за повици, допрете овде и овозможете активност во заднина во поставките за \"Батерија\".</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Поставувања</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">За да добивате известувања за повик, допрете на Поставки и вклучете „Покажи известувања“.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">За да примате известувања за повици, допрете на поставки и вклучете ги известувањата и проверете дали звук и скокачки прозорци се вклучени.</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">За да примате известувања за повици, допрете на Поставки и овозможете активност во заднина во поставките за „Батерија“.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Вчитувам земји…</string>
@@ -1745,6 +1753,7 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">За да испратите медија и групни пораки допрете „Во ред“  и довршете ги поставувањата. MMS поставувањата за Вашиот оператор можат да бидат пронајдени преку пребарување на „Вашиот APN за операторот“. Ова ќе треба да го направите само еднаш.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Проблем со испорака</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Порака, налепница, реакција или потврда за прочитани пораки не може да ви се достави од %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Име (задолжително)</string>
   <string name="CreateProfileActivity_last_name_optional">Презиме (опционално)</string>
@@ -2783,6 +2792,7 @@
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__standard">Стандардно</string>
   <string name="QualitySelectorBottomSheetDialog__high">Високо</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">Квалитет на фотографија</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Покани ги пријателите</string>
   <!--AccountSettingsFragment-->
@@ -2842,8 +2852,14 @@
   <string name="ChatColorSelectionFragment__use_custom_colors">Користи сопствени бои</string>
   <string name="ChatColorSelectionFragment__chat_color">Боја на разговор</string>
   <string name="ChatColorSelectionFragment__edit">Измени</string>
+  <string name="ChatColorSelectionFragment__duplicate">Дупликат</string>
   <string name="ChatColorSelectionFragment__delete">Избриши</string>
+  <string name="ChatColorSelectionFragment__delete_color">Избриши боја</string>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Да се избрише бојата на разговорот?</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__gradient">Градиент</string>
+  <string name="CustomChatColorCreatorFragment__hue">Нијанса</string>
+  <string name="CustomChatColorCreatorFragment__saturation">Сатурација</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Зачувај</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Уреди боја</string>
@@ -2873,6 +2889,7 @@
   <string name="EmojiSearchFragment__no_results_found">Не се пронајдени резултати</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Непознат звук</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__start_video_call">Започни видео повик</string>
   <string name="ConversationSettingsFragment__message">Порака</string>
   <string name="ConversationSettingsFragment__video">Видео</string>
   <string name="ConversationSettingsFragment__audio">Аудио</string>
@@ -2910,6 +2927,8 @@
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Скорешни</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
   <!--PaymentRecipientSelectionFragment-->
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Нова порака</string>
@@ -2920,14 +2939,17 @@
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Камера</string>
   <string name="AvatarPickerFragment__photo">Слика</string>
+  <string name="AvatarPickerFragment__text">Текст</string>
   <string name="AvatarPickerFragment__save">Зачувај</string>
   <string name="AvatarPickerFragment__edit">Измени</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Преглед</string>
   <string name="TextAvatarCreationFragment__done">Готово</string>
+  <string name="TextAvatarCreationFragment__text">Текст</string>
   <string name="TextAvatarCreationFragment__color">Боја</string>
   <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>
