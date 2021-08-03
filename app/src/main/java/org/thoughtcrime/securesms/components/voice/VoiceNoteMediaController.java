@@ -57,6 +57,7 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
   private ProgressEventHandler                          progressEventHandler;
   private MutableLiveData<VoiceNotePlaybackState>       voiceNotePlaybackState = new MutableLiveData<>(VoiceNotePlaybackState.NONE);
   private LiveData<Optional<VoiceNotePlayerView.State>> voiceNotePlayerViewState;
+  private VoiceNoteProximityWakeLockManager             voiceNoteProximityWakeLockManager;
 
   private final MediaControllerCompatCallback mediaControllerCompatCallback = new MediaControllerCompatCallback();
 
@@ -275,11 +276,34 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
           }
         }
 
+        cleanUpOldProximityWakeLockManager();
+        voiceNoteProximityWakeLockManager = new VoiceNoteProximityWakeLockManager(activity, mediaController);
+
         mediaController.registerCallback(mediaControllerCompatCallback);
 
         mediaControllerCompatCallback.onPlaybackStateChanged(mediaController.getPlaybackState());
       } catch (RemoteException e) {
         Log.w(TAG, "onConnected: Failed to set media controller", e);
+      }
+    }
+
+    @Override
+    public void onConnectionSuspended() {
+      Log.d(TAG, "Voice note MediaBrowser connection suspended.");
+      cleanUpOldProximityWakeLockManager();
+    }
+
+    @Override
+    public void onConnectionFailed() {
+      Log.d(TAG, "Voice note MediaBrowser connection failed.");
+      cleanUpOldProximityWakeLockManager();
+    }
+
+    private void cleanUpOldProximityWakeLockManager() {
+      if (voiceNoteProximityWakeLockManager != null) {
+        Log.d(TAG, "Session reconnected, cleaning up old wake lock manager");
+        voiceNoteProximityWakeLockManager.unregisterCallbacksAndRelease();
+        voiceNoteProximityWakeLockManager = null;
       }
     }
   }
