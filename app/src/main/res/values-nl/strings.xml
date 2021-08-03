@@ -209,6 +209,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bijlage overschrijdt de maximale grootte voor het type bericht dat je wilt verzenden.</string>
   <string name="ConversationActivity_unable_to_record_audio">Kan audio niet opnemen!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Je kunt naar dit groepsgesprek geen berichten verzenden omdat je niet langer een lid van deze groep bent.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Alleen %1$s kunnen berichten verzenden.</string>
+  <string name="ConversationActivity_admins">beheerders</string>
+  <string name="ConversationActivity_message_an_admin">Bericht verzenden naar een beheerder</string>
+  <string name="ConversationActivity_cant_start_group_call">Kan groepsgesprek niet beginnen</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Alleen beheerders kunnen in deze groep oproepen beginnen.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Er is geen app beschikbaar op je apparaat om deze verwijzing te openen.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Je verzoek om lid te worden van de groep is doorgestuurd naar een beheerder. Je krijgt een melding zodra deze een besluit heeft genomen.</string>
   <string name="ConversationActivity_cancel_request">Verzoek annuleren</string>
@@ -340,6 +345,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Back-upgegevens terugzetten pictogram</string>
   <string name="ChooseBackupFragment__choose_backup">Back-upbestand kiezen</string>
   <string name="ChooseBackupFragment__learn_more">Meer leren hierover</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Geen bestandsbrowser beschikbaar</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Gegevens herstellen vanuit een back-upbestand is voltooid</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Om back-upbestanden te blijven maken, kies een directory waar je back-upbestanden vanaf nu in wilt opslaan.</string>
@@ -417,6 +423,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Doorsturen naar</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Het verzenden van meerdere bijlagen is alleen mogelijk voor afbeeldingen en video\'s</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Je bent niet gemachtigd om iets naar deze groep te verzenden</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Pertinente Signal-communicatiefout!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was niet in staat zich bij de Google Play services op je telefoon te registreren. Signal-berichten en -oproepen zijn nu uitgeschakeld, probeer opnieuw te registreren via Instellingen &gt; Privacy &gt; Geavanceerd.</string>
@@ -560,6 +567,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Klaar</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Deze persoon kan niet worden toegevoegd aan verouderde groepen.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Deze persoon kan niet aan mededelingsgroepen worden toegevoegd.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">%1$s toevoegen aan “%2$s”?</item>
     <item quantity="other">%3$d personen toevoegen aan “%2$s”?</item>
@@ -630,6 +638,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Uitsluitend beheerders kunnen de groepsverwijzing vernieuwen.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
   <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de vernieuwde groepsgesprekken nog niet. Zij moeten Signal bijwerken.</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Tenminste een persoon die je hebt toegevoegd moet eerst Signal bijwerken voordat ze aan mededelingsgroepen kunnen worden toegevoegd.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Bijwerken van de groep is mislukt</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Je bent geen lid van deze groep</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Het bijwerken van de groep is mislukt. Probeer het later opnieuw</string>
@@ -823,6 +832,7 @@
   <string name="Megaphones_invite_friends">Kennissen uitnodigen</string>
   <string name="Megaphones_use_sms">Sms gebruiken</string>
   <string name="Megaphones_appearance">Uiterlijk</string>
+  <string name="Megaphones_add_photo">Voeg een foto toe</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Je zit nog in een Signal-oproep</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-oproep aan het opzetten</string>
@@ -982,6 +992,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Je hebt de instelling voor wie de groepslidmaatschap kan aanpassen op ‘%1$s’ ingesteld.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s heeft de instelling voor wie de groepslidmaatschap kan aanpassen op ‘%2$s’ ingesteld.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">De instelling voor wie de groepslidmaatschap kan aanpassen is op ‘%1$s’ ingesteld.</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Je hebt de groepsinstellingen aangepast om alle groepsleden de mogelijkheid te geven om berichten te verzenden.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Je hebt de groepsinstellingen aangepast om alleen beheerders de mogelijkheid te geven om berichten te verzenden.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s heeft de groepsinstellingen aangepast om alle groepsleden de mogelijkheid te geven om berichten te verzenden.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s heeft de groepsinstellingen aangepast om alleen beheerders de mogelijkheid te geven om berichten te verzenden.</string>
+  <string name="MessageRecord_allow_all_members_to_send">De groepsinstellingen zijn aangepast om alle groepsleden de mogelijkheid te geven om berichten te verzenden.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">De groepsinstellingen zijn aangepast om alleen beheerders de mogelijkheid te geven om berichten te verzenden.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Je hebt de groepsverwijzingen ingeschakeld zonder beheerderstoestemming-vereiste om lid te mogen worden.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Je hebt de groepsverwijzing ingeschakeld met beheerderstoestemming-vereiste om lid te mogen worden ook ingeschakeld.</string>
@@ -1350,7 +1367,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="SubmitDebugLogActivity_success">Succesvol geüpload!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopieer deze URL (door deze aan te tikken en vast te houden) en voeg die toe aan je foutrapport op GitHub of aan een e-mail aan onze ondersteuning:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Doorsturen via andere app</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Dit logbestand wordt publiekelijk beschikbaar gesteld op internet zodat de ontwikkelaars en vrijwilligers het kunnen bestuderen. Je kunt het bekijken en aanpassen voor je het upload.</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dit logbestand wordt publiekelijk beschikbaar gesteld op internet zodat de ontwikkelaars en vrijwilligers het kunnen bestuderen. Je kunt het bekijken voor je het upload.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Apparaatinformatie:</string>
@@ -1720,8 +1737,6 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="giphy_activity_toolbar__search_gifs">GIFs zoeken</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Niets gevonden</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Dit logbestand wordt publiekelijk beschikbaar gesteld op internet zodat de ontwikkelaars en vrijwilligers het kunnen bestuderen. Je kunt het bekijken en aanpassen voor je het verzendt.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wil je je sms- en mms-berichten importeren naar de versleutelde databank van Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">De systeemdatabank zal op geen enkele wijze worden gewijzigd of aangepast.</string>
@@ -1961,8 +1976,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__storage">Opslag</string>
   <string name="preferences__payments">Overschrijvingen</string>
   <string name="preferences__payments_beta">Overschrijvingen (Bèta)</string>
-  <string name="preferences__conversation_length_limit">Gesprekslengtelimiet</string>
-  <string name="preferences__keep_messages">Berichten bewaren</string>
+  <string name="preferences__conversation_length_limit">Aantal te bewaren berichten</string>
+  <string name="preferences__keep_messages">Bewaartermijn voor berichten</string>
   <string name="preferences__clear_message_history">Alle gespreksgeschiedenis wissen</string>
   <string name="preferences__linked_devices">Gekoppelde apparaten</string>
   <string name="preferences__light_theme">Licht</string>
@@ -2984,6 +2999,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">We hebben de kleuren van berichtenbubbels omgewisseld, zodat je meer mogelijkheden hebt om zelf kleuren te kiezen en zodat gesprekken makkelijker te lezen zijn.</string>
   <string name="ChatColorsMegaphone__appearance">Uiterlijk</string>
   <string name="ChatColorsMegaphone__not_now">Niet nu</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Voeg een profielfoto toe</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Maak jezelf herkenbaar door een profielfoto in te stellen of pas de kleur of tekst aan.</string>
+  <string name="AddAProfilePhotoMegaphone__not_now">Niet nu</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Voeg een foto toe</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji-zoeken</string>
@@ -3035,10 +3055,12 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Groepsleden toevoegen</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Groepsinformatie aanpassen</string>
+  <string name="PermissionsSettingsFragment__send_messages">Berichten verzenden</string>
   <string name="PermissionsSettingsFragment__all_members">Alle groepsleden</string>
   <string name="PermissionsSettingsFragment__only_admins">Uitsluitend beheerders</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Wie mag nieuwe leden toevoegen?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Wie mag de groepsinformatie aanpassen?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Wie kunnen berichten verzenden?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Meldingen dempen</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Niet gedempt</string>
@@ -3061,6 +3083,25 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ContactFilterView__search_name_or_number">Zoek op naam of telefoonnummer</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Voorbeeld van profielafbeelding</string>
+  <string name="AvatarPickerFragment__camera">Camera</string>
+  <string name="AvatarPickerFragment__take_a_picture">Neem een foto</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Kies een afbeelding</string>
+  <string name="AvatarPickerFragment__photo">Gallerij</string>
+  <string name="AvatarPickerFragment__text">Tekst</string>
+  <string name="AvatarPickerFragment__save">Opslaan</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Reeds beschikbare afbeeldingen</string>
+  <string name="AvatarPickerFragment__clear_avatar">Profielafbeelding verwijderen</string>
+  <string name="AvatarPickerFragment__edit">Aanpassen</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">De profielafbeelding opslaan is mislukt</string>
+  <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">Voorbeeld</string>
+  <string name="TextAvatarCreationFragment__done">Klaar</string>
+  <string name="TextAvatarCreationFragment__text">Tekst</string>
+  <string name="TextAvatarCreationFragment__color">Kleur</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Kies een achtergrondkleur</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">Sms (onbeveiligd)</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>

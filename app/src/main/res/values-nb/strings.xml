@@ -971,6 +971,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Du endret hvem som kan redigere gruppemedlemskap til \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s endret hvem som kan redigere gruppemedlemskap til \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Den som kan redigere gruppemedlemskap er endret til \"%1$s\".</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Du slo på gruppelenken med administrativ godkjenning avslått.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Du slo på gruppelenken med administrativ godkjenning skrudd på.</string>
@@ -1328,7 +1329,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SubmitDebugLogActivity_success">Fullført!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL-en og legg den til i din feilrapport eller support-e-postadressen:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Del</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Denne logg-meldingen vil bli publisert på nettet for deltakere i prosjektet. Du kan se over og redigere den før du sender den inn.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Enhetsinformasjon:</string>
@@ -1697,8 +1697,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="giphy_activity_toolbar__search_gifs">Søk blant GIFer.</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ingenting funnet</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Denne loggen blir publisert på nett for bruk blant bidragsytere. Du kan undersøke og redigere den før du sender den inn.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vil du importere tekstmeldinger som ligger på enheten til Signals krypterte database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Forvalgt systemdatabase blir ikke endret på noen måte.</string>
@@ -2811,7 +2809,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokker skjermbilder i sist brukte-liste og i programmet</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-meldinger og samtaler, omdiriger alle samtaler, og forseglet avsender</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standard nedtelling for nye samtaler</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Sett standard utløpstid for tidsbegrensede meldinger for nye samtaler startet av deg.</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Sett standard utløpstid for tidsavgrensede meldinger, for nye samtaler startet av deg.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Vis status-ikon</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Vis et statusikon i meldingsdetaljer når de ble levert ved bruk av forseglet avsender.</string>
@@ -2880,6 +2878,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">Utseende</string>
   <string name="ChatColorsMegaphone__not_now">Ikke nå</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Ikke nå</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_stickers">Klistremerker</string>
@@ -2925,6 +2925,16 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__camera">Kamera</string>
+  <string name="AvatarPickerFragment__photo">Bilde</string>
+  <string name="AvatarPickerFragment__save">Lagre</string>
+  <string name="AvatarPickerFragment__edit">Rediger</string>
+  <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">Forhåndsvisning</string>
+  <string name="TextAvatarCreationFragment__done">Ferdig</string>
+  <string name="TextAvatarCreationFragment__color">Farge</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->

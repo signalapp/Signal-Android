@@ -14,6 +14,7 @@ import android.view.Display;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import androidx.activity.result.ActivityResultCallback;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;

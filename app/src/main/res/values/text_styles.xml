@@ -187,4 +187,11 @@
     <style name="Signal.Text.Title.SettingsBio">
     </style>
 
+    <style name="Signal.Text.Title.BottomSheet" parent="">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.01</item>
+    </style>
+
 </resources>

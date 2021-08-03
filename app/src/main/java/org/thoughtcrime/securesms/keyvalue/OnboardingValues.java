@@ -17,6 +17,7 @@ public final class OnboardingValues extends SignalStoreValues {
   private static final String SHOW_INVITE_FRIENDS = "onboarding.invite_friends";
   private static final String SHOW_SMS            = "onboarding.sms";
   private static final String SHOW_APPEARANCE     = "onboarding.appearance";
+  private static final String SHOW_ADD_PHOTO      = "onboarding.add_photo";
 
   OnboardingValues(@NonNull KeyValueStore store) {
     super(store);
@@ -28,6 +29,7 @@ public final class OnboardingValues extends SignalStoreValues {
     putBoolean(SHOW_INVITE_FRIENDS, true);
     putBoolean(SHOW_SMS, true);
     putBoolean(SHOW_APPEARANCE, true);
+    putBoolean(SHOW_ADD_PHOTO, true);
   }
 
   @Override
@@ -40,13 +42,15 @@ public final class OnboardingValues extends SignalStoreValues {
     setShowInviteFriends(false);
     setShowSms(false);
     setShowAppearance(false);
+    setShowAddPhoto(false);
   }
 
   public boolean hasOnboarding(@NonNull Context context) {
     return shouldShowNewGroup()      ||
            shouldShowInviteFriends() ||
            shouldShowSms(context)    ||
-           shouldShowAppearance();
+           shouldShowAppearance()    ||
+           shouldShowAddPhoto();
   }
 
   public void setShowNewGroup(boolean value) {
@@ -79,5 +83,13 @@ public final class OnboardingValues extends SignalStoreValues {
 
   public boolean shouldShowAppearance() {
     return getBoolean(SHOW_APPEARANCE, false);
+  }
+
+  public void setShowAddPhoto(boolean value) {
+    putBoolean(SHOW_ADD_PHOTO, value);
+  }
+
+  public boolean shouldShowAddPhoto(){
+    return getBoolean(SHOW_ADD_PHOTO, false);
   }
 }

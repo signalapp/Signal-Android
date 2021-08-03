@@ -21,15 +21,15 @@ object EmojiPageCache {
   private val tasks: HashMap<EmojiPageRequest, ListenableFutureTask<Bitmap>> = hashMapOf()
 
   @MainThread
-  fun load(context: Context, emojiPage: EmojiPage, inSampleSize: Int): ListenableFutureTask<Bitmap> {
+  fun load(context: Context, emojiPage: EmojiPage, inSampleSize: Int): LoadResult {
     val applicationContext = context.applicationContext
     val emojiPageRequest = EmojiPageRequest(emojiPage, inSampleSize)
     val bitmap: Bitmap? = cache[emojiPageRequest]
     val task: ListenableFutureTask<Bitmap>? = tasks[emojiPageRequest]
 
     return when {
-      bitmap != null -> ListenableFutureTask(bitmap)
-      task != null -> task
+      bitmap != null -> LoadResult.Immediate(bitmap)
+      task != null -> LoadResult.Async(task)
       else -> {
         val newTask = ListenableFutureTask<Bitmap> {
           try {
@@ -56,7 +56,7 @@ object EmojiPageCache {
           }
         }
 
-        newTask
+        LoadResult.Async(newTask)
       }
     }
   }
@@ -75,4 +75,9 @@ object EmojiPageCache {
   }
 
   private data class EmojiPageRequest(val emojiPage: EmojiPage, val inSampleSize: Int)
+
+  sealed class LoadResult {
+    data class Immediate(val bitmap: Bitmap) : LoadResult()
+    data class Async(val task: ListenableFutureTask<Bitmap>) : LoadResult()
+  }
 }

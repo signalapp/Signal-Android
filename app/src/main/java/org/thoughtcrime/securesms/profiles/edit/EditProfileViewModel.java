@@ -8,7 +8,9 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileRepository.UploadResult;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
@@ -29,10 +31,12 @@ class EditProfileViewModel extends ViewModel {
   private final MutableLiveData<byte[]>       originalAvatar      = new MutableLiveData<>();
   private final MutableLiveData<String>       originalDisplayName = new MutableLiveData<>();
   private final SingleLiveEvent<UploadResult> uploadResult        = new SingleLiveEvent<>();
+  private final MutableLiveData<AvatarColor>  avatarColor         = new MutableLiveData<>();
   private final LiveData<Boolean>             isFormValid;
   private final EditProfileRepository         repository;
   private final GroupId                       groupId;
   private       String                        originalDescription;
+  private       Media                         avatarMedia;
 
   private EditProfileViewModel(@NonNull EditProfileRepository repository, boolean hasInstanceState, @Nullable GroupId groupId) {
     this.repository  = repository;
@@ -59,7 +63,13 @@ class EditProfileViewModel extends ViewModel {
         internalAvatar.setValue(value);
         originalAvatar.setValue(value);
       });
+
+      repository.getCurrentAvatarColor(avatarColor::setValue);
     }
+  }
+
+  public LiveData<AvatarColor> avatarColor() {
+    return Transformations.distinctUntilChanged(avatarColor);
   }
 
   public LiveData<String> givenName() {
@@ -88,6 +98,18 @@ class EditProfileViewModel extends ViewModel {
 
   public boolean isGroup() {
     return groupId != null;
+  }
+
+  public @Nullable Media getAvatarMedia() {
+    return avatarMedia;
+  }
+
+  public void setAvatarMedia(@Nullable Media avatarMedia) {
+    this.avatarMedia = avatarMedia;
+  }
+
+  public @Nullable GroupId getGroupId() {
+    return groupId;
   }
 
   public boolean canRemoveProfilePhoto() {

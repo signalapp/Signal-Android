@@ -25,7 +25,7 @@ class InsightsUserAvatar {
   }
 
   private Drawable fallbackDrawable(@NonNull Context context) {
-    return fallbackContactPhoto.asDrawable(context, fallbackColor.colorInt());
+    return fallbackContactPhoto.asDrawable(context, fallbackColor);
   }
 
   void load(ImageView into) {

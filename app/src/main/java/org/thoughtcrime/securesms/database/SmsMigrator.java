@@ -225,7 +225,7 @@ public class SmsMigrator {
 
         if (ourRecipients != null) {
           if (ourRecipients.size() == 1) {
-            long ourThreadId = threadDatabase.getThreadIdFor(ourRecipients.iterator().next());
+            long ourThreadId = threadDatabase.getOrCreateThreadIdFor(ourRecipients.iterator().next());
             migrateConversation(context, listener, progress, theirThreadId, ourThreadId);
           } else if (ourRecipients.size() > 1) {
             ourRecipients.add(Recipient.self());
@@ -235,7 +235,7 @@ public class SmsMigrator {
             GroupId.Mms ourGroupId          = DatabaseFactory.getGroupDatabase(context).getOrCreateMmsGroupForMembers(recipientIds);
             RecipientId ourGroupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(ourGroupId);
             Recipient   ourGroupRecipient   = Recipient.resolved(ourGroupRecipientId);
-            long        ourThreadId         = threadDatabase.getThreadIdFor(ourGroupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
+            long        ourThreadId         = threadDatabase.getOrCreateThreadIdFor(ourGroupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
 
             migrateConversation(context, listener, progress, theirThreadId, ourThreadId);
           }

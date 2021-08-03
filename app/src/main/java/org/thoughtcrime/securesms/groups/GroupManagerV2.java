@@ -220,7 +220,7 @@ final class GroupManagerV2 {
       GroupDatabase.GroupRecord groupRecord       = groupDatabase.requireGroup(groupIdV1);
       String                    name              = Util.emptyIfNull(groupRecord.getTitle());
       byte[]                    avatar            = groupRecord.hasAvatar() ? AvatarHelper.getAvatarBytes(context, groupRecord.getRecipientId()) : null;
-      int                       messageTimer      = Recipient.resolved(groupRecord.getRecipientId()).getExpireMessages();
+      int                       messageTimer      = Recipient.resolved(groupRecord.getRecipientId()).getExpiresInSeconds();
       Set<RecipientId>          memberIds         = Stream.of(members)
                                                           .map(Recipient::getId)
                                                           .filterNot(m -> m.equals(Recipient.self().getId()))
@@ -337,6 +337,13 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
+    @NonNull GroupManager.GroupActionResult updateAnnouncementGroup(boolean isAnnouncementGroup)
+        throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
+    {
+      return commitChangeWithConflictResolution(groupOperations.createAnnouncementGroupChange(isAnnouncementGroup));
+    }
+
+    @WorkerThread
     @NonNull GroupManager.GroupActionResult updateGroupTitleDescriptionAndAvatar(@Nullable String title, @Nullable String description, @Nullable byte[] avatarBytes, boolean avatarChanged)
       throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException
     {
@@ -345,7 +352,7 @@ final class GroupManagerV2 {
                                                            : GroupChange.Actions.newBuilder();
 
         if (description != null) {
-          change.setModifyDescription(groupOperations.createModifyGroupDescription(description));
+          change.setModifyDescription(groupOperations.createModifyGroupDescriptionAction(description));
         }
 
         if (avatarChanged) {
@@ -561,7 +568,7 @@ final class GroupManagerV2 {
           if (GroupChangeUtil.changeIsEmpty(change.build())) {
             Log.i(TAG, "Change is empty after conflict resolution");
             Recipient groupRecipient = Recipient.externalGroupExact(context, groupId);
-            long      threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+            long      threadId       = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
 
             return new GroupManager.GroupActionResult(groupRecipient, threadId, 0, Collections.emptyList());
           }

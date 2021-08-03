@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 
 /**
  * Activity container for starting a new conversation.
@@ -60,7 +61,7 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   @Override
-  public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
+  public void onBeforeContactSelected(Optional<RecipientId> recipientId, String number, Consumer<Boolean> callback) {
     if (recipientId.isPresent()) {
       launch(Recipient.resolved(recipientId.get()));
     } else {
@@ -94,7 +95,7 @@ public class NewConversationActivity extends ContactSelectionActivity
       }
     }
 
-    return true;
+    callback.accept(true);
   }
 
   @Override

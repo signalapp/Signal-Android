@@ -41,46 +41,49 @@ public class ApplicationMigrations {
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
   private static final class Version {
-    static final int LEGACY                 = 1;
-    static final int RECIPIENT_ID           = 2;
-    static final int RECIPIENT_SEARCH       = 3;
-    static final int RECIPIENT_CLEANUP      = 4;
-    static final int AVATAR_MIGRATION       = 5;
-    static final int UUIDS                  = 6;
-    static final int CACHED_ATTACHMENTS     = 7;
-    static final int STICKERS_LAUNCH        = 8;
+    static final int LEGACY                        = 1;
+    static final int RECIPIENT_ID                  = 2;
+    static final int RECIPIENT_SEARCH              = 3;
+    static final int RECIPIENT_CLEANUP             = 4;
+    static final int AVATAR_MIGRATION              = 5;
+    static final int UUIDS                         = 6;
+    static final int CACHED_ATTACHMENTS            = 7;
+    static final int STICKERS_LAUNCH               = 8;
     //static final int TEST_ARGON2          = 9;
-    static final int SWOON_STICKERS         = 10;
-    static final int STORAGE_SERVICE        = 11;
+    static final int SWOON_STICKERS                = 10;
+    static final int STORAGE_SERVICE               = 11;
     //static final int STORAGE_KEY_ROTATE   = 12;
-    static final int REMOVE_AVATAR_ID       = 13;
-    static final int STORAGE_CAPABILITY     = 14;
-    static final int PIN_REMINDER           = 15;
-    static final int VERSIONED_PROFILE      = 16;
-    static final int PIN_OPT_OUT            = 17;
-    static final int TRIM_SETTINGS          = 18;
-    static final int THUMBNAIL_CLEANUP      = 19;
-    static final int GV2                    = 20;
-    static final int GV2_2                  = 21;
-    static final int CDS                    = 22;
-    static final int BACKUP_NOTIFICATION    = 23;
-    static final int GV1_MIGRATION          = 24;
-    static final int USER_NOTIFICATION      = 25;
-    static final int DAY_BY_DAY_STICKERS    = 26;
-    static final int BLOB_LOCATION          = 27;
-    static final int SYSTEM_NAME_SPLIT      = 28;
+    static final int REMOVE_AVATAR_ID              = 13;
+    static final int STORAGE_CAPABILITY            = 14;
+    static final int PIN_REMINDER                  = 15;
+    static final int VERSIONED_PROFILE             = 16;
+    static final int PIN_OPT_OUT                   = 17;
+    static final int TRIM_SETTINGS                 = 18;
+    static final int THUMBNAIL_CLEANUP             = 19;
+    static final int GV2                           = 20;
+    static final int GV2_2                         = 21;
+    static final int CDS                           = 22;
+    static final int BACKUP_NOTIFICATION           = 23;
+    static final int GV1_MIGRATION                 = 24;
+    static final int USER_NOTIFICATION             = 25;
+    static final int DAY_BY_DAY_STICKERS           = 26;
+    static final int BLOB_LOCATION                 = 27;
+    static final int SYSTEM_NAME_SPLIT             = 28;
     // Versions 29, 30 accidentally skipped
-    static final int MUTE_SYNC              = 31;
-    static final int PROFILE_SHARING_UPDATE = 32;
-    static final int SMS_STORAGE_SYNC       = 33;
-    static final int APPLY_UNIVERSAL_EXPIRE = 34;
-    static final int SENDER_KEY             = 35;
-    static final int SENDER_KEY_2           = 36;
-    static final int DB_AUTOINCREMENT       = 37;
-    static final int ATTACHMENT_CLEANUP     = 38;
+    static final int MUTE_SYNC                     = 31;
+    static final int PROFILE_SHARING_UPDATE        = 32;
+    static final int SMS_STORAGE_SYNC              = 33;
+    static final int APPLY_UNIVERSAL_EXPIRE        = 34;
+    static final int SENDER_KEY                    = 35;
+    static final int SENDER_KEY_2                  = 36;
+    static final int DB_AUTOINCREMENT              = 37;
+    static final int ATTACHMENT_CLEANUP            = 38;
+    static final int LOG_CLEANUP                   = 39;
+    static final int ATTACHMENT_CLEANUP_2          = 40;
+    static final int ANNOUNCEMENT_GROUP_CAPABILITY = 41;
   }
 
-  public static final int CURRENT_VERSION = 38;
+  public static final int CURRENT_VERSION = 41;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -340,6 +343,18 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.ATTACHMENT_CLEANUP) {
       jobs.put(Version.ATTACHMENT_CLEANUP, new AttachmentCleanupMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.LOG_CLEANUP) {
+      jobs.put(Version.LOG_CLEANUP, new DeleteDeprecatedLogsMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.ATTACHMENT_CLEANUP_2) {
+      jobs.put(Version.ATTACHMENT_CLEANUP_2, new AttachmentCleanupMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.ANNOUNCEMENT_GROUP_CAPABILITY) {
+      jobs.put(Version.ANNOUNCEMENT_GROUP_CAPABILITY, new AttributesMigrationJob());
     }
 
     return jobs;

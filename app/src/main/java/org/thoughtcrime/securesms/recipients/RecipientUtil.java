@@ -218,7 +218,7 @@ public class RecipientUtil {
       return true;
     }
 
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient);
+    Long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient.getId());
     return isMessageRequestAccepted(context, threadId, threadRecipient);
   }
 
@@ -232,7 +232,7 @@ public class RecipientUtil {
       return true;
     }
 
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient);
+    Long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient.getId());
     return isCallRequestAccepted(context, threadId, threadRecipient);
   }
 
@@ -240,9 +240,9 @@ public class RecipientUtil {
    * @return True if a conversation existed before we enabled message requests, otherwise false.
    */
   @WorkerThread
-  public static boolean isPreMessageRequestThread(@NonNull Context context, long threadId) {
+  public static boolean isPreMessageRequestThread(@NonNull Context context, @Nullable Long threadId) {
     long beforeTime = SignalStore.misc().getMessageRequestEnableTime();
-    return DatabaseFactory.getMmsSmsDatabase(context).getConversationCount(threadId, beforeTime) > 0;
+    return threadId != null && DatabaseFactory.getMmsSmsDatabase(context).getConversationCount(threadId, beforeTime) > 0;
   }
 
   @WorkerThread
@@ -294,22 +294,23 @@ public class RecipientUtil {
   @WorkerThread
   public static boolean setAndSendUniversalExpireTimerIfNecessary(@NonNull Context context, @NonNull Recipient recipient, long threadId) {
     int defaultTimer = SignalStore.settings().getUniversalExpireTimer();
-    if (defaultTimer == 0 || recipient.isGroup() || recipient.getExpireMessages() != 0 || !recipient.isRegistered()) {
+    if (defaultTimer == 0 || recipient.isGroup() || recipient.getExpiresInSeconds() != 0 || !recipient.isRegistered()) {
       return false;
     }
 
     if (threadId == -1 || !DatabaseFactory.getMmsSmsDatabase(context).hasMeaningfulMessage(threadId)) {
       DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient.getId(), defaultTimer);
       OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(recipient, System.currentTimeMillis(), defaultTimer * 1000L);
-      MessageSender.send(context, outgoingMessage, DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient), false, null);
+      MessageSender.send(context, outgoingMessage, DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient), false, null);
       return true;
     }
     return false;
   }
 
   @WorkerThread
-  private static boolean isMessageRequestAccepted(@NonNull Context context, long threadId, @NonNull Recipient threadRecipient) {
-    return threadRecipient.isSelf()                              ||
+  public static boolean isMessageRequestAccepted(@NonNull Context context, @Nullable Long threadId, @Nullable Recipient threadRecipient) {
+    return threadRecipient == null                               ||
+           threadRecipient.isSelf()                              ||
            threadRecipient.isProfileSharing()                    ||
            threadRecipient.isSystemContact()                     ||
            threadRecipient.isForceSmsSelection()                 ||
@@ -320,7 +321,7 @@ public class RecipientUtil {
   }
 
   @WorkerThread
-  private static boolean isCallRequestAccepted(@NonNull Context context, long threadId, @NonNull Recipient threadRecipient) {
+  private static boolean isCallRequestAccepted(@NonNull Context context, @Nullable Long threadId, @NonNull Recipient threadRecipient) {
     return threadRecipient.isProfileSharing()            ||
            threadRecipient.isSystemContact()             ||
            hasSentMessageInThread(context, threadId)     ||
@@ -328,12 +329,16 @@ public class RecipientUtil {
   }
 
   @WorkerThread
-  public static boolean hasSentMessageInThread(@NonNull Context context, long threadId) {
-    return DatabaseFactory.getMmsSmsDatabase(context).getOutgoingSecureConversationCount(threadId) != 0;
+  public static boolean hasSentMessageInThread(@NonNull Context context, @Nullable Long threadId) {
+    return threadId != null && DatabaseFactory.getMmsSmsDatabase(context).getOutgoingSecureConversationCount(threadId) != 0;
   }
 
   @WorkerThread
-  private static boolean noSecureMessagesAndNoCallsInThread(@NonNull Context context, long threadId) {
+  private static boolean noSecureMessagesAndNoCallsInThread(@NonNull Context context, @Nullable Long threadId) {
+    if (threadId == null) {
+      return true;
+    }
+
     return DatabaseFactory.getMmsSmsDatabase(context).getSecureConversationCount(threadId) == 0 &&
            !DatabaseFactory.getThreadDatabase(context).hasReceivedAnyCallsSince(threadId, 0);
   }

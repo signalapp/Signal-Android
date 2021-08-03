@@ -47,6 +47,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Manages the observable datasets available in {@link MediaSendActivity}.
@@ -673,7 +674,7 @@ class MediaSendViewModel extends ViewModel {
                                                                 Collections.emptyList(),
                                                                 System.currentTimeMillis(),
                                                                 -1,
-                                                                recipient.getExpireMessages() * 1000,
+                                                                TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds()),
                                                                 isViewOnce(),
                                                                 ThreadDatabase.DistributionTypes.DEFAULT,
                                                                 null,

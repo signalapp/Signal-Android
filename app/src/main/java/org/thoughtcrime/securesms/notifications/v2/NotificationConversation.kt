@@ -52,7 +52,7 @@ data class NotificationConversation(
     return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact) {
       recipient.getContactDrawable(context)
     } else {
-      GeneratedContactPhoto("Unknown", R.drawable.ic_profile_outline_40).asDrawable(context, AvatarColor.UNKNOWN.colorInt())
+      GeneratedContactPhoto("Unknown", R.drawable.ic_profile_outline_40).asDrawable(context, AvatarColor.UNKNOWN)
     }
   }
 

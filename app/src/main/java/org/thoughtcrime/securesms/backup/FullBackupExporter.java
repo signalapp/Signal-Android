@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
+import org.thoughtcrime.securesms.database.model.AvatarPickerDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -84,7 +85,8 @@ public class FullBackupExporter extends FullBackupBase {
     EmojiSearchDatabase.TABLE_NAME,
     SenderKeyDatabase.TABLE_NAME,
     SenderKeySharedDatabase.TABLE_NAME,
-    PendingRetryReceiptDatabase.TABLE_NAME
+    PendingRetryReceiptDatabase.TABLE_NAME,
+    AvatarPickerDatabase.TABLE_NAME
   );
 
   public static void export(@NonNull Context context,

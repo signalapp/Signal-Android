@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.concurrent.ExecutionException;
+import java.util.function.Consumer;
 
 public class InviteActivity extends PassphraseRequiredActivity implements ContactSelectionListFragment.OnContactSelectedListener {
 
@@ -139,9 +140,9 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
   }
 
   @Override
-  public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
+  public void onBeforeContactSelected(Optional<RecipientId> recipientId, String number, Consumer<Boolean> callback) {
     updateSmsButtonText(contactsFragment.getSelectedContacts().size() + 1);
-    return true;
+    callback.accept(true);
   }
 
   @Override

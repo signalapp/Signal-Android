@@ -15,6 +15,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemov
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedString;
 import org.signal.storageservice.protos.groups.local.DecryptedTimer;
+import org.signal.storageservice.protos.groups.local.EnabledState;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -45,7 +46,7 @@ public final class DecryptedGroupUtil_apply_Test {
     int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroupChange.class);
 
     assertEquals("DecryptedGroupUtil and its tests need updating to account for new fields on " + DecryptedGroupChange.class.getName(),
-                 20, maxFieldFound);
+                 21, maxFieldFound);
   }
 
   @Test
@@ -590,6 +591,24 @@ public final class DecryptedGroupUtil_apply_Test {
     assertEquals(DecryptedGroup.newBuilder()
                                .setRevision(11)
                                .setDescription("New Description")
+                               .build(),
+                 newGroup);
+  }
+
+  @Test
+  public void isAnnouncementGroup() throws NotAbleToApplyGroupV2ChangeException {
+    DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
+                                                                     .setRevision(10)
+                                                                     .setIsAnnouncementGroup(EnabledState.DISABLED)
+                                                                     .build(),
+                                                       DecryptedGroupChange.newBuilder()
+                                                                           .setRevision(11)
+                                                                           .setNewIsAnnouncementGroup(EnabledState.ENABLED)
+                                                                           .build());
+
+    assertEquals(DecryptedGroup.newBuilder()
+                               .setRevision(11)
+                               .setIsAnnouncementGroup(EnabledState.ENABLED)
                                .build(),
                  newGroup);
   }

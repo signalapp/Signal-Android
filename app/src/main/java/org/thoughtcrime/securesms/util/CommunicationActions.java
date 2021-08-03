@@ -24,6 +24,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
+import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -37,6 +38,9 @@ import org.thoughtcrime.securesms.proxy.ProxyBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
+
+import java.io.IOException;
 
 public class CommunicationActions {
 
@@ -101,12 +105,12 @@ public class CommunicationActions {
     new AsyncTask<Void, Void, Long>() {
       @Override
       protected Long doInBackground(Void... voids) {
-        return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+        return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient.getId());
       }
 
       @Override
-      protected void onPostExecute(Long threadId) {
-        ConversationIntents.Builder builder = ConversationIntents.createBuilder(context, recipient.getId(), threadId);
+      protected void onPostExecute(@Nullable Long threadId) {
+        ConversationIntents.Builder builder = ConversationIntents.createBuilder(context, recipient.getId(), threadId != null ? threadId : -1);
         if (!TextUtils.isEmpty(text)) {
           builder.withDraftText(text);
         }
@@ -219,6 +223,40 @@ public class CommunicationActions {
 
     if (proxy != null) {
       ProxyBottomSheetFragment.showForProxy(activity.getSupportFragmentManager(), proxy);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * If the url is a proxy link it will handle it.
+   * Otherwise returns false, indicating was not a proxy link.
+   */
+  public static boolean handlePotentialSignalMeUrl(@NonNull FragmentActivity activity, @NonNull String potentialUrl) {
+    String e164 = SignalMeUtil.parseE164FromLink(activity, potentialUrl);
+
+    if (e164 != null) {
+      SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(activity, 500, 500);
+
+      SimpleTask.run(() -> {
+        Recipient recipient = Recipient.external(activity, e164);
+
+        if (!recipient.isRegistered() || !recipient.hasUuid()) {
+          try {
+            DirectoryHelper.refreshDirectoryFor(activity, recipient, false);
+            recipient = Recipient.resolved(recipient.getId());
+          } catch (IOException e) {
+            Log.w(TAG, "[handlePotentialMeUrl] Failed to refresh directory for new contact.");
+          }
+        }
+
+        return recipient;
+      }, recipient -> {
+        dialog.dismiss();
+        startConversation(activity, recipient, null);
+      });
+
       return true;
     } else {
       return false;

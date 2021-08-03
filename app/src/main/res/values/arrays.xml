@@ -11,6 +11,7 @@
 <!-- bs --><item>Bosanski</item>
 <!-- bg --><item>Bulgarian български</item>
 <!-- my --><item>Burmese ဗမာစကား</item>
+<!-- yue --><item>Cantonese (Traditional) 粵語 (繁體)</item>
 <!-- ca --><item>Català</item>
 <!-- cs --><item>Čeština</item>
 <!-- zh_CN --><item>Chinese (Simplified) 中文 (简体)</item>
@@ -90,6 +91,7 @@
       <item>bs</item>
       <item>bg</item>
       <item>my</item>
+      <item>yue</item>
       <item>ca</item>
       <item>cs</item>
       <item>zh_CN</item>

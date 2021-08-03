@@ -63,7 +63,7 @@ object RecipientDatabaseTestUtils {
     mentionSetting: RecipientDatabase.MentionSetting = RecipientDatabase.MentionSetting.ALWAYS_NOTIFY,
     wallpaper: ChatWallpaper? = null,
     chatColors: ChatColors? = null,
-    avatarColor: AvatarColor = AvatarColor.BLUE,
+    avatarColor: AvatarColor = AvatarColor.A100,
     about: String? = null,
     aboutEmoji: String? = null,
     syncExtras: RecipientDatabase.RecipientSettings.SyncExtras = RecipientDatabase.RecipientSettings.SyncExtras(

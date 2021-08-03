@@ -17,7 +17,7 @@ class GroupCapacityResultTest {
   @Test
   fun `Given an empty group, when I getRemainingCapacity, then I expect maximum capacity`() {
     // GIVEN
-    val emptyGroupCapacityResult = GroupCapacityResult(SELF_ID, listOf(), selectionLimits)
+    val emptyGroupCapacityResult = GroupCapacityResult(SELF_ID, listOf(), selectionLimits, false)
 
     // WHEN
     val result = emptyGroupCapacityResult.getRemainingCapacity()
@@ -29,7 +29,7 @@ class GroupCapacityResultTest {
   @Test
   fun `Given an empty group, when I getSelectionLimit, then I expect SELECTION_LIMIT`() {
     // GIVEN
-    val emptyGroupCapacityResult = GroupCapacityResult(SELF_ID, listOf(), selectionLimits)
+    val emptyGroupCapacityResult = GroupCapacityResult(SELF_ID, listOf(), selectionLimits, false)
 
     // WHEN
     val result = emptyGroupCapacityResult.getSelectionLimit()
@@ -41,7 +41,7 @@ class GroupCapacityResultTest {
   @Test
   fun `Given an empty group, when I getSelectionWarning, then I expect SELECTION_WARNING`() {
     // GIVEN
-    val emptyGroupCapacityResult = GroupCapacityResult(SELF_ID, listOf(), selectionLimits)
+    val emptyGroupCapacityResult = GroupCapacityResult(SELF_ID, listOf(), selectionLimits, false)
 
     // WHEN
     val result = emptyGroupCapacityResult.getSelectionWarning()
@@ -53,7 +53,7 @@ class GroupCapacityResultTest {
   @Test
   fun `Given a group only containing self, when I getSelectionLimit, then I expect SELECTION_LIMIT minus 1`() {
     // GIVEN
-    val emptyGroupCapacityResult = GroupCapacityResult(SELF_ID, listOf(SELF_ID), selectionLimits)
+    val emptyGroupCapacityResult = GroupCapacityResult(SELF_ID, listOf(SELF_ID), selectionLimits, false)
 
     // WHEN
     val result = emptyGroupCapacityResult.getSelectionLimit()
@@ -65,7 +65,7 @@ class GroupCapacityResultTest {
   @Test
   fun `Given a group only containing self, when I getSelectionWarning, then I expect SELECTION_WARNING minus 1`() {
     // GIVEN
-    val emptyGroupCapacityResult = GroupCapacityResult(SELF_ID, listOf(SELF_ID), selectionLimits)
+    val emptyGroupCapacityResult = GroupCapacityResult(SELF_ID, listOf(SELF_ID), selectionLimits, false)
 
     // WHEN
     val result = emptyGroupCapacityResult.getSelectionWarning()
@@ -78,7 +78,7 @@ class GroupCapacityResultTest {
   fun `Given a group containing self and others, when I getMembers, then I expect all members including self`() {
     // GIVEN
     val allMembers: List<RecipientId> = (1L..10L).map { RecipientId.from(it) }
-    val emptyGroupCapacityResult = GroupCapacityResult(SELF_ID, allMembers, selectionLimits)
+    val emptyGroupCapacityResult = GroupCapacityResult(SELF_ID, allMembers, selectionLimits, false)
 
     // WHEN
     val result = emptyGroupCapacityResult.getMembers()
@@ -91,7 +91,7 @@ class GroupCapacityResultTest {
   fun `Given a group containing self and others, when I getMembersWithoutSelf, then I expect all members without self`() {
     // GIVEN
     val allMembers: List<RecipientId> = (1L..10L).map { RecipientId.from(it) }
-    val emptyGroupCapacityResult = GroupCapacityResult(SELF_ID, allMembers, selectionLimits)
+    val emptyGroupCapacityResult = GroupCapacityResult(SELF_ID, allMembers, selectionLimits, false)
     val expectedMembers = allMembers - SELF_ID
 
     // WHEN

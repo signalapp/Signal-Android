@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 /**
  * Group selection activity, will add a single member to selected groups.
@@ -112,7 +113,7 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
   }
 
   @Override
-  public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
+  public void onBeforeContactSelected(Optional<RecipientId> recipientId, String number, Consumer<Boolean> callback) {
     if (contactsFragment.isMulti()) {
       throw new UnsupportedOperationException("Not yet built to handle multi-select.");
 //      if (contactsFragment.hasQueryFilter()) {
@@ -128,7 +129,7 @@ public final class AddToGroupsActivity extends ContactSelectionActivity {
       }
     }
 
-    return true;
+    callback.accept(true);
   }
 
   @Override

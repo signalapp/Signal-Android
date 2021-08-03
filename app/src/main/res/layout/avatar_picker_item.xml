@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_height="74dp"
+    tools:layout_width="74dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/avatar_picker_item_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/circle_tintable"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
+        tools:backgroundTint="#C2DCE9"
+        tools:tint="@color/signal_inverse_primary" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/avatar_picker_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        tools:text="AF"
+        app:emoji_forceCustom="true"/>
+
+    <View
+        android:id="@+id/avatar_picker_item_fader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="@drawable/circle_transparent_black_20" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/avatar_picker_item_selection_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        android:background="@drawable/avatar_picker_item_ring"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/ic_compose_solid_24"
+        app:tint="@color/core_white" />
+
+</org.thoughtcrime.securesms.components.SquareFrameLayout>

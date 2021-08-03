@@ -25,7 +25,9 @@ import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.lock.v2.KbsMigrationActivity;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestMegaphoneActivity;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -105,6 +107,7 @@ public final class Megaphones {
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
       put(Event.CHAT_COLORS, ALWAYS);
+      put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
     }};
   }
 
@@ -134,6 +137,8 @@ public final class Megaphones {
         return buildNotificationsMegaphone(context);
       case CHAT_COLORS:
         return buildChatColorsMegaphone(context);
+      case ADD_A_PROFILE_PHOTO:
+        return buildAddAProfilePhotoMegaphone(context);
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -320,6 +325,21 @@ public final class Megaphones {
                         .build();
   }
 
+  private static @NonNull Megaphone buildAddAProfilePhotoMegaphone(@NonNull Context context) {
+    return new Megaphone.Builder(Event.ADD_A_PROFILE_PHOTO, Megaphone.Style.BASIC)
+                        .setTitle(R.string.AddAProfilePhotoMegaphone__add_a_profile_photo)
+                        .setImage(R.drawable.ic_add_a_profile_megaphone_image)
+                        .setBody(R.string.AddAProfilePhotoMegaphone__choose_a_look_and_color)
+                        .setActionButton(R.string.AddAProfilePhotoMegaphone__add_photo, (megaphone, listener) -> {
+                          listener.onMegaphoneNavigationRequested(ManageProfileActivity.getIntentForAvatarEdit(context));
+                          listener.onMegaphoneCompleted(Event.ADD_A_PROFILE_PHOTO);
+                        })
+                        .setSecondaryButton(R.string.AddAProfilePhotoMegaphone__not_now, (megaphone, listener) -> {
+                          listener.onMegaphoneCompleted(Event.ADD_A_PROFILE_PHOTO);
+                        })
+                        .build();
+  }
+
   private static boolean shouldShowMessageRequestsMegaphone() {
     return Recipient.self().getProfileName() == ProfileName.EMPTY;
   }
@@ -363,6 +383,20 @@ public final class Megaphones {
     return shouldShow;
   }
 
+  private static boolean shouldShowAddAProfilePhotoMegaphone(@NonNull Context context) {
+    if (SignalStore.misc().hasEverHadAnAvatar()) {
+      return false;
+    }
+
+    boolean hasAnAvatar = AvatarHelper.hasAvatar(context, Recipient.self().getId());
+    if (hasAnAvatar) {
+      SignalStore.misc().markHasEverHadAnAvatar();
+      return false;
+    }
+
+    return true;
+  }
+
   public enum Event {
     REACTIONS("reactions"),
     PINS_FOR_ALL("pins_for_all"),
@@ -375,7 +409,8 @@ public final class Megaphones {
     GROUP_CALLING("group_calling"),
     ONBOARDING("onboarding"),
     NOTIFICATIONS("notifications"),
-    CHAT_COLORS("chat_colors");
+    CHAT_COLORS("chat_colors"),
+    ADD_A_PROFILE_PHOTO("add_a_profile_photo");
 
     private final String key;
 

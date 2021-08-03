@@ -62,9 +62,9 @@ public final class SignalSenderKeyStore implements SignalServiceSenderKeyStore {
   }
 
   @Override
-  public void clearSenderKeySharedWith(DistributionId distributionId, Collection<SignalProtocolAddress> addresses) {
+  public void clearSenderKeySharedWith(Collection<SignalProtocolAddress> addresses) {
     synchronized (LOCK) {
-      DatabaseFactory.getSenderKeySharedDatabase(context).delete(distributionId, addresses);
+      DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(addresses);
     }
   }
 

@@ -975,6 +975,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Vi ŝanĝis, kiu povas modifi la grupan membrecon al „%1$s“.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ŝanĝis, kiu povas modifi la grupan membrecon al „%2$s“.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Tiuj, kiuj povas modifi la grupan membrecon ŝanĝiĝis al „%1$s“.</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Vi ŝaltis la grupligilon sen bezono de administranto-aprobo.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Vi ŝaltis la grupligilon kun administranto-aprobo.</string>
@@ -1340,7 +1341,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SubmitDebugLogActivity_success">Sukceso!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopiu tiun ĉi retadreson kaj aldonu ĝin al via problemraporto aŭ subtena retpoŝtmesaĝo:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Kunhavigi</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Tiu protokolo estos afiŝita publike en la reto, por ke kontribuantoj vidu ĝin. Vi povas revizii ĝin antaŭ ĝia sendo.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtrilo:</string>
   <string name="SupportEmailUtil_device_info">Aparatinformo:</string>
@@ -1710,8 +1710,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="giphy_activity_toolbar__search_gifs">Serĉi GIF-ojn</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nenio trovita</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Tiu protokolo estos afiŝita publike en la reto, por ke kontribuantoj vidu ĝin; vi povas revizii ĝin antaŭ ol sendi ĝin.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Ĉu vi volas importi viajn ekzistantajn tekstmesaĝojn en la ĉifritan datumbazon de Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">La defaŭlta sistema datumbazo ne estos iel ajn modifita aŭ ŝanĝita.</string>
@@ -2891,6 +2889,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Ni plibonigis la kolorojn de la interparoloj por doni al vi pli da opcioj, kaj faciligi ilian legadon.</string>
   <string name="ChatColorsMegaphone__appearance">Aspekto</string>
   <string name="ChatColorsMegaphone__not_now">Ne nun</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Ne nun</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoĝio</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Malfermi la serĉon de emoĝioj</string>
@@ -2963,6 +2963,16 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__camera">Fotilo</string>
+  <string name="AvatarPickerFragment__photo">Foto</string>
+  <string name="AvatarPickerFragment__save">Konservi</string>
+  <string name="AvatarPickerFragment__edit">Modifi</string>
+  <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">Antaŭrigardo</string>
+  <string name="TextAvatarCreationFragment__done">Farita</string>
+  <string name="TextAvatarCreationFragment__color">Koloro</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->

@@ -118,7 +118,26 @@ public class SenderKeySharedDatabase extends Database {
   }
 
   /**
-   * Clear all shared statuses for a given recipientId.
+   * Clear the shared status for all distributionIds for a set of addresses.
+   */
+  public void deleteAllFor(@NonNull Collection<SignalProtocolAddress> addresses) {
+    SQLiteDatabase db    = databaseHelper.getWritableDatabase();
+    String         query = ADDRESS + " = ? AND " + DEVICE + " = ?";
+
+    db.beginTransaction();
+    try {
+      for (SignalProtocolAddress address : addresses) {
+        db.delete(TABLE_NAME, query, SqlUtil.buildArgs(address.getName(), address.getDeviceId()));
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+  }
+
+  /**
+   * Clear the shared status for all distributionIds for a given recipientId.
    */
   public void deleteAllFor(@NonNull RecipientId recipientId) {
     SQLiteDatabase db        = databaseHelper.getWritableDatabase();

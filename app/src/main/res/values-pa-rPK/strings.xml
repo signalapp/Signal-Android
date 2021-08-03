@@ -1112,7 +1112,7 @@
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">جمع کرو</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">سمجھ آگیا</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">ای میل لکھو</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">اے لاگ مضمون نگاراں دے ویکھن لئی عوامی طور تے آن لائن شائع کیتا جائے گا، تسیں گھلن توں پہلاں جانچ تے ترمیم کرسکدے او۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">اے لاگ مضمون نگاراں دے ویکھن لئی عوامی طور تے آن لائن شائع کیتا جائے گا، تسیں گھلن توں پہلاں جانچ تے ترمیم کرسکدے او۔</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">لاگ لوڈ کر رئیا اے…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">لاگز اپ لوڈ کر رئیا اے…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">ای میل ایپ دا انتخاب کرو</string> -->

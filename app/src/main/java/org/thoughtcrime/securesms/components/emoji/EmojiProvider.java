@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.emoji.EmojiPageCache;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 
 import java.util.concurrent.ExecutionException;
 
@@ -52,7 +53,7 @@ class EmojiProvider {
     SpannableStringBuilder builder = new SpannableStringBuilder(text);
 
     for (EmojiParser.Candidate candidate : matches) {
-      Drawable drawable = getEmojiDrawable(tv.getContext(), candidate.getDrawInfo());
+      Drawable drawable = getEmojiDrawable(tv.getContext(), candidate.getDrawInfo(), tv::requestLayout);
 
       if (drawable != null) {
         builder.setSpan(new EmojiSpan(drawable, tv), candidate.getStartIndex(), candidate.getEndIndex(),
@@ -65,10 +66,17 @@ class EmojiProvider {
 
   static @Nullable Drawable getEmojiDrawable(@NonNull Context context, @Nullable CharSequence emoji) {
     EmojiDrawInfo drawInfo = EmojiSource.getLatest().getEmojiTree().getEmoji(emoji, 0, emoji.length());
-    return getEmojiDrawable(context, drawInfo);
+    return getEmojiDrawable(context, drawInfo, null);
   }
 
-  private static @Nullable Drawable getEmojiDrawable(@NonNull Context context, @Nullable EmojiDrawInfo drawInfo) {
+  /**
+   * Gets an EmojiDrawable from the Page Cache
+   *
+   * @param context         Context object used in reading and writing from disk
+   * @param drawInfo        Information about the emoji being displayed
+   * @param onEmojiLoaded   Runnable which will trigger when an emoji is loaded from disk
+   */
+  private static @Nullable Drawable getEmojiDrawable(@NonNull Context context, @Nullable EmojiDrawInfo drawInfo, @Nullable Runnable onEmojiLoaded) {
     if (drawInfo == null) {
       return null;
     }
@@ -77,19 +85,30 @@ class EmojiProvider {
     final EmojiSource   source               = EmojiSource.getLatest();
     final EmojiDrawable drawable             = new EmojiDrawable(source, drawInfo, lowMemoryDecodeScale);
 
-    EmojiPageCache.INSTANCE
-                  .load(context, drawInfo.getPage(), lowMemoryDecodeScale)
-                  .addListener(new FutureTaskListener<Bitmap>() {
-                    @Override
-                    public void onSuccess(Bitmap result) {
-                      ThreadUtil.runOnMain(() -> drawable.setBitmap(result));
-                    }
+    EmojiPageCache.LoadResult loadResult = EmojiPageCache.INSTANCE.load(context, drawInfo.getPage(), lowMemoryDecodeScale);
 
-                    @Override
-                    public void onFailure(ExecutionException exception) {
-                      Log.d(TAG, "Failed to load emoji bitmap resource", exception);
-                    }
-                  });
+    if (loadResult instanceof EmojiPageCache.LoadResult.Immediate) {
+      ThreadUtil.runOnMain(() -> drawable.setBitmap(((EmojiPageCache.LoadResult.Immediate) loadResult).getBitmap()));
+    } else if (loadResult instanceof EmojiPageCache.LoadResult.Async) {
+      ((EmojiPageCache.LoadResult.Async) loadResult).getTask().addListener(new FutureTaskListener<Bitmap>() {
+        @Override
+        public void onSuccess(Bitmap result) {
+          ThreadUtil.runOnMain(() -> {
+            drawable.setBitmap(result);
+            if (onEmojiLoaded != null) {
+              onEmojiLoaded.run();
+            }
+          });
+        }
+
+        @Override
+        public void onFailure(ExecutionException exception) {
+          Log.d(TAG, "Failed to load emoji bitmap resource", exception);
+        }
+      });
+    } else {
+      throw new IllegalStateException("Unexpected subclass " + loadResult.getClass());
+    }
 
     return drawable;
   }
@@ -122,10 +141,10 @@ class EmojiProvider {
       final int xStart      = (index % emojiPerRow) * glyphWidth;
       final int yStart      = (index / emojiPerRow) * glyphHeight;
 
-      this.emojiBounds = new Rect(xStart,
-                                  yStart,
-                                  xStart + glyphWidth,
-                                  yStart + glyphHeight);
+      this.emojiBounds = new Rect(xStart + 1,
+                                  yStart + 1,
+                                  xStart + glyphWidth - 1,
+                                  yStart + glyphHeight - 1);
     }
 
     @Override

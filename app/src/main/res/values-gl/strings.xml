@@ -49,6 +49,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(localización)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(resposta)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Mensaxe de voz)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galería</string>
   <string name="AttachmentKeyboard_file">Ficheiro</string>
@@ -320,6 +321,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Algúns contactos non poden estar nos grupos clásicos.</string>
+  <string name="CreateGroupActivity__select_members">Elexir membros</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Erro ao establecer a fotografía do perfil</string>
@@ -333,6 +335,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Restablece desde a icona da copia</string>
   <string name="ChooseBackupFragment__choose_backup">Escolle copia de apoio</string>
   <string name="ChooseBackupFragment__learn_more">Saber máis</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Non hai un navegador de ficheiros</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Restablecemento completo</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Elixe un cartafol para seguir usando copias de apoio. As novas copias gardaranse nese cartafol.</string>
@@ -798,6 +801,7 @@
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
   <string name="MediaOverviewActivity_image">Imaxe</string>
+  <string name="MediaOverviewActivity_voice_message">Mensaxe de voz</string>
   <string name="MediaOverviewActivity_sent_by_s">Enviado por %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Enviado por vostede</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Enviado por%1$s a %2$s</string>
@@ -814,6 +818,7 @@
   <string name="Megaphones_invite_friends">Convidar amizades</string>
   <string name="Megaphones_use_sms">Utilizar SMS</string>
   <string name="Megaphones_appearance">Aparencia</string>
+  <string name="Megaphones_add_photo">Engadir foto</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal en progreso</string>
   <string name="NotificationBarManager__establishing_signal_call">Establecendo chamada Signal</string>
@@ -837,6 +842,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Engadir un título…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Eliminouse un elemento porque o seu tamaño excede o límite</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Eliminouse un elemento porque era dun tipo descoñecido</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Eliminouse un elemento porque excedía o tamaño máximo ou tiña un tipo descoñecido</string>
   <string name="MediaSendActivity_camera_unavailable">Cámara non dispoñible.</string>
   <string name="MediaSendActivity_message_to_s">Mensaxe para %s</string>
   <string name="MediaSendActivity_message">Mensaxe</string>
@@ -853,6 +860,8 @@
   <string name="MediaRepository_all_media">Ficheiros multimedia</string>
   <string name="MediaRepository__camera">Cámara</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Fallou o descifrado da mensaxe</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Toca para enviar o rexistro de depuración</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Descoñecido</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Recibiuse unha mensaxe cifrada a través dunha versión antiga de Signal que xa non ten soporte. Por favor, pídelle ao remitente que actualice a súa versión e volva enviar a mensaxe.</string>
@@ -968,6 +977,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Cambiaches quen pode editar a membresía do grupo a \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s cambiou quen pode cambiar a membresía do grupo a \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">O permiso de edición da membresía do grupo cambiou a \"%1$s\".</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Activaches a ligazón ao grupo con aprobación por admin desactivada.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Activaches a ligazón ao grupo con aprobación por admin activada.</string>
@@ -1334,7 +1344,7 @@
   <string name="SubmitDebugLogActivity_success">Correcto!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia este URL e engádeo ao teu informe de problemas ou correo de asistencia:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Compartir</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Este rexistro publicarase en liña para que os colaboradores poidan velo; podes examinalo e editalo antes de o enviar.</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Este informe será publicado de xeito público para que os desenvolvedores poidan velo. Podes examinar o seu contido antes de subilo.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Información do dispositivo:</string>
@@ -1693,8 +1703,6 @@
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Non se atopou nada</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Este rexistro publicarase en liña para que os colaboradores poidan velo; podes examinalo e editalo antes de o enviar.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gustaríache importar ás túas mensaxes de texto á base de datos cifrada de Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de datos predefinida do sistema non se modificará nin alterará de modo ningún.</string>
@@ -1723,6 +1731,8 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar ficheiros multimedia e mensaxes a grupos, toca Aceptar e completa a configuración solicitada. Os axustes das MMS do teu provedor xeralmente pódense atopar buscando polo seu APN. Só necesitas facelo unha vez.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Problema co envío</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Non se che puido entregar unha mensaxe, adhesivo, reacción ou informe de lectura de %s. Puido ser unha entrega directa ou desde un grupo.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Non se che puido entregar unha mensaxe, adhesivo ou informe de lectura desde %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Nome (obrigatorio)</string>
   <string name="CreateProfileActivity_last_name_optional">Apelido (optativo)</string>
@@ -1777,6 +1787,7 @@
   <string name="message_details_recipient_header__delivered_to">Entregada a</string>
   <string name="message_details_recipient_header__read_by">Lida por</string>
   <string name="message_details_recipient_header__not_sent">Sen enviar</string>
+  <string name="message_details_recipient_header__viewed">Visto por</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Erro ao enviar</string>
   <string name="message_details_recipient__new_safety_number">Novo número de seguranza</string>
@@ -1822,6 +1833,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Símbolos</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Bandeiras</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticonas</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Sen resultados</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Utilizar o predeterminado</string>
   <string name="arrays__use_custom">Utilizar o personalizado</string>
@@ -1983,6 +1995,8 @@
   <string name="preferences_data_and_storage__calls">Chamadas</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Utilizar menos datos durante as chamadas</string>
   <string name="preferences_data_and_storage__never">Nunca</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi e datos móbiles</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Só datos móbiles</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Usar menos datos pode mellorar as chamadas naquelas redes deficientes</string>
   <string name="preferences_notifications__messages">Mensaxes</string>
   <string name="preferences_notifications__events">Eventos</string>
@@ -2007,6 +2021,7 @@
   <string name="preferences_off">Off</string>
   <string name="preferences_on">On</string>
   <string name="preferences_proxy_address">Enderezo do proxy</string>
+  <string name="preferences_only_use_a_proxy_if">Utiliza un proxy só se non es quen de conectar a Signal con datos móbiles ou WiFi.</string>
   <string name="preferences_share">Compartir</string>
   <string name="preferences_save">Gardar</string>
   <string name="preferences_connecting_to_proxy">Conectando ao proxy…</string>
@@ -2515,6 +2530,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Copiado ao portapapeis</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Actualmente a ligazón non está activa</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Fallou a reprodución da mensaxe</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Mensaxe de voz · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s a %2$s</string>
@@ -2580,9 +2596,14 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">Buscar paises</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Omitir</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d membro</item>
+    <item quantity="other">%1$d membros</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Compartir</string>
   <string name="ShareActivity__send">Enviar</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Compartir con múltiplos chats é algo que só se pode facer coas mensaxes do Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Fallou o envío a algúns usuarios</string>
@@ -2678,28 +2699,56 @@
   <string name="ChatColorSelectionFragment__chat_color">Cor do chat</string>
   <string name="ChatColorSelectionFragment__edit">Editar</string>
   <string name="ChatColorSelectionFragment__delete">Eliminar</string>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Eliminar cor do chat?</string>
   <!--CustomChatColorCreatorFragment-->
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Gardar</string>
   <!--ChatColorGradientTool-->
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Personalizar as reaccións</string>
   <string name="EditReactionsFragment__reset">Restablecer</string>
   <string name="EditReactionsFragment_save">Gardar</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Segue automáticamente a cor do fondo</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Arrastra para cambiar a dirección do gradiente</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">Novas cores para o chat</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Melloramos as cores para o chat para darche máis opcións e facilitar a lectura dos chats.</string>
   <string name="ChatColorsMegaphone__appearance">Aparencia</string>
   <string name="ChatColorsMegaphone__not_now">Agora non</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Engadir unha foto de perfil</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Elixe o aspecto e cor ou personaliza as túas iniciais.</string>
+  <string name="AddAProfilePhotoMegaphone__not_now">Agora non</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Engadir foto</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">Abrir busca de emojis</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Abrir busca de adhesivos</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Abrir busca de gif</string>
   <string name="KeyboardPagerFragment_stickers">Adhesivos</string>
+  <string name="KeyboardPagerFragment_gifs">Gifs</string>
+  <string name="KeyboardPagerFragment_search_emoji">Buscar emoji</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Volver a emoji</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">Limpar campo de busca</string>
+  <string name="KeyboardPagerFragment_search_giphy">Buscar en GIPHY</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">Buscar adhesivos</string>
+  <string name="StickerSearchDialogFragment_no_results_found">Sen resultados</string>
+  <string name="EmojiSearchFragment__no_results_found">Sen resultados</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Enviar mensaxe</string>
+  <string name="ConversationSettingsFragment__start_video_call">Iniciar chamada de vídeo</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Iniciar chamada de audio</string>
   <string name="ConversationSettingsFragment__message">Mensaxe</string>
   <string name="ConversationSettingsFragment__video">Vídeo</string>
   <string name="ConversationSettingsFragment__audio">Audio</string>
   <string name="ConversationSettingsFragment__call">Chamar</string>
   <string name="ConversationSettingsFragment__mute">Silenciar</string>
+  <string name="ConversationSettingsFragment__muted">Acalado</string>
   <string name="ConversationSettingsFragment__search">Buscar</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Desaparición das mensaxes</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">Sons e Notificacións</string>
+  <string name="ConversationSettingsFragment__contact_details">Detalles do contacto</string>
   <string name="ConversationSettingsFragment__view_safety_number">Ver número de seguranza</string>
   <string name="ConversationSettingsFragment__block">Bloquear</string>
   <string name="ConversationSettingsFragment__block_group">Bloquear un grupo</string>
@@ -2709,8 +2758,11 @@
   <string name="ConversationSettingsFragment__see_all">Ver todo</string>
   <string name="ConversationSettingsFragment__add_members">Engadir membros</string>
   <string name="ConversationSettingsFragment__permissions">Permisos</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">Solicitudes e convites</string>
   <string name="ConversationSettingsFragment__group_link">Ligazón do grupo</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Engadir como contacto</string>
   <string name="ConversationSettingsFragment__unmute">Activar o son</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversa acalada ata %1$s</string>
   <string name="ConversationSettingsFragment__phone_number">Número de teléfono</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Engadir membros</string>
@@ -2732,6 +2784,16 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__camera">Cámara</string>
+  <string name="AvatarPickerFragment__photo">Fotografía</string>
+  <string name="AvatarPickerFragment__save">Gardar</string>
+  <string name="AvatarPickerFragment__edit">Editar</string>
+  <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">Visualización</string>
+  <string name="TextAvatarCreationFragment__done">Feito</string>
+  <string name="TextAvatarCreationFragment__color">Cor</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->

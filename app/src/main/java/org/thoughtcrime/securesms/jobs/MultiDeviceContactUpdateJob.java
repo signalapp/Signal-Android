@@ -149,8 +149,8 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                   verifiedMessage,
                                   ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey()),
                                   recipient.isBlocked(),
-                                  recipient.getExpireMessages() > 0 ? Optional.of(recipient.getExpireMessages())
-                                                                    : Optional.absent(),
+                                  recipient.getExpiresInSeconds() > 0 ? Optional.of(recipient.getExpiresInSeconds())
+                                                                      : Optional.absent(),
                                   Optional.fromNullable(inboxPositions.get(recipientId)),
                                   archived.contains(recipientId)));
 
@@ -201,7 +201,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
         Optional<String>                          name          = Optional.fromNullable(recipient.isSystemContact() ? recipient.getDisplayName(context) : recipient.getGroupName(context));
         Optional<ProfileKey>                      profileKey    = ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey());
         boolean                                   blocked       = recipient.isBlocked();
-        Optional<Integer>                         expireTimer   = recipient.getExpireMessages() > 0 ? Optional.of(recipient.getExpireMessages()) : Optional.absent();
+        Optional<Integer>                         expireTimer   = recipient.getExpiresInSeconds() > 0 ? Optional.of(recipient.getExpiresInSeconds()) : Optional.absent();
         Optional<Integer>                         inboxPosition = Optional.fromNullable(inboxPositions.get(recipient.getId()));
 
         out.write(new DeviceContact(RecipientUtil.toSignalServiceAddress(context, recipient),
@@ -228,7 +228,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
                                     Optional.absent(),
                                     ProfileKeyUtil.profileKeyOptionalOrThrow(self.getProfileKey()),
                                     false,
-                                    self.getExpireMessages() > 0 ? Optional.of(self.getExpireMessages()) : Optional.absent(),
+                                    self.getExpiresInSeconds() > 0 ? Optional.of(self.getExpiresInSeconds()) : Optional.absent(),
                                     Optional.fromNullable(inboxPositions.get(self.getId())),
                                     archived.contains(self.getId())));
       }

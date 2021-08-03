@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.helpers.ClassicOpenHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherMigrationHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.database.model.AvatarPickerDatabase;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -70,6 +71,7 @@ public class DatabaseFactory {
   private final ChatColorsDatabase          chatColorsDatabase;
   private final EmojiSearchDatabase         emojiSearchDatabase;
   private final MessageSendLogDatabase      messageSendLogDatabase;
+  private final AvatarPickerDatabase        avatarPickerDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     if (instance == null) {
@@ -200,6 +202,10 @@ public class DatabaseFactory {
     return getInstance(context).messageSendLogDatabase;
   }
 
+  public static AvatarPickerDatabase getAvatarPickerDatabase(Context context) {
+    return getInstance(context).avatarPickerDatabase;
+  }
+
   public static SQLiteDatabase getBackupDatabase(Context context) {
     return getInstance(context).databaseHelper.getReadableDatabase().getSqlCipherDatabase();
   }
@@ -259,8 +265,9 @@ public class DatabaseFactory {
     this.mentionDatabase             = new MentionDatabase(context, databaseHelper);
     this.paymentDatabase             = new PaymentDatabase(context, databaseHelper);
     this.chatColorsDatabase          = new ChatColorsDatabase(context, databaseHelper);
-    this.emojiSearchDatabase    = new EmojiSearchDatabase(context, databaseHelper);
-    this.messageSendLogDatabase = new MessageSendLogDatabase(context, databaseHelper);
+    this.emojiSearchDatabase         = new EmojiSearchDatabase(context, databaseHelper);
+    this.messageSendLogDatabase      = new MessageSendLogDatabase(context, databaseHelper);
+    this.avatarPickerDatabase        = new AvatarPickerDatabase(context, databaseHelper);
   }
 
   public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,

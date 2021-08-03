@@ -60,6 +60,8 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
 
   private static final String TAG = Log.tag(MessageDatabase.class);
 
+  protected static final String THREAD_ID_WHERE = THREAD_ID + " = ?";
+
   public MessageDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
   }

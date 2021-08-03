@@ -15,6 +15,7 @@ sealed class ConversationSettingsEvent {
     val groupId: GroupId,
     val selectionWarning: Int,
     val selectionLimit: Int,
+    val isAnnouncementGroup: Boolean,
     val groupMembersWithoutSelf: List<RecipientId>
   ) : ConversationSettingsEvent()
 

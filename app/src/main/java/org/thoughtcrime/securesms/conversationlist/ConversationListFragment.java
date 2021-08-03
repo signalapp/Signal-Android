@@ -38,6 +38,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,8 +59,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -92,7 +91,6 @@ import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
-import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView;
 import org.thoughtcrime.securesms.conversation.ConversationFragment;
@@ -114,7 +112,6 @@ import org.thoughtcrime.securesms.megaphone.MegaphoneActionController;
 import org.thoughtcrime.securesms.megaphone.MegaphoneViewBuilder;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.net.PipeConnectivityListener;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
 import org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsFragmentArgs;
@@ -145,6 +142,7 @@ import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -195,7 +193,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private Drawable                          archiveDrawable;
   private AppForegroundObserver.Listener    appForegroundObserver;
   private VoiceNoteMediaControllerOwner     mediaControllerOwner;
-  private Stub<VoiceNotePlayerView>         voiceNotePlayerViewStub;
+  private Stub<FrameLayout>                 voiceNotePlayerViewStub;
+  private VoiceNotePlayerView               voiceNotePlayerView;
+
 
   private Stopwatch startupStopwatch;
 
@@ -531,17 +531,23 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private void initializeVoiceNotePlayer() {
     mediaControllerOwner.getVoiceNoteMediaController().getVoiceNotePlayerViewState().observe(getViewLifecycleOwner(), state -> {
       if (state.isPresent()) {
-        if (!voiceNotePlayerViewStub.resolved()) {
-          voiceNotePlayerViewStub.get().setListener(new VoiceNotePlayerViewListener());
-        }
-
-        voiceNotePlayerViewStub.get().setState(state.get());
-        voiceNotePlayerViewStub.get().show();
+        requireVoiceNotePlayerView().setState(state.get());
+        requireVoiceNotePlayerView().show();
       } else if (voiceNotePlayerViewStub.resolved()) {
-        voiceNotePlayerViewStub.get().hide();
+        requireVoiceNotePlayerView().hide();
       }
     });
   }
+
+  private @NonNull VoiceNotePlayerView requireVoiceNotePlayerView() {
+    if (voiceNotePlayerView == null) {
+      voiceNotePlayerView = voiceNotePlayerViewStub.get().findViewById(R.id.voice_note_player_view);
+      voiceNotePlayerView.setListener(new VoiceNotePlayerViewListener());
+    }
+
+    return voiceNotePlayerView;
+  }
+
 
   private void initializeListAdapters() {
     defaultAdapter          = new ConversationListAdapter(GlideApp.with(this), this);
@@ -962,19 +968,21 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
   }
 
-  private void updateProxyStatus(@NonNull PipeConnectivityListener.State state) {
+  private void updateProxyStatus(@NonNull WebSocketConnectionState state) {
     if (SignalStore.proxy().isProxyEnabled()) {
       proxyStatus.setVisibility(View.VISIBLE);
 
       switch (state) {
         case CONNECTING:
+        case DISCONNECTING:
         case DISCONNECTED:
           proxyStatus.setImageResource(R.drawable.ic_proxy_connecting_24);
           break;
         case CONNECTED:
           proxyStatus.setImageResource(R.drawable.ic_proxy_connected_24);
           break;
-        case FAILURE:
+        case AUTHENTICATION_FAILED:
+        case FAILED:
           proxyStatus.setImageResource(R.drawable.ic_proxy_failed_24);
           break;
       }

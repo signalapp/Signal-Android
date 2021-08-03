@@ -974,6 +974,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Muutit kuka voi muokata ryhmän jäsenyyttä käyttäjiin \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s muutti kuka voi muokata ryhmän jäsenyyttä käyttäjiin \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ryhmän jäsenyyttä voi nyt muokata \"%1$s\".</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Otit ryhmälinkin käyttöön ilman ryhmäänliittymispyyntöjä.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Otit ryhmälinkin käyttöön. Ylläpitäjä tarkistaa liittymispyynnöt.</string>
@@ -1334,7 +1335,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SubmitDebugLogActivity_success">Onnistui!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopioi tämä URL ja lisää se ongelmaraporttiin tai tukisähköpostiisi:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Jaa</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Tämä loki julkaistaan netissä, jossa se on julkisesti kehittäjien ja muiden nähtävissä. Voit tutkia ja muokata sitä ennen lähettämistä.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Suodatin:</string>
   <string name="SupportEmailUtil_device_info">Laitetiedot:</string>
@@ -1704,8 +1704,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="giphy_activity_toolbar__search_gifs">Etsi GIFfejä</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ei hakutuloksia</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Loki julkaistaan Internetissä, jossa se on julkisesti kehittäjien nähtävillä. Tarkasta ja tarvittaessa muokkaa sitä ennen lähettämistä.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Napauta, jos haluat kopioida puhelimesi tekstiviestit Signalin salattuun tietokantaan.</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Järjestelmän oletustietokantaa ei tulla muuttamaan millään tavalla.</string>
@@ -2925,6 +2923,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Muutimme keskustelujen värejä antaaksemme enemmän vaihtoehtoja ja tehdäksemme keskusteluista helpompilukuisia.</string>
   <string name="ChatColorsMegaphone__appearance">Ulkonäkö</string>
   <string name="ChatColorsMegaphone__not_now">Ei nyt</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Ei nyt</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emojit</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Avaa emojihaku</string>
@@ -2997,6 +2997,16 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__camera">Kamera</string>
+  <string name="AvatarPickerFragment__photo">Kuva</string>
+  <string name="AvatarPickerFragment__save">Tallenna</string>
+  <string name="AvatarPickerFragment__edit">Muokkaa</string>
+  <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">Esikatselu</string>
+  <string name="TextAvatarCreationFragment__done">Valmis</string>
+  <string name="TextAvatarCreationFragment__color">Väri</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->

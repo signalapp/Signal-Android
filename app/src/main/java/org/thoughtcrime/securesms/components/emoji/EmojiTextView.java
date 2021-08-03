@@ -33,10 +33,10 @@ import java.util.List;
 public class EmojiTextView extends AppCompatTextView {
 
   private final boolean scaleEmojis;
-  private final boolean forceCustom;
 
   private static final char ELLIPSIS = '…';
 
+  private boolean      forceCustom;
   private CharSequence previousText;
   private BufferType   previousBufferType;
   private float        originalFontSize;
@@ -142,6 +142,13 @@ public class EmojiTextView extends AppCompatTextView {
   public void setOverflowText(@Nullable CharSequence overflowText) {
     this.overflowText = overflowText;
     setText(previousText, BufferType.SPANNABLE);
+  }
+
+  public void setForceCustomEmoji(boolean forceCustom) {
+    if (this.forceCustom != forceCustom) {
+      this.forceCustom = forceCustom;
+      setText(previousText, BufferType.SPANNABLE);
+    }
   }
 
   private void ellipsizeAnyTextForMaxLength() {

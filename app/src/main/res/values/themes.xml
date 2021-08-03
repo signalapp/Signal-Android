@@ -3,6 +3,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Signal.Transparent" parent="Theme.AppCompat">
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -89,6 +90,7 @@
     </style>
 
     <style name="TextSecure.LightIntroTheme" parent="@style/Theme.AppCompat.Light">
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
@@ -99,6 +101,7 @@
     </style>
 
     <style name="TextSecure.DarkIntroTheme" parent="@style/Theme.AppCompat">
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
@@ -126,6 +129,7 @@
 
     <style name="TextSecure.BaseLightTheme" parent="@style/Theme.MaterialComponents.Light.Bridge">
         <item name="theme_type">light</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
 
         <item name="search_view_style">@style/Signal.SearchView</item>
 
@@ -180,6 +184,7 @@
 
     <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.MaterialComponents.Bridge">
         <item name="theme_type">dark</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
 
         <item name="search_view_style">@style/Signal.SearchView</item>
 
@@ -311,6 +316,7 @@
     </style>
 
     <style name="TextSecure.DarkTheme.WebRTCCall">
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/core_ultramarine</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowTranslucentStatus">true</item>
@@ -397,6 +403,11 @@
         <item name="cornerSizeTopLeft">12dp</item>
         <item name="cornerSizeBottomLeft">12dp</item>
         <item name="cornerSizeBottomRight">12dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.Signal.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 
     <style name="Widget.Signal.BottomSheet.Rounded" parent="Widget.MaterialComponents.BottomSheet">

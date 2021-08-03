@@ -2,7 +2,6 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:background="@color/voice_note_player_view_background"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <com.airbnb.lottie.LottieAnimationView

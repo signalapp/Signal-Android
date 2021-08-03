@@ -49,6 +49,7 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
 
     handleGroupLinkInIntent(getIntent());
     handleProxyInIntent(getIntent());
+    handleSignalMeIntent(getIntent());
 
     CachedInflater.from(this).clear();
   }
@@ -65,6 +66,7 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     super.onNewIntent(intent);
     handleGroupLinkInIntent(intent);
     handleProxyInIntent(intent);
+    handleSignalMeIntent(intent);
   }
 
   @Override
@@ -112,6 +114,13 @@ public class MainActivity extends PassphraseRequiredActivity implements VoiceNot
     Uri data = intent.getData();
     if (data != null) {
       CommunicationActions.handlePotentialProxyLinkUrl(this, data.toString());
+    }
+  }
+
+  private void handleSignalMeIntent(Intent intent) {
+    Uri data = intent.getData();
+    if (data != null) {
+      CommunicationActions.handlePotentialSignalMeUrl(this, data.toString());
     }
   }
 

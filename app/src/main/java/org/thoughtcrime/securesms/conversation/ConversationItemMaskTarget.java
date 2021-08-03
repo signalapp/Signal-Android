@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.conversation;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -57,7 +56,7 @@ public final class ConversationItemMaskTarget extends MaskView.MaskTarget {
     ).toList();
 
     if (videoContainer != null) {
-      projections.add(conversationItem.getProjection((RecyclerView) conversationItem.getParent()));
+      projections.add(conversationItem.getGiphyMp4PlayableProjection((RecyclerView) conversationItem.getParent()));
     }
 
     for (Projection projection : projections) {

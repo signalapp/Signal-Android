@@ -1101,7 +1101,7 @@
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">સબમિટ કરો</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">જાણ્યું</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">ઇમેઇલ કંપોઝ</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">આ લૉગ યોગદાનકર્તાઓને જોવા માટે જાહેરમાં ઓનલાઇન પોસ્ટ કરવામાં આવશે, તમે સબમિટ કરતા પહેલા તેને ચકાસી અને સંપાદિત કરી શકો છો.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">આ લૉગ યોગદાનકર્તાઓને જોવા માટે જાહેરમાં ઓનલાઇન પોસ્ટ કરવામાં આવશે, તમે સબમિટ કરતા પહેલા તેને ચકાસી અને સંપાદિત કરી શકો છો.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">લૉગ લોડ થઈ રહ્યા છે…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">લૉગ અપલોડ થઈ રહ્યા છે…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">ઇમેઇલ એપ્લિકેશન પસંદ કરો</string> -->

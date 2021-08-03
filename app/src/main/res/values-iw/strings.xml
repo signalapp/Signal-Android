@@ -210,6 +210,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">הצרופה חורגת ממגבלות הגודל עבור הסוג של ההודעה שאתה שולח.</string>
   <string name="ConversationActivity_unable_to_record_audio">לא היה ניתן להקליט שמע!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">אינך יכול לשלוח הודעות אל קבוצה זו מאחר שאינך חבר קבוצה יותר.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">רק %1$s יכול/ה לשלוח הודעות.</string>
+  <string name="ConversationActivity_admins">מנהלנים</string>
+  <string name="ConversationActivity_message_an_admin">שלח הודעה אל מנהלן</string>
+  <string name="ConversationActivity_cant_start_group_call">לא ניתן להתחיל שיחה קבוצתית</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">רק מנהלנים של קבוצה זו יכולים להתחיל שיחה.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">אין יישום זמין לטיפול בקישור זה במכשיר שלך.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">בקשתך להצטרף נשלחה אל מנהלן הקבוצה. תיודע כאשר הוא מחליט.</string>
   <string name="ConversationActivity_cancel_request">בטל בקשה</string>
@@ -361,6 +366,7 @@
   <string name="ChooseBackupFragment__icon_content_description">שחזר מאיקון גיבוי</string>
   <string name="ChooseBackupFragment__choose_backup">בחר גיבוי</string>
   <string name="ChooseBackupFragment__learn_more">למד עוד</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">אין דפדפן קבצים זמין</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">שחזור הושלם</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">כדי להמשיך להשתמש בגיבויים, אנא בחר תיקייה. גיבויים חדשים יישמרו במיקום זה.</string>
@@ -440,6 +446,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">שתף עם</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">צרופות מרובות נתמכות רק עבור תמונות וסרטונים</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">אין לך הרשאה לשלוח אל קבוצה זו</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">כישלון תקשורת קבוע של Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal לא היה יכול להירשם עם שירותי Google Play. הודעות ושיחות של Signal הושבתו, אנא נסה להירשם מחדש בהגדרות &lt; מתקדם.</string>
@@ -612,6 +619,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">סיים</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">איש זה אינו יכול להתווסף אל קבוצות מיושנות.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">איש זה אינו יכול להתווסף אל קבוצות הכרזה.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">להוסיף את \"%1$s\" אל \"%2$s\"?</item>
     <item quantity="two">להוסיף %3$d חברי קבוצה אל \"%2$s\"?</item>
@@ -694,6 +702,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">רק מנהלנים יכולים לאפס את קישור הקבוצה בר־השיתוף.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">אין לך את הזכויות לעשות זאת</string>
   <string name="ManageGroupActivity_not_capable">למישהו שהוספת אין תמיכה בקבוצות חדשות והוא צריך לעדכן את Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">מישהו שהוספת לא תומך בקבוצות הכרזה והוא צריך לעדכן את Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">כישלון בעדכון הקבוצה</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">אינך חבר קבוצה בקבוצה זו</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">נכשל בעדכון הקבוצה. אנא נסה שוב מאוחר יותר.</string>
@@ -907,6 +916,7 @@
   <string name="Megaphones_invite_friends">הזמן חברים</string>
   <string name="Megaphones_use_sms">השתמש במסרון</string>
   <string name="Megaphones_appearance">מראה</string>
+  <string name="Megaphones_add_photo">הוסף תמונה</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
@@ -1082,6 +1092,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">שינית מי יכול לערוך חברות קבוצה אל \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s שינה מי יכול לערוך חברות קבוצה אל \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">מי יכול לערוך חברות קבוצה השתנה אל \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">שינית את הגדרות הקבוצה אל התרה לכל חברי הקבוצה לשלוח הודעות.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">שינית את הגדרות הקבוצה אל התרה רק למנהלנים לשלוח הודעות.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s שינה/שינתה את הגדרות הקבוצה אל התרה לכל חברי הקבוצה לשלוח הודעות.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s שינה/שינתה את הגדרות הקבוצה אל התרה רק למנהלנים לשלוח הודעות.</string>
+  <string name="MessageRecord_allow_all_members_to_send">הגדרות הקבוצה השתנו אל התרה לכל חברי הקבוצה לשלוח הודעות.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">הגדרות הקבוצה השתנו אל התרה רק למנהלנים לשלוח הודעות.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">הפעלת את קישור הקבוצה עם אישור מנהלן כבוי.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">הפעלת את קישור הקבוצה עם אישור מנהלן מופעל.</string>
@@ -1468,7 +1485,7 @@
   <string name="SubmitDebugLogActivity_success">הצלחה!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">העתק כתובת זו והוסף אותה אל דוח הסוגיות שלך או דוא״ל התמיכה שלך:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">שתף</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">יומן זה יפורסם באופן ציבורי ומקוון עבור מתנדבים כדי שיצפו בו, ניתן לבחון ולערוך אותו לפני העלאה.</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">יומן זה יפורסם באופן ציבורי ומקוון עבור מתנדבים כדי שיצפו בו, אתה יכול לבחון אותו לפני העלאה.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">סנן:</string>
   <string name="SupportEmailUtil_device_info">מידע מכשיר:</string>
@@ -1858,8 +1875,6 @@
   <string name="giphy_activity_toolbar__search_gifs">חפש תמונות GIF</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">שום דבר לא נמצא</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">יומן זה יפורסם באופן ציבורי ומקוון לתורמים עבור צפייה, אתה יכול לבחון ולערוך אותו לפני הגשה.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">האם תרצה לייבא את הודעות הטקסט הקיימות שלך אל מסד הנתונים המוצפן של Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">מסד הנתונים ברירת המחדל של המערכת לא ישונה בשום אופן.</string>
@@ -3150,6 +3165,11 @@
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">החלפנו צבעי התכתבות כדי לתת לך יותר אפשרויות ולעשות התכתבויות קלות יותר לקריאה.</string>
   <string name="ChatColorsMegaphone__appearance">מראה</string>
   <string name="ChatColorsMegaphone__not_now">לא עכשיו</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">הוסף תמונת פרופיל</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">בחר מראה וצבע או התאם אישית את ראשי התיבות שלך.</string>
+  <string name="AddAProfilePhotoMegaphone__not_now">לא עכשיו</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">הוסף תמונה</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">אמוג\'י</string>
   <string name="KeyboardPagerFragment_open_emoji_search">פתח חיפוש אימוג\'י</string>
@@ -3201,10 +3221,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">הוסף חברי קבוצה</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ערוך מידע קבוצה</string>
+  <string name="PermissionsSettingsFragment__send_messages">שלח הודעות</string>
   <string name="PermissionsSettingsFragment__all_members">כל חברי הקבוצה</string>
   <string name="PermissionsSettingsFragment__only_admins">רק מנהלנים</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">מי יכול להוסיף חברי קבוצה חדשים?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">מי יכול לערוך את המידע של קבוצה הזאת?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">מי יכול לשלוח הודעות?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">השתק התראות</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">לא מושתק</string>
@@ -3227,6 +3249,25 @@
   <string name="ContactFilterView__search_name_or_number">חפש שם או מספר</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">תצוגה מקדימה של יצגן</string>
+  <string name="AvatarPickerFragment__camera">מצלמה</string>
+  <string name="AvatarPickerFragment__take_a_picture">צלם</string>
+  <string name="AvatarPickerFragment__choose_a_photo">בחר תמונה</string>
+  <string name="AvatarPickerFragment__photo">תמונה</string>
+  <string name="AvatarPickerFragment__text">מלל</string>
+  <string name="AvatarPickerFragment__save">שמור</string>
+  <string name="AvatarPickerFragment__select_an_avatar">בחר יצגן</string>
+  <string name="AvatarPickerFragment__clear_avatar">נקה יצגן</string>
+  <string name="AvatarPickerFragment__edit">ערוך</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">נכשל בשמירת יצגן</string>
+  <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">תצוגה מקדימה</string>
+  <string name="TextAvatarCreationFragment__done">סיים</string>
+  <string name="TextAvatarCreationFragment__text">מלל</string>
+  <string name="TextAvatarCreationFragment__color">צבע</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">בחר צבע</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">מסרון</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>

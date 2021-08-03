@@ -36,6 +36,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.util.function.Consumer;
 
 /**
  * Base activity container for selecting a list of contacts.
@@ -122,8 +123,8 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActivit
   }
 
   @Override
-  public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
-    return true;
+  public void onBeforeContactSelected(Optional<RecipientId> recipientId, String number, Consumer<Boolean> callback) {
+    callback.accept(true);
   }
 
   @Override

@@ -15,33 +15,38 @@ class WebRtcCallParticipantsPage {
   private final boolean               isSpeaker;
   private final boolean               isRenderInPip;
   private final boolean               isPortrait;
+  private final boolean               isLandscapeEnabled;
 
   static WebRtcCallParticipantsPage forMultipleParticipants(@NonNull List<CallParticipant> callParticipants,
                                                             @NonNull CallParticipant focusedParticipant,
                                                             boolean isRenderInPip,
-                                                            boolean isPortrait)
+                                                            boolean isPortrait,
+                                                            boolean isLandscapeEnabled)
   {
-    return new WebRtcCallParticipantsPage(callParticipants, focusedParticipant, false, isRenderInPip, isPortrait);
+    return new WebRtcCallParticipantsPage(callParticipants, focusedParticipant, false, isRenderInPip, isPortrait, isLandscapeEnabled);
   }
 
   static WebRtcCallParticipantsPage forSingleParticipant(@NonNull CallParticipant singleParticipant,
                                                          boolean isRenderInPip,
-                                                         boolean isPortrait)
+                                                         boolean isPortrait,
+                                                         boolean isLandscapeEnabled)
   {
-    return new WebRtcCallParticipantsPage(Collections.singletonList(singleParticipant), singleParticipant, true, isRenderInPip, isPortrait);
+    return new WebRtcCallParticipantsPage(Collections.singletonList(singleParticipant), singleParticipant, true, isRenderInPip, isPortrait, isLandscapeEnabled);
   }
 
   private WebRtcCallParticipantsPage(@NonNull List<CallParticipant> callParticipants,
                                      @NonNull CallParticipant focusedParticipant,
                                      boolean isSpeaker,
                                      boolean isRenderInPip,
-                                     boolean isPortrait)
+                                     boolean isPortrait,
+                                     boolean isLandscapeEnabled)
   {
     this.callParticipants   = callParticipants;
     this.focusedParticipant = focusedParticipant;
     this.isSpeaker          = isSpeaker;
     this.isRenderInPip      = isRenderInPip;
     this.isPortrait         = isPortrait;
+    this.isLandscapeEnabled = isLandscapeEnabled;
   }
 
   public @NonNull List<CallParticipant> getCallParticipants() {
@@ -62,6 +67,10 @@ class WebRtcCallParticipantsPage {
 
   public boolean isPortrait() {
     return isPortrait;
+  }
+
+  public @NonNull CallParticipantsLayout.LayoutStrategy getLayoutStrategy() {
+    return CallParticipantsLayoutStrategies.getStrategy(isPortrait, isLandscapeEnabled);
   }
 
   @Override

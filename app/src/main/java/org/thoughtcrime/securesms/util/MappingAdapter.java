@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
@@ -33,16 +34,16 @@ import kotlin.jvm.functions.Function1;
  * override compiler typing recommendations when binding and diffing.
  * <p></p>
  * General pattern for implementation:
- *  <ol>
- *    <li>Create {@link MappingModel}s for the items in the list. These encapsulate data massaging methods for views to use and the diff logic.</li>
- *    <li>Create {@link MappingViewHolder}s for each item type in the list and their corresponding {@link Factory}.</li>
- *    <li>Create an instance or subclass of {@link MappingAdapter} and register the mapping of model type to view holder factory for that model type.</li>
- *  </ol>
- *  Event listeners, click or otherwise, are handled at the view holder level and should be passed into the appropriate view holder factories. This
- *  pattern mimics how we pass data into view models via factories.
- *  <p></p>
- *  NOTE: There can only be on factory registered per model type. Registering two for the same type will result in the last one being used. However, the
- *  same factory can be registered multiple times for multiple model types (if the model type class hierarchy supports it).
+ * <ol>
+ *   <li>Create {@link MappingModel}s for the items in the list. These encapsulate data massaging methods for views to use and the diff logic.</li>
+ *   <li>Create {@link MappingViewHolder}s for each item type in the list and their corresponding {@link Factory}.</li>
+ *   <li>Create an instance or subclass of {@link MappingAdapter} and register the mapping of model type to view holder factory for that model type.</li>
+ * </ol>
+ * Event listeners, click or otherwise, are handled at the view holder level and should be passed into the appropriate view holder factories. This
+ * pattern mimics how we pass data into view models via factories.
+ * <p></p>
+ * NOTE: There can only be on factory registered per model type. Registering two for the same type will result in the last one being used. However, the
+ * same factory can be registered multiple times for multiple model types (if the model type class hierarchy supports it).
  */
 public class MappingAdapter extends ListAdapter<MappingModel<?>, MappingViewHolder<?>> {
 
@@ -103,6 +104,12 @@ public class MappingAdapter extends ListAdapter<MappingModel<?>, MappingViewHold
   }
 
   @Override
+  public void onBindViewHolder(@NonNull MappingViewHolder<?> holder, int position, @NonNull List<Object> payloads) {
+    holder.setPayload(payloads);
+    onBindViewHolder(holder, position);
+  }
+
+  @Override
   public void onBindViewHolder(@NonNull MappingViewHolder holder, int position) {
     //noinspection unchecked
     holder.bind(getItem(position));
@@ -141,6 +148,16 @@ public class MappingAdapter extends ListAdapter<MappingModel<?>, MappingViewHold
         return oldItem.areContentsTheSame(newItem);
       }
       return false;
+    }
+
+    @Override
+    public @Nullable Object getChangePayload(@NonNull MappingModel oldItem, @NonNull MappingModel newItem) {
+      if (oldItem.getClass() == newItem.getClass()) {
+        //noinspection unchecked
+        return oldItem.getChangePayload(newItem);
+      }
+
+      return null;
     }
   }
 

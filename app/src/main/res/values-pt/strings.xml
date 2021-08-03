@@ -208,6 +208,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">O anexo tem um tamanho superior ao limite do tipo de mensagem que está a enviar.</string>
   <string name="ConversationActivity_unable_to_record_audio">Não é possível gravar áudio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Não pode enviar mensagens para este grupo pois já não é membro.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Apenas %1$s pode(m) enviar mensagens.</string>
+  <string name="ConversationActivity_admins">administradores</string>
+  <string name="ConversationActivity_message_an_admin">Envie uma mensagem para um administrador</string>
+  <string name="ConversationActivity_cant_start_group_call">Não é possível iniciar uma chamada de grupo</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Apenas os administradores deste grupo podem começar uma chamada.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Não existe no seu dispositivo nenhuma aplicação capaz de lidar com este tipo de ligação.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">O seu pedido para entrar foi enviado ao administrador do grupo. Será notificado quando ele tomar uma decisão.</string>
   <string name="ConversationActivity_cancel_request">Cancelar pedido</string>
@@ -339,6 +344,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Ícone restaurar a partir da cópia de segurança</string>
   <string name="ChooseBackupFragment__choose_backup">Escolher cópia de segurança</string>
   <string name="ChooseBackupFragment__learn_more">Saber mais</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Nenhum explorador de ficheiros disponível</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Restauro completo</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Para continuar a utilizar cópias de segurança, escolha uma pasta. As cópias de segurança novas serão guardadas nesta localização.</string>
@@ -416,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partilhar com</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Apenas são suportados anexos múltiplos para imagens e vídeos.</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Você não tem permissão para enviar para esse grupo</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha permanente de comunicação do Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">O Signal não se conseguiu registar com os Serviços Google Play. As mensagens e chamadas do Signal estão desativadas, por favor tente registar-se novamente em Definições &gt; Avançado.</string>
@@ -558,6 +565,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Concluído</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Esta pessoa não pode ser adicionada aos grupos legados.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Esta pessoa não pode ser adicionada aos grupos anunciados.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Adicionar \"%1$s\" a “%2$s”?</item>
     <item quantity="other">Adicionar %3$d membros a “%2$s”?</item>
@@ -628,6 +636,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Apenas os administradores podem repor o link partilhável do grupo.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Não tem permissões para fazer isto</string>
   <string name="ManageGroupActivity_not_capable">Alguém que você adicionou não suporta novos grupos e necessita de atualizar o Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Alguém que você adicionou não suporta novos grupos anunciados e necessita de atualizar o Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Falha ao atualizar o grupo</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Você não é um membro do grupo</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Ocorreu um erro ao tentar atualizar o grupo. Por favor tente novamente mais tarde</string>
@@ -821,6 +830,7 @@
   <string name="Megaphones_invite_friends">Convidar amigos</string>
   <string name="Megaphones_use_sms">Utilizar SMS</string>
   <string name="Megaphones_appearance">Aspeto</string>
+  <string name="Megaphones_add_photo">Adicionar fotografia</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada do Signal em curso</string>
   <string name="NotificationBarManager__establishing_signal_call">A estabelecer chamada do Signal</string>
@@ -980,6 +990,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Você alterou quem pode editar a participação do grupo para \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s alterou quem pode editar os membros do grupo para \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Quem pode editar os membros do grupo foi alterado para \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Você modificou as definições de grupo de forma a permitir que todos os membros possam enviar mensagens.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Você modificou as definições de grupo de forma a permitir que apenas os administradores possam enviar mensagens.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s modificou as definições do grupo para permitir que todos os membros possam enviar mensagens.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s modificou as definições de grupo de forma a permitir que apenas os administradores possam enviar mensagens.</string>
+  <string name="MessageRecord_allow_all_members_to_send">As definições do grupo foram modificadas para permitir que todos os membros possam enviar mensagens.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">As definições de grupo foram modificadas para permitir que apenas os administradores possam enviar mensagens.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Ativou o link de grupo sem aprovação de administrador.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Ativou o link do grupo com aprovação de administrador.</string>
@@ -1345,7 +1362,7 @@
   <string name="SubmitDebugLogActivity_success">Efetuado com sucesso!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copie este URL e adicione-o ao seu relatório de problema ou e-mail de pedido de apoio:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Partilhar</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Este registo será publicado online para ser consultado pelos contribuidores. Poderá analisá-lo e editá-lo antes do seu carregamento.</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Este registo será publicado online para ser consultado pelos contribuidores. Poderá analisá-lo antes de o carregar.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Informação do dispositivo:</string>
@@ -1715,8 +1732,6 @@
   <string name="giphy_activity_toolbar__search_gifs">Procurar GIFs</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Não foi encontrado nada</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Este registo será publicado on-line para que outros contribuidores o possam ver. Poderá examinar o registo e editá-lo antes de o submeter.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gostaria de importar as suas mensagens de texto existentes para a base de dados encriptada do Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de dados padrão do sistema não será modificada ou alterada de nenhuma forma.</string>
@@ -2979,6 +2994,11 @@
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Trocamos as cores das conversas para lhe dar mais opções e facilitar a leitura das conversas.</string>
   <string name="ChatColorsMegaphone__appearance">Aspeto</string>
   <string name="ChatColorsMegaphone__not_now">Agora não</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Adicionar uma fotografia de perfil</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Escolha uma aparência e uma cor para personalizar as suas iniciais.</string>
+  <string name="AddAProfilePhotoMegaphone__not_now">Agora não</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Adicionar fotografia</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Abrir a pesquisa de emoji</string>
@@ -3030,10 +3050,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Adicionar membros</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Editar informação do grupo</string>
+  <string name="PermissionsSettingsFragment__send_messages">Enviar mensagens</string>
   <string name="PermissionsSettingsFragment__all_members">Todos os membros</string>
   <string name="PermissionsSettingsFragment__only_admins">Apenas administradores</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Quem pode adicionar novos membros?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Quem pode editar a informação do grupo?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Quem é que pode enviar mensagens?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Silenciar notificações</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Não silenciado(a)</string>
@@ -3056,6 +3078,25 @@
   <string name="ContactFilterView__search_name_or_number">Procurar nome ou número</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Pré-visualização de avatar</string>
+  <string name="AvatarPickerFragment__camera">Câmara</string>
+  <string name="AvatarPickerFragment__take_a_picture">Tirar uma fotografia</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Escolha uma fotografia</string>
+  <string name="AvatarPickerFragment__photo">Fotografia</string>
+  <string name="AvatarPickerFragment__text">Texto</string>
+  <string name="AvatarPickerFragment__save">Guardar</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Selecione um avatar</string>
+  <string name="AvatarPickerFragment__clear_avatar">Remover avatar</string>
+  <string name="AvatarPickerFragment__edit">Editar</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Falha ao guardar o avatar</string>
+  <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">Pré-visualização</string>
+  <string name="TextAvatarCreationFragment__done">Concluído</string>
+  <string name="TextAvatarCreationFragment__text">Texto</string>
+  <string name="TextAvatarCreationFragment__color">Cor</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Selecione uma cor</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>

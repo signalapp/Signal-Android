@@ -14,29 +14,33 @@ public class EmojiSpan extends AnimatingImageSpan {
 
   private final float SHIFT_FACTOR = 1.5f;
 
-  private final int            size;
-  private final FontMetricsInt fm;
+  private int            size;
+  private FontMetricsInt fontMetrics;
 
   public EmojiSpan(@NonNull Drawable drawable, @NonNull TextView tv) {
     super(drawable, tv);
-    fm   = tv.getPaint().getFontMetricsInt();
-    size = fm != null ? Math.abs(fm.descent) + Math.abs(fm.ascent)
-                      : tv.getResources().getDimensionPixelSize(R.dimen.conversation_item_body_text_size);
+    fontMetrics = tv.getPaint().getFontMetricsInt();
+    size        = fontMetrics != null ? Math.abs(fontMetrics.descent) + Math.abs(fontMetrics.ascent)
+                                      : tv.getResources().getDimensionPixelSize(R.dimen.conversation_item_body_text_size);
     getDrawable().setBounds(0, 0, size, size);
   }
 
   @Override
   public int getSize(@NonNull Paint paint, CharSequence text, int start, int end, FontMetricsInt fm) {
-    if (fm != null && this.fm != null) {
-      fm.ascent  = this.fm.ascent;
-      fm.descent = this.fm.descent;
-      fm.top     = this.fm.top;
-      fm.bottom  = this.fm.bottom;
-      fm.leading = this.fm.leading;
-      return size;
+    if (fm != null && this.fontMetrics != null) {
+      fm.ascent  = this.fontMetrics.ascent;
+      fm.descent = this.fontMetrics.descent;
+      fm.top     = this.fontMetrics.top;
+      fm.bottom  = this.fontMetrics.bottom;
+      fm.leading = this.fontMetrics.leading;
     } else {
-      return super.getSize(paint, text, start, end, fm);
+      this.fontMetrics = paint.getFontMetricsInt();
+      this.size        = Math.abs(this.fontMetrics.descent) + Math.abs(this.fontMetrics.ascent);
+
+      getDrawable().setBounds(0, 0, size, size);
     }
+
+    return size;
   }
 
   @Override

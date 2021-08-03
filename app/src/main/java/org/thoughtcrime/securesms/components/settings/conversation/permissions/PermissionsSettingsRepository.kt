@@ -42,4 +42,18 @@ class PermissionsSettingsRepository(private val context: Context) {
       }
     }
   }
+
+  fun applyAnnouncementGroupChange(groupId: GroupId, isAnnouncementGroup: Boolean, error: GroupChangeErrorCallback) {
+    SignalExecutors.UNBOUNDED.execute {
+      try {
+        GroupManager.applyAnnouncementGroupChange(context, groupId.requireV2(), isAnnouncementGroup)
+      } catch (e: GroupChangeException) {
+        Log.w(TAG, e)
+        error.onError(GroupChangeFailureReason.fromException(e))
+      } catch (e: IOException) {
+        Log.w(TAG, e)
+        error.onError(GroupChangeFailureReason.fromException(e))
+      }
+    }
+  }
 }

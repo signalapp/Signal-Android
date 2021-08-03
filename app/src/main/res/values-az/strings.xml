@@ -892,7 +892,7 @@
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Təqdim et</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">Anladım</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Email yazmağa başla</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Bu qeyd əməkdaşların baxışı üçün ictimai olaraq paylaşılacaqdır, təqdim etməzdən əvvəl sən ona müəyyən dəyişikliklər edə bilərsən.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Bu qeyd əməkdaşların baxışı üçün ictimai olaraq paylaşılacaqdır, təqdim etməzdən əvvəl sən ona müəyyən dəyişikliklər edə bilərsən.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Girişlər yüklənir…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Girişlər əlavə edilir…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">Müvəffəqiyyətlə bitdi!</string> -->

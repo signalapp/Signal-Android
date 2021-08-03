@@ -210,6 +210,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost přílohy překročila limit pro typ zprávy, kterou posíláte.</string>
   <string name="ConversationActivity_unable_to_record_audio">Nemohu nahrávat audio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Do této skupiny nemůžete zasílat zprávy, jelikož už nejste jejím členem.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Pouze %1$s může posílat zprávy.</string>
+  <string name="ConversationActivity_admins">správci</string>
+  <string name="ConversationActivity_message_an_admin">Poslat zprávu správci</string>
+  <string name="ConversationActivity_cant_start_group_call">Nelze zahájit skupinový hovor</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Pouze správci této skupiny mohou zahájit hovor.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Není zde žádná aplikace, která by dokázala zpracovat tento odkaz.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Váš požadavek na připojení ke skupině byl zaslán správci. Budete upozorněni, jakmile zareaguje.</string>
   <string name="ConversationActivity_cancel_request">Zrušit požadavek</string>
@@ -361,6 +366,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Ikona obnovení ze zálohy</string>
   <string name="ChooseBackupFragment__choose_backup">Vyberte zálohu</string>
   <string name="ChooseBackupFragment__learn_more">Zjistit více</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Není k dispozici žádná aplikace pro prohlížení souborů</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Obnova dokončena</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Vyberte složku, abyste mohli nadále využívat zálohy. Nové zálohy budou uloženy v tomto umístění.</string>
@@ -440,6 +446,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Sdílet s</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Vícero příloh je podporováno pouze pro obrázky a videa</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Nemáte oprávnění pro odesílání do této skupiny</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trvalá chyba komunikace Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal se nemůže registrovat k službě Google Play. Zprávy a volání jsou proto zakázány: Prosím zkuste se znovu registrovat v menu Nastavení &gt; Rozšířené.</string>
@@ -612,6 +619,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Hotovo</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tohoto člověka nemůžete přidat do starších skupin.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Tato osoba nemůže být přidána do oznamovacích skupin</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Přidat \"%1$s\" do \"%2$s\"?</item>
     <item quantity="few">Přidat %3$d členy do \"%2$s\"?</item>
@@ -676,7 +684,7 @@
   <string name="ManageGroupActivity_mute_notifications">Ztišit upozornění</string>
   <string name="ManageGroupActivity_custom_notifications">Vlastní oznámení</string>
   <string name="ManageGroupActivity_mentions">Zmínky</string>
-  <string name="ManageGroupActivity_chat_color_and_wallpaper">Barva chatu a tapety</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Barva konverzace a tapety</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_always">Vždy</string>
   <string name="ManageGroupActivity_off">Vyp.</string>
@@ -694,6 +702,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Pouze správci mohou obnovit odkaz pro sdílení skupiny.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nemáte oprávnění toto provést</string>
   <string name="ManageGroupActivity_not_capable">Přidali jste někoho, kdo nepodporuje nové skupiny a musí aktualizovat Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Přidali jste někoho, kdo nepodporuje oznamovací skupiny a musí aktualizovat Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nepodařilo se aktualizovat skupinu</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nejste členem skupiny</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Nepodařilo se aktualizovat skupinu. Prosím, zkuste to později</string>
@@ -907,6 +916,7 @@
   <string name="Megaphones_invite_friends">Pozvat přátele</string>
   <string name="Megaphones_use_sms">Použít SMS</string>
   <string name="Megaphones_appearance">Vzhled</string>
+  <string name="Megaphones_add_photo">Přidat fotku</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Probíhá hovor Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Navazuji hovor Signal</string>
@@ -1082,6 +1092,13 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Změnili jste, kdo může upravovat členství ve skupině na \"%1$s\".</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s změnil, kdo může upravovat členství ve skupině na \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Osoba oprávněná upravovat členství ve skupině byla změněna na \"%1$s\".</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Změnili jste nastavení skupiny tak, aby umožňovala odesílání zpráv všem členům.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Změnili jste nastavení skupiny tak, aby zprávy mohli odesílat pouze správci.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s změnil(a) nastavení skupiny tak, že všichni členové mohou posílat zprávy.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s změnil(a) nastavení skupiny tak, že pouze administrátoři mohou posílat zprávy.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Nastavení skupiny bylo změněno tak, aby všichni členové mohli odesílat zprávy.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Nastavení skupiny bylo změněno tak, aby zprávy mohli odesílat pouze správci.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Zapnuli jste odkaz skupiny bez schvalování správcem.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Zapnuli jste odkaz skupiny se schvalováním správcem.</string>
@@ -1467,7 +1484,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SubmitDebugLogActivity_success">Úspěšně dokončeno!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Zkopírujte tento URL a přidejte jej do chybového hlášení nebo e-mailu podpoře:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Sdílet</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">Tento protokol bude zveřejněn online, aby si jej mohli prohlédnout přispěvatelé. Před odesláním jej můžete zkontrolovat a upravit.</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Tento protokol bude zveřejněn online, aby si jej mohli prohlédnout přispěvatelé. Před odesláním si jej můžete prohlédnout.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Filtr:</string>
   <string name="SupportEmailUtil_device_info">Informace o zařízení:</string>
@@ -1857,8 +1874,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="giphy_activity_toolbar__search_gifs">Hledat GIFy</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nenalezeno</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Tento log bude odeslán a zveřejněn online pro vývojáře. Před odesláním si můžete log prohlédnout či editovat.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Chcete importovat vaše existující textové zprávy do zašifrované databáze Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Původní systémová databáze tím nebude dotčena ani žádným způsobem modifikována.</string>
@@ -1907,7 +1922,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="EditAboutFragment_encrypted">Šifrováno</string>
   <string name="EditAboutFragment_be_kind">Buďte milí</string>
   <string name="EditAboutFragment_coffee_lover">Milovník kávy</string>
-  <string name="EditAboutFragment_free_to_chat">K dispozici pro chatování</string>
+  <string name="EditAboutFragment_free_to_chat">Připraven na konverzaci</string>
   <string name="EditAboutFragment_taking_a_break">Dávám si pauzu</string>
   <string name="EditAboutFragment_working_on_something_new">Pracuji na něčem novém</string>
   <!--EditProfileFragment-->
@@ -2111,7 +2126,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__appearance">Vzhled</string>
   <string name="preferences__theme">Motiv</string>
   <string name="preferences__chat_wallpaper">Tapeta pro konverzaci</string>
-  <string name="preferences__chat_color_and_wallpaper">Barva chatu a tapety</string>
+  <string name="preferences__chat_color_and_wallpaper">Barva konverzace a tapety</string>
   <string name="preferences__disable_pin">Deaktivovat PIN</string>
   <string name="preferences__enable_pin">Povolit PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Pokud PIN deaktivujete, tak při opětovné registraci Signal ztratíte všechna data, jestliže si je ručně nezazálohujete a neobnovíte. Když je PIN deaktivován, nemůžete si zapnout zámek registrace.</string>
@@ -2390,7 +2405,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nová konverzace</string>
   <string name="conversation_list_fragment__open_camera_description">Otevřít fotoaparát</string>
-  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Zatím nemáte žádné chaty.\nPro vytvoření napište příteli.</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Zatím nemáte žádné konverzace.\nZačněte tím, že pošlete zprávu příteli.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Resetovat zabezpečenou konverzaci</string>
   <!--conversation_muted-->
@@ -2918,16 +2933,16 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ChatWallpaperActivity__chat_wallpaper">Tapeta pro konverzaci</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">Barva konverzace</string>
-  <string name="ChatWallpaperFragment__reset_chat_colors">Obnovení barev chatu</string>
-  <string name="ChatWallpaperFragment__reset_chat_color">Obnovení barvy chatu</string>
-  <string name="ChatWallpaperFragment__reset_chat_color_question">Obnovit barvu chatu?</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">Obnovení barev konverzace</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">Obnovení barvy konverzace</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">Obnovit barvu konverzace?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Nastavit tapetu</string>
   <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Tmavý režim ztmaví tapetu</string>
   <string name="ChatWallpaperFragment__contact_name">Jméno kontaktu</string>
   <string name="ChatWallpaperFragment__reset">Obnovit</string>
   <string name="ChatWallpaperFragment__clear">Vymazat</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Náhled tapety</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Chcete přepsat všechny barvy chatu?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Chcete přepsat všechny barvy konverzace?</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Chcete přepsat všechny tapety?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">Obnovit výchozí barvy</string>
   <string name="ChatWallpaperFragment__reset_all_colors">Obnovit všechny barvy</string>
@@ -3037,7 +3052,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Žádný z vašich kontaktů nebo lidí, se kterými si píšete, není v této skupině. Požadavky pečlivě ověřte, než žádost schválíte, abyste předešli nevyžádaným zprávám.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">O žádostech o zprávy</string>
   <string name="GroupsInCommonMessageRequest__okay">V pořádku</string>
-  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Zde je náhled barvy chatu.</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Zde je náhled barvy konverzace.</string>
   <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Barva je viditelná pouze pro vás.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Popisek skupiny</string>
@@ -3078,7 +3093,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Zobrazení ikony v podrobnostech zprávy, pokud byla doručena pomocí utajeného odesílatele.</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Pokud je tato funkce povolena, nové zprávy odeslané a přijaté v nových konverzacích, které jste zahájili, po zobrazení zmizí.</string>
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Pokud je tato funkce povolena, nové zprávy odeslané a přijaté v tomto chatu po zobrazení zmizí.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Pokud je tato funkce povolena, nové zprávy odeslané a přijaté v této konverzaci po zobrazení zmizí.</string>
   <string name="ExpireTimerSettingsFragment__off">Vyp.</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 týdny</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 týden</string>
@@ -3114,12 +3129,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ChatColorSelectionFragment__delete">Smazat</string>
   <string name="ChatColorSelectionFragment__delete_color">Odstranit barvu</string>
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-    <item quantity="one">Tato vlastní barva je použita v %1$d chatu. Chcete ji odstranit?</item>
-    <item quantity="few">Tato vlastní barva je použita ve %1$d chatech. Chcete ji všude odstranit?</item>
-    <item quantity="many">Tato vlastní barva je použita ve %1$d chatech. Chcete ji všude odstranit?</item>
-    <item quantity="other">Tato vlastní barva je použita ve %1$d chatech. Chcete ji všude odstranit?</item>
+    <item quantity="one">Tato vlastní barva je použita v %1$d konverzaci. Chcete ji odstranit?</item>
+    <item quantity="few">Tato vlastní barva je použita ve %1$d konverzacích. Chcete ji všude odstranit?</item>
+    <item quantity="many">Tato vlastní barva je použita v %1$d konverzacích. Chcete ji všude odstranit?</item>
+    <item quantity="other">Tato vlastní barva je použita v %1$d konverzacích. Chcete ji všude odstranit?</item>
   </plurals>
-  <string name="ChatColorSelectionFragment__delete_chat_color">Smazat barvu chatu?</string>
+  <string name="ChatColorSelectionFragment__delete_chat_color">Smazat barvu konverzace?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Pevná</string>
   <string name="CustomChatColorCreatorFragment__gradient">Gradientní</string>
@@ -3129,10 +3144,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="CustomChatColorCreatorFragmentPage__save">Uložit</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Upravit barvu</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-    <item quantity="one">Tato barva je použita v %1$d chatu. Chcete ji odstranit?</item>
-    <item quantity="few">Tato barva je použita v %1$d chatech. Chcete ji odstranit ze všech chatů?</item>
-    <item quantity="many">Tato barva je použita v %1$d chatech. Chcete ji odstranit ze všech chatů?</item>
-    <item quantity="other">Tato barva je použita v %1$d chatech. Chcete ji odstranit ze všech chatů?</item>
+    <item quantity="one">Tato barva je použita v %1$d konverzaci. Chcete změny uložit pro všechny konverzace?</item>
+    <item quantity="few">Tato barva je použita ve %1$d konverzacích. Chcete změny uložit pro všechny konverzace?</item>
+    <item quantity="many">Tato barva je použita v %1$d konverzacích. Chcete změny uložit pro všechny konverzace?</item>
+    <item quantity="other">Tato barva je použita v %1$d konverzacích. Chcete změny uložit pro všechny konverzace?</item>
   </plurals>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Výběr horní hrany</string>
@@ -3149,6 +3164,11 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Změnili jsme barvy konverzací, abyste měli více možností a konverzace byly přehlednější.</string>
   <string name="ChatColorsMegaphone__appearance">Vzhled</string>
   <string name="ChatColorsMegaphone__not_now">Teď ne</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Přidat profilovou fotku</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Vyberte si vzhled a barvu nebo si přizpůsobte iniciály.</string>
+  <string name="AddAProfilePhotoMegaphone__not_now">Teď ne</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Přidat fotku</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Smajlíky</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Otevřít vyhledávání smajlíků</string>
@@ -3200,10 +3220,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Přidat členy</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Upravit informace o skupině</string>
+  <string name="PermissionsSettingsFragment__send_messages">Odeslat zprávy</string>
   <string name="PermissionsSettingsFragment__all_members">Všichni členové</string>
   <string name="PermissionsSettingsFragment__only_admins">Pouze správci</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Kdo může přidávat nové členy?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kdo může upravovat informace o této skupině?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Kdo může odeslat zprávy?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Ztišit upozornění</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Není ztlumeno</string>
@@ -3226,6 +3248,25 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ContactFilterView__search_name_or_number">Vyhledat jméno nebo číslo</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Náhled avataru</string>
+  <string name="AvatarPickerFragment__camera">Fotoaparát</string>
+  <string name="AvatarPickerFragment__take_a_picture">Vyfotit</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Vybrat fotku</string>
+  <string name="AvatarPickerFragment__photo">Fotografie</string>
+  <string name="AvatarPickerFragment__text">Text</string>
+  <string name="AvatarPickerFragment__save">Uložit</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Vybrat avatar</string>
+  <string name="AvatarPickerFragment__clear_avatar">Smazat avatar</string>
+  <string name="AvatarPickerFragment__edit">Upravit</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Nepodařilo se uložit avatar</string>
+  <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">Náhled</string>
+  <string name="TextAvatarCreationFragment__done">Hotovo</string>
+  <string name="TextAvatarCreationFragment__text">Text</string>
+  <string name="TextAvatarCreationFragment__color">Barva</string>
+  <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Vyberte barvu</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">%1$s</string>

@@ -119,7 +119,7 @@ public class PushGroupUpdateJob extends BaseJob {
     SignalServiceDataMessage message = SignalServiceDataMessage.newBuilder()
                                                                .asGroupMessage(groupContext)
                                                                .withTimestamp(System.currentTimeMillis())
-                                                               .withExpiration(groupRecipient.getExpireMessages())
+                                                               .withExpiration(groupRecipient.getExpiresInSeconds())
                                                                .build();
 
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();

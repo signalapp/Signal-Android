@@ -19,10 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.InviteActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.conversationlist.ConversationListFragment;
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
 import org.thoughtcrime.securesms.util.SmsUtil;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity;
 
@@ -66,6 +66,7 @@ public class OnboardingMegaphoneView extends FrameLayout {
     private static final int TYPE_INVITE     = 1;
     private static final int TYPE_SMS        = 2;
     private static final int TYPE_APPEARANCE = 3;
+    private static final int TYPE_ADD_PHOTO  = 4;
 
     private final Context                   context;
     private final MegaphoneActionController controller;
@@ -102,6 +103,7 @@ public class OnboardingMegaphoneView extends FrameLayout {
         case TYPE_INVITE:     return new InviteCardViewHolder(view);
         case TYPE_SMS:        return new SmsCardViewHolder(view);
         case TYPE_APPEARANCE: return new AppearanceCardViewHolder(view);
+        case TYPE_ADD_PHOTO:  return new AddPhotoCardViewHolder(view);
         default:              throw new IllegalStateException("Invalid viewType! " + viewType);
       }
     }
@@ -138,12 +140,16 @@ public class OnboardingMegaphoneView extends FrameLayout {
         data.add(TYPE_INVITE);
       }
 
-      if (SignalStore.onboarding().shouldShowSms(context)) {
-        data.add(TYPE_SMS);
+      if (SignalStore.onboarding().shouldShowAddPhoto() && !SignalStore.misc().hasEverHadAnAvatar()) {
+        data.add(TYPE_ADD_PHOTO);
       }
 
       if (SignalStore.onboarding().shouldShowAppearance()) {
         data.add(TYPE_APPEARANCE);
+      }
+
+      if (SignalStore.onboarding().shouldShowSms(context)) {
+        data.add(TYPE_SMS);
       }
 
       return data;
@@ -293,6 +299,34 @@ public class OnboardingMegaphoneView extends FrameLayout {
     @Override
     void onCloseClicked() {
       SignalStore.onboarding().setShowAppearance(false);
+    }
+  }
+
+  private static class AddPhotoCardViewHolder extends CardViewHolder {
+
+    public AddPhotoCardViewHolder(@NonNull View itemView) {
+      super(itemView);
+    }
+
+    @Override
+    int getButtonStringRes() {
+      return R.string.Megaphones_add_photo;
+    }
+
+    @Override
+    int getImageRes() {
+      return R.drawable.ic_signal_add_photo;
+    }
+
+    @Override
+    void onActionClicked(@NonNull MegaphoneActionController controller) {
+      controller.onMegaphoneNavigationRequested(ManageProfileActivity.getIntentForAvatarEdit(controller.getMegaphoneActivity()));
+      SignalStore.onboarding().setShowAddPhoto(false);
+    }
+
+    @Override
+    void onCloseClicked() {
+      SignalStore.onboarding().setShowAddPhoto(false);
     }
   }
 }

@@ -18,25 +18,26 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.dd.CircularProgressButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.EditTextUtil;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment;
 import org.thoughtcrime.securesms.components.settings.app.privacy.expire.ExpireTimerSettingsFragment;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.groups.ui.creategroup.dialogs.NonGv2MemberDialog;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
-import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -58,7 +59,6 @@ import java.util.Objects;
 public class AddGroupDetailsFragment extends LoggingFragment {
 
   private static final int   AVATAR_PLACEHOLDER_INSET_DP = 18;
-  private static final short REQUEST_CODE_AVATAR         = 27621;
   private static final short REQUEST_DISAPPEARING_TIMER  = 28621;
 
   private CircularProgressButton   create;
@@ -112,7 +112,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
 
     initializeViewModel();
 
-    avatar.setOnClickListener(v -> showAvatarSelectionBottomSheet());
+    avatar.setOnClickListener(v -> showAvatarPicker());
     members.setRecipientClickListener(this::handleRecipientClick);
     EditTextUtil.addGraphemeClusterLimitFilter(name, FeatureFlags.getMaxGroupNameGraphemeLength());
     name.addTextChangedListener(new AfterTextChanged(editable -> viewModel.setName(editable.toString())));
@@ -154,42 +154,50 @@ public class AddGroupDetailsFragment extends LoggingFragment {
     });
 
     name.requestFocus();
+
+    getParentFragmentManager().setFragmentResultListener(AvatarPickerFragment.REQUEST_KEY_SELECT_AVATAR,
+                                                         getViewLifecycleOwner(),
+                                                         (key, bundle) -> handleMediaResult(bundle));
   }
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (requestCode == REQUEST_CODE_AVATAR && resultCode == Activity.RESULT_OK && data != null) {
-
-      if (data.getBooleanExtra("delete", false)) {
-        viewModel.setAvatar(null);
-        return;
-      }
-
-      final Media                                     result         = data.getParcelableExtra(AvatarSelectionActivity.EXTRA_MEDIA);
-      final DecryptableStreamUriLoader.DecryptableUri decryptableUri = new DecryptableStreamUriLoader.DecryptableUri(result.getUri());
-
-      GlideApp.with(this)
-              .asBitmap()
-              .load(decryptableUri)
-              .skipMemoryCache(true)
-              .diskCacheStrategy(DiskCacheStrategy.NONE)
-              .centerCrop()
-              .override(AvatarHelper.AVATAR_DIMENSIONS, AvatarHelper.AVATAR_DIMENSIONS)
-              .into(new CustomTarget<Bitmap>() {
-                @Override
-                public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> transition) {
-                  viewModel.setAvatar(Objects.requireNonNull(BitmapUtil.toByteArray(resource)));
-                }
-
-                @Override
-                public void onLoadCleared(@Nullable Drawable placeholder) {
-                }
-              });
-    } else if (requestCode == REQUEST_DISAPPEARING_TIMER && resultCode == Activity.RESULT_OK && data != null) {
+    if (requestCode == REQUEST_DISAPPEARING_TIMER && resultCode == Activity.RESULT_OK && data != null) {
       viewModel.setDisappearingMessageTimer(data.getIntExtra(ExpireTimerSettingsFragment.FOR_RESULT_VALUE, SignalStore.settings().getUniversalExpireTimer()));
     } else {
       super.onActivityResult(requestCode, resultCode, data);
     }
+  }
+
+  private void handleMediaResult(Bundle data) {
+    if (data.getBoolean(AvatarPickerFragment.SELECT_AVATAR_CLEAR)) {
+      viewModel.setAvatarMedia(null);
+      viewModel.setAvatar(null);
+      return;
+    }
+
+    final Media result                                             = data.getParcelable(AvatarPickerFragment.SELECT_AVATAR_MEDIA);
+    final DecryptableStreamUriLoader.DecryptableUri decryptableUri = new DecryptableStreamUriLoader.DecryptableUri(result.getUri());
+
+    viewModel.setAvatarMedia(result);
+
+    GlideApp.with(this)
+            .asBitmap()
+            .load(decryptableUri)
+            .skipMemoryCache(true)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .centerCrop()
+            .override(AvatarHelper.AVATAR_DIMENSIONS, AvatarHelper.AVATAR_DIMENSIONS)
+            .into(new CustomTarget<Bitmap>() {
+              @Override
+              public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> transition) {
+                viewModel.setAvatar(Objects.requireNonNull(BitmapUtil.toByteArray(resource)));
+              }
+
+              @Override
+              public void onLoadCleared(@Nullable Drawable placeholder) {
+              }
+            });
   }
 
   private void initializeViewModel() {
@@ -211,15 +219,15 @@ public class AddGroupDetailsFragment extends LoggingFragment {
   }
 
   private void handleRecipientClick(@NonNull Recipient recipient) {
-    new AlertDialog.Builder(requireContext())
-                   .setMessage(getString(R.string.AddGroupDetailsFragment__remove_s_from_this_group, recipient.getDisplayName(requireContext())))
-                   .setCancelable(true)
-                   .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel())
-                   .setPositiveButton(R.string.AddGroupDetailsFragment__remove, (dialog, which) -> {
-                     viewModel.delete(recipient.getId());
-                     dialog.dismiss();
-                   })
-                   .show();
+    new MaterialAlertDialogBuilder(requireContext())
+        .setMessage(getString(R.string.AddGroupDetailsFragment__remove_s_from_this_group, recipient.getDisplayName(requireContext())))
+        .setCancelable(true)
+        .setNegativeButton(android.R.string.cancel, (dialog, which) -> dialog.cancel())
+        .setPositiveButton(R.string.AddGroupDetailsFragment__remove, (dialog, which) -> {
+          viewModel.delete(recipient.getId());
+          dialog.dismiss();
+        })
+        .show();
   }
 
   private void handleGroupCreateResult(@NonNull GroupCreateResult groupCreateResult) {
@@ -263,13 +271,15 @@ public class AddGroupDetailsFragment extends LoggingFragment {
           .alpha(isEnabled ? 1f : 0.5f);
   }
 
-  private void showAvatarSelectionBottomSheet() {
-    AvatarSelectionBottomSheetDialogFragment.create(viewModel.hasAvatar(), true, REQUEST_CODE_AVATAR, true)
-                                            .show(getChildFragmentManager(), "BOTTOM");
+  private void showAvatarPicker() {
+    Media media = viewModel.getAvatarMedia();
+
+    Navigation.findNavController(requireView()).navigate(AddGroupDetailsFragmentDirections.actionAddGroupDetailsFragmentToAvatarPicker(null, media).setIsNewGroup(true));
   }
 
   public interface Callback {
     void onGroupCreated(@NonNull RecipientId recipientId, long threadId, @NonNull List<Recipient> invitedMembers);
+
     void onNavigationButtonPressed();
   }
 }

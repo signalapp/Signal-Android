@@ -150,3 +150,27 @@ message ChatColor {
 message RecipientExtras {
     bool manuallyShownAvatar = 1;
 }
+
+message CustomAvatar {
+
+    message Text {
+        string text   = 1;
+        string colors = 2;
+    }
+
+    message Vector {
+        string key    = 1;
+        string colors = 2;
+    }
+
+    message Photo {
+        string uri   = 1;
+        int64  size  = 2;
+    }
+
+    oneof avatar {
+        Text   text   = 1;
+        Vector vector = 2;
+        Photo  photo  = 3;
+    }
+}

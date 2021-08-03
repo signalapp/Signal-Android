@@ -121,11 +121,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
-import org.whispersystems.libsignal.protocol.SenderKeyDistributionMessage;
 import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
@@ -169,6 +167,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Takes data about a decrypted message, transforms it into user-presentable data, and writes that
@@ -288,7 +287,7 @@ public final class MessageContentProcessor {
             } else if (!threadRecipient.isGroup()) {
               Log.i(TAG, "Message was to a 1:1. Ensuring this user has our profile key.");
               ApplicationDependencies.getJobManager().startChain(new RefreshAttributesJob(false))
-                                     .then(ProfileKeySendJob.create(context, DatabaseFactory.getThreadDatabase(context).getThreadIdFor(threadRecipient), true))
+                                     .then(ProfileKeySendJob.create(context, DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(threadRecipient), true))
                                      .enqueue();
             }
           }
@@ -436,9 +435,30 @@ public final class MessageContentProcessor {
       return true;
     }
 
-    if (!groupDatabase.isCurrentMember(groupId, senderRecipient.getId())) {
+    Optional<GroupRecord> groupRecord = groupDatabase.getGroup(groupId);
+
+    if (groupRecord.isPresent() && !groupRecord.get().getMembers().contains(senderRecipient.getId())) {
       log(String.valueOf(content.getTimestamp()), "Ignoring GV2 message from member not in group " + groupId);
       return true;
+    }
+
+    if (groupRecord.isPresent() && groupRecord.get().isAnnouncementGroup() && !groupRecord.get().getAdmins().contains(senderRecipient)) {
+      if (content.getDataMessage().isPresent()) {
+        SignalServiceDataMessage data = content.getDataMessage().get();
+        if (data.getBody().isPresent()        ||
+            data.getAttachments().isPresent() ||
+            data.getQuote().isPresent()       ||
+            data.getPreviews().isPresent()    ||
+            data.getMentions().isPresent()    ||
+            data.getSticker().isPresent())
+        {
+          Log.w(TAG, "Ignoring message from " + senderRecipient.getId() + " because it has disallowed content, and they're not an admin in an announcement-only group.");
+          return true;
+        }
+      } else if (content.getTypingMessage().isPresent()) {
+        Log.w(TAG, "Ignoring typing indicator from " + senderRecipient.getId() + " because they're not an admin in an announcement-only group.");
+        return true;
+      }
     }
 
     return false;
@@ -693,7 +713,7 @@ public final class MessageContentProcessor {
     OutgoingTextMessage outgoingTextMessage       = new OutgoingTextMessage(recipient, "", -1);
     OutgoingEndSessionMessage outgoingEndSessionMessage = new OutgoingEndSessionMessage(outgoingTextMessage);
 
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
 
     if (!recipient.isGroup()) {
       SessionStore sessionStore = new TextSecureSessionStore(context);
@@ -721,7 +741,7 @@ public final class MessageContentProcessor {
   {
     GroupV1MessageProcessor.process(context, content, message, false);
 
-    if (message.getExpiresInSeconds() != 0 && message.getExpiresInSeconds() != threadRecipient.getExpireMessages()) {
+    if (message.getExpiresInSeconds() != 0 && message.getExpiresInSeconds() != threadRecipient.getExpiresInSeconds()) {
       handleExpirationUpdate(content, message, Optional.absent(), Optional.of(groupId), senderRecipient, threadRecipient, receivedTime);
     }
 
@@ -767,7 +787,7 @@ public final class MessageContentProcessor {
     int                                 expiresInSeconds = message.getExpiresInSeconds();
     Optional<SignalServiceGroupContext> groupContext     = message.getGroupContext();
 
-    if (threadRecipient.getExpireMessages() == expiresInSeconds) {
+    if (threadRecipient.getExpiresInSeconds() == expiresInSeconds) {
       log(String.valueOf(content.getTimestamp()), "No change in message expiry for group. Ignoring.");
       return null;
     }
@@ -968,7 +988,7 @@ public final class MessageContentProcessor {
       return;
     }
 
-    long threadId = threadDatabase.getThreadIdFor(recipient);
+    long threadId = threadDatabase.getOrCreateThreadIdFor(recipient);
 
     switch (response.getType()) {
       case ACCEPT:
@@ -1054,7 +1074,7 @@ public final class MessageContentProcessor {
         threadId = gv1ThreadId == null ? -1 : gv1ThreadId;
       } else if (message.getMessage().isGroupV2Update()) {
         handleSynchronizeSentGv2Update(content, message);
-        threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(getSyncMessageDestination(message));
+        threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(getSyncMessageDestination(message));
       } else if (Build.VERSION.SDK_INT > 19 && message.getMessage().getGroupCallUpdate().isPresent()) {
         handleGroupCallUpdateMessage(content, message.getMessage(), GroupUtil.idFromGroupContext(message.getMessage().getGroupContext()), senderRecipient);
       } else if (message.getMessage().isEmptyGroupV2Message()) {
@@ -1063,7 +1083,7 @@ public final class MessageContentProcessor {
         threadId = handleSynchronizeSentExpirationUpdate(message);
       } else if (message.getMessage().getReaction().isPresent()) {
         handleReaction(content, message.getMessage(), senderRecipient);
-        threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(getSyncMessageDestination(message));
+        threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(getSyncMessageDestination(message));
       } else if (message.getMessage().getRemoteDelete().isPresent()) {
         handleRemoteDelete(content, message.getMessage(), senderRecipient);
       } else if (message.getMessage().getAttachments().isPresent() || message.getMessage().getQuote().isPresent() || message.getMessage().getPreviews().isPresent() || message.getMessage().getSticker().isPresent() || message.getMessage().isViewOnce() || message.getMessage().getMentions().isPresent()) {
@@ -1237,7 +1257,7 @@ public final class MessageContentProcessor {
                                                                    content.getServerReceivedTimestamp(),
                                                                    receivedTime,
                                                                    -1,
-                                                                   message.getExpiresInSeconds() * 1000L,
+                                                                   TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds()),
                                                                    false,
                                                                    message.isViewOnce(),
                                                                    content.isNeedsReceipt(),
@@ -1298,9 +1318,9 @@ public final class MessageContentProcessor {
 
     OutgoingExpirationUpdateMessage expirationUpdateMessage = new OutgoingExpirationUpdateMessage(recipient,
         message.getTimestamp(),
-        message.getMessage().getExpiresInSeconds() * 1000L);
+        TimeUnit.SECONDS.toMillis(message.getMessage().getExpiresInSeconds()));
 
-    long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    long threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
     long messageId = database.insertMessageOutbox(expirationUpdateMessage, threadId, false, null);
 
     database.markAsSent(messageId, true);
@@ -1331,7 +1351,7 @@ public final class MessageContentProcessor {
     OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(recipients, message.getMessage().getBody().orNull(),
         syncAttachments,
         message.getTimestamp(), -1,
-        message.getMessage().getExpiresInSeconds() * 1000,
+        TimeUnit.SECONDS.toMillis(message.getMessage().getExpiresInSeconds()),
         viewOnce,
         ThreadDatabase.DistributionTypes.DEFAULT, quote.orNull(),
         sharedContacts.or(Collections.emptyList()),
@@ -1341,11 +1361,11 @@ public final class MessageContentProcessor {
 
     mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
 
-    if (recipients.getExpireMessages() != message.getMessage().getExpiresInSeconds()) {
+    if (recipients.getExpiresInSeconds() != message.getMessage().getExpiresInSeconds()) {
       handleSynchronizeSentExpirationUpdate(message);
     }
 
-    long threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipients);
+    long threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipients);
 
     database.beginTransaction();
 
@@ -1376,7 +1396,7 @@ public final class MessageContentProcessor {
                                .scheduleDeletion(messageId,
                                                  true,
                                                  message.getExpirationStartTimestamp(),
-                                                 message.getMessage().getExpiresInSeconds() * 1000L);
+                                                 TimeUnit.SECONDS.toMillis(message.getMessage().getExpiresInSeconds()));
       }
 
       if (recipients.isSelf()) {
@@ -1452,7 +1472,7 @@ public final class MessageContentProcessor {
     MessageDatabase database = DatabaseFactory.getSmsDatabase(context);
     String          body     = message.getBody().isPresent() ? message.getBody().get() : "";
 
-    if (message.getExpiresInSeconds() != threadRecipient.getExpireMessages()) {
+    if (message.getExpiresInSeconds() != threadRecipient.getExpiresInSeconds()) {
       handleExpirationUpdate(content, message, Optional.absent(), groupId, senderRecipient, threadRecipient, receivedTime);
     }
 
@@ -1470,7 +1490,7 @@ public final class MessageContentProcessor {
                                                                 receivedTime,
                                                                 body,
                                                                 groupId,
-                                                                message.getExpiresInSeconds() * 1000L,
+                                                                TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds()),
                                                                 content.isNeedsReceipt(),
                                                                 content.getServerUuid());
 
@@ -1493,13 +1513,13 @@ public final class MessageContentProcessor {
   {
     Recipient recipient       = getSyncMessageDestination(message);
     String    body            = message.getMessage().getBody().or("");
-    long      expiresInMillis = message.getMessage().getExpiresInSeconds() * 1000L;
+    long      expiresInMillis = TimeUnit.SECONDS.toMillis(message.getMessage().getExpiresInSeconds());
 
-    if (recipient.getExpireMessages() != message.getMessage().getExpiresInSeconds()) {
+    if (recipient.getExpiresInSeconds() != message.getMessage().getExpiresInSeconds()) {
       handleSynchronizeSentExpirationUpdate(message);
     }
 
-    long    threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    long    threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
     boolean isGroup   = recipient.isGroup();
 
     MessageDatabase database;
@@ -1747,9 +1767,9 @@ public final class MessageContentProcessor {
 
       Recipient groupRecipient = Recipient.externalPossiblyMigratedGroup(context, groupId);
 
-      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
     } else {
-      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(senderRecipient);
+      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(senderRecipient);
     }
 
     if (threadId <= 0) {
@@ -2096,7 +2116,7 @@ public final class MessageContentProcessor {
   }
 
   private void notifyTypingStoppedFromIncomingMessage(@NonNull Recipient senderRecipient, @NonNull Recipient conversationRecipient, int device) {
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(conversationRecipient);
+    long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(conversationRecipient);
 
     if (threadId > 0 && TextSecurePreferences.isTypingIndicatorsEnabled(context)) {
       Log.d(TAG, "Typing stopped on thread " + threadId + " due to an incoming message.");
@@ -2151,7 +2171,13 @@ public final class MessageContentProcessor {
       if (content.getTypingMessage().get().getGroupId().isPresent()) {
         GroupId   groupId        = GroupId.push(content.getTypingMessage().get().getGroupId().get());
         Recipient groupRecipient = Recipient.externalPossiblyMigratedGroup(context, groupId);
-        return groupRecipient.isBlocked() || !groupRecipient.isActiveGroup();
+
+        if (groupRecipient.isBlocked() || !groupRecipient.isActiveGroup()) {
+          return true;
+        } else {
+          Optional<GroupRecord> groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(groupId);
+          return groupRecord.isPresent() && groupRecord.get().isAnnouncementGroup() && !groupRecord.get().getAdmins().contains(sender);
+        }
       }
     }
 

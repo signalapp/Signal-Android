@@ -17,12 +17,17 @@
 
 package org.thoughtcrime.securesms;
 
+import static org.thoughtcrime.securesms.components.sensors.Orientation.PORTRAIT_BOTTOM_EDGE;
+
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.PictureInPictureParams;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.Rect;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,11 +39,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
+import androidx.core.util.Consumer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.window.DisplayFeature;
+import androidx.window.FoldingFeature;
+import androidx.window.WindowLayoutInfo;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
@@ -49,6 +59,7 @@ import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeN
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallViewModel;
+import org.thoughtcrime.securesms.components.webrtc.WebRtcControls;
 import org.thoughtcrime.securesms.components.webrtc.participantslist.CallParticipantsListDialog;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -64,13 +75,12 @@ import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
+import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState;
 import org.whispersystems.libsignal.IdentityKey;
-import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
 import java.util.List;
-
-import static org.thoughtcrime.securesms.components.sensors.Orientation.PORTRAIT_BOTTOM_EDGE;
+import java.util.Optional;
 
 public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChangeDialog.Callback {
 
@@ -87,11 +97,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private CallParticipantsListUpdatePopupWindow participantUpdateWindow;
   private DeviceOrientationMonitor              deviceOrientationMonitor;
 
-  private FullscreenHelper    fullscreenHelper;
-  private WebRtcCallView      callScreen;
-  private TooltipPopup        videoTooltip;
-  private WebRtcCallViewModel viewModel;
-  private boolean             enableVideoIfAvailable;
+  private FullscreenHelper              fullscreenHelper;
+  private WebRtcCallView                callScreen;
+  private TooltipPopup                  videoTooltip;
+  private WebRtcCallViewModel           viewModel;
+  private boolean                       enableVideoIfAvailable;
+  private androidx.window.WindowManager windowManager;
+  private WindowLayoutInfoConsumer      windowLayoutInfoConsumer;
 
   @Override
   protected void attachBaseContext(@NonNull Context newBase) {
@@ -99,12 +111,18 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     super.attachBaseContext(newBase);
   }
 
+  @SuppressLint("SourceLockedOrientationActivity")
   @Override
   public void onCreate(Bundle savedInstanceState) {
     Log.i(TAG, "onCreate()");
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     super.onCreate(savedInstanceState);
+
+    boolean isLandscapeEnabled = getResources().getConfiguration().smallestScreenWidthDp >= 480;
+    if (!isLandscapeEnabled) {
+      setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
 
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.webrtc_call_activity);
@@ -114,12 +132,17 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
 
     initializeResources();
-    initializeViewModel();
+    initializeViewModel(isLandscapeEnabled);
 
     processIntent(getIntent());
 
     enableVideoIfAvailable = getIntent().getBooleanExtra(EXTRA_ENABLE_VIDEO_IF_AVAILABLE, false);
     getIntent().removeExtra(EXTRA_ENABLE_VIDEO_IF_AVAILABLE);
+
+    windowManager            = new androidx.window.WindowManager(this);
+    windowLayoutInfoConsumer = new WindowLayoutInfoConsumer();
+
+    windowManager.registerLayoutChangeCallback(SignalExecutors.BOUNDED, windowLayoutInfoConsumer);
   }
 
   @Override
@@ -177,9 +200,11 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   @Override
   protected void onDestroy() {
     super.onDestroy();
+    windowManager.unregisterLayoutChangeCallback(windowLayoutInfoConsumer);
     EventBus.getDefault().unregister(this);
   }
 
+  @SuppressLint("MissingSuperCall")
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
@@ -206,8 +231,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private boolean enterPipModeIfPossible() {
     if (viewModel.canEnterPipMode() && isSystemPipEnabledAndAvailable()) {
       PictureInPictureParams params = new PictureInPictureParams.Builder()
-              .setAspectRatio(new Rational(9, 16))
-              .build();
+          .setAspectRatio(new Rational(9, 16))
+          .build();
       enterPictureInPictureMode(params);
       CallParticipantsListDialog.dismiss(getSupportFragmentManager());
 
@@ -246,20 +271,23 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     participantUpdateWindow = new CallParticipantsListUpdatePopupWindow(callScreen);
   }
 
-  private void initializeViewModel() {
+  private void initializeViewModel(boolean isLandscapeEnabled) {
     deviceOrientationMonitor = new DeviceOrientationMonitor(this);
     getLifecycle().addObserver(deviceOrientationMonitor);
 
     WebRtcCallViewModel.Factory factory = new WebRtcCallViewModel.Factory(deviceOrientationMonitor);
 
     viewModel = ViewModelProviders.of(this, factory).get(WebRtcCallViewModel.class);
+    viewModel.setIsLandscapeEnabled(isLandscapeEnabled);
     viewModel.setIsInPipMode(isInPipMode());
     viewModel.getMicrophoneEnabled().observe(this, callScreen::setMicEnabled);
     viewModel.getWebRtcControls().observe(this, callScreen::setWebRtcControls);
     viewModel.getEvents().observe(this, this::handleViewModelEvent);
     viewModel.getCallTime().observe(this, this::handleCallTime);
-    LiveDataUtil.combineLatest(viewModel.getCallParticipantsState(), viewModel.getOrientation(), (s, o) -> new Pair<>(s, o == PORTRAIT_BOTTOM_EDGE))
-                .observe(this, p -> callScreen.updateCallParticipants(p.first(), p.second()));
+    LiveDataUtil.combineLatest(viewModel.getCallParticipantsState(),
+                               viewModel.getOrientationAndLandscapeEnabled(),
+                               (s, o) -> new CallParticipantsViewState(s, o.first == PORTRAIT_BOTTOM_EDGE, o.second))
+                .observe(this, p -> callScreen.updateCallParticipants(p));
     viewModel.getCallParticipantListUpdate().observe(this, participantUpdateWindow::addCallParticipantListUpdate);
     viewModel.getSafetyNumberChangeEvent().observe(this, this::handleSafetyNumberChangeEvent);
     viewModel.getGroupMembers().observe(this, unused -> updateGroupMembersForGroupCall());
@@ -274,25 +302,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       }
     });
 
-    viewModel.getOrientation().observe(this, orientation -> {
-      ApplicationDependencies.getSignalCallManager().orientationChanged(orientation.getDegrees());
-
-      switch (orientation) {
-        case LANDSCAPE_LEFT_EDGE:
-          callScreen.rotateControls(90);
-          break;
-        case LANDSCAPE_RIGHT_EDGE:
-          callScreen.rotateControls(-90);
-          break;
-        case PORTRAIT_BOTTOM_EDGE:
-          callScreen.rotateControls(0);
-      }
-    });
+    viewModel.getOrientationAndLandscapeEnabled().observe(this, pair -> ApplicationDependencies.getSignalCallManager().orientationChanged(pair.second, pair.first.getDegrees()));
+    viewModel.getControlsRotation().observe(this, callScreen::rotateControls);
   }
 
   private void handleViewModelEvent(@NonNull WebRtcCallViewModel.Event event) {
     if (event instanceof WebRtcCallViewModel.Event.StartCall) {
-      startCall(((WebRtcCallViewModel.Event.StartCall)event).isVideoCall());
+      startCall(((WebRtcCallViewModel.Event.StartCall) event).isVideoCall());
       return;
     } else if (event instanceof WebRtcCallViewModel.Event.ShowGroupCallSafetyNumberChange) {
       SafetyNumberChangeDialog.showForGroupCall(getSupportFragmentManager(), ((WebRtcCallViewModel.Event.ShowGroupCallSafetyNumberChange) event).getIdentityRecords());
@@ -404,7 +420,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
                  .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
                  .ifNecessary()
                  .withRationaleDialog(getString(R.string.WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone, recipient.getDisplayName(this)),
-                     R.drawable.ic_mic_solid_24, R.drawable.ic_video_solid_24_tinted)
+                                      R.drawable.ic_mic_solid_24, R.drawable.ic_video_solid_24_tinted)
                  .withPermanentDenialDialog(getString(R.string.WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls))
                  .onAllGranted(() -> {
                    callScreen.setRecipient(recipient);
@@ -488,13 +504,13 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   private void handleNoSuchUser(final @NonNull WebRtcViewModel event) {
     if (isFinishing()) return; // XXX Stuart added this check above, not sure why, so I'm repeating in ignorance. - moxie
     new AlertDialog.Builder(this)
-                   .setTitle(R.string.RedPhone_number_not_registered)
-                   .setIcon(R.drawable.ic_warning)
-                   .setMessage(R.string.RedPhone_the_number_you_dialed_does_not_support_secure_voice)
-                   .setCancelable(true)
-                   .setPositiveButton(R.string.RedPhone_got_it, (d, w) -> handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL))
-                   .setOnCancelListener(d -> handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL))
-                   .show();
+        .setTitle(R.string.RedPhone_number_not_registered)
+        .setIcon(R.drawable.ic_warning)
+        .setMessage(R.string.RedPhone_the_number_you_dialed_does_not_support_secure_voice)
+        .setCancelable(true)
+        .setPositiveButton(R.string.RedPhone_got_it, (d, w) -> handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL))
+        .setOnCancelListener(d -> handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL))
+        .show();
   }
 
   private void handleUntrustedIdentity(@NonNull WebRtcViewModel event) {
@@ -586,20 +602,34 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     callScreen.setRecipient(event.getRecipient());
 
     switch (event.getState()) {
-      case CALL_PRE_JOIN:           handleCallPreJoin(event);                                                  break;
-      case CALL_CONNECTED:          handleCallConnected(event);                                                break;
-      case NETWORK_FAILURE:         handleServerFailure();                                                     break;
-      case CALL_RINGING:            handleCallRinging();                                                       break;
-      case CALL_DISCONNECTED:       handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL);          break;
-      case CALL_ACCEPTED_ELSEWHERE: handleTerminate(event.getRecipient(), HangupMessage.Type.ACCEPTED);        break;
-      case CALL_DECLINED_ELSEWHERE: handleTerminate(event.getRecipient(), HangupMessage.Type.DECLINED);        break;
-      case CALL_ONGOING_ELSEWHERE:  handleTerminate(event.getRecipient(), HangupMessage.Type.BUSY);            break;
-      case CALL_NEEDS_PERMISSION:   handleTerminate(event.getRecipient(), HangupMessage.Type.NEED_PERMISSION); break;
-      case NO_SUCH_USER:            handleNoSuchUser(event);                                                   break;
-      case RECIPIENT_UNAVAILABLE:   handleRecipientUnavailable();                                              break;
-      case CALL_OUTGOING:           handleOutgoingCall(event);                                                 break;
-      case CALL_BUSY:               handleCallBusy();                                                          break;
-      case UNTRUSTED_IDENTITY:      handleUntrustedIdentity(event);                                            break;
+      case CALL_PRE_JOIN:
+        handleCallPreJoin(event); break;
+      case CALL_CONNECTED:
+        handleCallConnected(event); break;
+      case NETWORK_FAILURE:
+        handleServerFailure(); break;
+      case CALL_RINGING:
+        handleCallRinging(); break;
+      case CALL_DISCONNECTED:
+        handleTerminate(event.getRecipient(), HangupMessage.Type.NORMAL); break;
+      case CALL_ACCEPTED_ELSEWHERE:
+        handleTerminate(event.getRecipient(), HangupMessage.Type.ACCEPTED); break;
+      case CALL_DECLINED_ELSEWHERE:
+        handleTerminate(event.getRecipient(), HangupMessage.Type.DECLINED); break;
+      case CALL_ONGOING_ELSEWHERE:
+        handleTerminate(event.getRecipient(), HangupMessage.Type.BUSY); break;
+      case CALL_NEEDS_PERMISSION:
+        handleTerminate(event.getRecipient(), HangupMessage.Type.NEED_PERMISSION); break;
+      case NO_SUCH_USER:
+        handleNoSuchUser(event); break;
+      case RECIPIENT_UNAVAILABLE:
+        handleRecipientUnavailable(); break;
+      case CALL_OUTGOING:
+        handleOutgoingCall(event); break;
+      case CALL_BUSY:
+        handleCallBusy(); break;
+      case UNTRUSTED_IDENTITY:
+        handleUntrustedIdentity(event); break;
     }
 
     boolean enableVideo = event.getLocalParticipant().getCameraState().getCameraCount() > 0 && enableVideoIfAvailable;
@@ -728,6 +758,29 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     @Override
     public void onLocalPictureInPictureClicked() {
       viewModel.onLocalPictureInPictureClicked();
+    }
+  }
+
+  private class WindowLayoutInfoConsumer implements Consumer<WindowLayoutInfo> {
+
+    @Override
+    public void accept(WindowLayoutInfo windowLayoutInfo) {
+      Log.d(TAG, "On WindowLayoutInfo accepted: " + windowLayoutInfo.toString());
+
+      Optional<DisplayFeature> feature = windowLayoutInfo.getDisplayFeatures().stream().filter(f -> f instanceof FoldingFeature).findFirst();
+      viewModel.setIsLandscapeEnabled(feature.isPresent());
+      setRequestedOrientation(feature.isPresent() ? ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+      if (feature.isPresent()) {
+        FoldingFeature foldingFeature = (FoldingFeature) feature.get();
+        Rect bounds = foldingFeature.getBounds();
+        if (foldingFeature.getState() == FoldingFeature.State.HALF_OPENED && bounds.top == bounds.bottom) {
+          Log.d(TAG, "OnWindowLayoutInfo accepted: ensure call view is in table-top display mode");
+          viewModel.setFoldableState(WebRtcControls.FoldableState.folded(bounds.top));
+        } else {
+          Log.d(TAG, "OnWindowLayoutInfo accepted: ensure call view is in flat display mode");
+          viewModel.setFoldableState(WebRtcControls.FoldableState.flat());
+        }
+      }
     }
   }
 }

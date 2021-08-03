@@ -144,7 +144,7 @@ sealed class ConversationSettingsViewModel(
             isMuteAvailable = !recipient.isSelf,
             isSearchAvailable = true
           ),
-          disappearingMessagesLifespan = recipient.expireMessages,
+          disappearingMessagesLifespan = recipient.expiresInSeconds,
           canModifyBlockedState = !recipient.isSelf,
           specificSettingsState = state.requireRecipientSettingsState().copy(
             contactLinkState = when {
@@ -322,6 +322,14 @@ sealed class ConversationSettingsViewModel(
         )
       }
 
+      store.update(liveGroup.isAnnouncementGroup) { announcementGroup, state ->
+        state.copy(
+          specificSettingsState = state.requireGroupSettingsState().copy(
+            isAnnouncementGroup = announcementGroup
+          )
+        )
+      }
+
       val isMessageRequestAccepted: LiveData<Boolean> = LiveDataUtil.mapAsync(liveGroup.groupRecipient) { r -> repository.isMessageRequestAccepted(r) }
       val descriptionState: LiveData<DescriptionState> = LiveDataUtil.combineLatest(liveGroup.description, isMessageRequestAccepted, ::DescriptionState)
 
@@ -386,11 +394,13 @@ sealed class ConversationSettingsViewModel(
     override fun onAddToGroup() {
       repository.getGroupCapacity(groupId) { capacityResult ->
         if (capacityResult.getRemainingCapacity() > 0) {
+
           internalEvents.postValue(
             ConversationSettingsEvent.AddMembersToGroup(
               groupId,
               capacityResult.getSelectionWarning(),
               capacityResult.getSelectionLimit(),
+              capacityResult.isAnnouncementGroup,
               capacityResult.getMembersWithoutSelf()
             )
           )

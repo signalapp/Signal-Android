@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Consumer;
 
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 interface EditProfileRepository {
+
+  void getCurrentAvatarColor(@NonNull Consumer<AvatarColor> avatarColorConsumer);
 
   void getCurrentProfileName(@NonNull Consumer<ProfileName> profileNameConsumer);
 

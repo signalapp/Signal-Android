@@ -146,9 +146,9 @@ public final class MessageDecryptionUtil {
 
     if (groupId.isPresent()) {
       Recipient groupRecipient = Recipient.externalPossiblyMigratedGroup(context, groupId.get());
-      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
     } else {
-      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(sender);
+      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(sender);
     }
 
     switch (contentHint) {

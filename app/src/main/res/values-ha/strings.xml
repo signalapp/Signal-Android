@@ -1105,7 +1105,7 @@
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Aika</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">Yayi!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Hada imel</string> -->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Za\'a sa wannan logun a duniyar gizo domun masu bada gudummuwa su gani, kara bincika shi kuma ka/kiyi gyara kafin aikawa. </string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Za\'a sa wannan logun a duniyar gizo domun masu bada gudummuwa su gani, kara bincika shi kuma ka/kiyi gyara kafin aikawa. </string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Logu yana lodi…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Ana dora logogi…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">Zabi manhajar imel</string> -->

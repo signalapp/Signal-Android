@@ -960,6 +960,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Aldatu duzu taldearen kidetza aldatu dezakeen pertsona. Orain \"%1$s\" da.</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s erabiltzaileak aldatu du taldearen kidetza aldatu dezakeen pertsona. Orain \"%2$s\" da.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Taldearen kidetza aldatu dezakeena aldatu da. Orain \"%1$s\" da.</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Talde esteka aktibatu duzu administratzailearen baimena behar ez delarik.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Talde esteka aktibatu duzu administratzailearen baimena behar delarik.</string>
@@ -1667,8 +1668,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Ez da ezer aurkitu</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Egunkari hau publikoki argitaratuko da ekarleek ikus dezaten, bidali aurretik aztertu eta aldatu dezakezu.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Oraingo telefonoaren zifratu gabeko mezuak Signalen datu-base zifratura inportatzea gustatuko litzaizuke?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Sistemaren lehenetsitako datubasea ez da inolako moduan aldatuko.</string>
@@ -2577,6 +2576,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">Itxura</string>
   <string name="ChatColorsMegaphone__not_now">Orain ez</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">Orain ez</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_stickers">Eranskailuak</string>
@@ -2622,6 +2623,16 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__camera">Kamera</string>
+  <string name="AvatarPickerFragment__photo">Argazkia</string>
+  <string name="AvatarPickerFragment__save">Gorde</string>
+  <string name="AvatarPickerFragment__edit">Editatu</string>
+  <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">Aurrebista</string>
+  <string name="TextAvatarCreationFragment__done">Eginda</string>
+  <string name="TextAvatarCreationFragment__color">Kolorea</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <!--EOF-->

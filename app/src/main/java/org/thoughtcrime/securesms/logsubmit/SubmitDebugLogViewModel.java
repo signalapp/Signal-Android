@@ -1,47 +1,72 @@
 package org.thoughtcrime.securesms.logsubmit;
 
-import android.text.TextUtils;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.annimon.stream.Stream;
-
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.tracing.Tracer;
+import org.signal.paging.PagedData;
+import org.signal.paging.PagingConfig;
+import org.signal.paging.PagingController;
+import org.signal.paging.ProxyPagingController;
+import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SubmitDebugLogViewModel extends ViewModel {
 
-  private final SubmitDebugLogRepository            repo;
-  private final DefaultValueLiveData<List<LogLine>> lines;
-  private final MutableLiveData<Mode>               mode;
+  private final SubmitDebugLogRepository        repo;
+  private final MutableLiveData<Mode>           mode;
+  private final ProxyPagingController           pagingController;
+  private final List<LogLine>                   staticLines;
+  private final MediatorLiveData<List<LogLine>> lines;
+  private final long                            firstViewTime;
+  private final byte[]                          trace;
 
-  private List<LogLine> sourceLines;
-  private byte[]        trace;
 
   private SubmitDebugLogViewModel() {
-    this.repo  = new SubmitDebugLogRepository();
-    this.lines = new DefaultValueLiveData<>(Collections.emptyList());
-    this.mode  = new MutableLiveData<>();
-    this.trace = Tracer.getInstance().serialize();
+    this.repo             = new SubmitDebugLogRepository();
+    this.mode             = new MutableLiveData<>();
+    this.trace            = Tracer.getInstance().serialize();
+    this.pagingController = new ProxyPagingController();
+    this.firstViewTime    = System.currentTimeMillis();
+    this.staticLines      = new ArrayList<>();
+    this.lines            = new MediatorLiveData<>();
 
-    repo.getLogLines(result -> {
-      sourceLines = result;
-      mode.postValue(Mode.NORMAL);
-      lines.postValue(sourceLines);
+    repo.getPrefixLogLines(staticLines -> {
+      this.staticLines.addAll(staticLines);
+
+      LogDatabase.getInstance(ApplicationDependencies.getApplication()).trimToSize();
+
+      LogDataSource dataSource = new LogDataSource(ApplicationDependencies.getApplication(), staticLines, firstViewTime);
+      PagingConfig  config     = new PagingConfig.Builder().setPageSize(100)
+                                                           .setBufferPages(3)
+                                                           .setStartIndex(0)
+                                                           .build();
+
+      PagedData<LogLine> pagedData = PagedData.create(dataSource, config);
+
+      ThreadUtil.runOnMain(() -> {
+        pagingController.set(pagedData.getController());
+        lines.addSource(pagedData.getData(), lines::setValue);
+        mode.setValue(Mode.NORMAL);
+      });
     });
   }
 
   @NonNull LiveData<List<LogLine>> getLines() {
     return lines;
+  }
+
+  @NonNull PagingController getPagingController() {
+    return pagingController;
   }
 
   @NonNull LiveData<Mode> getMode() {
@@ -53,7 +78,7 @@ public class SubmitDebugLogViewModel extends ViewModel {
 
     MutableLiveData<Optional<String>> result = new MutableLiveData<>();
 
-    repo.submitLog(lines.getValue(), trace, value -> {
+    repo.submitLogWithPrefixLines(firstViewTime, staticLines, trace, value -> {
       mode.postValue(Mode.NORMAL);
       result.postValue(value);
     });
@@ -62,35 +87,23 @@ public class SubmitDebugLogViewModel extends ViewModel {
   }
 
   void onQueryUpdated(@NonNull String query) {
-    if (TextUtils.isEmpty(query)) {
-      lines.postValue(sourceLines);
-    } else {
-      List<LogLine> filtered = Stream.of(sourceLines)
-                                     .filter(l -> l.getText().toLowerCase().contains(query.toLowerCase()))
-                                     .toList();
-      lines.postValue(filtered);
-    }
+    throw new UnsupportedOperationException("Not yet implemented.");
   }
 
   void onSearchClosed() {
-    lines.postValue(sourceLines);
+    throw new UnsupportedOperationException("Not yet implemented.");
   }
 
   void onEditButtonPressed() {
-    mode.setValue(Mode.EDIT);
+    throw new UnsupportedOperationException("Not yet implemented.");
   }
 
   void onDoneEditingButtonPressed() {
-    mode.setValue(Mode.NORMAL);
+    throw new UnsupportedOperationException("Not yet implemented.");
   }
 
   void onLogDeleted(@NonNull LogLine line) {
-    sourceLines.remove(line);
-
-    List<LogLine> logs = lines.getValue();
-    logs.remove(line);
-
-    lines.postValue(logs);
+    throw new UnsupportedOperationException("Not yet implemented.");
   }
 
   boolean onBackPressed() {

@@ -245,6 +245,11 @@
     <string name="ConversationActivity_attachment_exceeds_size_limits">Attachment exceeds size limits for the type of message you\'re sending.</string>
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">You can\'t send messages to this group because you\'re no longer a member.</string>
+    <string name="ConversationActivity_only_s_can_send_messages">Only %1$s can send messages.</string>
+    <string name="ConversationActivity_admins">admins</string>
+    <string name="ConversationActivity_message_an_admin">Message an admin</string>
+    <string name="ConversationActivity_cant_start_group_call">Can\'t start group call</string>
+    <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Only admins of this group can start a call.</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">There is no app available to handle this link on your device.</string>
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Your request to join has been sent to the group admin. You\'ll be notified when they take action.</string>
     <string name="ConversationActivity_cancel_request">Cancel Request</string>
@@ -394,6 +399,7 @@
     <string name="ChooseBackupFragment__icon_content_description">Restore from backup icon</string>
     <string name="ChooseBackupFragment__choose_backup">Choose backup</string>
     <string name="ChooseBackupFragment__learn_more">Learn more</string>
+    <string name="ChooseBackupFragment__no_file_browser_available">No file browser available</string>
 
     <!-- RestoreBackupFragment -->
     <string name="RestoreBackupFragment__restore_complete">Restore complete</string>
@@ -488,6 +494,7 @@
     <!-- ShareActivity -->
     <string name="ShareActivity_share_with">Share with</string>
     <string name="ShareActivity_multiple_attachments_are_only_supported">Multiple attachments are only supported for images and videos</string>
+    <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">You do not have permission to send to this group</string>
 
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal communication failure!</string>
@@ -660,6 +667,7 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Done</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">This person can\'t be added to legacy groups.</string>
+    <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">This person can\'t be added to announcement groups.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
         <item quantity="other">Add %3$d members to \"%2$s\"?</item>
@@ -736,6 +744,7 @@
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
     <string name="ManageGroupActivity_not_capable">Someone you added does not support new groups and needs to update Signal</string>
+    <string name="ManageGroupActivity_not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
     <string name="ManageGroupActivity_failed_to_update_the_group">Failed to update the group</string>
     <string name="ManageGroupActivity_youre_not_a_member_of_the_group">You\'re not a member of the group</string>
     <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
@@ -959,6 +968,7 @@
     <string name="Megaphones_invite_friends">Invite friends</string>
     <string name="Megaphones_use_sms">Use SMS</string>
     <string name="Megaphones_appearance">Appearance</string>
+    <string name="Megaphones_add_photo">Add photo</string>
 
     <!-- NotificationBarManager -->
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
@@ -1140,6 +1150,14 @@
     <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">You changed who can edit group membership to \"%1$s\".</string>
     <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s changed who can edit group membership to \"%2$s\".</string>
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Who can edit group membership has been changed to \"%1$s\".</string>
+
+    <!-- GV2 announcement group change -->
+    <string name="MessageRecord_you_allow_all_members_to_send">You changed the group settings to allow all members to send messages.</string>
+    <string name="MessageRecord_you_allow_only_admins_to_send">You changed the group settings to only allow admins to send messages.</string>
+    <string name="MessageRecord_s_allow_all_members_to_send">%1$s changed the group settings to allow all members to send messages.</string>
+    <string name="MessageRecord_s_allow_only_admins_to_send">%1$s changed the group settings to only allow admins to send messages.</string>
+    <string name="MessageRecord_allow_all_members_to_send">The group settings were changed to allow all members to send messages.</string>
+    <string name="MessageRecord_allow_only_admins_to_send">The group settings were changed to only allow admins to send messages.</string>
 
     <!-- GV2 group link invite access level change -->
     <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">You turned on the group link with admin approval off.</string>
@@ -1573,7 +1591,7 @@
     <string name="SubmitDebugLogActivity_success">Success!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copy this URL and add it to your issue report or support email:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Share</string>
-    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">This log will be posted publicly online for contributors to view. You may examine and edit it before uploading.</string>
+    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">This log will be posted publicly online for contributors to view. You may examine it before uploading.</string>
 
     <!-- SupportEmailUtil -->
     <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
@@ -2019,9 +2037,6 @@
 
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">Nothing found</string>
-
-    <!-- log_submit_activity -->
-    <string name="log_submit_activity__this_log_will_be_posted_online">This log will be posted publicly online for contributors to view, you may examine and edit it before submitting.</string>
 
     <!-- database_migration_activity -->
     <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into Signal\'s encrypted database?</string>
@@ -3536,6 +3551,12 @@
     <string name="ChatColorsMegaphone__appearance">Appearance</string>
     <string name="ChatColorsMegaphone__not_now">Not now</string>
 
+    <!-- AddAProfilePhotoMegaphone -->
+    <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Add a profile photo</string>
+    <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Choose a look and color or customize your initials.</string>
+    <string name="AddAProfilePhotoMegaphone__not_now">Not now</string>
+    <string name="AddAProfilePhotoMegaphone__add_photo">Add photo</string>
+
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Emoji</string>
     <string name="KeyboardPagerFragment_open_emoji_search">Open emoji search</string>
@@ -3590,10 +3611,12 @@
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Add members</string>
     <string name="PermissionsSettingsFragment__edit_group_info">Edit group info</string>
+    <string name="PermissionsSettingsFragment__send_messages">Send messages</string>
     <string name="PermissionsSettingsFragment__all_members">All members</string>
     <string name="PermissionsSettingsFragment__only_admins">Only admins</string>
     <string name="PermissionsSettingsFragment__who_can_add_new_members">Who can add new members?</string>
     <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Who can edit this group\'s info?</string>
+    <string name="PermissionsSettingsFragment__who_can_send_messages">Who can send messages?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Mute notifications</string>
@@ -3624,9 +3647,34 @@
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
 
+    <!-- AvatarPickerFragment -->
+    <string name="AvatarPickerFragment__avatar_preview">Avatar preview</string>
+    <string name="AvatarPickerFragment__camera">Camera</string>
+    <string name="AvatarPickerFragment__take_a_picture">Take a picture</string>
+    <string name="AvatarPickerFragment__choose_a_photo">Choose a photo</string>
+    <string name="AvatarPickerFragment__photo">Photo</string>
+    <string name="AvatarPickerFragment__text">Text</string>
+    <string name="AvatarPickerFragment__save">Save</string>
+    <string name="AvatarPickerFragment__select_an_avatar">Select an avatar</string>
+    <string name="AvatarPickerFragment__clear_avatar">Clear avatar</string>
+    <string name="AvatarPickerFragment__edit">Edit</string>
+    <string name="AvatarPickerRepository__failed_to_save_avatar">Failed to save avatar</string>
+
+    <!-- TextAvatarCreationFragment -->
+    <string name="TextAvatarCreationFragment__preview">Preview</string>
+    <string name="TextAvatarCreationFragment__done">Done</string>
+    <string name="TextAvatarCreationFragment__text">Text</string>
+    <string name="TextAvatarCreationFragment__color">Color</string>
+
+    <!-- VectorAvatarCreationFragment -->
+    <string name="VectorAvatarCreationFragment__select_a_color">Select a color</string>
+
     <!-- ContactSelectionListItem -->
     <string name="ContactSelectionListItem__sms">SMS</string>
     <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+
+    <!-- DSLSettingsToolbar -->
+    <string name="DSLSettingsToolbar__navigate_up">Navigate up</string>
 
     <!-- EOF -->
 

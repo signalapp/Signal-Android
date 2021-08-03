@@ -98,6 +98,19 @@ public final class LiveRecipientCache {
   }
 
   /**
+   * Handles remapping cache entries when recipients are merged.
+   */
+  public void remap(@NonNull RecipientId oldId, @NonNull RecipientId newId) {
+    synchronized (recipients) {
+      if (recipients.containsKey(newId)) {
+        recipients.put(oldId, recipients.get(newId));
+      } else {
+        recipients.remove(oldId);
+      }
+    }
+  }
+
+  /**
    * Adds a recipient to the cache if we don't have an entry. This will also update a cache entry
    * if the provided recipient is resolved, or if the existing cache entry is unresolved.
    *

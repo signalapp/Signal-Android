@@ -263,6 +263,10 @@ public class ConversationFragment extends LoggingFragment {
     list.setLayoutManager(layoutManager);
     list.setItemAnimator(null);
 
+    if (Build.VERSION.SDK_INT >= 31) {
+      list.setOverScrollMode(View.OVER_SCROLL_NEVER);
+    }
+
     snapToTopDataObserver = new ConversationSnapToTopDataObserver(list, new ConversationScrollRequestValidator());
     conversationBanner    = (ConversationBannerView) inflater.inflate(R.layout.conversation_item_banner, container, false);
     topLoadMoreView       = (ViewSwitcher) inflater.inflate(R.layout.load_more_header, container, false);
@@ -1084,8 +1088,8 @@ public class ConversationFragment extends LoggingFragment {
     return messageRecord.getId();
   }
 
-  public long stageOutgoingMessage(OutgoingTextMessage message) {
-    MessageRecord messageRecord = SmsDatabase.readerFor(message, threadId).getCurrent();
+  public long stageOutgoingMessage(OutgoingTextMessage message, long messageId) {
+    MessageRecord messageRecord = SmsDatabase.readerFor(message, threadId, messageId).getCurrent();
 
     if (getListAdapter() != null) {
       clearHeaderIfNotTyping(getListAdapter());

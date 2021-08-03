@@ -15,6 +15,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
@@ -41,6 +42,8 @@ public final class AddGroupDetailsViewModel extends ViewModel {
   private final LiveData<Boolean>                                  canSubmitForm;
   private final AddGroupDetailsRepository                          repository;
   private final LiveData<List<Recipient>>                          nonGv2CapableMembers;
+
+  private Media avatarMedia;
 
   private AddGroupDetailsViewModel(@NonNull Collection<RecipientId> recipientIds,
                                    @NonNull AddGroupDetailsRepository repository)
@@ -150,6 +153,14 @@ public final class AddGroupDetailsViewModel extends ViewModel {
 
   public void setDisappearingMessageTimer(int timer) {
     disappearingMessagesTimer.setValue(timer);
+  }
+
+  public void setAvatarMedia(@Nullable Media media) {
+    this.avatarMedia = media;
+  }
+
+  public @Nullable Media getAvatarMedia() {
+    return avatarMedia;
   }
 
   static final class Factory implements ViewModelProvider.Factory {

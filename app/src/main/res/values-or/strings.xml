@@ -962,6 +962,7 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">ଆପଣ ଗୋଷ୍ଠୀ ସଦସ୍ୟତାକୁ କିଏ ସଂପାଦନ କରିପାରିବ \"%1$s\" ରେ  ପରିବର୍ତ୍ତନ କରିଛନ୍ତି</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ଗୋଷ୍ଠୀ ସଦସ୍ୟତାକୁ କିଏ ସଂପାଦନ କରିପାରିବ \"%2$s\" ରେ ପରିବର୍ତ୍ତନ କରିଛନ୍ତି</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">ଗୋଷ୍ଠୀ ସଦସ୍ୟତାକୁ କିଏ ସଂପାଦନ କରିପାରିବ \"%1$s\" ରେ ପରିବର୍ତ୍ତନ କରାଯାଇଛି</string>
+  <!--GV2 announcement group change-->
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">ଆପଣ ପରିଚାଳକ ଅନୁମୋଦନ ବନ୍ଦ କରି ଗୋଷ୍ଠି ଲିଙ୍କ୍ ଚାଲୁ କରିଛନ୍ତି</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">ଆପଣ ପରିଚାଳକ ଅନୁମୋଦନ ଚାଲୁ କରି ଗୋଷ୍ଠି ଲିଙ୍କ୍ ଚାଲୁ କରିଛନ୍ତି</string>
@@ -1669,8 +1670,6 @@
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">କିଛି ମିଳିଲା ନାହିଁ</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">ଯୋଗଦାନକାରୀମାନେ ଦେଖିବା ପାଇଁ ଏହି ଲଗ୍ ସର୍ବସାଧାରଣରେ ଅନ୍ଲାଇନ୍ ରେ ପ୍ରକାଶିତ ହେବ, ଆପଣ ଦାଖଲ କରିବା ପୂର୍ବରୁ ଏହାକୁ ପରୀକ୍ଷା ଏବଂ ସଂପାଦନ କରିପାରିବେ</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">ତୁମର ବିଦ୍ୟମାନ ପାଠ୍ୟ ବାର୍ତ୍ତାଗୁଡ଼ିକୁ Signal ର ଏନକ୍ରିପ୍ଟ ହେଇଥିବା ଡାଟାବେସରେ ଆମଦାନୀ କରିବାକୁ ଚାହୁଁଛ କି?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">ଡିଫଲ୍ଟ ସିଷ୍ଟମ୍ ଡାଟାବେସ୍ କୌଣସି ପ୍ରକାରେ ପରିବର୍ତ୍ତିତ ହେବ ନାହିଁ</string>
@@ -2589,6 +2588,8 @@
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__appearance">ଦୃଶ୍ୟ</string>
   <string name="ChatColorsMegaphone__not_now">ଏବେ ନୁହେଁ</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">ଏବେ ନୁହେଁ</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_stickers">ଷ୍ଟିକର୍</string>
   <!--StickerSearchDialogFragment-->
@@ -2630,6 +2631,15 @@
   <!--ContactFilterView-->
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__camera">କ୍ୟାମେରା</string>
+  <string name="AvatarPickerFragment__photo">ଛବି</string>
+  <string name="AvatarPickerFragment__save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
+  <string name="AvatarPickerFragment__edit">ସମ୍ପାଦନ</string>
+  <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">ପୂର୍ବାବଲୋକନ</string>
+  <string name="TextAvatarCreationFragment__done">ହେଇଗଲା</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">ଏସ୍ଏମ୍ଏସ୍</string>
   <!--EOF-->

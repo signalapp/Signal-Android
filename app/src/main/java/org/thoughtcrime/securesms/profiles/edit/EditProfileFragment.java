@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +21,9 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 
+import com.airbnb.lottie.SimpleColorFilter;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.dd.CircularProgressButton;
 
@@ -29,11 +32,12 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.avatar.Avatars;
+import org.thoughtcrime.securesms.avatar.picker.AvatarPickerFragment;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
-import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFragment;
+import org.thoughtcrime.securesms.groups.ParcelableGroupId;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment;
@@ -47,7 +51,6 @@ import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static android.app.Activity.RESULT_OK;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.EXCLUDE_SYSTEM;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.GROUP_ID;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.NEXT_BUTTON_TEXT;
@@ -57,7 +60,6 @@ import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.SHOW_
 public class EditProfileFragment extends LoggingFragment {
 
   private static final String TAG                        = Log.tag(EditProfileFragment.class);
-  private static final short  REQUEST_CODE_SELECT_AVATAR = 31726;
   private static final int    MAX_DESCRIPTION_GLYPHS     = 480;
   private static final int    MAX_DESCRIPTION_BYTES      = 8192;
 
@@ -69,6 +71,8 @@ public class EditProfileFragment extends LoggingFragment {
   private EditText               familyName;
   private View                   reveal;
   private TextView               preview;
+  private ImageView              avatarPreviewBackground;
+  private ImageView              avatarPreview;
 
   private Intent nextIntent;
 
@@ -100,45 +104,44 @@ public class EditProfileFragment extends LoggingFragment {
     initializeResources(view, groupId);
     initializeProfileAvatar();
     initializeProfileName();
+
+    getParentFragmentManager().setFragmentResultListener(AvatarPickerFragment.REQUEST_KEY_SELECT_AVATAR, getViewLifecycleOwner(), (key, bundle) -> {
+      if (bundle.getBoolean(AvatarPickerFragment.SELECT_AVATAR_CLEAR)) {
+        viewModel.setAvatarMedia(null);
+        viewModel.setAvatar(null);
+        avatar.setImageDrawable(null);
+      } else {
+        Media media = bundle.getParcelable(AvatarPickerFragment.SELECT_AVATAR_MEDIA);
+        handleMediaFromResult(media);
+      }
+    });
   }
 
-  @Override
-  public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
+  private void handleMediaFromResult(@NonNull Media media) {
+    SimpleTask.run(() -> {
+      try {
+        InputStream stream = BlobProvider.getInstance().getStream(requireContext(), media.getUri());
 
-    if (requestCode == REQUEST_CODE_SELECT_AVATAR && resultCode == RESULT_OK) {
-
-      if (data != null && data.getBooleanExtra("delete", false)) {
-        viewModel.setAvatar(null);
-        avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_camera_solid_white_24).asDrawable(requireActivity(), AvatarColor.UNKNOWN.colorInt()));
-        return;
+        return StreamUtil.readFully(stream);
+      } catch (IOException ioException) {
+        Log.w(TAG, ioException);
+        return null;
       }
-
-      SimpleTask.run(() -> {
-        try {
-          Media       result = data.getParcelableExtra(AvatarSelectionActivity.EXTRA_MEDIA);
-          InputStream stream = BlobProvider.getInstance().getStream(requireContext(), result.getUri());
-
-          return StreamUtil.readFully(stream);
-        } catch (IOException ioException) {
-          Log.w(TAG, ioException);
-          return null;
-        }
-      },
-      (avatarBytes) -> {
-        if (avatarBytes != null) {
-          viewModel.setAvatar(avatarBytes);
-          GlideApp.with(EditProfileFragment.this)
-                  .load(avatarBytes)
-                  .skipMemoryCache(true)
-                  .diskCacheStrategy(DiskCacheStrategy.NONE)
-                  .circleCrop()
-                  .into(avatar);
-        } else {
-          Toast.makeText(requireActivity(), R.string.CreateProfileActivity_error_setting_profile_photo, Toast.LENGTH_LONG).show();
-        }
-      });
-    }
+    },
+    (avatarBytes) -> {
+      if (avatarBytes != null) {
+        viewModel.setAvatarMedia(media);
+        viewModel.setAvatar(avatarBytes);
+        GlideApp.with(EditProfileFragment.this)
+                .load(avatarBytes)
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .circleCrop()
+                .into(avatar);
+      } else {
+        Toast.makeText(requireActivity(), R.string.CreateProfileActivity_error_setting_profile_photo, Toast.LENGTH_LONG).show();
+      }
+    });
   }
 
   private void initializeViewModel(boolean excludeSystem, @Nullable GroupId groupId, boolean hasSavedInstanceState) {
@@ -160,15 +163,17 @@ public class EditProfileFragment extends LoggingFragment {
     Bundle  arguments      = requireArguments();
     boolean isEditingGroup = groupId != null;
 
-    this.toolbar            = view.findViewById(R.id.toolbar);
-    this.title              = view.findViewById(R.id.title);
-    this.avatar             = view.findViewById(R.id.avatar);
-    this.givenName          = view.findViewById(R.id.given_name);
-    this.familyName         = view.findViewById(R.id.family_name);
-    this.finishButton       = view.findViewById(R.id.finish_button);
-    this.reveal             = view.findViewById(R.id.reveal);
-    this.preview            = view.findViewById(R.id.name_preview);
-    this.nextIntent         = arguments.getParcelable(NEXT_INTENT);
+    this.toolbar                 = view.findViewById(R.id.toolbar);
+    this.title                   = view.findViewById(R.id.title);
+    this.avatar                  = view.findViewById(R.id.avatar);
+    this.givenName               = view.findViewById(R.id.given_name);
+    this.familyName              = view.findViewById(R.id.family_name);
+    this.finishButton            = view.findViewById(R.id.finish_button);
+    this.reveal                  = view.findViewById(R.id.reveal);
+    this.preview                 = view.findViewById(R.id.name_preview);
+    this.avatarPreviewBackground = view.findViewById(R.id.avatar_background);
+    this.avatarPreview           = view.findViewById(R.id.avatar_placeholder);
+    this.nextIntent              = arguments.getParcelable(NEXT_INTENT);
 
     this.avatar.setOnClickListener(v -> startAvatarSelection());
 
@@ -248,12 +253,22 @@ public class EditProfileFragment extends LoggingFragment {
 
   private void initializeProfileAvatar() {
     viewModel.avatar().observe(getViewLifecycleOwner(), bytes -> {
-      if (bytes == null) return;
+      if (bytes == null) {
+        GlideApp.with(this).clear(avatar);
+        return;
+      }
 
       GlideApp.with(this)
               .load(bytes)
               .circleCrop()
               .into(avatar);
+    });
+
+    viewModel.avatarColor().observe(getViewLifecycleOwner(), avatarColor -> {
+      Avatars.ForegroundColor foregroundColor = Avatars.getForegroundColor(avatarColor);
+
+      avatarPreview.getDrawable().setColorFilter(new SimpleColorFilter(foregroundColor.getColorInt()));
+      avatarPreviewBackground.getDrawable().setColorFilter(new SimpleColorFilter(avatarColor.colorInt()));
     });
   }
 
@@ -273,11 +288,12 @@ public class EditProfileFragment extends LoggingFragment {
   }
 
   private void startAvatarSelection() {
-    AvatarSelectionBottomSheetDialogFragment.create(viewModel.canRemoveProfilePhoto(),
-                                                    true,
-                                                    REQUEST_CODE_SELECT_AVATAR,
-                                                    viewModel.isGroup())
-                                            .show(getChildFragmentManager(), null);
+    if (viewModel.isGroup()) {
+      Parcelable groupId = ParcelableGroupId.from(viewModel.getGroupId());
+      Navigation.findNavController(requireView()).navigate(EditProfileFragmentDirections.actionCreateProfileFragmentToAvatarPicker((ParcelableGroupId) groupId, viewModel.getAvatarMedia()));
+    } else {
+      Navigation.findNavController(requireView()).navigate(EditProfileFragmentDirections.actionCreateProfileFragmentToAvatarPicker(null, null));
+    }
   }
 
   private void handleUpload() {

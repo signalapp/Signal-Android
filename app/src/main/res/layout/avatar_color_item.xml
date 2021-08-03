@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_height="74dp"
+    tools:layout_width="74dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/avatar_color_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/circle_tintable"
+        android:padding="4dp"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/avatar_color_item_ring"
+        tools:backgroundTint="#C2DCE9" />
+
+</org.thoughtcrime.securesms.components.SquareFrameLayout>

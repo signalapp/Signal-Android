@@ -11,6 +11,7 @@ import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
@@ -454,24 +455,29 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleOrientationChanged(@NonNull WebRtcServiceState currentState, int orientationDegrees) {
+  protected @NonNull WebRtcServiceState handleOrientationChanged(@NonNull WebRtcServiceState currentState, boolean isLandscapeEnabled, int orientationDegrees) {
     Camera camera = currentState.getVideoState().getCamera();
     if (camera != null) {
       camera.setOrientation(orientationDegrees);
     }
 
+    int sinkRotationDegrees  = isLandscapeEnabled ? BroadcastVideoSink.DEVICE_ROTATION_IGNORE : orientationDegrees;
+    int stateRotationDegrees = isLandscapeEnabled ? 0 : orientationDegrees;
+
     BroadcastVideoSink sink = currentState.getVideoState().getLocalSink();
     if (sink != null) {
-      sink.setDeviceOrientationDegrees(orientationDegrees);
+      sink.setDeviceOrientationDegrees(sinkRotationDegrees);
     }
 
     for (CallParticipant callParticipant : currentState.getCallInfoState().getRemoteCallParticipants()) {
-      callParticipant.getVideoSink().setDeviceOrientationDegrees(orientationDegrees);
+      callParticipant.getVideoSink().setDeviceOrientationDegrees(sinkRotationDegrees);
     }
 
     return currentState.builder()
                        .changeLocalDeviceState()
-                       .setOrientation(Orientation.fromDegrees(orientationDegrees))
+                       .setOrientation(Orientation.fromDegrees(stateRotationDegrees))
+                       .setLandscapeEnabled(isLandscapeEnabled)
+                       .setDeviceOrientation(Orientation.fromDegrees(orientationDegrees))
                        .build();
   }
 

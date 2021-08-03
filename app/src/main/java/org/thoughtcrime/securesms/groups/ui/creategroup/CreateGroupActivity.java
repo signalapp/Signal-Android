@@ -39,6 +39,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class CreateGroupActivity extends ContactSelectionActivity {
 
@@ -97,14 +98,14 @@ public class CreateGroupActivity extends ContactSelectionActivity {
   }
 
   @Override
-  public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
+  public void onBeforeContactSelected(Optional<RecipientId> recipientId, String number, Consumer<Boolean> callback) {
     if (contactsFragment.hasQueryFilter()) {
       getContactFilterView().clear();
     }
 
     shrinkSkip();
 
-    return true;
+    callback.accept(true);
   }
 
   @Override

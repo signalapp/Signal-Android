@@ -23,7 +23,7 @@ public interface SignalServiceSenderKeyStore extends SenderKeyStore {
   void markSenderKeySharedWith(DistributionId distributionId, Collection<SignalProtocolAddress> addresses);
 
   /**
-   * Marks the provided addresses as not knowing about the provided distributionId.
+   * Marks the provided addresses as not knowing about any distributionIds.
    */
-  void clearSenderKeySharedWith(DistributionId distributionId, Collection<SignalProtocolAddress> addresses);
+  void clearSenderKeySharedWith(Collection<SignalProtocolAddress> addresses);
 }

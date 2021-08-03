@@ -168,8 +168,8 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
     process((s, p) -> p.handleUpdateRenderedResolutions(s));
   }
 
-  public void orientationChanged(int degrees) {
-    process((s, p) -> p.handleOrientationChanged(s, degrees));
+  public void orientationChanged(boolean isLandscapeEnabled, int degrees) {
+    process((s, p) -> p.handleOrientationChanged(s, isLandscapeEnabled, degrees));
   }
 
   public void setAudioSpeaker(boolean isSpeaker) {
@@ -287,17 +287,19 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                         .toList();
 
         callManager.peekGroupCall(SignalStore.internalValues().groupCallingServer(), credential.getTokenBytes().toByteArray(), members, peekInfo -> {
-          long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(group);
+          Long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(group.getId());
 
-          DatabaseFactory.getSmsDatabase(context)
-                         .updatePreviousGroupCall(threadId,
-                                                  peekInfo.getEraId(),
-                                                  peekInfo.getJoinedMembers(),
-                                                  WebRtcUtil.isCallFull(peekInfo));
+          if (threadId != null) {
+            DatabaseFactory.getSmsDatabase(context)
+                           .updatePreviousGroupCall(threadId,
+                                                    peekInfo.getEraId(),
+                                                    peekInfo.getJoinedMembers(),
+                                                    WebRtcUtil.isCallFull(peekInfo));
 
-          ApplicationDependencies.getMessageNotifier().updateNotification(context, threadId, true, 0, BubbleUtil.BubbleState.HIDDEN);
+            ApplicationDependencies.getMessageNotifier().updateNotification(context, threadId, true, 0, BubbleUtil.BubbleState.HIDDEN);
 
-          EventBus.getDefault().postSticky(new GroupCallPeekEvent(id, peekInfo.getEraId(), peekInfo.getDeviceCount(), peekInfo.getMaxDevices()));
+            EventBus.getDefault().postSticky(new GroupCallPeekEvent(id, peekInfo.getEraId(), peekInfo.getDeviceCount(), peekInfo.getMaxDevices()));
+          }
         });
       } catch (IOException | VerificationFailedException | CallException e) {
         Log.e(TAG, "error peeking from active conversation", e);
@@ -649,7 +651,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Override
   public void onFullyInitialized() {
-    process((s, p) -> p.handleOrientationChanged(s, s.getLocalDeviceState().getOrientation().getDegrees()));
+    process((s, p) -> p.handleOrientationChanged(s, s.getLocalDeviceState().isLandscapeEnabled(), s.getLocalDeviceState().getDeviceOrientation().getDegrees()));
   }
 
   @Override

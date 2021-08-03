@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -73,6 +75,11 @@ public class ChooseBackupFragment extends BaseRegistrationFragment {
       intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, SignalStore.settings().getLatestSignalBackupDirectory());
     }
 
-    startActivityForResult(intent, OPEN_FILE_REQUEST_CODE);
+    try {
+      startActivityForResult(intent, OPEN_FILE_REQUEST_CODE);
+    } catch (ActivityNotFoundException e) {
+      Toast.makeText(requireContext(), R.string.ChooseBackupFragment__no_file_browser_available, Toast.LENGTH_LONG).show();
+      Log.w(TAG, "No matching activity!", e);
+    }
   }
 }

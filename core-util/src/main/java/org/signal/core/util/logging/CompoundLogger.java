@@ -15,51 +15,114 @@ class CompoundLogger extends Log.Logger {
   }
 
   @Override
-  public void v(String tag, String message, Throwable t) {
+  public void v(String tag, String message, Throwable t, boolean keepLonger) {
     for (Log.Logger logger : loggers) {
+      logger.v(tag, message, t, keepLonger);
+    }
+  }
+
+  @Override
+  public void d(String tag, String message, Throwable t, boolean keepLonger) {
+    for (Log.Logger logger : loggers) {
+      logger.d(tag, message, t, keepLonger);
+    }
+  }
+
+  @Override
+  public void i(String tag, String message, Throwable t, boolean keepLonger) {
+    for (Log.Logger logger : loggers) {
+      logger.i(tag, message, t, keepLonger);
+    }
+  }
+
+  @Override
+  public void w(String tag, String message, Throwable t, boolean keepLonger) {
+    for (Log.Logger logger : loggers) {
+      logger.w(tag, message, t, keepLonger);
+    }
+  }
+
+  @Override
+  public void e(String tag, String message, Throwable t, boolean keepLonger) {
+    for (Log.Logger logger : loggers) {
+      logger.e(tag, message, t, keepLonger);
+    }
+  }
+
+  @Override
+  public void v(String tag, String message, Throwable t) {
+    for (Log.Logger logger :loggers) {
       logger.v(tag, message, t);
     }
   }
 
   @Override
   public void d(String tag, String message, Throwable t) {
-    for (Log.Logger logger : loggers) {
+    for (Log.Logger logger :loggers) {
       logger.d(tag, message, t);
     }
   }
 
   @Override
   public void i(String tag, String message, Throwable t) {
-    for (Log.Logger logger : loggers) {
+    for (Log.Logger logger :loggers) {
       logger.i(tag, message, t);
     }
   }
 
   @Override
   public void w(String tag, String message, Throwable t) {
-    for (Log.Logger logger : loggers) {
+    for (Log.Logger logger :loggers) {
       logger.w(tag, message, t);
     }
   }
 
   @Override
   public void e(String tag, String message, Throwable t) {
-    for (Log.Logger logger : loggers) {
+    for (Log.Logger logger :loggers) {
       logger.e(tag, message, t);
     }
   }
 
   @Override
-  public void wtf(String tag, String message, Throwable t) {
-    for (Log.Logger logger : loggers) {
-      logger.wtf(tag, message, t);
+  public void v(String tag, String message) {
+    for (Log.Logger logger :loggers) {
+      logger.v(tag, message);
     }
   }
 
   @Override
-  public void blockUntilAllWritesFinished() {
+  public void d(String tag, String message) {
+    for (Log.Logger logger :loggers) {
+      logger.d(tag, message);
+    }
+  }
+
+  @Override
+  public void i(String tag, String message) {
+    for (Log.Logger logger :loggers) {
+      logger.i(tag, message);
+    }
+  }
+
+  @Override
+  public void w(String tag, String message) {
+    for (Log.Logger logger :loggers) {
+      logger.w(tag, message);
+    }
+  }
+
+  @Override
+  public void e(String tag, String message) {
+    for (Log.Logger logger :loggers) {
+      logger.e(tag, message);
+    }
+  }
+
+  @Override
+  public void flush() {
     for (Log.Logger logger : loggers) {
-      logger.blockUntilAllWritesFinished();
+      logger.flush();
     }
   }
 }

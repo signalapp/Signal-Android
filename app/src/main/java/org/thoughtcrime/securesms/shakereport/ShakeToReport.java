@@ -89,22 +89,18 @@ public final class ShakeToReport implements ShakeDetector.Listener {
 
     Log.i(TAG, "Submitting log...");
 
-    repo.getLogLines(lines -> {
-      Log.i(TAG, "Retrieved log lines...");
+    repo.buildAndSubmitLog(url -> {
+      Log.i(TAG, "Logs uploaded!");
 
-      repo.submitLog(lines, Tracer.getInstance().serialize(), url -> {
-        Log.i(TAG, "Logs uploaded!");
+      ThreadUtil.runOnMain(() -> {
+        spinner.dismiss();
 
-        ThreadUtil.runOnMain(() -> {
-          spinner.dismiss();
-
-          if (url.isPresent()) {
-            showPostSubmitDialog(activity, url.get());
-          } else {
-            Toast.makeText(activity, R.string.ShakeToReport_failed_to_submit, Toast.LENGTH_SHORT).show();
-            enableIfVisible();
-          }
-        });
+        if (url.isPresent()) {
+          showPostSubmitDialog(activity, url.get());
+        } else {
+          Toast.makeText(activity, R.string.ShakeToReport_failed_to_submit, Toast.LENGTH_SHORT).show();
+          enableIfVisible();
+        }
       });
     });
   }

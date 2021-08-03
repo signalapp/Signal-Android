@@ -207,6 +207,8 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">附件超过当前消息类型的大小限制。</string>
   <string name="ConversationActivity_unable_to_record_audio">无法录音！</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">您已不是此群组成员，不能向其发送消息。</string>
+  <string name="ConversationActivity_admins">管理员</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">只有该群组的管理员可发起通话。</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">你的设备上没有处理该链接的应用。</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">您的入群申请已发送给群组管理员，您将在管理员作出决定后收到通知。</string>
   <string name="ConversationActivity_cancel_request">撤回申请</string>
@@ -929,6 +931,11 @@
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">你更改了能编辑群成员的权限为“%1$s”。</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s 更改了能编辑群成员的权限为“%2$s”。</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">能编辑群成员的权限已设为“%1$s”。</string>
+  <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">您已将群组设置更改为允许全部成员发送消息。</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">您已将群组设置更改为仅允许管理员发送消息。</string>
+  <string name="MessageRecord_allow_all_members_to_send">群组设置已更改为允许全部成员发送消息。</string>
+  <string name="MessageRecord_allow_only_admins_to_send">群组设置已更改为仅允许管理员发送消息。</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">您打开了无需管理员认证的群组链接。</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">你已打开了启用管理员认证的群组链接。</string>
@@ -1286,7 +1293,6 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">复制此 URL 并将其添加到问题报告或支持电子邮件:\n\n<b>%1$s</b>
 </string>
   <string name="SubmitDebugLogActivity_share">分享</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">该日志将在线公开发布，以供参与者查看。在上传之前，您可查看并编辑。</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">筛选器：</string>
   <string name="SupportEmailUtil_device_info">设备信息：</string>
@@ -1646,8 +1652,6 @@
   <string name="giphy_activity_toolbar__search_gifs">搜索 GIF 图片</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">未找到</string>
-  <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">该日志将在线公开发布，用于参与者查看。提交之前，您可检查并编辑该日志。</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">是否将现有短信导入至 Signal 加密数据库？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">默认系统数据库不会发生任何形式的修改或变更。</string>
@@ -2896,6 +2900,8 @@
   <string name="ChatColorsMegaphone__we_switched_up_chat_colors">升级聊天颜色，提供更多选项，令聊天更易阅读。</string>
   <string name="ChatColorsMegaphone__appearance">外观</string>
   <string name="ChatColorsMegaphone__not_now">稍后再说</string>
+  <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__not_now">稍后再说</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">表情符号</string>
   <string name="KeyboardPagerFragment_open_emoji_search">打开表情符号搜索</string>
@@ -2973,6 +2979,18 @@
   <string name="ContactFilterView__search_name_or_number">搜索名字或号码</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__camera">相机</string>
+  <string name="AvatarPickerFragment__photo">图片</string>
+  <string name="AvatarPickerFragment__text">文本</string>
+  <string name="AvatarPickerFragment__save">保存</string>
+  <string name="AvatarPickerFragment__edit">编辑</string>
+  <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">预览</string>
+  <string name="TextAvatarCreationFragment__done">完成</string>
+  <string name="TextAvatarCreationFragment__text">文本</string>
+  <string name="TextAvatarCreationFragment__color">颜色</string>
+  <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">短信</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>

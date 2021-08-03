@@ -110,6 +110,16 @@ public class WebRtcServiceStateBuilder {
       toBuild.orientation = orientation;
       return this;
     }
+
+    public @NonNull LocalDeviceStateBuilder setLandscapeEnabled(boolean isLandscapeEnabled) {
+      toBuild.isLandscapeEnabled = isLandscapeEnabled;
+      return this;
+    }
+
+    public @NonNull LocalDeviceStateBuilder setDeviceOrientation(@NonNull Orientation deviceOrientation) {
+      toBuild.deviceOrientation = deviceOrientation;
+      return this;
+    }
   }
 
   public class CallSetupStateBuilder {

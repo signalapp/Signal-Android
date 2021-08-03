@@ -203,8 +203,11 @@
     </declare-styleable>
 
     <declare-styleable name="ViewOnceMessageView">
-        <attr name="revealable_unopenedForegroundColor" format="color" />
-        <attr name="revealable_openedForegroundColor" format="color" />
+        <attr name="revealable_textColor" format="color" />
+        <attr name="revealable_openedIconColor" format="color" />
+        <attr name="revealable_unopenedIconColor" format="color" />
+        <attr name="revealable_circleColor" format="color" />
+        <attr name="revealable_circleColorWithWallpaper" format="color" />
     </declare-styleable>
 
     <declare-styleable name="MediaKeyboard">
@@ -309,5 +312,11 @@
 
     <declare-styleable name="BottomShadowBehavior">
         <attr name="bottom_bar_id" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ButtonStripItemView">
+        <attr name="bsiv_icon" format="reference" />
+        <attr name="bsiv_label" format="string" />
+        <attr name="bsiv_icon_contentDescription" format="string" />
     </declare-styleable>
 </resources>

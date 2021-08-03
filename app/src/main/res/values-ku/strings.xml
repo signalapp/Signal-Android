@@ -1578,7 +1578,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Tiştek nehate dîtin</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Ev tomar ji bo ku tevkar bibînin dê bi eşkereyî bihê weşandin, Berî ku bişînî dikarî biceribînî û serast bikî.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__this_log_will_be_posted_online">Ev tomar ji bo ku tevkar bibînin dê bi eşkereyî bihê weşandin, Berî ku bişînî dikarî biceribînî û serast bikî.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Tu dixwazî peyamên xwe yên nivîskî ji derve bînî danegeha şîfrekirî ya Signalê?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Danegeha sîstemê ya jixweberî ew ê bi ti awayî neyê sererastkirin an jî guhertin.</string>

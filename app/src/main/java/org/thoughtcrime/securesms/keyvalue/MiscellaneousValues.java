@@ -14,6 +14,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String USERNAME_SHOW_REMINDER          = "username.show.reminder";
   private static final String CLIENT_DEPRECATED               = "misc.client_deprecated";
   private static final String OLD_DEVICE_TRANSFER_LOCKED      = "misc.old_device.transfer.locked";
+  private static final String HAS_EVER_HAD_AN_AVATAR          = "misc.has.ever.had.an.avatar";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -87,5 +88,13 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   public void clearOldDeviceTransferLocked() {
     putBoolean(OLD_DEVICE_TRANSFER_LOCKED, false);
+  }
+
+  public boolean hasEverHadAnAvatar() {
+    return getBoolean(HAS_EVER_HAD_AN_AVATAR, false);
+  }
+
+  public void markHasEverHadAnAvatar() {
+    putBoolean(HAS_EVER_HAD_AN_AVATAR, true);
   }
 }

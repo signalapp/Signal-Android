@@ -572,11 +572,7 @@ public class MmsDatabase extends MessageDatabase {
   public int getMessageCountForThread(long threadId) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
-    String[] cols  = new String[] {"COUNT(*)"};
-    String   query = THREAD_ID + " = ?";
-    String[] args  = new String[]{String.valueOf(threadId)};
-
-    try (Cursor cursor = db.query(TABLE_NAME, cols, query, args, null, null, null)) {
+    try (Cursor cursor = db.query(TABLE_NAME, COUNT, THREAD_ID_WHERE, SqlUtil.buildArgs(threadId), null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getInt(0);
       }
@@ -697,10 +693,10 @@ public class MmsDatabase extends MessageDatabase {
     if (retrieved.getGroupId() != null) {
       RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromPossiblyMigratedGroupId(retrieved.getGroupId());
       Recipient   groupRecipients  = Recipient.resolved(groupRecipientId);
-      return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipients);
+      return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipients);
     } else {
       Recipient sender = Recipient.resolved(retrieved.getFrom());
-      return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(sender);
+      return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(sender);
     }
   }
 
@@ -709,7 +705,7 @@ public class MmsDatabase extends MessageDatabase {
                       ? Util.toIsoString(notification.getFrom().getTextString())
                       : "";
     Recipient recipient = Recipient.external(context, fromString);
-    return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+    return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
   }
 
   private Cursor rawQuery(@NonNull String where, @Nullable String[] arguments) {
@@ -1560,9 +1556,13 @@ public class MmsDatabase extends MessageDatabase {
       for (RecipientId recipientId : earlyDeliveryReceipts.keySet()) receiptDatabase.update(recipientId, messageId, GroupReceiptDatabase.STATUS_DELIVERED, -1);
     }
 
-    DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
-    DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
-    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+    DatabaseFactory.getThreadDatabase(context).setLastSeenSilently(threadId);
+    DatabaseFactory.getThreadDatabase(context).setHasSentSilently(threadId, true);
+
+    notifyConversationListeners(threadId);
+    notifyConversationListListeners();
+
+    TrimThreadJob.enqueueAsync(threadId);
 
     return messageId;
   }

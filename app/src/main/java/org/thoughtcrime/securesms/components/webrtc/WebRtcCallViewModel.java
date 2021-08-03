@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.webrtc;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Pair;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -41,7 +43,9 @@ public class WebRtcCallViewModel extends ViewModel {
   private final MutableLiveData<Boolean>                       microphoneEnabled         = new MutableLiveData<>(true);
   private final MutableLiveData<Boolean>                       isInPipMode               = new MutableLiveData<>(false);
   private final MutableLiveData<WebRtcControls>                webRtcControls            = new MutableLiveData<>(WebRtcControls.NONE);
-  private final LiveData<WebRtcControls>                       realWebRtcControls        = LiveDataUtil.combineLatest(isInPipMode, webRtcControls, this::getRealWebRtcControls);
+  private final MutableLiveData<WebRtcControls.FoldableState>  foldableState             = new MutableLiveData<>(WebRtcControls.FoldableState.flat());
+  private final LiveData<WebRtcControls>                       controlsWithFoldableState = LiveDataUtil.combineLatest(foldableState, webRtcControls, this::updateControlsFoldableState);
+  private final LiveData<WebRtcControls>                       realWebRtcControls        = LiveDataUtil.combineLatest(isInPipMode, controlsWithFoldableState, this::getRealWebRtcControls);
   private final SingleLiveEvent<Event>                         events                    = new SingleLiveEvent<Event>();
   private final MutableLiveData<Long>                          elapsed                   = new MutableLiveData<>(-1L);
   private final MutableLiveData<LiveRecipient>                 liveRecipient             = new MutableLiveData<>(Recipient.UNKNOWN.live());
@@ -53,6 +57,8 @@ public class WebRtcCallViewModel extends ViewModel {
   private final LiveData<List<GroupMemberEntry.FullMember>>    groupMembers              = LiveDataUtil.skip(Transformations.switchMap(groupRecipient, r -> Transformations.distinctUntilChanged(new LiveGroup(r.requireGroupId()).getFullMembers())), 1);
   private final LiveData<Boolean>                              shouldShowSpeakerHint     = Transformations.map(participantsState, this::shouldShowSpeakerHint);
   private final LiveData<Orientation>                          orientation;
+  private final MutableLiveData<Boolean>                       isLandscapeEnabled        = new MutableLiveData<>();
+  private final LiveData<Integer>                              controlsRotation;
 
   private boolean               canDisplayTooltipIfNeeded = true;
   private boolean               hasEnabledLocalVideo      = false;
@@ -69,11 +75,22 @@ public class WebRtcCallViewModel extends ViewModel {
   private final WebRtcCallRepository repository = new WebRtcCallRepository(ApplicationDependencies.getApplication());
 
   private WebRtcCallViewModel(@NonNull DeviceOrientationMonitor deviceOrientationMonitor) {
-    orientation = deviceOrientationMonitor.getOrientation();
+    orientation      = deviceOrientationMonitor.getOrientation();
+    controlsRotation = LiveDataUtil.combineLatest(Transformations.distinctUntilChanged(isLandscapeEnabled),
+                                                  Transformations.distinctUntilChanged(orientation),
+                                                  this::resolveRotation);
+  }
+
+  public LiveData<Integer> getControlsRotation() {
+    return controlsRotation;
   }
 
   public LiveData<Orientation> getOrientation() {
     return Transformations.distinctUntilChanged(orientation);
+  }
+
+  public LiveData<Pair<Orientation, Boolean>> getOrientationAndLandscapeEnabled() {
+    return LiveDataUtil.combineLatest(orientation, isLandscapeEnabled, Pair::new);
   }
 
   public LiveData<Boolean> getMicrophoneEnabled() {
@@ -90,6 +107,12 @@ public class WebRtcCallViewModel extends ViewModel {
 
   public void setRecipient(@NonNull Recipient recipient) {
     liveRecipient.setValue(recipient.live());
+  }
+
+  public void setFoldableState(@NonNull WebRtcControls.FoldableState foldableState) {
+    this.foldableState.postValue(foldableState);
+
+    ThreadUtil.runOnMain(() -> participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), foldableState)));
   }
 
   public LiveData<Event> getEvents() {
@@ -138,6 +161,10 @@ public class WebRtcCallViewModel extends ViewModel {
 
     //noinspection ConstantConditions
     participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), isInPipMode));
+  }
+
+  public void setIsLandscapeEnabled(boolean isLandscapeEnabled) {
+    this.isLandscapeEnabled.postValue(isLandscapeEnabled);
   }
 
   @MainThread
@@ -239,6 +266,23 @@ public class WebRtcCallViewModel extends ViewModel {
     }
   }
 
+  private int resolveRotation(boolean isLandscapeEnabled, @NonNull Orientation orientation) {
+    if (isLandscapeEnabled) {
+      return 0;
+    }
+
+    switch (orientation) {
+      case LANDSCAPE_LEFT_EDGE:
+        return 90;
+      case LANDSCAPE_RIGHT_EDGE:
+        return -90;
+      case PORTRAIT_BOTTOM_EDGE:
+        return 0;
+      default:
+        throw new AssertionError();
+    }
+  }
+
   private boolean containsPlaceholders(@NonNull List<CallParticipant> callParticipants) {
     return Stream.of(callParticipants).anyMatch(p -> p.getCallParticipantId().getDemuxId() == CallParticipantId.DEFAULT_ID);
   }
@@ -314,7 +358,12 @@ public class WebRtcCallViewModel extends ViewModel {
                                                callState,
                                                groupCallState,
                                                audioOutput,
-                                               participantLimit));
+                                               participantLimit,
+                                               WebRtcControls.FoldableState.flat()));
+  }
+
+  private @NonNull WebRtcControls updateControlsFoldableState(@NonNull WebRtcControls.FoldableState foldableState, @NonNull WebRtcControls controls) {
+    return controls.withFoldableState(foldableState);
   }
 
   private @NonNull WebRtcControls getRealWebRtcControls(boolean isInPipMode, @NonNull WebRtcControls controls) {
