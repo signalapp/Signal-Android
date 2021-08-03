@@ -39,6 +39,7 @@ class ConversationView : LinearLayout {
     // region Updating
     fun bind(thread: ThreadRecord, isTyping: Boolean, glide: GlideRequests) {
         this.thread = thread
+        profilePictureView.glide = glide
         val unreadCount = thread.unreadCount
         if (thread.recipient.isBlocked) {
             accentView.setBackgroundResource(R.color.destructive)
@@ -89,7 +90,6 @@ class ConversationView : LinearLayout {
             else -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_check)
         }
         post {
-            profilePictureView.glide = glide
             profilePictureView.update(thread.recipient, thread.threadId)
         }
     }
