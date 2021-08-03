@@ -80,8 +80,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         // Set up seed reminder view
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
         if (!hasViewedSeed) {
-            seedReminderStub.isVisible = true
-            seedReminderStub.apply {
+            seedReminderStub.inflate().apply {
                 val seedReminderView = this.seedReminderView
                 val seedReminderViewTitle = SpannableString("You're almost finished! 80%") // Intentionally not yet translated
                 seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 24, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)

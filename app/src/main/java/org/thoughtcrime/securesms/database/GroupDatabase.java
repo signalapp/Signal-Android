@@ -14,6 +14,7 @@ import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.session.libsession.utilities.TextSecurePreferences;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
@@ -153,6 +154,20 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     }
 
     return recipients;
+  }
+
+  public @NonNull List<Address> getGroupMemberAddresses(String groupId, boolean includeSelf) {
+    List<Address> members = getCurrentMembers(groupId, false);
+    if (!includeSelf) {
+      String ownNumber = TextSecurePreferences.getLocalNumber(context);
+      if (ownNumber == null) return members;
+      Address ownAddress = Address.fromSerialized(ownNumber);
+      int indexOfSelf = members.indexOf(ownAddress);
+      if (indexOfSelf >= 0) {
+        members.remove(indexOfSelf);
+      }
+    }
+    return members;
   }
 
   public @NonNull List<Recipient> getGroupZombieMembers(String groupId) {

@@ -9,15 +9,17 @@ import org.thoughtcrime.securesms.database.model.MessageRecord
 object MentionManagerUtilities {
 
     fun populateUserPublicKeyCacheIfNeeded(threadID: Long, context: Context) {
+        // exit early if we need to
+        if (MentionsManager.userPublicKeyCache[threadID] != null) return
+
         val result = mutableSetOf<String>()
-        val recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID)
-        if (recipient != null && recipient.address.isClosedGroup) {
+        val recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID) ?: return
+        if (recipient.address.isClosedGroup) {
             val members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.address.toGroupString(), false).map { it.address.serialize() }
             result.addAll(members)
         } else {
-            if (MentionsManager.userPublicKeyCache[threadID] != null) { return }
             val messageDatabase = DatabaseFactory.getMmsSmsDatabase(context)
-            val reader = messageDatabase.readerFor(messageDatabase.getConversation(threadID))
+            val reader = messageDatabase.readerFor(messageDatabase.getConversation(threadID, 0, 200))
             var record: MessageRecord? = reader.next
             while (record != null) {
                 result.add(record.individualRecipient.address.serialize())

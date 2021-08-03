@@ -53,17 +53,15 @@ class ProfilePictureView : RelativeLayout {
             return recipient.isOpenGroupRecipient && recipient.groupAvatarId != null
         }
         if (recipient.isGroupRecipient && !isOpenGroupWithProfilePicture(recipient)) {
-            val users = MentionsManager.userPublicKeyCache[threadID]?.toMutableList() ?: mutableListOf()
-            users.remove(TextSecurePreferences.getLocalNumber(context))
-            val randomUsers = users.sorted().toMutableList() // Sort to provide a level of stability
-            if (users.count() == 1) {
-                val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
-                randomUsers.add(0, userPublicKey) // Ensure the current user is at the back visually
-            }
-            val pk = randomUsers.getOrNull(0) ?: ""
+            val members = DatabaseFactory.getGroupDatabase(context)
+                    .getGroupMemberAddresses(recipient.address.toGroupString(), true)
+                    .sorted()
+                    .take(2)
+                    .toMutableList()
+            val pk = members.getOrNull(0)?.serialize() ?: ""
             publicKey = pk
             displayName = getUserDisplayName(pk)
-            val apk = randomUsers.getOrNull(1) ?: ""
+            val apk = members.getOrNull(1)?.serialize() ?: ""
             additionalPublicKey = apk
             additionalDisplayName = getUserDisplayName(apk)
         } else {

@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
 import org.session.libsession.utilities.recipients.Recipient
-import org.thoughtcrime.securesms.conversation.v2.utilities.MentionManagerUtilities.populateUserPublicKeyCacheIfNeeded
 import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities.highlightMentions
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
@@ -40,7 +39,7 @@ class ConversationView : LinearLayout {
     // region Updating
     fun bind(thread: ThreadRecord, isTyping: Boolean, glide: GlideRequests) {
         this.thread = thread
-        populateUserPublicKeyCacheIfNeeded(thread.threadId, context) // FIXME: This is a bad place to do this
+        profilePictureView.glide = glide
         val unreadCount = thread.unreadCount
         if (thread.recipient.isBlocked) {
             accentView.setBackgroundResource(R.color.destructive)
@@ -55,9 +54,8 @@ class ConversationView : LinearLayout {
         unreadCountTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, textSize)
         unreadCountTextView.setTypeface(Typeface.DEFAULT, if (unreadCount < 100) Typeface.BOLD else Typeface.NORMAL)
         unreadCountIndicator.isVisible = (unreadCount != 0)
-        profilePictureView.glide = glide
-        profilePictureView.update(thread.recipient, thread.threadId)
-        val senderDisplayName = getUserDisplayName(thread.recipient) ?: thread.recipient.address.toString()
+        val senderDisplayName = getUserDisplayName(thread.recipient)
+                ?: thread.recipient.address.toString()
         conversationViewDisplayNameTextView.text = senderDisplayName
         timestampTextView.text = DateUtils.getDisplayFormattedTimeSpanString(context, Locale.getDefault(), thread.date)
         val recipient = thread.recipient
@@ -84,12 +82,15 @@ class ConversationView : LinearLayout {
             !thread.isOutgoing -> statusIndicatorImageView.visibility = View.GONE
             thread.isFailed -> {
                 val drawable = ContextCompat.getDrawable(context, R.drawable.ic_error)?.mutate()
-                drawable?.setTint(ContextCompat.getColor(context,R.color.destructive))
+                drawable?.setTint(ContextCompat.getColor(context, R.color.destructive))
                 statusIndicatorImageView.setImageDrawable(drawable)
             }
             thread.isPending -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_dot_dot_dot)
             thread.isRead -> statusIndicatorImageView.setImageResource(R.drawable.ic_filled_circle_check)
             else -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_check)
+        }
+        post {
+            profilePictureView.update(thread.recipient, thread.threadId)
         }
     }
 
