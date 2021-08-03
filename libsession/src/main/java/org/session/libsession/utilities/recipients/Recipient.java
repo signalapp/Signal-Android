@@ -153,6 +153,7 @@ public class Recipient implements RecipientModifiedListener {
       this.profileSharing         = stale.profileSharing;
       this.unidentifiedAccessMode = stale.unidentifiedAccessMode;
       this.forceSmsSelection      = stale.forceSmsSelection;
+      this.notifyType             = stale.notifyType;
 
       this.participants.clear();
       this.participants.addAll(stale.participants);
@@ -180,6 +181,7 @@ public class Recipient implements RecipientModifiedListener {
       this.profileSharing         = details.get().profileSharing;
       this.unidentifiedAccessMode = details.get().unidentifiedAccessMode;
       this.forceSmsSelection      = details.get().forceSmsSelection;
+      this.notifyType             = details.get().notifyType;
 
       this.participants.clear();
       this.participants.addAll(details.get().participants);

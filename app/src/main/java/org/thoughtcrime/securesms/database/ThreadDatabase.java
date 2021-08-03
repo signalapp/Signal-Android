@@ -651,7 +651,7 @@ public class ThreadDatabase extends Database {
         groupRecord = Optional.absent();
       }
 
-      Recipient          recipient            = Recipient.from(context, address, settings, groupRecord, false);
+      Recipient          recipient            = Recipient.from(context, address, settings, groupRecord, true);
       String             body                 = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET));
       long               date                 = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.DATE));
       long               count                = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.MESSAGE_COUNT));
