@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.SearchUtil
 import org.thoughtcrime.securesms.util.SearchUtil.StyleFactory
 import org.thoughtcrime.securesms.util.UiModeUtilities
+import java.net.IDN
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -212,7 +213,8 @@ class VisibleMessageContentView : LinearLayout {
 
             // replace URLSpans with ModalURLSpans
             body.getSpans<URLSpan>(0, body.length).toList().forEach { urlSpan ->
-                val replacementSpan = ModalURLSpan(urlSpan.url) { url ->
+                val updatedUrl = urlSpan.url.let(IDN::toASCII)
+                val replacementSpan = ModalURLSpan(updatedUrl) { url ->
                     val activity = context as AppCompatActivity
                     OpenURLDialog(url).show(activity.supportFragmentManager, "Open URL Dialog")
                 }
