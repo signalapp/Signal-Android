@@ -73,12 +73,13 @@ public class SubmitDebugLogRepository {
     add(new LogSectionSystemInfo());
     add(new LogSectionJobs());
     add(new LogSectionConstraints());
+    add(new LogSectionCapabilities());
+    add(new LogSectionLocalMetrics());
+    add(new LogSectionFeatureFlags());
+    add(new LogSectionPin());
     if (Build.VERSION.SDK_INT >= 28) {
       add(new LogSectionPower());
     }
-    add(new LogSectionPin());
-    add(new LogSectionCapabilities());
-    add(new LogSectionFeatureFlags());
     add(new LogSectionNotifications());
     add(new LogSectionKeyPreferences());
     add(new LogSectionPermissions());

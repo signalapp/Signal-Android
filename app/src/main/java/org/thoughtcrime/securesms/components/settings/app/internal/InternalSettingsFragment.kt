@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.LocalMetricsDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
@@ -255,6 +256,18 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
+      sectionHeaderPref(R.string.preferences__internal_local_metrics)
+
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_clear_local_metrics),
+        summary = DSLSettingsText.from(R.string.preferences__internal_click_to_clear_all_local_metrics_state),
+        onClick = {
+          clearAllLocalMetricsState()
+        }
+      )
+
+      dividerPref()
+
       sectionHeaderPref(R.string.preferences__internal_calling)
 
       radioPref(
@@ -353,5 +366,10 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
   private fun clearAllSenderKeySharedState() {
     DatabaseFactory.getSenderKeySharedDatabase(requireContext()).deleteAll()
     Toast.makeText(context, "Deleted all sender key shared state.", Toast.LENGTH_SHORT).show()
+  }
+
+  private fun clearAllLocalMetricsState() {
+    LocalMetricsDatabase.getInstance(ApplicationDependencies.getApplication()).clear()
+    Toast.makeText(context, "Cleared all local metrics state.", Toast.LENGTH_SHORT).show()
   }
 }
