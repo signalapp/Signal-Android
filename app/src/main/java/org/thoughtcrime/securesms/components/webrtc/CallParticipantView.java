@@ -105,6 +105,10 @@ public class CallParticipantView extends ConstraintLayout {
     renderer.setScalingType(scalingType);
   }
 
+  void setScalingType(@NonNull RendererCommon.ScalingType scalingTypeMatchOrientation, @NonNull RendererCommon.ScalingType scalingTypeMismatchOrientation) {
+    renderer.setScalingType(scalingTypeMatchOrientation, scalingTypeMismatchOrientation);
+  }
+
   void setCallParticipant(@NonNull CallParticipant participant) {
     boolean participantChanged = recipientId == null || !recipientId.equals(participant.getRecipient().getId());
     recipientId = participant.getRecipient().getId();

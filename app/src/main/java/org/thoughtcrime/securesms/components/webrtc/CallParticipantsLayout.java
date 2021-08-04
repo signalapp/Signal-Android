@@ -115,11 +115,7 @@ public class CallParticipantsLayout extends FlexboxLayout {
 
     callParticipantView.setCallParticipant(participant);
     callParticipantView.setRenderInPip(shouldRenderInPip);
-    if (participant.isScreenSharing()) {
-      callParticipantView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
-    } else {
-      callParticipantView.setScalingType(isPortrait || count < 3 ? RendererCommon.ScalingType.SCALE_ASPECT_FILL : RendererCommon.ScalingType.SCALE_ASPECT_BALANCED);
-    }
+    layoutStrategy.setChildScaling(participant, callParticipantView, isPortrait, count);
 
     if (count > 1) {
       view.setPadding(MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING, MULTIPLE_PARTICIPANT_SPACING);
@@ -149,6 +145,11 @@ public class CallParticipantsLayout extends FlexboxLayout {
 
   public interface LayoutStrategy {
     int getFlexDirection();
+
+    void setChildScaling(@NonNull CallParticipant callParticipant,
+                         @NonNull CallParticipantView callParticipantView,
+                         boolean isPortrait,
+                         int childCount);
 
     void setChildLayoutParams(@NonNull View child, int childPosition, int childCount);
   }

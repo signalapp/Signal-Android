@@ -3,11 +3,21 @@ package org.thoughtcrime.securesms.components.webrtc
 import android.view.View
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayout
+import org.thoughtcrime.securesms.events.CallParticipant
+import org.webrtc.RendererCommon
 
 object CallParticipantsLayoutStrategies {
 
   private object Portrait : CallParticipantsLayout.LayoutStrategy {
     override fun getFlexDirection(): Int = FlexDirection.ROW
+
+    override fun setChildScaling(callParticipant: CallParticipant, callParticipantView: CallParticipantView, isPortrait: Boolean, childCount: Int) {
+      if (callParticipant.isScreenSharing) {
+        callParticipantView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT)
+      } else {
+        callParticipantView.setScalingType(if (isPortrait || childCount < 3) RendererCommon.ScalingType.SCALE_ASPECT_FILL else RendererCommon.ScalingType.SCALE_ASPECT_BALANCED)
+      }
+    }
 
     override fun setChildLayoutParams(child: View, childPosition: Int, childCount: Int) {
       val params = child.layoutParams as FlexboxLayout.LayoutParams
@@ -26,6 +36,14 @@ object CallParticipantsLayoutStrategies {
 
   private object Landscape : CallParticipantsLayout.LayoutStrategy {
     override fun getFlexDirection() = FlexDirection.COLUMN
+
+    override fun setChildScaling(callParticipant: CallParticipant, callParticipantView: CallParticipantView, isPortrait: Boolean, childCount: Int) {
+      if (callParticipant.isScreenSharing) {
+        callParticipantView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT)
+      } else {
+        callParticipantView.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL, RendererCommon.ScalingType.SCALE_ASPECT_BALANCED)
+      }
+    }
 
     override fun setChildLayoutParams(child: View, childPosition: Int, childCount: Int) {
       val params = child.layoutParams as FlexboxLayout.LayoutParams
