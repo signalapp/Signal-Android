@@ -32,6 +32,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.google.android.material.button.MaterialButton;
+import com.google.common.collect.Sets;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.ResizeAnimation;
@@ -812,7 +813,7 @@ public class WebRtcCallView extends ConstraintLayout {
     ConstraintSet constraintSet = new ConstraintSet();
     constraintSet.clone(parent);
 
-    for (View view : visibleViewSet) {
+    for (View view : controlsToFade()) {
       constraintSet.setVisibility(view.getId(), visibility);
     }
 
@@ -821,6 +822,14 @@ public class WebRtcCallView extends ConstraintLayout {
     constraintSet.applyTo(parent);
 
     layoutParticipants();
+  }
+
+  private Set<View> controlsToFade() {
+    if (controls.adjustForFold()) {
+      return Sets.intersection(topViews, visibleViewSet);
+    } else {
+      return visibleViewSet;
+    }
   }
 
   private void fadeInNewUiState(@NonNull Set<View> previouslyVisibleViewSet, boolean useSmallMargins) {
