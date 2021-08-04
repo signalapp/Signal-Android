@@ -10,6 +10,8 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.MessageSendLogDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -138,18 +140,21 @@ public final class GroupSendUtil {
                                                      @Nullable CancelationSignal cancelationSignal)
       throws IOException, UntrustedIdentityException
   {
-    RecipientData recipients = new RecipientData(context, allTargets);
+    RecipientData         recipients  = new RecipientData(context, allTargets);
+    Optional<GroupRecord> groupRecord = groupId != null ? DatabaseFactory.getGroupDatabase(context).getGroup(groupId) : Optional.absent();
 
     List<Recipient> senderKeyTargets = new LinkedList<>();
     List<Recipient> legacyTargets    = new LinkedList<>();
 
     for (Recipient recipient : allTargets) {
-      Optional<UnidentifiedAccessPair> access = recipients.getAccessPair(recipient.getId());
+      Optional<UnidentifiedAccessPair> access          = recipients.getAccessPair(recipient.getId());
+      boolean                          validMembership = groupRecord.isPresent() && groupRecord.get().getMembers().contains(recipient.getId());
 
       if (recipient.getSenderKeyCapability() == Recipient.Capability.SUPPORTED &&
           recipient.hasUuid()                                                  &&
           access.isPresent()                                                   &&
-          access.get().getTargetUnidentifiedAccess().isPresent())
+          access.get().getTargetUnidentifiedAccess().isPresent()               &&
+          validMembership)
       {
         senderKeyTargets.add(recipient);
       } else {
