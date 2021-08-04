@@ -24,6 +24,7 @@ import androidx.core.text.getSpans
 import androidx.core.text.toSpannable
 import kotlinx.android.synthetic.main.view_visible_message_content.view.*
 import network.loki.messenger.R
+import okhttp3.HttpUrl
 import org.session.libsession.utilities.ThemeUtil
 import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
@@ -213,7 +214,7 @@ class VisibleMessageContentView : LinearLayout {
 
             // replace URLSpans with ModalURLSpans
             body.getSpans<URLSpan>(0, body.length).toList().forEach { urlSpan ->
-                val updatedUrl = urlSpan.url.let(IDN::toASCII)
+                val updatedUrl = urlSpan.url.let { HttpUrl.parse(it).toString() }
                 val replacementSpan = ModalURLSpan(updatedUrl) { url ->
                     val activity = context as AppCompatActivity
                     OpenURLDialog(url).show(activity.supportFragmentManager, "Open URL Dialog")
