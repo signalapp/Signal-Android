@@ -1787,8 +1787,8 @@ public final class MessageContentProcessor {
   }
 
   private void handleRetryReceipt(@NonNull SignalServiceContent content, @NonNull DecryptionErrorMessage decryptionErrorMessage, @NonNull Recipient senderRecipient) {
-    if (!FeatureFlags.senderKey()) {
-      warn(String.valueOf(content.getTimestamp()), "[RetryReceipt] Sender key not enabled, skipping retry receipt.");
+    if (!FeatureFlags.retryReceipts()) {
+      warn(String.valueOf(content.getTimestamp()), "[RetryReceipt] Feature flag disabled, skipping retry receipt.");
       return;
     }
 
