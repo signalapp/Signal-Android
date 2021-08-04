@@ -853,6 +853,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     alert.setCancelable(true);
 
     alert.setPositiveButton(R.string.delete, (dialog, which) -> {
+      Log.i(TAG, "User confirmed deletion of threads (count: " + conversationsCount + ")");
       final Set<Long> selectedConversations = defaultAdapter.getBatchSelectionIds();
 
       if (!selectedConversations.isEmpty()) {
