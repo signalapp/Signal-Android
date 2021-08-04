@@ -70,3 +70,14 @@ Copyright 2013-2017 Open Whisper Systems
 Copyright 2019-2021 The Loki Project
 
 Licensed under the GPLv3: http://www.gnu.org/licenses/gpl-3.0.html
+
+## Social
+<a href="https://www.facebook.com/SessionMessenger/">
+  <img align="left" width="24px" src="https://www.vectorlogo.zone/logos/facebook/facebook-icon.svg"  />
+</a>
+<a href="https://twitter.com/session_app">
+  <img align="left" width="26px" src="https://www.vectorlogo.zone/logos/twitter/twitter-official.svg" />
+</a>
+<a href="mailto:support@getsession.org">
+  <img align="left" width="26px" src="https://www.vectorlogo.zone/logos/gmail/gmail-icon.svg" />
+</a>
