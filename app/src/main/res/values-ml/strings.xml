@@ -2543,19 +2543,54 @@
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">പഴയ ആൻഡ്രോയിഡ് ഉപകരണം ബന്ധിപ്പിക്കാൻ കാത്തിരിക്കുന്നു…</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണവുമായി കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal-ന് ലൊക്കേഷൻ അനുമതി ആവശ്യമാണ്.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും പ്രാപ്തമാക്കിയ ലൊക്കേഷൻ സേവനങ്ങൾ Signal-ന് ആവശ്യമാണ്. </string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal-ന് വൈ-ഫൈ ആവശ്യമാണ്. വൈ-ഫൈ ഓണായിരിക്കേണ്ടതുണ്ട്, പക്ഷേ അത് ഒരു വൈ-ഫൈ നെറ്റ്‌വർക്കുമായി ബന്ധിപ്പിക്കേണ്ടതില്ല.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ക്ഷമിക്കണം, ഈ ഉപകരണം വൈ-ഫൈ ഡയറക്റ്റിനെ പിന്തുണയ്ക്കുന്നില്ലെന്ന് തോന്നുന്നു. നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal വൈ-ഫൈ ഡയറക്റ്റ് ഉപയോഗിക്കുന്നു. നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണത്തിൽ നിന്ന് നിങ്ങളുടെ അക്കൗണ്ട് പുന:സ്ഥാപിക്കുന്നതിന് നിങ്ങൾക്ക് ഇപ്പോഴും ഒരു ബാക്കപ്പ് പുന:സ്ഥാപിക്കാൻ കഴിയും.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">ഒരു ബാക്കപ്പ് വീണ്ടെടുക്കുക</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണവുമായി ബന്ധിപ്പിക്കാൻ ശ്രമിക്കുമ്പോൾ അപ്രതീക്ഷിത പിശക് സംഭവിച്ചു.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">പുതിയ ആൻഡ്രോയിഡ് ഉപകരണം തിരയുന്നു…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">നിങ്ങളുടെ പുതിയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal-ന് ലൊക്കേഷൻ അനുമതി ആവശ്യമാണ്.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">നിങ്ങളുടെ പുതിയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും പ്രാപ്തമാക്കിയ ലൊക്കേഷൻ സേവനങ്ങൾ Signal-ന് ആവശ്യമാണ്.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">നിങ്ങളുടെ പുതിയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal-ന് വൈ-ഫൈ ആവശ്യമാണ്. വൈ-ഫൈ ഓണായിരിക്കേണ്ടതുണ്ട്, പക്ഷേ അത് ഒരു വൈ-ഫൈ നെറ്റ്‌വർക്കിലേക്ക് ബന്ധിപ്പിക്കേണ്ടതില്ല.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ക്ഷമിക്കണം, ഈ ഉപകരണം വൈ-ഫൈ ഡയറക്റ്റിനെ പിന്തുണയ്ക്കുന്നില്ലെന്ന് പ്രത്യക്ഷപ്പെടുന്നു. നിങ്ങളുടെ പുതിയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal വൈ-ഫൈ ഡയറക്റ്റ് ഉപയോഗിക്കുന്നു. നിങ്ങളുടെ പുതിയ ആൻഡ്രോയിഡ് ഉപകരണത്തിൽ നിങ്ങളുടെ അക്കൗണ്ട് പുന:സ്ഥാപിക്കുന്നതിന് നിങ്ങൾക്ക് ഇപ്പോഴും ഒരു ബാക്കപ്പ് സൃഷ്ടിക്കാൻ കഴിയും.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">ഒരു ബാക്കപ്പ് സൃഷ്ടിക്കുക</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">നിങ്ങളുടെ പുതിയ ആൻഡ്രോയിഡ് ഉപകരണവുമായി ബന്ധിപ്പിക്കാൻ ശ്രമിക്കുമ്പോൾ അപ്രതീക്ഷിത പിശക് സംഭവിച്ചു.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">വൈഫൈ ക്രമീകരണങ്ങൾ തുറക്കാൻ സാധ്യമല്ല. ദയവായി വൈ-ഫൈ മാനുവലായി ഓണാക്കുക.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">സ്ഥലം അനുമതി നൽകുക</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">ലൊക്കേഷൻ സേവനങ്ങൾ ഓണാക്കുക</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">സ്ഥലം ക്രമീകരണങ്ങൾ തുറക്കാൻ കഴിയുന്നില്ല.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">വൈ-ഫൈ ഓണാക്കുക</string>
+  <string name="DeviceTransferSetup__error_connecting">ബന്ധിപ്പിക്കുന്നതിൽ പിശക്</string>
   <string name="DeviceTransferSetup__retry">വീണ്ടും ശ്രമിക്കുക</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">ഡീബഗ് ലോഗുകൾ സമർപ്പിക്കുക</string>
   <string name="DeviceTransferSetup__verify_code">കോഡ് ഉറപ്പാക്കൂ</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">താഴെയുള്ള കോഡ് നിങ്ങളുടെ രണ്ട് ഉപകരണങ്ങളിലും പൊരുത്തപ്പെടുന്നുവെന്ന് സ്ഥിരീകരിക്കുക. തുടർന്ന് തുടരുക തൊടുക.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">അക്കങ്ങൾ പൊരുത്തപ്പെടുന്നില്ല</string>
   <string name="DeviceTransferSetup__continue">തുടരുക</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">നമ്പർ ഒരുപോലെയല്ല</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">നിങ്ങളുടെ ഉപകരണങ്ങളിലെ അക്കങ്ങൾ പൊരുത്തപ്പെടുന്നില്ലെങ്കിൽ, നിങ്ങൾ തെറ്റായ ഉപകരണവുമായി ബന്ധിപ്പിച്ചിരിക്കാൻ സാധ്യതയുണ്ട്. ഇത് പരിഹരിക്കുന്നതിന്, ട്രാൻസ്ഫർ നിർത്തുക, വീണ്ടും ശ്രമിക്കുക, നിങ്ങളുടെ രണ്ട് ഉപകരണങ്ങളും അടുത്ത് വയ്ക്കുക.</string>
   <string name="DeviceTransferSetup__stop_transfer">കൈമാറ്റം നിർത്തുക</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">പഴയ ഉപകരണം കണ്ടെത്താൻ കഴിയുന്നില്ല</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">പുതിയ ഉപകരണം കണ്ടെത്താൻ കഴിയുന്നില്ല</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">ഇനിപ്പറയുന്ന അനുമതികളും സേവനങ്ങളും പ്രാപ്തമാക്കിയതായി ഉറപ്പാക്കുക:</string>
+  <string name="DeviceTransferSetup__location_permission">സ്ഥലം അനുമതി</string>
+  <string name="DeviceTransferSetup__location_services">സ്ഥലം സേവനങ്ങൾ</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">വൈഫൈ ഡയറക്റ്റ് സ്ക്രീനിൽ, ഓർമ്മിക്കപ്പെട്ട എല്ലാ ഗ്രൂപ്പുകളും നീക്കംചെയ്യുക, ക്ഷണിക്കപ്പെട്ടതോ ബന്ധിപ്പിച്ചതോ ആയ ഉപകരണങ്ങൾ അൺലിങ്ക് ചെയ്യുക.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">വൈ-ഫൈ ഡയറക്റ്റ് സ്ക്രീൻ </string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">രണ്ട് ഉപകരണങ്ങളിലും വൈ-ഫൈ ഓഫ് ചെയ്യാനും ഓണാക്കാനും ശ്രമിക്കുക.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">രണ്ട് ഉപകരണങ്ങളും ട്രാൻസ്ഫർ മോഡിലാണെന്ന് ഉറപ്പാക്കുക.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">പിന്തുണ പേജിലേക്ക് പോകുക</string>
   <string name="DeviceTransferSetup__try_again">വീണ്ടും ശ്രമിക്കുക</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">മറ്റ് ഉപകരണത്തിനായി കാത്തിരിക്കുന്നു</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">ട്രാൻസ്ഫർ ആരംഭിക്കുന്നതിന് നിങ്ങളുടെ മറ്റൊരു ഉപകരണത്തിൽ തുടരുക തൊടുക.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">നിങ്ങളുടെ മറ്റ് ഉപകരണത്തിൽ തുടരുക തൊടുക…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal-ന്റെ പുതിയ പതിപ്പുകളിൽ നിന്ന് ട്രാൻസ്ഫർ ചെയ്യാൻ സാധ്യമല്ല</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">ഡാറ്റ കൈമാറുന്നു</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">രണ്ട് ഉപകരണങ്ങളും പരസ്പരം അടുത്ത് വയ്ക്കുക. ഉപകരണങ്ങൾ ഓഫ് ചെയ്യരുത്, Signal തുറന്നിടുക. ട്രാൻസ്ഫറുകൾ എൻഡ്-ടു-എൻഡ് എൻക്രിപ്റ്റ് ചെയ്തിരിക്കുന്നു.</string>
   <string name="DeviceTransfer__d_messages_so_far">ഇതുവരെ %1$d സന്ദേശങ്ങൾ</string>
   <string name="DeviceTransfer__cancel">റദ്ദാക്കൂ</string>
   <string name="DeviceTransfer__try_again">വീണ്ടും ശ്രമിക്കുക</string>
@@ -2570,7 +2605,9 @@
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">നിങ്ങളുടെ പുതിയ Android ഉപകരണത്തിൽ Signal ഡൗൺലോഡുചെയ്യുക</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">\"അക്കൗണ്ട് ട്രാൻസ്ഫർ അല്ലെങ്കിൽ പുന:സ്ഥാപിക്കുക\" തൊടുക</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">പ്രോംപ്റ്റ് ചെയ്യുമ്പോൾ \"ആൻഡ്രോയിഡ് ഉപകരണത്തിൽ നിന്ന് ട്രാൻസ്ഫർ\" തിരഞ്ഞെടുക്കുക, തുടർന്ന് \"തുടരുക\". രണ്ട് ഉപകരണങ്ങളും അടുത്ത് വയ്ക്കുക.</string>
   <string name="OldDeviceTransferInstructions__continue">തുടരുക</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">കൈമാറ്റം പൂർത്തിയായി</string>
@@ -2586,10 +2623,19 @@
   <string name="DeviceToDeviceTransferService_content_title">അക്കൗണ്ട് കൈമാറ്റം</string>
   <string name="DeviceToDeviceTransferService_status_ready">നിങ്ങളുടെ മറ്റ് ആൻഡ്രോയിഡ് ഉപകരണവുമായി ബന്ധിപ്പിക്കാൻ തയ്യാറെടുക്കുന്നു…</string>
   <string name="DeviceToDeviceTransferService_status_starting_up">നിങ്ങളുടെ മറ്റ് ആൻഡ്രോയിഡ് ഉപകരണവുമായി ബന്ധിപ്പിക്കാൻ തയ്യാറെടുക്കുന്നു…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">നിങ്ങളുടെ മറ്റ് ആൻഡ്രോയിഡ് ഉപകരണം തിരയുന്നു…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">നിങ്ങളുടെ മറ്റ് ആൻഡ്രോയിഡ് ഉപകരണവുമായി ബന്ധിപ്പിക്കുന്നു…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">പരിശോധന ആവശ്യമാണ്</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">അക്കൗണ്ട് ട്രാൻസ്ഫർ ചെയ്യുന്നു…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">നിങ്ങളുടെ പുതിയ ഉപകരണത്തിൽ രജിസ്ട്രേഷൻ പൂർത്തിയാക്കുക</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">നിങ്ങളുടെ Signal അക്കൗണ്ട് നിങ്ങളുടെ പുതിയ ഉപകരണത്തിലേക്ക് ട്രാൻസ്ഫർ ചെയ്തിട്ടുണ്ട്, എന്നാൽ തുടരുന്നതിന് നിങ്ങൾ അതിൽ രജിസ്ട്രേഷൻ പൂർത്തിയാക്കണം. ഈ ഉപകരണത്തിൽ Signal നിഷ്ക്രിയമായിരിക്കും.</string>
   <string name="OldDeviceTransferLockedDialog__done">ചെയ്‌തു</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">ഈ ഉപകരണം റദ്ദാക്കുകയും സജീവമാക്കുകയും ചെയ്യുക</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">എംഓബി ബാലൻസ് ട്രാൻസ്ഫർ ചെയ്യണോ?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">നിങ്ങൾക്ക് %1$s ബാലൻസ് ഉണ്ട്. നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കുന്നതിന് മുമ്പ് മറ്റൊരു വാലറ്റ് വിലാസത്തിലേക്ക് നിങ്ങളുടെ ഫണ്ടുകൾ ട്രാൻസ്ഫർ ചെയ്തില്ലെങ്കിൽ, നിങ്ങൾക്ക് അത് എന്നെന്നേക്കുമായി നഷ്ടപ്പെടും.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">ട്രാൻസ്ഫർ ചെയ്യരുത്</string>
   <string name="AdvancedPreferenceFragment__transfer">കൈമാറ്റം</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">തടയുക</string>
@@ -2630,6 +2676,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">ലിങ്ക് നിലവിൽ സജീവമല്ല</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">ശബ്ദ സന്ദേശം പ്ലേ ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">വോയിസ് മെസേജ് - %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s %2$s-നോട്</string>
@@ -2683,6 +2730,7 @@
   <string name="DeleteAccountFragment__delete_account">അക്കൗണ്ട് ഇല്ലാതാക്കൂ</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">നിങ്ങളുടെ അക്കൗണ്ട് വിവരവും പ്രൊഫൈൽ ഫോട്ടോയും ഇല്ലാതാക്കൂ</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">നിങ്ങളുടെ സന്ദേശങ്ങള്‍ എല്ലാം ഇല്ലാതാക്കൂ</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">നിങ്ങളുടെ പേയ്മെന്റ് അക്കൗണ്ടിലെ %1$s ഇല്ലാതാക്കുക</string>
   <string name="DeleteAccountFragment__no_country_code">രാജ്യ കോഡുകളൊന്നും വ്യക്തമാക്കിയിട്ടില്ല</string>
   <string name="DeleteAccountFragment__no_number">നമ്പർ വ്യക്തമാക്കിയിട്ടില്ല</string>
   <string name="DeleteAccountFragment__the_phone_number">നിങ്ങൾ നൽകിയ ഫോൺ നമ്പർ നിങ്ങളുടെ അക്കൗണ്ടുമായി പൊരുത്തപ്പെടുന്നില്ല.</string>
@@ -2695,9 +2743,14 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">രാജ്യങ്ങൾ തിരയുക</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">ഒഴിവാക്കുക</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d അംഗം</item>
+    <item quantity="other">%1$d അംഗങ്ങൾ</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">പങ്കിടുക</string>
   <string name="ShareActivity__send">അയയ്‌ക്കുക</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">ഒന്നിലധികം ചാറ്റുകളിലേക്ക് പങ്കിടുന്നത് Signal സന്ദേശങ്ങൾക്ക് മാത്രമേ പിന്തുണക്കൂ</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ചില ഉപയോക്താക്കള്‍ക്ക് അയയ്ക്കാന്‍ കഴിഞ്ഞില്ല</string>
@@ -2708,6 +2761,8 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">ചാറ്റ് വാൾപേപ്പർ</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">ചാറ്റ് നിറം</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">ചാറ്റ് നിറങ്ങൾ പുന:സജ്ജമാക്കുക</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">ചാറ്റ് നിറം പുന:സജ്ജമാക്കുക</string>
   <string name="ChatWallpaperFragment__reset_chat_color_question">ചാറ്റ് നിറം പുന:സജ്ജീകരിക്കണോ?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">വാള്‍പേപ്പര്‍ സജ്ജമാക്കു</string>
   <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">ഡാർക്ക് മോഡ് വാള്‍പേപ്പര്‍ മങ്ങിക്കുന്നു</string>
@@ -2718,7 +2773,12 @@
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">എല്ലാ ചാറ്റ് നിറങ്ങളും അസാധുവാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">എല്ലാ വാള്‍പേപ്പറുകള്‍ അസാധുവാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">സഹജമായ നിറങ്ങൾ പുന:സജ്ജമാക്കുക</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">എല്ലാ നിറങ്ങളും പുന:സജ്ജമാക്കുക</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">ഡിഫോൾട്ട് വാള്‍പേപ്പര്‍ പുന:സജ്ജമാക്കുക</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">വാള്‍പേപ്പറുകള്‍ എല്ലാം പുനഃക്രമീകരിക്കുക</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">വാള്‍പേപ്പറുകള്‍ പുന:സജ്ജമാക്കുക</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">വാള്‍പേപ്പര്‍ പുന:സജ്ജമാക്കുക</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">വാള്‍പേപ്പര്‍ പുന:സജ്ജമാക്കുക?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">ചിത്രങ്ങളില്‍ നിന്നു തിരഞ്ഞെടുക്കൂ</string>
   <string name="ChatWallpaperSelectionFragment__presets">മുന്നമേ ഉള്ളവ</string>
@@ -2739,12 +2799,29 @@
   <string name="WallpaperCropActivity__blur_photo">ചിത്രം അവ്യക്തമാക്കുക</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">MobileCoin-നെ കുറിച്ച്</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">മൊബൈൽകോയിൻ ഒരു പുതിയ സ്വകാര്യത കേന്ദ്രീകൃത ഡിജിറ്റൽ കറൻസിയാണ്.</string>
+  <string name="payment_info_card_adding_funds">ഫണ്ടുകൾ ചേർക്കുന്നു</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">നിങ്ങളുടെ വാലറ്റ് വിലാസത്തിലേക്ക് മൊബൈൽകോയിൻ അയച്ചുകൊണ്ട് Signal-ൽ ഉപയോഗിക്കുന്നതിനുള്ള ഫണ്ടുകൾ നിങ്ങൾക്ക് ചേർക്കാം.</string>
+  <string name="payment_info_card_cashing_out">പണമാക്കുക</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">മൊബൈൽ കോയിൻ പിന്തുണയ്ക്കുന്ന ഒരു എക്സ്ചേഞ്ചിൽ നിങ്ങൾക്ക് ഏത് സമയത്തും മൊബൈൽ കോയിൻ ക്യാഷ് ചെയ്യാം. ആ എക്സ്ചേഞ്ചിൽ നിങ്ങളുടെ അക്കൗണ്ടിലേക്ക് ഒരു ട്രാൻസ്ഫർ നടത്തുക.</string>
   <string name="payment_info_card_hide_this_card">ഈ കാർഡ് മറയ്ക്കുക</string>
   <string name="payment_info_card_hide">മറയ്ക്കുക</string>
+  <string name="payment_info_card_record_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം രേഖപ്പെടുത്തുക</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">നിങ്ങളുടെ പേയ്മെന്റ് അക്കൗണ്ട് പുന:സ്ഥാപിക്കുന്നതിന് നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യം നിങ്ങൾക്ക് മറ്റൊരു മാർഗം നൽകുന്നു.</string>
+  <string name="payment_info_card_record_your_phrase">നിങ്ങളുടെ വാക്യം രേഖപ്പെടുത്തുക</string>
   <string name="payment_info_card_update_your_pin">നിങ്ങളുടെ PIN പുതുക്കുക</string>
+  <string name="payment_info_card_with_a_high_balance">ഉയർന്ന ബാലൻസ് ഉള്ളതിനാൽ, നിങ്ങളുടെ അക്കൗണ്ടിലേക്ക് കൂടുതൽ പരിരക്ഷ ചേർക്കുന്നതിന് ഒരു ആൽഫാന്യൂമറിക് പിൻ അപ്‌ഡേറ്റ് ചെയ്യാൻ നിങ്ങൾ ആഗ്രഹിച്ചേക്കാം.</string>
   <string name="payment_info_card_update_pin">PIN പുതുക്കുക </string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">വാലറ്റ് നിർജ്ജീവമാക്കുക</string>
+  <string name="DeactivateWalletFragment__your_balance">നിങ്ങളുടെ ബാലൻസ്</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">പേയ്‌മെന്റുകൾ നിർജ്ജീവമാക്കുന്നതിന് മുമ്പ് നിങ്ങളുടെ ഫണ്ടുകൾ മറ്റൊരു വാലറ്റ് വിലാസത്തിലേക്ക് ട്രാൻസ്ഫർ ചെയ്യാൻ ശുപാർശ ചെയ്യുന്നു. നിങ്ങളുടെ ഫണ്ടുകൾ ഇപ്പോൾ ട്രാൻസ്ഫർ ചെയ്യാതിരിക്കാൻ നിങ്ങൾ തീരുമാനിക്കുകയാണെങ്കിൽ, നിങ്ങൾ പേയ്‌മെന്റുകൾ വീണ്ടും സജീവമാക്കുകയാണെങ്കിൽ, Signal-മായി ബന്ധിപ്പിച്ചിട്ടുള്ള നിങ്ങളുടെ വാലറ്റിൽ അവ തുടരും.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">ബാക്കിയുള്ള ബാലൻസ് ട്രാൻസ്ഫർ ചെയ്യുക</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">ട്രാൻസ്ഫർ ചെയ്യാതെ നിർജ്ജീവമാക്കുക</string>
   <string name="DeactivateWalletFragment__deactivate">നിർജ്ജീവമാക്കുക</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">ട്രാൻസ്ഫർ ചെയ്യാതെ നിർജ്ജീവമാക്കുക?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">പേയ്‌മെന്റുകൾ വീണ്ടും സജീവമാക്കാൻ നിങ്ങൾ തീരുമാനിക്കുകയാണെങ്കിൽ, Signal-മായി ബന്ധിപ്പിച്ചിട്ടുള്ള നിങ്ങളുടെ വാലറ്റിൽ നിങ്ങളുടെ ബാലൻസ് തുടരും.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">വാലറ്റ് നിർജ്ജീവമാക്കുന്നതിൽ പിശക്.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">വീണ്ടെടുക്കൽ വാചകം</string>
   <string name="PaymentsRecoveryStartFragment__start">ആരംഭിക്കുക</string>

@@ -208,8 +208,10 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">संलग्नचा आकार आपण पाठवत असलेल्या संदेशाच्या प्रकारासाठीच्या मर्यादेपेक्षा जास्त आहे</string>
   <string name="ConversationActivity_unable_to_record_audio">ऑडिओ रेकॉर्ड करण्यास अक्षम!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">आपण या गटास संदेश पाठवू शकत नाही कारण आपण यापुढे सदस्‍य नाही.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">फक्त %1$s संदेश पाठवू शकतात</string>
   <string name="ConversationActivity_admins">प्रशासक</string>
   <string name="ConversationActivity_message_an_admin">प्रशासकाला संदेश पाठवा</string>
+  <string name="ConversationActivity_cant_start_group_call">गट कॉल चालू करू शकत नाही</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">या गटातील फक्त प्रशासक कॉल चालू करू शकतात.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">आपल्या डिव्हाईस वर हा दुवा हाताळण्यासाठी कुठलाही अॅप नाही.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">आपली सामील होण्याची विनंती गट प्रशासकाकडे पाठविली गेली आहे. जेव्हा ते कारवाई करतात तेव्हा आपल्याला सूचित केले जाईल.</string>
@@ -420,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">यासोबत सामायिक करा </string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">एकाधिक संलग्नके केवळ प्रतिमा आणि व्हिडिओंसाठी समर्थित आहेत</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">आपल्याला या गटात पाठवण्याची परवानगी नाही</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">स्थायी Signal संदेशन अपयश!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google प्ले सेवांसोबत नोंदणी करण्यात Signal अक्षम झाला. Signal संदेश आणि कॉल अक्षम केले गेले आहेत, कृपया सेटिंग आणि प्रगत मधून पुन्हा-नोंदणी करण्याचा प्रयत्न करा.</string>
@@ -562,6 +565,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">ठीक</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">या व्यक्तीस लेगसी गटात जोडले जाऊ शकत नाही.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">हा व्यक्ती घोषणा गटांत जोडला जाऊ शकत नाही.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">\"%2$s\" ला \"%1$s\" मध्ये जोडायचे?</item>
     <item quantity="other">%3$d सदस्य \"%2$s\" मध्ये जोडायचे?</item>
@@ -632,6 +636,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">शेअर करता येणारी गट लिंक फक्त अॅडमिन रीसेट करू शकतात.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">आपल्याकडे हे करण्याचे अधिकार नाहीत</string>
   <string name="ManageGroupActivity_not_capable">आपण जोडलेला कोणीतरी नवीन गटांना समर्थन देत नाही आणि Signal अद्यतनित करण्याची आवश्यकता आहे</string>
+  <string name="ManageGroupActivity_not_announcement_capable">आपण जोडलेला कोणीतरी घोषणा गटांना समर्थन देत नाही आणि Signal अद्यतनित करण्याची आवश्यकता आहे</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">गट अद्यतनित करण्यात अयशस्वी</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">आपण या गटाचे सदस्य नाही</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">गट अद्यतनित करण्यात अयशस्वी कृपया नंतर पुन्हा प्रयत्न करा</string>
@@ -988,6 +993,8 @@
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">सर्व सदस्यांना संदेश पाठवण्याची अनुमती देण्यासाठी आपण गट सेटिंग बदलल्या.</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">फक्त प्रशासकांना संदेश पाठवण्याची अनुमती देण्यासाठी आपण गट सेटिंग बदलल्या.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">सर्व सदस्यांना संदेश पाठवण्याची अनुमती देण्यासाठी %1$s ने गट सेटिंग बदलल्या.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">फक्त प्रशासकांना संदेश पाठवण्याची अनुमती देण्यासाठी %1$s ने गट सेटिंग बदलल्या.</string>
   <string name="MessageRecord_allow_all_members_to_send">सर्व सदस्यांना संदेश पाठवण्याची अनुमती देण्यासाठी गट सेटिंग बदलल्या गेल्या.</string>
   <string name="MessageRecord_allow_only_admins_to_send">फक्त प्रशासकांना संदेश पाठवण्याची अनुमती देण्यासाठी गट सेटिंग बदलल्या गेल्या.</string>
   <!--GV2 group link invite access level change-->
@@ -3041,10 +3048,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">सदस्य जोडा</string>
   <string name="PermissionsSettingsFragment__edit_group_info">गट माहिती संपादित करा</string>
+  <string name="PermissionsSettingsFragment__send_messages">संदेश पाठवा</string>
   <string name="PermissionsSettingsFragment__all_members">सर्व सदस्य </string>
   <string name="PermissionsSettingsFragment__only_admins">केवळ प्रशासक</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">नवीन सदस्य कोण जोडू शकतो?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">या गटाची माहिती कोण संपादित करू शकतो?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">संदेश कोण पाठवू शकतो?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">सूचना म्यूट करा</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">म्यूट केलेले नाही</string>
@@ -3090,5 +3099,6 @@
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">वर नॅव्हिगेट करा</string>
   <!--EOF-->
 </resources>

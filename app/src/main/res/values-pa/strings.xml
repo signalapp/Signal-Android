@@ -924,7 +924,7 @@
   <string name="MessageRecord_you_left_the_group">ਤੁਸੀਂ ਗਰੁੱਪ ਛੱਡਿਆ।</string>
   <string name="MessageRecord_s_left_the_group">%1$s ਨੇ ਗਰੁੱਪ ਛੱਡਿਆ।</string>
   <string name="MessageRecord_you_are_no_longer_in_the_group">ਤੁਸੀਂ ਹੁਣ ਗਰੁੱਪ ਵਿੱਚ ਨਹੀਂ ਰਹੇ।</string>
-  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s ਹੁਣ ਗਰੁੱਪ ਵਿਚ ਨਹੀਂ ਹੈ।</string>
+  <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s ਹੁਣ ਗਰੁੱਪ ਵਿੱਚ ਨਹੀਂ ਹੈ।</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">ਤੁਸੀਂ %1$s ਨੂੰ ਐਡਮਿਨ ਬਣਾਇਆ।</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s ਨੇ %2$s ਨੂੰ ਇੱਕ ਐਡਮਿਨ ਬਣਾਇਆ।</string>
@@ -976,19 +976,19 @@
   <string name="MessageRecord_the_group_name_has_changed_to_s">ਗਰੁੱਪ ਦਾ ਨਾਂ ਬਦਲ ਕੇ \"%1$s\" ਰੱਖ ਦਿੱਤਾ।</string>
   <!--GV2 description change-->
   <string name="MessageRecord_you_changed_the_group_description">ਤੁਸੀਂ ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਨੂੰ ਬਦਲਿਆ।</string>
-  <string name="MessageRecord_s_changed_the_group_description">%1$s ਨੇ ਗਰੁੱਪ ਦੇ ਵੇਰਵੇ ਨੂੰ ਬਦਲਿਆ।</string>
-  <string name="MessageRecord_the_group_description_has_changed">ਗਰੁੱਪ ਦਾ ਵੇਰਵਾ ਬਦਲ ਗਿਆ ਹੈ।</string>
+  <string name="MessageRecord_s_changed_the_group_description">%1$s ਨੇ ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਨੂੰ ਬਦਲਿਆ।</string>
+  <string name="MessageRecord_the_group_description_has_changed">ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਬਦਲ ਗਈ ਹੈ।</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">ਤੁਸੀਂ ਗਰੁੱਪ ਦੇ ਅਵਤਾਰ ਨੂੰ ਬਦਲਿਆ।</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ਨੇ ਗਰੁੱਪ ਦੇ ਅਵਤਾਰ ਨੂੰ ਬਦਲਿਆ।</string>
   <string name="MessageRecord_the_group_group_avatar_has_been_changed">ਗਰੁੱਪ ਦੇ ਅਵਤਾਰ ਨੂੰ ਬਦਲ ਦਿੱਤਾ ਗਿਆ ਹੈ।</string>
   <!--GV2 attribute access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">ਤੁਸੀਂ “%1$s\" ਨੂੰ ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਵਿੱਚ ਸੋਧ ਕਰਨ ਵਾਲੇ ਬਣਾ ਦਿੱਤਾ।</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">ਤੁਸੀਂ “%1$s\" ਨੂੰ ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਵਿੱਚ ਸੋਧ ਕਰਨ ਵਾਲਾ ਬਣਾ ਦਿੱਤਾ।</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ਨੇ \"%2$s\" ਨੂੰ ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਵਿੱਚ ਸੋਧ ਕਰਨ ਵਾਲਾ ਬਣਾ ਦਿੱਤਾ।</string>
   <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਵਿੱਚ ਸੋਧ ਕਰਨ ਵਾਲਾ ਵਿਅਕਤੀ ਬਦਲ ਕੇ \"%1$s\" ਨੂੰ ਬਣਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">ਤੁਸੀਂ ਗਰੁੱਪ ਦੀ ਮੈਂਬਰਸ਼ਿਪ ਵਿੱਚ ਸੋਧ ਕਰਨ ਵਾਲਾ ਵਿਅਕਤੀ ਬਦਲ ਕੇ “%1$s\" ਨੂੰ ਬਣਾ ਦਿੱਤਾ।</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ਨੇ ਗਰੁੱਪ ਦੀ ਮੈਂਬਰਸ਼ਿਪ ਵਿੱਚ ਸੋਧ ਕਰਨ ਵਾਲਾ ਵਿਅਕਤੀ ਬਦਲ ਕੇ “%2$s\" ਨੂੰ  ਦਿੱਤਾ।</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ਨੇ ਗਰੁੱਪ ਦੀ ਮੈਂਬਰਸ਼ਿਪ ਵਿੱਚ ਸੋਧ ਕਰਨ ਵਾਲਾ ਵਿਅਕਤੀ ਬਦਲ ਕੇ “%2$s\" ਨੂੰ ਬਣਾ ਦਿੱਤਾ।</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">ਗਰੁੱਪ ਦੀ ਮੈਂਬਰਸ਼ਿਪ ਵਿੱਚ ਸੋਧ ਕਰਨ ਵਾਲਾ ਵਿਅਕਤੀ ਬਦਲ ਕੇ \"%1$s\" ਨੂੰ ਬਣਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।</string>
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">ਤੁਸੀਂ ਗਰੁੱਪ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਨੂੰ ਬਦਲ ਦਿੱਤਾ ਤਾਂ ਜੋ ਸਾਰੇ ਮੈਂਬਰ ਹੀ ਸੁਨੇਹੇ ਭੇਜ ਸਕਣ।</string>
@@ -1068,15 +1068,15 @@
   <string name="MessageRequestBottomView_delete">ਮਿਟਾਓ</string>
   <string name="MessageRequestBottomView_block">ਪਾਬੰਦੀ ਲਾਓ</string>
   <string name="MessageRequestBottomView_unblock">ਪਾਬੰਦੀ ਹਟਾਓ</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s ਨੂੰ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਅਤੇ ਉਹਨਾਂ ਨਾਲ ਤੁਹਾਡਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨ ਦੀ ਆਗਿਆ ਦੇਣੀ ਹੈ? ਜਦੋਂ ਤਕ ਤੁਸੀਂ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰ ਲੈਂਦੇ ਉਦੋਂ ਤਕ ਉਹਨਾਂ ਨੂੰ ਇਹ ਪਤਾ ਨਹੀਂ ਲੱਗੇਗਾ ਕਿ ਤੁਸੀਂ ਉਹਨਾਂ ਦਾ ਸੁਨੇਹਾ ਦੇਖ ਲਿਆ ਹੈ।</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s ਨੂੰ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਅਤੇ ਤੁਹਾਡਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨ ਦੀ ਆਗਿਆ ਦੇਣੀ ਹੈ? ਜਦੋਂ ਤਕ ਤੁਸੀਂ ਉਹਨਾਂ ਤੋਂ ਪਾਬੰਦੀ ਹਟਾ ਨਹੀਂ ਦਿੰਦੇ ਉਦੋਂ ਤਕ ਤੁਹਾਨੂੰ ਕੋਈ ਵੀ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s ਨੂੰ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਅਤੇ ਉਹਨਾਂ ਨਾਲ ਤੁਹਾਡਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨ ਦੀ ਆਗਿਆ ਦੇਣੀ ਹੈ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰ ਲੈਂਦੇ ਉਦੋਂ ਤੱਕ ਉਹਨਾਂ ਨੂੰ ਇਹ ਪਤਾ ਨਹੀਂ ਲੱਗੇਗਾ ਕਿ ਤੁਸੀਂ ਉਹਨਾਂ ਦਾ ਸੁਨੇਹਾ ਦੇਖ ਲਿਆ ਹੈ।</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s ਨੂੰ ਤੁਹਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜਣ ਅਤੇ ਤੁਹਾਡਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨ ਦੀ ਆਗਿਆ ਦੇਣੀ ਹੈ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਉਹਨਾਂ ਤੋਂ ਪਾਬੰਦੀ ਹਟਾ ਨਹੀਂ ਦਿੰਦੇ ਉਦੋਂ ਤੱਕ ਤੁਹਾਨੂੰ ਕੋਈ ਵੀ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਆਪਣੀ ਗੱਲਬਾਤ ਅਤੇ ਇਸਦੇ ਮੈਂਬਰਾਂ ਨਾਲ ਆਪਣਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨੀ ਜਾਰੀ ਰੱਖਣੀ ਹੈ?</string>
-  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@mentions ਅਤੇ ਐਡਮਿਨਜ਼ ਵਰਗੀਆਂ ਨਵੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨੂੰ ਕਿਰਿਆਸ਼ੀਲ ਕਰਨ ਲਈ ਇਸ ਗਰੁੱਪ ਨੂੰ ਅੱਪਗ੍ਰੇਡ ਕਰੋ। ਜਿਹਨਾਂ ਮੈਂਬਰਾਂ ਨੇ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਆਪਣਾ ਨਾਂ ਜਾਂ ਫ਼ੋਟੋ ਸਾਂਝੀ ਨਹੀਂ ਕੀਤੀ ਹੈ, ਉਹਨਾਂ ਨੂੰ ਸ਼ਾਮਲ ਹੋਣ ਲਈ ਸੱਦਾ ਭੇਜਿਆ ਜਾਵੇਗਾ।</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@mentions ਅਤੇ ਐਡਮਿਨ ਵਰਗੀਆਂ ਨਵੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨੂੰ ਕਿਰਿਆਸ਼ੀਲ ਕਰਨ ਲਈ ਇਸ ਗਰੁੱਪ ਨੂੰ ਅੱਪਗ੍ਰੇਡ ਕਰੋ। ਜਿਹਨਾਂ ਮੈਂਬਰਾਂ ਨੇ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਆਪਣਾ ਨਾਂ ਜਾਂ ਫ਼ੋਟੋ ਸਾਂਝੀ ਨਹੀਂ ਕੀਤੀ ਹੈ, ਉਹਨਾਂ ਨੂੰ ਸ਼ਾਮਲ ਹੋਣ ਲਈ ਸੱਦਾ ਭੇਜਿਆ ਜਾਵੇਗਾ।</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">ਇਸ ਲੈਗਸੀ ਗਰੁੱਪ ਨੂੰ ਹੁਣ ਹੋਰ ਨਹੀਂ ਵਰਤਿਆ ਜਾ ਸਕਦਾ ਕਿਉਂਕਿ ਇਹ ਬਹੁਤ ਵੱਡਾ ਹੈ। ਗਰੁੱਪ ਦਾ ਵੱਧ ਤੋਂ ਵੱਧ ਆਕਾਰ %1$d ਹੈ। </string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">ਇਸ ਗਰੁੱਪ ਵਿੱਚ %1$s ਨਾਲ ਆਪਣੀ ਗੱਲਬਾਤ ਅਤੇ ਇਸਦੇ ਮੈਂਬਰਾਂ ਨਾਲ ਆਪਣਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨੀ ਜਾਰੀ ਰੱਖਣੀ ਹੈ?</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣਾ ਅਤੇ ਇਸਦੇ ਮੈਂਬਰਾਂ ਨਾਲ ਆਪਣਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ? ਜਦੋਂ ਤਕ ਤੁਸੀਂ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰ ਲੈਂਦੇ ਉਦੋਂ ਤਕ ਉਹਨਾਂ ਨੂੰ ਇਹ ਪਤਾ ਨਹੀਂ ਲੱਗੇਗਾ ਕਿ ਤੁਸੀਂ ਉਹਨਾਂ ਦੇ ਸੁਨੇਹੇ ਦੇਖ ਲਏ ਹਨ।</string>
-  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣਾ ਹੈ? ਜਦੋਂ ਤਕ ਤੁਸੀਂ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰ ਲੈਂਦੇ ਉਦੋਂ ਤਕ ਉਹਨਾਂ ਨੂੰ ਇਹ ਪਤਾ ਨਹੀਂ ਲੱਗੇਗਾ ਕਿ ਤੁਸੀਂ ਉਹਨਾਂ ਦੇ ਸੁਨੇਹੇ ਦੇਖ ਲਏ ਹਨ।</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ਇਸ ਗਰੁੱਪ ਤੋਂ ਪਾਬੰਦੀ ਹਟਾਉਣੀ ਅਤੇ ਇਸਦੇ ਮੈਂਬਰਾਂ ਨਾਲ ਆਪਣਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ? ਜਦੋਂ ਤਕ ਤੁਸੀਂ ਉਹਨਾਂ ਤੋਂ ਪਾਬੰਦੀ ਹਟਾ ਨਹੀਂ ਦਿੰਦੇ ਉਦੋਂ ਤਕ ਤੁਹਾਨੂੰ ਕੋਈ ਵੀ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣਾ ਅਤੇ ਇਸਦੇ ਮੈਂਬਰਾਂ ਨਾਲ ਆਪਣਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰ ਲੈਂਦੇ ਉਦੋਂ ਤੱਕ ਉਹਨਾਂ ਨੂੰ ਇਹ ਪਤਾ ਨਹੀਂ ਲੱਗੇਗਾ ਕਿ ਤੁਸੀਂ ਉਹਨਾਂ ਦੇ ਸੁਨੇਹੇ ਦੇਖ ਲਏ ਹਨ।</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣਾ ਹੈ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰ ਲੈਂਦੇ ਉਦੋਂ ਤੱਕ ਉਹਨਾਂ ਨੂੰ ਇਹ ਪਤਾ ਨਹੀਂ ਲੱਗੇਗਾ ਕਿ ਤੁਸੀਂ ਉਹਨਾਂ ਦੇ ਸੁਨੇਹੇ ਦੇਖ ਲਏ ਹਨ।</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ਇਸ ਗਰੁੱਪ ਤੋਂ ਪਾਬੰਦੀ ਹਟਾਉਣੀ ਅਤੇ ਇਸਦੇ ਮੈਂਬਰਾਂ ਨਾਲ ਆਪਣਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਸਾਂਝੀ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ? ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਉਹਨਾਂ ਤੋਂ ਪਾਬੰਦੀ ਹਟਾ ਨਹੀਂ ਦਿੰਦੇ ਉਦੋਂ ਤੱਕ ਤੁਹਾਨੂੰ ਕੋਈ ਵੀ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</string>
   <string name="MessageRequestProfileView_view">ਵੇਖੋ</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s ਦੇ ਮੈਂਬਰ</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s ਅਤੇ %2$s ਦੇ ਮੈਂਬਰ</string>
@@ -1141,7 +1141,7 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">ਗਲਤ PIN</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">PIN ਪਾਉਣਾ ਛੱਡਣਾ ਹੈ?</string>
   <string name="PinRestoreEntryFragment_need_help">ਮਦਦ ਚਾਹੀਦੀ ਹੈ?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">ਤੁਹਾਡਾ PIN ਤੁਹਾਡੇ ਦੁਆਰਾ ਬਣਾਇਆ ਇੱਕ %1$d+ ਅੰਕੀ ਕੋਡ ਹੁੰਦਾ ਹੈ ਜੋ ਅੰਕਾਂ ਵਾਲਾ ਜਾਂ ਅੱਖਰਾਂ-ਅੰਕਾਂ ਵਾਲਾ ਹੋ ਸਕਦਾ ਹੈ।\n\nਜੇ ਤੁਹਾਨੂੰ ਆਪਣਾ PIN ਯਾਦ ਨਹੀਂ ਆ ਰਿਹਾ, ਤਾਂ ਤੁਸੀਂ ਇੱਕ ਨਵਾਂ PIN ਬਣਾ ਸਕਦੇ ਹੋ. ਤੁਸੀਂ ਰਜਿਸਟਰ ਕਰਕੇ ਆਪਣਾ ਖਾਤਾ ਵਰਤ ਸਕਦੇ ਹੋ ਪਰ ਤੁਸੀਂ ਸੰਭਾਲੀ ਗਈ ਕੁਝ ਜਾਣਕਾਰੀ ਗੁਆ ਬੈਠੋਗੇ ਜਿਵੇਂ ਕਿ ਤੁਹਾਡੀ ਪ੍ਰੋਫ਼ਾਈਲ ਦੀ ਜਾਣਕਾਰੀ।</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">ਤੁਹਾਡਾ PIN ਤੁਹਾਡੇ ਦੁਆਰਾ ਬਣਾਇਆ ਇੱਕ %1$d+ ਅੰਕੀ ਕੋਡ ਹੁੰਦਾ ਹੈ ਜੋ ਅੰਕਾਂ ਵਾਲਾ ਜਾਂ ਅੱਖਰਾਂ-ਅੰਕਾਂ ਵਾਲਾ ਹੋ ਸਕਦਾ ਹੈ।\n\nਜੇ ਤੁਹਾਨੂੰ ਆਪਣਾ PIN ਯਾਦ ਨਹੀਂ ਆ ਰਿਹਾ, ਤਾਂ ਤੁਸੀਂ ਇੱਕ ਨਵਾਂ PIN ਬਣਾ ਸਕਦੇ ਹੋ. ਤੁਸੀਂ ਰਜਿਸਟਰ ਕਰਕੇ ਆਪਣਾ ਖਾਤਾ ਵਰਤ ਸਕਦੇ ਹੋ ਪਰ ਤੁਸੀਂ ਸੁਰੱਖਿਅਤ ਕੀਤੀ ਕੁਝ ਜਾਣਕਾਰੀ ਗੁਆ ਬੈਠੋਗੇ ਜਿਵੇਂ ਕਿ ਤੁਹਾਡੀ ਪ੍ਰੋਫ਼ਾਈਲ ਦੀ ਜਾਣਕਾਰੀ।</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">ਜੇ ਤੁਸੀਂ ਆਪਣਾ PIN ਯਾਦ ਨਹੀਂ ਰੱਖ ਸਕਦੇ, ਤਾਂ ਤੁਸੀਂ ਨਵਾਂ ਸਿਰਜ ਸਕਦੇ ਹੋ। ਤੁਸੀਂ ਰਜਿਸਟਰ ਕਰਕੇ ਆਪਣਾ ਖਾਤਾ ਵਰਤ ਸਕਦੇ ਹੋ ਪਰ ਤੁਸੀਂ ਸੰਭਾਲੀਆਂ ਗਈਆਂ ਕੁਝ ਸੈਟਿੰਗਾਂ ਗੁਆ ਜਿਵੇਂ ਕਿ ਤੁਹਾਡੀ ਪ੍ਰੋਫਾਈਲ ਦੀ ਜਾਣਕਾਰੀ।</string>
   <string name="PinRestoreEntryFragment_create_new_pin">ਨਵਾਂ PIN ਬਣਾਓ</string>
   <string name="PinRestoreEntryFragment_contact_support">ਸਹਾਇਤਾ ਦੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ</string>
@@ -1156,11 +1156,11 @@
   <string name="PinRestoreEntryFragment_enter_numeric_pin">ਅੰਕਾਂ ਵਾਲਾ PIN ਪਾਓ</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">ਆਪਣਾ PIN ਬਣਾਓ</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">ਤੁਹਾਡੀ PIN ਦਾ ਅੰਦਾਜ਼ਾ ਲਗਾਉਣ ਦੀ ਹੱਦ ਮੁੱਕ ਗਈ ਹੈ, ਪਰ ਤੁਸੀਂ ਹਾਲੇ ਵੀ ਨਵਾਂ PIN ਬਣਾ ਕੇ ਆਪਣੇ Signal ਖਾਤੇ ਤਕ ਪਹੁੰਚ ਕਰ ਸਕਦੇ ਹੋ। ਤੁਹਾਡੀ ਪਰਦੇਦਾਰੀ ਅਤੇ ਸੁਰੱਖਿਆ ਦੇ ਲਈ ਤੁਹਾਡੇ ਖਾਤੇ ਨੂੰ, ਸਾਂਭੀ ਗਈ ਕਿਸੇ ਵੀ ਪ੍ਰੋਫ਼ਾਈਲ ਜਾਣਕਾਰੀ ਜਾਂ ਸੈਟਿੰਗਾਂ ਤੋਂ ਬਿਨਾ ਬਹਾਲ ਕੀਤਾ ਜਾਵੇਗਾ।</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">ਤੁਹਾਡੀ PIN ਦਾ ਅੰਦਾਜ਼ਾ ਲਗਾਉਣ ਦੀ ਹੱਦ ਮੁੱਕ ਗਈ ਹੈ, ਪਰ ਤੁਸੀਂ ਹਾਲੇ ਵੀ ਨਵਾਂ PIN ਬਣਾ ਕੇ ਆਪਣੇ Signal ਖਾਤੇ ਤੱਕ ਪਹੁੰਚ ਕਰ ਸਕਦੇ ਹੋ। ਤੁਹਾਡੀ ਪਰਦੇਦਾਰੀ ਅਤੇ ਸੁਰੱਖਿਆ ਦੇ ਲਈ ਤੁਹਾਡੇ ਖਾਤੇ ਨੂੰ, ਸਾਂਭੀ ਗਈ ਕਿਸੇ ਵੀ ਪ੍ਰੋਫ਼ਾਈਲ ਜਾਣਕਾਰੀ ਜਾਂ ਸੈਟਿੰਗਾਂ ਤੋਂ ਬਿਨਾ ਬਹਾਲ ਕੀਤਾ ਜਾਵੇਗਾ।</string>
   <string name="PinRestoreLockedFragment_create_new_pin">ਨਵਾਂ PIN ਬਣਾਓ</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">ਚੇਤਾਵਨੀ</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">ਜੇ ਤੁਸੀਂ PIN ਅਸਮਰੱਥ ਕੀਤਾ ਤਾਂ ਤੁਸੀਂ Signal ਨੂੰ ਮੁੜ-ਰਜਿਸਟਰ ਕਰਨ ਵੇਲੇ ਸਾਰਾ ਡੇਟਾ ਗੁਆ ਬੈਠੋਗੇ, ਜਦੋਂ ਤੱਕ ਕਿ ਤੁਸੀਂ ਖੁਦ ਬੈਕਅਪ ਨਹੀਂ ਲੈਂਦੇ ਤੇ ਬਹਾਲ ਕਰਦੇ। PIN ਅਸਮਰੱਥ ਕੀਤੇ ਹੋਣ ਨਾਲ ਤੁਸੀਂ ਰਜਿਸਟਰੇਸ਼ਨ ਲਾੱਕ ਨੂੰ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦੇ ਹੋ।</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">ਜੇ ਤੁਸੀਂ PIN ਅਸਮਰੱਥ ਕੀਤਾ ਤਾਂ ਤੁਸੀਂ Signal ਨੂੰ ਮੁੜ-ਰਜਿਸਟਰ ਕਰਨ ਵੇਲੇ ਸਾਰਾ ਡੇਟਾ ਗੁਆ ਬੈਠੋਗੇ, ਜਦੋਂ ਤੱਕ ਕਿ ਤੁਸੀਂ ਖੁਦ ਬੈਕਅੱਪ ਨਹੀਂ ਲੈਂਦੇ ਤੇ ਬਹਾਲ ਕਰਦੇ। PIN ਅਸਮਰੱਥ ਕੀਤੇ ਹੋਣ ਨਾਲ ਤੁਸੀਂ ਰਜਿਸਟਰੇਸ਼ਨ ਲੌਕ ਨੂੰ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦੇ ਹੋ।</string>
   <string name="PinOptOutDialog_disable_pin">PIN ਅਸਮਰੱਥ ਕਰੋ</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ਇਸ ਐਪ ਨੂੰ ਦਰਜਾ ਦਿਓ</string>
@@ -1177,7 +1177,7 @@
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">ਮੈਸੇਜਿੰਗ ਨੂੰ ਜਾਰੀ ਰੱਖਣ ਲਈ ਪ੍ਰਮਾਣਿਤ ਕਰੋ</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal ’ਤੇ ਸਪੈਮ ਨੂੰ ਰੋਕਣ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਪ੍ਰਮਾਣੀਕਰਣ ਪੂਰਾ ਕਰੋ।</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">ਪ੍ਰਮਾਣਿਤ ਕਰਨ ਤੋਂ ਬਾਅਦ, ਤੁਸੀਂ ਮੈਸੇਜਿੰਗ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ। ਕੋਈ ਵੀ ਰੁਕੇ ਹੋਏ ਸੁਨੇਹੇ ਆਪਣੇ ਆਪ ਹੀ ਭੇਜ ਦਿੱਤੇ ਜਾਣਗੇ।</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">ਪ੍ਰਮਾਣਿਤ ਕਰਨ ਤੋਂ ਬਾਅਦ, ਤੁਸੀਂ ਮੈਸੇਜਿੰਗ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ। ਕੋਈ ਵੀ ਰੁਕੇ ਹੋਏ ਸੁਨੇਹੇ ਆਪਣੇ-ਆਪ ਹੀ ਭੇਜ ਦਿੱਤੇ ਜਾਣਗੇ।</string>
   <!--Recipient-->
   <string name="Recipient_you">ਤੁਸੀਂ</string>
   <!--RecipientPreferencesActivity-->
@@ -1229,20 +1229,20 @@
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">%1$s ਉੱਤੇ ਪਾਬੰਦੀ ਹੈ</string>
   <string name="CallParticipantView__more_info">ਹੋਰ ਜਾਣਕਾਰੀ</string>
-  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">ਤੁਸੀਂ ਉਹਨਾਂ ਦੀ ਆਡੀਓ ਜਾਂ ਵੀਡੀਓ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰੋਗੇ ਅਤੇ ਉਹ ਤੁਹਾਡੀਆਂ।</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">ਤੁਹਾਨੂੰ ਇੱਕ-ਦੂਸਰੇ ਦੀ ਆਡੀਓ ਜਾਂ ਵੀਡੀਓ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਵੇਗੀ।</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s ਤੋਂ ਆਡੀਓ &amp; ਵੀਡੀਓ ਨਹੀਂ ਪ੍ਰਾਪਤ ਕਰ ਸਕਦੇ</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s ਤੋਂ ਆਡੀਓ ਤੇ ਵੀਡੀਓ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋ ਸਕਦੀ ਹੈ</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ਅਜਿਹਾ ਸ਼ਾਇਦ ਇਸ ਲਈ ਹੋ ਸਕਦਾ ਹੈ ਕਿਉਂਕਿ ਉਹਨਾਂ ਨੇ ਤੁਹਾਡੇ ਸੁਰੱਖਿਆ ਨੰਬਰ ਵਿੱਚ ਤਬਦੀਲੀ ਨੂੰ ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ ਕੀਤਾ ਹੈ, ਉਹਨਾਂ ਦੀ ਡਿਵਾਈਸ ਵਿੱਚ ਕੋਈ ਸਮੱਸਿਆ ਹੋ ਸਕਦੀ ਹੈ, ਜਾਂ ਉਹਨਾਂ ਨੇ ਤੁਹਾਡੇ ’ਤੇ ਪਾਬੰਦੀ ਲਗਾ ਦਿੱਤੀ ਹੈ।</string>
   <!--CallToastPopupWindow-->
-  <string name="CallToastPopupWindow__swipe_to_view_screen_share">ਸਾਂਝੀ ਕੀਤੀ ਸਕਰੀਨ ਨੂੰ ਵੇਖਣ ਲਈ ਸਰਕਾਓ</string>
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">ਸਾਂਝੀ ਕੀਤੀ ਸਕਰੀਨ ਨੂੰ ਵੇਖਣ ਲਈ ਸਵਾਈਪ ਕਰੋ</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">ਪ੍ਰੌਕਸੀ ਸਰਵਰ</string>
-  <string name="ProxyBottomSheetFragment_proxy_address">ਪ੍ਰੌਕਸੀ ਐਡਰੈਸ</string>
-  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">ਕੀ ਤੁਸੀਂ ਇਸ ਪ੍ਰੌਕਸੀ ਐਡਰੈਸ ਨੂੰ ਵਰਤਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
-  <string name="ProxyBottomSheetFragment_use_proxy">ਪ੍ਰੌਕਸੀ  ਵਰਤੋਂ</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">ਪ੍ਰੌਕਸੀ ਐਡਰੈੱਸ</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">ਕੀ ਤੁਸੀਂ ਇਸ ਪ੍ਰੌਕਸੀ ਐਡਰੈੱਸ ਨੂੰ ਵਰਤਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">ਪ੍ਰੌਕਸੀ ਵਰਤੋ</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">ਪ੍ਰੌਕਸੀ ਨਾਲ ਸਫ਼ਲਤਾਪੂਰਵਕ ਕਨੈਕਟ ਹੋਏ।</string>
   <!--RecaptchaProofActivity-->
-  <string name="RecaptchaProofActivity_failed_to_submit">ਦਰਜ ਕਰਨ ਵਿੱਚ ਅਸਫ਼ਲ</string>
+  <string name="RecaptchaProofActivity_failed_to_submit">ਦਰਜ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ</string>
   <string name="RecaptchaProofActivity_complete_verification">ਪ੍ਰਮਾਣੀਕਰਣ ਪੂਰਾ ਕਰੋ</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">ਆਪਣਾ ਦੇਸ਼ ਚੁਣੋ</string>
@@ -1358,7 +1358,7 @@
   <string name="SubmitDebugLogActivity_done">ਹੋ ਗਿਆ</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">ਇਸਨੂੰ ਮਿਟਾਉਣ ਲਈ ਕਿਸੇ ਲਾਈਨ ਨੂੰ ਟੈਪ ਕਰੋ</string>
   <string name="SubmitDebugLogActivity_submit">ਦਰਜ ਕਰੋ</string>
-  <string name="SubmitDebugLogActivity_failed_to_submit_logs">ਲੌਗ ਦਰਜ ਕਰਨ ਵਿੱਚ ਅਸਫ਼ਲ</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">ਲੌਗ ਦਰਜ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ</string>
   <string name="SubmitDebugLogActivity_success">ਸਫਲਤਾ!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ਇਸ URL ਨੂੰ ਕਾਪੀ ਕਰੋ ਅਤੇ ਇਸਨੂੰ ਆਪਣੇ ਮਸਲੇ ਦੀ ਰਿਪੋਰਟ ਜਾਂ ਸਹਾਇਤਾ ਨੂੰ ਭੇਜੀ ਜਾਣ ਵਾਲੀ ਈਮੇਲ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">ਸਾਂਝਾ ਕਰੋ</string>
@@ -1498,7 +1498,7 @@
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">ਤੁਹਾਡੇ ਇੱਕ ਵਾਰ ਦੇਖਣਯੋਗ ਮੀਡੀਆ \'ਤੇ %1$s ਪ੍ਰਤਿਕਿਰਿਆ ਦਿੱਤੀ।</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">ਤੁਹਾਡੇ ਸਟਿੱਕਰ \'ਤੇ %1$s ਪ੍ਰਤਿਕਿਰਿਆ ਦਿੱਤੀ।</string>
   <string name="MessageNotifier_this_message_was_deleted">ਇਹ ਸੁਨੇਹਾ ਮਿਟਾਇਆ ਗਿਆ ਸੀ।</string>
-  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ਸੰਪਰਕ ਦੁਆਰਾ Signal ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਬਾਰੇ ਸੂਚਨਾਵਾਂ ਨੂੰ ਬੰਦ ਕਰਨਾ ਹੈ? ਤੁਸੀਂ ਉਹਨਾਂ ਨੂੰ Signal ਵਿੱਚ ਦੁਬਾਰਾ ਸਮਰੱਥ ਕਰ ਸਕਦੇ ਹੋ &gt; ਸੈਟਿੰਗਾਂ &gt; ਸੂਚਨਾਵਾਂ।</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ਸੰਪਰਕ ਦੁਆਰਾ Signal ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਬਾਰੇ ਸੂਚਨਾਵਾਂ ਨੂੰ ਬੰਦ ਕਰਨਾ ਹੈ? ਤੁਸੀਂ ਉਹਨਾਂ ਨੂੰ Signal &gt; ਸੈਟਿੰਗਾਂ &gt; ਸੂਚਨਾਵਾਂ ਵਿੱਚ ਜਾ ਕੇ ਵਿੱਚ ਦੁਬਾਰਾ ਸਮਰੱਥ ਕਰ ਸਕਦੇ ਹੋ।</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_channel_messages">ਸੁਨੇਹੇ </string>
   <string name="NotificationChannel_calls">ਕਾਲਾਂ </string>
@@ -1544,7 +1544,7 @@
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s ਵੱਲੋਂ ਕਾਲ ਦਾ ਜਵਾਬ ਦੇਣ ਲਈ, Signal ਨੂੰ ਮਾਈਕ੍ਰੋਫੋਨ ਤਕ ਪਹੁੰਚ ਦਿਓ।</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal ਨੂੰ ਕਾਲ ਕਰਨ ਲਈ ਮਾਈਕ੍ਰੋਫੋਨ ਅਤੇ ਕੈਮਰਾ ਇਜਾਜ਼ਤਾਂ ਦੀ ਲੋੜ ਹੈ, ਪਰ ਇਹਨਾਂ ਲਈ ਸਥਾਈ ਤੌਰ ’ਤੇ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ| ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗਾਂ ’ਤੇ ਜਾਰੀ ਰੱਖੋ, \"ਇਜਾਜ਼ਤਾਂ\" ਚੁਣੋ, ਅਤੇ \"ਮਾਈਕ੍ਰੋਫ਼ੋਨ\" ਅਤੇ \"ਕੈਮਰਾ\" ਨੂੰ ਸਮਰੱਥ ਕਰੋ।</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">ਲਿੰਕ ਕੀਤੀ ਡਿਵਾਈਸ ’ਤੇ ਜਵਾਬ ਦਿੱਤਾ।</string>
-  <string name="WebRtcCallActivity__declined_on_a_linked_device">ਲਿੰਕ ਕੀਤੇ ਡਿਵਾਈਸ ’ਤੇ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ।</string>
+  <string name="WebRtcCallActivity__declined_on_a_linked_device">ਲਿੰਕ ਕੀਤੀ ਡਿਵਾਈਸ ’ਤੇ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ।</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">ਲਿੰਕ ਕੀਤੀ ਡਿਵਾਈਸ ’ਤੇ ਵਿਅਸਤ।</string>
   <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">ਕਾਲ ਵਿੱਚ ਕੋਈ ਅਜਿਹਾ ਵਿਅਕਤੀ ਸ਼ਾਮਲ ਹੋਇਆ ਹੈ ਜਿਸਦਾ ਸੁਰੱਖਿਆ ਨੰਬਰ ਬਦਲ ਗਿਆ ਹੈ।</string>
   <!--WebRtcCallScreen-->
@@ -1582,10 +1582,10 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">ਸੰਪਰਕਾਂ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਤਰੁੱਟੀ, ਆਪਣੇ ਨੈੱਟਵਰਕ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ</string>
   <string name="ContactSelectionListFragment_username_not_found">ਉਪਭੋਗਤਾ ਨਾਮ ਨਹੀਂ ਮਿਲਿਆ</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ਕੋਈ Signal ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਵਰਤੋਂਕਾਰ-ਨਾਂ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
-  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ਤੁਹਾਨੂੰ ਆਪਣੇ ਆਪ ਨੂੰ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਨਹੀਂ ਹੈ </string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">ਤੁਹਾਨੂੰ ਆਪਣੇ-ਆਪ ਨੂੰ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਨਹੀਂ ਹੈ </string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">ਗਰੁੱਪ ਦੇ ਵੱਧ ਤੋਂ ਵੱਧ ਅਕਾਰ ਦੀ ਸੀਮਾ ਪੂਰੀ ਹੋਈ।</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal ਗਰੁੱਪਾਂ ਵਿੱਚ ਵੱਧ ਤੋਂ ਵੱਧ %1$d ਮੈਂਬਰ ਹੋ ਸਕਦੇ ਹਨ।</string>
-  <string name="ContactSelectionListFragment_recommended_member_limit_reached">ਸਿਫਾਰਸ਼ ਕੀਤੀ ਮੈਂਬਰ ਸੀਮਾ ਪੂਰੀ ਹੋਈ</string>
+  <string name="ContactSelectionListFragment_recommended_member_limit_reached">ਸਿਫ਼ਾਰਸ਼ ਕੀਤੀ ਮੈਂਬਰ ਸੀਮਾ ਪੂਰੀ ਹੋਈ</string>
   <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal ਗਰੁੱਪ %1$d ਜਾਂ ਇਸਤੋਂ ਘੱਟ ਮੈਂਬਰਾਂ ਨਾਲ ਬਿਹਤਰੀਨ ਕਾਰਗੁਜ਼ਾਰੀ ਕਰਦੇ ਹਨ। ਹੋਰ ਮੈਂਬਰ ਸ਼ਾਮਲ ਕਰਨ ਨਾਲ ਸੁਨੇਹੇ ਭੇਜਣ ਅਤੇ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਦੇਰੀ ਹੋਵੇਗੀ।</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d ਮੈਂਬਰ</item>
@@ -1674,7 +1674,7 @@
   <string name="EnableCallNotificationSettingsDialog__settings">ਸੈਟਿੰਗਾਂ</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">ਕਾਲ ਸੂਚਨਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ, ਸੈਟਿੰਗਾਂ ’ਤੇ ਟੈਪ ਕਰੋ ਅਤੇ \"ਸੂਚਨਾਵਾਂ ਦਿਖਾਓ\" ਨੂੰ ਚਾਲੂ ਕਰੋ।</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">ਕਾਲ ਸੂਚਨਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ, ਸੈਟਿੰਗਾਂ ਨੂੰ ਟੈਪ ਕਰੋ ਅਤੇ ਸੂਚਨਾਵਾਂ ਨੂੰ ਚਾਲੂ ਕਰੋ ਤੇ ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਅਵਾਜ਼ ਅਤੇ ਪੌਪ-ਅੱਪ ਸਮਰੱਥ ਕੀਤੇ ਹੋਣ।</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">ਕਾਲ ਸੂਚਨਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ, ਸੈਟਿੰਗਜ਼ ’ਤੇ ਟੈਪ ਕਰੋ ਅਤੇ \"ਬੈਟਰੀ\" ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਪਿਛੋਕੜ ਗਤੀਵਿਧੀ ਨੂੰ ਸਮਰੱਥ ਕਰੋ।</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">ਕਾਲ ਸੂਚਨਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ, ਸੈਟਿੰਗਾਂ ’ਤੇ ਟੈਪ ਕਰੋ ਅਤੇ \"ਬੈਟਰੀ\" ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਪਿਛੋਕੜ ਗਤੀਵਿਧੀ ਨੂੰ ਸਮਰੱਥ ਕਰੋ।</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">ਦੇਸ਼ਾਂ ਨੂੰ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <string name="country_selection_fragment__search">ਖੋਜ</string>
@@ -1790,7 +1790,7 @@
   <string name="EditProfileNameFragment_first_name">ਨਾਂ ਦਾ ਪਹਿਲਾਂ ਹਿੱਸਾ</string>
   <string name="EditProfileNameFragment_last_name_optional">ਨਾਂ ਦਾ ਆਖਰੀ ਹਿੱਸਾ (ਚੋਣਵਾਂ)</string>
   <string name="EditProfileNameFragment_save">ਸੰਭਾਲੋ</string>
-  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">ਨੈੱਟਵਰਕ ਸਮੱਸਿਆਵਾਂ ਕਰਕੇ ਸੰਭਾਲਣ ਵਿੱਚ ਅਸਫ਼ਲ| ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">ਨੈੱਟਵਰਕ ਸਮੱਸਿਆਵਾਂ ਕਰਕੇ ਸੰਭਾਲਣ ਵਿੱਚ ਅਸਫਲ| ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">ਸ਼ੇਅਰਡ ਮੀਡੀਆ</string>
   <!--recipients_panel-->
@@ -1983,8 +1983,8 @@
   <string name="preferences__chat_color_and_wallpaper">ਚੈਟ ਰੰਗ ਤੇ ਵਾਲਪੇਪਰ</string>
   <string name="preferences__disable_pin">PIN ਅਸਮਰੱਥ ਕਰੋ</string>
   <string name="preferences__enable_pin">PIN ਸਮਰੱਥ ਕਰੋ</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">ਜੇ ਤੁਸੀਂ PIN ਅਸਮਰੱਥ ਕੀਤਾ ਤਾਂ ਤੁਸੀਂ Signal ਨੂੰ ਮੁੜ-ਰਜਿਸਟਰ ਕਰਨ ਵੇਲੇ ਸਾਰਾ ਡੇਟਾ ਗੁਆ ਬੈਠੋਗੇ, ਜਦੋਂ ਤੱਕ ਕਿ ਤੁਸੀਂ ਖੁਦ ਬੈਕਅਪ ਨਹੀਂ ਲੈਂਦੇ ਤੇ ਬਹਾਲ ਕਰਦੇ। PIN ਅਸਮਰੱਥ ਕੀਤੇ ਹੋਣ ਨਾਲ ਤੁਸੀਂ ਰਜਿਸਟਰੇਸ਼ਨ ਲਾੱਕ ਨੂੰ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦੇ ਹੋ।</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN Signal ਨਾਲ ਸੰਭਾਲੀ ਜਾਣਕਾਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦਾ ਹੈ ਤਾਂ ਕਿ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਇਸ ਨੂੰ ਵਰਤ ਸਕੋ। ਤੁਹਾਡਾ ਪਰੋਫਾਇਲ, ਸੈਟਿੰਗਾਂ ਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਤੁਹਾਡੇ ਵਲੋਂ ਮੁੜ-ਸਥਾਪਤ ਕਰਨ ਉੱਤੇ ਬਹਾਲ ਕੀਤਾ ਜਾਵੇਗਾ। ਐਪ ਖੋਲ੍ਹਣ ਲਈ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ PIN ਦੀ ਲੋੜ ਨਹੀਂ ਹੋਵੇਗੀ।</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">ਜੇ ਤੁਸੀਂ PIN ਅਸਮਰੱਥ ਕੀਤਾ ਤਾਂ ਤੁਸੀਂ Signal ਨੂੰ ਮੁੜ-ਰਜਿਸਟਰ ਕਰਨ ਵੇਲੇ ਸਾਰਾ ਡੇਟਾ ਗੁਆ ਬੈਠੋਗੇ, ਜਦੋਂ ਤੱਕ ਕਿ ਤੁਸੀਂ ਖੁਦ ਬੈਕਅੱਪ ਨਹੀਂ ਲੈਂਦੇ ਤੇ ਬਹਾਲ ਕਰਦੇ। PIN ਅਸਮਰੱਥ ਕੀਤੇ ਹੋਣ ਨਾਲ ਤੁਸੀਂ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਲੌਕ ਨੂੰ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦੇ ਹੋ।</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN Signal ਨਾਲ ਸੰਭਾਲੀ ਜਾਣਕਾਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦਾ ਹੈ ਤਾਂ ਕਿ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਇਸ ਨੂੰ ਵਰਤ ਸਕੋ। ਤੁਹਾਡਾ ਪ੍ਰੋਫਾਈਲ, ਸੈਟਿੰਗਾਂ ਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਤੁਹਾਡੇ ਵਲੋਂ ਮੁੜ-ਸਥਾਪਤ ਕਰਨ ਉੱਤੇ ਬਹਾਲ ਕੀਤਾ ਜਾਵੇਗਾ। ਐਪ ਖੋਲ੍ਹਣ ਲਈ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ PIN ਦੀ ਲੋੜ ਨਹੀਂ ਹੋਵੇਗੀ।</string>
   <string name="preferences__system_default">ਸਿਸਟਮ ਡਿਫਾਲਟ</string>
   <string name="preferences__language">ਭਾਸ਼ਾ</string>
   <string name="preferences__signal_messages_and_calls">Signal ਸੁਨੇਹੇ ਅਤੇ ਕਾਲਾਂ</string>
@@ -1999,8 +1999,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ਜੇਕਰ ਰਸੀਦਾਂ ਦੀਆਂ ਰਸੀਦਾਂ ਅਯੋਗ ਹਨ, ਤਾਂ ਤੁਸੀਂ ਹੋਰਨਾਂ ਤੋਂ ਪੜ੍ਹੀਆਂ ਰਸੀਦਾਂ ਵੇਖ ਨਹੀਂ ਸਕੋਗੇ</string>
   <string name="preferences__typing_indicators">ਲਿਖਣ ਦੇ ਸੰਕੇਤ</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ਜੇਕਰ ਟਾਈਪਿੰਗ ਸੂਚਕ ਅਸਮਰਥਿਤ ਹੈ, ਤਾਂ ਤੁਸੀਂ ਦੂਜਿਆਂ ਤੋਂ ਟਾਈਪਿੰਗ ਸੰਕੇਤ ਦੇਖਣ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਵੋਗੇ</string>
-  <string name="preferences__request_keyboard_to_disable">ਵਿਅਕਤੀਗਤ ਸਿੱਖਣ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਉਣ ਲਈ ਕੀਬੋਰਡ ਨੂੰ ਬੇਨਤੀ ਕਰੋ।</string>
-  <string name="preferences__this_setting_is_not_a_guarantee">ਇਹ ਸੈਟਿੰਗ ਕੋਈ ਗਾਰੰਟੀ ਨਹੀਂ, ਅਤੇ ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਹਾਡਾ ਕੀਬੋਰਡ ਇਸਨੂੰ ਨਜ਼ਰਅੰਦਾਜ਼ ਕਰ ਦੇਵੇ।</string>
+  <string name="preferences__request_keyboard_to_disable">ਵਿਅਕਤੀਗਤ ਸਿਖਲਾਈ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਉਣ ਲਈ ਕੀਬੋਰਡ ਨੂੰ ਬੇਨਤੀ ਕਰੋ।</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">ਇਹ ਸੈਟਿੰਗ ਕੋਈ ਗਾਰੰਟੀ ਨਹੀਂ ਅਤੇ ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਹਾਡਾ ਕੀਬੋਰਡ ਇਸਨੂੰ ਨਜ਼ਰਅੰਦਾਜ਼ ਕਰ ਦੇਵੇ।</string>
   <string name="preferences_app_protection__blocked_users">ਪਾਬੰਦੀ ਲਾਏ ਵਰਤੋਂਕਾਰ</string>
   <string name="preferences_chats__when_using_mobile_data">ਮੋਬਾਈਲ ਡਾਟਾ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਸਮੇਂ</string>
   <string name="preferences_chats__when_using_wifi">ਵਾਈ-ਫਾਈ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਸਮੇਂ</string>
@@ -2065,18 +2065,18 @@
   <string name="preferences_use_proxy">ਪਰਾਕਸੀ ਨੂੰ ਵਰਤੋਂ</string>
   <string name="preferences_off">ਬੰਦ </string>
   <string name="preferences_on">ਚਾਲੂ</string>
-  <string name="preferences_proxy_address">ਪ੍ਰੌਕਸੀ ਐਡਰੈਸ</string>
-  <string name="preferences_only_use_a_proxy_if">ਪ੍ਰੌਕਸੀ ਦੀ ਵਰਤੋਂ ਸਿਰਫ ਤਾਂ ਹੀ ਕਰੋ ਜੇ ਤੁਸੀਂ ਮੋਬਾਈਲ ਡੇਟਾ ਜਾਂ ਵਾਈ-ਫਾਈ \'ਤੇ Signal ਸਿਗਨਲ ਨਾਲ ਕਨੈਕਟ ਹੋਣ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋ।</string>
+  <string name="preferences_proxy_address">ਪ੍ਰੌਕਸੀ ਐਡਰੈੱਸ</string>
+  <string name="preferences_only_use_a_proxy_if">ਪ੍ਰੌਕਸੀ ਦੀ ਵਰਤੋਂ ਸਿਰਫ਼ ਤਾਂ ਹੀ ਕਰੋ ਜੇ ਤੁਸੀਂ ਮੋਬਾਈਲ ਡੇਟਾ ਜਾਂ ਵਾਈ-ਫਾਈ \'ਤੇ Signal ਸਿਗਨਲ ਨਾਲ ਕਨੈਕਟ ਹੋਣ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋ।</string>
   <string name="preferences_share">ਸਾਂਝਾ ਕਰੋ</string>
   <string name="preferences_save">ਸੰਭਾਲੋ</string>
   <string name="preferences_connecting_to_proxy">ਪ੍ਰੌਕਸੀ ਨਾਲ ਕਨੈਕਟ ਕਰ ਰਿਹਾ ਹੈ…</string>
   <string name="preferences_connected_to_proxy">ਪ੍ਰੌਕਸੀ ਨਾਲ ਕਨੈਕਟ ਕਰ ਰਿਹਾ ਹੈ</string>
-  <string name="preferences_connection_failed">ਕਨੈਕਸ਼ਨ ਅਸਫਲ</string>
-  <string name="preferences_couldnt_connect_to_the_proxy">ਪ੍ਰੌਕਸੀ ਨਾਲ ਕਨੈਕਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ। ਪ੍ਰੌਕਸੀ ਐਡਰੈਸ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+  <string name="preferences_connection_failed">ਕਨੈਕਸ਼ਨ ਟੁੱਟ ਗਿਆ</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">ਪ੍ਰੌਕਸੀ ਨਾਲ ਕਨੈਕਟ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ। ਪ੍ਰੌਕਸੀ ਐਡਰੈੱਸ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="preferences_you_are_connected_to_the_proxy">ਤੁਸੀਂ ਪ੍ਰੌਕਸੀ ਨਾਲ ਕਨੈਕਟ ਹੋਏ ਹੋ। ਤੁਸੀਂ ਸੈਟਿੰਗਾਂ ਤੋਂ ਕਿਸੇ ਵੀ ਸਮੇਂ ਪ੍ਰੌਕਸੀ ਨੂੰ ਬੰਦ ਕਰ ਸਕਦੇ ਹੋ।</string>
   <string name="preferences_success">ਸਫ਼ਲ</string>
   <string name="preferences_failed_to_connect">ਕਨੈਕਟ ਕਰਨ ਲਈ ਅਸਫ਼ਲ</string>
-  <string name="preferences_enter_proxy_address">ਪ੍ਰੌਕਸੀ ਐਡਰੈਸ ਦਰਜ ਕਰੋ</string>
+  <string name="preferences_enter_proxy_address">ਪ੍ਰੌਕਸੀ ਐਡਰੈੱਸ ਦਰਜ ਕਰੋ</string>
   <string name="configurable_single_select__customize_option">ਕਸਟਮਾਈਜ਼ ਚੋਣ</string>
   <!--Internal only preferences-->
   <!--Payments-->
@@ -2085,7 +2085,7 @@
   <string name="PaymentsAllActivityFragment__sent">ਭੇਜਿਆ</string>
   <string name="PaymentsAllActivityFragment__received">ਪ੍ਰਾਪਤ ਕੀਤਾ</string>
   <string name="PaymentsHomeFragment__introducing_payments">ਭੁਗਤਾਨ (ਬੀਟਾ) ਨਾਲ ਜਾਣ-ਪਛਾਣ</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">ਇੱਕ ਨਵੀਂ ਨਿੱਜਤਾ ਕੇਂਦਰਿਤ ਡਿਜੀਟਲ ਮੁਦਰਾ, MobileCoin ਭੇਜਣ ਅਤੇ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ Signal ਦੀ ਵਰਤੋਂ ਕਰੋ। ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਕਿਰਿਆਸ਼ੀਲ ਬਣਾਓ।</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">ਇੱਕ ਨਵੀਂ ਨਿੱਜਤਾ ਕੇਂਦਰਿਤ ਡਿਜਿਟਲ ਮੁਦਰਾ, MobileCoin ਭੇਜਣ ਅਤੇ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ Signal ਦੀ ਵਰਤੋਂ ਕਰੋ। ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਕਿਰਿਆਸ਼ੀਲ ਬਣਾਓ।</string>
   <string name="PaymentsHomeFragment__activate_payments">ਭੁਗਤਾਨ ਨੂੰ ਸਰਗਰਮ ਕਰੋ</string>
   <string name="PaymentsHomeFragment__activating_payments">ਭੁਗਤਾਨ ਨੂੰ ਸਰਗਰਮ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">ਭੁਗਤਾਨ ਖਾਤਾ ਬਹਾਲ ਕਰੋ</string>
@@ -2115,14 +2115,14 @@
   <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">ਜੇ ਤੁਸੀਂ ਭੁਗਤਾਨਾਂ ਨੂੰ ਅਕਿਰਿਆਸ਼ੀਲ ਕਰਦੇ ਹੋ ਤਾਂ ਤੁਸੀਂ Signal ਵਿੱਚ Mobilecoin ਭੇਜ ਜਾਂ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰ ਸਕੋਗੇ।</string>
   <string name="PaymentsHomeFragment__deactivate">ਅਕਿਰਿਆਸ਼ੀਲ ਕਰੋ</string>
   <string name="PaymentsHomeFragment__continue">ਜਾਰੀ ਰੱਖੋ</string>
-  <string name="PaymentsHomeFragment__balance_is_not_currently_available">ਫ਼ਿਲਹਾਲ ਬਕਾਇਆ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">ਫਿਲਹਾਲ ਬਕਾਇਆ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।</string>
   <string name="PaymentsHomeFragment__payments_deactivated">ਭੁਗਤਾਨ ਗੈਰ-ਸਰਗਰਮ ਕੀਤਾ</string>
   <string name="PaymentsHomeFragment__payment_failed">ਭੁਗਤਾਨ ਅਸਫ਼ਲ ਹੈ</string>
   <string name="PaymentsHomeFragment__details">ਵੇਰਵਾ</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">ਤੁਸੀਂ MobileCoin ਭੇਜਣ ਅਤੇ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ Signal ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ। ਸਾਰੇ ਭੁਗਤਾਨ MobileCoins ਅਤੇ MobileCoin ਵਾਲੇਟ ਲਈ ਵਰਤੋਂ ਦੇ ਨਿਯਮਾਂ ਦੇ ਅਧੀਨ ਹਨ। ਇਹ ਇੱਕ ਬੀਟਾ ਵਿਸ਼ੇਸ਼ਤਾ ਹੈ ਇਸ ਲਈ ਤੁਹਾਨੂੰ ਕੁਝ ਮਸਲਿਆਂ ਦਾ ਸਾਹਮਣਾ ਕਰਨਾ ਪੈ ਸਕਦਾ ਹੈ ਅਤੇ ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਹਾਡੇ ਦੁਆਰਾ ਗੁਆਏ ਜਾਣ ਵਾਂਲੇ ਭੁਗਤਾਨ ਜਾਂ ਬਕਾਏ ਮੁੜ ਪ੍ਰਾਪਤ ਨਾ ਕੀਤੇ ਜਾ ਸਕਣ।</string>
   <string name="PaymentsHomeFragment__activate">ਸਰਗਰਮ ਕਰੋ</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin ਨਿਯਮ ਦੇਖੋ</string>
-  <string name="PaymentsHomeFragment__payments_not_available">Signal ਵਿੱਚ ਭੁਗਤਾਨ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਰਹੇ। ਤੁਸੀਂ ਅਜੇ ਵੀ ਕਿਸੇ ਐਕਸਚੇਂਜ ਵਿੱਚ ਫੰਡ ਟ੍ਰਾਂਸਫ਼ਰ ਕਰ ਸਕਦੇ ਹੋ ਪਰ ਤੁਸੀਂ ਹੁਣ ਭੁਗਤਾਨ ਭੇਜ ਅਤੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰ ਸਕਦੇ ਜਾਂ ਫੰਡ ਸ਼ਾਮਲ ਨਹੀਂ ਕਰ ਸਕਦੇ।</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Signal ਵਿੱਚ ਭੁਗਤਾਨ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਰਹੇ। ਤੁਸੀਂ ਹਾਲੇ ਵੀ ਕਿਸੇ ਐਕਸਚੇਂਜ ਵਿੱਚ ਫੰਡ ਟ੍ਰਾਂਸਫ਼ਰ ਕਰ ਸਕਦੇ ਹੋ ਪਰ ਤੁਸੀਂ ਹੁਣ ਭੁਗਤਾਨ ਭੇਜ ਅਤੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰ ਸਕਦੇ ਜਾਂ ਫੰਡ ਸ਼ਾਮਲ ਨਹੀਂ ਕਰ ਸਕਦੇ।</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">ਫੰਡ ਜੋੜੋ</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">ਤੁਹਾਡੇ ਵਾਲਟ ਦਾ ਸਿਰਨਾਵਾਂ</string>
@@ -2146,7 +2146,7 @@
   <string name="PaymentsDetailsFragment__information">ਭੁਗਤਾਨ ਦੀ ਰਕਮ ਅਤੇ ਟ੍ਰਾਂਜੈਕਸ਼ਨ ਦੇ ਸਮੇਂ ਸਮੇਤ ਟ੍ਰਾਂਜੈਕਸ਼ਨ ਵੇਰਵੇ MobileCoin  ਲੈਜ਼ਰ ਦਾ ਹਿੱਸਾ ਹਨ।</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">ਕੌਇਨ ਕਲੀਨਅੱਪ ਫ਼ੀਸ</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">ਜਦੋਂ ਕਿਸੇ ਟ੍ਰਾਂਜ਼ੈਕਸ਼ਨ ਨੂੰ ਪੂਰਾ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਅਧਿਕਾਰ ਵਿਚਲੇ ਸਿੱਕਿਆਂ ਨੂੰ ਰਲਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਤਾਂ ਇੱਕ \"ਸਿੱਕਾ ਕਲੀਨਅੱਪ ਫ਼ੀਸ\" ਲਗਾਈ ਜਾਂਦੀ ਹੈ। ਕਲੀਨਅੱਪ ਨਾਲ ਤੁਸੀਂ ਭੁਗਤਾਨ ਭੇਜਣਾ ਜਾਰੀ ਰੱਖ ਸਕੋਗੇ।</string>
-  <string name="PaymentsDetailsFragment__no_details_available">ਇਸ ਲੈਣ -ਦੇਣ ਲਈ ਹੋਰ ਕੋਈ ਵੇਰਵੇ ਉਪਲਬਧ ਨਹੀਂ</string>
+  <string name="PaymentsDetailsFragment__no_details_available">ਇਸ ਲੈਣ-ਦੇਣ ਲਈ ਹੋਰ ਕੋਈ ਵੇਰਵੇ ਉਪਲਬਧ ਨਹੀਂ</string>
   <string name="PaymentsDetailsFragment__sent_payment">ਭੁਗਤਾਨ ਭੇਜਿਆ</string>
   <string name="PaymentsDetailsFragment__received_payment">ਭੁਗਤਾਨ ਮਿਲਿਆ</string>
   <string name="PaymentsDeatilsFragment__payment_completed_s">ਭੁਗਤਾਨ ਪੂਰਾ %1$s</string>
@@ -2204,7 +2204,7 @@
   <string name="ConfirmPayment__payment_will_continue_processing">ਭੁਗਤਾਨ ਤੇ ਕਾਰਵਾਈ ਜਾਰੀ ਰਹੇਗੀ</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">ਗੈਰ-ਵਾਜਬ ਰਸੀਦ</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">ਇਸ ਵਿਅਕਤੀ ਕੋਲ ਕੋਈ ਸਰਗਰਮ ਭੁਗਤਾਨ ਨਹੀਂ ਹਨ।</string>
-  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">ਨੈੱਟਵਰਕ ਫ਼ੀਸ ਦੀ ਬੇਨਤੀ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ। ਇਸ ਭੁਗਤਾਨ ਨੂੰ ਜਾਰੀ ਰੱਖਣ ਲਈ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਠੀਕ ਹੈ \'ਤੇ ਟੈਪ ਕਰੋ।</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">ਨੈੱਟਵਰਕ ਫ਼ੀਸ ਦੀ ਬੇਨਤੀ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ। ਇਸ ਭੁਗਤਾਨ ਨੂੰ ਜਾਰੀ ਰੱਖਣ ਲਈ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰਨ ਲਈ ਠੀਕ ਹੈ \'ਤੇ ਟੈਪ ਕਰੋ।</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%2$s ਉੱਤੇ %1$s</string>
   <!--SetCurrencyFragment-->
@@ -2240,7 +2240,7 @@
   <string name="conversation_insecure__invite">ਸੱਦਾ</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">ਚੁਣੇ ਹੋਏ ਮਿਟਾਓ</string>
-  <string name="conversation_list_batch__menu_pin_selected">ਚੁਣੇ ਨੂੰ ਲਾਹੋ</string>
+  <string name="conversation_list_batch__menu_pin_selected">Pin ਚੁਣਿਆ ਗਿਆ</string>
   <string name="conversation_list_batch__menu_unpin_selected">ਚੁਣੇ ਨੂੰ ਲਾਹੋ</string>
   <string name="conversation_list_batch__menu_select_all">ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">ਚੁਣੇ ਹੋਏ ਆਰਕਾਈਵ ਕਰੋ </string>
@@ -2312,7 +2312,7 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">ਇਨਸਾਈਟਸ</string>
   <string name="InsightsDashboardFragment__title">ਇਨਸਾਈਟਸ</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal ਪ੍ਰੋਟੋਕੋਲ ਨੇ ਬੀਤੇ %2$d ਦਿਨਾਂ ਵਿੱਚ ਤੁਹਾਡੇ ਭੇਜੇ ਗਏ ਸੁਨੇਹਿਆਂ ਦੇ %1$d%%ਨੂੰ ਆਪਣੇ ਆਪ ਸੁਰੱਖਿਅਤ ਕੀਤਾ। Signal ਵਰਤੋਂਕਾਰਾਂ ਵਿਚਕਾਰ ਗੱਲਬਾਤ ਹਮੇਸ਼ਾਂ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟ ਕੀਤੀ ਜਾਂਦੀ ਹੈ।</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal ਪ੍ਰੋਟੋਕੋਲ ਨੇ ਬੀਤੇ %2$d ਦਿਨਾਂ ਵਿੱਚ ਤੁਹਾਡੇ ਭੇਜੇ ਗਏ ਸੁਨੇਹਿਆਂ ਦੇ %1$d%%ਨੂੰ ਆਪਣੇ-ਆਪ ਸੁਰੱਖਿਅਤ ਕੀਤਾ। Signal ਵਰਤੋਂਕਾਰਾਂ ਵਿਚਕਾਰ ਗੱਲਬਾਤ ਹਮੇਸ਼ਾਂ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟ ਕੀਤੀ ਜਾਂਦੀ ਹੈ।</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Signal ਬੂਸਟ</string>
   <string name="InsightsDashboardFragment__not_enough_data">ਲੋੜੀਂਦਾ ਡੇਟਾ ਨਹੀਂ</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ਤੁਹਾਡੀ ਅੰਤਰਦ੍ਰਿਸ਼ਟੀ ਦੇ ਪ੍ਰਤੀਸ਼ਤ ਦਾ ਹਿਸਾਬ ਬੀਤੇ %1$d ਦਿਨਾਂ ਦੇ ਅੰਦਰ ਭੇਜੇ ਜਾਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਦੇ ਅਧਾਰ ’ਤੇ ਲਾਇਆ ਜਾਂਦਾ ਹੈ ਜੋ ਅਲੋਪ ਨਹੀਂ ਹੋਏ ਜਾਂ ਮਿਟਾਏ ਨਹੀਂ ਗਏ ਹਨ।</string>
@@ -2348,7 +2348,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">ਨਵਾਂ PIN ਬਣਾਓ</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">ਜਿੰਨਾਂ ਚਿਰ ਇਹ ਡਿਵਾਈਸ ਰਜਿਸਟਰ ਹੈ, ਤੁਸੀਂ PIN ਬਦਲ ਸਕਦੇ ਹੋ.</string>
   <string name="CreateKbsPinFragment__create_your_pin">ਆਪਣਾ PIN ਬਣਾਓ</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN Signal ਨਾਲ ਸੰਭਾਲੀ ਜਾਣਕਾਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦਾ ਹੈ ਤਾਂ ਕਿ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਇਸ ਨੂੰ ਵਰਤ ਸਕੋ। ਤੁਹਾਡਾ ਪਰੋਫਾਇਲ, ਸੈਟਿੰਗਾਂ ਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਤੁਹਾਡੇ ਵਲੋਂ ਮੁੜ-ਸਥਾਪਤ ਕਰਨ ਉੱਤੇ ਬਹਾਲ ਕੀਤਾ ਜਾਵੇਗਾ। ਐਪ ਖੋਲ੍ਹਣ ਲਈ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ PIN ਦੀ ਲੋੜ ਨਹੀਂ ਹੋਵੇਗੀ।</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN Signal ਨਾਲ ਸੰਭਾਲੀ ਜਾਣਕਾਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦਾ ਹੈ ਤਾਂ ਕਿ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਇਸ ਨੂੰ ਵਰਤ ਸਕੋ। ਤੁਹਾਡਾ ਪ੍ਰੋਫਾਈਲ, ਸੈਟਿੰਗਾਂ ਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਤੁਹਾਡੇ ਵਲੋਂ ਮੁੜ-ਸਥਾਪਤ ਕਰਨ ਉੱਤੇ ਬਹਾਲ ਕੀਤਾ ਜਾਵੇਗਾ। ਐਪ ਖੋਲ੍ਹਣ ਲਈ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ PIN ਦੀ ਲੋੜ ਨਹੀਂ ਹੋਵੇਗੀ।</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">ਮਜ਼ਬੂਤ PIN ਬਣਾਓ</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
@@ -2356,11 +2356,11 @@
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN ਬਣਾਉਣਾ ਅਸਫ਼ਲ</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">ਤੁਹਾਡਾ PIN ਸੰਭਾਲਿਆ ਨਹੀਂ ਗਿਆ ਸੀ। ਅਸੀਂ ਤੁਹਾਨੂੰ ਬਾਅਦ ਵਿੱਚ PIN ਬਣਾਉਣ ਲਈ ਪੁੱਛਾਂਗੇ।</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN ਬਣਾਇਆ।</string>
-  <string name="ConfirmKbsPinFragment__re_enter_your_pin">ਆਪਣਾ PIN ਮੁੜ ਦਰਜ ਕਰੋ</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">ਆਪਣਾ PIN ਮੁੜ-ਦਰਜ ਕਰੋ</string>
   <string name="ConfirmKbsPinFragment__creating_pin">PIN ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">ਪੇਸ਼ ਕਰਦੇ ਹਾਂ PINs</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN Signal ਨਾਲ ਸੰਭਾਲੀ ਜਾਣਕਾਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦਾ ਹੈ ਤਾਂ ਕਿ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਇਸ ਨੂੰ ਵਰਤ ਸਕੋ। ਤੁਹਾਡਾ ਪਰੋਫਾਇਲ, ਸੈਟਿੰਗਾਂ ਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਤੁਹਾਡੇ ਵਲੋਂ ਮੁੜ-ਸਥਾਪਤ ਕਰਨ ਉੱਤੇ ਬਹਾਲ ਕੀਤਾ ਜਾਵੇਗਾ। ਐਪ ਖੋਲ੍ਹਣ ਲਈ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ PIN ਦੀ ਲੋੜ ਨਹੀਂ ਹੋਵੇਗੀ।</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN Signal ਨਾਲ ਸੰਭਾਲੀ ਜਾਣਕਾਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦਾ ਹੈ ਤਾਂ ਕਿ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਇਸ ਨੂੰ ਵਰਤ ਸਕੋ। ਤੁਹਾਡਾ ਪ੍ਰੋਫਾਈਲ, ਸੈਟਿੰਗਾਂ ਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਤੁਹਾਡੇ ਵਲੋਂ ਮੁੜ-ਸਥਾਪਤ ਕਰਨ ਉੱਤੇ ਬਹਾਲ ਕੀਤਾ ਜਾਵੇਗਾ। ਐਪ ਖੋਲ੍ਹਣ ਲਈ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ PIN ਦੀ ਲੋੜ ਨਹੀਂ ਹੋਵੇਗੀ।</string>
   <string name="KbsSplashFragment__learn_more">ਵਧੇਰੇ ਜਾਣੋ</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">ਰਜਿਸਟਰੇਸ਼ਨ ਲੌਕ = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">ਤੁਹਾਡੇ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਲੌਕ ਨੂੰ ਹੁਣ PIN ਕਿਹਾ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਇਹ ਵਧੇਰੇ ਕੰਮ ਕਰਦਾ ਹੈ। ਹੁਣੇ ਅੱਪਡੇਟ ਕਰੋ।</string>
@@ -2377,7 +2377,7 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">ਗਲਤ PIN। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">ਖਾਤਾ ਲਾਕ ਹੋਇਆ</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">ਤੁਹਾਡੀ ਪਰਦੇਦਾਰੀ ਅਤੇ ਸੁਰੱਖਿਆ ਲਈ ਤੁਹਾਡੇ ਖਾਤੇ ਨੂੰ ਲਾਕ ਕੀਤਾ ਗਿਆ ਹੈ। ਤੁਹਾਡੇ ਖਾਤੇ ਵਿੱਚ %1$dਦਿਨਾਂ ਦੀ ਬਿਨਾਂ ਸਰਗਰਮੀ ਦੇ ਤੁਸੀਂ ਇਸ ਫ਼ੋਨ ਨੰਬਰ ਨੂੰ ਬਿਨਾਂ ਆਪਣਾ PIN ਦਿੱਤੇ ਮੁੜ-ਰਜਿਸਟਰ ਕਰ ਸਕਦੇ ਹੋ। ਸਾਰੀ ਸਮੱਗਰੀ ਹਟਾ ਦਿੱਤੀ ਜਾਵੇਗੀ।</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">ਤੁਹਾਡੀ ਪਰਦੇਦਾਰੀ ਅਤੇ ਸੁਰੱਖਿਆ ਲਈ ਤੁਹਾਡੇ ਖਾਤੇ ਨੂੰ ਲੌਕ ਕੀਤਾ ਗਿਆ ਹੈ। ਤੁਹਾਡੇ ਖਾਤੇ ਵਿੱਚ %1$dਦਿਨਾਂ ਦੀ ਬਿਨਾਂ ਸਰਗਰਮੀ ਦੇ ਤੁਸੀਂ ਇਸ ਫ਼ੋਨ ਨੰਬਰ ਨੂੰ ਬਿਨਾਂ ਆਪਣਾ PIN ਦਿੱਤੇ ਮੁੜ-ਰਜਿਸਟਰ ਕਰ ਸਕਦੇ ਹੋ। ਸਾਰੀ ਸਮੱਗਰੀ ਹਟਾ ਦਿੱਤੀ ਜਾਵੇਗੀ।</string>
   <string name="AccountLockedFragment__next">ਅੱਗੇ</string>
   <string name="AccountLockedFragment__learn_more">ਵਧੇਰੇ ਜਾਣੋ</string>
   <!--KbsLockFragment-->
@@ -2416,7 +2416,7 @@
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s ਨੂੰ ਤੁਹਾਡੇ ਤੋਂ ਬੇਨਤੀ ਵਾਲਾ ਸੁਨੇਹਾ ਮਿਲੇਗਾ। ਜਦੋਂ ਤੁਹਾਡਾ ਬੇਨਤੀ ਵਾਲਾ ਸੁਨੇਹਾ ਮਨਜ਼ੂਰ ਕਰ ਲਿਆ ਜਾਵੇਗਾ ਤਾਂ ਤੁਸੀਂ ਕਾਲ ਕਰ ਸਕਦੇ ਹੋ।</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">PIN ਬਣਾਓ</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN Signal ਨਾਲ ਸੰਭਾਲੀ ਸਮੱਗਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦਾ ਹੈ।</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN Signal ਨਾਲ ਸਟੋਰ ਕੀਤੀ ਸਮੱਗਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦਾ ਹੈ।</string>
   <string name="KbsMegaphone__create_pin">PIN ਬਣਾਓ</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Signal ਨੂੰ ਦੱਸੋ ਕਿ ਤੁਸੀਂ ਕੀ ਸੋਚਦੇ ਹੋ</string>
@@ -2476,7 +2476,7 @@
   <string name="BackupDialog_enter_backup_passphrase_to_verify">ਤਸਦੀਕ ਕਰਨ ਲਈ ਆਪਣਾ ਬੈਕਅੱਪ ਪਾਸਫ਼੍ਰੇਜ਼ ਦਿਓ</string>
   <string name="BackupDialog_verify">ਤਸਦੀਕ ਕਰੋ</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">ਤੁਸੀਂ ਆਪਣਾ ਬੈਕਅੱਪ ਪਾਸਫ਼੍ਰੇਜ਼ ਕਾਮਯਾਬੀ ਨਾਲ ਭਰਿਆ ਹੈ</string>
-  <string name="BackupDialog_passphrase_was_not_correct">ਪਾਸਫ਼੍ਰੇਜ਼ ਸਹੀ ਨਹੀ ਹੈ</string>
+  <string name="BackupDialog_passphrase_was_not_correct">ਪਾਸਫ਼੍ਰੇਜ਼ ਸਹੀ ਨਹੀਂ ਹੈ</string>
   <string name="LocalBackupJob_creating_backup">ਬੈਕਅਪ ਬਣਾ ਰਿਹਾ ਹੈ …</string>
   <string name="LocalBackupJobApi29_backup_failed">ਬੈਕਅੱਪ ਅਸਫ਼ਲ ਹੈ</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ਤੁਹਾਡੀ ਬੈਕਅੱਪ ਡਾਇਰੈਕਟਰੀ ਜਾਂ ਤਾਂ ਹਟਾਈ ਗਈ ਜਾਂ ਹਿਲਾਈ ਗਈ ਹੈ।</string>
@@ -2530,15 +2530,15 @@
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">ਖਾਤਾ ਟਰਾਂਸਫਰ ਕਰੋ ਜਾਂ ਬਹਾਲ ਕਰੋ</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">ਜੇ ਤੁਸੀਂ ਪਹਿਲਾਂ Signal ਖਾਤਾ ਰਜਿਸਟਰ ਕੀਤਾ ਹੈ, ਤਾਂ ਤੁਸੀਂ ਆਪਣੇ ਖਾਤੇ ਅਤੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਟ੍ਰਾਂਸਫ਼ਰ ਜਾਂ ਬਹਾਲ ਕਰ ਸਕਦੇ ਹੋ </string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Android ਡਿਵਾਈਸ ਤੋਂ ਟਰਾਂਸਫਰ ਕਰੋ</string>
-  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">ਆਪਣੀ ਪੁਰਾਣੀ Android ਡਿਵਾਈਸ ਤੋਂ ਆਪਣੇ ਖਾਤੇ ਅਤੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਟ੍ਰਾਂਸਫ਼ਰ ਕਰੋ। ਤੁਹਾਨੂੰ ਆਪਣੀ ਪੁਰਾਣੀ ਡਿਵਾਈਸ ਤੱਕ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ।</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">ਆਪਣੀ ਪੁਰਾਣੀ Android ਡਿਵਾਈਸ ਤੋਂ ਆਪਣੇ ਖਾਤੇ ਅਤੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਟ੍ਰਾਂਸਫਰ ਕਰੋ। ਤੁਹਾਨੂੰ ਆਪਣੀ ਪੁਰਾਣੀ ਡਿਵਾਈਸ ਤੱਕ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ।</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">ਤੁਹਾਨੂੰ ਆਪਣੀ ਪੁਰਾਣੀ ਡਿਵਾਈਸ ਤੱਕ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ।</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">ਬੈਕਅੱਪ ਤੋਂ ਬਹਾਲ ਕਰੋ</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">ਸਥਾਨਕ ਬੈਕਅੱਪ ਤੋਂ ਆਪਣੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਰੋ | ਜੇਕਰ ਤੁਸੀਂ ਹੁਣ ਮੁੜ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰਦੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਮੁੜ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰ ਸਕੋਗੇ।</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">ਸਥਾਨਕ ਬੈਕਅੱਪ ਤੋਂ ਆਪਣੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਬਹਾਲ ਕਰੋ | ਜੇਕਰ ਤੁਸੀਂ ਹੁਣੇ ਬਹਾਲ ਨਹੀਂ ਕਰਦੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਬਹਾਲ ਨਹੀਂ ਕਰ ਸਕੋਗੇ।</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">ਆਪਣੇ ਪੁਰਾਣੇ Android ਫ਼ੋਨ ਉੱਤੇ Signal ਖੋਲ੍ਹੋ</string>
   <string name="NewDeviceTransferInstructions__continue">ਜਾਰੀ ਰੱਖੋ</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
-  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹਣ ਲਈ ਉੱਪਰ ਖੱਬੇ ਪਾਸੇ ਆਪਣੀ ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ ਤੇ ਟੈਪ ਕਰੋ </string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹਣ ਲਈ ਉੱਪਰ ਖੱਬੇ ਪਾਸੇ ਆਪਣੀ ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ \'ਤੇ ਟੈਪ ਕਰੋ </string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
   <string name="NewDeviceTransferInstructions__tap_on_account">\"ਖਾਤਾ\" ਨੂੰ ਛੂਹੋ</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
@@ -2549,20 +2549,20 @@
   <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">ਪੁਰਾਣੀ Android ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਦੀ ਉਡੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">ਤੁਹਾਡੀ ਪੁਰਾਣੀ Android ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਕਨੈਕਟ ਕਰਨ ਲਈ Signal ਨੂੰ ਟਿਕਾਣੇ ਦੀ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ। </string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">ਤੁਹਾਡੀ ਪੁਰਾਣੀ Android ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਕਨੈਕਟ ਕਰਨ ਲਈ Signal ਨੂੰ ਟਿਕਾਣਾ ਸੇਵਾਵਾਂ ਸਮਰੱਥ ਕੀਤੇ ਹੋਣ ਦੀ ਲੋੜ ਹੈ। </string>
-  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">ਤੁਹਾਡੀ ਪੁਰਾਣੀ Android ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਕਨੈਕਟ ਕਰਨ ਲਈ Signal ਨੂੰ Wi-Fi ਚਾਲੂ ਕੀਤੇ ਹੋਣ ਦੀ ਲੋੜ ਹੈ। Wi-Fi ਦਾ ਚਾਲੂ ਹੋਣਾ ਜ਼ਰੂਰੀ ਹੈ ਪਰ ਇਸਦਾ ਕਿਸੇ Wi-Fi ਵਾਈ-ਫਾਈ ਨੈੱਟਵਰਕ ਨਾਲ ਕਨੈਕਟ ਹੋਣਾ ਜ਼ਰੂਰੀ ਨਹੀਂ।</string>
-  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ਅਫ਼ਸੋਸ, ਜਾਪਦਾ ਹੈ ਕਿ ਇਹ ਡਿਵਾਈਸ Wi-Fi ਡਾਇਰੈਕਟ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦੀ। Signal ਸਿਗਨਲ ਤੁਹਾਡੀ ਪੁਰਾਣੀ Android ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਕਨੈਕਟ ਕਰਨ ਲਈ Wi-Fi ਡਾਇਰੈਕਟ ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ। ਤੁਸੀਂ ਅਜੇ ਵੀ ਆਪਣੀ ਪੁਰਾਣੀ Android ਡਿਵਾਈਸ ਤੋਂ ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਬੈਕਅੱਪ ਨੂੰ ਬਹਾਲ ਕਰ ਸਕਦੇ ਹੋ।</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">ਤੁਹਾਡੀ ਪੁਰਾਣੀ Android ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਕਨੈਕਟ ਕਰਨ ਲਈ Signal ਨੂੰ Wi-Fi ਚਾਲੂ ਕੀਤੇ ਹੋਣ ਦੀ ਲੋੜ ਹੈ। Wi-Fi ਦਾ ਚਾਲੂ ਹੋਣਾ ਜ਼ਰੂਰੀ ਹੈ ਪਰ ਇਸਦਾ ਕਿਸੇ Wi-Fi ਨੈੱਟਵਰਕ ਨਾਲ ਕਨੈਕਟ ਹੋਣਾ ਜ਼ਰੂਰੀ ਨਹੀਂ।</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ਅਫ਼ਸੋਸ, ਜਾਪਦਾ ਹੈ ਕਿ ਇਹ ਡਿਵਾਈਸ Wi-Fi ਡਾਇਰੈਕਟ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦੀ। Signal ਸਿਗਨਲ ਤੁਹਾਡੀ ਪੁਰਾਣੀ Android ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਕਨੈਕਟ ਕਰਨ ਲਈ Wi-Fi ਡਾਇਰੈਕਟ ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ। ਤੁਸੀਂ ਹਾਲੇ ਵੀ ਆਪਣੀ ਪੁਰਾਣੀ Android ਡਿਵਾਈਸ ਤੋਂ ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਬਹਾਲ ਕਰਨ ਲਈ ਬੈਕਅੱਪ ਨੂੰ ਬਹਾਲ ਕਰ ਸਕਦੇ ਹੋ।</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">ਬੈਕਅੱਪ ਬਹਾਲ ਕਰੋ</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">ਤੁਹਾਡੀ ਪੁਰਾਣੀ Android ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਸਮੇਂ ਕੋਈ ਅਚਨਚੇਤ ਤਰੁੱਟੀ ਆਈ।</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">ਨਵੀਂ Android ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਿਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">ਤੁਹਾਡੀ ਨਵੀਂ Android ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਕਨੈਕਟ ਕਰਨ ਲਈ Signal ਨੂੰ ਟਿਕਾਣੇ ਦੀ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ।</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">ਤੁਹਾਡੀ ਨਵੀਂ Android ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਕਨੈਕਟ ਕਰਨ ਲਈ Signal ਨੂੰ ਟਿਕਾਣਾ ਸੇਵਾਵਾਂ ਸਮਰੱਥ ਕੀਤੇ ਹੋਣ ਦੀ ਲੋੜ ਹੈ।</string>
-  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">ਤੁਹਾਡੀ ਨਵੀਂ Android ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਕਨੈਕਟ ਕਰਨ ਲਈ Signal ਨੂੰ Wi-Fi ਚਾਲੂ ਕੀਤੇ ਹੋਣ ਦੀ ਲੋੜ ਹੈ। Wi-Fi ਦਾ ਚਾਲੂ ਹੋਣਾ ਜ਼ਰੂਰੀ ਹੈ ਪਰ ਇਸਦਾ ਕਿਸੇ Wi-Fi ਵਾਈ-ਫਾਈ ਨੈੱਟਵਰਕ ਨਾਲ ਕਨੈਕਟ ਹੋਣਾ ਜ਼ਰੂਰੀ ਨਹੀਂ।</string>
-  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ਅਫ਼ਸੋਸ, ਜਾਪਦਾ ਹੈ ਕਿ ਇਹ ਡਿਵਾਈਸ Wi-Fi ਡਾਇਰੈਕਟ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦੀ। Signal ਸਿਗਨਲ ਤੁਹਾਡੀ ਨਵੀਂ Android ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਕਨੈਕਟ ਕਰਨ ਲਈ Wi-Fi ਡਾਇਰੈਕਟ ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ। ਤੁਸੀਂ ਅਜੇ ਵੀ ਆਪਣੀ ਨਵੀਂ Android ਡਿਵਾਈਸ ਤੋਂ ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਬੈਕਅੱਪ ਤਿਆਰ ਕਰ ਸਕਦੇ ਹੋ।</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">ਤੁਹਾਡੀ ਨਵੀਂ Android ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਕਨੈਕਟ ਕਰਨ ਲਈ Signal ਨੂੰ Wi-Fi ਚਾਲੂ ਕੀਤੇ ਹੋਣ ਦੀ ਲੋੜ ਹੈ। Wi-Fi ਦਾ ਚਾਲੂ ਹੋਣਾ ਜ਼ਰੂਰੀ ਹੈ ਪਰ ਇਸਦਾ ਕਿਸੇ Wi-Fi ਨੈੱਟਵਰਕ ਨਾਲ ਕਨੈਕਟ ਹੋਣਾ ਜ਼ਰੂਰੀ ਨਹੀਂ।</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ਅਫ਼ਸੋਸ, ਜਾਪਦਾ ਹੈ ਕਿ ਇਹ ਡਿਵਾਈਸ Wi-Fi ਡਾਇਰੈਕਟ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦੀ। Signal ਸਿਗਨਲ ਤੁਹਾਡੀ ਨਵੀਂ Android ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਣ ਅਤੇ ਕਨੈਕਟ ਕਰਨ ਲਈ Wi-Fi ਡਾਇਰੈਕਟ ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ। ਤੁਸੀਂ ਹਾਲੇ ਵੀ ਆਪਣੀ ਨਵੀਂ Android ਡਿਵਾਈਸ ਤੋਂ ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਬਹਾਲ ਕਰਨ ਲਈ ਬੈਕਅੱਪ ਤਿਆਰ ਕਰ ਸਕਦੇ ਹੋ।</string>
   <string name="OldDeviceTransferSetup__create_a_backup">ਬੈਕਅੱਪ ਬਣਾਓ</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">ਤੁਹਾਡੀ ਨਵੀਂ Android ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਸਮੇਂ ਕੋਈ ਅਚਨਚੇਤ ਤਰੁੱਟੀ ਆਈ।</string>
   <!--DeviceTransferSetupFragment-->
-  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹਣ ਵਿੱਚ ਅਯੋਗ। ਕਿਰਪਾ ਕਰਕੇ Wi-Fi ਨੂੰ ਆਪ ਚਾਲੂ ਕਰੋ।</string>
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹੀਆਂ ਨਹੀਂ ਜਾ ਸਕਦੀਆਂ। ਕਿਰਪਾ ਕਰਕੇ Wi-Fi ਨੂੰ ਆਪ ਚਾਲੂ ਕਰੋ।</string>
   <string name="DeviceTransferSetup__grant_location_permission">ਟਿਕਾਣੇ ਲਈ ਇਜਾਜ਼ਤ ਦਿਓ</string>
   <string name="DeviceTransferSetup__turn_on_location_services">ਟਿਕਾਣਾ ਸੇਵਾਵਾਂ ਚਾਲੂ ਕਰੋ</string>
   <string name="DeviceTransferSetup__unable_to_open_location_settings">ਟਿਕਾਣਾ ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹਣ ਲਈ ਅਸਮਰੱਥ ਹੈ।</string>
@@ -2583,7 +2583,7 @@
   <string name="DeviceTransferSetup__location_permission">ਟਿਕਾਣਾ ਇਜਾਜ਼ਤ</string>
   <string name="DeviceTransferSetup__location_services">ਟਿਕਾਣਾ ਸੇਵਾਵਾਂ</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi ਡਾਇਰੈਕਟ ਸਕਰੀਨ ’ਤੇ, ਸਾਰੇ ਯਾਦ ਕੀਤੇ ਗਰੁੱਪਾਂ ਨੂੰ ਹਟਾਓ ਅਤੇ ਕਿਸੇ ਵੀ ਸੱਦੀਆਂ ਜਾਂ ਕਨੈਕਟ ਹੋਈਆਂ ਡਿਵਾਈਸਾਂ ਦਾ ਲਿੰਕ ਕੱਟੋ।</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi ਡਾਇਰੈਕਟ ਸਕਰੀਨ ’ਤੇ, ਸਾਰੇ ਯਾਦ ਕੀਤੇ ਗਰੁੱਪਾਂ ਨੂੰ ਹਟਾਓ ਅਤੇ ਕਿਸੇ ਵੀ ਸੱਦੀਆਂ ਜਾਂ ਕਨੈਕਟ ਹੋਈਆਂ ਡਿਵਾਈਸਾਂ ਨੂੰ ਅਨਲਿੰਕ ਕਰੋ।</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">WiFi ਡਾਇਰੈਕਟ ਸਕਰੀਨ</string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Wi-Fi ਨੂੰ ਦੋਵੇਂ ਡਿਵਾਈਸਾਂ ਉੱਪਰ, ਬੰਦ ਅਤੇ ਚਾਲੂ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਦੋਵੇਂ ਡਿਵਾਈਸਾਂ ਟ੍ਰਾਂਸਫ਼ਰ ਮੋਡ ਵਿੱਚ ਹਨ।</string>
@@ -2596,7 +2596,7 @@
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal ਦੇ ਵਧੇਰੇ ਨਵੇਂ ਸੰਸਕਰਣਾਂ ਤੋਂ ਟ੍ਰਾਂਸਫ਼ਰ ਨਹੀਂ ਕਰ ਸਕਦਾ</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">ਡਾਟਾ ਟਰਾਂਸਫਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
-  <string name="DeviceTransfer__keep_both_devices_near_each_other">ਦੋਵੇਂ ਡਿਵਾਈਸਾਂ ਨੂੰ ਇੱਕ ਦੂਜੇ ਦੇ ਨੇੜੇ ਰੱਖੋ। ਡਿਵਾਈਸਾਂ ਨੂੰ ਬੰਦ ਨਾ ਕਰੋ ਅਤੇ Signal ਨੂੰ ਖੋਲ੍ਹੀ ਰੱਖੋ। ਟ੍ਰਾਂਸਫ਼ਰਾਂ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤਕ ਇਨਕ੍ਰਿਪਟ ਹਨ।</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">ਦੋਵੇਂ ਡਿਵਾਈਸਾਂ ਨੂੰ ਇੱਕ ਦੂਜੇ ਦੇ ਨੇੜੇ ਰੱਖੋ। ਡਿਵਾਈਸਾਂ ਨੂੰ ਬੰਦ ਨਾ ਕਰੋ ਅਤੇ Signal ਨੂੰ ਖੋਲ੍ਹੀ ਰੱਖੋ। ਟ੍ਰਾਂਸਫ਼ਰਾਂ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟ ਹਨ।</string>
   <string name="DeviceTransfer__d_messages_so_far">…ਹੁਣ ਤੱਕ %1$d ਸੁਨੇਹੇ</string>
   <string name="DeviceTransfer__cancel">ਰੱਦ ਕਰੋ</string>
   <string name="DeviceTransfer__try_again">ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
@@ -2604,7 +2604,7 @@
   <string name="DeviceTransfer__stop_transfer">ਟਰਾਂਸਫਰ ਨੂੰ ਰੋਕੋ</string>
   <string name="DeviceTransfer__all_transfer_progress_will_be_lost">ਸਾਰੀ ਟਰਾਂਸਫ਼ਰ ਤਰੱਕੀ ਖਤਮ ਹੋ ਜਾਵੇਗੀ।</string>
   <string name="DeviceTransfer__transfer_failed">ਟਰਾਂਸਫ਼ਰ ਅਸਫ਼ਲ ਹੈ</string>
-  <string name="DeviceTransfer__unable_to_transfer">ਟ੍ਰਾਂਸਫ਼ਰ ਕਰਨ ਵਿੱਚ ਅਯੋਗ</string>
+  <string name="DeviceTransfer__unable_to_transfer">ਟ੍ਰਾਂਸਫ਼ਰ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ ਕਰੋ</string>
   <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">ਕਿਸੇ ਨਵੀਂ Android ਡਿਵਾਈਸ ’ਤੇ Signal ਸਥਾਪਤ ਕਰਨ ਵੇਲੇ ਤੁਸੀਂ ਆਪਣਾ Signal ਖਾਤਾ ਟ੍ਰਾਂਸਫ਼ਰ ਕਰ ਸਕਦੇ ਹੋ। ਜਾਰੀ ਰੱਖਣ ਤੋਂ ਪਹਿਲਾਂ: </string>
@@ -2670,7 +2670,7 @@
   <string name="GroupsLearnMore_what_are_legacy_groups">ਲੈਗਸੀ ਗਰੁੱਪ ਕੀ ਹਨ?</string>
   <string name="GroupsLearnMore_paragraph_1">ਲੀਗੇਸੀ ਗਰੁੱਪ ਉਹ ਗਰੁੱਪ ਹਨ ਜੋ ਨਵੀਆਂ ਗਰੁੱਪ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਜਿਵੇਂ ਕਿ ਐਡਮਿਨ ਅਤੇ ਵਧੇਰੇ ਵਰਣਨਯੋਗ ਗਰੁੱਪ ਅੱਪਡੇਟਾਂ ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹਨ।</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">ਕੀ ਮੈਂ ਲੈਗਸੀ ਗਰੁੱਪ ਅੱਪਡੇਟ ਕਰ ਸਕਦਾ/ਸਕਦੀ ਹਾਂ?</string>
-  <string name="GroupsLearnMore_paragraph_2">ਲੈਗਸੀ ਗਰੁੱਪਾਂ ਨੂੰ ਅਜੇ ਨਵੇਂ ਗਰੁੱਪਾਂ ਵਿੱਚ ਅੱਪਗ੍ਰੇਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ, ਪਰ ਤੁਸੀਂ ਸਮਾਨ ਮੈਂਬਰਾਂ ਦੇ ਨਾਲ ਇੱਕ ਨਵਾਂ ਗਰੁੱਪ ਬਣਾ ਸਕਦੇ ਹੋ ਜੇ ਉਹ Signal ਦੇ ਨਵੀਨਤਮ ਸੰਸਕਰਣ \'ਤੇ ਹਨ।</string>
+  <string name="GroupsLearnMore_paragraph_2">ਲੈਗਸੀ ਗਰੁੱਪਾਂ ਨੂੰ ਹਾਲੇ ਨਵੇਂ ਗਰੁੱਪਾਂ ਵਿੱਚ ਅੱਪਗ੍ਰੇਡ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ, ਪਰ ਤੁਸੀਂ ਸਮਾਨ ਮੈਂਬਰਾਂ ਦੇ ਨਾਲ ਇੱਕ ਨਵਾਂ ਗਰੁੱਪ ਬਣਾ ਸਕਦੇ ਹੋ ਜੇ ਉਹ Signal ਦੇ ਨਵੀਨਤਮ ਸੰਸਕਰਣ \'ਤੇ ਹਨ।</string>
   <string name="GroupsLearnMore_paragraph_3">Signal ਭਵਿੱਖ ਵਿੱਚ ਲੈਗਸੀ ਗਰੁੱਪਾਂ ਨੂੰ ਅੱਪਗ੍ਰੇਡ ਕਰਨ ਦਾ ਇੱਕ ਤਰੀਕਾ ਪੇਸ਼ ਕਰੇਗਾ।</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_hint_requiring_approval">ਇਸ ਲਿੰਕ ਨਾਲ ਕੋਈ ਵੀ ਵਿਅਕਤੀ ਗਰੁੱਪ ਦਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਦੇਖ ਸਕਦਾ ਹੈ ਅਤੇ ਸ਼ਾਮਲ ਹੋਣ ਦੀ ਬੇਨਤੀ ਕਰ ਸਕਦਾ ਹੈ। ਇਸਨੂੰ ਉਨ੍ਹਾਂ ਲੋਕਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ ਜਿਨ੍ਹਾਂ \'ਤੇ ਤੁਸੀਂ ਵਿਸ਼ਵਾਸ ਕਰਦੇ ਹੋ।</string>
@@ -2682,7 +2682,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">ਲਿੰਕ ਇਸ ਵੇਲੇ ਸਰਗਰਮ ਨਹੀਂ ਹੈ</string>
   <!--VoiceNotePlaybackPreparer-->
-  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">ਅਵਾਜ਼ ਵਾਲੇ ਸੁਨੇਹਾ ਸੁਣਾਉਣ ਵਿੱਚ ਅਸਫ਼ਲ</string>
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">ਅਵਾਜ਼ ਵਾਲੇ ਸੁਨੇਹਾ ਸੁਣਾਉਣਾ ਅਸਫਲ ਰਿਹਾ</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ਆਵਾਜ਼ ਸੁਨੇਹਾ · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ਤੋਂ %2$s</string>
@@ -2717,7 +2717,7 @@
   <string name="ReviewCard__update_contact">ਸੰਪਰਕ ਅੱਪਡੇਟ ਕਰੋ</string>
   <string name="ReviewCard__block">ਬਲੌਕ ਕਰੋ</string>
   <string name="ReviewCard__delete">ਮਿਟਾਓ </string>
-  <string name="ReviewCard__recently_changed">ਹਾਲ ਹੀ ਵਿੱਚ ਆਪਣਾ ਪ੍ਰੋਫ਼ਾਈਲ ਨਾਮ %1$s ਤੋਂ ਬਦਲ ਕੇ %2$s ਰੱਖਿਆ।</string>
+  <string name="ReviewCard__recently_changed">ਹਾਲ ਹੀ ਵਿੱਚ ਆਪਣਾ ਪ੍ਰੋਫ਼ਾਈਲ ਨਾਂ %1$s ਤੋਂ ਬਦਲ ਕੇ %2$s ਰੱਖਿਆ।</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s ਸ਼ਾਮਲ ਹੋਏ</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s ਅਤੇ %2$s ਸ਼ਾਮਲ ਹੋਏ</string>
@@ -2742,7 +2742,7 @@
   <string name="DeleteAccountFragment__the_phone_number">ਤੁਹਾਡੇ ਵਲੋਂ ਦਿੱਤਾ ਫ਼ੋਨ ਨੰਬਰ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਮਿਲਦਾ ਨਹੀਂ ਹੈ।</string>
   <string name="DeleteAccountFragment__are_you_sure">ਕੀ ਤੁਸੀਂ ਵਾਕਈ ਆਪਣਾ ਖਾਤਾ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
   <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ਇਹ ਤੁਹਾਡੇ Signal ਖਾਤੇ ਨੂੰ ਹਟਾਏਗਾ ਅਤੇ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਰੀਸੈੱਟ ਕਰੇਗਾ। ਪਰੋਸੈਸ ਪੂਰਾ ਹੋਣ ਦੇ ਬਾਅਦ ਐਪ ਬੰਦ ਕੀਤੀ ਜਾਵੇਗੀ।</string>
-  <string name="DeleteAccountFragment__failed_to_delete_account">ਖਾਤਾ ਮਿਟਾਉਣ ਵਿੱਚ ਅਸਫ਼ਲ। ਕੀ ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ ਨੈੱਟਵਰਕ ਕਨੈਕਸ਼ਨ ਹੈ?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">ਖਾਤਾ ਹਟਾਉਣਾ ਅਸਫਲ ਰਿਹਾ। ਕੀ ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ ਨੈੱਟਵਰਕ ਕਨੈਕਸ਼ਨ ਹੈ?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">ਲੋਕਲ ਡਾਟਾ ਹਟਾਉਣ ਲਈ ਅਸਫ਼ਲ ਹੈ। ਤੁਸੀਂ ਸਿਸਟਮ ਐਪਲੀਕੇਸ਼ਨ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਸ ਨੂੰ ਖੁਦ ਮਿਟਾ ਸਕਦੇ ਹੋ।</string>
   <string name="DeleteAccountFragment__launch_app_settings">ਐਪ ਸੈਟਿੰਗਾਂ ਚਲਾਓ</string>
   <!--DeleteAccountCountryPickerFragment-->
@@ -2759,7 +2759,7 @@
   <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">ਇੱਕ ਤੋਂ ਵੱਧ ਚੈਟਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰਨਾ ਸਿਰਫ਼ Signal ਸੁਨੇਹਿਆਂ ਲਈ ਸਮਰਥਿਤ ਹੈ</string>
   <!--MultiShareDialogs-->
-  <string name="MultiShareDialogs__failed_to_send_to_some_users">ਕੁਝ ਵਰਤੋਂਕਾਰਾਂ ਨੂੰ ਭੇਜਣ ਵਿੱਚ ਅਸਫ਼ਲ</string>
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">ਕੁਝ ਵਰਤੋਂਕਾਰਾਂ ਨੂੰ ਭੇਜਣਾ ਅਸਫਲ ਰਿਹਾ</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">ਤੁਸੀਂ ਸਿਰਫ਼ %1$d ਚੈਟਾਂ ਤੱਕ ਦੇ ਨਾਲ ਹੀ ਸਾਂਝਾ ਕਰ ਸਕਦੇ ਹੋ</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">ਸੁਨੇਹਾ ਅੱਗੇ ਭੇਜੋ</string>
@@ -2816,38 +2816,38 @@
   <string name="payment_info_card_your_recovery_phrase_gives_you">ਤੁਹਾਡਾ ਰਿਕਵਰੀ ਸ਼ਬਦ-ਸਮੂਹ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ ਭੁਗਤਾਨ ਖਾਤੇ ਨੂੰ ਬਹਾਲ ਕਰਨ ਦਾ ਇੱਕ ਹੋਰ ਤਰੀਕਾ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ।</string>
   <string name="payment_info_card_record_your_phrase">ਆਪਣਾ ਵਾਕ ਰਿਕਾਰਡ ਕਰੋ</string>
   <string name="payment_info_card_update_your_pin">ਆਪਣਾ PIN ਅੱਪਡੇਟ ਕਰੋ</string>
-  <string name="payment_info_card_with_a_high_balance">ਜਿਆਦਾ ਬਕਾਏ ਦੇ ਨਾਲ, ਤੁਸੀਂ ਆਪਣੇ ਖਾਤੇ ਵਿੱਚ ਵਧੇਰੇ ਸੁਰੱਖਿਆ ਜੋੜਨ ਲਈ ਅਲਫਾਨੁਮੈਰਿਕ PIN ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਦੀ ਇੱਛਾ ਰੱਖ ਸਕਦੇ ਹੋ।</string>
+  <string name="payment_info_card_with_a_high_balance">ਜ਼ਿਆਦਾ ਬਕਾਏ ਦੇ ਨਾਲ, ਤੁਸੀਂ ਆਪਣੇ ਖਾਤੇ ਵਿੱਚ ਵਧੇਰੇ ਸੁਰੱਖਿਆ ਜੋੜਨ ਲਈ ਅਲਫਾਨੁਮੈਰਿਕ PIN ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਦੀ ਇੱਛਾ ਰੱਖ ਸਕਦੇ ਹੋ।</string>
   <string name="payment_info_card_update_pin">PIN ਅੱਪਡੇਟ ਕਰੋ</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">ਵਾਲਟ ਡਿ-ਐਕਟੀਵੇਟ ਕਰੋ</string>
   <string name="DeactivateWalletFragment__your_balance">ਤੁਹਾਡਾ ਬੈਲਨਸ</string>
-  <string name="DeactivateWalletFragment__its_recommended_that_you">ਇਹ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਜਾਂਦੀ ਹੈ ਕਿ ਭੁਗਤਾਨਾਂ ਨੂੰ ਅਕਿਰਿਆਸ਼ੀਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਤੁਸੀਂ ਆਪਣੇ ਫੰਡ ਕਿਸੇ ਹੋਰ ਵਾਲੇਟ ਪਤੇ ’ਤੇ ਟ੍ਰਾਂਸਫ਼ਰ ਕਰ ਲਓ। ਜੇ ਤੁਸੀਂ ਹੁਣੇ ਆਪਣੇ ਫੰਡ ਟ੍ਰਾਂਸਫ਼ਰ ਨਾ ਕਰਨ ਦੀ ਚੋਣ ਕਰਦੇ ਹੋ, ਤਾਂ ਜੇ ਤੁਸੀਂ ਭੁਗਤਾਨਾਂ ਨੂੰ ਮੁੜ ਕਿਰਿਆਸ਼ੀਲ ਕਰੋਗੇ ਤਾਂ ਉਹ ਤੁਹਾਡੇ ਵਾਲੇਟ ਵਿੱਚ Signal ਨਾਲ ਜੁੜੇ ਰਹਿਣਗੇ।</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">ਇਹ ਸਿਫ਼ਾਰਸ਼ ਕੀਤੀ ਜਾਂਦੀ ਹੈ ਕਿ ਭੁਗਤਾਨਾਂ ਨੂੰ ਅਕਿਰਿਆਸ਼ੀਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਤੁਸੀਂ ਆਪਣੇ ਫੰਡ ਕਿਸੇ ਹੋਰ ਵਾਲੇਟ ਪਤੇ ’ਤੇ ਟ੍ਰਾਂਸਫ਼ਰ ਕਰ ਲਓ। ਜੇ ਤੁਸੀਂ ਹੁਣੇ ਆਪਣੇ ਫੰਡ ਟ੍ਰਾਂਸਫ਼ਰ ਨਾ ਕਰਨ ਦੀ ਚੋਣ ਕਰਦੇ ਹੋ, ਤਾਂ ਜੇ ਤੁਸੀਂ ਭੁਗਤਾਨਾਂ ਨੂੰ ਮੁੜ ਕਿਰਿਆਸ਼ੀਲ ਕਰੋਗੇ ਤਾਂ ਉਹ ਤੁਹਾਡੇ ਵਾਲੇਟ ਵਿੱਚ Signal ਨਾਲ ਜੁੜੇ ਰਹਿਣਗੇ।</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">ਬਾਕੀ ਬਕਾਇਆ ਟ੍ਰਾਂਸਫ਼ਰ ਕਰੋ</string>
-  <string name="DeactivateWalletFragment__deactivate_without_transferring">ਟ੍ਰਾਂਸਫਰ ਕੀਤੇ ਬਿਨਾ ਅਕਿਰਿਆਸ਼ੀਲ ਕਰੋ</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">ਟ੍ਰਾਂਸਫ਼ਰ ਕੀਤੇ ਬਿਨਾਂ ਅਕਿਰਿਆਸ਼ੀਲ ਕਰੋ</string>
   <string name="DeactivateWalletFragment__deactivate">ਅਕਿਰਿਆਸ਼ੀਲ ਕਰੋ</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">ਟ੍ਰਾਂਸਫਰ ਕੀਤੇ ਬਿਨਾ ਅਕਿਰਿਆਸ਼ੀਲ ਕਰਨਾ ਹੈ?</string>
-  <string name="DeactivateWalletFragment__your_balance_will_remain">ਜੇ ਤੁਸੀਂ ਭੁਗਤਾਨਾਂ ਨੂੰ ਮੁੜ ਕਿਰਿਆਸ਼ੀਲ ਕਰਨ ਦੀ ਚੋਣ ਕਰਦੇ ਹੋ ਤਾਂ ਤੁਹਾਡਾ ਬਕਾਇਆ Signal ਨਾਲ ਜੁੜੇ ਤੁਹਾਡੇ ਵਾਲੇਟ ਵਿੱਚ ਰਹੇਗਾ।</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">ਜੇ ਤੁਸੀਂ ਭੁਗਤਾਨਾਂ ਨੂੰ ਮੁੜ-ਕਿਰਿਆਸ਼ੀਲ ਕਰਨ ਦੀ ਚੋਣ ਕਰਦੇ ਹੋ ਤਾਂ ਤੁਹਾਡਾ ਬਕਾਇਆ Signal ਨਾਲ ਜੁੜੇ ਤੁਹਾਡੇ ਵਾਲੇਟ ਵਿੱਚ ਰਹੇਗਾ।</string>
   <string name="DeactivateWalletFragment__error_deactivating_wallet">ਵਾਲੇਟ ਅਕਿਰਿਆਸ਼ੀਲ ਕਰਨ ਵਿੱਚ ਤਰੁੱਟੀ।</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">ਬਹਾਲੀ ਵਾਕ</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">ਰਿਕਵਰੀ ਵਾਕ ਵੇਖੋ</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">ਰਿਕਵਰੀ ਵਾਕ ਦਿਓ</string>
   <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">ਜੇ ਤੁਸੀਂ ਆਪਣੇ Signal PIN ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ ਤਾਂ Signal ਨੂੰ ਦੁਬਾਰਾ ਸਥਾਪਤ ਕਰਨ \'ਤੇ ਤੁਹਾਡਾ ਬਕਾਇਆ ਆਪਣੇ ਆਪ ਬਹਾਲ ਹੋ ਜਾਵੇਗਾ। ਤੁਸੀਂ ਇੱਕ ਬਹਾਲੀ ਵਾਕ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਵੀ ਆਪਣਾ ਬਕਾਇਆ ਬਹਾਲ ਕਰ ਸਕਦੇ ਹੋ, ਜੋ ਕਿ ਤੁਹਾਡੇ ਲਈ ਵਿਲੱਖਣ %1$d-ਸ਼ਬਦਾਂ ਵਾਲਾ ਵਾਕ ਹੁੰਦਾ ਹੈ। ਇਸਨੂੰ ਲਿਖ ਲਓ ਅਤੇ ਕਿਸੇ ਸੁਰੱਖਿਅਤ ਜਗ੍ਹਾ \'ਤੇ ਸਟੋਰ ਕਰੋ।</string>
-  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ਤੁਹਾਡਾ ਬਹਾਲੀ ਵਾਕ ਤੁਹਾਡੇ ਲਈ ਵਿਲੱਖਣ ਇੱਕ %1$d-ਸ਼ਬਦਾਂ ਵਾਲਾ ਵਾਕ ਹੁੰਦਾ ਹੈ। ਆਪਣੇ ਬਕਾਏ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਇਸ ਵਾਕ ਦੀ ਵਰਤੋਂ ਕਰੋ।</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ਤੁਹਾਡਾ ਰਿਕਵਰੀ ਸ਼ਬਦ-ਸਮੂਹ ਤੁਹਾਡੇ ਲਈ ਵਿਲੱਖਣ ਇੱਕ %1$d-ਸ਼ਬਦਾਂ ਵਾਲਾ ਸ਼ਬਦ-ਸਮੂਹ ਹੁੰਦਾ ਹੈ। ਆਪਣੇ ਬਕਾਏ ਨੂੰ ਬਹਾਲ ਕਰਨ ਲਈ ਇਸ ਸ਼ਬਦ-ਸਮੂਹ ਦੀ ਵਰਤੋਂ ਕਰੋ।</string>
   <string name="PaymentsRecoveryStartFragment__start">ਸ਼ੁਰੂ</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">ਖੁਦ ਦਿਓ</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">ਕਲਿੱਪਬੋਰਡ ਤੋਂ ਚੇਪੋ</string>
   <!--PaymentsRecoveryPasteFragment-->
-  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">ਰਿਕਵਰੀ ਵਾਕ ਚੇਪੋ</string>
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">ਰਿਕਵਰੀ ਸ਼ਬਦ-ਸਮੂਹ ਚੇਪੋ</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">ਬਹਾਲੀ ਵਾਕ</string>
   <string name="PaymentsRecoveryPasteFragment__next">ਅਗਲਾ</string>
-  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">ਅਵੈਧ ਰਿਕਵਰੀ ਵਾਕ</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">ਅਵੈਧ ਰਿਕਵਰੀ ਸ਼ਬਦ-ਸਮੂਹ</string>
   <string name="PaymentsRecoveryPasteFragment__make_sure">ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਸੀਂ %1$dਸ਼ਬਦ ਦਰਜ ਕੀਤੇ ਹਨ ਅਤੇ ਦੁੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">ਅਗਲਾ</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">ਸੋਧੋ</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">ਪਿੱਛੇ</string>
-  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">ਤੁਹਾਡਾ ਰਿਕਵਰੀ ਵਾਕ</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">ਤੁਹਾਡਾ ਰਿਕਵਰੀ ਸ਼ਬਦ-ਸਮੂਹ</string>
   <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">ਕ੍ਰਮ ਵਿੱਚ ਹੇਠਲਾ %1$d ਲਿਖੋ। ਆਪਣੀ ਸੂਚੀ ਨੂੰ ਕਿਸੇ ਸੁਰੱਖਿਅਤ ਜਗ੍ਹਾ ’ਤੇ ਸਟੋਰ ਕਰੋ।</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">ਪੱਕਾ ਕਰੋ ਕਿ ਤੁਸੀਂ ਆਪਣਾ ਵਾਕ ਠੀਕ ਤਰ੍ਹਾਂ ਦਿੱਤਾ ਹੈ।</string>
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">ਸਕਰੀਨਸ਼ਾਟ ਨਾ ਲਵੋ ਨਾ ਹੀ ਈਮੇਲ ਰਾਹੀਂ ਭੇਜੋ।</string>
@@ -2900,7 +2900,7 @@
   <string name="AppSettingsFragment__invite_your_friends">ਆਪਣੇ ਦੋਸਤਾਂ ਨੂੰ ਸੱਦਾ ਦਿਓ</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">ਖਾਤਾ</string>
-  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">ਸਮਾਂ ਪੈਣ ’ਤੇ ਤੁਹਾਨੂੰ ਘੱਟ ਅਕਸਰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">ਸਮਾਂ ਪੈਣ ’ਤੇ ਤੁਹਾਨੂੰ ਅਕਸਰ ਹੀ ਘੱਟ ਪੁੱਛਿਆ ਜਾਵੇਗਾ</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Signal ਨਾਲ ਤੁਹਾਡੇ ਫ਼ੋਨ ਨੰਬਰ ਨੂੰ ਮੁੜ ਰਜਿਸਟਰ ਕਰਨ ਲਈ Signal PIN ਦੀ ਲੋੜ ਹੈ</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">ਕੀਬੋਰਡ</string>
@@ -2920,11 +2920,11 @@
   <string name="PrivacySettingsFragment__app_security">ਐਪ ਦੀ ਸੁਰੱਖਿਆ</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Recents ਸੂਚੀ ਵਿੱਚ ਅਤੇ ਐਪ ਦੇ ਅੰਦਰ ਸਕ੍ਰੀਨਸ਼ਾਟ ਨੂੰ ਬਲੌਕ ਕਰੋ</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ਸੁਨੇਹੇ ਅਤੇ ਕਾਲਾਂ, ਹਮੇਸ਼ਾਂ ਕਾਲਾਂ ਰਿਲੇਅ ਕਰੋ, ਅਤੇ ਸੀਲਬੰਦ ਭੇਜਣ ਵਾਲਾ</string>
-  <string name="PrivacySettingsFragment__default_timer_for_new_changes">ਨਵੀਆਂ ਚੈਟਾਂ ਲਈ ਡਿਫ਼ਾਲਟ ਟਾਈਮਰ</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ਤੁਹਾਡੇ ਦੁਆਰਾ ਸ਼ੁਰੂ ਕੀਤੀਆਂ ਸਾਰੀਆਂ ਨਵੀਆਂ ਚੈਟਾਂ ਲਈ ਅਲੋਪ ਹੋ ਰਹੇ ਸੁਨੇਹੇ ਦਾ ਡਿਫ਼ਾਲਟ ਟਾਈਮਰ ਤੈਅ ਕਰੋ।</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">ਨਵੀਆਂ ਚੈਟਾਂ ਲਈ ਡਿਫੌਲਟ ਟਾਈਮਰ</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ਤੁਹਾਡੇ ਦੁਆਰਾ ਸ਼ੁਰੂ ਕੀਤੀਆਂ ਸਾਰੀਆਂ ਨਵੀਆਂ ਚੈਟਾਂ ਲਈ ਅਲੋਪ ਹੋ ਰਹੇ ਸੁਨੇਹੇ ਦਾ ਡਿਫੌਲਟ ਟਾਈਮਰ ਤੈਅ ਕਰੋ।</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <string name="AdvancedPrivacySettingsFragment__show_status_icon">ਸਟੇਟੱਸ ਆਈਕਾਨ ਦਿਖਾਓ</string>
-  <string name="AdvancedPrivacySettingsFragment__show_an_icon">ਸੁਨੇਹੇ ਕਦੋਂ ਪਹੁੰਚਾਏ ਗਏ ਸਨ ਇਸ ਬਾਰੇ ਸੁਨੇਹਾ ਵੇਰਵਿਆਂ ਵਿੱਚ ਸੀਲਬੰਦ ਭੇਜਣ ਵਾਲੇ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ ਇੱਕ ਆਈਕਾਨ ਦਿਖਾਓ।</string>
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">ਸਟੇਟੱਸ ਆਈਕੋਨ ਦਿਖਾਓ</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">ਸੁਨੇਹੇ ਕਦੋਂ ਪਹੁੰਚਾਏ ਗਏ ਸਨ ਇਸ ਬਾਰੇ ਸੁਨੇਹਾ ਵੇਰਵਿਆਂ ਵਿੱਚ ਸੀਲਬੰਦ ਭੇਜਣ ਵਾਲੇ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ ਇੱਕ ਆਈਕੋਨ ਦਿਖਾਓ।</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">ਸਮਰੱਥ ਕੀਤੇ ਜਾਣ ਮਗਰੋਂ, ਤਾਂ ਤੁਹਾਡੇ ਦੁਆਰਾ ਸ਼ੁਰੂ ਕੀਤੀਆਂ ਗਈਆਂ ਨਵੀਆਂ ਚੈਟਾਂ ਵਿੱਚ ਭੇਜੇ ਅਤੇ ਪ੍ਰਾਪਤ ਕੀਤੇ ਗਏ ਨਵੇਂ ਸੁਨੇਹੇ ਵੇਖ ਲਏ ਜਾਣ ਤੋਂ ਬਾਅਦ ਅਲੋਪ ਹੋ ਜਾਣਗੇ।</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">ਸਮਰੱਥ ਕੀਤੇ ਹੋਣ \'ਤੇ, ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਭੇਜੇ ਅਤੇ ਪ੍ਰਾਪਤ ਕੀਤੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਦੇਖ ਲਏ ਜਾਣ ਤੋਂ ਬਾਅਦ ਇਹ ਅਲੋਪ ਹੋ ਜਾਣਗੇ।</string>
@@ -3015,7 +3015,7 @@
   <string name="StickerSearchDialogFragment_search_stickers">ਸਟਿੱਕਰ ਖੋਜੋ</string>
   <string name="StickerSearchDialogFragment_no_results_found">ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਲੱਭੇ</string>
   <string name="EmojiSearchFragment__no_results_found">ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਲੱਭੇ</string>
-  <string name="NotificationsSettingsFragment__unknown_ringtone">ਅਣਜਾਣ ਰਿੰਗਟੋਨ</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">ਅਗਿਆਤ ਰਿੰਗਟੋਨ</string>
   <!--ConversationSettingsFragment-->
   <string name="ConversationSettingsFragment__send_message">ਸੁਨੇਹਾ ਭੇਜੋ</string>
   <string name="ConversationSettingsFragment__start_video_call">ਵੀਡੀਓ ਕਾਲ ਸ਼ੁਰੂ ਕਰੋ</string>
@@ -3044,8 +3044,8 @@
   <string name="ConversationSettingsFragment__add_as_a_contact">ਸੰਪਰਕ ਵਜੋਂ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="ConversationSettingsFragment__unmute">ਅਨਮਿਊਟ ਕਰੋ</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s ਤਕ ਗੱਲਬਾਤ ਮਿਉਟ ਕੀਤੀ</string>
-  <string name="ConversationSettingsFragment__conversation_muted_forever">ਗੱਲਬਾਤ ਹਮੇਸ਼ਾ ਲਈ ਮਿਊਟ ਕੀਤੀ</string>
-  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ਫ਼ੋਨ ਨੰਬਰ ਨੂੰ ਕਲਿੱਪਬੋਰਡ ਉੱਪਰ ਕਾਪੀ ਕੀਤਾ</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">ਗੱਲਬਾਤ ਹਮੇਸ਼ਾਂ ਲਈ ਮਿਊਟ ਕੀਤੀ</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ਫ਼ੋਨ ਨੰਬਰ ਨੂੰ ਕਲਿੱਪਬੋਰਡ \'ਤੇ ਕਾਪੀ ਕੀਤਾ।</string>
   <string name="ConversationSettingsFragment__phone_number">ਫੋਨ ਨੰਬਰ</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">ਮੈਂਬਰ ਜੋੜੋ</string>

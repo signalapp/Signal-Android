@@ -750,7 +750,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Acest link de grup nu este activ</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nu s-au putut obține informații despre grup, încercați din nou mai târziu</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Doriți să vă alăturați acestui grup și să vă împărtășiți numele și fotografia cu membrii săi?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un administrator al acestui grup trebuie să vă aprobe solicitarea înainte de a vă putea alătura acestui grup. Când solicitați să vă înscrieți, numele și fotografia dvs. vor fi distribuite membrilor săi.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un administrator al acestui grup trebuie să vă aprobe solicitarea înainte de a vă putea alătura grupului. Când solicitați să vă înscrieți, numele și fotografia dvs. vor fi distribuite membrilor săi.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Grup · %1$d membru</item>
     <item quantity="few">Grup · %1$d membri</item>
@@ -969,7 +969,7 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s v-a scos din grup.</string>
   <string name="MessageRecord_you_left_the_group">Ați părăsit grupul.</string>
   <string name="MessageRecord_s_left_the_group">%1$s a părăsit grupul.</string>
-  <string name="MessageRecord_you_are_no_longer_in_the_group">Nu mai faci parte din grup.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Nu mai faceți parte din grup.</string>
   <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s nu mai face parte din grup.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">L-ați făcut pe %1$s administrator.</string>

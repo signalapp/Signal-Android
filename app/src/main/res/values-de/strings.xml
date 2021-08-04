@@ -3091,6 +3091,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
-  <string name="DSLSettingsToolbar__navigate_up">nach oben navigieren</string>
+  <string name="DSLSettingsToolbar__navigate_up">Nach oben navigieren</string>
   <!--EOF-->
 </resources>

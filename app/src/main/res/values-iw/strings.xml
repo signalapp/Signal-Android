@@ -3272,5 +3272,6 @@
   <string name="ContactSelectionListItem__sms">מסרון</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">נווט למעלה</string>
   <!--EOF-->
 </resources>

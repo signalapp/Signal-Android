@@ -652,7 +652,7 @@
   <string name="ManageGroupActivity_mute_notifications">Noklusināt paziņojumus</string>
   <string name="ManageGroupActivity_custom_notifications">Pielāgoti paziņojumi</string>
   <string name="ManageGroupActivity_mentions">Pieminējumi</string>
-  <string name="ManageGroupActivity_chat_color_and_wallpaper">Tērzētavas krāsa un fona tapete</string>
+  <string name="ManageGroupActivity_chat_color_and_wallpaper">Tērzēšanas krāsa un fona tapete</string>
   <string name="ManageGroupActivity_until_s">Līdz %1$s</string>
   <string name="ManageGroupActivity_always">Vienmēr</string>
   <string name="ManageGroupActivity_off">Izslēgts</string>
@@ -760,7 +760,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Atjauniniet Signal, lai izmantotu grupas saites</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Jūsu izmantotā Signal versija neatbalsta šīs grupas saiti. Atjauniniet uz jaunāko versiju, lai pievienotos šai grupai, izmantojot saiti.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aktualizēt Signālu</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Vienā vai vairākās jūsu saistītajās ierīcēs tiek izmantota Signal versija, kura neatbalsta grupu saites. Atjauniniet Signal savā(s) saistītajā(s) ierīcē(s), lai pievienotos šai grupai.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Vienā vai vairākās jūsu saistītajās ierīcēs tiek izmantota Signal versija, kura neatbalsta grupu saites. Atjauniniet Signal savās saistītajās ierīcēs, lai pievienotos šai grupai.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupas saite nav derīga</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Uzaicināt draugus</string>
@@ -2087,6 +2087,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences_storage__review_storage">Apskatīt krātuvi</string>
   <string name="preferences_storage__delete_older_messages">Dzēst vecākas ziņas?</string>
   <string name="preferences_storage__clear_message_history">Dzēst ziņu vēsturi?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Tādējādi no jūsu ierīces tiks neatgriezeniski dzēsta visa ziņu vēsture un multivides saturs, kas ir vecāks par %1$s.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Veicot šo darbību, tiks saīsināta visu sarunu vēsture un tiks paturētas tikai %1$s jaunākās ziņas.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Tādējādi no jūsu ierīces tiks neatgriezeniski dzēsta visa ziņu vēsture un multivides saturs.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Vai tiešām vēlaties dzēst visu ziņu vēsturi?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Visu ziņu vēsture tiks neatgriezeniski dzēsta. Šo darbību nevar atsaukt.</string>
   <string name="preferences_storage__delete_all_now">Izdzēst visas tagad</string>
@@ -2135,14 +2138,18 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences_off">Izslēgts</string>
   <string name="preferences_on">Ieslēgts</string>
   <string name="preferences_proxy_address">Starpniekservera adrese</string>
+  <string name="preferences_only_use_a_proxy_if">Izmantojiet starpniekserveri tikai tad, ja, lietojot mobilos datus vai Wi-Fi, nevar izveidot savienojumu ar Signal.</string>
   <string name="preferences_share">Kopīgot</string>
   <string name="preferences_save">Saglabāt</string>
   <string name="preferences_connecting_to_proxy">Veido savienojumu ar starpniekserveri…</string>
   <string name="preferences_connected_to_proxy">Savienots ar starpniekserveri</string>
   <string name="preferences_connection_failed">Savienojuma izveide neizdevās</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Nevarēja izveidot savienojumu ar starpniekserveri. Pārbaudiet starpniekservera adresi un mēģiniet vēlreiz.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Jūs izveidojāt savienojumu ar starpniekserveri. Starpniekserveri jebkurā laikā var izslēgt iestatījumu sadaļā.</string>
   <string name="preferences_success">Sekmīgi darīts</string>
   <string name="preferences_failed_to_connect">Neizdevās pievienoties</string>
   <string name="preferences_enter_proxy_address">Ievadīt starpniekservera adresi</string>
+  <string name="configurable_single_select__customize_option">Pielāgot opciju</string>
   <!--Internal only preferences-->
   <!--Payments-->
   <string name="PaymentsActivityFragment__all_activity">Visas darbības</string>
@@ -2150,6 +2157,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="PaymentsAllActivityFragment__sent">Nosūtītās</string>
   <string name="PaymentsAllActivityFragment__received">Saņemtās</string>
   <string name="PaymentsHomeFragment__introducing_payments">Maksājumu ieviešana (Beta)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Izmantojiet lietotni Signal, lai nosūtītu un saņemtu MobileCoin - jaunu uz privātumu vērstu digitālo valūtu. Aktivizējiet, lai sāktu.</string>
   <string name="PaymentsHomeFragment__activate_payments">Aktivizēt maksājumus</string>
   <string name="PaymentsHomeFragment__activating_payments">Tiek aktivizēti maksājumi…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">Atgriezt maksājumu kontu</string>
@@ -2172,22 +2180,27 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="PaymentsHomeFragment__processing_payment">Maksājuma apstrāde</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Valūtas maiņa nav pieejama</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Nevar parādīt valūtas konvertēšanu. Pārbaudiet tālruņa savienojumu un mēģiniet vēlreiz.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Maksājumi jūsu reģionā nav pieejami.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Nevarējām iespējot maksājumus. Mēģiniet vēlāk.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Deaktivēt maksājumus?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Deaktivizējot maksājumus, jūs nevarēsiet nosūtīt vai saņemt MobileCoin lietotnē Signal.</string>
   <string name="PaymentsHomeFragment__deactivate">Deaktivēt</string>
   <string name="PaymentsHomeFragment__continue">Turpināt</string>
-  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Bilance pašlaik nav pieejama</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">Atlikums pašlaik nav pieejams.</string>
   <string name="PaymentsHomeFragment__payments_deactivated">Maksājumi deaktivēti</string>
   <string name="PaymentsHomeFragment__payment_failed">Paksājums neizdevās</string>
   <string name="PaymentsHomeFragment__details">Sīkāki dati / Rekvizīti</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Lietotni Signal var izmantot, lai nosūtītu un saņemtu MobileCoin. Uz visiem maksājumiem attiecas MobileCoins un MobileCoin Wallet lietošanas noteikumi. Šī ir beta funkcija, tādēļ var rasties dažas problēmas, un maksājumus vai atlikumus, kurus iespējams zaudēt, nevar atgūt.</string>
   <string name="PaymentsHomeFragment__activate">Aktivēt</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">Skatīt MobileCoin lietošanas noteikumus</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Maksājumu opcija lietotnē Signal vairs nav pieejama. Jūs joprojām varat pārskaitīt līdzekļus uz biržu, bet vairs nevarat nosūtīt un saņemt maksājumus vai pievienot līdzekļus.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Papildināt līdzekļus</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">Jūsu maciņa adrese</string>
   <string name="PaymentsAddMoneyFragment__copy">Kopēt</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Iekopēts starpenē</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">Lai pievienotu naudas kapitālu, nosūtiet MobileCoin uz sava naudas maka adresi. Sāciet transakciju no sava konta biržā, kas atbalsta MobileCoin, pēc tam skenējiet QR kodu vai kopējiet naudas maka adresi.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">Sīkāki dati / Rekvizīti</string>
   <string name="PaymentsDetailsFragment__status">Statuss</string>
@@ -2198,9 +2211,13 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="PaymentsDetailsFragment__network_fee">Tīkla maksājuma likme</string>
   <string name="PaymentsDetailsFragment__sent_by">Nosūtītājs</string>
   <string name="PaymentsDetailsFragment__sent_to_s">Nosūtīts %1$s</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">Jūs %1$s plkst. %2$s</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s plkst. %3$s</string>
   <string name="PaymentsDetailsFragment__to">Kam</string>
   <string name="PaymentsDetailsFragment__from">No</string>
+  <string name="PaymentsDetailsFragment__information">Transakcijas informācija, tostarp maksājuma summa un transakcijas laiks, ir norādīta MobileCoin virsgrāmatā.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Monētu uztīrīšanas likme</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">Naudas līdzekļu tīrīšanas jeb defragmentēšanas maksa tiek ieturēta, ja jūsu rīcībā esošos naudas līdzekļus nevar apvienot, lai pabeigtu transakciju. Veicot tīrīšanu, varēsiet turpināt maksājumu sūtīšanu.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Vairāk datu par šo transakciju nav pieejami</string>
   <string name="PaymentsDetailsFragment__sent_payment">Nosūtīts maksājums</string>
   <string name="PaymentsDetailsFragment__received_payment">Saņemts maksājums</string>
@@ -2210,15 +2227,22 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="PaymentsTransferFragment__transfer">Pārsūtīt</string>
   <string name="PaymentsTransferFragment__scan_qr_code">Skenēt QR kodu</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Kam: Ieskenēt vai ievadīt maka adresi</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">MobileCoin var pārskaitīt, veicot pārskaitījumu uz biržas norādīto naudas maka adresi. Naudas maka adrese ir ciparu un burtu virkne, kas parasti atrodas zem QR koda.</string>
   <string name="PaymentsTransferFragment__next">Nākošais/Tālāk</string>
   <string name="PaymentsTransferFragment__invalid_address">Nederīga adrese</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">Pārbaudiet naudas maka adresi, uz kuru mēģināt pārsūtīt, un mēģiniet vēlreiz.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Jūs nevarat veikt pārskaitījumu uz savu Signal naudas maka adresi. Ievadiet naudas maka adresi no sava konta atbalstītā biržā.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Lai skenētu QR kodu, lietotnei Signal ir nepieciešama piekļuve kamerai.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Lai uzņemtu fotoattēlus vai video, lietotnei Signal ir nepieciešama atļauja piekļūt kamerai. Atveriet iestatījumus, atlasiet Atļaujas un iespējojiet Kamera.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Lai skenētu QR kodu, lietotnei Signal ir nepieciešama piekļuve kamerai.</string>
   <string name="PaymentsTransferFragment__settings">Iestatījumi</string>
   <!--PaymentsTransferQrScanFragment-->
   <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Skenēt adreses QR kodu</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Skenēt maksājuma saņēmēja adreses QR kodu</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Pieprasīt</string>
   <string name="CreatePaymentFragment__pay">Maksāt</string>
-  <string name="CreatePaymentFragment__available_balance_s">Pieejamā bilance: %1$s</string>
+  <string name="CreatePaymentFragment__available_balance_s">Pieejamais atlikums: %1$s</string>
   <string name="CreatePaymentFragment__toggle_content_description">Ieslēgt/izslēgt (samainīt)</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
@@ -2234,6 +2258,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">Dzēst (uz atpakaļu)</string>
   <string name="CreatePaymentFragment__add_note">Pievienot piezīmi</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Konvertācijas vērtības ir aptuvenas, un tās var nebūt precīzas.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Piezīme</string>
   <!--ConfirmPaymentFragment-->
@@ -2243,7 +2268,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ConfirmPayment__estimated_s">Aprēķināts %1$s</string>
   <string name="ConfirmPayment__to">Kam</string>
   <string name="ConfirmPayment__total_amount">Kopējā summa</string>
-  <string name="ConfirmPayment__balance_s">Bilance: %1$s</string>
+  <string name="ConfirmPayment__balance_s">Atlikums: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">Maksājums tiek iesniegts</string>
   <string name="ConfirmPayment__processing_payment">Maksājums tiek apstrādāts…</string>
   <string name="ConfirmPayment__payment_complete">Maksājums veikts</string>
@@ -2251,6 +2276,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ConfirmPayment__payment_will_continue_processing">Maksājumu turpinās apstrādāt</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">Nederīgs saņēmējs</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Šī persona nav aktivējusi maksājumus</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Nevar pieprasīt tīkla maksu. Lai turpinātu šo maksājumu, pieskarieties pie Labi, lai mēģinātu vēlreiz.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s pa %2$s</string>
   <!--SetCurrencyFragment-->
@@ -2298,12 +2324,14 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="conversation_list_search_description">Meklēt</string>
   <string name="conversation_list__pinned">Piekabināts</string>
   <string name="conversation_list__chats">Sarunas</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Iespējams piespraust tikai %1$d tērzēšanas</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktpersonas foto</string>
   <string name="conversation_list_item_view__archived">Arhivēts</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Jauna saruna</string>
   <string name="conversation_list_fragment__open_camera_description">Atvērt kameru</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Vēl nav tērzēšanu.\nSāciet, nosūtot ziņu draugam.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Atstatīt šifrēto saraksti (sesiju)</string>
   <!--conversation_muted-->
@@ -2394,6 +2422,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="CreateKbsPinFragment__create_a_new_pin">Izveidot jaunu PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Varat labot PIN kamēr ierīce ir reģistrēta.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Izveido savu PIN </string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN kodos ir informācija, kas lietotnē Signal ir šifrēta, lai šai informācijai varētu piekļūt tikai jūs. Veicot atkārtotu instalēšanu, jūsu profils, iestatījumi un kontaktpersonas tiks atjaunotas. Lai atvērtu lietotni, PIN kods nebūs nepieciešams.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Izveidojiet sarežģītāku PIN</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PINi nesakrīt. Mēģiniet vēlreiz.</string>
@@ -2405,6 +2434,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ConfirmKbsPinFragment__creating_pin">Tiek veidots jauns PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Iepazīstinām ar PINiem</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN kodos ir informācija, kas lietotnē Signal ir šifrēta, lai šai informācijai varētu piekļūt tikai jūs. Veicot atkārtotu instalēšanu, jūsu profils, iestatījumi un kontaktpersonas tiks atjaunotas. Lai atvērtu lietotni, PIN kods nebūs nepieciešams.</string>
   <string name="KbsSplashFragment__learn_more">Uzziniet vairāk.</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Reģistrācijas atslēga (Registration Lock) = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Jūsu Reģistrācijas atslēga tagad tiek saukta par PIN, un tā kļuvusi funkcionālāka. Aktualizējiet to tūlīt.</string>
@@ -2434,6 +2464,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="RegistrationLockFragment__incorrect_pin">Nepareizs PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Aizmirsāt jūsu PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Vairs nav daudz mēģinājumu atlicis!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal reģistrācija - Vajadzīga palīdzība ar PIN Android ierīcēm (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal reģistrācija - Vajadzīga palīdzība ar PIN Android ierīcēm (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="zero">Jūsu privātuma un drošības apsvērumu dēļ jūsu PIN nav iespējams atkopt. Ja neatceraties savu PIN, pēc %1$d dienas neaktivitātes perioda varēsiet to atkārtoti verificēt ar īsziņu. Šādā gadījumā jūsu konts tiks iztīrīts un viss saturs tiks dzēsts.</item>
     <item quantity="one">Jūsu privātuma un drošības apsvērumu dēļ jūsu PIN nav iespējams atkopt. Ja neatceraties savu PIN, pēc %1$d dienas neaktivitātes perioda varēsiet to atkārtoti verificēt ar īsziņu. Šādā gadījumā jūsu konts tiks iztīrīts un viss saturs tiks dzēsts.</item>
@@ -2466,11 +2498,15 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN noglabā Signal informāciju šifrētā veidā.</string>
   <string name="KbsMegaphone__create_pin">Izveidot PINu</string>
   <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Paudiet savu viedokli par Signal</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Lai padarītu Signal par labāko ziņapmaiņas lietotni uz planētas, mēs ar prieku uzklausīsim jūsu atsauksmes.</string>
   <string name="ResearchMegaphone_learn_more">Lasīt vairāk</string>
   <string name="ResearchMegaphone_dismiss">Nerādīt</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal izpēte</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Mēs ticam privātumam.</b></p><p>Lietotne Signal jūs neizseko un neapkopo jūsu datus. Lai uzlabotu Signal atbilstoši katra lietotāja vēlmēm, mēs ņemam vērā lietotāju atsauksmes, <b>un mēs labprāt uzklausīsim arī jūsu viedokli un ieteikumus.</b></p><p>Mēs veicam aptauju, lai noskaidrotu, kā lietotni Signal izmantojat jūs. Mūsu aptaujā netiek apkopoti dati, pēc kuriem jūs varētu identificēt. Ja vēlaties sniegt papildu atsauksmes, jums ir iespēja norādīt savu kontaktinformāciju.</p><p>Ja jums ir dažas minūtes laika un viedoklis, ko paust, mēs labprāt to uzklausīsim.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Piekrist aptaujai</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nē, paldies</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Šo aptauju rīko uzņēmums Alchemer drošā domēnā surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transporta ikona</string>
   <string name="ConversationListFragment_loading">Notiek ielāde…</string>
@@ -2485,6 +2521,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Atbloķējiet, lai redzētu gaidošās ziņas </string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Dublikāta (rezerves kopijas) paroles frāze</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Dublikāti tiks saglabāti ārējā noliktavā un šifrēti, izmantojot tālāk esošo paroles frāzi. Lai atgrieztu/restaurētu no dublikāta (rezerves kopijas), būs nepieciešama šī paroles frāze.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Lai atjaunotu dublējumu, jums ir jābūt šai ieejas frāzei.</string>
   <string name="backup_enable_dialog__folder">Mape</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Esmu sev pierakstījis šo paroles frāzi. Bez tās nebūs iespējams atgriezt/restaurēt dublikātu (rezerves kopiju).</string>
   <string name="registration_activity__restore_backup">Atgriezt no dublikāta (rezerves kopijas)</string>
@@ -2538,6 +2575,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="PhoneNumberPrivacy_my_contacts">Manas kontaktpersonas</string>
   <string name="PhoneNumberPrivacy_nobody">Neviens</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">PIN atgādinātāji</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Ikviens, kura kontaktpersonu katalogā ir jūsu tālruņa numurs, redzēs jūs kā kontaktpersonu lietotnē Signal. Savukārt citas personas jūs varēs atrast, izmantojot meklēšanas iespēju,</string>
   <string name="preferences_app_protection__screen_lock">Ekrāna bloķēšana</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Liegt Signālam piekļuvi, izmantojot Android ekrāna bloķētāju vai pirkstu nospiedumu</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Neaktivitātes termiņš, kuram paejot tie bloķēts ekrāns </string>
@@ -2547,9 +2585,11 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences_app_protection__pin_reminders">PIN atgādinātāji</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN noglabā Signal informāciju šifrētā veidā tā, ka tikai Jūs varat tai piekļūt. Jūsu profils, uzstādījumu un kontakti tiks atjaunoti, ja uzstādīsiet Signal no jauna.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Pievienojiet papildus drošību ievadīt PIN reģistrējoties Signal no jauna.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Atgādinājumi jums palīdz atcerēties PIN, jo to nevar atgūt. Laika gaitā atgādināšana būs retāka.</string>
   <string name="preferences_app_protection__turn_off">Izslēgt</string>
   <string name="preferences_app_protection__confirm_pin">Apstiprināt PIN</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Apstipriniet Signal PIN</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Pārliecinieties, ka atceraties PIN un vai uzglabājat to droši, jo PIN nevar atgūt. PIN aizmiršanas gadījumā, iespējams, zaudēsiet datus, atkārtoti reģistrējot Signal kontu.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Nepareizs PIN. Mēģiniet vēlreiz.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Reģistrācijas bloķēšanas iestatīšanas laikā notikusi kļūda.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Reģistrācijas bloķēšanas atiestatīšanas laikā notikusi kļūda.</string>
@@ -2567,18 +2607,41 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="Recipient_unknown">Nezināms</string>
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">Nodot vai atgūt kontu</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Ja iepriekš reģistrējāt Signal kontu, varat pārsūtīt vai atjaunot savu kontu un ziņas</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Pārsūtīt no Android ierīces</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Pārsūtiet savu kontu un ziņas no vecās Android ierīces. Jums ir nepieciešama piekļuve vecajai ierīcei.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Jums ir nepieciešama piekļuve vecajai ierīcei.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Atgūt no dublikāta</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Atjaunojiet ziņas no lokāla dublējuma. Ja neatjaunosiet tagad, vēlāk to vairs nebūs iespējams izdarīt.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Atvērt Signal vecajā Android ierīcē</string>
   <string name="NewDeviceTransferInstructions__continue">Turpināt</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Pieskarieties sava profila fotoattēlam augšējā kreisajā stūrī, lai atvērtu iestatījumus</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">Pieskarieties pie Konts</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Abās ierīcēs pieskarieties pie Pārsūtīt kontu un pēc tam pie Turpināt</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Gatavojas savienojuma izveidei ar veco Android ierīci…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Brīdi uzgaidiet, drīz viss būs kārtībā</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Gaida savienojumu ar veco Android ierīci…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Lietotnei Signal ir nepieciešama atrašanās vietas atļauja, lai atrastu veco Android ierīci un izveidotu ar to savienojumu.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Lietotnē Signal ir jābūt iespējotiem atrašanās vietas pakalpojumiem, lai atrastu veco Android ierīci un izveidotu ar to savienojumu.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Lietotnē Signal ir jāieslēdz Wi-Fi, lai varētu noteikt veco Android ierīci un izveidot ar to savienojumu. Wi-Fi ir jābūt ieslēgtam, bet ierīcei nav jābūt pievienotai Wi-Fi tīklam.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Diemžēl šķiet, ka šī ierīce neatbalsta Wi-Fi Direct. Lietotne Signal izmanto Wi-Fi Direct, lai noteiktu veco Android ierīci un izveidotu ar to savienojumu. Joprojām varat atjaunot dublējumu konta atjaunošanai no vecās Android ierīces.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Atjaunot dublējumu</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Mēģinot izveidot savienojumu ar veco Android ierīci, radās neparedzēta kļūda.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Meklē jaunu Android ierīci…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Lietotnei Signal ir nepieciešama atrašanās vietas atļauja, lai atrastu jauno Android ierīci un izveidotu ar to savienojumu.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Lietotnē Signal ir jābūt iespējotiem atrašanās vietas pakalpojumiem, lai atrastu jauno Android ierīci un izveidotu ar to savienojumu.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Lietotnē Signal ir jāieslēdz Wi-Fi, lai varētu noteikt jauno Android ierīci un izveidot ar to savienojumu. Wi-Fi ir jābūt ieslēgtam, bet ierīcei nav jābūt pievienotai Wi-Fi tīklam.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Diemžēl šķiet, ka šī ierīce neatbalsta Wi-Fi Direct. Lietotne Signal izmanto Wi-Fi Direct, lai noteiktu jauno Android ierīci un izveidotu ar to savienojumu. Joprojām varat izveidot dublējumu konta atjaunošanai jaunajā Android ierīcē.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Izveidot dublējumu</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Mēģinot izveidot savienojumu ar jauno Android ierīci, radās neparedzēta kļūda.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Nevar atvērt Wi-Fi iestatījumus. Ieslēdziet Wi-Fi manuāli.</string>
   <string name="DeviceTransferSetup__grant_location_permission">Piešķirt atrašanās vietas atļauju</string>
   <string name="DeviceTransferSetup__turn_on_location_services">Ieslēgt atrašanās vietas pakalpojumus</string>
   <string name="DeviceTransferSetup__unable_to_open_location_settings">Nevar atvērt atrašanās vietas iestatījumus.</string>
@@ -2587,20 +2650,26 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="DeviceTransferSetup__retry">Mēģināt vēlreiz</string>
   <string name="DeviceTransferSetup__submit_debug_logs">Iesniegt atkļūdošanas žurnālus</string>
   <string name="DeviceTransferSetup__verify_code">Pārbaudīt kodu</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Pārbaudiet, vai zemāk norādītais kods abās jūsu ierīcēs ir vienāds. Pēc tam pieskarieties pie Turpināt.</string>
   <string name="DeviceTransferSetup__the_numbers_do_not_match">Numuri nesakrīt</string>
   <string name="DeviceTransferSetup__continue">Turpināt</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">Numurs nav tas pats</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Ja abās ierīcēs norādītie cipari nesakrīt, iespējams, esat izveidojis savienojumu ar nepareizo ierīci. Lai šo problēmu novērstu, pārtrauciet pārsūtīšanu un mēģiniet vēlreiz. Turiet abas ierīces netālu vienu no otras.</string>
   <string name="DeviceTransferSetup__stop_transfer">Pārtraukt nosūtīšanu</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">Nevar atrast veco ierīci</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">Nevar atrast jauno ierīci</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Pārliecinieties, vai ir iespējotas šādas atļaujas un pakalpojumi:</string>
   <string name="DeviceTransferSetup__location_permission">Atrašanās vietas atļauja</string>
   <string name="DeviceTransferSetup__location_services">Atrašanās vietas pakalpojumi</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi Direct ekrānā noņemiet visas atmiņā saglabātās grupas un atsaistiet visas uzaicinātās vai pievienotās ierīces.</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct ekrāns</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Izslēdziet un ieslēdziet Wi-Fi abās ierīcēs.</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Pārliecinieties, vai abas ierīces atrodas pārsūtīšanas režīmā.</string>
   <string name="DeviceTransferSetup__go_to_support_page">Atvērt atbalsta lapu</string>
   <string name="DeviceTransferSetup__try_again">Mēģiniet vēlreiz</string>
   <string name="DeviceTransferSetup__waiting_for_other_device">Gaida otru ierīci</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Pieskarieties pie Turpināt otrā ierīcē, lai sāktu pārsūtīšanu.</string>
   <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Pieskarieties pie Turpināt otrā ierīcē…</string>
   <!--NewDeviceTransferFragment-->
   <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Nevar pārsūtīt no jaunākām Signal versijām</string>
@@ -2612,22 +2681,28 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="DeviceTransfer__try_again">Mēģiniet vēlreiz</string>
   <string name="DeviceTransfer__stop_transfer_question">Vai pārtraukt nosūtīšanu?</string>
   <string name="DeviceTransfer__stop_transfer">Pārtraukt nosūtīšanu</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Viss paveiktais pārsūtīšanas darbības process tiks zaudēts.</string>
   <string name="DeviceTransfer__transfer_failed">Pārsūtīšana neizdevās</string>
   <string name="DeviceTransfer__unable_to_transfer">Nevar pārsūtīt</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">Pārnest kontu</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Signal kontu var pārsūtīt, kad lietotni Signal iestata jaunā Android ierīcē. Pirms turpināt, rīkojieties šādi.</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Lejupielādēt Signal jaunajā Android ierīcē</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
   <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Pieskarieties pie Pārsūtīt vai atjaunot kontu</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Kad tiek prasīts, atlasiet Pārsūtīt no Android ierīces un pēc tam pieskarieties pie Turpināt. Turiet abas ierīces tuvumā.</string>
   <string name="OldDeviceTransferInstructions__continue">Turpināt</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Pārsūtīšana pabeigta</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Doties uz jauno ierīci</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Signal dati ir pārsūtīti uz jauno ierīci. Lai pabeigtu pārsūtīšanas procesu, jums jāturpina reģistrācija savā jaunajā ierīcē.</string>
   <string name="OldDeviceTransferComplete__close">Aizvērt</string>
   <!--NewDeviceTransferComplete-->
   <string name="NewDeviceTransferComplete__transfer_successful">Pārsūtīšana izdevās</string>
   <string name="NewDeviceTransferComplete__transfer_complete">Pārsūtīšana pabeigta</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Lai pabeigtu pārsūtīšanas procesu, jums jāturpina reģistrācija savā jaunajā ierīcē.</string>
   <string name="NewDeviceTransferComplete__continue_registration">Turpināt reģistrāciju</string>
   <!--DeviceToDeviceTransferService-->
   <string name="DeviceToDeviceTransferService_content_title">Konta pārsūtīšana</string>
@@ -2639,10 +2714,12 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="DeviceToDeviceTransferService_status_service_connected">Pārsūta kontu…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Pabeidziet reģistrāciju jaunajā ierīcē</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Jūsu Signal konts ir pārsūtīts uz jūsu jauno ierīci, taču, lai turpinātu, jaunajā ierīcē ir jāpabeidz reģistrācija. Lietotne Signal šajā ierīcē nebūs aktīva.</string>
   <string name="OldDeviceTransferLockedDialog__done">Gatavs</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Atcelt un aktivizēt šo ierīci</string>
   <!--AdvancedPreferenceFragment-->
-  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Vai pārsūtīt MOB bilanci?</string>
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">Vai pārskaitīt MOB atlikumu?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Jūsu atlikums ir %1$s. Ja pirms konta dzēšanas nepārskaitīsiet naudas līdzekļus uz citu naudas maka adresi, jūs tos zaudēsiet pavisam.</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">Nepārsūtīt</string>
   <string name="AdvancedPreferenceFragment__transfer">Pārsūtīt</string>
   <!--RecipientBottomSheet-->
@@ -2660,6 +2737,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="RecipientBottomSheet_insecure_voice_call_description">Audiozvans (nedrošs)</string>
   <string name="RecipientBottomSheet_video_call_description">Videozvans</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Noņemt %1$sgrupas administratora tiesības?</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">%1$s varēs rediģēt šo grupu un tās dalībniekus</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Vai dzēst %1$s no šīs grupas?</string>
   <string name="RecipientBottomSheet_remove">Noņemt/Izņemt</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Iekopēts starpenē</string>
   <string name="GroupRecipientListItem_admin">Administrators</string>
@@ -2668,8 +2747,14 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Mantoto grupu salīdzinājums ar jaunajām</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Kas ir mantotās grupas?</string>
+  <string name="GroupsLearnMore_paragraph_1">Mantotās jeb vecā tipa grupas ir grupas, kas nav saderīgas ar jaunās grupas funkcijām, piemēram, administratoriem un konkrētākiem grupu atjauninājumiem.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Vai var jaunināt mantoto jeb vecā tipa grupu?</string>
+  <string name="GroupsLearnMore_paragraph_2">Vecā tipa grupas vēl nevar jaunināt uz jaunām grupām, taču varat izveidot jaunu grupu ar tiem pašiem dalībniekiem, ja dalībnieki izmanto jaunāko lietotnes Signal versiju.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal piedāvās veidu, kā turpmāk jaunināt vecā tipa grupas.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Ikviens ar šo saiti var skatīt grupas nosaukumu un fotoattēlu un nosūtīt pieprasījumu tai pievienoties. Nosūtiet šo saiti tikai cilvēkiem, kuriem uzticaties.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Ikviens ar šo saiti var skatīt grupas nosaukumu un fotoattēlu un pievienoties šai grupai. Nosūtiet šo saiti tikai cilvēkiem, kuriem uzticaties.</string>
+  <string name="GroupLinkBottomSheet_share_via_signal">Koplietot, izmantojot Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopēt</string>
   <string name="GroupLinkBottomSheet_qr_code">QR kods</string>
   <string name="GroupLinkBottomSheet_share">Kopīgot</string>
@@ -2682,11 +2767,15 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ir bloķēts.</string>
   <string name="BlockedUsersActivity__failed_to_block_s">Neizdevās bloķēt \"%1$s\"</string>
   <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" ir atbloķēts.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Pārskatīt dalībniekus</string>
   <string name="ReviewCardDialogFragment__review_request">Pārskatīt pieprasījumu</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d grupas dalībniekiem ir vienāds vārds; pārskatiet tālāk norādītos dalībniekus un izvēlieties rīkoties.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Ja neesat pārliecināts, no kā ir pieprasījums, pārskatiet tālāk norādītās kontaktpersonas un rīkojieties.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nav citu kopīgu grupu.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Nav kopīgu grupu.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
     <item quantity="zero">%d kopīga grupa</item>
@@ -2709,6 +2798,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ReviewCard__update_contact">Atjaunināt kontaktpersonu</string>
   <string name="ReviewCard__block">Bloķēt</string>
   <string name="ReviewCard__delete">Dzēst</string>
+  <string name="ReviewCard__recently_changed">Nesen mainīja profila nosaukumu no %1$s uz %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s pievienojās</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s un %2$s pievienojās</string>
@@ -2725,12 +2815,16 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="DeleteAccountFragment__deleting_your_account_will">Dzēšot kontu, tiks veiktas šādas darbības:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Ievadiet savu tālruņa numuru</string>
   <string name="DeleteAccountFragment__delete_account">Dzēst kontu</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Dzēst konta informāciju un profila attēlu</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Dzēst visas ziņas</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Dzēst %1$s maksājumu kontā</string>
   <string name="DeleteAccountFragment__no_country_code">Nav norādīts valsts kods</string>
   <string name="DeleteAccountFragment__no_number">Nav norādīts numurs</string>
   <string name="DeleteAccountFragment__the_phone_number">Ievadītais tālruņa numurs neatbilst jūsu kontā norādītajam.</string>
   <string name="DeleteAccountFragment__are_you_sure">Vai tiešām vēlaties dzēst savu kontu?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Veicot šo darbību, tiks dzēsts jūsu Signal konts un lietotne tiks atiestatīta. Pēc šī procesa pabeigšanas lietotne tiks aizvērta.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Neizdevās izdzēst kontu. Vai jums ir savienojumus ar tīklu?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Neizdevās izdzēst lokālos datus. Tos var manuāli dzēst sistēmas lietojumprogrammas iestatījumos.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Atvērt lietotnes iestatījumus</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Meklēt valstis</string>
@@ -2745,8 +2839,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ShareActivity__share">Kopīgot</string>
   <string name="ShareActivity__send">Sūtīt</string>
   <string name="ShareActivity__comma_s">, %1$s</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Kopīgošana vairākās tērzēšanas sarunās tiek atbalstīta tikai Signal ziņām</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Neizdevās nosūtīt dažiem lietotājiem</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Var kopīgot tikai %1$d tērzēšanas</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Pārsūtīt ziņu</string>
   <!--ChatWallpaperActivity-->
@@ -2757,10 +2853,13 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ChatWallpaperFragment__reset_chat_color">Atiestatīt tērzēšanas krāsu</string>
   <string name="ChatWallpaperFragment__reset_chat_color_question">Vai atiestatīt tērzēšanas krāsu?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Iestatīt fona tapeti</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Tumšais režīms aptumšo fona tapeti</string>
   <string name="ChatWallpaperFragment__contact_name">Kontaktpersonas vārds</string>
   <string name="ChatWallpaperFragment__reset">Atstatīt</string>
   <string name="ChatWallpaperFragment__clear">Notīrīt</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Fona tapetes priekšskatījums</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Vai vēlaties ignorēt visas tērzēšanas loga krāsas?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Vai vēlaties ignorēt visas fona tapetes?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">Atiestatīt noklusējuma krāsas</string>
   <string name="ChatWallpaperFragment__reset_all_colors">Atiestatīt visas krāsas</string>
   <string name="ChatWallpaperFragment__reset_default_wallpaper">Atiestatīt noklusējuma fona tapeti</string>
@@ -2769,40 +2868,54 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ChatWallpaperFragment__reset_wallpaper">Atiestatīt fona tapeti</string>
   <string name="ChatWallpaperFragment__reset_wallpaper_question">Vai atiestatīt fona tapeti?</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Izvēlēties no fotoattēliem</string>
   <string name="ChatWallpaperSelectionFragment__presets">Sākotnējie iestatījumi</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Priekšskatīt</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Iestatīt fona tapeti</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Velciet, lai priekšskatītu citas fona tapetes</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Iestatīt fona tapeti visām tērzēšanām</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Iestatīt fona tapeti %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Lai skatītu galeriju, nepieciešama failu noliktavas lietošanas atļauja.</string>
   <!--WallpaperImageSelectionActivity-->
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Izvēlēties fona tapetes attēlu</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Savelciet, lai tuvinātu; velciet, lai pielāgotu.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Iestatiet fona tapeti visām tērzēšanām.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Iestatiet fona tapeti %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Fona tapetes iestatīšanas kļūda.</string>
   <string name="WallpaperCropActivity__blur_photo">Aizmiglot fotoattēlu</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">Par MobileCoin</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin ir jauna uz privātumu vērsta digitālā valūta.</string>
   <string name="payment_info_card_adding_funds">Līdzekļu papildināšana</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Naudas līdzekļus izmantošanai lietotnē Signal varat pievienot, nosūtot MobileCoin uz sava naudas maka adresi. </string>
   <string name="payment_info_card_cashing_out">Naudas izmaksa</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">Jūs varat izņemt MobileCoin jebkurā laikā biržā, kas atbalsta MobileCoin. Vienkārši veiciet pārskaitījumu uz savu kontu attiecīgajā biržā.</string>
   <string name="payment_info_card_hide_this_card">Vai paslēpt šo karti?</string>
   <string name="payment_info_card_hide">Slēpt</string>
   <string name="payment_info_card_record_recovery_phrase">Ierakstīt atgūšanas frāzi</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">Atgūšanas frāze nodrošina citu veidu, kā atjaunot maksājumu kontu.</string>
   <string name="payment_info_card_record_your_phrase">Ierakstīt frāzi</string>
   <string name="payment_info_card_update_your_pin">Atjaunināt PIN</string>
+  <string name="payment_info_card_with_a_high_balance">Ja atlikums ir liels, iespējams, vēlēsieties atjaunināt uz burtciparu PIN kodu, lai savam kontam piešķirtu lielāku aizsardzību.</string>
   <string name="payment_info_card_update_pin">Aktualizēt PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">Deaktivizēt maciņu</string>
-  <string name="DeactivateWalletFragment__your_balance">Jūsu bilance</string>
+  <string name="DeactivateWalletFragment__your_balance">Jūsu atlikums</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">Pirms maksājumu deaktivizēšanas ieteicams pārskaitīt līdzekļus uz citu naudas maka adresi. Ja izvēlēsieties nepārskaitīt savus līdzekļus tūlīt, tie paliks ar lietotni Signal saistītajā naudas makā, ja atkārtoti aktivizēsiet maksājumus.</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">Pārskaitīt atlikumu</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">Deaktivizēt, neveicot pārskaitīšanu</string>
   <string name="DeactivateWalletFragment__deactivate">Deaktivēt</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Vai deaktivizēt, neveicot pārskaitīšanu?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">Ja izvēlēsieties atkārtoti aktivizēt maksājumus, atlikums paliks jūsu ar lietotni Signal saistītajā naudas makā.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">Naudas maka deaktivizēšanas kļūda.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Atgūšanas frāze</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Skatīt atgūšanas frāzi</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Ievadiet atgūšanas frāzi</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Jūsu atlikums tiks automātiski atjaunots, atkārtoti instalējot Signal, ja apstiprināsiet savu lietotnes Signal PIN. Atlikumu var arī atjaunot, izmantojot atgūšanas frāzi, kas ir tikai jums raksturīga %1$d vārdu frāze. Pierakstiet to un glabājiet drošā vietā.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Jūsu atgūšanas frāze ir tikai jums raksturīga %1$d vārdu frāze. Izmantojiet šo frāzi, lai atjaunotu atlikumu.</string>
   <string name="PaymentsRecoveryStartFragment__start">Sākt</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Ievadīt manuāli</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Ielīmēt no starpliktuves</string>
@@ -2811,17 +2924,24 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Atgūšanas frāze</string>
   <string name="PaymentsRecoveryPasteFragment__next">Nākošais/Tālāk</string>
   <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Nederīga atgūšanas frāze</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Pārliecinieties, ka ievadījāt %1$d vārdus, un mēģiniet vēlreiz.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Nākošais/Tālāk</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Rediģēt</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Atpakaļ</string>
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Jūsu atgūšanas frāze</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Secīgi pierakstiet šādus %1$d vārdus. Glabājiet savu sarakstu drošā vietā.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Pārliecinieties, ka frāze ir ievadīta pareizi.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Neveiciet ekrānuzņēmumu vai nesūtiet pa e-pastu.</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Maksājumu konts atjaunots.</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Nederīga atgūšanas frāze</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Pārliecinieties, ka frāze ir ievadīta pareizi, un mēģiniet vēlreiz.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Vai kopēt starpliktuvē?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Ja izvēlaties atgūšanas frāzi glabāt digitāli, pārliecinieties, ka tā tiek droši glabāta uzticamā vietā.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Kopēt</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Apstiprināt atgūšanas frāzi</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Ievadiet šādus atgūšanas frāzes vārdus.</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Vārds %1$d</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Skatīt frāzi vēlreiz</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Gatavs</string>
@@ -2841,10 +2961,14 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="UnreadPayments__d_new_payment_notifications">%1$d jauni paziņojumi par maksājumiem</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">Nevar nosūtīt maksājumu</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Lai nosūtītu maksājumu šim lietotājam, viņam ir jāpieņem ziņapmaiņas pieprasījums no jums. Nosūtiet lietotājam ziņojumu, lai izveidotu ziņapmaiņas pieprasījumu.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Nosūtīt ziņu</string>
   <!--GroupsInCommonMessageRequest-->
+  <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Jums nav kopīgu grupu ar šo personu. Pirms piekrišanas rūpīgi pārskatiet pieprasījumus, lai izvairītos no nevēlamām ziņām.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Šajā grupā nav neviena jūsu tērzēšanas kontaktpersona vai cilvēka. Pirms piekrišanas rūpīgi pārskatiet pieprasījumus, lai izvairītos no nevēlamām ziņām.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">Par ziņu pieprasījumiem</string>
   <string name="GroupsInCommonMessageRequest__okay">Labi</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Lūk, tērzēšanas krāsas priekšskatījums.</string>
   <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Šī krāsa ir redzama tikai jums.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Grupas apraksts</string>
@@ -2858,6 +2982,8 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="AppSettingsFragment__invite_your_friends">Uzaiciniet draugus</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Konts</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Laika gaitā jums tiks jautāts retāk</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Pieprasīt savu Signal PIN, lai vēlreiz reģistrētu savu tālruņa numuru lietotnē Signal</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatūra</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Pogas Enter funkcija</string>
@@ -2875,10 +3001,15 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="PrivacySettingsFragment__disappearing_messages">Gaistošās ziņas</string>
   <string name="PrivacySettingsFragment__app_security">Lietotnes aizsardzība</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bloķēt ekrānuzņēmumus pēdējo sarakstā un programmā</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ziņas un zvani, pastāvīga zvanu pārsūtīšana un šifrēts sūtītājs</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Noklusējuma taimeris jaunām tērzēšanām</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Iestatiet noklusējuma ziņu dzēšanas taimeri visām jaunajām jūsu sāktajām tērzēšanām.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Rādīt statusa ikonu</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Parādiet ikonu ziņas informācijā, kad tā tika piegādāta, izmantojot šifrētu sūtītāju.</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Ja šī funkcija ir iespējota, nosūtītās un saņemtās jaunās ziņas jūsu sāktās jaunās tērzēšanās pēc izlasīšanas tiks dzēstas.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Ja šī funkcija ir iespējota, šajā tērzēšanā nosūtītās un saņemtās ziņas pēc izlasīšanas tiks dzēstas.</string>
   <string name="ExpireTimerSettingsFragment__off">Izslēgts</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 nedēļas</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 nedēļa</string>
@@ -2913,6 +3044,11 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ChatColorSelectionFragment__duplicate">Dublēt</string>
   <string name="ChatColorSelectionFragment__delete">Dzēst</string>
   <string name="ChatColorSelectionFragment__delete_color">Dzēst krāsu</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="zero">Šī pielāgotā krāsa tiek izmantota %1$d tērzēšanā. Vai vēlaties to dzēst visām tērzēšanām?</item>
+    <item quantity="one">Šī pielāgotā krāsa tiek izmantota %1$d tērzēšanā. Vai vēlaties to dzēst visām tērzēšanām?</item>
+    <item quantity="other">Šī pielāgotā krāsa tiek izmantota %1$d tērzēšanās. Vai vēlaties to dzēst visām tērzēšanām?</item>
+  </plurals>
   <string name="ChatColorSelectionFragment__delete_chat_color">Vai dzēst tērzēšanas krāsu?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Necaurspīdīga</string>
@@ -2922,16 +3058,29 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Saglabāt</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Rediģēt krāsu</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="zero">Šī krāsa tiek izmantota %1$d tērzēšanā. Vai vēlaties saglabāt izmaiņas visām tērzēšanām?</item>
+    <item quantity="one">Šī krāsa tiek izmantota %1$d tērzēšanā. Vai vēlaties saglabāt izmaiņas visām tērzēšanām?</item>
+    <item quantity="other">Šī krāsa tiek izmantota %1$d tērzēšanās. Vai vēlaties saglabāt izmaiņas visām tērzēšanām?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Augšējās malas atlasītājs</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Apakšējās malas atlasītājs</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">Pielāgot emociju izpausmes</string>
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">Pieskarieties, lai aizvietotu emocijzīmi</string>
   <string name="EditReactionsFragment__reset">Atstatīt</string>
   <string name="EditReactionsFragment_save">Saglabāt</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Automātiski saskaņo krāsu ar fona tapeti</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Velciet, lai mainītu gradienta virzienu</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Jaunas tērzēšanas krāsas</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Mēs pārgrupējām tērzēšanas krāsas, lai sniegtu jums vairāk iespēju un atvieglotu tērzēšanu.</string>
   <string name="ChatColorsMegaphone__appearance">Izskats</string>
   <string name="ChatColorsMegaphone__not_now">Ne tagad</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Pievienojiet profila fotoattēlu</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Izvēlieties izskatu un krāsu vai pielāgojiet savus iniciāļus.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ne tagad</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Pievienot fotoattēlu</string>
   <!--KeyboardPagerFragment-->
@@ -2978,6 +3127,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ConversationSettingsFragment__group_link">Grupas saite</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">Pievienot kā kontaktpersonu</string>
   <string name="ConversationSettingsFragment__unmute">Ieslēgt ziņas</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Saruna apklusināta līdz %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Saruna apklusināta uz visiem laikiem.</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Tālruņa numurs ir nokopēts starpliktuvē.</string>
   <string name="ConversationSettingsFragment__phone_number">Tālruņa numurs</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Pievienot dalībniekus</string>
@@ -2987,9 +3139,11 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="PermissionsSettingsFragment__only_admins">Tikai administratori</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Ka var pievienot jaunus lietotājus?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kas var rediģēt šīs grupas informāciju?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Kurš var sūtīt ziņas?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Noklusināt paziņojumus</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nav atspējotas</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Skaņa izslēgta līdz %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Pieminējumi</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Vienmēr paziņot</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Neziņot</string>
@@ -3009,13 +3163,17 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Avatāra priekšskatījums</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__take_a_picture">Uzņemt attēlu</string>
   <string name="AvatarPickerFragment__choose_a_photo">Izvēlēties fotoattēlu</string>
   <string name="AvatarPickerFragment__photo">Attēls</string>
   <string name="AvatarPickerFragment__text">Teksts</string>
   <string name="AvatarPickerFragment__save">Saglabāt</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Atlasīt avatāru</string>
+  <string name="AvatarPickerFragment__clear_avatar">Dzēst avatāru</string>
   <string name="AvatarPickerFragment__edit">Rediģēt</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Neizdevās saglabāt avatāru</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Priekšskatīt</string>
   <string name="TextAvatarCreationFragment__done">Darīts</string>
