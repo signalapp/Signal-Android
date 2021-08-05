@@ -455,22 +455,28 @@ public class ThreadDatabase extends Database {
   }
 
   public void setForcedUnread(@NonNull Collection<Long> threadIds) {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    SQLiteDatabase    db           = databaseHelper.getWritableDatabase();
+    List<RecipientId> recipientIds = Collections.emptyList();
 
     db.beginTransaction();
     try {
-      List<RecipientId> recipientIds  = getRecipientIdsForThreadIds(threadIds);
       SqlUtil.Query     query         = SqlUtil.buildCollectionQuery(ID, threadIds);
       ContentValues     contentValues = new ContentValues();
 
       contentValues.put(READ, ReadStatus.FORCED_UNREAD.serialize());
 
       db.update(TABLE_NAME, contentValues, query.getWhere(), query.getWhereArgs());
-      DatabaseFactory.getRecipientDatabase(context).markNeedsSync(recipientIds);
+
+      recipientIds = getRecipientIdsForThreadIds(threadIds);
+      DatabaseFactory.getRecipientDatabase(context).markNeedsSyncWithoutRefresh(recipientIds);
 
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
+
+      for (RecipientId id : recipientIds) {
+        Recipient.live(id).refresh();
+      }
 
       StorageSyncHelper.scheduleSyncForDataChange();
       notifyConversationListListeners();
@@ -627,7 +633,8 @@ public class ThreadDatabase extends Database {
   }
 
   public void setArchived(Set<Long> threadIds, boolean archive) {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    SQLiteDatabase    db           = databaseHelper.getReadableDatabase();
+    List<RecipientId> recipientIds = Collections.emptyList();
 
     db.beginTransaction();
     try {
@@ -642,12 +649,17 @@ public class ThreadDatabase extends Database {
         db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(threadId));
       }
 
-      List<RecipientId> recipientIds = getRecipientIdsForThreadIds(threadIds);
-      DatabaseFactory.getRecipientDatabase(context).markNeedsSync(recipientIds);
+      recipientIds = getRecipientIdsForThreadIds(threadIds);
+      DatabaseFactory.getRecipientDatabase(context).markNeedsSyncWithoutRefresh(recipientIds);
 
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
+
+      for (RecipientId id : recipientIds) {
+        Recipient.live(id).refresh();
+      }
+
       notifyConversationListListeners();
       StorageSyncHelper.scheduleSyncForDataChange();
     }
