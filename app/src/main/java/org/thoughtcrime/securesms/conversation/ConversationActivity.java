@@ -2846,7 +2846,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
     attachmentManager.cleanup();
 
     updateLinkPreviewState();
-    linkPreviewViewModel.onSend();
   }
 
   private void sendMessage() {
@@ -2939,13 +2938,14 @@ public class ConversationActivity extends PassphraseRequiredActivity
       throws InvalidMessageException
   {
     Log.i(TAG, "Sending media message...");
+    List<LinkPreview> linkPreviews = linkPreviewViewModel.onSend();
     sendMediaMessage(recipient.getId(),
                      forceSms,
                      getMessage(),
                      attachmentManager.buildSlideDeck(),
                      inputPanel.getQuote().orNull(),
                      Collections.emptyList(),
-                     linkPreviewViewModel.getActiveLinkPreviews(),
+                     linkPreviews,
                      composeText.getMentions(),
                      expiresIn,
                      viewOnce,
