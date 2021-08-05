@@ -2923,7 +2923,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     attachmentManager.clear(glideRequests, false);
     silentlySetComposeText("");
 
-    long id = fragment.stageOutgoingMessage(message);
+    long id = fragment.stageOutgoingMessage(secureMessage);
 
     SimpleTask.run(() -> {
       long resultId = MessageSender.sendPushWithPreUploadedMedia(this, secureMessage, result.getPreUploadResults(), thread, () -> fragment.releaseOutgoingMessage(id));
