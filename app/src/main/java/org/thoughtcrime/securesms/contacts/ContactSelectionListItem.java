@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -25,7 +26,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-public class ContactSelectionListItem extends LinearLayout implements RecipientForeverObserver {
+public class ContactSelectionListItem extends ConstraintLayout implements RecipientForeverObserver {
 
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(ContactSelectionListItem.class);
