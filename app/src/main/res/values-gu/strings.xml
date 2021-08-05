@@ -35,9 +35,9 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">થીમ %1$s,  ભાષા %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">રજીસ્ટ્રેશન લૉક માટે પિન આવશ્યક છે. પિન અક્ષમ કરવા માટે, કૃપા કરીને પહેલા રજીસ્ટ્રેશન લૉક ને અક્ષમ કરો.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN બનાવ્યો.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">પિન અક્ષમ કરેલ છે</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">પિન અક્ષમ કરેલ છે.</string>
   <string name="ApplicationPreferencesActivity_hide">છુપાવો</string>
-  <string name="ApplicationPreferencesActivity_hide_reminder">રીમાઇન્ડર છુપાવો?</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">રીમાઇન્ડર છુપાવવું છે?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">પેમેન્ટ રિકવરી કરવા માટે વાક્ય રૅકોર્ડ કરો</string>
   <string name="ApplicationPreferencesActivity_record_phrase">વાક્ય રૅકોર્ડ કરો</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">તમે તમારો પિન અક્ષમ કરી શકો તે પહેલાં, તમે તમારા પેમેન્ટ એકાઉન્ટને રિકવરી કરી શકો છો તેની ખાતરી કરવા માટે તમારે તમારા પેમેન્ટ રિકવરી વાક્યને રેકોર્ડ કરવું આવશ્યક છે.</string>
@@ -58,7 +58,7 @@
   <string name="AttachmentKeyboard_file">ફાઇલ</string>
   <string name="AttachmentKeyboard_contact">સંપર્ક</string>
   <string name="AttachmentKeyboard_location">સ્થળ</string>
-  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">તમારા ફોટા અને વિડિઓઝ બતાવવા માટે Signal ને પરવાનગીની જરૂર છે.</string>
+  <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">તમારા ફોટા અને વિડિયો બતાવવા માટે Signal ને પરવાનગીની જરૂર છે.</string>
   <string name="AttachmentKeyboard_give_access">પરવાનગી આપો</string>
   <string name="AttachmentKeyboard_payment">પેમેન્ટ</string>
   <!--AttachmentManager-->
@@ -70,27 +70,27 @@
   <string name="AttachmentUploadJob_uploading_media">મીડિયા અપલોડ કરી રહ્યું છે…</string>
   <string name="AttachmentUploadJob_compressing_video_start">વિડિયો કંપ્રેસ થઈ રહ્યો છે…</string>
   <!--BackgroundMessageRetriever-->
-  <string name="BackgroundMessageRetriever_checking_for_messages">મેસેજ માટે ચકાસી રહ્યું છે</string>
+  <string name="BackgroundMessageRetriever_checking_for_messages">મેસેજ માટે ચકાસી રહ્યું છે…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">બ્લૉક કરેલ વપરાશકર્તાઓ</string>
   <string name="BlockedUsersActivity__add_blocked_user">બ્લોક કરેલ વપરાશકર્તા ઉમેરો</string>
   <string name="BlockedUsersActivity__blocked_users_will">અવરોધિત વપરાશકર્તાઓ તમને કૉલ કરી શકશે નહીં અથવા તમને મેસેજ મોકલશે નહીં.</string>
   <string name="BlockedUsersActivity__no_blocked_users">બ્લોક કરેલ વપરાશકર્તા નથી</string>
-  <string name="BlockedUsersActivity__block_user">વપરાશકર્તા ને બ્લોક કરો?</string>
+  <string name="BlockedUsersActivity__block_user">વપરાશકર્તાને બ્લોક કરવા છે?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" તમને કૉલ કરી શકશે નહીં અથવા તમને મેસેજીસ મોકલશે નહીં.</string>
   <string name="BlockedUsersActivity__block">બ્લૉક કરો</string>
-  <string name="BlockedUsersActivity__unblock_user">વપરાશકર્તાને અનબ્લૉક કરો?</string>
-  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">તમે અનલૉક કરવા માગો છો \"%1$s\"?</string>
+  <string name="BlockedUsersActivity__unblock_user">વપરાશકર્તાને અનબ્લૉક કરવા છે?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">તમે અનલૉક કરવા માંગો છો \"%1$s\"?</string>
   <string name="BlockedUsersActivity__unblock">અનબ્લૉક કરો</string>
   <!--BlockUnblockDialog-->
-  <string name="BlockUnblockDialog_block_and_leave_s">અનબ્લૉક કરો અને છોડી દો %1$s?</string>
+  <string name="BlockUnblockDialog_block_and_leave_s">અનબ્લૉક કરવુ છે અને છોડી દેવુ છે %1$s?</string>
   <string name="BlockUnblockDialog_block_s">%1$s ને બ્લોક કરો</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">તમે હવે આ ગ્રુપમાંથી સંદેશા અથવા અપડેટ્સ પ્રાપ્ત કરશો નહીં, અને સભ્યો તમને ફરીથી આ ગ્રુપમાં ઉમેરવા માટે સમર્થ હશે નહીં.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">ગ્રુપના સભ્યો તમને આ જૂથમાં ફરીથી ઉમેરવા માટે સમર્થ હશે નહીં.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ગ્રુપના સભ્યો તમને આ ગ્રુપમાં ફરીથી ઉમેરવામાં સમર્થ હશે.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">તમે એકબીજાને મેસેજ અને કૉલ કરી શકશો અને તમારું નામ અને ફોટો તેમની સાથે શેર કરવામાં આવશે.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">અવરોધિત લોકો તમને કૉલ કરી શકશે નહીં અથવા તમને મેસેજ મોકલશે નહીં.</string>
-  <string name="BlockUnblockDialog_unblock_s">અન બ્લોક કરો%1$s?</string>
+  <string name="BlockUnblockDialog_unblock_s">અન બ્લોક કરવું છે%1$s?</string>
   <string name="BlockUnblockDialog_block">અવરોધિત કરો</string>
   <string name="BlockUnblockDialog_block_and_leave">બ્લોક કરો અને નીકળો</string>
   <string name="BlockUnblockDialog_report_spam_and_block">સ્પામ અને બ્લૉક રિપોર્ટ કરો</string>
@@ -121,7 +121,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">દૂર કરો</string>
   <string name="ClearProfileActivity_remove_profile_photo">પ્રોફાઇલ ફોટો દૂર કરો?</string>
-  <string name="ClearProfileActivity_remove_group_photo">ગ્રુપ નો ફોટો કાઢી નાખો?</string>
+  <string name="ClearProfileActivity_remove_group_photo">ગ્રુપ ફોટો કાઢી નાખવો છે?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">સિગ્નલ ને અપડેટ કરો</string>
   <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">એપ્લિકેશનનું આ વર્ઝન હવે સમર્થિત નથી. મેસેજ મોકલવા અને પ્રાપ્ત કરવાનું ચાલુ રાખવા માટે, નવીનતમ વર્ઝન પર અપડેટ કરો.</string>
@@ -131,13 +131,13 @@
   <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">તમારી Signal એપ નું વર્ઝન સમાપ્ત થઈ ગયું છે.  તમે તમારો મેસેજ હિસ્ટ્રી જોઈ શકો છો પરંતુ તમે અપડેટ ન કરો ત્યાં સુધી તમે મેસેજ મોકલવા અથવા પ્રાપ્ત કરવામાં સમર્થ હશો નહીં.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">કોઈ વેબ બ્રાઉઝર મળ્યું નથી.</string>
-  <string name="CommunicationActions_send_email">ઇમેઇલ મોકલો</string>
+  <string name="CommunicationActions_send_email">ઈમેઇલ મોકલો</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">સેલ્યુલર કૉલ પહેલાથી ચાલુ છે.</string>
   <string name="CommunicationActions_start_voice_call">ઑડિયો કૉલ ચાલુ કરો?</string>
   <string name="CommunicationActions_cancel">રદ કરો</string>
   <string name="CommunicationActions_call">કૉલ</string>
   <string name="CommunicationActions_insecure_call">અસુરક્ષિત કૉલ</string>
-  <string name="CommunicationActions_carrier_charges_may_apply">કેરિયર નો શુલ્ક લાગુ થઈ શકે છે.  તમે જે નંબર પર કોલ કરો છો તે સિગ્નલ સાથે નોંધાયેલ નથી. આ કોલ ઇન્ટરનેટથી નહીં, તમારા મોબાઇલ કેરિયર દ્વારા કરવામાં આવશે.</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">કેરિયરનો શુલ્ક લાગુ થઈ શકે છે.  તમે જે નંબર પર કોલ કરો છો તે સિગ્નલ સાથે નોંધાયેલ નથી. આ કોલ ઈન્ટરનેટથી નહીં, તમારા મોબાઇલ કેરિયર દ્વારા કરવામાં આવશે.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed"> %1$s સાથેનો તમારો સલામતી નંબર બદલાયો છે. આનો અર્થ ક્યાંય થઈ શકે કે કોઈ તમારા સંદેશાવ્યવહારને અટકાવવાનો પ્રયાસ કરી રહ્યો છે, અથવા તે %2$s Signal ને ફરીથી ઇન્સ્ટોલ કરે છે.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">તમે આ સંપર્ક સાથે તમારો સલામતી નંબર ચકાસી શકો છો.</string>
@@ -184,8 +184,8 @@
   <string name="ConversationItem_this_message_was_deleted">આ મેસેજ કાઢી નાખ્યો હતો.</string>
   <string name="ConversationItem_you_deleted_this_message">તમે આ મેસેજ કાઢી નાખ્યો.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">સુરક્ષિત સત્ર ફરીથી સેટ કરો?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">જો તમને આ સંવાદમાં એન્ક્રિપ્શન સમસ્યા આવી રહી હોય તો આ મદદ કરી શકે છે. તમારા મેસેજ રાખવામાં આવશે.</string>
+  <string name="ConversationActivity_reset_secure_session_question">સુરક્ષિત સત્ર ફરીથી સેટ કરીએ?</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">જો તમને આ વાતચીતમાં એન્ક્રિપ્શન સમસ્યા આવી રહી હોય તો આ મદદ કરી શકે છે. તમારા મેસેજ રાખવામાં આવશે.</string>
   <string name="ConversationActivity_reset">ફરીથી સેટ કરો</string>
   <string name="ConversationActivity_add_attachment">જોડાણ ઉમેરો </string>
   <string name="ConversationActivity_select_contact_info">સંપર્ક માહિતી પસંદ કરો</string>
@@ -212,7 +212,7 @@
   <string name="ConversationActivity_admins">એડમિન્સ</string>
   <string name="ConversationActivity_message_an_admin">એડમિનને મેસેજ કરો</string>
   <string name="ConversationActivity_cant_start_group_call">ગ્રુપ કોલ શરૂ કરી શકતા નથી</string>
-  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">આ ગ્રુપ ના એડમિન જ કોલ શરૂ કરી શકે છે.</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">આ ગ્રુપના એડમિન જ કોલ શરૂ કરી શકે છે.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">તમારા ડિવાઇસ પર આ લિંક ને હેન્ડલ કરવા માટે કોઈ એપ્લિકેશન ઉપલબ્ધ નથી.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">તમારી જૂથમાં જોડાવવાની વિનંતી એડમિનને મોકલવામાં આવી છે. જ્યારે તેઓ મંજૂર કરશે ત્યારે તમને જાણ કરવામાં આવશે.</string>
   <string name="ConversationActivity_cancel_request">વિનંતી રદ કરો</string>
@@ -234,13 +234,13 @@
   <string name="ConversationActivity_sticker_pack_installed">સ્ટીકર પૅક ઇન્સ્ટોલ કરેલું છે</string>
   <string name="ConversationActivity_new_say_it_with_stickers">નવું! સ્ટીકરોથી બોલો</string>
   <string name="ConversationActivity_cancel">રદ કરો</string>
-  <string name="ConversationActivity_delete_conversation">વાતચીત કાઢી નાંખો?</string>
-  <string name="ConversationActivity_delete_and_leave_group">જૂથ કાઢી નાખો અને છોડો?</string>
+  <string name="ConversationActivity_delete_conversation">વાતચીત કાઢી નાંખીએ?</string>
+  <string name="ConversationActivity_delete_and_leave_group">જૂથ કાઢી નાખવું અને છોડી દેવું છે?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">આ વાતચીત તમારા બધા ડિવાઇસમાંથી કાઢી નાખવામાં આવશે.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">તમે આ ગ્રુપને છોડી દો, અને તે તમારા બધા ડિવાઇસમાંથી કાઢી નાખવામાં આવશે.</string>
   <string name="ConversationActivity_delete">કાઢી નાખો </string>
   <string name="ConversationActivity_delete_and_leave">કાઢી નાખો અને છોડો</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s ને કોલ કરવા માટે, સિગ્નલને તમારા માઇક્રોફોનની પરવાનગીની જરૂર છે</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s ને કોલ કરવા માટે, સિગ્નલને તમારા માઇક્રોફોનની ઍક્સેસની જરૂર છે</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">\"જૂથ સેટિંગ્સ\" માં હવે વધુ વિકલ્પો</string>
   <string name="ConversationActivity_join">જોડાઓ</string>
   <string name="ConversationActivity_full">ભરેલ</string>
@@ -339,8 +339,8 @@
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">તમારુ પ્રોફાઇલ એન્ડ-ટુ-એન્ડ એન્ક્રિપ્ટ થયેલ છે. જ્યારે તમે નવી વાતચીતનો શરુઆત કરો છો અથવા સ્વીકારો છો અને જ્યારે તમે નવા જૂથોમાં જોડાવો છો ત્યારે તમારી પ્રોફાઇલ અને તેમાંના ફેરફારો તમારા સંપર્કોને દેખાશે.</string>
   <string name="CreateProfileActivity_set_avatar_description">અવતાર સેટ કરો</string>
   <!--ChooseBackupFragment-->
-  <string name="ChooseBackupFragment__restore_from_backup">બૅકઅપ માંથી રિસ્ટોર કરીએ?</string>
-  <string name="ChooseBackupFragment__restore_your_messages_and_media">સ્થાનિક બૅકઅપ થી તમારા મેસેજ અને મીડિયા ને રિસ્ટોર કરો. જો તમે હવે રિસ્ટોર નહીં કરો, તો તમે પછીથી રિસ્ટોર કરી શકશો નહીં.</string>
+  <string name="ChooseBackupFragment__restore_from_backup">બૅકઅપમાંથી રિસ્ટોર કરીએ?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">સ્થાનિક બૅકઅપ થી તમારા મેસેજ અને મીડિયાને રિસ્ટોર કરો. જો તમે હવે રિસ્ટોર નહીં કરો, તો તમે પછીથી રિસ્ટોર કરી શકશો નહીં.</string>
   <string name="ChooseBackupFragment__icon_content_description">બૅકઅપ આઇકૉનથી રિસ્ટોર કરો</string>
   <string name="ChooseBackupFragment__choose_backup">બૅકઅપ પસંદ કરો</string>
   <string name="ChooseBackupFragment__learn_more">વધુ શીખો</string>
@@ -432,8 +432,8 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">સ્ટીકરો</string>
   <!--AddToGroupActivity-->
-  <string name="AddToGroupActivity_add_member">મેમ્બર ઉમેરો?</string>
-  <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" ને \"%2$s\" માં ઉમેરો?</string>
+  <string name="AddToGroupActivity_add_member">મેમ્બર ઉમેરીએ?</string>
+  <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" ને \"%2$s\" માં ઉમેરીએ?</string>
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" ને  \"%2$s\" માં ઉમેર્યા.</string>
   <string name="AddToGroupActivity_add_to_group">ગ્રુપમાં ઉમેરો</string>
   <string name="AddToGroupActivity_add_to_groups">ગ્રુપમાં ઉમેરો</string>
@@ -459,7 +459,7 @@
   <string name="GroupManagement_invite_single_user">\"%1$s\" ને તમારા દ્વારા આ ગ્રુપમાં આપમેળે ઉમેરી શકાશે નહીં.\n\nતેમને જોડાવા માટે આમંત્રિત કરવામાં આવ્યા છે, અને જ્યાં સુધી તેઓ સ્વીકારશે નહીં ત્યાં સુધી કોઈ ગ્રુપ મેસેજ જોઇ શકાશે નહીં.</string>
   <string name="GroupManagement_invite_multiple_users">આ વપરાશકર્તાઓ તમારા દ્વારા આ ગ્રુપમાં આપમેળે ઉમેરી શકાતા નથી. \n\n તેમને ગ્રુપમાં જોડાવા માટે આમંત્રિત કરવામાં આવ્યા છે, અને જ્યાં સુધી તેઓ સ્વીકારે નહીં ત્યાં સુધી તેઓ કોઈ ગ્રુપ મેસેજ જોશે નહીં.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
-  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">નવા ગ્રુપ શું છે??</string>
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">નવા ગ્રુપ શું છે?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">નવા ગ્રુપમાં @સૂચનો અને ગ્રુપ એડમિન જેવી સુવિધાઓ છે, અને તે ભવિષ્યમાં વધુ સુવિધાઓને પ્રોત્સાહન આપશે</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">અપગ્રેડ પહેલાના તમામ મેસેજ હિસ્ટ્રી અને મીડિયા રાખવામાં આવ્યા છે.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">તમારે ફરીથી આ ગ્રુપમાં જોડાવા માટે આમંત્રણ સ્વીકારવાની જરૂર પડશે, અને જ્યાં સુધી તમે સ્વીકારશો નહીં ત્યાં સુધી ગ્રુપ મેસેજ પ્રાપ્ત થશે નહીં.</string>
@@ -659,7 +659,7 @@
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">પ્રોફાઇલ નામ</string>
   <string name="ManageProfileFragment_username">વપરાશકર્તા નામ</string>
-  <string name="ManageProfileFragment_about">વિષે</string>
+  <string name="ManageProfileFragment_about">વિશે</string>
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">તમારા વિશે થોડા શબ્દો લખો</string>
   <string name="ManageProfileFragment_your_name">તમારું નામ</string>
   <string name="ManageProfileFragment_your_username">તમારું ઉપયોગકર્તા નામ</string>
@@ -916,7 +916,7 @@
   <string name="MessageRecord_s_added_s">%1$s ઉમેર્યા %2$s.</string>
   <string name="MessageRecord_s_added_you">%1$s એ તમને ગ્રુપમાં ઉમેર્યા છે.</string>
   <string name="MessageRecord_you_joined_the_group">તમે ગ્રુપમાં જોડાયા.</string>
-  <string name="MessageRecord_s_joined_the_group">%1$sગ્રુપ માં જોડાયા.</string>
+  <string name="MessageRecord_s_joined_the_group">%1$sગ્રુપમાં જોડાયા.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">તમે %1$s ને દૂર કર્યા</string>
   <string name="MessageRecord_s_removed_s">%1$s એ %2$s ને દૂર કર્યા.</string>
@@ -1278,7 +1278,7 @@
   <string name="RegistrationActivity_enter_your_phone_number">તમારો ફોન નંબર દાખલ કરો</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">તમને એક ચકાસણી કોડ પ્રાપ્ત થશે. દરો લાગુ થઈ શકે છે.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s અમે મોકલ્યો કોડ દાખલ કરો</string>
-  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ખાતરી કરો કે તમારા ફોન પર તમારા એસ એમ એસ અથવા કૉલ પ્રાપ્ત કરવા માટે સેલ્યુલર Signal છે</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ખાતરી કરો કે તમારા ફોન પર તમારા SMS અથવા કૉલ પ્રાપ્ત કરવા માટે સેલ્યુલર Signal છે</string>
   <string name="RegistrationActivity_phone_number_description">ફોન નંબર</string>
   <string name="RegistrationActivity_country_code_description">દેશનો કોડ</string>
   <string name="RegistrationActivity_call">કૉલ</string>
@@ -1625,7 +1625,7 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">લોડ કરી રહ્યું છે</string>
   <string name="ConversationUpdateItem_learn_more">વધુ શીખો</string>
-  <string name="ConversationUpdateItem_join_call">કૉલ માં જોડાઓ</string>
+  <string name="ConversationUpdateItem_join_call">કૉલમાં જોડાઓ</string>
   <string name="ConversationUpdateItem_return_to_call">કૉલ પર પાછા જાઓ</string>
   <string name="ConversationUpdateItem_call_is_full">કૉલ પૂર્ણ છે</string>
   <string name="ConversationUpdateItem_invite_friends">મિત્રોને આમંત્રિત કરો</string>
@@ -1652,7 +1652,7 @@
   <string name="safety_number_change_dialog__accept">સ્વીકાર</string>
   <string name="safety_number_change_dialog__send_anyway">કોઈપણ રીતે મોકલો</string>
   <string name="safety_number_change_dialog__call_anyway">કોઈપણ રીતે ફોન કરો</string>
-  <string name="safety_number_change_dialog__join_call">કૉલ માં જોડાઓ</string>
+  <string name="safety_number_change_dialog__join_call">કૉલમાં જોડાઓ</string>
   <string name="safety_number_change_dialog__continue_call">કૉલ ચાલુ રાખો</string>
   <string name="safety_number_change_dialog__leave_call">કોલ છોડો</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">નીચેના લોકોએ ઉપકરણોને ફરીથી ઇન્સ્ટોલ અથવા બદલ્યા હશે. ગોપનીયતાની ખાતરી કરવા માટે તેમની સાથે તમારો સલામતી નંબર ચકાસો.</string>
@@ -1766,7 +1766,7 @@
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">કસ્ટમ MMS ગ્રુપ નામો અને ફોટા ફક્ત તમને જ દેખાશે.</string>
   <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">ગ્રુપ નું ડિસ્ક્રિપ્શન આ ગ્રુપ ના મેમ્બર્સ અને આમંત્રિત કરાયેલા લોકોને દેખાશે.</string>
   <!--EditAboutFragment-->
-  <string name="EditAboutFragment_about">વિષે</string>
+  <string name="EditAboutFragment_about">વિશે</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">તમારા વિશે થોડા શબ્દો લખો…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">મુક્તપણે બોલો</string>
@@ -1777,7 +1777,7 @@
   <string name="EditAboutFragment_taking_a_break">વિરામ લઇ રહયા છે </string>
   <string name="EditAboutFragment_working_on_something_new">કંઈક નવીન પર કામ કરી રહ્યા છીએ</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group">ગ્રુપ માં ફેરફાર કરો</string>
+  <string name="EditProfileFragment__edit_group">ગ્રુપમાં ફેરફાર કરો</string>
   <string name="EditProfileFragment__group_name">ગ્રુપ નામ</string>
   <string name="EditProfileFragment__group_description">ગ્રુપ ડિસ્ક્રિપ્શન</string>
   <!--EditProfileNameFragment-->
@@ -2508,7 +2508,7 @@
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">ખાતરી કરો કે તમે તમારો PIN યાદ રાખો અથવા સુરક્ષિત રીતે સ્ટોર કરો કારણ કે તે પુન:પ્રાપ્ત કરી શકાતો નથી. જો તમે તમારો PIN ભૂલી જાઓ છો, તો તમારા Signal એકાઉન્ટને ફરીથી રજીસ્ટર કરતી વખતે તમે ડેટા ગુમાવી શકો છો.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">ખોટો પિન. ફરીથી પ્રયત્ન કરો.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">રજીસ્ટ્રેશન લૉક ને સક્ષમ કરવામાં નિષ્ફળ.</string>
-  <string name="preferences_app_protection__failed_to_disable_registration_lock">રજીસ્ટ્રેશન લૉક ને અક્ષમ કરવામાં નિષ્ફળ.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">રજીસ્ટ્રેશન લૉકને અક્ષમ કરવામાં નિષ્ફળ.</string>
   <string name="AppProtectionPreferenceFragment_none">કંઈ નહીં</string>
   <string name="preferences_app_protection__registration_lock">રજીસ્ટ્રેશન લૉક</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">તમારે તમારો રજીસ્ટ્રેશન લૉક PIN દાખલ કરવો આવશ્યક છે</string>
@@ -2570,7 +2570,7 @@
   <string name="DeviceTransferSetup__the_numbers_do_not_match">સંખ્યાઓ મેચ થતી નથી</string>
   <string name="DeviceTransferSetup__continue">ચાલુ રાખો</string>
   <string name="DeviceTransferSetup__number_is_not_the_same">સંખ્યા સરખી નથી</string>
-  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">જો તમારા ડિવાઇસ પરના નંબરો મેચ થતા નથી, તો શક્ય છે કે તમે ખોટા ડિવાઇસ સાથે જોડાયેલા છો. આને ફિક્સ કરવા માટે, ટ્રાન્સફર રોકો અને ફરી પ્રયાસ કરો, અને તમારા બંને ડિવાઇસને નજીક રાખો.</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">જો તમારા ડિવાઇસ પરના નંબરો મેળ ખાતા નથી, તો શક્ય છે કે તમે ખોટા ડિવાઇસ સાથે જોડાયેલા છો. આને ફિક્સ કરવા માટે, ટ્રાન્સફર રોકો અને ફરી પ્રયાસ કરો, અને તમારા બંને ડિવાઇસને નજીક રાખો.</string>
   <string name="DeviceTransferSetup__stop_transfer">ટ્રાન્સફર રોકો</string>
   <string name="DeviceTransferSetup__unable_to_discover_old_device">જૂના ડિવાઇસને શોધવામાં અસમર્થ</string>
   <string name="DeviceTransferSetup__unable_to_discover_new_device">નવું ડિવાઇસ શોધવામાં અસમર્થ</string>
@@ -2578,7 +2578,7 @@
   <string name="DeviceTransferSetup__location_permission">સ્થાન પરવાનગી</string>
   <string name="DeviceTransferSetup__location_services">સ્થાન સેવાઓ</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
-  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">વાઇફાઇ ડાયરેક્ટ સ્ક્રીન પર, બધા યાદ રાખેલા ગ્રુપને દૂર કરો અને કોઈપણ આમંત્રિત અથવા કનેક્ટેડ ડિવાઇસને અનલિંક કરો.</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi ડાયરેક્ટ સ્ક્રીન પર, બધા યાદ રાખેલા ગ્રુપને દૂર કરો અને કોઈપણ આમંત્રિત અથવા કનેક્ટેડ ડિવાઇસને અનલિંક કરો.</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">વાઇફાઇ ડાયરેક્ટ સ્ક્રીન</string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">બંને ડિવાઇસ પર Wi-Fi બંધ અને ચાલુ કરવાનો પ્રયાસ કરો.</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">ખાતરી કરો કે બંને ડિવાઇસ ટ્રાન્સફર મોડમાં છે.</string>

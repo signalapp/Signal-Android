@@ -1817,7 +1817,7 @@
   <string name="arrays__name_and_message">個名同訊息</string>
   <string name="arrays__name_only">淨係個名</string>
   <string name="arrays__no_name_or_message">名同訊息都唔要</string>
-  <string name="arrays__images">圖</string>
+  <string name="arrays__images">圖片</string>
   <string name="arrays__audio">聲音</string>
   <string name="arrays__video">影片</string>
   <string name="arrays__documents">文件</string>
@@ -1937,7 +1937,7 @@
   <string name="preferences_chats__message_history">訊息紀錄</string>
   <string name="preferences_storage__storage_usage">儲存空間用量</string>
   <string name="preferences_storage__photos">相片</string>
-  <string name="preferences_storage__videos">片</string>
+  <string name="preferences_storage__videos">影片</string>
   <string name="preferences_storage__files">檔案</string>
   <string name="preferences_storage__audio">聲音</string>
   <string name="preferences_storage__review_storage">覆閱儲存空間</string>
@@ -2994,6 +2994,11 @@
   <string name="ContactFilterView__search_name_or_number">查名或者冧把</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">停止語音訊息</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">調整語音訊息速度</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">暫停語音訊息</string>
+  <string name="VoiceNotePlayerView__play_voice_message">播放語音訊息</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">跳去語音訊息嗰個位</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">頭像預覽</string>
   <string name="AvatarPickerFragment__camera">相機</string>

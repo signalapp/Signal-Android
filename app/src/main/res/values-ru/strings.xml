@@ -3242,6 +3242,11 @@
   <string name="ContactFilterView__search_name_or_number">Поиск по имени или номеру</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Остановить воспроизведение голосового сообщения</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Изменить скорость воспроизведения голосового сообщения</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Приостановить воспроизведение голосового сообщения</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Воспроизвести голосовое сообщение</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Перейти к голосовому сообщению</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Предпросмотр аватара</string>
   <string name="AvatarPickerFragment__camera">Камера</string>

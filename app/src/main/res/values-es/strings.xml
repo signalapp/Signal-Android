@@ -1761,8 +1761,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Para enviar mensajes multimedia y de grupo, toca «Aceptar» y completa las configuraciones solicitadas. Las configuraciones de MMS para tu proveedor generalmente se pueden localizar buscando por «APN de proveedor». Sólo necesitarás hacer esto una vez.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Fallo en la entrega</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Un mensaje, sticker, reacción, justificante de recibo o adjunto de %s no se ha podido entregar. Lo ha enviado en un chat o en un grupo común.</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">No se ha podido entregar un mensaje, sticker, adjunto, reacción, justificante de recibo de %s.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">No se ha podido entregar un mensaje, sticker, adjunto, reacción o notificación de lectura de %s. Lo ha enviado en un chat o en un grupo común.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">No se ha podido entregar un mensaje, sticker, adjunto, reacción o notificación de lectura de %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Nombre (necesario)</string>
   <string name="CreateProfileActivity_last_name_optional">Apellido(s) (opcional)</string>
@@ -3079,6 +3079,11 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ContactFilterView__search_name_or_number">Buscar por nombre o número</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Detener nota de voz</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Modificar velocidad de reproducción</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Pausar nota de voz</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Reproducir nota de voz</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Ir a la nota de voz</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Previsualización de avatar</string>
   <string name="AvatarPickerFragment__camera">Cámara</string>

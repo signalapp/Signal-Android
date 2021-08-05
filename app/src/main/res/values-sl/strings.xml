@@ -3101,6 +3101,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ContactFilterView__search_name_or_number">Iskanje po imenu ali številki</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Zaustavi glasovno sporočilo</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Spremeni hitrost predvajanja</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Prekini glasovno sporočilo</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Predvajaj glasovno sporočilo</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Pojdi na glasovno sporočilo</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Predogled avatarja</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>

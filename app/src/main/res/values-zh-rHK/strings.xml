@@ -1688,8 +1688,8 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">輕觸 [確定] 並完成所要求的設定，以便發送媒體和群組訊息。適用於您的電信業者的 MMS 設定，通常可搜尋「您的電信業者 APN」而找到。您只需為此設定一次。</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">送遞問題</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">來自 %s 的一則訊息、貼圖、心情或已讀狀態無法向您送達。未知是直接發送給您，還是發送到某個群組中。</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">來自 %s 的一則訊息、貼圖、心情或已讀狀態無法向您送達。</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">來自 %s 的一則訊息、貼圖、心情或已讀標記無法向您送達。未知是直接發送給您，還是發送到某個群組中。</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">來自 %s 的一則訊息、貼圖、心情或已讀標記無法向您送達。</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">名字 (必填)</string>
   <string name="CreateProfileActivity_last_name_optional">姓氏 (選用)</string>
@@ -2993,6 +2993,11 @@
   <string name="ContactFilterView__search_name_or_number">搜尋名稱或號碼</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">停止語音訊息</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">變更語音訊息速度</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">暫停語音訊息</string>
+  <string name="VoiceNotePlayerView__play_voice_message">播放語音訊息</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">導覽至語音訊息</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">頭像預覽</string>
   <string name="AvatarPickerFragment__camera">相機</string>

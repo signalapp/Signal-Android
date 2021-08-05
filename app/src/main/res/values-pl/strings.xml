@@ -3241,6 +3241,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ContactFilterView__search_name_or_number">Szukaj po nazwie lub numerze</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Zatrzymaj odtwarzanie wiadomości głosowej</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Zmień szybkość odtwarzania wiadomości głosowej</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Wstrzymaj odtwarzanie wiadomości głosowej</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Odtwórz wiadomość głosową</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Przejdź do wiadomości głosowej</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Podgląd awatara</string>
   <string name="AvatarPickerFragment__camera">Aparat</string>

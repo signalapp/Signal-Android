@@ -3161,6 +3161,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ContactFilterView__search_name_or_number">Cautare nume sau număr</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Opriți mesajul vocal</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Schimbați viteza mesajului vocal</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Puneți pauză mesajului vocal</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Redați mesajul vocal</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Mergeți la mesajul vocal</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Previzualizare avatar</string>
   <string name="AvatarPickerFragment__camera">Cameră foto</string>

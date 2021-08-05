@@ -86,7 +86,7 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Bloķēt un pamest %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Bloķēt %1$s?</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Jūs turpmāk nesaņemsiet ziiņojumus vai atjauninājumus no šīs grupas. Grupas lietotāji nevarēs Jūs pievienot no jauna. </string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Jūs turpmāk nesaņemsiet ziņojumus vai atjauninājumus no šīs grupas. Grupas lietotāji nevarēs jūs pievienot atkal. </string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Grupas lietotāji nevarēs Jūs pievienot no jauna. </string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Grupas dalībnieki varēs jūs atkal pievienot šai grupai.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jūs varēsiet sūtīt ziņas un zvanīt viens otram kā arī jūsu vārds un fotogrāfija tiks kopīgota</string>
@@ -627,13 +627,13 @@
     <item quantity="other">%d dalībnieki neatbalsta jaunas grupas, tādēļ šo grupu nav iespējams izveidot.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Tiks izveidota vecā tipa grupa, jo “%1$s” izmanto veco Signal versiju. Kad attiecīgie dalībnieki ir atjauninājuši lietotni Signal, varat izveidot jauna veida grupu vai arī pirms grupas izveides varat dzēst šos dalībniekus.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Tiks izveidota vecā tipa grupa, jo “%1$s” izmanto veco Signal versiju. Jauna veida grupu varēsiet izveidot, kad attiecīgais dalībnieks atjauninās lietotni Signal, vai arī pirms grupas izveides dzēsiet šo dalībnieku.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="zero">Tiks izveidota vecā tipa grupa, jo %1$d dalībnieks izmanto veco Signal versiju. Kad attiecīgie dalībnieki ir atjauninājuši lietotni Signal, varat izveidot jauna veida grupu vai arī pirms grupas izveides varat dzēst šos dalībniekus.</item>
     <item quantity="one">Tiks izveidota vecā tipa grupa, jo %1$d dalībnieks izmanto veco Signal versiju. Kad attiecīgie dalībnieki ir atjauninājuši lietotni Signal, varat izveidot jauna veida grupu vai arī pirms grupas izveides varat dzēst šos dalībniekus.</item>
-    <item quantity="other">Tiks izveidota vecā tipa grupa, jo %1$d dalībnieki izmanto veco Signal versiju. Kad attiecīgie dalībnieki ir atjauninājuši lietotni Signal, varat izveidot jauna veida grupu vai arī pirms grupas izveides varat dzēst šos dalībniekus.</item>
+    <item quantity="other">Tiks izveidota vecā tipa grupa, jo %1$d dalībnieki izmanto veco Signal versiju. Jauna veida grupu varēsiet izveidot, kad attiecīgie dalībnieki atjauninās lietotni Signal, vai arī pirms grupas izveides dzēsiet šos dalībniekus.</item>
   </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Šo grupu nevar izveidot, jo “%1$s” izmanto veco Signal versiju. Pirms šīs grupas izveides attiecīgie dalībnieki ir jādzēš.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Šo grupu nevar izveidot, jo “%1$s” izmanto veco Signal versiju. Pirms šīs grupas izveides attiecīgais dalībnieks ir jādzēš.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="zero">Šo grupu nevar izveidot, jo %1$d dalībnieks izmanto veco Signal versiju. Pirms šīs grupas izveides attiecīgie dalībnieki ir jādzēš.</item>
     <item quantity="one">Šo grupu nevar izveidot, jo %1$d dalībnieks izmanto veco Signal versiju. Pirms šīs grupas izveides attiecīgie dalībnieki ir jādzēš.</item>
@@ -1284,12 +1284,12 @@
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="zero">Šajā zvanā · %1$d cilvēks</item>
     <item quantity="one">Šajā zvanā · %1$d cilvēks</item>
-    <item quantity="other">šajā zvanā · %1$d cilvēki</item>
+    <item quantity="other">Šajā zvanā · %1$d cilvēki</item>
   </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">%1$s ir bloķēts</string>
   <string name="CallParticipantView__more_info">Vairāk informācijas</string>
-  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Jūs nesaņemsiet dalībnieku audio vai video zvanu un viņi nesaņems jūsu zvanus.</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Jūs nesaņemsiet dalībnieku audio vai video zvanu, un viņi nesaņems jūsu zvanus.</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Nevar saņemt audio un video no %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nevar saņemt audio un video no %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Tā var notikt, jo dalībnieki nav verificējuši jūsu drošības numura izmaiņas, radusies problēma ar ierīci vai arī dalībnieki ir jūs bloķējuši.</string>
@@ -2774,7 +2774,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ReviewCardDialogFragment__review_members">Pārskatīt dalībniekus</string>
   <string name="ReviewCardDialogFragment__review_request">Pārskatīt pieprasījumu</string>
   <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d grupas dalībniekiem ir vienāds vārds; pārskatiet tālāk norādītos dalībniekus un izvēlieties rīkoties.</string>
-  <string name="ReviewCardDialogFragment__if_youre_not_sure">Ja neesat pārliecināts, no kā ir pieprasījums, pārskatiet tālāk norādītās kontaktpersonas un rīkojieties.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Ja nezināt, no kā ir pieprasījums, pārskatiet tālāk norādītās kontaktpersonas un rīkojieties.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nav citu kopīgu grupu.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Nav kopīgu grupu.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -2901,7 +2901,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="payment_info_card_with_a_high_balance">Ja atlikums ir liels, iespējams, vēlēsieties atjaunināt uz burtciparu PIN kodu, lai savam kontam piešķirtu lielāku aizsardzību.</string>
   <string name="payment_info_card_update_pin">Aktualizēt PIN</string>
   <!--DeactivateWalletFragment-->
-  <string name="DeactivateWalletFragment__deactivate_wallet">Deaktivizēt maciņu</string>
+  <string name="DeactivateWalletFragment__deactivate_wallet">Deaktivizēt naudas maku</string>
   <string name="DeactivateWalletFragment__your_balance">Jūsu atlikums</string>
   <string name="DeactivateWalletFragment__its_recommended_that_you">Pirms maksājumu deaktivizēšanas ieteicams pārskaitīt līdzekļus uz citu naudas maka adresi. Ja izvēlēsieties nepārskaitīt savus līdzekļus tūlīt, tie paliks ar lietotni Signal saistītajā naudas makā, ja atkārtoti aktivizēsiet maksājumus.</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">Pārskaitīt atlikumu</string>

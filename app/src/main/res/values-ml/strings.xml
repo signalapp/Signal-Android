@@ -2824,37 +2824,71 @@
   <string name="DeactivateWalletFragment__error_deactivating_wallet">വാലറ്റ് നിർജ്ജീവമാക്കുന്നതിൽ പിശക്.</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">വീണ്ടെടുക്കൽ വാചകം</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം കാണുക</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം നൽകുക</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">നിങ്ങൾ നിങ്ങളുടെ Signal പിൻ സ്ഥിരീകരിക്കുകയാണെങ്കിൽ, നിങ്ങൾ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ നിങ്ങളുടെ ബാലൻസ് സ്വയമേവ പുനഃസ്ഥാപിക്കപ്പെടും. നിങ്ങൾക്ക് വേണ്ടി അതുല്യമായ ഒരു %1$d-വാക്ക് വാക്യമായ ഒരു വീണ്ടെടുക്കൽ വാക്യം ഉപയോഗിച്ച് നിങ്ങൾക്ക് നിങ്ങളുടെ ബാലൻസ് പുന:സ്ഥാപിക്കാനും കഴിയും. അത് എഴുതി സുരക്ഷിതമായ ഒരു സ്ഥലത്ത് സൂക്ഷിക്കുക.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യം നിങ്ങൾക്ക് അതുല്യമായ ഒരു %1$d-വാക്ക് വാക്യമാണ്. നിങ്ങളുടെ ബാലൻസ് പുന:സ്ഥാപിക്കാൻ ഈ വാക്യം ഉപയോഗിക്കുക.</string>
   <string name="PaymentsRecoveryStartFragment__start">ആരംഭിക്കുക</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">സ്വമേധയാ നൽകുക</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">ക്ലിപ്ബോർഡിൽ നിന്ന് ഒട്ടിക്കുക</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം ഒട്ടിക്കുക</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">വീണ്ടെടുക്കൽ വാചകം</string>
   <string name="PaymentsRecoveryPasteFragment__next">അടുത്തത്</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">അസാധുവായ വീണ്ടെടുക്കൽ വാക്യം</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">നിങ്ങൾ %1$d വാക്കുകൾ നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക, വീണ്ടും ശ്രമിക്കുക.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">അടുത്തത്</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">തിരുത്തുക</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">മുമ്പത്തെ</string>
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യം</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">ഇനിപ്പറയുന്ന %1$d വാക്കുകൾ ക്രമത്തിൽ എഴുതുക. നിങ്ങളുടെ പട്ടിക സുരക്ഷിതമായ സ്ഥലത്ത് സൂക്ഷിക്കുക.</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">നിങ്ങളുടെ വാക്യം ശരിയായി നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">സ്ക്രീൻഷോട്ട് അല്ലെങ്കിൽ ഇമെയിൽ വഴി അയയ്ക്കരുത്.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">പേയ്മെന്റ് അക്കൗണ്ട് പുനഃസ്ഥാപിച്ചു.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">അസാധുവായ വീണ്ടെടുക്കൽ വാക്യം</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">നിങ്ങൾ നിങ്ങളുടെ വാക്യം ശരിയായി നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക, വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേയ്ക്ക് പകർത്തുക?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യം ഡിജിറ്റലായി സംഭരിക്കാൻ നിങ്ങൾ തീരുമാനിക്കുകയാണെങ്കിൽ, നിങ്ങൾ വിശ്വസിക്കുന്ന എവിടെയെങ്കിലും അത് സുരക്ഷിതമായി സംഭരിക്കപ്പെടുന്നുവെന്ന് ഉറപ്പാക്കുക.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">പകർത്തുക</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം സ്ഥിരീകരിക്കുക</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യത്തിൽ നിന്ന് ഇനിപ്പറയുന്ന വാക്കുകൾ നൽകുക.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">വാക്ക് %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">വാക്യാംശം വീണ്ടും കാണുക</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">ചെയ്‌തു</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">വീണ്ടെടുക്കൽ വാക്യം സ്ഥിരീകരിച്ചു</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം നൽകുക</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">വാക്ക് നൽകുക %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">വാക്ക് %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">അടുത്തത്</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">അസാധുവായ വാക്ക്</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">ക്ലിപ്പ്ബോർഡ് മായ്ച്ചു.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">കാണുക</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s നിങ്ങൾക്ക് %2$s അയച്ചു.</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d പുതിയ പേയ്മെന്റ് അറിയിപ്പുകൾ</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">പേയ്മെന്റ് അയയ്ക്കാൻ കഴിയില്ല</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">ഈ ഉപയോക്താവിന് ഒരു പേയ്മെന്റ് അയയ്ക്കുന്നതിന് അവർ നിത്തിൽ നിന്ന് ഒരു സന്ദേശം അഭ്യർത്ഥന സ്വീകരിക്കേണ്ടതുണ്ട്. ഒരു സന്ദേശം അഭ്യർത്ഥന സൃഷ്ടിക്കുന്നതിന് അവർക്ക് ഒരു സന്ദേശം അയയ്ക്കുക.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">ഒരു മെസ്സേജ് അയക്കുക</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">ഈ വ്യക്തിയുമായി നിങ്ങൾക്ക് പൊതുവായി ഗ്രൂപ്പുകളൊന്നുമില്ല. അനാവശ്യ സന്ദേശങ്ങൾ ഒഴിവാക്കുന്നതിന് സ്വീകരിക്കുന്നതിന് മുമ്പ് അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകൾ, നിങ്ങൾ ചാറ്റ് ചെയ്യുന്ന ആളുകളോ ഈ ഗ്രൂപ്പിൽ ഇല്ല. ആവശ്യമില്ലാത്ത സന്ദേശങ്ങള്‍ ഒഴിവാക്കുന്നതിന് സ്വീകരിക്കുന്നതിന് മുമ്പ് അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">സന്ദേശ അഭ്യർത്ഥനകളെക്കുറിച്ച് </string>
   <string name="GroupsInCommonMessageRequest__okay">ശരി</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">ചാറ്റ് നിറത്തിന്റെ പ്രിവ്യൂ ഇതാ.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">നിറം നിങ്ങൾക്ക് മാത്രം ദൃശ്യമാണ്.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">ഗ്രൂപ്പ് വിവരണം</string>
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">സ്റ്റാൻഡേർഡ്</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">വേഗത്തിൽ, കുറഞ്ഞ ഡാറ്റ</string>
   <string name="QualitySelectorBottomSheetDialog__high">ഉയർന്ന</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">സാവധാനം, കൂടുതൽ ഡാറ്റ</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">ഫോട്ടോ നിലവാരം</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
@@ -2870,12 +2904,18 @@
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">സന്ദേശങ്ങൾ</string>
   <string name="NotificationsSettingsFragment__calls">കോളുകൾ</string>
+  <string name="NotificationsSettingsFragment__notify_when">എപ്പോൾ അറിയിക്കുക…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">കോൺടാക്റ്റ് Signal ചേരുന്നു</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">തടഞ്ഞു</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d കോൺ‌ടാക്റ്റുകൾ</string>
   <string name="PrivacySettingsFragment__messaging">സന്ദേശ വിനിമയം</string>
   <string name="PrivacySettingsFragment__disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
   <string name="PrivacySettingsFragment__app_security">ആപ്പ് സുരക്ഷ</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">റീസന്റ് ലിസ്റ്റിലും അപ്ലിക്കേഷനിലും സ്‌ക്രീൻഷോട്ടുകൾ തടയുക</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal സന്ദേശങ്ങള്‍ കോളുകളും, എല്ലായ്പ്പോഴും കോളുകള് റിലേ ചെയ്യുക ഒപ്പം സീൽ ചെയ്ത അയച്ചയാൾ</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">പുതിയ ചാറ്റുകൾക്കായുള്ള ഡിഫോൾട്ട് ടൈമർ</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">നിങ്ങൾ ആരംഭിച്ച എല്ലാ പുതിയ ചാറ്റുകൾക്കും ഒരു സ്ഥിരസ്ഥിതി അപ്രത്യക്ഷമാകുന്ന സന്ദേശം ടൈമർ ക്രമീകരിക്കുക.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">സ്റ്റാറ്റസ് ചിഹ്നം കാണിക്കുക</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">സീൽഡ് സെൻഡർ ഉപയോഗിച്ച് ഡെലിവറി ചെയ്യുമ്പോൾ സന്ദേശ വിശദാംശങ്ങളിൽ ഒരു ചിഹ്നം കാണിക്കുക.</string>
@@ -2891,6 +2931,7 @@
   <string name="ExpireTimerSettingsFragment__5_minutes">5 മിനിറ്റ്</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 സെക്കൻഡ്</string>
   <string name="ExpireTimerSettingsFragment__custom_time">ഇഷ്‌ടാനുസൃത സമയം</string>
+  <string name="ExpireTimerSettingsFragment__set">സജ്ജമാക്കുക</string>
   <string name="ExpireTimerSettingsFragment__save">സംരക്ഷിക്കൂ</string>
   <string name="CustomExpireTimerSelectorView__seconds">സെക്കൻഡ്</string>
   <string name="CustomExpireTimerSelectorView__minutes">മിനിറ്റ്</string>
@@ -2903,35 +2944,76 @@
   <string name="HelpSettingsFragment__version">പതിപ്പ്</string>
   <string name="HelpSettingsFragment__debug_log">ഡീബഗ് ലോഗ്</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">നിബന്ധനകളും സ്വകാര്യതാ നയവും</string>
+  <string name="HelpFragment__copyright_signal_messenger">പകർപ്പവകാശ Signal സന്ദേശകന്‍</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">ജിപിഎൽവി3 കീഴിൽ ലൈസൻസ്</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">കോളുകൾ</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">ഓട്ടോ</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">ഇഷ്‌ടാനുസൃത നിറങ്ങൾ ഉപയോഗിക്കുക</string>
   <string name="ChatColorSelectionFragment__chat_color">ചാറ്റ് നിറം</string>
   <string name="ChatColorSelectionFragment__edit">തിരുത്തുക</string>
+  <string name="ChatColorSelectionFragment__duplicate">തനിപ്പകർപ്പ്</string>
   <string name="ChatColorSelectionFragment__delete">ഇല്ലാതാക്കൂ</string>
   <string name="ChatColorSelectionFragment__delete_color">നിറം ഇല്ലാതാക്കൂ</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">ഈ ഇഷ്ടാനുസൃത നിറം %1$d ചാറ്റുകളിൽ ഉപയോഗിക്കുന്നു. എല്ലാ ചാറ്റുകൾക്കും ഇത് ഇല്ലാതാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</item>
+    <item quantity="other">ഈ ഇഷ്ടാനുസൃത നിറം %1$d ചാറ്റുകളിൽ ഉപയോഗിക്കുന്നു. എല്ലാ ചാറ്റുകൾക്കും ഇത് ഇല്ലാതാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</item>
+  </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">ചാറ്റ് നിറം ഇല്ലാതാക്കണോ?</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">ഖരം</string>
+  <string name="CustomChatColorCreatorFragment__gradient">ഗ്രേഡിയന്റ്</string>
+  <string name="CustomChatColorCreatorFragment__hue">ഹ്യൂ</string>
+  <string name="CustomChatColorCreatorFragment__saturation">സാച്ചുറേഷൻ</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">സംരക്ഷിക്കൂ</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">നിറം എഡിറ്റ് ചെയ്യുക</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">ഈ നിറം %1$d ചാറ്റുകളിൽ ഉപയോഗിക്കുന്നു. എല്ലാ ചാറ്റുകൾക്കും മാറ്റങ്ങൾ സംരക്ഷിക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</item>
+    <item quantity="other">ഈ നിറം %1$d ചാറ്റുകളിൽ ഉപയോഗിക്കുന്നു. എല്ലാ ചാറ്റുകൾക്കും മാറ്റങ്ങൾ സംരക്ഷിക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">ടോപ്പ് എഡ്ജ് സെലക്ടർ</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">താഴെയുള്ള എഡ്ജ് സെലക്ടർ</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">പ്രതികരണങ്ങൾ ഇഷ്ടാനുസൃതമാക്കുക</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">ഒരു ഇമോജി മാറ്റിസ്ഥാപിക്കാൻ തൊടുക</string>
   <string name="EditReactionsFragment__reset">പുനഃക്രമീകരിക്കുക</string>
   <string name="EditReactionsFragment_save">സംരക്ഷിക്കൂ</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">വാള്‍പേപ്പറിന്റെ നിറവുമായി സ്വയമേവ പൊരുത്തപ്പെടുന്നു</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">ഗ്രേഡിയന്റിന്റെ ദിശ മാറ്റാൻ വലിച്ചിടുക</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">പുതിയ ചാറ്റ് നിറങ്ങൾ</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">നിങ്ങൾക്ക് കൂടുതൽ ഓപ്ഷനുകൾ നൽകുന്നതിനും ചാറ്റുകൾ വായിക്കാൻ എളുപ്പമാക്കുന്നതിനും ഞങ്ങൾ ചാറ്റ് നിറങ്ങൾ മാറ്റി.</string>
   <string name="ChatColorsMegaphone__appearance">ദൃശ്യത</string>
   <string name="ChatColorsMegaphone__not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">ഒരു പ്രൊഫൈൽ ഫോട്ടോ ചേർക്കുക</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">ഒരു രൂപം തിരഞ്ഞെടുക്കുക കൂടാതെ നിങ്ങളുടെ ഇനീഷ്യലുകൾ വർണ്ണിക്കുക അല്ലെങ്കിൽ ഇഷ്ടാനുസൃതമാക്കുക.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">ഫോട്ടോ ചേർക്കുക</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ഇമോജി</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">ഇമോജി തിരയൽ തുറക്കുക</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">സ്റ്റിക്കർ തിരയൽ തുറക്കുക</string>
+  <string name="KeyboardPagerFragment_open_gif_search">ജിഐഎഫ് തിരയൽ തുറക്കുക</string>
   <string name="KeyboardPagerFragment_stickers">സ്റ്റിക്കറുകൾ</string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">ജിഐഎഫുകൾ</string>
+  <string name="KeyboardPagerFragment_search_emoji">ഇമോജി തിരയുക</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">ഇമോജി-യിലേക്ക് മടങ്ങുക</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">തിരയൽ എൻട്രി മായ്‌ക്കുക</string>
   <string name="KeyboardPagerFragment_search_giphy">GIPHY തിരയുക</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">സ്റ്റിക്കറുകൾ തിരയുക</string>
   <string name="StickerSearchDialogFragment_no_results_found">ഫലങ്ങളൊന്നുമില്ല.</string>
   <string name="EmojiSearchFragment__no_results_found">ഫലങ്ങളൊന്നുമില്ല.</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">അജ്ഞാത റിംഗ്ടോൺ</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">സന്ദേശം അയയ്ക്കുക</string>
+  <string name="ConversationSettingsFragment__start_video_call">വീഡിയോ കോൾ ആരംഭിക്കുക</string>
+  <string name="ConversationSettingsFragment__start_audio_call">ഓഡിയോ കോൾ ആരംഭിക്കുക</string>
   <string name="ConversationSettingsFragment__message">സന്ദേശം</string>
   <string name="ConversationSettingsFragment__video">വീഡിയോ</string>
   <string name="ConversationSettingsFragment__audio">ശബ്ദം</string>
@@ -2940,6 +3022,8 @@
   <string name="ConversationSettingsFragment__muted">നിശബ്ദമാക്കി</string>
   <string name="ConversationSettingsFragment__search">തിരയുക</string>
   <string name="ConversationSettingsFragment__disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">ശബ്ദങ്ങൾ &amp; അറിയിപ്പുകൾ</string>
+  <string name="ConversationSettingsFragment__contact_details">കോൺടാക്റ്റ് അറിയിപ്പുകൾ</string>
   <string name="ConversationSettingsFragment__view_safety_number">സുരക്ഷാ നമ്പർ കാണുക</string>
   <string name="ConversationSettingsFragment__block">തടയുക</string>
   <string name="ConversationSettingsFragment__block_group">ഗ്രൂപ്പ് തടയുക</string>
@@ -2949,34 +3033,59 @@
   <string name="ConversationSettingsFragment__see_all">എല്ലാം കാണുക</string>
   <string name="ConversationSettingsFragment__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
   <string name="ConversationSettingsFragment__permissions">അനുമതികൾ</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">അഭ്യർത്ഥനകൾ &amp; ക്ഷണങ്ങൾ</string>
   <string name="ConversationSettingsFragment__group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക് </string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">ഒരു കോൺടാക്റ്റായി ചേർക്കുക</string>
   <string name="ConversationSettingsFragment__unmute">ശബ്‌ദിപ്പിക്കുക</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s വരെ സംഭാഷണം മ്യൂട്ട് ചെയ്തു</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">സംഭാഷണം എന്നെന്നേക്കുമായി മ്യുട് ചെയ്തു</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ക്ലിപ്ബോർഡിലേക്ക് ഫോൺ നമ്പർ പകർത്തി.</string>
   <string name="ConversationSettingsFragment__phone_number">ഫോൺ നമ്പർ</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ഗ്രൂപ്പ് വിവരം തിരുത്തുക</string>
+  <string name="PermissionsSettingsFragment__send_messages">സന്ദേശങ്ങള്‍ അയയ്ക്കുക</string>
   <string name="PermissionsSettingsFragment__all_members">എല്ലാ അംഗങ്ങളും</string>
   <string name="PermissionsSettingsFragment__only_admins">അഡ്‌മിനുകൾ മാത്രം</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">ആർക്കാണ് പുതിയ അംഗങ്ങളെ ചേർക്കാൻ കഴിയുക?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ഈ ഗ്രൂപ്പിന്റെ വിവരങ്ങൾ ആർക്കാണ് എഡിറ്റുചെയ്യാൻ കഴിയുക?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">ആർക്കാണ് സന്ദേശങ്ങള്‍ അയയ്ക്കാൻ കഴിയുക?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">നിശബ്ദമാക്കിയിട്ടില്ല</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">%1$s വരെ മ്യൂട്ട് ചെയ്തു</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">സൂചനകൾ</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">എപ്പോഴും അറിയിക്കുക</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">അറിയിക്കരുത്</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">അടുത്തിടെ ഉപയോഗിച്ചത്</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">പുതിയ പേയ്മെന്റ്</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">പുതിയ സന്ദേശം</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">പേര് അല്ലെങ്കിൽ നമ്പർ തിരയുക</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">ശബ്ദ സന്ദേശം നിർത്തുക</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">ശബ്ദ സന്ദേശം വേഗത മാറ്റുക</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">ശബ്ദ സന്ദേശം താൽക്കാലികമായി നിർത്തുക</string>
+  <string name="VoiceNotePlayerView__play_voice_message">ശബ്ദ സന്ദേശം പ്ലേ ചെയ്യുക</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">ശബ്ദ സന്ദേശം-ത്തിലേക്ക് നാവിഗേറ്റ് ചെയ്യുക</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">അവതാർ പ്രിവ്യൂ</string>
   <string name="AvatarPickerFragment__camera">ക്യാമറ</string>
+  <string name="AvatarPickerFragment__take_a_picture">ഒരു ഫോട്ടോ എടുക്ക്</string>
+  <string name="AvatarPickerFragment__choose_a_photo">ഒരു ചിത്രം തിരഞ്ഞെടുക്കുക</string>
   <string name="AvatarPickerFragment__photo">ഫോട്ടോ</string>
   <string name="AvatarPickerFragment__text">വാചകം</string>
   <string name="AvatarPickerFragment__save">സംരക്ഷിക്കൂ</string>
+  <string name="AvatarPickerFragment__select_an_avatar">അവതാർ തിരഞ്ഞെടുക്കുക</string>
   <string name="AvatarPickerFragment__clear_avatar">അവതാർ മായ്‌ക്കുക</string>
   <string name="AvatarPickerFragment__edit">തിരുത്തുക</string>
   <string name="AvatarPickerRepository__failed_to_save_avatar">അവതാർ സംരക്ഷിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>

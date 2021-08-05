@@ -209,6 +209,8 @@
   <string name="ConversationActivity_unable_to_record_audio">ಆಡಿಯೋ ರೆಕಾರ್ಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">ಈ ಗುಂಪಿಗೆ ನೀವು ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಇನ್ನು ಮುಂದೆ ನೀವು ಸದಸ್ಯರಾಗಿಲ್ಲ.</string>
   <string name="ConversationActivity_admins">ಅಡ್ಮಿನ್‌‌ಗಳು</string>
+  <string name="ConversationActivity_message_an_admin">ಅಡ್ಮಿನ್‌ಗೆ ಸಂದೇಶ ಕಳುಹಿಸಿ</string>
+  <string name="ConversationActivity_cant_start_group_call">ಗುಂಪು ಕರೆ ಪ್ರಾರಂಭಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">ಈ ಗುಂಪಿನ ಅಡ್ಮಿನ್‌ಗಳು ಮಾತ್ರ ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸಬಹುದು.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">ಈ ಲಿಂಕ್ ನಿರ್ವಹಿಸಲು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಆ್ಯಪ್ ಲಭ್ಯವಿಲ್ಲ.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">ಗುಂಪು ಸೇರಲು ನಿಮ್ಮ ವಿನಂತಿಯನ್ನು ನಿರ್ವಾಹಕರಿಗೆ ಕಳುಹಿಸಲಾಗಿದೆ. ಅವರು ಕ್ರಮ ಕೈಗೊಂಡಾಗ ನಿಮಗೆ ಸೂಚಿಸಲಾಗುತ್ತದೆ.</string>
@@ -343,6 +345,7 @@
   <string name="ChooseBackupFragment__icon_content_description">ಬ್ಯಾಕಪ್ ನಿಂದ ಮತ್ತೆ ಮರುಸ್ಥಾಪಿಸಿ</string>
   <string name="ChooseBackupFragment__choose_backup">ಬ್ಯಾಕಪ್ ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="ChooseBackupFragment__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">ಯಾವುದೇ ಫೈಲ್ ಬ್ರೌಸರ್ ಲಭ್ಯವಿಲ್ಲ.</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">ಮರುಸ್ಥಾಪನೆ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಬಳಸುವುದನ್ನು ಮುಂದುವರಿಸಲು, ದಯವಿಟ್ಟು ಫೋಲ್ಡರ್ ಆಯ್ಕೆಮಾಡಿ. ಹೊಸ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಈ ಸ್ಥಳಕ್ಕೆ ಉಳಿಸಲಾಗುತ್ತದೆ.</string>
@@ -420,6 +423,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ಜೊತೆ ಹಂಚಿಕೊಳ್ಳಿ </string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">ಬಹು ಲಗತ್ತುಗಳನ್ನು ಕೇವಲ ಚಿತ್ರಗಳು ಮತ್ತು ವೀಡಿಯೋಗಳಿಗೆ ಬೆಂಬಲಿಸಲಾಗಿರುತ್ತದೆ</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">ಈ ಗುಂಪಿಗೆ ಕಳುಹಿಸಲು ನಿಮಗೆ ಅನುಮತಿಯಿಲ್ಲ</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signalಗೆ ಶಾಶ್ವತವಾದ ಸಂಪರ್ಕ ವೈಫಲ್ಯ!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ಅನ್ನು Google ಪ್ಲೇ ಸರ್ವೀಸಸ್ ನಲ್ಲಿ ನೋಂದಾಯಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ. Signal ಸಂದೇಶಗಳು ಹಾಗೂ ಕರೆಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ,  ದಯವಿಟ್ಟು ಸೆಟ್ಟಿಂಗ್‌ಗಳು &gt; ಅಡ್ವಾನ್ಸ್ಡ್ ನಲ್ಲಿ ಪುನಃ ನೋಂದಾಯಿಸಲು ಯತ್ನಿಸಿ.</string>
@@ -562,6 +566,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">ಮುಗಿದಿದೆ</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ಈ ವ್ಯಕ್ತಿಯನ್ನು ಹಳೆಯ ಗುಂಪುಗಳಿಗೆ ಸೇರಿಸಲಾಗುವುದಿಲ್ಲ.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">ಈ ವ್ಯಕ್ತಿಯನ್ನು ಘೋಷಣಾ ಗುಂಪುಗಳಿಗೆ ಸೇರಿಸಲಾಗುತ್ತಿಲ್ಲ.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">\"%1$s\" \"%2$s\" ಗೆ ಸೇರಿಸುವುದೇ?</item>
     <item quantity="other">\"%3$d\" ಸದಸ್ಯರನ್ನು %2$s ಗೆ ಸೇರಿಸುವುದೇ?</item>
@@ -632,6 +637,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">ಹಂಚಿಕೊಳ್ಳಬಹುದಾದ ಗ್ರೂಪ್ ಲಿಂಕ್ ಅನ್ನು ಕೇವಲ ಅಡ್ಮಿನ್‌ಗಳು ರೀಸೆಟ್ ಮಾಡಬಹುದು.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ಇದನ್ನು  ಮಾಡಲು  ನಿಮಗೆ ಅನುಮತಿ ಇಲ್ಲ </string>
   <string name="ManageGroupActivity_not_capable">ನೀವು ಸೇರಿಸಿದ ಯಾರೋ ಹೊಸ ಗ್ರೂಪ್‌ಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ ಮತ್ತು ಅವರು Signal ಅಪ್‌ಡೇಟ್‌ ಮಾಡಬೇಕಿದೆ</string>
+  <string name="ManageGroupActivity_not_announcement_capable">ನೀವು ಸೇರಿಸಿದ ಯಾರೋ ಘೋಷಣಾ ಗ್ರೂಪ್‌ಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ ಮತ್ತು ಅವರು Signal ನವೀಕರಿಸಬೇಕಿದೆ </string>
   <string name="ManageGroupActivity_failed_to_update_the_group">ಗ್ರೂಪ್‌ ಅಪ್‌ಡೇಟ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">ನೀವು  ಈ ಗುಂಪಿನ ಸದಸ್ಯರಲ್ಲ </string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">ಗ್ರೂಪ್‌ ಅಪ್‌ಡೇಟ್‌ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ. ದಯವಿಟ್ಟು ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ</string>
@@ -825,6 +831,7 @@
   <string name="Megaphones_invite_friends">ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
   <string name="Megaphones_use_sms">ಎಸ್‌ಎಂಎಸ್ ಬಳಸಿ</string>
   <string name="Megaphones_appearance">ಲಕ್ಷಣ</string>
+  <string name="Megaphones_add_photo">ಫೋಟೋ ಸೇರಿಸಿ</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal ಕರೆ ಪ್ರಗತಿಯಲ್ಲಿದೆ</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal ಕರೆ ಸ್ಥಾಪಿಸಲಾಗುತ್ತಿದೆ</string>
@@ -987,6 +994,8 @@
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಎಲ್ಲಾ ಸದಸ್ಯರಿಗೂ ಅವಕಾಶವಾಗುವಂತೆ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೀವು ಬದಲಾಯಿಸಿರುವಿರಿ.</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಡ್ಮಿನ್‌ಗಳಿಗೆ ಮಾತ್ರ  ಅವಕಾಶ ಮಾಡಿಕೊಡುವಂತೆ ಈ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೀವು ಬದಲಾಯಿಸಿದ್ದೀರಿ.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಎಲ್ಲಾ ಸದಸ್ಯರಿಗೂ ಅವಕಾಶವಾಗುವಂತೆ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು %1$s ಅವರು ಬದಲಾಯಿಸಿದ್ದಾರೆ.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಡ್ಮಿನ್‌ಗಳಿಗೆ ಮಾತ್ರ ಅವಕಾಶವಾಗುವಂತೆ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು %1$s ಅವರು ಬದಲಾಯಿಸಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_allow_all_members_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಎಲ್ಲಾ ಸದಸ್ಯರಿಗೂ ಅನುವು ಮಾಡಿಕೊಡುವಂತೆ ಈ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿದೆ.</string>
   <string name="MessageRecord_allow_only_admins_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಡ್ಮಿನ್‌ಗಳಿಗೆ ಮಾತ್ರ ಅವಕಾಶ ಮಾಡಿಕೊಡುವಂತೆ ಈ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿದೆ.</string>
   <!--GV2 group link invite access level change-->
@@ -1350,6 +1359,7 @@
   <string name="SubmitDebugLogActivity_success">ಯಶಸ್ವಿಯಾಗಿದೆ!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ಈ URL ಅನ್ನು ನಕಲಿಸಿ ಮತ್ತು ಇದನ್ನು ನಿಮ್ಮ ವಿಷಯ ವರದಿಗೆ ಸೇರಿಸಿ ಅಥವಾ ಇಮೇಲ್ ಬೆಂಬಲಿಸಿ :\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">ಹಂಚಿಕೊಳ್ಳಿ </string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">ಈ ದಾಖಲೆಯನ್ನು ಕೊಡುಗೆದಾರರ ವೀಕ್ಷಣೆಗೆ ಬಹಿರಂಗ ಅಂತರ್ಜಾಲಕ್ಕೆ ಪೋಸ್ಟ್ ಮಾಡಲಾಗುತ್ತದೆ. ನೀವು ಇದನ್ನು ಸಲ್ಲಿಸುವ ಮೊದಲು ಪರೀಕ್ಷಿಸಬಹುದು.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">ಫಿಲ್ಟರ್:</string>
   <string name="SupportEmailUtil_device_info">ಸಾಧನ ಮಾಹಿತಿ:</string>
@@ -2982,7 +2992,9 @@
   <string name="ChatColorsMegaphone__appearance">ಲಕ್ಷಣ</string>
   <string name="ChatColorsMegaphone__not_now">ಈಗಲ್ಲ</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಸೇರಿಸಿ</string>
   <string name="AddAProfilePhotoMegaphone__not_now">ಈಗಲ್ಲ</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">ಫೋಟೋ ಸೇರಿಸಿ</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ಎಮೋಜಿ</string>
   <string name="KeyboardPagerFragment_open_emoji_search">ಎಮೋಜಿ ಹುಡುಕಾಟ ತೆರೆಯಿರಿ</string>
