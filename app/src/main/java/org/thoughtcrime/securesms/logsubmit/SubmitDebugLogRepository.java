@@ -103,7 +103,10 @@ public class SubmitDebugLogRepository {
   }
 
   public void buildAndSubmitLog(@NonNull Callback<Optional<String>> callback) {
-    SignalExecutors.UNBOUNDED.execute(() -> callback.onResult(submitLogInternal(System.currentTimeMillis(), getPrefixLogLinesInternal(), Tracer.getInstance().serialize())));
+    SignalExecutors.UNBOUNDED.execute(() -> {
+      LogDatabase.getInstance(context).trimToSize();
+      callback.onResult(submitLogInternal(System.currentTimeMillis(), getPrefixLogLinesInternal(), Tracer.getInstance().serialize()));
+    });
   }
 
   /**
