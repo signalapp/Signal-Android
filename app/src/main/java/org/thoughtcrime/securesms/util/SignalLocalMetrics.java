@@ -103,6 +103,29 @@ public final class SignalLocalMetrics {
     }
   }
 
+  public static final class ConversationOpen {
+    private static final String NAME = "conversation-open";
+
+    private static final String SPLIT_DATA_LOADED = "data-loaded";
+    private static final String SPLIT_RENDER      = "render";
+
+    private static String id;
+
+    public static void start() {
+      id = NAME + "-" + System.currentTimeMillis();
+      LocalMetrics.getInstance().start(id, NAME);
+    }
+
+    public static void onDataLoaded() {
+      LocalMetrics.getInstance().split(id, SPLIT_DATA_LOADED);
+    }
+
+    public static void onRenderFinished() {
+      LocalMetrics.getInstance().split(id, SPLIT_RENDER);
+      LocalMetrics.getInstance().end(id);
+    }
+  }
+
   public static final class GroupMessageSend {
     private static final String NAME = "group-message-send";
 
