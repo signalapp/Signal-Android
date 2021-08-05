@@ -26,8 +26,8 @@ import java.util.concurrent.Executor
 object LocalMetrics {
   private val TAG: String = Log.tag(LocalMetrics::class.java)
 
-  private val eventsById: MutableMap<String, LocalMetricsEvent> = mutableMapOf()
-  private val lastSplitTimeById: MutableMap<String, Long> = mutableMapOf()
+  private val eventsById: MutableMap<String, LocalMetricsEvent> = LRUCache(200)
+  private val lastSplitTimeById: MutableMap<String, Long> = LRUCache(200)
 
   private val executor: Executor = SignalExecutors.newCachedSingleThreadExecutor("signal-LocalMetrics")
   private val db: LocalMetricsDatabase by lazy { LocalMetricsDatabase.getInstance(ApplicationDependencies.getApplication()) }

@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Projection;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
@@ -63,6 +64,8 @@ public class ConversationItemFooter extends ConstraintLayout {
 
   private final Rect speedToggleHitRect = new Rect();
   private final int  touchTargetSize    = ViewUtil.dpToPx(48);
+
+  private long previousMessageId;
 
   public ConversationItemFooter(Context context) {
     super(context);
@@ -368,6 +371,19 @@ public class ConversationItemFooter extends ConstraintLayout {
   }
 
   private void presentDeliveryStatus(@NonNull MessageRecord messageRecord) {
+    long newMessageId = buildMessageId(messageRecord);
+
+    if (previousMessageId == newMessageId && deliveryStatusView.isPending() && !messageRecord.isPending()) {
+      if (messageRecord.getRecipient().isGroup()) {
+        SignalLocalMetrics.GroupMessageSend.onUiUpdated(messageRecord.getId());
+      } else {
+        SignalLocalMetrics.IndividualMessageSend.onUiUpdated(messageRecord.getId());
+      }
+    }
+
+    previousMessageId = newMessageId;
+
+
     if (messageRecord.isFailed() || messageRecord.isPendingInsecureSmsFallback()) {
       deliveryStatusView.setNone();
       return;
@@ -424,6 +440,10 @@ public class ConversationItemFooter extends ConstraintLayout {
     audioDuration.setVisibility(View.GONE);
     revealDot.setVisibility(View.GONE);
     playbackSpeedToggleTextView.setVisibility(View.GONE);
+  }
+
+  private long buildMessageId(@NonNull MessageRecord record) {
+    return record.isMms() ? -record.getId() : record.getId();
   }
 
   public interface OnTouchDelegateChangedListener {

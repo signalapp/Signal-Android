@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -74,6 +75,8 @@ public class PushTextSendJob extends PushSendJob {
 
   @Override
   public void onPushSend() throws IOException, NoSuchMessageException, UndeliverableMessageException, RetryLaterException {
+    SignalLocalMetrics.IndividualMessageSend.onJobStarted(messageId);
+
     ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
     MessageDatabase        database          = DatabaseFactory.getSmsDatabase(context);
     SmsMessageRecord       record            = database.getSmsMessage(messageId);
@@ -136,6 +139,8 @@ public class PushTextSendJob extends PushSendJob {
     } catch (ProofRequiredException e) {
       handleProofRequiredException(e, record.getRecipient(), record.getThreadId(), messageId, false);
     }
+
+    SignalLocalMetrics.IndividualMessageSend.onJobFinished(messageId);
   }
 
   @Override
@@ -176,11 +181,17 @@ public class PushTextSendJob extends PushSendJob {
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
         SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, textSecureMessage, syncAccess);
 
+        SignalLocalMetrics.IndividualMessageSend.onNetworkStarted(messageId);
         SendMessageResult result = messageSender.sendSyncMessage(syncMessage, syncAccess);
+        SignalLocalMetrics.IndividualMessageSend.onNetworkFinished(messageId);
+
         DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(messageRecipient.getId(), message.getDateSent(), result, ContentHint.RESENDABLE, new MessageId(messageId, false));
         return syncAccess.isPresent();
       } else {
+        SignalLocalMetrics.IndividualMessageSend.onNetworkStarted(messageId);
         SendMessageResult result = messageSender.sendDataMessage(address, unidentifiedAccess, ContentHint.RESENDABLE, textSecureMessage);
+        SignalLocalMetrics.IndividualMessageSend.onNetworkFinished(messageId);
+
         DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(messageRecipient.getId(), message.getDateSent(), result, ContentHint.RESENDABLE, new MessageId(messageId, false));
         return result.getSuccess().isUnidentified();
       }

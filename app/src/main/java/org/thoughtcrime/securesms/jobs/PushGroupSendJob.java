@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
@@ -147,6 +148,8 @@ public final class PushGroupSendJob extends PushSendJob {
   public void onPushSend()
       throws IOException, MmsException, NoSuchMessageException, RetryLaterException
   {
+    SignalLocalMetrics.GroupMessageSend.onJobStarted(messageId);
+
     MessageDatabase           database                   = DatabaseFactory.getMmsDatabase(context);
     OutgoingMediaMessage      message                    = database.getOutgoingMessage(messageId);
     long                      threadId                   = database.getMessageRecord(messageId).getThreadId();
@@ -186,6 +189,7 @@ public final class PushGroupSendJob extends PushSendJob {
       RecipientAccessList accessList = new RecipientAccessList(target);
 
       List<SendMessageResult>   results = deliver(message, groupRecipient, target);
+      SignalLocalMetrics.GroupMessageSend.onNetworkFinished(messageId);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
 
       List<NetworkFailure>             networkFailures           = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(accessList.requireIdByAddress(result.getAddress()))).toList();
@@ -258,6 +262,8 @@ public final class PushGroupSendJob extends PushSendJob {
       database.markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
     }
+
+    SignalLocalMetrics.GroupMessageSend.onJobFinished(messageId);
   }
 
   @Override
@@ -303,6 +309,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                               .withExpiration(groupRecipient.getExpiresInSeconds())
                                                                               .asGroupMessage(group)
                                                                               .build();
+          SignalLocalMetrics.GroupMessageSend.onNetworkStarted(messageId);
           return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId().requireV2(), destinations, isRecipientUpdate, ContentHint.IMPLICIT, new MessageId(messageId, true), groupDataMessage);
         } else {
           throw new UndeliverableMessageException("Messages can no longer be sent to V1 groups!");
@@ -328,6 +335,7 @@ public final class PushGroupSendJob extends PushSendJob {
 
         Log.i(TAG, JobLogger.format(this, "Beginning message send."));
 
+        SignalLocalMetrics.GroupMessageSend.onNetworkStarted(messageId);
         return GroupSendUtil.sendResendableDataMessage(context,
                                                        groupRecipient.getGroupId().transform(GroupId::requireV2).orNull(),
                                                        destinations,
