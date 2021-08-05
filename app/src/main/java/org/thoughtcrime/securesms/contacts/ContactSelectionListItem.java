@@ -216,7 +216,14 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     if (this.recipient != null && this.recipient.getId().equals(recipient.getId())) {
       contactName   = recipient.getDisplayName(getContext());
       contactAbout  = recipient.getCombinedAboutAndEmoji();
-      contactNumber = PhoneNumberFormatter.prettyPrint(recipient.getE164().or(""));
+
+      if (recipient.isGroup() && recipient.getGroupId().isPresent()) {
+        contactNumber = recipient.getGroupId().get().toString();
+      } else if (recipient.hasE164()) {
+        contactNumber = PhoneNumberFormatter.prettyPrint(recipient.getE164().or(""));
+      } else {
+        contactNumber = recipient.getEmail().or("");
+      }
 
       contactPhotoImage.setAvatar(glideRequests, recipient, false);
       setText(recipient, contactType, contactName, contactNumber, contactLabel, contactAbout);
