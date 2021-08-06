@@ -6,6 +6,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase
 data class CustomNotificationsSettingsState(
   val isInitialLoadComplete: Boolean = false,
   val hasCustomNotifications: Boolean = false,
+  val controlsEnabled: Boolean = false,
   val messageVibrateState: RecipientDatabase.VibrateState = RecipientDatabase.VibrateState.DEFAULT,
   val messageVibrateEnabled: Boolean = false,
   val messageSound: Uri? = null,

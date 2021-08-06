@@ -22,12 +22,19 @@ class CustomNotificationsSettingsViewModel(
 
   init {
     repository.initialize(recipientId) {
-      store.update { it.copy(isInitialLoadComplete = true) }
+      store.update {
+        it.copy(
+          isInitialLoadComplete = true,
+          controlsEnabled = (!NotificationChannels.supported() || it.hasCustomNotifications)
+        )
+      }
     }
 
     store.update(Recipient.live(recipientId).liveData) { recipient, state ->
+      val recipientHasCustomNotifications = NotificationChannels.supported() && recipient.notificationChannel != null
       state.copy(
-        hasCustomNotifications = NotificationChannels.supported() && recipient.notificationChannel != null,
+        hasCustomNotifications = recipientHasCustomNotifications,
+        controlsEnabled = (!NotificationChannels.supported() || recipientHasCustomNotifications) && state.isInitialLoadComplete,
         messageSound = recipient.messageRingtone,
         messageVibrateState = recipient.messageVibrate,
         messageVibrateEnabled = when (recipient.messageVibrate) {

@@ -65,8 +65,6 @@ class CustomNotificationsSettingsFragment : DSLSettingsFragment(R.string.CustomN
   private fun getConfiguration(state: CustomNotificationsSettingsState): DSLConfiguration {
     return configure {
 
-      val controlsEnabled = state.hasCustomNotifications && state.isInitialLoadComplete
-
       sectionHeaderPref(R.string.CustomNotificationsDialogFragment__messages)
 
       if (NotificationChannels.supported()) {
@@ -81,21 +79,21 @@ class CustomNotificationsSettingsFragment : DSLSettingsFragment(R.string.CustomN
       clickPref(
         title = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__notification_sound),
         summary = DSLSettingsText.from(getRingtoneSummary(requireContext(), state.messageSound, Settings.System.DEFAULT_NOTIFICATION_URI)),
-        isEnabled = controlsEnabled,
+        isEnabled = state.controlsEnabled,
         onClick = { requestSound(state.messageSound, false) }
       )
 
       if (NotificationChannels.supported()) {
         switchPref(
           title = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__vibrate),
-          isEnabled = controlsEnabled,
+          isEnabled = state.controlsEnabled,
           isChecked = state.messageVibrateEnabled,
           onClick = { viewModel.setMessageVibrate(RecipientDatabase.VibrateState.fromBoolean(!state.messageVibrateEnabled)) }
         )
       } else {
         radioListPref(
           title = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__vibrate),
-          isEnabled = controlsEnabled,
+          isEnabled = state.controlsEnabled,
           listItems = vibrateLabels,
           selected = state.messageVibrateState.id,
           onSelected = {
@@ -112,13 +110,13 @@ class CustomNotificationsSettingsFragment : DSLSettingsFragment(R.string.CustomN
         clickPref(
           title = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__ringtone),
           summary = DSLSettingsText.from(getRingtoneSummary(requireContext(), state.callSound, Settings.System.DEFAULT_RINGTONE_URI)),
-          isEnabled = controlsEnabled,
+          isEnabled = state.controlsEnabled,
           onClick = { requestSound(state.callSound, true) }
         )
 
         radioListPref(
           title = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__vibrate),
-          isEnabled = controlsEnabled,
+          isEnabled = state.controlsEnabled,
           listItems = vibrateLabels,
           selected = state.callVibrateState.id,
           onSelected = {
