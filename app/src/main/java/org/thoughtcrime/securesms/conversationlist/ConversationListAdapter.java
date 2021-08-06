@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -210,7 +211,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   }
 
   Collection<Conversation> getBatchSelection() {
-    return batchSet.values();
+    return new ArrayList<>(batchSet.values());
   }
 
   @Override
@@ -233,7 +234,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   }
 
   @NonNull Set<Long> getBatchSelectionIds() {
-    return batchSet.keySet();
+    return new HashSet<>(batchSet.keySet());
   }
 
   void selectAllThreads() {
