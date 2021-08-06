@@ -38,7 +38,7 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">পিন নিষ্ক্রিয় করা হয়েছে।</string>
   <string name="ApplicationPreferencesActivity_hide">লুকান</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">রিমাইন্ডার লুকাবেন?</string>
-  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">পেমেন্ট পুনরুদ্ধারের জন্য এই তথ্য সেভ করুন</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">পেমেন্ট রিকভারি ফ্রেজ রেকর্ড করুন</string>
   <string name="ApplicationPreferencesActivity_record_phrase">বাক্যাংশ সংরক্ষণ</string>
   <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">আপনি আপনার পিনটি নিষ্ক্রিয় করার পূর্বে, আপনার পেমেন্ট অ্যাকাউন্টটি পুনরুদ্ধার করতে সক্ষম কিনা  তা নিশ্চিত করতে আপনাকে অবশ্যই আপনার পেমেন্টের তথ্য পুনরুদ্ধারের ফ্রেজ সংরক্ষণ করতে হবে।</string>
   <!--AppProtectionPreferenceFragment-->
@@ -697,7 +697,7 @@
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">আপনি কি নিশ্চিত যে আপনি গ্রুপের লিঙ্কটি পুনরায় সেট করতে চান? বর্তমান লিঙ্কটি ব্যবহার করে কেউ আর গ্রুপে যোগ দিতে পারবে না।</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR কোড</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">এই কোডটি স্ক্যান করে কেউ আপনার গ্রুপে যোগদান করতে সক্ষম হবে। আপনার যদি সেটিংটি চালু থাকে তবে  নতুন সদস্যদের অনুমোদনের এডমিনের প্রয়োজন হবে।</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">এই কোডটি স্ক্যান করে কেউ আপনার গ্রুপে যোগদান করতে সক্ষম হবে। আপনার যদি সেটিংটি চালু থাকে তবে নতুন সদস্যদের অনুমোদনের এডমিনের প্রয়োজন হবে।</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">কোড শেয়ার করুন</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">আপনি কি %1$s কে পাঠানো আমন্ত্রণটি বাতিল করতে চান?</string>
@@ -706,7 +706,7 @@
     <item quantity="other">আপনি কি %1$s দ্বারা প্রেরিত %2$d টি আমন্ত্রণ প্রত্যাহার করতে চান?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">আপনি ইতিমধ্যে একজন সদস্য</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">আপনি ইতিমধ্যেই সদস্য হয়েছেন</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">যোগদান করুন</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">যোগদানের জন্য অনুরোধ করুন</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">গ্রুপে যোগ দিতে অক্ষম। পরে আবার চেষ্টা করুন</string>
@@ -995,12 +995,12 @@
   <string name="MessageRecord_you_allow_only_admins_to_send">আপনি গ্রুপ সেটিংস পরিবর্তন করে কেবল মাত্র এডমিনদের বার্তা পাঠানোর অনুমতি দিয়েছেন।</string>
   <string name="MessageRecord_s_allow_all_members_to_send">%1$s গ্রুপের সকল সদস্যদের বার্তা পাঠানোর অনুমতি প্রদানের জন্য সেটিংস পরিবর্তন করেছেন।</string>
   <string name="MessageRecord_s_allow_only_admins_to_send">%1$s গ্রুপের কেবল অ্যাডমিনদের বার্তা পাঠানোর অনুমতি দিতে সেটিংস পরিবর্তন করেছেন।</string>
-  <string name="MessageRecord_allow_all_members_to_send">সকল সদস্যদের বার্তা পাঠানোর অনুমতি দিতে গ্রুপের সেটিংস পরিবর্তন করা হয়েছে।</string>
+  <string name="MessageRecord_allow_all_members_to_send">সকল সদস্যকে মেসেজ পাঠানোর অনুমতি দিতে গ্রুপের সেটিংস পরিবর্তন করা হয়েছে।</string>
   <string name="MessageRecord_allow_only_admins_to_send">কেবল অ্যাডমিনদের বার্তা পাঠানোর অনুমতি দিতে গ্রুপের সেটিংস পরিবর্তন করা হয়েছে।</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">আপনি এডমিনের অনুমোদন ছাড়ায় গ্রুপ লিঙ্কটি চালু করেছেন।</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">আপনি এডমিনের অনুমোদন সহ গ্রুপ লিঙ্কটি চালু করেছেন।</string>
-  <string name="MessageRecord_you_turned_off_the_group_link">আপনি গ্রুপ লিঙ্ক বন্ধ করেছেন।</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">আপনি গ্রুপের লিঙ্ক বন্ধ করেছেন।</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s এডমিনের অনুমোদন ছাড়া গ্রুপ লিঙ্ক চালু করেছে।</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s এডমিনের অনুমোদন সাপেক্ষে গ্রুপ লিঙ্ক চালু করেছে।</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s গ্রুপ লিঙ্ক বন্ধ করে দিয়েছে।</string>
@@ -1075,7 +1075,7 @@
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">এই লিগ্যাসি গ্রুপটি অনেক বড় হওয়ায় এটি আর ব্যবহার করা যাবে না। গ্রুপের সর্বোচ্চ আকার হল %1$d।</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">আপনি কি %1$s-এর সাথে আপনার কথোপকথন চালিয়ে যাবেন এবং আপনার নাম ও ছবি ব্যবহার করবেন?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">আপনি কি এই গ্রুপে যোগ দিয়ে এর সদস্যদের সাথে আপনার নাম ও ছবি শেয়ার করবেন? আপনি গ্রহণ না করা পর্যন্ত তারা জানবেন না যে আপনি তাদের মেসেজ দেখেছেন।</string>
-  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">এই গ্রুপে যোগ দেবেন? আপনি গ্রহণ না করা পর্যন্ত তারা জানবেন না যে আপনি তাদের মেসেজটি দেখেছেন।</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">এই গ্রুপে যোগ দেবেন? আপনি স্বীকার না করা পর্যন্ত তারা জানবেন না যে আপনি তাদের মেসেজ দেখেছেন।</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">এই গ্রুপটিকে আনব্লক করে এর সদস্যদের সাথে আপনার নাম ও ছবি শেয়ার করবেন? আপনি তাদের আনব্লক না করা পর্যন্ত কোন মেসেজ পাবেন না।</string>
   <string name="MessageRequestProfileView_view">দেখান</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$sএর সদস্য</string>
@@ -1159,7 +1159,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">PIN তৈরি করুন</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">সতর্কতা</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">আপনি পিনটি নিষ্ক্রিয় করলে, Signal-এ সেভ করা ডেটা যদি আপনি ম্যানুয়ালি ব্যাক-আপ ও পুনরুদ্ধার না করেন তাহলে পুনরায় রেজিস্টার করার সময় আপনি সকল সেভ করা ডেটা হারাবেন। পিন নিষ্ক্রিয় থাকা অবস্থায় আপনি রেজিস্ট্রেশন লক চালু করতে পারবেন না।</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">আপনি পিনটি নিষ্ক্রিয় করলে, আপনি Signal-এ সেভ করা ডেটা ম্যানুয়ালি ব্যাক-আপ ও পুনরুদ্ধার না করলে, পুনরায় Signal-এ রেজিস্টার করার সময় আপনি সমস্ত সেভ করা ডেটা হারাবেন। পিন নিষ্ক্রিয় থাকা অবস্থায় আপনি রেজিস্ট্রেশন লক চালু করতে পারবেন না।</string>
   <string name="PinOptOutDialog_disable_pin">পিন নিষ্ক্রিয় করুন</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">এই এপটিকে রেটিং দিন</string>
@@ -1175,8 +1175,8 @@
   <string name="ReactionsRecipientAdapter_you">আপনি</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">মেসেজ পাঠানো চালিয়ে যেতে ভেরিফাই করুন</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal-এ স্প্যাম প্রতিরোধ করতে অনুগ্রহ করে ভেরিফিকেশন সম্পন্ন করুন।</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">ভেরিফাই করার পর আপনি মেসেজ পাঠানো চালিয়ে যেতে পারবেন। পজ করা যেকোনও মেসেজ স্বয়ংক্রিয়ভাবে পাঠানো হবে।</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal-এ স্প্যাম প্রতিরোধ করতে, অনুগ্রহ করে যাচাইকরণ সম্পূর্ণ করুন।</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">যাচাই করার পর, আপনি মেসেজ পাঠানো চালিয়ে যেতে পারবেন। স্থগিত করা যেকোনো বার্তা স্বয়ংক্রিয়ভাবে পাঠানো হবে।</string>
   <!--Recipient-->
   <string name="Recipient_you">আপনি</string>
   <!--RecipientPreferencesActivity-->
@@ -1223,15 +1223,15 @@
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">এই কল-এ · %1$d জন</item>
-    <item quantity="other">এই কল-এ · %1$d জন</item>
+    <item quantity="other">এই কলে · %1$d জন</item>
   </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">%1$s-কে ব্লক করা হয়েছে</string>
   <string name="CallParticipantView__more_info">আরও তথ্য</string>
-  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">আপনারা কেউ কারও অডিও বা ভিডিও পাবেন না।</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">আপনি তাদের অডিও বা ভিডিও পাবেন না এবং তারাও আপনার পাবেন না।</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s থেকে অডিও &amp; ভিডিও গ্রহণ করতে পারবেন না</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s থেকে অডিও ও ভিডিও গ্রহণ করতে পারবেন না</string>
-  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">এর কারণ হতে পারে যে হয় তারা আপনার পরিবর্তিত নিরাপত্তা নাম্বার ভেরিফাই করেননি, তাদের ডিভাইসে কোন সমস্যা হয়েছে বা তারা আপনাকে ব্লক করেছেন।</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">এর কারণ হতে পারে যে হয় তারা আপনার পরিবর্তিত নিরাপত্তা নাম্বার ভেরিফাই করেননি, নতুবা তাদের ডিভাইসে কোন সমস্যা হয়েছে বা তারা আপনাকে ব্লক করেছেন।</string>
   <!--CallToastPopupWindow-->
   <string name="CallToastPopupWindow__swipe_to_view_screen_share">স্ক্রিন শেয়ার দেখতে সোয়াইপ করুন</string>
   <!--ProxyBottomSheetFragment-->
@@ -1242,7 +1242,7 @@
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">প্রক্সির সাথে সফলভাবে সংযুক্ত হয়েছে।</string>
   <!--RecaptchaProofActivity-->
   <string name="RecaptchaProofActivity_failed_to_submit">জমা দিতে ব্যর্থ হয়েছে</string>
-  <string name="RecaptchaProofActivity_complete_verification">ভেরিফিকেশন সম্পন্ন করুন</string>
+  <string name="RecaptchaProofActivity_complete_verification">যাচাইকরণ সম্পন্ন করুন</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">আপনার দেশ নির্বাচন করুন</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">আপনাকে অবশ্যই নির্দিষ্ট করতে হবে
@@ -1328,7 +1328,7 @@
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">নতুন নিরাপত্তা নাম্বার সহ বার্তা পেয়েছে। প্রক্রিয়া এবং প্রদর্শন করতে আলতো চাপুন।</string>
   <string name="SmsMessageRecord_secure_session_reset">আপনি নিরাপদ সেশনটি পুন:স্থাপন করেছেন।</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s নিরাপদ সেশনটি পুন:স্থাপন করেছেন</string>
-  <string name="SmsMessageRecord_duplicate_message">ডুপ্লিকেট বার্তা</string>
+  <string name="SmsMessageRecord_duplicate_message">ডুপ্লিকেট মেসেজ</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">এই বার্তাটি প্রক্রিয়া করা যায়নি কারণ এটি Signal এর  একটি নতুন সংস্করণ থেকে প্রেরণ করা হয়েছিল। আপনি আপডেট হওয়ার পরে আপনার পরিচিতি কে এই বার্তাটি আবার প্রেরণ করতে বলতে পারেন।</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">আগত বার্তা পরিচালনা করার সময় ত্রুটি।</string>
   <!--StickerManagementActivity-->
@@ -1390,7 +1390,7 @@
   <string name="ThreadRecord_you_marked_verified">আপনি যাচাইকৃত চিহ্নিত করেছেন</string>
   <string name="ThreadRecord_you_marked_unverified">আপনি অযাচাইকৃত চিহ্নিত করেছেন</string>
   <string name="ThreadRecord_message_could_not_be_processed">বার্তাটি প্রক্রিয়া করা যায়নি</string>
-  <string name="ThreadRecord_delivery_issue">পাঠাতে সমস্যা</string>
+  <string name="ThreadRecord_delivery_issue">পাঠানোর ক্ষেত্রে সমস্যা</string>
   <string name="ThreadRecord_message_request">বার্তার অনুরোধ</string>
   <string name="ThreadRecord_photo">ছবি</string>
   <string name="ThreadRecord_gif">জিফ</string>
@@ -1541,9 +1541,9 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">সংযুক্ত ডিভাইসে উত্তর দেওয়া হয়েছে।</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">সংযুক্ত ডিভাইসে অস্বীকার করা হয়েছে।</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">সংযুক্ত ডিভাইসে ব্যাস্ত।</string>
-  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">কেউ একজন এই কলে এমন একটি নিরাপত্তা নাম্বার দিয়ে যোগ দিয়েছে যা পরিবর্তিত হয়েছে।</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">কেউ একজন এই কলে এমন একটি নিরাপত্তা নাম্বার দিয়ে যোগ দিয়েছেন যা পরিবর্তিত হয়েছে।</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_swipe_up_to_change_views">দেখা বদলাতে উপরের দিকে সোয়াইপ করুন</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">ভিউ বদলাতে উপরের দিকে সোয়াইপ করুন</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">প্রত্যাখ্যান করুন</string>
   <string name="WebRtcCallScreen__answer">উত্তর</string>
@@ -1630,8 +1630,8 @@
   <string name="ConversationUpdateItem_call_is_full">কলটিতে জায়গা নেই</string>
   <string name="ConversationUpdateItem_invite_friends">বন্ধুদের আমন্ত্রণ</string>
   <string name="ConversationUpdateItem_enable_call_notifications">কল নোটিফিকেশন চালু করুন</string>
-  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">কোন কমন গ্রুপ নেই। অনুরোধগুলো সতর্কতার সাথে পর্যালোচনা করুন।</string>
-  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">এই গ্রুপে কোন কন্ট্যাক্ট নেই। অনুরোধগুলো সতর্কতার সাথে পর্যালোচনা করুন।</string>
+  <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">একইরকম কোনও গ্রুপ নেই। সতর্কতার সাথে অনুরোধগুলি পর্যালোচনা করুন।</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">এই গ্রুপে কোনও কন্ট্যাক্ট নেই। অনুরোধগুলি সতর্কতার সাথে পর্যালোচনা করুন।</string>
   <string name="ConversationUpdateItem_view">দেখান</string>
   <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">আপনি তাদের মেসেজ পাঠালে মেসেজ অদৃশ্য হওয়ার সময় %1$s-এ সেট করা হবে।</string>
   <!--audio_view-->
@@ -1648,14 +1648,14 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">স্ক্রোল করে নীচে যান</string>
   <!--safety_number_change_dialog-->
-  <string name="safety_number_change_dialog__safety_number_changes">নিরাপত্তা নাম্বার পরিবর্তন হয়েছে</string>
+  <string name="safety_number_change_dialog__safety_number_changes">নিরাপত্তা নাম্বার পরিবর্তিত হয়</string>
   <string name="safety_number_change_dialog__accept">মানছি</string>
-  <string name="safety_number_change_dialog__send_anyway">তারপরও পাঠান</string>
+  <string name="safety_number_change_dialog__send_anyway">যেকোনও উপায়ে পাঠান</string>
   <string name="safety_number_change_dialog__call_anyway">তারপরও কল করুন</string>
   <string name="safety_number_change_dialog__join_call">কলে যোগ দিন</string>
   <string name="safety_number_change_dialog__continue_call">কল চালিয়ে যান</string>
   <string name="safety_number_change_dialog__leave_call">কল ছেড়ে যান</string>
-  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">নিম্নোক্ত লোকেরা পুনরায় ইনস্টল করে থাকতে পারেন অথবা ডিভাইস বদলে ফেলতে পারে। গোপনীয়তা নিশ্চিত করতে আপনার নিরাপত্তা নাম্বারটি তাদের সাথে ভেরিফাই করুন।</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">নিম্নোক্ত লোকেরা পুনরায় ইনস্টল করে থাকতে পারেন অথবা ডিভাইস বদলে ফেলতে পারে। গোপনীয়তা নিশ্চিত করতে আপনার নিরাপত্তা নাম্বার তাদের সাথে ভেরিফাই করুন।</string>
   <string name="safety_number_change_dialog__view">দেখান</string>
   <string name="safety_number_change_dialog__previous_verified">আগে ভেরিফাই করা হয়েছে</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
@@ -1754,7 +1754,7 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">আপনার ওয়্যারলেস ক্যারিয়ারের মাধ্যমে মিডিয়া এবং গ্রুপ বার্তাগুলি সরবরাহ করার জন্য সিগন্যালের এমএমএস সেটিংস প্রয়োজন। আপনার ডিভাইসএ এই তথ্যটি পাওয়া যাচ্ছে না, যা লক্ করা ডিভাইস এবং অন্যান্য বিধিনিষেধযুক্ত কনফিগারেশনের জন্য প্রায়শ সত্য|</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">মিডিয়া এবং গ্রুপ বার্তা প্রেরণ করতে, \'ঠিক আছে\' আলতো চাপুন এবং অনুরোধ করা সেটিংসটি সম্পূর্ণ করুন। আপনার ক্যারিয়ারের এমএমএস সেটিংস সাধারণত \'আপনার ক্যারিয়ার এপিএন\' অনুসন্ধান করে সনাক্ত করা যায়। আপনার কেবল এটি একবার করা দরকার।</string>
   <!--BadDecryptLearnMoreDialog-->
-  <string name="BadDecryptLearnMoreDialog_delivery_issue">পাঠাতে সমস্যা</string>
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">পাঠানোর ক্ষেত্রে সমস্যা</string>
   <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%s থেকে আপনাকে কোনও মেসেজ, স্টিকার, প্রতিক্রিয়া বা পাঠের রশিদ পাঠানো যায়নি। তারা হয়তো আপনাকে সরাসরি বা একটি গ্রুপে এটি পাঠানোর চেষ্টা করেছেন।</string>
   <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%s থেকে আপনাকে কোনও মেসেজ, স্টিকার বা পাঠের রসিদ পাঠানো যায়নি।</string>
   <!--profile_create_activity-->
@@ -1764,17 +1764,17 @@
   <string name="CreateProfileActivity__username">ব্যবহারকারীর নাম</string>
   <string name="CreateProfileActivity__create_a_username">একটি ব্যবহারকারীর নাম তৈরি করুন</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">কাস্টম এমএমএস গ্রুপের নাম এবং ছবিগুলি কেবল আপনার কাছে দৃশ্যমান হবে।</string>
-  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">গ্রুপের বিবরণ এই গ্রুপের সদস্য ও আমন্ত্রিত ব্যক্তিরা দেখতে পারবেন।</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">এই গ্রুপের সদস্য ও আমন্ত্রিত লোকজন গ্রুপের বিবরণগুলি দেখতে পারবেন।</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">সম্বন্ধে</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">আপনার সম্পর্কে কিছু লিখুন…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
-  <string name="EditAboutFragment_speak_freely">নির্বিঘ্নে কথা বলুন</string>
-  <string name="EditAboutFragment_encrypted">একক্রিপ্ট করা হয়েছে</string>
+  <string name="EditAboutFragment_speak_freely">নির্দ্বিধায় কথা বলুন</string>
+  <string name="EditAboutFragment_encrypted">এনক্রিপ্ট করা হয়েছে</string>
   <string name="EditAboutFragment_be_kind">দয়ালু হোন</string>
   <string name="EditAboutFragment_coffee_lover">কফি প্রেমিক</string>
-  <string name="EditAboutFragment_free_to_chat">চ্যাট করার জন্য ফ্রি</string>
-  <string name="EditAboutFragment_taking_a_break">একটি বিরতি নিচ্ছেন</string>
+  <string name="EditAboutFragment_free_to_chat">বিনা দ্বিধায় চ্যাট করুন</string>
+  <string name="EditAboutFragment_taking_a_break">একটি বিরতি নিচ্ছে</string>
   <string name="EditAboutFragment_working_on_something_new">নতুন কিছুতে কাজ করছে</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group">গ্রুপ সংশোধন করুন</string>
@@ -1808,8 +1808,8 @@
   <string name="message_details_header__via">মাধ্যম</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">পেন্ডিং</string>
-  <string name="message_details_recipient_header__sent_to">প্রাপক</string>
-  <string name="message_details_recipient_header__sent_from">প্রেরক</string>
+  <string name="message_details_recipient_header__sent_to">একে পাঠানো হয়েছে</string>
+  <string name="message_details_recipient_header__sent_from">এর থেকে পাঠানো হয়েছে</string>
   <string name="message_details_recipient_header__delivered_to">যাকে পাঠানো হয়েছে</string>
   <string name="message_details_recipient_header__read_by">যিনি পড়েছেন</string>
   <string name="message_details_recipient_header__not_sent">পাঠানো হয়নি</string>
@@ -1910,8 +1910,8 @@
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">এন্টার কী টিপলে পাঠ্য বার্তা প্রেরণ করা হবে</string>
   <string name="preferences__pref_use_address_book_photos">অ্যাড্রেস বুকের ছবি ব্যবহার করুন</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">উপলভ্য থাকলে আপনার অ্যাড্রেস বুক থেকে পরিচিতির ছবিগুলো দেখান</string>
-  <string name="preferences__generate_link_previews">লিংক প্রিভিউ তৈরি করুন</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">আপনার পাঠানো মেসেজের জন্য সরাসরি ওয়েবসাইট থেকে লিংক প্রিভিউ পুনরুদ্ধার করুন।</string>
+  <string name="preferences__generate_link_previews">লিঙ্কের প্রিভিউ তৈরি করুন</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">আপনার পাঠানো মেসেজের জন্য ওয়েবসাইটগুলি থেকে সরাসরি লিঙ্কের প্রিভিউ পুনরুদ্ধার করুন।</string>
   <string name="preferences__choose_identity">পরিচয় বাছুন</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">পরিচিতি তালিকা থেকে আপনার পরিচিতি এন্টি চয়ন করুন</string>
   <string name="preferences__change_passphrase">পাসফ্রেজ পরিবর্তন করুন</string>
@@ -1977,9 +1977,9 @@
   <string name="preferences__chat_wallpaper">চ্যাটের ওয়ালপেপার</string>
   <string name="preferences__chat_color_and_wallpaper">চ্যাটের রং ও ওয়ালপেপার</string>
   <string name="preferences__disable_pin">পিন নিষ্ক্রিয় করুন</string>
-  <string name="preferences__enable_pin">পিন চালু করুন</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">আপনি পিনটি নিষ্ক্রিয় করলে, Signal-এ সেভ করা ডেটা যদি আপনি ম্যানুয়ালি ব্যাক-আপ ও পুনরুদ্ধার না করেন তাহলে পুনরায় রেজিস্টার করার সময় আপনি সকল সেভ করা ডেটা হারাবেন। পিন নিষ্ক্রিয় থাকা অবস্থায় আপনি রেজিস্ট্রেশন লক চালু করতে পারবেন না।</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">পিন Signal-এ সেভ করা তথ্যগুলো এনক্রিপ্ট করে রাখে যাতে কেবল আপনিই সেগুলো পড়তে পারেন। আপনি পুনরায় ইনস্টল করার পর আপনার প্রোফাইল, সেটিংস ও কন্ট্যাক্টগুলো পুনরুদ্ধার করা হবে। অ্যাপটি চালু করতে আপনার পিন দরকার হবে না।</string>
+  <string name="preferences__enable_pin">পিন সক্রিয় করুন</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">আপনি পিনটি নিষ্ক্রিয় করলে, আপনি Signal-এ সেভ করা ডেটা ম্যানুয়ালি ব্যাক-আপ ও পুনরুদ্ধার না করলে, পুনরায় Signal-এ রেজিস্টার করার সময় আপনি সমস্ত সেভ করা ডেটা হারাবেন। পিন নিষ্ক্রিয় থাকা অবস্থায় আপনি রেজিস্ট্রেশন লক চালু করতে পারবেন না।</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">পিনগুলি এনক্রিপ্ট করা Signal-এর সাথে তথ্য সঞ্চয় করে রাখে যাতে কেবলমাত্র আপনিই সেগুলি পড়তে পারেন। আপনি পুনরায় ইনস্টল করার পর আপনার প্রোফাইল, সেটিংস ও কন্ট্যাক্টগুলি পুনর্বহাল হবে। অ্যাপটি চালু করতে আপনার পিনের দরকার হবে না।</string>
   <string name="preferences__system_default">সিস্টেম ডিফল্ট</string>
   <string name="preferences__language">ভাষা</string>
   <string name="preferences__signal_messages_and_calls">Signal বার্তাসমূহ এবং কল সমূহ</string>
@@ -2079,8 +2079,8 @@
   <string name="PaymentsAllActivityFragment__all">সব</string>
   <string name="PaymentsAllActivityFragment__sent">পাঠানো হয়েছে</string>
   <string name="PaymentsAllActivityFragment__received">গৃহীত</string>
-  <string name="PaymentsHomeFragment__introducing_payments">পেমেন্টের পরিচিতি  (বিটা)</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">একটি নতুন গোপনীয়তা ভিত্তিক ডিজিটাল মুদ্রা MobileCoin পাঠাতে ও গ্রহণ করতে Signal ব্যবহার করুন।</string>
+  <string name="PaymentsHomeFragment__introducing_payments">পেমেন্ট উপস্থাপন করা হচ্ছে (বিটা)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">গোপনীয়তাকে গুরুত্ব দেয় এমন একটি নতুন ডিজিটাল মুদ্রা MobileCoin পাঠাতে ও গ্রহণ করতে Signal ব্যবহার করুন। শুরু করতে সক্রিয় করুন।</string>
   <string name="PaymentsHomeFragment__activate_payments">অর্থ প্রদানের উপায় সক্রিয় করুন</string>
   <string name="PaymentsHomeFragment__activating_payments">অর্থ প্রদানের উপায় সক্রিয় করা হচ্ছে</string>
   <string name="PaymentsHomeFragment__restore_payments_account">পেমেন্ট অ্যাকাউন্ট পুনর্বহাল করুন</string>
@@ -2092,14 +2092,14 @@
   <string name="PaymentsHomeFragment__send">পাঠান</string>
   <string name="PaymentsHomeFragment__sent_s">%1$s পাঠান</string>
   <string name="PaymentsHomeFragment__received_s">%1$s এসেছে</string>
-  <string name="PaymentsHomeFragment__transfer_to_exchange">আদান-প্রদান করতে হস্তান্তর করুন</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">এক্সচেঞ্জে স্থানান্তর করুন</string>
   <string name="PaymentsHomeFragment__currency_conversion">মুদ্রা রূপান্তর</string>
   <string name="PaymentsHomeFragment__deactivate_payments">পেমেন্ট বন্ধ করুন</string>
-  <string name="PaymentsHomeFragment__recovery_phrase">রিকভার করার ধাপ </string>
+  <string name="PaymentsHomeFragment__recovery_phrase">রিকভারি ফ্রেজ</string>
   <string name="PaymentsHomeFragment__help">সাহায্য</string>
   <string name="PaymentsHomeFragment__coin_cleanup_fee">কয়েন ক্লিনআপ ফি</string>
   <string name="PaymentsHomeFragment__sent_payment">পেমেন্ট পাঠানো হয়েছে</string>
-  <string name="PaymentsHomeFragment__received_payment">পেমেন্ট গ্রহণ করা হয়েছে</string>
+  <string name="PaymentsHomeFragment__received_payment">পেমেন্ট পেয়েছে</string>
   <string name="PaymentsHomeFragment__processing_payment">পেমেন্ট প্রক্রিয়া করা হচ্ছে</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">মুদ্রা রূপান্তর উপলভ্য নয়</string>
@@ -2107,7 +2107,7 @@
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">আপনার অঞ্চল থেকে অর্থ প্রদান উপলভ্য নয়।</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">অর্থ প্রদান করা সক্ষম করা যায়নি। পরে আবার চেষ্টা করুন।</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">পেমেন্ট বন্ধ করবেন?</string>
-  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">আপনি যদি অর্থ প্রদান নিষ্ক্রিয় করেন তবে আপনি Signal থেকে মোবাইল কয়েন প্রেরণ বা গ্রহণ করতে পারবেন না।</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">আপনি পেমেন্ট বন্ধ করলে Signal-এ Mobilecoin পাঠাতে বা গ্রহণ করতে পারবেন না।</string>
   <string name="PaymentsHomeFragment__deactivate">বন্ধ করুন</string>
   <string name="PaymentsHomeFragment__continue">চলতে থাকুন</string>
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">ব্যালেন্স বর্তমানে উপলভ্য নয়।</string>
@@ -2117,7 +2117,7 @@
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">আপনি MobileCoin পাঠাতে এবং গ্রহণ করতে Signal ব্যবহার করতে পারেন। সমস্ত পেমেন্ট MobileCoin এবং MobileCoin ওয়ালেট ব্যবহারের শর্তাবলীর উপর নির্ভর করবে। এটি একটি বিটা ফিচার তাই আপনি কিছু সমস্যার মুখোমুখি হতে পারেন এবং আপনার পেমেন্ট বা ব্যালেন্স হারিয়ে যেতে পারে যা পুনরুদ্ধার করা যাবে না।</string>
   <string name="PaymentsHomeFragment__activate">সক্রিয় করুন</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin-এর শর্তাবলী দেখুন</string>
-  <string name="PaymentsHomeFragment__payments_not_available">Signal -এ পেমেন্ট আর উপলভ্য নেই। আপনি এখনও যে কোনও এক্সচেঞ্জে আপনার ফান্ড স্থানান্তর করতে পারেন তবে আপনি আর অর্থ পাঠাতে এবং গ্রহণ করতে বা ফান্ড যোগ করতে পারবেন না।</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Signal-এ পেমেন্ট আর উপলভ্য নেই। আপনি এখনও কোনও এক্সচেঞ্জে আপনার ফান্ডগুলি ট্রান্সফার করতে পারেন তবে আপনি আর পেমেন্টগুলি প্রেরণ এবং গ্রহণ করতে বা ফান্ড যোগ করতে পারবেন না।</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">ফান্ড যোগ করুন</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">আপনার ওয়ালেট ঠিকানা</string>
@@ -2140,7 +2140,7 @@
   <string name="PaymentsDetailsFragment__from">থেকে</string>
   <string name="PaymentsDetailsFragment__information">লেনদেনের বিস্তারিত বিবরণের মধ্যে রয়েছে পেমেন্টের পরিমাণ এবং লেনদেনের সময় যা MobileCoin লেজার-এর একটি অংশ।</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">কয়েন ক্লিনআপ ফি</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_information">যখন আপনার কাছে থাকা কয়েন কোন লেনদেন সম্পন্ন করার কাজে সংযুক্ত করা যাবে না, তখন “কয়েন ক্লিনআপ ফি” চার্জ করা হয়। ক্লিনআপের ফলে আপনি পেমেন্ট পাঠানো চালিয়ে যেতে পারবেন।</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">যখন আপনার দখলে থাকা কয়েন কোনও লেনদেন সম্পন্ন করার কাজে সংযুক্ত করা যাবে না, তখন “কয়েন ক্লিনআপ ফি” ধার্য করা হয়। ক্লিনআপের ফলে আপনি পেমেন্ট পাঠানো অব্যাহত রাখতে পারবেন।</string>
   <string name="PaymentsDetailsFragment__no_details_available">এই লেনদেনের জন্য আর কোন বিস্তারিত বিবরণ নেই</string>
   <string name="PaymentsDetailsFragment__sent_payment">পেমেন্ট পাঠানো হয়েছে</string>
   <string name="PaymentsDetailsFragment__received_payment">পেমেন্ট পেয়েছে</string>
@@ -2203,7 +2203,7 @@
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%2$s-তে %1$s</string>
   <!--SetCurrencyFragment-->
-  <string name="SetCurrencyFragment__set_currency">মুদ্রা নির্ধারণ করুন</string>
+  <string name="SetCurrencyFragment__set_currency">মুদ্রা সেট করুন</string>
   <string name="SetCurrencyFragment__all_currencies">সকল মুদ্রা</string>
   <!--****************************************-->
   <!--menus-->
@@ -2414,7 +2414,7 @@
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">পিনগুলি Signal -এ সঞ্চিত তথ্য এনক্রিপ্ট করে রাখে। </string>
   <string name="KbsMegaphone__create_pin">পিন তৈরি করুন</string>
   <!--Research Megaphone-->
-  <string name="ResearchMegaphone_tell_signal_what_you_think">আপনি কি মনে করেন Signal -কে জানান</string>
+  <string name="ResearchMegaphone_tell_signal_what_you_think">আপনি কি মনে করেন তা Signal -কে জানান</string>
   <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Signal -কে গ্রহের সেরা বার্তাপ্রেরণ অ্যাপ তৈরি করতে, আমরা আপনার মতামত শুনতে আগ্রহী।</string>
   <string name="ResearchMegaphone_learn_more">আরও জানুন</string>
   <string name="ResearchMegaphone_dismiss">বাতিল</string>
@@ -2663,7 +2663,7 @@
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">লিগ্যাসি বনাম নতুন গ্রুপ</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">লিগ্যাসি গ্রুপ কি?</string>
-  <string name="GroupsLearnMore_paragraph_1">লিগ্যাসি গ্রুপ হচ্ছে এমন ধরনের গ্রুপ যেগুলো নতুন গ্রুপের ফিচার যেমন অ্যাডমিন ও অন্যান্য বিস্তারিত গ্রুপ আপডেটের সাথে সামঞ্জস্যপূর্ণ নয়।</string>
+  <string name="GroupsLearnMore_paragraph_1">লিগ্যাসি গ্রুপ হল এমন গ্রুপ যা অ্যাডমিন এবং আরও বর্ণনামূলক গ্রুপ আপডেটগুলির মতো নতুন গ্রুপ ফিচারের সাথে সামঞ্জস্যপূর্ণ নয়।</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">আমি কি একটি লিগ্যাসি গ্রুপ আপগ্রেড করতে পারি?</string>
   <string name="GroupsLearnMore_paragraph_2">লিগ্যাসি গ্রুপগুলো এখনও নতুন গ্রুপে আপগ্রেড করা যাবে না, তবে যদি তারা Signal-এর সর্বশেষ সংস্করণটি ব্যবহার করেন তাহলে তাদের নিয়ে নতুন একটি গ্রুপ তৈরি করতে পারবেন।</string>
   <string name="GroupsLearnMore_paragraph_3">Signal ভবিষ্যতে লিগ্যাসি গ্রুপগুলি আপগ্রেড করার একটি উপায় প্রস্তাব করবে।</string>
@@ -2762,21 +2762,21 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">চ্যাটের ওয়ালপেপার</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">চ্যাট-এর রং</string>
-  <string name="ChatWallpaperFragment__reset_chat_colors">চ্যাট-এর রংগুলি রিসেট করুন</string>
-  <string name="ChatWallpaperFragment__reset_chat_color">চ্যাট-এর রং রিসেট করুন</string>
-  <string name="ChatWallpaperFragment__reset_chat_color_question">চ্যাট-এর রং পুনরায় সেট করবেন?</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">চ্যাটের রঙগুলি রিসেট করুন</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">চ্যাটের রঙ রিসেট করুন</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">চ্যাটের রঙ পুনরায় সেট করবেন?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">ওয়ালপেপার সেট করুন</string>
   <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">ডার্ক মোডের ডিম ওয়ালপেপার</string>
   <string name="ChatWallpaperFragment__contact_name">কন্ট্যাক্টের নাম</string>
   <string name="ChatWallpaperFragment__reset">রিসেট </string>
   <string name="ChatWallpaperFragment__clear">সাফ করুন</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">ওয়ালপেপার প্রিভিউ</string>
-  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">আপনি কি সব চ্যাট-এর রং বাতিল করতে চান?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">আপনি কি সবকটি চ্যাটের রঙ বাতিল করতে চান?</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">আপনি কি সবগুলি ওয়ালপেপার বাতিল করতে চান?</string>
   <string name="ChatWallpaperFragment__reset_default_colors">ডিফল্ট রং রিসেট করুন</string>
-  <string name="ChatWallpaperFragment__reset_all_colors">সবগুলি রং পুনরায় সেট করুন</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">সব রঙ রিসেট করুন</string>
   <string name="ChatWallpaperFragment__reset_default_wallpaper">ডিফল্ট ওয়ালপেপার পুনরায় সেট করুন</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">সবগুলি ওয়ালপেপার পুনরায় সেট করুন</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">সবকটি ওয়ালপেপার রিসেট করুন</string>
   <string name="ChatWallpaperFragment__reset_wallpapers">ওয়ালপেপারগুলি পুনরায় সেট করুন</string>
   <string name="ChatWallpaperFragment__reset_wallpaper">ওয়ালপেপার পুনরায় সেট করুন</string>
   <string name="ChatWallpaperFragment__reset_wallpaper_question">ওয়ালপেপার পুনরায় সেট করবেন?</string>
@@ -2793,22 +2793,22 @@
   <!--WallpaperImageSelectionActivity-->
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">ওয়ালপেপারের ছবি বেছে নিন</string>
   <!--WallpaperCropActivity-->
-  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">জুম করার জন্য পিঞ্চ করুন, অ্যাডজাস্ট করার জন্য টেনে আনুন</string>
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">জুম করতে পিঞ্চ করুন, সামঞ্জস্য করতে টানুন।</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">সকল বার্তার ওয়ালপেপার হিসেবে সেট করুন।</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%s-এর ওয়ালপেপার সেট করুন।</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">ওয়ালপেপার সেট করতে ত্রুটি।</string>
   <string name="WallpaperCropActivity__blur_photo">অস্পষ্ট ছবি</string>
   <!--InfoCard-->
-  <string name="payment_info_card_about_mobilecoin">MobileCoin-এর পরিচিতি</string>
-  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin হল একটি নতুন গোপনীয়তা-কেন্দ্রিক ডিজিটাল মুদ্রা।</string>
+  <string name="payment_info_card_about_mobilecoin">MobileCoin সম্পর্কে</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin হল গোপনীয়তার উপর গুরুত্ব দেয় এমন একটি নতুন ডিজিটাল মুদ্রা।</string>
   <string name="payment_info_card_adding_funds">ফান্ড যোগ করছে</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">আপনার ওয়ালেটের ঠিকানায় MobileCoin পাঠানোর মাধ্যমে আপনি Signal-এ ব্যবহারের জন্য ফান্ড পাঠাতে পারেন।</string>
-  <string name="payment_info_card_cashing_out">ক্যাশ আউট করা হচ্ছে</string>
-  <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoin-কে সাপোর্ট করে এমন যেকোনও কিছুর বিনিময়ে আপনি MobileCoin ক্যাশ আউট করতে পারবেন। কেবল সেটির বিনিময়ে আপনার অ্যাকাউন্টে ট্রান্সফার করুন।</string>
+  <string name="payment_info_card_cashing_out">ক্যাশ আউট</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoin-কে সাপোর্ট করে এমন যেকোনও কিছুর বিনিময়ে আপনি MobileCoin ক্যাশ আউট করতে পারবেন। কেবল সেটির বিনিময়ে আপনার অ্যাকাউন্টে টাকা ট্রান্সফার করুন।</string>
   <string name="payment_info_card_hide_this_card">এই কার্ডটি লুকাবেন?</string>
   <string name="payment_info_card_hide">লুকান</string>
-  <string name="payment_info_card_record_recovery_phrase">রিকভার করার বাক্যাংশটি রেকর্ড করুন</string>
-  <string name="payment_info_card_your_recovery_phrase_gives_you">আপনার রিকভার করার বাক্যাংশটি হল আপনার পেমেন্ট অ্যাকাউন্ট পুনর্বহাল করার আরেকটি উপায়।</string>
+  <string name="payment_info_card_record_recovery_phrase">রিকভারি ফ্রেজ রেকর্ড করুন</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">আপনার রিকভারি ফ্রেজ আপনার পেমেন্ট অ্যাকাউন্ট পুনর্বহাল করার আরেকটি উপায় প্রদান করে।</string>
   <string name="payment_info_card_record_your_phrase">আপনার বাক্যাংশ রেকর্ড করুন</string>
   <string name="payment_info_card_update_your_pin">আপনার পিন আপডেট করুন</string>
   <string name="payment_info_card_with_a_high_balance">বেশি ব্যালেন্সের ক্ষেত্রে আপনার অ্যাকাউন্টে অধিক সুরক্ষা যোগ করতে আপনি আলফানিউমেরি পিন-এ আপডেট করতে চাইতে পারেন।</string>
@@ -2818,25 +2818,25 @@
   <string name="DeactivateWalletFragment__your_balance">আপনার ব্যালেন্স</string>
   <string name="DeactivateWalletFragment__its_recommended_that_you">পেমেন্ট বন্ধ করার পূর্বে আপনাকে আপনার টাকা অন্য ওয়ালেটের ঠিকানায় পাঠানোর সুপারিশ করা হচ্ছে। আপনি এখন আপনার টাকা ট্রান্সফার করতে না চাইলে, আপনি পেমেন্ট পুনরায় চালু করলে সেগুলো আপনার Signal-এর সাথে লিংক করা ওয়ালেটেই থাকবে।</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">অবশিষ্ট ব্যালেন্স ট্রান্সফার করুন</string>
-  <string name="DeactivateWalletFragment__deactivate_without_transferring">ট্রান্সফার না করেই বন্ধ করবেন?</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">ট্রান্সফার না করেই বন্ধ করুন</string>
   <string name="DeactivateWalletFragment__deactivate">বন্ধ করুন</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">ট্রান্সফার না করেই বন্ধ করবেন?</string>
-  <string name="DeactivateWalletFragment__your_balance_will_remain">আপনি পেমেন্ট পুনরায় চালু করার অপশন বেছে নিলে আপনার ব্যালেন্সটি Signal-এর সাথে লিংক করা আপনার ওয়ালেটে থাকবে।</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">আপনি পেমেন্ট পুনঃসক্রিয় করা বেছে নিলে আপনার ব্যালান্স Signal-এর সাথে লিঙ্ক করা আপনার ওয়ালেটে থাকবে।</string>
   <string name="DeactivateWalletFragment__error_deactivating_wallet">ওয়ালেট বন্ধ করতে ত্রুটি।</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">রিকভার করার বাক্যাংশ</string>
-  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">রিকভার করার বাক্যাংশটি দেখুন</string>
-  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">রিকভার করার বাক্যাংশটি লিখুন</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">রিকভারি ফ্রেজ দেখুন</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">রিকভারি ফ্রেজটি লিখুন</string>
   <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">আপনি Signal-এর পিন নিশ্চিত করে Signal পুনরায় ইনস্টল করলে আপনার ব্যালেন্স স্বয়ংক্রিয়ভাবে পুনরুদ্ধার হবে। এছাড়াও আপনি রিকভার করা বাক্যাংশ ব্যবহার করেও আপনার ব্যালেন্স পুনরুদ্ধার করতে পারেন, যা %1$d-শব্দ বিশিষ্ট যা কেবল আপনি জানেন। এটি লিখে একটি নিরাপদ স্থানে সেভ করুন।</string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">আপনার রিকভার করার বাক্যাংশটি %1$d-শব্দ বিশিষ্ট যা কেবল আপনি জানেন। আপনার ব্যালেন্স পুনরুদ্ধার করতে এই বাক্যাংশটি ব্যবহার করুন।</string>
   <string name="PaymentsRecoveryStartFragment__start">শুরু করুন</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">ম্যানুয়ালি লিখুন</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">ক্লিপবোর্ড থেকে পেস্ট করুন</string>
   <!--PaymentsRecoveryPasteFragment-->
-  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">রিকভার করার বাক্যাংশটি পেস্ট করুন</string>
-  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">রিকভার করার বাক্যাংশ</string>
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">রিকভারি ফ্রেজ পেস্ট করুন</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">রিকভারি ফ্রেজ</string>
   <string name="PaymentsRecoveryPasteFragment__next">পরবর্তী</string>
-  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">রিকভার করার বাক্যাংশটি ভুল</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">রিকভারি ফ্রেজটি ভুল</string>
   <string name="PaymentsRecoveryPasteFragment__make_sure">আপনি যে %1$d শব্দটি লিখেছেন তা নিশ্চিত করে পুনরায় চেষ্টা করুন।</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">পরবর্তী</string>
@@ -2845,18 +2845,18 @@
   <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">আপনার রিকভার করার বাক্যাংশ</string>
   <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">নিচের %1$d শব্দগুলো সাজিয়ে লিখুন। আপনার তালিকাটি একটি নিরাপদ স্থানে সেভ করুন।</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">আপনি যে আপনার বাক্যাংশটি সঠিকভাবে লিখেছেন তা নিশ্চিত করুন।</string>
-  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">স্ক্রিনশট নিবেন না বা ইমেইলে পাঠাবেন না।</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">স্ক্রিনশট নেবেন না বা ইমেইলের মাধ্যমে পাঠাবেন না।</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">পেমেন্ট অ্যাকাউন্ট পুনর্বহাল করা হয়েছে।</string>
-  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">রিকভার করার বাক্যাংশটি ভুল</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">রিকভারি ফ্রেজটি ভুল</string>
   <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">আপনি আপনার বাক্যাংশটি সঠিকভাবে লিখেছেন কিনা তা নিশ্চিত করে পুনরায় চেষ্টা করুন।</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">ক্লিপবোর্ডে কপি করবেন?</string>
-  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">আপনি আপনার রিকভার করার বাক্যাংশটি ডিজিটালি সেভ করতে চাইলে, নিশ্চিত করুন যে এটি আপনার বিশ্বস্ত কোন স্থানে নিরাপদভাবে সেভ করে রাখা হয়েছে।</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">আপনি ডিজিটালি আপনার রিকভারি ফ্রেজ সঞ্চয় করার সিদ্ধান্ত নিলে, নিশ্চিত করুন যে এটি আপনার বিশ্বস্ত কোনও স্থানে নিরাপদভাবে সঞ্চয় করা হয়েছে।</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">অনুলিপি</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">রিকভার করার ফ্রেজ নিশ্চিত করুন</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">আপনার রিকভার করার বাক্যাংশ থেকে নিম্নোক্ত শব্দগুলি লিখুন।</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">%1$d শব্দ</string>
-  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">বাক্যাংশটি পুনরায় দেখুন</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">বাক্যাংশটি আবার দেখুন</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">শেষ</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">রিকভার করার বাক্যাংশটি নিশ্চিত হয়েছে</string>
   <!--PaymentsRecoveryEntryFragment-->
@@ -2874,22 +2874,22 @@
   <string name="UnreadPayments__d_new_payment_notifications">%1$dটি নতুন লেনদেন নোটিফিকেশন</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">পেমেন্ট পাঠানো যাবে না</string>
-  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">এই ইউজারকে পেমেন্ট পাঠাতে, তাদেরকে আপনার পাঠানো মেসেজের অনুরোধটি গ্রহণ করতে হবে। একটি মেসেজের অনুরোধ তৈরি করতে তাদেরকে একটি মেসেজ পাঠান।</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">এই ইউজারকে পেমেন্ট পাঠাতে, তাকে আপনার পাঠানো মেসেজের অনুরোধটি স্বীকার করতে হবে। একটি মেসেজের অনুরোধ তৈরি করতে তাদেরকে একটি মেসেজ পাঠান।</string>
   <string name="CanNotSendPaymentDialog__send_a_message">একটি বার্তা পাঠানো</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">আপনার এবং এই ব্যক্তির মধ্যে কোনও কমন গ্রুপ নেই। অনাকাঙ্ক্ষিত মেসেজ পাওয়া এড়াতে গ্রহণ করার পূর্বে অনুরোধগুলো যত্ন সহকারে পর্যালোচনা করুন।</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">আপনার কোন কন্ট্যাক্ট বা আপনি যাদের সাথে চ্যাট করেন তারা কেউ এই গ্রুপে নেই। অনাকাঙ্ক্ষিত মেসেজ পাওয়া এড়াতে গ্রহণ করার পূর্বে অনুরোধগুলো যত্ন সহকারে পর্যালোচনা করুন।</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">মেসেজের অনুরোধ সম্পর্কে</string>
   <string name="GroupsInCommonMessageRequest__okay">ঠিক আছে</string>
-  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">চ্যাট-এর রংয়ের প্রিভিউ এখানে রয়েছে।</string>
-  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">রংটি কেবল আপনি দেখছেন।</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">চ্যাটের রঙের একটি প্রিভিউ এখানে রয়েছে।</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">কেবলমাত্র আপনি রঙটি দেখতে পাবেন।</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">গ্রুপের বিবরণ</string>
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__standard">স্ট্যান্ডার্ড</string>
-  <string name="QualitySelectorBottomSheetDialog__faster_less_data">আরও দ্রুত, কম ডেটা</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">দ্রুততর, কম ডেটা</string>
   <string name="QualitySelectorBottomSheetDialog__high">উচ্চ</string>
-  <string name="QualitySelectorBottomSheetDialog__slower_more_data">আরও ধীর, বেশি ডেটা</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">আরও ধীরগতি, আরও ডেটা</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">ছবির মান</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">আপনার বন্ধুদের আমন্ত্রণ করুন</string>
@@ -2906,7 +2906,7 @@
   <string name="NotificationsSettingsFragment__messages">বার্তাসমূহ</string>
   <string name="NotificationsSettingsFragment__calls">কল সমূহ</string>
   <string name="NotificationsSettingsFragment__notify_when">জানান, যখন…</string>
-  <string name="NotificationsSettingsFragment__contact_joins_signal">কন্ট্যাক্ট Signal-এ যোগ দেয়</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">কন্ট্যাক্ট Signal-এ যোগদান করেছেন</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">অবরূদ্ধ আছে</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d পরিচিতিসমূহ</string>
@@ -2915,8 +2915,8 @@
   <string name="PrivacySettingsFragment__app_security">অ্যাপ এর নিরাপত্তা</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">সাম্প্রতিক অ্যাপ তালিকা থেকে স্ক্রীনশট ব্লক করুন</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal মেসেজ ও কল করে, সবসময় কল রিলে করে এবং প্রেরককে সিল করে রাখে</string>
-  <string name="PrivacySettingsFragment__default_timer_for_new_changes">নতুন চ্যাট-এর জন্য ডিফল্ট টাইমার</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">আপনার শুরু করা সব নতুন চ্যাট-এর জন্য মেসেজ অদৃশ্য হওয়ার জন্য ডিফল্ট সময় সেট করুন।</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">নতুন চ্যাটের জন্য ডিফল্ট টাইমার</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">আপনার শুরু করা সব নতুন চ্যাটের জন্য মেসেজ অদৃশ্য হওয়ার ডিফল্ট সময় সেট করুন।</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">স্ট্যাটাস আইকন দেখান</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">সিল করা প্রেরকের মাধ্যমে কোন মেসেজ পাঠানো হলে মেসেজের বিস্তারিত বিবরণীতে একটি আইকন দেখান।</string>
@@ -2951,17 +2951,17 @@
   <string name="DataAndStorageSettingsFragment__calls">কল সমূহ</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">স্বয়ংক্রিয়</string>
-  <string name="ChatColorSelectionFragment__use_custom_colors">কাস্টম রং ব্যবহার করুন</string>
-  <string name="ChatColorSelectionFragment__chat_color">চ্যাট-এর রং</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">কাস্টম রঙ ব্যবহার করুন</string>
+  <string name="ChatColorSelectionFragment__chat_color">চ্যাটের রঙ</string>
   <string name="ChatColorSelectionFragment__edit">সম্পাদনা</string>
   <string name="ChatColorSelectionFragment__duplicate">ডুপ্লিকেট</string>
   <string name="ChatColorSelectionFragment__delete">মুছে দিন</string>
-  <string name="ChatColorSelectionFragment__delete_color">রং মুছুন</string>
+  <string name="ChatColorSelectionFragment__delete_color">রঙ মুছুন</string>
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
     <item quantity="one">%1$d চ্যাট-এ কাস্টম রং ব্যবহার করা হয়েছে। আপনি কি সব চ্যাট-এর জন্য এটি মুছতে চান?</item>
-    <item quantity="other">%1$d চ্যাট-এ এই কাস্টম রং ব্যবহার করা হয়েছে। আপনি কি সব চ্যাট থেকে এটি মুছতে চান?</item>
+    <item quantity="other">%1$d চ্যাটে এই কাস্টম রঙ ব্যবহার করা হয়েছে। আপনি কি সব চ্যাট থেকে এটি মুছতে চান?</item>
   </plurals>
-  <string name="ChatColorSelectionFragment__delete_chat_color">চ্যাট-এর রং মুছবেন?</string>
+  <string name="ChatColorSelectionFragment__delete_chat_color">চ্যাটের রঙ মুছবেন?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">সলিড</string>
   <string name="CustomChatColorCreatorFragment__gradient">গ্রেডিয়েন্ট</string>
@@ -2969,7 +2969,7 @@
   <string name="CustomChatColorCreatorFragment__saturation">স্যাচুরেশন</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">সংরক্ষন</string>
-  <string name="CustomChatColorCreatorFragmentPage__edit_color">রং পরিবর্তন করুন</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">রঙ সম্পাদনা করুন</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
     <item quantity="one">এই রংটি %1$dটি কথোপকথনে ব্যবহার হয়েছে। আপনি কি সেই কথোপকথনে পরিবর্তন করতে চান?</item>
     <item quantity="other">এই রংটি %1$dটি কথোপকথনে ব্যবহার হয়েছে। আপনি কি সেই সবকটি কথোপকথনে পরিবর্তন করতে চান?</item>
@@ -2982,11 +2982,11 @@
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">একটি ইমোজি রিপ্লেস করতে ট্যাপ করুন</string>
   <string name="EditReactionsFragment__reset">রিসেট </string>
   <string name="EditReactionsFragment_save">সংরক্ষন</string>
-  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">ওয়াল পেপারের রং স্বয়ংক্রিয়ভাবে ম্যাচ করে</string>
-  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">গ্রেডিয়েন্ট-এর দিক পরিবর্তন করতে টেনে আনুন</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">ওয়ালপেপারের রং স্বয়ংক্রিয়ভাবে ম্যাচ করে</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">গ্রেডিয়েন্টের দিক পরিবর্তন করতে টেনে আনুন</string>
   <!--ChatColorsMegaphone-->
-  <string name="ChatColorsMegaphone__new_chat_colors">চ্যাট-এর নতুন রং</string>
-  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">আপনাকে আরও অপশন দিতে এবং চ্যাটগুলো আরও সহজে পড়ার জন্য আমরা চ্যাট-এর রং পরিবর্তন করেছি।</string>
+  <string name="ChatColorsMegaphone__new_chat_colors">চ্যাটের নতুন রঙ</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">আপনাকে আরও অপশন দিতে এবং চ্যাটগুলো আরও সহজে পড়ার জন্য আমরা চ্যাটের রঙ পরিবর্তন করেছি।</string>
   <string name="ChatColorsMegaphone__appearance">অ্যাপিয়ারেন্স</string>
   <string name="ChatColorsMegaphone__not_now">এখন না</string>
   <!--AddAProfilePhotoMegaphone-->
@@ -3024,7 +3024,7 @@
   <string name="ConversationSettingsFragment__search">অনুসন্ধান</string>
   <string name="ConversationSettingsFragment__disappearing_messages">অদৃশ্য বার্তা</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">সাউন্ড &amp; নোটিফিকেশন</string>
-  <string name="ConversationSettingsFragment__contact_details">কন্ট্যাক্টের বিস্তারিত বিবরণ</string>
+  <string name="ConversationSettingsFragment__contact_details">কন্ট্যাক্টের বিস্তারিত</string>
   <string name="ConversationSettingsFragment__view_safety_number">নিরাপত্তা নাম্বার দেখুন</string>
   <string name="ConversationSettingsFragment__block">অবরূদ্ধ</string>
   <string name="ConversationSettingsFragment__block_group">গ্রুপ ব্লক করুন</string>
@@ -3056,7 +3056,7 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">নিঃশব্দ নয়</string>
   <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">%1$s পর্যন্ত মিউট করা হয়েছে</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">মেনশন</string>
-  <string name="SoundsAndNotificationsSettingsFragment__always_notify">সবসময় জানাবেন</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">সবসময় জানান</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">জানাবেন না</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">নিজেরমত সাজানো নোটিফিকেশনসমুহ</string>
   <!--StickerKeyboard-->

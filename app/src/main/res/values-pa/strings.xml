@@ -140,7 +140,7 @@
   <string name="CommunicationActions_carrier_charges_may_apply">ਸ਼ਾਇਦ ਕੈਰੀਅਰ ਖ਼ਰਚੇ ਲੱਗ ਸਕਦੇ ਹਨ। ਜਿਸ ਨੰਬਰ ਉੱਤੇ ਤੁਸੀਂ ਕਾਲ ਕਰ ਰਹੇ ਹੋ, ਉਹ Signal ਨਾਲ ਰਜਿਸਟਰਡ ਨਹੀਂ ਹੈ। ਇਹ ਕਾਲ ਇੰਟਰਨੈਟ ਰਾਹੀਂ ਨਹੀਂ, ਤੁਹਾਡੇ ਮੋਬਾਈਲ ਕੈਰੀਅਰ ਦੁਆਰਾ ਕੀਤੀ ਜਾਏਗੀ।</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s ਨਾਲ ਤੁਹਾਡਾ ਸੁਰੱਖਿਆ ਨੰਬਰ ਬਦਲ ਗਿਆ ਹੈ | ਇਸ ਦਾ ਮਤਲਬ ਇਹ ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਜਾਂ ਤਾਂ ਤੁਹਾਡੀ ਗੱਲਬਾਤ ਨੂੰ ਕੋਈ ਸੁਣ ਰਿਹਾ ਹੈ ਜਾਂ ਫੇਰ %2$s ਨੇ Signal ਨੂੰ ਮਹਿਜ਼ ਦੁਬਾਰਾ ਸਥਾਪਤ ਕੀਤਾ ਹੈ।</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਇਸ ਸੰਪਰਕ ਨਾਲ ਆਪਣਾ ਸੁਰੱਖਿਆ ਨੰਬਰ ਪ੍ਰਮਾਣਿਤ ਕਰਨਾ ਚਾਹੋ।</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਇਸ ਸੰਪਰਕ ਨਾਲ ਆਪਣਾ ਸੁਰੱਖਿਆ ਨੰਬਰ ਤਸਦੀਕ ਕਰਨਾ ਚਾਹੋ।</string>
   <string name="ConfirmIdentityDialog_accept">ਮਨਜ਼ੂਰ ਕਰੋ</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">ਹਾਲ ਦੀਆਂ ਚੈਟਾਂ</string>
@@ -296,10 +296,10 @@
   <string name="ConversationFragment__review_requests_carefully">ਬੇਨਤੀਆਂ ਦੀ ਧਿਆਨ ਨਾਲ ਸਮੀਖਿਆ ਕਰੋ</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal ਨੂੰ ਇਸੇ ਨਾਮ ਨਾਲ ਇੱਕ ਹੋਰ ਸੰਪਰਕ ਮਿਲਿਆ।</string>
   <string name="ConversationFragment_contact_us">ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ</string>
-  <string name="ConversationFragment_verify">ਪ੍ਰਮਾਣਿਤ ਕਰੋ</string>
+  <string name="ConversationFragment_verify">ਤਸਦੀਕ ਕਰੋ</string>
   <string name="ConversationFragment_not_now">ਹੁਣੇ ਨਹੀਂ</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s ਦੇ ਨਾਲ ਤੁਹਾਡਾ ਸੁਰੱਖਿਆ ਨੰਬਰ ਬਦਲ ਗਿਆ ਹੈ</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s ਦੇ ਨਾਲ ਤੁਹਾਡਾ ਸੁਰੱਖਿਆ ਨੰਬਰ ਸੰਭਵ ਤੌਰ ’ਤੇ ਇਸ ਲਈ ਬਦਲਿਆ, ਕਿ ਉਹਨਾਂ ਨੇ Signal ਨੂੰ ਮੁੜ ਸਥਾਪਤ ਕੀਤਾ ਜਾਂ ਡਿਵਾਈਸਾਂ ਨੂੰ ਬਦਲਿਆ ਹੋ ਸਕਦਾ ਹੈ। ਨਵੇਂ ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਪ੍ਰਮਾਣਿਤ ਕਰੋ ਨੂੰ ਟੈਪ ਕਰੋ। ਇਹ ਚੋਣਵਾਂ ਹੈ।</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s ਦੇ ਨਾਲ ਤੁਹਾਡਾ ਸੁਰੱਖਿਆ ਨੰਬਰ ਸੰਭਵ ਤੌਰ ’ਤੇ ਇਸ ਲਈ ਬਦਲਿਆ, ਕਿ ਉਹਨਾਂ ਨੇ Signal ਨੂੰ ਮੁੜ ਸਥਾਪਤ ਕੀਤਾ ਜਾਂ ਡਿਵਾਈਸਾਂ ਨੂੰ ਬਦਲਿਆ ਹੋ ਸਕਦਾ ਹੈ। ਨਵੇਂ ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਤਸਦੀਕ ਕਰੋ ਨੂੰ ਟੈਪ ਕਰੋ। ਇਹ ਚੋਣਵਾਂ ਹੈ।</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">ਕੀ ਚੁਣੀ ਗਈਆਂ ਗੱਲਾਬਾਤਾਂ ਨੂੰ ਮਿਟੌਣਾ ਹੈ ?</item>
     <item quantity="other">ਕੀ ਚੁਣੀ ਗਈਆਂ ਗੱਲਬਾਤਾਂ ਨੂੰ ਮਿਟਾਉਣਾ ਹੈ?</item>
@@ -356,8 +356,8 @@
   <string name="BackupsPreferenceFragment__create_backup">ਬੈਕਅੱਪ ਬਣਾਓ</string>
   <string name="BackupsPreferenceFragment__last_backup">ਆਖਰੀ ਬੈਕਅੱਪ: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">ਬੈਕਅੱਪ ਫੋਲਡਰ</string>
-  <string name="BackupsPreferenceFragment__verify_backup_passphrase">ਬੈਕਅੱਪ ਦੇ ਪਾਸਫ਼੍ਰੇਜ਼ ਨੂੰ ਪ੍ਰਮਾਣਿਤ ਕਰੋ</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">ਆਪਣੇ ਬੈਕਅੱਪ ਦੇ ਪਾਸਫ਼੍ਰੇਜ਼ ਨੂੰ ਜਾਂਚੋ ਅਤੇ ਪ੍ਰਮਾਣਿਤ ਕਰੋ ਕਿ ਇਹ ਮੇਲ ਖਾਂਦਾ ਹੈ</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">ਬੈਕਅੱਪ ਦੇ ਪਾਸਫ਼੍ਰੇਜ਼ ਨੂੰ ਤਸਦੀਕ ਕਰੋ</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">ਆਪਣੇ ਬੈਕਅੱਪ ਦੇ ਪਾਸਫ਼੍ਰੇਜ਼ ਨੂੰ ਜਾਂਚੋ ਅਤੇ ਤਸਦੀਕ ਕਰੋ ਕਿ ਇਹ ਮੇਲ ਖਾਂਦਾ ਹੈ</string>
   <string name="BackupsPreferenceFragment__turn_on">ਚਾਲੂ ਕਰੋ</string>
   <string name="BackupsPreferenceFragment__turn_off">ਬੰਦ ਕਰੋ</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">ਬੈਕਅੱਪ ਬਹਾਲ ਕਰਨ ਲਈ, Signal ਦੀ ਨਵੀਂ ਕਾਪੀ ਸਥਾਪਤ ਕਰੋ, ਐਪ ਨੂੰ ਖੋਲ੍ਹੋ ਅਤੇ \"ਬੈਕਅੱਪ ਬਹਾਲ ਕਰੋ\" ਨੂੰ ਟੈਪ ਕਰੋ, ਫਿਰ ਬੈਕਅੱਪ ਫ਼ਾਈਲ ਦਾ ਟਿਕਾਣਾ ਲੱਭੋ। %1$s</string>
@@ -412,7 +412,7 @@
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ਇਹ ਡਿਵਾਈਸ ਪਲੇਅ ਸੇਵਾਵਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦੀ। ਸਿਸਟਮ ਬੈਟਰੀ ਅਨੁਕੂਲਤਾ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਉਣ ਲਈ ਟੈਪ ਕਰੋ ਤਾਂ ਜੋ Signal ਨੂੰ ਅਕਿਰਿਆਸ਼ੀਲ ਹੋਣ ਵੇਲੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰਨ ਤੋਂ ਰੋਕਿਆ ਜਾ ਸਕੇ।</string>
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal ਦੇ ਸੰਸਕਰਣ ਦੀ ਮਿਆਦ ਮੁੱਕ ਗਈ ਹੈ। ਸੁਨੇਹੇ ਭੇਜਣ ਅਤੇ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਹੁਣੇ ਅੱਪਡੇਟ ਕਰੋ।</string>
-  <string name="ExpiredBuildReminder_update_now">ਹੁਣ ਅੱਪਡੇਟ ਕਰੋ</string>
+  <string name="ExpiredBuildReminder_update_now">ਹੁਣੇ ਅੱਪਡੇਟ ਕਰੋ</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
     <item quantity="one">%d ਪੈਂਡਿੰਗ ਸਦੱਸ ਬੇਨਤੀਆਂ</item>
@@ -465,7 +465,7 @@
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">ਤੁਹਾਨੂੰ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਦੁਬਾਰਾ ਸ਼ਾਮਲ ਹੋਣ ਦੇ ਸੱਦੇ ਨੂੰ ਮਨਜ਼ੂਰ ਕਰਨਾ ਪਵੇਗਾ, ਅਤੇ ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰਦੇ ਉਦੋਂ ਤੱਕ ਗਰੁੱਪ ਦੇ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
     <item quantity="one">ਇਸ ਮੈਂਬਰ ਨੂੰ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਦੁਬਾਰਾ ਸ਼ਾਮਲ ਹੋਣ ਦੇ ਸੱਦੇ ਨੂੰ ਮਨਜ਼ੂਰ ਕਰਨਾ ਪਵੇਗਾ, ਅਤੇ ਜਦੋਂ ਤਕ ਉਹ ਸਵੀਕਾਰ ਨਹੀਂ ਕਰਦਾ ਉਦੋਂ ਤੱਕ ਉਸ ਨੂੰ ਗਰੁੱਪ ਦੇ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</item>
-    <item quantity="other">ਇਹਨਾਂ ਮੈਂਬਰਾਂ ਨੂੰ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਦੁਬਾਰਾ ਸ਼ਾਮਲ ਹੋਣ ਦੇ ਸੱਦੇ ਨੂੰ ਮਨਜ਼ੂਰ ਕਰਨਾ ਪਵੇਗਾ, ਅਤੇ ਜਦੋਂ ਤੱਕ ਉਹ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰਦੇ ਉਦੋਂ ਤੱਕ ਉਹਨਾਂ ਨੂੰ ਗਰੁੱਪ ਦੇ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</item>
+    <item quantity="other">ਇਹਨਾਂ ਮੈਂਬਰਾਂ ਨੂੰ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਦੁਬਾਰਾ ਸ਼ਾਮਲ ਹੋਣ ਦੇ ਸੱਦੇ ਨੂੰ ਮਨਜ਼ੂਰ ਕਰਨਾ ਪਵੇਗਾ, ਅਤੇ ਜਦੋਂ ਤੱਕ ਉਹ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰਦੇ, ਉਦੋਂ ਤੱਕ ਉਹਨਾਂ ਨੂੰ ਗਰੁੱਪ ਦੇ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</item>
   </plurals>
   <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
     <item quantity="one">ਇਸ ਮੈਂਬਰ ਨੂੰ ਗਰੁੱਪ ਤੋਂ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਸੀ ਅਤੇ ਜਦੋਂ ਤੱਕ ਉਹ ਅੱਪਗ੍ਰੇਡ ਨਹੀਂ ਕਰਦਾ, ਉਦੋਂ ਤੱਕ ਦੁਬਾਰਾ ਸ਼ਾਮਲ ਨਹੀਂ ਹੋ ਸਕੇਗਾ:</item>
@@ -480,7 +480,7 @@
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">ਅੱਪਗ੍ਰੇਡ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ।</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
     <item quantity="one">ਇਸ ਮੈਂਬਰ ਨੂੰ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਦੁਬਾਰਾ ਸ਼ਾਮਲ ਹੋਣ ਦੇ ਸੱਦੇ ਨੂੰ ਮਨਜ਼ੂਰ ਕਰਨਾ ਪਵੇਗਾ ਅਤੇ ਜਦੋਂ ਤਕ ਉਹ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰਦਾ ਉਦੋਂ ਤੱਕ ਉਸ ਨੂੰ ਗਰੁੱਪ ਦੇ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ।</item>
-    <item quantity="other">ਇਹਨਾਂ ਮੈਂਬਰਾਂ ਨੂੰ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਦੁਬਾਰਾ ਸ਼ਾਮਲ ਹੋਣ ਦੇ ਸੱਦੇ ਨੂੰ ਮਨਜ਼ੂਰ ਕਰਨਾ ਪਵੇਗਾ, ਅਤੇ ਜਦੋਂ ਤੱਕ ਉਹ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰਦੇ ਉਦੋਂ ਤੱਕ ਉਹਨਾਂ ਨੂੰ ਗਰੁੱਪ ਦੇ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ:</item>
+    <item quantity="other">ਇਹਨਾਂ ਮੈਂਬਰਾਂ ਨੂੰ ਇਸ ਗਰੁੱਪ ਵਿੱਚ ਦੁਬਾਰਾ ਸ਼ਾਮਲ ਹੋਣ ਦੇ ਸੱਦੇ ਨੂੰ ਮਨਜ਼ੂਰ ਕਰਨਾ ਪਵੇਗਾ, ਅਤੇ ਜਦੋਂ ਤੱਕ ਉਹ ਮਨਜ਼ੂਰ ਨਹੀਂ ਕਰਦੇ, ਉਦੋਂ ਤੱਕ ਉਹਨਾਂ ਨੂੰ ਗਰੁੱਪ ਦੇ ਸੁਨੇਹੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਣਗੇ:</item>
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">ਇਹ ਮੈਂਬਰ ਨਵੇਂ ਗਰੁੱਪਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਦੇ ਯੋਗ ਨਹੀਂ ਹੈ, ਅਤੇ ਇਸ ਨੂੰ ਗਰੁੱਪ ਤੋਂ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ:</item>
@@ -499,7 +499,7 @@
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">ਮੈਂਬਰ ਸ਼ਾਮਲ ਕਰੋ?</item>
-    <item quantity="other">ਮੈਂਬਰ ਸ਼ਾਮਲ ਕਰਨੇ ਹਨ?</item>
+    <item quantity="other">ਮੈਂਬਰਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰਨਾ ਹੈ?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
     <item quantity="one">ਇਸ ਮੈਂਬਰ ਨੂੰ ਨਵੇਂ ਗਰੁੱਪ ਵਿੱਚ ਆਪਣੇ ਆਪ ਉਸ ਸਮੇਂ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ ਜਦੋਂ ਇਸਨੂੰ ਅੱਪਗ੍ਰੇਡ ਕੀਤਾ ਗਿਆ ਸੀ:</item>
@@ -622,10 +622,10 @@
   <string name="ManageGroupActivity_mentions">ਹਵਾਲੇ</string>
   <string name="ManageGroupActivity_chat_color_and_wallpaper">ਚੈਟ ਦਾ ਰੰਗ &amp; ਵਾਲਪੇਪਰ</string>
   <string name="ManageGroupActivity_until_s">%1$s ਤੱਕ</string>
-  <string name="ManageGroupActivity_always">ਹਮੇਸ਼ਾ</string>
+  <string name="ManageGroupActivity_always">ਹਮੇਸ਼ਾਂ</string>
   <string name="ManageGroupActivity_off">ਬੰਦ</string>
   <string name="ManageGroupActivity_on">ਚਾਲੂ</string>
-  <string name="ManageGroupActivity_view_all_members">ਸਾਰੇ ਮੈਂਬਰ ਦੇਖੋ</string>
+  <string name="ManageGroupActivity_view_all_members">ਸਾਰੇ ਮੈਂਬਰ ਵੇਖੋ</string>
   <string name="ManageGroupActivity_see_all">ਸਾਰੇ ਵੇਖੋ</string>
   <plurals name="ManageGroupActivity_added">
     <item quantity="one">%d ਮੈਂਬਰ ਸ਼ਾਮਲ ਕੀਤੇ ਗਏ.</item>
@@ -654,7 +654,7 @@
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">ਹਵਾਲਿਆਂ ਲਈ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ਮਿਊਟ ਕੀਤੀਆਂ ਚੈਟਾਂ ਵਿੱਚ ਤੁਹਾਡਾ ਹਵਾਲਾ ਦਿੱਤੇ ਜਾਣ ਸਮੇਂ ਸੂਚਨਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰਨੀਆਂ ਹਨ? </string>
-  <string name="GroupMentionSettingDialog_always_notify_me">ਮੈਨੂੰ ਹਮੇਸ਼ਾ ਸੂਚਿਤ ਕਰੋ</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">ਮੈਨੂੰ ਹਮੇਸ਼ਾਂ ਸੂਚਿਤ ਕਰੋ</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">ਮੈਨੂੰ ਸੂਚਿਤ ਨਾ ਕਰੋ</string>
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">ਪ੍ਰੋਫਾਈਲ ਨਾਂ</string>
@@ -822,9 +822,9 @@
   <string name="Megaphones_introducing_reactions">ਪੇਸ਼ ਕਰਦੇ ਹਾਂ ਪ੍ਰਤਿਕਿਰਿਆਵਾਂ</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">ਜਲਦੀ ਨਾਲ ਇਹ ਜਵਾਬ ਦੇਣ ਲਈ ਕਿ ਤੁਸੀਂ ਕਿਸ ਤਰ੍ਹਾਂ ਮਹਿਸੂਸ ਕਰਦੇ ਹੋ, ਕਿਸੇ ਵੀ ਸੁਨੇਹੇ \'ਤੇ ਟੈਪ ਕਰਕੇ ਉਸ ਨੂੰ ਦਬਾਈ ਰੱਖੋ।</string>
   <string name="Megaphones_remind_me_later">ਮੈਨੂੰ ਬਾਅਦ ਵਿੱਚ ਯਾਦ ਕਰਾਓ</string>
-  <string name="Megaphones_verify_your_signal_pin">ਆਪਣੇ Signal ਦੇ PIN ਨੂੰ ਪ੍ਰਮਾਣਿਤ ਕਰੋ</string>
-  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">ਅਸੀਂ ਤੁਹਾਨੂੰ ਕਦੇ-ਕਦਾਈਂ ਤੁਹਾਡਾ PIN ਪ੍ਰਮਾਣਿਤ ਕਰਨ ਲਈ ਕਹਾਂਗੇ ਤਾਂ ਜੋ ਤੁਹਾਨੂੰ ਇਹ ਯਾਦ ਰਹੇ।</string>
-  <string name="Megaphones_verify_pin">PIN ਨੂੰ ਪ੍ਰਮਾਣਿਤ ਤਸਦੀਕ ਕਰੋ</string>
+  <string name="Megaphones_verify_your_signal_pin">ਆਪਣੇ Signal ਦੇ PIN ਨੂੰ ਤਸਦੀਕ ਕਰੋ</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">ਅਸੀਂ ਤੁਹਾਨੂੰ ਕਦੇ-ਕਦਾਈਂ ਤੁਹਾਡਾ PIN ਤਸਦੀਕ ਕਰਨ ਲਈ ਕਹਾਂਗੇ ਤਾਂ ਜੋ ਤੁਹਾਨੂੰ ਇਹ ਯਾਦ ਰਹੇ।</string>
+  <string name="Megaphones_verify_pin">PIN ਨੂੰ ਤਸਦੀਕ ਕਰੋ</string>
   <string name="Megaphones_get_started">ਸ਼ੁਰੂਆਤ ਕਰੋ</string>
   <string name="Megaphones_new_group">ਨਵਾਂ ਗਰੁੱਪ</string>
   <string name="Megaphones_invite_friends">ਦੋਸਤਾਂ ਨੂੰ ਸੱਦਾ ਦਿਓ</string>
@@ -1160,7 +1160,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">ਨਵਾਂ PIN ਬਣਾਓ</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">ਚੇਤਾਵਨੀ</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">ਜੇ ਤੁਸੀਂ PIN ਅਸਮਰੱਥ ਕੀਤਾ ਤਾਂ ਤੁਸੀਂ Signal ਨੂੰ ਮੁੜ-ਰਜਿਸਟਰ ਕਰਨ ਵੇਲੇ ਸਾਰਾ ਡੇਟਾ ਗੁਆ ਬੈਠੋਗੇ, ਜਦੋਂ ਤੱਕ ਕਿ ਤੁਸੀਂ ਖੁਦ ਬੈਕਅੱਪ ਨਹੀਂ ਲੈਂਦੇ ਤੇ ਬਹਾਲ ਕਰਦੇ। PIN ਅਸਮਰੱਥ ਕੀਤੇ ਹੋਣ ਨਾਲ ਤੁਸੀਂ ਰਜਿਸਟਰੇਸ਼ਨ ਲੌਕ ਨੂੰ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦੇ ਹੋ।</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">ਜੇ ਤੁਸੀਂ PIN ਅਸਮਰੱਥ ਕੀਤਾ ਤਾਂ ਤੁਸੀਂ Signal ਨੂੰ ਮੁੜ-ਰਜਿਸਟਰ ਕਰਨ ਵੇਲੇ ਸਾਰਾ ਡੇਟਾ ਗੁਆ ਬੈਠੋਗੇ, ਜਦੋਂ ਤੱਕ ਕਿ ਤੁਸੀਂ ਖੁਦ ਬੈਕਅੱਪ ਨਹੀਂ ਲੈਂਦੇ ਤੇ ਬਹਾਲ ਕਰਦੇ। PIN ਅਸਮਰੱਥ ਕੀਤੇ ਹੋਣ ਨਾਲ ਤੁਸੀਂ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਲੌਕ ਨੂੰ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦੇ ਹੋ।</string>
   <string name="PinOptOutDialog_disable_pin">PIN ਅਸਮਰੱਥ ਕਰੋ</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ਇਸ ਐਪ ਨੂੰ ਦਰਜਾ ਦਿਓ</string>
@@ -1175,9 +1175,9 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">ਤੁਸੀਂ</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
-  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">ਮੈਸੇਜਿੰਗ ਨੂੰ ਜਾਰੀ ਰੱਖਣ ਲਈ ਪ੍ਰਮਾਣਿਤ ਕਰੋ</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">ਮੈਸੇਜਿੰਗ ਨੂੰ ਜਾਰੀ ਰੱਖਣ ਲਈ ਤਸਦੀਕ ਕਰੋ</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal ’ਤੇ ਸਪੈਮ ਨੂੰ ਰੋਕਣ ਵਿੱਚ ਮਦਦ ਕਰਨ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਪ੍ਰਮਾਣੀਕਰਣ ਪੂਰਾ ਕਰੋ।</string>
-  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">ਪ੍ਰਮਾਣਿਤ ਕਰਨ ਤੋਂ ਬਾਅਦ, ਤੁਸੀਂ ਮੈਸੇਜਿੰਗ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ। ਕੋਈ ਵੀ ਰੁਕੇ ਹੋਏ ਸੁਨੇਹੇ ਆਪਣੇ-ਆਪ ਹੀ ਭੇਜ ਦਿੱਤੇ ਜਾਣਗੇ।</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">ਤਸਦੀਕ ਕਰਨ ਤੋਂ ਬਾਅਦ, ਤੁਸੀਂ ਮੈਸੇਜਿੰਗ ਜਾਰੀ ਰੱਖ ਸਕਦੇ ਹੋ। ਕੋਈ ਵੀ ਰੁਕੇ ਹੋਏ ਸੁਨੇਹੇ ਆਪਣੇ-ਆਪ ਹੀ ਭੇਜ ਦਿੱਤੇ ਜਾਣਗੇ।</string>
   <!--Recipient-->
   <string name="Recipient_you">ਤੁਸੀਂ</string>
   <!--RecipientPreferencesActivity-->
@@ -1204,7 +1204,7 @@
   <string name="WebRtcCallView__signal_voice_call">Signal ਵੌਇਸ ਕਾਲ…</string>
   <string name="WebRtcCallView__signal_video_call">Signal ਵੀਡੀਓ ਕਾਲ…</string>
   <string name="WebRtcCallView__start_call">ਕਾਲ ਸ਼ੁਰੂ ਕਰੋ</string>
-  <string name="WebRtcCallView__join_call">ਕਾਲ \'ਚ ਹਿੱਸਾ ਲਵੋ</string>
+  <string name="WebRtcCallView__join_call">ਕਾਲ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ</string>
   <string name="WebRtcCallView__call_is_full">ਕਾਲ ਭਰੀ ਹੋਈ ਹੈ</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">ਇਸ ਕਾਲ ਲਈ %1$d ਭਾਗੀਦਾਰਾਂ ਤੱਕ ਵੱਧ ਤੋਂ ਵੱਧ ਗਿਣਤੀ ਪਹੁੰਚ ਗਈ ਹੈ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\" ਗਰੁੱਪ ਕਾਲ</string>
@@ -1256,7 +1256,7 @@
 (%s) ਅਵੈਧ ਹੈ।
 </string>
   <string name="RegistrationActivity_a_verification_code_will_be_sent_to">ਇੱਕ ਪ੍ਰਮਾਣੀਕਰਣ ਕੋਡ ਇਹਨਾਂ ਨੂੰ ਭੇਜਿਆ ਜਾਵੇਗਾ:</string>
-  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ਤੁਹਾਨੂੰ ਇਸ ਨੰਬਰ ਨੂੰ ਪ੍ਰਮਾਣਿਤ ਕਰਨ ਲਈ ਇੱਕ ਕਾਲ ਆਵੇਗੀ।</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ਤੁਹਾਨੂੰ ਇਸ ਨੰਬਰ ਨੂੰ ਤਸਦੀਕ ਕਰਨ ਲਈ ਇੱਕ ਕਾਲ ਆਵੇਗੀ।</string>
   <string name="RegistrationActivity_is_your_phone_number_above_correct">ਕੀ ਉੱਪਰ ਦਿੱਤਾ ਤੁਹਾਡਾ ਫ਼ੋਨ ਨੰਬਰ ਸਹੀ ਹੈ?</string>
   <string name="RegistrationActivity_edit_number">ਨੰਬਰ ਨੂੰ ਸੋਧੋ</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play ਸੇਵਾਵਾਂ ਗਾਇਬ</string>
@@ -1273,7 +1273,7 @@
     <item quantity="one">ਹੁਣ ਤੁਸੀਂ ਡੀਬੱਗ ਲਾਗ ਨੂੰ ਸਬਮਿਟ ਕਰਨ ਤੋਂ %d ਕਦਮ ਦੂਰ ਹੋ.</item>
     <item quantity="other">ਹੁਣ ਤੁਸੀਂ ਡੀਬੱਗ ਲੌਗ ਨੂੰ ਦਰਜ ਕਰਨ ਤੋਂ %d ਕਦਮ ਦੂਰ ਹੋ।</item>
   </plurals>
-  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">ਸਾਨੂੰ ਇਹ ਪ੍ਰਮਾਣਿਤ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ ਕਿ ਤੁਸੀਂ ਮਨੁੱਖ ਹੋ।</string>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">ਸਾਨੂੰ ਇਹ ਤਸਦੀਕ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ ਕਿ ਤੁਸੀਂ ਮਨੁੱਖ ਹੋ।</string>
   <string name="RegistrationActivity_next">ਅੱਗੇ</string>
   <string name="RegistrationActivity_continue">ਜਾਰੀ ਰੱਖੋ</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ਪਰਦੇਦਾਰੀ ਆਪਣੇ ਤੱਕ ਰੱਖੋ।\nਹਰੇਕ ਸੁਨੇਹਾ ਬੇਝਿਜਕ ਹੋ ਕੇ ਲਿਖੋ।</string>
@@ -1396,7 +1396,7 @@
   <string name="ThreadRecord_you_marked_unverified">ਤੁਸੀਂ  ਅਪ੍ਰਮਾਣਿਤ ਵਜੋਂ ਚਿੰਨ੍ਹ ਲਾਇਆ</string>
   <string name="ThreadRecord_message_could_not_be_processed">ਸੁਨੇਹਾ ਪ੍ਰਕਿਰਿਆ ਵਿੱਚ ਨਹੀਂ ਪਾਇਆ ਜਾ ਸਕਿਆ</string>
   <string name="ThreadRecord_delivery_issue">ਡਿਲਿਵਰੀ ਮਸਲਾ</string>
-  <string name="ThreadRecord_message_request">ਸੁਨੇਹੇ ਲਈ ਬੇਨਤੀ</string>
+  <string name="ThreadRecord_message_request">ਸੁਨੇਹਾ ਬੇਨਤੀ</string>
   <string name="ThreadRecord_photo">ਫ਼ੋਟੋ</string>
   <string name="ThreadRecord_gif">GIF</string>
   <string name="ThreadRecord_voice_message">ਆਵਾਜ਼ ਵਾਲਾ ਸੁਨੇਹਾ</string>
@@ -1430,7 +1430,7 @@
     <item quantity="other">%d ਸੰਪਰਕ Signal ਉੱਤੇ ਹਨ!</item>
   </plurals>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ਤੁਹਾਡਾ ਸੰਪਰਕ Signal ਦੇ ਪੁਰਾਣੇ ਸੰਸਕਰਣ ਨੂੰ ਚਲਾ ਰਿਹਾ ਹੈ ਆਪਣੇ ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਜਾਂਚ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਕਿਰਪਾ ਕਰਕੇ ਉਨ੍ਹਾਂ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਲਈ ਕਹੋ।</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ਤੁਹਾਡਾ ਸੰਪਰਕ Signal ਦੇ ਪੁਰਾਣੇ ਸੰਸਕਰਣ ਨੂੰ ਚਲਾ ਰਿਹਾ ਹੈ ਆਪਣੇ ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਤਸਦੀਕ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਕਿਰਪਾ ਕਰਕੇ ਉਨ੍ਹਾਂ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਲਈ ਕਹੋ।</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ਤੁਹਾਡਾ ਸੰਪਰਕ ਇੱਕ ਅਸੰਗਤ QR ਕੋਡ ਫ਼ਾਰਮੈਟ ਦੇ ਨਾਲ Signal ਦੇ ਨਵੇਂ ਸੰਸਕਰਣ ਨੂੰ ਚਲਾ ਰਿਹਾ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਤੁਲਨਾ ਕਰਨ ਲਈ ਅੱਪਡੇਟ ਕਰੋ।</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">ਸਕੈਨ ਕੀਤਾ QR ਕੋਡ, ਇੱਕ ਸਹੀ ਢੰਗ ਨਾਲ ਫ਼ਾਰਮੈਟ ਕੀਤਾ ਸੁਰੱਖਿਆ ਨੰਬਰ ਪ੍ਰਮਾਣਿਕਤਾ ਕੋਡ ਨਹੀਂ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਸਕੈਨਿੰਗ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">ਇਸ ਰਾਹੀਂ ਸੁਰੱਖਿਆ ਨੰਬਰ ਸਾਂਝਾ ਕਰੋ …</string>
@@ -1660,12 +1660,12 @@
   <string name="safety_number_change_dialog__join_call">ਕਾਲ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ</string>
   <string name="safety_number_change_dialog__continue_call">ਕਾਲ ਜਾਰੀ ਰੱਖੋ</string>
   <string name="safety_number_change_dialog__leave_call">ਕਾਲ ਨੂੰ ਛੱਡੋ</string>
-  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ਹੇਠ ਦਿੱਤੇ ਲੋਕਾਂ ਨੇ ਮੁੜ-ਸਥਾਪਤ ਕੀਤਾ ਜਾਂ ਡਿਵਾਈਸ ਨੂੰ ਬਦਲਿਆ ਹੋ ਸਕਦਾ ਹੈ। ਪਰਦੇਦਾਰੀ ਨੂੰ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਉਹਨਾਂ ਨਾਲ ਆਪਣੇ ਸੁਰੱਖਿਆ ਨੰਬਰ ਨੂੰ ਪ੍ਰਮਾਣਿਤ ਕਰੋ।</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ਹੇਠ ਦਿੱਤੇ ਲੋਕਾਂ ਨੇ ਮੁੜ-ਸਥਾਪਤ ਕੀਤਾ ਜਾਂ ਡਿਵਾਈਸ ਨੂੰ ਬਦਲਿਆ ਹੋ ਸਕਦਾ ਹੈ। ਪਰਦੇਦਾਰੀ ਨੂੰ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਉਹਨਾਂ ਨਾਲ ਆਪਣੇ ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਤਸਦੀਕ ਕਰੋ।</string>
   <string name="safety_number_change_dialog__view">ਵੇਖੋ</string>
   <string name="safety_number_change_dialog__previous_verified">ਪਹਿਲਾਂ ਤਸਦੀਕਸ਼ੁਦਾ</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
-  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">ਕਾਲ ਨੋਟੀਫਿਕੇਸ਼ਨ ਸਮਰੱਥ ਹਨ।</string>
-  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">ਕਾਲ ਨੋਟੀਫਿਕੇਸ਼ਨ ਸਮਰੱਥ ਕਰੋ</string>
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">ਕਾਲ ਸੂਚਨਾਵਾਂ ਸਮਰੱਥ ਹਨ।</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">ਕਾਲ ਸੂਚਨਾਵਾਂ ਸਮਰੱਥ ਕਰੋ</string>
   <string name="EnableCallNotificationSettingsDialog__enable_background_activity">ਪਿਛੋਕੜ ਵਿੱਚ ਗਤੀਵਿਧੀ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">ਹੁਣ ਹਰ ਚੀਜ਼ ਠੀਕ ਜਾਪਦੀ ਹੈ!</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">ਕਾਲ ਸੂਚਨਾਵਾਂ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ, ਇੱਥੇ ਟੈਪ ਕਰੋ ਅਤੇ \"ਸੂਚਨਾਵਾਂ ਦਿਖਾਓ\" ਨੂੰ ਚਾਲੂ ਕਰੋ।</string>
@@ -1796,7 +1796,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ਨਾਮ ਜਾਂ ਨੰਬਰ ਦਰਜ ਕਰੋ</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ਜੇ ਤੁਸੀਂ %s ਨਾਲ ਆਪਣੇ ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਸੁਰੱਖਿਆ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਉਪਰੋਕਤ ਨੰਬਰ ਦੀ ਤੁਲਨਾ ਉਨ੍ਹਾਂ ਦੀ ਡਿਵਾਈਸ \'ਤੇ ਕਰੋ. ਵਿਕਲਪਕ ਤੌਰ ਤੇ, ਤੁਸੀਂ ਉਨ੍ਹਾਂ ਦੇ ਫੋਨ ਤੇ ਕੋਡ ਸਕੈਨ ਕਰ ਸਕਦੇ ਹੋ, ਜਾਂ ਆਪਣੇ ਕੋਡ ਨੂੰ ਸਕੈਨ ਕਰਨ ਲਈ ਕਹਿ ਸਕਦੇ ਹੋ. <a href="https://signal.org/redirect/safety-numbers">ਜਿਆਦਾ ਜਾਣੋ.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ਜੇ ਤੁਸੀਂ %s ਨਾਲ ਆਪਣੇ ਇਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਸੁਰੱਖਿਆ ਦੀ ਤਸਦੀਕ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਉਪਰੋਕਤ ਨੰਬਰ ਦੀ ਤੁਲਨਾ ਉਨ੍ਹਾਂ ਦੀ ਡਿਵਾਈਸ \'ਤੇ ਕਰੋ. ਵਿਕਲਪਕ ਤੌਰ ਤੇ, ਤੁਸੀਂ ਉਨ੍ਹਾਂ ਦੇ ਫੋਨ ਤੇ ਕੋਡ ਸਕੈਨ ਕਰ ਸਕਦੇ ਹੋ, ਜਾਂ ਆਪਣੇ ਕੋਡ ਨੂੰ ਸਕੈਨ ਕਰਨ ਲਈ ਕਹਿ ਸਕਦੇ ਹੋ. <a href="https://signal.org/redirect/safety-numbers">ਜਿਆਦਾ ਜਾਣੋ.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">ਸਕੈਨ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="verify_display_fragment__loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <string name="verify_display_fragment__verified">ਪ੍ਰਮਾਣਿਤ</string>
@@ -1826,7 +1826,7 @@
   <string name="AndroidManifest__create_passphrase">ਪਾਸਫ਼੍ਰੇਜ਼ ਬਣਾਓ</string>
   <string name="AndroidManifest__select_contacts">ਸੰਪਰਕ ਚੁਣੋ</string>
   <string name="AndroidManifest__change_passphrase">ਪਾਸਫ਼੍ਰੇਜ਼ ਬਦਲੋ</string>
-  <string name="AndroidManifest__verify_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਜਾਂਚ ਕਰੋ</string>
+  <string name="AndroidManifest__verify_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਤਸਦੀਕ ਕਰੋ</string>
   <string name="AndroidManifest__log_submit">ਡੀਬੱਗ ਲਾਗ ਦਰਜ ਕਰੋ</string>
   <string name="AndroidManifest__media_preview">ਮੀਡੀਆ ਪ੍ਰੀਵਿਊ</string>
   <string name="AndroidManifest__message_details">ਸੁਨੇਹਾ ਵੇਰਵੇ</string>
@@ -1980,7 +1980,7 @@
   <string name="preferences__appearance">ਦਿਖਾਵਾ </string>
   <string name="preferences__theme">ਥੀਮ</string>
   <string name="preferences__chat_wallpaper">ਗੱਲਬਾਤ ਵਾਲਪੇਪਰ</string>
-  <string name="preferences__chat_color_and_wallpaper">ਚੈਟ ਰੰਗ ਤੇ ਵਾਲਪੇਪਰ</string>
+  <string name="preferences__chat_color_and_wallpaper">ਚੈਟ ਦਾ ਰੰਗ &amp; ਵਾਲਪੇਪਰ</string>
   <string name="preferences__disable_pin">PIN ਅਸਮਰੱਥ ਕਰੋ</string>
   <string name="preferences__enable_pin">PIN ਸਮਰੱਥ ਕਰੋ</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">ਜੇ ਤੁਸੀਂ PIN ਅਸਮਰੱਥ ਕੀਤਾ ਤਾਂ ਤੁਸੀਂ Signal ਨੂੰ ਮੁੜ-ਰਜਿਸਟਰ ਕਰਨ ਵੇਲੇ ਸਾਰਾ ਡੇਟਾ ਗੁਆ ਬੈਠੋਗੇ, ਜਦੋਂ ਤੱਕ ਕਿ ਤੁਸੀਂ ਖੁਦ ਬੈਕਅੱਪ ਨਹੀਂ ਲੈਂਦੇ ਤੇ ਬਹਾਲ ਕਰਦੇ। PIN ਅਸਮਰੱਥ ਕੀਤੇ ਹੋਣ ਨਾਲ ਤੁਸੀਂ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਲੌਕ ਨੂੰ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦੇ ਹੋ।</string>
@@ -2062,7 +2062,7 @@
   <string name="preferences_communication__sealed_sender_learn_more">ਜਿਆਦਾ ਜਾਣੋ</string>
   <string name="preferences_setup_a_username">ਵਰਤੋਂਕਾਰ ਨਾਂ ਸੈਟਅੱਪ ਕਰੋ</string>
   <string name="preferences_proxy">ਪਰਾਕਸੀ</string>
-  <string name="preferences_use_proxy">ਪਰਾਕਸੀ ਨੂੰ ਵਰਤੋਂ</string>
+  <string name="preferences_use_proxy">ਪ੍ਰੌਕਸੀ ਵਰਤੋ</string>
   <string name="preferences_off">ਬੰਦ </string>
   <string name="preferences_on">ਚਾਲੂ</string>
   <string name="preferences_proxy_address">ਪ੍ਰੌਕਸੀ ਐਡਰੈੱਸ</string>
@@ -2446,13 +2446,13 @@
   <string name="backup_enable_dialog__folder">ਫੋਲਡਰ</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ਮੈਂ ਇਹ ਪਾਸਫ਼੍ਰੇਜ਼ ਲਿੱਖ ਲਿਆ ਹੈ. ਇਸ ਤੋਂ ਬਿਨਾਂ, ਮੈਂ ਬੈਕਅੱਪ ਨੂੰ ਰੀਸਟੋਰ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ ਹੋਵਾਂਗਾ.</string>
   <string name="registration_activity__restore_backup">ਬੈਕਅਪ ਬਹਾਲ ਕਰੋ</string>
-  <string name="registration_activity__transfer_or_restore_account">ਖਾਤਾ ਟਰਾਂਸਫਰ ਕਰੋ ਜਾਂ ਬਹਾਲ ਕਰੋ</string>
-  <string name="registration_activity__transfer_account">ਖਾਤਾ ਟਰਾਂਸਫਰ ਕਰੋ</string>
+  <string name="registration_activity__transfer_or_restore_account">ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ ਕਰੋ ਜਾਂ ਬਹਾਲ ਕਰੋ</string>
+  <string name="registration_activity__transfer_account">ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ ਕਰੋ</string>
   <string name="registration_activity__skip">ਛੱਡੋ</string>
   <string name="preferences_chats__chat_backups">ਚੈਟ ਬੈਕਅਪ</string>
   <string name="preferences_chats__backup_chats_to_external_storage">ਬਾਹਰੀ ਸਟੋਰੇਜ ਤੇ ਚੈਟ ਨੂੰ ਬੈਕਅਪ ਕਰੋ </string>
-  <string name="preferences_chats__transfer_account">ਖਾਤਾ ਟਰਾਂਸਫਰ ਕਰੋ</string>
-  <string name="preferences_chats__transfer_account_to_a_new_android_device">ਖਾਤੇ ਨੂੰ ਨਵੇਂ Android ਡਿਵਾਈਸ ਉੱਤੇ ਟਰਾਂਸਫਰ ਕਰੋ</string>
+  <string name="preferences_chats__transfer_account">ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ ਕਰੋ</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">ਖਾਤੇ ਨੂੰ ਨਵੇਂ Android ਡਿਵਾਈਸ ਉੱਤੇ ਟ੍ਰਾਂਸਫਰ ਕਰੋ</string>
   <string name="RegistrationActivity_enter_backup_passphrase">ਬੈਕਅਪ ਪਾਸਫ਼੍ਰੇਜ਼ ਦਰਜ ਕਰੋ</string>
   <string name="RegistrationActivity_restore">ਰੀਸਟੋਰ ਕਰੋ</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal ਦੇ ਨਵੇਂ ਸੰਸਕਰਣਾਂ ਤੋਂ ਬੈਕਅੱਪ ਆਯਾਤ ਨਹੀਂ ਕਰ ਸਕਦਾ</string>
@@ -3037,7 +3037,7 @@
   <string name="ConversationSettingsFragment__unblock_group">ਗਰੁੱਪ ਤੋਂ ਪਾਬੰਦੀ ਹਟਾਓ</string>
   <string name="ConversationSettingsFragment__add_to_a_group">ਕਿਸੇ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="ConversationSettingsFragment__see_all">ਸਾਰੇ ਵੇਖੋ</string>
-  <string name="ConversationSettingsFragment__add_members">ਮੈਂਬਰ ਜੋੜੋ</string>
+  <string name="ConversationSettingsFragment__add_members">ਮੈਂਬਰਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="ConversationSettingsFragment__permissions">ਇਜਾਜ਼ਤਾਂ</string>
   <string name="ConversationSettingsFragment__requests_and_invites">ਬੇਨਤੀਆਂ &amp; ਸੱਦੇ</string>
   <string name="ConversationSettingsFragment__group_link">ਗਰੁੱਪ ਲਿੰਕ</string>
@@ -3048,12 +3048,12 @@
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ਫ਼ੋਨ ਨੰਬਰ ਨੂੰ ਕਲਿੱਪਬੋਰਡ \'ਤੇ ਕਾਪੀ ਕੀਤਾ।</string>
   <string name="ConversationSettingsFragment__phone_number">ਫੋਨ ਨੰਬਰ</string>
   <!--PermissionsSettingsFragment-->
-  <string name="PermissionsSettingsFragment__add_members">ਮੈਂਬਰ ਜੋੜੋ</string>
+  <string name="PermissionsSettingsFragment__add_members">ਮੈਂਬਰਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਸੋਧੋ</string>
   <string name="PermissionsSettingsFragment__send_messages">ਸੁਨੇਹੇ ਭੇਜੋ</string>
   <string name="PermissionsSettingsFragment__all_members">ਸਾਰੇ ਮੈਂਬਰ</string>
   <string name="PermissionsSettingsFragment__only_admins">ਸਿਰਫ਼ ਐਡਮਿਨ</string>
-  <string name="PermissionsSettingsFragment__who_can_add_new_members">ਨਵੇਂ ਮੈਂਬਰ ਕੌਣ ਜੋੜ ਸਕਦਾ ਹੈ?</string>
+  <string name="PermissionsSettingsFragment__who_can_add_new_members">ਨਵੇਂ ਮੈਂਬਰ ਕੌਣ ਸ਼ਾਮਲ ਕਰ ਸਕਦਾ ਹੈ?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ਇਸ ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕੌਣ ਸੰਪਾਦਿਤ ਕਰ ਸਕਦਾ ਹੈ?</string>
   <string name="PermissionsSettingsFragment__who_can_send_messages">ਸੁਨੇਹੇ ਕੌਣ ਭੇਜ ਸਕਦਾ ਹੈ?</string>
   <!--SoundsAndNotificationsSettingsFragment-->

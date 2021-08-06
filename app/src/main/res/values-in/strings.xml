@@ -2989,6 +2989,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ContactFilterView__search_name_or_number">Cari nama atau nomor</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Hentikan pesan suara</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Ubah kecepatan pesan suara</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Jeda pesan suara</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Mainkan pesan suara</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Arahkan ke pesan suara</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Pratinjau avatar</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>
@@ -3012,5 +3017,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Arahkan ke atas</string>
   <!--EOF-->
 </resources>

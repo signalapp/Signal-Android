@@ -2938,6 +2938,11 @@
   <string name="ContactFilterView__search_name_or_number">Αναζήτηση ονόματος ή άριθμού</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Διακοπή αναπαραγωγής μηνύματος φωνής</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Αλλαγή ταχύτητας μηνύματος φωνής</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Παύση μηνύματος φωνής</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Αναπαραγωγή μηνύματος φωνής</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Πλοήγηση στο μήνυμα φωνής</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Προεπισκόπηση εικόνας προφίλ</string>
   <string name="AvatarPickerFragment__camera">Κάμερα</string>

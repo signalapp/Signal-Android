@@ -208,6 +208,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">ನೀವು ಕಳುಹಿಸುತ್ತಿರುವ ಲಗತ್ತು ಸಂದೇಶದ ವಿಧವು ಗಾತ್ರದ ಮಿತಿಗಳನ್ನು ಮೀರಿದೆ.</string>
   <string name="ConversationActivity_unable_to_record_audio">ಆಡಿಯೋ ರೆಕಾರ್ಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">ಈ ಗುಂಪಿಗೆ ನೀವು ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಇನ್ನು ಮುಂದೆ ನೀವು ಸದಸ್ಯರಾಗಿಲ್ಲ.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">%1$s ಇವರು ಮಾತ್ರ ಸಂದೇಶಗಳನ್ನು ಕಳಿಸಲು ಸಾಧ್ಯ</string>
   <string name="ConversationActivity_admins">ಅಡ್ಮಿನ್‌‌ಗಳು</string>
   <string name="ConversationActivity_message_an_admin">ಅಡ್ಮಿನ್‌ಗೆ ಸಂದೇಶ ಕಳುಹಿಸಿ</string>
   <string name="ConversationActivity_cant_start_group_call">ಗುಂಪು ಕರೆ ಪ್ರಾರಂಭಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ</string>
@@ -2993,6 +2994,7 @@
   <string name="ChatColorsMegaphone__not_now">ಈಗಲ್ಲ</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಸೇರಿಸಿ</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">ನೀವು ಹೇಗೆ ಕಾಣುವಿರಿ ಎಂದು ನೋಡಲು ರೂಪ ಮತ್ತು ಬಣ್ಣವನ್ನು ಆಯ್ಕೆಮಾಡಿ </string>
   <string name="AddAProfilePhotoMegaphone__not_now">ಈಗಲ್ಲ</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">ಫೋಟೋ ಸೇರಿಸಿ</string>
   <!--KeyboardPagerFragment-->
@@ -3046,10 +3048,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ಗುಂಪಿನ ಮಾಹಿತಿಯನ್ನು ಬದಲಾಯಿಸಿ</string>
+  <string name="PermissionsSettingsFragment__send_messages">ಸಂದೇಶಗಳನ್ನು ಕಳಿಸಿ</string>
   <string name="PermissionsSettingsFragment__all_members">ಎಲ್ಲಾ ಸದಸ್ಯರು</string>
   <string name="PermissionsSettingsFragment__only_admins">ಆಡ್ಮಿನ್‌‌ಗಳು ಮಾತ್ರ</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">ಯಾರು ಹೊಸ ಸದಸ್ಯರನ್ನು ಸೇರಿಸಬಹುದು?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ಗುಂಪಿನ ಮಾಹಿತಿಯನ್ನು ಯಾರು ತಿದ್ದಬಹುದು?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">ಯಾರು ಸಂದೇಶವನ್ನು ಕಳಿಸಬಹುದು?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿ</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">ಮ್ಯೂಟ್ ಮಾಡಲಾಗಿಲ್ಲ</string>
@@ -3072,21 +3076,34 @@
   <string name="ContactFilterView__search_name_or_number">ಹೆಸರು ಅಥವಾ ಸಂಖ್ಯೆ ಹುಡುಕಾಟ ನಡೆಸಿ</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">ಧ್ವನಿ ಸಂದೇಶವನ್ನು ನಿಲ್ಲಿಸಿ</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">ಧ್ವನಿ ಸಂದೇಶದ ವೇಗವನ್ನು ಬದಲಿಸಿ</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">ಧ್ವನಿ ಸಂದೇಶವನ್ನು ಸದ್ಯಕ್ಕೆ ನಿಲ್ಲಿಸಿ</string>
+  <string name="VoiceNotePlayerView__play_voice_message">ಧ್ವನಿ ಸಂದೇಶವನ್ನು ಆಲಿಸಿ</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">ಧ್ವನಿ ಸಂದೇಶಕ್ಕೆ ಹೋಗಿ</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">ಅವತಾರ ಹೀಗೆ ಕಾಣಿಸುವುದು</string>
   <string name="AvatarPickerFragment__camera">ಕ್ಯಾಮರಾ</string>
+  <string name="AvatarPickerFragment__take_a_picture">ಚಿತ್ರವನ್ನು ತೆಗೆಯಿರಿ</string>
+  <string name="AvatarPickerFragment__choose_a_photo">ಚಿತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="AvatarPickerFragment__photo">ಫೋಟೋ</string>
   <string name="AvatarPickerFragment__text">ಪಠ್ಯ</string>
   <string name="AvatarPickerFragment__save">ಉಳಿಸಿ</string>
+  <string name="AvatarPickerFragment__select_an_avatar">ಒಂದು ಅವತಾರವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+  <string name="AvatarPickerFragment__clear_avatar">ಅವತಾರವನ್ನು ತೆಗೆಯಿರಿ</string>
   <string name="AvatarPickerFragment__edit">ತಿದ್ದಿ</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">ಅವತಾರವನ್ನು ಉಳೀಸಲಾಗಲಿಲ್ಲ</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">ಪ್ರಿವ್ಯೂ</string>
   <string name="TextAvatarCreationFragment__done">ಮುಗಿದಿದೆ</string>
   <string name="TextAvatarCreationFragment__text">ಪಠ್ಯ</string>
   <string name="TextAvatarCreationFragment__color">ಬಣ್ಣ</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">ಬಣ್ಣವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">ಎಸ್‌ಎಂಎಸ್‌</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">ಮೇಲಕ್ಕೆ ಹೋಗಿ</string>
   <!--EOF-->
 </resources>

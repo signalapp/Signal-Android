@@ -3249,6 +3249,11 @@
   <string name="ContactFilterView__search_name_or_number">חפש שם או מספר</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">הפסק הודעה קולית</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">שנה מהירות של הודעה קולית</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">השהה הודעה קולית</string>
+  <string name="VoiceNotePlayerView__play_voice_message">נגן הודעה קולית</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">נווט אל הודעה קולית</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">תצוגה מקדימה של יצגן</string>
   <string name="AvatarPickerFragment__camera">מצלמה</string>

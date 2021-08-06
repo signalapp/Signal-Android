@@ -3083,6 +3083,11 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ContactFilterView__search_name_or_number">Kërkoni emër ose numër</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Ndale mesazhin zanor</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Ndryshoni shpejtësinë e mesazhit zanor</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Pushoje mesazhin zanor</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Luaje mesazhin zanor</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Kalo te mesazh zanor</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Paraparje avatari</string>
   <string name="AvatarPickerFragment__camera">Kamerë</string>

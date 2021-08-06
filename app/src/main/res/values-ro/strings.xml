@@ -209,7 +209,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Atașamentul depășește limita de mărime pentru tipul de mesaj pe care vreți să-l trimiteți.</string>
   <string name="ConversationActivity_unable_to_record_audio">Nu se poate înregistra audio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nu puteți trimite mesaje acestui grup, deoarece nu mai sunteți membru.</string>
-  <string name="ConversationActivity_only_s_can_send_messages">Doar %1$s pot trimite mesaje.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Numai %1$s pot trimite mesaje.</string>
   <string name="ConversationActivity_admins">administratori</string>
   <string name="ConversationActivity_message_an_admin">Trimiteți un mesaj unui administrator</string>
   <string name="ConversationActivity_cant_start_group_call">Nu pot iniția apelul de grup</string>

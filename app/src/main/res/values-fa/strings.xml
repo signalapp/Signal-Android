@@ -3077,6 +3077,11 @@
   <string name="ContactFilterView__search_name_or_number">نام یا شماره را جستجو کنید</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">توقف پیام صوتی</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">تغییر سرعت پیام صوتی</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">توقف موقت پیام صوتی</string>
+  <string name="VoiceNotePlayerView__play_voice_message">پخش پیام صوتی</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">رفتن به پیام صوتی</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">پیش‌نمایش آواتار</string>
   <string name="AvatarPickerFragment__camera">دوربین</string>
