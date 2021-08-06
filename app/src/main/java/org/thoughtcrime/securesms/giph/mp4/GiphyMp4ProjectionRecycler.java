@@ -46,14 +46,14 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
     }
 
     for (final GiphyMp4Playable holder : holders) {
-      updateDisplay(recyclerView, holder);
+      updateVideoDisplayPositionAndSize(recyclerView, holder);
     }
   }
 
-  public void updateDisplay(@NonNull RecyclerView recyclerView, @NonNull GiphyMp4Playable holder) {
+  public void updateVideoDisplayPositionAndSize(@NonNull RecyclerView recyclerView, @NonNull GiphyMp4Playable holder) {
     GiphyMp4ProjectionPlayerHolder playerHolder = getCurrentHolder(holder.getAdapterPosition());
     if (playerHolder != null) {
-      updateDisplay(recyclerView, playerHolder, holder);
+      updateVideoDisplayPositionAndSize(recyclerView, playerHolder, holder);
     }
   }
 
@@ -84,7 +84,14 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
     }
   }
 
-  private void updateDisplay(@NonNull RecyclerView recyclerView, @NonNull GiphyMp4ProjectionPlayerHolder holder, @NonNull GiphyMp4Playable giphyMp4Playable) {
+  private void updateVideoDisplayPositionAndSize(@NonNull RecyclerView recyclerView,
+                                                 @NonNull GiphyMp4ProjectionPlayerHolder holder,
+                                                 @NonNull GiphyMp4Playable giphyMp4Playable)
+  {
+    if (!giphyMp4Playable.canPlayContent()) {
+      return;
+    }
+
     Projection projection = giphyMp4Playable.getGiphyMp4PlayableProjection(recyclerView);
 
     holder.getContainer().setX(projection.getX());

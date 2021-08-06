@@ -512,7 +512,7 @@ public class ConversationFragment extends LoggingFragment {
 
   private void onViewHolderPositionTranslated(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
     if (viewHolder instanceof GiphyMp4Playable) {
-      giphyMp4ProjectionRecycler.updateDisplay(recyclerView, (GiphyMp4Playable) viewHolder);
+      giphyMp4ProjectionRecycler.updateVideoDisplayPositionAndSize(recyclerView, (GiphyMp4Playable) viewHolder);
     }
 
     if (colorizer != null) {
