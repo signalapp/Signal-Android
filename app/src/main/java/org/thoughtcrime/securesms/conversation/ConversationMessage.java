@@ -132,10 +132,20 @@ public class ConversationMessage {
      */
     @WorkerThread
     public static @NonNull ConversationMessage createWithUnresolvedData(@NonNull Context context, @NonNull MessageRecord messageRecord) {
+      return createWithUnresolvedData(context, messageRecord, messageRecord.getDisplayBody(context));
+    }
+
+    /**
+     * Creates a {@link ConversationMessage} wrapping the provided MessageRecord and body, and will query for potential mentions. If mentions
+     * are found, the body of the provided message will be updated and modified to match actual mentions. This will perform
+     * database operations to query for mentions and then to resolve mentions to display names.
+     */
+    @WorkerThread
+    public static @NonNull ConversationMessage createWithUnresolvedData(@NonNull Context context, @NonNull MessageRecord messageRecord, @NonNull CharSequence body) {
       if (messageRecord.isMms()) {
         List<Mention> mentions = DatabaseFactory.getMentionDatabase(context).getMentionsForMessage(messageRecord.getId());
         if (!mentions.isEmpty()) {
-          MentionUtil.UpdatedBodyAndMentions updated = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, messageRecord, mentions);
+          MentionUtil.UpdatedBodyAndMentions updated = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, body, mentions);
           return new ConversationMessage(messageRecord, updated.getBody(), updated.getMentions());
         }
       }

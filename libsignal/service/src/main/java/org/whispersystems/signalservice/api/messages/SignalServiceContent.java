@@ -951,7 +951,6 @@ public final class SignalServiceContent {
     for (SignalServiceProtos.DataMessage.BodyRange bodyRange : bodyRanges) {
       if (bodyRange.hasMentionUuid()) {
         try {
-          validateBodyRange(body, bodyRange);
           mentions.add(new SignalServiceDataMessage.Mention(UuidUtil.parseOrThrow(bodyRange.getMentionUuid()), bodyRange.getStart(), bodyRange.getLength()));
         } catch (IllegalArgumentException e) {
           throw new ProtocolInvalidMessageException(new InvalidMessageException(e), null, 0);
@@ -964,16 +963,6 @@ public final class SignalServiceContent {
     }
 
     return mentions;
-  }
-
-  private static void validateBodyRange(String body, SignalServiceProtos.DataMessage.BodyRange bodyRange) throws ProtocolInvalidMessageException {
-    int incomingBodyLength = body != null ? body.length() : -1;
-    int start              = bodyRange.hasStart() ? bodyRange.getStart() : -1;
-    int length             = bodyRange.hasLength() ? bodyRange.getLength() : -1;
-
-    if (start < 0 || length < 0 || (start + length) > incomingBodyLength) {
-      throw new ProtocolInvalidMessageException(new InvalidMessageException("Incoming body range has out-of-bound range"), null, 0);
-    }
   }
 
   private static SignalServiceDataMessage.Sticker createSticker(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {

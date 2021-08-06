@@ -77,7 +77,7 @@ public final class MentionUtil {
 
     for (Mention mention : sortedMentions) {
       if (invalidMention(body, mention)) {
-        return new UpdatedBodyAndMentions(body, Collections.emptyList());
+        continue;
       }
 
       updatedBody.append(body.subSequence(bodyIndex, mention.getStart()));
