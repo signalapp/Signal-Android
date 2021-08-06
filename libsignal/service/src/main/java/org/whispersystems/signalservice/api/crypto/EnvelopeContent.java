@@ -152,7 +152,7 @@ public interface EnvelopeContent {
 
     @Override
     public OutgoingPushMessage processUnsealedSender(SignalSessionCipher sessionCipher, SignalProtocolAddress destination) {
-      String body                 = Base64.encodeBytes(plaintextContent.getBody());
+      String body                 = Base64.encodeBytes(plaintextContent.serialize());
       int    remoteRegistrationId = sessionCipher.getRemoteRegistrationId();
 
       return new OutgoingPushMessage(Type.PLAINTEXT_CONTENT_VALUE, destination.getDeviceId(), remoteRegistrationId, body);
