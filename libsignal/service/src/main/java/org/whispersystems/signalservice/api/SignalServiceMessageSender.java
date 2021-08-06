@@ -122,6 +122,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -1794,11 +1795,11 @@ public class SignalServiceMessageSender {
   }
 
   private GroupTargetInfo buildGroupTargetInfo(List<SignalServiceAddress> recipients) {
-    List<SignalProtocolAddress>              destinations     = new LinkedList<>();
-    Map<SignalServiceAddress, List<Integer>> recipientDevices = recipients.stream().collect(Collectors.toMap(a -> a, a -> new LinkedList<>()));
+    Set<SignalProtocolAddress>               destinations     = new LinkedHashSet<>();
+    Map<SignalServiceAddress, List<Integer>> recipientDevices = new HashMap<>();
 
     for (SignalServiceAddress recipient : recipients) {
-      List<Integer> devices = recipientDevices.get(recipient);
+      List<Integer> devices = recipientDevices.containsKey(recipient) ? recipientDevices.get(recipient) : new LinkedList<>();
 
       destinations.add(new SignalProtocolAddress(recipient.getUuid().get().toString(), SignalServiceAddress.DEFAULT_DEVICE_ID));
       devices.add(SignalServiceAddress.DEFAULT_DEVICE_ID);
@@ -1809,9 +1810,11 @@ public class SignalServiceMessageSender {
           devices.add(deviceId);
         }
       }
+
+      recipientDevices.put(recipient, devices);
     }
 
-    return new GroupTargetInfo(destinations, recipientDevices);
+    return new GroupTargetInfo(new ArrayList<>(destinations), recipientDevices);
   }
 
 
