@@ -43,7 +43,7 @@ wrapper {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
