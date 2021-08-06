@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.webrtc;
 import android.content.Context;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MenuItem;
@@ -288,7 +289,7 @@ public class WebRtcCallView extends ConstraintLayout {
     if ((visible & SYSTEM_UI_FLAG_HIDE_NAVIGATION) == 0) {
       if (controls.adjustForFold()) {
         pictureInPictureGestureHelper.clearVerticalBoundaries();
-        pictureInPictureGestureHelper.setTopVerticalBoundary(toolbar.getBottom());
+        pictureInPictureGestureHelper.setTopVerticalBoundary(toolbar.getTop());
       } else {
         pictureInPictureGestureHelper.setTopVerticalBoundary(toolbar.getBottom());
         pictureInPictureGestureHelper.setBottomVerticalBoundary(videoToggle.getTop());
@@ -354,7 +355,10 @@ public class WebRtcCallView extends ConstraintLayout {
 
     pagerAdapter.submitList(pages);
     recyclerAdapter.submitList(state.getListParticipants());
-    updateLocalCallParticipant(state.getLocalRenderState(), state.getLocalParticipant(), state.getFocusedParticipant());
+
+    boolean displaySmallSelfPipInLandscape = !isPortrait && isLandscapeEnabled;
+
+    updateLocalCallParticipant(state.getLocalRenderState(), state.getLocalParticipant(), state.getFocusedParticipant(), displaySmallSelfPipInLandscape);
 
     if (state.isLargeVideoGroup() && !state.isInPipMode() && !state.isFolded()) {
       layoutParticipantsForLargeCount();
@@ -363,7 +367,11 @@ public class WebRtcCallView extends ConstraintLayout {
     }
   }
 
-  public void updateLocalCallParticipant(@NonNull WebRtcLocalRenderState state, @NonNull CallParticipant localCallParticipant, @NonNull CallParticipant focusedParticipant) {
+  public void updateLocalCallParticipant(@NonNull WebRtcLocalRenderState state,
+                                         @NonNull CallParticipant localCallParticipant,
+                                         @NonNull CallParticipant focusedParticipant,
+                                         boolean displaySmallSelfPipInLandscape)
+  {
     largeLocalRender.setMirror(localCallParticipant.getCameraDirection() == CameraState.Direction.FRONT);
 
     smallLocalRender.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL);
@@ -396,7 +404,7 @@ public class WebRtcCallView extends ConstraintLayout {
         break;
       case SMALL_RECTANGLE:
         smallLocalRenderFrame.setVisibility(View.VISIBLE);
-        animatePipToLargeRectangle();
+        animatePipToLargeRectangle(displaySmallSelfPipInLandscape);
 
         largeLocalRender.attachBroadcastVideoSink(null);
         largeLocalRenderFrame.setVisibility(View.GONE);
@@ -615,13 +623,23 @@ public class WebRtcCallView extends ConstraintLayout {
       }
     }
 
+    if (webRtcControls.adjustForFold() && webRtcControls.isFadeOutEnabled() && !controls.adjustForFold()) {
+      scheduleFadeOut();
+    }
+
     controls = webRtcControls;
 
     if (!controls.isFadeOutEnabled()) {
       controlsVisible = true;
     }
 
-    if (!visibleViewSet.equals(lastVisibleSet) || !controls.isFadeOutEnabled()) {
+    if (!visibleViewSet.equals(lastVisibleSet) ||
+        !controls.isFadeOutEnabled()) {
+
+      if (controlsListener != null) {
+        controlsListener.showSystemUI();
+      }
+
       fadeInNewUiState(lastVisibleSet, webRtcControls.displaySmallOngoingCallButtons());
     }
 
@@ -710,8 +728,15 @@ public class WebRtcCallView extends ConstraintLayout {
     });
   }
 
-  private void animatePipToLargeRectangle() {
-    ResizeAnimation animation = new ResizeAnimation(smallLocalRenderFrame, ViewUtil.dpToPx(90), ViewUtil.dpToPx(160));
+  private void animatePipToLargeRectangle(boolean isLandscape) {
+    final Point dimens;
+    if (isLandscape) {
+      dimens = new Point(ViewUtil.dpToPx(160), ViewUtil.dpToPx(90));
+    } else {
+      dimens = new Point(ViewUtil.dpToPx(90), ViewUtil.dpToPx(160));
+    }
+
+    ResizeAnimation animation = new ResizeAnimation(smallLocalRenderFrame, dimens.x, dimens.y);
     animation.setDuration(PIP_RESIZE_DURATION);
     animation.setAnimationListener(new SimpleAnimationListener() {
       @Override
@@ -777,7 +802,7 @@ public class WebRtcCallView extends ConstraintLayout {
       return 0;
     }
 
-    return controlsVisible ? margin + CONTROLS_HEIGHT : margin;
+    return (controlsVisible || controls.adjustForFold()) ? margin + CONTROLS_HEIGHT : margin;
   }
 
   private void layoutParticipants() {
@@ -862,7 +887,7 @@ public class WebRtcCallView extends ConstraintLayout {
   }
 
   private void adjustParticipantsRecycler(@NonNull ConstraintSet constraintSet) {
-    if (controlsVisible) {
+    if (controlsVisible || controls.adjustForFold()) {
       constraintSet.connect(R.id.call_screen_participants_recycler, ConstraintSet.BOTTOM, R.id.call_screen_video_toggle, ConstraintSet.TOP);
     } else {
       constraintSet.connect(R.id.call_screen_participants_recycler, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM);
