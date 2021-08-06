@@ -36,7 +36,7 @@ class VoiceNoteProximityWakeLockManager(
   }
 
   private val sensorManager: SensorManager = ServiceUtil.getSensorManager(activity)
-  private val proximitySensor: Sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
+  private val proximitySensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY)
 
   private val mediaControllerCallback = MediaControllerCallback()
   private val hardwareSensorEventListener = HardwareSensorEventListener()
@@ -44,15 +44,21 @@ class VoiceNoteProximityWakeLockManager(
   private var startTime: Long = -1
 
   init {
-    activity.lifecycle.addObserver(this)
+    if (proximitySensor != null) {
+      activity.lifecycle.addObserver(this)
+    }
   }
 
   override fun onResume(owner: LifecycleOwner) {
-    mediaController.registerCallback(mediaControllerCallback)
+    if (proximitySensor != null) {
+      mediaController.registerCallback(mediaControllerCallback)
+    }
   }
 
   override fun onPause(owner: LifecycleOwner) {
-    unregisterCallbacksAndRelease()
+    if (proximitySensor != null) {
+      unregisterCallbacksAndRelease()
+    }
   }
 
   fun unregisterCallbacksAndRelease() {
@@ -110,7 +116,7 @@ class VoiceNoteProximityWakeLockManager(
         return
       }
 
-      val newStreamType = if (event.values[0] < PROXIMITY_THRESHOLD && event.values[0] != proximitySensor.maximumRange) {
+      val newStreamType = if (event.values[0] < PROXIMITY_THRESHOLD && event.values[0] != proximitySensor?.maximumRange) {
         AudioManager.STREAM_VOICE_CALL
       } else {
         AudioManager.STREAM_MUSIC
