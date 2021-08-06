@@ -47,6 +47,7 @@ import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
@@ -110,7 +111,7 @@ public final class MessageDecryptionUtil {
       } catch (ProtocolDuplicateMessageException e) {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
         return DecryptionResult.forError(MessageState.DUPLICATE_MESSAGE, toExceptionMetadata(e), jobs);
-      } catch (InvalidMetadataVersionException | InvalidMetadataMessageException e) {
+      } catch (InvalidMetadataVersionException | InvalidMetadataMessageException | InvalidMessageStructureException e) {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
         return DecryptionResult.forNoop(jobs);
       } catch (SelfSendException e) {

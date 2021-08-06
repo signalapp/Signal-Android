@@ -21,6 +21,7 @@ import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
 import org.whispersystems.libsignal.protocol.SenderKeyDistributionMessage;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
 import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
@@ -370,7 +371,7 @@ public final class SignalServiceContent {
       SignalServiceContentProto signalServiceContentProto = SignalServiceContentProto.parseFrom(data);
 
       return createFromProto(signalServiceContentProto);
-    } catch (InvalidProtocolBufferException | ProtocolInvalidMessageException | ProtocolInvalidKeyException | UnsupportedDataMessageException e) {
+    } catch (InvalidProtocolBufferException | ProtocolInvalidMessageException | ProtocolInvalidKeyException | UnsupportedDataMessageException | InvalidMessageStructureException e) {
       // We do not expect any of these exceptions if this byte[] has come from serialize.
       throw new AssertionError(e);
     }
@@ -380,7 +381,7 @@ public final class SignalServiceContent {
    * Takes internal protobuf serialization format and processes it into a {@link SignalServiceContent}.
    */
   public static SignalServiceContent createFromProto(SignalServiceContentProto serviceContentProto)
-      throws ProtocolInvalidMessageException, ProtocolInvalidKeyException, UnsupportedDataMessageException
+      throws ProtocolInvalidMessageException, ProtocolInvalidKeyException, UnsupportedDataMessageException, InvalidMessageStructureException
   {
     SignalServiceMetadata metadata     = SignalServiceMetadataProtobufSerializer.fromProtobuf(serviceContentProto.getMetadata());
     SignalServiceAddress  localAddress = SignalServiceAddressProtobufSerializer.fromProtobuf(serviceContentProto.getLocalAddress());
@@ -502,7 +503,7 @@ public final class SignalServiceContent {
 
   private static SignalServiceDataMessage createSignalServiceMessage(SignalServiceMetadata metadata,
                                                                      SignalServiceProtos.DataMessage content)
-      throws ProtocolInvalidMessageException, UnsupportedDataMessageException
+      throws UnsupportedDataMessageException, InvalidMessageStructureException
   {
     SignalServiceGroup                  groupInfoV1  = createGroupV1Info(content);
     SignalServiceGroupV2                groupInfoV2  = createGroupV2Info(content);
@@ -511,7 +512,7 @@ public final class SignalServiceContent {
     try {
       groupContext = SignalServiceGroupContext.createOptional(groupInfoV1, groupInfoV2);
     } catch (InvalidMessageException e) {
-      throw new ProtocolInvalidMessageException(e, null, 0);
+      throw new InvalidMessageStructureException(e);
     }
 
 
@@ -537,12 +538,7 @@ public final class SignalServiceContent {
                                                                groupContext);
     }
 
-    SignalServiceDataMessage.Payment payment;
-    try {
-      payment = createPayment(content);
-    } catch (InvalidMessageException e) {
-      throw new ProtocolInvalidMessageException(e, metadata.getSender().getIdentifier(), metadata.getSenderDevice());
-    }
+    SignalServiceDataMessage.Payment payment = createPayment(content);
 
     if (content.getRequiredProtocolVersion() > SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT.getNumber()) {
       throw new UnsupportedDataMessageProtocolVersionException(SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT.getNumber(),
@@ -557,9 +553,9 @@ public final class SignalServiceContent {
     }
 
     if (content.hasTimestamp() && content.getTimestamp() != metadata.getTimestamp()) {
-      throw new ProtocolInvalidMessageException(new InvalidMessageException("Timestamps don't match: " + content.getTimestamp() + " vs " + metadata.getTimestamp()),
-                                                                            metadata.getSender().getIdentifier(),
-                                                                            metadata.getSenderDevice());
+      throw new InvalidMessageStructureException("Timestamps don't match: " + content.getTimestamp() + " vs " + metadata.getTimestamp(),
+                                                 metadata.getSender().getIdentifier(),
+                                                 metadata.getSenderDevice());
     }
 
     return new SignalServiceDataMessage(metadata.getTimestamp(),
@@ -585,7 +581,7 @@ public final class SignalServiceContent {
 
   private static SignalServiceSyncMessage createSynchronizeMessage(SignalServiceMetadata metadata,
                                                                    SignalServiceProtos.SyncMessage content)
-      throws ProtocolInvalidMessageException, ProtocolInvalidKeyException, UnsupportedDataMessageException
+      throws ProtocolInvalidKeyException, UnsupportedDataMessageException, InvalidMessageStructureException
   {
     if (content.hasSent()) {
       Map<SignalServiceAddress, Boolean>   unidentifiedStatuses = new HashMap<>();
@@ -596,7 +592,7 @@ public final class SignalServiceContent {
                                                                   : Optional.<SignalServiceAddress>absent();
 
       if (!address.isPresent() && !dataMessage.getGroupContext().isPresent()) {
-        throw new ProtocolInvalidMessageException(new InvalidMessageException("SyncMessage missing both destination and group ID!"), null, 0);
+        throw new InvalidMessageStructureException("SyncMessage missing both destination and group ID!");
       }
 
       for (SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatus status : sentContent.getUnidentifiedStatusList()) {
@@ -656,7 +652,7 @@ public final class SignalServiceContent {
         ViewOnceOpenMessage timerRead = new ViewOnceOpenMessage(address, content.getViewOnceOpen().getTimestamp());
         return SignalServiceSyncMessage.forViewOnceOpen(timerRead);
       } else {
-        throw new ProtocolInvalidMessageException(new InvalidMessageException("ViewOnceOpen message has no sender!"), null, 0);
+        throw new InvalidMessageStructureException("ViewOnceOpen message has no sender!");
       }
     }
 
@@ -676,8 +672,9 @@ public final class SignalServiceContent {
           } else if (verified.getState() == SignalServiceProtos.Verified.State.UNVERIFIED) {
             verifiedState = VerifiedMessage.VerifiedState.UNVERIFIED;
           } else {
-            throw new ProtocolInvalidMessageException(new InvalidMessageException("Unknown state: " + verified.getState().getNumber()),
-                                                      metadata.getSender().getIdentifier(), metadata.getSenderDevice());
+            throw new InvalidMessageStructureException("Unknown state: " + verified.getState().getNumber(),
+                                                       metadata.getSender().getIdentifier(),
+                                                       metadata.getSenderDevice());
           }
 
           return SignalServiceSyncMessage.forVerified(new VerifiedMessage(destination, identityKey, verifiedState, System.currentTimeMillis()));
@@ -685,7 +682,7 @@ public final class SignalServiceContent {
           throw new ProtocolInvalidKeyException(e, metadata.getSender().getIdentifier(), metadata.getSenderDevice());
         }
       } else {
-        throw new ProtocolInvalidMessageException(new InvalidMessageException("Verified message has no sender!"), null, 0);
+        throw new InvalidMessageStructureException("Verified message has no sender!");
       }
     }
 
@@ -786,7 +783,7 @@ public final class SignalServiceContent {
         if (address.isPresent()) {
           responseMessage = MessageRequestResponseMessage.forIndividual(address.get(), type);
         } else {
-          throw new ProtocolInvalidMessageException(new InvalidMessageException("Message request response has an invalid thread identifier!"), null, 0);
+          throw new InvalidMessageStructureException("Message request response has an invalid thread identifier!");
         }
       }
 
@@ -868,15 +865,15 @@ public final class SignalServiceContent {
     return new SignalServiceReceiptMessage(type, content.getTimestampList(), metadata.getTimestamp());
   }
 
-  private static DecryptionErrorMessage createDecryptionErrorMessage(SignalServiceMetadata metadata, ByteString content) throws ProtocolInvalidMessageException {
+  private static DecryptionErrorMessage createDecryptionErrorMessage(SignalServiceMetadata metadata, ByteString content) throws InvalidMessageStructureException {
     try {
       return new DecryptionErrorMessage(content.toByteArray());
     } catch (InvalidMessageException e) {
-      throw new ProtocolInvalidMessageException(e, metadata.getSender().getIdentifier(), metadata.getSenderDevice());
+      throw new InvalidMessageStructureException(e, metadata.getSender().getIdentifier(), metadata.getSenderDevice());
     }
   }
 
-  private static SignalServiceTypingMessage createTypingMessage(SignalServiceMetadata metadata, SignalServiceProtos.TypingMessage content) throws ProtocolInvalidMessageException {
+  private static SignalServiceTypingMessage createTypingMessage(SignalServiceMetadata metadata, SignalServiceProtos.TypingMessage content) throws InvalidMessageStructureException {
     SignalServiceTypingMessage.Action action;
 
     if      (content.getAction() == SignalServiceProtos.TypingMessage.Action.STARTED) action = SignalServiceTypingMessage.Action.STARTED;
@@ -884,9 +881,9 @@ public final class SignalServiceContent {
     else                                                          action = SignalServiceTypingMessage.Action.UNKNOWN;
 
     if (content.hasTimestamp() && content.getTimestamp() != metadata.getTimestamp()) {
-      throw new ProtocolInvalidMessageException(new InvalidMessageException("Timestamps don't match: " + content.getTimestamp() + " vs " + metadata.getTimestamp()),
-                                                metadata.getSender().getIdentifier(),
-                                                metadata.getSenderDevice());
+      throw new InvalidMessageStructureException("Timestamps don't match: " + content.getTimestamp() + " vs " + metadata.getTimestamp(),
+                                                 metadata.getSender().getIdentifier(),
+                                                 metadata.getSenderDevice());
     }
 
     return new SignalServiceTypingMessage(action, content.getTimestamp(),
@@ -894,7 +891,9 @@ public final class SignalServiceContent {
                                                                  Optional.<byte[]>absent());
   }
 
-  private static SignalServiceDataMessage.Quote createQuote(SignalServiceProtos.DataMessage content, boolean isGroupV2) throws ProtocolInvalidMessageException {
+  private static SignalServiceDataMessage.Quote createQuote(SignalServiceProtos.DataMessage content, boolean isGroupV2)
+      throws  InvalidMessageStructureException
+  {
     if (!content.hasQuote()) return null;
 
     List<SignalServiceDataMessage.Quote.QuotedAttachment> attachments = new LinkedList<>();
@@ -919,7 +918,7 @@ public final class SignalServiceContent {
     }
   }
 
-  private static List<SignalServiceDataMessage.Preview> createPreviews(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
+  private static List<SignalServiceDataMessage.Preview> createPreviews(SignalServiceProtos.DataMessage content) throws InvalidMessageStructureException {
     if (content.getPreviewCount() <= 0) return null;
 
     List<SignalServiceDataMessage.Preview> results = new LinkedList<>();
@@ -941,7 +940,9 @@ public final class SignalServiceContent {
     return results;
   }
 
-  private static List<SignalServiceDataMessage.Mention> createMentions(List<SignalServiceProtos.DataMessage.BodyRange> bodyRanges, String body, boolean isGroupV2) throws ProtocolInvalidMessageException {
+  private static List<SignalServiceDataMessage.Mention> createMentions(List<SignalServiceProtos.DataMessage.BodyRange> bodyRanges, String body, boolean isGroupV2)
+      throws InvalidMessageStructureException
+  {
     if (bodyRanges == null || bodyRanges.isEmpty() || body == null) {
       return null;
     }
@@ -953,19 +954,19 @@ public final class SignalServiceContent {
         try {
           mentions.add(new SignalServiceDataMessage.Mention(UuidUtil.parseOrThrow(bodyRange.getMentionUuid()), bodyRange.getStart(), bodyRange.getLength()));
         } catch (IllegalArgumentException e) {
-          throw new ProtocolInvalidMessageException(new InvalidMessageException(e), null, 0);
+          throw new InvalidMessageStructureException("Invalid body range!");
         }
       }
     }
 
     if (mentions.size() > 0 && !isGroupV2) {
-      throw new ProtocolInvalidMessageException(new InvalidMessageException("Mentions received in non-GV2 message"), null, 0);
+      throw new InvalidMessageStructureException("Mentions received in non-GV2 message");
     }
 
     return mentions;
   }
 
-  private static SignalServiceDataMessage.Sticker createSticker(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
+  private static SignalServiceDataMessage.Sticker createSticker(SignalServiceProtos.DataMessage content) throws InvalidMessageStructureException {
     if (!content.hasSticker()                ||
         !content.getSticker().hasPackId()    ||
         !content.getSticker().hasPackKey()   ||
@@ -1027,7 +1028,7 @@ public final class SignalServiceContent {
     return new SignalServiceDataMessage.GroupCallUpdate(groupCallUpdate.getEraId());
   }
 
-  private static SignalServiceDataMessage.Payment createPayment(SignalServiceProtos.DataMessage content) throws InvalidMessageException {
+  private static SignalServiceDataMessage.Payment createPayment(SignalServiceProtos.DataMessage content) throws InvalidMessageStructureException {
     if (!content.hasPayment()) {
       return null;
     }
@@ -1036,17 +1037,17 @@ public final class SignalServiceContent {
 
     switch (payment.getItemCase()) {
       case NOTIFICATION: return new SignalServiceDataMessage.Payment(createPaymentNotification(payment));
-      default          : throw new InvalidMessageException("Unknown payment item");
+      default          : throw new InvalidMessageStructureException("Unknown payment item");
     }
   }
 
   private static SignalServiceDataMessage.PaymentNotification createPaymentNotification(SignalServiceProtos.DataMessage.Payment content)
-      throws InvalidMessageException
+      throws InvalidMessageStructureException
   {
     if (!content.hasNotification() ||
         content.getNotification().getTransactionCase() != SignalServiceProtos.DataMessage.Payment.Notification.TransactionCase.MOBILECOIN)
     {
-      throw new InvalidMessageException();
+      throw new InvalidMessageStructureException("Badly-formatted payment notification!");
     }
 
     SignalServiceProtos.DataMessage.Payment.Notification payment = content.getNotification();
@@ -1054,7 +1055,7 @@ public final class SignalServiceContent {
     return new SignalServiceDataMessage.PaymentNotification(payment.getMobileCoin().getReceipt().toByteArray(), payment.getNote());
   }
 
-  private static List<SharedContact> createSharedContacts(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
+  private static List<SharedContact> createSharedContacts(SignalServiceProtos.DataMessage content) throws InvalidMessageStructureException {
     if (content.getContactCount() <= 0) return null;
 
     List<SharedContact> results = new LinkedList<>();
@@ -1149,7 +1150,7 @@ public final class SignalServiceContent {
     return results;
   }
 
-  private static SignalServiceAttachmentPointer createAttachmentPointer(SignalServiceProtos.AttachmentPointer pointer) throws ProtocolInvalidMessageException {
+  private static SignalServiceAttachmentPointer createAttachmentPointer(SignalServiceProtos.AttachmentPointer pointer) throws InvalidMessageStructureException {
     return new SignalServiceAttachmentPointer(pointer.getCdnNumber(),
                                               SignalServiceAttachmentRemoteId.from(pointer),
                                               pointer.getContentType(),
@@ -1168,7 +1169,7 @@ public final class SignalServiceContent {
 
   }
 
-  private static SignalServiceGroup createGroupV1Info(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
+  private static SignalServiceGroup createGroupV1Info(SignalServiceProtos.DataMessage content) throws InvalidMessageStructureException {
     if (!content.hasGroup()) return null;
 
     SignalServiceGroup.Type type;
@@ -1197,7 +1198,7 @@ public final class SignalServiceContent {
           if (SignalServiceAddress.isValidAddress(null, member.getE164())) {
             members.add(new SignalServiceAddress(null, member.getE164()));
           } else {
-            throw new ProtocolInvalidMessageException(new InvalidMessageException("GroupContext.Member had no address!"), null, 0);
+            throw new InvalidMessageStructureException("GroupContext.Member had no address!");
           }
         }
       } else if (content.getGroup().getMembersE164Count() > 0) {
@@ -1233,15 +1234,15 @@ public final class SignalServiceContent {
     return new SignalServiceGroup(content.getGroup().getId().toByteArray());
   }
 
-  private static SignalServiceGroupV2 createGroupV2Info(SignalServiceProtos.DataMessage content) throws ProtocolInvalidMessageException {
+  private static SignalServiceGroupV2 createGroupV2Info(SignalServiceProtos.DataMessage content) throws InvalidMessageStructureException {
     if (!content.hasGroupV2()) return null;
 
     SignalServiceProtos.GroupContextV2 groupV2 = content.getGroupV2();
     if (!groupV2.hasMasterKey()) {
-      throw new ProtocolInvalidMessageException(new InvalidMessageException("No GV2 master key on message"), null, 0);
+      throw new InvalidMessageStructureException("No GV2 master key on message");
     }
     if (!groupV2.hasRevision()) {
-      throw new ProtocolInvalidMessageException(new InvalidMessageException("No GV2 revision on message"), null, 0);
+      throw new InvalidMessageStructureException("No GV2 revision on message");
     }
 
     SignalServiceGroupV2.Builder builder;
@@ -1249,7 +1250,7 @@ public final class SignalServiceContent {
       builder = SignalServiceGroupV2.newBuilder(new GroupMasterKey(groupV2.getMasterKey().toByteArray()))
                                     .withRevision(groupV2.getRevision());
     } catch (InvalidInputException e) {
-      throw new ProtocolInvalidMessageException(new InvalidMessageException(e), null, 0);
+      throw new InvalidMessageStructureException("Invalid GV2 input!");
     }
 
     if (groupV2.hasGroupChange() && !groupV2.getGroupChange().isEmpty()) {

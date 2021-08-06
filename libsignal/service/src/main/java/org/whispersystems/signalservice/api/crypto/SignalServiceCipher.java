@@ -41,6 +41,7 @@ import org.whispersystems.libsignal.protocol.PreKeySignalMessage;
 import org.whispersystems.libsignal.protocol.SignalMessage;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
@@ -135,7 +136,7 @@ public class SignalServiceCipher {
       ProtocolUntrustedIdentityException, ProtocolNoSessionException,
       ProtocolInvalidVersionException, ProtocolInvalidMessageException,
       ProtocolInvalidKeyException, ProtocolDuplicateMessageException,
-      SelfSendException, UnsupportedDataMessageException
+      SelfSendException, UnsupportedDataMessageException, InvalidMessageStructureException
   {
     try {
       if (envelope.hasLegacyMessage()) {
@@ -174,7 +175,7 @@ public class SignalServiceCipher {
       ProtocolLegacyMessageException, ProtocolInvalidKeyException,
       ProtocolInvalidVersionException, ProtocolInvalidMessageException,
       ProtocolInvalidKeyIdException, ProtocolNoSessionException,
-      SelfSendException
+      SelfSendException, InvalidMessageStructureException
   {
     try {
 
@@ -182,7 +183,7 @@ public class SignalServiceCipher {
       SignalServiceMetadata metadata;
 
       if (!envelope.hasSource() && !envelope.isUnidentifiedSender()) {
-        throw new ProtocolInvalidMessageException(new InvalidMessageException("Non-UD envelope is missing a source!"), null, 0);
+        throw new InvalidMessageStructureException("Non-UD envelope is missing a source!");
       }
 
       if (envelope.isPreKeySignalMessage()) {
