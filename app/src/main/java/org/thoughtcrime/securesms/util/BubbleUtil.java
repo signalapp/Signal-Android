@@ -17,10 +17,8 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.notifications.v2.NotificationFactory;
-import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -39,21 +37,15 @@ public final class BubbleUtil {
   /**
    * Checks whether we are allowed to create a bubble for the given recipient.
    *
-   * In order to Bubble, a recipient must have a thread, be unblocked, and the user must not have
-   * notification privacy settings enabled. Furthermore, we check the Notifications system to verify
-   * that bubbles are allowed in the first place.
+   * In order to Bubble, a recipient must have a thread and be unblocked.
+   * Furthermore, we check the Notifications system to verify that bubbles
+   * are allowed in the first place.
    */
   @RequiresApi(CONVERSATION_SUPPORT_VERSION)
   @WorkerThread
   public static boolean canBubble(@NonNull Context context, @NonNull RecipientId recipientId, @Nullable Long threadId) {
     if (threadId == null) {
       Log.i(TAG, "Cannot bubble recipient without thread");
-      return false;
-    }
-
-    NotificationPrivacyPreference privacyPreference = SignalStore.settings().getMessageNotificationsPrivacy();
-    if (!privacyPreference.isDisplayContact()) {
-      Log.i(TAG, "Bubbles are not available when notification privacy settings are enabled.");
       return false;
     }
 
