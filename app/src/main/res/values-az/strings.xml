@@ -73,14 +73,14 @@
   <string name="BackgroundMessageRetriever_checking_for_messages">Mesajlar yoxlanılır…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Əngəllənmiş istifadəçilər</string>
-  <string name="BlockedUsersActivity__add_blocked_user">Əngəlli istifadəçi əlavə et</string>
+  <string name="BlockedUsersActivity__add_blocked_user">İstifadəçi əlavə et</string>
   <string name="BlockedUsersActivity__blocked_users_will">Əngəllənmiş istifadəçilər, sizə mesaj göndərə və ya zəng edə bilməz.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Heç bir istifadəçi əngəllənməyib</string>
   <string name="BlockedUsersActivity__block_user">İstifadəçi əngəllənsin?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" sizə zəng edə və ya mesaj göndərə bilməyəcək.</string>
   <string name="BlockedUsersActivity__block">Əngəllə</string>
   <string name="BlockedUsersActivity__unblock_user">İstifadəçini əngəldən çıxart</string>
-  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">\"%1$s\" istifadəçisini əngəldən çıxartmaq istəyirsiniz?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">\"%1$s\" əngəldən çıxarılsın?</string>
   <string name="BlockedUsersActivity__unblock">Əngəldən çıxart</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$sqrupunu əngəlləyərək tərk edirsiniz?</string>
@@ -218,12 +218,12 @@
   <string name="ConversationActivity_cancel_request">Tələbi ləğv et</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Səsli mesaj göndərmək üçün, Signal-ın mikrofonunuza müraciətinə icazə verin.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal, səsli mesaj göndərmək üçün Mikrofon icazəsini tələb edir, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Mikrofon\"u fəallaşdırın.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%s  adlı əlaqəyə zəng etmək üçün, Signal-ın Mikrofon və Kamera icazələrinə ehtiyacı var, ancaq bu icazələr birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Mikrofon\" və \"Kamera\"nı fəallaşdırın.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal-ın, %s əlaqəsinə zəng etmək üçün Mikrofon və Kamera icazələrinə ehtiyacı var, ancaq bu icazələr birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Mikrofon\" və \"Kamera\"nı fəallaşdırın.</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Foto və video çəkmək üçün, Signal-ın kameraya müraciətinə icazə verin.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Foto və ya video çəkmək üçün, Signal-ın Kamera icazəsinə ehtiyacı var, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Kamera\"nı fəallaşdırın.</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Foto və ya video çəkmək üçün, Signal-ın Kamera icazəsinə ehtiyacı var.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal-ın, foto və ya video çəkmək üçün Kamera icazəsinə ehtiyacı var, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Kamera\"nı fəallaşdırın.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal-ın, foto və ya video çəkmək üçün Kamera icazəsinə ehtiyacı var.</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Səsli video çəkmək üçün mikrofon icazəsini fəallaşdırın.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Video çəkmək üçün, Signal-ın mikrofon icazəsinə ehtiyacı var, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Mikrofon\" və \"Kamera\"nı fəallaşdırın.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal-ın, video çəkmək üçün mikrofon icazəsinə ehtiyacı var, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Mikrofon\" və \"Kamera\"nı fəallaşdırın.</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal-ın, video çəkmək üçün mikrofon icazəsinə ehtiyacı var.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal, ilkin SMS tətbiqi olmadığı üçün SMS/MMS mesajları göndərə bilmir. Bunu Android tənzimləmələrində dəyişdirmək istəyirsiniz?</string>
@@ -240,7 +240,7 @@
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">Bu qrupu tərk edəcəksiniz və bütün cihazlarınızdan silinəcək.</string>
   <string name="ConversationActivity_delete">Sil</string>
   <string name="ConversationActivity_delete_and_leave">Sil və tərk et</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s adlı əlaqəyə zəng etmək üçün, Signal-ın mikrofonunuza müraciətinə ehtiyac var</string>
+  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s əlaqəsinə zəng etmək üçün, Signal-ın mikrofonunuza müraciətinə ehtiyac var</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">\"Qrup tənzimləmələri\"ndə artıq daha çox seçim var</string>
   <string name="ConversationActivity_join">Qoşul</string>
   <string name="ConversationActivity_full">Dolub</string>
@@ -521,8 +521,8 @@
   <string name="AddGroupDetailsFragment__sms_contact">SMS əlaqəsi</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s qrupdan çıxarılsın?</string>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">\"%1$s\" üzv Signal-ın köhnə versiyasını istifadə etdiyi üçün Köhnə Qrup yaradılacaq. Həmin üzvlər Signal-ı yenilədikdən və ya siz onları qrupdan çıxartdıqdan sonra Yeni Stil Qrup yarada biləcəksiniz.</string>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">\"%1$s\" üzv Signal-ın köhnə versiyasını istifadə etdiyi üçün bu qrup yaradıla bilmədi. Qrupu yaratmazdan əvvəl onları çıxartmalısınız.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">\"%1$s\", Signal-ın köhnə versiyasını istifadə etdiyi üçün Köhnə Qrup yaradılacaq. Həmin üzvlər Signal-ı yenilədikdən və ya siz onları qrupdan çıxartdıqdan sonra Yeni Stil Qrup yarada biləcəksiniz.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">\"%1$s\", Signal-ın köhnə versiyasını istifadə etdiyi üçün bu qrup yaradıla bilmədi. Qrupu yaratmazdan əvvəl onları çıxartmalısınız.</string>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Üzv tələbləri və dəvətlər</string>
   <string name="ManageGroupActivity_add_members">Üzv əlavə et</string>
@@ -696,8 +696,8 @@
   <string name="MediaOverviewActivity_voice_message">Səsyazmalı mesaj</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$s tərəfindən göndərilən</string>
   <string name="MediaOverviewActivity_sent_by_you">Göndərdikləriniz</string>
-  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s tərəfindən %2$s adlı əlaqəyə göndərilən</string>
-  <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s üçün göndərdikləriniz</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s, %2$s əlaqəsinə göndərdi</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s əlaqəsinə göndərdikləriniz</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Budur, Reaksiyalar</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Necə hiss etdiyinizi cəld paylaşmaq üçün bir mesaja basıb saxlayın.</string>
@@ -730,7 +730,7 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS mesajı endirilir</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS endirmə xətası, yenidən sınamaq üçün toxunun</string>
   <!--MediaPickerActivity-->
-  <string name="MediaPickerActivity_send_to">%s üçün göndər</string>
+  <string name="MediaPickerActivity_send_to">%s əlaqəsinə göndər</string>
   <string name="MediaPickerActivity__menu_open_camera">Kameranı aç</string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Bir başlıq əlavə et…</string>
@@ -738,11 +738,11 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Bilinməyən bir növdə olduğu üçün bir element silindi</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Həcm limitini aşdığı və ya bilinməyən bir növdə olduğu üçün bir element silindi</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera əlçatmazdır.</string>
-  <string name="MediaSendActivity_message_to_s">%s adlı əlaqəyə mesaj</string>
+  <string name="MediaSendActivity_message_to_s">%s əlaqəsinə mesaj</string>
   <string name="MediaSendActivity_message">Mesaj</string>
   <string name="MediaSendActivity_select_recipients">Alıcıları seçin</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal-ın, əlaqələrinizi görüntüləmək üçün müraciətə ehtiyacı var.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Əlaqələrinizi göstərməsi üçün Signal-ın Əlaqələr icazəsinə ehtiyacı var, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Əlaqələr\"i fəallaşdırın.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal-ın, əlaqələrinizi göstərməsi üçün Əlaqələr icazəsinə ehtiyacı var, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Əlaqələr\"i fəallaşdırın.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">%d fayldan artığını paylaşa bilməzsən.</item>
     <item quantity="other">%d dənədən çoxunu paylaşa bilməzsiniz.</item>
@@ -784,8 +784,8 @@
   <string name="MessageRecord_group_updated">Qrup yeniləndi.</string>
   <string name="MessageRecord_invite_friends_to_this_group">Dostlarınızı qrupa, qrup bağlantısı ilə dəvət edin</string>
   <!--GV2 member additions-->
-  <string name="MessageRecord_you_added_s">%1$s adlı əlaqəni əlavə etdiniz.</string>
-  <string name="MessageRecord_s_added_s">%1$s, %2$s adlı əlaqəni əlavə etdi.</string>
+  <string name="MessageRecord_you_added_s">%1$s əlaqəsini əlavə etdiniz.</string>
+  <string name="MessageRecord_s_added_s">%1$s, %2$s əlaqəsini əlavə etdi.</string>
   <string name="MessageRecord_s_added_you">%1$s, sizi qrupa əlavə etdi.</string>
   <string name="MessageRecord_you_joined_the_group">Qrupa qoşuldunuz.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s qrupa qoşuldu.</string>
@@ -889,11 +889,11 @@
   <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s qrupa qoşulma tələbini ləğv etdi.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s ilə olan güvənlik nömrəniz dəyişdirildi.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s ilə işarələdiyiniz güvənlik nömrəniz təsdiqləndi</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s ilə işarələdiyiniz güvənlik nömrəniz başqa bir cihazda təsdiqləndi.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s ilə işarələdiyiniz güvənlik nömrəniz təsdiqlənmədi</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s ilə işarələdiyiniz güvənlik nömrəniz başqa bir cihazda təsdiqlənmədi.</string>
-  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s tərəfindən göndərən bir mesaj çatdırıla bilmədi</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s ilə güvənlik nömrənizi təsdiqləndi olaraq işalədiniz</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s ilə güvənlik nömrənizi başqa cihazda təsdiqləndi olaraq işarələdiniz</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s ilə güvənlik nömrənizi təsdiqlənmədi olaraq işarələdiniz</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s ilə güvənlik nömrənizi başqa cihazda təsdiqlənmədi olaraq işarələdiniz</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s tərəfindən göndərilən bir mesaj çatdırıla bilmədi</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s bir qrup zəngi başlatdı · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s qrup zəngindədir · %2$s</string>
@@ -1021,7 +1021,7 @@
   <string name="RedPhone_got_it">Anladım</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Videonuzu açmaq üçün bura toxunun</string>
-  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s əlaqəsinə zəng etmək üçün Signal-ın kameranıza müraciətinə ehtiyacı var</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal-ın, %1$s əlaqəsinə zəng etmək üçün kameranıza müraciətinə ehtiyacı var</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Zəng edilir…</string>
   <!--WebRtcCallView-->
@@ -1045,10 +1045,10 @@
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">%1$s əngəlləndi</string>
   <string name="CallParticipantView__more_info">Daha çox məlumat</string>
-  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Onların göndərdiyi səs və ya görüntü almayacaqsınız və onlar da sizin göndərdiklərinizi almayacaq.</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Onların göndərdiyi səs və ya görüntünü almayacaqsınız və onlar da sizin göndərdiklərinizi almayacaq.</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s əlaqəsindən səs və ya görüntü alına bilmir</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s əlaqəsindən səs və ya görüntü alına bilmir</string>
-  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Bu, qarşı tərəf güvənlik nömrəsi dəyişikliyini təsdiqləmədiyi, cihazında bir problem olduğu və sizi əngəllədiyi üçün baş verə bilər.</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Bu, qarşı tərəf güvənlik nömrəsi dəyişikliyini təsdiqləmədiyi, cihazında bir problem olduğu və ya sizi əngəllədiyi üçün baş verə bilər.</string>
   <!--CallToastPopupWindow-->
   <string name="CallToastPopupWindow__swipe_to_view_screen_share">Ekran paylaşımına baxmaq üçün sürüşdürün</string>
   <!--ProxyBottomSheetFragment-->
@@ -1354,7 +1354,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">Cihaz artıq qeydiyyatlı deyil</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Böyük ehtimalla, telefon nömrəniz fərqli bir cihazdakı Signal hesabı üçün qeydiyyata alınıb. Yenidən qeydiyyatdan keçmək üçün toxunun.</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s edən gələn zəngi cavablandırmaq üçün Signal-ın mikrofonunuza müraciət etməsinə icazə verin.</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Signal-ın, %s edən gələn zəngi cavablandırmaq üçün mikrofonunuza müraciət etməsinə icazə verin.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal, zəng etmək və ya almaq üçün Mikrofon və Kamera icazələrini tələb edir, ancaq bu icazələr birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində \"İcazələr\"i seçib \"Mikrofon\" və \"Kamera\"nı fəallaşdırın.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Əlaqə yaradılmış cihazda cavablandı.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Əlaqə yaradılmış cihazda rədd edildi.</string>
@@ -1394,7 +1394,7 @@
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal, əlaqələrinizi görüntüləmək üçün Əlaqələr icazəsini tələb edir, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiqin tənzimləmələr menyusunda \"İcazələr\"i seçib \"Əlaqələr\"i fəallaşdırın.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Əlaqələr alınmadı, şəbəkə bağlantınızı yoxlayın</string>
   <string name="ContactSelectionListFragment_username_not_found">İstifadəçi adı tapılmadı</string>
-  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" Signal istifadəçisi deyil. Zəhmət olmasa istifadəçi adını yoxlayıb yenidən sınayın.</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\", Signal istifadəçisi deyil. Zəhmət olmasa istifadəçi adını yoxlayıb yenidən sınayın.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Özünüzü qrupa əlavə etməyə ehtiyac yoxdur</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Maksimum qrup həcminə çatıldı</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal qruplarında maksimum %1$d üzv ola bilər.</string>
@@ -1961,9 +1961,9 @@
   <string name="PaymentsTransferFragment__invalid_address">Etibarsız ünvan</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">Köçürmə etməyə cəhd etdiyiniz pulqabı ünvanını yoxlayıb yenidən sınayın.</string>
   <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">Öz Signal pulqabı ünvanınıza köçürmə edə bilməzsiniz. Dəstəklənən bir birjada hesabınızda pulqabı ünvanınızı daxil edin.</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QR kodu skan etmək üçün, Signal, kameraya müraciət etməlidir.</string>
-  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">QR kodu yaxalamaq üçün Signal-ın kamera icazəsinə ehtiyacı var. Tənzimləmələrə gedin, \"İcazələr\"i seçib \"Kamera\"nı fəallaşdırın.</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QR kodu skan etmək üçün, Signal, kameraya müraciət etməlidir.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">Signal-ın, QR kodu skan etmək üçün kameraya müraciətinə ehtiyacı var.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal-ın, QR kodu skan etmək üçün kamera icazəsinə ehtiyacı var. Tənzimləmələrə gedin, \"İcazələr\"i seçib \"Kamera\"nı fəallaşdırın.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Signal-ın, QR kodu skan etmək üçün kameraya müraciətinə ehtiyacı var.</string>
   <string name="PaymentsTransferFragment__settings">Tənzimləmələr</string>
   <!--PaymentsTransferQrScanFragment-->
   <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">QR kodu skan edin</string>
@@ -2226,7 +2226,7 @@
   <string name="ConversationListFragment_loading">Yüklənir…</string>
   <string name="CallNotificationBuilder_connecting">Bağlantı qurulur…</string>
   <string name="Permissions_permission_required">İcazə tələb olunur</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS göndərməsi üçün Signal-ın SMS icazəsinə ehtiyacı var, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində, \"İcazələr\"i seçib \"SMS\"i fəallaşdırın.</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal-ın, SMS göndərməsi üçün SMS icazəsinə ehtiyacı var, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələrində, \"İcazələr\"i seçib \"SMS\"i fəallaşdırın.</string>
   <string name="Permissions_continue">Davam et</string>
   <string name="Permissions_not_now">İndi yox</string>
   <string name="conversation_activity__enable_signal_messages">SIGNAL MESAJLARINI FƏALLAŞDIR</string>
@@ -2293,7 +2293,7 @@
   <string name="preferences_app_protection__screen_lock">Ekran kilidi</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android ekran kilidi və ya barmaq izi ilə Signal-a müraciəti kilidləyin</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekran kilidi bitmə vaxtı</string>
-  <string name="preferences_app_protection__signal_pin">Signal PI-i</string>
+  <string name="preferences_app_protection__signal_pin">Signal PIN-i</string>
   <string name="preferences_app_protection__create_a_pin">Bir PIN yarat</string>
   <string name="preferences_app_protection__change_your_pin">PIN-i dəyişdirin</string>
   <string name="preferences_app_protection__pin_reminders">PIN xatırladıcıları</string>
@@ -2402,7 +2402,7 @@
   <string name="OldDeviceTransferInstructions__transfer_account">Hesab köçürülməsi</string>
   <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Signal hesabınızı, yeni Android cihazınızda Signal-ı quraşdırarkən köçürə bilərsiniz. Davam etməzdən əvvəl:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
-  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Yeni Android cihazınızda Signal-ı endirin</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Yeni Android cihazınıza Signal-ı endirin</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
   <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">\"Hesabı köçür və ya geri yüklə\"yə toxunun</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
@@ -2642,7 +2642,7 @@
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Bərpa parolunu təsdiqləyin</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Bərpa parolunuzdan aşağıdakı sözləri daxil edin.</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Söz%1$d</string>
-  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">İfadəyə yenidən bax</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">Parola yenidən bax</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">Bitdi</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Bərpa parolu təsdiqləndi</string>
   <!--PaymentsRecoveryEntryFragment-->
@@ -2852,9 +2852,10 @@
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Səsli mesajı dayandır</string>
-  <string name="VoiceNotePlayerView__change_voice_message_speed">Səsli mesaj sürətini dəyişdirin</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Səsli mesaj sürətini dəyişdir</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Səsli mesaja fasilə ver</string>
   <string name="VoiceNotePlayerView__play_voice_message">Səsli mesajı oxut</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Səsli mesaja get</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Avatar önbaxışı</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>

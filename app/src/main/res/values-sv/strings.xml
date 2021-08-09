@@ -3073,6 +3073,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ContactFilterView__search_name_or_number">Sök namn eller nummer</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Stoppa röstmeddelandet</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Ändra röstmeddelandets hastighet</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Pausa röstmeddelandet</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Spela röstmeddelandet</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Navigera till röstmeddelande</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Avatar-förhandsgranskning</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>

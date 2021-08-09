@@ -212,6 +212,7 @@
   <string name="ConversationActivity_admins">stjórnendur</string>
   <string name="ConversationActivity_message_an_admin">Senda stjórnanda skilaboð</string>
   <string name="ConversationActivity_cant_start_group_call">Get ekki hafið hópsímtal</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Einungis stjórnendur þessa hóps geta hafið samtal.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Ekkert forrit sem getur meðhöndlað þennan tengil er tiltækt á tækinu þínu.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Beiðni þín um þátttöku hefur verið send til stjórnenda hópsins. Þú munt fá að vita þegar þeir hafa brugðist við.</string>
   <string name="ConversationActivity_cancel_request">Hætta við beiðni</string>
@@ -421,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Deila með</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Að hengja við mörg viðhengi í einu er aðeins stutt fyrir myndir og myndskeið</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Þú hefur ekki heimild til að senda á þennan hóp</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Viðvarandi bilun í Signal-samskiptum!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal náði ekki að skrá sig inn á Google Play þjónustur. Skilaboð og hringingar úr Signal hafa verið gerð óvirk, prófaðu að endurskrá í Stillingar &gt; Ítarlegt.</string>
@@ -3073,6 +3075,11 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ContactFilterView__search_name_or_number">Leita eftir nafni eða símanúmeri</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Stöðva talskilaboð</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Breyta hraða talskilaboða</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Setja talskilaboð á bið</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Spila talskilaboð</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Fara í talskilaboð</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Forskoðun auðkennismyndar</string>
   <string name="AvatarPickerFragment__camera">Myndavél</string>
@@ -3096,5 +3103,6 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Fara upp</string>
   <!--EOF-->
 </resources>

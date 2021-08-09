@@ -653,7 +653,7 @@
   <string name="ManageGroupActivity_add_group_description">Adicionar descrição do grupo…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificar-me quando for \'Mencionado\'</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Receber notificações quando for mencionado em chats silenciados?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Receber notificações quando for mencionado em conversas silenciadas?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Notificar-me sempre</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Não me notificar</string>
   <!--ManageProfileFragment-->

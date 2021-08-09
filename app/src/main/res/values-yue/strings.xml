@@ -756,7 +756,7 @@
   <string name="MediaOverviewActivity_Newest">最新到最舊</string>
   <string name="MediaOverviewActivity_Oldest">最舊到最新</string>
   <string name="MediaOverviewActivity_Storage_used">掗咗幾多空間</string>
-  <string name="MediaOverviewActivity_All_storage_use">所有掗咗啲空間</string>
+  <string name="MediaOverviewActivity_All_storage_use">所有掗咗嘅空間</string>
   <string name="MediaOverviewActivity_Grid_view_description">一格格顯示</string>
   <string name="MediaOverviewActivity_List_view_description">一行行顯示</string>
   <string name="MediaOverviewActivity_Selected_description">已揀選</string>

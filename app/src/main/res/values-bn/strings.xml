@@ -128,7 +128,7 @@
   <string name="ClientDeprecatedActivity_update">আপডেট করুন</string>
   <string name="ClientDeprecatedActivity_dont_update">আপডেট করবেন না</string>
   <string name="ClientDeprecatedActivity_warning">সতর্কবার্তা</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">আপনার Signal-এর ভার্শন্ পুরোনো হয়ে গেছে। যতখন না আপনি আপডেট করছেন, আপনি পুরোনো বার্তাগুলো দেখতে পাবেন, কিন্তু নতুন বার্তা দেখতে বা পাঠাতে পারবেন না।</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">আপনার Signal-এর সংস্করণটি পুরোনো হয়ে গেছে। যতখন না আপনি আপডেট করছেন, আপনি পুরোনো বার্তাগুলো দেখতে পাবেন, কিন্তু নতুন বার্তা দেখতে বা পাঠাতে পারবেন না।</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">কোন ওয়েব ব্রাউজার পাওয়া যায়নি।</string>
   <string name="CommunicationActions_send_email">ইমেইল পাঠান</string>
@@ -294,7 +294,7 @@
   <string name="ConversationFragment__d_group_members_have_the_same_name">গ্রুপের %1$d জনের একই নাম আছে।</string>
   <string name="ConversationFragment__tap_to_review">পর্যালোচনা করতে চাপুন</string>
   <string name="ConversationFragment__review_requests_carefully">তোমার অনুরোধ ভালোভাবে দেখো</string>
-  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal একই নামের আরেকটা যোগাযোগ(কন্ট্যাক্ট) পাওয়া গেছে।</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal একই নামের আরেকটা কন্ট্যাক্ট পাওয়া গেছে।</string>
   <string name="ConversationFragment_contact_us">আমাদের সাথে যোগাযোগ করুন</string>
   <string name="ConversationFragment_verify">যাচাই করুন</string>
   <string name="ConversationFragment_not_now">এখন না</string>
@@ -329,7 +329,7 @@
   <!--ConversationTypingView-->
   <string name="ConversationTypingView__plus_d">+ %1$d</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">কিছু যোগাযোগ(কন্ট্যাক্ট) পুরান(লেগেসি) গ্রুপে থাকতে পারবে না।</string>
+  <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">কিছু কন্ট্যাক্ট লিগ্যাসি গ্রুপে থাকতে পারবে না।</string>
   <string name="CreateGroupActivity__select_members">সদস্য নির্বাচন করুন</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">প্রোফাইল</string>
@@ -449,7 +449,7 @@
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">যেকেউ</string>
   <string name="GroupManagement_access_level_all_members">সকল সদস্য</string>
-  <string name="GroupManagement_access_level_only_admins">শুধুমাত্র এডমিন</string>
+  <string name="GroupManagement_access_level_only_admins">শুধু এডমিন</string>
   <string name="GroupManagement_access_level_no_one">কেউ না</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
@@ -480,7 +480,7 @@
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">আপগ্রেড করতে ব্যর্থ হয়েছে।</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
     <item quantity="one">এই ব্যাবহারকারিকে আবার এই গ্রুপে যোগদানের জন্য একটি আমন্ত্রণ গ্রহণ করতে হবে এবং সেটি গ্রহণ না করা পর্যন্ত গ্রুপের বার্তা পাবে না।</item>
-    <item quantity="other">এই ব্যাবহারকারিদের আবার এই গ্রুপে যোগদানের জন্য একটি আমন্ত্রণ গ্রহণ করতে হবে এবং তারা সেটি গ্রহণ না করা পর্যন্ত গ্রুপের বার্তা পাবে না :</item>
+    <item quantity="other">এই ব্যবহারকারিদের আবার এই গ্রুপে যোগদানের জন্য একটি আমন্ত্রণ গ্রহণ করতে হবে এবং তারা সেটি গ্রহণ না করা পর্যন্ত গ্রুপের বার্তা পাবে না:</item>
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">এই সদস্য নতুন গ্রুপে যোগদান করতে সক্ষম নয় এবং তাকে গ্রুপ থেকে সরানো হবে:</item>
@@ -538,11 +538,11 @@
     <item quantity="other">%1$d জন সদস্য</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMembersActivity_pending_group_invites">অনিষ্পাদিত গ্রুপ নিমন্ত্রণসমূহ</string>
+  <string name="PendingMembersActivity_pending_group_invites">অনিষ্পন্ন গ্রুপ নিমন্ত্রণসমূহ</string>
   <string name="PendingMembersActivity_requests">অনুরোধসমুহ</string>
-  <string name="PendingMembersActivity_invites">আমন্ত্রনসমুহ</string>
+  <string name="PendingMembersActivity_invites">আমন্ত্রণসমূহ</string>
   <string name="PendingMembersActivity_people_you_invited">আপনার আমন্ত্রিত লোকেরা</string>
-  <string name="PendingMembersActivity_you_have_no_pending_invites">আপনার কোন অনিষ্পাদিত আমন্ত্রণ নেই।</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">আপনার কোন অনিষ্পন্ন আমন্ত্রণ নেই।</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">গ্রুপের অন্যান্য সদস্যদের আমন্ত্রণ</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">গ্রুপের অন্যান্য সদস্যবৃন্দ কর্তৃক কোন অনিষ্পাদিত আমন্ত্রণ নেই।</string>
   <string name="PendingMembersActivity_missing_detail_explanation">গ্রুপের অন্যান্য সদস্যদের দ্বারা আমন্ত্রিত লোকদের বিবরণ দেখানো হয় না। আমন্ত্রিতরা যদি যোগদান করেন, তখন তাদের তথ্য গ্রুপের সাথে শেয়ার করা হবে। যোগদান না করা পর্যন্ত তারা গ্রুপের কোনও বার্তা দেখতে পাবেন না।</string>
@@ -577,11 +577,11 @@
   <string name="AddGroupDetailsFragment__create_group">গ্রুপ তৈরি করুন</string>
   <string name="AddGroupDetailsFragment__create">তৈরি</string>
   <string name="AddGroupDetailsFragment__members">সদস্যগণ</string>
-  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">গ্রুপটি তৈরি করার পরে আপনি আপনার বন্ধুদের আমন্ত্রন অথবা যোগ করাতে পারবেন।</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">গ্রুপটি তৈরি করার পরে আপনি আপনার বন্ধুদের আমন্ত্রণ অথবা যোগ করাতে পারবেন।</string>
   <string name="AddGroupDetailsFragment__group_name_required">গ্রুপের নাম (প্রয়োজনীয়)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">গ্রুপের নাম (ঐচ্ছিক)</string>
-  <string name="AddGroupDetailsFragment__this_field_is_required">এই ঘরটি পূরন বাঞ্জনীয়</string>
-  <string name="AddGroupDetailsFragment__group_creation_failed">গ্রুপ তৈরী করন ব্যার্থ হয়েছে</string>
+  <string name="AddGroupDetailsFragment__this_field_is_required">এই ঘরটি পূরণ বাঞ্ছনীয়</string>
+  <string name="AddGroupDetailsFragment__group_creation_failed">গ্রুপ তৈরিকরণ ব্যার্থ হয়েছে</string>
   <string name="AddGroupDetailsFragment__try_again_later">পরবর্তীতে পুনরায় চেষ্টা করুন।</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">আপনি এমন একটি কন্টাক্ট নির্বাচন করেছেন যা Signal গ্রুপ সহায়ক না। তাই এটি এমএমএস গ্রুপ হবে।</string>
   <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">কাস্টম এমএমএস গ্রুপের নাম এবং ছবিগুলি কেবল আপনার কাছে দৃশ্যমান হবে।</string>
@@ -631,8 +631,8 @@
     <item quantity="one">%d জন সদস্য যুক্ত করা হয়েছে।</item>
     <item quantity="other">%d জন সদস্য যুক্ত করা হয়েছে।</item>
   </plurals>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">কেবলমাত্র প্রশাসকরা শেয়ার করার উপযোগী গ্রুপ লিঙ্কটি সক্ষম বা অক্ষম করতে পারবেন।</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">কেবলমাত্র প্রশাসকরা নতুন সদস্যদের অনুমোদনের বিকল্পটি সক্ষম বা অক্ষম করতে পারবেন।</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">কেবল প্রশাসকরা শেয়ার করার উপযোগী গ্রুপ লিঙ্কটি সক্ষম বা অক্ষম করতে পারবেন।</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">কেবল প্রশাসকরা নতুন সদস্যদের অনুমোদনের বিকল্পটি সক্ষম বা অক্ষম করতে পারবেন।</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">কেবল প্রশাসকগণই শেয়ার করার উপযোগী গ্রুপের লিঙ্কটি পুনরায় সেট করতে পারবেন।</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">আপনার এটা করার অধিকার নেই</string>
   <string name="ManageGroupActivity_not_capable">আপনি এমন কাউকে যুক্ত করেছেন যার Signal App নতুন গ্রুপ সহায়ক নয়। তার Signal আপডেট করা প্রয়োজন।</string>
@@ -643,7 +643,7 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">একটি নেটওয়ার্ক ত্রুটির কারণে গ্রুপটি আপডেট করতে ব্যর্থ হয়েছে দয়া করে পরে আবার চেষ্টা করুন</string>
   <string name="ManageGroupActivity_edit_name_and_picture">নাম এবং ছবি সম্পাদনা করেন</string>
   <string name="ManageGroupActivity_legacy_group">লিগ্যাসি গ্রুপ</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">এটি একটি লিগ্যাসি গ্রুপ। গ্রুপ এডমিন এর মতো বৈশিষ্ট্যগুলি কেবলমাত্র নতুন গ্রুপগুলির জন্য উপলব্ধ।</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">এটি একটি লিগ্যাসি গ্রুপ। গ্রুপ এডমিন এর মতো বৈশিষ্ট্যগুলি কেবল নতুন গ্রুপগুলির জন্য উপলভ্য।</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">এটি একটি লিগ্যাসি গ্রুপ। @মেনশন এবং এডমিনের মতো নতুন বৈশিষ্ট্যগুলি অ্যাক্সেস করতে,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">এই লিগ্যাসি গ্রুপটি একটি নতুন গ্রুপে আপগ্রেড করা যাবে না কারণ এটি অনেক বড়। সর্বাধিক গ্রুপের আকার %1$d।</string>
   <string name="ManageGroupActivity_upgrade_this_group">এই গ্রুপটি আপগ্রেড করুন। </string>
@@ -662,7 +662,7 @@
   <string name="ManageProfileFragment_about">সম্বন্ধে</string>
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">নিজের সম্পর্কে কিছু লিখুন</string>
   <string name="ManageProfileFragment_your_name">আপনার নাম</string>
-  <string name="ManageProfileFragment_your_username">আপনার ইউজারনেম</string>
+  <string name="ManageProfileFragment_your_username">আপনার ব্যবহারকারি নাম</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">অবতার সেট করতে ব্যর্থ</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">একই রকমের কোন গ্রুপ নেই</string>
@@ -741,8 +741,8 @@
   <string name="RequestConfirmationDialog_deny">প্রত্যাখ্যান</string>
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">চেহারা অস্পষ্ট করুন</string>
-  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">নতুনঃ মুখয়ব অস্পষ্ট করুন অথবা যেকোন জায়গা অস্পষ্ট করতে আলতো চেপে টানুন</string>
-  <string name="ImageEditorHud_draw_anywhere_to_blur">যেকোন জায়গা অস্পষ্ট করতে আলতো চেপে টানুন</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">নতুন: মুখয়ব অস্পষ্ট করুন অথবা যেকোন জায়গা অস্পষ্ট করতে আলতো চেপে টানুন</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">যেকোনো জায়গা অস্পষ্ট করতে আলতো চেপে টানুন</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">আরো মুখয়ব বা জায়গা অস্পষ্ট করতে আলতো চেপে টানুন</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">একটি ভয়েস বার্তা রেকর্ড করতে আলতো চাপুন এবং ধরে রাখুন, প্রেরণের জন্য ছেড়ে দিন</string>
@@ -820,7 +820,7 @@
   <string name="MediaOverviewActivity_sent_by_you_to_s">%1$sকে আপনার প্রেরিত </string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">প্রতিক্রিয়া\'র সাথে পরিচিত হন</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">ঝপাঝপ আপনার অনুভূতি শেয়ার করতে কোন বার্তা আলতো চেপে ধরে রাখুন।</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">দ্রুত আপনার অনুভূতি শেয়ার করতে কোন বার্তা আলতো চেপে ধরে রাখুন।</string>
   <string name="Megaphones_remind_me_later">আমাকে পরে মনে করিয়ে দিবেন</string>
   <string name="Megaphones_verify_your_signal_pin">আপনার Signal পিন যাচাই করুন</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">আমরা আপনাকে মাঝে মাঝে আপনার পিনটি যাচাই করতে বলব যাতে আপনি এটি মনে রাখতে পারেন।</string>
@@ -910,7 +910,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">আপনি গ্রুপ তৈরি করেছেন।</string>
   <string name="MessageRecord_group_updated">গ্রুপ আপডেট হয়েছে।</string>
-  <string name="MessageRecord_invite_friends_to_this_group">গ্রুপ লিন্কের মাধ্যমে আপনার বন্ধুদের আমন্ত্রন করুন</string>
+  <string name="MessageRecord_invite_friends_to_this_group">গ্রুপ লিংকের মাধ্যমে আপনার বন্ধুদের আমন্ত্রণ করুন</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">আপনি %1$s কে যোগ করেছেন।</string>
   <string name="MessageRecord_s_added_s">%2$s কে %1$s যুক্ত করেছে</string>
@@ -926,12 +926,12 @@
   <string name="MessageRecord_you_are_no_longer_in_the_group">আপনি আর গ্রুপে নেই।</string>
   <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s আর গ্রুপে নেই।</string>
   <!--GV2 role change-->
-  <string name="MessageRecord_you_made_s_an_admin">আপনি %1$s কে প্রশাসক বানিয়েছেন</string>
-  <string name="MessageRecord_s_made_s_an_admin">%1$s %2$s কে একজন প্রশাসক বানিয়েছে|</string>
-  <string name="MessageRecord_s_made_you_an_admin">%1$s আপনাকে প্রশাসক বানিয়েছে|</string>
-  <string name="MessageRecord_you_revoked_admin_privileges_from_s">আপনি %1$s এর প্রশাসকীয় ক্ষমতাগুলি বাতিল করেছেন।</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s আপনার এর প্রশাসকীয় ক্ষমতাগুলি বাতিল করেছে।</string>
-  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s %2$s এর প্রশাসকীয় ক্ষমতাগুলি বাতিল করেছে।</string>
+  <string name="MessageRecord_you_made_s_an_admin">আপনি %1$s কে এডমিন বানিয়েছেন</string>
+  <string name="MessageRecord_s_made_s_an_admin">%1$s %2$s কে একজন এডমিন বানিয়েছে|</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s আপনাকে এডমিন বানিয়েছে|</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">আপনি %1$s এর এডমিন ক্ষমতাগুলি বাতিল করেছেন।</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s আপনার এর এডমিন ক্ষমতাগুলি বাতিল করেছে।</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s %2$s এর এডমিন ক্ষমতাগুলি বাতিল করেছে।</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s এখন একজন এডমিন। </string>
   <string name="MessageRecord_you_are_now_an_admin">আপনি এখন প্রশাসক</string>
   <string name="MessageRecord_s_is_no_longer_an_admin">%1$s আর একজন এডমিন নন। </string>
@@ -979,13 +979,13 @@
   <string name="MessageRecord_s_changed_the_group_description">%1$s গ্রুপের বিবরণ পরিবর্তন করেছেন।</string>
   <string name="MessageRecord_the_group_description_has_changed">গ্রুপের বিবরণ পরিবর্তন হয়েছে।</string>
   <!--GV2 avatar change-->
-  <string name="MessageRecord_you_changed_the_group_avatar">আপনি গ্রুপের এভেটার পরিবর্তন করেছেন।</string>
-  <string name="MessageRecord_s_changed_the_group_avatar"> %1$s গ্রুপের এভেটার পরিবর্তন করেছে।</string>
+  <string name="MessageRecord_you_changed_the_group_avatar">আপনি গ্রুপের অবতার পরিবর্তন করেছেন।</string>
+  <string name="MessageRecord_s_changed_the_group_avatar"> %1$s গ্রুপের অবতার পরিবর্তন করেছে।</string>
   <string name="MessageRecord_the_group_group_avatar_has_been_changed">গ্রুপ অবতারটি পরিবর্তন করা হয়েছে।</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">কারা গ্রুপের তথ্য সম্পাদনা করতে পারে তা আপনি \"%1$s\"  এ পরিবর্তন করেছেন।</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">কে গ্রুপের তথ্য সম্পাদনা করতে পারবে তা %1$s \"%2$s\" এ পরিবর্তন করেছে|</string>
-  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">কেগ্রুপের তথ্য সম্পাদনা করতে পারে তা \"%1$s\" এ পরিবর্তন করা হয়েছে।</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">কে গ্রুপের তথ্য সম্পাদনা করতে পারে তা \"%1$s\" এ পরিবর্তন করা হয়েছে।</string>
   <!--GV2 membership access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">কারা গ্রুপের সদস্যতা সম্পাদনা করতে পারবেন তা আপনি \"%1$s\" এ পরিবর্তন করেছেন।</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">কারা গ্রুপের সদস্যতা সম্পাদনা করতে পারবেন তা %1$s \"%2$s\" এ পরিবর্তন করেছে।</string>
@@ -1360,10 +1360,10 @@
   <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">এই লগটি অবদানকারীদের দেখার জন্য উন্মুক্তভাবে অনলাইনে পোস্ট করা হবে। আপলোড করার পূর্বে আপনি যাচাই করে দেখতে পারেন।</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">ফিল্টার:</string>
-  <string name="SupportEmailUtil_device_info">ডিভাইস এর তথ্যঃ</string>
-  <string name="SupportEmailUtil_android_version">অ্যানড্রয়েড ভার্সনঃ</string>
-  <string name="SupportEmailUtil_signal_version">Signal ভার্সনঃ</string>
-  <string name="SupportEmailUtil_signal_package">Signal প্যাকেজঃ</string>
+  <string name="SupportEmailUtil_device_info">ডিভাইস-এর তথ্য:</string>
+  <string name="SupportEmailUtil_android_version">অ্যান্ড্রয়েড সংস্করণ:</string>
+  <string name="SupportEmailUtil_signal_version">Signal সংস্করণ:</string>
+  <string name="SupportEmailUtil_signal_package">Signal প্যাকেজ:</string>
   <string name="SupportEmailUtil_registration_lock">রেজিস্ট্রেশন লক</string>
   <string name="SupportEmailUtil_locale">স্থান:</string>
   <!--ThreadRecord-->
@@ -1838,14 +1838,14 @@
   <string name="HelpFragment__next">পরবর্তী</string>
   <string name="HelpFragment__contact_us">আমাদের সাথে যোগাযোগ করুন</string>
   <string name="HelpFragment__tell_us_whats_going_on">আমাদেরকে বলুন কী হচ্ছে</string>
-  <string name="HelpFragment__include_debug_log">ডিবাগ বিবরনী যুক্ত করুন।</string>
+  <string name="HelpFragment__include_debug_log">ডিবাগ লগ যুক্ত করুন।</string>
   <string name="HelpFragment__whats_this">এটা কী?</string>
   <string name="HelpFragment__how_do_you_feel">আপনার অনুভূতি কী? (ঐচ্ছিক)</string>
   <string name="HelpFragment__tell_us_why_youre_reaching_out">কেন আপনি মেসেজ পাঠাচ্ছেন তা বলুন।</string>
   <string name="HelpFragment__support_info">সহায়ক তথ্য</string>
   <string name="HelpFragment__signal_android_support_request">Signal অ্যানড্রয়েড সহায়তা আবেদন</string>
-  <string name="HelpFragment__debug_log">ডিবাগ বিবরনীঃ</string>
-  <string name="HelpFragment__could_not_upload_logs">বিবরনী সমূহ আপলোড করা যায়নি</string>
+  <string name="HelpFragment__debug_log">ডিবাগ লগ:</string>
+  <string name="HelpFragment__could_not_upload_logs">লগসমূহ আপলোড করা যায়নি</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">আমরা যাতে সমস্যাটি বুঝতে পারি সেজন্য যতটা সম্ভব বিস্তারিত বলুন।</string>
   <string-array name="HelpFragment__categories">
     <item>-- অনুগ্রহ করে একটি অপশন বেছে নিন --</item>
@@ -2036,7 +2036,7 @@
   <string name="preferences_data_and_storage__use_less_data_for_calls">কলগুলির জন্য কম ডেটা ব্যবহার করুন</string>
   <string name="preferences_data_and_storage__never">কখনোই না</string>
   <string name="preferences_data_and_storage__wifi_and_mobile_data">ওয়াইফাই এবং মোবাইল ডেটা</string>
-  <string name="preferences_data_and_storage__mobile_data_only">কেবলমাত্র মোবাইল ডেটা</string>
+  <string name="preferences_data_and_storage__mobile_data_only">কেবল মোবাইল ডেটা</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">কম ডেটা ব্যবহার করা হলে খারাপ নেটওয়ার্কগুলিতে কলের মান উন্নত করতে পারে</string>
   <string name="preferences_notifications__messages">বার্তা সমূহ</string>
   <string name="preferences_notifications__events">ঘটনাবলী</string>
@@ -2061,7 +2061,7 @@
   <string name="preferences_off">বন্ধ</string>
   <string name="preferences_on">চালু</string>
   <string name="preferences_proxy_address">প্রক্সি ঠিকানা</string>
-  <string name="preferences_only_use_a_proxy_if">আপনি যদি মোবাইল ডেটা বা ওয়াই-ফাইতে Signal এর সাথে সংযোগ রাখতে সক্ষম না হন তবেই কেবলমাত্র প্রক্সি ব্যবহার করুন।</string>
+  <string name="preferences_only_use_a_proxy_if">আপনি যদি মোবাইল ডেটা বা ওয়াই-ফাইতে Signal এর সাথে সংযোগ রাখতে সক্ষম না হন তবেই কেবল প্রক্সি ব্যবহার করুন।</string>
   <string name="preferences_share">শেয়ার করুন</string>
   <string name="preferences_save">সংরক্ষন</string>
   <string name="preferences_connecting_to_proxy">প্রক্সিতে সংযুক্ত হচ্ছে …</string>
@@ -2191,7 +2191,7 @@
   <string name="ConfirmPayment__estimated_s">আনুমানিক %1$s</string>
   <string name="ConfirmPayment__to">প্রতি</string>
   <string name="ConfirmPayment__total_amount">সর্বমোট পরিমাণ</string>
-  <string name="ConfirmPayment__balance_s">পরিমানঃ %1$s</string>
+  <string name="ConfirmPayment__balance_s">ব্যালেন্স: %1$s</string>
   <string name="ConfirmPayment__submitting_payment">পেমেন্ট সাবমিট করা হচ্ছে…</string>
   <string name="ConfirmPayment__processing_payment">পেমেন্ট প্রক্রিয়া করা হচ্ছে…</string>
   <string name="ConfirmPayment__payment_complete">পেমেন্ট সম্পন্ন</string>
@@ -2385,7 +2385,7 @@
   <string name="RegistrationLockFragment__incorrect_pin">ভুল পিন</string>
   <string name="RegistrationLockFragment__forgot_your_pin">পিন ভুলে গেছেন?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">খুব একটা বেশী সুযোগ বাকি নেই</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal নিবন্ধকরণ - অ্যান্ড্রয়েডের জন্য পিনের সাহায্য প্রয়োজন (v1 পিন)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal নিবন্ধন - অ্যান্ড্রয়েডের জন্য পিনের সাহায্য প্রয়োজন (v1 পিন)</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal রেজিস্ট্রেশন - Android-এর জন্য পিনের সাহায্য প্রয়োজন (v2 পিন)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">আপনার গোপনীয়তা এবং সুরক্ষার জন্য, আপনার পিনটি পুনরুদ্ধার করার কোনও উপায় নেই। আপনি যদি আপনার পিনটি ভুলে যান তবে আপনি নিষ্ক্রিয়তার %1$d দিন পরে এসএমএস\'র মাধ্যমে পুনরায় যাচাই করতে পারবেন। এই ক্ষেত্রে, আপনার অ্যাকাউন্টটি পরিস্কার করার পাশাপাশি সমস্ত সামগ্রী মুছে ফেলা হবে।</item>
@@ -3047,7 +3047,7 @@
   <string name="PermissionsSettingsFragment__edit_group_info">গ্রুপের তথ্য সম্পাদনা করুন</string>
   <string name="PermissionsSettingsFragment__send_messages">বার্তা পাঠান</string>
   <string name="PermissionsSettingsFragment__all_members">সকল সদস্য</string>
-  <string name="PermissionsSettingsFragment__only_admins">শুধুমাত্র এডমিন</string>
+  <string name="PermissionsSettingsFragment__only_admins">শুধু এডমিন</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">কে নতুন সদস্য যুক্ত করতে পারবে?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">এই গ্রুপের তথ্য কে সম্পাদনা করতে পারবে?</string>
   <string name="PermissionsSettingsFragment__who_can_send_messages">কারা বার্তা পাঠাতে পারবে?</string>
@@ -3073,6 +3073,11 @@
   <string name="ContactFilterView__search_name_or_number">নাম বা নাম্বার খুঁজুন</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">মৌখিক বার্তা থামাও</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">মৌখিক বার্তার গতি পাল্টাও</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">মৌখিক বার্তা থামাও</string>
+  <string name="VoiceNotePlayerView__play_voice_message">মৌখিক বার্তা শুনাও</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">মৌখিক বার্তা চালনা করো</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">অবতারের পূর্বরূপ</string>
   <string name="AvatarPickerFragment__camera">ক্যামেরা</string>
@@ -3096,5 +3101,6 @@
   <string name="ContactSelectionListItem__sms">এসএমএস</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">উপরে যাও</string>
   <!--EOF-->
 </resources>

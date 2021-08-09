@@ -3249,6 +3249,11 @@
   <string name="ContactFilterView__search_name_or_number">Ieškoti vardo ar numerio</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Stabdyti balso žinutę</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Keisti balso žinutės greitį</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Pristabdyti balso žinutę</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Atkurti garso žinutę</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Naršyti į garso žinutę</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Avataro peržiūra</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>

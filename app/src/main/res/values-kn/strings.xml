@@ -35,7 +35,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">ಥೀಮ್‌ %1$s, ಭಾಷೆ %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">ನೋಂದಣಿ ಲಾಕ್ ಆಗಿಸಲು ಪಿನ್ಗಳು ಅಗತ್ಯವಿದೆ. ಪಿನ್‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು, ದಯವಿಟ್ಟು ಮೊದಲು ನೋಂದಣಿ ಲಾಕ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="ApplicationPreferencesActivity_pin_created">ಪಿನ್ ರಚಿಸಲಾಗಿದೆ.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">ಪಿನ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">ಪಿನ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ.</string>
   <string name="ApplicationPreferencesActivity_hide">ಅಡಗಿಸು</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">ಜ್ಞಾಪಿಸುವುದನ್ನು ಮರೆಮಾಡಬಹುದೆ?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">ಪೇಮೆಂಟ್‌ಗಳ ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
@@ -48,11 +48,11 @@
   </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(ಚಿತ್ರ)</string>
-  <string name="DraftDatabase_Draft_audio_snippet">(ಆಡಿಯೋ)</string>
+  <string name="DraftDatabase_Draft_audio_snippet">(ಆಡಿಯೊ)</string>
   <string name="DraftDatabase_Draft_video_snippet">(ವೀಡಿಯೊ)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ಸ್ಥಳ)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(ಪ್ರತ್ಯುತ್ತರ)</string>
-  <string name="DraftDatabase_Draft_voice_note">(ವಾಯ್ಸ್ ಮೆಸೇಜ್)</string>
+  <string name="DraftDatabase_Draft_voice_note">(ಧ್ವನಿ ಸಂದೇಶ)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">ಗ್ಯಾಲರಿ</string>
   <string name="AttachmentKeyboard_file">ಫೈಲ್</string>
@@ -68,7 +68,7 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ಸ್ಥಳ ಮಾಹಿತಿಯನ್ನು ಲಗತ್ತಿಸಲು Signal ಗೆ ಸ್ಥಳ ಅನುಮತಿಯ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಸ್ಥಳ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">ಮೀಡಿಯಾವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
-  <string name="AttachmentUploadJob_compressing_video_start">ವಿಡಿಯೋವನ್ನು ಸಂಕುಚಿತಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">ವಿಡಿಯೊವನ್ನು ಸಂಕುಚಿತಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
   <!--BackgroundMessageRetriever-->
   <string name="BackgroundMessageRetriever_checking_for_messages">ಮೆಸೇಜ್ ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ…</string>
   <!--BlockedUsersActivity-->
@@ -76,7 +76,7 @@
   <string name="BlockedUsersActivity__add_blocked_user">ನಿರ್ಬಂಧಿಸಿದ ಬಳಕೆದಾರರನ್ನು ಸೇರಿಸಿ</string>
   <string name="BlockedUsersActivity__blocked_users_will">ನಿರ್ಬಂಧಿಸಿದ ಬಳಕೆದಾರರು ನಿಮಗೆ ಕರೆ ಮಾಡಲು ಅಥವಾ ನಿಮಗೆ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <string name="BlockedUsersActivity__no_blocked_users">ನಿರ್ಬಂಧಿಸಿದ ಬಳಕೆದಾರರು ಇಲ್ಲ</string>
-  <string name="BlockedUsersActivity__block_user">ಬಳಕೆದಾರರನ್ನು ನಿರ್ಬಂಧಿಸಿ</string>
+  <string name="BlockedUsersActivity__block_user">ಬಳಕೆದಾರರನ್ನು ನಿರ್ಬಂಧಿಸುವುದೆ?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" ಇವರು ನಿಮಗೆ ಸಂದೇಶಗಳನ್ನು ಕಳಿಸಲು ಅಥವಾ ಕರೆ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
   <string name="BlockedUsersActivity__block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="BlockedUsersActivity__unblock_user">ಈ ಬಳಕೆದಾರರನ್ನು ನಿರ್ಬಂಧನೆಯಿಂದ ತೆಗೆಯಬಹುದೆ?</string>
@@ -105,7 +105,7 @@
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">ಫೋಟೋಕ್ಕಾಗಿ ಟ್ಯಾಪ್ ಮಾಡಿ, ವೀಡಿಯೊಗಾಗಿ ಹಿಡಿದುಕೊಳ್ಳಿ</string>
   <string name="CameraXFragment_capture_description">ಸೆರೆಹಿಡಿಯಿರಿ</string>
-  <string name="CameraXFragment_change_camera_description">ಕ್ಯಾಮೆರಾ ಬದಲಾಯಿಸಿ</string>
+  <string name="CameraXFragment_change_camera_description">ಕ್ಯಾಮರಾ ಬದಲಾಯಿಸಿ</string>
   <string name="CameraXFragment_open_gallery_description">ಗ್ಯಾಲರಿ ತೆರೆಯಿರಿ</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">ಇತ್ತೀಚಿನ ಸಂಪರ್ಕಗಳು</string>
@@ -114,7 +114,7 @@
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">ನೀವು ಗರಿಷ್ಠ  %d ಸಂಭಾಷಣೆಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಬಹುದು.</string>
   <string name="CameraContacts_select_signal_recipients">Signal ಸ್ವೀಕೃತಿದಾರರನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
   <string name="CameraContacts_no_signal_contacts">Signal ಸಂಪರ್ಕಗಳಿಲ್ಲ</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">Signal ಸಂಪರ್ಕಗಳಿಗೆ ಫೋಟೋಗಳನ್ನು ಕಳುಹಿಸಲು ನೀವು ಕ್ಯಾಮೆರಾ ಬಟನ್ ಅನ್ನು ಮಾತ್ರ ಬಳಸಬಹುದು.</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Signal ಸಂಪರ್ಕಗಳಿಗೆ ಫೋಟೋಗಳನ್ನು ಕಳುಹಿಸಲು ನೀವು ಕ್ಯಾಮರಾ ಬಟನ್ ಅನ್ನು ಮಾತ್ರ ಬಳಸಬಹುದು.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">ನೀವು ಹುಡುಕುತ್ತಿರುವುದನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗುತ್ತಿಲ್ಲವೇ?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Signal ಗೆ ಸೇರಲು ಸಂಪರ್ಕವನ್ನು ಆಹ್ವಾನಿಸಿ</string>
   <string name="CameraContacts__menu_search">ಹುಡುಕಿ</string>
@@ -195,7 +195,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">ಸಂದೇಶ ಖಾಲಿಯಾಗಿದೆ!</string>
   <string name="ConversationActivity_group_members">ಗುಂಪಿನ ಸದಸ್ಯರು</string>
   <string name="ConversationActivity__tap_here_to_start_a_group_call">ಕರೆ ಮಾಡುವುದಕ್ಕೆ ಇಲ್ಲಿ  ಒತ್ತಿ </string>
-  <string name="ConversationActivity_invalid_recipient">ಅಮಾನ್ಯ ಸ್ವೀಕೃತಿದಾರರು!</string>
+  <string name="ConversationActivity_invalid_recipient">ಅಮಾನ್ಯವಾದ ಸ್ವೀಕೃತಿದಾರರು!</string>
   <string name="ConversationActivity_added_to_home_screen"> ಹೋಮ್‌ ಸ್ಕ್ರೀನ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ</string>
   <string name="ConversationActivity_calls_not_supported">ಕರೆಗಳ ಬೆಂಬಲವಿರುವುದಿಲ್ಲ</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ಈ ಸಾಧನವು ಡಯಲ್ ಕ್ರಮಗಳನ್ನು ಬೆಂಬಲಿಸುವಂತೆ ಕಂಡುಬರುತ್ತಿಲ್ಲ.</string>
@@ -219,11 +219,11 @@
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">ಆಡಿಯೋ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು, Signal ಗೆ ನಿಮ್ಮ ಮೈಕ್ರೋಫೋನ್ ಉಪಯೋಗಿಸಲು ಅನುಮತಿ ನೀಡಿ.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ಆಡಿಯೊ ಸಂದೇಶ ಕಳುಹಿಸುವ ಸಲುವಾಗಿ Signal ಗೆ ಮೈಕ್ರೊಫೋನ್ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು  ಅಪ್ಲಿಕೇಶನ್ ಸಂಯೋಜನೆಗೆ ಮುಂದುವರಿಸಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು \"ಮೈಕ್ರೊಫೋನ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s"> %s ಗೆ ಕರೆ ಮಾಡಲು Signal ಗೆ ಮೈಕ್ರೊಫೋನ್ ಹಾಗೂ ಕ್ಯಾಮರಾ ಅನುಮತಿಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ, ಆದರೆ ಅವುಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು  \"ಮೈಕ್ರೊಫೋನ್\" ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ಫೋಟೋಗಳನ್ನು  ಮತ್ತು ವಿಡಿಯೋ ಸೆರೆಹಿಡಿಯಲು, Signal  ಗೆ ಕ್ಯಾಮೆರಾ ಪ್ರವೇಶ ಅನುಮತಿಸಿ.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ಫೋಟೊಗಳು ಅಥವಾ ವೀಡಿಯೋಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿಯ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಇದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">ಫೋಟೋಗಳು ಅಥವಾ ವೀಡಿಯೊ ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ಫೋಟೋಗಳನ್ನು  ಮತ್ತು ವಿಡಿಯೊ ಸೆರೆಹಿಡಿಯಲು, Signal  ಗೆ ಕ್ಯಾಮರಾ ಪ್ರವೇಶ ಅನುಮತಿಸಿ.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">ಫೋಟೊಗಳು ಅಥವಾ ವೀಡಿಯೊಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿಯ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಇದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">ಫೋಟೋಗಳು ಅಥವಾ ವೀಡಿಯೊ ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮರಾ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">ವೀಡಿಯೊಗಳನ್ನು  ಧ್ವನಿಯೊಂದಿಗೆ ಸೆರೆಹಿಡಿಯಲು ಮೈಕ್ರೊಫೋನ್ ಅನುಮತಿ ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">ವೀಡಿಯೋಗಳನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಲು Signal ಗೆ ಮೈಕ್ರೋಫೋನ್ ಅನುಮತಿಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ, ಆದರೆ ಅವುಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು \"ಮೈಕ್ರೊಫೋನ್\" ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">ವೀಡಿಯೊಗಳನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಲು Signal ಗೆ ಮೈಕ್ರೋಫೋನ್ ಅನುಮತಿಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ, ಆದರೆ ಅವುಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು \"ಮೈಕ್ರೊಫೋನ್\" ಮತ್ತು \"ಕ್ಯಾಮರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">ವೀಡಿಯೊಗಳನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಲು Signal ಗೆ ಮೈಕ್ರೋಫೋನ್ ಅನುಮತಿಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ಎಸ್‌ಎಂಎಸ್/ಎಂಎಂಎಸ್ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ, ಏಕೆಂದರೆ ಅದು ನಿಮ್ಮ ಡೀಫಾಲ್ಟ್ ಎಸ್‌ಎಂಎಸ್ ಆ್ಯಪ್ ಅಲ್ಲ. ನಿಮ್ಮ ಆಂಡ್ರಾಯ್ಡ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಇದನ್ನು ಬದಲಾಯಿಸಲು ನೀವು ಬಯಸುವಿರಾ?</string>
@@ -239,7 +239,7 @@
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">ನಿಮ್ಮ ಎಲ್ಲ ಸಾಧನಗಳಿಂದಲೂ ಈ ಸಂಭಾಷಣೆಯನ್ನು ಅಳಿಸಲಾಗುವುದು.</string>
   <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">ನೀವು ಈ ಗುಂಪನ್ನು ತೊರೆಯುತ್ತೀರಿ ಮತ್ತು ಇದನ್ನು ನಿಮ್ಮ ಎಲ್ಲ ಸಾಧನಗಳಿಂದಲೂ ಅಳಿಸಲಾಗುವುದು.</string>
   <string name="ConversationActivity_delete">ಅಳಿಸು</string>
-  <string name="ConversationActivity_delete_and_leave">ಅಳಿಸಿ ಮತ್ತು ಈ ಗುಂಪನ್ನು ತೊರೆಯಿರಿ</string>
+  <string name="ConversationActivity_delete_and_leave">ಅಳಿಸಿ ಮತ್ತು ತೊರೆಯಿರಿ</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone"> %1$s ಗೆ ಕರೆ ಮಾಡಲು, Signal ಗೆ  ನಿಮ್ಮ ಮೈಕ್ರೊಫೋನ್  ಪ್ರವೇಶ ಅಗತ್ಯವಿದೆ.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">ಹೆಚ್ಚಿನ ಆಯ್ಕೆಗಳು ಈಗ \"ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ\" ಇವೆ</string>
   <string name="ConversationActivity_join">ಸೇರು</string>
@@ -293,7 +293,7 @@
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ಈ ಸಂವಾದದಲ್ಲಿ ನೀವು ನಿಮಗಾಗಿ ಟಿಪ್ಪಣಿಗಳನ್ನು ಸೇರಿಸಬಹುದು. ನಿಮ್ಮ ಖಾತೆಯು ಯಾವುದೇ ಲಿಂಕ್ ಮಾಡಿದ ಸಾಧನಗಳನ್ನು ಹೊಂದಿದ್ದರೆ, ಹೊಸ ಟಿಪ್ಪಣಿಗಳನ್ನು ಸಿಂಕ್ ಮಾಡಲಾಗುತ್ತದೆ.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ಗುಂಪು ಸದಸ್ಯರು ಒಂದೇ ಹೆಸರನ್ನು ಹೊಂದಿದ್ದಾರೆ.</string>
   <string name="ConversationFragment__tap_to_review">ಪರೀಕ್ಷಿಸಲು ಇಲ್ಲಿ ಒತ್ತಿ</string>
-  <string name="ConversationFragment__review_requests_carefully">ಕೋರಿಕೆಯನ್ನು ಪರಿಶೀಲಿಸಿ</string>
+  <string name="ConversationFragment__review_requests_carefully">ವಿನಂತಿಗಳನ್ನು ಕಾಳಜಿಯಿಂದ ಪರಿಶೀಲಿಸಿ</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal ಒಂದೇ ಹೆಸರಿನ ಇನ್ನೊಂದು ಸಂಪರ್ಕವನ್ನು ಕಂಡುಹಿಡಿಯಿತು</string>
   <string name="ConversationFragment_contact_us">ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
   <string name="ConversationFragment_verify">ದೃಢೀಕರಿಸಿ</string>
@@ -332,7 +332,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">ಕೆಲವು ಸಂಪರ್ಕಗಳು ಹಳೆಯ ಗುಂಪುಗಳಲ್ಲಿ ಇರಬಾರದು.</string>
-  <string name="CreateGroupActivity__select_members">ಸದಸ್ಯರನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
+  <string name="CreateGroupActivity__select_members">ಸದಸ್ಯರನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">ಪ್ರೊಫೈಲ್</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಹೊಂದಿಸುವಲ್ಲಿ ದೋಷ</string>
@@ -376,7 +376,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">ಫೋಟೋ ತೆಗೆಯಿರಿ</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">ಗ್ಯಾಲರಿಯಿಂದ ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">ಫೋಟೋ ತೆಗೆದುಹಾಕಿ</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">ಫೋಟೋ ತೆಗೆಯಲು ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">ಫೋಟೋ ತೆಗೆಯಲು ಕ್ಯಾಮರಾ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ.</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">ನಿಮ್ಮ ಗ್ಯಾಲರಿಯನ್ನು ವೀಕ್ಷಿಸಲು ಶೇಖರಣಾ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">ಈಗ</string>
@@ -434,7 +434,7 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFಗಳು</string>
   <string name="GiphyFragmentPagerAdapter_stickers">ಸ್ಟಿಕ್ಕರುಗಳು</string>
   <!--AddToGroupActivity-->
-  <string name="AddToGroupActivity_add_member">ಸದಸ್ಯ ಸೇರಿಸುವುದೇ?</string>
+  <string name="AddToGroupActivity_add_member">ಸದಸ್ಯರನ್ನು ಸೇರಿಸುವುದೇ?</string>
   <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" \"%2$s\" ಗೆ ಸೇರಿಸುವುದೇ?</string>
   <string name="AddToGroupActivity_s_added_to_s">\"%1$s\"\"%2$s\" ಗೆ ಸೇರಿಸಿದ್ದಾರೆ.</string>
   <string name="AddToGroupActivity_add_to_group">ಗುಂಪಿಗೆ ಸೇರಿಸಿ</string>
@@ -486,7 +486,7 @@
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">ಈ ಸದಸ್ಯರು ಹೊಸ ಗುಂಪುಗಳನ್ನು ಸೇರಲು ಅರ್ಹರಿಲ್ಲ . ಆದ್ದರಿಂದ ಈ ಗುಂಪಿನಿಂದ ಅವರನ್ನು ತೆಗೆಯಲಾಗುವುದು </item>
-    <item quantity="other">ಈ ಸದಸ್ಯರು ಹೊಸ ಗುಂಪುಗಳನ್ನು ಸೇರಲು ಅರ್ಹರಿಲ್ಲ . ಆದ್ದರಿಂದ ಈ ಗುಂಪಿನಿಂದ ಅವರನ್ನು ತೆಗೆಯಲಾಗುವುದು </item>
+    <item quantity="other">ಈ ಸದಸ್ಯರು ಹೊಸ ಗುಂಪುಗಳಿಗೆ ಸೇರಲು ಅರ್ಹರಾಗಿಲ್ಲ, ಆದ್ದರಿಂದ ಗುಂಪಿನಿಂದ ಅವರನ್ನು ತೆಗೆದುಹಾಕಲಾಗುವುದು:</item>
   </plurals>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
@@ -501,7 +501,7 @@
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">ಸದಸ್ಯ ಸೇರಿಸುವುದೇ?</item>
-    <item quantity="other">ಸದಸ್ಯ ಸೇರಿಸುವುದೇ?</item>
+    <item quantity="other">ಸದಸ್ಯರನ್ನು ಸೇರಿಸುವುದೇ?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
     <item quantity="one">ಅಪ್‌ಗ್ರೇಡ್‌ ಮಾಡಿದಾಗ ಹೊಸ ಗ್ರೂಪ್‌ಗೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಈ ಸದಸ್ಯರನ್ನು ಸೇರಿಸಲಾಗದು:</item>
@@ -528,7 +528,7 @@
   <string name="LeaveGroupDialog_choose_admin">ನಿರ್ವಾಹಕರನ್ನು ಆರಿಸಿ</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
-  <string name="LinkPreviewsMegaphone_preview_any_link">ಯಾವುದೇ ಲಿಂಕನ್ನು ಪೂರ್ವವೀಕ್ಷಿಸಿ</string>
+  <string name="LinkPreviewsMegaphone_preview_any_link">ಯಾವುದೇ ಲಿಂಕ್ ಅನ್ನು ಪೂರ್ವವೀಕ್ಷಿಸಿ</string>
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">ನೀವು ಕಳುಹಿಸುವ ಮೆಸೇಜ್‌ಗಳಿಗೆ ಯಾವುದೇ ವೆಬ್‌ಸೈಟ್‌ನಿಂದ ನೇರವಾಗಿ ಲಿಂಕ್‌ ಪ್ರಿವ್ಯೂಗಳನ್ನು ನೀವು ಈಗ ಹಿಂಪಡೆಯಬಹುದು.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">ಪೂರ್ವವೀಕ್ಷಣೆ ಲಭ್ಯವಿಲ್ಲ</string>
@@ -596,7 +596,7 @@
   </plurals>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d ಸದಸ್ಯರು ಹೊಸ ಗುಂಪುಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ, ಆದ್ದರಿಂದ ಈ ಗುಂಪನ್ನು ರಚಿಸಲಾಗದು.</item>
-    <item quantity="other">%d ಸದಸ್ಯರು ಹೊಸ ಗುಂಪುಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ, ಆದ್ದರಿಂದ ಇದು ಹಳೆಯ ಗುಂಪಾಗುತ್ತದೆ.</item>
+    <item quantity="other">%d ಸದಸ್ಯರು ಹೊಸ ಗುಂಪುಗಳನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ, ಆದ್ದರಿಂದ ಈ ಗುಂಪನ್ನು ರಚಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">\"%1$s\" Signal ನ ಹಳೆಯ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತಿರುವುದರಿಂದ ಲೆಗಸಿ ಗುಂಪನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ. ಅವರು Signal ಅನ್ನು ನವೀಕರಣ ಮಾಡಿದ ಬಳಿಕ ಹೊಸ ಶೈಲಿಯ ಗುಂಪನ್ನು ನೀವು ರಚಿಸಬಹುದು ಅಥವಾ ಗುಂಪನ್ನು ರಚಿಸುವ ಮುನ್ನ ಅವರನ್ನು ತೆಗೆದುಹಾಕಬಹುದು.</string>
@@ -612,12 +612,12 @@
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">ಸದಸ್ಯ ವಿನಂತಿಗಳು &amp; ಆಹ್ವಾನಗಳು</string>
   <string name="ManageGroupActivity_add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
-  <string name="ManageGroupActivity_edit_group_info">ಗುಂಪಿನ ಮಾಹಿತಿಯನ್ನು ಬದಲಾಯಿಸಿ</string>
+  <string name="ManageGroupActivity_edit_group_info">ಗುಂಪಿನ ಮಾಹಿತಿಯನ್ನು ಎಡಿಟ್ ಮಾಡಿ</string>
   <string name="ManageGroupActivity_who_can_add_new_members">ಯಾರು ಹೊಸ ಸದಸ್ಯರನ್ನು ಸೇರಿಸಬಹುದು?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">ಗುಂಪಿನ ಮಾಹಿತಿಯನ್ನು ಯಾರು ತಿದ್ದಬಹುದು?</string>
   <string name="ManageGroupActivity_group_link">ಗುಂಪಿನ ಲಿಂಕ್</string>
   <string name="ManageGroupActivity_block_group">ಗುಂಪನ್ನು ನಿರ್ಬಂಧಿಸಿ</string>
-  <string name="ManageGroupActivity_unblock_group">ಈ ಗುಂಪನ್ನು ಅನ್‌ಬ್ಲಾಕ್ ಮಾಡಿ</string>
+  <string name="ManageGroupActivity_unblock_group">ಗುಂಪನ್ನು ಅನ್‌ಬ್ಲಾಕ್ ಮಾಡಿ</string>
   <string name="ManageGroupActivity_leave_group">ಗುಂಪನ್ನು ತೊರೆಯಿರಿ </string>
   <string name="ManageGroupActivity_mute_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿ</string>
   <string name="ManageGroupActivity_custom_notifications">ಕಸ್ಟಮ್ ಅಧಿಸೂಚನೆಗಳು</string>
@@ -648,7 +648,7 @@
   <string name="ManageGroupActivity_legacy_group_learn_more">ಇದು ಲೆಗಸಿ ಗ್ರೂಪ್. ಗ್ರೂಪ್‌ ಅಡ್ಮಿನ್‌ಗಳಂತಹ ವೈಶಿಷ್ಟ್ಯಗಳು ಹೊಸ ಗ್ರೂಪ್‌ಗಳಲ್ಲಿ ಮಾತ್ರ ಲಭ್ಯವಿರುತ್ತವೆ.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">ಇದು ಲೆಗಸಿ ಗ್ರೂಪ್. @mentions ಮತ್ತು ಅಡ್ಮಿನ್‌ಗಳಂತಹ ಹೊಸ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಪ್ರವೇಶಿಸಲು,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">ಈ ಹಳೆಯ ಗ್ರೂಪ್‌ ಅನ್ನು ಹೊಸ ಗ್ರೂಪ್‌ಗೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಲಾಗದು. ಏಕೆಂದರೆ ಇದು ತುಂಬಾ ದೊಡ್ಡದಾಗಿದೆ. ಗರಿಷ್ಠ ಗ್ರೂಪ್ ಗಾತ್ರವು %1$d.</string>
-  <string name="ManageGroupActivity_upgrade_this_group">ಈ ಗ್ರೂಪ್‌ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ</string>
+  <string name="ManageGroupActivity_upgrade_this_group">ಈ ಗುಂಪನ್ನು ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">ಇದು ಅಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್ ಗ್ರೂಪ್. ಖಾಸಗಿಯಾಗಿ ಚಾಟ್ ಮಾಡಲು, ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು Signal ಗೆ ಆಹ್ವಾನಿಸಿ</string>
   <string name="ManageGroupActivity_invite_now">ಈಗಲೇ ಆಹ್ವಾನಿಸಿ</string>
   <string name="ManageGroupActivity_more">ಇನ್ನಷ್ಟು</string>
@@ -667,10 +667,10 @@
   <string name="ManageProfileFragment_your_username">ನಿಮ್ಮ ಬಳಕೆದಾರರ ಹೆಸರು</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">ಅವತಾರ್ ನಿಗದಿಪಡಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
   <!--ManageRecipientActivity-->
-  <string name="ManageRecipientActivity_no_groups_in_common">ನೀವಿಬ್ಬರೂ ಯಾವುದೇ ಗ್ರೂಪ್‌ಗಳಲ್ಲಿಲ್ಲ</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">ನೀವಿಬ್ಬರೂ ಒಂದೇ ಗುಂಪುಗಳಲ್ಲಿಲ್ಲ</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d ಗ್ರೂಪ್‌ನಲ್ಲಿ ನೀವಿಬ್ಬರೂ ಇದ್ದೀರಿ</item>
-    <item quantity="other">%d ಗ್ರೂಪ್‌ಗಳಲ್ಲಿ ನೀವಿಬ್ಬರೂ ಇದ್ದೀರಿ</item>
+    <item quantity="other">%d ಗುಂಪುಗಳಲ್ಲಿ ನೀವಿಬ್ಬರೂ ಇರುವಿರಿ</item>
   </plurals>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s ಅವರು 1 ವ್ಯಕ್ತಿಯನ್ನು ಆಹ್ವಾನಿಸಿದ್ದಾರೆ</item>
@@ -692,7 +692,7 @@
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">ನಿರ್ವಹಿಸಿ ಮತ್ತು ಹಂಚಿಕೊಳ್ಳಿ</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">ಗುಂಪಿನ ಲಿಂಕ್</string>
   <string name="ShareableGroupLinkDialogFragment__share">ಹಂಚಿಕೊಳ್ಳಿ </string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">ಲಿಂಕ್ ರೀಸೆಟ್ ಮಾಡಿ</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">ರೀಸೆಟ್ ಲಿಂಕ್</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">ಸದಸ್ಯರ ವಿನಂತಿಗಳು</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">ಹೊಸ ಸದಸ್ಯರನ್ನು ಅನುಮೋದಿಸಿ</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">ಗುಂಪಿನ ಲಿಂಕ್ ಮೂಲಕ ಹೊಸ ಸದಸ್ಯರು ಸೇರುವುದನ್ನು ಅನುಮೋದಿಸಲು ಅಡ್ಮಿನ್ ಅಗತ್ಯವಿರುತ್ತದೆ.</string>
@@ -710,7 +710,7 @@
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">ನೀವು ಈಗಾಗಲೇ ಸದಸ್ಯರಾಗಿದ್ದೀರಿ</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">ಸೇರು</string>
-  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">ಸೇರಲು ವಿನಂತಿಸಲಾಗಿದೆ</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">ಸೇರಲು ವಿನಂತಿಸಿ</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">ಗ್ರೂಪ್‌ಗೆ ಸೇರಲು ಅಸಾಧ್ಯ. ದಯವಿಟ್ಟು ಪುನಃ ನಂತರ ಪ್ರಯತ್ನಿಸಿ</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">ನೆಟ್‌ವರ್ಕ್ ದೋಷವನ್ನು ಎದುರಿಸಿದೆ.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ಗುಂಪಿನ ಲಿಂಕ್ ಸಕ್ರಿಯವಾಗಿಲ್ಲ</string>
@@ -730,7 +730,7 @@
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">ಈ ಗ್ರೂಪ್‌ಗೆ ಸ್ನೇಹಿತರು ತ್ವರಿತವಾಗಿ ಸೇರುವುದಕ್ಕಾಗಿ ಅವರೊಂದಿಗೆ ಲಿಂಕ್‌ ಹಂಚಿಕೊಳ್ಳಿ.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">ಸಕ್ರಿಯಗೊಳಿಸಿ ಮತ್ತು ಲಿಂಕ್ ಹಂಚಿಕೊಳ್ಳಿ</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">ಲಿಂಕ್‌ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ ಮತ್ತು ಹಂಚಿಕೊಳ್ಳಿ</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">ಲಿಂಕ್ ಹಂಚಿಕೊಳ್ಳಿ</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">ಗ್ರೂಪ್ ಲಿಂಕ್ ಸಕ್ರಿಯಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">ನೆಟ್‌ವರ್ಕ್ ದೋಷವನ್ನು ಎದುರಿಸಿದೆ.</string>
@@ -781,7 +781,7 @@
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">ಮೀಡಿಯಾ</string>
   <string name="MediaOverviewActivity_Files">ಫೈಲುಗಳು</string>
-  <string name="MediaOverviewActivity_Audio">ಆಡಿಯೋ</string>
+  <string name="MediaOverviewActivity_Audio">ಆಡಿಯೊ</string>
   <string name="MediaOverviewActivity_All">ಎಲ್ಲಾ</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">ಆಯ್ಕೆಮಾಡಿದ ಅಳಿಸಿ ಐಟಂ?</item>
@@ -812,10 +812,10 @@
     <item quantity="other">%1$d ಐಟಂಗಳು</item>
   </plurals>
   <string name="MediaOverviewActivity_file">ಫೈಲ್</string>
-  <string name="MediaOverviewActivity_audio">ಆಡಿಯೋ</string>
+  <string name="MediaOverviewActivity_audio">ಆಡಿಯೊ</string>
   <string name="MediaOverviewActivity_video">ವೀಡಿಯೊ</string>
   <string name="MediaOverviewActivity_image">ಚಿತ್ರ</string>
-  <string name="MediaOverviewActivity_voice_message">ಧ್ವನಿ ಮೆಸೇಜ್</string>
+  <string name="MediaOverviewActivity_voice_message">ಧ್ವನಿ ಸಂದೇಶ</string>
   <string name="MediaOverviewActivity_sent_by_s">%1$sನಿಂದ ಕಳುಹಿಸಲಾಗಿದೆ</string>
   <string name="MediaOverviewActivity_sent_by_you">ನಿಮ್ಮಿಂದ ಕಳುಹಿಸಲಾಗಿದೆ</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s"> %1$s ರಿಂದ %2$s ಗೆ ಕಳುಹಿಸಿದರು</string>
@@ -853,7 +853,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">ಎಂಎಂಎಸ್ ಸಂದೇಶ ಡೌನ್‌ಲೋಡ್ ಮಾಡುವಲ್ಲಿ ದೋಷ ಸಂಭವಿಸಿದೆ, ಪುನಃ ಪ್ರಯತ್ನಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ </string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">%sಗೆ ಕಳುಹಿಸಿ</string>
-  <string name="MediaPickerActivity__menu_open_camera">ಕ್ಯಾಮೆರಾ ತೆರೆಯಿರಿ</string>
+  <string name="MediaPickerActivity__menu_open_camera">ಕ್ಯಾಮರಾ ತೆರೆಯಿರಿ</string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">ಕ್ಯಾಪ್ಷನ್ ಸೇರಿಸಿ</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ಗಾತ್ರದ ಮಿತಿಯನ್ನು ಮೀರಿದ ಕಾರಣ ಐಟಂ ಅನ್ನು ತೆಗೆಯಲಾಗಿದೆ</string>
@@ -884,7 +884,7 @@
   <string name="MessageRecord_you_updated_group">ನೀವು ಗುಂಪನ್ನು ನವೀಕರಿಸಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_the_group_was_updated">ಗ್ರೂಪ್ ಅನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗಿದೆ.</string>
   <string name="MessageRecord_you_called_date">ನೀವು ಇವರಿಗೆ ಕರೆ ಮಾಡಿದ್ದೀರಿ · %1$s</string>
-  <string name="MessageRecord_missed_audio_call_date">ಮಿಸ್ಡ್ ಆಡಿಯೋ ಕಾಲ್ · %1$s</string>
+  <string name="MessageRecord_missed_audio_call_date">ಮಿಸ್ಡ್ ಆಡಿಯೊ ಕರೆ · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">ಮಿಸ್ಡ್ ವೀಡಿಯೋ ಕಾಲ್ · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s ಗುಂಪನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ.</string>
   <string name="MessageRecord_s_called_you_date">%1$s ಅವರು ನಿಮಗೆ ಕರೆ ಮಾಡಿದ್ದಾರೆ · %2$s</string>
@@ -981,7 +981,7 @@
   <string name="MessageRecord_s_changed_the_group_description">%1$s ಅವರು ಗ್ರೂಪ್ ವಿವರಣೆಯನ್ನು ಬದಲಿಸಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_the_group_description_has_changed">ಗ್ರೂಪ್ ವಿವರಗಣೆಯು ಬದಲಾಗಿದೆ.</string>
   <!--GV2 avatar change-->
-  <string name="MessageRecord_you_changed_the_group_avatar">ಗ್ರೂಪ್ ಅವತಾರ್ ಅನ್ನು ಬದಲಿಸಲಾಗಿದೆ.</string>
+  <string name="MessageRecord_you_changed_the_group_avatar">ಗ್ರೂಪ್ ಅವತಾರ್ ಅನ್ನು ನೀವು ಬದಲಿಸಲಾಯಿಸಿರುವಿರಿ.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s ಅವರು ಗ್ರೂಪ್ ಅವತಾರ್‌ ಅನ್ನು ಬದಲಿಸಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_the_group_group_avatar_has_been_changed">ಗ್ರೂಪ್ ಅವತಾರ್ ಅನ್ನು ಬದಲಿಸಲಾಗಿದೆ.</string>
   <!--GV2 attribute access level change-->
@@ -994,14 +994,14 @@
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">ಯಾರು ಗ್ರೂಪ್ ಸದಸ್ಯತ್ವವನ್ನು ಎಡಿಟ್ ಮಾಡಬಹುದು ಎಂಬುದನ್ನು \"%1$s\" ಗೆ ಬದಲಿಸಲಾಗಿದೆ.</string>
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಎಲ್ಲಾ ಸದಸ್ಯರಿಗೂ ಅವಕಾಶವಾಗುವಂತೆ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೀವು ಬದಲಾಯಿಸಿರುವಿರಿ.</string>
-  <string name="MessageRecord_you_allow_only_admins_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಡ್ಮಿನ್‌ಗಳಿಗೆ ಮಾತ್ರ  ಅವಕಾಶ ಮಾಡಿಕೊಡುವಂತೆ ಈ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೀವು ಬದಲಾಯಿಸಿದ್ದೀರಿ.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಡ್ಮಿನ್‌ಗಳಿಗೆ ಮಾತ್ರ ಅವಕಾಶವಾಗುವಂತೆ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೀವು ಬದಲಾಯಿಸಿರುವಿರಿ.</string>
   <string name="MessageRecord_s_allow_all_members_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಎಲ್ಲಾ ಸದಸ್ಯರಿಗೂ ಅವಕಾಶವಾಗುವಂತೆ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು %1$s ಅವರು ಬದಲಾಯಿಸಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_s_allow_only_admins_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಡ್ಮಿನ್‌ಗಳಿಗೆ ಮಾತ್ರ ಅವಕಾಶವಾಗುವಂತೆ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು %1$s ಅವರು ಬದಲಾಯಿಸಿದ್ದಾರೆ.</string>
-  <string name="MessageRecord_allow_all_members_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಎಲ್ಲಾ ಸದಸ್ಯರಿಗೂ ಅನುವು ಮಾಡಿಕೊಡುವಂತೆ ಈ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿದೆ.</string>
-  <string name="MessageRecord_allow_only_admins_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಡ್ಮಿನ್‌ಗಳಿಗೆ ಮಾತ್ರ ಅವಕಾಶ ಮಾಡಿಕೊಡುವಂತೆ ಈ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿದೆ.</string>
+  <string name="MessageRecord_allow_all_members_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಎಲ್ಲಾ ಸದಸ್ಯರಿಗೂ ಅವಕಾಶವಾಗುವಂತೆ ಈ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿದೆ.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಡ್ಮಿನ್‌ಗಳಿಗೆ ಮಾತ್ರ ಅವಕಾಶವಾಗುವಂತೆ ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿದೆ.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">ನೀವು ಅಡ್ಮಿನ್ ಅನುಮೋದನೆಯನ್ನು ಆಫ್ ಮಾಡುವುದರೊಂದಿಗೆ ಗುಂಪಿನ ಲಿಂಕ್ ಅನ್ನು ಆನ್ ಮಾಡಿದ್ದೀರಿ.</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">ನೀವು ಅಡ್ಮಿನ್ ಅನುಮೋದನೆಯೊಂದಿಗೆ ಗುಂಪಿನ ಲಿಂಕ್ ಅನ್ನು ಆನ್ ಮಾಡಿದ್ದೀರಿ.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">ನೀವು ಅಡ್ಮಿನ್ ಅನುಮೋದನೆಯನ್ನು ಆನ್ ಮಾಡುವುದರೊಂದಿಗೆ ಗುಂಪಿನ ಲಿಂಕ್ ಅನ್ನು ಆನ್ ಮಾಡಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">ನೀವು ಗುಂಪಿನ ಲಿಂಕ್ ಅನ್ನು ಆಫ್ ಮಾಡಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">ಅಡ್ಮಿನ್ ಅನುಮತಿ ಆಫ್‌ ಮಾಡಿರುವುದರೊಂದಿಗೆ ಗ್ರೂಪ್ ಲಿಂಕ್ ಅನ್ನು %1$s ಆನ್ ಮಾಡಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">ಅಡ್ಮಿನ್ ಅನುಮತಿ ಆನ್ ಮಾಡಿ ಗ್ರೂಪ್ ಲಿಂಕ್ ಅನ್ನು %1$s ಆನ್ ಮಾಡಿದ್ದಾರೆ.</string>
@@ -1085,7 +1085,7 @@
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, ಮತ್ತು %3$s ರ ಸದಸ್ಯ</string>
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d ಸದಸ್ಯರು</item>
-    <item quantity="other">%1$d ಸದಸ್ಯರುಗಳು</item>
+    <item quantity="other">%1$d ಸದಸ್ಯರು</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="one">%1$d ಸದಸ್ಯರು (+%2$d ಆಹ್ವಾನಿಸಲಾಗಿದೆ)</item>
@@ -1112,13 +1112,13 @@
   <string name="DeviceProvisioningActivity_content_progress_success">ಸಾಧನ ಅನುಮೋದಿಸಲಾಗಿದೆ!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">ಯಾವುದೇ ಸಾಧನವನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗಿಲ್ಲ.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">ನೆಟ್ವರ್ಕ್ ದೋಷ.</string>
-  <string name="DeviceProvisioningActivity_content_progress_key_error">ಮಾನ್ಯವಲ್ಲದ QR ಕೋಡ್.</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">ಮಾನ್ಯವಲ್ಲದ ಕ್ಯುಆರ್‌ ಕೋಡ್.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">ಕ್ಷಮಿಸಿ, ನೀವು ಈಗಾಗಲೇ ಬಹಳ ಹೆಚ್ಚು ಸಾಧನಗಳನ್ನು ಲಿಂಕ್ ಮಾಡಿದ್ದೀರಿ, ಕೆಲವನ್ನು ತೆಗೆದುಹಾಕಲು ಪ್ರಯತ್ನಿಸಿ</string>
-  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">ಕ್ಷಮಿಸಿ, ಇದು ಮಾನ್ಯವಾಗಿರುವ ಸಾಧನ ಲಿಂಕ್ ಮಾಡುವ QR ಕೋಡ್ ಅಲ್ಲ.</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">ಕ್ಷಮಿಸಿ, ಇದು ಮಾನ್ಯವಾಗಿರುವ ಸಾಧನ ಲಿಂಕ್ ಮಾಡುವ ಕ್ಯುಆರ್‌ ಕೋಡ್ ಅಲ್ಲ.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">ಒಂದು Signal ಸಾಧನ ಲಿಂಕ್ ಮಾಡುವುದೇ?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">ನೀವು 3ನೆ ಪಾರ್ಟಿ ಸ್ಕ್ಯಾನರ್ ಬಳಸಿ Signal ಸಾಧನ ಲಿಂಕ್ ಮಾಡಲು ಯತ್ನಿಸುತ್ತಿರುವಂತೆ ಕಂಡುಬರುತ್ತಿದೆ. ನಿಮ್ಮ ರಕ್ಷಣೆಗಾಗಿ, Signal ಒಳಗೆ ದಯವಿಟ್ಟು ಕೋಡ್ ಅನ್ನು ಮತ್ತೊಮ್ಮೆ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR ಕೋಡ್‌‌ ಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಇದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
-  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಇಲ್ಲದೆ QR ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ    </string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">ಕ್ಯುಆರ್‌ ಕೋಡ್‌ಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮರಾ ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಇದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
+  <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ಕ್ಯಾಮರಾ ಅನುಮತಿ ಇಲ್ಲದೆ ಕ್ಯುಆರ್‌ ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ    </string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">ಈಗ ನವೀಕರಿಸಿ</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">ನಿಮ್ಮ ಈ Signal ಆವೃತ್ತಿಯು ಇಂದು ವಾಯಿದೆ ಮೀರಲಿದೆ. ತೀರಾ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಗೆ ನವೀಕರಿಸಿ.</string>
@@ -1141,8 +1141,8 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">ನೀವು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದ Google ಪ್ಲೇ ಸರ್ವೀಸಸ್‌ ನ ಆವೃತ್ತಿಯು ಸರಿಯಾಗಿ ಕೆಲಸ ಮಾಡುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು Google ಪ್ಲೇ ಸರ್ವೀಸಸ್ ಅನ್ನು ಪುನಃ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ ಹಾಗು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.  </string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">ತಪ್ಪಾದ ಪಿನ್</string>
-  <string name="PinRestoreEntryFragment_skip_pin_entry">PIN ನಮೂದು ತೊರೆಯುವುದೇ?</string>
-  <string name="PinRestoreEntryFragment_need_help">ಸಹಾಯ ಬೇಕೇ?</string>
+  <string name="PinRestoreEntryFragment_skip_pin_entry">ಪಿನ್ ನಮೂದನ್ನು ಬಿಟ್ಟುಬಿಡುವುದೇ?</string>
+  <string name="PinRestoreEntryFragment_need_help">ಸಹಾಯ ಅಗತ್ಯವಿದೆಯೇ?</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">ನಿಮ್ಮ ಪಿನ್ ನೀವು ರಚಿಸಿದ ಪಿನ್ %1$d+ ಅಂಕಿಯ ಕೋಡ್ ಆಗಿದ್ದು, ಅದು ಸಂಖ್ಯಾತ್ಮಕ ಅಥವಾ ಆಲ್ಫಾನ್ಯೂಮರಿಕ್ ಆಗಿರಬಹುದು.\n\nನಿಮ್ಮ ಪಿನ್ ನಿಮಗೆ ನೆನಪಿಲ್ಲದಿದ್ದರೆ, ನೀವು ಹೊಸದನ್ನು ರಚಿಸಬಹುದು. ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನೀವು ನೋಂದಾಯಿಸಬಹುದು ಮತ್ತು ಬಳಸಬಹುದು, ಆದರೆ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯಂತಹ ಕೆಲವು ಉಳಿಸಿದ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೀವು ಕಳೆದುಕೊಳ್ಳುತ್ತೀರಿ.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">ನಿಮ್ಮ ಪಿನ್ ನಿಮಗೆ ನೆನಪಿಲ್ಲದಿದ್ದರೆ, ನೀವು ಹೊಸದನ್ನು ರಚಿಸಬಹುದು.  ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನೀವು ನೋಂದಾಯಿಸಬಹುದು ಮತ್ತು ಬಳಸಬಹುದು, ಆದರೆ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯಂತಹ ಕೆಲವು ಉಳಿಸಿದ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೀವು ಕಳೆದುಕೊಳ್ಳುತ್ತೀರಿ.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">ಹೊಸ ಪಿನ್ ರಚಿಸಿ</string>
@@ -1151,7 +1151,7 @@
   <string name="PinRestoreEntryFragment_skip">ಬಿಟ್ಟು ಮುಂದುವರಿಯಿರಿ</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
     <item quantity="one">ನಿಮ್ಮಲ್ಲಿ %1$d ಪ್ರಯತ್ನ ಉಳಿದಿದೆ. ನೀವು ಪ್ರಯತ್ನಗಳ ಮಿತಿಯನ್ನು ಮೀರಿದರೆ, ನೀವು ಹೊಸ ಪಿನ್ ರಚಿಸಬಹುದು. ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನೀವು ನೋಂದಾಯಿಸಬಹುದು ಮತ್ತು ಬಳಸಬಹುದು. ಆದರೆ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯಂತಹ ಕೆಲವು ಉಳಿಸಿದ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೀವು ಕಳೆದುಕೊಳ್ಳುತ್ತೀರಿ.</item>
-    <item quantity="other">ನಿಮ್ಮಲ್ಲಿ %1$d ಪ್ರಯತ್ನ ಉಳಿದಿದೆ. ನೀವು ಪ್ರಯತ್ನಗಳ ಮಿತಿಯನ್ನು ಮೀರಿದರೆ, ನೀವು ಹೊಸ ಪಿನ್ ರಚಿಸಬಹುದು. ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನೀವು ನೋಂದಾಯಿಸಬಹುದು ಮತ್ತು ಬಳಸಬಹುದು. ಆದರೆ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯಂತಹ ಕೆಲವು ಉಳಿಸಿದ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೀವು ಕಳೆದುಕೊಳ್ಳುತ್ತೀರಿ.</item>
+    <item quantity="other">ನಿಮ್ಮಲ್ಲಿ %1$d ಪ್ರಯತ್ನಗಳು ಉಳಿದಿವೆ. ನೀವು ಪ್ರಯತ್ನಗಳ ಮಿತಿಯನ್ನು ಮೀರಿದರೆ, ನೀವು ಹೊಸ ಪಿನ್ ರಚಿಸಬಹುದು. ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನೀವು ನೋಂದಾಯಿಸಬಹುದು ಮತ್ತು ಬಳಸಬಹುದು. ಆದರೆ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯಂತಹ ಕೆಲವು ಉಳಿಸಿದ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೀವು ಕಳೆದುಕೊಳ್ಳುತ್ತೀರಿ.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal ನೋಂದಣಿ - Android ಗಾಗಿ ಪಿನ್‌ ಕುರಿತ ಸಹಾಯ ಬೇಕಿದೆ</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">ಆಲ್ಫಾನ್ಯೂಮರಿಕ್ ಪಿನ್ ನಮೂದಿಸಿ</string>
@@ -1177,7 +1177,7 @@
   <!--ReactionsRecipientAdapter-->
   <string name="ReactionsRecipientAdapter_you">ನೀವು</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
-  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">ಮೆಸೇಜ್ ಮಾಡುವುದನ್ನು ಮುಂದುವರಿಸಲು ಪರಿಶೀಲಿಸಿ</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">ಸಂದೇಶ ಕಳುಹಿಸುವುದನ್ನು ಮುಂದುವರಿಸಲು ಪರಿಶೀಲಿಸಿ</string>
   <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal ನಲ್ಲಿ ಸ್ಪ್ಯಾಮ್ ತಡೆಯಲು ಸಹಾಯ ಮಾಡುವುದಕ್ಕಾಗಿ, ದಯವಿಟ್ಟು ಪರಿಶೀಲನೆಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ.</string>
   <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">ಪರಿಶೀಲಿಸಿದ ನಂತರ, ಮೆಸೇಜ್ ಮಾಡುವುದನ್ನು ನೀವು ಮುಂದುವರಿಸಬಹುದು. ಯಾವುದೇ ವಿರಾಮಗೊಳಿಸಿದ ಮೆಸೇಜ್‌ಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಕಳುಹಿಸಲಾಗುತ್ತದೆ.</string>
   <!--Recipient-->
@@ -1199,7 +1199,7 @@
   <string name="RedPhone_got_it">ಅರ್ಥವಾಯಿತು</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">ನಿಮ್ಮ ವೀಡಿಯೊವನ್ನು ಆನ್ ಮಾಡಲು ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
-  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ಗೆ ಕರೆ ಮಾಡಲು, Signal ಗೆ ನಿಮ್ಮ ಕ್ಯಾಮೆರಾ ಪ್ರವೇಶ ಬೇಕಾಗುತ್ತದೆ</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ಗೆ ಕರೆ ಮಾಡಲು, Signal ಗೆ ನಿಮ್ಮ ಕ್ಯಾಮರಾ ಪ್ರವೇಶ ಬೇಕಾಗುತ್ತದೆ</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">ಕರೆ ಮಾಡಲಾಗುತ್ತಿದೆ..</string>
   <!--WebRtcCallView-->
@@ -1211,7 +1211,7 @@
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">ಈ ಕರೆಗೆ ಗರಿಷ್ಠ ಸಂಖ್ಯೆಯ %1$d ಭಾಗಿದಾರರು ತಲುಪಿದ್ದಾರೆ. ನಂತರ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ</string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\" ಗುಂಪು ಕರೆ</string>
   <string name="WebRtcCallView__view_participants_list">ಭಾಗಿದಾರರನ್ನು ನೋಡಿ</string>
-  <string name="WebRtcCallView__your_video_is_off">ನಿಮ್ಮ ವೀಡಿಯೋ ಆಫ್ ಆಗಿದೆ</string>
+  <string name="WebRtcCallView__your_video_is_off">ನಿಮ್ಮ ವೀಡಿಯೊ ಆಫ್ ಆಗಿದೆ</string>
   <string name="WebRtcCallView__reconnecting">ಮರುಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ…</string>
   <string name="WebRtcCallView__joining">ಸೇರಲಾಗುತ್ತಿದೆ…</string>
   <string name="WebRtcCallView__disconnected">ಸಂಪರ್ಕ ಕಡಿತಗೊಂಡಿದೆ</string>
@@ -1232,8 +1232,8 @@
   <string name="CallParticipantView__s_is_blocked">%1$s ಅವರನ್ನು ಬ್ಲಾಕ್ ಮಾಡಲಾಗಿದೆ</string>
   <string name="CallParticipantView__more_info">ಇನ್ನಷ್ಟು ಮಾಹಿತಿ</string>
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">ನೀವು ಅವರ ಆಡಿಯೋ ಅಥವಾ ವೀಡಿಯೋ ಅನ್ನು ಪಡೆಯುವುದಿಲ್ಲ ಮತ್ತು ಅವರಿಗೂ ನೀವು ಕಾಣಿಸುವುದಿಲ್ಲ.</string>
-  <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s ರಿಂದ ಆಡಿಯೋ ಹಾಗೂ ವೀಡಿಯೋ ಸ್ವೀಕರಿಸಲಾಗುತ್ತಿಲ್ಲ</string>
-  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s ರಿಂದ ಆಡಿಯೋ ಹಾಗೂ ವೀಡಿಯೋ ಸ್ವೀಕರಿಸಲಾಗುತ್ತಿಲ್ಲ</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s ರಿಂದ ಆಡಿಯೊ ಹಾಗೂ ವೀಡಿಯೊ ಸ್ವೀಕರಿಸಲಾಗುತ್ತಿಲ್ಲ</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s ರಿಂದ ಆಡಿಯೊ ಹಾಗೂ ವೀಡಿಯೊ ಸ್ವೀಕರಿಸಲಾಗುತ್ತಿಲ್ಲ</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ಯಾಕೆಂದರೆ, ಅವರು ನಿಮ್ಮ ಸುರಕ್ಷತೆ ಸಂಖ್ಯೆ ಬದಲಾವಣೆಯನ್ನು ಪರಿಶೀಲಿಸಿಲ್ಲದಿರಬಹುದು, ಅವರ ಸಾಧನದಲ್ಲಿ ಸಮಸ್ಯೆ ಇರಬಹುದು ಅಥವಾ ಅವರು ನಿಮ್ಮನ್ನು ಬ್ಲಾಕ್ ಮಾಡಿರಬಹುದು.</string>
   <!--CallToastPopupWindow-->
   <string name="CallToastPopupWindow__swipe_to_view_screen_share">ಸ್ಕ್ರೀನ್ ಹಂಚಿಕೆಯನ್ನು ನೋಡಲು ಸ್ವೈಪ್ ಮಾಡಿ</string>
@@ -1278,7 +1278,7 @@
   <string name="RegistrationActivity_continue">ಮುಂದುವರಿಸಿ</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ಖಾಸಗಿತನವನ್ನು ನಿಮ್ಮೊಂದಿಗೆ ಇರಿಸಿಕೊಳ್ಳಿ. \nನಿಮ್ಮ ಪ್ರತಿ ಸಂದೇಶದಲ್ಲಿಯೂ ಸ್ವಂತಿಕೆ ಕಾಯ್ದುಕೊಳ್ಳಿ.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ಪ್ರಾರಂಭಿಸಲು ನಿಮ್ಮ ದೂರವಾಣಿ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ </string>
-  <string name="RegistrationActivity_enter_your_phone_number">ನಿಮ್ಮ ಫೋನ್‌ ನಂಬರ್ ನಮೂ</string>
+  <string name="RegistrationActivity_enter_your_phone_number">ನಿಮ್ಮ ಫೋನ್‌ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">ನೀವು ದೃಢೀಕರಣ ಕೋಡ್ ಅನ್ನು ಪಡೆಯುತ್ತೀರಿ. ಕೆರಿಯರ್ ದರಗಳು ಅನ್ವಯವಾಗಬಹುದು.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s ಗೆ ನಾವು ಕಳುಹಿಸಿದ ಕೋಡ್ ನಮೂದಿಸಿ</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ನಿಮ್ಮ ಎಸ್‌ಎಂಎಸ್ ಅಥಬಾ ಕರೆಯನ್ನು ಸ್ವೀಕರಿಸಲು ನಿಮ್ಮ ಫೋನ್‌ ಮೊಬೈಲ್ ಸಿಗ್ನಲ್ ಅನ್ನು ನಿಮ್ಮ ಫೋನ್‌ ಹೊಂದಿದೆ ಎಂಬುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳ</string>
@@ -1321,7 +1321,7 @@
   <!--Slide-->
   <string name="Slide_image">ಚಿತ್ರ</string>
   <string name="Slide_sticker">ಸ್ಟಿಕ್ಕರ್</string>
-  <string name="Slide_audio">ಆಡಿಯೋ</string>
+  <string name="Slide_audio">ಆಡಿಯೊ</string>
   <string name="Slide_video">ವೀಡಿಯೊ</string>
   <!--SmsMessageRecord-->
   <string name="SmsMessageRecord_received_corrupted_key_exchange_message">ದೋಷಯುಕ್ತ ಕೀಯನ್ನು ಸ್ವೀಕರಿಸಲಾಗಿದೆ
@@ -1376,13 +1376,13 @@
   <string name="ThreadRecord_draft">ಡ್ರಾಫ್ಟ್</string>
   <string name="ThreadRecord_called">ನೀವು ಕರೆ ಮಾಡಿದ್ದೀರಿ</string>
   <string name="ThreadRecord_called_you">ನಿಮಗೆ ಕರೆ ಮಾಡಿದ್ದಾರೆ</string>
-  <string name="ThreadRecord_missed_audio_call">ಮಿಸ್ಡ್ ಆಡಿಯೋ ಕಾಲ್</string>
-  <string name="ThreadRecord_missed_video_call">ಮಿಸ್ಡ್ ವೀಡಿಯೋ ಕಾಲ್</string>
+  <string name="ThreadRecord_missed_audio_call">ಮಿಸ್ಡ್ ಆಡಿಯೊ ಕರೆ</string>
+  <string name="ThreadRecord_missed_video_call">ಮಿಸ್ಡ್ ವೀಡಿಯೊ ಕಾಲ್</string>
   <string name="ThreadRecord_media_message">ಮೀಡಿಯಾ ಸಂದೇಶ</string>
   <string name="ThreadRecord_sticker">ಸ್ಟಿಕ್ಕರ್</string>
-  <string name="ThreadRecord_view_once_photo">ವ್ಯೂ-ಒನ್ಸ್ ಫೋಟೋ</string>
-  <string name="ThreadRecord_view_once_video">ವ್ಯೂ-ಒನ್ಸ್ ವೀಡಿಯೊ</string>
-  <string name="ThreadRecord_view_once_media">ವ್ಯೂ-ಒನ್ಸ್ ಮೀಡಿಯಾ</string>
+  <string name="ThreadRecord_view_once_photo">ಏಕ ವೀಕ್ಷಣೆ ಫೋಟೋ</string>
+  <string name="ThreadRecord_view_once_video">ಏಕ ವೀಕ್ಷಣೆ ವೀಡಿಯೊ</string>
+  <string name="ThreadRecord_view_once_media">ಏಕ ವೀಕ್ಷಣೆ ಮೀಡಿಯಾ</string>
   <string name="ThreadRecord_this_message_was_deleted">ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
   <string name="ThreadRecord_you_deleted_this_message">ನೀವು ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಿದಿರಿ</string>
   <string name="ThreadRecord_s_is_on_signal">%sರವರು Signal ಸೇರಿದ್ದಾರೆ!</string>
@@ -1429,14 +1429,14 @@
   </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ನಿಮ್ಮ ಸಂಪರ್ಕವು ಹಳೆಯ Signal ಆವೃತ್ತಿಯನ್ನು ಚಲಾಯಿಸುತ್ತಿದ್ದಾರೆ. ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ  ಪರಿಶೀಲಿಸುವ ಮೊದಲು ದಯವಿಟ್ಟು ಅವರನ್ನು ನವೀಕರಿಸಲು ಕೇಳಿ.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ನಿಮ್ಮ ಸಂಪರ್ಕವು QR ಕೋಡ್ ಫಾರ್ಮ್ಯಾಟ್‌ಗೆ ಹೊಂದಿಕೊಳ್ಳದ Signal ನ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಯನ್ನು ರನ್ ಮಾಡುತ್ತಿದೆ. ಹೋಲಿಕೆ ಮಾಡಲು ದಯವಿಟ್ಟು ನವೀಕರಿಸಿ.</string>
-  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">ಸ್ಕ್ಯಾನ್ ಮಾಡಿದ ಕ್ಯೂಆರ್ ಕೋಡ್ ಸರಿಯಾಗಿ ಫಾರ್ಮ್ಯಾಟ್ ಆಗಿಲ್ಲದ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ದೃಢೀಕರಣ ಕೋಡ್ ಆಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿ.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ನಿಮ್ಮ ಸಂಪರ್ಕವು ಕ್ಯುಆರ್‌ ಕೋಡ್ ಫಾರ್ಮ್ಯಾಟ್‌ಗೆ ಹೊಂದಿಕೊಳ್ಳದ Signal ನ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಯನ್ನು ರನ್ ಮಾಡುತ್ತಿದೆ. ಹೋಲಿಕೆ ಮಾಡಲು ದಯವಿಟ್ಟು ನವೀಕರಿಸಿ.</string>
+  <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">ಸ್ಕ್ಯಾನ್ ಮಾಡಿದ ಕ್ಯುಆರ್‌ ಕೋಡ್ ಸರಿಯಾಗಿ ಫಾರ್ಮ್ಯಾಟ್ ಆಗಿಲ್ಲದ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ದೃಢೀಕರಣ ಕೋಡ್ ಆಗಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">ಇದರ ಮೂಲಕ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಹಂಚಿಕೊಳ್ಳಿ…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">ನಮ್ಮ Signal ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ: </string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">ಹಂಚಿಕೊಳ್ಳಲು ತಾವು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್‌‌‌ಗಳನ್ನು ಹೊಂದಿಲ್ಲದಿರುವಂತೆ ಕಂಡುಬರುತ್ತಿದೆ.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">ಹೋಲಿಸುವುದಕ್ಕಾಗಿ ಯಾವುದೇ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಕ್ಲಿಪ್‌ಬೋರ್ಡಿನಲ್ಲಿ ಕಂಡುಬಂದಿಲ್ಲ</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">ಒಂದು QR ಕೋಡ್‌‌ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು  Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಇದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
-  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">ಕ್ಯಾಮೆರಾ ಅನುಮತಿ ಇಲ್ಲದೆ QR ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">ಒಂದು ಕ್ಯುಆರ್‌ ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು  Signal ಗೆ ಕ್ಯಾಮರಾ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಇದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ. </string>
+  <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">ಕ್ಯಾಮರಾ ಅನುಮತಿ ಇಲ್ಲದೆ ಕ್ಯುಆರ್‌ ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ</string>
   <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s ಅವರ ಸುರಕ್ಷತೆ ಸಂಖ್ಯೆಯನ್ನು ನೋಡಲು ನೀವು ಮೊದಲು ಸಂದೇಶಗಳನ್ನು ವಿನಿಮಯ ಮಾಡಿಕೊಳ್ಳಬೇಕು.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
@@ -1479,8 +1479,8 @@
   <string name="MessageNotifier_mark_all_as_read">ಎಲ್ಲವನ್ನು ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
   <string name="MessageNotifier_mark_read">ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
   <string name="MessageNotifier_turn_off_these_notifications">ಈ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಆಫ್ ಮಾಡಿ</string>
-  <string name="MessageNotifier_view_once_photo">ವ್ಯೂ-ಒನ್ಸ್ ಫೋಟೋ</string>
-  <string name="MessageNotifier_view_once_video">ವ್ಯೂ-ಒನ್ಸ್ ವೀಡಿಯೊ</string>
+  <string name="MessageNotifier_view_once_photo">ಏಕ ವೀಕ್ಷಣೆ ಫೋಟೋ</string>
+  <string name="MessageNotifier_view_once_video">ಏಕ ವೀಕ್ಷಣೆ ವೀಡಿಯೊ</string>
   <string name="MessageNotifier_reply">ಉತ್ತರಿಸಿ</string>
   <string name="MessageNotifier_signal_message">Signal ಸಂದೇಶ</string>
   <string name="MessageNotifier_unsecured_sms">ಅಸುರಕ್ಷಿತ ಎಸ್‌ಎಂಎಸ್</string>
@@ -1492,7 +1492,7 @@
   <string name="MessageNotifier_reacted_s_to_your_video">%1$s ನಿಮ್ಮ ವೀಡಿಯೊಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
   <string name="MessageNotifier_reacted_s_to_your_image">%1$s ನಿಮ್ಮ ಚಿತ್ರಕ್ಕೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">%1$s ನಿಮ್ಮ ಫೈಲ್ ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
-  <string name="MessageNotifier_reacted_s_to_your_audio">%1$s ನಿಮ್ಮ ಆಡಿಯೋಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">%1$s ನಿಮ್ಮ ಆಡಿಯೊಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">ನಿಮ್ಮ ವ್ಯೂ-ಒನ್ಸ್ ಮೀಡಿಯಾಕ್ಕೆ %1$s ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s ನಿಮ್ಮ ಸ್ಟಿಕ್ಕರ್‌ಗೆ ಪ್ರತಿಕ್ರಿಯಿಸಿದ್ದಾರೆ</string>
   <string name="MessageNotifier_this_message_was_deleted">ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
@@ -1540,7 +1540,7 @@
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನೀವು Signal ನೊಂದಿಗೆ ಬೇರೆ ಸಾಧನದಲ್ಲಿ ನೋಂದಾಯಿಸಿದ್ದರಿಂದ ಇದು ಉಂಟಾಗಿರಬಹುದು. ಪುನಃ ನೋಂದಾಯಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone"> %s ನಿಂದ ಕರೆಗೆ ಉತ್ತರಿಸಲು, ನಿಮ್ಮ ಮೈಕ್ರೊಫೋನ್‌ಗೆ Signal ಗೆ ಪ್ರವೇಶವನ್ನು ನೀಡಿ.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">ಕರೆಗಳನ್ನು ಮಾಡಲು ಅಥವಾ ಪಡೆಯಲು Signal ಗೆ ಮೈಕ್ರೊಫೋನ್ ಹಾಗೂ ಕ್ಯಾಮೆರಾ ಅನುಮತಿಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ, ಆದರೆ ಅವುಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು  \"ಮೈಕ್ರೊಫೋನ್\" ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">ಕರೆಗಳನ್ನು ಮಾಡಲು ಅಥವಾ ಪಡೆಯಲು Signal ಗೆ ಮೈಕ್ರೊಫೋನ್ ಹಾಗೂ ಕ್ಯಾಮರಾ ಅನುಮತಿಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ, ಆದರೆ ಅವುಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು  \"ಮೈಕ್ರೊಫೋನ್\" ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="WebRtcCallActivity__answered_on_a_linked_device">ಲಿಂಕ್ ಮಾಡಿದ ಸಾಧನದಲ್ಲಿ ಉತ್ತರಿಸಲಾಗಿದೆ.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">ಲಿಂಕ್ ಮಾಡಿದ ಸಾಧನದಲ್ಲಿ ತಿರಸ್ಕರಿಸಲಾಗಿದೆ.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">ಲಿಂಕ್ ಮಾಡಿದ ಸಾಧನದಲ್ಲಿ ಕಾರ್ಯನಿರತವಾಗಿದೆ.</string>
@@ -1552,7 +1552,7 @@
   <string name="WebRtcCallScreen__answer">ಉತ್ತರಿಸಿ</string>
   <string name="WebRtcCallScreen__answer_without_video">ವೀಡಿಯೊ ಇಲ್ಲದೇ ಉತ್ತರಿಸಿ</string>
   <!--WebRtcAudioOutputToggle-->
-  <string name="WebRtcAudioOutputToggle__audio_output">ಆಡಿಯೋ ಔಟ್‌ಪುಟ್</string>
+  <string name="WebRtcAudioOutputToggle__audio_output">ಆಡಿಯೊ ಔಟ್‌ಪುಟ್</string>
   <string name="WebRtcAudioOutputToggle__phone_earpiece">ಫೋನ್‌ ಇಯರ್‌ಪೀಸ್</string>
   <string name="WebRtcAudioOutputToggle__speaker">ಸ್ಪೀಕರ್</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">ಬ್ಲೂಟೂತ್</string>
@@ -1607,9 +1607,9 @@
   <string name="conversation_activity__compose_description">ಸಂದೇಶ ಸಂಯೋಜನೆ</string>
   <string name="conversation_activity__emoji_toggle_description">ಎಮೋಜಿ ಕೀಬೋರ್ಡ್ ಟಾಗಲ್ ಮಾಡಿ</string>
   <string name="conversation_activity__attachment_thumbnail"> ಥಂಬ್‌ನೇಲ್ ಲಗತ್ತು</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">ತ್ವರಿತ ಕ್ಯಾಮೆರಾ ಅಟ್ಯಾಚ್‌ಮೆಂಟ್ ಡ್ರಾಯರ್ ಟಾಗಲ್ ಮಾಡಿ</string>
-  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">ಆಡಿಯೋ ಲಗತ್ತು ರೆಕಾರ್ಡ್ ಮಾಡಿ ಮತ್ತು ಕಳುಹಿಸಿ</string>
-  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">ಆಡಿಯೋ ಲಗತ್ತು ರೆಕಾರ್ಡಿಂಗ್  ಲಾಕ್ ಮಾಡಿ</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">ತ್ವರಿತ ಕ್ಯಾಮರಾ ಅಟ್ಯಾಚ್‌ಮೆಂಟ್ ಡ್ರಾಯರ್ ಟಾಗಲ್ ಮಾಡಿ</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">ಆಡಿಯೊ ಲಗತ್ತು ರೆಕಾರ್ಡ್ ಮಾಡಿ ಮತ್ತು ಕಳುಹಿಸಿ</string>
+  <string name="conversation_activity__quick_attachment_drawer_lock_record_description">ಆಡಿಯೊ ಲಗತ್ತು ರೆಕಾರ್ಡಿಂಗ್ ಲಾಕ್ ಮಾಡಿ</string>
   <string name="conversation_activity__enable_signal_for_sms">ಎಸ್‌ಎಂಎಸ್ ಗಾಗಿ Signal ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="conversation_activity__message_could_not_be_sent">ಮೆಸೇಜ್ ಕಳುಹಿಸಲಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
   <!--conversation_input_panel-->
@@ -1628,8 +1628,8 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">ಲೋಡ್ ಆಗುತ್ತಿದೆ</string>
   <string name="ConversationUpdateItem_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
-  <string name="ConversationUpdateItem_join_call">ಕಾಲ್‌ಗೆ ಸೇರಿ</string>
-  <string name="ConversationUpdateItem_return_to_call">ಕಾಲ್‌ಗೆ ವಾಪಸಾಗಿ</string>
+  <string name="ConversationUpdateItem_join_call">ಕರೆಗೆ ಸೇರಿ</string>
+  <string name="ConversationUpdateItem_return_to_call">ಕರೆಗೆ ಹಿಂತಿರುಗಿ</string>
   <string name="ConversationUpdateItem_call_is_full">ಕರೆ ಭರ್ತಿಯಾಗಿದೆ</string>
   <string name="ConversationUpdateItem_invite_friends">ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
   <string name="ConversationUpdateItem_enable_call_notifications">ಕಾಲ್ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
@@ -1641,10 +1641,10 @@
   <string name="audio_view__play_pause_accessibility_description">ಪ್ಲೇ… ವಿರಾಮ</string>
   <string name="audio_view__download_accessibility_description">ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</string>
   <!--QuoteView-->
-  <string name="QuoteView_audio">ಆಡಿಯೋ</string>
+  <string name="QuoteView_audio">ಆಡಿಯೊ</string>
   <string name="QuoteView_video">ವೀಡಿಯೊ</string>
   <string name="QuoteView_photo">ಫೋಟೋ</string>
-  <string name="QuoteView_view_once_media">ವ್ಯೂ-ಒನ್ಸ್ ಮೀಡಿಯಾ</string>
+  <string name="QuoteView_view_once_media">ಏಕ ವೀಕ್ಷಣೆ ಮೀಡಿಯಾ</string>
   <string name="QuoteView_sticker">ಸ್ಟಿಕ್ಕರ್</string>
   <string name="QuoteView_you">ನೀವು</string>
   <string name="QuoteView_original_missing">ಮೂಲ ಸಂದೇಶ ಕಂಡುಬಂದಿಲ್ಲ</string>
@@ -1653,11 +1653,11 @@
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯ ಬದಲಾವಣೆಗಳು</string>
   <string name="safety_number_change_dialog__accept">ಒಪ್ಪಿಕೊಳ್ಳಿ</string>
-  <string name="safety_number_change_dialog__send_anyway">ಆದರೂ ಕಳುಹಿಸಿ</string>
-  <string name="safety_number_change_dialog__call_anyway">ಆದರೂ ಕರೆ ಮಾಡಿ</string>
-  <string name="safety_number_change_dialog__join_call">ಕಾಲ್‌ಗೆ ಸೇರಿ</string>
-  <string name="safety_number_change_dialog__continue_call">ಕಾಲ್‌ನಲ್ಲಿ ಮುಂದುವರಿಯಿರಿ</string>
-  <string name="safety_number_change_dialog__leave_call">ಕಾಲ್ ಬಿಟ್ಟುಬಿಡಿ</string>
+  <string name="safety_number_change_dialog__send_anyway">ಹೇಗಾದರೂ ಕಳುಹಿಸಿ</string>
+  <string name="safety_number_change_dialog__call_anyway">ಹೇಗಾದರೂ ಕರೆ ಮಾಡಿ</string>
+  <string name="safety_number_change_dialog__join_call">ಕರೆಗೆ ಸೇರಿ</string>
+  <string name="safety_number_change_dialog__continue_call">ಕರೆಯನ್ನು ಮುಂದುವರಿಸಿ</string>
+  <string name="safety_number_change_dialog__leave_call">ಕರೆ ಬಿಡಿ</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ಈ ಕೆಳಗಿನ ಜನರು ಸಾಧನಗಳನ್ನು ಪುನಃ ಇನ್‌‌ಸ್ಟಾಲ್ ಮಾಡಿರಬಹುದು ಅಥವಾ ಬದಲಾಯಿಸಿರಬಹುದು. ಗೌಪ್ಯತೆಯನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಲು ಅವರೊಂದಿಗೆ ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆಯನ್ನು ದೃಢೀಕರಿಸಿ.</string>
   <string name="safety_number_change_dialog__view">ತೋರಿಸು</string>
   <string name="safety_number_change_dialog__previous_verified">ಮೊದಲೇ ಪರಿಶೀಲಿಸಲಾಗಿದೆ</string>
@@ -1671,14 +1671,14 @@
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">ಕಾಲ್ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಪಡೆಯಲು, ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು \"ಬ್ಯಾಟರಿ\" ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಹಿನ್ನೆಲೆ ಚಟುವಟಿಕೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="EnableCallNotificationSettingsDialog__settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">ಕಾಲ್ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಸ್ವೀಕರಿಸಲು, ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು \"ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ತೋರಿಸಿ\" ಆನ್ ಮಾಡಿ</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">ಕಾಲ್ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಪಡೆಯಲು, ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಆನ್ ಮಾಡಿ ಮತ್ತು ಧ್ವನಿ ಮತ್ತು ಪಾಪ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ ಎಂದು ಖಚಿತಪಡಿಸಿ.</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">ಕಾಲ್ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಪಡೆಯಲು, ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು \"ಬ್ಯಾಟರಿ\" ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಹಿನ್ನೆಲೆ ಚಟುವಟಿಕೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">ಕಾಲ್ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಪಡೆಯಲು, ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಆನ್ ಮಾಡಿ ಮತ್ತು ಧ್ವನಿ ಮತ್ತು ಪಾಪ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ ಎಂದು ಖಚಿತಪಡಿಸಿ.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">ಕಾಲ್ ನೊಟಿಫಿಕೇಶನ್‌ಗಳನ್ನು ಪಡೆಯಲು, ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು \"ಬ್ಯಾಟರಿ\" ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಹಿನ್ನೆಲೆ ಚಟುವಟಿಕೆಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries"> ದೇಶಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
   <string name="country_selection_fragment__search">ಹುಡುಕಿ</string>
   <string name="country_selection_fragment__no_matching_countries">ಹೊಂದುವ ದೇಶಗಳು ಇಲ್ಲ</string>
   <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">ಲಿಂಕ್ ಮಾಡುವುದಕ್ಕೆ ಸಾಧನದ ಮೇಲೆ ಪ್ರದರ್ಶಿಸಿದ QR ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">ಲಿಂಕ್ ಮಾಡುವುದಕ್ಕೆ ಸಾಧನದ ಮೇಲೆ ಪ್ರದರ್ಶಿಸಿದ ಕ್ಯುಆರ್‌ ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">ಸಾಧನ ಲಿಂಕ್ ಮಾಡಿ</string>
   <!--device_list_fragment-->
@@ -1727,7 +1727,7 @@
     <item quantity="other">%d ಇತರರು</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs">ಜಿಫ್‌ಗಳನ್ನು ಹುಡುಕಿ</string>
+  <string name="giphy_activity_toolbar__search_gifs">GIFಗಳನ್ನು ಹುಡುಕಿ</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ಏನೂ ಕಂಡುಬಂದಿಲ್ಲ</string>
   <!--database_migration_activity-->
@@ -1782,7 +1782,7 @@
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group">ಗುಂಪನ್ನು ಬದಲಾಯಿಸಿ</string>
   <string name="EditProfileFragment__group_name">ಗುಂಪಿನ ಹೆಸರು</string>
-  <string name="EditProfileFragment__group_description">ಗ್ರೂಪ್ ವಿವರಣೆ</string>
+  <string name="EditProfileFragment__group_description">ಗುಂಪಿನ ವಿವರಣೆ</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">ನಿಮ್ಮ ಹೆಸರು</string>
   <string name="EditProfileNameFragment_first_name">ಮೊದಲ ಹೆಸರು</string>
@@ -1814,7 +1814,7 @@
   <string name="message_details_recipient_header__sent_to">ಅವರಿಗೆ ಕಳುಹಿಸಲಾಗಿದೆ</string>
   <string name="message_details_recipient_header__sent_from">ಇದರಿಂದ ಕಳುಹಿಸಲಾಗಿದೆ</string>
   <string name="message_details_recipient_header__delivered_to">ಇವರಿಗೆ ತಲುಪಿಸಲಾಗಿದೆ</string>
-  <string name="message_details_recipient_header__read_by">ಓದಿದ್ದಾರೆ</string>
+  <string name="message_details_recipient_header__read_by">ಇವರು ಓದಿದ್ದಾರೆ</string>
   <string name="message_details_recipient_header__not_sent">ಕಳುಹಿಸಿಲ್ಲ</string>
   <string name="message_details_recipient_header__viewed">ವೀಕ್ಷಿಸಿದವರು</string>
   <!--message_Details_recipient-->
@@ -1847,7 +1847,7 @@
   <string name="HelpFragment__tell_us_why_youre_reaching_out">ನೀವು ಯಾಕೆ ಸಂಪರ್ಕಿಸುತ್ತಿದ್ದೀರಿ ಎಂದು ನಮಗೆ ಹೇಳಿ.</string>
   <string name="HelpFragment__support_info">ಬೆಂಬಲ ಮಾಹಿತಿ</string>
   <string name="HelpFragment__signal_android_support_request">Signal ಆಂಡ್ರಾಯ್ಡ್ ಬೆಂಬಲ ವಿನಂತಿ</string>
-  <string name="HelpFragment__debug_log">ಡೀಬಗ್ ಲಾಗ್</string>
+  <string name="HelpFragment__debug_log">ಡೀಬಗ್ ಲಾಗ್:</string>
   <string name="HelpFragment__could_not_upload_logs">ಲಾಗ್‌ಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗದು</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">ಸಮಸ್ಯೆಯನ್ನು ಅರ್ಥ ಮಾಡಿಕೊಳ್ಳಲು ನಮಗೆ ಸಹಾಯ ಮಾಡುವುದಕ್ಕಾಗಿ ಸಾಧ್ಯವಾದಷ್ಟೂ ವಿವರಣೆ ನೀಡಿ</string>
   <string-array name="HelpFragment__categories">
@@ -1887,7 +1887,7 @@
   <string name="arrays__name_only">ಹೆಸರು ಮಾತ್ರ</string>
   <string name="arrays__no_name_or_message">ಹೆಸರು ಅಥವಾ ಸಂದೇಶವಿಲ್ಲ</string>
   <string name="arrays__images">ಚಿತ್ರಗಳು</string>
-  <string name="arrays__audio">ಆಡಿಯೋ</string>
+  <string name="arrays__audio">ಆಡಿಯೊ</string>
   <string name="arrays__video">ವೀಡಿಯೊ</string>
   <string name="arrays__documents">ದಾಖಲೆಗಳು</string>
   <string name="arrays__small">ಸಣ್ಣ</string>
@@ -1913,7 +1913,7 @@
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">ಎಂಟರ್ ಕೀಯನ್ನು ಒತ್ತಿದರೆ ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸುತ್ತದೆ</string>
   <string name="preferences__pref_use_address_book_photos">ಅಡ್ರೆಸ್ ಬುಕ್ ಫೋಟೋಗಳನ್ನು ಬಳಸಿ</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">ಲಭ್ಯವಿದ್ದರೆ ನಿಮ್ಮ ಅಡ್ರೆಸ್ ಬುಕ್‌ನಿಂದ ಕಾಂಟ್ಯಾಕ್ಟ್ ಫೋಟೋಗಳನ್ನು ಡಿಸ್‌ಪ್ಲೇ ಮಾಡುತ್ತದೆ</string>
-  <string name="preferences__generate_link_previews">ಲಿಂಕ್ ಪೂರ್ವ ವೀಕ್ಷಣೆಗಳನ್ನು ಜನರೇಟ್ ಮಾಡಿ</string>
+  <string name="preferences__generate_link_previews">ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ರಚಿಸಿ</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">ನೀವು ಕಳುಹಿಸುವ ಸಂದೇಶಗಳಿಗಾಗಿ ಲಿಂಕ್ ಪೂರ್ವವೀಕ್ಷಣೆಗಳನ್ನು ವೆಬ್‌ಸೈಟ್‌ಗಳಿಂದ ನೇರವಾಗಿ ಹಿಂಪಡೆಯಿರಿ.</string>
   <string name="preferences__choose_identity">ಗುರುತನ್ನು ಆಯ್ದುಕೊಳ್ಳಿ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ಸಂಪರ್ಕಗಳ ಪಟ್ಟಿಯಿಂದ ನಿಮ್ಮ ಸಂಪರ್ಕ ನಮೂದನ್ನು ಆಯ್ದುಕೊಳ್ಳಿ.</string>
@@ -1954,7 +1954,7 @@
   <string name="preferences__slow">ನಿಧಾನ</string>
   <string name="preferences__help">ಸಹಾಯ</string>
   <string name="preferences__advanced">ಸುಧಾರಿತ</string>
-  <string name="preferences__donate_to_signal">Signalಗೆ ದಾನ ಮಾಡಿ</string>
+  <string name="preferences__donate_to_signal">Signal ಗೆ ದಾನ ಮಾಡಿ</string>
   <string name="preferences__privacy">ಖಾಸಗಿತನ</string>
   <string name="preferences__mms_user_agent">ಎಂಎಂಎಸ್ ಯೂಸರ್ ಏಜೆಂಟ್</string>
   <string name="preferences__advanced_mms_access_point_names">ಮ್ಯಾನುಯಲ್ ಎಂಎಂಎಸ್ ಸಂಯೋಜನೆಗಳು</string>
@@ -1982,14 +1982,14 @@
   <string name="preferences__disable_pin">ಪಿನ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="preferences__enable_pin">PIN ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">ನೀವು ಪಿನ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದರೆ, ನೀವು Signal ಅನ್ನು ಮರುನೋಂದಾಯಿಸುವಾಗ ಮ್ಯಾನ್ಯುಅಲ್ ಆಗಿ ಎಲ್ಲಾ ಡೇಟಾ ಬ್ಯಾಕಪ್ ಮತ್ತು ರಿಸ್ಟೋರ್ ಮಾಡದಿದ್ದರೆ, ನೀವು ಅದನ್ನು ಕಳೆದುಕೊಳ್ಳುತ್ತೀರಿ. ಪಿನ್ ನಿಷ್ಕ್ರಿಯವಾಗಿರುವಾಗ ನೀವು ನೋಂದಣಿ ಲಾಕ್ ಅನ್ನು ಆನ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">ಪಿನ್‌ಗಳು Signal ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಮಾಹಿತಿಯನ್ನು ಸಂಗ್ರಹಿಸಿಡುತ್ತವೆ ಆದ್ದರಿಂದ ನೀವು ಮಾತ್ರ ಅದನ್ನು ಪ್ರವೇಶಿಸಬಹುದು. ನೀವು ಪುನಃ ಇನ್‌‍ಸ್ಟಾಲ್ ಮಾಡಿದಾಗ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್, ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಮತ್ತು ಸಂಪರ್ಕಗಳು ಮರುಸ್ಥಾಪನೆಯಾಗುತ್ತವೆ. ಆ್ಯಪ್ ತೆರೆಯಲು ನಿಮಗೆ ನಿಮ್ಮ ಪಿನ್ ಅಗತ್ಯವಿಲ್ಲ.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">ಪಿನ್‌ಗಳು Signal ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಮಾಹಿತಿಯನ್ನು ಸಂಗ್ರಹಿಸಿಡುತ್ತವೆ ಆದ್ದರಿಂದ ನೀವು ಮಾತ್ರ ಅದನ್ನು ಪ್ರವೇಶಿಸಬಹುದು. ನೀವು ಪುನಃ ಇನ್‌‍ಸ್ಟಾಲ್ ಮಾಡಿದಾಗ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್, ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಮತ್ತು ಸಂಪರ್ಕಗಳು ಮರುಸ್ಥಾಪನೆಯಾಗುತ್ತವೆ. ಆಪ್ ತೆರೆಯಲು ನಿಮಗೆ ನಿಮ್ಮ ಪಿನ್ ಅಗತ್ಯವಿಲ್ಲ.</string>
   <string name="preferences__system_default">ಸಿಸ್ಟಂ ಡೀಫಾಲ್ಟ್</string>
   <string name="preferences__language">ಭಾಷೆ</string>
   <string name="preferences__signal_messages_and_calls">Signal ಸಂದೇಶಗಳು ಮತ್ತು ಕರೆಗಳು</string>
   <string name="preferences__advanced_pin_settings">ಸುಧಾರಿತ PIN ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
   <string name="preferences__free_private_messages_and_calls">Signal ಬಳಕೆದಾರರಿಗೆ ಉಚಿತ ಖಾಸಗಿ ಸಂದೇಶಗಳು ಮತ್ತು ಕರೆಗಳು</string>
   <string name="preferences__submit_debug_log">ಡೀಬಗ್ ಲಾಗ್ ಸಲ್ಲಿಸಿ</string>
-  <string name="preferences__delete_account">ಖಾತೆ ಅಳಿಸಿ</string>
+  <string name="preferences__delete_account">ಖಾತೆಯನ್ನು ಅಳಿಸಿ</string>
   <string name="preferences__support_wifi_calling">\'ವೈಫೈ ಕಾಲಿಂಗ್\' ಹೊಂದಾಣಿಕೆ ಮೋಡ್</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">ನಿಮ್ಮ ಸಾಧನವು ವೈಫೈ ಮೂಲಕ ಎಸ್‌‌ಎಂಎಸ್ / ಎಂಎಂಎಸ್ ಡೆಲಿವರಿಯನ್ನು ಬಳಸುತ್ತಿದ್ದರೆ ಸಕ್ರಿಯಗೊಳಿಸಿ (ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ \'ವೈಫೈ ಕಾಲಿಂಗ್\' ಸಕ್ರಿಯಗೊಳಿಸಿದಾಗ ಮಾತ್ರ ಸಕ್ರಿಯಗೊಳಿಸಿ)</string>
   <string name="preferences__incognito_keyboard">ಇನ್‌ಕಾಗ್ನಿಟೊ ಕೀಬೋರ್ಡ್</string>
@@ -2009,7 +2009,7 @@
   <string name="preferences_storage__photos">ಫೋಟೋಗಳು</string>
   <string name="preferences_storage__videos">ವೀಡಿಯೊಗಳು</string>
   <string name="preferences_storage__files">ಫೈಲುಗಳು</string>
-  <string name="preferences_storage__audio">ಆಡಿಯೋ</string>
+  <string name="preferences_storage__audio">ಆಡಿಯೊ</string>
   <string name="preferences_storage__review_storage">ಸ್ಟೊರೇಜ್ ಪರಿಶೀಲಿಸಿ</string>
   <string name="preferences_storage__delete_older_messages">ಹಳೆಯ ಸಂದೇಶವನ್ನು ಅಳಿಸುವುದೇ?</string>
   <string name="preferences_storage__clear_message_history">ಸಂದೇಶ ಇತಿಹಾಸವನ್ನು ತೆರವುಗೊಳಿಸುವುದೇ?</string>
@@ -2082,7 +2082,7 @@
   <string name="PaymentsAllActivityFragment__all">ಎಲ್ಲಾ</string>
   <string name="PaymentsAllActivityFragment__sent">ಕಳುಹಿಸಲಾಗಿದೆ</string>
   <string name="PaymentsAllActivityFragment__received">ಸ್ವೀಕರಿಸಲಾಗಿದೆ</string>
-  <string name="PaymentsHomeFragment__introducing_payments">ಪೇಮೆಂಟ್ಸ್ (ಬೀಟಾ) ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ</string>
+  <string name="PaymentsHomeFragment__introducing_payments">ಪಾವತಿಗಳನ್ನು ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ (ಬೀಟಾ)</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">ಗೌಪ್ಯತೆಯ ಮೇಲೆ ಕೇಂದ್ರೀಕರಿಸಿದ ಹೊಸ ಡಿಜಿಟಲ್ ಕರೆನ್ಸಿ ಮೊಬೈಲ್‌ ಕಾಯಿನ್ ಕಳುಹಿಸಲು ಮತ್ತು ಸ್ವೀಕರಿಸಲು Signal ಬಳಸಿ. ಆರಂಭಿಸಲು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="PaymentsHomeFragment__activate_payments">ಪೇಮೆಂಟ್ಸ್ ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="PaymentsHomeFragment__activating_payments">ಪೇಮೆಂಟ್ಸ್ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
@@ -2095,12 +2095,12 @@
   <string name="PaymentsHomeFragment__send">ಕಳುಹಿಸು</string>
   <string name="PaymentsHomeFragment__sent_s"> %1$s ಕಳುಹಿಸಲಾಗಿದೆ</string>
   <string name="PaymentsHomeFragment__received_s">%1$s ಸ್ವೀಕರಿಸಲಾಗಿದೆ</string>
-  <string name="PaymentsHomeFragment__transfer_to_exchange">ಎಕ್ಸ್‌ಚೇಂಜ್‌ ಮಾಡಲು ವರ್ಗಾವಣೆ ಮಾಡಿ</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">ವಿನಿಮಯಕ್ಕಾಗಿ ವರ್ಗಾಯಿಸಿ</string>
   <string name="PaymentsHomeFragment__currency_conversion">ಕರೆನ್ಸಿ ಪರಿವರ್ತನೆ</string>
-  <string name="PaymentsHomeFragment__deactivate_payments">ಪೇಮೆಂಟ್ಸ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">ಪೇಮೆಂಟ್‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು</string>
   <string name="PaymentsHomeFragment__recovery_phrase">ರಿಕವರಿ ಪದಗುಚ್ಛ</string>
   <string name="PaymentsHomeFragment__help">ಸಹಾಯ</string>
-  <string name="PaymentsHomeFragment__coin_cleanup_fee">ಕಾಯಿನ್‌ ಕ್ಲೀನಪ್ ಫೀ</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">ಕಾಯಿನ್‌ ಕ್ಲೀನಪ್ ಶುಲ್ಕ</string>
   <string name="PaymentsHomeFragment__sent_payment">ಪೇಮೆಂಟ್ ಕಳುಹಿಸಲಾಗಿದೆ</string>
   <string name="PaymentsHomeFragment__received_payment">ಪೇಮೆಂಟ್ ಸ್ವೀಕರಿಸಲಾಗಿದೆ</string>
   <string name="PaymentsHomeFragment__processing_payment">ಪೇಮೆಂಟ್ ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತಿದೆ</string>
@@ -2110,7 +2110,7 @@
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">ನಿಮ್ಮ ವಲಯದಲ್ಲಿ ಪೇಮೆಂಟ್ಸ್ ಲಭ್ಯವಿಲ್ಲ.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">ಪೇಮೆಂಟ್ಸ್ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗದು. ದಯವಿಟ್ಟು ಪುನಃ ನಂತರ ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">ಪೇಮೆಂಟ್‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದೇ?</string>
-  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">ನೀವು ಪೇಮೆಂಟ್ಸ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದರೆ Signal ನಲ್ಲಿ ಮೊಬೈಲ್‌ಕಾಯಿನ್ ಕಳುಹಿಸಲು ಅಥವಾ ಸ್ವೀಕರಿಸಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">ನೀವು ಪೇಮೆಂಟ್ಸ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದರೆ Signal ನಲ್ಲಿ Mobilecoin ಅನ್ನು ಕಳುಹಿಸಲು ಅಥವಾ ಸ್ವೀಕರಿಸಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <string name="PaymentsHomeFragment__deactivate">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="PaymentsHomeFragment__continue">ಮುಂದುವರಿಸಿ</string>
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">ಬ್ಯಾಲೆನ್ಸ್ ಸದ್ಯ ಲಭ್ಯವಿಲ್ಲ.</string>
@@ -2119,14 +2119,14 @@
   <string name="PaymentsHomeFragment__details">ವಿವರಗಳು</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">ಮೊಬೈಲ್‌ಕಾಯಿನ್‌ ಕಳುಹಿಸಲು ಮತ್ತು ಸ್ವೀಕರಿಸಲು ನೀವು Signal ಬಳಸಬಹುದು. ಎಲ್ಲ ಪೇಮೆಂಟ್‌ಗಳು ಮೊಬೈಲ್‌ಕಾಯಿನ್‌ಗಳು ಮತ್ತು ಮೊಬೈಲ್‌ಕಾಯಿನ್‌ ವಾಲೆಟ್‌ಗೆ ಬಳಕೆಯ ನಿಯಮಗಳಿಗೆ ಒಳಪಟ್ಟಿದೆ. ಇದು ಬೀಟಾ ಸೌಲಭ್ಯವಾಗಿದೆ. ಹೀಗಾಗಿ, ನೀವು ಕೆಲವು ಸಮಸ್ಯೆಗಳನ್ನು ಎದುರಿಸಬಹುದು ಮತ್ತು ನೀವು ಕಳೆದುಕೊಳ್ಳಬಹುದಾದ ಪೇಮೆಂಟ್‌ಗಳು ಅಥವಾ ಬ್ಯಾಲೆನ್ಸ್‌ಗಳನ್ನು ರಿಕವರಿ ಮಾಡಲಾಗದು.</string>
   <string name="PaymentsHomeFragment__activate">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
-  <string name="PaymentsHomeFragment__view_mobile_coin_terms">ಮೊಬೈಲ್‌ಕಾಯಿನ್‌ ನಿಯಮಗಳನ್ನು ನೋಡಿ</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin ನಿಯಮಗಳನ್ನು ವೀಕ್ಷಿಸಿ</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal ನಲ್ಲಿ ಪೇಮೆಂಟ್ಸ್‌ ಇನ್ನು ಲಭ್ಯವಿರುವುದಿಲ್ಲ. ನೀವು ಇನ್ನೂ ಎಕ್ಸ್‌ಚೇಂಜ್‌ಗೆ ಹಣವನ್ನು ವರ್ಗಾವಣೆ ಮಾಡಬಹುದು. ಆದರೆ, ನೀವು ಇನ್ನು ಪೇಮೆಂಟ್‌ಗಳನ್ನು ಕಳುಹಿಸಲಾಗದು ಮತ್ತು ಸ್ವೀಕರಿಸಲಾಗದು ಅಥವಾ ಫಂಡ್‌ಗಳನ್ನು ಸೇರಿಸಲಾಗದು.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">ಫಂಡ್‌ಗಳನ್ನು ಸೇರಿಸಿ</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">ನಿಮ್ಮ ವಾಲೆಟ್ ವಿಳಾಸ</string>
   <string name="PaymentsAddMoneyFragment__copy">ನಕಲಿಸು</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
-  <string name="PaymentsAddMoneyFragment__to_add_funds">ಫಂಡ್‌ಗಳನ್ನು ಸೇರಿಸಲು, ನಿಮ್ಮ ವಾಲೆಟ್ ವಿಳಾಸಕ್ಕೆ ಮೊಬೈಲ್‌ಕಾಯಿನ್‌ ಕಳುಹಿಸಿ. ಮೊಬೈಲ್‌ಕಾಯಿನ್ ಬೆಂಬಲಿಸುವ ವಿನಿಮಯದಲ್ಲಿ ನಿಮ್ಮ ಖಾತೆಯಿಂದ ವಹಿವಾಟನ್ನು ಆರಂಭಿಸಿ, ನಂತರ ಕ್ಯೂಆರ್‌ ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಅಥವಾ ನಿಮ್ಮ ವಾಲೆಟ್ ವಿಳಾಸವನ್ನು ನಕಲು ಮಾಡಿ.</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">ಫಂಡ್‌ಗಳನ್ನು ಸೇರಿಸಲು, ನಿಮ್ಮ ವಾಲೆಟ್ ವಿಳಾಸಕ್ಕೆ ಮೊಬೈಲ್‌ಕಾಯಿನ್‌ ಕಳುಹಿಸಿ. ಮೊಬೈಲ್‌ಕಾಯಿನ್ ಬೆಂಬಲಿಸುವ ವಿನಿಮಯದಲ್ಲಿ ನಿಮ್ಮ ಖಾತೆಯಿಂದ ವಹಿವಾಟನ್ನು ಆರಂಭಿಸಿ, ನಂತರ ಕ್ಯುಆರ್‌ ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಅಥವಾ ನಿಮ್ಮ ವಾಲೆಟ್ ವಿಳಾಸವನ್ನು ನಕಲು ಮಾಡಿ.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">ವಿವರಗಳು</string>
   <string name="PaymentsDetailsFragment__status">ಸ್ಥಿತಿ</string>
@@ -2134,7 +2134,7 @@
   <string name="PaymentsDetailsFragment__processing_payment">ಪೇಮೆಂಟ್ ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
   <string name="PaymentsDetailsFragment__payment_complete">ಪೇಮೆಂಟ್ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
   <string name="PaymentsDetailsFragment__payment_failed">ಪೇಮೆಂಟ್ ವಿಫಲವಾಗಿದೆ</string>
-  <string name="PaymentsDetailsFragment__network_fee">ನೆಟ್‌ವರ್ಕ್ ಫೀ</string>
+  <string name="PaymentsDetailsFragment__network_fee">ನೆಟ್‌ವರ್ಕ್‌ ಶುಲ್ಕ</string>
   <string name="PaymentsDetailsFragment__sent_by">ಕಳುಹಿಸಿದವರು</string>
   <string name="PaymentsDetailsFragment__sent_to_s">%1$s ಗೆ ಕಳುಹಿಸಲಾಗಿದೆ</string>
   <string name="PaymentsDetailsFragment__you_on_s_at_s">ನೀವು %2$s ರಲ್ಲಿ %1$s ಆಗಿದ್ದೀರಿ</string>
@@ -2142,7 +2142,7 @@
   <string name="PaymentsDetailsFragment__to">ಗೆ</string>
   <string name="PaymentsDetailsFragment__from">ಇಂದ</string>
   <string name="PaymentsDetailsFragment__information">ಪಾವತಿ ಮೊತ್ತ ಮತ್ತು ವಹಿವಾಟಿನ ಸಮಯ ಸೇರಿದಂತೆ ವಹಿವಾಟು ವಿವರಗಳು ಮೊಬೈಲ್‌ಕಾಯಿನ್‌ ಲೆಡ್ಜರ್‌ನ ಭಾಗವಾಗಿದೆ.</string>
-  <string name="PaymentsDetailsFragment__coin_cleanup_fee">ಕಾಯಿನ್‌ ಕ್ಲೀನಪ್ ಫೀ</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">ಕಾಯಿನ್‌ ಕ್ಲೀನಪ್ ಶುಲ್ಕ</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">ನಿಮ್ಮ ಸ್ವಾಧೀನದಲ್ಲಿನ ಕಾಯಿನ್‌ಗಳನ್ನು ವಹಿವಾಟು ಪೂರ್ಣಗೊಳಿಸಲು ಸಂಯೋಜಿಸಲು \"ಕಾಯಿನ್ ಕ್ಲೀನಪ್‌ ಫೀ\" ಅನ್ನು ವಿಧಿಸಲಾಗುತ್ತದೆ. ಪೇಮೆಂಟ್‌ಗಳನ್ನು ಕಳುಹಿಸುವುದನ್ನು ಮುಂದುವರಿಸಲು ಕ್ಲೀನಪ್‌ ಅನುಮತಿಸುತ್ತದೆ.</string>
   <string name="PaymentsDetailsFragment__no_details_available">ಈ ವಹಿವಾಟಿಗೆ ಯಾವುದೇ ಹೆಚ್ಚುವರಿ ವಿವರಗಳು ಲಭ್ಯವಿಲ್ಲ</string>
   <string name="PaymentsDetailsFragment__sent_payment">ಪೇಮೆಂಟ್ ಕಳುಹಿಸಲಾಗಿದೆ</string>
@@ -2151,20 +2151,20 @@
   <string name="PaymentsDetailsFragment__block_number">ಸಂಖ್ಯೆಯನ್ನು ಬ್ಲಾಕ್ ಮಾಡಿ</string>
   <!--PaymentsTransferFragment-->
   <string name="PaymentsTransferFragment__transfer">ವರ್ಗಾವಣೆ</string>
-  <string name="PaymentsTransferFragment__scan_qr_code">ಕ್ಯೂಆರ್‌ ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
+  <string name="PaymentsTransferFragment__scan_qr_code">ಕ್ಯುಆರ್‌ ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">ಗೆ: ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಅಥವಾ ವಾಲೆಟ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ</string>
   <string name="PaymentsTransferFragment__you_can_transfer">ವಿನಿಮಯದ ಮೂಲಕ ಒದಗಿಸಿದ ವಾಲೆಟ್ ವಿಳಾಸಕ್ಕೆ ವರ್ಗಾವಣೆ ಪೂರ್ಣಗೊಳಿಸಿ ಮೊಬೈಲ್‌ಕಾಯಿನ್ ಅನ್ನು ನೀವು ವರ್ಗಾವಣೆ ಮಾಡಬಹುದು. ವಾಲೆಟ್ ವಿಳಾಸ ಎಂಬುದು ಸಂಖ್ಯೆಗಳು ಮತ್ತು ಅಕ್ಷರಗಳ ಸ್ಟ್ರಿಂಗ್‌ ಆಗಿದ್ದು, ಸಾಮಾನ್ಯವಾಗಿ ಕ್ಯೂಆರ್‌ ಕೋಡ್‌ನ ಕೆಳಗೆ ಇರುತ್ತದೆ.</string>
   <string name="PaymentsTransferFragment__next">ಮುಂದೆ</string>
   <string name="PaymentsTransferFragment__invalid_address">ಅಮಾನ್ಯ ವಿಳಾಸ</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">ವರ್ಗಾವಣೆ ಮಾಡಲು ನೀವು ಪ್ರಯತ್ನಿಸುತ್ತಿರುವ ವಾಲೆಟ್ ವಿಳಾಸವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">ನೀವು ನಿಮ್ಮದೇ Signal ವಾಲೆಟ್ ವಿಳಾಸಕ್ಕೆ ವರ್ಗಾವಣೆ ಮಾಡಿ. ಬೆಂಬಲಿಸಿದ ವಿನಿಮಯದಲ್ಲಿ ನಿಮ್ಮ ಖಾತೆಯಿಂದ ವಾಲೆಟ್ ವಿಳಾಸವನ್ನು ನಮೂದಿಸಿ.</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">ಕ್ಯೂಆರ್ ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು, ಕ್ಯಾಮೆರಾ ಪ್ರವೇಶಾವಕಾಶವು Signal ಗೆ ಅಗತ್ಯವಿದೆ.</string>
-  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">ಕ್ಯೂಆರ್ ಕೋಡ್ ಸೆರೆಹಿಡಿಯಲು ಕ್ಯಾಮೆರಾ ಅನುಮತಿಯು Signal ಗೆ ಅಗತ್ಯವಿದೆ. ಸೆಟ್ಟಿಂಗ್ಸ್‌ಗೆ ಹೋಗಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">ಕ್ಯೂಆರ್ ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು, ಕ್ಯಾಮೆರಾ ಪ್ರವೇಶಾವಕಾಶವು Signal ಗೆ ಅಗತ್ಯವಿದೆ.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">ಕ್ಯುಆರ್‌ ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು, ಕ್ಯಾಮರಾ ಪ್ರವೇಶಾವಕಾಶವು Signal ಗೆ ಅಗತ್ಯವಿದೆ.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">ಕ್ಯುಆರ್‌ ಕೋಡ್ ಸೆರೆಹಿಡಿಯಲು ಕ್ಯಾಮರಾ ಅನುಮತಿಯು Signal ಗೆ ಅಗತ್ಯವಿದೆ. ಸೆಟ್ಟಿಂಗ್ಸ್‌ಗೆ ಹೋಗಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">ಕ್ಯುಆರ್‌ ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಲು, ಕ್ಯಾಮರಾ ಪ್ರವೇಶಾವಕಾಶವು Signal ಗೆ ಅಗತ್ಯವಿದೆ.</string>
   <string name="PaymentsTransferFragment__settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
   <!--PaymentsTransferQrScanFragment-->
-  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">ವಿಳಾಸ ಕ್ಯೂಆರ್ ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
-  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">ಪಾವತಿಸುವವರ ವಿಳಾಸ ಕ್ಯೂಆರ್ ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">ವಿಳಾಸ ಕ್ಯುಆರ್‌ ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">ಪಾವತಿಸುವವರ ವಿಳಾಸ ಕ್ಯುಆರ್‌ ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">ಕೋರಿಕೆ</string>
   <string name="CreatePaymentFragment__pay">ಪಾವತಿಸಿ</string>
@@ -2189,7 +2189,7 @@
   <string name="EditNoteFragment_note">ಟಿಪ್ಪಣಿ</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">ಪೇಮೆಂಟ್ ದೃಢೀಕರಿಸಿ</string>
-  <string name="ConfirmPayment__network_fee">ನೆಟ್‌ವರ್ಕ್ ಫೀ</string>
+  <string name="ConfirmPayment__network_fee">ನೆಟ್‌ವರ್ಕ್‌ ಶುಲ್ಕ</string>
   <string name="ConfirmPayment__error_getting_fee">ಫೀ ಪಡೆಯುವಲ್ಲಿ ದೋಷ</string>
   <string name="ConfirmPayment__estimated_s">ಅಂದಾಜು ಮಾಡಿದ %1$s</string>
   <string name="ConfirmPayment__to">ಗೆ</string>
@@ -2200,7 +2200,7 @@
   <string name="ConfirmPayment__payment_complete">ಪೇಮೆಂಟ್ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
   <string name="ConfirmPayment__payment_failed">ಪೇಮೆಂಟ್ ವಿಫಲವಾಗಿದೆ</string>
   <string name="ConfirmPayment__payment_will_continue_processing">ಪೇಮೆಂಟ್ ಪ್ರಕ್ರಿಯೆಗೊಳಿಸುವಿಕೆ ಮುಂದುವರಿಯುತ್ತದೆ</string>
-  <string name="ConfirmPaymentFragment__invalid_recipient">ಅಮಾನ್ಯ ಸ್ವೀಕೃತಿದಾರರು</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">ಅಮಾನ್ಯವಾದ ಸ್ವೀಕೃತಿದಾರರು</string>
   <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">ಈ ವ್ಯಕ್ತಿ ಪೇಮೆಂಟ್ಸ್ ಸಕ್ರಿಯಗೊಳಿಸಿಲ್ಲ</string>
   <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">ನೆಟ್‌ವರ್ಕ್ ಫೀ ವಿನಂತಿ ಮಾಡಲಾಗದು. ಈ ಪೇಮೆಂಟ್ ಮುಂದುವರಿಸುವುದನ್ನು, ಪುನಃ ಪ್ರಯತ್ನಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
@@ -2256,7 +2256,7 @@
   <string name="conversation_list_item_view__archived">ಆರ್ಕೈವ್ ಮಾಡಲಾಗಿದೆ</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">ಹೊಸ ಸಂಭಾಷಣೆ</string>
-  <string name="conversation_list_fragment__open_camera_description">ಕ್ಯಾಮೆರಾ ತೆರೆಯಿರಿ</string>
+  <string name="conversation_list_fragment__open_camera_description">ಕ್ಯಾಮರಾ ತೆರೆಯಿರಿ</string>
   <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ಇನ್ನೂ ಯಾವುದೇ ಚಾಟ್‌ಗಳಿಲ್ಲ.\nಸ್ನೇಹಿತರಿಗೆ ಮೆಸೇಜ್ ಮಾಡುವ ಮೂಲಕ ಆರಂಭಿಸಿ.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">ಸುರಕ್ಷಿತ ಅವಧಿಯನ್ನು ಮರುಹೊಂದಿಸಿ</string>
@@ -2287,7 +2287,7 @@
   <string name="text_secure_normal__mark_all_as_read">ಎಲ್ಲವನ್ನು ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
   <string name="text_secure_normal__invite_friends">ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment_context_menu__copy_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ ಗೆ ನಕಲಿಸಿ</string>
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲಿಸು</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ ಜೊತೆ ಹೋಲಿಸಿ</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">ಸಿಸ್ಟಂ ಎಸ್‌ಎಂಎಸ್ ಇಂಪೋರ್ಟ್ ಮಾಡಿ</string>
@@ -2337,16 +2337,16 @@
   <!--CreateKbsPinFragment-->
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
     <item quantity="one">ಪಿನ್ ಕನಿಷ್ಠ %1$dಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು</item>
-    <item quantity="other">ಪಿನ್ ಕನಿಷ್ಠ %1$dಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು</item>
+    <item quantity="other">ಪಿನ್ ಕನಿಷ್ಠ %1$d ಅಕ್ಷರ ಹೊಂದಿರಬೇಕು</item>
   </plurals>
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
     <item quantity="one">ಪಿನ್ ಕನಿಷ್ಠ %1$dಅಂಕಿಗಳನ್ನು ಹೊಂದಿರಬೇಕು</item>
-    <item quantity="other">ಪಿನ್ ಕನಿಷ್ಠ %1$dಅಂಕಿಗಳನ್ನು ಹೊಂದಿರಬೇಕು</item>
+    <item quantity="other">ಪಿನ್ ಕನಿಷ್ಠ %1$d ಅಂಕಿ ಹೊಂದಿರಬೇಕು</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">ಹೊಸ ಪಿನ್ ರಚಿಸಿ</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">ಈ ಸಾಧನವನ್ನು ನೋಂದಾಯಿಸಿರುವವರೆಗೆ ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ನೀವು ಬದಲಾಯಿಸಬಹುದು.</string>
   <string name="CreateKbsPinFragment__create_your_pin">ನಿಮ್ಮ ಪಿನ್ ರಚಿಸಿ </string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">ಪಿನ್‌ಗಳು Signal ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಮಾಹಿತಿಯನ್ನು ಸಂಗ್ರಹಿಸಿಡುತ್ತವೆ ಆದ್ದರಿಂದ ನೀವು ಮಾತ್ರ ಅದನ್ನು ಪ್ರವೇಶಿಸಬಹುದು. ನೀವು ಮರುಸ್ಥಾಪಿಸಿದಾಗ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್, ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಮತ್ತು ಸಂಪರ್ಕಗಳು ಪುನಃಸ್ಥಾಪನೆಯಾಗುತ್ತವೆ. ಅಪ್ಲಿಕೇಶನ್ ತೆರೆಯಲು ನಿಮ್ಮ ಪಿನ್ ಅಗತ್ಯವಿಲ್ಲ.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">ಪಿನ್‌ಗಳು Signal ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಮಾಹಿತಿಯನ್ನು ಸಂಗ್ರಹಿಸಿಡುತ್ತವೆ ಆದ್ದರಿಂದ ನೀವು ಮಾತ್ರ ಅದನ್ನು ಪ್ರವೇಶಿಸಬಹುದು. ನೀವು ಮರುಸ್ಥಾಪಿಸಿದಾಗ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್, ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಮತ್ತು ಸಂಪರ್ಕಗಳು ಪುನಃಸ್ಥಾಪನೆಯಾಗುತ್ತವೆ. ಆಪ್ ತೆರೆಯಲು ನಿಮ್ಮ ಪಿನ್ ಅಗತ್ಯವಿಲ್ಲ.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">ಬಲವಾದ ಪಿನ್ ಆಯ್ಕೆಮಾಡಿ</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">ಪಿನ್‌ಗಳು ಹೊಂದಿಕೆಯಾಗುತಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
@@ -2358,14 +2358,14 @@
   <string name="ConfirmKbsPinFragment__creating_pin">ಪಿನ್ ರಚಿಸುತ್ತಿದೆ…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">ಪಿನ್‌ಗಳನ್ನು ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">ಪಿನ್‌ಗಳು Signal ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಮಾಹಿತಿಯನ್ನು ಸಂಗ್ರಹಿಸಿಡುತ್ತವೆ ಆದ್ದರಿಂದ ನೀವು ಮಾತ್ರ ಅದನ್ನು ಪ್ರವೇಶಿಸಬಹುದು. ನೀವು ಮರುಸ್ಥಾಪಿಸಿದಾಗ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್, ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಮತ್ತು ಸಂಪರ್ಕಗಳು ಪುನಃಸ್ಥಾಪನೆಯಾಗುತ್ತವೆ. ಅಪ್ಲಿಕೇಶನ್ ತೆರೆಯಲು ನಿಮ್ಮ ಪಿನ್ ಅಗತ್ಯವಿಲ್ಲ.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">ಪಿನ್‌ಗಳು Signal ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಮಾಹಿತಿಯನ್ನು ಸಂಗ್ರಹಿಸಿಡುತ್ತವೆ ಆದ್ದರಿಂದ ನೀವು ಮಾತ್ರ ಅದನ್ನು ಪ್ರವೇಶಿಸಬಹುದು. ನೀವು ಮರುಸ್ಥಾಪಿಸಿದಾಗ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್, ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಮತ್ತು ಸಂಪರ್ಕಗಳು ಪುನಃಸ್ಥಾಪನೆಯಾಗುತ್ತವೆ. ಆಪ್ ತೆರೆಯಲು ನಿಮ್ಮ ಪಿನ್ ಅಗತ್ಯವಿಲ್ಲ.</string>
   <string name="KbsSplashFragment__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">ನೋಂದಣಿ ಲಾಕ್ = ಪಿನ್</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">ನಿಮ್ಮ ನೋಂದಣಿ ಲಾಕ್ ಅನ್ನು ಈಗ ಪಿನ್ ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ, ಮತ್ತು ಅದು ಹೆಚ್ಚಿನದನ್ನು ಮಾಡುತ್ತದೆ. ಇದೀಗ ಅದನ್ನು ನವೀಕರಿಸಿ. </string>
   <string name="KbsSplashFragment__update_pin">ಪಿನ್ ನವೀಕರಿಸಿ</string>
   <string name="KbsSplashFragment__create_your_pin"> ನಿಮ್ಮ ಪಿನ್ ರಚಿಸಿ</string>
-  <string name="KbsSplashFragment__learn_more_about_pins">ಪಿನ್‌ಗಳ ಬಗ್ಗೆ ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ. </string>
-  <string name="KbsSplashFragment__disable_pin">ಪಿನ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">ಪಿನ್‌ಗಳ ಕುರಿತು ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ. </string>
+  <string name="KbsSplashFragment__disable_pin">ಪಿನ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">ನಿಮ್ಮ Signal ಪಿನ್ ಅನ್ನು ನಮೂದಿಸಿ</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">ನಿಮ್ಮ ಪಿನ್ ನೆನಪಿನಲ್ಲಿ ಉಳಿಸಿಕೊಳ್ಳಲು ನಿಮಗೆ ಸಹಾಯ ಮಾಡುತ್ತದೆ, ಇದನ್ನು ಆಗಾಗ್ಗೆ ನಮೂದಿಸುವಂತೆ ನಾವು ಕೇಳುತ್ತೇವೆ. ನಾವು ಸಮಯ ಸರಿದಂತೆ ಇದನ್ನು ಕಡಿಮೆ ಕೇಳುತ್ತೇವೆ.</string>
@@ -2445,11 +2445,11 @@
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ನಾನು ಈ ಪಾಸ್‌ಫ್ರೇಸ್ ಬರೆದಿದ್ದೇನೆ. ಅದು ಇಲ್ಲದೆ, ನನಗೆ ಬ್ಯಾಕಪ್ ಮರುಸ್ಥಾಪಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <string name="registration_activity__restore_backup">ಬ್ಯಾಕಪ್ ಮರುಸ್ಥಾಪಿಸಿ</string>
   <string name="registration_activity__transfer_or_restore_account">ಖಾತೆಗಳನ್ನು ವರ್ಗಾವಣೆ ಮಾಡಿ ಅಥವಾ ಪುನಶ್ಚೇತನ ಮಾಡಿ</string>
-  <string name="registration_activity__transfer_account">ಖಾತೆ ವರ್ಗಾವಣೆ ಮಾಡಿ</string>
+  <string name="registration_activity__transfer_account">ಖಾತೆ ವರ್ಗಾಯಿಸಿ</string>
   <string name="registration_activity__skip">ಬಿಟ್ಟು ಮುಂದುವರಿ</string>
   <string name="preferences_chats__chat_backups">ಚಾಟ್ ಬ್ಯಾಕಪ್‌ಗಳು</string>
   <string name="preferences_chats__backup_chats_to_external_storage">ಬಾಹ್ಯ ಸ್ಟೊರೇಜ್‌ಗೆ ಚಾಟ್‌ ಗಳನ್ನು ಬ್ಯಾಕಪ್ ಮಾಡಿ</string>
-  <string name="preferences_chats__transfer_account">ಖಾತೆ ವರ್ಗಾವಣೆ ಮಾಡಿ</string>
+  <string name="preferences_chats__transfer_account">ಖಾತೆ ವರ್ಗಾಯಿಸಿ</string>
   <string name="preferences_chats__transfer_account_to_a_new_android_device">ಹೊಸ ಆಂಡ್ರಾಯ್ಡ್ ಸಾಧನಕ್ಕೆ ಖಾತೆ ವರ್ಗಾವಣೆ ಮಾಡಿ</string>
   <string name="RegistrationActivity_enter_backup_passphrase">ಬ್ಯಾಕಪ್ ಪಾಸ್‌ಫ್ರೇಸ್ ನಮೂದಿಸಿ</string>
   <string name="RegistrationActivity_restore">ಪುನಃಸ್ಥಾಪಿಸಿ</string>
@@ -2489,12 +2489,12 @@
   <string name="BackupUtil_never">ಎಂದಿಗೂ ಇಲ್ಲ</string>
   <string name="BackupUtil_unknown">ತಿಳಿಯದಿಲ್ಲ</string>
   <string name="preferences_app_protection__see_my_phone_number">ನನ್ನ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನೋಡಿ</string>
-  <string name="preferences_app_protection__find_me_by_phone_number">ನನ್ನ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಹುಡುಕಿ</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">ಫೋನ್ ಸಂಖ್ಯೆಯ ಮೂಲಕ ನನ್ನನ್ನು ಹುಡುಕಿ</string>
   <string name="PhoneNumberPrivacy_everyone">ಎಲ್ಲರೂ</string>
   <string name="PhoneNumberPrivacy_my_contacts">ನನ್ನ ಸಂಪರ್ಕಗಳು</string>
   <string name="PhoneNumberPrivacy_nobody">ಯಾರೂ ಇಲ್ಲ</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">ನೀವು ಸಂದೇಶ ಮಾಡುವ ಎಲ್ಲಾ ಜನರು ಮತ್ತು ಗುಂಪುಗಳಿಗೆ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆ ಕಾಣಿಸುತ್ತದೆ.</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">ಅವರ ಸಂಪರ್ಕಗಳಲ್ಲಿ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಹೊಂದಿರುವ ಯಾರಾದರೂ ನಿಮ್ಮನ್ನು Signal ನಲ್ಲಿ ಸಂಪರ್ಕವನ್ನು ನೋಡುತ್ತಾರೆ. ಇತರರು ನಿಮ್ಮನ್ನು ಹುಡುಕಾಟದಲ್ಲಿ ನೋಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">ತಮ್ಮ ಸಂಪರ್ಕಗಳಲ್ಲಿ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಹೊಂದಿರುವ ಯಾರಾದರೂ ನಿಮ್ಮನ್ನು Signal ನಲ್ಲಿ ಸಂಪರ್ಕವಾಗಿ ನೋಡುತ್ತಾರೆ. ಇತರರು ನಿಮ್ಮನ್ನು ಹುಡುಕಾಟದಲ್ಲಿ ನೋಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
   <string name="preferences_app_protection__screen_lock">ಸ್ಕ್ರೀನ್ ಲಾಕ್</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signal ಪ್ರವೇಶವನ್ನು ಆಂಡ್ರಾಯ್ಡ್ ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಅಥವಾ ಫಿಂಗರ್ಪ್ರಿಂಟ್ ಜೊತೆ ಲಾಕ್ ಮಾಡಿ</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">ಸ್ಕ್ರೀನ್ ಲಾಕ್ ನಿಷ್ಕ್ರಿಯತೆಯ ಟೈಮ್‌ ಔಟ್</string>
@@ -2654,7 +2654,7 @@
   <string name="RecipientBottomSheet_message_description">ಸಂದೇಶ</string>
   <string name="RecipientBottomSheet_voice_call_description">ಧ್ವನಿ ಕರೆ</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">ಅಸುರಕ್ಷಿತ ಧ್ವನಿ ಕರೆ</string>
-  <string name="RecipientBottomSheet_video_call_description">ವೀಡಿಯೋ ಕರೆ</string>
+  <string name="RecipientBottomSheet_video_call_description">ವೀಡಿಯೊ ಕರೆ</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s ರನ್ನು ಗುಂಪಿನಿಂದ ಆಡ್ಮಿನ್‌ ರಂತೆ ತೆಗೆಯುವುದೇ?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" ಈ ಗುಂಪು ಮಾತೇ ಅದರ ಸದಸ್ಯರನ್ನು ಬದಲಾಯಿಸಬಹುದು </string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s ರನ್ನು ಗುಂಪಿನಿಂದ ತೆಗೆಯುವುದೇ?</string>
@@ -2675,12 +2675,12 @@
   <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">ಈ ಲಿಂಕ್‌ನೊಂದಿಗೆ ಯಾರಾದರೂ ಈ ಗುಂಪಿನ ಹೆಸರು ಮತ್ತು ಸದಸ್ಯರನ್ನು ನೋಡಬಹುದು ಹಾಗೂ ಗ್ರೂಪ್ ಸೇರಬಹುದು. ನೀವು ನಂಬುವ ಜನರೊಂದಿಗೆ ಇದನ್ನು ಹಂಚಿಕೊಳ್ಳಿ.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Signal ನಿಂದ ಹಂಚಿಕೊಳ್ಳಿ</string>
   <string name="GroupLinkBottomSheet_copy">ನಕಲಿಸು</string>
-  <string name="GroupLinkBottomSheet_qr_code">ಕ್ಯೂಆರ್‌ ಕೋಡ್</string>
+  <string name="GroupLinkBottomSheet_qr_code">ಕ್ಯುಆರ್‌ ಕೋಡ್</string>
   <string name="GroupLinkBottomSheet_share">ಹಂಚಿಕೊಳ್ಳಿ </string>
   <string name="GroupLinkBottomSheet_copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">ಲಿಂಕ್ ಪ್ರಸ್ತುತ ಸಕ್ರಿಯವಾಗಿಲ್ಲ</string>
   <!--VoiceNotePlaybackPreparer-->
-  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">ವಾಯ್ಸ್‌ ಮೆಸೇಜ್ ಪ್ಲೇ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">ಧ್ವನಿ ಸಂದೇಶವನ್ನು ಪ್ಲೇ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ಧ್ವನಿ ಸಂದೇಶ . %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s  ಗೆ %2$s</string>
@@ -2691,18 +2691,18 @@
   <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" ರನ್ನು ಅನಿರ್ಬಂಧಿಸಲಾಗಿದೆ.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">ಸದಸ್ಯರನ್ನು ಪರಿಶೀಲಿಸಿ</string>
-  <string name="ReviewCardDialogFragment__review_request">ಕೋರಿಕೆಯನ್ನು ಪರಿಶೀಲಿಸಿ</string>
+  <string name="ReviewCardDialogFragment__review_request">ವಿನಂತಿಯನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d ಗುಂಪು ಸದಸ್ಯರು ಒಂದೇ ಹೆಸರನ್ನು ಹೊಂದಿದ್ದಾರೆ, ಕೆಳಗಿನ ಸದಸ್ಯರನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಕ್ರಮ ತೆಗೆದುಕೊಳ್ಳಿರಿ.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">ವಿನಂತಿ ಯಾರೆಂದು ನಿಮಗೆ ಖಚಿತವಿಲ್ಲದಿದ್ದರೆ, ಕೆಳಗಿನ ಸಂಪರ್ಕಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಕ್ರಮ ತೆಗೆದುಕೊಳ್ಳಿರಿ.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">ಬೇರೆ ಯಾವುದೇ ಗುಂಪುಗಳು ಸಾಮಾನ್ಯವಾಗಿಲ್ಲ.</string>
-  <string name="ReviewCardDialogFragment__no_groups_in_common">ಯಾವುದೇ ಗುಂಪುಗಳು ಸಾಮಾನ್ಯವಾಗಿಲ್ಲ.</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">ಯಾವುದೇ ಒಂದೇ ಗುಂಪುಗಳಲ್ಲಿಲ್ಲ.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
     <item quantity="one">ಸಾಮಾನ್ಯ ಗುಂಪು %d</item>
-    <item quantity="other">ಸಾಮಾನ್ಯ ಗುಂಪುಗಳು %d</item>
+    <item quantity="other">%d ಗುಂಪುಗಳಲ್ಲಿ ನೀವಿಬ್ಬರೂ ಇರುವಿರಿ</item>
   </plurals>
   <plurals name="ReviewCardDialogFragment__d_groups_in_common">
     <item quantity="one">ಸಾಮಾನ್ಯ ಗುಂಪು %d</item>
-    <item quantity="other">ಸಾಮಾನ್ಯ ಗುಂಪುಗಳು %d</item>
+    <item quantity="other">%d ಗುಂಪುಗಳಲ್ಲಿ ನೀವಿಬ್ಬರೂ ಇರುವಿರಿ</item>
   </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s ರನ್ನು ಗುಂಪಿನಿಂದ ತೆಗೆಯುವುದೇ?</string>
   <string name="ReviewCardDialogFragment__remove">ತೆಗೆದುಹಾಕಿ</string>
@@ -2712,7 +2712,7 @@
   <string name="ReviewCard__request">ಕೋರಿಕೆ</string>
   <string name="ReviewCard__your_contact">ನಿಮ್ಮ ಸಂಪರ್ಕ</string>
   <string name="ReviewCard__remove_from_group">ಗುಂಪಿನಿಂದ ತೆಗೆಯಿರಿ</string>
-  <string name="ReviewCard__update_contact">ನವೀಕರಿಸಿ ಸಂಪರ್ಕ</string>
+  <string name="ReviewCard__update_contact">ಸಂಪರ್ಕ ನವೀಕರಿಸಿ</string>
   <string name="ReviewCard__block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="ReviewCard__delete">ಅಳಿಸಿ</string>
   <string name="ReviewCard__recently_changed">ಇತ್ತೀಚೆಗೆ ಅವರ ಪ್ರೊಫೈಲ್ ಹೆಸರನ್ನು %1$s ರಿಂದ %2$s ಕ್ಕೆ ಬದಲಾಯಿಸಲಾಗಿದೆ</string>
@@ -2730,8 +2730,8 @@
   <string name="CallParticipant__s_on_another_device">%1$s (ಮತ್ತೊಂದು  ಸಾಧನದಲ್ಲಿ)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಿದರೆ:</string>
-  <string name="DeleteAccountFragment__enter_your_phone_number">ನಿಮ್ಮ ಫೋನ್‌ ನಂಬರ್ ನಮೂ</string>
-  <string name="DeleteAccountFragment__delete_account">ಖಾತೆ ಅಳಿಸಿ</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">ನಿಮ್ಮ ಫೋನ್‌ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</string>
+  <string name="DeleteAccountFragment__delete_account">ಖಾತೆಯನ್ನು ಅಳಿಸಿ</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">ನಿಮ್ಮ ಖಾತೆ ಮಾಹಿತಿ ಮತ್ತು ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಅಳಿಸುತ್ತದೆ</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">ನಿಮ್ಮ ಎಲ್ಲ ಮೆಸೇಜ್‌ಗಳು ಅಳಿಸುತ್ತವೆ</string>
   <string name="DeleteAccountFragment__delete_s_in_your_payments_account">ನಿಮ್ಮ ಪೇಮೆಂಟ್ಸ್ ಖಾತೆಯಲ್ಲಿ %1$s ಅಳಿಸುತ್ತದೆ</string>
@@ -2765,30 +2765,30 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">ಚಾಟ್ ವಾಲ್‌ಪೇಪರ್</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">ಚಾಟ್ ಬಣ್ಣ</string>
-  <string name="ChatWallpaperFragment__reset_chat_colors">ಚಾಟ್ ಬಣ್ಣಗಳನ್ನು ರಿಸೆಟ್ ಮಾಡಿ</string>
-  <string name="ChatWallpaperFragment__reset_chat_color">ಚಾಟ್ ಬಣ್ಣ ರಿಸೆಟ್ ಮಾಡಿ</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">ಚಾಟ್‌ ಬಣ್ಣಗಳನ್ನು ಮರುಹೊಂದಿಸಿ</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">ಚಾಟ್‌ ಬಣ್ಣವನ್ನು ಮರುಹೊಂದಿಸಿ</string>
   <string name="ChatWallpaperFragment__reset_chat_color_question">ಚಾಟ್ ಬಣ್ಣ ರಿಸೆಟ್ ಮಾಡುವುದೇ?</string>
-  <string name="ChatWallpaperFragment__set_wallpaper">ವಾಲ್‌ಪೇಪರ್ ನಿಗದಿಸಿ</string>
+  <string name="ChatWallpaperFragment__set_wallpaper">ವಾಲ್‌ಪೇಪರ್‌ ಹೊಂದಿಸಿ</string>
   <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">ಡಾರ್ಕ್‌ ಮೋಡ್‌ನಿಂದ ವಾಲ್‌ಪೇಪರ್ ಮಂದವಾಗುತ್ತದೆ</string>
-  <string name="ChatWallpaperFragment__contact_name">ಸಂಪರ್ಕ ಹೆಸರು</string>
+  <string name="ChatWallpaperFragment__contact_name">ಸಂಪರ್ಕದ ಹೆಸರು</string>
   <string name="ChatWallpaperFragment__reset">ಮರುಹೊಂದಿಸಿ</string>
   <string name="ChatWallpaperFragment__clear">ತೆರವುಗೊಳಿಸಿ</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">ವಾಲ್‌ಪೇಪರ್ ಪ್ರಿವ್ಯೂ</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">ಎಲ್ಲ ಚಾಟ್ ಕಲರ್‌ಗಳನ್ನು ನೀವು ಓವರ್‌ರೈಡ್‌ ಮಾಡಲು ಬಯಸುತ್ತೀರಿ?</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">ಎಲ್ಲ ವಾಲ್‌ಪೇಪರ್‌ಗಳನ್ನು ಓವರ್‌ರೈಡ್‌ ಮಾಡಲು ಬಯಸುತ್ತೀರಿ?</string>
-  <string name="ChatWallpaperFragment__reset_default_colors">ಡೀಫಾಲ್ಟ್ ಬಣ್ಣಗಳನ್ನು ರಿಸೆಟ್ ಮಾಡಿ</string>
-  <string name="ChatWallpaperFragment__reset_all_colors">ಎಲ್ಲ ಬಣ್ಣಗಳನ್ನು ರಿಸೆಟ್ ಮಾಡಿ</string>
-  <string name="ChatWallpaperFragment__reset_default_wallpaper">ಡೀಫಾಲ್ಟ್ ವಾಲ್‌ಪೇರ್ ರಿಸೆಟ್ ಮಾಡಿ</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">ಎಲ್ಲ ವಾಲ್‌ಪೇಪರ್‌ಗಳನ್ನು ರಿಸೆಟ್ ಮಾಡಿ</string>
-  <string name="ChatWallpaperFragment__reset_wallpapers">ವಾಲ್‌ಪೇಪರ್‌ಗಳನ್ನು ರಿಸೆಟ್ ಮಾಡಿ</string>
-  <string name="ChatWallpaperFragment__reset_wallpaper">ವಾಲ್‌ಪೇಪರ್ ರಿಸೆಟ್ ಮಾಡಿ</string>
-  <string name="ChatWallpaperFragment__reset_wallpaper_question">ವಾಲ್‌ಪೇಪರ್ ರಿಸೆಟ್ ಮಾಡುವುದೇ?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">ಡೀಫಾಲ್ಟ್‌ ಬಣ್ಣಗಳನ್ನು ಮರುಹೊಂದಿಸಿ</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">ಎಲ್ಲಾ ಬಣ್ಣಗಳನ್ನೂ ಮರುಹೊಂದಿಸಿ</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">ಡೀಫಾಲ್ಟ್‌ ವಾಲ್‌ಪೇಪರ್‌ ಮರುಹೊಂದಿಸಿ</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">ಎಲ್ಲಾ ವಾಲ್‌ಪೇಪರ್‌ಗಳನ್ನೂ ಮರುಹೊಂದಿಸಿ</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">ವಾಲ್‌ಪೇಪರ್‌ಗಳನ್ನು ಮರುಹೊಂದಿಸಿ</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">ವಾಲ್‌ಪೇಪರ್‌ ಮರುಹೊಂದಿಸಿ</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">ವಾಲ್‌ಪೇಪರ್‌ ಮರುಹೊಂದಿಸುವುದೆ?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">ಫೋಟೋಗಳಿಂದ ಆಯ್ಕೆ ಮಾಡಿ</string>
   <string name="ChatWallpaperSelectionFragment__presets">ಪ್ರಿಸೆಟ್‌ಗಳು</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">ಪ್ರಿವ್ಯೂ</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper">ವಾಲ್‌ಪೇಪರ್ ನಿಗದಿಸಿ</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">ವಾಲ್‌ಪೇಪರ್‌ ಹೊಂದಿಸಿ</string>
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">ಇನ್ನಷ್ಟು ವಾಲ್‌ಪೇಪರ್‌ಗಳ ಪ್ರಿವ್ಯೂಗೆ ಸ್ವೈಪ್ ಮಾಡಿ</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">ಎಲ್ಲ ಚಾಟ್‌ಗಳಿಗೆ ವಾಲ್‌ಪೇಪರ್ ಸೆಟ್ ಮಾಡಿ</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s ಗೆ ವಾಲ್‌ಪೇಪರ್ ಸೆಟ್ ಮಾಡಿ</string>
@@ -2807,10 +2807,10 @@
   <string name="payment_info_card_adding_funds">ಫಂಡ್‌ಗಳನ್ನು ಸೇರಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">ನಿಮ್ಮ ವಾಲೆಟ್ ವಿಳಾಸಕ್ಕೆ ಮೊಬೈಲ್‌ಕಾಯಿನ್ ಅನ್ನು ಕಳುಹಿಸುವ ಮೂಲಕ Signal ನಲ್ಲಿ ಬಳಸಲು ನೀವು ಫಂಡ್‌ಗಳನ್ನು ಸೇರಿಸಬಹುದು.</string>
   <string name="payment_info_card_cashing_out">ನಗದು ಮಾಡಿಕೊಳ್ಳಲಾಗುತ್ತಿದೆ</string>
-  <string name="payment_info_card_you_can_cash_out_mobilecoin">ಮೊಬೈಲ್‌ಕಾಯಿನ್ ಬೆಂಬಲಿಸುವ ವಿನಿಮಯದಲ್ಲಿ ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ನೀವು ಮೊಬೈಲ್‌ಕಾಯಿನ್ ಅನ್ನು ನಗದು ಮಾಡಿಕೊಳ್ಳಬಹುದು. ಆ ವಿನಿಮಯದಲ್ಲಿ ನಿಮ್ಮ ಖಾತೆಗೆ ಕೇವಲ ವರ್ಗಾವಣೆ ಮಾಡಿಕೊಳ್ಳಿ.</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">MobileCoin ಬೆಂಬಲಿಸುವ ವಿನಿಮಯದಲ್ಲಿ ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ನೀವು MobileCoin ಅನ್ನು ನಗದು ಮಾಡಿಕೊಳ್ಳಬಹುದು. ಆ ವಿನಿಮಯದಲ್ಲಿ ನಿಮ್ಮ ಖಾತೆಗೆ ಕೇವಲ ವರ್ಗಾವಣೆ ಮಾಡಿಕೊಳ್ಳಿ.</string>
   <string name="payment_info_card_hide_this_card">ಈ ಕಾರ್ಡ್ ಮರೆ ಮಾಡುವುದೇ?</string>
   <string name="payment_info_card_hide">ಅಡಗಿಸು</string>
-  <string name="payment_info_card_record_recovery_phrase">ಪ್ರತಿ ಹಂತವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
+  <string name="payment_info_card_record_recovery_phrase">ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್‌ ಮಾಡಿ</string>
   <string name="payment_info_card_your_recovery_phrase_gives_you">ನಿಮ್ಮ ಪೇಮೆಂಟ್‌ಗಳ ಖಾತೆಯನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಲು ನಿಮ್ಮ ರಿಕವರಿ ಪದಗುಚ್ಛವು ಇನ್ನೊಂದು ವಿಧಾನವಾಗಿರುತ್ತದೆ.</string>
   <string name="payment_info_card_record_your_phrase">ನಿಮ್ಮ ಪದಗುಚ್ಛವನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಿ</string>
   <string name="payment_info_card_update_your_pin">ನಿಮ್ಮ ಪಿನ್‌ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ</string>
@@ -2821,7 +2821,7 @@
   <string name="DeactivateWalletFragment__your_balance">ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್</string>
   <string name="DeactivateWalletFragment__its_recommended_that_you">ಪೇಮೆಂಟ್ಸ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವದಕ್ಕೂ ಮುನ್ನ ಇನ್ನೊಂದು ವಾಲೆಟ್‌ಗೆ ನಿಮ್ಮ ಹಣವನ್ನು ವರ್ಗಾವಣೆ ಮಾಡಿಕೊಳ್ಳುವುದನ್ನು ನಿಮಗೆ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ. ಈಗ ನಿಮ್ಮ ಹಣವನ್ನು ವರ್ಗಾವಣೆ ಮಾಡದಿರಲು ನೀವು ಆಯ್ಕೆ ಮಾಡಿಕೊಂಡರೆ, ಪೇಮೆಂಟ್‌ಗಳನ್ನು ನೀವು ಪುನಃ ಸಕ್ರಿಯಗೊಳಿಸಿದರೆ Signal ಗೆ ಲಿಂಕ್‌ ಮಾಡಿದ ನಿಮ್ಮ ವಾಲೆಟ್‌ನಲ್ಲಿಯೇ ಅವು ಇರುತ್ತವೆ.</string>
   <string name="DeactivateWalletFragment__transfer_remaining_balance">ಉಳಿದ ಬ್ಯಾಲೆನ್ಸ್ ಅನ್ನು ವರ್ಗಾವಣೆ ಮಾಡಿ</string>
-  <string name="DeactivateWalletFragment__deactivate_without_transferring">ವರ್ಗಾವಣೆ ಮಾಡದೇ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗುತ್ತಿದೆ</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">ವರ್ಗಾಯಿಸದೆ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="DeactivateWalletFragment__deactivate">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">ವರ್ಗಾವಣೆ ಮಾಡದೇ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದೇ?</string>
   <string name="DeactivateWalletFragment__your_balance_will_remain">ನೀವು ಪೇಮೆಂಟ್ಸ್ ಪುನಃ ಸಕ್ರಿಯಗೊಳಿಸಲು ನೀವು ಆಯ್ಕೆ ಮಾಡಿಕೊಂಡರೆ, Signal ಗೆ ಲಿಂಕ್ ಮಾಡಿದ ನಿಮ್ಮ ವಾಲೆಟ್‌ನಲ್ಲಿ ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಇರುತ್ತದೆ.</string>
@@ -2833,7 +2833,7 @@
   <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">ನಿಮ್ಮ Signal ಪಿನ್ ಅನ್ನು ನೀವು ದೃಢೀಕರಿಸಿದರೆ Signal ಅನ್ನು ನೀವು ಪುನಃ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದಾಗ ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ರಿಸ್ಟೋರ್ ಆಗುತ್ತದೆ. ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ಬಳಸಿ ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಅನ್ನು ಕೂಡಾ ನೀವು ರಿಸ್ಟೋರ್ ಮಾಡಬಹುದು. ಇದು %1$d - ಶಬ್ದದ ಪದಗುಚ್ಛವಾಗಿದ್ದು ನಿಮಗೆ ವಿಶಿಷ್ಟವಾಗಿದೆ. ಇದನ್ನು ಬರೆದಿಟ್ಟುಕೊಳ್ಳಿ ಮತ್ತು ಸುರಕ್ಷಿತ ಸ್ಥಳದಲ್ಲಿ ಶೇಖರಿಸಿಡಿ.</string>
   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">ನಿಮ್ಮ ರಿಕವರಿ ಪದಗುಚ್ಛವು %1$d- ಶಬ್ದದ ಪದಗುಚ್ಛವಾಗಿದ್ದು, ನಿಮಗೆ ವಿಶಿಷ್ಟವಾಗಿದೆ. ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಅನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಲು ಈ ಪದಗುಚ್ಛವನ್ನು ಬಳಸಿ.</string>
   <string name="PaymentsRecoveryStartFragment__start">ಆರಂಭಿಸಿ</string>
-  <string name="PaymentsRecoveryStartFragment__enter_manually">ಮ್ಯಾನ್ಯುಅಲ್‌ ಆಗಿ ನಮೂದಿಸಿ</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">ಹಸ್ತಚಾಲಿತವಾಗಿ ನಮೂದಿಸಿ</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ನಿಂದ ಅಂಟಿಸಿ</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ಅಂಟಿಸಿ</string>
@@ -2858,8 +2858,8 @@
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ದೃಢೀಕರಿಸಿ</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">ನಿಮ್ಮ ರಿವಕರಿ ಪದಗುಚ್ಛದಿಂದ ಈ ಮುಂದಿನ ಶಬ್ದಗಳನ್ನು ನಮೂದಿಸಿ.</string>
-  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">ಶಬ್ದ %1$d</string>
-  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">ಪದಗುಚ್ಛವನ್ನು ಪುನಃ ನೋಡಿ</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">ಪದ %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">ಪದಗುಚ್ಛವನ್ನು ಮತ್ತೆ ನೋಡಿ</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">ಮುಗಿದಿದೆ</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ದೃಢೀಕರಿಸಲಾಗಿದೆ</string>
   <!--PaymentsRecoveryEntryFragment-->
@@ -2882,12 +2882,12 @@
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">ಈ ವ್ಯಕ್ತಿಯ ಜೊತೆಗೆ ನೀವು ಯಾವುದೇ ಗ್ರೂಪ್‌ನಲ್ಲಿಲ್ಲ. ಅನಗತ್ಯ ಮೆಸೇಜ್‌ಗಳನ್ನು ದೂರವಿಡಲು ಸಮ್ಮತಿಸುವುದಕ್ಕೂ ಮೊದಲು ಗಮನವಿಟ್ಟು ವಿನಂತಿಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">ನಿಮ್ಮ ಯಾವುದೇ ಕಾಂಟ್ಯಾಕ್ಟ್‌ಗಳು ಅಥವಾ ನೀವು ಚಾಟ್‌ ಮಾಡುವ ಯಾವುದೇ ವ್ಯಕ್ತಿಗಳು ಈ ಗ್ರೂಪ್‌ನಲ್ಲಿಲ್ಲ. ಅನಗತ್ಯ ಮೆಸೇಜ್‌ಗಳನ್ನು ದೂರವಿಡಲು ಸಮ್ಮತಿಸುವುದಕ್ಕೂ ಮೊದಲು ಗಮನವಿಟ್ಟು ವಿನಂತಿಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.</string>
-  <string name="GroupsInCommonMessageRequest__about_message_requests">ಮೆಸೇಜ್ ವಿನಂತಿಗಳ ಬಗ್ಗೆ</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">ಸಂದೇಶ ವಿನಂತಿಗಳ ಬಗ್ಗೆ</string>
   <string name="GroupsInCommonMessageRequest__okay">ಸರಿ</string>
   <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">ಚಾಟ್ ಬಣ್ಣದ ಪೂರ್ವವೀಕ್ಷಣೆ ಇಲ್ಲಿದೆ.</string>
   <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">ಬಣ್ಣ ನಿಮಗೆ ಮಾತ್ರ ಕಾಣಿಸುತ್ತದೆ.</string>
   <!--GroupDescriptionDialog-->
-  <string name="GroupDescriptionDialog__group_description">ಗ್ರೂಪ್ ವಿವರಣೆ</string>
+  <string name="GroupDescriptionDialog__group_description">ಗುಂಪಿನ ವಿವರಣೆ</string>
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__standard">ಪ್ರಮಾಣಿತ</string>
   <string name="QualitySelectorBottomSheetDialog__faster_less_data">ತ್ವರಿತ, ಕಡಿಮೆ ಡೇಟಾ</string>
@@ -2909,7 +2909,7 @@
   <string name="NotificationsSettingsFragment__messages">ಸಂದೇಶಗಳು</string>
   <string name="NotificationsSettingsFragment__calls">ಕರೆಗಳು</string>
   <string name="NotificationsSettingsFragment__notify_when">ಈ ಸಮಯದಲ್ಲಿ ನನಗೆ ತಿಳಿಸಿ…</string>
-  <string name="NotificationsSettingsFragment__contact_joins_signal">ಸಂಪರ್ಕಗಳು Signal ಗೆ ಸೇರುವುದು</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">ಸಂಪರ್ಕದವರು Signal ಗೆ ಸೇರಿದ್ದಾರೆ</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d ಸಂಪರ್ಕಗಳು</string>
@@ -2953,7 +2953,7 @@
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">ಕರೆಗಳು</string>
   <!--ChatColorSelectionFragment-->
-  <string name="ChatColorSelectionFragment__auto">ಅಟೋ</string>
+  <string name="ChatColorSelectionFragment__auto">ಸ್ವಯಂಚಾಲಿತ</string>
   <string name="ChatColorSelectionFragment__use_custom_colors">ಕಸ್ಟಮ್ ಬಣ್ಣಗಳನ್ನು ಬಳಸಿ</string>
   <string name="ChatColorSelectionFragment__chat_color">ಚಾಟ್ ಬಣ್ಣ</string>
   <string name="ChatColorSelectionFragment__edit">ತಿದ್ದಿ</string>
@@ -2966,7 +2966,7 @@
   </plurals>
   <string name="ChatColorSelectionFragment__delete_chat_color">ಚಾಟ್ ಬಣ್ಣ ಅಳಿಸುವುದೇ?</string>
   <!--CustomChatColorCreatorFragment-->
-  <string name="CustomChatColorCreatorFragment__solid">ಸಾಲಿಡ್</string>
+  <string name="CustomChatColorCreatorFragment__solid">ಘನ</string>
   <string name="CustomChatColorCreatorFragment__gradient">ಗ್ರೇಡಿಯೆಂಟ್</string>
   <string name="CustomChatColorCreatorFragment__hue">ಹ್ಯೂ</string>
   <string name="CustomChatColorCreatorFragment__saturation">ಸ್ಯಾಚುರೇಶನ್</string>
@@ -3004,7 +3004,7 @@
   <string name="KeyboardPagerFragment_open_gif_search">ಜಿಫ್ ಹುಡುಕಾಟ ತೆರೆಯಿರಿ</string>
   <string name="KeyboardPagerFragment_stickers">ಸ್ಟಿಕ್ಕರುಗಳು</string>
   <string name="KeyboardPagerFragment_backspace">ಬ್ಯಾಕ್‌ಸ್ಪೇಸ್</string>
-  <string name="KeyboardPagerFragment_gifs">ಜಿಫ್‌ಗಳು</string>
+  <string name="KeyboardPagerFragment_gifs">GIFಗಳು</string>
   <string name="KeyboardPagerFragment_search_emoji">ಎಮೋಜಿ ಹುಡುಕಿ</string>
   <string name="KeyboardPagerfragment_back_to_emoji">ಎಮೋಜಿಗೆ ವಾಪಸ್</string>
   <string name="KeyboardPagerfragment_clear_search_entry">ಹುಡುಕಾಟ ನಮೂದು ತೆರವುಗೊಳಿಸಿ</string>
@@ -3015,12 +3015,12 @@
   <string name="EmojiSearchFragment__no_results_found">ಯಾವುದೇ ಫಲಿತಾಂಶ ಕಂಡುಬಂದಿಲ್ಲ</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">ಅನಾಮಿಕ ರಿಂಗ್‌ಟೋನ್</string>
   <!--ConversationSettingsFragment-->
-  <string name="ConversationSettingsFragment__send_message">ಮೆಸೇಜ್ ಕಳುಹಿಸಿ</string>
-  <string name="ConversationSettingsFragment__start_video_call">ವೀಡಿಯೋ ಕಾಲ್ ಆರಂಭಿಸಿ</string>
-  <string name="ConversationSettingsFragment__start_audio_call">ಆಡಿಯೋ ಕಾಲ್‌ ಆರಂಭಿಸಿ</string>
+  <string name="ConversationSettingsFragment__send_message">ಸಂದೇಶ ಕಳುಹಿಸಿ</string>
+  <string name="ConversationSettingsFragment__start_video_call">ವೀಡಿಯೊ ಕರೆ ಆರಂಭಿಸಿ</string>
+  <string name="ConversationSettingsFragment__start_audio_call">ಆಡಿಯೊ ಕಾಲ್‌ ಆರಂಭಿಸಿ</string>
   <string name="ConversationSettingsFragment__message">ಸಂದೇಶ</string>
   <string name="ConversationSettingsFragment__video">ವೀಡಿಯೊ</string>
-  <string name="ConversationSettingsFragment__audio">ಆಡಿಯೋ</string>
+  <string name="ConversationSettingsFragment__audio">ಆಡಿಯೊ</string>
   <string name="ConversationSettingsFragment__call">ಕರೆ ಮಾಡಿ</string>
   <string name="ConversationSettingsFragment__mute">ಮ್ಯೂಟ್ ಮಾಡಿ</string>
   <string name="ConversationSettingsFragment__muted">ಮ್ಯೂಟ್ ಮಾಡಲಾಗಿದೆ</string>
@@ -3032,7 +3032,7 @@
   <string name="ConversationSettingsFragment__block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="ConversationSettingsFragment__block_group">ಗುಂಪನ್ನು ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="ConversationSettingsFragment__unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
-  <string name="ConversationSettingsFragment__unblock_group">ಈ ಗುಂಪನ್ನು ಅನ್‌ಬ್ಲಾಕ್ ಮಾಡಿ</string>
+  <string name="ConversationSettingsFragment__unblock_group">ಗುಂಪನ್ನು ಅನ್‌ಬ್ಲಾಕ್ ಮಾಡಿ</string>
   <string name="ConversationSettingsFragment__add_to_a_group">ಗುಂಪಿಗೆ ಸೇರಿಸಿ</string>
   <string name="ConversationSettingsFragment__see_all">ಎಲ್ಲವನ್ನು ನೋಡಿ</string>
   <string name="ConversationSettingsFragment__add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
@@ -3047,7 +3047,7 @@
   <string name="ConversationSettingsFragment__phone_number">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
-  <string name="PermissionsSettingsFragment__edit_group_info">ಗುಂಪಿನ ಮಾಹಿತಿಯನ್ನು ಬದಲಾಯಿಸಿ</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">ಗುಂಪಿನ ಮಾಹಿತಿಯನ್ನು ಎಡಿಟ್ ಮಾಡಿ</string>
   <string name="PermissionsSettingsFragment__send_messages">ಸಂದೇಶಗಳನ್ನು ಕಳಿಸಿ</string>
   <string name="PermissionsSettingsFragment__all_members">ಎಲ್ಲಾ ಸದಸ್ಯರು</string>
   <string name="PermissionsSettingsFragment__only_admins">ಆಡ್ಮಿನ್‌‌ಗಳು ಮಾತ್ರ</string>
@@ -3059,7 +3059,7 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">ಮ್ಯೂಟ್ ಮಾಡಲಾಗಿಲ್ಲ</string>
   <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">%1$s ವರೆಗೆ ಮ್ಯೂಟ್ ಮಾಡಲಾಗಿದೆ</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">ಉಲ್ಲೇಖಗಳು</string>
-  <string name="SoundsAndNotificationsSettingsFragment__always_notify">ಎಂದಿಗೂ ಸೂಚನೆ ನೀಡಿ</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">ಯಾವಾಗಲೂ ಸೂಚನೆ ನೀಡಿ</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">ಸೂಚನೆ ನೀಡಬೇಡಿ</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ಕಸ್ಟಮ್ ಅಧಿಸೂಚನೆಗಳು</string>
   <!--StickerKeyboard-->

@@ -2,10 +2,10 @@
 <resources>
   <string name="yes">ਹਾਂ</string>
   <string name="no">ਨਹੀਂ </string>
-  <string name="delete">ਮਿਟਾਓ</string>
-  <string name="please_wait">ਕਿਰਪਾ ਕਰਕੇ ਠਹਿਰੋ…</string>
+  <string name="delete">ਹਟਾਓ</string>
+  <string name="please_wait">ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕੋ…</string>
   <string name="save">ਸੰਭਾਲੋ</string>
-  <string name="note_to_self">ਆਪਣੇ ਆਪ ਨੂੰ ਨੋਟ </string>
+  <string name="note_to_self">ਖੁਦ ਲਈ ਨੋਟ ਕਰੋ</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">ਨਵਾਂ ਸੁਨੇਹਾ </string>
   <!--AlbumThumbnailView-->
@@ -587,7 +587,7 @@
   <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">ਪਸੰਦੀਦਾ MMS ਗਰੁੱਪਾਂ ਦੇ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋਆਂ ਸਿਰਫ਼ ਤੁਹਾਨੂੰ ਦਿਖਾਈ ਦੇਣਗੀਆਂ।</string>
   <string name="AddGroupDetailsFragment__remove">ਹਟਾਓ</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS ਸੰਪਰਕ</string>
-  <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s ਨੂੰ ਇਸ ਗਰੁੱਪ ਵਿੱਚੋਂ ਹਟਾਉਣਾ ਹੈ?</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s ਨੂੰ ਇਸ ਗਰੁੱਪ ਤੋਂ ਹਟਾਉਣਾ ਹੈ?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d ਮੈਂਬਰ ਨਵੇਂ ਗਰੁੱਪਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ, ਇਸ ਲਈ ਇਹ ਇੱਕ ਲੈਗਸੀ ਗਰੁੱਪ ਹੋਵੇਗਾ।</item>
     <item quantity="other">%d ਮੈਂਬਰ ਨਵੇਂ ਗਰੁੱਪਾਂ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦੇ, ਇਸ ਲਈ ਇਹ ਇੱਕ ਲੈਗਸੀ ਗਰੁੱਪ ਹੋਵੇਗਾ।</item>
@@ -612,8 +612,8 @@
   <string name="ManageGroupActivity_add_members">ਮੈਂਬਰ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="ManageGroupActivity_edit_group_info">ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਸੋਧੋ</string>
   <string name="ManageGroupActivity_who_can_add_new_members">ਨਵੇਂ ਮੈਂਬਰ ਕੌਣ ਸ਼ਾਮਲ ਕਰ ਸਕਦਾ ਹੈ?</string>
-  <string name="ManageGroupActivity_who_can_edit_this_groups_info">ਇਸ ਸਮੂਹ ਦੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕੌਣ ਸੰਪਾਦਿਤ ਕਰ ਸਕਦਾ ਹੈ?</string>
-  <string name="ManageGroupActivity_group_link">ਸਮੂਹ ਲਿੰਕ</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">ਇਸ ਗਰੁੱਪ ਦੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕੌਣ ਸੰਪਾਦਿਤ ਕਰ ਸਕਦਾ ਹੈ?</string>
+  <string name="ManageGroupActivity_group_link">ਗਰੁੱਪ ਲਿੰਕ</string>
   <string name="ManageGroupActivity_block_group">ਗਰੁੱਪ ’ਤੇ ਪਾਬੰਦੀ ਲਾਓ</string>
   <string name="ManageGroupActivity_unblock_group">ਗਰੁੱਪ ਤੋਂ ਪਾਬੰਦੀ ਹਟਾਓ</string>
   <string name="ManageGroupActivity_leave_group">ਗਰੁੱਪ ਛੱਡੋ</string>
@@ -688,7 +688,7 @@
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">ਸਾਂਝਾ ਕਰਨਯੋਗ ਗਰੁੱਪ ਲਿੰਕ</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">ਪ੍ਰਬੰਧ ਕਰੋ  &amp; ਸਾਂਝਾ ਕਰੋ</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link">ਸਮੂਹ ਲਿੰਕ</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">ਗਰੁੱਪ ਲਿੰਕ</string>
   <string name="ShareableGroupLinkDialogFragment__share">ਸਾਂਝਾ ਕਰੋ</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">ਲਿੰਕ ਰੀਸੈੱਟ ਕਰੋ</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">ਮੈਂਬਰੀ ਲਈ ਬੇਨਤੀਆਂ</string>
@@ -736,7 +736,7 @@
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">ਤੁਸੀਂ ਫਿਲਹਾਲ ਗਰੁੱਪ ਦੇ ਮੈਂਬਰ ਨਹੀਂ ਹੋ।</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s” ਨੂੰ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨਾ ਹੈ?</string>
-  <string name="RequestConfirmationDialog_deny_request_from_s">“%1$s” ਤੋਂ ਬੇਨਤੀ ਨੂੰ ਨਾਂਹ ਕਰਨੀ ਹੈ?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">“%1$s” ਤੋਂ ਬੇਨਤੀ ਨੂੰ ਇਨਕਾਰ ਕਰਨਾ ਹੈ?</string>
   <string name="RequestConfirmationDialog_add">ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="RequestConfirmationDialog_deny">ਇਨਕਾਰ ਕਰੋ</string>
   <!--ImageEditorHud-->
@@ -891,7 +891,7 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ਨੇ ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਅਸਮਰੱਥ ਕੀਤਾ।</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">ਤੁਸੀਂ ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹਾ ਟਾਈਮਰ ਨੂੰ %1$s ’ਤੇ ਸੈੱਟ ਕੀਤਾ।</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ਨੇ ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹਾ ਟਾਈਮਰ ਨੂੰ %2$s ’ਤੇ ਸੈੱਟ ਕੀਤਾ।</string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">ਅਲੋਪ ਹੋ ਰਹੇ ਸੁਨੇਹਾ ਟਾਈਮਰ ਨੂੰ %1$s ’ਤੇ ਸੈੱਟ ਕੀਤਾ ਗਿਆ ਹੈ।</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ ਦੇ ਟਾਈਮਰ ਨੂੰ %1$s ’ਤੇ ਸੈੱਟ ਕੀਤਾ ਗਿਆ ਹੈ।</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">ਇਸ ਗਰੁੱਪ ਨੂੰ ਇੱਕ ਨਵੇਂ ਗਰੁੱਪ ਵਿੱਚ ਅੱਪਡੇਟ ਕੀਤਾ ਗਿਆ ਸੀ।</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">ਤੁਹਾਨੂੰ ਨਵੇਂ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ ਅਤੇ ਸ਼ਾਮਲ ਹੋਣ ਲਈ ਸੱਦਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।</string>
   <string name="MessageRecord_chat_session_refreshed">ਚੈਟ ਸੈਸ਼ਨ ਤਾਜ਼ਾ ਕੀਤਾ ਗਿਆ</string>
@@ -1224,7 +1224,7 @@
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">ਇਸ ਕਾਲ ਵਿੱਚ %1$d ਵਿਅਕਤੀ</item>
-    <item quantity="other">ਇਸ ਕਾਲ ਵਿੱਚ %1$d ਵਿਅਕਤੀ</item>
+    <item quantity="other">ਇਸ ਕਾਲ ਵਿੱਚ %1$d ਲੋਕ</item>
   </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">%1$s ਉੱਤੇ ਪਾਬੰਦੀ ਹੈ</string>
@@ -1356,7 +1356,7 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">ਸੋਧੋ</string>
   <string name="SubmitDebugLogActivity_done">ਹੋ ਗਿਆ</string>
-  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">ਇਸਨੂੰ ਮਿਟਾਉਣ ਲਈ ਕਿਸੇ ਲਾਈਨ ਨੂੰ ਟੈਪ ਕਰੋ</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">ਇਸਨੂੰ ਹਟਾਉਣ ਲਈ ਕਿਸੇ ਲਾਈਨ ਨੂੰ ਟੈਪ ਕਰੋ</string>
   <string name="SubmitDebugLogActivity_submit">ਦਰਜ ਕਰੋ</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">ਲੌਗ ਦਰਜ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ</string>
   <string name="SubmitDebugLogActivity_success">ਸਫਲਤਾ!</string>
@@ -1379,7 +1379,7 @@
   <string name="ThreadRecord_called">ਤੁਸੀਂ ਕਾਲ ਕੀਤੀ </string>
   <string name="ThreadRecord_called_you">ਤੁਹਾਨੂੰ ਕਾਲ ਕੀਤੀ</string>
   <string name="ThreadRecord_missed_audio_call">ਖੁੰਝੀ ਆਡੀਓ ਕਾਲ</string>
-  <string name="ThreadRecord_missed_video_call">ਖੁੰਝੀ ਆਡੀਓ ਕਾਲ</string>
+  <string name="ThreadRecord_missed_video_call">ਖੁੰਝੀ ਵੀਡੀਓ ਕਾਲ</string>
   <string name="ThreadRecord_media_message">ਮੀਡੀਆ ਸੁਨੇਹਾ</string>
   <string name="ThreadRecord_sticker">ਸਟਿੱਕਰ</string>
   <string name="ThreadRecord_view_once_photo">ਇੱਕ ਵਾਰ ਦੇਖਣਯੋਗ ਫ਼ੋਟੋ</string>
@@ -1478,7 +1478,7 @@
   <string name="MessageNotifier_error_delivering_message">ਸੁਨੇਹਾ ਪਹੁੰਚਾਉਣ ਵਿੱਚ ਤਰੁੱਟੀ।</string>
   <string name="MessageNotifier_message_delivery_paused">ਸੁਨੇਹਾ ਡਿਲਿਵਰੀ ਰੋਕ ਦਿੱਤੀ ਗਈ।</string>
   <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Signal ਉੱਤੇ ਮੈਸੇਜਿੰਗ ਜਾਰੀ ਰੱਖਣ ਲਈ ਤਸਦੀਕ ਕਰੋ।</string>
-  <string name="MessageNotifier_mark_all_as_read">ਸਭ ਨੂੰ ਪੜ੍ਹੇ ਹੋਏ ਵਜੋਂ ਚਿੰਨ੍ਹ ਲਾਓ</string>
+  <string name="MessageNotifier_mark_all_as_read">ਸਭ ਨੂੰ ਪੜ੍ਹੇ ਵਜੋਂ ਚਿੰਨ੍ਹ ਲਾਓ</string>
   <string name="MessageNotifier_mark_read">ਪੜ੍ਹੇ ਵਜੋਂ ਚਿੰਨ੍ਹ ਲਾਓ</string>
   <string name="MessageNotifier_turn_off_these_notifications">ਇਹ ਸੂਚਨਾਵਾਂ ਬੰਦ ਕਰੋ</string>
   <string name="MessageNotifier_view_once_photo">ਇੱਕ ਵਾਰ ਦੇਖਣਯੋਗ ਫ਼ੋਟੋ</string>
@@ -1828,7 +1828,7 @@
   <string name="AndroidManifest__change_passphrase">ਪਾਸਫ਼੍ਰੇਜ਼ ਬਦਲੋ</string>
   <string name="AndroidManifest__verify_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਤਸਦੀਕ ਕਰੋ</string>
   <string name="AndroidManifest__log_submit">ਡੀਬੱਗ ਲਾਗ ਦਰਜ ਕਰੋ</string>
-  <string name="AndroidManifest__media_preview">ਮੀਡੀਆ ਪ੍ਰੀਵਿਊ</string>
+  <string name="AndroidManifest__media_preview">ਮੀਡੀਆ ਝਲਕ</string>
   <string name="AndroidManifest__message_details">ਸੁਨੇਹਾ ਵੇਰਵੇ</string>
   <string name="AndroidManifest__linked_devices">ਲਿੰਕ ਕੀਤੀਆਂ ਡਿਵਾਈਸਾਂ</string>
   <string name="AndroidManifest__invite_friends">ਦੋਸਤਾਂ ਨੂੰ ਸੱਦਾ ਦਿਓ</string>
@@ -1873,7 +1873,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">ਚਿੰਨ੍ਹ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">ਝੰਡੇ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ਜਜ਼ਬਾਤੀ-ਆਈਕਾਨ</string>
-  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਲੱਭੇ</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਲੱਭੇ</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">ਡਿਫੌਲਟ ਵਰਤੋ</string>
   <string name="arrays__use_custom">ਕਸਟਮ ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
@@ -1916,7 +1916,7 @@
   <string name="preferences__pref_use_address_book_photos">ਐਡਰੈਸ ਬੁੱਕ ਫੋਟੋਆਂ ਵਰਤੋਂ</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">ਤੁਹਾਡੀ ਐਡਰੈਸ ਬੁੱਕ ਤੋਂ ਸੰਪਰਕ ਤਸਵੀਰ ਵੇਖਾਓ, ਜੇ ਉਪਲਬਧ ਹੋਣ</string>
   <string name="preferences__generate_link_previews">ਲਿੰਕ ਝਲਕ ਤਿਆਰ ਕਰੋ</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">ਤੁਸੀਂ ਹੁਣ ਤੁਹਾਡੇ ਦੁਆਰਾ ਭੇਜੇ ਗਏ ਸੁਨੇਹਿਆਂ ਲਈ ਸਿੱਧੇ ਕਿਸੇ ਵੀ ਵੈਬਸਾਈਟ ਤੋਂ ਲਿੰਕ ਝਲਕ ਪ੍ਰਾਪਤ ਕਰੋ।</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">ਹੁਣ ਤੁਹਾਡੇ ਦੁਆਰਾ ਭੇਜੇ ਗਏ ਸੁਨੇਹਿਆਂ ਲਈ ਸਿੱਧੇ ਕਿਸੇ ਵੀ ਵੈੱਬਸਾਈਟ ਤੋਂ ਲਿੰਕ ਝਲਕ ਪ੍ਰਾਪਤ ਕਰੋ।</string>
   <string name="preferences__choose_identity">ਪਛਾਣ ਚੁਣੋ</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">ਸੰਪਰਕ ਸੂਚੀ ਤੋਂ ਆਪਣੀ ਸੰਪਰਕ ਇੰਦਰਾਜ਼ ਚੁਣੋ</string>
   <string name="preferences__change_passphrase">ਪਾਸਫ਼੍ਰੇਜ਼ ਬਦਲੋ</string>
@@ -1973,7 +1973,7 @@
   <string name="preferences__payments_beta">ਭੁਗਤਾਨ (ਬੀਟਾ)</string>
   <string name="preferences__conversation_length_limit">ਗੱਲਬਾਤ ਦੀ ਲੰਬਾਈ ਸੀਮਾ</string>
   <string name="preferences__keep_messages">ਸੁਨੇਹੇ ਰੱਖੋ</string>
-  <string name="preferences__clear_message_history">ਸੁਨੇਹਾ ਅਤੀਤ ਸਾਫ਼ ਕਰੋ</string>
+  <string name="preferences__clear_message_history">ਸੁਨੇਹਾ ਅਤੀਤ ਮਿਟਾਓ</string>
   <string name="preferences__linked_devices">ਲਿੰਕ ਕੀਤੀਆਂ ਡਿਵਾਈਸਾਂ</string>
   <string name="preferences__light_theme">ਲਾਈਟ</string>
   <string name="preferences__dark_theme">ਹਨੇਰਾ </string>
@@ -1984,7 +1984,7 @@
   <string name="preferences__disable_pin">PIN ਅਸਮਰੱਥ ਕਰੋ</string>
   <string name="preferences__enable_pin">PIN ਸਮਰੱਥ ਕਰੋ</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">ਜੇ ਤੁਸੀਂ PIN ਅਸਮਰੱਥ ਕੀਤਾ ਤਾਂ ਤੁਸੀਂ Signal ਨੂੰ ਮੁੜ-ਰਜਿਸਟਰ ਕਰਨ ਵੇਲੇ ਸਾਰਾ ਡੇਟਾ ਗੁਆ ਬੈਠੋਗੇ, ਜਦੋਂ ਤੱਕ ਕਿ ਤੁਸੀਂ ਖੁਦ ਬੈਕਅੱਪ ਨਹੀਂ ਲੈਂਦੇ ਤੇ ਬਹਾਲ ਕਰਦੇ। PIN ਅਸਮਰੱਥ ਕੀਤੇ ਹੋਣ ਨਾਲ ਤੁਸੀਂ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਲੌਕ ਨੂੰ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦੇ ਹੋ।</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN Signal ਨਾਲ ਸੰਭਾਲੀ ਜਾਣਕਾਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦਾ ਹੈ ਤਾਂ ਕਿ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਇਸ ਨੂੰ ਵਰਤ ਸਕੋ। ਤੁਹਾਡਾ ਪ੍ਰੋਫਾਈਲ, ਸੈਟਿੰਗਾਂ ਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਤੁਹਾਡੇ ਵਲੋਂ ਮੁੜ-ਸਥਾਪਤ ਕਰਨ ਉੱਤੇ ਬਹਾਲ ਕੀਤਾ ਜਾਵੇਗਾ। ਐਪ ਖੋਲ੍ਹਣ ਲਈ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ PIN ਦੀ ਲੋੜ ਨਹੀਂ ਹੋਵੇਗੀ।</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN Signal ਨਾਲ ਸੰਭਾਲੀ ਜਾਣਕਾਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦੇ ਹਨ ਤਾਂ ਕਿ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਇਸ ਨੂੰ ਐਕਸੈਸ ਕਰ ਸਕੋ। ਤੁਹਾਡਾ ਪ੍ਰੋਫ਼ਾਈਲ, ਸੈਟਿੰਗਾਂ ਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਤੁਹਾਡੇ ਵਲੋਂ ਮੁੜ-ਸਥਾਪਤ ਕਰਨ ਉੱਤੇ ਬਹਾਲ ਕੀਤਾ ਜਾਵੇਗਾ। ਐਪ ਖੋਲ੍ਹਣ ਲਈ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ PIN ਦੀ ਲੋੜ ਨਹੀਂ ਹੋਵੇਗੀ।</string>
   <string name="preferences__system_default">ਸਿਸਟਮ ਡਿਫਾਲਟ</string>
   <string name="preferences__language">ਭਾਸ਼ਾ</string>
   <string name="preferences__signal_messages_and_calls">Signal ਸੁਨੇਹੇ ਅਤੇ ਕਾਲਾਂ</string>
@@ -2015,7 +2015,7 @@
   <string name="preferences_storage__review_storage">ਸਟੋਰੇਜ਼ ਦੀ ਝਲਕ</string>
   <string name="preferences_storage__delete_older_messages">ਪੁਰਾਣੇ ਸੁਨੇਹੇ ਹਟਾਉਣੇ ਹਨ?</string>
   <string name="preferences_storage__clear_message_history">ਸੁਨੇਹਾ ਅਤੀਤ ਨੂੰ ਮਿਟਾਉਣਾ ਹੈ?</string>
-  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ਇਹ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਤੋਂ ਸਾਰੇ ਉਹਨਾਂ ਸੁਨੇਹਿਆਂ ਦਾ ਪਿਛੋਕੜ ਅਤੇ ਮੀਡੀਆ ਸਥਾਈ ਤੌਰ ਉੱਤੇ ਮਿਟਾ ਦੇਵੇਗਾ ਜੋ %1$s ਤੋਂ ਪੁਰਾਣੇ ਹਨ।</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">ਇਹ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਤੋਂ ਸਾਰੇ ਉਹਨਾਂ ਸੁਨੇਹਿਆਂ ਦਾ ਪਿਛੋਕੜ ਅਤੇ ਮੀਡੀਆ ਸਥਾਈ ਤੌਰ ਉੱਤੇ ਹਟਾ ਦੇਵੇਗਾ ਜੋ %1$s ਤੋਂ ਪੁਰਾਣੇ ਹਨ।</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">ਉਹ %1$s ਸਭ ਤੋ ਤਾਜ਼ਾ ਸੁਨੇਹਿਆਂ ਲਈ ਸਾਰੀਆਂ ਗੱਲਬਾਤਾਂ ਦੀ ਸਥਾਈ ਤੌਰ ’ਤੇ ਕਾਂਟ-ਛਾਂਟ ਕਰ ਦੇਵੇਗਾ।</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">ਇਹ ਤੁਹਾਡੇ ਡਿਵਾਈਸ ਤੋਂ ਸਾਰੇ ਸੁਨੇਹੇ ਅਤੀਤ ਤੇ ਮੀਡੀਏ ਨੂੰ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹਟਾ ਦੇਵੇਗਾ।</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">ਕੀ ਤੁਸੀਂ ਸਾਰੇ ਸੁਨੇਹੇ ਅਤੀਤ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
@@ -2059,8 +2059,8 @@
   <string name="preferences_communication__sealed_sender_display_indicators_description">ਜਦੋਂ ਤੁਸੀਂ ਸੁਨੇਹਿਆਂ ਤੇ \"ਸੰਦੇਸ਼ ਵੇਰਵੇ\" ਚੁਣਦੇ ਹੋ ਜੋ ਸੀਲਡ ਪ੍ਰੇਸ਼ਕ ਦੁਆਰਾ ਦਿੱਤੇ ਗਏ ਸਨ ਤਾਂ ਇੱਕ ਸਟੇਟਸ ਆਈਕਨ ਦਿਖਾਓ.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">ਕਿਸੇ ਵੀ ਵਿਅਕਤੀ ਤੋਂ ਆਗਿਆ ਦਿਓ</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">ਗੈਰ-ਸੰਪਰਕਾਂ ਅਤੇ ਉਨ੍ਹਾਂ ਲੋਕਾਂ ਨਾਲ ਆਉਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਲਈ ਸੀਲਡ ਪ੍ਰੇਸ਼ਕ ਨੂੰ ਸਮਰੱਥ ਕਰੋ ਜਿਨ੍ਹਾਂ ਨਾਲ ਤੁਸੀਂ ਆਪਣੀ ਪ੍ਰੋਫ਼ਾਈਲ ਸਾਂਝੀ ਨਹੀਂ ਕੀਤੀ ਹੈ.</string>
-  <string name="preferences_communication__sealed_sender_learn_more">ਜਿਆਦਾ ਜਾਣੋ</string>
-  <string name="preferences_setup_a_username">ਵਰਤੋਂਕਾਰ ਨਾਂ ਸੈਟਅੱਪ ਕਰੋ</string>
+  <string name="preferences_communication__sealed_sender_learn_more">ਹੋਰ ਜਾਣੋ</string>
+  <string name="preferences_setup_a_username">ਵਰਤੋਂਕਾਰ-ਨਾਂ ਸੈਟਅੱਪ ਕਰੋ</string>
   <string name="preferences_proxy">ਪਰਾਕਸੀ</string>
   <string name="preferences_use_proxy">ਪ੍ਰੌਕਸੀ ਵਰਤੋ</string>
   <string name="preferences_off">ਬੰਦ </string>
@@ -2085,7 +2085,7 @@
   <string name="PaymentsAllActivityFragment__sent">ਭੇਜਿਆ</string>
   <string name="PaymentsAllActivityFragment__received">ਪ੍ਰਾਪਤ ਕੀਤਾ</string>
   <string name="PaymentsHomeFragment__introducing_payments">ਭੁਗਤਾਨ (ਬੀਟਾ) ਨਾਲ ਜਾਣ-ਪਛਾਣ</string>
-  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">ਇੱਕ ਨਵੀਂ ਨਿੱਜਤਾ ਕੇਂਦਰਿਤ ਡਿਜਿਟਲ ਮੁਦਰਾ, MobileCoin ਭੇਜਣ ਅਤੇ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ Signal ਦੀ ਵਰਤੋਂ ਕਰੋ। ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਕਿਰਿਆਸ਼ੀਲ ਬਣਾਓ।</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">ਇੱਕ ਨਵੀਂ ਪਰਦੇਦਾਰੀ ਕੇਂਦਰਿਤ ਡਿਜਿਟਲ ਮੁਦਰਾ, MobileCoin ਭੇਜਣ ਅਤੇ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ Signal ਦੀ ਵਰਤੋਂ ਕਰੋ। ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਕਿਰਿਆਸ਼ੀਲ ਬਣਾਓ।</string>
   <string name="PaymentsHomeFragment__activate_payments">ਭੁਗਤਾਨ ਨੂੰ ਸਰਗਰਮ ਕਰੋ</string>
   <string name="PaymentsHomeFragment__activating_payments">ਭੁਗਤਾਨ ਨੂੰ ਸਰਗਰਮ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">ਭੁਗਤਾਨ ਖਾਤਾ ਬਹਾਲ ਕਰੋ</string>
@@ -2093,7 +2093,7 @@
   <string name="PaymentsHomeFragment__pending_requests">ਬਕਾਇਆ ਬੇਨਤੀਆਂ</string>
   <string name="PaymentsHomeFragment__recent_activity">ਤਾਜ਼ਾ ਸਰਗਰਮੀ</string>
   <string name="PaymentsHomeFragment__see_all">ਸਾਰੇ ਵੇਖੋ</string>
-  <string name="PaymentsHomeFragment__add_funds">ਫੰਡ ਜੋੜੋ</string>
+  <string name="PaymentsHomeFragment__add_funds">ਫੰਡ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="PaymentsHomeFragment__send">ਭੇਜੋ</string>
   <string name="PaymentsHomeFragment__sent_s">%1$s ਭੇਜੇ</string>
   <string name="PaymentsHomeFragment__received_s">%1$s ਮਿਲੇ</string>
@@ -2111,20 +2111,20 @@
   <string name="PaymentsHomeFragment__cant_display_currency_conversion">ਮੁਦਰਾ ਪਰਿਵਰਤਨ ਡਿਸਪਲੇੇ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ। ਆਪਣੇ ਫ਼ੋਨ ਦੇ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">ਭੁਗਤਾਨ ਤੁਹਾਡੇ ਖੇਤਰ ਵਿੱਚ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">ਭੁਗਤਾਨ ਨੂੰ ਸਮਰੱਥ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
-  <string name="PaymentsHomeFragment__deactivate_payments_question">ਭੁਗਤਾਨ ਨੂੰ ਗੈਰ- ਸਰਗਰਮ ਕਰੀਏ?</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">ਭੁਗਤਾਨ ਨੂੰ ਅਕਿਰਿਆਸ਼ੀਲ ਕਰਨਾ ਹੈ?</string>
   <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">ਜੇ ਤੁਸੀਂ ਭੁਗਤਾਨਾਂ ਨੂੰ ਅਕਿਰਿਆਸ਼ੀਲ ਕਰਦੇ ਹੋ ਤਾਂ ਤੁਸੀਂ Signal ਵਿੱਚ Mobilecoin ਭੇਜ ਜਾਂ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰ ਸਕੋਗੇ।</string>
   <string name="PaymentsHomeFragment__deactivate">ਅਕਿਰਿਆਸ਼ੀਲ ਕਰੋ</string>
   <string name="PaymentsHomeFragment__continue">ਜਾਰੀ ਰੱਖੋ</string>
   <string name="PaymentsHomeFragment__balance_is_not_currently_available">ਫਿਲਹਾਲ ਬਕਾਇਆ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।</string>
-  <string name="PaymentsHomeFragment__payments_deactivated">ਭੁਗਤਾਨ ਗੈਰ-ਸਰਗਰਮ ਕੀਤਾ</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">ਭੁਗਤਾਨ ਨੂੰ ਅਕਿਰਿਆਸ਼ੀਲ ਕੀਤਾ ਗਿਆ।</string>
   <string name="PaymentsHomeFragment__payment_failed">ਭੁਗਤਾਨ ਅਸਫ਼ਲ ਹੈ</string>
   <string name="PaymentsHomeFragment__details">ਵੇਰਵਾ</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">ਤੁਸੀਂ MobileCoin ਭੇਜਣ ਅਤੇ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ Signal ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ। ਸਾਰੇ ਭੁਗਤਾਨ MobileCoins ਅਤੇ MobileCoin ਵਾਲੇਟ ਲਈ ਵਰਤੋਂ ਦੇ ਨਿਯਮਾਂ ਦੇ ਅਧੀਨ ਹਨ। ਇਹ ਇੱਕ ਬੀਟਾ ਵਿਸ਼ੇਸ਼ਤਾ ਹੈ ਇਸ ਲਈ ਤੁਹਾਨੂੰ ਕੁਝ ਮਸਲਿਆਂ ਦਾ ਸਾਹਮਣਾ ਕਰਨਾ ਪੈ ਸਕਦਾ ਹੈ ਅਤੇ ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਹਾਡੇ ਦੁਆਰਾ ਗੁਆਏ ਜਾਣ ਵਾਂਲੇ ਭੁਗਤਾਨ ਜਾਂ ਬਕਾਏ ਮੁੜ ਪ੍ਰਾਪਤ ਨਾ ਕੀਤੇ ਜਾ ਸਕਣ।</string>
-  <string name="PaymentsHomeFragment__activate">ਸਰਗਰਮ ਕਰੋ</string>
+  <string name="PaymentsHomeFragment__activate">ਕਿਰਿਆਸ਼ੀਲ ਕਰੋ</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin ਨਿਯਮ ਦੇਖੋ</string>
   <string name="PaymentsHomeFragment__payments_not_available">Signal ਵਿੱਚ ਭੁਗਤਾਨ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਰਹੇ। ਤੁਸੀਂ ਹਾਲੇ ਵੀ ਕਿਸੇ ਐਕਸਚੇਂਜ ਵਿੱਚ ਫੰਡ ਟ੍ਰਾਂਸਫ਼ਰ ਕਰ ਸਕਦੇ ਹੋ ਪਰ ਤੁਸੀਂ ਹੁਣ ਭੁਗਤਾਨ ਭੇਜ ਅਤੇ ਪ੍ਰਾਪਤ ਨਹੀਂ ਕਰ ਸਕਦੇ ਜਾਂ ਫੰਡ ਸ਼ਾਮਲ ਨਹੀਂ ਕਰ ਸਕਦੇ।</string>
   <!--PaymentsAddMoneyFragment-->
-  <string name="PaymentsAddMoneyFragment__add_funds">ਫੰਡ ਜੋੜੋ</string>
+  <string name="PaymentsAddMoneyFragment__add_funds">ਫੰਡ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">ਤੁਹਾਡੇ ਵਾਲਟ ਦਾ ਸਿਰਨਾਵਾਂ</string>
   <string name="PaymentsAddMoneyFragment__copy">ਕਾਪੀ ਕਰੋ</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
@@ -2143,7 +2143,7 @@
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s, %2$s ਨੂੰ %3$s ’ਤੇ</string>
   <string name="PaymentsDetailsFragment__to">ਪ੍ਰਤੀ</string>
   <string name="PaymentsDetailsFragment__from">ਵਲੋਂ</string>
-  <string name="PaymentsDetailsFragment__information">ਭੁਗਤਾਨ ਦੀ ਰਕਮ ਅਤੇ ਟ੍ਰਾਂਜੈਕਸ਼ਨ ਦੇ ਸਮੇਂ ਸਮੇਤ ਟ੍ਰਾਂਜੈਕਸ਼ਨ ਵੇਰਵੇ MobileCoin  ਲੈਜ਼ਰ ਦਾ ਹਿੱਸਾ ਹਨ।</string>
+  <string name="PaymentsDetailsFragment__information">ਭੁਗਤਾਨ ਦੀ ਰਕਮ ਅਤੇ ਟ੍ਰਾਂਜੈਕਸ਼ਨ ਦੇ ਸਮੇਂ ਸਮੇਤ ਟ੍ਰਾਂਜੈਕਸ਼ਨ ਵੇਰਵੇ MobileCoin ਲੈਜ਼ਰ ਦਾ ਹਿੱਸਾ ਹਨ।</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">ਕੌਇਨ ਕਲੀਨਅੱਪ ਫ਼ੀਸ</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">ਜਦੋਂ ਕਿਸੇ ਟ੍ਰਾਂਜ਼ੈਕਸ਼ਨ ਨੂੰ ਪੂਰਾ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਅਧਿਕਾਰ ਵਿਚਲੇ ਸਿੱਕਿਆਂ ਨੂੰ ਰਲਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਤਾਂ ਇੱਕ \"ਸਿੱਕਾ ਕਲੀਨਅੱਪ ਫ਼ੀਸ\" ਲਗਾਈ ਜਾਂਦੀ ਹੈ। ਕਲੀਨਅੱਪ ਨਾਲ ਤੁਸੀਂ ਭੁਗਤਾਨ ਭੇਜਣਾ ਜਾਰੀ ਰੱਖ ਸਕੋਗੇ।</string>
   <string name="PaymentsDetailsFragment__no_details_available">ਇਸ ਲੈਣ-ਦੇਣ ਲਈ ਹੋਰ ਕੋਈ ਵੇਰਵੇ ਉਪਲਬਧ ਨਹੀਂ</string>
@@ -2160,9 +2160,9 @@
   <string name="PaymentsTransferFragment__invalid_address">ਸਿਰਨਾਵਾਂ ਗੈਰਵਾਜਬ ਹੈ</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">ਉਸ ਵਾਲੇਟ ਪਤੇ ਦੀ ਜਾਂਚ ਕਰੋ ਜਿਸ ਵਿੱਚ ਤੁਸੀਂ ਟ੍ਰਾਂਸਫ਼ਰ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰ ਰਹੇ ਹੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
   <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">ਤੁਸੀਂ ਆਪਣੇ ਖੁਦ ਦੇ Signal ਵਾਲੇਟ ਪਤੇ ’ਤੇ ਟ੍ਰਾਂਸਫ਼ਰ ਨਹੀਂ ਕਰ ਸਕਦੇ। ਕਿਸੇ ਸਮਰਥਨ ਕਰਦੀ ਐਕਸਚੇਂਜ ਵਿਖੇ ਆਪਣੇ ਖਾਤੇ ਤੋਂ ਵਾਲੇਟ ਪਤਾ ਦਾਖਲ ਕਰੋ।</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QR ਕੋਡ ਸਕੈਨ ਕਰਨ ਲਈ Signal ਨੂੰ ਕੈਮਰੇ ਲਈ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ।</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QR ਕੋਡ ਸਕੈਨ ਕਰਨ ਲਈ Signal ਨੂੰ ਕੈਮਰੇ ਨੂੰ ਐਕਸੈਸ ਕਰਨ ਲਈ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ।</string>
   <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">QR ਕੋਡ ਨੂੰ ਖਿੱਚਣ ਲਈ Signal ਨੂੰ ਕੈਮਰੇ ਦੀ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ। ਸੈਟਿੰਗਾਂ ’ਤੇ ਜਾਓ, \"ਇਜਾਜ਼ਤਾਂ\" ਦੀ ਚੋਣ ਕਰੋ, ਅਤੇ \"ਕੈਮਰਾ\" ਨੂੰ ਸਮਰੱਥ ਕਰੋ।</string>
-  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QR ਕੋਡ ਸਕੈਨ ਕਰਨ ਲਈ Signal ਨੂੰ ਕੈਮਰੇ ਲਈ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ।</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QR ਕੋਡ ਸਕੈਨ ਕਰਨ ਲਈ Signal ਨੂੰ ਕੈਮਰੇ ਨੂੰ ਐਕਸੈਸ ਕਰਨ ਲਈ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ।</string>
   <string name="PaymentsTransferFragment__settings">ਸੈਟਿੰਗਾਂ</string>
   <!--PaymentsTransferQrScanFragment-->
   <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">ਸਿਰਨਾਵਾਂ QR ਕੋਡ ਸਕੈਨ ਕਰੋ</string>
@@ -2216,7 +2216,7 @@
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">ਨਵਾਂ ਸੁਨੇਹਾ …</string>
   <string name="contact_selection_list__unknown_contact_block">ਵਰਤੋਂਕਾਰ ਉੱਤੇ ਪਾਬੰਦੀ ਲਾਓ</string>
-  <string name="contact_selection_list__unknown_contact_add_to_group">ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
+  <string name="contact_selection_list__unknown_contact_add_to_group">ਕਿਸੇ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">ਕਾਲ</string>
   <!--conversation_callable_secure-->
@@ -2304,7 +2304,7 @@
   <string name="media_preview__share_title">ਸਾਂਝਾ ਕਰੋ</string>
   <string name="media_preview__all_media_title">ਸਾਰੇ ਮੀਡੀਆ</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__media_content_description">ਮੀਡੀਆ ਪ੍ਰੀਵਿਊ</string>
+  <string name="media_preview_activity__media_content_description">ਮੀਡੀਆ ਝਲਕ</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">ਤਾਜ਼ਾ ਕਰੋ</string>
   <!--redphone_audio_popup_menu-->
@@ -2315,7 +2315,7 @@
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal ਪ੍ਰੋਟੋਕੋਲ ਨੇ ਬੀਤੇ %2$d ਦਿਨਾਂ ਵਿੱਚ ਤੁਹਾਡੇ ਭੇਜੇ ਗਏ ਸੁਨੇਹਿਆਂ ਦੇ %1$d%%ਨੂੰ ਆਪਣੇ-ਆਪ ਸੁਰੱਖਿਅਤ ਕੀਤਾ। Signal ਵਰਤੋਂਕਾਰਾਂ ਵਿਚਕਾਰ ਗੱਲਬਾਤ ਹਮੇਸ਼ਾਂ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟ ਕੀਤੀ ਜਾਂਦੀ ਹੈ।</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Signal ਬੂਸਟ</string>
   <string name="InsightsDashboardFragment__not_enough_data">ਲੋੜੀਂਦਾ ਡੇਟਾ ਨਹੀਂ</string>
-  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ਤੁਹਾਡੀ ਅੰਤਰਦ੍ਰਿਸ਼ਟੀ ਦੇ ਪ੍ਰਤੀਸ਼ਤ ਦਾ ਹਿਸਾਬ ਬੀਤੇ %1$d ਦਿਨਾਂ ਦੇ ਅੰਦਰ ਭੇਜੇ ਜਾਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਦੇ ਅਧਾਰ ’ਤੇ ਲਾਇਆ ਜਾਂਦਾ ਹੈ ਜੋ ਅਲੋਪ ਨਹੀਂ ਹੋਏ ਜਾਂ ਮਿਟਾਏ ਨਹੀਂ ਗਏ ਹਨ।</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ਤੁਹਾਡੀ ਅੰਤਰਦ੍ਰਿਸ਼ਟੀ ਦੇ ਪ੍ਰਤੀਸ਼ਤ ਦਾ ਹਿਸਾਬ ਬੀਤੇ %1$d ਦਿਨਾਂ ਦੇ ਅੰਦਰ ਭੇਜੇ ਜਾਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਦੇ ਅਧਾਰ ’ਤੇ ਲਾਇਆ ਜਾਂਦਾ ਹੈ ਜੋ ਅਲੋਪ ਨਹੀਂ ਹੋਏ ਜਾਂ ਹਟਾਏ ਨਹੀਂ ਗਏ ਹਨ।</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ਗੱਲਬਾਤ ਸ਼ੁਰੂ ਕਰੋ</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">ਵਧੇਰੇ ਸੰਪਰਕਾਂ ਨੂੰ Signal ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਦਾ ਸੱਦਾ ਦੇ ਕੇ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਸੰਚਾਰ ਕਰਨਾ ਅਰੰਭ ਕਰੋ ਅਤੇ ਅਜਿਹੀਆਂ ਨਵੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ ਜੋ ਇਨਕ੍ਰਿਪਟ ਨਾ ਕੀਤੇ SMS ਸੁਨੇਹਿਆਂ ਦੀਆਂ ਸੀਮਾਵਾਂ ਤੋਂ ਪਾਰ ਜਾਂਦੀਆਂ ਹਨ।</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ਇਹ ਅੰਕੜੇ ਸਥਾਨਕ ਤੌਰ ’ਤੇ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ’ਤੇ ਤਿਆਰ ਕੀਤੇ ਗਏ ਸਨ ਅਤੇ ਸਿਰਫ਼ ਤੁਹਾਡੇ ਦੁਆਰਾ ਹੀ ਦੇਖੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕਦੇ ਵੀ ਕਿਤੇ ਵੀ ਪ੍ਰਸਾਰਿਤ ਨਹੀਂ ਕੀਤੇ ਜਾਂਦੇ।</string>
@@ -2348,7 +2348,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">ਨਵਾਂ PIN ਬਣਾਓ</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">ਜਿੰਨਾਂ ਚਿਰ ਇਹ ਡਿਵਾਈਸ ਰਜਿਸਟਰ ਹੈ, ਤੁਸੀਂ PIN ਬਦਲ ਸਕਦੇ ਹੋ.</string>
   <string name="CreateKbsPinFragment__create_your_pin">ਆਪਣਾ PIN ਬਣਾਓ</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN Signal ਨਾਲ ਸੰਭਾਲੀ ਜਾਣਕਾਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦਾ ਹੈ ਤਾਂ ਕਿ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਇਸ ਨੂੰ ਵਰਤ ਸਕੋ। ਤੁਹਾਡਾ ਪ੍ਰੋਫਾਈਲ, ਸੈਟਿੰਗਾਂ ਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਤੁਹਾਡੇ ਵਲੋਂ ਮੁੜ-ਸਥਾਪਤ ਕਰਨ ਉੱਤੇ ਬਹਾਲ ਕੀਤਾ ਜਾਵੇਗਾ। ਐਪ ਖੋਲ੍ਹਣ ਲਈ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ PIN ਦੀ ਲੋੜ ਨਹੀਂ ਹੋਵੇਗੀ।</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN Signal ਨਾਲ ਸੰਭਾਲੀ ਜਾਣਕਾਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦੇ ਹਨ ਤਾਂ ਕਿ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਇਸ ਨੂੰ ਐਕਸੈਸ ਕਰ ਸਕੋ। ਤੁਹਾਡਾ ਪ੍ਰੋਫਾਈਲ, ਸੈਟਿੰਗਾਂ ਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਤੁਹਾਡੇ ਵਲੋਂ ਮੁੜ-ਸਥਾਪਤ ਕਰਨ ਉੱਤੇ ਬਹਾਲ ਕੀਤਾ ਜਾਵੇਗਾ। ਐਪ ਖੋਲ੍ਹਣ ਲਈ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ PIN ਦੀ ਲੋੜ ਨਹੀਂ ਹੋਵੇਗੀ।</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">ਮਜ਼ਬੂਤ PIN ਬਣਾਓ</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
@@ -2360,8 +2360,8 @@
   <string name="ConfirmKbsPinFragment__creating_pin">PIN ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">ਪੇਸ਼ ਕਰਦੇ ਹਾਂ PINs</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN Signal ਨਾਲ ਸੰਭਾਲੀ ਜਾਣਕਾਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦਾ ਹੈ ਤਾਂ ਕਿ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਇਸ ਨੂੰ ਵਰਤ ਸਕੋ। ਤੁਹਾਡਾ ਪ੍ਰੋਫਾਈਲ, ਸੈਟਿੰਗਾਂ ਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਤੁਹਾਡੇ ਵਲੋਂ ਮੁੜ-ਸਥਾਪਤ ਕਰਨ ਉੱਤੇ ਬਹਾਲ ਕੀਤਾ ਜਾਵੇਗਾ। ਐਪ ਖੋਲ੍ਹਣ ਲਈ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ PIN ਦੀ ਲੋੜ ਨਹੀਂ ਹੋਵੇਗੀ।</string>
-  <string name="KbsSplashFragment__learn_more">ਵਧੇਰੇ ਜਾਣੋ</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN Signal ਨਾਲ ਸੰਭਾਲੀ ਜਾਣਕਾਰੀ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕਰਕੇ ਰੱਖਦੇ ਹਨ ਤਾਂ ਕਿ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਇਸ ਨੂੰ ਐਕਸੈਸ ਕਰ ਸਕੋ। ਤੁਹਾਡਾ ਪ੍ਰੋਫਾਈਲ, ਸੈਟਿੰਗਾਂ ਤੇ ਸੰਪਰਕਾਂ ਨੂੰ ਤੁਹਾਡੇ ਵਲੋਂ ਮੁੜ-ਸਥਾਪਤ ਕਰਨ ਉੱਤੇ ਬਹਾਲ ਕੀਤਾ ਜਾਵੇਗਾ। ਐਪ ਖੋਲ੍ਹਣ ਲਈ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ PIN ਦੀ ਲੋੜ ਨਹੀਂ ਹੋਵੇਗੀ।</string>
+  <string name="KbsSplashFragment__learn_more">ਹੋਰ ਜਾਣੋ</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">ਰਜਿਸਟਰੇਸ਼ਨ ਲੌਕ = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">ਤੁਹਾਡੇ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਲੌਕ ਨੂੰ ਹੁਣ PIN ਕਿਹਾ ਜਾਂਦਾ ਹੈ, ਅਤੇ ਇਹ ਵਧੇਰੇ ਕੰਮ ਕਰਦਾ ਹੈ। ਹੁਣੇ ਅੱਪਡੇਟ ਕਰੋ।</string>
   <string name="KbsSplashFragment__update_pin">PIN ਅੱਪਡੇਟ ਕਰੋ</string>
@@ -2379,7 +2379,7 @@
   <string name="AccountLockedFragment__account_locked">ਖਾਤਾ ਲਾਕ ਹੋਇਆ</string>
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">ਤੁਹਾਡੀ ਪਰਦੇਦਾਰੀ ਅਤੇ ਸੁਰੱਖਿਆ ਲਈ ਤੁਹਾਡੇ ਖਾਤੇ ਨੂੰ ਲੌਕ ਕੀਤਾ ਗਿਆ ਹੈ। ਤੁਹਾਡੇ ਖਾਤੇ ਵਿੱਚ %1$dਦਿਨਾਂ ਦੀ ਬਿਨਾਂ ਸਰਗਰਮੀ ਦੇ ਤੁਸੀਂ ਇਸ ਫ਼ੋਨ ਨੰਬਰ ਨੂੰ ਬਿਨਾਂ ਆਪਣਾ PIN ਦਿੱਤੇ ਮੁੜ-ਰਜਿਸਟਰ ਕਰ ਸਕਦੇ ਹੋ। ਸਾਰੀ ਸਮੱਗਰੀ ਹਟਾ ਦਿੱਤੀ ਜਾਵੇਗੀ।</string>
   <string name="AccountLockedFragment__next">ਅੱਗੇ</string>
-  <string name="AccountLockedFragment__learn_more">ਵਧੇਰੇ ਜਾਣੋ</string>
+  <string name="AccountLockedFragment__learn_more">ਹੋਰ ਜਾਣੋ</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">ਆਪਣਾ PIN ਦਰਜ ਕਰੋ</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">ਆਪਣੇ ਖਾਤੇ ਲਈ ਤੁਹਾਡੇ ਵੱਲੋਂ ਬਣਾਇਆ PIN ਦਿਓ। ਇਹ ਤੁਹਾਡੇ SMS ਤਸਦੀਕ ਕੋਡ ਤੋਂ ਵੱਖਰਾ ਹੁੰਦਾ ਹੈ.</string>
@@ -2421,7 +2421,7 @@
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Signal ਨੂੰ ਦੱਸੋ ਕਿ ਤੁਸੀਂ ਕੀ ਸੋਚਦੇ ਹੋ</string>
   <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">ਸੰਸਾਰ ਵਿੱਚ Signal ਨੂੰ ਸਭ ਤੋਂ ਵਧੀਆ ਸੁਨੇਹੇ ਭੇਜਣ/ਲੈਣ ਵਾਲੀ ਐਪ ਬਣਾਉਣ ਵਾਸਤੇ ਅਸੀਂ ਤੁਹਾਡੇ ਤੋਂ ਸੁਝਾਅ ਲੈਣਾ ਚਾਹੁੰਦੇ ਹਾਂ।</string>
-  <string name="ResearchMegaphone_learn_more">ਜਿਆਦਾ ਜਾਣੋ</string>
+  <string name="ResearchMegaphone_learn_more">ਹੋਰ ਜਾਣੋ</string>
   <string name="ResearchMegaphone_dismiss">ਖਾਰਜ ਕਰੋ</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal ਖੋਜ</string>
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>ਅਸੀਂ ਪਰਦੇਦਾਰੀ ਵਿੱਚ ਭਰੋਸਾ ਕਰਦੇ ਹਾਂ।</b></p><p>Signal ਤੁਹਾਨੂੰ ਟਰੈਕ ਨਹੀਂ ਕਰਦਾ ਅਤੇ ਨਾ ਹੀ ਤੁਹਾਡਾ ਡਾਟਾ ਇਕੱਤਰ ਕਰਦਾ ਹੈ। ਹਰ ਕਿਸੇ ਲਈ Signal ਵਿੱਚ ਸੁਧਾਰ ਵਾਸਤੇ ਅਸੀਂ ਵਰਤੋਂਕਾਰਾਂ ਦੇ ਸੁਝਾਅ ਉੱਤੇ ਨਿਰਭਰ ਕਰਦੇ ਹਾਂ, <b>ਅਤੇ ਸਾਨੂੰ ਤੁਹਾਡੇ ਸੁਝਾਅ ਵੀ ਚਾਹੀਦੇ ਹਨ।</b></p><p>ਅਸੀਂ ਸਰਵੇਖ ਕਰ ਰਹੇ ਹਾਂ ਕਿ ਸਮਝ ਸਕੀਏ ਕਿ ਤੁਸੀਂ Signal ਨੂੰ ਕਿਵੇਂ ਵਰਤ ਰਹੇ ਹੋ। ਸਾਰੇ ਸਰਵੇਖਣ ਵਿੱਚ ਕੋਈ ਵੀ ਅਜਿਹਾ ਡਾਟਾ ਇਕੱਤਰ ਨਹੀਂ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਜਿਸ ਤੋਂ ਤੁਹਾਡੀ ਪਛਾਣ ਹੋ ਸਕੇ। ਜੇ ਤੁਸੀਂ ਵਧੀਕ ਸੁਝਾਅ ਦੇਣ ਵਿੱਚ ਦਿਲਚਸਪੀ ਰੱਖਦੇ ਹੋ ਤਾਂ ਤੁਹਾਡੇ ਕੋਲ ਸੰਪਰਕ ਜਾਣਕਾਰੀ ਦੇਣ ਦੀ ਚੋਣ ਹੋਵੇਗੀ।</p><p>ਜੇ ਤੁਹਾਡੇ ਕੋਲ ਕੁਝ ਮਿੰਟ ਹੋਣ ਅਤੇ ਸੁਝਾਅ ਦੇਣਾ ਚਾਹੋ ਤਾਂ ਅਸੀਂ ਤੁਹਾਡੇ ਕੋਲੋ ਜਾਣ ਕੇ ਖੁਸ਼ ਹੋਵਾਂਗੇ।</p>]]></string>
@@ -2527,8 +2527,8 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">ਅਨਲੌਕ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="Recipient_unknown">ਅਣਜਾਣ</string>
   <!--TransferOrRestoreFragment-->
-  <string name="TransferOrRestoreFragment__transfer_or_restore_account">ਖਾਤਾ ਟਰਾਂਸਫਰ ਕਰੋ ਜਾਂ ਬਹਾਲ ਕਰੋ</string>
-  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">ਜੇ ਤੁਸੀਂ ਪਹਿਲਾਂ Signal ਖਾਤਾ ਰਜਿਸਟਰ ਕੀਤਾ ਹੈ, ਤਾਂ ਤੁਸੀਂ ਆਪਣੇ ਖਾਤੇ ਅਤੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਟ੍ਰਾਂਸਫ਼ਰ ਜਾਂ ਬਹਾਲ ਕਰ ਸਕਦੇ ਹੋ </string>
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ ਕਰੋ ਜਾਂ ਬਹਾਲ ਕਰੋ</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">ਜੇ ਤੁਸੀਂ ਪਹਿਲਾਂ Signal ਖਾਤਾ ਰਜਿਸਟਰ ਕੀਤਾ ਹੈ, ਤਾਂ ਤੁਸੀਂ ਆਪਣੇ ਖਾਤੇ ਅਤੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਟ੍ਰਾਂਸਫਰ ਜਾਂ ਬਹਾਲ ਕਰ ਸਕਦੇ ਹੋ </string>
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Android ਡਿਵਾਈਸ ਤੋਂ ਟਰਾਂਸਫਰ ਕਰੋ</string>
   <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">ਆਪਣੀ ਪੁਰਾਣੀ Android ਡਿਵਾਈਸ ਤੋਂ ਆਪਣੇ ਖਾਤੇ ਅਤੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਟ੍ਰਾਂਸਫਰ ਕਰੋ। ਤੁਹਾਨੂੰ ਆਪਣੀ ਪੁਰਾਣੀ ਡਿਵਾਈਸ ਤੱਕ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ।</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">ਤੁਹਾਨੂੰ ਆਪਣੀ ਪੁਰਾਣੀ ਡਿਵਾਈਸ ਤੱਕ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ।</string>
@@ -2542,7 +2542,7 @@
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
   <string name="NewDeviceTransferInstructions__tap_on_account">\"ਖਾਤਾ\" ਨੂੰ ਛੂਹੋ</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">\"ਖਾਤਾ ਤਬਾਦਲਾ ਕਰੋ\" ’ਤੇ ਟੈਪ ਕਰੋ ਅਤੇ ਫਿਰ ਦੋਵੇਂ ਡਿਵਾਈਸਾਂ ’ਤੇ \"ਜਾਰੀ ਰੱਖੋ\" ’ਤੇ ਟੈਪ ਕਰੋ</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">\"ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ ਕਰੋ\" ’ਤੇ ਟੈਪ ਕਰੋ ਅਤੇ ਫਿਰ ਦੋਵੇਂ ਡਿਵਾਈਸਾਂ ’ਤੇ \"ਜਾਰੀ ਰੱਖੋ\" ’ਤੇ ਟੈਪ ਕਰੋ</string>
   <!--NewDeviceTransferSetupFragment-->
   <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">ਪੁਰਾਣੀ Android ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਦੀ ਤਿਆਰੀ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ… </string>
   <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">ਬਸ ਕੁਝ ਪਲਾਂ ਦੀ ਦੇਰ, ਛੇਤੀ ਹੀ ਤਿਆਰ ਹੋਵੇਗਾ</string>
@@ -2626,13 +2626,13 @@
   <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">ਟਰਾਂਸਫ਼ਰ ਨੂੰ ਪੂਰਾ ਕਰਨ ਲਈ ਤੁਹਾਨੂੰ ਰਜਿਸਟਰੇਸ਼ਨ ਕਰਨੀ ਪਵੇਗੀ।</string>
   <string name="NewDeviceTransferComplete__continue_registration">ਟਰਾਂਸਫ਼ਰ ਕਰੋ</string>
   <!--DeviceToDeviceTransferService-->
-  <string name="DeviceToDeviceTransferService_content_title">ਖਾਤਾ ਟਰਾਂਸਫ਼ਰ</string>
+  <string name="DeviceToDeviceTransferService_content_title">ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ</string>
   <string name="DeviceToDeviceTransferService_status_ready">ਤੁਹਾਡੀ ਦੂਜੀ Android ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਦੀ ਤਿਆਰੀ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ… </string>
   <string name="DeviceToDeviceTransferService_status_starting_up">ਤੁਹਾਡੀ ਦੂਜੀ Android ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਦੀ ਤਿਆਰੀ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
   <string name="DeviceToDeviceTransferService_status_discovery">ਤੁਹਾਡੀ ਦੂਜੀ Android ਡਿਵਾਈਸ ਨੂੰ ਲੱਭਿਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
   <string name="DeviceToDeviceTransferService_status_network_connected">ਤੁਹਾਡੀ ਦੂਜੀ Android ਡਿਵਾਈਸ ਨਾਲ ਕਨੈਕਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">ਤਸਦੀਕ ਕਰਨ ਦੀ ਲੋੜ ਹੈ</string>
-  <string name="DeviceToDeviceTransferService_status_service_connected">…ਖਾਤਾ ਟਰਾਂਸਫ਼ਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…</string>
   <!--OldDeviceTransferLockedDialog-->
   <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">ਆਪਣੀ ਨਵੀਂ ਡਿਵਾਈਸ ’ਤੇ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਪੂਰੀ ਕਰੋ</string>
   <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">ਤੁਹਾਡਾ Signal ਖਾਤਾ ਤੁਹਾਡੀ ਨਵੀਂ ਡਿਵਾਈਸ ’ਤੇ ਟ੍ਰਾਂਸਫਰ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ, ਪਰ ਜਾਰੀ ਰੱਖਣ ਲਈ ਤੁਹਾਨੂੰ ਇਸ ’ਤੇ ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਨੂੰ ਪੂਰਾ ਕਰਨਾ ਪਵੇਗਾ। ਇਸ ਡਿਵਾਈਸ ’ਤੇ Signal ਕਿਰਿਆਸ਼ੀਲ ਨਹੀਂ ਹੋਵੇਗਾ।</string>
@@ -2640,15 +2640,15 @@
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">ਇਸ ਡਿਵਾਈਸ ਨੂੰ ਰੱਦ ਅਤੇ ਕਿਰਿਆਸ਼ੀਲ ਕਰੋ </string>
   <!--AdvancedPreferenceFragment-->
   <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB ਬਕਾਇਆ ਟ੍ਰਾਂਸਫ਼ਰ ਕਰਨਾ ਹੈ?</string>
-  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">ਤੁਹਾਡੇ ਕੋਲ %1$s ਬਕਾਇਆ ਰਹਿੰਦਾ ਹੈ। ਜੇ ਤੁਸੀਂ ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਮਿਟਾਉਣ ਤੋਂ ਪਹਿਲਾਂ ਆਪਣੇ ਫੰਡ ਕਿਸੇ ਹੋਰ ਵਾਲੇਟ ਪਤੇ \'ਤੇ ਟ੍ਰਾਂਸਫ਼ਰ ਨਹੀਂ ਕਰਦੇ, ਤਾਂ ਤੁਸੀਂ ਇਸਨੂੰ ਸਦਾ ਲਈ ਗੁਆ ਦੇਵੋਗੇ।</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">ਤੁਹਾਡੇ ਕੋਲ %1$s ਬਕਾਇਆ ਰਹਿੰਦਾ ਹੈ। ਜੇ ਤੁਸੀਂ ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਮਿਟਾਉਣ ਤੋਂ ਪਹਿਲਾਂ ਆਪਣੇ ਫੰਡ ਕਿਸੇ ਹੋਰ ਵਾਲੇਟ ਪਤੇ \'ਤੇ ਟ੍ਰਾਂਸਫਰ ਨਹੀਂ ਕਰਦੇ, ਤਾਂ ਤੁਸੀਂ ਇਸਨੂੰ ਸਦਾ ਲਈ ਗੁਆ ਦੇਵੋਗੇ।</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">ਟਰਾਂਸਫ਼ਰ ਨਾ ਕਰੋ</string>
   <string name="AdvancedPreferenceFragment__transfer">ਟਰਾਂਸਫਰ</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ਬਲਾਕ</string>
   <string name="RecipientBottomSheet_unblock">ਪਾਬੰਦੀ ਹਟਾਓ</string>
   <string name="RecipientBottomSheet_add_to_contacts">ਸੰਪਰਕਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
-  <string name="RecipientBottomSheet_add_to_a_group">ਸਮੂਹ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
-  <string name="RecipientBottomSheet_add_to_another_group">ਹੋਰ ਗਰੁੱਪ ਵਿੱਚ ਜੋੜੋ</string>
+  <string name="RecipientBottomSheet_add_to_a_group">ਕਿਸੇ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
+  <string name="RecipientBottomSheet_add_to_another_group">ਕਿਸੇ ਹੋਰ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
   <string name="RecipientBottomSheet_view_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਵੇਖੋ</string>
   <string name="RecipientBottomSheet_make_admin">ਐਡਮਿਨ ਬਣਾਓ</string>
   <string name="RecipientBottomSheet_remove_as_admin">ਐਡਮਿਨ ਵਜੋਂ ਹਟਾਓ</string>
@@ -2657,14 +2657,14 @@
   <string name="RecipientBottomSheet_voice_call_description">ਵੌਇਸ ਕਾਲ</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">ਅਸੁਰੱਖਿਅਤ ਵੌਇਸ ਕਾਲ</string>
   <string name="RecipientBottomSheet_video_call_description">ਵੀਡੀਓ ਕਾਲ</string>
-  <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s ਨੂੰ ਗਰੁੱਪ ਐਡਮਿਨ ਵਜੋਂ ਹਟਾਉਣਾ ਹੈ?</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s ਨੂੰ ਗਰੁੱਪ ਪਰਸ਼ਾਸਕ ਵਜੋਂ ਹਟਾਉਣਾ ਹੈ?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" ਇਸ ਗਰੁੱਪ ਅਤੇ ਇਸਦੇ ਮੈਂਬਰਾਂ ਦਾ ਸੰਪਾਦਨ ਕਰ ਸਕਣਗੇ।</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">%1$s ਨੂੰ ਗਰੁੱਪ ਤੋਂ ਹਟਾਉਣਾ ਹੈ?</string>
   <string name="RecipientBottomSheet_remove">ਹਟਾਓ </string>
   <string name="RecipientBottomSheet_copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
   <string name="GroupRecipientListItem_admin">ਐਡਮਿਨ</string>
-  <string name="GroupRecipientListItem_approve_description">ਮਨਜ਼ੂਰ</string>
-  <string name="GroupRecipientListItem_deny_description">ਨਾਂਹ</string>
+  <string name="GroupRecipientListItem_approve_description">ਮਨਜ਼ੂਰ ਕਰੋ</string>
+  <string name="GroupRecipientListItem_deny_description">ਇਨਕਾਰ ਕਰੋ</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">ਲੈਗਸੀ ਬਨਾਮ ਨਵੇਂ ਗਰੁੱਪ</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">ਲੈਗਸੀ ਗਰੁੱਪ ਕੀ ਹਨ?</string>
@@ -2736,14 +2736,14 @@
   <string name="DeleteAccountFragment__delete_account">ਖਾਤੇ ਨੂੰ ਹਟਾਓ</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">ਆਪਣੀ ਖਾਤਾ ਜਾਣਕਾਰੀ ਤੇ ਪਰੋਫਾਇਲ ਫ਼ੋਟੋ ਨੂੰ ਹਟਾਓ</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">ਆਪਣੇ ਸਾਰੇ ਸੁਨੇਹੇ ਹਟਾਓ</string>
-  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">ਤੁਹਾਡੇ ਭੁਗਤਾਨ ਖਾਤੇ ਵਿੱਚ %1$s ਨੂੰ ਮਿਟਾਇਆ</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">ਤੁਹਾਡੇ ਭੁਗਤਾਨ ਖਾਤੇ ਵਿੱਚ %1$s ਨੂੰ ਹਟਾਇਆ</string>
   <string name="DeleteAccountFragment__no_country_code">ਕੋਈ ਦੇਸ਼ ਦਾ ਕੋਡ ਨਹੀਂ ਦਿੱਤਾ</string>
   <string name="DeleteAccountFragment__no_number">ਨੰਬਰ ਨਹੀਂ ਦਿੱਤਾ</string>
   <string name="DeleteAccountFragment__the_phone_number">ਤੁਹਾਡੇ ਵਲੋਂ ਦਿੱਤਾ ਫ਼ੋਨ ਨੰਬਰ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਮਿਲਦਾ ਨਹੀਂ ਹੈ।</string>
   <string name="DeleteAccountFragment__are_you_sure">ਕੀ ਤੁਸੀਂ ਵਾਕਈ ਆਪਣਾ ਖਾਤਾ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?</string>
   <string name="DeleteAccountFragment__this_will_delete_your_signal_account">ਇਹ ਤੁਹਾਡੇ Signal ਖਾਤੇ ਨੂੰ ਹਟਾਏਗਾ ਅਤੇ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਰੀਸੈੱਟ ਕਰੇਗਾ। ਪਰੋਸੈਸ ਪੂਰਾ ਹੋਣ ਦੇ ਬਾਅਦ ਐਪ ਬੰਦ ਕੀਤੀ ਜਾਵੇਗੀ।</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">ਖਾਤਾ ਹਟਾਉਣਾ ਅਸਫਲ ਰਿਹਾ। ਕੀ ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ ਨੈੱਟਵਰਕ ਕਨੈਕਸ਼ਨ ਹੈ?</string>
-  <string name="DeleteAccountFragment__failed_to_delete_local_data">ਲੋਕਲ ਡਾਟਾ ਹਟਾਉਣ ਲਈ ਅਸਫ਼ਲ ਹੈ। ਤੁਸੀਂ ਸਿਸਟਮ ਐਪਲੀਕੇਸ਼ਨ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਸ ਨੂੰ ਖੁਦ ਮਿਟਾ ਸਕਦੇ ਹੋ।</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">ਲੋਕਲ ਡੇਟਾ ਹਟਾਉਣਾ ਅਸਫਲ ਰਿਹਾ। ਤੁਸੀਂ ਸਿਸਟਮ ਐਪਲੀਕੇਸ਼ਨ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਸ ਨੂੰ ਖੁਦ ਹਟਾ ਸਕਦੇ ਹੋ।</string>
   <string name="DeleteAccountFragment__launch_app_settings">ਐਪ ਸੈਟਿੰਗਾਂ ਚਲਾਓ</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">ਦੇਸ਼ ਲੱਭੋ</string>
@@ -2794,7 +2794,7 @@
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">ਵਧੇਰੇ ਵਾਲਪੇਪਰਾਂ ਦੀ ਝਲਕ ਲਈ ਸਵਾਈਪ ਕਰੋ</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">ਸਾਰੀਆਂ ਚੈਟਾਂ ਲਈ ਵਾਲਪੇਪਰ ਲਾਓ</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s ਲਈ ਵਾਲਪੇਪਰ ਲਾਓ</string>
-  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">ਤੁਹਾਡੀ ਗੈਲਰੀ ਵੇਖਣ ਲਈ ਸਟੋਰੇਜ਼ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ।</string>
+  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">ਤੁਹਾਡੀ ਗੈਲਰੀ ਵੇਖਣ ਲਈ ਸਟੋਰੇਜ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ।</string>
   <!--WallpaperImageSelectionActivity-->
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">ਵਾਲਪੇਪਰ ਤਸਵੀਰ ਚੁਣੋ</string>
   <!--WallpaperCropActivity-->
@@ -2806,10 +2806,10 @@
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">MobileCoin ਬਾਰੇ</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin ਨਵੀਂ ਪਰਦੇਦਾਰੀ ਉੱਤੇ ਅਧਾਰਿਤ ਡਿਜ਼ਿਟਲ ਕਰੰਸੀ ਹੈ।</string>
-  <string name="payment_info_card_adding_funds">ਫੰਡ ਜੋੜੋ</string>
+  <string name="payment_info_card_adding_funds">ਫੰਡ ਸ਼ਾਮਲ ਕਰਨਾ</string>
   <string name="payment_info_card_you_can_add_funds_for_use_in">ਤੁਸੀਂ MobileCoin ਨੂੰ ਆਪਣੇ ਵਾਲੇਟ ਪਤੇ ’ਤੇ ਭੇਜ ਕੇ Signal ਵਿੱਚ ਵਰਤੋਂ ਲਈ ਫੰਡ ਪਾ ਸਕਦੇ ਹੋ।</string>
   <string name="payment_info_card_cashing_out">ਨਿਵੇਸ਼ ਵੇਚਣਾ</string>
-  <string name="payment_info_card_you_can_cash_out_mobilecoin">ਤੁਸੀਂ MobileCoin ਦਾ ਸਮਰਥਨ ਕਰਨ ਵਾਲੇ ਐਕਸਚੇਂਜ \'ਤੇ ਕਿਸੇ ਵੀ ਸਮੇਂ MobileCoin ਨੂੰ ਨਕਦ ਲੈ ਸਕਦੇ ਹੋ। ਉਸ ਐਕਸਚੇਂਜ \'ਤੇ ਸਿਰਫ ਆਪਣੇ ਖਾਤੇ ਵਿੱਚ ਟ੍ਰਾਂਸਫਰ ਕਰੋ।</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">ਤੁਸੀਂ MobileCoin ਦਾ ਸਮਰਥਨ ਕਰਨ ਵਾਲੇ ਐਕਸਚੇਂਜ \'ਤੇ ਕਿਸੇ ਵੀ ਸਮੇਂ MobileCoin ਨੂੰ ਨਕਦ ਲੈ ਸਕਦੇ ਹੋ। ਉਸ ਐਕਸਚੇਂਜ \'ਤੇ ਸਿਰਫ਼ ਆਪਣੇ ਖਾਤੇ ਵਿੱਚ ਟ੍ਰਾਂਸਫਰ ਕਰੋ।</string>
   <string name="payment_info_card_hide_this_card">ਇਹ ਕਾਰਡ ਲੁਕਾਉਣਾ ਹੈ?</string>
   <string name="payment_info_card_hide">ਲੁਕਾਓ</string>
   <string name="payment_info_card_record_recovery_phrase">ਰਿਕਵਰੀ ਵਾਕ ਰਿਕਾਰਡ ਕਰੋ</string>
@@ -2871,7 +2871,7 @@
   <string name="PaymentsRecoveryEntryFragment__next">ਅਗਲਾ</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">ਅਵੈਧ ਸ਼ਬਦ</string>
   <!--ClearClipboardAlarmReceiver-->
-  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">ਕਲਿੱਪਬੋਰਡ ਖਾਲੀ ਹੈ</string>
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">ਕਲਿੱਪਬੋਰਡ ਖਾਲੀ ਹੈ।</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">ਵੇਖੋ</string>
   <!--UnreadPayments-->
@@ -2921,7 +2921,7 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Recents ਸੂਚੀ ਵਿੱਚ ਅਤੇ ਐਪ ਦੇ ਅੰਦਰ ਸਕ੍ਰੀਨਸ਼ਾਟ ਨੂੰ ਬਲੌਕ ਕਰੋ</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ਸੁਨੇਹੇ ਅਤੇ ਕਾਲਾਂ, ਹਮੇਸ਼ਾਂ ਕਾਲਾਂ ਰਿਲੇਅ ਕਰੋ, ਅਤੇ ਸੀਲਬੰਦ ਭੇਜਣ ਵਾਲਾ</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">ਨਵੀਆਂ ਚੈਟਾਂ ਲਈ ਡਿਫੌਲਟ ਟਾਈਮਰ</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ਤੁਹਾਡੇ ਦੁਆਰਾ ਸ਼ੁਰੂ ਕੀਤੀਆਂ ਸਾਰੀਆਂ ਨਵੀਆਂ ਚੈਟਾਂ ਲਈ ਅਲੋਪ ਹੋ ਰਹੇ ਸੁਨੇਹੇ ਦਾ ਡਿਫੌਲਟ ਟਾਈਮਰ ਤੈਅ ਕਰੋ।</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ਤੁਹਾਡੇ ਦੁਆਰਾ ਸ਼ੁਰੂ ਕੀਤੀਆਂ ਸਾਰੀਆਂ ਨਵੀਆਂ ਚੈਟਾਂ ਲਈ ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ ਦਾ ਡਿਫੌਲਟ ਟਾਈਮਰ ਤੈਅ ਕਰੋ।</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">ਸਟੇਟੱਸ ਆਈਕੋਨ ਦਿਖਾਓ</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">ਸੁਨੇਹੇ ਕਦੋਂ ਪਹੁੰਚਾਏ ਗਏ ਸਨ ਇਸ ਬਾਰੇ ਸੁਨੇਹਾ ਵੇਰਵਿਆਂ ਵਿੱਚ ਸੀਲਬੰਦ ਭੇਜਣ ਵਾਲੇ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ ਇੱਕ ਆਈਕੋਨ ਦਿਖਾਓ।</string>
@@ -2987,7 +2987,7 @@
   <string name="EditReactionsFragment__tap_to_replace_an_emoji">ਕਿਸੇ ਇਮੋਜੀ ਨੂੰ ਬਦਲਣ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="EditReactionsFragment__reset">ਰੀਸੈੱਟ ਕਰੋ</string>
   <string name="EditReactionsFragment_save">ਸੰਭਾਲੋ</string>
-  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">ਵਾਲਪੇਪਰ ਨਾਲ ਰੰਗ ਖੁੱਦ ਮਿਲਾਉਂਦਾ ਹੈ</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">ਵਾਲਪੇਪਰ ਨਾਲ ਆਪਣੇ-ਆਪ ਰੰਗ ਮਿਲਾਇਆ ਜਾਂਦਾ ਹੈ</string>
   <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">ਗਰੇਡੀਐਂਟ ਦੀ ਦਿਸ਼ਾ ਬਦਲਣ ਲਈ ਡ੍ਰੈਗ ਕਰੋ</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">ਚੈਟ ਦੇ ਨਵੇਂ ਰੰਗ</string>
@@ -3013,7 +3013,7 @@
   <string name="KeyboardPagerFragment_search_giphy">GIPHY ਖੋਜੋ</string>
   <!--StickerSearchDialogFragment-->
   <string name="StickerSearchDialogFragment_search_stickers">ਸਟਿੱਕਰ ਖੋਜੋ</string>
-  <string name="StickerSearchDialogFragment_no_results_found">ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਲੱਭੇ</string>
+  <string name="StickerSearchDialogFragment_no_results_found">ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਲੱਭੇ</string>
   <string name="EmojiSearchFragment__no_results_found">ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਲੱਭੇ</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">ਅਗਿਆਤ ਰਿੰਗਟੋਨ</string>
   <!--ConversationSettingsFragment-->
@@ -3028,7 +3028,7 @@
   <string name="ConversationSettingsFragment__muted">ਚੁੱਪ ਕਰਾਏ</string>
   <string name="ConversationSettingsFragment__search">ਖੋਜੋ</string>
   <string name="ConversationSettingsFragment__disappearing_messages">ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ</string>
-  <string name="ConversationSettingsFragment__sounds_and_notifications">ਸਾਂਊਂਡਜ਼ &amp; ਸੂਚਨਾਵਾਂ</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">ਧੁਨੀਆਂ &amp; ਸੂਚਨਾਵਾਂ</string>
   <string name="ConversationSettingsFragment__contact_details">ਸੰਪਰਕ ਵੇਰਵੇ</string>
   <string name="ConversationSettingsFragment__view_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਵੇਖੋ</string>
   <string name="ConversationSettingsFragment__block">ਪਾਬੰਦੀ ਲਾਓ</string>
@@ -3060,7 +3060,7 @@
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">ਸੂਚਨਾਵਾਂ ਨੂੰ ਮਿਊਟ ਕਰੋ</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">ਚੁੱਪ ਨਹੀਂ</string>
   <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">%1$s ਤੱਕ ਮਿਊਟ</string>
-  <string name="SoundsAndNotificationsSettingsFragment__mentions">ਜ਼ਿਕਰ</string>
+  <string name="SoundsAndNotificationsSettingsFragment__mentions">ਹਵਾਲੇ</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">ਹਮੇਸ਼ਾਂ ਸੂਚਿਤ ਕਰੋ</string>
   <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">ਸੂਚਿਤ ਨਾ ਕਰੋ</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ਕਸਟਮ ਸੂਚਨਾਵਾਂ </string>

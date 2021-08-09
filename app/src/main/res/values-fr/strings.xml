@@ -3070,6 +3070,11 @@
   <string name="ContactFilterView__search_name_or_number">Chercher un nom ou un numéro</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Arrêter le message vocal</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Changer la vitesse du message vocal</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Mettre le message vocal en pause</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Lire le message vocal</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Naviguer vers le message vocal</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Aperçu de l’avatar</string>
   <string name="AvatarPickerFragment__camera">Appareil photo</string>

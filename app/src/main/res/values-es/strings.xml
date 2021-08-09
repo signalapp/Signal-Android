@@ -473,7 +473,7 @@
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Actualizar al nuevo sistema de grupos</string>
-  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Actualiza este grupo</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">Actualizar este grupo</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Funciones de los nuevos grupos incluyen @menciones, admins y más en el futuro.</string>
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Los mensajes y adjuntos se mantendrán tras la actualización.</string>
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Fallo en la conexión de red. Inténtalo más tarde.</string>
@@ -2144,7 +2144,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s el %2$s a las %3$s</string>
   <string name="PaymentsDetailsFragment__to">Para</string>
   <string name="PaymentsDetailsFragment__from">De</string>
-  <string name="PaymentsDetailsFragment__information">Los detalles de la transacción incluyen la cantidad y fecha del pago, pero no el origen y el destino, y figuran en el libro-registro de MobileCoin. </string>
+  <string name="PaymentsDetailsFragment__information">Los detalles de la transacción incluyen la cantidad y fecha del pago, pero no el origen y el destino, y figuran en el libro mayor de MobileCoin. </string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Tasa de limpieza de monedas</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">La tasa de «limpieza de monedas» se aplica cuando tus monedas no se pueden combinar para completar un pago. La limpieza te permite continuar enviado pagos.</string>
   <string name="PaymentsDetailsFragment__no_details_available">No hay más detalles disponibles para esta transacción</string>

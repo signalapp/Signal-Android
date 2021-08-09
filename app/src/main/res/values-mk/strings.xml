@@ -854,7 +854,7 @@
   <string name="MediaSendActivity_add_a_caption">Додај наслов…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Предметот беше отстранет бидејќи ја надмина дозволената големина</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Предметот беше отстранет бидејќи е од непознат тип</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Предмет беше отстранет бидејќи ја надмина дозволената големина или имаше непознат тип</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Предмет беше отстранет бидејќи ја надмина дозволената големина или е од непознат тип</string>
   <string name="MediaSendActivity_camera_unavailable">Камерата е недостапна.</string>
   <string name="MediaSendActivity_message_to_s">Порака до %s</string>
   <string name="MediaSendActivity_message">Порака</string>
@@ -990,11 +990,11 @@
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Кој може да го менува членството во групата е променето во „%1$s“.</string>
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">Ги сменивте поставките на групата за да дозволите сите членови да испраќаат пораки.</string>
-  <string name="MessageRecord_you_allow_only_admins_to_send">Ги сменивте поставките на групата за да дозволите само администраторите да испраќаат пораки.</string>
-  <string name="MessageRecord_s_allow_all_members_to_send">%1$s ги смени поставките на групата за да дозволи сите членови да испраќаат пораки.</string>
-  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ги смени поставките на групата за да дозволи само администраторите да испраќаат пораки.</string>
-  <string name="MessageRecord_allow_all_members_to_send">Поставките на групата беа изменети за да им се дозволи на сите членови да испраќаат пораки.</string>
-  <string name="MessageRecord_allow_only_admins_to_send">Поставките на групата беа изменети за да им се дозволи само на администраторите да испраќаат пораки.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Ги сменивте поставувањата на групата за да дозволите само администраторите да испраќаат пораки.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s ги смени поставувањата на групата за да дозволи сите членови да испраќаат пораки.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ги смени поставувањата на групата за да дозволи само администраторите да испраќаат пораки.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Поставувањата на групата беа изменети за да им се дозволи на сите членови да испраќаат пораки.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Поставувањата на групата беа изменети за да им се дозволи само на администраторите да испраќаат пораки.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Го вклучивте групниот линк. Администраторското одобрување е исклучено.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Го вклучивте групниот линк. Администраторското одобрување е вклучено.</string>
@@ -1239,7 +1239,7 @@
   <string name="ProxyBottomSheetFragment_use_proxy">Користи proxy</string>
   <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Успешно се поврзав со proxy серверот.</string>
   <!--RecaptchaProofActivity-->
-  <string name="RecaptchaProofActivity_failed_to_submit">Не успеа испраќањето</string>
+  <string name="RecaptchaProofActivity_failed_to_submit">Не успеав да испратам</string>
   <string name="RecaptchaProofActivity_complete_verification">Заврши проверка</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Изберете држава</string>
@@ -1355,7 +1355,7 @@
   <string name="SubmitDebugLogActivity_success">Успешно! </string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Ископирајте го ова URL и додајте го на Вашиот извештај или е-пошта до тимот за поддршка :\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Сподели</string>
-  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Овој запис ќе биде објавен јавно на интернет за да можат да го видат соработниците. Може да го прегледате пред да испратите.</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Овој запис ќе биде објавен јавно на интернет за да можат да го видат придонесувачите. Можете да го прегледате пред да го испратите.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Филтер:</string>
   <string name="SupportEmailUtil_device_info">Инфо за уред:</string>
@@ -1663,10 +1663,10 @@
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Сѐ изгледа добро сега!</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">За да добивате известувања за повици допрете тука и вклучете „Покажувај известувања“</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">За да примате известувања за повици, допрете тука и вклучете ги известувањата и проверете дали звук и скокачки прозорци се вклучени.</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">За да примате известувања за повици, допрете овде и овозможете активност во заднина во поставките за \"Батерија\".</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">За да примате известувања за повици, допрете тука и вклучете го „активност во заднина“ во поставувањата за \"Батерија\".</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Поставувања</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">За да добивате известувања за повик, допрете на Поставки и вклучете „Покажи известувања“.</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">За да примате известувања за повици, допрете на поставки и вклучете ги известувањата и проверете дали звук и скокачки прозорци се вклучени.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">За да примате известувања за повици, допрете на „Поставувања“, вклучете ги известувањата и проверете дали „Звук“ и „Скокачки прозорци“ се вклучени.</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">За да примате известувања за повици, допрете на Поставки и овозможете активност во заднина во поставките за „Батерија“.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Вчитувам земји…</string>
@@ -2787,17 +2787,22 @@
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ниту еден од Вашите контакти или луѓе со кои разговарате не се во оваа група. Внимателно прегледајте ги барањата пред да прифатите за да избегнете несакани пораки.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">За барања за пораки</string>
   <string name="GroupsInCommonMessageRequest__okay">Во ред</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Еве преглед на бојата на разговорот.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Бојата е видлива само за Вас.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">Опис на групата</string>
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__standard">Стандардно</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">Побрзо, помалку податоци</string>
   <string name="QualitySelectorBottomSheetDialog__high">Високо</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">Побавно, повеќе податоци</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">Квалитет на фотографија</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">Покани ги пријателите</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">Сметка</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Ќе бидете прашувани се поретко</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">Го бара Вашиот Signal PIN за повторно да го регистрирате вашиот телефонски број со Signal</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Тастатура</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter испраќа пораки</string>
@@ -2817,8 +2822,10 @@
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Блокирај слики од екранот во листата на последни апликации и во самата апликација</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal пораки и повици. Секогаш префрлај повици и запечатен испраќач.</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Стандарден тајмер за нови разговори</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Поставете стандарден тајмер за пораки што исчезнуваат за сите нови разговори започнати од вас.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Прикажи статусна икона</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">Покажува икона во детали за порака кога пораката е доставена со користење на запечатен испраќач</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Кога е овозможено, новите пораки испратени и примени во овој разговор ќе исчезнат откако ќе бидат видени.</string>
   <string name="ExpireTimerSettingsFragment__off">Исклучи</string>
@@ -2873,14 +2880,18 @@
   <string name="ChatColorsMegaphone__appearance">Изглед</string>
   <string name="ChatColorsMegaphone__not_now">Не сега</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Додајте слика на профилот</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Не сега</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Додај слика</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Емоџи</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Отвори пребарување на емоџи</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">Отвори пребарување на налепници</string>
+  <string name="KeyboardPagerFragment_open_gif_search">Отвори пребарување на GIF-ови</string>
   <string name="KeyboardPagerFragment_stickers">Стикери</string>
   <string name="KeyboardPagerFragment_gifs">Gif-ови</string>
   <string name="KeyboardPagerFragment_search_emoji">Пребарувај емоџи</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">Назад на емоџи</string>
   <string name="KeyboardPagerfragment_clear_search_entry">Исчисти ги записите од барањето</string>
   <string name="KeyboardPagerFragment_search_giphy">Пребарувај на GIPHY</string>
   <!--StickerSearchDialogFragment-->
@@ -2889,12 +2900,15 @@
   <string name="EmojiSearchFragment__no_results_found">Не се пронајдени резултати</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">Непознат звук</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">Испрати порака</string>
   <string name="ConversationSettingsFragment__start_video_call">Започни видео повик</string>
+  <string name="ConversationSettingsFragment__start_audio_call">Започни аудио повик</string>
   <string name="ConversationSettingsFragment__message">Порака</string>
   <string name="ConversationSettingsFragment__video">Видео</string>
   <string name="ConversationSettingsFragment__audio">Аудио</string>
   <string name="ConversationSettingsFragment__call">Повикај</string>
   <string name="ConversationSettingsFragment__mute">Исклучи известувања</string>
+  <string name="ConversationSettingsFragment__muted">Исклучен звук</string>
   <string name="ConversationSettingsFragment__search">Барај</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Пораки што исчезнуваат</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">Звуци и известувања</string>
@@ -2911,18 +2925,25 @@
   <string name="ConversationSettingsFragment__requests_and_invites">Барања и покани</string>
   <string name="ConversationSettingsFragment__group_link">Групен линк</string>
   <string name="ConversationSettingsFragment__unmute">Вклучи известувања</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Известувањата во разговорот исклучени до %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Известувањата во разговорот исклучени засекогаш</string>
   <string name="ConversationSettingsFragment__phone_number">Телефонски број</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Додај членови</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Уреди инфо за група</string>
+  <string name="PermissionsSettingsFragment__send_messages">Испрати пораки</string>
   <string name="PermissionsSettingsFragment__all_members">Сите членови</string>
   <string name="PermissionsSettingsFragment__only_admins">Само администратори</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Кој може да додава нови членови?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Кој може да ги уредува информациите за групата?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Кој може да испраќа пораки?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Исклучи известувања</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Звукот не е исклучен</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Исклучен звук до %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Спомнувања</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Секогаш известувај</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Не известувај</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Прилагодени известувања</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Скорешни</string>
@@ -2936,20 +2957,34 @@
   <string name="ContactFilterView__search_name_or_number">Пребарај име или број</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Стопирај гласовна порака</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Промени ја брзината на гласовната порака</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Паузирај гласовна порака</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Пушти гласовна порака</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Оди до гласовна порака</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">Преглед на аватар</string>
   <string name="AvatarPickerFragment__camera">Камера</string>
+  <string name="AvatarPickerFragment__take_a_picture">Сликај</string>
+  <string name="AvatarPickerFragment__choose_a_photo">Избери слика</string>
   <string name="AvatarPickerFragment__photo">Слика</string>
   <string name="AvatarPickerFragment__text">Текст</string>
   <string name="AvatarPickerFragment__save">Зачувај</string>
+  <string name="AvatarPickerFragment__select_an_avatar">Избери аватар</string>
+  <string name="AvatarPickerFragment__clear_avatar">Отстрани аватар</string>
   <string name="AvatarPickerFragment__edit">Измени</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">Не успеа да се зачува аватарот</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Преглед</string>
   <string name="TextAvatarCreationFragment__done">Готово</string>
   <string name="TextAvatarCreationFragment__text">Текст</string>
   <string name="TextAvatarCreationFragment__color">Боја</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">Избери боја</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Отиди нагоре</string>
   <!--EOF-->
 </resources>
