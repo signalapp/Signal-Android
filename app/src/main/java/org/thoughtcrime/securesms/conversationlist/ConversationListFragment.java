@@ -853,7 +853,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     alert.setCancelable(true);
 
     alert.setPositiveButton(R.string.delete, (dialog, which) -> {
-      final Set<Long> selectedConversations = defaultAdapter.getBatchSelectionIds();
+      final Set<Long> selectedConversations = new HashSet<>(defaultAdapter.getBatchSelectionIds());
 
       if (!selectedConversations.isEmpty()) {
         new AsyncTask<Void, Void, Void>() {
