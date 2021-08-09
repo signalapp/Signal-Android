@@ -20,6 +20,7 @@ import androidx.loader.content.Loader
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.seed_reminder_stub.*
 import kotlinx.android.synthetic.main.seed_reminder_stub.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
@@ -168,7 +169,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(), ConversationClickLis
         profileButton.update()
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
         if (hasViewedSeed) {
-            seedReminderStub.visibility = View.GONE
+            seedReminderView?.isVisible = false
         }
         if (TextSecurePreferences.getConfigurationMessageSynced(this)) {
             lifecycleScope.launch(Dispatchers.IO) {

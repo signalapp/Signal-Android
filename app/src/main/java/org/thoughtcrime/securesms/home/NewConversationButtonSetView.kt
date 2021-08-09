@@ -17,8 +17,6 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.util.*
-import org.thoughtcrime.securesms.util.GlowViewUtilities
-import org.thoughtcrime.securesms.util.NewConversationButtonImageView
 
 class NewConversationButtonSetView : RelativeLayout {
     private var expandedButton: Button? = null
@@ -51,6 +49,8 @@ class NewConversationButtonSetView : RelativeLayout {
     class Button : RelativeLayout {
         @DrawableRes private var iconID = 0
         private var isMain = false
+
+        fun getIconID() = iconID
 
         companion object {
             val animationDuration = 250.toLong()
