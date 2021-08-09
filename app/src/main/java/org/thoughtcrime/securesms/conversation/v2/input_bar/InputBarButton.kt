@@ -9,7 +9,6 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
-import android.util.Log
 import android.view.Gravity
 import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
@@ -18,10 +17,7 @@ import android.widget.RelativeLayout
 import androidx.annotation.DrawableRes
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.util.*
-import org.thoughtcrime.securesms.util.GlowViewUtilities
-import org.thoughtcrime.securesms.util.InputBarButtonImageViewContainer
 import java.util.*
-import kotlin.math.abs
 
 class InputBarButton : RelativeLayout {
     private val gestureHandler = Handler(Looper.getMainLooper())
@@ -104,6 +100,8 @@ class InputBarButton : RelativeLayout {
         gravity = Gravity.TOP or Gravity.LEFT // Intentionally not Gravity.START
         isHapticFeedbackEnabled = true
     }
+
+    fun getIconID() = iconID
 
     fun expand() {
         GlowViewUtilities.animateColorChange(context, imageViewContainer, colorID, R.color.accent)
