@@ -34,6 +34,7 @@ public class CallParticipantsLayout extends FlexboxLayout {
   private CallParticipant       focusedParticipant = null;
   private boolean               shouldRenderInPip;
   private boolean               isPortrait;
+  private boolean               isIncomingRing;
   private LayoutStrategy        layoutStrategy;
 
   public CallParticipantsLayout(@NonNull Context context) {
@@ -52,13 +53,16 @@ public class CallParticipantsLayout extends FlexboxLayout {
               @NonNull CallParticipant focusedParticipant,
               boolean shouldRenderInPip,
               boolean isPortrait,
+              boolean isIncomingRing,
               @NonNull LayoutStrategy layoutStrategy)
   {
     this.callParticipants   = callParticipants;
     this.focusedParticipant = focusedParticipant;
     this.shouldRenderInPip  = shouldRenderInPip;
     this.isPortrait         = isPortrait;
+    this.isIncomingRing     = isIncomingRing;
     this.layoutStrategy     = layoutStrategy;
+
     setFlexDirection(layoutStrategy.getFlexDirection());
     updateLayout();
   }
@@ -123,6 +127,12 @@ public class CallParticipantsLayout extends FlexboxLayout {
     } else {
       view.setPadding(0, 0, 0, 0);
       cardView.setRadius(0);
+    }
+
+    if (isIncomingRing) {
+      callParticipantView.hideAvatar();
+    } else {
+      callParticipantView.showAvatar();
     }
 
     if (count > 2) {

@@ -197,6 +197,10 @@ public final class CallParticipantsState {
                              .or(() -> includeSelf ? OptionalLong.of(1L) : OptionalLong.empty());
   }
 
+  public boolean isIncomingRing() {
+    return callState == WebRtcViewModel.State.CALL_INCOMING;
+  }
+
   public static @NonNull CallParticipantsState update(@NonNull CallParticipantsState oldState,
                                                       @NonNull WebRtcViewModel webRtcViewModel,
                                                       boolean enableVideo)

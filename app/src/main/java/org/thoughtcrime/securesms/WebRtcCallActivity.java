@@ -17,8 +17,6 @@
 
 package org.thoughtcrime.securesms;
 
-import static org.thoughtcrime.securesms.components.sensors.Orientation.PORTRAIT_BOTTOM_EDGE;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.PictureInPictureParams;
@@ -81,6 +79,8 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
 import java.util.List;
 import java.util.Optional;
+
+import static org.thoughtcrime.securesms.components.sensors.Orientation.PORTRAIT_BOTTOM_EDGE;
 
 public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChangeDialog.Callback {
 
@@ -772,7 +772,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       setRequestedOrientation(feature.isPresent() ? ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
       if (feature.isPresent()) {
         FoldingFeature foldingFeature = (FoldingFeature) feature.get();
-        Rect bounds = foldingFeature.getBounds();
+        Rect           bounds         = foldingFeature.getBounds();
         if (foldingFeature.getState() == FoldingFeature.State.HALF_OPENED && bounds.top == bounds.bottom) {
           Log.d(TAG, "OnWindowLayoutInfo accepted: ensure call view is in table-top display mode");
           viewModel.setFoldableState(WebRtcControls.FoldableState.folded(bounds.top));
