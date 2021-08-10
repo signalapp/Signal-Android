@@ -212,7 +212,7 @@
   <string name="ConversationActivity_only_s_can_send_messages">Numai %1$s pot trimite mesaje.</string>
   <string name="ConversationActivity_admins">administratori</string>
   <string name="ConversationActivity_message_an_admin">Trimiteți un mesaj unui administrator</string>
-  <string name="ConversationActivity_cant_start_group_call">Nu pot iniția apelul de grup</string>
+  <string name="ConversationActivity_cant_start_group_call">Nu se poate iniția apelul de grup</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Numai administratorii acestui grup pot iniția un apel.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nu există nici o aplicație disponibilă pe dispozitivul tău care să poată deschide acest link.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Solicitarea dvs. de înscriere a fost trimisă administratorului grupului. Veți fi anunțat când vor lua acțiuni.</string>
@@ -501,13 +501,13 @@
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">Acești membri nu se pot alătura grupurilor noi și vor fi eliminați din grup:</item>
     <item quantity="few">Acești membri nu se pot alătura grupurilor noi și vor fi eliminați din grup:</item>
-    <item quantity="other">Acest membru nu se poate alătura grupurilor noi și va fi eliminat din grup:</item>
+    <item quantity="other">Acești membri nu se pot alătura grupurilor noi și vor fi eliminați din grup:</item>
   </plurals>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membru nu a putut fi adăugat la noul grup. Doriți să-l adăugați acum?</item>
     <item quantity="few">%1$d membri nu au putut fi adăugați la noul grup. Doriți să-i adăugați acum?</item>
-    <item quantity="other">%1$d membri nu au putut fi adăugați la noul grup. Doriți să-i adăugați acum?</item>
+    <item quantity="other">%1$d membri nu au putut fi adăugați noului grup. Doriți să-i adăugați acum?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">Adăugați membru</item>
@@ -742,7 +742,7 @@
     <item quantity="other">Doriți să revocați %2$d invitații trimise de %1$s?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ești deja membru</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Sunteți deja membru</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Alăturați-vă</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Cerere de înscriere</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Alăturarea la grup nu a reușit. Vă rugăm să încercați din nou mai târziu</string>
@@ -942,7 +942,7 @@
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Un membru nu a putut fi adăugat la grupul nou și a fost invitat să se alăture</item>
     <item quantity="few">%1$s membri nu au putut fi adăugați la grupul nou și au fost invitați să se alăture.</item>
-    <item quantity="other">%1$s membri nu au putut fi adăugați la grupul nou și au fost invitați să se alăture.</item>
+    <item quantity="other">%1$s membri nu au putut fi adăugați noului grup și au fost invitați să se alăture.</item>
   </plurals>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
     <item quantity="one">Un membru nu a putut fi adăugat la grupul nou și a fost eliminat.</item>
@@ -976,7 +976,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s l-a făcut pe %2$s administrator.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s v-a făcut administrator.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Ați revocat privilegiile de administrator de la %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s a revocat privilegiile dvs. de administrator.\"</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s a revocat privilegiile dvs. de administrator.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s a revocat privilegiile de administrator pentru %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s este acum administrator.</string>
   <string name="MessageRecord_you_are_now_an_admin">Sunteți acum administrator.</string>
@@ -2960,7 +2960,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="UnreadPayments__d_new_payment_notifications">%1$d notificări noi de plată</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">Nu puteți trimite plata</string>
-  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Pentru a trimite o plată acestui utilizator, el trebuie să accepte o solicitare de mesaj din partea dvs. Pentru a crea o solicitare trebuie să-i trimiteți un mesaj.</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Pentru a trimite o plată către acest utilizator, el trebuie să accepte o solicitare de mesaj din partea dvs. Trimiteți-i un mesaj pentru a crea o solicitare.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Trimite mesaj</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Nu aveți grupuri în comun cu această persoană. Examinați cu atenție solicitările înainte de a accepta pentru a evita mesajele nedorite.</string>

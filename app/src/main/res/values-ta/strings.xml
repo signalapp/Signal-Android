@@ -3082,6 +3082,11 @@
   <string name="ContactFilterView__search_name_or_number">தேடல் பெயர் அல்லது எண்</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">குரல் செய்தியை நிறுத்து</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">மாற்றம் குரல் செய்தி வேகம்</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">குரல் செய்தியை இடைநிறுத்துங்கள்</string>
+  <string name="VoiceNotePlayerView__play_voice_message">குரல் செய்தியை இயக்கவும்</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">குரல் செய்திக்கு செல்லவும்</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">அவதார் முன்னோட்டம்</string>
   <string name="AvatarPickerFragment__camera">புகைப்பட கருவி</string>

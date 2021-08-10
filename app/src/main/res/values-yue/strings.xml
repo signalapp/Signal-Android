@@ -2178,7 +2178,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">[設定] 捷徑</string>
   <string name="conversation_list_search_description">搜尋</string>
-  <string name="conversation_list__pinned">頂已置</string>
+  <string name="conversation_list__pinned">置頂</string>
   <string name="conversation_list__chats">傾偈</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">您淨係可以將最多 %1$d 個傾偈置頂</string>
   <!--conversation_list_item_view-->

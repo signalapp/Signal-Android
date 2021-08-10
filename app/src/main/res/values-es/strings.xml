@@ -2099,7 +2099,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PaymentsHomeFragment__sent_s">Enviado %1$s</string>
   <string name="PaymentsHomeFragment__received_s">Recibido %1$s</string>
   <string name="PaymentsHomeFragment__transfer_to_exchange">Transferir a un «exchange»</string>
-  <string name="PaymentsHomeFragment__currency_conversion">Conversión de moneda</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Moneda de cambio</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Desactivar pagos</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Frase de recuperación</string>
   <string name="PaymentsHomeFragment__help">Ayuda</string>
@@ -2122,7 +2122,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PaymentsHomeFragment__details">Detalles</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Puedes usar Signal para recibir y enviar MobileCoin. Todos los pagos están sujetos a las condiciones de uso de MobileCoin y su cartera. Esta es una característica en fase beta por lo que te encontrarás con problemas y podrás perder tus fondos.</string>
   <string name="PaymentsHomeFragment__activate">Activar</string>
-  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ver los términos de uso de MobileCoin</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">Términos de uso MobileCoin</string>
   <string name="PaymentsHomeFragment__payments_not_available">Los pagos en Signal no están disponibles. Todavía puedes transferir tus fondos a un «exchange» pero no podrás recibir o enviar más pagos a través de Signal.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Añadir fondos</string>
@@ -2144,7 +2144,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s el %2$s a las %3$s</string>
   <string name="PaymentsDetailsFragment__to">Para</string>
   <string name="PaymentsDetailsFragment__from">De</string>
-  <string name="PaymentsDetailsFragment__information">Los detalles de la transacción incluyen la cantidad y fecha del pago, pero no el origen y el destino, y figuran en el libro mayor de MobileCoin. </string>
+  <string name="PaymentsDetailsFragment__information">Los detalles de la transacción incluyen la cantidad y fecha del pago, pero no su origen o destino y figuran en el libro mayor de MobileCoin. </string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Tasa de limpieza de monedas</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">La tasa de «limpieza de monedas» se aplica cuando tus monedas no se pueden combinar para completar un pago. La limpieza te permite continuar enviado pagos.</string>
   <string name="PaymentsDetailsFragment__no_details_available">No hay más detalles disponibles para esta transacción</string>

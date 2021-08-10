@@ -2984,6 +2984,10 @@
   <string name="ContactFilterView__search_name_or_number">名前か電話番号で検索</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">音声メッセージを停止</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">音声メッセージの再生速度を変更</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">音声メッセージを一時停止</string>
+  <string name="VoiceNotePlayerView__play_voice_message">音声メッセージを再生</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">アバターのプレビュー</string>
   <string name="AvatarPickerFragment__camera">カメラ</string>
