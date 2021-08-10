@@ -11,6 +11,7 @@ import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.ClosedGroupControlMessage
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
+import org.session.libsession.messaging.messages.control.UnsendRequest
 import org.session.libsession.messaging.messages.visible.*
 import org.session.libsession.messaging.open_groups.*
 import org.session.libsession.messaging.utilities.MessageWrapper
@@ -94,7 +95,7 @@ object MessageSender {
             // • a closed group control message of type `new`
             var isNewClosedGroupControlMessage = false
             if (message is ClosedGroupControlMessage && message.kind is ClosedGroupControlMessage.Kind.New) isNewClosedGroupControlMessage = true
-            if (isSelfSend && message !is ConfigurationMessage && !isSyncMessage && !isNewClosedGroupControlMessage) {
+            if (isSelfSend && message !is ConfigurationMessage && !isSyncMessage && !isNewClosedGroupControlMessage && message !is UnsendRequest) {
                 handleSuccessfulMessageSend(message, destination)
                 deferred.resolve(Unit)
                 return promise
@@ -164,7 +165,7 @@ object MessageSender {
                         val hash = it["hash"] as? String
                         message.serverHash = hash
                         handleSuccessfulMessageSend(message, destination, isSyncMessage)
-                        var shouldNotify = (message is VisibleMessage && !isSyncMessage)
+                        var shouldNotify = ((message is VisibleMessage || message is UnsendRequest) && !isSyncMessage)
                         /*
                         if (message is ClosedGroupControlMessage && message.kind is ClosedGroupControlMessage.Kind.New) {
                             shouldNotify = true
