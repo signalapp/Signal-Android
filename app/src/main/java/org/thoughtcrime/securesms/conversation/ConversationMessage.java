@@ -74,10 +74,7 @@ public class ConversationMessage {
   }
 
   public @NonNull SpannableString getDisplayBody(Context context) {
-    if (mentions.isEmpty() || body == null) {
-      return messageRecord.getDisplayBody(context);
-    }
-    return body;
+    return (body != null) ? body : messageRecord.getDisplayBody(context);
   }
 
   /**
@@ -107,7 +104,7 @@ public class ConversationMessage {
       if (messageRecord.isMms() && mentions != null && !mentions.isEmpty()) {
         return new ConversationMessage(messageRecord, body, mentions);
       }
-      return createWithResolvedData(messageRecord);
+      return new ConversationMessage(messageRecord, body, null);
     }
 
     /**
@@ -149,7 +146,7 @@ public class ConversationMessage {
           return new ConversationMessage(messageRecord, updated.getBody(), updated.getMentions());
         }
       }
-      return createWithResolvedData(messageRecord);
+      return createWithResolvedData(messageRecord, body, null);
     }
   }
 }
