@@ -161,6 +161,8 @@ object MessageSender {
                         if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
                             SnodeModule.shared.broadcaster.broadcast("messageSent", message.sentTimestamp!!)
                         }
+                        val hash = it["hash"] as? String
+                        message.serverHash = hash
                         handleSuccessfulMessageSend(message, destination, isSyncMessage)
                         var shouldNotify = (message is VisibleMessage && !isSyncMessage)
                         /*
@@ -258,6 +260,12 @@ object MessageSender {
             storage.addReceivedMessageTimestamp(openGroupSentTimestamp)
             storage.updateSentTimestamp(messageID, message.isMediaMessage(), openGroupSentTimestamp, message.threadID!!)
             message.sentTimestamp = openGroupSentTimestamp
+        }
+        // When the sync message is successfully sent, the hash value of this TSOutgoingMessage
+        // will be replaced by the hash value of the sync message. Since the hash value of the
+        // real message has no use when we delete a message. It is OK to let it be.
+        message.serverHash?.let {
+            storage.setMessageServerHash(messageID, it)
         }
         // Track the open group server message ID
         if (message.openGroupServerMessageID != null && destination is Destination.OpenGroupV2) {

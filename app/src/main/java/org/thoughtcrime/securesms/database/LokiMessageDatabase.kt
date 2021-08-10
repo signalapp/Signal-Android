@@ -12,12 +12,14 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         private val messageIDTable = "loki_message_friend_request_database"
         private val messageThreadMappingTable = "loki_message_thread_mapping_database"
         private val errorMessageTable = "loki_error_message_database"
+        private val messageHashTable = "loki_message_hash_database"
         private val messageID = "message_id"
         private val serverID = "server_id"
         private val friendRequestStatus = "friend_request_status"
         private val threadID = "thread_id"
         private val errorMessage = "error_message"
         private val messageType = "message_type"
+        private val serverHash = "server_hash"
         @JvmStatic
         val createMessageIDTableCommand = "CREATE TABLE $messageIDTable ($messageID INTEGER PRIMARY KEY, $serverID INTEGER DEFAULT 0, $friendRequestStatus INTEGER DEFAULT 0);"
         @JvmStatic
@@ -28,6 +30,8 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         val updateMessageIDTableForType = "ALTER TABLE $messageIDTable ADD COLUMN $messageType INTEGER DEFAULT 0; ALTER TABLE $messageIDTable ADD CONSTRAINT PK_$messageIDTable PRIMARY KEY ($messageID, $serverID);"
         @JvmStatic
         val updateMessageMappingTable = "ALTER TABLE $messageThreadMappingTable ADD COLUMN $serverID INTEGER DEFAULT 0; ALTER TABLE $messageThreadMappingTable ADD CONSTRAINT PK_$messageThreadMappingTable PRIMARY KEY ($messageID, $serverID);"
+        @JvmStatic
+        val createMessageHashTableCommand = "CREATE TABLE IF NOT EXISTS $messageHashTable ($messageID INTEGER PRIMARY KEY, $serverHash STRING);"
 
         const val SMS_TYPE = 0
         const val MMS_TYPE = 1
@@ -149,5 +153,20 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         } finally {
             database.endTransaction()
         }
+    }
+
+    fun getMessageServerHash(messageID: Long): String? {
+        val database = databaseHelper.readableDatabase
+        return database.get(messageHashTable, "${Companion.messageID} = ?", arrayOf(messageID.toString())) { cursor ->
+            cursor.getString(serverHash)
+        }
+    }
+
+    fun setMessageServerHash(messageID: Long, serverHash: String) {
+        val database = databaseHelper.writableDatabase
+        val contentValues = ContentValues(2)
+        contentValues.put(Companion.messageID, messageID)
+        contentValues.put(Companion.serverHash, serverHash)
+        database.insertOrUpdate(messageHashTable, contentValues, "${Companion.messageID} = ?", arrayOf(messageID.toString()))
     }
 }

@@ -358,6 +358,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         }
     }
 
+    override fun setMessageServerHash(messageID: Long, serverHash: String) {
+        DatabaseFactory.getLokiMessageDatabase(context).setMessageServerHash(messageID, serverHash)
+    }
+
     override fun getGroup(groupID: String): GroupRecord? {
         val group = DatabaseFactory.getGroupDatabase(context).getGroup(groupID)
         return if (group.isPresent) { group.get() } else null

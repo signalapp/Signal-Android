@@ -182,7 +182,8 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
     }
 
     override fun getServerHashForMessage(messageID: Long): String? {
-        TODO("Not yet implemented")
+        val messageDB = DatabaseFactory.getLokiMessageDatabase(context)
+        return messageDB.getMessageServerHash(messageID)
     }
 
     override fun getDatabaseAttachment(attachmentId: Long): DatabaseAttachment? {
