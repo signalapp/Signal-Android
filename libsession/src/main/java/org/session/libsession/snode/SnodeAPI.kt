@@ -329,6 +329,50 @@ object SnodeAPI {
         }
     }
 
+    fun deleteMessage(publicKey: String, serverHashes: List<String>): Promise<Map<String,Boolean>, Exception> {
+        return retryIfNeeded(maxRetryCount) {
+            val module = MessagingModuleConfiguration.shared
+            val userED25519KeyPair = module.getUserED25519KeyPair() ?: return@retryIfNeeded Promise.ofFail(Error.NoKeyPair)
+            val userPublicKey = module.storage.getUserPublicKey() ?: return@retryIfNeeded Promise.ofFail(Error.NoKeyPair)
+            getSingleTargetSnode(publicKey).bind { snode ->
+                retryIfNeeded(maxRetryCount) {
+                    val signature = ByteArray(Sign.BYTES)
+                    val verificationData = (Snode.Method.DeleteMessage.rawValue + serverHashes.fold("") { a, v -> a + v }).toByteArray()
+                    sodium.cryptoSignDetached(signature, verificationData, verificationData.size.toLong(), userED25519KeyPair.secretKey.asBytes)
+                    val deleteMessageParams = mapOf(
+                        "pubkey" to userPublicKey,
+                        "pubkey_ed25519" to userED25519KeyPair.publicKey.asHexString,
+                        "messages" to serverHashes,
+                        "signature" to Base64.encodeBytes(signature)
+                    )
+                    invoke(Snode.Method.DeleteMessage, snode, publicKey, deleteMessageParams).map { rawResponse ->
+                        val swarms = rawResponse["swarm"] as? Map<String, Any> ?: return@map mapOf()
+                        val result = swarms.mapNotNull { (hexSnodePublicKey, rawJSON) ->
+                            val json = rawJSON as? Map<String, Any> ?: return@mapNotNull null
+                            val isFailed = json["failed"] as? Boolean ?: false
+                            val statusCode = json["code"] as? String
+                            val reason = json["reason"] as? String
+                            hexSnodePublicKey to if (isFailed) {
+                                Log.e("Loki", "Failed to delete messages from: $hexSnodePublicKey due to error: $reason ($statusCode).")
+                                false
+                            } else {
+                                val hashes = json["deleted"] as List<String> // Hashes of deleted messages
+                                val signature = json["signature"] as String
+                                val snodePublicKey = Key.fromHexString(hexSnodePublicKey)
+                                // The signature looks like ( PUBKEY_HEX || RMSG[0] || ... || RMSG[N] || DMSG[0] || ... || DMSG[M] )
+                                val message = (userPublicKey + serverHashes.fold("") { a, v -> a + v } + hashes.fold("") { a, v -> a + v }).toByteArray()
+                                sodium.cryptoSignVerifyDetached(Base64.decode(signature), message, message.size, snodePublicKey.asBytes)
+                            }
+                        }
+                        return@map result.toMap()
+                    }.fail { e ->
+                        Log.e("Loki", "Failed to delete messages", e)
+                    }
+                }
+            }
+        }
+    }
+
     // Parsing
     private fun parseSnodes(rawResponse: Any): List<Snode> {
         val json = rawResponse as? Map<*, *>
