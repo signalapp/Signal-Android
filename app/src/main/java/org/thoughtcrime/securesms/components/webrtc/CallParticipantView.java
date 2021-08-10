@@ -144,9 +144,9 @@ public class CallParticipantView extends ConstraintLayout {
       renderer.setVisibility(hasContentToRender ? View.VISIBLE : View.GONE);
 
       if (participant.isVideoEnabled()) {
-        if (participant.getVideoSink().getEglBase() != null) {
-          renderer.init(participant.getVideoSink().getEglBase());
-        }
+        participant.getVideoSink().getLockableEglBase().performWithValidEglBase(eglBase -> {
+          renderer.init(eglBase);
+        });
         renderer.attachBroadcastVideoSink(participant.getVideoSink());
       } else {
         renderer.attachBroadcastVideoSink(null);

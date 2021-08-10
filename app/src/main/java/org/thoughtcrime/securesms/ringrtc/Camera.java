@@ -14,13 +14,13 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CameraControl;
+import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.webrtc.Camera1Enumerator;
 import org.webrtc.Camera2Capturer;
 import org.webrtc.Camera2Enumerator;
 import org.webrtc.CameraEnumerator;
 import org.webrtc.CameraVideoCapturer;
 import org.webrtc.CapturerObserver;
-import org.webrtc.EglBase;
 import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.VideoFrame;
 
@@ -39,19 +39,19 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
 
   private static final String TAG = Log.tag(Camera.class);
 
-  @NonNull  private final Context               context;
-  @Nullable private final CameraVideoCapturer   capturer;
-  @NonNull  private final CameraEventListener   cameraEventListener;
-  @NonNull  private final EglBase               eglBase;
-            private final int                   cameraCount;
-  @NonNull  private       CameraState.Direction activeDirection;
-            private       boolean               enabled;
-            private       boolean               isInitialized;
-            private       int                   orientation;
+  @NonNull  private final Context                   context;
+  @Nullable private final CameraVideoCapturer       capturer;
+  @NonNull  private final CameraEventListener       cameraEventListener;
+  @NonNull  private final EglBaseWrapper            eglBase;
+            private final int                       cameraCount;
+  @NonNull  private       CameraState.Direction     activeDirection;
+            private       boolean                   enabled;
+            private       boolean                   isInitialized;
+            private       int                       orientation;
 
   public Camera(@NonNull Context context,
                 @NonNull CameraEventListener cameraEventListener,
-                @NonNull EglBase eglBase,
+                @NonNull EglBaseWrapper eglBase,
                 @NonNull CameraState.Direction desiredCameraDirection)
   {
     this.context                = context;
@@ -80,11 +80,13 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
   @Override
   public void initCapturer(@NonNull CapturerObserver observer) {
     if (capturer != null) {
-      capturer.initialize(SurfaceTextureHelper.create("WebRTC-SurfaceTextureHelper", eglBase.getEglBaseContext()),
-                          context,
-                          new CameraCapturerWrapper(observer));
-      capturer.setOrientation(orientation);
-      isInitialized = true;
+      eglBase.performWithValidEglBase(base -> {
+        capturer.initialize(SurfaceTextureHelper.create("WebRTC-SurfaceTextureHelper", base.getEglBaseContext()),
+                            context,
+                            new CameraCapturerWrapper(observer));
+        capturer.setOrientation(orientation);
+        isInitialized = true;
+      });
     }
   }
 

@@ -47,7 +47,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.util.BlurTransformation;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
@@ -377,9 +376,10 @@ public class WebRtcCallView extends ConstraintLayout {
     smallLocalRender.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL);
     largeLocalRender.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL);
 
-    if (localCallParticipant.getVideoSink().getEglBase() != null) {
-      largeLocalRender.init(localCallParticipant.getVideoSink().getEglBase());
-    }
+    localCallParticipant.getVideoSink().getLockableEglBase().performWithValidEglBase(eglBase -> {
+      largeLocalRender.init(eglBase);
+    });
+
 
     videoToggle.setChecked(localCallParticipant.isVideoEnabled(), false);
     smallLocalRender.setRenderInPip(true);

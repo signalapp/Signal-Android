@@ -22,7 +22,7 @@ public class BroadcastVideoSink implements VideoSink {
 
   public static final int DEVICE_ROTATION_IGNORE = -1;
 
-  private final EglBase                         eglBase;
+  private final EglBaseWrapper                  eglBase;
   private final WeakHashMap<VideoSink, Boolean> sinks;
   private final WeakHashMap<Object, Point>      requestingSizes;
   private       boolean                         dirtySizes;
@@ -32,7 +32,7 @@ public class BroadcastVideoSink implements VideoSink {
   private       boolean                         rotateWithDevice;
 
   public BroadcastVideoSink() {
-    this(null, false, true, 0);
+    this(new EglBaseWrapper(null), false, true, 0);
   }
 
   /**
@@ -41,7 +41,7 @@ public class BroadcastVideoSink implements VideoSink {
    * @param rotateWithDevice         Rotate video frame to match device orientation
    * @param deviceOrientationDegrees Device orientation in degrees
    */
-  public BroadcastVideoSink(@Nullable EglBase eglBase, boolean forceRotate, boolean rotateWithDevice, int deviceOrientationDegrees) {
+  public BroadcastVideoSink(@NonNull EglBaseWrapper eglBase, boolean forceRotate, boolean rotateWithDevice, int deviceOrientationDegrees) {
     this.eglBase                  = eglBase;
     this.sinks                    = new WeakHashMap<>();
     this.requestingSizes          = new WeakHashMap<>();
@@ -52,7 +52,7 @@ public class BroadcastVideoSink implements VideoSink {
     this.rotateWithDevice         = rotateWithDevice;
   }
 
-  public @Nullable EglBase getEglBase() {
+  public @NonNull EglBaseWrapper getLockableEglBase() {
     return eglBase;
   }
 

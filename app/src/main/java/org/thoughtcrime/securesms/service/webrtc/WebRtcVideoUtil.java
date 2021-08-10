@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
+import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.CameraEventListener;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
@@ -31,7 +32,7 @@ public final class WebRtcVideoUtil {
     final WebRtcServiceStateBuilder builder = currentState.builder();
 
     ThreadUtil.runOnMainSync(() -> {
-      EglBase            eglBase   = EglBase.create();
+      EglBaseWrapper     eglBase   = new EglBaseWrapper(EglBase.create());
       BroadcastVideoSink localSink = new BroadcastVideoSink(eglBase,
                                                             true,
                                                             false,
@@ -66,7 +67,7 @@ public final class WebRtcVideoUtil {
 
       camera = new Camera(context,
                           cameraEventListener,
-                          currentState.getVideoState().requireEglBase(),
+                          currentState.getVideoState().getLockableEglBase(),
                           currentState.getLocalDeviceState().getCameraState().getActiveDirection());
 
       camera.setOrientation(currentState.getLocalDeviceState().getOrientation().getDegrees());
@@ -88,10 +89,7 @@ public final class WebRtcVideoUtil {
       camera.dispose();
     }
 
-    EglBase eglBase = currentState.getVideoState().getEglBase();
-    if (eglBase != null) {
-      eglBase.release();
-    }
+    currentState.getVideoState().getLockableEglBase().releaseEglBase();
 
     return currentState.builder()
                        .changeVideoState()

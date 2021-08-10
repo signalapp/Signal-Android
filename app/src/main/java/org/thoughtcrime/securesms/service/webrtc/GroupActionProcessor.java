@@ -92,11 +92,11 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
       BroadcastVideoSink videoSink;
       VideoTrack         videoTrack = device.getVideoTrack();
       if (videoTrack != null) {
-        videoSink = (callParticipant != null && callParticipant.getVideoSink().getEglBase() != null) ? callParticipant.getVideoSink()
-                                                                                                     : new BroadcastVideoSink(currentState.getVideoState().requireEglBase(),
-                                                                                                                              true,
-                                                                                                                              true,
-                                                                                                                              currentState.getLocalDeviceState().getOrientation().getDegrees());
+        videoSink = (callParticipant != null && callParticipant.getVideoSink().getLockableEglBase().getEglBase() != null) ? callParticipant.getVideoSink()
+                                                                                                                          : new BroadcastVideoSink(currentState.getVideoState().getLockableEglBase(),
+                                                                                                                                                   true,
+                                                                                                                                                   true,
+                                                                                                                                                   currentState.getLocalDeviceState().getOrientation().getDegrees());
         videoTrack.addSink(videoSink);
       } else {
         videoSink = new BroadcastVideoSink();
@@ -267,7 +267,7 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
       currentState = terminateGroupCall(currentState, false).builder()
                                                             .actionProcessor(new GroupNetworkUnavailableActionProcessor(webRtcInteractor))
                                                             .changeVideoState()
-                                                            .eglBase(videoState.getEglBase())
+                                                            .eglBase(videoState.getLockableEglBase())
                                                             .camera(videoState.getCamera())
                                                             .localSink(videoState.getLocalSink())
                                                             .commit()
