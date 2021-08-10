@@ -49,6 +49,7 @@ public abstract class MessageRecord extends DisplayRecord {
   private final long                      expireStarted;
   private final boolean                   unidentified;
   public  final long                      id;
+  public  final boolean                   deleted;
 
   public abstract boolean isMms();
   public abstract boolean isMmsNotification();
@@ -71,6 +72,7 @@ public abstract class MessageRecord extends DisplayRecord {
     this.expiresIn           = expiresIn;
     this.expireStarted       = expireStarted;
     this.unidentified        = unidentified;
+    this.deleted             = false;
   }
 
   public long getId() {
@@ -103,7 +105,9 @@ public abstract class MessageRecord extends DisplayRecord {
 
   @Override
   public SpannableString getDisplayBody(@NonNull Context context) {
-    if (isGroupUpdateMessage()) {
+    if (this.deleted) {
+      return new SpannableString("This message has been deleted."); // TODO: localize
+    } else if (isGroupUpdateMessage()) {
       UpdateMessageData updateMessageData = UpdateMessageData.Companion.fromJSON(getBody());
       return new SpannableString(UpdateMessageBuilder.INSTANCE.buildGroupUpdateMessage(context, updateMessageData, getIndividualRecipient().getAddress().serialize(), isOutgoing()));
     } else if (isExpirationTimerUpdate()) {

@@ -94,6 +94,7 @@ object MessageReceiver {
             DataExtractionNotification.fromProto(proto) ?:
             ExpirationTimerUpdate.fromProto(proto) ?:
             ConfigurationMessage.fromProto(proto) ?:
+            UnsendRequest.fromProto(proto) ?:
             VisibleMessage.fromProto(proto) ?: throw Error.UnknownMessage
         // Ignore self send if needed
         if (!message.isSelfSendValid && sender == userPublicKey) throw Error.SelfSend

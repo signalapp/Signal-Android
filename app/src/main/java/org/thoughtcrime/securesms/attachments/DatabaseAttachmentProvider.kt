@@ -177,6 +177,14 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         DatabaseFactory.getLokiMessageDatabase(context).deleteMessage(messageID, isSms)
     }
 
+    override fun updateMessageAsDeleted(messageID: Long) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getServerHashForMessage(messageID: Long): String? {
+        TODO("Not yet implemented")
+    }
+
     override fun getDatabaseAttachment(attachmentId: Long): DatabaseAttachment? {
         val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
         return attachmentDatabase.getAttachment(AttachmentId(attachmentId, 0))

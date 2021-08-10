@@ -13,6 +13,8 @@ interface MessageDataProvider {
     fun getMessageID(serverID: Long): Long?
     fun getMessageID(serverId: Long, threadId: Long): Pair<Long, Boolean>?
     fun deleteMessage(messageID: Long, isSms: Boolean)
+    fun updateMessageAsDeleted(messageID: Long)
+    fun getServerHashForMessage(messageID: Long): String?
     fun getDatabaseAttachment(attachmentId: Long): DatabaseAttachment?
     fun getAttachmentStream(attachmentId: Long): SessionServiceAttachmentStream?
     fun getAttachmentPointer(attachmentId: Long): SessionServiceAttachmentPointer?
