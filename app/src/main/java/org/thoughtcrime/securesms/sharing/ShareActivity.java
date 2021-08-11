@@ -32,6 +32,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.pm.ShortcutInfoCompat;
+import androidx.core.content.pm.ShortcutManagerCompat;
 import androidx.core.util.Consumer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
@@ -118,18 +120,28 @@ public class ShareActivity extends PassphraseRequiredActivity
 
   @Override
   protected void onCreate(Bundle icicle, boolean ready) {
-    setContentView(R.layout.share_activity);
-
-    disposables.bindTo(getLifecycle());
-
     initializeArgs();
     initializeViewModel();
     initializeMedia();
     initializeIntent();
+
+    Intent intent = getIntent();
+
+    if (intent.hasExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID)) {
+      handleDirectShare();
+    } else if (intent.hasExtra(EXTRA_RECIPIENT_ID)) {
+      handleDestination();
+    } else {
+      initializeChooser();
+    }
+  }
+
+  public void initializeChooser() {
+    setContentView(R.layout.share_activity);
+    disposables.bindTo(getLifecycle());
     initializeToolbar();
     initializeResources();
     initializeSearch();
-    handleDestination();
   }
 
   @Override
@@ -400,19 +412,46 @@ public class ShareActivity extends PassphraseRequiredActivity
     Intent      intent           = getIntent();
     long        threadId         = intent.getLongExtra(EXTRA_THREAD_ID, -1);
     int         distributionType = intent.getIntExtra(EXTRA_DISTRIBUTION_TYPE, -1);
-    RecipientId recipientId      = null;
+    RecipientId recipientId      = RecipientId.from(intent.getStringExtra(EXTRA_RECIPIENT_ID));
 
-    if (intent.hasExtra(EXTRA_RECIPIENT_ID)) {
-      recipientId = RecipientId.from(intent.getStringExtra(EXTRA_RECIPIENT_ID));
-    }
-
-    boolean hasPreexistingDestination = threadId != -1 && recipientId != null && distributionType != -1;
+    boolean hasPreexistingDestination = threadId != -1 && distributionType != -1;
 
     if (hasPreexistingDestination) {
       if (contactsFragment.getView() != null) {
         contactsFragment.getView().setVisibility(View.GONE);
       }
       onSingleDestinationChosen(threadId, recipientId);
+    } else {
+      initializeChooser();
+    }
+  }
+
+  private void handleDirectShare() {
+    Intent      intent           = getIntent();
+    String extra_shortcut_id     = intent.getStringExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
+    long        threadId         = -1;
+    int         distributionType = -1;
+    RecipientId recipientId      = null;
+
+    List<ShortcutInfoCompat> shortcuts = ShortcutManagerCompat.getDynamicShortcuts(this);
+
+    for (int a = 0, N = shortcuts.size(); a < N; a++) {
+      ShortcutInfoCompat shortcut_info = shortcuts.get(a);
+      if (extra_shortcut_id.equals(shortcut_info.getId())) {
+        Bundle extras = shortcut_info.getIntent().getExtras();
+        recipientId = RecipientId.from(extras.getString(EXTRA_RECIPIENT_ID, null));
+        threadId = extras.getLong(EXTRA_THREAD_ID, -1);
+        distributionType = extras.getInt(EXTRA_DISTRIBUTION_TYPE, -1);
+        break;
+      }
+    }
+
+    boolean hasDirectShareDestination = threadId != -1 && distributionType != -1;
+
+    if (hasDirectShareDestination) {
+      onSingleDestinationChosen(threadId, recipientId);
+    } else {
+      initializeChooser();
     }
   }
 
