@@ -109,7 +109,9 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
 
   @Override
   public void onStart(@NonNull LifecycleOwner owner) {
-    mediaBrowser.connect();
+    if (!mediaBrowser.isConnected()) {
+      mediaBrowser.connect();
+    }
   }
 
   @Override
@@ -124,6 +126,7 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
     if (MediaControllerCompat.getMediaController(activity) != null) {
       MediaControllerCompat.getMediaController(activity).unregisterCallback(mediaControllerCompatCallback);
     }
+
     mediaBrowser.disconnect();
   }
 
