@@ -43,6 +43,11 @@ final class UriChatWallpaper implements ChatWallpaper, Parcelable {
   }
 
   @Override
+  public boolean isPhoto() {
+    return true;
+  }
+
+  @Override
   public void loadInto(@NonNull ImageView imageView) {
     GlideApp.with(imageView)
             .load(new DecryptableStreamUriLoader.DecryptableUri(uri))

@@ -91,6 +91,9 @@ import org.thoughtcrime.securesms.conversation.ConversationAdapter.StickyHeaderV
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.colors.ColorizerView;
+import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect;
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectItemDecoration;
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -263,6 +266,7 @@ public class ConversationFragment extends LoggingFragment {
     final LinearLayoutManager layoutManager = new SmoothScrollingLinearLayoutManager(getActivity(), true);
     list.setHasFixedSize(false);
     list.setLayoutManager(layoutManager);
+    list.addItemDecoration(new MultiselectItemDecoration(requireContext(), () -> conversationViewModel.getWallpaper().getValue()));
     list.setItemAnimator(null);
 
     if (Build.VERSION.SDK_INT >= 31) {
@@ -770,14 +774,14 @@ public class ConversationFragment extends LoggingFragment {
   }
 
   private void setCorrectMenuVisibility(@NonNull Menu menu) {
-    Set<ConversationMessage> messages = getListAdapter().getSelectedItems();
+    Set<MultiselectPart> messages = getListAdapter().getSelectedItems();
 
     if (actionMode != null && messages.size() == 0) {
       actionMode.finish();
       return;
     }
 
-    MenuState menuState = MenuState.getMenuState(recipient.get(), Stream.of(messages).map(ConversationMessage::getMessageRecord).collect(Collectors.toSet()), messageRequestViewModel.shouldShowMessageRequest());
+    MenuState menuState = MenuState.getMenuState(recipient.get(), Stream.of(messages).map(MultiselectPart::getMessageRecord).collect(Collectors.toSet()), messageRequestViewModel.shouldShowMessageRequest());
 
     menu.findItem(R.id.menu_context_forward).setVisible(menuState.shouldShowForwardAction());
     menu.findItem(R.id.menu_context_reply).setVisible(menuState.shouldShowReplyAction());
@@ -797,9 +801,9 @@ public class ConversationFragment extends LoggingFragment {
   }
 
   private ConversationMessage getSelectedConversationMessage() {
-    Set<ConversationMessage> messageRecords = getListAdapter().getSelectedItems();
+    Set<MultiselectPart> messageRecords = getListAdapter().getSelectedItems();
 
-    if (messageRecords.size() == 1) return messageRecords.iterator().next();
+    if (messageRecords.size() == 1) return messageRecords.stream().findFirst().get().getConversationMessage();
     else                            throw new AssertionError();
   }
 
@@ -848,15 +852,15 @@ public class ConversationFragment extends LoggingFragment {
     list.addItemDecoration(lastSeenDecoration);
   }
 
-  private void handleCopyMessage(final Set<ConversationMessage> conversationMessages) {
-    List<ConversationMessage> messageList = new ArrayList<>(conversationMessages);
-    Collections.sort(messageList, (lhs, rhs) -> Long.compare(lhs.getMessageRecord().getDateReceived(), rhs.getMessageRecord().getDateReceived()));
+  private void handleCopyMessage(final Set<MultiselectPart> multiselectParts) {
+    List<MultiselectPart> multiselectPartList = new ArrayList<>(multiselectParts);
+    Collections.sort(multiselectPartList, (lhs, rhs) -> Long.compare(lhs.getMessageRecord().getDateReceived(), rhs.getMessageRecord().getDateReceived()));
 
     SpannableStringBuilder bodyBuilder = new SpannableStringBuilder();
     ClipboardManager       clipboard   = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
 
-    for (ConversationMessage message : messageList) {
-      CharSequence body = message.getDisplayBody(requireContext());
+    for (MultiselectPart part : multiselectPartList) {
+      CharSequence body = part.getConversationMessage().getDisplayBody(requireContext());
       if (!TextUtils.isEmpty(body)) {
         if (bodyBuilder.length() > 0) {
           bodyBuilder.append('\n');
@@ -870,8 +874,8 @@ public class ConversationFragment extends LoggingFragment {
     }
   }
 
-  private void handleDeleteMessages(final Set<ConversationMessage> conversationMessages) {
-    Set<MessageRecord> messageRecords = Stream.of(conversationMessages).map(ConversationMessage::getMessageRecord).collect(Collectors.toSet());
+  private void handleDeleteMessages(final Set<MultiselectPart> multiselectParts) {
+    Set<MessageRecord> messageRecords = Stream.of(multiselectParts).map(MultiselectPart::getMessageRecord).collect(Collectors.toSet());
     buildRemoteDeleteConfirmationDialog(messageRecords).show();
   }
 
@@ -1394,9 +1398,9 @@ public class ConversationFragment extends LoggingFragment {
   private class ConversationFragmentItemClickListener implements ItemClickListener {
 
     @Override
-    public void onItemClick(ConversationMessage conversationMessage) {
+    public void onItemClick(MultiselectPart item) {
       if (actionMode != null) {
-        ((ConversationAdapter) list.getAdapter()).toggleSelection(conversationMessage);
+        ((ConversationAdapter) list.getAdapter()).toggleSelection(item);
         list.getAdapter().notifyDataSetChanged();
 
         if (getListAdapter().getSelectedItems().size() == 0) {
@@ -1409,11 +1413,11 @@ public class ConversationFragment extends LoggingFragment {
     }
 
     @Override
-    public void onItemLongClick(View itemView, ConversationMessage conversationMessage) {
+    public void onItemLongClick(View itemView, MultiselectPart item) {
 
       if (actionMode != null) return;
 
-      MessageRecord messageRecord = conversationMessage.getMessageRecord();
+      MessageRecord messageRecord = item.getConversationMessage().getMessageRecord();;
 
       if (messageRecord.isSecure()                                        &&
           !messageRecord.isRemoteDelete()                                 &&
@@ -1425,13 +1429,13 @@ public class ConversationFragment extends LoggingFragment {
       {
         isReacting = true;
         list.setLayoutFrozen(true);
-        listener.handleReaction(getMaskTarget(itemView), messageRecord, new ReactionsToolbarListener(conversationMessage), () -> {
+        listener.handleReaction(getMaskTarget(itemView), messageRecord, new ReactionsToolbarListener(item.getConversationMessage()), () -> {
           isReacting = false;
           list.setLayoutFrozen(false);
           WindowUtil.setLightStatusBarFromTheme(requireActivity());
         });
       } else {
-        ((ConversationAdapter) list.getAdapter()).toggleSelection(conversationMessage);
+        ((ConversationAdapter) list.getAdapter()).toggleSelection(item);
         list.getAdapter().notifyDataSetChanged();
 
         actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(actionModeCallback);
@@ -1755,7 +1759,12 @@ public class ConversationFragment extends LoggingFragment {
   }
 
   private void handleEnterMultiSelect(@NonNull ConversationMessage conversationMessage) {
-    ((ConversationAdapter) list.getAdapter()).toggleSelection(conversationMessage);
+    Set<MultiselectPart> multiselectParts = conversationMessage.getMultiselectCollection().toSet();
+
+    multiselectParts.stream().forEach(part -> {
+      ((ConversationAdapter) list.getAdapter()).toggleSelection(part);
+    });
+
     list.getAdapter().notifyDataSetChanged();
 
     actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(actionModeCallback);
@@ -1828,8 +1837,8 @@ public class ConversationFragment extends LoggingFragment {
     public boolean onMenuItemClick(MenuItem item) {
       switch (item.getItemId()) {
         case R.id.action_info:        handleDisplayDetails(conversationMessage);                                            return true;
-        case R.id.action_delete:      handleDeleteMessages(SetUtil.newHashSet(conversationMessage));                        return true;
-        case R.id.action_copy:        handleCopyMessage(SetUtil.newHashSet(conversationMessage));                           return true;
+        case R.id.action_delete:      handleDeleteMessages(conversationMessage.getMultiselectCollection().toSet());         return true;
+        case R.id.action_copy:        handleCopyMessage(conversationMessage.getMultiselectCollection().toSet());            return true;
         case R.id.action_reply:       handleReplyMessage(conversationMessage);                                              return true;
         case R.id.action_multiselect: handleEnterMultiSelect(conversationMessage);                                          return true;
         case R.id.action_forward:     handleForwardMessage(conversationMessage);                                            return true;
@@ -1848,7 +1857,7 @@ public class ConversationFragment extends LoggingFragment {
       MenuInflater inflater = mode.getMenuInflater();
       inflater.inflate(R.menu.conversation_context, menu);
 
-      mode.setTitle("1");
+      mode.setTitle(String.valueOf(getListAdapter().getSelectedItems().size()));
 
       if (Build.VERSION.SDK_INT >= 21) {
         Window window = getActivity().getWindow();

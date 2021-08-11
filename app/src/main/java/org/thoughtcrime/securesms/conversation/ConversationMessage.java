@@ -10,6 +10,8 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.Conversions;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
+import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect;
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.model.Mention;
@@ -24,9 +26,10 @@ import java.util.List;
  * for various presentations.
  */
 public class ConversationMessage {
-  @NonNull  private final MessageRecord   messageRecord;
-  @NonNull  private final List<Mention>   mentions;
-  @Nullable private final SpannableString body;
+  @NonNull  private final MessageRecord         messageRecord;
+  @NonNull  private final List<Mention>         mentions;
+  @Nullable private final SpannableString       body;
+  @NonNull  private final MultiselectCollection multiselectCollection;
 
   private ConversationMessage(@NonNull MessageRecord messageRecord) {
     this(messageRecord, null, null);
@@ -43,6 +46,8 @@ public class ConversationMessage {
     if (!this.mentions.isEmpty() && this.body != null) {
       MentionAnnotation.setMentionAnnotations(this.body, this.mentions);
     }
+
+    multiselectCollection = Multiselect.getParts(this);
   }
 
   public @NonNull MessageRecord getMessageRecord() {
@@ -51,6 +56,10 @@ public class ConversationMessage {
 
   public @NonNull List<Mention> getMentions() {
     return mentions;
+  }
+
+  public @NonNull MultiselectCollection getMultiselectCollection() {
+    return multiselectCollection;
   }
 
   @Override

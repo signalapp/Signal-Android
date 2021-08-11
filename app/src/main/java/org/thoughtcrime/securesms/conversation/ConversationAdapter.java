@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.conversation;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,7 @@ import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.colors.Colorizable;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
@@ -111,7 +113,7 @@ public class ConversationAdapter
   private final Locale            locale;
   private final Recipient         recipient;
 
-  private final Set<ConversationMessage>     selected;
+  private final Set<MultiselectPart>         selected;
   private final List<ConversationMessage>    fastRecords;
   private final Set<Long>                    releasedFastRecords;
   private final Calendar                     calendar;
@@ -210,6 +212,7 @@ public class ConversationAdapter
     return message.getUniqueId(digest);
   }
 
+  @SuppressLint("ClickableViewAccessibility")
   @Override
   public @NonNull RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     switch (viewType) {
@@ -218,19 +221,20 @@ public class ConversationAdapter
       case MESSAGE_TYPE_OUTGOING_TEXT:
       case MESSAGE_TYPE_OUTGOING_MULTIMEDIA:
       case MESSAGE_TYPE_UPDATE:
-        View                     itemView = CachedInflater.from(parent.getContext()).inflate(getLayoutForViewType(viewType), parent, false);
-        BindableConversationItem bindable = (BindableConversationItem) itemView;
+        View                          itemView        = CachedInflater.from(parent.getContext()).inflate(getLayoutForViewType(viewType), parent, false);
+        BindableConversationItem      bindable        = (BindableConversationItem) itemView;
 
-        itemView.setOnClickListener(view -> {
+        itemView.setOnClickListener((v) -> {
           if (clickListener != null) {
-            clickListener.onItemClick(bindable.getConversationMessage());
+            clickListener.onItemClick(bindable.getMultiselectPartForLatestTouch());
           }
         });
 
-        itemView.setOnLongClickListener(view -> {
+        itemView.setOnLongClickListener((v) -> {
           if (clickListener != null) {
-            clickListener.onItemLongClick(itemView, bindable.getConversationMessage());
+            clickListener.onItemLongClick(itemView, bindable.getMultiselectPartForLatestTouch());
           }
+
           return true;
         });
 
@@ -555,7 +559,7 @@ public class ConversationAdapter
   /**
    * Returns set of records that are selected in multi-select mode.
    */
-  Set<ConversationMessage> getSelectedItems() {
+  public Set<MultiselectPart> getSelectedItems() {
     return new HashSet<>(selected);
   }
 
@@ -569,11 +573,11 @@ public class ConversationAdapter
   /**
    * Toggles the selected state of a record in multi-select mode.
    */
-  void toggleSelection(ConversationMessage conversationMessage) {
-    if (selected.contains(conversationMessage)) {
-      selected.remove(conversationMessage);
+  void toggleSelection(MultiselectPart multiselectPart) {
+    if (selected.contains(multiselectPart)) {
+      selected.remove(multiselectPart);
     } else {
-      selected.add(conversationMessage);
+      selected.add(multiselectPart);
     }
   }
 
@@ -782,7 +786,7 @@ public class ConversationAdapter
   }
 
   interface ItemClickListener extends BindableConversationItem.EventListener {
-    void onItemClick(ConversationMessage item);
-    void onItemLongClick(View itemView, ConversationMessage item);
+    void onItemClick(MultiselectPart item);
+    void onItemLongClick(View itemView, MultiselectPart item);
   }
 }

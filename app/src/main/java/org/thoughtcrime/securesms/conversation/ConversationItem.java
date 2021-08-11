@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.conversation;
 
+import static org.thoughtcrime.securesms.util.ThemeUtil.isDarkTheme;
+
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
@@ -42,6 +44,7 @@ import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,9 +61,9 @@ import androidx.core.content.ContextCompat;
 import androidx.core.text.util.LinkifyCompat;
 import androidx.lifecycle.LifecycleOwner;
 
-import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.common.collect.Sets;
 
 import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.logging.Log;
@@ -85,6 +88,9 @@ import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
+import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect;
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
@@ -116,7 +122,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageView;
-import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan;
@@ -136,13 +141,12 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
-
-import static org.thoughtcrime.securesms.util.ThemeUtil.isDarkTheme;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -162,7 +166,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private static final Rect SWIPE_RECT = new Rect();
 
-  private ClipProjectionDrawable backgroundDrawable;
   private ConversationMessage    conversationMessage;
   private MessageRecord          messageRecord;
   private Locale                 locale;
@@ -185,7 +188,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
             private   AlertView                  alertView;
             protected ReactionsConversationView  reactionsView;
 
-  private @NonNull  Set<ConversationMessage>                batchSelected = new HashSet<>();
+  private @NonNull  Set<MultiselectPart>                    batchSelected = new HashSet<>();
   private @NonNull  Outliner                                outliner      = new Outliner();
   private @NonNull  Outliner                                pulseOutliner = new Outliner();
   private @NonNull  List<Outliner>                          outliners     = new ArrayList<>(2);
@@ -221,6 +224,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private Projection.Corners bodyBubbleCorners;
   private Colorizer          colorizer;
   private boolean            hasWallpaper;
+  private float              lastYDownRelativeToThis;
 
   public ConversationItem(Context context) {
     this(context, null);
@@ -242,8 +246,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     initializeAttributes();
 
-    this.backgroundDrawable      = new ClipProjectionDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getContext(),
-                                                                                                               R.drawable.conversation_item_background)));
     this.bodyText                =                    findViewById(R.id.conversation_item_body);
     this.footer                  =                    findViewById(R.id.conversation_item_footer);
     this.stickerFooter           =                    findViewById(R.id.conversation_item_sticker_footer);
@@ -279,7 +281,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                    @NonNull Optional<MessageRecord> nextMessageRecord,
                    @NonNull GlideRequests glideRequests,
                    @NonNull Locale locale,
-                   @NonNull Set<ConversationMessage> batchSelected,
+                   @NonNull Set<MultiselectPart> batchSelected,
                    @NonNull Recipient conversationRecipient,
                    @Nullable String searchQuery,
                    boolean pulse,
@@ -291,6 +293,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   {
     if (this.recipient != null) this.recipient.removeForeverObserver(this);
     if (this.conversationRecipient != null) this.conversationRecipient.removeForeverObserver(this);
+
+    lastYDownRelativeToThis = 0;
 
     conversationRecipient = conversationRecipient.resolve();
 
@@ -329,6 +333,15 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   @Override
   public void updateTimestamps() {
     getActiveFooter(messageRecord).setMessageRecord(messageRecord, locale);
+  }
+
+  @Override
+  public boolean onInterceptTouchEvent(MotionEvent ev) {
+    if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+      lastYDownRelativeToThis = ev.getY();
+    }
+
+    return super.onInterceptTouchEvent(ev);
   }
 
   @Override
@@ -456,6 +469,60 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     cancelPulseOutlinerAnimation();
   }
 
+  @Override
+  public @NonNull MultiselectPart getMultiselectPartForLatestTouch() {
+    MultiselectCollection parts = conversationMessage.getMultiselectCollection();
+
+    if (parts.isSingle()) {
+      return parts.asSingle().getSinglePart();
+    }
+
+    MultiselectPart top    = parts.asDouble().getTopPart();
+    MultiselectPart bottom = parts.asDouble().getBottomPart();
+
+    if (hasThumbnail(messageRecord)) {
+      Projection thumbnailProjection = Projection.relativeToParent(this, mediaThumbnailStub.require(), null);
+      float mediaBoundary = thumbnailProjection.getY() + thumbnailProjection.getHeight();
+
+      if (lastYDownRelativeToThis > mediaBoundary) {
+        return bottom;
+      } else {
+        return top;
+      }
+    } else {
+      throw new IllegalStateException("Found a situation where we have something other than a thumbnail.");
+    }
+  }
+
+  @Override
+  public int getTopBoundaryOfMultiselectPart(@NonNull MultiselectPart multiselectPart) {
+    if (multiselectPart instanceof MultiselectPart.Attachments && hasThumbnail(messageRecord)) {
+      Projection projection = Projection.relativeToViewRoot(mediaThumbnailStub.require(), null);
+      return (int) projection.getY();
+    } else if (multiselectPart instanceof MultiselectPart.Text && hasThumbnail(messageRecord)) {
+      Projection projection = Projection.relativeToViewRoot(mediaThumbnailStub.require(), null);
+      return (int) projection.getY() + projection.getHeight();
+    } else {
+      return getTop();
+    }
+  }
+
+  @Override
+  public int getBottomBoundaryOfMultiselectPart(@NonNull MultiselectPart multiselectPart) {
+    if (multiselectPart instanceof MultiselectPart.Attachments && hasThumbnail(messageRecord)) {
+      Projection projection = Projection.relativeToViewRoot(mediaThumbnailStub.require(), null);
+      return (int) projection.getY() + projection.getHeight();
+    } else {
+      return getBottom();
+    }
+  }
+
+  @Override
+  public boolean hasNonSelectableMedia() {
+    return hasQuote(messageRecord) || hasLinkPreview(messageRecord);
+  }
+
+  @Override
   public ConversationMessage getConversationMessage() {
     return conversationMessage;
   }
@@ -539,11 +606,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setInteractionState(ConversationMessage conversationMessage, boolean pulseMention) {
-    if (batchSelected.contains(conversationMessage)) {
-      setBackground(backgroundDrawable);
+    Set<MultiselectPart> multiselectParts  = conversationMessage.getMultiselectCollection().toSet();
+    boolean              isMessageSelected = Util.hasItems(Sets.intersection(multiselectParts, batchSelected));
+
+    if (isMessageSelected) {
       setSelected(true);
     } else if (pulseMention) {
-      setBackground(null);
       setSelected(false);
       startPulseOutlinerAnimation();
     } else {
@@ -743,7 +811,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     bodyBubble.setQuoteViewProjection(null);
     bodyBubble.setVideoPlayerProjection(null);
-    updateSelectedBackgroundDrawableProjections();
 
     if (eventListener != null && audioViewStub.resolved()) {
       Log.d(TAG, "setMediaAttributes: unregistering voice note callbacks for audio slide " + audioViewStub.get().getAudioSlideUri());
@@ -1530,7 +1597,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (mediaThumbnailStub != null && mediaThumbnailStub.resolved()) {
       mediaThumbnailStub.require().showThumbnailView();
       bodyBubble.setVideoPlayerProjection(null);
-      updateSelectedBackgroundDrawableProjections();
     }
   }
 
@@ -1540,7 +1606,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       mediaThumbnailStub.require().hideThumbnailView();
       mediaThumbnailStub.require().getDrawingRect(thumbnailMaskingRect);
       bodyBubble.setVideoPlayerProjection(Projection.relativeToViewWithCommonRoot(mediaThumbnailStub.require(), bodyBubble, null));
-      updateSelectedBackgroundDrawableProjections();
     }
   }
 
@@ -1611,23 +1676,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       projections.add(quoteView.getProjection((ViewGroup) getRootView()).translateX(bodyBubble.getTranslationX()));
     }
 
-    updateSelectedBackgroundDrawableProjections();
     return projections;
-  }
-
-  private void updateSelectedBackgroundDrawableProjections() {
-    Set<Projection> projections = Stream.of(bodyBubble.getProjections())
-                                        .map(p -> Projection.translateFromDescendantToParentCoords(p, bodyBubble, this))
-                                        .collect(Collectors.toSet());
-
-    if (messageRecord.isOutgoing()  &&
-        !hasNoBubble(messageRecord) &&
-        bodyBubbleCorners != null)
-    {
-      projections.add(Projection.relativeToParent(this, bodyBubble, bodyBubbleCorners));
-    }
-
-    backgroundDrawable.setProjections(projections);
   }
 
   private class SharedContactEventListener implements SharedContactView.EventListener {
