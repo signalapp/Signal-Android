@@ -1157,11 +1157,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         } else {
             messageDataProvider.getServerHashForMessage(message.id)?.let { serverHash ->
                 SnodeAPI.deleteMessage(thread.address.serialize(), listOf(serverHash))
-                    .failUi { error ->
+                    .success {
+                        messageDataProvider.deleteMessage(message.id, !message.isMms)
+                    }.failUi { error ->
                         Toast.makeText(this@ConversationActivityV2, "Couldn't delete message due to error: $error", Toast.LENGTH_LONG).show()
                     }
             }
-            messageDataProvider.deleteMessage(message.id, !message.isMms)
         }
     }
 
