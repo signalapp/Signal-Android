@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.view_document.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import java.util.*
 
 class DeletedMessageView : LinearLayout {
 
@@ -27,7 +28,8 @@ class DeletedMessageView : LinearLayout {
 
     // region Updating
     fun bind(message: MessageRecord, @ColorInt textColor: Int) {
-        deleteTextView.text = "This message has been deleted"
+        assert(message.deleted)
+        deleteTextView.text = context.getString(R.string.deleted_message)
         deleteTextView.setTextColor(textColor)
         deletedMessageViewIconImageView.imageTintList = ColorStateList.valueOf(textColor)
     }

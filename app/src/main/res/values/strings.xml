@@ -893,4 +893,9 @@
     <string name="dialog_send_seed_send_button_title">Send</string>
     <string name="notify_type_all">All</string>
     <string name="notify_type_mentions">Mentions</string>
+    <string name="deleted_message">This message has been deleted</string>
+    <string name="delete_message_for_me">Delete just for me</string>
+    <string name="delete_message_for_everyone">Delete for everyone</string>
+    <string name="delete_message_for_me_and_recipient">Delete for me and %s</string>
+
 </resources>
