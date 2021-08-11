@@ -428,7 +428,7 @@ public class ShareActivity extends PassphraseRequiredActivity
 
   private void handleDirectShare() {
     Intent      intent           = getIntent();
-    String extra_shortcut_id     = intent.getStringExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
+    String      extraShortcutId  = intent.getStringExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
     long        threadId         = -1;
     int         distributionType = -1;
     RecipientId recipientId      = null;
@@ -436,9 +436,9 @@ public class ShareActivity extends PassphraseRequiredActivity
     List<ShortcutInfoCompat> shortcuts = ShortcutManagerCompat.getDynamicShortcuts(this);
 
     for (int a = 0, N = shortcuts.size(); a < N; a++) {
-      ShortcutInfoCompat shortcut_info = shortcuts.get(a);
-      if (extra_shortcut_id.equals(shortcut_info.getId())) {
-        Bundle extras = shortcut_info.getIntent().getExtras();
+      ShortcutInfoCompat shortcutInfo = shortcuts.get(a);
+      if (extraShortcutId.equals(shortcutInfo.getId())) {
+        Bundle extras = shortcutInfo.getIntent().getExtras();
         recipientId = RecipientId.from(extras.getString(EXTRA_RECIPIENT_ID, null));
         threadId = extras.getLong(EXTRA_THREAD_ID, -1);
         distributionType = extras.getInt(EXTRA_DISTRIBUTION_TYPE, -1);
