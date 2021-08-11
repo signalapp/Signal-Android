@@ -52,7 +52,7 @@ object SnodeAPI {
         if (useTestnet) {
             setOf( "http://public.loki.foundation:38157" )
         } else {
-            setOf( "https://storage.seed1.loki.network:$seedNodePort ", "https://storage.seed3.loki.network:$seedNodePort ", "https://public.loki.foundation:$seedNodePort" )
+            setOf( "https://storage.seed1.loki.network:$seedNodePort", "https://storage.seed3.loki.network:$seedNodePort", "https://public.loki.foundation:$seedNodePort" )
         }
     }
     private val snodeFailureThreshold = 3
