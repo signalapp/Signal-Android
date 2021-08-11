@@ -50,6 +50,7 @@ import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.mentions.Mention
 import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.messages.control.DataExtractionNotification
+import org.session.libsession.messaging.messages.control.UnsendRequest
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
 import org.session.libsession.messaging.messages.visible.OpenGroupInvitation
@@ -59,6 +60,7 @@ import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
+import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.Address.Companion.fromSerialized
 import org.session.libsession.utilities.MediaTypes
@@ -1114,38 +1116,64 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         stopAudioHandler.removeCallbacks(stopVoiceMessageRecordingTask)
     }
 
-    override fun deleteMessages(messages: Set<MessageRecord>) {
-        val messageCount = messages.size
+    private fun buildUsendRequest(message: MessageRecord): UnsendRequest? {
+        if (this.thread.isOpenGroupRecipient) return null
+        val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
+        messageDataProvider.getServerHashForMessage(message.id) ?: return null
+        val unsendRequest = UnsendRequest()
+        if (message.isOutgoing) {
+            unsendRequest.author = TextSecurePreferences.getLocalNumber(this)
+        } else {
+            unsendRequest.author = message.individualRecipient.address.contactIdentifier()
+        }
+        unsendRequest.timestamp = message.timestamp
+
+        return unsendRequest
+    }
+
+    private fun deleteLocally(message: MessageRecord) {
+        buildUsendRequest(message)?.let { unsendRequest ->
+            MessageSender.send(unsendRequest, thread.address)
+        }
+        MessagingModuleConfiguration.shared.messageDataProvider.deleteMessage(message.id, !message.isMms)
+    }
+
+    private fun deleteForEveryone(message: MessageRecord) {
+        buildUsendRequest(message)?.let { unsendRequest ->
+            MessageSender.send(unsendRequest, thread.address)
+        }
         val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
         val messageDB = DatabaseFactory.getLokiMessageDatabase(this@ConversationActivityV2)
+        val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
+        if (openGroup != null) {
+            messageDB.getServerID(message.id, !message.isMms)?.let { messageServerID ->
+                OpenGroupAPIV2.deleteMessage(messageServerID, openGroup.room, openGroup.server)
+                    .success {
+                        messageDataProvider.deleteMessage(message.id, !message.isMms)
+                    }.failUi { error ->
+                        Toast.makeText(this@ConversationActivityV2, "Couldn't delete message due to error: $error", Toast.LENGTH_LONG).show()
+                    }
+            }
+        } else {
+            messageDataProvider.getServerHashForMessage(message.id)?.let { serverHash ->
+                SnodeAPI.deleteMessage(thread.address.serialize(), listOf(serverHash))
+                    .failUi { error ->
+                        Toast.makeText(this@ConversationActivityV2, "Couldn't delete message due to error: $error", Toast.LENGTH_LONG).show()
+                    }
+            }
+            messageDataProvider.deleteMessage(message.id, !message.isMms)
+        }
+    }
+
+    override fun deleteMessages(messages: Set<MessageRecord>) {
+        val messageCount = messages.size
         val builder = AlertDialog.Builder(this)
         builder.setTitle(resources.getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messageCount, messageCount))
         builder.setMessage(resources.getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messageCount, messageCount))
         builder.setCancelable(true)
-        val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
         builder.setPositiveButton(R.string.delete) { _, _ ->
-            if (openGroup != null) {
-                val messageServerIDs = mutableMapOf<Long, MessageRecord>()
-                for (message in messages) {
-                    val messageServerID = messageDB.getServerID(message.id, !message.isMms) ?: continue
-                    messageServerIDs[messageServerID] = message
-                }
-                for ((messageServerID, message) in messageServerIDs) {
-                    OpenGroupAPIV2.deleteMessage(messageServerID, openGroup.room, openGroup.server)
-                        .success {
-                            messageDataProvider.deleteMessage(message.id, !message.isMms)
-                        }.failUi { error ->
-                            Toast.makeText(this@ConversationActivityV2, "Couldn't delete message due to error: $error", Toast.LENGTH_LONG).show()
-                        }
-                }
-            } else {
-                for (message in messages) {
-                    if (message.isMms) {
-                        DatabaseFactory.getMmsDatabase(this@ConversationActivityV2).delete(message.id)
-                    } else {
-                        DatabaseFactory.getSmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
-                    }
-                }
+            for (message in messages) {
+                this.deleteForEveryone(message)
             }
             endActionMode()
         }

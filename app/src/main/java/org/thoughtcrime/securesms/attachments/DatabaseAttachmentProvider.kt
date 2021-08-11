@@ -175,6 +175,7 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
             db.delete(messageID)
         }
         DatabaseFactory.getLokiMessageDatabase(context).deleteMessage(messageID, isSms)
+        DatabaseFactory.getLokiMessageDatabase(context).deleteMessageServerHash(messageID)
     }
 
     override fun updateMessageAsDeleted(messageID: Long) {
