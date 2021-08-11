@@ -39,6 +39,8 @@ public final class ConversationUtil {
 
   private static final String TAG = Log.tag(ConversationUtil.class);
 
+  private static final String CATEGORY_SHARE_TARGET = "org.thoughtcrime.securesms.sharing.CATEGORY_SHARE_TARGET";
+
   private ConversationUtil() {}
 
 
@@ -204,7 +206,7 @@ public final class ConversationUtil {
                                  .setLongLabel(longName)
                                  .setIcon(AvatarUtil.getIconCompatForShortcut(context, resolved))
                                  .setPersons(persons)
-                                 .setCategories(Collections.singleton("android.shortcut.conversation"))
+                                 .setCategories(Collections.singleton(CATEGORY_SHARE_TARGET))
                                  .setActivity(new ComponentName(context, "org.thoughtcrime.securesms.RoutingActivity"))
                                  .setRank(rank)
                                  .build();
