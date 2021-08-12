@@ -15,6 +15,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.SlideFactory;
 import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.MessageUtil;
@@ -33,6 +35,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * MultiShareSender encapsulates send logic (stolen from {@link org.thoughtcrime.securesms.conversation.ConversationActivity}
@@ -65,6 +68,7 @@ public final class MultiShareSender {
     for (ShareContactAndThread shareContactAndThread : multiShareArgs.getShareContactAndThreads()) {
       Recipient recipient = Recipient.resolved(shareContactAndThread.getRecipientId());
 
+      List<Mention>   mentions       = getValidMentionsForRecipient(recipient, multiShareArgs.getMentions());
       TransportOption transport      = resolveTransportOption(context, recipient);
       boolean         forceSms       = recipient.isForceSmsSelection() && transport.isSms();
       int             subscriptionId = transport.getSimSubscriptionId().or(-1);
@@ -78,12 +82,13 @@ public final class MultiShareSender {
                                        multiShareArgs.getLinkPreview() != null                                           ||
                                        recipient.isGroup()                                                               ||
                                        recipient.getEmail().isPresent()                                                  ||
+                                       !mentions.isEmpty()                                                               ||
                                        needsSplit;
 
       if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
         results.add(new MultiShareSendResult(shareContactAndThread, MultiShareSendResult.Type.MMS_NOT_ENABLED));
       } else if (isMediaMessage) {
-        sendMediaMessage(context, multiShareArgs, recipient, slideDeck, transport, shareContactAndThread.getThreadId(), forceSms, expiresIn, multiShareArgs.isViewOnce(), subscriptionId);
+        sendMediaMessage(context, multiShareArgs, recipient, slideDeck, transport, shareContactAndThread.getThreadId(), forceSms, expiresIn, multiShareArgs.isViewOnce(), subscriptionId, mentions);
         results.add(new MultiShareSendResult(shareContactAndThread, MultiShareSendResult.Type.SUCCESS));
       } else {
         sendTextMessage(context, multiShareArgs, recipient, shareContactAndThread.getThreadId() ,forceSms, expiresIn, subscriptionId);
@@ -132,7 +137,8 @@ public final class MultiShareSender {
                                        boolean forceSms,
                                        long expiresIn,
                                        boolean isViewOnce,
-                                       int subscriptionId)
+                                       int subscriptionId,
+                                       @NonNull List<Mention> validatedMentions)
   {
     String body = multiShareArgs.getDraftText();
     if (transportOption.isType(TransportOption.Type.TEXTSECURE) && !forceSms && body != null) {
@@ -156,7 +162,7 @@ public final class MultiShareSender {
                                                                          Collections.emptyList(),
                                                                          multiShareArgs.getLinkPreview() != null ? Collections.singletonList(multiShareArgs.getLinkPreview())
                                                                                                                  : Collections.emptyList(),
-                                                                         Collections.emptyList());
+                                                                         validatedMentions);
 
     MessageSender.send(context, outgoingMediaMessage, threadId, forceSms, null);
   }
@@ -187,6 +193,21 @@ public final class MultiShareSender {
     }
 
     return slideDeck;
+  }
+
+  private static @NonNull List<Mention> getValidMentionsForRecipient(@NonNull Recipient recipient, @NonNull List<Mention> mentions) {
+    if (mentions.isEmpty() || !recipient.isPushV2Group() || !recipient.isActiveGroup()) {
+      return Collections.emptyList();
+    } else {
+      Set<RecipientId> validRecipientIds = recipient.getParticipants()
+                                                    .stream()
+                                                    .map(Recipient::getId)
+                                                    .collect(Collectors.toSet());
+
+      return mentions.stream()
+                     .filter(mention -> validRecipientIds.contains(mention.getRecipientId()))
+                     .collect(Collectors.toList());
+    }
   }
 
   public static final class MultiShareSendResultCollection {

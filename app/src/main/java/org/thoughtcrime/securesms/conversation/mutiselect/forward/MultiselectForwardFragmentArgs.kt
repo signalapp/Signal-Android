@@ -42,7 +42,7 @@ class MultiselectForwardFragmentArgs(
 
     @WorkerThread
     private fun buildMultiShareArgs(context: Context, conversationMessage: ConversationMessage, selectedParts: Set<MultiselectPart>): MultiShareArgs {
-      val builder = MultiShareArgs.Builder(setOf())
+      val builder = MultiShareArgs.Builder(setOf()).withMentions(conversationMessage.mentions)
 
       if (conversationMessage.multiselectCollection.isTextSelected(selectedParts)) {
         val mediaMessage: MmsMessageRecord? = conversationMessage.messageRecord as? MmsMessageRecord
