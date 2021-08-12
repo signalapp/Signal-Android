@@ -40,10 +40,10 @@ final class ConversationReactionDelegate {
   void show(@NonNull Activity activity,
             @NonNull MaskView.MaskTarget maskTarget,
             @NonNull Recipient conversationRecipient,
-            @NonNull MessageRecord messageRecord,
+            @NonNull ConversationMessage conversationMessage,
             int maskPaddingBottom)
   {
-    resolveOverlay().show(activity, maskTarget, conversationRecipient, messageRecord, maskPaddingBottom, lastSeenDownPoint);
+    resolveOverlay().show(activity, maskTarget, conversationRecipient, conversationMessage, maskPaddingBottom, lastSeenDownPoint);
   }
 
   void showMask(@NonNull MaskView.MaskTarget maskTarget, int maskPaddingTop, int maskPaddingBottom) {

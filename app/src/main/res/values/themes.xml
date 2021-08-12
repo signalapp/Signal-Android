@@ -389,6 +389,17 @@
         <item name="backgroundTint">@color/react_with_any_background</item>
     </style>
 
+    <style name="Widget.Signal.FixedRoundedCorners" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="bottomSheetStyle">@style/Widget.Signal.FixedRoundedCorners.BottomSheet</item>
+    </style>
+
+    <style name="Widget.Signal.FixedRoundedCorners.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+        <item name="backgroundTint">@color/signal_background_primary</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.Signal.BottomSheet.Rounded" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">18dp</item>

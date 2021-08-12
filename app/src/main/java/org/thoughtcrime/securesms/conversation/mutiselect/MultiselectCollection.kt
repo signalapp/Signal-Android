@@ -1,8 +1,5 @@
 package org.thoughtcrime.securesms.conversation.mutiselect
 
-import java.lang.IllegalArgumentException
-import java.lang.UnsupportedOperationException
-
 sealed class MultiselectCollection {
 
   data class Single(val singlePart: MultiselectPart) : MultiselectCollection() {
@@ -36,6 +33,26 @@ sealed class MultiselectCollection {
         else -> throw IllegalArgumentException("Unsupported set size: ${partsSet.size}")
       }
     }
+  }
+
+  fun isTextSelected(selectedParts: Set<MultiselectPart>): Boolean {
+    val textParts: Set<MultiselectPart> = toSet().filter(this::couldContainText).toSet()
+
+    return textParts.any { selectedParts.contains(it) }
+  }
+
+  fun isMediaSelected(selectedParts: Set<MultiselectPart>): Boolean {
+    val mediaParts: Set<MultiselectPart> = toSet().filter(this::couldContainMedia).toSet()
+
+    return mediaParts.any { selectedParts.contains(it) }
+  }
+
+  private fun couldContainText(multiselectPart: MultiselectPart): Boolean {
+    return multiselectPart is MultiselectPart.Text || multiselectPart is MultiselectPart.Message
+  }
+
+  private fun couldContainMedia(multiselectPart: MultiselectPart): Boolean {
+    return multiselectPart is MultiselectPart.Attachments || multiselectPart is MultiselectPart.Message
   }
 
   abstract val size: Int

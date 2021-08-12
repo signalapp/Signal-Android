@@ -118,13 +118,13 @@ public final class FeatureFlags {
       SENDER_KEY,
       RETRY_RECEIPTS,
       SUGGEST_SMS_BLACKLIST,
-      ANNOUNCEMENT_GROUPS
+      ANNOUNCEMENT_GROUPS,
+      FORWARD_MULTIPLE_MESSAGES
   );
 
   @VisibleForTesting
   static final Set<String> NOT_REMOTE_CAPABLE = SetUtil.newHashSet(
-      PHONE_NUMBER_PRIVACY_VERSION,
-      FORWARD_MULTIPLE_MESSAGES
+      PHONE_NUMBER_PRIVACY_VERSION
   );
 
   /**

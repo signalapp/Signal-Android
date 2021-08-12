@@ -158,6 +158,10 @@ public final class MultiShareArgs implements Parcelable {
   }
 
   public Builder buildUpon() {
+    return buildUpon(shareContactAndThreads);
+  }
+
+  public Builder buildUpon(@NonNull Set<ShareContactAndThread> shareContactAndThreads) {
     return new Builder(shareContactAndThreads).asBorderless(borderless)
                                               .asViewOnce(viewOnce)
                                               .withDataType(dataType)

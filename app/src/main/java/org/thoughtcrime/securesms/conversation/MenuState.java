@@ -2,12 +2,15 @@ package org.thoughtcrime.securesms.conversation;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 final class MenuState {
 
@@ -58,19 +61,23 @@ final class MenuState {
   }
 
   static MenuState getMenuState(@NonNull Recipient conversationRecipient,
-                                @NonNull Set<MessageRecord> messageRecords,
+                                @NonNull Set<MultiselectPart> selectedParts,
                                 boolean shouldShowMessageRequest)
   {
     
-    Builder builder       = new Builder();
-    boolean actionMessage = false;
-    boolean hasText       = false;
-    boolean sharedContact = false;
-    boolean viewOnce      = false;
-    boolean remoteDelete  = false;
-    boolean hasInMemory   = false;
+    Builder builder         = new Builder();
+    boolean actionMessage   = false;
+    boolean hasText         = false;
+    boolean sharedContact   = false;
+    boolean viewOnce        = false;
+    boolean remoteDelete    = false;
+    boolean hasInMemory     = false;
+    boolean hasPendingMedia = false;
+    boolean mediaIsSelected = false;
 
-    for (MessageRecord messageRecord : messageRecords) {
+    for (MultiselectPart part : selectedParts) {
+      MessageRecord messageRecord = part.getMessageRecord();
+
       if (isActionMessage(messageRecord)) {
         actionMessage = true;
         if (messageRecord.isInMemoryMessageRecord()) {
@@ -78,8 +85,15 @@ final class MenuState {
         }
       }
 
-      if (messageRecord.getBody().length() > 0) {
-        hasText = true;
+      if (!(part instanceof MultiselectPart.Attachments)) {
+        if (messageRecord.getBody().length() > 0) {
+          hasText = true;
+        }
+      } else {
+        mediaIsSelected = true;
+        if (messageRecord.isMediaPending()) {
+          hasPendingMedia = true;
+        }
       }
 
       if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getSharedContacts().isEmpty()) {
@@ -95,31 +109,51 @@ final class MenuState {
       }
     }
 
-    if (messageRecords.size() > 1) {
-      builder.shouldShowForwardAction(false)
+    boolean shouldShowForwardAction = !actionMessage   &&
+                                      !sharedContact   &&
+                                      !viewOnce        &&
+                                      !remoteDelete    &&
+                                      !hasPendingMedia &&
+                                      ((FeatureFlags.forwardMultipleMessages() && selectedParts.size() <= 5) || selectedParts.size() == 1);
+
+    int uniqueRecords = selectedParts.stream()
+                                     .map(MultiselectPart::getMessageRecord)
+                                     .collect(Collectors.toSet())
+                                     .size();
+
+    if (uniqueRecords > 1) {
+      builder.shouldShowForwardAction(shouldShowForwardAction)
              .shouldShowReplyAction(false)
              .shouldShowDetailsAction(false)
              .shouldShowSaveAttachmentAction(false)
              .shouldShowResendAction(false);
     } else {
-      MessageRecord messageRecord = messageRecords.iterator().next();
+      MessageRecord messageRecord = selectedParts.iterator().next().getMessageRecord();
 
       builder.shouldShowResendAction(messageRecord.isFailed())
-             .shouldShowSaveAttachmentAction(!actionMessage                                              &&
+             .shouldShowSaveAttachmentAction(mediaIsSelected                                             &&
+                                             !actionMessage                                              &&
                                              !viewOnce                                                   &&
                                              messageRecord.isMms()                                       &&
-                                             !messageRecord.isMediaPending()                             &&
+                                             !hasPendingMedia                                            &&
                                              !messageRecord.isMmsNotification()                          &&
                                              ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
                                              ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null)
-             .shouldShowForwardAction(!actionMessage && !sharedContact && !viewOnce && !remoteDelete && !messageRecord.isMediaPending())
+             .shouldShowForwardAction(shouldShowForwardAction)
              .shouldShowDetailsAction(!actionMessage)
              .shouldShowReplyAction(canReplyToMessage(conversationRecipient, actionMessage, messageRecord, shouldShowMessageRequest));
     }
 
     return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText)
-                  .shouldShowDeleteAction(!hasInMemory)
+                  .shouldShowDeleteAction(!hasInMemory && onlyContainsCompleteMessages(selectedParts))
                   .build();
+  }
+
+  private static boolean onlyContainsCompleteMessages(@NonNull Set<MultiselectPart> multiselectParts) {
+    return multiselectParts.stream()
+                           .map(MultiselectPart::getConversationMessage)
+                           .map(ConversationMessage::getMultiselectCollection)
+                           .allMatch(collection -> multiselectParts.containsAll(collection.toSet()));
   }
 
   static boolean canReplyToMessage(@NonNull Recipient conversationRecipient, boolean actionMessage, @NonNull MessageRecord messageRecord, boolean isDisplayingMessageRequest) {

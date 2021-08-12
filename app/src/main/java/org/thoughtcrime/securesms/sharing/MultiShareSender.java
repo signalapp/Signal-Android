@@ -50,11 +50,11 @@ public final class MultiShareSender {
 
   @MainThread
   public static void send(@NonNull MultiShareArgs multiShareArgs, @NonNull Consumer<MultiShareSendResultCollection> results) {
-    SimpleTask.run(() -> sendInternal(multiShareArgs), results::accept);
+    SimpleTask.run(() -> sendSync(multiShareArgs), results::accept);
   }
 
   @WorkerThread
-  private static MultiShareSendResultCollection sendInternal(@NonNull MultiShareArgs multiShareArgs) {
+  public static MultiShareSendResultCollection sendSync(@NonNull MultiShareArgs multiShareArgs) {
     Context   context      = ApplicationDependencies.getApplication();
     boolean   isMmsEnabled = Util.isMmsCapable(context);
     String    message      = multiShareArgs.getDraftText();
@@ -198,6 +198,10 @@ public final class MultiShareSender {
 
     public boolean containsFailures() {
       return Stream.of(results).anyMatch(result -> result.type != MultiShareSendResult.Type.SUCCESS);
+    }
+
+    public boolean containsOnlyFailures() {
+      return Stream.of(results).allMatch(result -> result.type != MultiShareSendResult.Type.SUCCESS);
     }
   }
 

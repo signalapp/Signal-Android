@@ -26,6 +26,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
@@ -178,12 +180,16 @@ public final class ContactSelectionListFragment extends LoggingFragment
       onSelectionLimitReachedListener = (OnSelectionLimitReachedListener) context;
     }
 
+    if (getParentFragment() instanceof OnSelectionLimitReachedListener) {
+      onSelectionLimitReachedListener = (OnSelectionLimitReachedListener) getParentFragment();
+    }
+
     if (context instanceof AbstractContactsCursorLoaderFactoryProvider) {
       cursorFactoryProvider = (AbstractContactsCursorLoaderFactoryProvider) context;
     }
 
     if (getParentFragment() instanceof AbstractContactsCursorLoaderFactoryProvider) {
-      cursorFactoryProvider = (AbstractContactsCursorLoaderFactoryProvider) context;
+      cursorFactoryProvider = (AbstractContactsCursorLoaderFactoryProvider) getParentFragment();
     }
   }
 
@@ -262,7 +268,9 @@ public final class ContactSelectionListFragment extends LoggingFragment
 
     recyclerView.setClipToPadding(recyclerViewClipping);
 
-    swipeRefresh.setEnabled(arguments.getBoolean(REFRESHABLE, intent.getBooleanExtra(REFRESHABLE, true)));
+    boolean isRefreshable = arguments.getBoolean(REFRESHABLE, intent.getBooleanExtra(REFRESHABLE, true));
+    swipeRefresh.setNestedScrollingEnabled(isRefreshable);
+    swipeRefresh.setEnabled(isRefreshable);
 
     hideCount      = arguments.getBoolean(HIDE_COUNT, intent.getBooleanExtra(HIDE_COUNT, false));
     selectionLimit = arguments.getParcelable(SELECTION_LIMITS);
@@ -436,6 +444,10 @@ public final class ContactSelectionListFragment extends LoggingFragment
     if (!isDetached() && !isRemoving() && getActivity() != null && !getActivity().isFinishing()) {
       LoaderManager.getInstance(this).restartLoader(0, null, this);
     }
+  }
+
+  public void setRecyclerViewPaddingBottom(@Px int paddingBottom) {
+    ViewUtil.setPaddingBottom(recyclerView, paddingBottom);
   }
 
   @Override

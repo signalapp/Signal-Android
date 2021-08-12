@@ -3664,13 +3664,13 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @Override
   public void handleReaction(@NonNull MaskView.MaskTarget maskTarget,
-                             @NonNull MessageRecord messageRecord,
+                             @NonNull ConversationMessage conversationMessage,
                              @NonNull Toolbar.OnMenuItemClickListener toolbarListener,
                              @NonNull ConversationReactionOverlay.OnHideListener onHideListener)
   {
     reactionDelegate.setOnToolbarItemClickedListener(toolbarListener);
     reactionDelegate.setOnHideListener(onHideListener);
-    reactionDelegate.show(this, maskTarget, recipient.get(), messageRecord, inputAreaHeight());
+    reactionDelegate.show(this, maskTarget, recipient.get(), conversationMessage, inputAreaHeight());
   }
 
   @Override
