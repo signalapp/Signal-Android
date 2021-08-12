@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -120,28 +121,18 @@ public class ShareActivity extends PassphraseRequiredActivity
 
   @Override
   protected void onCreate(Bundle icicle, boolean ready) {
+    setContentView(R.layout.share_activity);
+
+    disposables.bindTo(getLifecycle());
+
     initializeArgs();
     initializeViewModel();
     initializeMedia();
     initializeIntent();
-
-    Intent intent = getIntent();
-
-    if (intent.hasExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID)) {
-      handleDirectShare();
-    } else if (intent.hasExtra(EXTRA_RECIPIENT_ID)) {
-      handleDestination();
-    } else {
-      initializeChooser();
-    }
-  }
-
-  public void initializeChooser() {
-    setContentView(R.layout.share_activity);
-    disposables.bindTo(getLifecycle());
     initializeToolbar();
     initializeResources();
     initializeSearch();
+    handleDestination();
   }
 
   @Override
@@ -261,6 +252,21 @@ public class ShareActivity extends PassphraseRequiredActivity
       getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, mode);
     }
 
+    boolean isDirectShare = getIntent().hasExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
+    boolean intentHasRecipient = getIntent().hasExtra(EXTRA_RECIPIENT_ID);
+
+    if (isDirectShare && !intentHasRecipient) {
+      String extraShortcutId = getIntent().getStringExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
+      Bundle shortcutExtras = getShortcutExtrasFor(extraShortcutId);
+
+      if (shortcutExtras != null) {
+        moveShortcutExtrasToIntent(shortcutExtras);
+      } else {
+        // In case the shortcut no longer exists, fallback to creating intent
+        createShortcutIntentFromExtraShortcutId(extraShortcutId);
+      }
+    }
+
     getIntent().putExtra(ContactSelectionListFragment.REFRESHABLE, false);
     getIntent().putExtra(ContactSelectionListFragment.RECENTS, true);
     getIntent().putExtra(ContactSelectionListFragment.SELECTION_LIMITS, FeatureFlags.shareSelectionLimit());
@@ -269,6 +275,53 @@ public class ShareActivity extends PassphraseRequiredActivity
     getIntent().putExtra(ContactSelectionListFragment.CAN_SELECT_SELF, true);
     getIntent().putExtra(ContactSelectionListFragment.RV_CLIP, false);
     getIntent().putExtra(ContactSelectionListFragment.RV_PADDING_BOTTOM, ViewUtil.dpToPx(48));
+  }
+
+  /**
+   * Search for dynamic shortcut originally declared in
+   * {@link org.thoughtcrime.securesms.util.ConversationUtil} and return extras if the shortcut
+   * is found, else return null.
+   *
+   * @param extraShortcutId EXTRA_SHORTCUT_ID string as included in direct share intent
+   * @return shortcut extras or null
+   */
+  @Nullable private Bundle getShortcutExtrasFor(@NonNull String extraShortcutId) {
+    List<ShortcutInfoCompat> shortcuts = ShortcutManagerCompat.getDynamicShortcuts(this);
+    for (int a = 0, N = shortcuts.size(); a < N; a++) {
+      ShortcutInfoCompat shortcutInfo = shortcuts.get(a);
+      if (extraShortcutId.equals(shortcutInfo.getId())) {
+        return shortcutInfo.getIntent().getExtras();
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Move required extras from shortcut intent extras to intent, because
+   * direct share intent does not include our required extras.
+   *
+   * @param shortcutExtras shortcut extras as found by
+   * {@link ShareActivity#getShortcutExtrasFor(java.lang.String)}
+   */
+  private void moveShortcutExtrasToIntent(@NonNull Bundle shortcutExtras) {
+    getIntent().putExtra(EXTRA_RECIPIENT_ID, shortcutExtras.getString(EXTRA_RECIPIENT_ID, null));
+    getIntent().putExtra(EXTRA_THREAD_ID, shortcutExtras.getLong(EXTRA_THREAD_ID, -1));
+    getIntent().putExtra(EXTRA_DISTRIBUTION_TYPE, shortcutExtras.getInt(EXTRA_DISTRIBUTION_TYPE, -1));
+  }
+
+  /**
+   * If all we have is EXTRA_SHORTCUT_ID, in other words we're handling a direct share for which
+   * the dynamic shortcut no longer exists, we recreate intent here.
+   *
+   * @param extraShortcutId EXTRA_SHORTCUT_ID string as included in direct share intent
+   */
+  private void createShortcutIntentFromExtraShortcutId(@NonNull String extraShortcutId) {
+    RecipientId recipientId = RecipientId.from(extraShortcutId);
+    Long        threadId    = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(recipientId);
+
+    getIntent().putExtra(EXTRA_RECIPIENT_ID, recipientId);
+    getIntent().putExtra(EXTRA_THREAD_ID, threadId != null ? threadId : -1);
+    getIntent().putExtra(EXTRA_DISTRIBUTION_TYPE, ThreadDatabase.DistributionTypes.DEFAULT);
   }
 
   private void initializeToolbar() {
@@ -412,46 +465,19 @@ public class ShareActivity extends PassphraseRequiredActivity
     Intent      intent           = getIntent();
     long        threadId         = intent.getLongExtra(EXTRA_THREAD_ID, -1);
     int         distributionType = intent.getIntExtra(EXTRA_DISTRIBUTION_TYPE, -1);
-    RecipientId recipientId      = RecipientId.from(intent.getStringExtra(EXTRA_RECIPIENT_ID));
+    RecipientId recipientId      = null;
 
-    boolean hasPreexistingDestination = threadId != -1 && distributionType != -1;
+    if (intent.hasExtra(EXTRA_RECIPIENT_ID)) {
+      recipientId = RecipientId.from(intent.getStringExtra(EXTRA_RECIPIENT_ID));
+    }
+
+    boolean hasPreexistingDestination = threadId != -1 && recipientId != null && distributionType != -1;
 
     if (hasPreexistingDestination) {
       if (contactsFragment.getView() != null) {
         contactsFragment.getView().setVisibility(View.GONE);
       }
       onSingleDestinationChosen(threadId, recipientId);
-    } else {
-      initializeChooser();
-    }
-  }
-
-  private void handleDirectShare() {
-    Intent      intent           = getIntent();
-    String      extraShortcutId  = intent.getStringExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
-    long        threadId         = -1;
-    int         distributionType = -1;
-    RecipientId recipientId      = null;
-
-    List<ShortcutInfoCompat> shortcuts = ShortcutManagerCompat.getDynamicShortcuts(this);
-
-    for (int a = 0, N = shortcuts.size(); a < N; a++) {
-      ShortcutInfoCompat shortcutInfo = shortcuts.get(a);
-      if (extraShortcutId.equals(shortcutInfo.getId())) {
-        Bundle extras = shortcutInfo.getIntent().getExtras();
-        recipientId = RecipientId.from(extras.getString(EXTRA_RECIPIENT_ID, null));
-        threadId = extras.getLong(EXTRA_THREAD_ID, -1);
-        distributionType = extras.getInt(EXTRA_DISTRIBUTION_TYPE, -1);
-        break;
-      }
-    }
-
-    boolean hasDirectShareDestination = threadId != -1 && distributionType != -1;
-
-    if (hasDirectShareDestination) {
-      onSingleDestinationChosen(threadId, recipientId);
-    } else {
-      initializeChooser();
     }
   }
 
