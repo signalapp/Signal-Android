@@ -184,12 +184,14 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   @Override
-  public void markAsDeleted(long messageId) {
+  public void markAsDeleted(long messageId, boolean read) {
     SQLiteDatabase database     = databaseHelper.getWritableDatabase();
     ContentValues contentValues = new ContentValues();
     contentValues.put(READ, 1);
     contentValues.put(BODY, "");
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(messageId)});
+    long threadId = getThreadIdForMessage(messageId);
+    if (!read) { DatabaseFactory.getThreadDatabase(context).decrementUnread(threadId, 1); }
     updateTypeBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_DELETED_TYPE);
   }
 

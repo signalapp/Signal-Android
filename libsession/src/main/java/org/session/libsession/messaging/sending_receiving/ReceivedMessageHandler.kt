@@ -157,13 +157,12 @@ fun MessageReceiver.handleUnsendRequest(message: UnsendRequest) {
     val author = message.author ?: return
     val messageIdToDelete = storage.getMessageIdInDatabase(timestamp, author) ?: return
     if (!messageDataProvider.isOutgoingMessage(messageIdToDelete)) {
-        // TODO: Mark this message as read
         // TODO: Cancel the notification of this message
     }
     messageDataProvider.getServerHashForMessage(messageIdToDelete)?.let { serverHash ->
         SnodeAPI.deleteMessage(author, listOf(serverHash))
     }
-    messageDataProvider.updateMessageAsDeleted(messageIdToDelete)
+    messageDataProvider.updateMessageAsDeleted(timestamp, author)
 }
 //endregion
 

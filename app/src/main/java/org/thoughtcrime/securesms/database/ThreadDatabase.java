@@ -294,6 +294,14 @@ public class ThreadDatabase extends Database {
                              String.valueOf(threadId)});
   }
 
+  public void decrementUnread(long threadId, int amount) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.execSQL("UPDATE " + TABLE_NAME + " SET " + READ + " = 0, " +
+                    UNREAD_COUNT + " = " + UNREAD_COUNT + " - ? WHERE " + ID + " = ?",
+            new String[] {String.valueOf(amount),
+                    String.valueOf(threadId)});
+  }
+
   public void setDistributionType(long threadId, int distributionType) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(TYPE, distributionType);
@@ -536,9 +544,14 @@ public class ThreadDatabase extends Database {
 
     try {
       reader = mmsSmsDatabase.readerFor(mmsSmsDatabase.getConversationSnippet(threadId));
-      MessageRecord record;
-
-      if (reader != null && (record = reader.getNext()) != null) {
+      MessageRecord record = null;
+      if (reader != null) {
+        record = reader.getNext();
+        while (record != null && record.isDeleted()) {
+          record = reader.getNext();
+        }
+      }
+      if (record != null && !record.isDeleted()) {
         updateThread(threadId, count, getFormattedBodyFor(record), getAttachmentUriFor(record),
                      record.getTimestamp(), record.getDeliveryStatus(), record.getDeliveryReceiptCount(),
                      record.getType(), unarchive, record.getExpiresIn(), record.getReadReceiptCount());

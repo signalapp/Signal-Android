@@ -178,11 +178,18 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         DatabaseFactory.getLokiMessageDatabase(context).deleteMessageServerHash(messageID)
     }
 
-    override fun updateMessageAsDeleted(messageID: Long) {
-        val smsDatabase = DatabaseFactory.getSmsDatabase(context)
-        val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
-        smsDatabase.markAsDeleted(messageID)
-        mmsDatabase.markAsDeleted(messageID)
+    override fun updateMessageAsDeleted(timestamp: Long, author: String) {
+        val database = DatabaseFactory.getMmsSmsDatabase(context)
+        val address = Address.fromSerialized(author)
+        val message = database.getMessageFor(timestamp, address)!!
+        if (message.isMms) {
+            val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
+            mmsDatabase.markAsDeleted(message.id, message.isRead)
+        } else {
+            val smsDatabase = DatabaseFactory.getSmsDatabase(context)
+            smsDatabase.markAsDeleted(message.id, message.isRead)
+        }
+
     }
 
     override fun getServerHashForMessage(messageID: Long): String? {

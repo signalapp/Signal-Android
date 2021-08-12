@@ -392,7 +392,7 @@ public class MmsDatabase extends MessagingDatabase {
   }
 
   @Override
-  public void markAsDeleted(long messageId) {
+  public void markAsDeleted(long messageId, boolean read) {
     SQLiteDatabase database     = databaseHelper.getWritableDatabase();
     ContentValues contentValues = new ContentValues();
     contentValues.put(READ, 1);
@@ -403,6 +403,7 @@ public class MmsDatabase extends MessagingDatabase {
     ThreadUtils.queue(() -> attachmentDatabase.deleteAttachmentsForMessage(messageId));
 
     long threadId = getThreadIdForMessage(messageId);
+    if (!read) { DatabaseFactory.getThreadDatabase(context).decrementUnread(threadId, 1); }
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_DELETED_TYPE, Optional.of(threadId));
     notifyConversationListeners(threadId);
   }
