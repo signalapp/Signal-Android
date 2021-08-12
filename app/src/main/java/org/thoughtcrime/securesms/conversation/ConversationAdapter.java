@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -108,6 +109,7 @@ public class ConversationAdapter
   private static final long FOOTER_ID = Long.MIN_VALUE + 1;
 
   private final ItemClickListener clickListener;
+  private final Context           context;
   private final LifecycleOwner    lifecycleOwner;
   private final GlideRequests     glideRequests;
   private final Locale            locale;
@@ -130,7 +132,8 @@ public class ConversationAdapter
   private ConversationMessage inlineContent;
   private Colorizer           colorizer;
 
-  ConversationAdapter(@NonNull LifecycleOwner lifecycleOwner,
+  ConversationAdapter(@NonNull Context context,
+                      @NonNull LifecycleOwner lifecycleOwner,
                       @NonNull GlideRequests glideRequests,
                       @NonNull Locale locale,
                       @Nullable ItemClickListener clickListener,
@@ -151,6 +154,7 @@ public class ConversationAdapter
     });
 
     this.lifecycleOwner = lifecycleOwner;
+    this.context        = context;
 
     this.glideRequests                = glideRequests;
     this.locale                       = locale;
@@ -187,9 +191,9 @@ public class ConversationAdapter
     } else if (messageRecord.isUpdate()) {
       return MESSAGE_TYPE_UPDATE;
     } else if (messageRecord.isOutgoing()) {
-      return messageRecord.isMms() ? MESSAGE_TYPE_OUTGOING_MULTIMEDIA : MESSAGE_TYPE_OUTGOING_TEXT;
+      return MessageRecordUtil.isTextOnly(messageRecord, context) ? MESSAGE_TYPE_OUTGOING_TEXT : MESSAGE_TYPE_OUTGOING_MULTIMEDIA;
     } else {
-      return messageRecord.isMms() ? MESSAGE_TYPE_INCOMING_MULTIMEDIA : MESSAGE_TYPE_INCOMING_TEXT;
+      return MessageRecordUtil.isTextOnly(messageRecord, context) ? MESSAGE_TYPE_INCOMING_TEXT : MESSAGE_TYPE_INCOMING_MULTIMEDIA;
     }
   }
 
@@ -586,9 +590,9 @@ public class ConversationAdapter
    */
   @MainThread
   static void initializePool(@NonNull RecyclerView.RecycledViewPool pool) {
-    pool.setMaxRecycledViews(MESSAGE_TYPE_INCOMING_TEXT, 15);
+    pool.setMaxRecycledViews(MESSAGE_TYPE_INCOMING_TEXT, 25);
     pool.setMaxRecycledViews(MESSAGE_TYPE_INCOMING_MULTIMEDIA, 15);
-    pool.setMaxRecycledViews(MESSAGE_TYPE_OUTGOING_TEXT, 15);
+    pool.setMaxRecycledViews(MESSAGE_TYPE_OUTGOING_TEXT, 25);
     pool.setMaxRecycledViews(MESSAGE_TYPE_OUTGOING_MULTIMEDIA, 15);
     pool.setMaxRecycledViews(MESSAGE_TYPE_PLACEHOLDER, 15);
     pool.setMaxRecycledViews(MESSAGE_TYPE_HEADER, 1);

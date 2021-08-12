@@ -88,7 +88,6 @@ import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
-import org.thoughtcrime.securesms.conversation.mutiselect.Multiselect;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectCollection;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -122,10 +121,10 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageView;
-import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.InterceptableLongClickCopyLinkSpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.StringUtil;
@@ -162,7 +161,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private static final String TAG = Log.tag(ConversationItem.class);
 
   private static final int MAX_MEASURE_CALLS       = 3;
-  private static final int MAX_BODY_DISPLAY_LENGTH = 1000;
 
   private static final Rect SWIPE_RECT = new Rect();
 
@@ -709,85 +707,59 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private boolean isCaptionlessMms(MessageRecord messageRecord) {
-    return TextUtils.isEmpty(messageRecord.getDisplayBody(getContext())) && messageRecord.isMms() && ((MmsMessageRecord) messageRecord).getSlideDeck().getTextSlide() == null;
+    return MessageRecordUtil.isCaptionlessMms(messageRecord, context);
   }
 
   private boolean hasAudio(MessageRecord messageRecord) {
-    return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getAudioSlide() != null;
+    return MessageRecordUtil.hasAudio(messageRecord);
   }
 
   private boolean hasThumbnail(MessageRecord messageRecord) {
-    return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide() != null;
+    return MessageRecordUtil.hasThumbnail(messageRecord);
   }
 
   private boolean hasSticker(MessageRecord messageRecord) {
-    return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() != null;
+    return MessageRecordUtil.hasSticker(messageRecord);
   }
 
   private boolean isBorderless(MessageRecord messageRecord) {
-    //noinspection ConstantConditions
-    return isCaptionlessMms(messageRecord)   &&
-           hasThumbnail(messageRecord)       &&
-           ((MmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide().isBorderless();
+    return MessageRecordUtil.isBorderless(messageRecord, context);
   }
 
   private boolean hasNoBubble(MessageRecord messageRecord) {
-    return hasSticker(messageRecord) || isBorderless(messageRecord);
+    return MessageRecordUtil.hasNoBubble(messageRecord, context);
   }
 
   private boolean hasOnlyThumbnail(MessageRecord messageRecord) {
-    return hasThumbnail(messageRecord)      &&
-           !hasAudio(messageRecord)         &&
-           !hasDocument(messageRecord)      &&
-           !hasSharedContact(messageRecord) &&
-           !hasSticker(messageRecord)       &&
-           !isBorderless(messageRecord)     &&
-           !isViewOnceMessage(messageRecord);
+    return MessageRecordUtil.hasOnlyThumbnail(messageRecord, context);
   }
 
   private boolean hasDocument(MessageRecord messageRecord) {
-    return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getDocumentSlide() != null;
+    return MessageRecordUtil.hasDocument(messageRecord);
   }
 
   private boolean hasExtraText(MessageRecord messageRecord) {
-    boolean hasTextSlide    = messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getTextSlide() != null;
-    boolean hasOverflowText = messageRecord.getBody().length() > MAX_BODY_DISPLAY_LENGTH;
-
-    return hasTextSlide || hasOverflowText;
+    return MessageRecordUtil.hasExtraText(messageRecord);
   }
 
   private boolean hasQuote(MessageRecord messageRecord) {
-    return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getQuote() != null;
+    return MessageRecordUtil.hasQuote(messageRecord);
   }
 
   private boolean hasSharedContact(MessageRecord messageRecord) {
-    return messageRecord.isMms() && !((MmsMessageRecord)messageRecord).getSharedContacts().isEmpty();
+    return MessageRecordUtil.hasSharedContact(messageRecord);
   }
 
   private boolean hasLinkPreview(MessageRecord  messageRecord) {
-    return messageRecord.isMms() && !((MmsMessageRecord)messageRecord).getLinkPreviews().isEmpty();
+    return MessageRecordUtil.hasLinkPreview(messageRecord);
   }
 
   private boolean hasBigImageLinkPreview(MessageRecord messageRecord) {
-    if (!hasLinkPreview(messageRecord)) {
-      return false;
-    }
-
-    LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
-
-    if (linkPreview.getThumbnail().isPresent() && !Util.isEmpty(linkPreview.getDescription())) {
-      return true;
-    }
-
-    int minWidth = getResources().getDimensionPixelSize(R.dimen.media_bubble_min_width_solo);
-
-    return linkPreview.getThumbnail().isPresent()                  &&
-           linkPreview.getThumbnail().get().getWidth() >= minWidth &&
-           !StickerUrl.isValidShareLink(linkPreview.getUrl());
+    return MessageRecordUtil.hasBigImageLinkPreview(messageRecord, context);
   }
 
   private boolean isViewOnceMessage(MessageRecord messageRecord) {
-    return messageRecord.isMms() && ((MmsMessageRecord) messageRecord).isViewOnce();
+    return MessageRecordUtil.isViewOnceMessage(messageRecord);
   }
 
   private void setBodyText(@NonNull MessageRecord messageRecord,
