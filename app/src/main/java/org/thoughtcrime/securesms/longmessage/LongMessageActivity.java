@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.longmessage;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Spannable;
 import android.text.method.LinkMovementMethod;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -15,7 +16,7 @@ import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import org.thoughtcrime.securesms.conversation.v2.utilities.MentionUtilities;
+import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentView;
 
 import network.loki.messenger.R;
 
@@ -81,18 +82,10 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity {
         String    name      = Util.getFirstNonEmpty(recipient.getName(), recipient.getProfileName(), recipient.getAddress().serialize());
         getSupportActionBar().setTitle(getString(R.string.LongMessageActivity_message_from_s, name));
       }
-
-      String trimmedBody = getTrimmedBody(message.get().getFullBody());
-      String mentionBody = MentionUtilities.highlightMentions(trimmedBody, message.get().getMessageRecord().getThreadId(), this);
-
-      textBody.setText(mentionBody);
+      Spannable bodySpans = VisibleMessageContentView.Companion.getBodySpans(this, message.get().getMessageRecord(), null);
+      textBody.setText(bodySpans);
       textBody.setMovementMethod(LinkMovementMethod.getInstance());
     });
-  }
-
-  private String getTrimmedBody(@NonNull String text) {
-    return text.length() <= MAX_DISPLAY_LENGTH ? text
-                                               : text.substring(0, MAX_DISPLAY_LENGTH);
   }
 
 }
