@@ -287,8 +287,7 @@ public class ShareActivity extends PassphraseRequiredActivity
    */
   @Nullable private Bundle getShortcutExtrasFor(@NonNull String extraShortcutId) {
     List<ShortcutInfoCompat> shortcuts = ShortcutManagerCompat.getDynamicShortcuts(this);
-    for (int a = 0, N = shortcuts.size(); a < N; a++) {
-      ShortcutInfoCompat shortcutInfo = shortcuts.get(a);
+    for (ShortcutInfoCompat shortcutInfo : shortcuts) {
       if (extraShortcutId.equals(shortcutInfo.getId())) {
         return shortcutInfo.getIntent().getExtras();
       }
