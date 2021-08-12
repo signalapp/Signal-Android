@@ -297,7 +297,7 @@ public class ThreadDatabase extends Database {
   public void decrementUnread(long threadId, int amount) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME + " SET " + READ + " = 0, " +
-                    UNREAD_COUNT + " = " + UNREAD_COUNT + " - ? WHERE " + ID + " = ?",
+                    UNREAD_COUNT + " = " + UNREAD_COUNT + " - ? WHERE " + ID + " = ? AND " + UNREAD_COUNT + " > 0",
             new String[] {String.valueOf(amount),
                     String.valueOf(threadId)});
   }
