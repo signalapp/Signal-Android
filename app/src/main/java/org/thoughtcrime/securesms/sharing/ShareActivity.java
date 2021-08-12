@@ -252,17 +252,16 @@ public class ShareActivity extends PassphraseRequiredActivity
       getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, mode);
     }
 
-    boolean isDirectShare = getIntent().hasExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
+    boolean isDirectShare      = getIntent().hasExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
     boolean intentHasRecipient = getIntent().hasExtra(EXTRA_RECIPIENT_ID);
 
     if (isDirectShare && !intentHasRecipient) {
       String extraShortcutId = getIntent().getStringExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
-      Bundle shortcutExtras = getShortcutExtrasFor(extraShortcutId);
+      Bundle shortcutExtras  = getShortcutExtrasFor(extraShortcutId);
 
       if (shortcutExtras != null) {
         moveShortcutExtrasToIntent(shortcutExtras);
       } else {
-        // In case the shortcut no longer exists, fallback to creating intent
         createShortcutIntentFromExtraShortcutId(extraShortcutId);
       }
     }
@@ -279,8 +278,7 @@ public class ShareActivity extends PassphraseRequiredActivity
 
   /**
    * Search for dynamic shortcut originally declared in
-   * {@link org.thoughtcrime.securesms.util.ConversationUtil} and return extras if the shortcut
-   * is found, else return null.
+   * {@link org.thoughtcrime.securesms.util.ConversationUtil} and return extras
    *
    * @param extraShortcutId EXTRA_SHORTCUT_ID string as included in direct share intent
    * @return shortcut extras or null
@@ -296,9 +294,6 @@ public class ShareActivity extends PassphraseRequiredActivity
   }
 
   /**
-   * Move required extras from shortcut intent extras to intent, because
-   * direct share intent does not include our required extras.
-   *
    * @param shortcutExtras shortcut extras as found by
    * {@link ShareActivity#getShortcutExtrasFor(java.lang.String)}
    */
@@ -309,9 +304,6 @@ public class ShareActivity extends PassphraseRequiredActivity
   }
 
   /**
-   * If all we have is EXTRA_SHORTCUT_ID, in other words we're handling a direct share for which
-   * the dynamic shortcut no longer exists, we recreate intent here.
-   *
    * @param extraShortcutId EXTRA_SHORTCUT_ID string as included in direct share intent
    */
   private void createShortcutIntentFromExtraShortcutId(@NonNull String extraShortcutId) {
