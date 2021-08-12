@@ -166,13 +166,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private static final Rect SWIPE_RECT = new Rect();
 
-  private ConversationMessage    conversationMessage;
-  private MessageRecord          messageRecord;
-  private Locale                 locale;
-  private boolean                groupThread;
-  private LiveRecipient          recipient;
-  private GlideRequests          glideRequests;
-  private ValueAnimator          pulseOutlinerAlphaAnimator;
+  private ConversationMessage     conversationMessage;
+  private MessageRecord           messageRecord;
+  private Optional<MessageRecord> nextMessageRecord;
+  private Locale                  locale;
+  private boolean                 groupThread;
+  private LiveRecipient           recipient;
+  private GlideRequests           glideRequests;
+  private ValueAnimator           pulseOutlinerAlphaAnimator;
 
             protected ConversationItemBodyBubble bodyBubble;
             protected View                       reply;
@@ -202,9 +203,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private           Stub<ViewOnceMessageView>               revealableStub;
   private @Nullable EventListener                           eventListener;
 
-  private int defaultBubbleColor;
-  private int defaultBubbleColorForWallpaper;
-  private int measureCalls;
+  private int     defaultBubbleColor;
+  private int     defaultBubbleColorForWallpaper;
+  private int     measureCalls;
+  private boolean updatingFooter;
 
   private final PassthroughClickListener        passthroughClickListener     = new PassthroughClickListener();
   private final AttachmentDownloadClickListener downloadClickListener        = new AttachmentDownloadClickListener();
@@ -300,6 +302,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     this.conversationMessage    = conversationMessage;
     this.messageRecord          = conversationMessage.getMessageRecord();
+    this.nextMessageRecord      = nextMessageRecord;
     this.locale                 = locale;
     this.glideRequests          = glideRequests;
     this.batchSelected          = batchSelected;
@@ -386,6 +389,35 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
     }
 
+    if (!updatingFooter && !isCaptionlessMms(messageRecord) && !isViewOnceMessage(messageRecord) && isFooterVisible(messageRecord, nextMessageRecord, groupThread)) {
+      int footerWidth    = footer.getMeasuredWidth();
+      int availableWidth = getAvailableMessageBubbleWidth(bodyText);
+      if (bodyText.isSingleLine()) {
+        int maxBubbleWidth  = hasBigImageLinkPreview(messageRecord) || hasThumbnail(messageRecord) ? readDimen(R.dimen.media_bubble_max_width) : getMaxBubbleWidth();
+        int bodyMargins     = ViewUtil.getLeftMargin(bodyText) + ViewUtil.getRightMargin(bodyText);
+        int sizeWithMargins = bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins;
+        int minSize         = Math.min(maxBubbleWidth, Math.max(bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins, bodyBubble.getMeasuredWidth()));
+        if (hasQuote(messageRecord) && sizeWithMargins < availableWidth) {
+          ViewUtil.setTopMargin(footer, readDimen(R.dimen.message_bubble_same_line_footer_bottom_margin));
+          needsMeasure   = true;
+          updatingFooter = true;
+        } else if (sizeWithMargins != bodyText.getMeasuredWidth() && sizeWithMargins <= minSize) {
+          bodyBubble.getLayoutParams().width = minSize;
+          ViewUtil.setTopMargin(footer, readDimen(R.dimen.message_bubble_same_line_footer_bottom_margin));
+          needsMeasure   = true;
+          updatingFooter = true;
+        }
+      }
+      if (!updatingFooter && bodyText.getLastLineWidth() + ViewUtil.dpToPx(6) + footerWidth <= bodyText.getMeasuredWidth()) {
+        ViewUtil.setTopMargin(footer, readDimen(R.dimen.message_bubble_same_line_footer_bottom_margin));
+        updatingFooter = true;
+        needsMeasure   = true;
+      } else if (!updatingFooter && ViewUtil.getTopMargin(footer) == readDimen(R.dimen.message_bubble_same_line_footer_bottom_margin)) {
+        ViewUtil.setTopMargin(footer, readDimen(R.dimen.message_bubble_default_footer_bottom_margin));
+        needsMeasure = true;
+      }
+    }
+
     if (hasSharedContact(messageRecord)) {
       int contactWidth   = sharedContactStub.get().getMeasuredWidth();
       int availableWidth = getAvailableMessageBubbleWidth(sharedContactStub.get());
@@ -396,7 +428,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
     }
 
-    if (!hasNoBubble(messageRecord)) {
+    if (hasAudio(messageRecord)) {
       ConversationItemFooter activeFooter   = getActiveFooter(messageRecord);
       int                    availableWidth = getAvailableMessageBubbleWidth(footer);
 
@@ -415,6 +447,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
     } else {
       measureCalls = 0;
+      updatingFooter = false;
     }
   }
 
@@ -447,6 +480,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     availableWidth -= ViewUtil.getLeftMargin(forView) + ViewUtil.getRightMargin(forView);
 
     return availableWidth;
+  }
+
+  private int getMaxBubbleWidth() {
+    int paddings = getPaddingLeft() + getPaddingRight() + ViewUtil.getLeftMargin(bodyBubble) + ViewUtil.getRightMargin(bodyBubble);
+    if (groupThread && !messageRecord.isOutgoing()) {
+      paddings += contactPhoto.getLayoutParams().width + ViewUtil.getLeftMargin(contactPhoto) + ViewUtil.getRightMargin(contactPhoto);
+    }
+    return getMeasuredWidth() - paddings;
   }
 
   private void initializeAttributes() {
@@ -532,6 +573,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private void setBubbleState(MessageRecord messageRecord, @NonNull Recipient recipient, boolean hasWallpaper, @NonNull Colorizer colorizer) {
     this.hasWallpaper = hasWallpaper;
 
+    ViewUtil.updateLayoutParams(bodyBubble, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     bodyText.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_text_primary));
     bodyText.setLinkTextColor(ContextCompat.getColor(getContext(), R.color.signal_text_primary));
 
@@ -1312,6 +1354,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private void setFooter(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> next, @NonNull Locale locale, boolean isGroupThread, boolean hasWallpaper) {
     ViewUtil.updateLayoutParams(footer, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+    ViewUtil.setTopMargin(footer, readDimen(R.dimen.message_bubble_default_footer_bottom_margin));
 
     footer.setVisibility(GONE);
     stickerFooter.setVisibility(GONE);

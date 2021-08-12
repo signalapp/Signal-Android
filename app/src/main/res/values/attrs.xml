@@ -112,6 +112,7 @@
     </declare-styleable>
 
     <declare-styleable name="EmojiTextView">
+        <attr name="measureLastLine" format="boolean" />
         <attr name="scaleEmojis" format="boolean" />
         <attr name="emoji_maxLength" format="integer" />
         <attr name="emoji_forceCustom" format="boolean" />

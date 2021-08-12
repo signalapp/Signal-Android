@@ -54,6 +54,8 @@
     <dimen name="media_bubble_sticker_dimens">175dp</dimen>
     <dimen name="media_bubble_gif_width">240dp</dimen>
     <dimen name="message_audio_width">200dp</dimen>
+    <dimen name="message_bubble_default_footer_bottom_margin">-4dp</dimen>
+    <dimen name="message_bubble_same_line_footer_bottom_margin">-24dp</dimen>
 
     <dimen name="media_picker_folder_width">175dp</dimen>
     <dimen name="media_picker_item_width">85dp</dimen>

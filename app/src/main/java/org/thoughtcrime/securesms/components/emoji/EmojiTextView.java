@@ -1,12 +1,16 @@
 package org.thoughtcrime.securesms.components.emoji;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.text.Annotation;
+import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextDirectionHeuristic;
+import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -19,6 +23,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.TextViewCompat;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
@@ -36,16 +41,19 @@ public class EmojiTextView extends AppCompatTextView {
 
   private static final char ELLIPSIS = '…';
 
-  private boolean      forceCustom;
-  private CharSequence previousText;
-  private BufferType   previousBufferType;
-  private float        originalFontSize;
-  private boolean      useSystemEmoji;
-  private boolean      sizeChangeInProgress;
-  private int          maxLength;
-  private CharSequence overflowText;
-  private CharSequence previousOverflowText;
-  private boolean      renderMentions;
+  private boolean                forceCustom;
+  private CharSequence           previousText;
+  private BufferType             previousBufferType;
+  private float                  originalFontSize;
+  private boolean                useSystemEmoji;
+  private boolean                sizeChangeInProgress;
+  private int                    maxLength;
+  private CharSequence           overflowText;
+  private CharSequence           previousOverflowText;
+  private boolean                renderMentions;
+  private boolean                measureLastLine;
+  private int                    lastLineWidth = -1;
+  private TextDirectionHeuristic textDirection;
 
   private MentionRendererDelegate mentionRendererDelegate;
 
@@ -61,10 +69,11 @@ public class EmojiTextView extends AppCompatTextView {
     super(context, attrs, defStyleAttr);
 
     TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.EmojiTextView, 0, 0);
-    scaleEmojis    = a.getBoolean(R.styleable.EmojiTextView_scaleEmojis, false);
-    maxLength      = a.getInteger(R.styleable.EmojiTextView_emoji_maxLength, -1);
-    forceCustom    = a.getBoolean(R.styleable.EmojiTextView_emoji_forceCustom, false);
-    renderMentions = a.getBoolean(R.styleable.EmojiTextView_emoji_renderMentions, true);
+    scaleEmojis     = a.getBoolean(R.styleable.EmojiTextView_scaleEmojis, false);
+    maxLength       = a.getInteger(R.styleable.EmojiTextView_emoji_maxLength, -1);
+    forceCustom     = a.getBoolean(R.styleable.EmojiTextView_emoji_forceCustom, false);
+    renderMentions  = a.getBoolean(R.styleable.EmojiTextView_emoji_renderMentions, true);
+    measureLastLine = a.getBoolean(R.styleable.EmojiTextView_measureLastLine, false);
     a.recycle();
 
     a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.textSize});
@@ -74,6 +83,8 @@ public class EmojiTextView extends AppCompatTextView {
     if (renderMentions) {
       mentionRendererDelegate = new MentionRendererDelegate(getContext(), ContextCompat.getColor(getContext(), R.color.transparent_black_20));
     }
+
+    textDirection = getLayoutDirection() == LAYOUT_DIRECTION_LTR ? TextDirectionHeuristics.FIRSTSTRONG_RTL : TextDirectionHeuristics.ANYRTL_LTR;
   }
 
   @Override
@@ -137,6 +148,34 @@ public class EmojiTextView extends AppCompatTextView {
     if (getLayoutParams() != null && getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT) {
       requestLayout();
     }
+  }
+
+  @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    CharSequence text = getText();
+    if (!measureLastLine || text == null || text.length() == 0) {
+      lastLineWidth = -1;
+    } else {
+      Layout layout = getLayout();
+      int    lines  = layout.getLineCount();
+      int    start  = layout.getLineStart(lines - 1);
+      int    count  = text.length() - start;
+
+      if ((getLayoutDirection() == LAYOUT_DIRECTION_LTR && textDirection.isRtl(text, start, count)) ||
+          (getLayoutDirection() == LAYOUT_DIRECTION_RTL && !textDirection.isRtl(text, start, count))) {
+        lastLineWidth = getMeasuredWidth();
+      } else {
+        lastLineWidth = (int) getPaint().measureText(text, start, text.length());
+      }
+    }
+  }
+
+  public int getLastLineWidth() {
+    return lastLineWidth;
+  }
+
+  public boolean isSingleLine() {
+    return getLayout().getLineCount() == 1;
   }
 
   public void setOverflowText(@Nullable CharSequence overflowText) {

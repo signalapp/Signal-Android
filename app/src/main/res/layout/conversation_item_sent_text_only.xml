@@ -60,11 +60,12 @@
             android:textColorLink="@color/conversation_item_sent_text_primary_color"
             app:emoji_maxLength="1000"
             app:scaleEmojis="true"
+            app:measureLastLine="true"
             tools:text="Mango pickle lorem ipsum" />
 
         <org.thoughtcrime.securesms.components.ConversationItemFooter
             android:id="@+id/conversation_item_footer"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
             android:layout_marginTop="-5dp"
