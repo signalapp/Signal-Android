@@ -392,6 +392,22 @@ public class MmsDatabase extends MessagingDatabase {
   }
 
   @Override
+  public void markAsDeleted(long messageId) {
+    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(READ, 1);
+    contentValues.put(BODY, "");
+    database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(messageId)});
+
+    AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+    ThreadUtils.queue(() -> attachmentDatabase.deleteAttachmentsForMessage(messageId));
+
+    long threadId = getThreadIdForMessage(messageId);
+    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_DELETED_TYPE, Optional.of(threadId));
+    notifyConversationListeners(threadId);
+  }
+
+  @Override
   public void markExpireStarted(long messageId) {
     markExpireStarted(messageId, System.currentTimeMillis());
   }

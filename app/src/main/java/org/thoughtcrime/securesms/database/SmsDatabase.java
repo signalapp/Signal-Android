@@ -184,6 +184,16 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   @Override
+  public void markAsDeleted(long messageId) {
+    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(READ, 1);
+    contentValues.put(BODY, "");
+    database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(messageId)});
+    updateTypeBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_DELETED_TYPE);
+  }
+
+  @Override
   public void markExpireStarted(long id) {
     markExpireStarted(id, System.currentTimeMillis());
   }

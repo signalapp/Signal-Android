@@ -76,7 +76,7 @@ class VisibleMessageContentView : LinearLayout {
         mainContainer.removeAllViews()
         onContentClick = null
         onContentDoubleTap = null
-        if (message.deleted) {
+        if (message.isDeleted) {
             val deletedMessageView = DeletedMessageView(context)
             deletedMessageView.bind(message, VisibleMessageContentView.getTextColor(context,message))
             mainContainer.addView(deletedMessageView)

@@ -179,7 +179,10 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
     }
 
     override fun updateMessageAsDeleted(messageID: Long) {
-        TODO("Not yet implemented")
+        val smsDatabase = DatabaseFactory.getSmsDatabase(context)
+        val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
+        smsDatabase.markAsDeleted(messageID)
+        mmsDatabase.markAsDeleted(messageID)
     }
 
     override fun getServerHashForMessage(messageID: Long): String? {

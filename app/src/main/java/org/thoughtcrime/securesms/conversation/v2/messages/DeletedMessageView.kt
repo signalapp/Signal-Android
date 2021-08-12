@@ -28,9 +28,9 @@ class DeletedMessageView : LinearLayout {
 
     // region Updating
     fun bind(message: MessageRecord, @ColorInt textColor: Int) {
-        assert(message.deleted)
-        deleteTextView.text = context.getString(R.string.deleted_message)
-        deleteTextView.setTextColor(textColor)
+        assert(message.isDeleted)
+        deleteTitleTextView.text = context.getString(R.string.deleted_message)
+        deleteTitleTextView.setTextColor(textColor)
         deletedMessageViewIconImageView.imageTintList = ColorStateList.valueOf(textColor)
     }
     // endregion
