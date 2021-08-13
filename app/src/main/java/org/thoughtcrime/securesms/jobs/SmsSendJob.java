@@ -36,8 +36,8 @@ public class SmsSendJob extends SendJob {
   private static final String KEY_MESSAGE_ID   = "message_id";
   private static final String KEY_RUN_ATTEMPT  = "run_attempt";
 
-  private long messageId;
-  private int  runAttempt;
+  private final long messageId;
+  private final int  runAttempt;
 
   public SmsSendJob(long messageId, @NonNull Recipient destination) {
     this(messageId, destination, 0);
@@ -141,7 +141,7 @@ public class SmsSendJob extends SendJob {
     }
 
     ArrayList<String> messages                = SmsManager.getDefault().divideMessage(message.getBody());
-    ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages, false);
+    ArrayList<PendingIntent> sentIntents      = constructSentIntents(message.getId(), message.getType(), messages);
     ArrayList<PendingIntent> deliveredIntents = constructDeliveredIntents(message.getId(), message.getType(), messages);
 
     // NOTE 11/04/14 -- There's apparently a bug where for some unknown recipients
@@ -171,14 +171,14 @@ public class SmsSendJob extends SendJob {
     }
   }
 
-  private ArrayList<PendingIntent> constructSentIntents(long messageId, long type,
-                                                        ArrayList<String> messages, boolean secure)
+  private ArrayList<PendingIntent> constructSentIntents(long messageId, long type, ArrayList<String> messages)
   {
     ArrayList<PendingIntent> sentIntents = new ArrayList<>(messages.size());
+    boolean                  isMultipart = messages.size() > 1;
 
     for (String ignored : messages) {
       sentIntents.add(PendingIntent.getBroadcast(context, 0,
-                                                 constructSentIntent(context, messageId, type, secure, false),
+                                                 constructSentIntent(context, messageId, type, isMultipart),
                                                  0));
     }
 
@@ -191,19 +191,18 @@ public class SmsSendJob extends SendJob {
     }
 
     ArrayList<PendingIntent> deliveredIntents = new ArrayList<>(messages.size());
+    boolean                  isMultipart      = messages.size() > 1;
 
     for (String ignored : messages) {
       deliveredIntents.add(PendingIntent.getBroadcast(context, 0,
-                                                      constructDeliveredIntent(context, messageId, type),
+                                                      constructDeliveredIntent(context, messageId, type, isMultipart),
                                                       0));
     }
 
     return deliveredIntents;
   }
 
-  private Intent constructSentIntent(Context context, long messageId, long type,
-                                       boolean upgraded, boolean push)
-  {
+  private Intent constructSentIntent(Context context, long messageId, long type, boolean isMultipart) {
     Intent pending = new Intent(SmsDeliveryListener.SENT_SMS_ACTION,
                                 Uri.parse("custom://" + messageId + System.currentTimeMillis()),
                                 context, SmsDeliveryListener.class);
@@ -211,18 +210,18 @@ public class SmsSendJob extends SendJob {
     pending.putExtra("type", type);
     pending.putExtra("message_id", messageId);
     pending.putExtra("run_attempt", Math.max(runAttempt, getRunAttempt()));
-    pending.putExtra("upgraded", upgraded);
-    pending.putExtra("push", push);
+    pending.putExtra("is_multipart", isMultipart);
 
     return pending;
   }
 
-  private Intent constructDeliveredIntent(Context context, long messageId, long type) {
+  private Intent constructDeliveredIntent(Context context, long messageId, long type, boolean isMultipart) {
     Intent pending = new Intent(SmsDeliveryListener.DELIVERED_SMS_ACTION,
                                 Uri.parse("custom://" + messageId + System.currentTimeMillis()),
                                 context, SmsDeliveryListener.class);
     pending.putExtra("type", type);
     pending.putExtra("message_id", messageId);
+    pending.putExtra("is_multipart", isMultipart);
 
     return pending;
   }
