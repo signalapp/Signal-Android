@@ -589,11 +589,11 @@ public class MmsSmsDatabase extends Database {
     DatabaseFactory.getMmsDatabase(context).setNotifiedTimestamp(timestamp, mmsIds);
   }
 
-  public boolean deleteMessagesInThreadBeforeDate(long threadId, long trimBeforeDate) {
+  public int deleteMessagesInThreadBeforeDate(long threadId, long trimBeforeDate) {
     Log.d(TAG, "deleteMessagesInThreadBeforeData(" + threadId + ", " + trimBeforeDate + ")");
-    boolean deletedSms = DatabaseFactory.getSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
-    boolean deletedMms = DatabaseFactory.getMmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
-    return deletedSms || deletedMms;
+    int deletes = DatabaseFactory.getSmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
+    deletes += DatabaseFactory.getMmsDatabase(context).deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
+    return deletes;
   }
 
   public void deleteAbandonedMessages() {

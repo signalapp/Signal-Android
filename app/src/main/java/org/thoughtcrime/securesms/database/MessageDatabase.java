@@ -172,7 +172,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
 
   public abstract boolean deleteMessage(long messageId);
   abstract void deleteThread(long threadId);
-  abstract boolean deleteMessagesInThreadBeforeDate(long threadId, long date);
+  abstract int deleteMessagesInThreadBeforeDate(long threadId, long date);
   abstract void deleteThreads(@NonNull Set<Long> threadIds);
   abstract void deleteAllThreads();
   abstract void deleteAbandonedMessages();

@@ -1298,7 +1298,7 @@ public final class MessageContentProcessor {
       }
 
       ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
-      ApplicationDependencies.getJobManager().add(new TrimThreadJob(insertResult.get().getThreadId()));
+      TrimThreadJob.enqueueAsync(insertResult.get().getThreadId());
 
       if (message.isViewOnce()) {
         ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();

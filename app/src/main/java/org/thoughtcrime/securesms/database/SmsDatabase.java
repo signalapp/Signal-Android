@@ -749,7 +749,7 @@ public class SmsDatabase extends MessageDatabase {
     }
 
     notifyConversationListeners(threadId);
-    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+    TrimThreadJob.enqueueAsync(threadId);
   }
 
   @Override
@@ -826,7 +826,7 @@ public class SmsDatabase extends MessageDatabase {
     }
 
     notifyConversationListeners(threadId);
-    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+    TrimThreadJob.enqueueAsync(threadId);
   }
 
   @Override
@@ -892,7 +892,7 @@ public class SmsDatabase extends MessageDatabase {
     }
 
     notifyConversationListeners(threadId);
-    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+    TrimThreadJob.enqueueAsync(threadId);
 
     return new Pair<>(messageId, threadId);
   }
@@ -979,7 +979,7 @@ public class SmsDatabase extends MessageDatabase {
 
     Stream.of(threadIdsToUpdate)
           .withoutNulls()
-          .forEach(threadId -> ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId)));
+          .forEach(TrimThreadJob::enqueueAsync);
   }
 
   @Override
@@ -994,7 +994,7 @@ public class SmsDatabase extends MessageDatabase {
     }
 
     notifyConversationListeners(threadId);
-    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+    TrimThreadJob.enqueueAsync(threadId);
   }
 
   private void insertGroupV1MigrationNotification(@NonNull RecipientId recipientId, long threadId) {
@@ -1119,7 +1119,7 @@ public class SmsDatabase extends MessageDatabase {
       notifyConversationListeners(threadId);
 
       if (!silent) {
-        ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+        TrimThreadJob.enqueueAsync(threadId);
       }
 
       return Optional.of(new InsertResult(messageId, threadId));
@@ -1156,7 +1156,7 @@ public class SmsDatabase extends MessageDatabase {
 
     notifyConversationListeners(threadId);
 
-    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+    TrimThreadJob.enqueueAsync(threadId);
 
     return new InsertResult(messageId, threadId);
   }
@@ -1180,7 +1180,7 @@ public class SmsDatabase extends MessageDatabase {
 
     notifyConversationListeners(threadId);
 
-    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+    TrimThreadJob.enqueueAsync(threadId);
   }
 
   @Override
@@ -1335,11 +1335,11 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  boolean deleteMessagesInThreadBeforeDate(long threadId, long date) {
+  int deleteMessagesInThreadBeforeDate(long threadId, long date) {
     SQLiteDatabase db    = databaseHelper.getWritableDatabase();
     String         where = THREAD_ID + " = ? AND " + DATE_RECEIVED + " < " + date;
 
-    return db.delete(TABLE_NAME, where, SqlUtil.buildArgs(threadId)) > 0;
+    return db.delete(TABLE_NAME, where, SqlUtil.buildArgs(threadId));
   }
 
   @Override
@@ -1347,7 +1347,10 @@ public class SmsDatabase extends MessageDatabase {
     SQLiteDatabase db    = databaseHelper.getWritableDatabase();
     String         where = THREAD_ID + " NOT IN (SELECT _id FROM " + ThreadDatabase.TABLE_NAME + ")";
 
-    db.delete(TABLE_NAME, where, null);
+    int deletes = db.delete(TABLE_NAME, where, null);
+    if (deletes > 0) {
+      Log.i(TAG, "Deleted " + deletes + " abandoned messages");
+    }
   }
 
   @Override

@@ -1451,7 +1451,7 @@ public class MmsDatabase extends MessageDatabase {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
     }
 
-    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+    TrimThreadJob.enqueueAsync(threadId);
   }
 
   @Override
@@ -1797,11 +1797,11 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  boolean deleteMessagesInThreadBeforeDate(long threadId, long date) {
+  int deleteMessagesInThreadBeforeDate(long threadId, long date) {
     SQLiteDatabase db    = databaseHelper.getWritableDatabase();
     String         where = THREAD_ID + " = ? AND " + DATE_RECEIVED + " < " + date;
 
-    return db.delete(TABLE_NAME, where, SqlUtil.buildArgs(threadId)) > 0;
+    return db.delete(TABLE_NAME, where, SqlUtil.buildArgs(threadId));
   }
 
   @Override
@@ -1809,7 +1809,10 @@ public class MmsDatabase extends MessageDatabase {
     SQLiteDatabase db    = databaseHelper.getWritableDatabase();
     String         where = THREAD_ID + " NOT IN (SELECT _id FROM " + ThreadDatabase.TABLE_NAME + ")";
 
-    db.delete(TABLE_NAME, where, null);
+    int deletes = db.delete(TABLE_NAME, where, null);
+    if (deletes > 0) {
+      Log.i(TAG, "Deleted " + deletes + " abandoned messages");
+    }
   }
 
   @Override

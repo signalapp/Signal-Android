@@ -468,7 +468,10 @@ public class AttachmentDatabase extends Database {
     String         selectAllMmsIds = "SELECT " + MmsDatabase.ID + " FROM " + MmsDatabase.TABLE_NAME;
     String         where           = MMS_ID + " != " + PREUPLOAD_MESSAGE_ID + " AND " + MMS_ID + " NOT IN (" + selectAllMmsIds + ")";
 
-    db.delete(TABLE_NAME, where, null);
+    int deletes = db.delete(TABLE_NAME, where, null);
+    if (deletes > 0) {
+      Log.i(TAG, "Trimmed " + deletes + " abandoned attachments.");
+    }
   }
 
   public int deleteAbandonedAttachmentFiles() {
