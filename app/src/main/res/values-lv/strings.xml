@@ -1259,13 +1259,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Zvana…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal balss zvans…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal balss zvans…</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal video zvans…</string>
   <string name="WebRtcCallView__start_call">Sākt zvanu</string>
   <string name="WebRtcCallView__join_call">Pievienoties zvanam/sarunai</string>
   <string name="WebRtcCallView__call_is_full">Zvana/sarunas dalībnieku limits izsmelts</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Šīs sarunas maksimālais dalībnieku skaits %1$d ir sasniegts. Mēģiniet vēlāk.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Grupas zvans</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Grupas zvans</string> -->
   <string name="WebRtcCallView__view_participants_list">Skatīt dalībniekus</string>
   <string name="WebRtcCallView__your_video_is_off">Jūsu video ir izslēgts</string>
   <string name="WebRtcCallView__reconnecting">Savienojas vēlreiz…</string>

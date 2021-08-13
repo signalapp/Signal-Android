@@ -1207,13 +1207,13 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer …</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal-samtale …</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal-samtale …</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal-videosamtale …</string>
   <string name="WebRtcCallView__start_call">Start samtale</string>
   <string name="WebRtcCallView__join_call">Bli med på samtalen</string>
   <string name="WebRtcCallView__call_is_full">Samtalen er fylt opp</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Denne samtalen har allereie %1$d medlemmar og har ikkje plass til fleire. Prøv igjen seinare.</string>
-  <string name="WebRtcCallView__s_group_call">«%1$s»-gruppesamtale</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">«%1$s»-gruppesamtale</string> -->
   <string name="WebRtcCallView__view_participants_list">Vis medlem</string>
   <string name="WebRtcCallView__your_video_is_off">Du har skrudd av video</string>
   <string name="WebRtcCallView__reconnecting">Koplar til på nytt …</string>

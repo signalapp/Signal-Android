@@ -1316,13 +1316,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Łączenie…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Połączenie głosowe Signal…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Połączenie głosowe Signal…</string> -->
   <string name="WebRtcCallView__signal_video_call">Połączenie wideo Signal…</string>
   <string name="WebRtcCallView__start_call">Rozpocznij połączenie</string>
   <string name="WebRtcCallView__join_call">Dołącz do rozmowy</string>
   <string name="WebRtcCallView__call_is_full">Połączenie jest pełne</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Osiągnięto maksymalną liczbę %1$d uczestników rozmowy. Spróbuj później.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Połączenie grupowe</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Połączenie grupowe</string> -->
   <string name="WebRtcCallView__view_participants_list">Zobacz uczestników</string>
   <string name="WebRtcCallView__your_video_is_off">Twoje wideo jest wyłączone</string>
   <string name="WebRtcCallView__reconnecting">Ponowne łączenie…</string>

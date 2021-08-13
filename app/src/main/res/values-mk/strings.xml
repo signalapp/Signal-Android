@@ -1175,6 +1175,8 @@
   <string name="ReactionsRecipientAdapter_you">Вие</string>
   <!--RecaptchaRequiredBottomSheetFragment-->
   <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Потврдете за да продолжите со разговорот</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">За да спречите несакани пораки на Signal, пополнете ја потврдата.</string>
+  <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">По проверката, можете да продолжите со испраќање пораки. Сите паузирани пораки автоматски ќе се испратат.</string>
   <!--Recipient-->
   <string name="Recipient_you">Вие</string>
   <!--RecipientPreferencesActivity-->
@@ -1198,13 +1200,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Повикувам…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal гласовен повик…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal гласовен повик…</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal видео повик…</string>
   <string name="WebRtcCallView__start_call">Започни повик</string>
   <string name="WebRtcCallView__join_call">Приклучи се на повик</string>
   <string name="WebRtcCallView__call_is_full">Повикот е полн</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Максималниот број од %1$d учесници е достигнат за овој повик. Пробајте повторно подоцна.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" групен повик</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" групен повик</string> -->
   <string name="WebRtcCallView__view_participants_list">Види ги учесниците</string>
   <string name="WebRtcCallView__your_video_is_off">Вашето видео е исклучено</string>
   <string name="WebRtcCallView__reconnecting">Повторно поврзување…</string>
@@ -1753,6 +1755,7 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">За да испратите медија и групни пораки допрете „Во ред“  и довршете ги поставувањата. MMS поставувањата за Вашиот оператор можат да бидат пронајдени преку пребарување на „Вашиот APN за операторот“. Ова ќе треба да го направите само еднаш.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Проблем со испорака</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Порака, налепница, реакција или потврда за прочитани пораки не може да ви се достави од %s. Можеби се обиделе да ви испратат директно или во група.</string>
   <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Порака, налепница, реакција или потврда за прочитани пораки не може да ви се достави од %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Име (задолжително)</string>
@@ -2144,6 +2147,7 @@
   <string name="CreatePaymentFragment__9">9</string>
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">Додај порака</string>
   <string name="CreatePaymentFragment__conversions_are_just_estimates">Конверзиите се само проценки и можеби не се точни.</string>
   <!--EditNoteFragment-->
@@ -2627,6 +2631,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Ископирано на таблата со исечоци</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Линкот не е активен моментално</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Не успеа да се пушти гласовната порака</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Гласовна порака · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s до %2$s</string>
@@ -2692,9 +2697,14 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">Пребарувај земји</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Прескокни</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d членови</item>
+    <item quantity="other">%1$d членови</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Сподели</string>
   <string name="ShareActivity__send">Испрати</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Споделување на повеќе разговори е поддржано само за Signal пораки</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Не успеав да испратам на некои корисници</string>
@@ -2757,6 +2767,7 @@
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__start">Започни</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Внеси рачно</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Залепи од таблата со исечоци</string>
   <!--PaymentsRecoveryPasteFragment-->
   <string name="PaymentsRecoveryPasteFragment__next">Следно</string>
   <string name="PaymentsRecoveryPasteFragment__make_sure">Проверете дали сте внеле %1$d зборови и обидете се повторно.</string>
@@ -2765,6 +2776,7 @@
   <string name="PaymentsRecoveryPhraseFragment__edit">Измени</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Претходно</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Сметката за плаќање е вратена.</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Да се копира во таблата со исечоци?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Копирај</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Збор %1$d</string>
@@ -2775,6 +2787,7 @@
   <string name="PaymentsRecoveryEntryFragment__next">Следно</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">Невалиден збор</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Таблата со исечоци е исчистена.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Поглед</string>
   <!--UnreadPayments-->
@@ -2827,6 +2840,7 @@
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Прикажи статусна икона</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Покажува икона во детали за порака кога пораката е доставена со користење на запечатен испраќач</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Кога е овозможено, новите пораки испратени и примени во нови разговори започнати од Вас ќе исчезнат откако ќе бидат видени.</string>
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Кога е овозможено, новите пораки испратени и примени во овој разговор ќе исчезнат откако ќе бидат видени.</string>
   <string name="ExpireTimerSettingsFragment__off">Исклучи</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 недели</string>
@@ -2862,25 +2876,41 @@
   <string name="ChatColorSelectionFragment__duplicate">Дупликат</string>
   <string name="ChatColorSelectionFragment__delete">Избриши</string>
   <string name="ChatColorSelectionFragment__delete_color">Избриши боја</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Оваа боја се користи во %1$d разговори. Дали сакате да ги зачувате промените за сите разговори?</item>
+    <item quantity="other">Оваа прилагодена боја се користи во %1$d разговори. Дали сакате да ја избришете од сите разговори?</item>
+  </plurals>
   <string name="ChatColorSelectionFragment__delete_chat_color">Да се избрише бојата на разговорот?</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">Цврста</string>
   <string name="CustomChatColorCreatorFragment__gradient">Градиент</string>
   <string name="CustomChatColorCreatorFragment__hue">Нијанса</string>
   <string name="CustomChatColorCreatorFragment__saturation">Сатурација</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Зачувај</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Уреди боја</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Оваа боја се користи во %1$d разговори. Дали сакате да ги зачувате промените за сите разговори?</item>
+    <item quantity="other">Оваа боја се користи во %1$d разговори. Дали сакате да ги зачувате промените за сите разговори?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">Избирач на горниот раб</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">Избирач на долниот раб</string>
   <!--EditReactionsFragment-->
   <string name="EditReactionsFragment__customize_reactions">Прилагоди реакции</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">Допрете за замена на емоџи</string>
   <string name="EditReactionsFragment__reset">Ресетираj</string>
   <string name="EditReactionsFragment_save">Зачувај</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Автоматски се совпаѓа со бојата на позадината</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Повлечете за да ја смените насоката на градиентот</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">Нови бои за разговори</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">Ги сменивме боите на разговорот за да ви дадеме повеќе опции и да ги направиме разговорите полесни за читање.</string>
   <string name="ChatColorsMegaphone__appearance">Изглед</string>
   <string name="ChatColorsMegaphone__not_now">Не сега</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Додајте слика на профилот</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Изберете изглед и боја или прилагодете ги вашите иницијали.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Не сега</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Додај слика</string>
   <!--KeyboardPagerFragment-->
@@ -2889,6 +2919,7 @@
   <string name="KeyboardPagerFragment_open_sticker_search">Отвори пребарување на налепници</string>
   <string name="KeyboardPagerFragment_open_gif_search">Отвори пребарување на GIF-ови</string>
   <string name="KeyboardPagerFragment_stickers">Стикери</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
   <string name="KeyboardPagerFragment_gifs">Gif-ови</string>
   <string name="KeyboardPagerFragment_search_emoji">Пребарувај емоџи</string>
   <string name="KeyboardPagerfragment_back_to_emoji">Назад на емоџи</string>
@@ -2924,9 +2955,11 @@
   <string name="ConversationSettingsFragment__permissions">Дозволи</string>
   <string name="ConversationSettingsFragment__requests_and_invites">Барања и покани</string>
   <string name="ConversationSettingsFragment__group_link">Групен линк</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">Додај како контакт</string>
   <string name="ConversationSettingsFragment__unmute">Вклучи известувања</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Известувањата во разговорот исклучени до %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Известувањата во разговорот исклучени засекогаш</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Телефонски број копиран во таблата со исечоци.</string>
   <string name="ConversationSettingsFragment__phone_number">Телефонски број</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Додај членови</string>
@@ -2950,6 +2983,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Нова порака</string>

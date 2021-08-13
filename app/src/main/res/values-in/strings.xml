@@ -1143,13 +1143,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Panggilan…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Panggilan suara Signal…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Panggilan suara Signal…</string> -->
   <string name="WebRtcCallView__signal_video_call">Panggilan video Signal…</string>
   <string name="WebRtcCallView__start_call">Mulai Panggilan</string>
   <string name="WebRtcCallView__join_call">Bergabung Panggilan</string>
   <string name="WebRtcCallView__call_is_full">Panggilan penuh</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Maksimum jumlah dari %1$d partisipan telah tercapai untuk panggilan ini. Coba lagi nanti.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Memulai panggilan grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Memulai panggilan grup</string> -->
   <string name="WebRtcCallView__view_participants_list">Lihat peserta</string>
   <string name="WebRtcCallView__your_video_is_off">Video Anda mati</string>
   <string name="WebRtcCallView__reconnecting">Menyambungkan ulang…</string>

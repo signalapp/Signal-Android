@@ -1199,13 +1199,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Anrufen …</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal-Sprachanruf …</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal-Sprachanruf …</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal-Videoanruf …</string>
   <string name="WebRtcCallView__start_call">Anruf starten</string>
   <string name="WebRtcCallView__join_call">Anruf beitreten</string>
   <string name="WebRtcCallView__call_is_full">Anruf ist voll</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Für diesen Anruf wurde die maximale Anzahl von %1$d Teilnehmern erreicht. Bitte versuche es später erneut.</string>
-  <string name="WebRtcCallView__s_group_call">»%1$s« Gruppenanruf</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">»%1$s« Gruppenanruf</string> -->
   <string name="WebRtcCallView__view_participants_list">Teilnehmer anzeigen</string>
   <string name="WebRtcCallView__your_video_is_off">Dein Video ist aus</string>
   <string name="WebRtcCallView__reconnecting">Verbindung wird neu hergestellt …</string>

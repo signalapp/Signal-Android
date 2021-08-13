@@ -1143,13 +1143,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">正在撥號…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal 語音通話…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal 語音通話…</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal 視像通話…</string>
   <string name="WebRtcCallView__start_call">開始通話</string>
   <string name="WebRtcCallView__join_call">加入通話</string>
   <string name="WebRtcCallView__call_is_full">通話已滿座</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">此通話已到達 %1$d 個參與者的人數上限。請稍後再試。</string>
-  <string name="WebRtcCallView__s_group_call">「%1$s」群組通話</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">「%1$s」群組通話</string> -->
   <string name="WebRtcCallView__view_participants_list">檢視參與者</string>
   <string name="WebRtcCallView__your_video_is_off">您的視像已關閉</string>
   <string name="WebRtcCallView__reconnecting">正在重新連線…</string>

@@ -1200,13 +1200,13 @@
   <string name="WebRtcCallActivity__signal_s">Trucada del Signal: %1$s</string>
   <string name="WebRtcCallActivity__calling">Es truca…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Trucada de veu del Signal…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Trucada de veu del Signal…</string> -->
   <string name="WebRtcCallView__signal_video_call">Trucada de vídeo del Signal…</string>
   <string name="WebRtcCallView__start_call">Inicia una trucada</string>
   <string name="WebRtcCallView__join_call">Afegeix-me a la trucada</string>
   <string name="WebRtcCallView__call_is_full">La trucada és plena</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">S\'ha assolit el nombre màxim de %1$d participants per a aquesta trucada. Torneu-ho a provar més tard.</string>
-  <string name="WebRtcCallView__s_group_call">Trucada de grup \"%1$s\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">Trucada de grup \"%1$s\"</string> -->
   <string name="WebRtcCallView__view_participants_list">Mostra els participants</string>
   <string name="WebRtcCallView__your_video_is_off">El vídeo està desactivat.</string>
   <string name="WebRtcCallView__reconnecting">Es torna a connectar…</string>

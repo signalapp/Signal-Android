@@ -38,7 +38,9 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">पिन को डिसेबल किया गया।</string>
   <string name="ApplicationPreferencesActivity_hide">छुपा दें</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">अनुस्मारक को छिपाएं?</string>
+  <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">भुगतान रिकवरी फ़्रेज़ रिकॉर्ड करें</string>
   <string name="ApplicationPreferencesActivity_record_phrase">वाक्यांश रिकॉर्ड करें</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">अपने PIN को अक्षम करने से पहले, आपको यह सुनिश्चित करने के लिए अपने भुगतान रिकवरी फ़्रेज़ को रिकॉर्ड करना होगा कि आप अपना भुगतान खाता रिकवर कर सकते हैं।</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d मिनट</item>
@@ -68,6 +70,7 @@
   <string name="AttachmentUploadJob_uploading_media">मीडिया अपलोड कर रहा है…</string>
   <string name="AttachmentUploadJob_compressing_video_start">वीडियो को कंप्रेस कर रहा है…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">संदेशों की जाँच की जा रही है…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">ब्लॉक किए गए उपयोगकर्ता</string>
   <string name="BlockedUsersActivity__add_blocked_user">ब्लॉक किए गए उपयोगकर्ता से जुड़े</string>
@@ -852,6 +855,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">शीर्षक लिखें…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">इस चीज़ का आकार उसकी सीमा से ज़्यादा है, जिस वजह से इसे हटा दिया गया है</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">एक आइटम हटाया गया था क्योंकि उसका प्रकार अज्ञात था</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">एक आइटम हटाया गया था क्योंकि वह आकार सीमा से बड़ा था या उसका प्रकार अज्ञात था</string>
   <string name="MediaSendActivity_camera_unavailable">कैमरा अनुपलब्ध।</string>
   <string name="MediaSendActivity_message_to_s">%s को मेसेज</string>
   <string name="MediaSendActivity_message">मेसेज</string>
@@ -1195,13 +1200,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">कॉल की जा रही है…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal वॉएस कॉल…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal वॉएस कॉल…</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal वीडियो कॉल…</string>
   <string name="WebRtcCallView__start_call">कॉल शुरू करें</string>
   <string name="WebRtcCallView__join_call">कॉल से जुड़ें</string>
   <string name="WebRtcCallView__call_is_full">कॉल पूर्ण है</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">इस कॉल के लिए %1$d भागीदारों की अधिकतम संख्या पूरी हो चुकी है। बाद में दोबारा प्रयास करें।</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" ग्रुप कॉल</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" ग्रुप कॉल</string> -->
   <string name="WebRtcCallView__view_participants_list">भागीदार दिखाएँ</string>
   <string name="WebRtcCallView__your_video_is_off">आपकी वीडियो बंद है</string>
   <string name="WebRtcCallView__reconnecting">फिर से जोङ रहे हैं…</string>
@@ -1499,6 +1504,7 @@
   <string name="NotificationChannel_missing_display_name">अनजान</string>
   <string name="NotificationChannel_voice_notes">ऑडियो नोट्स</string>
   <string name="NotificationChannel_contact_joined_signal">संपर्क Signal में शामिल हो गए</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">अधिसूचना चैनल सेटिंग्ज़ खोलने के लिए कोई गतिविधि उपलब्ध नहीं है।</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal लॉक होने पर त्वरित प्रतिक्रिया अनुपलब्ध है!</string>
@@ -1986,6 +1992,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">यदि रीड रसीद अक्षम हैं, तो आप दूसरों से पढ़ने की रसीदें नहीं देख पाएंगे।</string>
   <string name="preferences__typing_indicators">टाइपिंग सूचक</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">टाइपिंग सूचक बंद करने पर आप दूसरों के टाइपिंग सूचक भी नहीं देख पाएंगे|</string>
+  <string name="preferences__request_keyboard_to_disable">वैयक्तीकृत लर्निंग को अक्षम करने के लिए कीबोर्ड अनुरोध करें।</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">यह सेटिंग कोई गारंटी नहीं है, और आपका कीबोर्ड इसे अनदेखा कर सकता है।</string>
   <string name="preferences_app_protection__blocked_users">ब्लॉक किए गए उपयोगकर्ता</string>
   <string name="preferences_chats__when_using_mobile_data">मोबाइल डेटा का उपयोग करते समय</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi का उपयोग करते समय</string>
@@ -2055,6 +2063,7 @@
   <string name="preferences_share">साझा करें</string>
   <string name="preferences_save">सेव</string>
   <string name="preferences_connecting_to_proxy">प्रॉक्सी से जुड़ रहा है</string>
+  <string name="preferences_connected_to_proxy">प्रॉक्सी से कनेक्ट हुआ</string>
   <string name="preferences_connection_failed">कनेक्शन विफल</string>
   <string name="preferences_couldnt_connect_to_the_proxy">प्रॉक्सी से कनेक्ट नहीं हो सका। प्रॉक्सी पता जांचें और पुन: प्रयास करें।</string>
   <string name="preferences_you_are_connected_to_the_proxy">आप प्रॉक्सी से जुड़े हुए हैं। आप सेटिंग से किसी भी समय प्रॉक्सी को बंद कर सकते हैं।</string>
@@ -2068,6 +2077,7 @@
   <string name="PaymentsAllActivityFragment__all">सब</string>
   <string name="PaymentsAllActivityFragment__sent">भेज दिया गया</string>
   <string name="PaymentsAllActivityFragment__received">मिला</string>
+  <string name="PaymentsHomeFragment__introducing_payments">भुगतान (बीटा) के बारे में जानकारी</string>
   <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">MobileCoin, एक नई गोपनीयता केंद्रित डिजिटल मुद्रा भेजने और प्राप्त करने के लिए Signal का उपयोग करें। शुरु करने के लिए सक्रिय करें।</string>
   <string name="PaymentsHomeFragment__activate_payments">भुगतान सक्रिय करें</string>
   <string name="PaymentsHomeFragment__activating_payments">भुगतान सक्रिय हो रहा है…</string>
@@ -2080,30 +2090,119 @@
   <string name="PaymentsHomeFragment__send">भेजें</string>
   <string name="PaymentsHomeFragment__sent_s">%1$s भेजा </string>
   <string name="PaymentsHomeFragment__received_s">%1$s प्राप्त किया</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">एक्सचेंज करने के लिए ट्रांसफ़र करें</string>
+  <string name="PaymentsHomeFragment__currency_conversion">मुद्रा रूपांतरण</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">भुगतान निष्क्रिय करें</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">रिकवरी फ़्रेज़</string>
   <string name="PaymentsHomeFragment__help">मदद</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">कॉइन क्लीनअप शुल्क</string>
+  <string name="PaymentsHomeFragment__sent_payment">भेजे गए भुगतान</string>
+  <string name="PaymentsHomeFragment__received_payment">प्राप्त किए गए भुगतान</string>
+  <string name="PaymentsHomeFragment__processing_payment">भुगतान प्रोसेस किया जा रहा है</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">मुद्रा परिवर्तन उपलब्ध नहीं</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">मुद्रा परिवर्तन नहीं प्रदर्शित कर सकते। अपने फ़ोन का कन्क्शन जाँचें और दोबारा प्रयास करें।</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">आपके क्षेत्र में भुगतान उपलब्ध नहीं है।</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">भुगतान सक्रिय नहीं किए जा सके। बाद में प्रयास करें।</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">भुगतान निष्क्रिय करें?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">यदि आप भुगतान निष्क्रिय करते हैं तो आप Signal में MobileCoin भेजने या प्राप्त करने में सक्षम नहीं रहेंगे।</string>
+  <string name="PaymentsHomeFragment__deactivate">निष्क्रिय करें</string>
   <string name="PaymentsHomeFragment__continue">आगे </string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">इस समय बैलेंस उपलब्ध नहीं है।</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">भुगतान निष्क्रिय किया गया।</string>
+  <string name="PaymentsHomeFragment__payment_failed">भुगतान विफल रहा</string>
   <string name="PaymentsHomeFragment__details">माहिती</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">आप Signal का उपयोग MobileCoin भेजने या प्राप्त करने के लिए कर सकते हैं। सभी भुगतान MobileCoins और MobileCoin वैलेट की उपयोग की शर्तों के अधीन हैं। यह एक बीटा फ़ीचर है इसलिए आपको कुछ समस्याएँ आ सकती हैं और जो भुगतान या बैलेंस आप खोते हैं उन्हें रिकवर नहीं किया जा सकता।</string>
+  <string name="PaymentsHomeFragment__activate">गतिविधि</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin शर्तें देखें</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Signal में भुगतान अब उपलब्ध नहीं है। अब भी आप किसी एक्सचेंज में धनराशि ट्रांसफ़र कर सकते हैं लेकिन अब आप भुगतान भेज या प्राप्त नहीं कर सकते या धनराशि नहीं जोड़ सकते।</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">धन जोड़ें</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">आपका वॉलेट पता</string>
   <string name="PaymentsAddMoneyFragment__copy">कॉपी</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">क्लिपबोर्ड पर कॉपी किया गया है</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">धनराशि जोड़ने के लिए, अपने वॉलेट पते में MobileCoin भेजें। अपने खाते से किसी ऐसे एक्सचेंज पर लेन-देन शुरू करें जो MobileCoin का समर्थन करता हो, फिर QR स्कैन करें या अपने वॉलेट पते को कॉपी करें।</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">माहिती</string>
   <string name="PaymentsDetailsFragment__status">स्थिति</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">भुगतान सबमिट किया जा रहा है…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">भुगतान प्रोसेस किया जा रहा है…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">भुगतान पूर्ण</string>
+  <string name="PaymentsDetailsFragment__payment_failed">भुगतान विफल रहा</string>
+  <string name="PaymentsDetailsFragment__network_fee">नेटवर्क शुल्क</string>
+  <string name="PaymentsDetailsFragment__sent_by">द्वारा भेजा गया</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">%1$s को भेजा गया</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">आपने %1$s को %2$s पर</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s को %3$s पर</string>
   <string name="PaymentsDetailsFragment__to">किस को</string>
   <string name="PaymentsDetailsFragment__from">द्वारा</string>
+  <string name="PaymentsDetailsFragment__information">भुगतान राशि और लेन-देन के समय सहित लेन-देन विवरण MobileCoin लेजर का हिस्सा हैं।</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">कॉइन क्लीनअप शुल्क</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">जब आपके स्वामित्व के कॉइन किसी लेन-देन को पूरा करने के लिए एकत्र नहीं किए जा सकते हैं तब “कॉइन क्लीनअप” शुल्क लगाया जाता है। क्लीनअप द्वारा आप भुगतान भेजना जारी रख सकेंगे।</string>
+  <string name="PaymentsDetailsFragment__no_details_available">इस लेन-देन के लिए आगे कोई भी विवरण उपलब्ध नहीं है</string>
+  <string name="PaymentsDetailsFragment__sent_payment">भेजे गए भुगतान</string>
+  <string name="PaymentsDetailsFragment__received_payment">प्राप्त किए गए भुगतान</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">भुगतान पूरा हुआ %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">नंबर ब्लॉक करें</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">ट्रांसफ़र करें</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR कोड स्कैन करें</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">प्रति: वॉलेट पता स्कैन या दर्ज करें</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">आप एक्सचेंज द्वारा दिए गए वॉलेट पते पर कोई लेन-देन पूरा करके MobileCoin ट्रांसफ़र कर सकते हैं। वॉलेट पता अंकों और अक्षरों की एक श्रंखला होता है जो सामान्यतः QR कोड के नीचे स्थित होता है।</string>
   <string name="PaymentsTransferFragment__next">अगला</string>
+  <string name="PaymentsTransferFragment__invalid_address">अमान्य पता</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">आप जिस वॉलेट पते पर ट्रांसफ़र करने का प्रयास कर रहे हैं उसकी जाँच करें और दोबारा प्रयास करें।</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">आप स्वयं अपने Signal वॉलेट पते पर ट्रांसफ़र नहीं कर सकते। अपने खाते से किसी समर्थित एक्सचेंज पर वॉलेट पता दर्ज करें।</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">QR कोड को स्कैन करने के लिए Signal को कैमरा एक्सेस की आवश्यकता है।</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">QR कोड को स्कैन करने के लिए Signal को कैमरा अनुमति की आवश्यकता है। सेटिंग्ज़ पर जाएँ, \"अनुमतियाँ\" चुनें, और \"कैमरा\" सक्षम करें।</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">QR कोड को स्कैन करने के लिए Signal को कैमरा एक्सेस की आवश्यकता है।</string>
   <string name="PaymentsTransferFragment__settings">सेटिंग्स</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">पता QR कोड स्कैन करें</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">भुगतान प्राप्तकर्ता के पते का QR कोड स्कैन करें</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">निवेदन </string>
+  <string name="CreatePaymentFragment__pay">भुगतान करें</string>
+  <string name="CreatePaymentFragment__available_balance_s">उपलब्ध बैलेंस: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">टॉगल करें</string>
+  <string name="CreatePaymentFragment__1">1</string>
+  <string name="CreatePaymentFragment__2">2</string>
+  <string name="CreatePaymentFragment__3">3</string>
+  <string name="CreatePaymentFragment__4">4</string>
+  <string name="CreatePaymentFragment__5">5</string>
+  <string name="CreatePaymentFragment__6">6</string>
+  <string name="CreatePaymentFragment__7">7</string>
+  <string name="CreatePaymentFragment__8">8</string>
+  <string name="CreatePaymentFragment__9">9</string>
+  <string name="CreatePaymentFragment__decimal">.</string>
+  <string name="CreatePaymentFragment__0">0</string>
+  <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">बैकस्पेस</string>
+  <string name="CreatePaymentFragment__add_note">नोट जोड़ें</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">रूपांतरण केवल अनुमान हैं और सटीक नहीं भी हो सकते हैं।</string>
   <!--EditNoteFragment-->
+  <string name="EditNoteFragment_note">नोट</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">भुगतान की पुष्टि करें</string>
+  <string name="ConfirmPayment__network_fee">नेटवर्क शुल्क</string>
+  <string name="ConfirmPayment__error_getting_fee">शुल्क प्राप्त करने में त्रुटि</string>
+  <string name="ConfirmPayment__estimated_s">अनुमानित %1$s</string>
   <string name="ConfirmPayment__to">किस को</string>
+  <string name="ConfirmPayment__total_amount">कुल राशि</string>
+  <string name="ConfirmPayment__balance_s">बैलेंस: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">भुगतान सबमिट किया जा रहा है…</string>
+  <string name="ConfirmPayment__processing_payment">भुगतान प्रोसेस किया जा रहा है…</string>
+  <string name="ConfirmPayment__payment_complete">भुगतान पूर्ण</string>
+  <string name="ConfirmPayment__payment_failed">भुगतान विफल रहा</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">भुगतान की प्रोसेसिंग जारी रहेगी</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">अमान्य प्राप्तकर्ता</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">इस व्यक्ति ने भुगतान सक्रिय नहीं किया है</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">नेटवर्क शुल्क अनुरोध करने में अक्षम। इस भुगतान को जारी रखने के लिए दोबारा प्रयास करने के लिए ठीक है पर टैप करें।</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%1$s से %2$s</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">मुद्रा सेट करें</string>
+  <string name="SetCurrencyFragment__all_currencies">सभी मुद्राएँ</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2284,6 +2383,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">ग़लत पिन</string>
   <string name="RegistrationLockFragment__forgot_your_pin">क्या आप अपना पिन भूल गये हैं?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">ज़्यादा कोशिशें नहीं बचीं!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal रजिस्ट्रेशन - Android (v1 PIN) के लिए PIN हेतु मदद चाहिए</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal रजिस्ट्रेशन - Android (v2 PIN) के लिए PIN हेतु मदद चाहिए</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">आपकी गोपनीयता और सुरक्षा के लिए, आपके पिन को रिकवर करने का कोई तरीका नहीं है। यदि आपको अपना पिन याद नहीं है, तो आप %1$d दिन निष्क्रिय रहने के बाद SMS के साथ दोबारा वेरिफाई कर सकते हैं। इस मामले में, आपका खाता बंद कर दिया जाएगा और सारी सामग्री मिटा दी जाएगी।</item>
     <item quantity="other">आपकी गोपनीयता और सुरक्षा के लिए, आपके पिन को रिकवर करने का कोई तरीका नहीं है। यदि आपको अपना पिन याद नहीं है, तो आप %1$d दिन निष्क्रिय रहने के बाद SMS के साथ दोबारा वेरिफाई कर सकते हैं। इस मामले में, आपका खाता मिटा दिया जाएगा और सभी सामग्री हटा दी जाएंगी।</item>
@@ -2338,9 +2439,13 @@
   <string name="backup_enable_dialog__folder">फोल्डर </string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">मैंने इस पासफ्रेज को लिखा है। इसके बिना, मैं बैकअप को पुनर्स्थापित करने में असमर्थ हूं।</string>
   <string name="registration_activity__restore_backup">बैकअप पुनर्स्थापित करें</string>
+  <string name="registration_activity__transfer_or_restore_account">खाता ट्रांसफ़र या रीस्टोर करें</string>
+  <string name="registration_activity__transfer_account">खाता ट्रांसफ़र करें</string>
   <string name="registration_activity__skip">छोड़ दे </string>
   <string name="preferences_chats__chat_backups">बैकअप चैट करें</string>
   <string name="preferences_chats__backup_chats_to_external_storage">चैट को बाहरी स्टॉरेज में बैकअप करें</string>
+  <string name="preferences_chats__transfer_account">खाता ट्रांसफ़र करें</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">खाते को किसी नए Android डिवाइस पर ट्रांसफ़र करें</string>
   <string name="RegistrationActivity_enter_backup_passphrase">बैकअप पासफ्रेज दर्ज करें</string>
   <string name="RegistrationActivity_restore">पुन:इंस्टॉल करें</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal के नये वर्ज़न से बैकअप लाना संभव नहीं है</string>
@@ -2415,35 +2520,122 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">अनलॉक करने के लिए टैप करें</string>
   <string name="Recipient_unknown">अनजान</string>
   <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">खाता ट्रांसफ़र या रीस्टोर करें</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">यदि आप पहले किसी Signal खाते पर रजिस्टर कर चुके हैं, तो आप अपने खाते और संदेशों को ट्रांसफ़र या रीस्टोर कर सकते हैं</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Android डिवाइस से ट्रांसफ़र करें</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">अपने पुराने Android डिवाइस से अपने खाते और संदेशों को ट्रांसफ़र करें। आपको अपने पुराने डिवाइस के एक्सेस की आवश्यकता है।</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">आपको अपने पुराने डिवाइस के एक्सेस की आवश्यकता है।</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">बैकअप से रीस्टोर करें</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">किसी लोकल बैकअप से अपने संदेश रीस्टोर करें। यदि आप अभी रीस्टोर नहीं करते, तो आप बाद में रीस्टोर नहीं कर सकेंगे।</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">अपने पुराने Android फ़ोन पर Signal खोलें</string>
   <string name="NewDeviceTransferInstructions__continue">आगे </string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">सेटिंग्ज़ खोलने के लिए सबसे ऊपर बाईं ओर अपनी प्रोफ़ाइल फ़ोटो पर टैप करें</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">\"खाता\" पर टैप करें</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">दोनों डिवाइस पर \"खाता ट्रांसफर करें\" पर टैप करें और फिर \"जारी रखें\" पर टैप करें</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">पुराने Android डिवाइस से कनेक्ट करने की तैयारी कर रहा है…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">कुछ समय लग रहा है, जल्द ही तैयार होगा</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">पुराने Android डिवाइस के कनेक्ट होने की प्रतीक्षा कर रहा है…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal को आपके पुराने Android डिवाइस की खोज करने और उससे कनेक्ट होने के लिए लोकेशन अनुमति की आवश्यकता है।</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal को आपके पुराने Android डिवाइस की खोज करने और उससे कनेक्ट होने के लिए लोकेशन सेवाओं का चालू होना आवश्यक है।</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal को आपके पुराने Android डिवाइस की खोज करने और उससे कनेक्ट होने के लिए चालू Wi-Fi की आवश्यकता है। Wi-Fi का चालू होना आवश्यक है लेकिन उसका किसी Wi-Fi नेटवर्क से कनेक्ट होना आवश्यक नहीं है।</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">क्षमा करें, ऐसा लगता है कि यह डिवाइस Wi-Fi डायरेक्ट पर काम नहीं करता है। Signal आपके पुराने Android डिवाइस को खोजने और उससे कनेक्ट होने के लिए Wi-Fi डायरेक्ट का उपयोग करता है। अपने खाते को रीस्टोर करने के लिए आप अब भी अपने पुराने Android डिवाइस से किसी बैकअप को रीस्टोर कर सकते हैं।</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">बैकअप रीस्टोर करें</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">आपके पुराने Android डिवाइस से कनेक्ट करते समय कोई अवांछित त्रुटि हुई।</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">नए Android डिवाइस को खोज रहे हैं…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">आपके नए Android डिवाइस को खोजने और उससे कनेक्ट होने के लिए Signal को लोकेशन अनुमति की आवश्यकता है।</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">आपके नए Android डिवाइस को खोजने और उससे कनेक्ट होने के लिए Signal को लोकेशन सेवाओं के सक्षम रखे जाने की आवश्यकता है।</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">आपके नए Android डिवाइस को खोजने और उससे कनेक्ट होने के लिए Signal को चालू Wi-Fi की आवश्यकता है। Wi-Fi का चालू होना आवश्यक है लेकिन उसका किसी Wi-Fi नेटवर्क से कनेक्ट होना आवश्यक नहीं है।</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">क्षमा करें, ऐसा लगता है कि यह डिवाइस Wi-Fi डायरेक्ट पर काम नहीं करता है। Signal आपके नए Android डिवाइस को खोजने और उससे कनेक्ट होने के लिए Wi-Fi डायरेक्ट का उपयोग करता है। आपके नए Android डिवाइस पर अपने खाते को रीस्टोर करने के लिए आप अब भी एक बैकअप बना सकते हैं।</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">बैकअप बनाएँ</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">आपके नए Android डिवाइस से कनेक्ट करते समय कोई अवांछित त्रुटि हुई।</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi सेटिंग्ज़ नहीं खोल पा रहे हैं। कृपया Wi-Fi को मन्युअल रूप से चालू करें।</string>
+  <string name="DeviceTransferSetup__grant_location_permission">लोकेशन अनुमति प्रदान करें</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">लोकेशन सेवाएँ चालू करें</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">लोकेशन सेटिंग्ज़ नहीं खोल पा रहे हैं।</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi चालू करें</string>
+  <string name="DeviceTransferSetup__error_connecting">कनेक्ट करने में त्रुटि</string>
   <string name="DeviceTransferSetup__retry">दोबारा कोशिश करें</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">डीबग लॉग सबमिट करें</string>
+  <string name="DeviceTransferSetup__verify_code">कोड सत्यापित करें</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">सत्यापित करें कि नीचे दिया गया कोड आपके दोनों डिवाइस पर एक जैसा है। फिर आगे बढ़ें पर टैप करें।</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">अंक एक जैसे नहीं हैं</string>
   <string name="DeviceTransferSetup__continue">आगे </string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">अंक समान नहीं है</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">यदि आपके डिवाइस पर अंक समान न हों, तो हो सकता है कि आपने ग़लत डिवाइस से कनेक्ट किया हो। इसे ठीक करने के लिए, ट्रांसफर रोकें और दोबारा प्रयास करें, और अपने दोनों डिवाइस को पास-पास रखें।</string>
+  <string name="DeviceTransferSetup__stop_transfer">ट्रांसफर रोकें</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">पुराना डिवाइस नहीं खोज पा रहे हैं</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">नया डिवाइस नहीं खोज पा रहे हैं</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">सुनिश्चित करें कि नीचे दी गईं अनुमतियाँ और सेवाएँ चालू हों:</string>
+  <string name="DeviceTransferSetup__location_permission">लोकेशन अनुमति</string>
+  <string name="DeviceTransferSetup__location_services">लोकेशन सेवाएँ</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">WiFi डायरेक्ट स्क्रीन चालू करें, याद रखे गए सभी ग्रुप निकाल दें और सभी आमंत्रित या कनेक्ट किए गए डिवाइस अनलिंक कर दें।</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi डायरेक्ट स्क्रीन</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">दोनों डिवाइस पर Wi-Fi को बंद और चालू करके देखें।</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">सुनिश्चित करें कि दोनों डिवाइस ट्रांसफर मोड में हों।</string>
+  <string name="DeviceTransferSetup__go_to_support_page">समर्थन पेज पर जाएँ</string>
   <string name="DeviceTransferSetup__try_again">फिर से कोशिश करो</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">दूसरे डिवाइस की प्रतीक्षा में</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">ट्रांसफर शुरू करने के लिए अपने दूसरे डिवाइस पर जारी रखें पर टैप करें।</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">अपने दूसरे डिवाइस पर जारी रखें पर टैप करें…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal के नए संस्करण से ट्रांसफर नहीं कर सकते</string>
   <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">डेटा ट्रांसफर हो रहा है</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">दोनों डिवाइस एक-दूसरे के पास रखें। डिवाइस बंद ना करें और Signal खुला रखें। ट्रांसफर एंड-टू-एंड एन्क्रिप्टेड होते हैं।</string>
+  <string name="DeviceTransfer__d_messages_so_far">अब तक %1$d संदेश…</string>
   <string name="DeviceTransfer__cancel">रद्द करें</string>
   <string name="DeviceTransfer__try_again">फिर से कोशिश करो</string>
+  <string name="DeviceTransfer__stop_transfer_question">ट्रांसफर रोकें?</string>
+  <string name="DeviceTransfer__stop_transfer">ट्रांसफर रोकें</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">ट्रांसफर की सारी प्रगति खो जाएगी।</string>
+  <string name="DeviceTransfer__transfer_failed">ट्रांसफ़र विफल रहा</string>
+  <string name="DeviceTransfer__unable_to_transfer">ट्रांसफर नहीं कर पा रहे हैं</string>
   <!--OldDeviceTransferInstructionsFragment-->
   <string name="OldDeviceTransferInstructions__transfer_account">खाता ट्रान्सफर करें</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">आप किसी नए Android डिवाइस पर Signal को सेट करते समय अपने Signal खाते को ट्रांसफर कर सकते हैं। आगे बढ़ने से पहले:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">अपने नए Android डिवाइस पर Signal डाउनलोड करें</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">\"खाता ट्रांसफर या रीस्टोर करें\" पर टैप करें</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">प्रॉम्प्ट किए जाने पर \"Android डिवाइस से ट्रांसफ़र करें\" का चयन करें और फिर \"जारी रखें\" चुनें। दोनों डिवाइस को पास-पास रखें।</string>
   <string name="OldDeviceTransferInstructions__continue">आगे </string>
   <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">ट्रांसफर पूरा हुआ</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">अपने नए डिवाइस पर जाएँ</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">आपका Signal डेटा आपके नए डिवाइस पर ट्रांसफर किया जा चुका है। ट्रांसफर प्रोसेस पूरी करने के लिए, आपको अपने नए डिवाइस पर रजिस्ट्रेशन जारी रखना होगा।</string>
   <string name="OldDeviceTransferComplete__close">बंद करो</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">ट्रांसफर सफल रहा</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">ट्रांसफर पूरा हुआ</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">ट्रांसफर प्रोसेस पूरी करने के लिए, आपको रजिस्ट्रेशन जारी रखना होगा।</string>
+  <string name="NewDeviceTransferComplete__continue_registration">रजिस्ट्रेशन जारी रखें</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">खाता ट्रांसफर</string>
+  <string name="DeviceToDeviceTransferService_status_ready">आपके दूसरे Android डिवाइस से कनेक्ट करने की तैयारी कर रहे हैं…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">आपके दूसरे Android डिवाइस से कनेक्ट करने की तैयारी कर रहे हैं…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">आपके दूसरे Android डिवाइस की खोज की जा रही है…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">आपके दूसरे Android डिवाइस से कनेक्ट कर रहे हैं…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">सत्यापन की आवश्यकता है</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">खाता ट्रांसफर किया जा रहा है…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">अपने नए डिवाइस पर रजिस्ट्रेशन पूरा करें</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">आपका Signal खाता आपके नए डिवाइस पर ट्रांसफर किया जा चुका है, लेकिन जारी रखने के लिए आपको उस पर रजिस्ट्रेशन पूरा करना होगा। इस डिवाइस पर Signal निष्क्रिय हो जाएगा।</string>
   <string name="OldDeviceTransferLockedDialog__done">पूर्ण</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">रद्द करें और इस डिवाइस को सक्रिय करें</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB बैलेंस ट्रांसफर करें?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">आपके पास %1$s का बैलेंस है। यदि आप अपना खाता डिलीट करने से पहले अपनी धनराशि को दूसरे वॉलेट पर ट्रांसफर नहीं करते हैं, तो आप उसे हमेशा के लिए खो देंगे।</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">ट्रांसफर न करें</string>
+  <string name="AdvancedPreferenceFragment__transfer">ट्रांसफ़र करें</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ब्लॉक</string>
   <string name="RecipientBottomSheet_unblock">अनब्लॉक करें</string>
@@ -2474,6 +2666,8 @@
   <string name="GroupsLearnMore_paragraph_2">लिगेसी समूहों को नये समूहों में फिलहाल बदला नहीं जा सकता, लेकिन अगर उन सदस्यों के पास Signal का नवीनतम वर्ज़न है तो आप उन्हीं सदस्यों का एक नया समूह बना सकते हैं।</string>
   <string name="GroupsLearnMore_paragraph_3">Signal भविष्य में लेगेसी समूहों को अपडेट करने का तरीका उपलब्ध करायेगा।</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">जिस भी व्यक्ति के पास यह लिंक होगा, वह ग्रुप का नाम और फोटो देख सकता है और शामिल होने का अनुरोध कर सकता है। इसे अपने भरोसेमंद लोगों के साथ शेयर करें।</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">जिस भी व्यक्ति के पास यह लिंक होगा, वह ग्रुप का नाम और फोटो देख सकता है और ग्रुप में शामिल हो सकता है। इसे अपने भरोसेमंद लोगों के साथ शेयर करें।</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Signal के ज़रिये शेयर करें </string>
   <string name="GroupLinkBottomSheet_copy">कॉपी</string>
   <string name="GroupLinkBottomSheet_qr_code">QR कोड </string>
@@ -2481,6 +2675,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">क्लिपबोर्ड पर कॉपी किया गया है</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">यह लिंक फिलहाल सक्रिय नहीं है </string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">वॉइस संदेश चलाने में असफल रहा</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ऑडियो संदेश · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$sसे%2$s</string>
@@ -2534,6 +2729,7 @@
   <string name="DeleteAccountFragment__delete_account">खाता मिटाएँ</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">अपने खाते की जानकारी और प्रोफाइल तस्वीर मिटाएँ</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">अपने सभी मेसेज मिटाएँ</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">अपने भुगतान खाते में %1$s डिलीट करें</string>
   <string name="DeleteAccountFragment__no_country_code">कोई देश कोड निर्दिष्ट नहीं</string>
   <string name="DeleteAccountFragment__no_number">कोई नंबर निर्दिष्ट नहीं</string>
   <string name="DeleteAccountFragment__the_phone_number">आपने जो फोन नंबर दर्ज किया है, वह आपके खाते के फोन नंबर से मेल नहीं खाता।</string>
@@ -2546,49 +2742,142 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">देश खोजें</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">छोड़ दे </string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d सदस्य</item>
+    <item quantity="other">%1$d सदस्य</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">साझा करें</string>
   <string name="ShareActivity__send">भेजें</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">एक से अधिक चैट में शेयर करना केवल Signal संदेशों के लिए समर्थित है</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">कुछ यूज़र को भेजने में असफल रहे</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">आप केवल अधिकतम %1$d चैट के साथ शेयर कर सकते हैं</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">फॉर्वर्ड मेसेज</string>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">चैट वॉलपेपर</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">चैट का रंग</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">चैट रंग रीसेट करें</string>
   <string name="ChatWallpaperFragment__reset_chat_color">चैट रंग रीसेट करें</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">चैट रंग रीसेट करें?</string>
+  <string name="ChatWallpaperFragment__set_wallpaper">वॉलपेपर सेट करें</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">डार्क मोड वॉलपेपर की रोशनी कम करता है</string>
+  <string name="ChatWallpaperFragment__contact_name">संपर्क नाम</string>
   <string name="ChatWallpaperFragment__reset">फिर से स्थापित करना</string>
+  <string name="ChatWallpaperFragment__clear">हटाएँ</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">वॉलपेपर प्रीव्यू</string>
   <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">क्या आप सभी चैट रंगों को ओवरराइड करना चाहेंगे?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">क्या आप सभी वॉलपेपर ओवरराइड करना चाहेंगे?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">डिफ़ॉल्ट रंग रीसेट करें</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">सभी रंग रीसेट करें</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">डिफ़ॉल्ट वॉलपेपर रीसेट करें</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">सभी वॉलपेपर रीसेट करें</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">वॉलपेपर रीसेट करें</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">वॉलपेपर रीसेट करें</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">वॉलपेपर रीसेट करें?</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">फ़ोटो में से चुनें</string>
+  <string name="ChatWallpaperSelectionFragment__presets">प्रीसेट्स</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">प्रीव्यू</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">वॉलपेपर सेट करें</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">और वॉलपेपर प्रीव्यू करने के लिए स्वाइप करें</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">सभी चैट के लिए वॉलपेपर सेट करें</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s के लिए वॉलपेपर सेट करें</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">गैलरी को देखने के लिए स्टोरेज इजाज़त की ज़रूरत होती है।</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">वॉलपेपर तस्वीर चुनें</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">ज़ूम करने के लिए पिंच करें, समायोजित करने के लिए खींचें।</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">सभी चैट के लिए वॉलपेपर सेट करें।</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">%s के लिए वॉलपेपर सेट करें।</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">वॉलपेपर सेट करने में त्रुटि हुई।</string>
+  <string name="WallpaperCropActivity__blur_photo">फ़ोटो ब्लर करें</string>
   <!--InfoCard-->
+  <string name="payment_info_card_about_mobilecoin">MobileCoin के बारे में</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin एक नई गोपनीयता केंद्रित डिजिटल मुद्रा है।</string>
+  <string name="payment_info_card_adding_funds">धनराशि जोड़ना</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">आप अपने वॉलेट पते में MobileCoin भेज कर Signal में उपयोग करने के लिए धनराशि जोड़ सकते हैं।</string>
+  <string name="payment_info_card_cashing_out">भुनाना</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">आप MobileCoin का समर्थन करने वाले एक्सचेंज पर किसी भी समय MobileCoin को भुना सकते हैं। बस उस एक्सचेंज में अपने खाते पर ट्रांसफर करें।</string>
+  <string name="payment_info_card_hide_this_card">यह कार्ड छिपाएँ?</string>
   <string name="payment_info_card_hide">छुपा दें</string>
+  <string name="payment_info_card_record_recovery_phrase">रिकवरी वाक्यांश रिकॉर्ड करें</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">आपका रिकवरी वाक्यांश आपको अपना भुगतान खाता रीस्टोर करने का एक और तरीका प्रदान करता है।</string>
+  <string name="payment_info_card_record_your_phrase">अपना वाक्यांश रिकॉर्ड करें</string>
+  <string name="payment_info_card_update_your_pin">अपना PIN अपडेट करें</string>
+  <string name="payment_info_card_with_a_high_balance">अधिक बैलेंस होने पर, अपने खाते को ज़्यादा सुरक्षित करने के लिए आपको एक अक्षरों और अंकों वाले PIN पर अपडेट करना चाहिए।</string>
   <string name="payment_info_card_update_pin">पिन अपडेट करें</string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">वॉलेट निष्क्रिय करें</string>
+  <string name="DeactivateWalletFragment__your_balance">आपका बैलेंस</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">हमारा सुझाव है कि भुगतान निष्क्रिय करने से पहले आप अपनी धनराशि को दूसरे वॉलेट पते पर ट्रांसफर कर लें। यदि आप अपनी धनराशि को अभी ट्रांसफर करना नहीं चुनते हैं, तो वह Signal से लिंक किए गए आपके वॉलेट में रहेगी बशर्ते कि आप भुगतान फिर से सक्रिय करना न चुनें।</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">बचे हुए बैलेंस को ट्रांसफर करें</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">ट्रांसफर किए बिना निष्क्रिय करें</string>
+  <string name="DeactivateWalletFragment__deactivate">निष्क्रिय करें</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">ट्रांसफर किए बिना निष्क्रिय करें?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">यदि आप भुगतान फिर से सक्रिय करना चुनते हैं तो आपका बैलेंस Signal से लिंक किए हुए आपके वॉलेट में ही रहेगा।</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">वॉलेट निष्क्रिय करने में त्रुटि हुई।</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">रिकवरी फ़्रेज़</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">रिकवरी वाक्यांश देखें</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">रिकवरी वाक्यांश दर्ज करें</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">आपके द्वारा Signal फिर से इंस्टॉल करते समय यदि आप अपने Signal PIN की पुष्टि करते हैं तो आपका बैलेंस अपने आप रीस्टोर हो जाएगा। आप रिकवरी वाक्यांश का उपयोग करके भी अपना बैलेंस रीस्टोर कर सकते हैं, जो आपके लिए अनोखा %1$d-शब्द का वाक्यांश होता है। इसे लिख लें और किसी सुरक्षित स्थान पर रखें।</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">आपका रिकवरी वाक्यांश आपके लिए एक अनोखा %1$d-शब्द का वाक्यांश होता है। अपना बैलेंस रीस्टोर करने के लिए इस वाक्यांश का उपयोग करें।</string>
   <string name="PaymentsRecoveryStartFragment__start">शुरू</string>
+  <string name="PaymentsRecoveryStartFragment__enter_manually">मैन्युअल रूप से दर्ज करें</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">क्लिपबोर्ड से पेस्ट करें</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">रिकवरी वाक्यांश पेस्ट करें</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">रिकवरी फ़्रेज़</string>
   <string name="PaymentsRecoveryPasteFragment__next">अगला</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">अमान्य रिकवरी वाक्यांश</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">सुनिश्चित करें कि आपने %1$d शब्द दर्ज किए हों और दोबारा प्रयास करें।</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">अगला</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">बदलें</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">पिछले</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">आपका रिकवरी वाक्यांश</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">निम्न %1$d शब्दों को क्रम से लिख लें। अपनी सूची को किसी सुरक्षित स्थान पर रखें।</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">सुनिश्चित करें कि आपने अपना वाक्यांश ठीक से दर्ज किया हो।</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">स्क्रीनशॉट न लें या ईमेल से न भेजें।</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">भुगतान खाता रीस्टोर किया गया।</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">अमान्य रिकवरी वाक्यांश</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">सुनिश्चित करें कि आपने अपना वाक्यांश ठीक से दर्ज किया है और दोबारा प्रयास करें।</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">क्लिपबोर्ड पर कॉपी करें?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">यदि आप अपने रिकवरी वाक्यांश को डिजिटल रूप से स्टोर करना चुनें, तो सुनिश्चित करें उसे आपके भरोसेमंद स्थान पर सुरक्षित रखा गया हो।</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">कॉपी</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">रिकवरी वाक्यांश की पुष्टि करें</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">अपने रिकवरी वाक्यांश से निम्न शब्दों को दर्ज करें।</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">शब्द %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">वाक्यांश दोबारा देखें</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">पूर्ण</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">रिकवरी वाक्यांश की पुष्टि की गई</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">रिकवरी वाक्यांश दर्ज करें</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">%1$d शब्द दर्ज करें</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">शब्द %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">अगला</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">अमान्य शब्द</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">क्लिपबोर्ड हटाया गया।</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">देखना</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s ने आपको %2$s भेजा</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d नई भुगतान सूचनाएँ</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">भुगतान नहीं भेज सकते</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">इस यूज़र को भुगतान भेजने के लिए उन्हें आपकी ओर से भेजी गई संदेश रिक्वेस्ट स्वीकार करनी होगी। उन्हें संदेश रिक्वेस्ट बनाने के लिए एक संदेश भेजें।</string>
   <string name="CanNotSendPaymentDialog__send_a_message">एक मेसेज भेजें</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">इस व्यक्ति के साथ आपका कोई समूह समान नहीं है। अवांछित संदेशों से बचने के लिए स्वीकार करने से पहले अनुरोधों की सावधानीपूर्वक समीक्षा करें।</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">इस ग्रुप में आपके कोई भी संपर्क या आपसे चैट करने वाले कोई लोग नहीं हैं। अवांछित संदेशों से बचने के लिए स्वीकार करने से पहले रिक्वेस्ट की समीक्षा ध्यान से करें।</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">संदेश रिक्वेस्ट की जानकारी</string>
   <string name="GroupsInCommonMessageRequest__okay">ठीक है</string>
   <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">यहां चैट रंग का पूर्वावलोकन दिया गया है।</string>
   <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">रंग केवल आपको दिखाई देता है।</string>
@@ -2599,25 +2888,41 @@
   <string name="QualitySelectorBottomSheetDialog__faster_less_data">तेज़, कम डेटा</string>
   <string name="QualitySelectorBottomSheetDialog__high">उच्च</string>
   <string name="QualitySelectorBottomSheetDialog__slower_more_data">धीमा, अधिक डेटा</string>
+  <string name="QualitySelectorBottomSheetDialog__photo_quality">फ़ोटो की गुणवत्ता</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">अपने मित्रों को आमंत्रित करें</string>
   <!--AccountSettingsFragment-->
+  <string name="AccountSettingsFragment__account">खाता</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">समय के साथ-साथ आपसे कम बार पूछा जाएगा</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">आपके फ़ोन नंबर को Signal पर दोबारा रजिस्टर करने के लिए आपका Signal PIN आवश्यक होता है</string>
   <!--ChatsSettingsFragment-->
+  <string name="ChatsSettingsFragment__keyboard">कीबोर्ड</string>
   <string name="ChatsSettingsFragment__enter_key_sends">दर्ज की भेजता है</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">डिफ़ॉल्ट SMS ऐप के रूप में उपयोग करें</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">मेसेज</string>
   <string name="NotificationsSettingsFragment__calls">कॉल</string>
+  <string name="NotificationsSettingsFragment__notify_when">तब सूचित करें, जब…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">संपर्क Signal से जुड़े</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">ब्लॉक</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d संपर्क</string>
   <string name="PrivacySettingsFragment__messaging">संदेश संवाद</string>
   <string name="PrivacySettingsFragment__disappearing_messages">गायब होने वाले मेसेज</string>
+  <string name="PrivacySettingsFragment__app_security">ऐप सुरक्षा</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">रीसेंट सूची में और ऐप के अंदर स्क्रीनशॉट ब्लॉक करें</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal संदेश और कॉल, हमेशा रिले होने वाले कॉल और सील्ड सेंडर</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">नई चैट के लिए डिफ़ॉल्ट टाइमर</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">आपके द्वारा शुरू की गई सभी नई चैट के लिए एक ग़ायब होने वाले संदेशों का समय सेट करें।</string>
   <!--AdvancedPrivacySettingsFragment-->
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">स्थिति आइकन दिखाएँ</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">सील्ड सेंडर का उपयोग करके डिलीवर किए जाने पर संदेश विवरण में एक आइकन दिखाएँ।</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">इसके चालू होने पर, आपके द्वारा शुरू की गई नई चैट में भेजे गए और मिले नए संदेश देखे जाने के बाद ग़ायब हो जाएँगे।</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">इसके चालू होने पर, इस चैट में भेजे गए और मिले नए संदेश देखे जाने के बाद ग़ायब हो जाएँगे।</string>
   <string name="ExpireTimerSettingsFragment__off">बंद </string>
+  <string name="ExpireTimerSettingsFragment__4_weeks">4 हफ़्ते</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 सप्ताह</string>
   <string name="ExpireTimerSettingsFragment__1_day">1 दिन</string>
   <string name="ExpireTimerSettingsFragment__8_hours">8 घंटे</string>
@@ -2627,19 +2932,34 @@
   <string name="ExpireTimerSettingsFragment__custom_time">कस्टम समय</string>
   <string name="ExpireTimerSettingsFragment__set">सेट</string>
   <string name="ExpireTimerSettingsFragment__save">सेव</string>
+  <string name="CustomExpireTimerSelectorView__seconds">सेकंड</string>
+  <string name="CustomExpireTimerSelectorView__minutes">मिनट</string>
+  <string name="CustomExpireTimerSelectorView__hours">घंटे</string>
+  <string name="CustomExpireTimerSelectorView__days">दिन</string>
+  <string name="CustomExpireTimerSelectorView__weeks">हफ़्ते</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">सहायता केंद्र</string>
   <string name="HelpSettingsFragment__contact_us">हमसे संपर्क करें</string>
   <string name="HelpSettingsFragment__version">वर्ज़न</string>
   <string name="HelpSettingsFragment__debug_log">डीबग लॉग</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">नियम और गोपनीयता नीति</string>
+  <string name="HelpFragment__copyright_signal_messenger">कॉपीराइट Signal मेसेंजर</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">GPLv3 के तहत लायसेंसीकृत</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">कॉल</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">स्वतः</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">कस्टम रंगों का उपयोग करें</string>
   <string name="ChatColorSelectionFragment__chat_color">चैट का रंग</string>
   <string name="ChatColorSelectionFragment__edit">बदलें</string>
   <string name="ChatColorSelectionFragment__duplicate">नक़ल</string>
   <string name="ChatColorSelectionFragment__delete">हटाए </string>
   <string name="ChatColorSelectionFragment__delete_color">रंग हटाएं</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">इस कस्टम रंग का उपयोग %1$d चैट में किया गया है। क्या आप सभी चैट के लिए इसे डिलीट करना चाहते हैं?</item>
+    <item quantity="other">इस कस्टम रंग का उपयोग %1$d चैट में किया गया है। क्या आप सभी चैट के लिए इसे डिलीट करना चाहते हैं?</item>
+  </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">चैट का रंग डिलीट करें?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">ठोस</string>
   <string name="CustomChatColorCreatorFragment__gradient">ढाल</string>
@@ -2648,11 +2968,23 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">सेव</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">रंग संपादित करें</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">इस रंग का उपयोग %1$d चैट में किया गया है। क्या आप सभी चैट के लिए बदलाव सेव करना चाहते हैं?</item>
+    <item quantity="other">इस रंग का उपयोग %1$d चैट में किया गया है। क्या आप सभी चैट के लिए बदलाव सेव करना चाहते हैं?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">ऊपर के हिस्से का चयनकर्ता</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">निचले हिस्से का चयनकर्ता</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">प्रतिक्रियाएँ कस्टमाइज़ करें</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">इमोजी बदलने के लिए टैप करें</string>
   <string name="EditReactionsFragment__reset">फिर से स्थापित करना</string>
   <string name="EditReactionsFragment_save">सेव</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">अपने आप वॉलपेपर के रंग जैसा हो जाता है</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">ग्रैडिएंट की दिशा बदलने के लिए खींचें</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">नए चैट रंग</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">हमने आपको अधिक विकल्प देने और चैट को पढ़ने में आसान बनाने के लिए चैट रंगों को बदल दिया है।</string>
   <string name="ChatColorsMegaphone__appearance">दिखावट</string>
   <string name="ChatColorsMegaphone__not_now">अभी नहीं</string>
   <!--AddAProfilePhotoMegaphone-->
@@ -2662,11 +2994,25 @@
   <string name="AddAProfilePhotoMegaphone__add_photo">तस्वीर लगाएं</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">इमोजी</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">इमोजी सर्च खोलें</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">स्टिकर सर्च खोलें</string>
+  <string name="KeyboardPagerFragment_open_gif_search">gif सर्च खोलें</string>
   <string name="KeyboardPagerFragment_stickers">स्टिकर</string>
+  <string name="KeyboardPagerFragment_backspace">बैकस्पेस</string>
+  <string name="KeyboardPagerFragment_gifs">Gif</string>
+  <string name="KeyboardPagerFragment_search_emoji">इमोजी खोजें</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">वापस इमोजी पर जाएँ</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">सर्च में डाले गए शब्द हटाएँ</string>
+  <string name="KeyboardPagerFragment_search_giphy">GIPHY खोजें</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">स्टिकर खोजें</string>
   <string name="StickerSearchDialogFragment_no_results_found">कोई परिणाम नहीं मिला</string>
   <string name="EmojiSearchFragment__no_results_found">कोई परिणाम नहीं मिला</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">अज्ञात रिंगटोन</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">संदेश भेजें</string>
+  <string name="ConversationSettingsFragment__start_video_call">वीडियो कॉल शुरू करें</string>
+  <string name="ConversationSettingsFragment__start_audio_call">ऑडियो कॉल शुरू करें</string>
   <string name="ConversationSettingsFragment__message">मेसेज</string>
   <string name="ConversationSettingsFragment__video">वीडियो</string>
   <string name="ConversationSettingsFragment__audio">ऑडियो</string>
@@ -2675,6 +3021,8 @@
   <string name="ConversationSettingsFragment__muted">म्यूट किया हुआ</string>
   <string name="ConversationSettingsFragment__search">खोजें</string>
   <string name="ConversationSettingsFragment__disappearing_messages">गायब होने वाले मेसेज</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">ध्वनियाँ और सूचनाएँ</string>
+  <string name="ConversationSettingsFragment__contact_details">संपर्क विवरण</string>
   <string name="ConversationSettingsFragment__view_safety_number">सुरक्षा नंबर देखें</string>
   <string name="ConversationSettingsFragment__block">ब्लॉक</string>
   <string name="ConversationSettingsFragment__block_group">समूह को ब्लाॅक करें</string>
@@ -2684,42 +3032,73 @@
   <string name="ConversationSettingsFragment__see_all">सभी देखें</string>
   <string name="ConversationSettingsFragment__add_members">मेंबर्स जोड़ें</string>
   <string name="ConversationSettingsFragment__permissions">अनुमतियाँ</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">अनुरोध और आमंत्रण</string>
   <string name="ConversationSettingsFragment__group_link">समूह लिंक</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">संपर्क के रूप में जोड़ें</string>
   <string name="ConversationSettingsFragment__unmute">अनम्यूट</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">बातचीत %1$s तक के लिए म्यूट की गई</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">बातचीत हमेशा के लिए म्यूट की गई</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">फ़ोन नंबर को क्लिपबोर्ड पर कॉपी किया गया।</string>
   <string name="ConversationSettingsFragment__phone_number">फोन नंबर</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">मेंबर्स जोड़ें</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ग्रुप की जानकारी संपादित करें</string>
+  <string name="PermissionsSettingsFragment__send_messages">संदेश भेजें</string>
   <string name="PermissionsSettingsFragment__all_members">सभी सदस्य</string>
   <string name="PermissionsSettingsFragment__only_admins">सिर्फ एडमिन</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">नए मेंबर कौन शामिल कर सकता है?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">इस ग्रुप की जानकारी को कौन संपादित कर सकता है?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">संदेश कौन भेज सकता है?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">नोटिफिकेशन म्यूट करें</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">म्युट नहीं है</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">%1$s तक के लिए म्यूट किया गया</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">मेंछन</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">हमेशा सूचित करें</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">सूचित न करें</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">कस्टम अधिसूचनाएं</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">हाल ही में उपयोग किया गया</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">नया भुगतान</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">नया Signal मेसेज</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">नाम या नंबर खोजें</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">वॉइस संदेश बंद करें</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">वॉइस संदेश की स्पीड बदलें</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">वॉइस संदेश रोकें</string>
+  <string name="VoiceNotePlayerView__play_voice_message">वॉइस संदेश चलाएँ</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">वॉइस संदेश पर जाएँ</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">अवतार का प्रीव्यू</string>
   <string name="AvatarPickerFragment__camera">कैमरा</string>
+  <string name="AvatarPickerFragment__take_a_picture">फ़ोटो खींचें</string>
+  <string name="AvatarPickerFragment__choose_a_photo">कोई फ़ोटो चुनें</string>
   <string name="AvatarPickerFragment__photo">तस्वीर</string>
   <string name="AvatarPickerFragment__text">टेक्स्ट</string>
   <string name="AvatarPickerFragment__save">सेव</string>
+  <string name="AvatarPickerFragment__select_an_avatar">कोई अवतार चुनें</string>
+  <string name="AvatarPickerFragment__clear_avatar">अवतार हटाएँ</string>
   <string name="AvatarPickerFragment__edit">बदलें</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">अवतार सेव करने में विफल</string>
   <!--TextAvatarCreationFragment-->
+  <string name="TextAvatarCreationFragment__preview">प्रीव्यू</string>
   <string name="TextAvatarCreationFragment__done">पूर्ण</string>
   <string name="TextAvatarCreationFragment__text">टेक्स्ट</string>
   <string name="TextAvatarCreationFragment__color">रंग </string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">कोई रंग चुनें</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">ऊपर जाएँ</string>
   <!--EOF-->
 </resources>

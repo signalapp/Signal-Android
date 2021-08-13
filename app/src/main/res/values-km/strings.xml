@@ -919,7 +919,7 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">កំពុងហៅ…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal ហៅជាសំឡេង…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal ហៅជាសំឡេង…</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal ហៅជាវីដេអូ…</string>
   <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__connecting">កំពុងតភ្ជាប់…</string> -->
   <string name="WebRtcCallView__reconnecting">កំពុងតភ្ជាប់ម្តងទៀត…</string>

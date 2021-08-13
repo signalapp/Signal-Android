@@ -1194,13 +1194,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal  %1$s</string>
   <string name="WebRtcCallActivity__calling">కాలింగ్…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal వాయిస్ కాల్…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal వాయిస్ కాల్…</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal వీడియో కాల్</string>
   <string name="WebRtcCallView__start_call">కాల్ ప్రారంభించు</string>
   <string name="WebRtcCallView__join_call">కాల్‌లో చేరండి</string>
   <string name="WebRtcCallView__call_is_full">కాల్ నిండింది</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">ఈ కాల్ కోసం గరిష్టంగా %1$d మంది పాల్గొనేవారు చేరుకున్నారు. తరువాత మళ్ళీ ప్రయత్నించండి.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" గ్రూప్ కాల్</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" గ్రూప్ కాల్</string> -->
   <string name="WebRtcCallView__view_participants_list">పాల్గొనేవారిని చూడు</string>
   <string name="WebRtcCallView__your_video_is_off">మీ వీడియో ఆఫ్‌లో ఉంది</string>
   <string name="WebRtcCallView__reconnecting">తిరిగి కనెక్ట్ చేస్తోంది…</string>

@@ -687,8 +687,8 @@
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Anunță-mă pentru mențiuni</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Doriți să primiți notificări atunci când sunteți menționat în convorbiri fără sunet?</string>
-  <string name="GroupMentionSettingDialog_always_notify_me">Anunță-mă întotdeauna</string>
-  <string name="GroupMentionSettingDialog_dont_notify_me">Nu mă anunța</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">Notifică-mă întotdeauna</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Nu mă notifica</string>
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">Nume profil</string>
   <string name="ManageProfileFragment_username">Nume utilizator</string>
@@ -1259,13 +1259,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Apel în curs…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Apel vocal Signal…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Apel vocal Signal…</string> -->
   <string name="WebRtcCallView__signal_video_call">Apel video Signal…</string>
   <string name="WebRtcCallView__start_call">Începeți apelul</string>
   <string name="WebRtcCallView__join_call">Alătură-te apelului</string>
   <string name="WebRtcCallView__call_is_full">Numărul maxim de participanți a fost atins</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Numărul maxim de %1$d participanți a fost atins pentru acest apel. Încercați mai târziu. </string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Apel de grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Apel de grup</string> -->
   <string name="WebRtcCallView__view_participants_list">Vizualizați participanții</string>
   <string name="WebRtcCallView__your_video_is_off">Video-ul dvs. este oprit</string>
   <string name="WebRtcCallView__reconnecting">Se reconectează…</string>
@@ -2751,8 +2751,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="GroupsLearnMore_paragraph_2">Grupurile vechi nu pot fi încă migrate la cele noi, dar poți crea un Grup Nou cu aceeași membri dacă aceștia folosesc toți ultima versiune de Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal va oferi în viitor o modalitate de actualizare a grupurilor vechi.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
-  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Oricine cu această adresă poate vedea numele și fotografia grupului și poate solicita o cerere de alăturare la grup. Distribuiți adresa cu persoanele de încredere.</string>
-  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Oricine cu această adresă poate vedea numele grupului și membrii săi și se poate alătura grupului. Distribuiți adresa cu persoanele de încredere.</string>
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Oricine cu acest link poate vedea numele și fotografia grupului și poate solicita să se alăture acestuia. Distribuiți linkul persoanelor de încredere.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Oricine cu acest link poate vedea numele și fotografia grupului  și se poate alătura acestuia. Distribuiți linkul persoanelor de încredere.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Distribuire prin Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copy</string>
   <string name="GroupLinkBottomSheet_qr_code">Cod QR</string>
@@ -3145,7 +3145,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Silențios până la %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Mențiuni</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Notifică întotdeauna</string>
-  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Nu mă anunța</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Nu notifica</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificări personalizate</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Utilizate recent</string>

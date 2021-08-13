@@ -1259,13 +1259,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Pozivam…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal glasovni poziv…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal glasovni poziv…</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal videopoziv…</string>
   <string name="WebRtcCallView__start_call">Nazovi</string>
   <string name="WebRtcCallView__join_call">Pridruži se pozivu</string>
   <string name="WebRtcCallView__call_is_full">Poziv je popunjen</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Maksimalni broj od %1$d učesnika dostignut je za ovaj poziv. Pokušajte ponovo kasnije.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" grupni poziv</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" grupni poziv</string> -->
   <string name="WebRtcCallView__view_participants_list">Vidi učesnike</string>
   <string name="WebRtcCallView__your_video_is_off">Vaš videoprikaz je isključen</string>
   <string name="WebRtcCallView__reconnecting">Povezujem iznova…</string>

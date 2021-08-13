@@ -83,7 +83,7 @@
   <string name="BlockedUsersActivity__do_you_want_to_unblock_s">\"%1$s\" əngəldən çıxarılsın?</string>
   <string name="BlockedUsersActivity__unblock">Əngəldən çıxart</string>
   <!--BlockUnblockDialog-->
-  <string name="BlockUnblockDialog_block_and_leave_s">%1$sqrupunu əngəlləyərək tərk edirsiniz?</string>
+  <string name="BlockUnblockDialog_block_and_leave_s">%1$s qrupunu əngəlləyərək tərk edirsiniz?</string>
   <string name="BlockUnblockDialog_block_s">%1$səngəllənsin?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Artıq bu qrupdan mesaj və ya yeniləmələr almayacaqsınız və üzvlər sizi bu qrupa yenidən əlavə edə bilməyəcək.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Qrup üzvləri, sizi yenidən bu qrupa əlavə edə bilməyəcək.</string>
@@ -301,7 +301,7 @@
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s ilə olan güvənlik nömrəniz dəyişdirildi</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s ilə olan güvənlik nömrəniz dəyişdirildi, böyük ehtimal qarşı tərəf Signal-ı yenidən quraşdırıb və ya cihazı dəyişdirib. Yeni güvənlik nömrənizi təsdiqləmək üçün \"Təsdiqlə\"yə toxunun. Bu, ixtiyari seçimdir.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
-    <item quantity="one">Seçilmiş söhbətləşməni silirsən?</item>
+    <item quantity="one">Seçilmiş danışıq silinsin?</item>
     <item quantity="other">Seçilmiş danışıqlar silinsin?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
@@ -394,7 +394,7 @@
   <string name="DeviceListActivity_network_failed">Şəbəkə xətası!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Adsız cihaz</string>
-  <string name="DeviceListItem_linked_s">%s ilə əlaqə yaradıldı</string>
+  <string name="DeviceListItem_linked_s">%s əlaqə yaradıldı</string>
   <string name="DeviceListItem_last_active_s">Son aktivlik %s</string>
   <string name="DeviceListItem_today">Bu gün</string>
   <!--DocumentView-->
@@ -414,6 +414,10 @@
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal-ın bu versiyasının istifadə müddəti bitib. Mesaj göndərmək və almaq üçün indi yeniləyin.</string>
   <string name="ExpiredBuildReminder_update_now">İndi yenilə</string>
   <!--PendingGroupJoinRequestsReminder-->
+  <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
+    <item quantity="one">Gözləyən %d üzv tələbi var.</item>
+    <item quantity="other">Gözləyən %d üzv tələbi var.</item>
+  </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Bax</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Paylaş</string>
@@ -448,6 +452,10 @@
   <string name="GroupManagement_access_level_only_admins">Yalnız adminlər</string>
   <string name="GroupManagement_access_level_no_one">Heç kim</string>
   <!--GV2 invites sent-->
+  <plurals name="GroupManagement_invitation_sent">
+    <item quantity="one">Dəvət göndərildi</item>
+    <item quantity="other">%d dəvət göndərildi</item>
+  </plurals>
   <string name="GroupManagement_invite_single_user">\"%1$s\", sizin tərəfinizdən bu qrupa avtomatik olaraq əlavə edilə bilməz. Qoşulması üçün dəvət göndərildi və qəbul edənə qədər qrup mesajını görməyəcəklər.</string>
   <string name="GroupManagement_invite_multiple_users">Bu istifadəçiləri bu qrupa avtomatik olaraq əlavə edə bilməzsiniz.\n\nQoşulmaq üçün dəvət göndərildi və qəbul edənə qədər qrup mesajlarını görməyəcəklər.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
@@ -455,6 +463,14 @@
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Yeni Qrupların @adçəkmə və qrup adminləri kimi özəllikləri var və gələcəkdə daha çox özəlliyi dəstəkləyəcək.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Bütün mesaj tarixçəsi və media yenilənmədən əvvəl saxlanıldı.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Bu qrupa yenidən qoşulmağınız üçün bir dəvəti qəbul etməlisiniz və qəbul edənə qədər qrup mesajlarını almayacaqsınız.</string>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Bu üzv, bu qrupa yenidən qoşulması üçün dəvəti qəbul etməlidir və qəbul edənə qədər qrup mesajlarını almayacaq:</item>
+    <item quantity="other">Bu üzvlər, bu qrupa yenidən qoşulması üçün dəvəti qəbul etməlidir və qəbul edənə qədər qrup mesajlarını almayacaqlar:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
+    <item quantity="one">Bu üzv qrupdan çıxarıldı və son versiyaya yeniləyənə qədər qrupa təkrar qoşula bilməyəcək:</item>
+    <item quantity="other">Bu üzvlər qrupdan çıxarıldı və son versiyaya yeniləyənə qədər qrupa təkrar qoşula bilməyəcək:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Yeni Qrupa yüksəlt</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">Bu qrupu yüksəlt</string>
@@ -462,9 +478,45 @@
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Bütün mesaj tarixçəsi və media, yüksəldilməzdən əvvəl saxlanılacaq.</string>
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Şəbəkə xətası ilə qarşılaşıldı. Daha sonra yenidən sınayın.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Yüksəldilmədi.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Bu üzv, bu qrupa yenidən qoşulması üçün dəvəti qəbul etməlidir və qəbul edənə qədər qrup mesajlarını almayacaq:</item>
+    <item quantity="other">Bu üzvlər, bu qrupa yenidən qoşulması üçün dəvəti qəbul etməlidir və qəbul edənə qədər qrup mesajlarını almayacaqlar:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Bu üzv Yeni Qruplara əlavə edilə bilmədi və qrupdan çıxarılacaq:</item>
+    <item quantity="other">Bu üzvlər Yeni Qruplara əlavə edilə bilmədi və qrupdan çıxarılacaq:</item>
+  </plurals>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d üzv Yeni Qrupa əlavə edilə bilmədi. Onu indi əlavə etmək istəyirsiniz?</item>
+    <item quantity="other">%1$d üzv Yeni Qrupa əlavə edilə bilmədi. Onları indi əlavə etmək istəyirsiniz?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
+    <item quantity="one">Üzv əlavə edin</item>
+    <item quantity="other">Üzv əlavə edin</item>
+  </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Xeyr, təşəkkürlər</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
+    <item quantity="one">Üzv əlavə edilsin?</item>
+    <item quantity="other">Üzvlər əlavə edilsin?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Bu üzv, qrup yüksəldiləndə Yeni Qrupa avtomatik olaraq əlavə edilə bilmədi:</item>
+    <item quantity="other">Bu üzvlər, qrup yüksəldiləndə Yeni Qrupa avtomatik olaraq əlavə edilə bilmədi:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
+    <item quantity="one">Üzv əlavə edin</item>
+    <item quantity="other">Üzvləri əlavə edin</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Üzv əlavə edilmədi. Daha sonra yenidən sınayın.</item>
+    <item quantity="other">Üzvlər əlavə edilmədi. Daha sonra yenidən sınayın.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Üzv əlavə edilə bilmir</item>
+    <item quantity="other">Üzvlər əlavə edilə bilmir</item>
+  </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Qrupu tərk edirsiniz?</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Artıq bu qrupda mesaj göndərə və ya ala bilməyəcəksiniz.</string>
@@ -481,6 +533,10 @@
   <string name="LinkPreviewView_this_group_link_is_not_active">Qrup bağlantısı aktiv deyil</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
+  <plurals name="LinkPreviewRepository_d_members">
+    <item quantity="one">%1$d üzv</item>
+    <item quantity="other">%1$d üzv</item>
+  </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_pending_group_invites">Gözləyən qrup dəvətləri</string>
   <string name="PendingMembersActivity_requests">Tələblər</string>
@@ -492,6 +548,14 @@
   <string name="PendingMembersActivity_missing_detail_explanation">Digər qrup üzvləri tərəfindən dəvət edilən şəxslər barədə təfsilatlar göstərilmir. Dəvət edilənlər qoşulmağı seçsələr, məlumatları dərhal qrupla paylaşılacaq. Qoşulana qədər qrupdakı mesajları görməyəcəklər.</string>
   <string name="PendingMembersActivity_revoke_invite">Dəvəti ləğv et</string>
   <string name="PendingMembersActivity_revoke_invites">Dəvətləri ləğv et</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="one">Dəvəti ləğv et</item>
+    <item quantity="other">%1$d dəvəti ləğv et</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_revoking_invite">
+    <item quantity="one">Dəvət ləğv etmə xətası</item>
+    <item quantity="other">Dəvət ləğv etmə xətası</item>
+  </plurals>
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Gözləyən üzv tələbləri</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Göstəriləcək heç bir üzv tələbi yoxdur.</string>
@@ -502,6 +566,10 @@
   <string name="AddMembersActivity__done">Bitdi</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Bu şəxs, köhnə qruplara əlavə ediə bilməz.</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Bu şəxs, elan qruplarına əlavə edilə bilməz.</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">\"%1$s\", \"%2$s\" qrupuna əlavə edilsin?</item>
+    <item quantity="other">%3$d üzv \"%2$s\" qrupuna əlavə edilsin?</item>
+  </plurals>
   <string name="AddMembersActivity__add">Əlavə et</string>
   <string name="AddMembersActivity__add_members">Üzv əlavə et</string>
   <!--AddGroupDetailsFragment-->
@@ -520,9 +588,25 @@
   <string name="AddGroupDetailsFragment__remove">Çıxart</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS əlaqəsi</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s qrupdan çıxarılsın?</string>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
+    <item quantity="one">%d üzv Yeni Qrupu dəstəkləmir, ona görə də bu, Köhnə Qrup olacaq.</item>
+    <item quantity="other">%d üzv Yeni Qrupu dəstəkləmir, ona görə də bu, Köhnə Qrup olacaq.</item>
+  </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d üzv Yeni Qrupu dəstəkləmədiyi üçün, bu qrup yaradılmadı.</item>
+    <item quantity="other">%d üzv Yeni Qrupu dəstəkləmədiyi üçün, bu qrup yaradılmadı.</item>
+  </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">\"%1$s\", Signal-ın köhnə versiyasını istifadə etdiyi üçün Köhnə Qrup yaradılacaq. Həmin üzvlər Signal-ı yenilədikdən və ya siz onları qrupdan çıxartdıqdan sonra Yeni Stil Qrup yarada biləcəksiniz.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
+    <item quantity="one">%1$d üzv, Signal-ın köhnə versiyasını istifadə etdiyi üçün Köhnə Qrup yaradılacaq. Həmin üzvlər Signal-ı yenilədikdən və ya siz onları qrupdan çıxartdıqdan sonra Yeni Stil Qrup yarada biləcəksiniz.</item>
+    <item quantity="other">%1$d üzv, Signal-ın köhnə versiyasını istifadə etdiyi üçün Köhnə Qrup yaradılacaq. Həmin üzvlər Signal-ı yenilədikdən və ya siz onları qrupdan çıxartdıqdan sonra Yeni Stil Qrup yarada biləcəksiniz.</item>
+  </plurals>
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">\"%1$s\", Signal-ın köhnə versiyasını istifadə etdiyi üçün bu qrup yaradıla bilmədi. Qrupu yaratmazdan əvvəl onları çıxartmalısınız.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">%1$d üzv, Signal-ın köhnə versiyasını istifadə etdiyi üçün bu qrup yaradıla bilmədi. Qrupu yaratmazdan əvvəl onu çıxartmalısınız.</item>
+    <item quantity="other">%1$d üzv, Signal-ın köhnə versiyasını istifadə etdiyi üçün bu qrup yaradıla bilmədi. Qrupu yaratmazdan əvvəl onları çıxartmalısınız.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Üzv tələbləri və dəvətlər</string>
   <string name="ManageGroupActivity_add_members">Üzv əlavə et</string>
@@ -543,6 +627,10 @@
   <string name="ManageGroupActivity_on">Açıq</string>
   <string name="ManageGroupActivity_view_all_members">Bütün üzvlərə bax</string>
   <string name="ManageGroupActivity_see_all">Hamısına bax</string>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d üzv əlavə edildi.</item>
+    <item quantity="other">%d üzv əlavə edildi.</item>
+  </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Yalnız adminlər, paylaşıla bilən qrup bağlantısını fəallaşdıra və ya sıradan çıxarda bilər.</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Yalnız adminlər, yeni üzvləri təsdiqləmə seçimini fəallaşdıra və ya sıradan çıxarda bilər.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Yalnız adminlər, paylaşıla bilən qrup bağlantılarını sıfırlaya bilər.</string>
@@ -578,6 +666,14 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Avatar tənzimlənmədi</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_no_groups_in_common">Heç bir ortaq qrup yoxdur</string>
+  <plurals name="ManageRecipientActivity_d_groups_in_common">
+    <item quantity="one">%d ortaq qrupunuz var</item>
+    <item quantity="other">%d ortaq qrupunuz var</item>
+  </plurals>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s 1 nəfəri dəvəti etdi</item>
+    <item quantity="other">%1$s %2$d nəfəri dəvəti etdi</item>
+  </plurals>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Özəl bildirişlər</string>
   <string name="CustomNotificationsDialogFragment__messages">Mesajlar</string>
@@ -605,6 +701,10 @@
   <string name="GroupLinkShareQrDialogFragment__share_code">Kodu paylaş</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">%1$s üçün göndərdiyiniz dəvəti ləğv etmək istəyirsiniz?</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="one">%1$s tərəfindən göndərilən dəvəti ləğv etmək istəyirsiniz?</item>
+    <item quantity="other">%1$s tərəfindən göndərilən %2$d dəvəti ləğv etmək istəyirsiniz?</item>
+  </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Artıq üzvsünüz</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Qoşul</string>
@@ -615,6 +715,10 @@
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Qrup məlumatları alına bilmir, zəhmət olmasa daha sonra yenidən sınayın</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Bu qrupa qoşulmaq və adınızı və fotunuzu üzvlərlə paylaşmaq istəyirsiniz?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Bu qrupa qoşula bilməyiniz üçün qrupdan bir admin tələbinizi təsdiqləməlidir. Siz qoşulma tələbi göndərəndə, adınız və fotonuz üzvlərlə paylaşılacaq.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Qrup · %1$d üzv</item>
+    <item quantity="other">Qrup · %1$d üzv</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Qrup bağlantılarını istifadə etmək üçün Signal-ı yeniləyin</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">İstifadə etdiyiniz Signal versiyası, bu qrup bağlantısını dəstəkləmir. Bu qrupa bağlantı vasitəsilə qoşulmaq üçün son versiyaya yeniləyin.</string>
@@ -677,6 +781,14 @@
   <string name="MediaOverviewActivity_Files">Fayllar</string>
   <string name="MediaOverviewActivity_Audio">Səs</string>
   <string name="MediaOverviewActivity_All">Hamısı</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Seçilmiş element silinsin?</item>
+    <item quantity="other">Seçilmiş elementlər silinsin?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Bu, seçilmiş faylın hamısını birdəfəlik siləcək. Bu elementlə əlaqəli bütün mesaj mətnləri də silinəcək.</item>
+    <item quantity="other">Bu, seçilmiş %1$d faylın hamısını birdəfəlik siləcək. Bu elementlərlə əlaqəli bütün mesaj mətnləri də silinəcək.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Silinir</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Mesajlar silinir…</string>
   <string name="MediaOverviewActivity_Select_all">Hamısını seç</string>
@@ -689,6 +801,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Tor görünüşü</string>
   <string name="MediaOverviewActivity_List_view_description">Siyahı görünüşü</string>
   <string name="MediaOverviewActivity_Selected_description">Seçildi</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d element %2$s</item>
+    <item quantity="other">%1$d element %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d element</item>
+    <item quantity="other">%1$d element</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Fayl</string>
   <string name="MediaOverviewActivity_audio">Səs</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -775,6 +895,14 @@
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Bu qrup, Yeni Qrupa yeniləndi.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Yeni Qrupa əlavə edilə bilmədiniz və qoşulmağınız üçün dəvət göndərildi.</string>
   <string name="MessageRecord_chat_session_refreshed">Söhbət seansı təzələndi</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">Bir üzv Yeni Qrupa əlavə edilə bilmədi və qoşulmaq üçün dəvət edildi.</item>
+    <item quantity="other">%1$s üzv Yeni Qrupa əlavə edilə bilmədi və qoşulmaq üçün dəvət edildi.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">Bir üzv Yeni Qrupa əlavə edilə bilmədi və çıxarıldı.</item>
+    <item quantity="other">%1$s üzv Yeni Qrupa əlavə edilə bilmədi və çıxarıldı.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s, profil adını \"%2$s\" olaraq dəyişdirdi.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s, profil adını \"%2$s\" əvəzinə \"%3$s\" olaraq dəyişdirdi. </string>
@@ -811,12 +939,32 @@
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">%1$s əlaqəsini qrupa dəvət etdiniz.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s, sizi qrupa dəvət etdi.</string>
+  <plurals name="MessageRecord_s_invited_members">
+    <item quantity="one">%1$s, 1 nəfəri qrupa dəvət etdi.</item>
+    <item quantity="other">%1$s, %2$d nəfəri qrupa dəvət etdi.</item>
+  </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Qrupa dəvət olundunuz.</string>
+  <plurals name="MessageRecord_d_people_were_invited_to_the_group">
+    <item quantity="one">1 nəfər qrupa dəvət edildi.</item>
+    <item quantity="other">%1$d nəfər qrupa dəvət edildi.</item>
+  </plurals>
   <!--GV2 invitation revokes-->
+  <plurals name="MessageRecord_you_revoked_invites">
+    <item quantity="one">Bir dəvəti ləğv etdiniz.</item>
+    <item quantity="other">%1$d dəvəti ləğv etdiniz.</item>
+  </plurals>
+  <plurals name="MessageRecord_s_revoked_invites">
+    <item quantity="one">%1$s, bir qrup dəvətini ləğv etdi.</item>
+    <item quantity="other">%1$s, %2$d qrup dəvətini ləğv etdi.</item>
+  </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Kimsə qrup dəvətini rədd etdi.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Qrup dəvətini rədd etdiniz.</string>
   <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s, qrup dəvətinizi qəbul etmədi.</string>
   <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Bir admin, qrup dəvətinizi qəbul etmədi.</string>
+  <plurals name="MessageRecord_d_invitations_were_revoked">
+    <item quantity="one">Bir qrup dəvəti ləğv edildi.</item>
+    <item quantity="other">%1$d qrup dəvəti ləğv edildi.</item>
+  </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Qrup dəvətini qəbul etdiniz.</string>
   <string name="MessageRecord_s_accepted_invite">%1$s, bir qrup dəvətini qəbul etdi.</string>
@@ -906,6 +1054,14 @@
   <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s və %2$s qrup zəngindədir</string>
   <string name="MessageRecord_group_call">Qrup zəngi</string>
   <string name="MessageRecord_you">Siz</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s və digər %3$d nəfər qrup zəngindədir · %4$s</item>
+    <item quantity="other">%1$s, %2$s və digər %3$d nəfər qrup zəngindədir  · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s və digər %3$d nəfər qrup zəngindədir</item>
+    <item quantity="other">%1$s, %2$s və digər %3$d nəfər qrup zəngindədir</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Qəbul et</string>
   <string name="MessageRequestBottomView_continue">Davam et</string>
@@ -925,6 +1081,18 @@
   <string name="MessageRequestProfileView_member_of_one_group">%1$s qrupunun üzvü</string>
   <string name="MessageRequestProfileView_member_of_two_groups">%1$s və %2$s qruplarının üzvü</string>
   <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s və %3$s qruplarının üzvü</string>
+  <plurals name="MessageRequestProfileView_members">
+    <item quantity="one">%1$d üzv</item>
+    <item quantity="other">%1$d üzv</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_members_and_invited">
+    <item quantity="one">%1$d üzv (+%2$d dəvət)</item>
+    <item quantity="other">%1$d üzv (+%2$d dəvət)</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="one">%d əlavə qrup</item>
+    <item quantity="other">%d əlavə qrup</item>
+  </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parollar uyğun gəlmir!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Yanlış köhnə parol!</string>
@@ -952,6 +1120,10 @@
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">İndi yenilə</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal-ın bu versiyasının istifadə müddəti bu gün bitir. Ən son versiyaya yeniləyin.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Signal-ın bu versiyasının istifadə müddəti sabaha bitir. Ən son versiyaya yeniləyin.</item>
+    <item quantity="other">Signal-ın bu versiyasının istifadə müddəti %d günə bitir. Ən son versiyaya yeniləyin.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Parolu daxil edin</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal nişanı</string>
@@ -975,6 +1147,10 @@
   <string name="PinRestoreEntryFragment_contact_support">Dəstək ilə əlaqə</string>
   <string name="PinRestoreEntryFragment_cancel">İmtina</string>
   <string name="PinRestoreEntryFragment_skip">Ötür</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">%1$d cəhdiniz qaldı. Cəhdləriniz uğursuz olsa yeni PİN yarada bilərsiniz. Hesabı qeydiyyatdan keçirib istifadə edə bilərsiniz, lakin yadda saxlanılan tənzimləmələr və hesab məlumatı silinəcək.</item>
+    <item quantity="other">%1$d cəhdiniz qaldı. Cəhdləriniz uğursuz olsa yeni PİN yarada bilərsiniz. Hesabı qeydiyyatdan keçirib istifadə edə bilərsiniz, lakin yadda saxlanılan tənzimləmələr və hesab məlumatı silinəcək.</item>
+  </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Qeydiyyatı - Android üçün PIN ilə bağlı kömək lazımdır</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Alfa nömrəli PIN daxil edin</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Rəqəmli PIN daxil edin</string>
@@ -1025,13 +1201,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Zəng edilir…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal səsli zəngi…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal səsli zəngi…</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal görüntülü zəngi…</string>
   <string name="WebRtcCallView__start_call">Zəng başlat</string>
   <string name="WebRtcCallView__join_call">Zəngə qoşul</string>
   <string name="WebRtcCallView__call_is_full">Zəng dolub</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Bu zəngdə maksimum %1$d iştirakçı sayına çatıldı. Daha sonra yenidən sınayın.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Qrup zəngi</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Qrup zəngi</string> -->
   <string name="WebRtcCallView__view_participants_list">İştirakçılara bax</string>
   <string name="WebRtcCallView__your_video_is_off">Görüntünüz bağlıdır</string>
   <string name="WebRtcCallView__reconnecting">Yenidən bağlantı qurulur…</string>
@@ -1041,7 +1217,15 @@
   <string name="WebRtcCallView__s_is_in_this_call">%1$s bu zəngdədir</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s və %2$s bu zəngdədir</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s təqdim edir</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s və digər %3$d nəfər bu zəngdədir</item>
+    <item quantity="other">%1$s, %2$s və digər %3$d nəfər bu zəngdədir</item>
+  </plurals>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">Bu zəngdə · %1$d nəfər</item>
+    <item quantity="other">Bu zəngdə · %1$d nəfər</item>
+  </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">%1$s əngəlləndi</string>
   <string name="CallParticipantView__more_info">Daha çox məlumat</string>
@@ -1105,7 +1289,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Qeydiyyat Kilidi işə salınsın?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Qeydiyyat Kilidi söndürülsün?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal PIN-inizi unutsanız, Signal-da yenidən qeydiyyatdan keçərkən, hesabınız 7 günlük kilidlənəcək.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal PIN-inizi unutsanız, Signal-da yenidən qeydiyyatdan keçərkən hesabınız 7 günlük kilidlənəcək.</string>
   <string name="RegistrationLockV2Dialog_turn_on">İşə sal</string>
   <string name="RegistrationLockV2Dialog_turn_off">Söndür</string>
   <!--RevealableMessageView-->
@@ -1242,6 +1426,10 @@
   <string name="UsernameEditFragment_username_is_invalid">İstifadəçi adı etibarsızdır.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">İstifadəçi adları %1$d ilə %2$d simvol aralığında olmalıdır.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal-dakı istifadəçi adları ixtiyaridir. Əgər bir istifadəçi adı yaratmağı seçsəniz, digər Signal istifadəçiləri bu istifadəçi adı ilə sizi tapa biləcək və telefon nömrənizi bilmədən sizinlə əlaqə saxlaya biləcək.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d əlaqə Signal-dadır!</item>
+    <item quantity="other">%d əlaqə Signal-dadır!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Əlaqəniz Signal-ın köhnə versiyasını istifadə edir. Zəhmət olmasa güvənlik nömrəsini təsdiqləməzdən əvvəl ondan Signal-ı yeniləməsini xahiş edin.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Əlaqəniz, uyğun olmayan QR kodu formatına sahib daha yeni Signal versiyası işlədir. Zəhmət olmasa müqayisə etmək üçün yeniləyin.</string>
@@ -1400,10 +1588,18 @@
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal qruplarında maksimum %1$d üzv ola bilər.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Tövsiyə edilən üzv limitinə çatıldı</string>
   <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal qrupları, %1$d və daha az üzvlə daha yaxşı işləyir. Daha çox üzvün əlavə edilməsi mesajların alınması və göndərilməsində gecikmələrə səbəb olacaq.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d üzv</item>
+    <item quantity="other">%1$d üzv</item>
+  </plurals>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal-ın, əlaqələrinizi görüntüləmək üçün müraciətə ehtiyacı var.</string>
   <string name="contact_selection_list_fragment__show_contacts">Əlaqələri göstər</string>
   <!--contact_selection_list_item-->
+  <plurals name="contact_selection_list_item__number_of_members">
+    <item quantity="one">%1$d üzv</item>
+    <item quantity="other">%1$d üzv</item>
+  </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal mesajı</string>
   <string name="conversation_activity__type_message_sms_insecure">Güvənli olmayan SMS</string>
@@ -1631,7 +1827,7 @@
   <string name="AndroidManifest__create_passphrase">Parol yarat</string>
   <string name="AndroidManifest__select_contacts">Əlaqələri seç</string>
   <string name="AndroidManifest__change_passphrase">Parolu dəyişdir</string>
-  <string name="AndroidManifest__verify_safety_number">Təhlükəsizlik nömrəsini təsdiqlə</string>
+  <string name="AndroidManifest__verify_safety_number">Güvənlik nömrəsini təsdiqlə</string>
   <string name="AndroidManifest__log_submit">Sazlama jurnalını göndər</string>
   <string name="AndroidManifest__media_preview">Media önbaxışı</string>
   <string name="AndroidManifest__message_details">Mesaj təfsilatları</string>
@@ -1705,6 +1901,10 @@
   <string name="arrays__high">Yüksək</string>
   <string name="arrays__max">Maksimum</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dsa</item>
+    <item quantity="other">%dsa</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences_beta">Beta</string>
   <string name="preferences__sms_mms">SMS və MMS</string>
@@ -1712,7 +1912,7 @@
   <string name="preferences__pref_all_mms_title">Bütün MMS-ləri al</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Signal-ı, gələn bütün mətn mesajları üçün istifadə et</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal-ı, gələn bütün multimedia mesajları üçün istifadə et</string>
-  <string name="preferences__pref_enter_sends_title">Enter düyməsi</string>
+  <string name="preferences__pref_enter_sends_title">Enter düyməsi göndərsin</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter-ə basmaq, mətn mesajlarını göndərəcək</string>
   <string name="preferences__pref_use_address_book_photos">Ünvan kitabçasındakı fotoları istifadə et</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Əgər varsa, ünvan kitabçanızdan əlaqənin fotosunu görüntüləyin</string>
@@ -1797,9 +1997,9 @@
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Cihazınız Wi-Fi üzərindən SMS/MMS çatdırılmasını istifadə edirsə, fəallaşdırın (cihazınızda yalnız \"Wi-Fi Zəngi\" fəal olanda əlçatandır)</string>
   <string name="preferences__incognito_keyboard">Gizli klaviatura</string>
   <string name="preferences__read_receipts">\"Oxundu\" bildirişi</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">\"Oxundu\" bildirişi sıradan çıxarılıbsa, başqalarının \"oxundu\" bildirişlərini görə bilməyəcəksiniz.</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">\"Oxundu\" bildirişi sıradan çıxarılsa, başqalarının \"oxundu\" bildirişlərini görə bilməyəcəksiniz.</string>
   <string name="preferences__typing_indicators">\"Yazır\" göstəricisi</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">\"Yazır\" statusu sıradan çıxarılıbsa, başqalarının \"yazır\" statusunu görə bilməyəcəksiniz.</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">\"Yazır\" statusu sıradan çıxarılsa, başqalarının \"yazır\" statusunu görə bilməyəcəksiniz.</string>
   <string name="preferences__request_keyboard_to_disable">Klaviaturanın fərdiləşdirilmiş öyrənməni sıradan çıxartmasını tələb et.</string>
   <string name="preferences__this_setting_is_not_a_guarantee">Bu tənzimləməyə zəmanət verilmir və klaviaturanız buna əhəmiyyət verməyə bilər.</string>
   <string name="preferences_app_protection__blocked_users">Əngəllənmiş istifadəçilər</string>
@@ -1815,7 +2015,7 @@
   <string name="preferences_storage__audio">Səs</string>
   <string name="preferences_storage__review_storage">Anbarı nəzərdən keçir</string>
   <string name="preferences_storage__delete_older_messages">Köhnə mesajları sil?</string>
-  <string name="preferences_storage__clear_message_history">Mesaj tarixçəsini təmizlə?</string>
+  <string name="preferences_storage__clear_message_history">Mesaj tarixçəsi təmizlənsin?</string>
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Bu, %1$s  və daha köhnə olan bütün mesaj tarixçəsini və medianı cihazınızdan birdəfəlik siləcək.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Bu, bütün mesajları ən son %1$s mesaja qədər kəsəcək.</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Bu, bütün mesaj tarixçəsini və mediaları cihazınızdan birdəfəlik silinəcək.</string>
@@ -1831,7 +2031,7 @@
   <string name="preferences_storage__custom">Özəl</string>
   <string name="preferences_advanced__use_system_emoji">Sistem ifadəsini istifadə et</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal-ın daxili ifadə dəstəyini sıradan çıxart</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">IP ünvanınızı əlaqənizə göstərməmək üçün bütün zəngləri Signal serveri üzərindən həyata keçirin. Fəallaşdırsanız, zəngin keyfiyyəti aşağı düşəcək.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">IP ünvanınızı əlaqənizə göstərməmək üçün bütün zəngləri, Signal serveri üzərindən həyata keçirin. Fəallaşdırsanız, zəngin keyfiyyəti aşağı düşəcək.</string>
   <string name="preferences_advanced__always_relay_calls">Zəngləri həmişə köçür</string>
   <string name="preferences_app_protection__who_can">Kim…</string>
   <string name="preferences_app_protection__app_access">Tətbiq müraciəti</string>
@@ -1857,9 +2057,9 @@
   <string name="preferences_notifications__priority">Üstünlük</string>
   <string name="preferences_communication__category_sealed_sender">Gizli Göndərən</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Göstəriciləri görüntülə</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Gizli göndərən seçimini istifadə edərək çatdırılan mesajlarda \"Mesaj təfsilatları\"nı seçəndə bir status nişanı göstər.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Gizli göndərən seçimini istifadə edərək çatdırılan mesajlarda \"Mesaj təfsilatları\"nı seçərkən bir status nişanı göstər.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Hər kəsdən icazə ver</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ünvan kitabçanızda olmayan və profilinizi paylaşmadığınız əlaqələrdən gələn mesajlar üçün gizli göndərən seçimini fəallaşdırın.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Əlaqə kitabçanızda olmayan və profilinizi paylaşmadığınız əlaqələrdən gələn mesajlar üçün gizli göndərən seçimini fəallaşdırın.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Daha ətraflı</string>
   <string name="preferences_setup_a_username">Bir istifadəçi adı quraşdır</string>
   <string name="preferences_proxy">Proksi</string>
@@ -2138,6 +2338,14 @@
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">Alfa nömrəli PIN yaradın</string>
   <string name="BaseKbsPinFragment__create_numeric_pin">Nömrəli PIN yaradın</string>
   <!--CreateKbsPinFragment-->
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
+    <item quantity="one">PIN, ən azı %1$d simvoldan ibarət olmalıdır</item>
+    <item quantity="other">PIN, ən azı %1$d simvoldan ibarət olmalıdır</item>
+  </plurals>
+  <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
+    <item quantity="one">PIN, ən azı %1$d rəqəmli olmalıdır</item>
+    <item quantity="other">PIN, ən azı %1$d rəqəmli olmalıdır</item>
+  </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Yeni bir PIN yaradın</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Bu cihaz qeydiyyatda olduğu müddətcə PIN-inizi dəyişdirə bilərsiniz.</string>
   <string name="CreateKbsPinFragment__create_your_pin">PIN yaradın</string>
@@ -2399,14 +2607,14 @@
   <string name="DeviceTransfer__transfer_failed">Köçürülmədi</string>
   <string name="DeviceTransfer__unable_to_transfer">Köçürülə bilmir</string>
   <!--OldDeviceTransferInstructionsFragment-->
-  <string name="OldDeviceTransferInstructions__transfer_account">Hesab köçürülməsi</string>
+  <string name="OldDeviceTransferInstructions__transfer_account">Hesabın köçürülməsi</string>
   <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Signal hesabınızı, yeni Android cihazınızda Signal-ı quraşdırarkən köçürə bilərsiniz. Davam etməzdən əvvəl:</string>
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
-  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Yeni Android cihazınıza Signal-ı endirin</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Yeni Android cihazınızda Signal-ı endirin</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">\"Hesabı köçür və ya geri yüklə\"yə toxunun</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">\"Hesabınızı köçürün və ya geri yükləyin\"ə toxunun</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">İstəsəniz \"Android cihazından köçür\"ü, daha sonra \"Davam et\"i seçin. Hər iki cihazı yaxında saxlayın.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">İstəsəniz \"Android cihazından köçürün\"ü, daha sonra \"Davam et\"i seçin. Hər iki cihazı yaxında saxlayın.</string>
   <string name="OldDeviceTransferInstructions__continue">Davam et</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">Köçürmə tamamlandı</string>
@@ -2491,6 +2699,14 @@
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Tələbin kimdən gəldiyinə əmin deyilsinizsə, aşağıdakı əlaqələri nəzərdən keçirib seçim edin.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Başqa ortaq qrup yoxdur.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Heç bir ortaq qrup yoxdur.</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d ortaq qrupunuz var</item>
+    <item quantity="other">%d ortaq qrupunuz var</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d ortaq qrupunuz var</item>
+    <item quantity="other">%d ortaq qrupunuz var</item>
+  </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">%1$s , qrupdan çıxarılsın?</string>
   <string name="ReviewCardDialogFragment__remove">Çıxart</string>
   <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Qrupdan çıxarılmadı.</string>
@@ -2534,6 +2750,10 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">Ölkə axtar</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Ötür</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d üzv</item>
+    <item quantity="other">%1$d üzv</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Paylaş</string>
   <string name="ShareActivity__send">Göndər</string>
@@ -2685,7 +2905,7 @@
   <string name="AccountSettingsFragment__require_your_signal_pin">Telefon nömrənizi Signal-da qeydiyyata salmaq üçün Signal PIN-inizi tələb edin</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Klaviatura</string>
-  <string name="ChatsSettingsFragment__enter_key_sends">Enter düyməsi göndərir</string>
+  <string name="ChatsSettingsFragment__enter_key_sends">Enter düyməsi göndərsin</string>
   <!--SmsSettingsFragment-->
   <string name="SmsSettingsFragment__use_as_default_sms_app">İlkin SMS tətbiqi kimi istifadə et</string>
   <!--NotificationsSettingsFragment-->
@@ -2704,7 +2924,7 @@
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Yeni söhbətlər üçün ilkin vaxtölçən</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Başlatdığınız bütün yeni söhbətlər üçün ilkin bir yox olan mesaj vaxtölçəni tənzimləyin.</string>
   <!--AdvancedPrivacySettingsFragment-->
-  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Status nişanı göstər</string>
+  <string name="AdvancedPrivacySettingsFragment__show_status_icon">Status nişanını göstər</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Gizli göndərən istifadə edərək mesaj çatdırılanda təfsilatlarında bir nişan göstər.</string>
   <!--ExpireTimerSettingsFragment-->
   <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Fəal olanda, başlatdığınız yeni söhbətlərdə göndərilən və alınan yeni mesajlar, baxıldıqdan sonra yox olacaq.</string>
@@ -2743,6 +2963,10 @@
   <string name="ChatColorSelectionFragment__duplicate">Kopyala</string>
   <string name="ChatColorSelectionFragment__delete">Sil</string>
   <string name="ChatColorSelectionFragment__delete_color">Rəngi sil</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">Bu özəl rəng %1$d söhbətdə istifadə olunur. Onu bütün söhbətlərdən silmək istəyirsiniz?</item>
+    <item quantity="other">Bu özəl rəng %1$d  söhbətdə istifadə olunur. Onu bütün söhbətlərdən silmək istəyirsiniz?</item>
+  </plurals>
   <string name="ChatColorSelectionFragment__delete_chat_color">Bu rəng silinsin?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">Qatı</string>
@@ -2752,6 +2976,10 @@
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">Saxla</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Rəngə düzəliş et</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">Bu rəng %1$d söhbətdə istifadə olunur. Onu bütün söhbətlər üçün saxlamaq istəyirsiniz?</item>
+    <item quantity="other">Bu rəng %1$d söhbətdə istifadə olunur. Onu bütün söhbətlər üçün saxlamaq istəyirsiniz?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Üst kənar seçici</string>
   <string name="ChatColorGradientTool_bottom_edge_selector">Alt kənar seçici</string>
@@ -2794,7 +3022,7 @@
   <string name="ConversationSettingsFragment__start_video_call">Görüntülü zəng başlat</string>
   <string name="ConversationSettingsFragment__start_audio_call">Səsli zəng başlat</string>
   <string name="ConversationSettingsFragment__message">Mesaj</string>
-  <string name="ConversationSettingsFragment__video">Video</string>
+  <string name="ConversationSettingsFragment__video">Görüntülü</string>
   <string name="ConversationSettingsFragment__audio">Səs</string>
   <string name="ConversationSettingsFragment__call">Zəng et</string>
   <string name="ConversationSettingsFragment__mute">Səssizə al</string>
@@ -2821,8 +3049,8 @@
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefon nömrəsi lövhəyə kopyalandı.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefon nömrəsi</string>
   <!--PermissionsSettingsFragment-->
-  <string name="PermissionsSettingsFragment__add_members">Üzv əlavə et</string>
-  <string name="PermissionsSettingsFragment__edit_group_info">Qrup məlumatına düzəliş et</string>
+  <string name="PermissionsSettingsFragment__add_members">Üzv əlavə edə bilmə</string>
+  <string name="PermissionsSettingsFragment__edit_group_info">Qrup məlumatına düzəliş edə bilmə</string>
   <string name="PermissionsSettingsFragment__send_messages">Mesaj göndərmə</string>
   <string name="PermissionsSettingsFragment__all_members">Bütün üzvlər</string>
   <string name="PermissionsSettingsFragment__only_admins">Yalnız adminlər</string>

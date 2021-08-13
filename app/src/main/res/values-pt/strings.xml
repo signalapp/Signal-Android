@@ -1200,13 +1200,13 @@
   <string name="WebRtcCallActivity__signal_s">Chamada Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">A chamar…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Chamada de voz do Signal…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Chamada de voz do Signal…</string> -->
   <string name="WebRtcCallView__signal_video_call">Chamada de vídeo do Signal…</string>
   <string name="WebRtcCallView__start_call">Iniciar chamada</string>
   <string name="WebRtcCallView__join_call">Entrar na chamada</string>
   <string name="WebRtcCallView__call_is_full">A chamada encontra-se cheia</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Foi atingido o número máximo de %1$d participantes para esta chamada. Tente novamente mais tarde.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\"  - Chamada de grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\"  - Chamada de grupo</string> -->
   <string name="WebRtcCallView__view_participants_list">Ver participantes</string>
   <string name="WebRtcCallView__your_video_is_off">O seu vídeo encontra-se desligado</string>
   <string name="WebRtcCallView__reconnecting">A ligar novamente…</string>

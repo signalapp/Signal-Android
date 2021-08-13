@@ -1107,13 +1107,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">ခေါ်ဆိုနေပါသည်…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal အသံခေါ်ဆိုမှု …</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal အသံခေါ်ဆိုမှု …</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal ဗီဒီယိုခေါ်ဆိုမှု…</string>
   <string name="WebRtcCallView__start_call">စတင်ခေါ်ဆိုပါ</string>
   <string name="WebRtcCallView__join_call">ခေါ်ဆိုမှုထဲဝင်မယ်</string>
   <string name="WebRtcCallView__call_is_full">ခေါ်ဆိုမှုထဲ လူပြည့်နေပါပြီ</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">၎င်းခေါ်ဆိုမှုအတွက် အများဆုံးရှိနိုင်သော လူဦး အရေအတွက် (%1$d ဦး) ပြည့်သွားပါပြီ။ နောက်မှပြန်စမ်းကြည့်ပေးပါ။</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" အဖွဲ့လိုက် ခေါ်ဆိုမှု</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" အဖွဲ့လိုက် ခေါ်ဆိုမှု</string> -->
   <string name="WebRtcCallView__view_participants_list">ပါဝင်သူများ ကြည့်ရှုမယ်</string>
   <string name="WebRtcCallView__your_video_is_off">သင့်ဗီဒီယိုပိတ်ထားသည်</string>
   <string name="WebRtcCallView__reconnecting">ပြန်လည်ချိတ်ဆက်နေသည် …</string>

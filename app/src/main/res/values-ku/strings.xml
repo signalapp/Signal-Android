@@ -1089,13 +1089,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Tê gerîn…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Gerîna dengî ya Signalê…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Gerîna dengî ya Signalê…</string> -->
   <string name="WebRtcCallView__signal_video_call">Gerîna vîdoyî ya Signalê…</string>
   <string name="WebRtcCallView__start_call">Aniha bigere</string>
   <string name="WebRtcCallView__join_call">Tevlî gerînê bibe</string>
   <string name="WebRtcCallView__call_is_full">Gerîn tije ye</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Ji bo vê gerînê gihîşte hejmara herî zêde ya %1$d beşdaran. Paşê dîsa biceribîne.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Gerîna Komî</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Gerîna Komî</string> -->
   <string name="WebRtcCallView__view_participants_list">Beşdaran bibîne</string>
   <string name="WebRtcCallView__your_video_is_off">Vîdyoya te girtî ye</string>
   <string name="WebRtcCallView__reconnecting">Dîsa tê girêdan…</string>

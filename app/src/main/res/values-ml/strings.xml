@@ -1200,13 +1200,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">വിളിക്കുന്നു…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal വോയ്‌സ് കോൾ…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal വോയ്‌സ് കോൾ…</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal വീഡിയോ കോൾ…</string>
   <string name="WebRtcCallView__start_call">കോൾ ആരംഭിക്കുക</string>
   <string name="WebRtcCallView__join_call">കോളിൽ ചേരുക</string>
   <string name="WebRtcCallView__call_is_full">കോൾ നിറഞ്ഞു</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">ഈ കോളില്‍ പങ്കെടുക്കാന്നാവുന്നവരുടെ പരമാവധി എണ്ണമായ %1$d ആയിരിക്കുന്നു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" ഗ്രൂപ്പ് കോൾ</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" ഗ്രൂപ്പ് കോൾ</string> -->
   <string name="WebRtcCallView__view_participants_list">പങ്കെടുക്കുന്നവരെ കാണുക</string>
   <string name="WebRtcCallView__your_video_is_off">നിങ്ങളുടെ വീഡിയോ ഓഫാണ്</string>
   <string name="WebRtcCallView__reconnecting">റീകണക്ടിംഗ്…</string>

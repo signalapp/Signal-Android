@@ -212,8 +212,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Mae atodiad yn fwy na therfynau maint y math o neges rydych chi\'n ei hanfon.</string>
   <string name="ConversationActivity_unable_to_record_audio">Methu recordio sain!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nid oes modd i chi anfon negeseuon i\'r grŵp hwn oherwydd nid ydych yn aelod mwyach.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Dim ond %1$s sy\'n gallu anfon negeseuon.</string>
   <string name="ConversationActivity_admins">gweinyddwyr</string>
   <string name="ConversationActivity_message_an_admin">Anfon neges i weinyddwr</string>
+  <string name="ConversationActivity_cant_start_group_call">Methu dechrau galwad grŵp</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Gweinyddwyr y grŵp hwn yn unig gall ddechrau galwadau.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nid oes ap ar gael i drin y ddolen hon ar eich dyfais.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Mae eich cais i ymuno wedi\'i anfon at weinyddiaeth y grŵp. Fe gewch hysbysiad pan fyddan nhw\'n gweithredu.</string>
@@ -366,6 +368,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ChooseBackupFragment__icon_content_description">Adfer o\'r eicon wrth gefn</string>
   <string name="ChooseBackupFragment__choose_backup">Dewiswch y copi wrth gefn</string>
   <string name="ChooseBackupFragment__learn_more">Dysgu rhagor</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Dim porwr ffeiliau ar gael</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Adfer wedi\'i gyflawni</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">I barhau i ddefnyddio copïau wrth gefn, dewiswch ffolder. Bydd copïau wrth gefn newydd yn cael eu cadw i\'r lleoliad hwn.</string>
@@ -445,6 +448,7 @@ Send neges heb ei ddiogelu?</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Rhannu â</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Dim ond ar gyfer delweddau a fideos y mae atodiadau lluosog yn cael eu cynnal</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Nid oes gennych ganiatâd i anfon i\'r grŵp yma</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Methiant cyfathrebu Signal parhaol!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Nid oedd Signal yn gallu cofrestru gyda Google Play Services. Mae negeseuon a galwadau Signal wedi\'u hanalluogi, ceisiwch ailgofrestru yn Gosodiadau &gt; Uwch.</string>
@@ -617,6 +621,7 @@ Send neges heb ei ddiogelu?</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Wedi Gorffen</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Nid oes modd ychwanegu\'r person hwn at hen grwpiau..</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Nid oes modd ychwanegu\'r person hwn at grwpiau cyhoeddiadau.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Ychwanegu \"%1$s\" i \"%2$s\"?</item>
     <item quantity="two">Ychwanegu%3$d aelod i \"%2$s\"?</item>
@@ -699,6 +704,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Dim ond gweinyddwyr sy\'n gallu ailosod y ddolen grŵp rhanadwy.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nid oes gennych yr hawl i wneud hyn</string>
   <string name="ManageGroupActivity_not_capable">Nid yw rhywun a ychwanegwyd gennych yn cefnogi grwpiau newydd ac mae angen iddo ddiweddaru Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Nid yw rhywun a ychwanegwyd gennych yn cefnogi grwpiau cyhoeddiadau ac mae angen iddo ddiweddaru Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Wedi methu diweddaru\'r grŵp</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nid ydych yn aelod o\'r grŵp</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Wedi methu diweddaru\'r grŵp, aildrydarwch yn nes ymlaen</string>
@@ -1091,6 +1097,8 @@ Send neges heb ei ddiogelu?</string>
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">Newidiasoch gosodiadau\'r grŵp i ganiatáu pob aelod i anfon negeseuon.</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">Newidiasoch gosodiadau\'r grŵp i ganiatáu gweinyddwyr un unig i anfon negeseuon.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">Newidiodd %1$s osodiadau\'r grŵp i ganiatáu i bob aelod i anfon negeseuon.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">Newidiodd %1$s osodiadau\'r grŵp i ganiatáu gweinyddwyr un unig i anfon negeseuon.</string>
   <string name="MessageRecord_allow_all_members_to_send">Newidiwyd gosodiadau\'r grŵp i ganiatáu pob aelod i anfon negeseuon.</string>
   <string name="MessageRecord_allow_only_admins_to_send">Newidiwyd gosodiadau\'r grŵp i ganiatáu gweinyddwyr un unig i anfon negeseuon.</string>
   <!--GV2 group link invite access level change-->
@@ -1311,13 +1319,13 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Yn galw…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Galwad llais Signal…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Galwad llais Signal…</string> -->
   <string name="WebRtcCallView__signal_video_call">Galwad fideo Signal</string>
   <string name="WebRtcCallView__start_call">Cychwyn Galwad</string>
   <string name="WebRtcCallView__join_call">Ymuno â\'r Alwad</string>
   <string name="WebRtcCallView__call_is_full">Mae\'r alwad yn llawn</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Cyrhaeddwyd y nifer uchaf o gyfranogwyr %1$d ar gyfer yr alwad hon. Rhowch gynnig arall arni yn nes ymlaen.</string>
-  <string name="WebRtcCallView__s_group_call">Galwad Grŵp \"%1$s\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">Galwad Grŵp \"%1$s\"</string> -->
   <string name="WebRtcCallView__view_participants_list">Gweld cyfranogwyr</string>
   <string name="WebRtcCallView__your_video_is_off">Mae\'ch fideo i ffwrdd</string>
   <string name="WebRtcCallView__reconnecting">Yn Ailgysylltu…</string>
@@ -3215,10 +3223,12 @@ Send neges heb ei ddiogelu?</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Ychwanegu aelodau</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Golygu manylion y grŵp</string>
+  <string name="PermissionsSettingsFragment__send_messages">Anfon negeseuon</string>
   <string name="PermissionsSettingsFragment__all_members">Pob aelod</string>
   <string name="PermissionsSettingsFragment__only_admins">Dim ond gweinyddwyr</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Pwy all ychwanegu aelodau newydd?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Pwy all olygu manylion y grŵp hwn?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Pwy all anfon negeseuon?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Tewi hysbysiadau</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Heb ei ddistewi</string>
@@ -3241,6 +3251,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="ContactFilterView__search_name_or_number">Chwilio am enw neu rif</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Atal y neges llais</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Newid cyflymder y neges llais</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Oedi neges llais</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Chwarae neges llais</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Mynd i\'r neges llais</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Rhagolwg Afatar</string>
   <string name="AvatarPickerFragment__camera">Camera</string>
@@ -3264,5 +3279,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Symud i fyny</string>
   <!--EOF-->
 </resources>

@@ -1142,13 +1142,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">呼び出しています…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal音声通話…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal音声通話…</string> -->
   <string name="WebRtcCallView__signal_video_call">Signalビデオ通話…</string>
   <string name="WebRtcCallView__start_call">通話を開始する</string>
   <string name="WebRtcCallView__join_call">通話に参加する</string>
   <string name="WebRtcCallView__call_is_full">満席です</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">この通話の参加者が、上限の%1$d人に達しました。あとで再度試してください。</string>
-  <string name="WebRtcCallView__s_group_call">「%1$s」グループ通話</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">「%1$s」グループ通話</string> -->
   <string name="WebRtcCallView__view_participants_list">参加者を確認する</string>
   <string name="WebRtcCallView__your_video_is_off">あなたの映像はオフです</string>
   <string name="WebRtcCallView__reconnecting">再接続しています…</string>
@@ -2988,6 +2988,7 @@
   <string name="VoiceNotePlayerView__change_voice_message_speed">音声メッセージの再生速度を変更</string>
   <string name="VoiceNotePlayerView__pause_voice_message">音声メッセージを一時停止</string>
   <string name="VoiceNotePlayerView__play_voice_message">音声メッセージを再生</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">音声メッセージへ</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">アバターのプレビュー</string>
   <string name="AvatarPickerFragment__camera">カメラ</string>
@@ -3011,5 +3012,6 @@
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">上へ</string>
   <!--EOF-->
 </resources>

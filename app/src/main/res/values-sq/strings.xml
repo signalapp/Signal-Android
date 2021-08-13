@@ -1204,13 +1204,13 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Po thirret…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Thirrje Signal me zë…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Thirrje Signal me zë…</string> -->
   <string name="WebRtcCallView__signal_video_call">Thirrje Signal me video…</string>
   <string name="WebRtcCallView__start_call">Nise Thirrjen</string>
   <string name="WebRtcCallView__join_call">Hyni në Thirrje</string>
   <string name="WebRtcCallView__call_is_full">Thirrja është plot</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Për këtë thirrje është mbërritur në numrin maksimum prej %1$dpjesëmarrësish. Riprovoni më vonë.</string>
-  <string name="WebRtcCallView__s_group_call">Thirrje Grupi me \"%1$s\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">Thirrje Grupi me \"%1$s\"</string> -->
   <string name="WebRtcCallView__view_participants_list">Shihni pjesëmarrësit</string>
   <string name="WebRtcCallView__your_video_is_off">Videoja juaj është e fikur</string>
   <string name="WebRtcCallView__reconnecting">Po rilidhet…</string>

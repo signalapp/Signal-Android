@@ -1133,13 +1133,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Đang gọi…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Đang gọi âm thanh Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Đang gọi âm thanh Signal</string> -->
   <string name="WebRtcCallView__signal_video_call">Đang gọi video Signal…</string>
   <string name="WebRtcCallView__start_call">Bắt đầu Cuộc gọi</string>
   <string name="WebRtcCallView__join_call">Tham gia Cuộc gọi</string>
   <string name="WebRtcCallView__call_is_full">Cuộc gọi đã đầy</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Cuộc gọi này đã đạt số thành viên tham dự tối đa là %1$d người. Vui lòng thử lại sau.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Cuộc gọi Nhóm</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Cuộc gọi Nhóm</string> -->
   <string name="WebRtcCallView__view_participants_list">Xem người tham dự</string>
   <string name="WebRtcCallView__your_video_is_off">Video của bạn đang tắt</string>
   <string name="WebRtcCallView__reconnecting">Đang kết nối lại…</string>

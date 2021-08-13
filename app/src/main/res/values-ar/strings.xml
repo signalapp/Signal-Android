@@ -1434,13 +1434,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal‏ %1$s</string>
   <string name="WebRtcCallActivity__calling">يتصل…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">مكالمة صوتية على Signal…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">مكالمة صوتية على Signal…</string> -->
   <string name="WebRtcCallView__signal_video_call">مكالمة فيديو على Signal….</string>
   <string name="WebRtcCallView__start_call">بدء المكالمة</string>
   <string name="WebRtcCallView__join_call">الانضمام للمكالمة</string>
   <string name="WebRtcCallView__call_is_full">المكالمة ممتلئة</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">وصل عدد المشاركين إلى %1$d مشاركا، وهو الحد الأقصى في هذه المكالمة. يُرجى المحاولة مرة أخرى لاحقا.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" مكالمة جماعية</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" مكالمة جماعية</string> -->
   <string name="WebRtcCallView__view_participants_list">إظهار المشاركين</string>
   <string name="WebRtcCallView__your_video_is_off">الفيديو الخاص بك غير مشغل</string>
   <string name="WebRtcCallView__reconnecting">إعادة الاتصال جارية…</string>

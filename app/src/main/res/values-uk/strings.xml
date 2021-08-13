@@ -1302,13 +1302,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Телефонуємо…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal голосовий дзвінок…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal голосовий дзвінок…</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal відеодзвінок…</string>
   <string name="WebRtcCallView__start_call">Почати дзвінок</string>
   <string name="WebRtcCallView__join_call">Приєднатись</string>
   <string name="WebRtcCallView__call_is_full">Дзвінок повний</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Максимальна кількість учасників — %1$d — досягнута для цього дзвінка. Спробуйте пізніше.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Груповий Дзвінок</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Груповий Дзвінок</string> -->
   <string name="WebRtcCallView__view_participants_list">Переглянути учасників</string>
   <string name="WebRtcCallView__your_video_is_off">Відео вимкнено</string>
   <string name="WebRtcCallView__reconnecting">Повторне з’єднання…</string>

@@ -1201,13 +1201,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">چاقىرىۋاتىدۇ…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal ئاۋازلىق چاقىرىق…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal ئاۋازلىق چاقىرىق…</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal سىنلىق چاقىرىق…</string>
   <string name="WebRtcCallView__start_call">چاقىرىق باشلا</string>
   <string name="WebRtcCallView__join_call">چاقىرىققا قېتىل</string>
   <string name="WebRtcCallView__call_is_full">چاقىرىق توشتى</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">بۇ چاقىرىقنىڭ قېتىلغۇچىلىرى%1$d چېكىگە يەتتى. سەل تۇرۇپ قايتا سىناڭ.</string>
-  <string name="WebRtcCallView__s_group_call">«%1$s» گۇرۇپپا چاقىرىقى</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">«%1$s» گۇرۇپپا چاقىرىقى</string> -->
   <string name="WebRtcCallView__view_participants_list">قېتىلغۇچىلارنى كۆرۈش</string>
   <string name="WebRtcCallView__your_video_is_off">سىنىڭىز ئېتىك</string>
   <string name="WebRtcCallView__reconnecting">قايتا ئۇلىنىۋاتىدۇ…</string>

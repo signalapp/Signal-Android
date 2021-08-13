@@ -1194,13 +1194,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Καλεί…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Κλήση φωνής Signal…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Κλήση φωνής Signal…</string> -->
   <string name="WebRtcCallView__signal_video_call">Βιντεοκλήση Signal…</string>
   <string name="WebRtcCallView__start_call">Έναρξη κλήσης</string>
   <string name="WebRtcCallView__join_call">Είσοδος στην κλήση</string>
   <string name="WebRtcCallView__call_is_full">Η κλήση είναι γεμάτη</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Έχει συμπληρωθεί ο μέγιστος αριθμός %1$d συμμετεχόντων για αυτή την κλήση. Δοκίμασε ξανά αργότερα.</string>
-  <string name="WebRtcCallView__s_group_call">Ομαδική κλήση \"%1$s\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">Ομαδική κλήση \"%1$s\"</string> -->
   <string name="WebRtcCallView__view_participants_list">Προβολή συμμετέχοντων</string>
   <string name="WebRtcCallView__your_video_is_off">Το βίντεό σου είναι απενεργοποιημένο</string>
   <string name="WebRtcCallView__reconnecting">Επανασύνδεση…</string>
@@ -2925,6 +2925,7 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Μη σιγασμένο</string>
   <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Σε σίγαση έως %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Αναφορές</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Πάντα να ειδοποιούμαι</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Προσαρμογή ειδοποιήσεων</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->

@@ -1201,13 +1201,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">कॉलिंग…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal व्हॉईस कॉल…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal व्हॉईस कॉल…</string> -->
   <string name="WebRtcCallView__signal_video_call">Signal व्हिडिओ कॉल…</string>
   <string name="WebRtcCallView__start_call">कॉल चालू करा</string>
   <string name="WebRtcCallView__join_call">कॉलमध्ये सामील व्हा</string>
   <string name="WebRtcCallView__call_is_full">कॉल पूर्ण आहे</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">या कॉलसाठी सहभागी व्यक्तींची %1$d कमाल संख्या पोहोचली आहे. नंतर पुन्हा प्रयत्न करा.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" गट कॉल</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" गट कॉल</string> -->
   <string name="WebRtcCallView__view_participants_list">सहभागी पहा</string>
   <string name="WebRtcCallView__your_video_is_off">आपला व्हिडिओ बंद आहे</string>
   <string name="WebRtcCallView__reconnecting">पुनःकनेक्ट करत आहे…</string>

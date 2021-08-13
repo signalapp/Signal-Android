@@ -1167,13 +1167,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Asiwel…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Asiwel s taɣect n Signal…</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Asiwel s taɣect n Signal…</string> -->
   <string name="WebRtcCallView__signal_video_call">Asiwel s tvidyut n Signal…</string>
   <string name="WebRtcCallView__start_call">Bdu asiwel</string>
   <string name="WebRtcCallView__join_call">Rnu ɣer usiwel</string>
   <string name="WebRtcCallView__call_is_full">Asiwel yeččur</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Amḍan afellay n %1$d yimttekkiyen yewweḍ ɣer talast i usiwel-a Ɛreḍ tikkelt-nniḍen ticki.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" n usiwel n ugraw</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" n usiwel n ugraw</string> -->
   <string name="WebRtcCallView__view_participants_list">Wali imttekkiyen</string>
   <string name="WebRtcCallView__your_video_is_off">Tavidyut-ik·im tensa</string>
   <string name="WebRtcCallView__reconnecting">Tulsa n tuqqna…</string>

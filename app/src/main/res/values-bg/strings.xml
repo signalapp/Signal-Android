@@ -1179,13 +1179,13 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Обаждане</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Гласов разговор чрез Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Гласов разговор чрез Signal</string> -->
   <string name="WebRtcCallView__signal_video_call">Видео разговор чрез Signal</string>
   <string name="WebRtcCallView__start_call">Започни разговор</string>
   <string name="WebRtcCallView__join_call">Присъеди се към разговор</string>
   <string name="WebRtcCallView__call_is_full">Обаждането е пълно</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">За този разговор е достигнат максималният брой участници от %1$d. Опитайте отново по-късно.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" групов разговор</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" групов разговор</string> -->
   <string name="WebRtcCallView__view_participants_list">Вижте участниците</string>
   <string name="WebRtcCallView__your_video_is_off">Вашето видео е изключено</string>
   <string name="WebRtcCallView__reconnecting">Повторно свързване…</string>
