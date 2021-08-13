@@ -63,6 +63,7 @@ import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.Address.Companion.fromSerialized
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.MediaTypes
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.concurrent.SimpleTask
@@ -72,6 +73,7 @@ import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.utilities.ListenableFuture
 import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.utilities.hexEncodedPrivateKey
+import org.session.libsignal.utilities.toHexString
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.audio.AudioRecorder
@@ -1155,14 +1157,12 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                     }
             }
         } else {
-            val serverHash = messageDataProvider.getServerHashForMessage(message.id)
-            if (serverHash == null) {
-                messageDataProvider.deleteMessage(message.id, !message.isMms)
-            } else {
-                SnodeAPI.deleteMessage(thread.address.serialize(), listOf(serverHash))
-                    .success {
-                        messageDataProvider.deleteMessage(message.id, !message.isMms)
-                    }.failUi { error ->
+            messageDataProvider.deleteMessage(message.id, !message.isMms)
+            messageDataProvider.getServerHashForMessage(message.id)?.let { serverHash ->
+                var publicKey = thread.address.serialize()
+                if (thread.isClosedGroupRecipient) { publicKey = GroupUtil.doubleDecodeGroupID(publicKey).toHexString() }
+                SnodeAPI.deleteMessage(publicKey, listOf(serverHash))
+                    .failUi { error ->
                         Toast.makeText(this@ConversationActivityV2, "Couldn't delete message due to error: $error", Toast.LENGTH_LONG).show()
                     }
             }
