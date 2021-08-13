@@ -1167,22 +1167,41 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun deleteMessages(messages: Set<MessageRecord>) {
-        val messageCount = messages.size
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle(resources.getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messageCount, messageCount))
-        builder.setMessage(resources.getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messageCount, messageCount))
-        builder.setCancelable(true)
-        builder.setPositiveButton(R.string.delete) { _, _ ->
-            for (message in messages) {
-                this.deleteForEveryone(message)
+        if (thread.isOpenGroupRecipient) {
+            val messageCount = messages.size
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(resources.getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messageCount, messageCount))
+            builder.setMessage(resources.getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messageCount, messageCount))
+            builder.setCancelable(true)
+            builder.setPositiveButton(R.string.delete) { _, _ ->
+                for (message in messages) {
+                    this.deleteForEveryone(message)
+                }
+                endActionMode()
             }
-            endActionMode()
+            builder.setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+                endActionMode()
+            }
+            builder.show()
+        } else {
+            val bottomSheet = DeleteOptionsBottomSheet()
+            bottomSheet.recipient = thread
+            bottomSheet.onDeleteForMeTapped = {
+                for (message in messages) {
+                    this.deleteLocally(message)
+                }
+                bottomSheet.dismiss()
+            }
+            bottomSheet.onDeleteForEveryoneTapped = {
+                for (message in messages) {
+                    this.deleteForEveryone(message)
+                }
+                bottomSheet.dismiss()
+            }
+            bottomSheet.onCancelTapped = { bottomSheet.dismiss() }
+            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
         }
-        builder.setNegativeButton(android.R.string.cancel) { dialog, _ ->
-            dialog.dismiss()
-            endActionMode()
-        }
-        builder.show()
     }
 
     override fun banUser(messages: Set<MessageRecord>) {
