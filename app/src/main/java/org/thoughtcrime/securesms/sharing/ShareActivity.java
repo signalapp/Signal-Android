@@ -283,7 +283,7 @@ public class ShareActivity extends PassphraseRequiredActivity
    * @param extraShortcutId EXTRA_SHORTCUT_ID string as included in direct share intent
    * @return shortcut extras or null
    */
-  @Nullable private Bundle getShortcutExtrasFor(@NonNull String extraShortcutId) {
+  private @Nullable Bundle getShortcutExtrasFor(@NonNull String extraShortcutId) {
     List<ShortcutInfoCompat> shortcuts = ShortcutManagerCompat.getDynamicShortcuts(this);
     for (ShortcutInfoCompat shortcutInfo : shortcuts) {
       if (extraShortcutId.equals(shortcutInfo.getId())) {
