@@ -1155,7 +1155,10 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                     }
             }
         } else {
-            messageDataProvider.getServerHashForMessage(message.id)?.let { serverHash ->
+            val serverHash = messageDataProvider.getServerHashForMessage(message.id)
+            if (serverHash == null) {
+                messageDataProvider.deleteMessage(message.id, !message.isMms)
+            } else {
                 SnodeAPI.deleteMessage(thread.address.serialize(), listOf(serverHash))
                     .success {
                         messageDataProvider.deleteMessage(message.id, !message.isMms)
@@ -1192,14 +1195,19 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                     this.deleteLocally(message)
                 }
                 bottomSheet.dismiss()
+                endActionMode()
             }
             bottomSheet.onDeleteForEveryoneTapped = {
                 for (message in messages) {
                     this.deleteForEveryone(message)
                 }
                 bottomSheet.dismiss()
+                endActionMode()
             }
-            bottomSheet.onCancelTapped = { bottomSheet.dismiss() }
+            bottomSheet.onCancelTapped = {
+                bottomSheet.dismiss()
+                endActionMode()
+            }
             bottomSheet.show(supportFragmentManager, bottomSheet.tag)
         }
     }
