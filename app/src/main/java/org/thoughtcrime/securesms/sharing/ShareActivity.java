@@ -133,7 +133,6 @@ public class ShareActivity extends PassphraseRequiredActivity
     initializeToolbar();
     initializeResources();
     initializeSearch();
-    handleDestination();
   }
 
   @Override
@@ -142,6 +141,7 @@ public class ShareActivity extends PassphraseRequiredActivity
     super.onResume();
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
+    handleDirectShare();
   }
 
   @Override
@@ -253,20 +253,6 @@ public class ShareActivity extends PassphraseRequiredActivity
       getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, mode);
     }
 
-    boolean isDirectShare      = getIntent().hasExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
-    boolean intentHasRecipient = getIntent().hasExtra(EXTRA_RECIPIENT_ID);
-
-    if (isDirectShare && !intentHasRecipient) {
-      String extraShortcutId = getIntent().getStringExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
-      Bundle shortcutExtras  = getShortcutExtrasFor(extraShortcutId);
-
-      if (shortcutExtras != null) {
-        moveShortcutExtrasToIntent(shortcutExtras);
-      } else {
-        createShortcutIntentFromExtraShortcutId(extraShortcutId);
-      }
-    }
-
     getIntent().putExtra(ContactSelectionListFragment.REFRESHABLE, false);
     getIntent().putExtra(ContactSelectionListFragment.RECENTS, true);
     getIntent().putExtra(ContactSelectionListFragment.SELECTION_LIMITS, FeatureFlags.shareSelectionLimit());
@@ -277,11 +263,43 @@ public class ShareActivity extends PassphraseRequiredActivity
     getIntent().putExtra(ContactSelectionListFragment.RV_PADDING_BOTTOM, ViewUtil.dpToPx(48));
   }
 
+  private void handleDirectShare() {
+    boolean isDirectShare      = getIntent().hasExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
+    boolean intentHasRecipient = getIntent().hasExtra(EXTRA_RECIPIENT_ID);
+
+    if (intentHasRecipient) {
+      handleDestination();
+    } else if (isDirectShare) {
+      String  extraShortcutId = getIntent().getStringExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID);
+      SimpleTask.run(getLifecycle(),
+          () -> getDirectShareExtras(extraShortcutId),
+          extras -> {
+            if (extras != null) {
+              addShortcutExtrasToIntent(extras);
+              handleDestination();
+            }
+          }
+      );
+    }
+  }
+
+  /**
+   * @param extraShortcutId EXTRA_SHORTCUT_ID String as included in direct share intent
+   * @return shortcutExtras or null
+   */
+  private @Nullable Bundle getDirectShareExtras(@NonNull String extraShortcutId) {
+    Bundle shortcutExtras = getShortcutExtrasFor(extraShortcutId);
+    if (shortcutExtras == null) {
+      shortcutExtras = createExtrasFromExtraShortcutId(extraShortcutId);
+    }
+    return shortcutExtras;
+  }
+
   /**
    * Search for dynamic shortcut originally declared in {@link ConversationUtil} and return extras
    *
-   * @param extraShortcutId EXTRA_SHORTCUT_ID string as included in direct share intent
-   * @return shortcut extras or null
+   * @param extraShortcutId EXTRA_SHORTCUT_ID String as included in direct share intent
+   * @return shortcutExtras or null
    */
   private @Nullable Bundle getShortcutExtrasFor(@NonNull String extraShortcutId) {
     List<ShortcutInfoCompat> shortcuts = ShortcutManagerCompat.getDynamicShortcuts(this);
@@ -294,28 +312,32 @@ public class ShareActivity extends PassphraseRequiredActivity
   }
 
   /**
-   * @param shortcutExtras shortcut extras as found by
-   * {@link ShareActivity#getShortcutExtrasFor(java.lang.String)}
-   */
-  private void moveShortcutExtrasToIntent(@NonNull Bundle shortcutExtras) {
-    getIntent().putExtra(EXTRA_RECIPIENT_ID, shortcutExtras.getString(EXTRA_RECIPIENT_ID, null));
-    getIntent().putExtra(EXTRA_THREAD_ID, shortcutExtras.getLong(EXTRA_THREAD_ID, -1));
-    getIntent().putExtra(EXTRA_DISTRIBUTION_TYPE, shortcutExtras.getInt(EXTRA_DISTRIBUTION_TYPE, -1));
-  }
-
-  /**
    * @param extraShortcutId EXTRA_SHORTCUT_ID string as included in direct share intent
    */
-  private void createShortcutIntentFromExtraShortcutId(@NonNull String extraShortcutId) {
-    RecipientId recipientId = ConversationUtil.getRecipientId(extraShortcutId);
-    Long        threadId    = null;
+  private @Nullable Bundle createExtrasFromExtraShortcutId(@NonNull String extraShortcutId) {
+    Bundle      extras           = new Bundle();
+    RecipientId recipientId      = ConversationUtil.getRecipientId(extraShortcutId);
+    Long        threadId         = null;
+    int         distributionType = ThreadDatabase.DistributionTypes.DEFAULT;
 
     if (recipientId != null) {
       threadId = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(recipientId);
-      getIntent().putExtra(EXTRA_RECIPIENT_ID, recipientId.serialize());
-      getIntent().putExtra(EXTRA_THREAD_ID, threadId != null ? threadId : -1);
-      getIntent().putExtra(EXTRA_DISTRIBUTION_TYPE, ThreadDatabase.DistributionTypes.DEFAULT);
+      extras.putString(EXTRA_RECIPIENT_ID, recipientId.serialize());
+      extras.putLong(EXTRA_THREAD_ID, threadId != null ? threadId : -1);
+      extras.putInt(EXTRA_DISTRIBUTION_TYPE, distributionType);
+      return extras;
     }
+    return null;
+  }
+
+  /**
+   * @param shortcutExtras as found by {@link ShareActivity#getShortcutExtrasFor)} or
+   *                       {@link ShareActivity#createExtrasFromExtraShortcutId)}
+   */
+  private void addShortcutExtrasToIntent(@NonNull Bundle shortcutExtras) {
+    getIntent().putExtra(EXTRA_RECIPIENT_ID, shortcutExtras.getString(EXTRA_RECIPIENT_ID, null));
+    getIntent().putExtra(EXTRA_THREAD_ID, shortcutExtras.getLong(EXTRA_THREAD_ID, -1));
+    getIntent().putExtra(EXTRA_DISTRIBUTION_TYPE, shortcutExtras.getInt(EXTRA_DISTRIBUTION_TYPE, -1));
   }
 
   private void initializeToolbar() {
@@ -459,13 +481,9 @@ public class ShareActivity extends PassphraseRequiredActivity
     Intent      intent           = getIntent();
     long        threadId         = intent.getLongExtra(EXTRA_THREAD_ID, -1);
     int         distributionType = intent.getIntExtra(EXTRA_DISTRIBUTION_TYPE, -1);
-    RecipientId recipientId      = null;
+    RecipientId recipientId      = RecipientId.from(intent.getStringExtra(EXTRA_RECIPIENT_ID));
 
-    if (intent.hasExtra(EXTRA_RECIPIENT_ID)) {
-      recipientId = RecipientId.from(intent.getStringExtra(EXTRA_RECIPIENT_ID));
-    }
-
-    boolean hasPreexistingDestination = threadId != -1 && recipientId != null && distributionType != -1;
+    boolean hasPreexistingDestination = threadId != -1 && distributionType != -1;
 
     if (hasPreexistingDestination) {
       if (contactsFragment.getView() != null) {
