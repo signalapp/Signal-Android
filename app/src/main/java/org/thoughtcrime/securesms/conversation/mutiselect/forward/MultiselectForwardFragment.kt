@@ -12,6 +12,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.R
@@ -35,9 +37,12 @@ private val TAG = Log.tag(MultiselectForwardFragment::class.java)
 
 class MultiselectForwardFragment : FixedRoundedCornerBottomSheetDialogFragment(), ContactSelectionListFragment.OnContactSelectedListener, ContactSelectionListFragment.OnSelectionLimitReachedListener {
 
+  override val peekHeightPercentage: Float = 0.67f
+
   private val viewModel: MultiselectForwardViewModel by viewModels(factoryProducer = this::createViewModelFactory)
 
   private lateinit var selectionFragment: ContactSelectionListFragment
+  private lateinit var contactFilterView: ContactFilterView
 
   private fun createViewModelFactory(): MultiselectForwardViewModel.Factory {
     return MultiselectForwardViewModel.Factory(getMultiShareArgs(), MultiselectForwardRepository(requireContext()))
@@ -70,7 +75,13 @@ class MultiselectForwardFragment : FixedRoundedCornerBottomSheetDialogFragment()
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     selectionFragment = childFragmentManager.findFragmentById(R.id.contact_selection_list_fragment) as ContactSelectionListFragment
 
-    val contactFilterView: ContactFilterView = view.findViewById(R.id.contact_filter_edit_text)
+    contactFilterView = view.findViewById(R.id.contact_filter_edit_text)
+
+    contactFilterView.setOnSearchInputFocusChangedListener { _, hasFocus ->
+      if (hasFocus) {
+        (requireDialog() as BottomSheetDialog).behavior.state = BottomSheetBehavior.STATE_EXPANDED
+      }
+    }
 
     contactFilterView.setOnFilterChangedListener {
       if (it.isNullOrEmpty()) {
@@ -145,6 +156,7 @@ class MultiselectForwardFragment : FixedRoundedCornerBottomSheetDialogFragment()
     if (recipientId.isPresent) {
       viewModel.addSelectedContact(recipientId, null)
       callback.accept(true)
+      contactFilterView.clear()
     } else {
       Log.w(TAG, "Rejecting non-present recipient. Can't forward to an unknown contact.")
       callback.accept(false)

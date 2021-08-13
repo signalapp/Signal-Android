@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dsl_settings_gutter"
             android:layout_marginEnd="@dimen/dsl_settings_gutter"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/rounded_rectangle_secondary"
             android:hint="@string/MultiselectForwardFragment__add_a_message"
             android:minHeight="44dp"

@@ -29,7 +29,6 @@ class MultiselectItemDecoration(context: Context, private val chatWallpaperProvi
   private val path = Path()
   private val rect = Rect()
   private val gutter = ViewUtil.dpToPx(48)
-  private val paddingBottom = ViewUtil.dpToPx(9)
   private val paddingStart = ViewUtil.dpToPx(17)
   private val circleRadius = ViewUtil.dpToPx(11)
   private val checkDrawable = requireNotNull(AppCompatResources.getDrawable(context, R.drawable.ic_check_circle_solid_24)).apply {
@@ -37,7 +36,6 @@ class MultiselectItemDecoration(context: Context, private val chatWallpaperProvi
   }
   private val photoCircleRadius = ViewUtil.dpToPx(12)
   private val photoCirclePaddingStart = ViewUtil.dpToPx(16)
-  private val photoCirclePaddingBottom = ViewUtil.dpToPx(8)
 
   private val transparentBlack20 = ContextCompat.getColor(context, R.color.transparent_black_20)
   private val transparentWhite20 = ContextCompat.getColor(context, R.color.transparent_white_20)
@@ -155,15 +153,16 @@ class MultiselectItemDecoration(context: Context, private val chatWallpaperProvi
       val parts: MultiselectCollection = child.conversationMessage.multiselectCollection
 
       parts.toSet().forEach {
-        val boundary = child.getBottomBoundaryOfMultiselectPart(it)
+        val topBoundary = child.getTopBoundaryOfMultiselectPart(it)
+        val bottomBoundary = child.getBottomBoundaryOfMultiselectPart(it)
         if (drawCircleBehindSelector) {
-          drawPhotoCircle(canvas, parent, boundary)
+          drawPhotoCircle(canvas, parent, topBoundary, bottomBoundary)
         }
 
         if (adapter.selectedItems.contains(it)) {
-          drawSelectedCircle(canvas, parent, boundary)
+          drawSelectedCircle(canvas, parent, topBoundary, bottomBoundary)
         } else {
-          drawUnselectedCircle(canvas, parent, boundary)
+          drawUnselectedCircle(canvas, parent, topBoundary, bottomBoundary)
         }
       }
     }
@@ -173,14 +172,14 @@ class MultiselectItemDecoration(context: Context, private val chatWallpaperProvi
    * Draws an extra circle behind the selection circle. This is to make it easier to see and
    * is specifically for when a photo wallpaper is being used.
    */
-  private fun drawPhotoCircle(canvas: Canvas, parent: RecyclerView, bottomBoundary: Int) {
+  private fun drawPhotoCircle(canvas: Canvas, parent: RecyclerView, topBoundary: Int, bottomBoundary: Int) {
     val centerX: Float = if (ViewUtil.isLtr(parent)) {
       photoCirclePaddingStart + photoCircleRadius
     } else {
       parent.right - photoCircleRadius - photoCirclePaddingStart
     }.toFloat()
 
-    val centerY: Float = bottomBoundary - photoCircleRadius - photoCirclePaddingBottom.toFloat()
+    val centerY: Float = topBoundary + (bottomBoundary - topBoundary).toFloat() / 2
 
     canvas.drawCircle(centerX, centerY, photoCircleRadius.toFloat(), photoCirclePaint)
   }
@@ -188,14 +187,14 @@ class MultiselectItemDecoration(context: Context, private val chatWallpaperProvi
   /**
    * Draws the checkmark for selected content
    */
-  private fun drawSelectedCircle(canvas: Canvas, parent: RecyclerView, bottomBoundary: Int) {
+  private fun drawSelectedCircle(canvas: Canvas, parent: RecyclerView, topBoundary: Int, bottomBoundary: Int) {
     val topX: Float = if (ViewUtil.isLtr(parent)) {
       paddingStart
     } else {
       parent.right - paddingStart - circleRadius * 2
     }.toFloat()
 
-    val topY: Float = bottomBoundary - circleRadius * 2 - paddingBottom.toFloat()
+    val topY: Float = topBoundary + (bottomBoundary - topBoundary).toFloat() / 2 - circleRadius
 
     canvas.save()
     canvas.translate(topX, topY)
@@ -206,14 +205,14 @@ class MultiselectItemDecoration(context: Context, private val chatWallpaperProvi
   /**
    * Draws the empty circle for unselected content
    */
-  private fun drawUnselectedCircle(c: Canvas, parent: RecyclerView, bottomBoundary: Int) {
+  private fun drawUnselectedCircle(c: Canvas, parent: RecyclerView, topBoundary: Int, bottomBoundary: Int) {
     val centerX: Float = if (ViewUtil.isLtr(parent)) {
       paddingStart + circleRadius
     } else {
       parent.right - circleRadius - paddingStart
     }.toFloat()
 
-    val centerY: Float = bottomBoundary - circleRadius - paddingBottom.toFloat()
+    val centerY: Float = topBoundary + (bottomBoundary - topBoundary).toFloat() / 2
 
     c.drawCircle(centerX, centerY, circleRadius.toFloat(), unselectedPaint)
   }

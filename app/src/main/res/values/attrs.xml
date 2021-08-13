@@ -227,6 +227,7 @@
     <declare-styleable name="ContactFilterToolbar">
         <attr name="searchTextStyle" format="reference" />
         <attr name="showDialpad" format="boolean" />
+        <attr name="cfv_autoFocus" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="SquareImageView">

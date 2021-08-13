@@ -19,6 +19,8 @@ import org.thoughtcrime.securesms.util.ViewUtil
  */
 abstract class FixedRoundedCornerBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
+  protected open val peekHeightPercentage: Float = 0.5f
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setStyle(STYLE_NORMAL, R.style.Widget_Signal_FixedRoundedCorners)
@@ -27,7 +29,7 @@ abstract class FixedRoundedCornerBottomSheetDialogFragment : BottomSheetDialogFr
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
 
-    dialog.behavior.peekHeight = (resources.displayMetrics.heightPixels * 0.50).toInt()
+    dialog.behavior.peekHeight = (resources.displayMetrics.heightPixels * peekHeightPercentage).toInt()
 
     val shapeAppearanceModel = ShapeAppearanceModel.builder()
       .setTopLeftCorner(CornerFamily.ROUNDED, ViewUtil.dpToPx(requireContext(), 18).toFloat())

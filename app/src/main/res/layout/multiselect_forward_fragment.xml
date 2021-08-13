@@ -2,6 +2,7 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <View
@@ -28,7 +29,8 @@
         android:layout_marginLeft="@dimen/dsl_settings_gutter"
         android:layout_marginTop="17dp"
         android:layout_marginRight="@dimen/dsl_settings_gutter"
-        android:minHeight="44dp" />
+        android:minHeight="44dp"
+        app:cfv_autoFocus="false" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/contact_selection_list_fragment"

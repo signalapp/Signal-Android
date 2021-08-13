@@ -541,8 +541,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     } else if (multiselectPart instanceof MultiselectPart.Text && hasThumbnail(messageRecord)) {
       Projection projection = Projection.relativeToViewRoot(mediaThumbnailStub.require(), null);
       return (int) projection.getY() + projection.getHeight();
-    } else {
+    } else if (hasNoBubble(messageRecord)) {
       return getTop();
+    } else {
+      Projection projection = Projection.relativeToViewRoot(bodyBubble, null);
+      return (int) projection.getY();
     }
   }
 
@@ -551,8 +554,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (multiselectPart instanceof MultiselectPart.Attachments && hasThumbnail(messageRecord)) {
       Projection projection = Projection.relativeToViewRoot(mediaThumbnailStub.require(), null);
       return (int) projection.getY() + projection.getHeight();
-    } else {
+    } else if (hasNoBubble(messageRecord)) {
       return getBottom();
+    } else {
+      Projection projection = Projection.relativeToViewRoot(bodyBubble, null);
+      return (int) projection.getY() + projection.getHeight();
     }
   }
 
