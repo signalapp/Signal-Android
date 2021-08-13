@@ -153,7 +153,7 @@ public class EmojiTextView extends AppCompatTextView {
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     CharSequence text = getText();
-    if (!measureLastLine || text == null || text.length() == 0) {
+    if (getLayout() == null || !measureLastLine || text == null || text.length() == 0) {
       lastLineWidth = -1;
     } else {
       Layout layout = getLayout();
@@ -175,7 +175,7 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   public boolean isSingleLine() {
-    return getLayout().getLineCount() == 1;
+    return getLayout() != null && getLayout().getLineCount() == 1;
   }
 
   public void setOverflowText(@Nullable CharSequence overflowText) {

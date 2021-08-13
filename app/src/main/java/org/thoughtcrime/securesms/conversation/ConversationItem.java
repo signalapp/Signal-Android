@@ -387,7 +387,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
     }
 
-    if (!updatingFooter && !isCaptionlessMms(messageRecord) && !isViewOnceMessage(messageRecord) && isFooterVisible(messageRecord, nextMessageRecord, groupThread)) {
+    if (!updatingFooter &&
+        !isCaptionlessMms(messageRecord) &&
+        !isViewOnceMessage(messageRecord) &&
+        isFooterVisible(messageRecord, nextMessageRecord, groupThread) &&
+        bodyText.getLastLineWidth() > 0)
+    {
       int footerWidth    = footer.getMeasuredWidth();
       int availableWidth = getAvailableMessageBubbleWidth(bodyText);
       if (bodyText.isSingleLine()) {
