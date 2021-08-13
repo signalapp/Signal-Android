@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sharing.interstitial.ShareInterstitialActivity;
+import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -277,8 +278,7 @@ public class ShareActivity extends PassphraseRequiredActivity
   }
 
   /**
-   * Search for dynamic shortcut originally declared in
-   * {@link org.thoughtcrime.securesms.util.ConversationUtil} and return extras
+   * Search for dynamic shortcut originally declared in {@link ConversationUtil} and return extras
    *
    * @param extraShortcutId EXTRA_SHORTCUT_ID string as included in direct share intent
    * @return shortcut extras or null
@@ -307,12 +307,15 @@ public class ShareActivity extends PassphraseRequiredActivity
    * @param extraShortcutId EXTRA_SHORTCUT_ID string as included in direct share intent
    */
   private void createShortcutIntentFromExtraShortcutId(@NonNull String extraShortcutId) {
-    RecipientId recipientId = RecipientId.from(extraShortcutId);
-    Long        threadId    = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(recipientId);
+    RecipientId recipientId = ConversationUtil.getRecipientId(extraShortcutId);
+    Long        threadId    = null;
 
-    getIntent().putExtra(EXTRA_RECIPIENT_ID, recipientId);
-    getIntent().putExtra(EXTRA_THREAD_ID, threadId != null ? threadId : -1);
-    getIntent().putExtra(EXTRA_DISTRIBUTION_TYPE, ThreadDatabase.DistributionTypes.DEFAULT);
+    if (recipientId != null) {
+      threadId = DatabaseFactory.getThreadDatabase(this).getThreadIdFor(recipientId);
+      getIntent().putExtra(EXTRA_RECIPIENT_ID, recipientId.serialize());
+      getIntent().putExtra(EXTRA_THREAD_ID, threadId != null ? threadId : -1);
+      getIntent().putExtra(EXTRA_DISTRIBUTION_TYPE, ThreadDatabase.DistributionTypes.DEFAULT);
+    }
   }
 
   private void initializeToolbar() {
