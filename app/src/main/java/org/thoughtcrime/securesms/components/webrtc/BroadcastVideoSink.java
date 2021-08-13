@@ -3,12 +3,11 @@ package org.thoughtcrime.securesms.components.webrtc;
 import android.graphics.Point;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import org.webrtc.EglBase;
 import org.webrtc.VideoFrame;
 import org.webrtc.VideoSink;
 
+import java.util.Objects;
 import java.util.WeakHashMap;
 
 /**
@@ -25,11 +24,11 @@ public class BroadcastVideoSink implements VideoSink {
   private final EglBaseWrapper                  eglBase;
   private final WeakHashMap<VideoSink, Boolean> sinks;
   private final WeakHashMap<Object, Point>      requestingSizes;
-  private       boolean                         dirtySizes;
   private       int                             deviceOrientationDegrees;
   private       boolean                         rotateToRightSide;
   private       boolean                         forceRotate;
   private       boolean                         rotateWithDevice;
+  private       RequestedSize                   currentlyRequestedMaxSize;
 
   public BroadcastVideoSink() {
     this(new EglBaseWrapper(null), false, true, 0);
@@ -45,7 +44,6 @@ public class BroadcastVideoSink implements VideoSink {
     this.eglBase                  = eglBase;
     this.sinks                    = new WeakHashMap<>();
     this.requestingSizes          = new WeakHashMap<>();
-    this.dirtySizes               = true;
     this.deviceOrientationDegrees = deviceOrientationDegrees;
     this.rotateToRightSide        = false;
     this.forceRotate              = forceRotate;
@@ -120,16 +118,18 @@ public class BroadcastVideoSink implements VideoSink {
   }
 
   void putRequestingSize(@NonNull Object object, @NonNull Point size) {
+    if (size.x == 0 || size.y == 0) {
+      return;
+    }
+
     synchronized (requestingSizes) {
       requestingSizes.put(object, size);
-      dirtySizes = true;
     }
   }
 
   void removeRequestingSize(@NonNull Object object) {
     synchronized (requestingSizes) {
       requestingSizes.remove(object);
-      dirtySizes = true;
     }
   }
 
@@ -149,15 +149,15 @@ public class BroadcastVideoSink implements VideoSink {
     return new RequestedSize(width, height);
   }
 
-  public void newSizeRequested() {
-    dirtySizes = false;
+  public void setCurrentlyRequestedMaxSize(@NonNull RequestedSize currentlyRequestedMaxSize) {
+    this.currentlyRequestedMaxSize = currentlyRequestedMaxSize;
   }
 
   public boolean needsNewRequestingSize() {
-    return dirtySizes;
+    return !getMaxRequestingSize().equals(currentlyRequestedMaxSize);
   }
 
-  public static class RequestedSize {
+  public static final class RequestedSize {
     private final int width;
     private final int height;
 
@@ -172,6 +172,20 @@ public class BroadcastVideoSink implements VideoSink {
 
     public int getHeight() {
       return height;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+
+      final RequestedSize that = (RequestedSize) o;
+      return width == that.width && height == that.height;
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(width, height);
     }
   }
 }
