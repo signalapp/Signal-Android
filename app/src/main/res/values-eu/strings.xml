@@ -1161,13 +1161,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Deitzen…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal ahots deia…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signal bideo deia…</string>
+  <string name="WebRtcCallView__signal_call">Signal deia</string>
   <string name="WebRtcCallView__start_call">Hasi Deia</string>
   <string name="WebRtcCallView__join_call">Deira Sartu</string>
   <string name="WebRtcCallView__call_is_full">Deia beteta dago</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Dei hau gehienezko erabiltzaile kopurura, %1$d, iritsi da. Saiatu beranduago.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Talde-Deia</string> -->
   <string name="WebRtcCallView__view_participants_list">Kideak ikusi</string>
   <string name="WebRtcCallView__your_video_is_off">Zure bideoa itzalita dago</string>
   <string name="WebRtcCallView__reconnecting">Berriro konektatzen…</string>
@@ -1180,6 +1178,10 @@
     <item quantity="one">%1$s, %2$s, eta beste %3$d dei honetan daude</item>
     <item quantity="other">%1$s, %2$s, eta  beste %3$d dei honetan daude.</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Bozgorailua</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__mute">Isildu</string>
+  <string name="WebRtcCallView__end_call">Amaitu deia</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Dei honetan - pertsona %1$d</item>

@@ -1180,13 +1180,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Konektado…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal-voĉalvoko…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signal-vidalvoko…</string>
+  <string name="WebRtcCallView__signal_call">Signal-alvoko</string>
   <string name="WebRtcCallView__start_call">Ekalvoki</string>
   <string name="WebRtcCallView__join_call">Eniri la alvokon</string>
   <string name="WebRtcCallView__call_is_full">La alvoko plenas</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">La maksimuma nombro de partoprenantoj (%1$d) estas atingita en tiu alvoko. Reprovu poste.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">Grupalvoko „%1$s“</string> -->
   <string name="WebRtcCallView__view_participants_list">Vidi partoprenantojn</string>
   <string name="WebRtcCallView__your_video_is_off">Via fotilo estas malŝaltita</string>
   <string name="WebRtcCallView__reconnecting">Rekonektado…</string>
@@ -1200,6 +1198,10 @@
     <item quantity="one">%1$s, %2$s kaj %3$d alia estas en tiu alvoko</item>
     <item quantity="other">%1$s, %2$s kaj %3$d aliaj estas en tiu alvoko</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Laŭtparolilo</string>
+  <string name="WebRtcCallView__camera">Fotilo</string>
+  <string name="WebRtcCallView__mute">Silentigi</string>
+  <string name="WebRtcCallView__end_call">Fini alvokon</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">En tiu ĉi alvoko ⋅ %1$d homo</item>

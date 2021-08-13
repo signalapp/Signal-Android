@@ -1237,13 +1237,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Uspostava poziva</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal glasovni poziv</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signal video poziv…</string>
+  <string name="WebRtcCallView__signal_call">Signal poziv</string>
   <string name="WebRtcCallView__start_call">Započni poziv</string>
   <string name="WebRtcCallView__join_call">Pridruži se pozivu</string>
   <string name="WebRtcCallView__call_is_full">Poziv je pun</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Dosegnut je maksimalan broj od %1$d sudionika za ovaj poziv. Pokušajte ponovno kasnije.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Grupni poziv</string> -->
   <string name="WebRtcCallView__view_participants_list">Prikaži sudionike</string>
   <string name="WebRtcCallView__your_video_is_off">Vaš video je isključen</string>
   <string name="WebRtcCallView__reconnecting">Ponovno povezivanje…</string>
@@ -1258,6 +1256,10 @@
     <item quantity="few">%1$s, %2$s i još %3$d osobe su na ovom pozivu</item>
     <item quantity="other">%1$s, %2$s i još %3$d osoba su na ovom pozivu</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Zvučnik</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__mute">Utišaj</string>
+  <string name="WebRtcCallView__end_call">Završi poziv</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">U ovom pozivu · %1$d osoba</item>

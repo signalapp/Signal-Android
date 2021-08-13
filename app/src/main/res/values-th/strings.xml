@@ -1143,13 +1143,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">กำลังโทร…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">โทรเสียง Signal…</string> -->
-  <string name="WebRtcCallView__signal_video_call">โทรวิดีโอ Signal…</string>
+  <string name="WebRtcCallView__signal_call">โทร Signal</string>
   <string name="WebRtcCallView__start_call">เริ่มโทร</string>
   <string name="WebRtcCallView__join_call">เข้าร่วมการโทร</string>
   <string name="WebRtcCallView__call_is_full">ห้องเต็ม</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">มีผู้เข้าร่วมสายนี้เต็มขีดจำกัดสูงสุด %1$d คนแล้ว โปรดลองใหม่ภายหลัง</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" โทรกลุ่ม</string> -->
   <string name="WebRtcCallView__view_participants_list">ดูผู้เข้าร่วม</string>
   <string name="WebRtcCallView__your_video_is_off">วิดีโอของคุณปิดอยู่</string>
   <string name="WebRtcCallView__reconnecting">กำลังเชื่อมต่อใหม่…</string>
@@ -1162,6 +1160,10 @@
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s %2$s และ %3$d รวมถึงคนอื่นๆ อยู่ในการโทรนี้</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">ลำโพง</string>
+  <string name="WebRtcCallView__camera">กล้อง</string>
+  <string name="WebRtcCallView__mute">ปิดเสียง</string>
+  <string name="WebRtcCallView__end_call">วางสาย</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">มีผู้เข้าร่วมการโทร %1$d คน</item>

@@ -1317,13 +1317,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">מתקשר…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">שיחה קולית של Signal…</string> -->
-  <string name="WebRtcCallView__signal_video_call">שיחת וידאו של Signal…</string>
+  <string name="WebRtcCallView__signal_call">שיחת Signal</string>
   <string name="WebRtcCallView__start_call">התחל שיחה</string>
   <string name="WebRtcCallView__join_call">הצטרף לשיחה</string>
   <string name="WebRtcCallView__call_is_full">השיחה מלאה</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">המספר המרבי של %1$d משתתפים הושג עבור שיחה זו. נסה שוב מאוחר יותר.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" שיחה קבוצתית</string> -->
   <string name="WebRtcCallView__view_participants_list">הצג משתתפים</string>
   <string name="WebRtcCallView__your_video_is_off">הוידאו שלך כבוי</string>
   <string name="WebRtcCallView__reconnecting">מתחבר מחדש…</string>
@@ -1339,6 +1337,10 @@
     <item quantity="many">%1$s, %2$s, ועוד %3$d אחרים בשיחה זו</item>
     <item quantity="other">%1$s, %2$s, ועוד %3$d אחרים בשיחה זו</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">רמקול</string>
+  <string name="WebRtcCallView__camera">מצלמה</string>
+  <string name="WebRtcCallView__mute">השתק</string>
+  <string name="WebRtcCallView__end_call">סיים שיחה</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">בשיחה זו  · איש %1$d</item>

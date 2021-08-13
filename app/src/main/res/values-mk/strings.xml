@@ -1200,13 +1200,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Повикувам…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal гласовен повик…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signal видео повик…</string>
+  <string name="WebRtcCallView__signal_call">Signal повик</string>
   <string name="WebRtcCallView__start_call">Започни повик</string>
   <string name="WebRtcCallView__join_call">Приклучи се на повик</string>
   <string name="WebRtcCallView__call_is_full">Повикот е полн</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Максималниот број од %1$d учесници е достигнат за овој повик. Пробајте повторно подоцна.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" групен повик</string> -->
   <string name="WebRtcCallView__view_participants_list">Види ги учесниците</string>
   <string name="WebRtcCallView__your_video_is_off">Вашето видео е исклучено</string>
   <string name="WebRtcCallView__reconnecting">Повторно поврзување…</string>
@@ -1220,6 +1218,10 @@
     <item quantity="one">%1$s, %2$s, и %3$d друг се на овој повик</item>
     <item quantity="other">%1$s, %2$s, и %3$d други се на овој повик</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Звучник</string>
+  <string name="WebRtcCallView__camera">Камера</string>
+  <string name="WebRtcCallView__mute">Исклучи известувања</string>
+  <string name="WebRtcCallView__end_call">Заврши го повикот</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">На овој повик · %1$d личност</item>

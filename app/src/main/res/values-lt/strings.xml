@@ -1317,13 +1317,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Skambinama…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal balso skambutis…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signal vaizdo skambutis…</string>
+  <string name="WebRtcCallView__signal_call">„Signal“ skambutis</string>
   <string name="WebRtcCallView__start_call">Pradėti skambutį</string>
   <string name="WebRtcCallView__join_call">Prisijungti prie skambučio</string>
   <string name="WebRtcCallView__call_is_full">Skambutis yra pilnas</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Šiame skambutyje yra pasiektas didžiausias %1$d dalyvių skaičius. Vėliau bandykite dar kartą.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">„%1$s“ grupės skambutis</string> -->
   <string name="WebRtcCallView__view_participants_list">Rodyti dalyvius</string>
   <string name="WebRtcCallView__your_video_is_off">Jūsų vaizdas yra išjungtas</string>
   <string name="WebRtcCallView__reconnecting">Jungiamasi iš naujo…</string>
@@ -1339,6 +1337,10 @@
     <item quantity="many">%1$s, %2$s ir dar %3$d žmonių yra šiame skambutyje</item>
     <item quantity="other">%1$s, %2$s ir dar %3$d žmogus yra šiame skambutyje</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Garsiakalbis</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__mute">Išj. pranešimus</string>
+  <string name="WebRtcCallView__end_call">Baigti skambutį</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Šiame skambutyje · %1$d žmogus</item>

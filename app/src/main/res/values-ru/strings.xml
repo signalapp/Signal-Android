@@ -1316,13 +1316,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Подключаемся…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Голосовой звонок Signal…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Видеозвонок Signal…</string>
+  <string name="WebRtcCallView__signal_call">Звонок через Signal</string>
   <string name="WebRtcCallView__start_call">Начать звонок</string>
   <string name="WebRtcCallView__join_call">Присоединиться к звонку</string>
   <string name="WebRtcCallView__call_is_full">Звонок заполнен</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Для этого звонка было достигнуто максимальное количество участников — %1$d. Попробуйте ещё раз позже.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">Групповой звонок «%1$s»</string> -->
   <string name="WebRtcCallView__view_participants_list">Просмотреть участников</string>
   <string name="WebRtcCallView__your_video_is_off">Ваше видео отключено</string>
   <string name="WebRtcCallView__reconnecting">Переподключаемся…</string>
@@ -1338,6 +1336,10 @@
     <item quantity="many">%1$s, %2$s и ещё %3$d человек в этом звонке</item>
     <item quantity="other">%1$s, %2$s и ещё %3$d человек в этом звонке</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Громкая связь</string>
+  <string name="WebRtcCallView__camera">Камера</string>
+  <string name="WebRtcCallView__mute">Откл. звук</string>
+  <string name="WebRtcCallView__end_call">Завершить звонок</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">В этом звонке · %1$d человек</item>

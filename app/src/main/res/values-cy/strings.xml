@@ -1319,13 +1319,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Yn galw…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Galwad llais Signal…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Galwad fideo Signal</string>
+  <string name="WebRtcCallView__signal_call">Galwad Signal</string>
   <string name="WebRtcCallView__start_call">Cychwyn Galwad</string>
   <string name="WebRtcCallView__join_call">Ymuno â\'r Alwad</string>
   <string name="WebRtcCallView__call_is_full">Mae\'r alwad yn llawn</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Cyrhaeddwyd y nifer uchaf o gyfranogwyr %1$d ar gyfer yr alwad hon. Rhowch gynnig arall arni yn nes ymlaen.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">Galwad Grŵp \"%1$s\"</string> -->
   <string name="WebRtcCallView__view_participants_list">Gweld cyfranogwyr</string>
   <string name="WebRtcCallView__your_video_is_off">Mae\'ch fideo i ffwrdd</string>
   <string name="WebRtcCallView__reconnecting">Yn Ailgysylltu…</string>
@@ -1341,6 +1339,10 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Mae %1$s, %2$s, a %3$d arall yn yr alwad hon</item>
     <item quantity="other">Mae %1$s, %2$s, a %3$d arall yn yr alwad hon</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Uchelseinydd</string>
+  <string name="WebRtcCallView__camera">Camera</string>
+  <string name="WebRtcCallView__mute">Tewi</string>
+  <string name="WebRtcCallView__end_call">Gorffen galwad</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Yn yr alwad hon · %1$d person</item>

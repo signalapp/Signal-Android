@@ -1181,13 +1181,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Helistamine…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signali häälkõne…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signali videokõne…</string>
+  <string name="WebRtcCallView__signal_call">Signali kõne</string>
   <string name="WebRtcCallView__start_call">Alusta kõnet</string>
   <string name="WebRtcCallView__join_call">Liitu kõnega</string>
   <string name="WebRtcCallView__call_is_full">Kõne on täis</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Selle kõne maksimaalne osavõtjate arv %1$d on täitunud. Proovi hiljem uuesti.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Grupikõne</string> -->
   <string name="WebRtcCallView__view_participants_list">Vaata osalejaid</string>
   <string name="WebRtcCallView__your_video_is_off">Sinu video on väljas</string>
   <string name="WebRtcCallView__reconnecting">Ühenduse taastamine…</string>
@@ -1201,6 +1199,10 @@
     <item quantity="one">%1$s, %2$s ja %3$d teine on selles kõnes</item>
     <item quantity="other">%1$s, %2$s ja %3$d teist on selles kõnes</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Valjuhääldi</string>
+  <string name="WebRtcCallView__camera">Kaamera</string>
+  <string name="WebRtcCallView__mute">Vaigista</string>
+  <string name="WebRtcCallView__end_call">Lõpeta kõne</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Selles kõnes · %1$d inimene</item>

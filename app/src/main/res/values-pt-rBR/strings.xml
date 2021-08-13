@@ -1201,13 +1201,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Chamando…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Mensagem de voz Signal…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Chamada de vídeo Signal…</string>
+  <string name="WebRtcCallView__signal_call">Chamada Signal</string>
   <string name="WebRtcCallView__start_call">Começar a chamada</string>
   <string name="WebRtcCallView__join_call">Participar da chamada</string>
   <string name="WebRtcCallView__call_is_full">A chamada está lotada</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">O número máximo de %1$d participantes foi atingido nesta chamada. Tente mais tarde.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">Chamada em grupo \"%1$s\"</string> -->
   <string name="WebRtcCallView__view_participants_list">Ver os participantes</string>
   <string name="WebRtcCallView__your_video_is_off">Seu vídeo está desligado</string>
   <string name="WebRtcCallView__reconnecting">Reconectando…</string>
@@ -1221,6 +1219,10 @@
     <item quantity="one">%1$s, %2$s e %3$d outro estão nesta chamada</item>
     <item quantity="other">%1$s, %2$s e %3$d outros estão nesta chamada</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Alto-falante</string>
+  <string name="WebRtcCallView__camera">Câmera</string>
+  <string name="WebRtcCallView__mute">Silenciar</string>
+  <string name="WebRtcCallView__end_call">Desligar</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Nesta chamada · %1$d pessoa</item>

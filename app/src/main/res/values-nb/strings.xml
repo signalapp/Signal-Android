@@ -1174,13 +1174,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal taleanrop…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signal videosamtale…</string>
+  <string name="WebRtcCallView__signal_call">Signal Anrop</string>
   <string name="WebRtcCallView__start_call">Start samtale</string>
   <string name="WebRtcCallView__join_call">Bli med i samtale</string>
   <string name="WebRtcCallView__call_is_full">Samtalen er full</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Maksgrensen på %1$ddeltagere er nådd for denne samtalen. Prøv igjen senere.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Gruppesamtale</string> -->
   <string name="WebRtcCallView__view_participants_list">Se deltagere</string>
   <string name="WebRtcCallView__your_video_is_off">Din video er skrudd av</string>
   <string name="WebRtcCallView__reconnecting">Kobler til på nytt…</string>
@@ -1193,6 +1191,10 @@
     <item quantity="one">%1$s, %2$s og %3$d annen er i denne samtalen.</item>
     <item quantity="other">%1$s, %2$s og %3$d andre er i denne samtalen  </item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Høyttaler</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__mute">Demping</string>
+  <string name="WebRtcCallView__end_call">Avslutt samtale</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Er i denne samtalen · %1$d person</item>

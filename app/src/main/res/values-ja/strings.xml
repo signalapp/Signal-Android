@@ -1142,13 +1142,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">呼び出しています…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal音声通話…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signalビデオ通話…</string>
+  <string name="WebRtcCallView__signal_call">Signal通話</string>
   <string name="WebRtcCallView__start_call">通話を開始する</string>
   <string name="WebRtcCallView__join_call">通話に参加する</string>
   <string name="WebRtcCallView__call_is_full">満席です</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">この通話の参加者が、上限の%1$d人に達しました。あとで再度試してください。</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">「%1$s」グループ通話</string> -->
   <string name="WebRtcCallView__view_participants_list">参加者を確認する</string>
   <string name="WebRtcCallView__your_video_is_off">あなたの映像はオフです</string>
   <string name="WebRtcCallView__reconnecting">再接続しています…</string>
@@ -1161,6 +1159,10 @@
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s, %2$s ほか%3$d人が参加中</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">スピーカー</string>
+  <string name="WebRtcCallView__camera">カメラ</string>
+  <string name="WebRtcCallView__mute">ミュート</string>
+  <string name="WebRtcCallView__end_call">通話を終了</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">参加者 · %1$d人</item>

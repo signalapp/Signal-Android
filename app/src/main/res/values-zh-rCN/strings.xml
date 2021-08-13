@@ -1133,13 +1133,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal 呼叫 %1$s</string>
   <string name="WebRtcCallActivity__calling">呼叫中…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal 语音通话…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signal 视频通话…</string>
+  <string name="WebRtcCallView__signal_call">Signal 通话</string>
   <string name="WebRtcCallView__start_call">发起通话</string>
   <string name="WebRtcCallView__join_call">加入通话</string>
   <string name="WebRtcCallView__call_is_full">通话人数已满</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">此通话人数已达%1$d人上限，请稍候再试。</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">“%1$s”群组通话</string> -->
   <string name="WebRtcCallView__view_participants_list">查看参与者</string>
   <string name="WebRtcCallView__your_video_is_off">您的视频已关闭</string>
   <string name="WebRtcCallView__reconnecting">重连中…</string>
@@ -1152,6 +1150,10 @@
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s、%2$s 及其它 %3$d 位用户在此通话中</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">扬声器</string>
+  <string name="WebRtcCallView__camera">相机</string>
+  <string name="WebRtcCallView__mute">静音</string>
+  <string name="WebRtcCallView__end_call">结束呼叫</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">此通话 · %1$d位用户</item>

@@ -1201,13 +1201,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Aranıyor…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal sesli arama…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signal görüntülü arama…</string>
+  <string name="WebRtcCallView__signal_call">Signal Araması</string>
   <string name="WebRtcCallView__start_call">Arama Başlat</string>
   <string name="WebRtcCallView__join_call">Çağrıya Katıl</string>
   <string name="WebRtcCallView__call_is_full">Arama dolu</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Bu çağrı için maksimum %1$d katılımcı sayısına ulaşıldı. Daha sonra tekrar deneyin.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Grup Araması</string> -->
   <string name="WebRtcCallView__view_participants_list">Katılımcıları Görüntüle</string>
   <string name="WebRtcCallView__your_video_is_off">Görüntünüz kapalı</string>
   <string name="WebRtcCallView__reconnecting">Yeniden bağlanıyor…</string>
@@ -1221,6 +1219,10 @@
     <item quantity="one">%1$s, %2$s, ve %3$d diğer kişi bu aramada</item>
     <item quantity="other">%1$s, %2$s, ve %3$d diğer kişi bu aramada</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Hoparlör</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__mute">Sessiz</string>
+  <string name="WebRtcCallView__end_call">Aramayı sonlandır</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Bu aramada · %1$d kişi</item>

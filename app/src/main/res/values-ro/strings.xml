@@ -1259,13 +1259,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Apel în curs…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Apel vocal Signal…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Apel video Signal…</string>
+  <string name="WebRtcCallView__signal_call">Apel Signal</string>
   <string name="WebRtcCallView__start_call">Începeți apelul</string>
   <string name="WebRtcCallView__join_call">Alătură-te apelului</string>
   <string name="WebRtcCallView__call_is_full">Numărul maxim de participanți a fost atins</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Numărul maxim de %1$d participanți a fost atins pentru acest apel. Încercați mai târziu. </string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" Apel de grup</string> -->
   <string name="WebRtcCallView__view_participants_list">Vizualizați participanții</string>
   <string name="WebRtcCallView__your_video_is_off">Video-ul dvs. este oprit</string>
   <string name="WebRtcCallView__reconnecting">Se reconectează…</string>
@@ -1280,6 +1278,10 @@
     <item quantity="few">%1$s, %2$s și alte %3$d persoane sunt în acest apel</item>
     <item quantity="other">%1$s, %2$s și alte %3$d persoane sunt în acest apel</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Difuzor</string>
+  <string name="WebRtcCallView__camera">Cameră foto</string>
+  <string name="WebRtcCallView__mute">Silențios</string>
+  <string name="WebRtcCallView__end_call">Închideți apelul</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">În acest apel · %1$d persoană</item>

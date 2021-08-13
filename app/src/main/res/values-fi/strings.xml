@@ -1200,13 +1200,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Soitetaan…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal-puhelu…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signal-videopuhelu…</string>
+  <string name="WebRtcCallView__signal_call">Signal -puhelu</string>
   <string name="WebRtcCallView__start_call">Aloita puhelu</string>
   <string name="WebRtcCallView__join_call">Liity puheluun</string>
   <string name="WebRtcCallView__call_is_full">Puhelu on täynnä</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Tämän kutsun enimmäismäärä %1$d on täyttynyt. Yritä uudelleen myöhemmin.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" ryhmäpuhelu</string> -->
   <string name="WebRtcCallView__view_participants_list">Näytä osallistujat</string>
   <string name="WebRtcCallView__your_video_is_off">Videosi on pois päältä</string>
   <string name="WebRtcCallView__reconnecting">Yhdistetään uudelleen…</string>
@@ -1220,6 +1218,10 @@
     <item quantity="one">%1$s, %2$s ja %3$d muu ovat tässä puhelussa</item>
     <item quantity="other">%1$s, %2$s ja %3$d muuta ovat tässä puhelussa</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Kaiutin</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__mute">Mykistä</string>
+  <string name="WebRtcCallView__end_call">Lopeta puhelu</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Tässä puhelussa · %1$d henkilö</item>

@@ -1194,13 +1194,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Καλεί…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Κλήση φωνής Signal…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Βιντεοκλήση Signal…</string>
+  <string name="WebRtcCallView__signal_call">Κλήση Signal</string>
   <string name="WebRtcCallView__start_call">Έναρξη κλήσης</string>
   <string name="WebRtcCallView__join_call">Είσοδος στην κλήση</string>
   <string name="WebRtcCallView__call_is_full">Η κλήση είναι γεμάτη</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Έχει συμπληρωθεί ο μέγιστος αριθμός %1$d συμμετεχόντων για αυτή την κλήση. Δοκίμασε ξανά αργότερα.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">Ομαδική κλήση \"%1$s\"</string> -->
   <string name="WebRtcCallView__view_participants_list">Προβολή συμμετέχοντων</string>
   <string name="WebRtcCallView__your_video_is_off">Το βίντεό σου είναι απενεργοποιημένο</string>
   <string name="WebRtcCallView__reconnecting">Επανασύνδεση…</string>
@@ -1214,6 +1212,10 @@
     <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση</item>
     <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Μεγάφωνο</string>
+  <string name="WebRtcCallView__camera">Κάμερα</string>
+  <string name="WebRtcCallView__mute">Σίγαση</string>
+  <string name="WebRtcCallView__end_call">Τερματισμός κλήσης</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Σε αυτή τη κλήση · %1$d άτομο</item>

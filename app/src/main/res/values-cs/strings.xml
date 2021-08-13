@@ -1316,13 +1316,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Volání…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal hlasový hovor…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signal videohovor…</string>
+  <string name="WebRtcCallView__signal_call">Signal hovor</string>
   <string name="WebRtcCallView__start_call">Zahájit hovor</string>
   <string name="WebRtcCallView__join_call">Připojit se k hovoru</string>
   <string name="WebRtcCallView__call_is_full">Hovor je plný</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Maximální počet účastníků hovoru %1$d byl naplněn. Zkuste to prosím později.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" skupinový hovor</string> -->
   <string name="WebRtcCallView__view_participants_list">Zobrazit účastníky</string>
   <string name="WebRtcCallView__your_video_is_off">Vaše video je vypnuté</string>
   <string name="WebRtcCallView__reconnecting">Opětovné připojování…</string>
@@ -1338,6 +1336,10 @@
     <item quantity="many">%1$s, %2$s a %3$d dalších se účastní tohoto hovoru</item>
     <item quantity="other">%1$s, %2$s a %3$d dalších se účastní tohoto hovoru</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Reproduktor</string>
+  <string name="WebRtcCallView__camera">Fotoaparát</string>
+  <string name="WebRtcCallView__mute">Ztlumit</string>
+  <string name="WebRtcCallView__end_call">Ukončit hovor</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">V tomto hovoru - %1$d člověk</item>

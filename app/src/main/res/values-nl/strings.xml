@@ -1203,13 +1203,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal-oproep %1$s</string>
   <string name="WebRtcCallActivity__calling">Oproep aan het starten …</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal audio-oproep …</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signal video-oproep …</string>
+  <string name="WebRtcCallView__signal_call">Signal-oproep</string>
   <string name="WebRtcCallView__start_call">Oproep beginnen</string>
   <string name="WebRtcCallView__join_call">Aan oproep deelnemen</string>
   <string name="WebRtcCallView__call_is_full">De oproep is vol</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Je kunt niet deelnemen omdat deze groepsoproep het maximale aantal van %1$d deelnemers heeft bereikt. Probeer het later opnieuw.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">Groepsoproep met “%1$s”</string> -->
   <string name="WebRtcCallView__view_participants_list">Deelnemers weergeven</string>
   <string name="WebRtcCallView__your_video_is_off">Je camera staat uit</string>
   <string name="WebRtcCallView__reconnecting">Opnieuw aan het verbinden …</string>
@@ -1223,6 +1221,10 @@
     <item quantity="one">In dit gesprek zijn %1$s, %2$s en %3$d andere aanwezig.</item>
     <item quantity="other">In dit gesprek zijn %1$s, %2$s en %3$d anderen aanwezig.</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Luidspreker</string>
+  <string name="WebRtcCallView__camera">Camera</string>
+  <string name="WebRtcCallView__mute">Dempen</string>
+  <string name="WebRtcCallView__end_call">Oproep beëindigen</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">In deze oproep · %1$d persoon</item>

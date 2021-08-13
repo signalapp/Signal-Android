@@ -1195,13 +1195,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Hringi…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal-raddsímtal…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signal-myndsímtal…</string>
+  <string name="WebRtcCallView__signal_call">Signal-símtal</string>
   <string name="WebRtcCallView__start_call">Hefja samtal</string>
   <string name="WebRtcCallView__join_call">Taka þátt í símtali</string>
   <string name="WebRtcCallView__call_is_full">Símtal er fullt</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Takmörkum á hámarksfjöldanum %1$d þátttakendum í þessu símtali hefur verið náð. Reyndu aftur síðar.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" hópsímtal</string> -->
   <string name="WebRtcCallView__view_participants_list">Skoða þátttakendur</string>
   <string name="WebRtcCallView__your_video_is_off">Það er slökkt á myndmerkinu</string>
   <string name="WebRtcCallView__reconnecting">Endurtengist….</string>
@@ -1215,6 +1213,10 @@
     <item quantity="one">%1$s, %2$s og %3$d til viðbótar eru í þessu símtali</item>
     <item quantity="other">%1$s, %2$s og %3$d til viðbótar eru í þessu símtali</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Hátalari</string>
+  <string name="WebRtcCallView__camera">Myndavél</string>
+  <string name="WebRtcCallView__mute">Hljóð af</string>
+  <string name="WebRtcCallView__end_call">Ljúka símtali</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Í símtalinu eru · %1$d aðili</item>

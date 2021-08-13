@@ -1201,13 +1201,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">कॉलिंग…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">Signal व्हॉईस कॉल…</string> -->
-  <string name="WebRtcCallView__signal_video_call">Signal व्हिडिओ कॉल…</string>
+  <string name="WebRtcCallView__signal_call">Signal कॉल</string>
   <string name="WebRtcCallView__start_call">कॉल चालू करा</string>
   <string name="WebRtcCallView__join_call">कॉलमध्ये सामील व्हा</string>
   <string name="WebRtcCallView__call_is_full">कॉल पूर्ण आहे</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">या कॉलसाठी सहभागी व्यक्तींची %1$d कमाल संख्या पोहोचली आहे. नंतर पुन्हा प्रयत्न करा.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">\"%1$s\" गट कॉल</string> -->
   <string name="WebRtcCallView__view_participants_list">सहभागी पहा</string>
   <string name="WebRtcCallView__your_video_is_off">आपला व्हिडिओ बंद आहे</string>
   <string name="WebRtcCallView__reconnecting">पुनःकनेक्ट करत आहे…</string>
@@ -1221,6 +1219,10 @@
     <item quantity="one">%1$s, %2$s, आणि %3$d इतर व्यक्ती गट कॉलमध्ये आहे</item>
     <item quantity="other">%1$s, %2$s, आणि %3$d इतर व्यक्ती कॉलमध्ये आहेत</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">स्पीकर</string>
+  <string name="WebRtcCallView__camera">कॅमेरा</string>
+  <string name="WebRtcCallView__mute">म्यूट करा</string>
+  <string name="WebRtcCallView__end_call">कॉल संपवा</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">या कॉलमध्ये · %1$d व्यक्ती</item>

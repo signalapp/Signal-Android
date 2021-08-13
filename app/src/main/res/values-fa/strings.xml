@@ -1201,13 +1201,11 @@
   <string name="WebRtcCallActivity__signal_s">%1$s سیگنال</string>
   <string name="WebRtcCallActivity__calling">در حال برقراری تماس…</string>
   <!--WebRtcCallView-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__signal_voice_call">تماس صوتی سیگنال</string> -->
-  <string name="WebRtcCallView__signal_video_call">تماس تصویری سیگنال</string>
+  <string name="WebRtcCallView__signal_call">تماس سیگنال</string>
   <string name="WebRtcCallView__start_call">شروع تماس</string>
   <string name="WebRtcCallView__join_call">پیوستن به تماس</string>
   <string name="WebRtcCallView__call_is_full">ظرفیت تماس تکمیل است</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">به حداکثر تعداد %1$d شرکت‌کننده برای این تماس رسیده‌اید، بعد‌اً دوباره امتحان کنید. </string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__s_group_call">تماس گروهی «%1$s»</string> -->
   <string name="WebRtcCallView__view_participants_list">مشاهدهٔ شرکت‌کنندگان</string>
   <string name="WebRtcCallView__your_video_is_off">ویدئوی شما خاموش است</string>
   <string name="WebRtcCallView__reconnecting">در حال اتصال دوباره…</string>
@@ -1221,6 +1219,10 @@
     <item quantity="one">%1$s، %2$s و %3$d نفر دیگر در این تماس حضور دارند</item>
     <item quantity="other">%1$s، %2$s و %3$d نفر دیگر در این تماس حضور دارند</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">بلندگو</string>
+  <string name="WebRtcCallView__camera">دوربین</string>
+  <string name="WebRtcCallView__mute">بستن</string>
+  <string name="WebRtcCallView__end_call">پایان دادن به تماس</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">در این تماس · %1$d نفر</item>
