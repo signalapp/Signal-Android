@@ -19,6 +19,7 @@ import org.session.libsignal.utilities.guava.Optional
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.MessagingDatabase
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.mms.MediaConstraints
@@ -167,13 +168,9 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
     }
 
     override fun deleteMessage(messageID: Long, isSms: Boolean) {
-        if (isSms) {
-            val db = DatabaseFactory.getSmsDatabase(context)
-            db.deleteMessage(messageID)
-        } else {
-            val db = DatabaseFactory.getMmsDatabase(context)
-            db.delete(messageID)
-        }
+        val messagingDatabase: MessagingDatabase = if (isSms)  DatabaseFactory.getSmsDatabase(context)
+                                                   else DatabaseFactory.getMmsDatabase(context)
+        messagingDatabase.deleteMessage(messageID)
         DatabaseFactory.getLokiMessageDatabase(context).deleteMessage(messageID, isSms)
         DatabaseFactory.getLokiMessageDatabase(context).deleteMessageServerHash(messageID)
     }
@@ -182,14 +179,12 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         val database = DatabaseFactory.getMmsSmsDatabase(context)
         val address = Address.fromSerialized(author)
         val message = database.getMessageFor(timestamp, address)!!
-        if (message.isMms) {
-            val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
-            mmsDatabase.markAsDeleted(message.id, message.isRead)
-        } else {
-            val smsDatabase = DatabaseFactory.getSmsDatabase(context)
-            smsDatabase.markAsDeleted(message.id, message.isRead)
+        val messagingDatabase: MessagingDatabase = if (message.isMms)  DatabaseFactory.getMmsDatabase(context)
+                                                   else DatabaseFactory.getSmsDatabase(context)
+        messagingDatabase.markAsDeleted(message.id, message.isRead)
+        if (message.isOutgoing) {
+            messagingDatabase.deleteMessage(message.id)
         }
-
     }
 
     override fun getServerHashForMessage(messageID: Long): String? {

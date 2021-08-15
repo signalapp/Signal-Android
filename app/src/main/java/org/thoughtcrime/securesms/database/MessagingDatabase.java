@@ -40,6 +40,8 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
   public abstract void markAsDeleted(long messageId, boolean read);
 
+  public abstract boolean deleteMessage(long messageId);
+
   public void addMismatchedIdentity(long messageId, Address address, IdentityKey identityKey) {
     try {
       addToDocument(messageId, MISMATCHED_IDENTITIES,

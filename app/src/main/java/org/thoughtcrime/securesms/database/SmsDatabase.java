@@ -529,6 +529,7 @@ public class SmsDatabase extends MessagingDatabase {
     return cursor;
   }
 
+  @Override
   public boolean deleteMessage(long messageId) {
     Log.i("MessageDatabase", "Deleting: " + messageId);
     SQLiteDatabase db = databaseHelper.getWritableDatabase();

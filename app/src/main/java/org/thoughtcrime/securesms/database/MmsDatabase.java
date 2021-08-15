@@ -923,7 +923,8 @@ public class MmsDatabase extends MessagingDatabase {
     reader.close();
   }
 
-  public boolean delete(long messageId) {
+  @Override
+  public boolean deleteMessage(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
     AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
     ThreadUtils.queue(() -> attachmentDatabase.deleteAttachmentsForMessage(messageId));
@@ -1050,7 +1051,7 @@ public class MmsDatabase extends MessagingDatabase {
       cursor = db.query(TABLE_NAME, new String[] {ID}, where, null, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        delete(cursor.getLong(0));
+        deleteMessage(cursor.getLong(0));
       }
 
     } finally {
@@ -1076,7 +1077,7 @@ public class MmsDatabase extends MessagingDatabase {
 
       while (cursor != null && cursor.moveToNext()) {
         Log.i("MmsDatabase", "Trimming: " + cursor.getLong(0));
-        delete(cursor.getLong(0));
+        deleteMessage(cursor.getLong(0));
       }
 
     } finally {
