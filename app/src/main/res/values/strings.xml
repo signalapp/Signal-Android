@@ -3691,8 +3691,14 @@
     <string name="DSLSettingsToolbar__navigate_up">Navigate up</string>
     <string name="MultiselectForwardFragment__forward_to">Forward to</string>
     <string name="MultiselectForwardFragment__add_a_message">Add a message</string>
-    <string name="MultiselectForwardFragment__messages_sent">Messages sent</string>
-    <string name="MultiselectForwardFragment__messages_failed_to_send">Messages failed to send</string>
+    <plurals name="MultiselectForwardFragment_messages_sent">
+        <item quantity="one">Message sent</item>
+        <item quantity="other">Messages sent</item>
+    </plurals>
+    <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+        <item quantity="one">Message failed to send</item>
+        <item quantity="other">Messages failed to send</item>
+    </plurals>
     <string name="MultiselectForwardFragment__limit_reached">Limit reached</string>
 
     <!-- EOF -->

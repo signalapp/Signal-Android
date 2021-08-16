@@ -132,14 +132,16 @@ class MultiselectForwardFragment : FixedRoundedCornerBottomSheetDialogFragment()
     viewModel.state.observe(viewLifecycleOwner) {
       val toastTextResId: Int? = when (it.stage) {
         MultiselectForwardState.Stage.SELECTION -> null
-        MultiselectForwardState.Stage.SOME_FAILED -> R.string.MultiselectForwardFragment__messages_sent
-        MultiselectForwardState.Stage.ALL_FAILED -> R.string.MultiselectForwardFragment__messages_failed_to_send
-        MultiselectForwardState.Stage.SUCCESS -> R.string.MultiselectForwardFragment__messages_sent
+        MultiselectForwardState.Stage.SOME_FAILED -> R.plurals.MultiselectForwardFragment_messages_sent
+        MultiselectForwardState.Stage.ALL_FAILED -> R.plurals.MultiselectForwardFragment_messages_failed_to_send
+        MultiselectForwardState.Stage.SUCCESS -> R.plurals.MultiselectForwardFragment_messages_sent
       }
 
       if (toastTextResId != null) {
+        val argCount = getMultiShareArgs().size
+
         dismissibleDialog?.dismiss()
-        Toast.makeText(requireContext(), toastTextResId, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), requireContext().resources.getQuantityString(toastTextResId, argCount), Toast.LENGTH_SHORT).show()
         dismissAllowingStateLoss()
       }
     }
