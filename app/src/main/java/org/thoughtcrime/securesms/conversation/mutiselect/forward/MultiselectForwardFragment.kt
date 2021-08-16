@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.util.visible
 import org.whispersystems.libsignal.util.guava.Optional
 import java.util.function.Consumer
@@ -43,6 +44,8 @@ class MultiselectForwardFragment : FixedRoundedCornerBottomSheetDialogFragment()
 
   private lateinit var selectionFragment: ContactSelectionListFragment
   private lateinit var contactFilterView: ContactFilterView
+
+  private var dismissibleDialog: SimpleProgressDialog.DismissibleDialog? = null
 
   private fun createViewModelFactory(): MultiselectForwardViewModel.Factory {
     return MultiselectForwardViewModel.Factory(getMultiShareArgs(), MultiselectForwardRepository(requireContext()))
@@ -102,6 +105,9 @@ class MultiselectForwardFragment : FixedRoundedCornerBottomSheetDialogFragment()
     addMessageWrapper.visible = FeatureFlags.forwardMultipleMessages()
 
     sendButton.setOnClickListener {
+      it.isEnabled = false
+      dismissibleDialog = SimpleProgressDialog.showDelayed(requireContext())
+
       viewModel.send(addMessage.text.toString())
     }
 
@@ -132,6 +138,7 @@ class MultiselectForwardFragment : FixedRoundedCornerBottomSheetDialogFragment()
       }
 
       if (toastTextResId != null) {
+        dismissibleDialog?.dismiss()
         Toast.makeText(requireContext(), toastTextResId, Toast.LENGTH_SHORT).show()
         dismissAllowingStateLoss()
       }
