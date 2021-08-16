@@ -161,7 +161,6 @@ fun MessageReceiver.handleUnsendRequest(message: UnsendRequest) {
     }
     messageDataProvider.updateMessageAsDeleted(timestamp, author)
     if (!messageDataProvider.isOutgoingMessage(messageIdToDelete)) {
-        // FIXME: Not sure if there is any performance issue here
         SSKEnvironment.shared.notificationManager.updateNotification(context)
     }
 }
