@@ -91,18 +91,18 @@ fun MessageRecord.hasBigImageLinkPreview(context: Context): Boolean {
 }
 
 fun MessageRecord.isTextOnly(context: Context): Boolean {
-  return !(
-    !isMms ||
-      isViewOnceMessage() ||
-      hasLinkPreview() ||
-      hasQuote() ||
-      hasExtraText() ||
-      hasDocument() ||
-      hasThumbnail() ||
-      hasAudio() ||
-      hasLocation() ||
-      hasSharedContact() ||
-      hasSticker() ||
-      isCaptionlessMms(context)
-    )
+  return !isMms ||
+    (
+      !isViewOnceMessage() &&
+        !hasLinkPreview() &&
+        !hasQuote() &&
+        !hasExtraText() &&
+        !hasDocument() &&
+        !hasThumbnail() &&
+        !hasAudio() &&
+        !hasLocation() &&
+        !hasSharedContact() &&
+        !hasSticker() &&
+        !isCaptionlessMms(context)
+      )
 }

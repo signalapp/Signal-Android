@@ -215,6 +215,10 @@ public class ConversationItemFooter extends ConstraintLayout {
     }
   }
 
+  public TextView getDateView() {
+    return dateView;
+  }
+
   private void notifyTouchDelegateChanged(@NonNull Rect rect, @NonNull View touchDelegate) {
     if (onTouchDelegateChangedListener != null) {
       onTouchDelegateChangedListener.onTouchDelegateChanged(rect, touchDelegate);
