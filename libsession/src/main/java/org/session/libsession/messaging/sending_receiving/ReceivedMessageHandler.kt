@@ -156,14 +156,14 @@ fun MessageReceiver.handleUnsendRequest(message: UnsendRequest) {
     val timestamp = message.timestamp ?: return
     val author = message.author ?: return
     val messageIdToDelete = storage.getMessageIdInDatabase(timestamp, author) ?: return
-    if (!messageDataProvider.isOutgoingMessage(messageIdToDelete)) {
-        // FIXME: Not sure if there is any performance issue here
-        SSKEnvironment.shared.notificationManager.updateNotification(context)
-    }
     messageDataProvider.getServerHashForMessage(messageIdToDelete)?.let { serverHash ->
         SnodeAPI.deleteMessage(author, listOf(serverHash))
     }
     messageDataProvider.updateMessageAsDeleted(timestamp, author)
+    if (!messageDataProvider.isOutgoingMessage(messageIdToDelete)) {
+        // FIXME: Not sure if there is any performance issue here
+        SSKEnvironment.shared.notificationManager.updateNotification(context)
+    }
 }
 //endregion
 
