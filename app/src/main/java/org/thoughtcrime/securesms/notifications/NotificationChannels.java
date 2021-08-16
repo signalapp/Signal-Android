@@ -360,7 +360,7 @@ public class NotificationChannels {
       return getMessageVibrate(context);
     }
 
-    return channel.shouldVibrate() && Arrays.equals(channel.getVibrationPattern(), EMPTY_VIBRATION_PATTERN);
+    return channel.shouldVibrate() && !Arrays.equals(channel.getVibrationPattern(), EMPTY_VIBRATION_PATTERN);
   }
 
   /**
