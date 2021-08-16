@@ -25,7 +25,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.text.TextUtils;
 import android.util.Pair;
@@ -34,9 +33,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.session.libsignal.utilities.NoExternalStorageException;
-import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsignal.utilities.ListenableFuture;
 import org.session.libsignal.utilities.Log;
+import org.session.libsignal.utilities.SettableFuture;
+import org.session.libsignal.utilities.guava.Optional;
+import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
@@ -50,24 +52,14 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.session.libsignal.utilities.ExternalStorageUtil;
-import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.session.libsignal.utilities.guava.Optional;
 
-import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsignal.utilities.ListenableFuture;
-import org.session.libsignal.utilities.SettableFuture;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import network.loki.messenger.R;
-
-import static android.provider.MediaStore.EXTRA_OUTPUT;
 
 public class AttachmentManager {
 
@@ -278,25 +270,15 @@ public class AttachmentManager {
     return captureUri;
   }
 
-  public void capturePhoto(Activity activity, int requestCode) {
+  public void capturePhoto(Activity activity, int requestCode, Recipient recipient) {
     Permissions.with(activity)
         .request(Manifest.permission.CAMERA)
         .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied))
         .withRationaleDialog(activity.getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera),R.drawable.ic_baseline_photo_camera_24)
         .onAllGranted(() -> {
-          try {
-            File captureFile = File.createTempFile("conversation-capture", ".jpg", ExternalStorageUtil.getImageDir(activity));
-            Uri captureUri = FileProviderUtil.getUriFor(context, captureFile);
-            Intent captureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            captureIntent.putExtra(EXTRA_OUTPUT, captureUri);
-            captureIntent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
-              Log.d(TAG, "captureUri path is " + captureUri.getPath());
-              this.captureUri = captureUri;
-              activity.startActivityForResult(captureIntent, requestCode);
-            }
-          } catch (IOException | NoExternalStorageException e) {
-            throw new RuntimeException("Error creating image capture intent.", e);
+          Intent captureIntent = MediaSendActivity.buildCameraIntent(activity, recipient);
+          if (captureIntent.resolveActivity(activity.getPackageManager()) != null) {
+            activity.startActivityForResult(captureIntent, requestCode);
           }
         })
         .execute();

@@ -90,8 +90,9 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
   private static final String TAG = DefaultMessageNotifier.class.getSimpleName();
 
-  public static final  String EXTRA_REMOTE_REPLY = "extra_remote_reply";
+  public static final  String EXTRA_REMOTE_REPLY        = "extra_remote_reply";
   public static final  String LATEST_MESSAGE_ID_TAG     = "extra_latest_message_id";
+  public static final  String EXTRA_THREAD_ID           = "extra_thread_id";
 
   private static final  int   FOREGROUND_ID             = 313399;
   private static final  int   SUMMARY_NOTIFICATION_ID   = 1338;
