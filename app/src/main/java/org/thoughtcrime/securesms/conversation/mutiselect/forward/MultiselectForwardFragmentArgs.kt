@@ -86,7 +86,11 @@ class MultiselectForwardFragmentArgs(
         } else if (mediaMessage.containsMediaSlide()) {
           builder.withMedia(listOf())
 
-          builder.withStickerLocator(mediaMessage.slideDeck.stickerSlide?.asAttachment()?.sticker)
+          if (mediaMessage.slideDeck.stickerSlide != null) {
+            builder.withDataUri(mediaMessage.slideDeck.stickerSlide?.asAttachment()?.uri)
+            builder.withStickerLocator(mediaMessage.slideDeck.stickerSlide?.asAttachment()?.sticker)
+            builder.withDataType(mediaMessage.slideDeck.stickerSlide?.asAttachment()?.contentType)
+          }
 
           val firstSlide = mediaMessage.slideDeck.slides[0]
           val media = firstSlide.asAttachment().toMedia()
