@@ -7,6 +7,7 @@ import android.view.MenuItem
 import network.loki.messenger.R
 import org.session.libsession.messaging.open_groups.OpenGroupAPIV2
 import org.session.libsession.utilities.TextSecurePreferences
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.conversation.v2.ConversationAdapter
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
@@ -35,6 +36,14 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         fun userCanDeleteSelectedItems(): Boolean {
             val allSentByCurrentUser = selectedItems.all { it.isOutgoing }
+
+            // Remove this after the unsend request is enabled
+            if (!ConversationActivityV2.isUnsendRequestsEnabled) {
+                if (openGroup == null) { return true }
+                if (allSentByCurrentUser) { return true }
+                return OpenGroupAPIV2.isUserModerator(userPublicKey, openGroup.room, openGroup.server)
+            }
+
             val allReceivedByByCurrentUser = selectedItems.all { !it.isOutgoing }
             if (openGroup == null) { return allSentByCurrentUser || allReceivedByByCurrentUser }
             if (allSentByCurrentUser) { return true }

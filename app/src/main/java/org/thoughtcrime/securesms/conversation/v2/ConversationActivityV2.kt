@@ -209,6 +209,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         const val PICK_GIF = 10
         const val PICK_FROM_LIBRARY = 12
         const val INVITE_CONTACTS = 124
+
+        //flag
+        val isUnsendRequestsEnabled = false
     }
     // endregion
 
@@ -1169,7 +1172,54 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         }
     }
 
+    // Remove this after the unsend request is enabled
+    fun deleteMessagesWithoutUnsendRequest(messages: Set<MessageRecord>) {
+        val messageCount = messages.size
+        val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
+        val messageDB = DatabaseFactory.getLokiMessageDatabase(this@ConversationActivityV2)
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(resources.getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messageCount, messageCount))
+        builder.setMessage(resources.getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messageCount, messageCount))
+        builder.setCancelable(true)
+        val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
+        builder.setPositiveButton(R.string.delete) { _, _ ->
+            if (openGroup != null) {
+                val messageServerIDs = mutableMapOf<Long, MessageRecord>()
+                for (message in messages) {
+                    val messageServerID = messageDB.getServerID(message.id, !message.isMms) ?: continue
+                    messageServerIDs[messageServerID] = message
+                }
+                for ((messageServerID, message) in messageServerIDs) {
+                    OpenGroupAPIV2.deleteMessage(messageServerID, openGroup.room, openGroup.server)
+                        .success {
+                            messageDataProvider.deleteMessage(message.id, !message.isMms)
+                        }.failUi { error ->
+                            Toast.makeText(this@ConversationActivityV2, "Couldn't delete message due to error: $error", Toast.LENGTH_LONG).show()
+                        }
+                }
+            } else {
+                for (message in messages) {
+                    if (message.isMms) {
+                        DatabaseFactory.getMmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
+                    } else {
+                        DatabaseFactory.getSmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
+                    }
+                }
+            }
+            endActionMode()
+        }
+        builder.setNegativeButton(android.R.string.cancel) { dialog, _ ->
+            dialog.dismiss()
+            endActionMode()
+        }
+        builder.show()
+    }
+
     override fun deleteMessages(messages: Set<MessageRecord>) {
+        if (!isUnsendRequestsEnabled) {
+            deleteMessagesWithoutUnsendRequest(messages)
+            return
+        }
         val allSentByCurrentUser = messages.all { it.isOutgoing }
         if (thread.isOpenGroupRecipient) {
             val messageCount = messages.size
