@@ -287,6 +287,7 @@ public class ShareActivity extends PassphraseRequiredActivity
    * @param extraShortcutId EXTRA_SHORTCUT_ID String as included in direct share intent
    * @return shortcutExtras or null
    */
+  @WorkerThread
   private @Nullable Bundle getDirectShareExtras(@NonNull String extraShortcutId) {
     Bundle shortcutExtras = getShortcutExtrasFor(extraShortcutId);
     if (shortcutExtras == null) {
@@ -301,6 +302,7 @@ public class ShareActivity extends PassphraseRequiredActivity
    * @param extraShortcutId EXTRA_SHORTCUT_ID String as included in direct share intent
    * @return shortcutExtras or null
    */
+  @WorkerThread
   private @Nullable Bundle getShortcutExtrasFor(@NonNull String extraShortcutId) {
     List<ShortcutInfoCompat> shortcuts = ShortcutManagerCompat.getDynamicShortcuts(this);
     for (ShortcutInfoCompat shortcutInfo : shortcuts) {
@@ -314,6 +316,7 @@ public class ShareActivity extends PassphraseRequiredActivity
   /**
    * @param extraShortcutId EXTRA_SHORTCUT_ID string as included in direct share intent
    */
+  @WorkerThread
   private @Nullable Bundle createExtrasFromExtraShortcutId(@NonNull String extraShortcutId) {
     Bundle      extras           = new Bundle();
     RecipientId recipientId      = ConversationUtil.getRecipientId(extraShortcutId);
