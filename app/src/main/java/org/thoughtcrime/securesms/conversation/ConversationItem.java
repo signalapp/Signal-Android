@@ -533,8 +533,17 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       } else {
         return top;
       }
+    } else if (hasDocument(messageRecord)) {
+      Projection documentProjection = Projection.relativeToParent(this, documentViewStub.get(), null);
+      float documentBoundary = documentProjection.getY() + documentProjection.getHeight();
+
+      if (lastYDownRelativeToThis > documentBoundary) {
+        return bottom;
+      } else {
+        return top;
+      }
     } else {
-      throw new IllegalStateException("Found a situation where we have something other than a thumbnail.");
+      throw new IllegalStateException("Found a situation where we have something other than a thumbnail or a document.");
     }
   }
 
@@ -543,8 +552,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (multiselectPart instanceof MultiselectPart.Attachments && hasThumbnail(messageRecord)) {
       Projection projection = Projection.relativeToViewRoot(mediaThumbnailStub.require(), null);
       return (int) projection.getY();
+    } if (multiselectPart instanceof MultiselectPart.Attachments && hasDocument(messageRecord)) {
+      Projection projection = Projection.relativeToViewRoot(documentViewStub.get(), null);
+      return (int) projection.getY();
     } else if (multiselectPart instanceof MultiselectPart.Text && hasThumbnail(messageRecord)) {
       Projection projection = Projection.relativeToViewRoot(mediaThumbnailStub.require(), null);
+      return (int) projection.getY() + projection.getHeight();
+    } else if (multiselectPart instanceof MultiselectPart.Text && hasDocument(messageRecord)) {
+      Projection projection = Projection.relativeToViewRoot(documentViewStub.get(), null);
       return (int) projection.getY() + projection.getHeight();
     } else if (hasNoBubble(messageRecord)) {
       return getTop();
@@ -558,6 +573,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   public int getBottomBoundaryOfMultiselectPart(@NonNull MultiselectPart multiselectPart) {
     if (multiselectPart instanceof MultiselectPart.Attachments && hasThumbnail(messageRecord)) {
       Projection projection = Projection.relativeToViewRoot(mediaThumbnailStub.require(), null);
+      return (int) projection.getY() + projection.getHeight();
+    } else if (multiselectPart instanceof MultiselectPart.Attachments && hasDocument(messageRecord)) {
+      Projection projection = Projection.relativeToViewRoot(documentViewStub.get(), null);
       return (int) projection.getY() + projection.getHeight();
     } else if (hasNoBubble(messageRecord)) {
       return getBottom();
