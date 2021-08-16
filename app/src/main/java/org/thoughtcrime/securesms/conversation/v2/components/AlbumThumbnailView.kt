@@ -21,13 +21,14 @@ import org.session.libsession.utilities.ViewUtil
 import org.session.libsession.utilities.recipients.Recipient
 import org.thoughtcrime.securesms.MediaPreviewActivity
 import org.thoughtcrime.securesms.components.CornerMask
+import org.thoughtcrime.securesms.conversation.v2.messages.VisibleMessageContentView
 import org.thoughtcrime.securesms.conversation.v2.utilities.KThumbnailView
+import org.thoughtcrime.securesms.conversation.v2.utilities.TextUtilities.getIntersectedModalSpans
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.util.ActivityDispatcher
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.mms.Slide
-import org.thoughtcrime.securesms.video.exo.AttachmentDataSource
+import org.thoughtcrime.securesms.util.ActivityDispatcher
 import kotlin.math.roundToInt
 
 class AlbumThumbnailView : FrameLayout {
@@ -77,6 +78,13 @@ class AlbumThumbnailView : FrameLayout {
             // dispatch to activity view
             ActivityDispatcher.get(context)?.dispatchIntent { context ->
                 LongMessageActivity.getIntent(context, mms.recipient.address, mms.getId(), true)
+            }
+            return
+        }
+        val intersectedSpans = albumCellBodyText.getIntersectedModalSpans(eventRect)
+        if (intersectedSpans.isNotEmpty()) {
+            intersectedSpans.forEach { span ->
+                span.onClick(albumCellBodyText)
             }
             return
         }
@@ -130,7 +138,8 @@ class AlbumThumbnailView : FrameLayout {
             thumbnailView.setImageResource(glideRequests, slide, isPreview = false, mms = message)
         }
         albumCellBodyParent.isVisible = message.body.isNotEmpty()
-        albumCellBodyText.text = message.body
+        val body = VisibleMessageContentView.getBodySpans(context, message, null)
+        albumCellBodyText.text = body
         post {
             // post to await layout of text
             albumCellBodyText.layout?.let { layout ->
