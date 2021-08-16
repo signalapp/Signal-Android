@@ -128,7 +128,7 @@ public class MmsSmsDatabase extends Database {
   public Cursor getConversationSnippet(long threadId) {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
-    
+
     return queryTables(PROJECTION, selection, order, null);
   }
 

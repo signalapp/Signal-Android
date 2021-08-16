@@ -34,8 +34,9 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
         val thread = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID)!!
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         fun userCanDeleteSelectedItems(): Boolean {
-            if (openGroup == null) { return true }
             val allSentByCurrentUser = selectedItems.all { it.isOutgoing }
+            val allReceivedByByCurrentUser = selectedItems.all { !it.isOutgoing }
+            if (openGroup == null) { return allSentByCurrentUser || allReceivedByByCurrentUser }
             if (allSentByCurrentUser) { return true }
             return OpenGroupAPIV2.isUserModerator(userPublicKey, openGroup.room, openGroup.server)
         }

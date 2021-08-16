@@ -1170,6 +1170,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun deleteMessages(messages: Set<MessageRecord>) {
+        val allSentByCurrentUser = messages.all { it.isOutgoing }
         if (thread.isOpenGroupRecipient) {
             val messageCount = messages.size
             val builder = AlertDialog.Builder(this)
@@ -1187,7 +1188,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 endActionMode()
             }
             builder.show()
-        } else {
+        } else if (allSentByCurrentUser) {
             val bottomSheet = DeleteOptionsBottomSheet()
             bottomSheet.recipient = thread
             bottomSheet.onDeleteForMeTapped = {
@@ -1209,6 +1210,23 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 endActionMode()
             }
             bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+        } else {
+            val messageCount = messages.size
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(resources.getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messageCount, messageCount))
+            builder.setMessage(resources.getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messageCount, messageCount))
+            builder.setCancelable(true)
+            builder.setPositiveButton(R.string.delete) { _, _ ->
+                for (message in messages) {
+                    this.deleteLocally(message)
+                }
+                endActionMode()
+            }
+            builder.setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+                endActionMode()
+            }
+            builder.show()
         }
     }
 
