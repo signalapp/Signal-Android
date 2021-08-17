@@ -1205,6 +1205,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="WebRtcCallActivity__calling">Po thirret…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Thirrje Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Thirrje Signal Me Video</string>
   <string name="WebRtcCallView__start_call">Nise Thirrjen</string>
   <string name="WebRtcCallView__join_call">Hyni në Thirrje</string>
   <string name="WebRtcCallView__call_is_full">Thirrja është plot</string>
@@ -1222,6 +1223,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
     <item quantity="one">%1$s, %2$s, dhe %3$d tjetër janë në në këtë thirrje</item>
     <item quantity="other">%1$s, %2$s, dhe %3$d të tjerë janë në këtë thirrje</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Ktheje më anë tjetër</string>
   <string name="WebRtcCallView__speaker">Altoparlant</string>
   <string name="WebRtcCallView__camera">Kamerë</string>
   <string name="WebRtcCallView__mute">Heshtoje</string>
@@ -3114,5 +3116,10 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Ngjituni</string>
+  <string name="MultiselectForwardFragment__forward_to">Përcillja</string>
+  <string name="MultiselectForwardFragment__add_a_message">Shtoni një mesazh</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Mesazhet u dërguan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">S’u arrit të dërgohen mesazhet</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">U mbërrit në kufi</string>
   <!--EOF-->
 </resources>

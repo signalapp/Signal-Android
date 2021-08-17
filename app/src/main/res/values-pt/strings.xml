@@ -1201,6 +1201,7 @@
   <string name="WebRtcCallActivity__calling">A chamar…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Chamada do Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Videochamada do Signal</string>
   <string name="WebRtcCallView__start_call">Iniciar chamada</string>
   <string name="WebRtcCallView__join_call">Entrar na chamada</string>
   <string name="WebRtcCallView__call_is_full">A chamada encontra-se cheia</string>
@@ -1218,6 +1219,7 @@
     <item quantity="one">%1$s, %2$s, e %3$d outro estão nesta chamada </item>
     <item quantity="other">%1$s, %2$s, e outros %3$d estão nesta chamada</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Girar</string>
   <string name="WebRtcCallView__speaker">Altifalante</string>
   <string name="WebRtcCallView__camera">Câmara</string>
   <string name="WebRtcCallView__mute">Silenciar</string>
@@ -3109,5 +3111,10 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Ir para cima</string>
+  <string name="MultiselectForwardFragment__forward_to">Reencaminhar para</string>
+  <string name="MultiselectForwardFragment__add_a_message">Adicionar uma mensagem</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Mensagens enviadas</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Mensagens com falha de envio</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">Atingido o limite</string>
   <!--EOF-->
 </resources>

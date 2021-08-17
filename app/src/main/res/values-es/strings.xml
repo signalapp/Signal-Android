@@ -1202,6 +1202,7 @@
   <string name="WebRtcCallActivity__calling">Llamando …</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Llamada de Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Videollamada de Signal</string>
   <string name="WebRtcCallView__start_call">Iniciar llamada</string>
   <string name="WebRtcCallView__join_call">Unirse</string>
   <string name="WebRtcCallView__call_is_full">La llamada está llena</string>
@@ -1219,6 +1220,7 @@
     <item quantity="one">%1$s, %2$s y %3$d más en esta llamada</item>
     <item quantity="other">%1$s, %2$s y %3$d más en esta llamada</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Girar</string>
   <string name="WebRtcCallView__speaker">Altavoz del dispositivo</string>
   <string name="WebRtcCallView__camera">Cámara</string>
   <string name="WebRtcCallView__mute">Silenciar</string>
@@ -3110,5 +3112,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Arriba</string>
+  <string name="MultiselectForwardFragment__forward_to">Reenviar a</string>
+  <string name="MultiselectForwardFragment__add_a_message">Agregar un mensaje</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Mensajes enviados</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Fallo al reenviar los mensajes</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">Límite alcanzado</string>
   <!--EOF-->
 </resources>

@@ -1260,6 +1260,7 @@
   <string name="WebRtcCallActivity__calling">Apel în curs…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Apel Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Apel Video Signal</string>
   <string name="WebRtcCallView__start_call">Începeți apelul</string>
   <string name="WebRtcCallView__join_call">Alătură-te apelului</string>
   <string name="WebRtcCallView__call_is_full">Numărul maxim de participanți a fost atins</string>
@@ -1278,6 +1279,7 @@
     <item quantity="few">%1$s, %2$s și alte %3$d persoane sunt în acest apel</item>
     <item quantity="other">%1$s, %2$s și alte %3$d persoane sunt în acest apel</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Comutați</string>
   <string name="WebRtcCallView__speaker">Difuzor</string>
   <string name="WebRtcCallView__camera">Cameră foto</string>
   <string name="WebRtcCallView__mute">Silențios</string>
@@ -3192,5 +3194,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Navigați în sus</string>
+  <string name="MultiselectForwardFragment__forward_to">Redirecționați către</string>
+  <string name="MultiselectForwardFragment__add_a_message">Adăugați un mesaj</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Mesajele au fost trimise</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Mesajele nu au putut fi trimise</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">Ați atins limita</string>
   <!--EOF-->
 </resources>

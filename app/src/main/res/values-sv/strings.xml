@@ -1201,6 +1201,7 @@
   <string name="WebRtcCallActivity__calling">Ringer…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-samtal</string>
+  <string name="WebRtcCallView__signal_video_call">Signal-videosamtal</string>
   <string name="WebRtcCallView__start_call">Starta samtal</string>
   <string name="WebRtcCallView__join_call">Gå med i samtalet</string>
   <string name="WebRtcCallView__call_is_full">Samtalet är fullt</string>
@@ -1218,6 +1219,7 @@
     <item quantity="one">%1$s, %2$s och %3$d andra är i detta samtal</item>
     <item quantity="other">%1$s, %2$s och %3$d andra är med i detta samtal</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Vänd</string>
   <string name="WebRtcCallView__speaker">Högtalare</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Tysta</string>
@@ -3104,5 +3106,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Navigera upp</string>
+  <string name="MultiselectForwardFragment__forward_to">Vidarebefordra till</string>
+  <string name="MultiselectForwardFragment__add_a_message">Lägg till ett meddelande</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Meddelanden skickade</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Det gick inte att skicka meddelanden</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">Gränsen nådd</string>
   <!--EOF-->
 </resources>

@@ -1318,6 +1318,7 @@
   <string name="WebRtcCallActivity__calling">Skambinama…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">„Signal“ skambutis</string>
+  <string name="WebRtcCallView__signal_video_call">Signal vaizdo skambutis</string>
   <string name="WebRtcCallView__start_call">Pradėti skambutį</string>
   <string name="WebRtcCallView__join_call">Prisijungti prie skambučio</string>
   <string name="WebRtcCallView__call_is_full">Skambutis yra pilnas</string>
@@ -1337,6 +1338,7 @@
     <item quantity="many">%1$s, %2$s ir dar %3$d žmonių yra šiame skambutyje</item>
     <item quantity="other">%1$s, %2$s ir dar %3$d žmogus yra šiame skambutyje</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Apversti</string>
   <string name="WebRtcCallView__speaker">Garsiakalbis</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Išj. pranešimus</string>
@@ -3280,5 +3282,10 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Naršyti aukštyn</string>
+  <string name="MultiselectForwardFragment__forward_to">Kam persiųsti</string>
+  <string name="MultiselectForwardFragment__add_a_message">Pridėti žinutę</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Žinutės išsiųstos</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Nepavyko išsiųsti žinučių</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">Pasiekta riba</string>
   <!--EOF-->
 </resources>

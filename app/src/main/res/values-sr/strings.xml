@@ -1260,6 +1260,7 @@
   <string name="WebRtcCallActivity__calling">Позивам…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal позив</string>
+  <string name="WebRtcCallView__signal_video_call">Signal видео позив</string>
   <string name="WebRtcCallView__start_call">Започети позив</string>
   <string name="WebRtcCallView__join_call">Придружи се позиву</string>
   <string name="WebRtcCallView__call_is_full">Позив је пун</string>
@@ -1278,6 +1279,7 @@
     <item quantity="few">%1$s, %2$s, и још %3$d су у овом позиву</item>
     <item quantity="other">%1$s, %2$s, и још %3$d су у овом позиву</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Обрнути</string>
   <string name="WebRtcCallView__speaker">Звучник</string>
   <string name="WebRtcCallView__camera">Камера</string>
   <string name="WebRtcCallView__mute">Утишај</string>
@@ -3195,5 +3197,10 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Ићи на горе</string>
+  <string name="MultiselectForwardFragment__forward_to">Напред на</string>
+  <string name="MultiselectForwardFragment__add_a_message">Додати поруку</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Поруке су послате</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Поруке нису послате</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">Достигнут лимит</string>
   <!--EOF-->
 </resources>

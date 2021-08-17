@@ -1143,6 +1143,7 @@
   <string name="WebRtcCallActivity__calling">呼び出しています…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal通話</string>
+  <string name="WebRtcCallView__signal_video_call">Signalビデオ通話</string>
   <string name="WebRtcCallView__start_call">通話を開始する</string>
   <string name="WebRtcCallView__join_call">通話に参加する</string>
   <string name="WebRtcCallView__call_is_full">満席です</string>
@@ -1159,6 +1160,7 @@
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s, %2$s ほか%3$d人が参加中</item>
   </plurals>
+  <string name="WebRtcCallView__flip">切り替え</string>
   <string name="WebRtcCallView__speaker">スピーカー</string>
   <string name="WebRtcCallView__camera">カメラ</string>
   <string name="WebRtcCallView__mute">ミュート</string>
@@ -3015,5 +3017,10 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">上へ</string>
+  <string name="MultiselectForwardFragment__forward_to">転送先</string>
+  <string name="MultiselectForwardFragment__add_a_message">メッセージを追加してください</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">メッセージ送信済み</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">メッセージ送信失敗</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">制限に達しました</string>
   <!--EOF-->
 </resources>

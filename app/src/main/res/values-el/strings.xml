@@ -1195,6 +1195,7 @@
   <string name="WebRtcCallActivity__calling">Καλεί…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Κλήση Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Βιντεοκλήση Signal</string>
   <string name="WebRtcCallView__start_call">Έναρξη κλήσης</string>
   <string name="WebRtcCallView__join_call">Είσοδος στην κλήση</string>
   <string name="WebRtcCallView__call_is_full">Η κλήση είναι γεμάτη</string>
@@ -2969,5 +2970,9 @@
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="MultiselectForwardFragment__forward_to">Προώθηση σε</string>
+  <string name="MultiselectForwardFragment__add_a_message">Προσθήκη μηνύματος</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Τα μηνύματα στάλθηκαν</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Αποτυχία αποστολής μηνυμάτων</string> -->
   <!--EOF-->
 </resources>

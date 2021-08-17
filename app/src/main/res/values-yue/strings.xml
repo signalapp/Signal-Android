@@ -1144,6 +1144,7 @@
   <string name="WebRtcCallActivity__calling">打緊出去…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal 通話</string>
+  <string name="WebRtcCallView__signal_video_call">Signal 視像通話</string>
   <string name="WebRtcCallView__start_call">開始通話</string>
   <string name="WebRtcCallView__join_call">加入通話</string>
   <string name="WebRtcCallView__call_is_full">通話已滿座</string>
@@ -1160,9 +1161,10 @@
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s、%2$s 同其餘 %3$d 人嚟到呢次通話</item>
   </plurals>
+  <string name="WebRtcCallView__flip">前後轉換</string>
   <string name="WebRtcCallView__speaker">喇叭</string>
   <string name="WebRtcCallView__camera">相機</string>
-  <string name="WebRtcCallView__mute">沈默</string>
+  <string name="WebRtcCallView__mute">靜音</string>
   <string name="WebRtcCallView__end_call">收線</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -3025,5 +3027,10 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">返番轉頭</string>
+  <string name="MultiselectForwardFragment__forward_to">轉寄畀</string>
+  <string name="MultiselectForwardFragment__add_a_message">寫番句訊息</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">呢拃訊息已經送出</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">呢拃訊息傳送唔到</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">頂晒櫳喇</string>
   <!--EOF-->
 </resources>

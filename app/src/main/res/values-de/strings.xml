@@ -1199,8 +1199,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Anrufen …</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_call">Signal Anruf</string>
-  <string name="WebRtcCallView__signal_video_call">Signal Videoanruf</string>
+  <string name="WebRtcCallView__signal_call">Signal-Anruf</string>
+  <string name="WebRtcCallView__signal_video_call">Signal-Videoanruf</string>
   <string name="WebRtcCallView__start_call">Anruf starten</string>
   <string name="WebRtcCallView__join_call">Anruf beitreten</string>
   <string name="WebRtcCallView__call_is_full">Anruf ist voll</string>
@@ -1218,10 +1218,11 @@
     <item quantity="one">%1$s, %2$s und %3$d Weiterer nehmen an diesem Anruf teil</item>
     <item quantity="other">%1$s, %2$s und %3$d Weitere nehmen an diesem Anruf teil</item>
   </plurals>
-  <string name="WebRtcCallView__speaker">Lautsprecher</string>
+  <string name="WebRtcCallView__flip">Wechseln</string>
+  <string name="WebRtcCallView__speaker">Audio</string>
   <string name="WebRtcCallView__camera">Kamera</string>
-  <string name="WebRtcCallView__mute">Stummschalten</string>
-  <string name="WebRtcCallView__end_call">Anruf beenden</string>
+  <string name="WebRtcCallView__mute">Stumm​</string>
+  <string name="WebRtcCallView__end_call">Auflegen</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">In diesem Anruf · %1$d Person</item>
@@ -3075,7 +3076,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="VoiceNotePlayerView__change_voice_message_speed">Geschwindigkeit der Sprachnachricht ändern</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Sprachnachricht pausieren</string>
   <string name="VoiceNotePlayerView__play_voice_message">Sprachnachricht abspielen</string>
-  <string name="VoiceNotePlayerView__navigate_to_voice_message">Zur Sprachnachricht navigieren</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Zu Sprachnachricht navigieren</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Avatar-Vorschau</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>
@@ -3100,5 +3101,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Nach oben navigieren</string>
+  <string name="MultiselectForwardFragment__forward_to">Weiterleiten an</string>
+  <string name="MultiselectForwardFragment__add_a_message">Eine Nachricht hinzufügen</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Nachrichten gesendet</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Nachrichten konnten nicht gesendet werden</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">Höchstzahl erreicht</string>
   <!--EOF-->
 </resources>

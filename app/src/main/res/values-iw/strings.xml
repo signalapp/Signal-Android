@@ -1318,6 +1318,7 @@
   <string name="WebRtcCallActivity__calling">מתקשר…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">שיחת Signal</string>
+  <string name="WebRtcCallView__signal_video_call">שיחת וידאו של Signal</string>
   <string name="WebRtcCallView__start_call">התחל שיחה</string>
   <string name="WebRtcCallView__join_call">הצטרף לשיחה</string>
   <string name="WebRtcCallView__call_is_full">השיחה מלאה</string>
@@ -1337,6 +1338,7 @@
     <item quantity="many">%1$s, %2$s, ועוד %3$d אחרים בשיחה זו</item>
     <item quantity="other">%1$s, %2$s, ועוד %3$d אחרים בשיחה זו</item>
   </plurals>
+  <string name="WebRtcCallView__flip">החלף</string>
   <string name="WebRtcCallView__speaker">רמקול</string>
   <string name="WebRtcCallView__camera">מצלמה</string>
   <string name="WebRtcCallView__mute">השתק</string>
@@ -3280,5 +3282,10 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">נווט למעלה</string>
+  <string name="MultiselectForwardFragment__forward_to">העבר הלאה אל</string>
+  <string name="MultiselectForwardFragment__add_a_message">הוסף הודעה</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">הודעה נשלחה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">הודעות נכשלו להישלח</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">מגבלה הושגה</string>
   <!--EOF-->
 </resources>

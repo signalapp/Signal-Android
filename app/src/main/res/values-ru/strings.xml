@@ -1316,7 +1316,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Подключаемся…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_call">Звонок через Signal</string>
+  <string name="WebRtcCallView__signal_call">Звонок Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Видеозвонок Signal</string>
   <string name="WebRtcCallView__start_call">Начать звонок</string>
   <string name="WebRtcCallView__join_call">Присоединиться к звонку</string>
   <string name="WebRtcCallView__call_is_full">Звонок заполнен</string>
@@ -1336,9 +1337,10 @@
     <item quantity="many">%1$s, %2$s и ещё %3$d человек в этом звонке</item>
     <item quantity="other">%1$s, %2$s и ещё %3$d человек в этом звонке</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Перекл. камеру</string>
   <string name="WebRtcCallView__speaker">Громкая связь</string>
   <string name="WebRtcCallView__camera">Камера</string>
-  <string name="WebRtcCallView__mute">Откл. звук</string>
+  <string name="WebRtcCallView__mute">Откл. микрофон</string>
   <string name="WebRtcCallView__end_call">Завершить звонок</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -3273,5 +3275,10 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Перейти назад</string>
+  <string name="MultiselectForwardFragment__forward_to">Переслать</string>
+  <string name="MultiselectForwardFragment__add_a_message">Добавьте сообщение</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Сообщения отправлены</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Не удалось отправить сообщения</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">Достигнут предел</string>
   <!--EOF-->
 </resources>

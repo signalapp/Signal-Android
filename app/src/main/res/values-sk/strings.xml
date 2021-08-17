@@ -1317,6 +1317,7 @@
   <string name="WebRtcCallActivity__calling">Uskutočňovanie hovoru…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal hovor</string>
+  <string name="WebRtcCallView__signal_video_call">Videohovor Signal</string>
   <string name="WebRtcCallView__start_call">Začať hovor</string>
   <string name="WebRtcCallView__join_call">Pripojiť sa k hovoru</string>
   <string name="WebRtcCallView__call_is_full">Hovor je plne obsadený</string>
@@ -1336,6 +1337,7 @@
     <item quantity="many">%1$s, %2$s a %3$d ďalších je v tomto hovore</item>
     <item quantity="other">%1$s, %2$s a %3$d ďalších je v tomto hovore</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Preklopiť</string>
   <string name="WebRtcCallView__speaker">Reproduktor</string>
   <string name="WebRtcCallView__camera">Fotoaparát</string>
   <string name="WebRtcCallView__mute">Stlmiť</string>
@@ -3279,5 +3281,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Prejdite nahor</string>
+  <string name="MultiselectForwardFragment__forward_to">Preposlať</string>
+  <string name="MultiselectForwardFragment__add_a_message">Pridajte správu</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Správy odoslané</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Správy sa nepodarilo odoslať</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">Limit dosiahnutý</string>
   <!--EOF-->
 </resources>

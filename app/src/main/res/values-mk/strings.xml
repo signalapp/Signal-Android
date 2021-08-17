@@ -2778,7 +2778,7 @@
   <string name="PaymentsRecoveryPhraseFragment__edit">Измени</string>
   <string name="PaymentsRecoveryPhraseFragment__previous">Претходно</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Сметката за плаќање е вратена.</string>
-  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Да се копира во таблата со исечоци?</string>
+  <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Да се копира на таблата со исечоци?</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">Копирај</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Збор %1$d</string>
@@ -2961,7 +2961,7 @@
   <string name="ConversationSettingsFragment__unmute">Вклучи известувања</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Известувањата во разговорот исклучени до %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Известувањата во разговорот исклучени засекогаш</string>
-  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Телефонски број копиран во таблата со исечоци.</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Телефонски број копиран на таблата со исечоци.</string>
   <string name="ConversationSettingsFragment__phone_number">Телефонски број</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Додај членови</string>

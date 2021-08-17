@@ -1204,6 +1204,7 @@
   <string name="WebRtcCallActivity__calling">Oproep aan het starten …</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-oproep</string>
+  <string name="WebRtcCallView__signal_video_call">Signal video-oproep</string>
   <string name="WebRtcCallView__start_call">Oproep beginnen</string>
   <string name="WebRtcCallView__join_call">Aan oproep deelnemen</string>
   <string name="WebRtcCallView__call_is_full">De oproep is vol</string>
@@ -1221,6 +1222,7 @@
     <item quantity="one">In dit gesprek zijn %1$s, %2$s en %3$d andere aanwezig.</item>
     <item quantity="other">In dit gesprek zijn %1$s, %2$s en %3$d anderen aanwezig.</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Omdraaien</string>
   <string name="WebRtcCallView__speaker">Luidspreker</string>
   <string name="WebRtcCallView__camera">Camera</string>
   <string name="WebRtcCallView__mute">Dempen</string>
@@ -3043,7 +3045,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationSettingsFragment__unblock">Deblokkeren</string>
   <string name="ConversationSettingsFragment__unblock_group">Groep deblokkeren</string>
   <string name="ConversationSettingsFragment__add_to_a_group">Aan een groep toevoegen</string>
-  <string name="ConversationSettingsFragment__see_all">Alles weergeven</string>
+  <string name="ConversationSettingsFragment__see_all">Alle leden weergeven</string>
   <string name="ConversationSettingsFragment__add_members">Groepsleden toevoegen</string>
   <string name="ConversationSettingsFragment__permissions">Toestemmingen</string>
   <string name="ConversationSettingsFragment__requests_and_invites">Verzoeken &amp; uitnodiging</string>
@@ -3114,5 +3116,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Omhoog navigeren</string>
+  <string name="MultiselectForwardFragment__forward_to">Doorsturen naar</string>
+  <string name="MultiselectForwardFragment__add_a_message">Een bericht bijvoegen</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Berichten verzonden</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Het verzenden van de berichten is mislukt</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">Limiet bereikt</string>
   <!--EOF-->
 </resources>

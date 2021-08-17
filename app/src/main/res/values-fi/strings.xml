@@ -1201,6 +1201,7 @@
   <string name="WebRtcCallActivity__calling">Soitetaan…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal -puhelu</string>
+  <string name="WebRtcCallView__signal_video_call">Signal-videopuhelu</string>
   <string name="WebRtcCallView__start_call">Aloita puhelu</string>
   <string name="WebRtcCallView__join_call">Liity puheluun</string>
   <string name="WebRtcCallView__call_is_full">Puhelu on täynnä</string>
@@ -1218,6 +1219,7 @@
     <item quantity="one">%1$s, %2$s ja %3$d muu ovat tässä puhelussa</item>
     <item quantity="other">%1$s, %2$s ja %3$d muuta ovat tässä puhelussa</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Käännä</string>
   <string name="WebRtcCallView__speaker">Kaiutin</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Mykistä</string>
@@ -3104,5 +3106,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ContactSelectionListItem__dot_s">%1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Siirry ylös</string>
+  <string name="MultiselectForwardFragment__forward_to">Välitä kontakteille</string>
+  <string name="MultiselectForwardFragment__add_a_message">Lisää viesti</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Viestit lähetetty</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Viestien lähetys epäonnistui</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">Yläraja saavutettu</string>
   <!--EOF-->
 </resources>

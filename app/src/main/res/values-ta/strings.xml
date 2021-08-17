@@ -1203,6 +1203,7 @@
   <string name="WebRtcCallActivity__calling">அழைக்கிறது…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal  அழைப்பு</string>
+  <string name="WebRtcCallView__signal_video_call">Signal காணொளி அழைப்பு</string>
   <string name="WebRtcCallView__start_call">அழைப்பைத் தொடங்கு</string>
   <string name="WebRtcCallView__join_call">அழைப்பில் சேர்</string>
   <string name="WebRtcCallView__call_is_full">அழைப்பு நிரம்பியுள்ளது</string>
@@ -1220,6 +1221,7 @@
     <item quantity="one">%1$s, %2$s, மற்றும் %3$dநபர்கள் அழைப்பில் உள்ளனர்</item>
     <item quantity="other">%1$s, %2$s, மற்றும் கூடுதலாக%3$d நபர்கள் அழைப்பில் உள்ளனர்</item>
   </plurals>
+  <string name="WebRtcCallView__flip">புரட்டவும்</string>
   <string name="WebRtcCallView__speaker">ஒலி பெருக்கி</string>
   <string name="WebRtcCallView__camera">புகைப்பட கருவி</string>
   <string name="WebRtcCallView__mute">முடக்கு</string>
@@ -3113,5 +3115,10 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">மேலே செல்லவும்</string>
+  <string name="MultiselectForwardFragment__forward_to">முன்னோக்கி</string>
+  <string name="MultiselectForwardFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">செய்திகள் அனுப்பப்பட்டன</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">செய்திகளை அனுப்ப முடியவில்லை</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">வரம்பை எட்டியது</string>
   <!--EOF-->
 </resources>

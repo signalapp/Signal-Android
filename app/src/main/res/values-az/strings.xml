@@ -1202,6 +1202,7 @@
   <string name="WebRtcCallActivity__calling">Zəng edilir…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal zəngi</string>
+  <string name="WebRtcCallView__signal_video_call">Signal görüntülü zəngi</string>
   <string name="WebRtcCallView__start_call">Zəng başlat</string>
   <string name="WebRtcCallView__join_call">Zəngə qoşul</string>
   <string name="WebRtcCallView__call_is_full">Zəng dolub</string>
@@ -1219,6 +1220,7 @@
     <item quantity="one">%1$s, %2$s və digər %3$d nəfər bu zəngdədir</item>
     <item quantity="other">%1$s, %2$s və digər %3$d nəfər bu zəngdədir</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Çevir</string>
   <string name="WebRtcCallView__speaker">Dinamik</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Səssizə al</string>
@@ -2535,7 +2537,7 @@
   <string name="TransferOrRestoreFragment__transfer_from_android_device">Android cihazınızdan köçürün</string>
   <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Hesabınızı və mesajlarınızı köhnə Android cihazınızdan köçürün. Köhnə cihazınıza müraciət etməlisiniz.</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Köhnə cihazınıza müraciət etməlisiniz.</string>
-  <string name="TransferOrRestoreFragment__restore_from_backup">Nüsxədən geri yüklə</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Nüsxədən geri yükləyin</string>
   <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Mesajlarınızı yerli bir nüsxədən geri yükləyin. Əgər indi geri yükləməsəniz, daha sonra geri yükləyə bilməyəcəksiniz.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Köhnə Android cihazınızda Signal-ı açın</string>
@@ -3110,5 +3112,10 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Yuxarı gedin</string>
+  <string name="MultiselectForwardFragment__forward_to">Yönləndir</string>
+  <string name="MultiselectForwardFragment__add_a_message">Bir mesaj əlavə et</string>
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Mesajlar göndərildi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Mesajlar göndərilmədi</string> -->
+  <string name="MultiselectForwardFragment__limit_reached">Limitə çatıldı</string>
   <!--EOF-->
 </resources>
