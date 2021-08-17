@@ -154,7 +154,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="2dp"
-            android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:paddingStart="@dimen/message_bubble_horizontal_padding"
@@ -185,7 +184,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/body_bubble"
         android:layout_alignEnd="@id/body_bubble"
-        android:layout_marginTop="-8dp"
+        android:layout_marginTop="-4dp"
         android:orientation="horizontal"
         app:rcv_outgoing="true" />
 

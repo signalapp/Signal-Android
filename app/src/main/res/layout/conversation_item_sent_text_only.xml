@@ -79,21 +79,6 @@
             app:footer_reveal_dot_color="@color/conversation_item_sent_text_secondary_color"
             app:footer_text_color="@color/conversation_item_sent_text_secondary_color" />
 
-        <org.thoughtcrime.securesms.components.ConversationItemFooter
-            android:id="@+id/conversation_item_sticker_footer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:visibility="gone"
-            app:footer_mode="outgoing"
-            app:footer_icon_color="@color/signal_icon_tint_secondary"
-            app:footer_reveal_dot_color="@color/signal_icon_tint_secondary"
-            app:footer_text_color="@color/signal_text_secondary" />
-
     </org.thoughtcrime.securesms.conversation.ConversationItemBodyBubble>
 
     <org.thoughtcrime.securesms.components.AlertView
@@ -112,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/body_bubble"
         android:layout_alignEnd="@id/body_bubble"
-        android:layout_marginTop="-8dp"
+        android:layout_marginTop="-4dp"
         android:orientation="horizontal"
         app:rcv_outgoing="true" />
 

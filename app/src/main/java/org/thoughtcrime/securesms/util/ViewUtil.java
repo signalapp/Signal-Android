@@ -19,9 +19,7 @@ package org.thoughtcrime.securesms.util;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Paint;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -41,7 +39,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ContextThemeWrapper;
-import androidx.core.view.ViewCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.lifecycle.Lifecycle;
 
@@ -226,6 +223,12 @@ public final class ViewUtil {
   public static void updateLayoutParamsIfNonNull(@Nullable View view, int width, int height) {
     if (view != null) {
       updateLayoutParams(view, width, height);
+    }
+  }
+
+  public static void setVisibilityIfNonNull(@Nullable View view, int visibility) {
+    if (view != null) {
+      view.setVisibility(visibility);
     }
   }
 

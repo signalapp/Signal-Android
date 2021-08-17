@@ -179,7 +179,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   @Nullable private   QuoteView                  quoteView;
             private   EmojiTextView              bodyText;
             private   ConversationItemFooter     footer;
-            private   ConversationItemFooter     stickerFooter;
+  @Nullable private   ConversationItemFooter     stickerFooter;
   @Nullable private   TextView                   groupSender;
   @Nullable private   View                       groupSenderHolder;
             private   AvatarImageView            contactPhoto;
@@ -386,7 +386,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
     }
 
-    int defaultMargin = readDimen(R.dimen.message_bubble_default_footer_bottom_margin);
+    int defaultTopMargin      = readDimen(R.dimen.message_bubble_default_footer_bottom_margin);
+    int defaultBottomMargin   = readDimen(R.dimen.message_bubble_bottom_padding);
+    int collapsedBottomMargin = readDimen(R.dimen.message_bubble_collapsed_bottom_padding);
     if (!updatingFooter &&
         !isCaptionlessMms(messageRecord) &&
         !isViewOnceMessage(messageRecord) &&
@@ -394,36 +396,39 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         isFooterVisible(messageRecord, nextMessageRecord, groupThread) &&
         bodyText.getLastLineWidth() > 0)
     {
-      TextView dateView       = footer.getDateView();
-      int      footerWidth    = footer.getMeasuredWidth();
-      int      availableWidth = getAvailableMessageBubbleWidth(bodyText);
-      int      bottomDiff     = (int) (bodyText.getPaint().getFontMetrics().bottom - dateView.getPaint().getFontMetrics().bottom);
-      int      topMargin      = -1 * (dateView.getMeasuredHeight() + ViewUtil.dpToPx(7) + bottomDiff) + 1;
+      TextView dateView           = footer.getDateView();
+      int      footerWidth        = footer.getMeasuredWidth();
+      int      availableWidth     = getAvailableMessageBubbleWidth(bodyText);
+      int      collapsedTopMargin = -1 * (dateView.getMeasuredHeight() + ViewUtil.dpToPx(4));
       if (bodyText.isSingleLine()) {
         int maxBubbleWidth  = hasBigImageLinkPreview(messageRecord) || hasThumbnail(messageRecord) ? readDimen(R.dimen.media_bubble_max_width) : getMaxBubbleWidth();
         int bodyMargins     = ViewUtil.getLeftMargin(bodyText) + ViewUtil.getRightMargin(bodyText);
         int sizeWithMargins = bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins;
         int minSize         = Math.min(maxBubbleWidth, Math.max(bodyText.getMeasuredWidth() + ViewUtil.dpToPx(6) + footerWidth + bodyMargins, bodyBubble.getMeasuredWidth()));
         if (hasQuote(messageRecord) && sizeWithMargins < availableWidth) {
-          ViewUtil.setTopMargin(footer, topMargin);
+          ViewUtil.setTopMargin(footer, collapsedTopMargin);
+          ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
           needsMeasure   = true;
           updatingFooter = true;
         } else if (sizeWithMargins != bodyText.getMeasuredWidth() && sizeWithMargins <= minSize) {
           bodyBubble.getLayoutParams().width = minSize;
-          ViewUtil.setTopMargin(footer, topMargin);
+          ViewUtil.setTopMargin(footer, collapsedTopMargin);
+          ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
           needsMeasure   = true;
           updatingFooter = true;
         }
       }
       if (!updatingFooter && bodyText.getLastLineWidth() + ViewUtil.dpToPx(6) + footerWidth <= bodyText.getMeasuredWidth()) {
-        ViewUtil.setTopMargin(footer, topMargin);
+        ViewUtil.setTopMargin(footer, collapsedTopMargin);
+        ViewUtil.setBottomMargin(footer, collapsedBottomMargin);
         updatingFooter = true;
         needsMeasure   = true;
       }
     }
 
-    if (!updatingFooter && ViewUtil.getTopMargin(footer) != defaultMargin) {
-      ViewUtil.setTopMargin(footer, defaultMargin);
+    if (!updatingFooter && ViewUtil.getTopMargin(footer) != defaultTopMargin) {
+      ViewUtil.setTopMargin(footer, defaultTopMargin);
+      ViewUtil.setBottomMargin(footer, defaultBottomMargin);
       needsMeasure = true;
     }
 
@@ -1370,7 +1375,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     ViewUtil.setTopMargin(footer, readDimen(R.dimen.message_bubble_default_footer_bottom_margin));
 
     footer.setVisibility(GONE);
-    stickerFooter.setVisibility(GONE);
+    ViewUtil.setVisibilityIfNonNull(stickerFooter, GONE);
     if (sharedContactStub.resolved())  sharedContactStub.get().getFooter().setVisibility(GONE);
     if (mediaThumbnailStub.resolved()) mediaThumbnailStub.require().getFooter().setVisibility(GONE);
 
@@ -1405,7 +1410,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
-    if (hasNoBubble(messageRecord)) {
+    if (hasNoBubble(messageRecord) && stickerFooter != null) {
       return stickerFooter;
     } else if (hasSharedContact(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
       return sharedContactStub.get().getFooter();
