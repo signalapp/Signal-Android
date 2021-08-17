@@ -392,6 +392,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (!updatingFooter &&
         !isCaptionlessMms(messageRecord) &&
         !isViewOnceMessage(messageRecord) &&
+        !hasAudio(messageRecord) &&
         isFooterVisible(messageRecord, nextMessageRecord, groupThread) &&
         bodyText.getLastLineWidth() > 0)
     {
