@@ -102,8 +102,8 @@ class ClosedGroupPollerV2 {
         }
         promise.success { envelopes ->
             if (!isPolling(groupPublicKey)) { return@success }
-            envelopes.forEach { envelope ->
-                val job = MessageReceiveJob(envelope.toByteArray())
+            envelopes.forEach { (envelope, serverHash) ->
+                val job = MessageReceiveJob(envelope.toByteArray(), serverHash)
                 JobQueue.shared.add(job)
             }
         }

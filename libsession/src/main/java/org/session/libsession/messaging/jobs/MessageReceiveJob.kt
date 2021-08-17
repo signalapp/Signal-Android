@@ -7,7 +7,7 @@ import org.session.libsession.messaging.sending_receiving.handle
 import org.session.libsession.messaging.utilities.Data
 import org.session.libsignal.utilities.Log
 
-class MessageReceiveJob(val data: ByteArray, val openGroupMessageServerID: Long? = null, val openGroupID: String? = null) : Job {
+class MessageReceiveJob(val data: ByteArray, val serverHash: String? = null, val openGroupMessageServerID: Long? = null, val openGroupID: String? = null) : Job {
     override var delegate: JobDelegate? = null
     override var id: String? = null
     override var failureCount: Int = 0
@@ -21,6 +21,7 @@ class MessageReceiveJob(val data: ByteArray, val openGroupMessageServerID: Long?
 
         // Keys used for database storage
         private val DATA_KEY = "data"
+        private val SERVER_HASH_KEY = "serverHash"
         private val OPEN_GROUP_MESSAGE_SERVER_ID_KEY = "openGroupMessageServerID"
         private val OPEN_GROUP_ID_KEY = "open_group_id"
     }
@@ -34,6 +35,7 @@ class MessageReceiveJob(val data: ByteArray, val openGroupMessageServerID: Long?
         try {
             val isRetry: Boolean = failureCount != 0
             val (message, proto) = MessageReceiver.parse(this.data, this.openGroupMessageServerID)
+            message.serverHash = serverHash
             synchronized(RECEIVE_LOCK) { // FIXME: Do we need this?
                 MessageReceiver.handle(message, proto, this.openGroupID)
             }
@@ -67,6 +69,7 @@ class MessageReceiveJob(val data: ByteArray, val openGroupMessageServerID: Long?
 
     override fun serialize(): Data {
         val builder = Data.Builder().putByteArray(DATA_KEY, data)
+        serverHash?.let { builder.putString(SERVER_HASH_KEY, it) }
         openGroupMessageServerID?.let { builder.putLong(OPEN_GROUP_MESSAGE_SERVER_ID_KEY, it) }
         openGroupID?.let { builder.putString(OPEN_GROUP_ID_KEY, it) }
         return builder.build();
@@ -81,6 +84,7 @@ class MessageReceiveJob(val data: ByteArray, val openGroupMessageServerID: Long?
         override fun create(data: Data): MessageReceiveJob {
             return MessageReceiveJob(
                 data.getByteArray(DATA_KEY),
+                data.getString(SERVER_HASH_KEY),
                 data.getLong(OPEN_GROUP_MESSAGE_SERVER_ID_KEY),
                 data.getString(OPEN_GROUP_ID_KEY)
             )

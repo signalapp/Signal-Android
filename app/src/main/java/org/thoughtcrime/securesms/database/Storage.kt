@@ -148,6 +148,11 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         if (openGroupID.isNullOrEmpty() && threadID != null && threadID >= 0) {
             JobQueue.shared.add(TrimThreadJob(threadID))
         }
+        message.serverHash?.let { serverHash ->
+            messageID?.let { id ->
+                DatabaseFactory.getLokiMessageDatabase(context).setMessageServerHash(id, serverHash)
+            }
+        }
         return messageID
     }
 

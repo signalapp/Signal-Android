@@ -426,7 +426,7 @@ object SnodeAPI {
         }
     }
 
-    fun parseRawMessagesResponse(rawResponse: RawResponse, snode: Snode, publicKey: String): List<SignalServiceProtos.Envelope> {
+    fun parseRawMessagesResponse(rawResponse: RawResponse, snode: Snode, publicKey: String): List<Pair<SignalServiceProtos.Envelope, String?>> {
         val messages = rawResponse["messages"] as? List<*>
         return if (messages != null) {
             updateLastMessageHashValueIfPossible(snode, publicKey, messages)
@@ -465,14 +465,14 @@ object SnodeAPI {
         return result
     }
 
-    private fun parseEnvelopes(rawMessages: List<*>): List<SignalServiceProtos.Envelope> {
+    private fun parseEnvelopes(rawMessages: List<*>): List<Pair<SignalServiceProtos.Envelope, String?>> {
         return rawMessages.mapNotNull { rawMessage ->
             val rawMessageAsJSON = rawMessage as? Map<*, *>
             val base64EncodedData = rawMessageAsJSON?.get("data") as? String
             val data = base64EncodedData?.let { Base64.decode(it) }
             if (data != null) {
                 try {
-                    MessageWrapper.unwrap(data)
+                    Pair(MessageWrapper.unwrap(data), rawMessageAsJSON.get("hash") as? String)
                 } catch (e: Exception) {
                     Log.d("Loki", "Failed to unwrap data for message: ${rawMessage.prettifiedDescription()}.")
                     null
@@ -568,5 +568,5 @@ object SnodeAPI {
 
 // Type Aliases
 typealias RawResponse = Map<*, *>
-typealias MessageListPromise = Promise<List<SignalServiceProtos.Envelope>, Exception>
+typealias MessageListPromise = Promise<List<Pair<SignalServiceProtos.Envelope, String?>>, Exception>
 typealias RawResponsePromise = Promise<RawResponse, Exception>
