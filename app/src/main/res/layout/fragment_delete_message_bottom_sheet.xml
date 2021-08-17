@@ -13,13 +13,13 @@
         android:id="@+id/deleteForMeTextView"
         style="@style/BottomSheetActionItem"
         android:text="@string/delete_message_for_me"
-        android:textColor="@color/core_red"/>
+        android:textColor="@color/destructive"/>
 
     <TextView
         android:id="@+id/deleteForEveryoneTextView"
         style="@style/BottomSheetActionItem"
         android:text="@string/delete_message_for_everyone"
-        android:textColor="@color/core_red"/>
+        android:textColor="@color/destructive"/>
 
     <TextView
         android:id="@+id/cancelTextView"

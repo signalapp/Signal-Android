@@ -38,14 +38,14 @@ class ConversationActionModeCallback(private val adapter: ConversationAdapter, p
             val allSentByCurrentUser = selectedItems.all { it.isOutgoing }
 
             // Remove this after the unsend request is enabled
-            if (!ConversationActivityV2.isUnsendRequestsEnabled) {
+            if (!ConversationActivityV2.IS_UNSEND_REQUESTS_ENABLED) {
                 if (openGroup == null) { return true }
                 if (allSentByCurrentUser) { return true }
                 return OpenGroupAPIV2.isUserModerator(userPublicKey, openGroup.room, openGroup.server)
             }
 
-            val allReceivedByByCurrentUser = selectedItems.all { !it.isOutgoing }
-            if (openGroup == null) { return allSentByCurrentUser || allReceivedByByCurrentUser }
+            val allReceivedByCurrentUser = selectedItems.all { !it.isOutgoing }
+            if (openGroup == null) { return allSentByCurrentUser || allReceivedByCurrentUser }
             if (allSentByCurrentUser) { return true }
             return OpenGroupAPIV2.isUserModerator(userPublicKey, openGroup.room, openGroup.server)
         }

@@ -211,7 +211,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         const val INVITE_CONTACTS = 124
 
         //flag
-        val isUnsendRequestsEnabled = false
+        const val IS_UNSEND_REQUESTS_ENABLED = false
     }
     // endregion
 
@@ -1121,7 +1121,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         stopAudioHandler.removeCallbacks(stopVoiceMessageRecordingTask)
     }
 
-    private fun buildUsendRequest(message: MessageRecord): UnsendRequest? {
+    private fun buildUnsendRequest(message: MessageRecord): UnsendRequest? {
         if (this.thread.isOpenGroupRecipient) return null
         val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
         messageDataProvider.getServerHashForMessage(message.id) ?: return null
@@ -1137,7 +1137,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun deleteLocally(message: MessageRecord) {
-        buildUsendRequest(message)?.let { unsendRequest ->
+        buildUnsendRequest(message)?.let { unsendRequest ->
             TextSecurePreferences.getLocalNumber(this@ConversationActivityV2)?.let {
                 MessageSender.send(unsendRequest, Address.fromSerialized(it))
             }
@@ -1146,7 +1146,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun deleteForEveryone(message: MessageRecord) {
-        buildUsendRequest(message)?.let { unsendRequest ->
+        buildUnsendRequest(message)?.let { unsendRequest ->
             MessageSender.send(unsendRequest, thread.address)
         }
         val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
@@ -1218,7 +1218,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     override fun deleteMessages(messages: Set<MessageRecord>) {
-        if (!isUnsendRequestsEnabled) {
+        if (!IS_UNSEND_REQUESTS_ENABLED) {
             deleteMessagesWithoutUnsendRequest(messages)
             return
         }

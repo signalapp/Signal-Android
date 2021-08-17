@@ -178,7 +178,7 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
     override fun updateMessageAsDeleted(timestamp: Long, author: String) {
         val database = DatabaseFactory.getMmsSmsDatabase(context)
         val address = Address.fromSerialized(author)
-        val message = database.getMessageFor(timestamp, address)!!
+        val message = database.getMessageFor(timestamp, address) ?: return
         val messagingDatabase: MessagingDatabase = if (message.isMms)  DatabaseFactory.getMmsDatabase(context)
                                                    else DatabaseFactory.getSmsDatabase(context)
         messagingDatabase.markAsDeleted(message.id, message.isRead)
