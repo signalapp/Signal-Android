@@ -1138,7 +1138,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
 
     private fun deleteLocally(message: MessageRecord) {
         buildUsendRequest(message)?.let { unsendRequest ->
-            MessageSender.send(unsendRequest, thread.address)
+            TextSecurePreferences.getLocalNumber(this)?.let {
+                MessageSender.send(unsendRequest, Address.fromSerialized(it))
+            }
         }
         MessagingModuleConfiguration.shared.messageDataProvider.deleteMessage(message.id, !message.isMms)
     }
