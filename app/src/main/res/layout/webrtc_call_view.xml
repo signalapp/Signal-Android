@@ -210,7 +210,8 @@
             android:id="@+id/call_screen_speaker_toggle"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:scaleType="fitXY"
             android:visibility="gone"
@@ -223,7 +224,7 @@
 
         <TextView
             android:id="@+id/call_screen_speaker_toggle_label"
-            android:layout_width="56dp"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:clickable="false"
@@ -246,7 +247,8 @@
             android:id="@+id/call_screen_camera_direction_toggle"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:clickable="false"
             android:scaleType="fitXY"
@@ -260,7 +262,7 @@
 
         <TextView
             android:id="@+id/call_screen_camera_direction_toggle_label"
-            android:layout_width="56dp"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:clickable="false"
@@ -282,7 +284,8 @@
         <org.thoughtcrime.securesms.components.AccessibleToggleButton
             android:id="@+id/call_screen_video_toggle"
             style="@style/WebRtcCallV2CompoundButton"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/webrtc_call_screen_video_toggle"
             android:stateListAnimator="@null"
@@ -296,7 +299,7 @@
 
         <TextView
             android:id="@+id/call_screen_video_toggle_label"
-            android:layout_width="56dp"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:clickable="false"
@@ -318,7 +321,8 @@
         <org.thoughtcrime.securesms.components.AccessibleToggleButton
             android:id="@+id/call_screen_audio_mic_toggle"
             style="@style/WebRtcCallV2CompoundButton"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/webrtc_call_screen_mic_toggle"
             android:stateListAnimator="@null"
@@ -331,7 +335,7 @@
 
         <TextView
             android:id="@+id/call_screen_audio_mic_toggle_label"
-            android:layout_width="56dp"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:clickable="false"
@@ -354,6 +358,8 @@
             android:id="@+id/call_screen_end_call"
             android:layout_width="56dp"
             android:layout_height="56dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:clickable="false"
             android:scaleType="fitXY"
@@ -367,7 +373,7 @@
 
         <TextView
             android:id="@+id/call_screen_end_call_label"
-            android:layout_width="56dp"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:clickable="false"
