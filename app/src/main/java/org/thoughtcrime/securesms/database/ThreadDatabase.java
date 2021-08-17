@@ -1283,11 +1283,16 @@ public class ThreadDatabase extends Database {
   }
 
   public void updateSnippetTypeSilently(long threadId) {
+    if (threadId == -1) {
+      return;
+    }
+
     long type;
     try {
       type = DatabaseFactory.getMmsSmsDatabase(context).getConversationSnippetType(threadId);
     } catch (NoSuchMessageException e) {
-      throw new AssertionError(e);
+      Log.w(TAG, "Unable to find snippet message for thread: " + threadId, e);
+      return;
     }
 
     ContentValues contentValues = new ContentValues(1);
