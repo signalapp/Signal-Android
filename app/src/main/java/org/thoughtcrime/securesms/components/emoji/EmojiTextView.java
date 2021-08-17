@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.emoji;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -23,7 +22,6 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.TextViewCompat;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
@@ -54,6 +52,7 @@ public class EmojiTextView extends AppCompatTextView {
   private boolean                measureLastLine;
   private int                    lastLineWidth = -1;
   private TextDirectionHeuristic textDirection;
+  private boolean                isJumbomoji;
 
   private MentionRendererDelegate mentionRendererDelegate;
 
@@ -114,8 +113,10 @@ public class EmojiTextView extends AppCompatTextView {
       if (emojis <= 4) scale += 0.25f;
       if (emojis <= 2) scale += 0.25f;
 
+      isJumbomoji = scale > 1.0f;
       super.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize * scale);
     } else if (scaleEmojis) {
+      isJumbomoji = false;
       super.setTextSize(TypedValue.COMPLEX_UNIT_PX, originalFontSize);
     }
 
@@ -176,6 +177,10 @@ public class EmojiTextView extends AppCompatTextView {
 
   public boolean isSingleLine() {
     return getLayout() != null && getLayout().getLineCount() == 1;
+  }
+
+  public boolean isJumbomoji() {
+    return isJumbomoji;
   }
 
   public void setOverflowText(@Nullable CharSequence overflowText) {

@@ -394,6 +394,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         !isViewOnceMessage(messageRecord) &&
         !hasAudio(messageRecord) &&
         isFooterVisible(messageRecord, nextMessageRecord, groupThread) &&
+        !bodyText.isJumbomoji() &&
         bodyText.getLastLineWidth() > 0)
     {
       TextView dateView           = footer.getDateView();
