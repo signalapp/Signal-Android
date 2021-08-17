@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversation.mutiselect
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -11,6 +12,8 @@ import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.SimpleColorFilter
 import org.thoughtcrime.securesms.R
@@ -20,11 +23,17 @@ import org.thoughtcrime.securesms.util.SetUtil
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
+import java.lang.Integer.max
 
 /**
  * Decoration which renders the background shade and selection bubble for a {@link Multiselectable} item.
  */
-class MultiselectItemDecoration(context: Context, private val chatWallpaperProvider: () -> ChatWallpaper?) : RecyclerView.ItemDecoration() {
+class MultiselectItemDecoration(
+  context: Context,
+  private val chatWallpaperProvider: () -> ChatWallpaper?,
+  private val selectedAnimationProgressProvider: (MultiselectPart) -> Float,
+  private val isInitialAnimation: () -> Boolean
+) : RecyclerView.ItemDecoration(), DefaultLifecycleObserver {
 
   private val path = Path()
   private val rect = Rect()
@@ -43,6 +52,21 @@ class MultiselectItemDecoration(context: Context, private val chatWallpaperProvi
   private val ultramarine30 = ContextCompat.getColor(context, R.color.core_ultramarine_33)
   private val ultramarine = ContextCompat.getColor(context, R.color.signal_accent_primary)
 
+  private var checkedBitmap: Bitmap? = null
+
+  override fun onCreate(owner: LifecycleOwner) {
+    val bitmap = Bitmap.createBitmap(circleRadius * 2, circleRadius * 2, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(bitmap)
+
+    checkDrawable.draw(canvas)
+    checkedBitmap = bitmap
+  }
+
+  override fun onDestroy(owner: LifecycleOwner) {
+    checkedBitmap?.recycle()
+    checkedBitmap = null
+  }
+
   private val unselectedPaint = Paint().apply {
     isAntiAlias = true
     strokeWidth = 1.5f
@@ -60,20 +84,43 @@ class MultiselectItemDecoration(context: Context, private val chatWallpaperProvi
     color = transparentBlack20
   }
 
+  private val checkPaint = Paint().apply {
+    isAntiAlias = true
+    style = Paint.Style.FILL
+  }
+
   override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
     val adapter = parent.adapter as ConversationAdapter
     val isLtr = ViewUtil.isLtr(view)
 
     if (adapter.selectedItems.isNotEmpty() && view is Multiselectable) {
-      outRect.set(
-        if (isLtr) gutter else 0,
-        0,
-        if (isLtr) 0 else gutter,
-        0
-      )
-    } else {
-      outRect.setEmpty()
+      val firstPart = view.conversationMessage.multiselectCollection.toSet().first()
+      val target = view.getHorizontalTranslationTarget()
+
+      if (target != null) {
+        val start = if (isLtr) {
+          target.left
+        } else {
+          parent.right - target.right
+        }
+
+        val translation: Float = if (isInitialAnimation()) {
+          max(0, gutter - start) * selectedAnimationProgressProvider(firstPart)
+        } else {
+          max(0, gutter - start).toFloat()
+        }
+
+        view.translationX = if (isLtr) {
+          translation
+        } else {
+          -translation
+        }
+      }
+    } else if (view is Multiselectable) {
+      view.translationX = 0f
     }
+
+    outRect.setEmpty()
   }
 
   /**
@@ -111,7 +158,7 @@ class MultiselectItemDecoration(context: Context, private val chatWallpaperProvi
         val shadeAll = selectedParts.size == parts.size || (selectedPart is MultiselectPart.Text && child.hasNonSelectableMedia())
 
         if (shadeAll) {
-          rect.set(0, view.top, parent.right, view.bottom)
+          rect.set(0, view.top, view.right, view.bottom)
         } else {
           rect.set(0, child.getTopBoundaryOfMultiselectPart(selectedPart), parent.right, child.getBottomBoundaryOfMultiselectPart(selectedPart))
         }
@@ -144,9 +191,9 @@ class MultiselectItemDecoration(context: Context, private val chatWallpaperProvi
     }
 
     if (chatWallpaperProvider() == null && !isDarkTheme) {
-      checkDrawable.colorFilter = SimpleColorFilter(ultramarine)
+      checkPaint.colorFilter = SimpleColorFilter(ultramarine)
     } else {
-      checkDrawable.clearColorFilter()
+      checkPaint.colorFilter = null
     }
 
     multiselectChildren.forEach { child ->
@@ -159,10 +206,15 @@ class MultiselectItemDecoration(context: Context, private val chatWallpaperProvi
           drawPhotoCircle(canvas, parent, topBoundary, bottomBoundary)
         }
 
+        val alphaProgress = selectedAnimationProgressProvider(it)
         if (adapter.selectedItems.contains(it)) {
-          drawSelectedCircle(canvas, parent, topBoundary, bottomBoundary)
+          drawUnselectedCircle(canvas, parent, topBoundary, bottomBoundary, 1f - alphaProgress)
+          drawSelectedCircle(canvas, parent, topBoundary, bottomBoundary, alphaProgress)
         } else {
-          drawUnselectedCircle(canvas, parent, topBoundary, bottomBoundary)
+          drawUnselectedCircle(canvas, parent, topBoundary, bottomBoundary, alphaProgress)
+          if (!isInitialAnimation()) {
+            drawSelectedCircle(canvas, parent, topBoundary, bottomBoundary, 1f - alphaProgress)
+          }
         }
       }
     }
@@ -187,7 +239,7 @@ class MultiselectItemDecoration(context: Context, private val chatWallpaperProvi
   /**
    * Draws the checkmark for selected content
    */
-  private fun drawSelectedCircle(canvas: Canvas, parent: RecyclerView, topBoundary: Int, bottomBoundary: Int) {
+  private fun drawSelectedCircle(canvas: Canvas, parent: RecyclerView, topBoundary: Int, bottomBoundary: Int, alphaProgress: Float) {
     val topX: Float = if (ViewUtil.isLtr(parent)) {
       paddingStart
     } else {
@@ -195,25 +247,33 @@ class MultiselectItemDecoration(context: Context, private val chatWallpaperProvi
     }.toFloat()
 
     val topY: Float = topBoundary + (bottomBoundary - topBoundary).toFloat() / 2 - circleRadius
+    val bitmap = checkedBitmap
 
-    canvas.save()
-    canvas.translate(topX, topY)
-    checkDrawable.draw(canvas)
-    canvas.restore()
+    val alpha = checkPaint.alpha
+    checkPaint.alpha = (alpha * alphaProgress).toInt()
+
+    if (bitmap != null) {
+      canvas.drawBitmap(bitmap, topX, topY, checkPaint)
+    }
+
+    checkPaint.alpha = alpha
   }
 
   /**
    * Draws the empty circle for unselected content
    */
-  private fun drawUnselectedCircle(c: Canvas, parent: RecyclerView, topBoundary: Int, bottomBoundary: Int) {
+  private fun drawUnselectedCircle(c: Canvas, parent: RecyclerView, topBoundary: Int, bottomBoundary: Int, alphaProgress: Float) {
     val centerX: Float = if (ViewUtil.isLtr(parent)) {
       paddingStart + circleRadius
     } else {
       parent.right - circleRadius - paddingStart
     }.toFloat()
 
+    val alpha = unselectedPaint.alpha
+    unselectedPaint.alpha = (alpha * alphaProgress).toInt()
     val centerY: Float = topBoundary + (bottomBoundary - topBoundary).toFloat() / 2
 
     c.drawCircle(centerX, centerY, circleRadius.toFloat(), unselectedPaint)
+    unselectedPaint.alpha = alpha
   }
 }

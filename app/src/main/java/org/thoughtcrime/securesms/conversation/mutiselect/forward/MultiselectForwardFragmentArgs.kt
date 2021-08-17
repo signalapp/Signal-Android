@@ -42,7 +42,10 @@ class MultiselectForwardFragmentArgs(
 
     @WorkerThread
     private fun buildMultiShareArgs(context: Context, conversationMessage: ConversationMessage, selectedParts: Set<MultiselectPart>): MultiShareArgs {
-      val builder = MultiShareArgs.Builder(setOf()).withMentions(conversationMessage.mentions)
+      val builder = MultiShareArgs.Builder(setOf())
+        .withMentions(conversationMessage.mentions)
+        .withTimestamp(conversationMessage.messageRecord.timestamp)
+        .withExpiration(conversationMessage.messageRecord.expireStarted + conversationMessage.messageRecord.expiresIn)
 
       if (conversationMessage.multiselectCollection.isTextSelected(selectedParts)) {
         val mediaMessage: MmsMessageRecord? = conversationMessage.messageRecord as? MmsMessageRecord
@@ -56,6 +59,9 @@ class MultiselectForwardFragmentArgs(
         } else {
           builder.withDraftText(conversationMessage.getDisplayBody(context).toString())
         }
+
+        val linkPreview = mediaMessage?.linkPreviews?.firstOrNull()
+        builder.withLinkPreview(linkPreview)
       }
 
       if (conversationMessage.messageRecord.isMms && conversationMessage.multiselectCollection.isMediaSelected(selectedParts)) {
@@ -96,6 +102,7 @@ class MultiselectForwardFragmentArgs(
           val media = firstSlide.asAttachment().toMedia()
 
           if (media != null) {
+            builder.asBorderless(media.isBorderless)
             builder.withMedia(listOf(media))
           }
         }

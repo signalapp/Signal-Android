@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 
 final class MenuState {
 
+  private static final int MAX_FORWARDABLE_COUNT = 32;
+
   private final boolean forward;
   private final boolean reply;
   private final boolean details;
@@ -114,7 +116,7 @@ final class MenuState {
                                       !viewOnce        &&
                                       !remoteDelete    &&
                                       !hasPendingMedia &&
-                                      ((FeatureFlags.forwardMultipleMessages() && selectedParts.size() <= 5) || selectedParts.size() == 1);
+                                      ((FeatureFlags.forwardMultipleMessages() && selectedParts.size() <= MAX_FORWARDABLE_COUNT) || selectedParts.size() == 1);
 
     int uniqueRecords = selectedParts.stream()
                                      .map(MultiselectPart::getMessageRecord)

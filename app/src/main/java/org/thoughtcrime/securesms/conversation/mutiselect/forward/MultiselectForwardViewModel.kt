@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.sharing.ShareContact
@@ -31,14 +32,43 @@ class MultiselectForwardViewModel(
   }
 
   fun send(additionalMessage: String) {
+    if (SignalStore.tooltips().showMultiForwardDialog()) {
+      SignalStore.tooltips().markMultiForwardDialogSeen()
+      store.update { it.copy(stage = MultiselectForwardState.Stage.FirstConfirmation) }
+    } else {
+      store.update { it.copy(stage = MultiselectForwardState.Stage.LoadingIdentities) }
+      repository.checkForBadIdentityRecords(store.state.selectedContacts) { identityRecords ->
+        if (identityRecords.isEmpty()) {
+          performSend(additionalMessage)
+        } else {
+          store.update { it.copy(stage = MultiselectForwardState.Stage.SafetyConfirmation(identityRecords)) }
+        }
+      }
+    }
+  }
+
+  fun confirmFirstSend(additionalMessage: String) {
+    send(additionalMessage)
+  }
+
+  fun confirmSafetySend(additionalMessage: String) {
+    send(additionalMessage)
+  }
+
+  fun cancelSend() {
+    store.update { it.copy(stage = MultiselectForwardState.Stage.Selection) }
+  }
+
+  private fun performSend(additionalMessage: String) {
+    store.update { it.copy(stage = MultiselectForwardState.Stage.SendPending) }
     repository.send(
       additionalMessage = additionalMessage,
       multiShareArgs = records,
       shareContacts = store.state.selectedContacts,
       MultiselectForwardRepository.MultiselectForwardResultHandlers(
-        onAllMessageSentSuccessfully = { store.update { it.copy(stage = MultiselectForwardState.Stage.SUCCESS) } },
-        onAllMessagesFailed = { store.update { it.copy(stage = MultiselectForwardState.Stage.ALL_FAILED) } },
-        onSomeMessagesFailed = { store.update { it.copy(stage = MultiselectForwardState.Stage.SOME_FAILED) } }
+        onAllMessageSentSuccessfully = { store.update { it.copy(stage = MultiselectForwardState.Stage.Success) } },
+        onAllMessagesFailed = { store.update { it.copy(stage = MultiselectForwardState.Stage.AllFailed) } },
+        onSomeMessagesFailed = { store.update { it.copy(stage = MultiselectForwardState.Stage.SomeFailed) } }
       )
     )
   }

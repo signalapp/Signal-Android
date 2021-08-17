@@ -1,9 +1,12 @@
 package org.thoughtcrime.securesms.conversation.mutiselect.forward
 
 import android.content.Context
+import androidx.core.util.Consumer
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.IdentityDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.database.identity.IdentityRecordList
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.sharing.MultiShareSender
@@ -19,6 +22,16 @@ class MultiselectForwardRepository(context: Context) {
     val onSomeMessagesFailed: () -> Unit,
     val onAllMessagesFailed: () -> Unit
   )
+
+  fun checkForBadIdentityRecords(shareContacts: List<ShareContact>, consumer: Consumer<List<IdentityDatabase.IdentityRecord>>) {
+    SignalExecutors.BOUNDED.execute {
+      val identityDatabase: IdentityDatabase = DatabaseFactory.getIdentityDatabase(context)
+      val recipients: List<Recipient> = shareContacts.map { Recipient.resolved(it.recipientId.get()) }
+      val identityRecordList: IdentityRecordList = identityDatabase.getIdentities(recipients)
+
+      consumer.accept(identityRecordList.untrustedRecords)
+    }
+  }
 
   fun send(
     additionalMessage: String,
@@ -38,7 +51,7 @@ class MultiselectForwardRepository(context: Context) {
         .toSet()
 
       val mappedArgs: List<MultiShareArgs> = multiShareArgs.map { it.buildUpon(sharedContactsAndThreads).build() }
-      val results = mappedArgs.map { MultiShareSender.sendSync(it) }
+      val results = mappedArgs.sortedBy { it.timestamp }.map { MultiShareSender.sendSync(it) }
 
       if (additionalMessage.isNotEmpty()) {
         val additional = MultiShareArgs.Builder(sharedContactsAndThreads)

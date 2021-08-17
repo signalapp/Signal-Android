@@ -10,6 +10,12 @@ sealed class MultiselectPart(open val conversationMessage: ConversationMessage) 
 
   fun getMessageRecord(): MessageRecord = conversationMessage.messageRecord
 
+  fun isExpired(): Boolean {
+    val expiresAt = conversationMessage.messageRecord.expireStarted + conversationMessage.messageRecord.expiresIn
+
+    return expiresAt > 0 && expiresAt < System.currentTimeMillis()
+  }
+
   /**
    * Represents the body of the message
    */

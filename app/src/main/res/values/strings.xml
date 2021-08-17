@@ -3691,6 +3691,12 @@
     <string name="DSLSettingsToolbar__navigate_up">Navigate up</string>
     <string name="MultiselectForwardFragment__forward_to">Forward to</string>
     <string name="MultiselectForwardFragment__add_a_message">Add a message</string>
+    <string name="MultiselectForwardFragment__faster_forwards">Faster forwards</string>
+    <string name="MultiselectForwardFragment__forwarded_messages_are_now">Forwarded messages are now sent immediately.</string>
+    <plurals name="MultiselectForwardFragment_send_d_messages">
+        <item quantity="one">Send %1$d message</item>
+        <item quantity="other">Send %1$d messages</item>
+    </plurals>
     <plurals name="MultiselectForwardFragment_messages_sent">
         <item quantity="one">Message sent</item>
         <item quantity="other">Messages sent</item>
@@ -3698,6 +3704,10 @@
     <plurals name="MultiselectForwardFragment_messages_failed_to_send">
         <item quantity="one">Message failed to send</item>
         <item quantity="other">Messages failed to send</item>
+    </plurals>
+    <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+        <item quantity="one">Couldn\'t forward message because it\'s no longer available.</item>
+        <item quantity="other">Couldn\'t forward messages because they\'re no longer available.</item>
     </plurals>
     <string name="MultiselectForwardFragment__limit_reached">Limit reached</string>
 

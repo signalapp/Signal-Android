@@ -24,7 +24,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -141,7 +140,6 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -533,63 +531,69 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     MultiselectPart bottom = parts.asDouble().getBottomPart();
 
     if (hasThumbnail(messageRecord)) {
-      Projection thumbnailProjection = Projection.relativeToParent(this, mediaThumbnailStub.require(), null);
-      float mediaBoundary = thumbnailProjection.getY() + thumbnailProjection.getHeight();
-
-      if (lastYDownRelativeToThis > mediaBoundary) {
-        return bottom;
-      } else {
-        return top;
-      }
+      return isTouchBelowBoundary(mediaThumbnailStub.require()) ? bottom : top;
     } else if (hasDocument(messageRecord)) {
-      Projection documentProjection = Projection.relativeToParent(this, documentViewStub.get(), null);
-      float documentBoundary = documentProjection.getY() + documentProjection.getHeight();
-
-      if (lastYDownRelativeToThis > documentBoundary) {
-        return bottom;
-      } else {
-        return top;
-      }
-    } else {
+      return isTouchBelowBoundary(documentViewStub.get()) ? bottom : top;
+    } else if (hasAudio(messageRecord)) {
+      return isTouchBelowBoundary(audioViewStub.get()) ? bottom : top;
+    } {
       throw new IllegalStateException("Found a situation where we have something other than a thumbnail or a document.");
     }
   }
 
+  private boolean isTouchBelowBoundary(@NonNull View child) {
+    Projection childProjection = Projection.relativeToParent(this, child, null);
+    float childBoundary = childProjection.getY() + childProjection.getHeight();
+
+    return lastYDownRelativeToThis > childBoundary;
+  }
+
   @Override
   public int getTopBoundaryOfMultiselectPart(@NonNull MultiselectPart multiselectPart) {
-    if (multiselectPart instanceof MultiselectPart.Attachments && hasThumbnail(messageRecord)) {
-      Projection projection = Projection.relativeToViewRoot(mediaThumbnailStub.require(), null);
-      return (int) projection.getY();
-    } if (multiselectPart instanceof MultiselectPart.Attachments && hasDocument(messageRecord)) {
-      Projection projection = Projection.relativeToViewRoot(documentViewStub.get(), null);
-      return (int) projection.getY();
-    } else if (multiselectPart instanceof MultiselectPart.Text && hasThumbnail(messageRecord)) {
-      Projection projection = Projection.relativeToViewRoot(mediaThumbnailStub.require(), null);
-      return (int) projection.getY() + projection.getHeight();
-    } else if (multiselectPart instanceof MultiselectPart.Text && hasDocument(messageRecord)) {
-      Projection projection = Projection.relativeToViewRoot(documentViewStub.get(), null);
-      return (int) projection.getY() + projection.getHeight();
+
+    boolean isTextPart       = multiselectPart instanceof MultiselectPart.Text;
+    boolean isAttachmentPart = multiselectPart instanceof MultiselectPart.Attachments;
+
+    if (hasThumbnail(messageRecord) && isAttachmentPart) {
+      return getProjectionTop(mediaThumbnailStub.require());
+    } else if (hasThumbnail(messageRecord) && isTextPart) {
+      return getProjectionBottom(mediaThumbnailStub.require());
+    } else if (hasDocument(messageRecord) && isAttachmentPart) {
+      return getProjectionTop(documentViewStub.get());
+    } else if (hasDocument(messageRecord) && isTextPart) {
+      return getProjectionBottom(documentViewStub.get());
+    } else if (hasAudio(messageRecord) && isAttachmentPart) {
+      return getProjectionTop(audioViewStub.get());
+    } else if (hasAudio(messageRecord) && isTextPart) {
+      return getProjectionBottom(audioViewStub.get());
     } else if (hasNoBubble(messageRecord)) {
       return getTop();
     } else {
-      Projection projection = Projection.relativeToViewRoot(bodyBubble, null);
-      return (int) projection.getY();
+      return getProjectionTop(bodyBubble);
     }
+  }
+
+  private static int getProjectionTop(@NonNull View child) {
+    return (int) Projection.relativeToViewRoot(child, null).getY();
+  }
+
+  private static int getProjectionBottom(@NonNull View child) {
+    Projection projection = Projection.relativeToViewRoot(child, null);
+    return (int) projection.getY() + projection.getHeight();
   }
 
   @Override
   public int getBottomBoundaryOfMultiselectPart(@NonNull MultiselectPart multiselectPart) {
     if (multiselectPart instanceof MultiselectPart.Attachments && hasThumbnail(messageRecord)) {
-      Projection projection = Projection.relativeToViewRoot(mediaThumbnailStub.require(), null);
-      return (int) projection.getY() + projection.getHeight();
+      return getProjectionBottom(mediaThumbnailStub.require());
     } else if (multiselectPart instanceof MultiselectPart.Attachments && hasDocument(messageRecord)) {
-      Projection projection = Projection.relativeToViewRoot(documentViewStub.get(), null);
-      return (int) projection.getY() + projection.getHeight();
+      return getProjectionBottom(documentViewStub.get());
+    } else if (multiselectPart instanceof MultiselectPart.Attachments && hasAudio(messageRecord)) {
+      return getProjectionBottom(audioViewStub.get());
     } else if (hasNoBubble(messageRecord)) {
       return getBottom();
     } else {
-      Projection projection = Projection.relativeToViewRoot(bodyBubble, null);
-      return (int) projection.getY() + projection.getHeight();
+      return getProjectionBottom(bodyBubble);
     }
   }
 
@@ -1729,6 +1733,17 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
 
     return projections;
+  }
+
+  @Override
+  public @Nullable View getHorizontalTranslationTarget() {
+    if (messageRecord.isOutgoing()) {
+      return null;
+    } else if (groupThread) {
+      return contactPhotoHolder;
+    } else {
+      return bodyBubble;
+    }
   }
 
   private class SharedContactEventListener implements SharedContactView.EventListener {

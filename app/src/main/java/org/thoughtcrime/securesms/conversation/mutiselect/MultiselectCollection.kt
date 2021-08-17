@@ -35,6 +35,8 @@ sealed class MultiselectCollection {
     }
   }
 
+  fun isExpired(): Boolean = toSet().any(MultiselectPart::isExpired)
+
   fun isTextSelected(selectedParts: Set<MultiselectPart>): Boolean {
     val textParts: Set<MultiselectPart> = toSet().filter(this::couldContainText).toSet()
 

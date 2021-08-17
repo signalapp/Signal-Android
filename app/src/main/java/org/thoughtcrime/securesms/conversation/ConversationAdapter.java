@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.conversation;
 
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -565,6 +566,10 @@ public class ConversationAdapter
    */
   public Set<MultiselectPart> getSelectedItems() {
     return new HashSet<>(selected);
+  }
+
+  public void removeFromSelection(@NonNull Set<MultiselectPart> parts) {
+    selected.removeAll(parts);
   }
 
   /**

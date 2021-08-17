@@ -47,6 +47,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/rounded_rectangle_secondary"
             android:hint="@string/MultiselectForwardFragment__add_a_message"
+            android:inputType="textCapSentences"
             android:minHeight="44dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"

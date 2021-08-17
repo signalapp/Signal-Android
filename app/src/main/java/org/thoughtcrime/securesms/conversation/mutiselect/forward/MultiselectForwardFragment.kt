@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.conversation.mutiselect.forward
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,18 +10,23 @@ import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.annotation.PluralsRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ContactFilterView
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader
+import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
+import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.sharing.ShareSelectionAdapter
@@ -30,13 +37,18 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.util.visible
 import org.whispersystems.libsignal.util.guava.Optional
+import java.lang.UnsupportedOperationException
 import java.util.function.Consumer
 
 private const val ARG_MULTISHARE_ARGS = "multiselect.forward.fragment.arg.multishare.args"
 private const val ARG_CAN_SEND_TO_NON_PUSH = "multiselect.forward.fragment.arg.can.send.to.non.push"
 private val TAG = Log.tag(MultiselectForwardFragment::class.java)
 
-class MultiselectForwardFragment : FixedRoundedCornerBottomSheetDialogFragment(), ContactSelectionListFragment.OnContactSelectedListener, ContactSelectionListFragment.OnSelectionLimitReachedListener {
+class MultiselectForwardFragment :
+  FixedRoundedCornerBottomSheetDialogFragment(),
+  ContactSelectionListFragment.OnContactSelectedListener,
+  ContactSelectionListFragment.OnSelectionLimitReachedListener,
+  SafetyNumberChangeDialog.Callback {
 
   override val peekHeightPercentage: Float = 0.67f
 
@@ -44,8 +56,11 @@ class MultiselectForwardFragment : FixedRoundedCornerBottomSheetDialogFragment()
 
   private lateinit var selectionFragment: ContactSelectionListFragment
   private lateinit var contactFilterView: ContactFilterView
+  private lateinit var addMessage: EditText
 
   private var dismissibleDialog: SimpleProgressDialog.DismissibleDialog? = null
+
+  private var handler: Handler? = null
 
   private fun createViewModelFactory(): MultiselectForwardViewModel.Factory {
     return MultiselectForwardViewModel.Factory(getMultiShareArgs(), MultiselectForwardRepository(requireContext()))
@@ -99,15 +114,14 @@ class MultiselectForwardFragment : FixedRoundedCornerBottomSheetDialogFragment()
     val shareSelectionRecycler: RecyclerView = bottomBar.findViewById(R.id.selected_list)
     val shareSelectionAdapter = ShareSelectionAdapter()
     val sendButton: View = bottomBar.findViewById(R.id.share_confirm)
-    val addMessage: EditText = bottomBar.findViewById(R.id.add_message)
     val addMessageWrapper: View = bottomBar.findViewById(R.id.add_message_wrapper)
+
+    addMessage = bottomBar.findViewById(R.id.add_message)
 
     addMessageWrapper.visible = FeatureFlags.forwardMultipleMessages()
 
     sendButton.setOnClickListener {
-      it.isEnabled = false
-      dismissibleDialog = SimpleProgressDialog.showDelayed(requireContext())
-
+      sendButton.isEnabled = false
       viewModel.send(addMessage.text.toString())
     }
 
@@ -130,20 +144,22 @@ class MultiselectForwardFragment : FixedRoundedCornerBottomSheetDialogFragment()
     }
 
     viewModel.state.observe(viewLifecycleOwner) {
-      val toastTextResId: Int? = when (it.stage) {
-        MultiselectForwardState.Stage.SELECTION -> null
-        MultiselectForwardState.Stage.SOME_FAILED -> R.plurals.MultiselectForwardFragment_messages_sent
-        MultiselectForwardState.Stage.ALL_FAILED -> R.plurals.MultiselectForwardFragment_messages_failed_to_send
-        MultiselectForwardState.Stage.SUCCESS -> R.plurals.MultiselectForwardFragment_messages_sent
+      when (it.stage) {
+        MultiselectForwardState.Stage.Selection -> { }
+        MultiselectForwardState.Stage.FirstConfirmation -> displayFirstSendConfirmation()
+        is MultiselectForwardState.Stage.SafetyConfirmation -> displaySafetyNumberConfirmation(it.stage.identities)
+        MultiselectForwardState.Stage.LoadingIdentities -> {}
+        MultiselectForwardState.Stage.SendPending -> {
+          handler?.removeCallbacksAndMessages(null)
+          dismissibleDialog?.dismiss()
+          dismissibleDialog = SimpleProgressDialog.showDelayed(requireContext())
+        }
+        MultiselectForwardState.Stage.SomeFailed -> dismissAndShowToast(R.plurals.MultiselectForwardFragment_messages_sent)
+        MultiselectForwardState.Stage.AllFailed -> dismissAndShowToast(R.plurals.MultiselectForwardFragment_messages_failed_to_send)
+        MultiselectForwardState.Stage.Success -> dismissAndShowToast(R.plurals.MultiselectForwardFragment_messages_sent)
       }
 
-      if (toastTextResId != null) {
-        val argCount = getMultiShareArgs().size
-
-        dismissibleDialog?.dismiss()
-        Toast.makeText(requireContext(), requireContext().resources.getQuantityString(toastTextResId, argCount), Toast.LENGTH_SHORT).show()
-        dismissAllowingStateLoss()
-      }
+      sendButton.isEnabled = it.stage == MultiselectForwardState.Stage.Selection
     }
 
     bottomBar.addOnLayoutChangeListener { _, _, top, _, bottom, _, _, _, _ ->
@@ -151,8 +167,75 @@ class MultiselectForwardFragment : FixedRoundedCornerBottomSheetDialogFragment()
     }
   }
 
+  override fun onResume() {
+    super.onResume()
+
+    val now = System.currentTimeMillis()
+    val expiringMessages = getMultiShareArgs().filter { it.expiresAt > 0L }
+    val firstToExpire = expiringMessages.minByOrNull { it.expiresAt }
+    val earliestExpiration = firstToExpire?.expiresAt ?: -1L
+
+    if (earliestExpiration > 0) {
+      if (earliestExpiration <= now) {
+        handleMessageExpired()
+      } else {
+        handler = Handler(Looper.getMainLooper())
+        handler?.postDelayed(this::handleMessageExpired, earliestExpiration - now)
+      }
+    }
+  }
+
+  override fun onPause() {
+    super.onPause()
+
+    handler?.removeCallbacksAndMessages(null)
+  }
+
+  private fun displayFirstSendConfirmation() {
+    SignalStore.tooltips().markMultiForwardDialogSeen()
+
+    val messageCount = getMessageCount()
+
+    MaterialAlertDialogBuilder(requireContext())
+      .setTitle(R.string.MultiselectForwardFragment__faster_forwards)
+      .setMessage(R.string.MultiselectForwardFragment__forwarded_messages_are_now)
+      .setPositiveButton(resources.getQuantityString(R.plurals.MultiselectForwardFragment_send_d_messages, messageCount, messageCount)) { d, _ ->
+        d.dismiss()
+        viewModel.confirmFirstSend(addMessage.text.toString())
+      }
+      .setNegativeButton(android.R.string.cancel) { d, _ ->
+        d.dismiss()
+        viewModel.cancelSend()
+      }
+      .show()
+  }
+
+  private fun displaySafetyNumberConfirmation(identityRecords: List<IdentityDatabase.IdentityRecord>) {
+    SafetyNumberChangeDialog.show(childFragmentManager, identityRecords)
+  }
+
+  private fun dismissAndShowToast(@PluralsRes toastTextResId: Int) {
+    val argCount = getMessageCount()
+
+    dismissibleDialog?.dismiss()
+    Toast.makeText(requireContext(), requireContext().resources.getQuantityString(toastTextResId, argCount), Toast.LENGTH_SHORT).show()
+    dismissAllowingStateLoss()
+  }
+
+  private fun getMessageCount(): Int = getMultiShareArgs().size + if (addMessage.text.isNotEmpty()) 1 else 0
+
+  private fun handleMessageExpired() {
+    dismissAllowingStateLoss()
+    dismissibleDialog?.dismiss()
+    Toast.makeText(requireContext(), resources.getQuantityString(R.plurals.MultiselectForwardFragment__couldnt_forward_messages, getMultiShareArgs().size), Toast.LENGTH_SHORT).show()
+  }
+
   private fun getDefaultDisplayMode(): Int {
-    var mode = ContactsCursorLoader.DisplayMode.FLAG_PUSH or ContactsCursorLoader.DisplayMode.FLAG_ACTIVE_GROUPS or ContactsCursorLoader.DisplayMode.FLAG_SELF or ContactsCursorLoader.DisplayMode.FLAG_HIDE_NEW
+    var mode = ContactsCursorLoader.DisplayMode.FLAG_PUSH or
+      ContactsCursorLoader.DisplayMode.FLAG_ACTIVE_GROUPS or
+      ContactsCursorLoader.DisplayMode.FLAG_SELF or
+      ContactsCursorLoader.DisplayMode.FLAG_HIDE_NEW or
+      ContactsCursorLoader.DisplayMode.FLAG_HIDE_RECENT_HEADER
 
     if (Util.isDefaultSmsProvider(requireContext()) && requireArguments().getBoolean(ARG_CAN_SEND_TO_NON_PUSH)) {
       mode = mode or ContactsCursorLoader.DisplayMode.FLAG_SMS
@@ -184,6 +267,18 @@ class MultiselectForwardFragment : FixedRoundedCornerBottomSheetDialogFragment()
 
   override fun onHardLimitReached(limit: Int) {
     Toast.makeText(requireContext(), R.string.MultiselectForwardFragment__limit_reached, Toast.LENGTH_SHORT).show()
+  }
+
+  override fun onSendAnywayAfterSafetyNumberChange(changedRecipients: MutableList<RecipientId>) {
+    viewModel.confirmSafetySend(addMessage.text.toString())
+  }
+
+  override fun onMessageResentAfterSafetyNumberChange() {
+    throw UnsupportedOperationException()
+  }
+
+  override fun onCanceled() {
+    viewModel.cancelSend()
   }
 
   companion object {

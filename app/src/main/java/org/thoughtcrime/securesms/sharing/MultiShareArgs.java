@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
@@ -35,6 +36,8 @@ public final class MultiShareArgs implements Parcelable {
   private final boolean                    viewOnce;
   private final LinkPreview                linkPreview;
   private final List<Mention>              mentions;
+  private final long                       timestamp;
+  private final long                       expiresAt;
 
   private MultiShareArgs(@NonNull Builder builder) {
     shareContactAndThreads = builder.shareContactAndThreads;
@@ -47,6 +50,8 @@ public final class MultiShareArgs implements Parcelable {
     viewOnce               = builder.viewOnce;
     linkPreview            = builder.linkPreview;
     mentions               = builder.mentions == null ? new ArrayList<>() : new ArrayList<>(builder.mentions);
+    timestamp              = builder.timestamp;
+    expiresAt              = builder.expiresAt;
   }
 
   protected MultiShareArgs(Parcel in) {
@@ -59,6 +64,8 @@ public final class MultiShareArgs implements Parcelable {
     dataType               = in.readString();
     viewOnce               = in.readByte() != 0;
     mentions               = in.createTypedArrayList(Mention.CREATOR);
+    timestamp              = in.readLong();
+    expiresAt              = in.readLong();
 
     String      linkedPreviewString = in.readString();
     LinkPreview preview;
@@ -111,6 +118,14 @@ public final class MultiShareArgs implements Parcelable {
     return mentions;
   }
 
+  public long getTimestamp() {
+    return timestamp;
+  }
+
+  public long getExpiresAt() {
+    return expiresAt;
+  }
+
   public @NonNull InterstitialContentType getInterstitialContentType() {
     if (!requiresInterstitial()) {
       return InterstitialContentType.NONE;
@@ -154,6 +169,8 @@ public final class MultiShareArgs implements Parcelable {
     dest.writeString(dataType);
     dest.writeByte((byte) (viewOnce ? 1 : 0));
     dest.writeTypedList(mentions);
+    dest.writeLong(timestamp);
+    dest.writeLong(expiresAt);
 
     if (linkPreview != null) {
       try {
@@ -179,7 +196,9 @@ public final class MultiShareArgs implements Parcelable {
                                               .withLinkPreview(linkPreview)
                                               .withMedia(media)
                                               .withStickerLocator(stickerLocator)
-                                              .withMentions(mentions);
+                                              .withMentions(mentions)
+                                              .withTimestamp(timestamp)
+                                              .withExpiration(expiresAt);
   }
 
   private boolean requiresInterstitial() {
@@ -200,6 +219,8 @@ public final class MultiShareArgs implements Parcelable {
     private LinkPreview    linkPreview;
     private boolean        viewOnce;
     private List<Mention>  mentions;
+    private long           timestamp;
+    private long           expiresAt;
 
     public Builder(@NonNull Set<ShareContactAndThread> shareContactAndThreads) {
       this.shareContactAndThreads = shareContactAndThreads;
@@ -247,6 +268,16 @@ public final class MultiShareArgs implements Parcelable {
 
     public @NonNull Builder withMentions(@Nullable List<Mention> mentions) {
       this.mentions = mentions != null ? new ArrayList<>(mentions) : null;
+      return this;
+    }
+
+    public @NonNull Builder withTimestamp(long timestamp) {
+      this.timestamp = timestamp;
+      return this;
+    }
+
+    public @NonNull Builder withExpiration(long expiresAt) {
+      this.expiresAt = expiresAt;
       return this;
     }
 
