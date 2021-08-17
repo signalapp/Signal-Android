@@ -1223,6 +1223,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             return
         }
         val allSentByCurrentUser = messages.all { it.isOutgoing }
+        val allHasHash = messages.all { DatabaseFactory.getLokiMessageDatabase(this@ConversationActivityV2).getMessageServerHash(it.id) != null }
         if (thread.isOpenGroupRecipient) {
             val messageCount = messages.size
             val builder = AlertDialog.Builder(this)
@@ -1240,7 +1241,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 endActionMode()
             }
             builder.show()
-        } else if (allSentByCurrentUser) {
+        } else if (allSentByCurrentUser && allHasHash) {
             val bottomSheet = DeleteOptionsBottomSheet()
             bottomSheet.recipient = thread
             bottomSheet.onDeleteForMeTapped = {
