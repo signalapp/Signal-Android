@@ -390,10 +390,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     int defaultBottomMargin   = readDimen(R.dimen.message_bubble_bottom_padding);
     int collapsedBottomMargin = readDimen(R.dimen.message_bubble_collapsed_bottom_padding);
     if (!updatingFooter                                                &&
-        !hasOnlyThumbnail(messageRecord)                               &&
-        !hasSticker(messageRecord)                                     &&
-        !hasSharedContact(messageRecord)                               &&
-        !isViewOnceMessage(messageRecord)                              &&
+        getActiveFooter(messageRecord) == footer                       &&
         !hasAudio(messageRecord)                                       &&
         isFooterVisible(messageRecord, nextMessageRecord, groupThread) &&
         !bodyText.isJumbomoji()                                        &&
