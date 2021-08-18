@@ -3019,6 +3019,11 @@
   <string name="DSLSettingsToolbar__navigate_up">上へ</string>
   <string name="MultiselectForwardFragment__forward_to">転送先</string>
   <string name="MultiselectForwardFragment__add_a_message">メッセージを追加してください</string>
+  <string name="MultiselectForwardFragment__faster_forwards">より速い転送</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">転送メッセージがすぐに送信されるようになりました。</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="other">%1$d件のメッセージを送信</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="other">メッセージ送信済み</item>
   </plurals>

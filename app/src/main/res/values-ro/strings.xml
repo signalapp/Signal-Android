@@ -3196,6 +3196,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="DSLSettingsToolbar__navigate_up">Navigați în sus</string>
   <string name="MultiselectForwardFragment__forward_to">Redirecționați către</string>
   <string name="MultiselectForwardFragment__add_a_message">Adăugați un mesaj</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Redirecționări mai rapide</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Mesajele redirecționate sunt acum trimise imediat.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Trimite %1$d mesaj</item>
+    <item quantity="few">Trimite %1$d mesaje</item>
+    <item quantity="other">Trimite %1$d de mesaje</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Mesaj trimis</item>
     <item quantity="few">Mesaje trimise</item>
@@ -3205,6 +3212,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
     <item quantity="one">Mesajul nu a putut fi trimis</item>
     <item quantity="few">Mesajele nu au putut fi trimise</item>
     <item quantity="other">Mesajele nu au putut fi trimise</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Nu s-a putut redirecționa mesajul deoarece nu mai este disponibil.</item>
+    <item quantity="few">Nu s-au putut redirecționa mesajele deoarece nu mai sunt disponibile.</item>
+    <item quantity="other">Nu s-au putut redirecționa mesajele deoarece nu mai sunt disponibile.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Ați atins limita</string>
   <!--EOF-->

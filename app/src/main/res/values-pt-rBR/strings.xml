@@ -3114,6 +3114,12 @@
   <string name="DSLSettingsToolbar__navigate_up">Ir para cima</string>
   <string name="MultiselectForwardFragment__forward_to">Encaminhar para</string>
   <string name="MultiselectForwardFragment__add_a_message">Adicionar uma mensagem</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Encaminhar mais rapidamente</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Mensagens encaminhadas agora são enviadas imediatamente.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Enviar %1$d mensagem</item>
+    <item quantity="other">Enviar %1$d mensagens</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Mensagem enviada</item>
     <item quantity="other">Mensagens enviadas</item>
@@ -3121,6 +3127,10 @@
   <plurals name="MultiselectForwardFragment_messages_failed_to_send">
     <item quantity="one">Falha ao enviar a mensagem</item>
     <item quantity="other">Falha ao enviar as mensagens</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Não foi possível encaminhar a mensagem porque ela não está mais disponível.</item>
+    <item quantity="other">Não foi possível encaminhar as mensagens porque elas não estão mais disponíveis.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limite alcançado</string>
   <!--EOF-->

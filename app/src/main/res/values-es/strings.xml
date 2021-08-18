@@ -3114,6 +3114,12 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="DSLSettingsToolbar__navigate_up">Arriba</string>
   <string name="MultiselectForwardFragment__forward_to">Reenviar a</string>
   <string name="MultiselectForwardFragment__add_a_message">Agregar un mensaje</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Reenvíos más rápidos</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Los reenvíos ahora se envían inmediatamente.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Reenvía %1$d mensaje</item>
+    <item quantity="other">Reenvía %1$d mensajes</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Mensaje reenviado</item>
     <item quantity="other">Mensajes reenviados</item>
@@ -3121,6 +3127,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <plurals name="MultiselectForwardFragment_messages_failed_to_send">
     <item quantity="one">Fallo al reenviar el mensaje</item>
     <item quantity="other">Fallo al reenviar los mensajes</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Fallo al reenviar el mensaje porque ya no está disponible.</item>
+    <item quantity="other">Fallo al reenviar mensajes porque ya no están disponibles.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Límite alcanzado</string>
   <!--EOF-->

@@ -3103,13 +3103,23 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="DSLSettingsToolbar__navigate_up">Nach oben navigieren</string>
   <string name="MultiselectForwardFragment__forward_to">Weiterleiten an</string>
   <string name="MultiselectForwardFragment__add_a_message">Eine Nachricht hinzufügen</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Schnellere Weiterleitungen</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Weitergeleitete Nachrichten werden nun sofort gesendet.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">%1$d Nachricht senden</item>
+    <item quantity="other">%1$d Nachrichten senden</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Nachricht gesendet</item>
     <item quantity="other">Nachrichten gesendet</item>
   </plurals>
   <plurals name="MultiselectForwardFragment_messages_failed_to_send">
-    <item quantity="one">Nachricht konnten nicht gesendet werden</item>
+    <item quantity="one">Nachricht konnte nicht gesendet werden</item>
     <item quantity="other">Nachrichten konnten nicht gesendet werden</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Nachricht konnte nicht weitergeleitet werden, da sie nicht mehr verfügbar ist.</item>
+    <item quantity="other">Nachrichten konnten nicht weitergeleitet werden, da sie nicht mehr verfügbar sind.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Höchstzahl erreicht</string>
   <!--EOF-->

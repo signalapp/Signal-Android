@@ -1188,7 +1188,7 @@
   <!--RedPhone-->
   <string name="RedPhone_answering">Cavablanır…</string>
   <string name="RedPhone_ending_call">Zəng bitir…</string>
-  <string name="RedPhone_ringing">Çalır…</string>
+  <string name="RedPhone_ringing">Çağırır…</string>
   <string name="RedPhone_busy">Məşğuldur</string>
   <string name="RedPhone_recipient_unavailable">Alıcı əlçatmazdır</string>
   <string name="RedPhone_network_failed">Şəbəkə xətası!</string>
@@ -3114,6 +3114,12 @@
   <string name="DSLSettingsToolbar__navigate_up">Yuxarı gedin</string>
   <string name="MultiselectForwardFragment__forward_to">Yönləndir</string>
   <string name="MultiselectForwardFragment__add_a_message">Bir mesaj əlavə et</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Daha sürətli yönləndirmələr</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Yönləndirilən mesajlar, artıq dərhal göndərilir.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">%1$d mesajı göndər</item>
+    <item quantity="other">%1$d mesajı göndər</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Mesaj göndərildi</item>
     <item quantity="other">Mesajlar göndərildi</item>
@@ -3121,6 +3127,10 @@
   <plurals name="MultiselectForwardFragment_messages_failed_to_send">
     <item quantity="one">Mesaj göndərilmədi</item>
     <item quantity="other">Mesajlar göndərilmədi</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Artıq mövcud olmadığı üçün mesaj yönləndirilə bilmədi.</item>
+    <item quantity="other">Artıq mövcud olmadığı üçün mesajlar yönləndirilə bilmədi.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limitə çatıldı</string>
   <!--EOF-->

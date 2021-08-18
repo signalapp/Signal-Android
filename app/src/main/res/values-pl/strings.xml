@@ -3276,6 +3276,14 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="DSLSettingsToolbar__navigate_up">Przejdź do góry</string>
   <string name="MultiselectForwardFragment__forward_to">Przekaż do</string>
   <string name="MultiselectForwardFragment__add_a_message">Dodaj wiadomość</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Szybsze przekazywanie</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Przekazywane wiadomości są teraz natychmiast wysyłane.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Wysłano %1$d wiadomość</item>
+    <item quantity="few">Wysłano %1$d wiadomości</item>
+    <item quantity="many">Wysłano %1$d wiadomości</item>
+    <item quantity="other">Wysłano %1$d wiadomości</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Wiadomość wysłana</item>
     <item quantity="few">Wiadomości wysłane</item>
@@ -3287,6 +3295,12 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
     <item quantity="few">Nie udało się wysłać wiadomości</item>
     <item quantity="many">Nie udało się wysłać wiadomości</item>
     <item quantity="other">Nie udało się wysłać wiadomości</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Nie udało się przekazać wiadomości, gdyż nie jest już dostępna.</item>
+    <item quantity="few">Nie udało się przekazać wiadomości, gdyż nie są już dostępne.</item>
+    <item quantity="many">Nie udało się przekazać wiadomości, gdyż nie są już dostępne.</item>
+    <item quantity="other">Nie udało się przekazać wiadomości, gdyż nie są już dostępne.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Osiągnięto limit</string>
   <!--EOF-->

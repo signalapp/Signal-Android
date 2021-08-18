@@ -3112,6 +3112,12 @@
   <string name="DSLSettingsToolbar__navigate_up">حرکت به سمت بالا</string>
   <string name="MultiselectForwardFragment__forward_to">بازارسال به</string>
   <string name="MultiselectForwardFragment__add_a_message">افزودن یک پیام</string>
+  <string name="MultiselectForwardFragment__faster_forwards">بازارسال‌های سریع‌تر</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">پیام‌های بازارسال شده حالا بلافاصله ارسال می‌شوند.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">ارسال %1$d پیام</item>
+    <item quantity="other">ارسال %1$d پیام</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">پیام ارسال شد</item>
     <item quantity="other">پیام‌ها ارسال شدند</item>
@@ -3119,6 +3125,10 @@
   <plurals name="MultiselectForwardFragment_messages_failed_to_send">
     <item quantity="one">ارسال پیام ناموفق بود</item>
     <item quantity="other">ارسال پیام‌ها ناموفق بود</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">امکان بازارسال پیام‌ وجود نداشت، چون پیام دیگر موجود نیست.</item>
+    <item quantity="other">امکان بازارسال پیام‌ها وجود نداشت، چون پیام‌ها دیگر موجود نیستند.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">به محدودیت رسیدید</string>
   <!--EOF-->

@@ -3104,6 +3104,12 @@
   <string name="DSLSettingsToolbar__navigate_up">Naviguer vers le haut</string>
   <string name="MultiselectForwardFragment__forward_to">Transférer à</string>
   <string name="MultiselectForwardFragment__add_a_message">Ajouter un message</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Transferts plus rapides</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Les messages transférés sont désormais immédiatement envoyés.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Envoyer %1$d message</item>
+    <item quantity="other">Envoyer %1$d messages</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Message envoyé</item>
     <item quantity="other">Messages envoyés</item>
@@ -3111,6 +3117,10 @@
   <plurals name="MultiselectForwardFragment_messages_failed_to_send">
     <item quantity="one">Échec de l’envoi du message</item>
     <item quantity="other">Échec de l’envoi des messages</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Impossible de transférer le message car il n’est plus disponible.</item>
+    <item quantity="other">Impossible de transférer les messages car ils ne sont plus disponibles.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limite atteinte</string>
   <!--EOF-->

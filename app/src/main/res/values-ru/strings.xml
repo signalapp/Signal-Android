@@ -3277,6 +3277,14 @@
   <string name="DSLSettingsToolbar__navigate_up">Перейти назад</string>
   <string name="MultiselectForwardFragment__forward_to">Переслать</string>
   <string name="MultiselectForwardFragment__add_a_message">Добавьте сообщение</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Более быстрая пересылка</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Пересылаемые сообщения теперь отправляются сразу.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Отправить %1$d сообщение</item>
+    <item quantity="few">Отправить %1$d сообщения</item>
+    <item quantity="many">Отправить %1$d сообщений</item>
+    <item quantity="other">Отправить %1$d сообщений</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Сообщение отправлено</item>
     <item quantity="few">Сообщения отправлены</item>
@@ -3288,6 +3296,12 @@
     <item quantity="few">Не удалось отправить сообщения</item>
     <item quantity="many">Не удалось отправить сообщения</item>
     <item quantity="other">Не удалось отправить сообщения</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Не удалось переслать сообщение, потому что оно больше не доступно.</item>
+    <item quantity="few">Не удалось переслать сообщения, потому что они больше не доступны.</item>
+    <item quantity="many">Не удалось переслать сообщения, потому что они больше не доступны.</item>
+    <item quantity="other">Не удалось переслать сообщения, потому что они больше не доступны.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Достигнут предел</string>
   <!--EOF-->

@@ -3118,6 +3118,12 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="DSLSettingsToolbar__navigate_up">Ngjituni</string>
   <string name="MultiselectForwardFragment__forward_to">Përcillja</string>
   <string name="MultiselectForwardFragment__add_a_message">Shtoni një mesazh</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Përcjellje më të shpejta</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Mesazhet e përcjellë tanimë dërgohen menjëherë.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Dërgo %1$d mesazh</item>
+    <item quantity="other">Dërgo %1$d mesazhe</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Mesazhi u dërgua</item>
     <item quantity="other">Mesazhet u dërguan</item>
@@ -3125,6 +3131,10 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <plurals name="MultiselectForwardFragment_messages_failed_to_send">
     <item quantity="one">Dështoi dërgimi i mesazhit</item>
     <item quantity="other">Dështoi dërgimi i mesazheve</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">S’u përcoll dot mesazhi, ngaqë s’është më.</item>
+    <item quantity="other">S’u përcollën dot mesazhe, ngaqë s’janë më.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">U mbërrit në kufi</string>
   <!--EOF-->

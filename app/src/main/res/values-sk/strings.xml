@@ -3283,6 +3283,14 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="DSLSettingsToolbar__navigate_up">Prejdite nahor</string>
   <string name="MultiselectForwardFragment__forward_to">Preposlať</string>
   <string name="MultiselectForwardFragment__add_a_message">Pridajte správu</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Rýchlejšie preposlania</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Preposlané správy sú teraz odoslané okamžite.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">%1$d poslal správu</item>
+    <item quantity="few">%1$d poslal správy</item>
+    <item quantity="many">%1$d poslal správy</item>
+    <item quantity="other">%1$d poslal správy</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Správa odoslaná</item>
     <item quantity="few">Správy odoslané</item>
@@ -3294,6 +3302,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
     <item quantity="few">Správy sa nepodarilo odoslať</item>
     <item quantity="many">Správy sa nepodarilo odoslať</item>
     <item quantity="other">Správy sa nepodarilo odoslať</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Správu sa nepodarilo preposlať, pretože už nie je k dispozícii.</item>
+    <item quantity="few">Správy sa nepodarilo preposlať, pretože už nie sú k dispozícii.</item>
+    <item quantity="many">Správy sa nepodarilo preposlať, pretože už nie sú k dispozícii.</item>
+    <item quantity="other">Správy sa nepodarilo preposlať, pretože už nie sú k dispozícii.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limit dosiahnutý</string>
   <!--EOF-->
