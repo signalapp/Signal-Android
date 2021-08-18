@@ -3120,8 +3120,14 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="DSLSettingsToolbar__navigate_up">Naviger opp</string>
   <string name="MultiselectForwardFragment__forward_to">Vidaresend til</string>
   <string name="MultiselectForwardFragment__add_a_message">Legg til melding</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Melding sendt</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Klarte ikkje senda meldingane</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Melding sendt</item>
+    <item quantity="other">Meldingar sende</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Klarte ikkje senda meldinga</item>
+    <item quantity="other">Klarte ikkje senda meldingane</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Grense nådd</string>
   <!--EOF-->
 </resources>

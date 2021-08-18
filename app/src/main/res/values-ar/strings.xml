@@ -1115,7 +1115,6 @@
   <string name="MessageRecord_s_made_s_an_admin">لقد جعل %1$s %2$s مشرفاً.</string>
   <string name="MessageRecord_s_made_you_an_admin">لقد جعلك %1$s مشرفاً.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">لقد قمت بإلغاء امتيازات الإشراف على المجموعة من %1$s .</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">قام العضو %1$s بإلغاء امتيازات إشرافك على المجموعة.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">قام العضو %1$s بإلغاء امتيازات الإشراف على المجموعة من %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">أصبح العضو %1$s مشرفا.</string>
   <string name="MessageRecord_you_are_now_an_admin">أنت الآن هو المشرف.</string>

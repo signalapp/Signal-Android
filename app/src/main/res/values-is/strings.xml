@@ -930,7 +930,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s gerði %2$s að stjórnanda.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s gerði þig að stjórnanda.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Þú tókst stjórnunarréttindi af %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s tók stjórnunarréttindi af þér.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s tók stjórnunarréttindi af %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s er núna stjórnandi.</string>
   <string name="MessageRecord_you_are_now_an_admin">Þú ert núna stjórnandi.</string>

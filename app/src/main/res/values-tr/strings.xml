@@ -930,7 +930,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s, %2$s kişisini yönetici yaptı.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s sizi yönetici yaptı.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s kişisinin yönetici yetkilerini iptal ettiniz.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s yönetici yetkilerinizi iptal etti.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s, %2$s kişisinin yönetici yetkilerini iptal etti.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s artık bir yönetici.</string>
   <string name="MessageRecord_you_are_now_an_admin">Artık yöneticisiniz.</string>

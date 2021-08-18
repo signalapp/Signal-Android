@@ -3276,8 +3276,18 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="DSLSettingsToolbar__navigate_up">Przejdź do góry</string>
   <string name="MultiselectForwardFragment__forward_to">Przekaż do</string>
   <string name="MultiselectForwardFragment__add_a_message">Dodaj wiadomość</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Wiadomości wysłane</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Nie udało się wysłać wiadomości</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Wiadomość wysłana</item>
+    <item quantity="few">Wiadomości wysłane</item>
+    <item quantity="many">Wiadomości wysłane</item>
+    <item quantity="other">Wiadomości wysłane</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Nie udało się wysłać wiadomości</item>
+    <item quantity="few">Nie udało się wysłać wiadomości</item>
+    <item quantity="many">Nie udało się wysłać wiadomości</item>
+    <item quantity="other">Nie udało się wysłać wiadomości</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Osiągnięto limit</string>
   <!--EOF-->
 </resources>

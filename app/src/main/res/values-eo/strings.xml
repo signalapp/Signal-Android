@@ -915,7 +915,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$sdonis al %2$s la rolon de administranto.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$sdonis al vi la rolon de administranto.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Vi forigis la rolon de administranto de %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s forigis al vi la rolon de administranto.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s forigis la rolon de administranto de %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s nun estas administranto.</string>
   <string name="MessageRecord_you_are_now_an_admin">Vi nun estas administranto.</string>

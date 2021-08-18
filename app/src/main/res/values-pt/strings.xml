@@ -930,7 +930,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s tornou %2$s num administrador.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s tornou-o num administrador.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Você retirou os privilégios de administrador a %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s revogou os seus privilégios de administrador.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s revogou os privilégios de administrador a %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s é agora um administrador.</string>
   <string name="MessageRecord_you_are_now_an_admin">Você, é agora administrador.</string>
@@ -3113,8 +3112,6 @@
   <string name="DSLSettingsToolbar__navigate_up">Ir para cima</string>
   <string name="MultiselectForwardFragment__forward_to">Reencaminhar para</string>
   <string name="MultiselectForwardFragment__add_a_message">Adicionar uma mensagem</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Mensagens enviadas</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Mensagens com falha de envio</string> -->
   <string name="MultiselectForwardFragment__limit_reached">Atingido o limite</string>
   <!--EOF-->
 </resources>

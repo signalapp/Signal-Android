@@ -930,7 +930,7 @@
   <string name="MessageRecord_s_made_s_an_admin"> %1$s அவர்கள் %2$sஅவரை நிர்வாகியாக மாற்றினார்கள்</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s அவர்கள் உங்களை இந்த குழுவிற்கு நிர்வாகியாக மாற்றினர்.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s"> %1$s அவர்களிடமிருந்து நிர்வாக உரிமைகளை நீங்கள் ரத்து செய்தீர்கள்</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$sஅவர்கள் உங்கள் நிர்வாக உரிமைகளை ரத்து செய்தனர். </string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s உங்கள் நிர்வாகி உரிமைகளை ரத்து செய்தது.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%2$sஇதிலிருந்து நிர்வாக உரிமைகளை %1$s அவர்கள் ரத்து செய்தனர் .</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$sஅவர்கள் இப்போது குழுவின் நிர்வாகியாக உள்ளனர்</string>
   <string name="MessageRecord_you_are_now_an_admin">நீங்கள் இப்போது ஒரு நிர்வாகி.</string>
@@ -3117,8 +3117,14 @@
   <string name="DSLSettingsToolbar__navigate_up">மேலே செல்லவும்</string>
   <string name="MultiselectForwardFragment__forward_to">முன்னோக்கி</string>
   <string name="MultiselectForwardFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">செய்திகள் அனுப்பப்பட்டன</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">செய்திகளை அனுப்ப முடியவில்லை</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">செய்தி அனுப்பப்பட்டது</item>
+    <item quantity="other">செய்திகள் அனுப்பப்பட்டன</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">செய்திதோல்வி அனுப்பு</item>
+    <item quantity="other">செய்திகள் தோல்வி அனுப்பு</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">வரம்பை எட்டியது</string>
   <!--EOF-->
 </resources>

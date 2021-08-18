@@ -976,7 +976,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s је поставио/ла %2$s за администратора.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s Вас је поставио за администратора.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Одузели сте администраторске дозволе од %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s вам је одузео администраторске дозволе.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s одузео администраторске дозволе за  %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s је сада администратор</string>
   <string name="MessageRecord_you_are_now_an_admin">Постали сте администратор.</string>
@@ -3199,8 +3198,6 @@
   <string name="DSLSettingsToolbar__navigate_up">Ићи на горе</string>
   <string name="MultiselectForwardFragment__forward_to">Напред на</string>
   <string name="MultiselectForwardFragment__add_a_message">Додати поруку</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Поруке су послате</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Поруке нису послате</string> -->
   <string name="MultiselectForwardFragment__limit_reached">Достигнут лимит</string>
   <!--EOF-->
 </resources>

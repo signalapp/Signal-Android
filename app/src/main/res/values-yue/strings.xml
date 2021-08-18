@@ -884,7 +884,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s 已擢升 %2$s 為話事人。</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s 已擢升您為話事人。</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">您已免去 %1$s 話事人一職。</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s 已免去您話事人一職。</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s 已免去 %2$s 話事人一職。</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s 而家已經係話事人。</string>
   <string name="MessageRecord_you_are_now_an_admin">您而家已經係話事人。</string>
@@ -3029,8 +3028,6 @@
   <string name="DSLSettingsToolbar__navigate_up">返番轉頭</string>
   <string name="MultiselectForwardFragment__forward_to">轉寄畀</string>
   <string name="MultiselectForwardFragment__add_a_message">寫番句訊息</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">呢拃訊息已經送出</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">呢拃訊息傳送唔到</string> -->
   <string name="MultiselectForwardFragment__limit_reached">頂晒櫳喇</string>
   <!--EOF-->
 </resources>

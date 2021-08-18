@@ -903,7 +903,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s erabiltzaileak %2$s administratzaile bihurtu du.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s erabiltzaileak administratzaile bihurtu zaitu.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s erabiltzaileari administratzaile eskudibeak kendu dizkiozu.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s erabiltzaileak administratzaile eskubideak kendu dizkizu.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s erabiltzaileak %2$s erabiltzaileari administratzaile eskudibeak kendu dizkio.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s erabiltzailea administratzailea da orain.</string>
   <string name="MessageRecord_you_are_now_an_admin">Orain administratzailea zara.</string>

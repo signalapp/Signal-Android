@@ -862,7 +862,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s သည် %2$s ကို အက်မင်တစ်ယောက်အဖြစ် ထားလိုက်သည်။</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s သည် သင့်ကို အက်မင်တစ်ယောက်အဖြစ် ထားလိုက်သည်။</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">သင်သည် %1$s ကို အက်မင်အဖြစ်မှ ရုတ်သိမ်းလိုက်သည်။</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s သည် သင့်ကို အက်မင်အဖြစ်မှ ရုတ်သိမ်းလိုက်သည်။ </string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s သည် %2$sကို အက်မင်အဖြစ်မှ ရုတ်သိမ်းလိုက်သည်။</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s သည် ယခု အက်မင်ဖြစ်သည်။</string>
   <string name="MessageRecord_you_are_now_an_admin">သင်သည် ယခု အက်မင်ဖြစ်သည်။</string>

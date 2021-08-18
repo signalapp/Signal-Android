@@ -926,7 +926,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s نے %2$s کو ایڈمن بنایا۔</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s نے آپ کو ایڈمن بنایا۔</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">آپ نے%1$sکے ایڈمنسٹریٹو مراعات کو منسوخ کردیا۔</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s نے آپ کے منتظم کے مراعات کو منسوخ کردیا۔ \"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s نے %2$s سے منتظم کے استحقاق کو منسوخ کردیا۔</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s اب ایک ایڈمن ہے۔</string>
   <string name="MessageRecord_you_are_now_an_admin">اب آپ ایڈمن ہیں۔</string>

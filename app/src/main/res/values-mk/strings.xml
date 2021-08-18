@@ -928,7 +928,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s го направи %2$s администратор.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s Ве направи администратор.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Ги повлековте администраторските привилегии на %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ги повлече Вашите администраторски привилегии.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ги повлече администраторските привилегии на %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s е администратор сега.</string>
   <string name="MessageRecord_you_are_now_an_admin">Вие сте сега Администратор.</string>

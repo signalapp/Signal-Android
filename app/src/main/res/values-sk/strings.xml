@@ -1022,7 +1022,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s urobil/a %2$s správcom.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s vás urobil/a správcom.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Odobrali ste správcovské práva %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s vám odobral/a správcovské práva.\"</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s zrušil vaše oprávnenia správcu.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s odobral/a správcovské práva %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s je teraz administrátorom.</string>
   <string name="MessageRecord_you_are_now_an_admin">Odteraz ste adminom.</string>
@@ -3283,8 +3283,18 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="DSLSettingsToolbar__navigate_up">Prejdite nahor</string>
   <string name="MultiselectForwardFragment__forward_to">Preposlať</string>
   <string name="MultiselectForwardFragment__add_a_message">Pridajte správu</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Správy odoslané</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Správy sa nepodarilo odoslať</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Správa odoslaná</item>
+    <item quantity="few">Správy odoslané</item>
+    <item quantity="many">Správy odoslané</item>
+    <item quantity="other">Správy odoslané</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Správu sa nepodarilo odoslať</item>
+    <item quantity="few">Správy sa nepodarilo odoslať</item>
+    <item quantity="many">Správy sa nepodarilo odoslať</item>
+    <item quantity="other">Správy sa nepodarilo odoslať</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limit dosiahnutý</string>
   <!--EOF-->
 </resources>

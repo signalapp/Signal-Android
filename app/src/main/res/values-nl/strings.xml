@@ -3118,8 +3118,14 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="DSLSettingsToolbar__navigate_up">Omhoog navigeren</string>
   <string name="MultiselectForwardFragment__forward_to">Doorsturen naar</string>
   <string name="MultiselectForwardFragment__add_a_message">Een bericht bijvoegen</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Berichten verzonden</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Het verzenden van de berichten is mislukt</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Bericht verzonden</item>
+    <item quantity="other">Berichten verzonden</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Bericht verzenden is mislukt</item>
+    <item quantity="other">Berichten verzenden is mislukt</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limiet bereikt</string>
   <!--EOF-->
 </resources>

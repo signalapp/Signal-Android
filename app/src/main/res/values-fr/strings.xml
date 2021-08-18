@@ -3104,8 +3104,14 @@
   <string name="DSLSettingsToolbar__navigate_up">Naviguer vers le haut</string>
   <string name="MultiselectForwardFragment__forward_to">Transférer à</string>
   <string name="MultiselectForwardFragment__add_a_message">Ajouter un message</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Messages envoyés</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Échec de l’envoi de messages</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Message envoyé</item>
+    <item quantity="other">Messages envoyés</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Échec de l’envoi du message</item>
+    <item quantity="other">Échec de l’envoi des messages</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limite atteinte</string>
   <!--EOF-->
 </resources>

@@ -3283,8 +3283,18 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="DSLSettingsToolbar__navigate_up">Přejděte nahoru</string>
   <string name="MultiselectForwardFragment__forward_to">Přeposlat</string>
   <string name="MultiselectForwardFragment__add_a_message">Přidat zprávu</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Zpráva odeslána</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Odeslání zprávy selhalo</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Zpráva odeslána</item>
+    <item quantity="few">Zprávy odeslány</item>
+    <item quantity="many">Zprávy odeslány</item>
+    <item quantity="other">Zprávy odeslány</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Odeslání zprávy selhalo</item>
+    <item quantity="few">Odeslání zpráv selhalo</item>
+    <item quantity="many">Odeslání zpráv selhalo</item>
+    <item quantity="other">Odeslání zpráv selhalo</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Dosažen limit</string>
   <!--EOF-->
 </resources>

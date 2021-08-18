@@ -884,7 +884,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s ตั้ง %2$s เป็นผู้ดูแล</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ตั้งคุณเป็นผู้ดูแล</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">คุณได้เพิกถอนสิทธิ์ผู้ดูแลจาก %1$s</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจากคุณ</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจาก %2$s</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s ได้เป็นผู้ดูแลแล้ว</string>
   <string name="MessageRecord_you_are_now_an_admin">ตอนนี้คุณเป็นผู้ดูแลแล้ว</string>

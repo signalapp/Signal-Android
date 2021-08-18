@@ -930,7 +930,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s ने %2$s ला अॅडमिन केले.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ने आपल्याला अॅडमिन केले.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s कडून आपण अॅडमिन विशेषाधिकार रद्द केले.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ने आपले अॅडमिन विशेषाधिकार रद्द केले.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ने %2$s कडून आपण अॅडमिन विशेषाधिकार रद्द केले.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s आता अॅडमिन आहे.</string>
   <string name="MessageRecord_you_are_now_an_admin">आपण आता प्रशासक आहात.</string>

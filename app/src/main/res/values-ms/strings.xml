@@ -1431,7 +1431,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Memberikan reaksi %1$s kepada media lihat sekali anda.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Memberikan reaksi %1$s kepada pelekat anda.</string>
   <string name="MessageNotifier_this_message_was_deleted">Mesej ini telah dipadam.</string>
-  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Matikan pemberitahuan kenalan telah menyertai SIgnal? Anda boleh mendayakannya lagi dalam Signal &gt; Tetapan &gt; Pemberitahuan.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Matikan pemberitahuan kenalan telah menyertai Signal? Anda boleh mendayakannya lagi dalam Signal &gt; Tetapan &gt; Pemberitahuan.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_channel_messages">Mesej</string>
   <string name="NotificationChannel_calls">Panggilan</string>
@@ -1599,7 +1599,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Dayakan aktiviti latar belakang</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Semuanya kelihatan baik sekarang!</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">Untuk menerima pemberitahuan panggilan, ketik sini dan hidupkan \"Tunjukkan pemberitahuan\".</string>
-  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Untuk menerima pemberitahuan panggilan, ketik sini dan hidupkan pemberitahuan dan pastikan Bunyi and Tetingkap Timbul didayakan.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">Untuk menerima pemberitahuan panggilan, ketik sini dan hidupkan pemberitahuan dan pastikan Bunyi dan Tetingkap Timbul didayakan.</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">Untuk menerima pemberitahuan panggilan, ketik sini dan dayakan aktiviti latar belakang dalam tetapan \"Bateri\".</string>
   <string name="EnableCallNotificationSettingsDialog__settings">Tetapan</string>
   <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">Untuk menerima pemberitahuan panggilan, ketik Tetapan dan hidupkan \"Tunjukkan pemberitahuan\".</string>
@@ -1683,8 +1683,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Untuk menghantar media dan mesej kumpulann, ketik \'OK\' dan lengkapkan tetapan yang diminta. Tetapan MMS untuk pembawa anda secara umumnya boleh ddicari dengan mencari \'APN pembawa anda\'. Anda hanya perlu melakukan ini sekali sahaja.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Isu penghantaran</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Mesej, pelekat, reaksi atau resit baca tidak dapat disampaikan kepada anda daripada %s. Mereka mungkin telah cuba menghantarnya kepada anda secara langsung, atau dalam kumpulan.</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Mesej, pelekat, reaksi atau resit baca tidak dapat disampaikan kepada anda daripada %s.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Mesej, pelekat, reaksi, atau resit baca tidak dapat disampaikan kepada anda daripada %s. Mereka mungkin telah cuba menghantarnya kepada anda secara langsung, atau dalam kumpulan.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Mesej, pelekat, reaksi, atau resit baca tidak dapat disampaikan kepada anda daripada %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Nama pertama (diperlukan)</string>
   <string name="CreateProfileActivity_last_name_optional">Nama keluarga (pilihan)</string>
@@ -2268,7 +2268,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="CreateKbsPinFragment__create_a_new_pin">Cipta PIN baru</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Anda boleh mengubah PIN anda selagi peranti ini didaftarkan.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Cipta PIN anda</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN memastikan maklumat yang disimpan dengan Signal disulitkan supaya hanya anda yang dapat mengaksesnya. Profil, tetapan dan kenalan anda akan dipulihkan apabila anda memasang semula. Anda tidak memerlukan PIN anda untuk membuka aplikasi.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN memastikan maklumat yang disimpan dengan Signal disulitkan supaya hanya anda yang dapat mengaksesnya. Profil, tetapan, dan kenalan anda akan dipulihkan apabila anda memasang semula. Anda tidak memerlukan PIN anda untuk membuka aplikasi.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Pilih PIN yang lebih kuat</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN tidak sepadan. Cuba lagi.</string>
@@ -2280,7 +2280,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Mencipta PIN…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Memperkenalkan PIN</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN memastikan maklumat yang disimpan dengan Signal yang disulitkan supaya hanya anda yang dapat mengaksesnya. Profil, tetapan dan kenalan anda akan dipulihkan apabila anda memasang semula. Anda tidak memerlukan PIN anda untuk membuka aplikasi.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN memastikan maklumat yang disimpan dengan Signal yang disulitkan supaya hanya anda yang dapat mengaksesnya. Profil, tetapan, dan kenalan anda akan dipulihkan apabila anda memasang semula. Anda tidak memerlukan PIN anda untuk membuka aplikasi.</string>
   <string name="KbsSplashFragment__learn_more">Ketahui Lebih Lanjut</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Kunci Pendaftaran = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kunci Pendaftaran anda sekarang dipanggil PIN, dan ia lebih banyak kelebihan. Kemas kini sekarang.</string>
@@ -2754,7 +2754,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Frasa pemulihan</string>
   <string name="PaymentsRecoveryPasteFragment__next">Seterusnya</string>
   <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Frasa pemulihan tidak sah</string>
-  <string name="PaymentsRecoveryPasteFragment__make_sure">Pastikan anda telah memasukkan %1$d perkata dan cuba lagi.</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">Pastikan anda telah memasukkan %1$d perkataan dan cuba lagi.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">Seterusnya</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">Edit</string>

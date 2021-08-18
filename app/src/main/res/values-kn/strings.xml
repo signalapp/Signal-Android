@@ -932,7 +932,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s ಅವರು %2$s ಅವರನ್ನು ಅಡ್ಮಿನ್ ಆಗಿ ಮಾಡಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ಅವರು ನಿಮ್ಮನ್ನು ಅಡ್ಮಿನ್ ಆಗಿ ಮಾಡಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s ಅವರಿಂದ ನೀವು ಅಡ್ಮಿನ್ ಸವಲತ್ತುಗಳನ್ನು ಹಿಂಪಡೆದಿದ್ದೀರಿ.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ಅವರು ನಿಮ್ಮ ಅಡ್ಮಿನ್ ಸವಲತ್ತುಗಳನ್ನು ಹಿಂಪಡೆದಿದ್ದಾರೆ.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ಅವರು %2$s ಅವರಿಂದ ಅಡ್ಮಿನ್ ಸವಲತ್ತುಗಳನ್ನು ಹಿಂಪಡೆದಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s ಅವರು ಈಗ ಅಡ್ಮಿನ್ ಆಗಿದ್ದಾರೆ.</string>
   <string name="MessageRecord_you_are_now_an_admin">ನೀವು ಈಗ ಆಡ್ಮಿನ್ ಆಗಿದ್ದೀರಿ.</string>

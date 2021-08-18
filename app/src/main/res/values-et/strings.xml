@@ -916,7 +916,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s tegi kasutaja %2$s administraatoriks.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s tegi sind administraatoriks.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Sa tühistasid kasutaja %1$s administraatoriõigused.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s tühistas sinu administraatoriõigused.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s tühistas kasutaja %2$s administraatoriõigused.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s on nüüd administraator.</string>
   <string name="MessageRecord_you_are_now_an_admin">Sa oled nüüd administraator.</string>

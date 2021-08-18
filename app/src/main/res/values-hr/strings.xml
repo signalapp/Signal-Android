@@ -208,6 +208,8 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Privitak premašuje ograničenja veličine za vrstu poruke koju šaljete.</string>
   <string name="ConversationActivity_unable_to_record_audio">Nije moguće snimiti zvuk!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Ne možete slati poruke jer više niste član/ica ove grupe.</string>
+  <string name="ConversationActivity_admins">Administratori</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Samo administratori ove grupe mogu započeti poziv.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Na vašem uređaju nema dostupne aplikacije za obradu ove poveznice.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Vaš zahtjev za pridruživanje poslan je administratoru grupe. Biti će te obaviješteni kada nešto poduzmu.</string>
   <string name="ConversationActivity_cancel_request">Poništi zahtjev</string>
@@ -960,7 +962,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s je postavio/la %2$s za administratora.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s vas je postavio/la za administratora.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Opozvali ste administratorska prava za %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s je opozvao vaša administratorska prava.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s je opozvao administratorska prava za %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s je sada administrator.</string>
   <string name="MessageRecord_you_are_now_an_admin">Sada ste administrator.</string>
@@ -1026,6 +1027,10 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s je promijenio/la tko može uređivati članstvo grupe na \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Promijenjeno je tko sve može urediti članstvo grupe na \"%1$s\".</string>
   <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Promijenili ste postavke grupe kako biste omogućili svim članovima slanje poruka.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Promijenili ste postavke grupe tako da dopuštate slanje poruka samo administratorima.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Postavke grupe su promijenjene kako bi se omogućilo svim članovima slanje poruka.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Postavke grupe promijenjene su tako da se dopušta samo administratorima slanje poruka.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Isključili ste grupnu poveznicu s administratorskim odobrenjem.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Uključili ste grupnu poveznicu s administratorskim odobrenjem.</string>
@@ -3050,6 +3055,8 @@ broj telefona</string>
   <string name="ChatColorsMegaphone__appearance">Izgled</string>
   <string name="ChatColorsMegaphone__not_now">Ne sada</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Dodajte fotografiju profila</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Odaberite izgled i boju ili prilagodite svoje inicijale.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ne sada</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Smajlić</string>
@@ -3112,11 +3119,13 @@ broj telefona</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__photo">Fotografija</string>
+  <string name="AvatarPickerFragment__text">Tekst</string>
   <string name="AvatarPickerFragment__save">Spremi</string>
   <string name="AvatarPickerFragment__edit">Uredi</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">Pregled</string>
   <string name="TextAvatarCreationFragment__done">Gotovo</string>
+  <string name="TextAvatarCreationFragment__text">Tekst</string>
   <string name="TextAvatarCreationFragment__color">Boja</string>
   <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->

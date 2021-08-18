@@ -930,7 +930,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s %2$s-നെ ഒരു അഡ്‌മിൻ ആക്കി.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s നിങ്ങളെ ഒരു അഡ്‌മിൻ ആക്കി.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">നിങ്ങൾ %1$s-ന്റെ അഡ്മിൻ പ്രത്യേകാവകാശങ്ങൾ റദ്ദാക്കി.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s നിങ്ങളുടെ അഡ്‌മിൻ പ്രത്യേകാവകാശങ്ങൾ റദ്ദാക്കി.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s %2$s-ന്റെ അഡ്മിൻ പ്രത്യേകാവകാശങ്ങൾ റദ്ദാക്കി.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$sഇപ്പോൾ ഒരു അഡ്മിൻ ആണ്</string>
   <string name="MessageRecord_you_are_now_an_admin">നിങ്ങൾ ഇപ്പോൾ ഒരു അഡ്‌മിനാണ്.</string>

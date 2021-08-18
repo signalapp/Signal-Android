@@ -930,7 +930,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s promoveu %2$s a admin.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s promoveu você a admin.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Você removeu %1$s da lista de admins.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s removeu você da lista de admins.\"</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s removeu você da lista de admins.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s removeu %2$s da lista de admins.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s agora é um admin.</string>
   <string name="MessageRecord_you_are_now_an_admin">Agora você é um admin.</string>
@@ -3114,8 +3114,14 @@
   <string name="DSLSettingsToolbar__navigate_up">Ir para cima</string>
   <string name="MultiselectForwardFragment__forward_to">Encaminhar para</string>
   <string name="MultiselectForwardFragment__add_a_message">Adicionar uma mensagem</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Mensagens enviadas</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Falha ao enviar as mensagens</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Mensagem enviada</item>
+    <item quantity="other">Mensagens enviadas</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Falha ao enviar a mensagem</item>
+    <item quantity="other">Falha ao enviar as mensagens</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limite alcançado</string>
   <!--EOF-->
 </resources>

@@ -931,7 +931,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%2$s نى %1$s باشقۇرغۇچى قىلىپ تەڭشىدى.</string>
   <string name="MessageRecord_s_made_you_an_admin">سىزنى %1$s باشقۇرغۇچى قىلىپ تەڭشىدى.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">سىز %1$s نىڭ باشقۇرغۇچىلىق ھوقۇقىنى بىكار قىلدىڭىز.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">سىزنىڭ باشقۇرغۇچىلىق ھوقۇقىڭىزنى %1$s بىكار قىلدى.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%2$s نىڭ باشقۇرغۇچىلىق ھوقۇقىنى %1$s بىكار قىلدى.</string>
   <string name="MessageRecord_s_is_now_an_admin">ھازىر %1$s باشقۇرغۇچى.</string>
   <string name="MessageRecord_you_are_now_an_admin">ئەمدى سىز باشقۇرغۇچى.</string>

@@ -909,7 +909,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s yerra %2$s d anedbal.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s yerra-k·m d anedbal.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Tesfesxeḍ ibaɣuren n unedbal seg %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s isefsex ibaɣuren-ik·im n unedbal.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s isefsex ibaɣuren n unedbal seg %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s tura d anedbal.</string>
   <string name="MessageRecord_you_are_now_an_admin">Aqli-k·kem tura d t·anedbal·t.</string>

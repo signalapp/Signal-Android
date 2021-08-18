@@ -3196,8 +3196,16 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="DSLSettingsToolbar__navigate_up">Navigați în sus</string>
   <string name="MultiselectForwardFragment__forward_to">Redirecționați către</string>
   <string name="MultiselectForwardFragment__add_a_message">Adăugați un mesaj</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Mesajele au fost trimise</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Mesajele nu au putut fi trimise</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Mesaj trimis</item>
+    <item quantity="few">Mesaje trimise</item>
+    <item quantity="other">Mesaje trimise</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Mesajul nu a putut fi trimis</item>
+    <item quantity="few">Mesajele nu au putut fi trimise</item>
+    <item quantity="other">Mesajele nu au putut fi trimise</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Ați atins limita</string>
   <!--EOF-->
 </resources>

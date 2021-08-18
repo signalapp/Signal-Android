@@ -1201,6 +1201,7 @@
   <string name="WebRtcCallActivity__calling">Es truca…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Trucada del Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Trucada de vídeo del Signal</string>
   <string name="WebRtcCallView__start_call">Inicia una trucada</string>
   <string name="WebRtcCallView__join_call">Afegeix-me a la trucada</string>
   <string name="WebRtcCallView__call_is_full">La trucada és plena</string>
@@ -1218,6 +1219,7 @@
     <item quantity="one">%1$s, %2$s i %3$d més són en aquesta trucada.</item>
     <item quantity="other">%1$s, %2$s i %3$d més són en aquesta trucada.</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Canvia</string>
   <string name="WebRtcCallView__speaker">Altaveu</string>
   <string name="WebRtcCallView__camera">Càmera</string>
   <string name="WebRtcCallView__mute">Silenci</string>
@@ -3104,5 +3106,16 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Amunt</string>
+  <string name="MultiselectForwardFragment__forward_to">Reenvia a</string>
+  <string name="MultiselectForwardFragment__add_a_message">Afegiu-hi un missatge</string>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Missatge enviat</item>
+    <item quantity="other">Missatges enviats</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Ha fallat enviar el missatge.</item>
+    <item quantity="other">Ha fallat enviar els missatges.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">S\'ha arribat al límit.</string>
   <!--EOF-->
 </resources>

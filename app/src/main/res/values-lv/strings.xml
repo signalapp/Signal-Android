@@ -976,7 +976,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$spiešķīra%2$sadministratora tiesības.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$spiešķīra Jums administratora tiesības.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Jūs atsaucāt %1$sadministratora tiesības.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$satsauca Jūsu administratora tiesības.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$satsauca administratora tiesības no %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s tagad ir administrators.</string>
   <string name="MessageRecord_you_are_now_an_admin">Jūs tagad esat administrators.</string>

@@ -876,7 +876,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s 已将 %2$s 设为管理员。</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s 已将您设为管理员。</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">您已撤销 %1$s 的管理员权限。</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s 撤销了您的管理员权限。</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s 撤销了 %2$s 的管理员权限。</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s 已成为管理员。</string>
   <string name="MessageRecord_you_are_now_an_admin">你被设置为管理员。</string>

@@ -976,7 +976,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s je odredio/la da %2$s bude administrator.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s odredio/la Vas je za administratora.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Opozvali ste administratorske privilegije za %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s je opozvao/la Vaše administratorske privilegije.\"</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s je opozvao/la Vaše administratorske privilegije.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s je opozvao/la administratorske privilegije za %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s sada je administrator.</string>
   <string name="MessageRecord_you_are_now_an_admin">Sada ste administrator.</string>
@@ -3204,8 +3204,16 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="DSLSettingsToolbar__navigate_up">Prema gore</string>
   <string name="MultiselectForwardFragment__forward_to">Proslijedi za</string>
   <string name="MultiselectForwardFragment__add_a_message">Dopiši poruku</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Poruke poslane</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Poruke nisu poslane</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Poruka poslana</item>
+    <item quantity="few">Poruke poslane</item>
+    <item quantity="other">Poruke poslane</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Poruka nije poslana</item>
+    <item quantity="few">Poruke nisu poslane</item>
+    <item quantity="other">Poruke nisu poslane</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Dosegnut maksimum</string>
   <!--EOF-->
 </resources>

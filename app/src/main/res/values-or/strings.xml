@@ -910,7 +910,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s%2$s ଙ୍କୁ ପରିଚାଳକ ବନାଇଲେ</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ଆପଣଙ୍କୁ ପରିଚାଳକ ବନାଇଲେ</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">ଆପଣ %1$sଙ୍କ ଠାରୁ ପରିଚାଳକ ଅଧିକାର ପ୍ରତ୍ୟାହାର କରିଛନ୍ତି</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ଆପଣଙ୍କ ଠାରୁ ପରିଚାଳକ ଅଧିକାର ପ୍ରତ୍ୟାହାର କରିଛନ୍ତି</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s%2$sଙ୍କ ଠାରୁ ପରିଚାଳକ ଅଧିକାର ପ୍ରତ୍ୟାହାର କରିଛନ୍ତି</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$sଏବେ ଜଣେ ପରିଚାଳକ</string>
   <string name="MessageRecord_you_are_now_an_admin">ଆପଣ ବର୍ତ୍ତମାନ ଜଣେ ବ୍ୟବସ୍ଥାପକ।</string>

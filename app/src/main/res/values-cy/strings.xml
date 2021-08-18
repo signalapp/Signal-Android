@@ -1320,6 +1320,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallActivity__calling">Yn galw…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Galwad Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Galwad Fideo Signal</string>
   <string name="WebRtcCallView__start_call">Cychwyn Galwad</string>
   <string name="WebRtcCallView__join_call">Ymuno â\'r Alwad</string>
   <string name="WebRtcCallView__call_is_full">Mae\'r alwad yn llawn</string>
@@ -1339,6 +1340,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Mae %1$s, %2$s, a %3$d arall yn yr alwad hon</item>
     <item quantity="other">Mae %1$s, %2$s, a %3$d arall yn yr alwad hon</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Fflipio</string>
   <string name="WebRtcCallView__speaker">Uchelseinydd</string>
   <string name="WebRtcCallView__camera">Camera</string>
   <string name="WebRtcCallView__mute">Tewi</string>
@@ -3282,5 +3284,20 @@ Send neges heb ei ddiogelu?</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Symud i fyny</string>
+  <string name="MultiselectForwardFragment__forward_to">Ymlaen at</string>
+  <string name="MultiselectForwardFragment__add_a_message">Ychwanegu neges</string>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Neges wedi\'i hanfon</item>
+    <item quantity="two">Neges wedi\'u hanfon</item>
+    <item quantity="many">Neges wedi\'u hanfon</item>
+    <item quantity="other">Neges wedi\'u hanfon</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Neges methwyd ei hanfon</item>
+    <item quantity="two">Neges methwyd eu hanfon</item>
+    <item quantity="many">Neges methwyd eu hanfon</item>
+    <item quantity="other">Neges methwyd eu hanfon</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Wedi cyrraedd y terfyn</string>
   <!--EOF-->
 </resources>

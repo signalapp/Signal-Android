@@ -1019,7 +1019,7 @@
   <string name="MessageRecord_s_made_s_an_admin">Oseba %1$s je določila uporabnika/co %2$s za skrbnika/co.</string>
   <string name="MessageRecord_s_made_you_an_admin">Oseba %1$s vas je določila za skrbnika/co.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Uporabniku/ci %1$s ste odvzeli skrbniška pooblastila.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">Oseba %1$s vam je odvzela skrbniška pooblastila.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">Član/ica %1$s je preklical/a vaše skrniške pravice.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">Oseba %1$s je odvzela skrbniška pooblastila uporabniku/ci %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">Uporabnik/ca %1$s je zdaj skrbnik/ca skupine.</string>
   <string name="MessageRecord_you_are_now_an_admin">Odslej ste skrbnik/ca skupine.</string>
@@ -3136,8 +3136,18 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="DSLSettingsToolbar__navigate_up">Premik navzgor</string>
   <string name="MultiselectForwardFragment__forward_to">Posreduj</string>
   <string name="MultiselectForwardFragment__add_a_message">Dodaj sporočilo</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Poslana sporočila</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Neuspešno poslana sporočila</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Poslano sporočilo</item>
+    <item quantity="two">Poslani sporočili</item>
+    <item quantity="few">Poslana sporočila</item>
+    <item quantity="other">Poslanih sporočil</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Neuspešno poslano sporočilo</item>
+    <item quantity="two">Neuspešno poslani sporočili</item>
+    <item quantity="few">Neuspešno poslana sporočila</item>
+    <item quantity="other">Neuspešno poslanih sporočil</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Dosežen je bil limit</string>
   <!--EOF-->
 </resources>

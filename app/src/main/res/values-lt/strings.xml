@@ -3284,8 +3284,18 @@
   <string name="DSLSettingsToolbar__navigate_up">Naršyti aukštyn</string>
   <string name="MultiselectForwardFragment__forward_to">Kam persiųsti</string>
   <string name="MultiselectForwardFragment__add_a_message">Pridėti žinutę</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Žinutės išsiųstos</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Nepavyko išsiųsti žinučių</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Žinutė išsiųsta</item>
+    <item quantity="few">Žinutės išsiųstos</item>
+    <item quantity="many">Žinutės išsiųstos</item>
+    <item quantity="other">Žinutės išsiųstos</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Nepavyko išsiųsti žinutės</item>
+    <item quantity="few">Nepavyko išsiųsti žinučių</item>
+    <item quantity="many">Nepavyko išsiųsti žinučių</item>
+    <item quantity="other">Nepavyko išsiųsti žinučių</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Pasiekta riba</string>
   <!--EOF-->
 </resources>

@@ -911,7 +911,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s gjorde %2$s til en administrator.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s gjorde deg til administrator.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Du fjernet administratorrettigheter fra %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s fjernet administratorrettighetene dine.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s fjernet administratorrettigheter fra %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s er nå en administrator.</string>
   <string name="MessageRecord_you_are_now_an_admin">Du er nå administrator</string>

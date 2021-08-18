@@ -884,7 +884,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s가 %2$s를 관리자로 지정하였습니다.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s가 당신을 관리자로 지정하였습니다.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s 님의 관리자 권한을 취소했습니다.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s 님이 관리자 권한을 취소했습니다.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s 님이 %2$s 님의 관리자 권한을 취소했습니다.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s은 지금부터 관리자입니다.</string>
   <string name="MessageRecord_you_are_now_an_admin">관리자가 되었습니다.</string>

@@ -3277,8 +3277,18 @@
   <string name="DSLSettingsToolbar__navigate_up">Перейти назад</string>
   <string name="MultiselectForwardFragment__forward_to">Переслать</string>
   <string name="MultiselectForwardFragment__add_a_message">Добавьте сообщение</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Сообщения отправлены</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Не удалось отправить сообщения</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Сообщение отправлено</item>
+    <item quantity="few">Сообщения отправлены</item>
+    <item quantity="many">Сообщения отправлены</item>
+    <item quantity="other">Сообщения отправлены</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Не удалось отправить сообщение</item>
+    <item quantity="few">Не удалось отправить сообщения</item>
+    <item quantity="many">Не удалось отправить сообщения</item>
+    <item quantity="other">Не удалось отправить сообщения</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Достигнут предел</string>
   <!--EOF-->
 </resources>

@@ -934,7 +934,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_s_made_s_an_admin">%1$s bëri %2$s përgjegjës.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ju bëri përgjegjës.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">I shfuqizuat %1$s privilegje përgjegjësi.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s shfuqizoi privilegjet tuaja si përgjegjës.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s shfuqizoi privilegjet tuaja prej përgjegjësi.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s i shfuqizoi %2$s privilegje përgjegjësi.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s tani është përgjegjës.</string>
   <string name="MessageRecord_you_are_now_an_admin">Tani jeni një përgjegjës.</string>
@@ -3118,8 +3118,14 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="DSLSettingsToolbar__navigate_up">Ngjituni</string>
   <string name="MultiselectForwardFragment__forward_to">Përcillja</string>
   <string name="MultiselectForwardFragment__add_a_message">Shtoni një mesazh</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Mesazhet u dërguan</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">S’u arrit të dërgohen mesazhet</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Mesazhi u dërgua</item>
+    <item quantity="other">Mesazhet u dërguan</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Dështoi dërgimi i mesazhit</item>
+    <item quantity="other">Dështoi dërgimi i mesazheve</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">U mbërrit në kufi</string>
   <!--EOF-->
 </resources>

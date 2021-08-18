@@ -3103,8 +3103,14 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="DSLSettingsToolbar__navigate_up">Nach oben navigieren</string>
   <string name="MultiselectForwardFragment__forward_to">Weiterleiten an</string>
   <string name="MultiselectForwardFragment__add_a_message">Eine Nachricht hinzufügen</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Nachrichten gesendet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Nachrichten konnten nicht gesendet werden</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Nachricht gesendet</item>
+    <item quantity="other">Nachrichten gesendet</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Nachricht konnten nicht gesendet werden</item>
+    <item quantity="other">Nachrichten konnten nicht gesendet werden</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Höchstzahl erreicht</string>
   <!--EOF-->
 </resources>

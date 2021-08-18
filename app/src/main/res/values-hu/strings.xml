@@ -921,7 +921,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s admin jogosultságokat adott neki: %2$s </string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s admin jogosultságokat adott neked.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Visszavontad %1$s admin jogosultságait.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s visszavonta admin jogosultságaidat.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s visszavonta %2$s admin jogosultságait.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s admin jogosultságot kapott.</string>
   <string name="MessageRecord_you_are_now_an_admin">Admin jogosultságot kaptál.</string>

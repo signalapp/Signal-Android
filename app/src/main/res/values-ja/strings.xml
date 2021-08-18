@@ -3019,8 +3019,12 @@
   <string name="DSLSettingsToolbar__navigate_up">上へ</string>
   <string name="MultiselectForwardFragment__forward_to">転送先</string>
   <string name="MultiselectForwardFragment__add_a_message">メッセージを追加してください</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">メッセージ送信済み</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">メッセージ送信失敗</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="other">メッセージ送信済み</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="other">メッセージ送信失敗</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">制限に達しました</string>
   <!--EOF-->
 </resources>

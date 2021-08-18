@@ -930,7 +930,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s gjorde %2$s till administratör.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s gjorde dig till administratör.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Du återkallade administratörsbehörigheter från %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s återkallade dina administratörsbehörigheter.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s återkallade administratörsbehörigheter från %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s är nu en administratör.</string>
   <string name="MessageRecord_you_are_now_an_admin">Du är nu en administratör.</string>
@@ -3108,8 +3107,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="DSLSettingsToolbar__navigate_up">Navigera upp</string>
   <string name="MultiselectForwardFragment__forward_to">Vidarebefordra till</string>
   <string name="MultiselectForwardFragment__add_a_message">Lägg till ett meddelande</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Meddelanden skickade</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Det gick inte att skicka meddelanden</string> -->
   <string name="MultiselectForwardFragment__limit_reached">Gränsen nådd</string>
   <!--EOF-->
 </resources>

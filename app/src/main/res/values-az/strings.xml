@@ -930,7 +930,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s, %2$s üzvünü admin etdi.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s, sizi admin etdi.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s üzvünün adminlik imtiyazlarını ləğv etdiniz.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s, adminlik imtiyazlarınızı ləğv etdi.\"</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s, adminlik imtiyazlarınızı ləğv etdi.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s, %2$s üzvünün adminlik imtiyazlarını ləğv etdi.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s artıq admindir.</string>
   <string name="MessageRecord_you_are_now_an_admin">Artıq adminsiniz.</string>
@@ -3114,8 +3114,14 @@
   <string name="DSLSettingsToolbar__navigate_up">Yuxarı gedin</string>
   <string name="MultiselectForwardFragment__forward_to">Yönləndir</string>
   <string name="MultiselectForwardFragment__add_a_message">Bir mesaj əlavə et</string>
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_sent">Mesajlar göndərildi</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MultiselectForwardFragment__messages_failed_to_send">Mesajlar göndərilmədi</string> -->
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Mesaj göndərildi</item>
+    <item quantity="other">Mesajlar göndərildi</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Mesaj göndərilmədi</item>
+    <item quantity="other">Mesajlar göndərilmədi</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limitə çatıldı</string>
   <!--EOF-->
 </resources>
