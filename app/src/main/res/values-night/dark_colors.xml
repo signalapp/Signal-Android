@@ -12,6 +12,7 @@
     <color name="signal_background_secondary">@color/core_grey_75</color>
     <color name="signal_background_tertiary">@color/core_grey_90</color>
     <color name="signal_background_dialog">@color/core_grey_75</color>
+    <color name="signal_background_dialog_secondary">@color/core_grey_65</color>
 
     <color name="signal_text_primary">@color/core_grey_05</color>
     <color name="signal_text_primary_disabled">@color/core_grey_60</color>

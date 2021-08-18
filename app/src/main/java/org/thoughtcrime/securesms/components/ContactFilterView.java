@@ -126,6 +126,11 @@ public final class ContactFilterView extends FrameLayout {
       searchText.requestFocus();
     }
 
+    int backgroundRes = attributes.getResourceId(R.styleable.ContactFilterToolbar_cfv_background, -1);
+    if (backgroundRes != -1) {
+      findViewById(R.id.background_holder).setBackgroundResource(backgroundRes);
+    }
+
     attributes.recycle();
   }
 

@@ -397,7 +397,7 @@
 
     <style name="Widget.Signal.FixedRoundedCorners.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
-        <item name="backgroundTint">@color/signal_background_primary</item>
+        <item name="backgroundTint">@color/signal_background_dialog</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.Signal.BottomSheet.Rounded" parent="">

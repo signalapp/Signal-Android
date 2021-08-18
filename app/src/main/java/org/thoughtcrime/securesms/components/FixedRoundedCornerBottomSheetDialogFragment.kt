@@ -38,7 +38,7 @@ abstract class FixedRoundedCornerBottomSheetDialogFragment : BottomSheetDialogFr
 
     val dialogBackground = MaterialShapeDrawable(shapeAppearanceModel)
 
-    dialogBackground.setTint(ContextCompat.getColor(requireContext(), R.color.signal_background_primary))
+    dialogBackground.setTint(ContextCompat.getColor(requireContext(), R.color.signal_background_dialog))
 
     dialog.behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
       override fun onStateChanged(bottomSheet: View, newState: Int) {

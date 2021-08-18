@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
+        android:id="@+id/background_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_rectangle_secondary"
