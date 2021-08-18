@@ -389,12 +389,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     int defaultTopMargin      = readDimen(R.dimen.message_bubble_default_footer_bottom_margin);
     int defaultBottomMargin   = readDimen(R.dimen.message_bubble_bottom_padding);
     int collapsedBottomMargin = readDimen(R.dimen.message_bubble_collapsed_bottom_padding);
-    if (!updatingFooter &&
-        !isCaptionlessMms(messageRecord) &&
-        !isViewOnceMessage(messageRecord) &&
-        !hasAudio(messageRecord) &&
+    if (!updatingFooter                                                &&
+        !hasOnlyThumbnail(messageRecord)                               &&
+        !hasSticker(messageRecord)                                     &&
+        !hasSharedContact(messageRecord)                               &&
+        !isViewOnceMessage(messageRecord)                              &&
+        !hasAudio(messageRecord)                                       &&
         isFooterVisible(messageRecord, nextMessageRecord, groupThread) &&
-        !bodyText.isJumbomoji() &&
+        !bodyText.isJumbomoji()                                        &&
         bodyText.getLastLineWidth() > 0)
     {
       TextView dateView           = footer.getDateView();
@@ -499,7 +501,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private int getMaxBubbleWidth() {
     int paddings = getPaddingLeft() + getPaddingRight() + ViewUtil.getLeftMargin(bodyBubble) + ViewUtil.getRightMargin(bodyBubble);
-    if (groupThread && !messageRecord.isOutgoing()) {
+    if (groupThread && !messageRecord.isOutgoing() && !messageRecord.isRemoteDelete()) {
       paddings += contactPhoto.getLayoutParams().width + ViewUtil.getLeftMargin(contactPhoto) + ViewUtil.getRightMargin(contactPhoto);
     }
     return getMeasuredWidth() - paddings;
