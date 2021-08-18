@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.function.BiFunction;
 
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
+
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
@@ -38,7 +40,7 @@ public class SQLCipherMigrationHelper {
 
   static void migratePlaintext(@NonNull Context context,
                                @NonNull android.database.sqlite.SQLiteDatabase legacyDb,
-                               @NonNull net.sqlcipher.database.SQLiteDatabase modernDb)
+                               @NonNull SQLiteDatabase modernDb)
   {
     modernDb.beginTransaction();
     int foregroundId = GenericForegroundService.startForegroundTask(context, context.getString(R.string.SQLCipherMigrationHelper_migrating_signal_database)).getId();
@@ -58,7 +60,7 @@ public class SQLCipherMigrationHelper {
   public static void migrateCiphertext(@NonNull Context context,
                                        @NonNull MasterSecret masterSecret,
                                        @NonNull android.database.sqlite.SQLiteDatabase legacyDb,
-                                       @NonNull net.sqlcipher.database.SQLiteDatabase modernDb,
+                                       @NonNull SQLiteDatabase modernDb,
                                        @Nullable LegacyMigrationJob.DatabaseUpgradeListener listener)
   {
     MasterCipher           legacyCipher           = new MasterCipher(masterSecret);
@@ -182,7 +184,7 @@ public class SQLCipherMigrationHelper {
 
   private static void copyTable(@NonNull String tableName,
                                 @NonNull android.database.sqlite.SQLiteDatabase legacyDb,
-                                @NonNull net.sqlcipher.database.SQLiteDatabase modernDb,
+                                @NonNull SQLiteDatabase modernDb,
                                 @Nullable BiFunction<ContentValues, Pair<Integer, Integer>, ContentValues> transformer)
   {
     Set<String> destinationColumns = getTableColumns(tableName, modernDb);
@@ -236,7 +238,7 @@ public class SQLCipherMigrationHelper {
     return new Pair<>(type, body);
   }
 
-  private static Set<String> getTableColumns(String tableName, net.sqlcipher.database.SQLiteDatabase database) {
+  private static Set<String> getTableColumns(String tableName, SQLiteDatabase database) {
     Set<String> results = new HashSet<>();
 
     try (Cursor cursor = database.rawQuery("PRAGMA table_info(" + tableName + ")", null)) {

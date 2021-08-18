@@ -15,13 +15,10 @@ import org.thoughtcrime.securesms.util.SqlUtil;
 import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.StorageId;
-import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
-import org.whispersystems.signalservice.internal.storage.protos.SignalStorage;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -53,7 +50,7 @@ public class UnknownStorageIdDatabase extends Database {
     String   query = TYPE + " > ?";
     String[] args  = SqlUtil.buildArgs(StorageId.largestKnownType());
 
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, query, args, null, null, null)) {
+    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, query, args, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         String keyEncoded = cursor.getString(cursor.getColumnIndexOrThrow(STORAGE_ID));
         int    type       = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
@@ -72,7 +69,7 @@ public class UnknownStorageIdDatabase extends Database {
     String   query = STORAGE_ID + " = ?";
     String[] args  = new String[] { Base64.encodeBytes(rawId) };
 
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, query, args, null, null, null)) {
+    try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(TABLE_NAME, null, query, args, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
         int type = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
         return SignalStorageRecord.forUnknown(StorageId.forType(rawId, type));
@@ -85,7 +82,7 @@ public class UnknownStorageIdDatabase extends Database {
   public void applyStorageSyncUpdates(@NonNull Collection<SignalStorageRecord> inserts,
                                       @NonNull Collection<SignalStorageRecord> deletes)
   {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
     db.beginTransaction();
     try {
@@ -99,7 +96,7 @@ public class UnknownStorageIdDatabase extends Database {
   }
 
   public void insert(@NonNull Collection<SignalStorageRecord> inserts) {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
     Preconditions.checkArgument(db.inTransaction(), "Must be in a transaction!");
 
@@ -113,7 +110,7 @@ public class UnknownStorageIdDatabase extends Database {
   }
 
   public void delete(@NonNull Collection<StorageId> deletes) {
-    SQLiteDatabase db          = databaseHelper.getWritableDatabase();
+    SQLiteDatabase db          = databaseHelper.getSignalWritableDatabase();
     String         deleteQuery = STORAGE_ID + " = ?";
 
     Preconditions.checkArgument(db.inTransaction(), "Must be in a transaction!");
@@ -128,10 +125,10 @@ public class UnknownStorageIdDatabase extends Database {
     String   query = TYPE + " = ?";
     String[] args  = new String[]{String.valueOf(type)};
 
-    databaseHelper.getWritableDatabase().delete(TABLE_NAME, query, args);
+    databaseHelper.getSignalWritableDatabase().delete(TABLE_NAME, query, args);
   }
 
   public void deleteAll() {
-    databaseHelper.getWritableDatabase().delete(TABLE_NAME, null, null);
+    databaseHelper.getSignalWritableDatabase().delete(TABLE_NAME, null, null);
   }
 }

@@ -2,14 +2,16 @@ package org.thoughtcrime.securesms.database;
 
 import android.app.Application;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
-import net.sqlcipher.database.SQLiteOpenHelper;
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabaseHook;
+import net.zetetic.database.sqlcipher.SQLiteOpenHelper;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -87,8 +89,7 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
 
   private static volatile JobDatabase instance;
 
-  private final Application    application;
-  private final DatabaseSecret databaseSecret;
+  private final Application application;
 
   public static @NonNull JobDatabase getInstance(@NonNull Application context) {
     if (instance == null) {
@@ -103,10 +104,9 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
   }
 
   public JobDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret) {
-    super(application, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook(), new SqlCipherErrorHandler(DATABASE_NAME));
+    super(application, DATABASE_NAME, databaseSecret.asString(), null, DATABASE_VERSION, 0, new SqlCipherErrorHandler(DATABASE_NAME), new SqlCipherDatabaseHook());
 
-    this.application    = application;
-    this.databaseSecret = databaseSecret;
+    this.application = application;
   }
 
   @Override
@@ -141,6 +141,9 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
   @Override
   public void onOpen(SQLiteDatabase db) {
     Log.i(TAG, "onOpen()");
+
+    db.enableWriteAheadLogging();
+    db.setForeignKeyConstraintsEnabled(true);
 
     SignalExecutors.BOUNDED.execute(() -> {
       dropTableIfPresent("job_spec");
@@ -366,14 +369,6 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
                               false);
   }
 
-  private @NonNull SQLiteDatabase getReadableDatabase() {
-    return getWritableDatabase(databaseSecret.asString());
-  }
-
-  private @NonNull SQLiteDatabase getWritableDatabase() {
-    return getWritableDatabase(databaseSecret.asString());
-  }
-
   @Override
   public @NonNull SQLiteDatabase getSqlCipherDatabase() {
     return getWritableDatabase();
@@ -382,7 +377,7 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
   private void dropTableIfPresent(@NonNull String table) {
     if (DatabaseFactory.getInstance(application).hasTable(table)) {
       Log.i(TAG, "Dropping original " + table + " table from the main database.");
-      DatabaseFactory.getInstance(application).getRawDatabase().rawExecSQL("DROP TABLE " + table);
+      DatabaseFactory.getInstance(application).getRawDatabase().execSQL("DROP TABLE " + table);
     }
   }
 

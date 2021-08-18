@@ -7,7 +7,7 @@ import android.database.Cursor;
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;

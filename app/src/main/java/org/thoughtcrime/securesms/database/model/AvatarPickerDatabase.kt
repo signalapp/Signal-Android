@@ -50,7 +50,7 @@ class AvatarPickerDatabase(context: Context, databaseHelper: SQLCipherOpenHelper
       throw IllegalArgumentException("Must save this avatar before trying to mark usage.")
     }
 
-    val db = databaseHelper.writableDatabase
+    val db = databaseHelper.signalWritableDatabase
     val where = ID_WHERE
     val args = SqlUtil.buildArgs(databaseId.id)
     val values = ContentValues(1)
@@ -65,7 +65,7 @@ class AvatarPickerDatabase(context: Context, databaseHelper: SQLCipherOpenHelper
       throw IllegalArgumentException("Cannot update an unsaved avatar")
     }
 
-    val db = databaseHelper.writableDatabase
+    val db = databaseHelper.signalWritableDatabase
     val where = ID_WHERE
     val values = ContentValues(1)
 
@@ -79,7 +79,7 @@ class AvatarPickerDatabase(context: Context, databaseHelper: SQLCipherOpenHelper
       throw IllegalArgumentException("Cannot delete an unsaved avatar.")
     }
 
-    val db = databaseHelper.writableDatabase
+    val db = databaseHelper.signalWritableDatabase
     val where = ID_WHERE
     val args = SqlUtil.buildArgs(databaseId.id)
 
@@ -87,7 +87,7 @@ class AvatarPickerDatabase(context: Context, databaseHelper: SQLCipherOpenHelper
   }
 
   private fun saveAvatar(avatar: Avatar, groupId: GroupId?): Avatar {
-    val db = databaseHelper.writableDatabase
+    val db = databaseHelper.signalWritableDatabase
     val databaseId = avatar.databaseId
 
     if (databaseId is Avatar.DatabaseId.DoNotPersist) {
@@ -119,7 +119,7 @@ class AvatarPickerDatabase(context: Context, databaseHelper: SQLCipherOpenHelper
   }
 
   fun getAllAvatars(): List<Avatar> {
-    val db = databaseHelper.readableDatabase
+    val db = databaseHelper.signalReadableDatabase
     val results = mutableListOf<Avatar>()
 
     db.query(TABLE_NAME, SqlUtil.buildArgs(ID, AVATAR), null, null, null, null, null)?.use {
@@ -143,7 +143,7 @@ class AvatarPickerDatabase(context: Context, databaseHelper: SQLCipherOpenHelper
   }
 
   private fun getAvatars(groupId: GroupId?): List<Avatar> {
-    val db = databaseHelper.readableDatabase
+    val db = databaseHelper.signalReadableDatabase
     val orderBy = "$LAST_USED DESC"
     val results = mutableListOf<Avatar>()
 

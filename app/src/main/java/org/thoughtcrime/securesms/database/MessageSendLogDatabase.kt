@@ -198,7 +198,7 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SQLC
     if (!FeatureFlags.retryReceipts()) return
 
     if (sendMessageResult.isSuccess && sendMessageResult.success.content.isPresent) {
-      val db = databaseHelper.writableDatabase
+      val db = databaseHelper.signalWritableDatabase
 
       db.beginTransaction()
       try {
@@ -219,7 +219,7 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SQLC
   }
 
   private fun insert(recipients: List<RecipientDevice>, dateSent: Long, content: SignalServiceProtos.Content, contentHint: ContentHint, messageIds: List<MessageId>): Long {
-    val db = databaseHelper.writableDatabase
+    val db = databaseHelper.signalWritableDatabase
 
     db.beginTransaction()
     try {
@@ -266,7 +266,7 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SQLC
 
     trimOldMessages(System.currentTimeMillis(), FeatureFlags.retryRespondMaxAge())
 
-    val db = databaseHelper.readableDatabase
+    val db = databaseHelper.signalReadableDatabase
     val table = "${PayloadTable.TABLE_NAME} LEFT JOIN ${RecipientTable.TABLE_NAME} ON ${PayloadTable.TABLE_NAME}.${PayloadTable.ID} = ${RecipientTable.TABLE_NAME}.${RecipientTable.PAYLOAD_ID}"
     val query = "${PayloadTable.DATE_SENT} = ? AND ${RecipientTable.RECIPIENT_ID} = ? AND ${RecipientTable.DEVICE} = ?"
     val args = SqlUtil.buildArgs(dateSent, recipientId, device)
@@ -304,7 +304,7 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SQLC
   fun deleteAllRelatedToMessage(messageId: Long, mms: Boolean) {
     if (!FeatureFlags.retryReceipts()) return
 
-    val db = databaseHelper.writableDatabase
+    val db = databaseHelper.signalWritableDatabase
     val query = "${PayloadTable.ID} IN (SELECT ${MessageTable.PAYLOAD_ID} FROM ${MessageTable.TABLE_NAME} WHERE ${MessageTable.MESSAGE_ID} = ? AND ${MessageTable.IS_MMS} = ?)"
     val args = SqlUtil.buildArgs(messageId, if (mms) 1 else 0)
 
@@ -320,7 +320,7 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SQLC
   fun deleteEntriesForRecipient(dateSent: List<Long>, recipientId: RecipientId, device: Int) {
     if (!FeatureFlags.retryReceipts()) return
 
-    val db = databaseHelper.writableDatabase
+    val db = databaseHelper.signalWritableDatabase
 
     db.beginTransaction()
     try {
@@ -348,13 +348,13 @@ class MessageSendLogDatabase constructor(context: Context?, databaseHelper: SQLC
   fun deleteAll() {
     if (!FeatureFlags.retryReceipts()) return
 
-    databaseHelper.writableDatabase.delete(PayloadTable.TABLE_NAME, null, null)
+    databaseHelper.signalWritableDatabase.delete(PayloadTable.TABLE_NAME, null, null)
   }
 
   fun trimOldMessages(currentTime: Long, maxAge: Long) {
     if (!FeatureFlags.retryReceipts()) return
 
-    val db = databaseHelper.writableDatabase
+    val db = databaseHelper.signalWritableDatabase
     val query = "${PayloadTable.DATE_SENT} < ?"
     val args = SqlUtil.buildArgs(currentTime - maxAge)
 

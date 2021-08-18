@@ -28,7 +28,7 @@ class ChatColorsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) 
   }
 
   fun getById(chatColorsId: ChatColors.Id): ChatColors {
-    val db = databaseHelper.readableDatabase
+    val db = databaseHelper.signalReadableDatabase
     val projection = arrayOf(ID, CHAT_COLORS)
     val args = SqlUtil.buildArgs(chatColorsId.longValue)
 
@@ -51,7 +51,7 @@ class ChatColorsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) 
   }
 
   fun getSavedChatColors(): List<ChatColors> {
-    val db = databaseHelper.readableDatabase
+    val db = databaseHelper.signalReadableDatabase
     val projection = arrayOf(ID, CHAT_COLORS)
     val result = mutableListOf<ChatColors>()
 
@@ -69,7 +69,7 @@ class ChatColorsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) 
       throw IllegalArgumentException("Bad chat colors to insert.")
     }
 
-    val db: SQLiteDatabase = databaseHelper.writableDatabase
+    val db: SQLiteDatabase = databaseHelper.signalWritableDatabase
     val values = ContentValues(1).apply {
       put(CHAT_COLORS, chatColors.serialize().toByteArray())
     }
@@ -89,7 +89,7 @@ class ChatColorsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) 
       throw IllegalArgumentException("Bad chat colors to update.")
     }
 
-    val db: SQLiteDatabase = databaseHelper.writableDatabase
+    val db: SQLiteDatabase = databaseHelper.signalWritableDatabase
     val values = ContentValues(1).apply {
       put(CHAT_COLORS, chatColors.serialize().toByteArray())
     }
@@ -115,7 +115,7 @@ class ChatColorsDatabase(context: Context, databaseHelper: SQLCipherOpenHelper) 
       throw IllegalArgumentException("Cannot delete this chat color")
     }
 
-    val db: SQLiteDatabase = databaseHelper.writableDatabase
+    val db: SQLiteDatabase = databaseHelper.signalWritableDatabase
     db.delete(TABLE_NAME, ID_WHERE, SqlUtil.buildArgs(chatColors.id.longValue))
 
     if (SignalStore.chatColorsValues().chatColors?.id == chatColors.id) {

@@ -85,7 +85,7 @@ public class IdentityDatabase extends Database {
   }
 
   public Cursor getIdentities() {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     return database.query(TABLE_NAME, null, null, null, null, null, null);
   }
 
@@ -95,7 +95,7 @@ public class IdentityDatabase extends Database {
   }
 
   public Optional<IdentityRecord> getIdentity(@NonNull RecipientId recipientId) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     Cursor         cursor   = null;
 
     try {
@@ -116,7 +116,7 @@ public class IdentityDatabase extends Database {
 
   public @NonNull IdentityRecordList getIdentities(@NonNull List<Recipient> recipients) {
     List<IdentityRecord> records       = new LinkedList<>();
-    SQLiteDatabase       database      = databaseHelper.getReadableDatabase();
+    SQLiteDatabase       database      = databaseHelper.getSignalReadableDatabase();
     String[]             selectionArgs = new String[1];
 
     database.beginTransaction();
@@ -147,7 +147,7 @@ public class IdentityDatabase extends Database {
   }
 
   public void setApproval(@NonNull RecipientId recipientId, boolean nonBlockingApproval) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
 
     ContentValues contentValues = new ContentValues(2);
     contentValues.put(NONBLOCKING_APPROVAL, nonBlockingApproval);
@@ -158,7 +158,7 @@ public class IdentityDatabase extends Database {
   }
 
   public void setVerified(@NonNull RecipientId recipientId, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
 
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(VERIFIED, verifiedStatus.toInt());
@@ -190,7 +190,7 @@ public class IdentityDatabase extends Database {
   }
 
   private boolean hasMatchingKey(@NonNull RecipientId id, IdentityKey identityKey) {
-    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db    = databaseHelper.getSignalReadableDatabase();
     String         query = RECIPIENT_ID + " = ? AND " + IDENTITY_KEY + " = ?";
     String[]       args  = new String[]{id.serialize(), Base64.encodeBytes(identityKey.serialize())};
 
@@ -200,7 +200,7 @@ public class IdentityDatabase extends Database {
   }
 
   private boolean hasMatchingStatus(@NonNull RecipientId id, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
-    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db    = databaseHelper.getSignalReadableDatabase();
     String         query = RECIPIENT_ID + " = ? AND " + IDENTITY_KEY + " = ? AND " + VERIFIED + " = ?";
     String[]       args  = new String[]{id.serialize(), Base64.encodeBytes(identityKey.serialize()), String.valueOf(verifiedStatus.toInt())};
 
@@ -224,7 +224,7 @@ public class IdentityDatabase extends Database {
   private void saveIdentityInternal(@NonNull RecipientId recipientId, IdentityKey identityKey, VerifiedStatus verifiedStatus,
                                     boolean firstUse, long timestamp, boolean nonBlockingApproval)
   {
-    SQLiteDatabase database          = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database          = databaseHelper.getSignalWritableDatabase();
     String         identityKeyString = Base64.encodeBytes(identityKey.serialize());
 
     ContentValues contentValues = new ContentValues();

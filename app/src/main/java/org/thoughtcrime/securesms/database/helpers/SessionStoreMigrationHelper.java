@@ -4,7 +4,7 @@ package org.thoughtcrime.securesms.database.helpers;
 import android.content.ContentValues;
 import android.content.Context;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.Conversions;
 import org.signal.core.util.logging.Log;

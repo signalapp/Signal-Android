@@ -1,13 +1,12 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
-
-import net.sqlcipher.Cursor;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
@@ -126,7 +125,7 @@ public class SearchDatabase extends Database {
   }
 
   public Cursor queryMessages(@NonNull String query) {
-    SQLiteDatabase db                  = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db                  = databaseHelper.getSignalReadableDatabase();
     String         fullTextSearchQuery = createFullTextSearchQuery(query);
 
     if (TextUtils.isEmpty(fullTextSearchQuery)) {
@@ -137,7 +136,7 @@ public class SearchDatabase extends Database {
   }
 
   public Cursor queryMessages(@NonNull String query, long threadId) {
-    SQLiteDatabase db                  = databaseHelper.getReadableDatabase();
+    SQLiteDatabase db                  = databaseHelper.getSignalReadableDatabase();
     String         fullTextSearchQuery = createFullTextSearchQuery(query);
 
     if (TextUtils.isEmpty(fullTextSearchQuery)) {

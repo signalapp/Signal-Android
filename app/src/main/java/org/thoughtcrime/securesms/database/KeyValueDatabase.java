@@ -6,9 +6,9 @@ import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteDatabaseHook;
-import net.sqlcipher.database.SQLiteOpenHelper;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabaseHook;
+import net.zetetic.database.sqlcipher.SQLiteOpenHelper;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -47,8 +47,7 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
 
   private static volatile KeyValueDatabase instance;
 
-  private final Application    application;
-  private final DatabaseSecret databaseSecret;
+  private final Application application;
 
   public static @NonNull KeyValueDatabase getInstance(@NonNull Application context) {
     if (instance == null) {
@@ -63,10 +62,9 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
   }
 
   private KeyValueDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret) {
-    super(application, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook(), new SqlCipherErrorHandler(DATABASE_NAME));
+    super(application, DATABASE_NAME, databaseSecret.asString(), null, DATABASE_VERSION, 0,new SqlCipherErrorHandler(DATABASE_NAME), new SqlCipherDatabaseHook());
 
-    this.application    = application;
-    this.databaseSecret = databaseSecret;
+    this.application = application;
   }
 
   @Override
@@ -90,10 +88,13 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
   public void onOpen(SQLiteDatabase db) {
     Log.i(TAG, "onOpen()");
 
+    db.enableWriteAheadLogging();
+    db.setForeignKeyConstraintsEnabled(true);
+
     SignalExecutors.BOUNDED.execute(() -> {
       if (DatabaseFactory.getInstance(application).hasTable("key_value")) {
         Log.i(TAG, "Dropping original key_value table from the main database.");
-        DatabaseFactory.getInstance(application).getRawDatabase().rawExecSQL("DROP TABLE key_value");
+        DatabaseFactory.getInstance(application).getRawDatabase().execSQL("DROP TABLE key_value");
       }
     });
   }
@@ -179,14 +180,6 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
     } finally {
       db.endTransaction();
     }
-  }
-
-  private @NonNull SQLiteDatabase getReadableDatabase() {
-    return getReadableDatabase(databaseSecret.asString());
-  }
-
-  private @NonNull SQLiteDatabase getWritableDatabase() {
-    return getWritableDatabase(databaseSecret.asString());
   }
 
   @Override

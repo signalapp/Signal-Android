@@ -42,7 +42,7 @@ public class SessionDatabase extends Database {
   }
 
   public void store(@NonNull RecipientId recipientId, int deviceId, @NonNull SessionRecord record) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
 
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, recipientId.serialize());
@@ -53,7 +53,7 @@ public class SessionDatabase extends Database {
   }
 
   public @Nullable SessionRecord load(@NonNull RecipientId recipientId, int deviceId) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
 
     try (Cursor cursor = database.query(TABLE_NAME, new String[]{RECORD},
                                         RECIPIENT_ID + " = ? AND " + DEVICE + " = ?",
@@ -73,7 +73,7 @@ public class SessionDatabase extends Database {
   }
 
   public @NonNull List<SessionRecord> load(@NonNull List<RecipientDevice> ids) {
-    SQLiteDatabase      database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase      database = databaseHelper.getSignalReadableDatabase();
     List<SessionRecord> sessions = new ArrayList<>(ids.size());
 
     database.beginTransaction();
@@ -103,7 +103,7 @@ public class SessionDatabase extends Database {
   }
 
   public @NonNull List<SessionRow> getAllFor(@NonNull RecipientId recipientId) {
-    SQLiteDatabase   database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase   database = databaseHelper.getSignalReadableDatabase();
     List<SessionRow> results  = new LinkedList<>();
 
     try (Cursor cursor = database.query(TABLE_NAME, null,
@@ -126,7 +126,7 @@ public class SessionDatabase extends Database {
   }
 
   public @NonNull List<SessionRow> getAll() {
-    SQLiteDatabase   database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase   database = databaseHelper.getSignalReadableDatabase();
     List<SessionRow> results  = new LinkedList<>();
 
     try (Cursor cursor = database.query(TABLE_NAME, null, null, null, null, null, null)) {
@@ -145,7 +145,7 @@ public class SessionDatabase extends Database {
   }
 
   public @NonNull List<Integer> getSubDevices(@NonNull RecipientId recipientId) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     List<Integer>  results  = new LinkedList<>();
 
     try (Cursor cursor = database.query(TABLE_NAME, new String[] {DEVICE},
@@ -166,19 +166,19 @@ public class SessionDatabase extends Database {
   }
 
   public void delete(@NonNull RecipientId recipientId, int deviceId) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
 
     database.delete(TABLE_NAME, RECIPIENT_ID + " = ? AND " + DEVICE + " = ?",
                     new String[] {recipientId.serialize(), String.valueOf(deviceId)});
   }
 
   public void deleteAllFor(@NonNull RecipientId recipientId) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     database.delete(TABLE_NAME, RECIPIENT_ID + " = ?", new String[] {recipientId.serialize()});
   }
 
   public boolean hasSessionFor(@NonNull RecipientId recipientId) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     String         query    = RECIPIENT_ID + " = ?";
     String[]       args     = SqlUtil.buildArgs(recipientId);
 

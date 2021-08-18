@@ -18,8 +18,8 @@ import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteOpenHelper;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteOpenHelper;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.color.MaterialColor;
@@ -214,14 +214,18 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int    DATABASE_VERSION = 112;
   private static final String DATABASE_NAME    = "signal.db";
 
-  private final Context        context;
-  private final DatabaseSecret databaseSecret;
+  private final Context context;
 
   public SQLCipherOpenHelper(@NonNull Context context, @NonNull DatabaseSecret databaseSecret) {
-    super(context, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook(), new SqlCipherErrorHandler(DATABASE_NAME));
+    super(context, DATABASE_NAME, databaseSecret.asString(), null, DATABASE_VERSION, 0, new SqlCipherErrorHandler(DATABASE_NAME), new SqlCipherDatabaseHook());
 
-    this.context        = context.getApplicationContext();
-    this.databaseSecret = databaseSecret;
+    this.context = context.getApplicationContext();
+  }
+
+  @Override
+  public void onOpen(SQLiteDatabase db) {
+    db.enableWriteAheadLogging();
+    db.setForeignKeyConstraintsEnabled(true);
   }
 
   @Override
@@ -1361,12 +1365,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
 
         String selectIdsToUpdateProfileSharing = "SELECT r._id FROM recipient AS r INNER JOIN thread AS t ON r._id = t.recipient_ids WHERE profile_sharing = 0 AND (" + secureOutgoingSms + " OR " + secureOutgoingMms + ")";
 
-        db.rawExecSQL("UPDATE recipient SET profile_sharing = 1 WHERE _id IN (" + selectIdsToUpdateProfileSharing + ")");
+        db.execSQL("UPDATE recipient SET profile_sharing = 1 WHERE _id IN (" + selectIdsToUpdateProfileSharing + ")");
 
         String selectIdsWithGroupsInCommon = "SELECT r._id FROM recipient AS r WHERE EXISTS("
                                              + "SELECT 1 FROM groups AS g INNER JOIN recipient AS gr ON (g.recipient_id = gr._id AND gr.profile_sharing = 1) WHERE g.active = 1 AND (g.members LIKE r._id || ',%' OR g.members LIKE '%,' || r._id || ',%' OR g.members LIKE '%,' || r._id)"
                                              + ")";
-        db.rawExecSQL("UPDATE recipient SET groups_in_common = 1 WHERE _id IN (" + selectIdsWithGroupsInCommon + ")");
+        db.execSQL("UPDATE recipient SET groups_in_common = 1 WHERE _id IN (" + selectIdsWithGroupsInCommon + ")");
       }
 
       if (oldVersion < CLEAN_STORAGE_IDS_WITHOUT_INFO) {
@@ -1973,17 +1977,35 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     Log.i(TAG, "Upgrade complete. Took " + (System.currentTimeMillis() - startTime) + " ms.");
   }
 
-  public org.thoughtcrime.securesms.database.SQLiteDatabase getReadableDatabase() {
-    return new org.thoughtcrime.securesms.database.SQLiteDatabase(getReadableDatabase(databaseSecret.asString()));
-  }
-
-  public org.thoughtcrime.securesms.database.SQLiteDatabase getWritableDatabase() {
-    return new org.thoughtcrime.securesms.database.SQLiteDatabase(getWritableDatabase(databaseSecret.asString()));
+  @Override
+  public net.zetetic.database.sqlcipher.SQLiteDatabase getReadableDatabase() {
+    throw new UnsupportedOperationException("Call getSignalReadableDatabase() instead!");
   }
 
   @Override
-  public @NonNull SQLiteDatabase getSqlCipherDatabase() {
-    return getWritableDatabase().getSqlCipherDatabase();
+  public net.zetetic.database.sqlcipher.SQLiteDatabase getWritableDatabase() {
+    throw new UnsupportedOperationException("Call getSignalReadableDatabase() instead!");
+  }
+
+  public net.zetetic.database.sqlcipher.SQLiteDatabase getRawReadableDatabase() {
+    return super.getReadableDatabase();
+  }
+
+  public net.zetetic.database.sqlcipher.SQLiteDatabase getRawWritableDatabase() {
+    return super.getWritableDatabase();
+  }
+
+  public org.thoughtcrime.securesms.database.SQLiteDatabase getSignalReadableDatabase() {
+    return new org.thoughtcrime.securesms.database.SQLiteDatabase(super.getReadableDatabase());
+  }
+
+  public org.thoughtcrime.securesms.database.SQLiteDatabase getSignalWritableDatabase() {
+    return new org.thoughtcrime.securesms.database.SQLiteDatabase(super.getWritableDatabase());
+  }
+
+  @Override
+  public @NonNull net.zetetic.database.sqlcipher.SQLiteDatabase getSqlCipherDatabase() {
+    return super.getWritableDatabase();
   }
 
   public void markCurrent(SQLiteDatabase db) {
