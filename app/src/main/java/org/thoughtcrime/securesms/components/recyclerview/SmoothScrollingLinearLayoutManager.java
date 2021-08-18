@@ -14,6 +14,11 @@ public class SmoothScrollingLinearLayoutManager extends LinearLayoutManager {
     super(context, RecyclerView.VERTICAL, reverseLayout);
   }
 
+  @Override
+  public boolean supportsPredictiveItemAnimations() {
+    return false;
+  }
+
   public void smoothScrollToPosition(@NonNull Context context, int position, float millisecondsPerInch) {
     final LinearSmoothScroller scroller = new LinearSmoothScroller(context) {
       @Override
