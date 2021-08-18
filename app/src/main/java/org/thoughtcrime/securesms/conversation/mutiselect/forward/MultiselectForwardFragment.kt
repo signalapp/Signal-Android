@@ -227,7 +227,7 @@ class MultiselectForwardFragment :
   private fun handleMessageExpired() {
     dismissAllowingStateLoss()
     dismissibleDialog?.dismiss()
-    Toast.makeText(requireContext(), resources.getQuantityString(R.plurals.MultiselectForwardFragment__couldnt_forward_messages, getMultiShareArgs().size), Toast.LENGTH_SHORT).show()
+    Toast.makeText(requireContext(), resources.getQuantityString(R.plurals.MultiselectForwardFragment__couldnt_forward_messages, getMultiShareArgs().size), Toast.LENGTH_LONG).show()
   }
 
   private fun getDefaultDisplayMode(): Int {
