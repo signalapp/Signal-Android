@@ -12,6 +12,8 @@
 
         <TextView
             android:textSize="@dimen/text_size"
+            android:focusable="true"
+            android:textColorLink="@color/text"
             android:id="@+id/longmessage_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

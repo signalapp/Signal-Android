@@ -49,9 +49,9 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             // DMs
             val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
             val dmsPromise = SnodeAPI.getMessages(userPublicKey).map { envelopes ->
-                envelopes.map { envelope ->
+                envelopes.map { (envelope, serverHash) ->
                     // FIXME: Using a job here seems like a bad idea...
-                    MessageReceiveJob(envelope.toByteArray()).executeAsync()
+                    MessageReceiveJob(envelope.toByteArray(), serverHash).executeAsync()
                 }
             }
             promises.addAll(dmsPromise.get())

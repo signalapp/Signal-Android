@@ -13,6 +13,7 @@ abstract class Message {
     var sender: String? = null
     var groupPublicKey: String? = null
     var openGroupServerMessageID: Long? = null
+    var serverHash: String? = null
 
     open val ttl: Long = 14 * 24 * 60 * 60 * 1000
     open val isSelfSendValid: Boolean = false
