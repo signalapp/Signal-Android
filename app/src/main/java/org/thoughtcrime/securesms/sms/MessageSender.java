@@ -379,14 +379,14 @@ public class MessageSender {
 
   private static @NonNull OutgoingTextMessage applyUniversalExpireTimerIfNecessary(@NonNull Context context, @NonNull Recipient recipient, @NonNull OutgoingTextMessage outgoingTextMessage, long threadId) {
     if (outgoingTextMessage.getExpiresIn() == 0 && RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, recipient, threadId)) {
-      return new OutgoingTextMessage(outgoingTextMessage, TimeUnit.SECONDS.toMillis(SignalStore.settings().getUniversalExpireTimer()));
+      return outgoingTextMessage.withExpiry(TimeUnit.SECONDS.toMillis(SignalStore.settings().getUniversalExpireTimer()));
     }
     return outgoingTextMessage;
   }
 
   private static @NonNull OutgoingMediaMessage applyUniversalExpireTimerIfNecessary(@NonNull Context context, @NonNull Recipient recipient, @NonNull OutgoingMediaMessage outgoingMediaMessage, long threadId) {
     if (!outgoingMediaMessage.isExpirationUpdate() && outgoingMediaMessage.getExpiresIn() == 0 && RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, recipient, threadId)) {
-      return new OutgoingMediaMessage(outgoingMediaMessage, TimeUnit.SECONDS.toMillis(SignalStore.settings().getUniversalExpireTimer()));
+      return outgoingMediaMessage.withExpiry(TimeUnit.SECONDS.toMillis(SignalStore.settings().getUniversalExpireTimer()));
     }
     return outgoingMediaMessage;
   }

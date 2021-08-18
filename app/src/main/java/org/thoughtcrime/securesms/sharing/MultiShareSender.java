@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.SlideFactory;
@@ -26,6 +27,7 @@ import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -176,7 +178,12 @@ public final class MultiShareSender {
                                                                                                                  : Collections.emptyList(),
                                                                          validatedMentions);
 
-    MessageSender.send(context, outgoingMediaMessage, threadId, forceSms, null);
+    if (recipient.isRegistered() && !forceSms) {
+      MessageSender.send(context, new OutgoingSecureMediaMessage(outgoingMediaMessage), threadId, false, null);
+    } else {
+      MessageSender.send(context, outgoingMediaMessage, threadId, forceSms, null);
+    }
+
   }
 
   private static void sendTextMessage(@NonNull Context context,
@@ -187,7 +194,13 @@ public final class MultiShareSender {
                                       long expiresIn,
                                       int subscriptionId)
   {
-    OutgoingTextMessage outgoingTextMessage = new OutgoingTextMessage(recipient, multiShareArgs.getDraftText(), expiresIn, subscriptionId);
+
+    final OutgoingTextMessage outgoingTextMessage;
+    if (recipient.isRegistered() && !forceSms) {
+      outgoingTextMessage = new OutgoingEncryptedMessage(recipient, multiShareArgs.getDraftText(), expiresIn);
+    } else {
+      outgoingTextMessage = new OutgoingTextMessage(recipient, multiShareArgs.getDraftText(), expiresIn, subscriptionId);
+    }
 
     MessageSender.send(context, outgoingTextMessage, threadId, forceSms, null);
   }
