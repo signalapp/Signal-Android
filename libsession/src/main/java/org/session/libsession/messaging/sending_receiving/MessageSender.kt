@@ -11,6 +11,7 @@ import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.ClosedGroupControlMessage
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
+import org.session.libsession.messaging.messages.control.UnsendRequest
 import org.session.libsession.messaging.messages.visible.*
 import org.session.libsession.messaging.open_groups.*
 import org.session.libsession.messaging.utilities.MessageWrapper
@@ -94,7 +95,7 @@ object MessageSender {
             // • a closed group control message of type `new`
             var isNewClosedGroupControlMessage = false
             if (message is ClosedGroupControlMessage && message.kind is ClosedGroupControlMessage.Kind.New) isNewClosedGroupControlMessage = true
-            if (isSelfSend && message !is ConfigurationMessage && !isSyncMessage && !isNewClosedGroupControlMessage) {
+            if (isSelfSend && message !is ConfigurationMessage && !isSyncMessage && !isNewClosedGroupControlMessage && message !is UnsendRequest) {
                 handleSuccessfulMessageSend(message, destination)
                 deferred.resolve(Unit)
                 return promise
@@ -161,8 +162,10 @@ object MessageSender {
                         if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
                             SnodeModule.shared.broadcaster.broadcast("messageSent", message.sentTimestamp!!)
                         }
+                        val hash = it["hash"] as? String
+                        message.serverHash = hash
                         handleSuccessfulMessageSend(message, destination, isSyncMessage)
-                        var shouldNotify = (message is VisibleMessage && !isSyncMessage)
+                        var shouldNotify = ((message is VisibleMessage || message is UnsendRequest) && !isSyncMessage)
                         /*
                         if (message is ClosedGroupControlMessage && message.kind is ClosedGroupControlMessage.Kind.New) {
                             shouldNotify = true
@@ -251,28 +254,35 @@ object MessageSender {
     fun handleSuccessfulMessageSend(message: Message, destination: Destination, isSyncMessage: Boolean = false, openGroupSentTimestamp: Long = -1) {
         val storage = MessagingModuleConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()!!
-        val messageID = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender?:userPublicKey) ?: return
         // Ignore future self-sends
         storage.addReceivedMessageTimestamp(message.sentTimestamp!!)
-        if (openGroupSentTimestamp != -1L && message is VisibleMessage) {
-            storage.addReceivedMessageTimestamp(openGroupSentTimestamp)
-            storage.updateSentTimestamp(messageID, message.isMediaMessage(), openGroupSentTimestamp, message.threadID!!)
-            message.sentTimestamp = openGroupSentTimestamp
-        }
-        // Track the open group server message ID
-        if (message.openGroupServerMessageID != null && destination is Destination.OpenGroupV2) {
-            val encoded = GroupUtil.getEncodedOpenGroupID("${destination.server}.${destination.room}".toByteArray())
-            val threadID = storage.getThreadId(Address.fromSerialized(encoded))
-            if (threadID != null && threadID >= 0) {
-                storage.setOpenGroupServerMessageID(messageID, message.openGroupServerMessageID!!, threadID, !(message as VisibleMessage).isMediaMessage())
+        storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender?:userPublicKey)?.let { messageID ->
+            if (openGroupSentTimestamp != -1L && message is VisibleMessage) {
+                storage.addReceivedMessageTimestamp(openGroupSentTimestamp)
+                storage.updateSentTimestamp(messageID, message.isMediaMessage(), openGroupSentTimestamp, message.threadID!!)
+                message.sentTimestamp = openGroupSentTimestamp
             }
-        }
-        // Mark the message as sent
-        storage.markAsSent(message.sentTimestamp!!, message.sender?:userPublicKey)
-        storage.markUnidentified(message.sentTimestamp!!, message.sender?:userPublicKey)
-        // Start the disappearing messages timer if needed
-        if (message is VisibleMessage && !isSyncMessage) {
-            SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(message.sentTimestamp!!, message.sender?:userPublicKey)
+            // When the sync message is successfully sent, the hash value of this TSOutgoingMessage
+            // will be replaced by the hash value of the sync message. Since the hash value of the
+            // real message has no use when we delete a message. It is OK to let it be.
+            message.serverHash?.let {
+                storage.setMessageServerHash(messageID, it)
+            }
+            // Track the open group server message ID
+            if (message.openGroupServerMessageID != null && destination is Destination.OpenGroupV2) {
+                val encoded = GroupUtil.getEncodedOpenGroupID("${destination.server}.${destination.room}".toByteArray())
+                val threadID = storage.getThreadId(Address.fromSerialized(encoded))
+                if (threadID != null && threadID >= 0) {
+                    storage.setOpenGroupServerMessageID(messageID, message.openGroupServerMessageID!!, threadID, !(message as VisibleMessage).isMediaMessage())
+                }
+            }
+            // Mark the message as sent
+            storage.markAsSent(message.sentTimestamp!!, message.sender?:userPublicKey)
+            storage.markUnidentified(message.sentTimestamp!!, message.sender?:userPublicKey)
+            // Start the disappearing messages timer if needed
+            if (message is VisibleMessage && !isSyncMessage) {
+                SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(message.sentTimestamp!!, message.sender?:userPublicKey)
+            }
         }
         // Sync the message if:
         // • it's a visible message

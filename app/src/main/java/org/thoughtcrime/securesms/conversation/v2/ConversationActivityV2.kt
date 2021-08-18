@@ -50,6 +50,7 @@ import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.messaging.mentions.Mention
 import org.session.libsession.messaging.mentions.MentionsManager
 import org.session.libsession.messaging.messages.control.DataExtractionNotification
+import org.session.libsession.messaging.messages.control.UnsendRequest
 import org.session.libsession.messaging.messages.signal.OutgoingMediaMessage
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
 import org.session.libsession.messaging.messages.visible.OpenGroupInvitation
@@ -59,8 +60,10 @@ import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.link_preview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
+import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.Address.Companion.fromSerialized
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.MediaTypes
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.concurrent.SimpleTask
@@ -70,6 +73,7 @@ import org.session.libsignal.crypto.MnemonicCodec
 import org.session.libsignal.utilities.ListenableFuture
 import org.session.libsignal.utilities.guava.Optional
 import org.session.libsignal.utilities.hexEncodedPrivateKey
+import org.session.libsignal.utilities.toHexString
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.audio.AudioRecorder
@@ -205,6 +209,9 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         const val PICK_GIF = 10
         const val PICK_FROM_LIBRARY = 12
         const val INVITE_CONTACTS = 124
+
+        //flag
+        const val IS_UNSEND_REQUESTS_ENABLED = false
     }
     // endregion
 
@@ -1114,7 +1121,61 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         stopAudioHandler.removeCallbacks(stopVoiceMessageRecordingTask)
     }
 
-    override fun deleteMessages(messages: Set<MessageRecord>) {
+    private fun buildUnsendRequest(message: MessageRecord): UnsendRequest? {
+        if (this.thread.isOpenGroupRecipient) return null
+        val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
+        messageDataProvider.getServerHashForMessage(message.id) ?: return null
+        val unsendRequest = UnsendRequest()
+        if (message.isOutgoing) {
+            unsendRequest.author = TextSecurePreferences.getLocalNumber(this)
+        } else {
+            unsendRequest.author = message.individualRecipient.address.contactIdentifier()
+        }
+        unsendRequest.timestamp = message.timestamp
+
+        return unsendRequest
+    }
+
+    private fun deleteLocally(message: MessageRecord) {
+        buildUnsendRequest(message)?.let { unsendRequest ->
+            TextSecurePreferences.getLocalNumber(this@ConversationActivityV2)?.let {
+                MessageSender.send(unsendRequest, Address.fromSerialized(it))
+            }
+        }
+        MessagingModuleConfiguration.shared.messageDataProvider.deleteMessage(message.id, !message.isMms)
+    }
+
+    private fun deleteForEveryone(message: MessageRecord) {
+        buildUnsendRequest(message)?.let { unsendRequest ->
+            MessageSender.send(unsendRequest, thread.address)
+        }
+        val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
+        val messageDB = DatabaseFactory.getLokiMessageDatabase(this@ConversationActivityV2)
+        val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
+        if (openGroup != null) {
+            messageDB.getServerID(message.id, !message.isMms)?.let { messageServerID ->
+                OpenGroupAPIV2.deleteMessage(messageServerID, openGroup.room, openGroup.server)
+                    .success {
+                        messageDataProvider.deleteMessage(message.id, !message.isMms)
+                    }.failUi { error ->
+                        Toast.makeText(this@ConversationActivityV2, "Couldn't delete message due to error: $error", Toast.LENGTH_LONG).show()
+                    }
+            }
+        } else {
+            messageDataProvider.deleteMessage(message.id, !message.isMms)
+            messageDataProvider.getServerHashForMessage(message.id)?.let { serverHash ->
+                var publicKey = thread.address.serialize()
+                if (thread.isClosedGroupRecipient) { publicKey = GroupUtil.doubleDecodeGroupID(publicKey).toHexString() }
+                SnodeAPI.deleteMessage(publicKey, listOf(serverHash))
+                    .failUi { error ->
+                        Toast.makeText(this@ConversationActivityV2, "Couldn't delete message due to error: $error", Toast.LENGTH_LONG).show()
+                    }
+            }
+        }
+    }
+
+    // Remove this after the unsend request is enabled
+    fun deleteMessagesWithoutUnsendRequest(messages: Set<MessageRecord>) {
         val messageCount = messages.size
         val messageDataProvider = MessagingModuleConfiguration.shared.messageDataProvider
         val messageDB = DatabaseFactory.getLokiMessageDatabase(this@ConversationActivityV2)
@@ -1141,7 +1202,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             } else {
                 for (message in messages) {
                     if (message.isMms) {
-                        DatabaseFactory.getMmsDatabase(this@ConversationActivityV2).delete(message.id)
+                        DatabaseFactory.getMmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
                     } else {
                         DatabaseFactory.getSmsDatabase(this@ConversationActivityV2).deleteMessage(message.id)
                     }
@@ -1154,6 +1215,72 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
             endActionMode()
         }
         builder.show()
+    }
+
+    override fun deleteMessages(messages: Set<MessageRecord>) {
+        if (!IS_UNSEND_REQUESTS_ENABLED) {
+            deleteMessagesWithoutUnsendRequest(messages)
+            return
+        }
+        val allSentByCurrentUser = messages.all { it.isOutgoing }
+        val allHasHash = messages.all { DatabaseFactory.getLokiMessageDatabase(this@ConversationActivityV2).getMessageServerHash(it.id) != null }
+        if (thread.isOpenGroupRecipient) {
+            val messageCount = messages.size
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(resources.getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messageCount, messageCount))
+            builder.setMessage(resources.getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messageCount, messageCount))
+            builder.setCancelable(true)
+            builder.setPositiveButton(R.string.delete) { _, _ ->
+                for (message in messages) {
+                    this.deleteForEveryone(message)
+                }
+                endActionMode()
+            }
+            builder.setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+                endActionMode()
+            }
+            builder.show()
+        } else if (allSentByCurrentUser && allHasHash) {
+            val bottomSheet = DeleteOptionsBottomSheet()
+            bottomSheet.recipient = thread
+            bottomSheet.onDeleteForMeTapped = {
+                for (message in messages) {
+                    this.deleteLocally(message)
+                }
+                bottomSheet.dismiss()
+                endActionMode()
+            }
+            bottomSheet.onDeleteForEveryoneTapped = {
+                for (message in messages) {
+                    this.deleteForEveryone(message)
+                }
+                bottomSheet.dismiss()
+                endActionMode()
+            }
+            bottomSheet.onCancelTapped = {
+                bottomSheet.dismiss()
+                endActionMode()
+            }
+            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+        } else {
+            val messageCount = messages.size
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle(resources.getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messageCount, messageCount))
+            builder.setMessage(resources.getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messageCount, messageCount))
+            builder.setCancelable(true)
+            builder.setPositiveButton(R.string.delete) { _, _ ->
+                for (message in messages) {
+                    this.deleteLocally(message)
+                }
+                endActionMode()
+            }
+            builder.setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+                endActionMode()
+            }
+            builder.show()
+        }
     }
 
     override fun banUser(messages: Set<MessageRecord>) {

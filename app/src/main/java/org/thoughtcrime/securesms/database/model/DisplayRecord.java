@@ -117,6 +117,7 @@ public abstract class DisplayRecord {
   public boolean isMissedCall() {
     return SmsDatabase.Types.isMissedCall(type);
   }
+  public boolean isDeleted() { return  MmsSmsColumns.Types.isDeletedMessage(type); }
 
   public boolean isControlMessage() {
     return isGroupUpdateMessage() || isExpirationTimerUpdate() || isDataExtractionNotification();

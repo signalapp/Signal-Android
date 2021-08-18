@@ -73,9 +73,11 @@ class ConversationAdapter(context: Context, cursor: Cursor, private val onItemPr
                 val position = viewHolder.adapterPosition
                 view.indexInAdapter = position
                 view.bind(message, getMessageBefore(position, cursor), getMessageAfter(position, cursor), glide, searchQuery)
-                view.onPress = { event -> onItemPress(message, viewHolder.adapterPosition, view, event) }
-                view.onSwipeToReply = { onItemSwipeToReply(message, viewHolder.adapterPosition) }
-                view.onLongPress = { onItemLongPress(message, viewHolder.adapterPosition) }
+                if (!message.isDeleted) {
+                    view.onPress = { event -> onItemPress(message, viewHolder.adapterPosition, view, event) }
+                    view.onSwipeToReply = { onItemSwipeToReply(message, viewHolder.adapterPosition) }
+                    view.onLongPress = { onItemLongPress(message, viewHolder.adapterPosition) }
+                }
                 view.contentViewDelegate = visibleMessageContentViewDelegate
             }
             is ControlMessageViewHolder -> viewHolder.view.bind(message)

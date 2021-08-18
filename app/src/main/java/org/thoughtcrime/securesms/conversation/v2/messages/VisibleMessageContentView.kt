@@ -77,7 +77,11 @@ class VisibleMessageContentView : LinearLayout {
         mainContainer.removeAllViews()
         onContentClick = null
         onContentDoubleTap = null
-        if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
+        if (message.isDeleted) {
+            val deletedMessageView = DeletedMessageView(context)
+            deletedMessageView.bind(message, VisibleMessageContentView.getTextColor(context,message))
+            mainContainer.addView(deletedMessageView)
+        } else if (message is MmsMessageRecord && message.linkPreviews.isNotEmpty()) {
             val linkPreviewView = LinkPreviewView(context)
             linkPreviewView.bind(message, glide, isStartOfMessageCluster, isEndOfMessageCluster, searchQuery)
             mainContainer.addView(linkPreviewView)
