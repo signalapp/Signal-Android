@@ -28,7 +28,7 @@ dependencyVerification {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation project(':core-util')
-    implementation 'org.whispersystems:signal-client-java:0.8.3'
+    implementation "org.whispersystems:signal-client-java:${LIBSIGNAL_CLIENT_VERSION}"
     api 'org.greenrobot:eventbus:3.0.0'
 
     testImplementation 'junit:junit:4.12'

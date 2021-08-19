@@ -457,7 +457,7 @@ dependencies {
     implementation project(':device-transfer')
 
     implementation 'org.signal:zkgroup-android:0.7.0'
-    implementation 'org.whispersystems:signal-client-android:0.8.3'
+    implementation "org.whispersystems:signal-client-android:${LIBSIGNAL_CLIENT_VERSION}"
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
 
     implementation('com.mobilecoin:android-sdk:1.1.0') {
