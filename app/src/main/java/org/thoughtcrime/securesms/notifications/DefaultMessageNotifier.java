@@ -319,8 +319,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
     for (StatusBarNotification notification: notificationManager.getActiveNotifications()) {
-
-      if (messageIdTag.equals(notification.getNotification().extras.getString(LATEST_MESSAGE_ID_TAG))) {
+      if ( (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && notification.isAppGroup() == bundled)
+              && messageIdTag.equals(notification.getNotification().extras.getString(LATEST_MESSAGE_ID_TAG))) {
         return;
       }
     }
