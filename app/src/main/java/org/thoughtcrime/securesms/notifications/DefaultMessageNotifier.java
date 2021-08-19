@@ -93,8 +93,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
   public static final  String EXTRA_REMOTE_REPLY        = "extra_remote_reply";
   public static final  String LATEST_MESSAGE_ID_TAG     = "extra_latest_message_id";
 
-  private static final  int   FOREGROUND_ID             = 313399;
-  private static final  int   SUMMARY_NOTIFICATION_ID   = 1338;
+  private static final int    FOREGROUND_ID              = 313399;
+  private static final int    SUMMARY_NOTIFICATION_ID    = 1338;
   private static final int    PENDING_MESSAGES_ID       = 1111;
   private static final String NOTIFICATION_GROUP        = "messages";
   private static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(2);
