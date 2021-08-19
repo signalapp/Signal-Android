@@ -83,6 +83,31 @@ def abiPostFix = ['universal'   : 0,
 
 def keystores = [ 'debug'  : loadKeystoreProperties('keystore.debug.properties') ]
 
+def selectableVariants = [
+        'internalProdFlipper',
+        'internalProdPerf',
+        'internalProdRelease',
+        'internalStagingFlipper',
+        'internalStagingPerf',
+        'internalStagingRelease',
+        'nightlyProdFlipper',
+        'nightlyProdPerf',
+        'nightlyProdRelease',
+        'nightlyStagingPerf',
+        'playProdDebug',
+        'playProdFlipper',
+        'playProdPerf',
+        'playProdRelease',
+        'playStagingDebug',
+        'playStagingFlipper',
+        'playStagingPerf',
+        'playStagingRelease',
+        'studyProdMock',
+        'studyProdPerf',
+        'websiteProdFlipper',
+        'websiteProdRelease',
+]
+
 android {
     buildToolsVersion BUILD_TOOL_VERSION
     compileSdkVersion COMPILE_SDK
@@ -353,16 +378,9 @@ android {
         def distribution = variant.getFlavors().get(0).name
         def environment  = variant.getFlavors().get(1).name
         def buildType    = variant.buildType.name
+        def fullName     = distribution + environment.capitalize() + buildType.capitalize()
 
-        if (distribution == 'study' && buildType != 'perf' && buildType != 'mock') {
-            variant.setIgnore(true)
-        } else if (distribution != 'study' && buildType == 'mock') {
-            variant.setIgnore(true)
-        } else if (distribution == 'internal' && buildType != 'flipper' && buildType != 'perf' && buildType != 'release') {
-            variant.setIgnore(true)
-        } else if (distribution == 'nightly' && environment != 'prod') {
-            variant.setIgnore(true)
-        } else if (distribution == 'nightly' && buildType != 'flipper' && buildType != 'perf' && buildType != 'release') {
+        if (!selectableVariants.contains(fullName)) {
             variant.setIgnore(true)
         }
     }
