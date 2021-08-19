@@ -210,8 +210,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int ABANDONED_ATTACHMENT_CLEANUP     = 110;
   private static final int AVATAR_PICKER                    = 111;
   private static final int THREAD_CLEANUP                   = 112;
+  private static final int SESSION_MIGRATION                = 113;
 
-  private static final int    DATABASE_VERSION = 112;
+  private static final int    DATABASE_VERSION = 113;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context context;
@@ -1963,6 +1964,28 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       if (oldVersion < THREAD_CLEANUP) {
         db.delete("mms", "thread_id NOT IN (SELECT _id FROM thread)", null);
         db.delete("part", "mid != -8675309 AND mid NOT IN (SELECT _id FROM mms)", null);
+      }
+
+      if (oldVersion < SESSION_MIGRATION) {
+        long start = System.currentTimeMillis();
+
+        db.execSQL("CREATE TABLE sessions_tmp (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                               "address TEXT NOT NULL, " +
+                                               "device INTEGER NOT NULL, " +
+                                               "record BLOB NOT NULL, " +
+                                               "UNIQUE(address, device))");
+
+        db.execSQL("INSERT INTO sessions_tmp (address, device, record) "  +
+                   "SELECT COALESCE(recipient.uuid, recipient.phone) AS new_address, " +
+                           "sessions.device, " +
+                           "sessions.record " +
+                   "FROM sessions INNER JOIN recipient ON sessions.address = recipient._id " +
+                   "WHERE new_address NOT NULL");
+
+        db.execSQL("DROP TABLE sessions");
+        db.execSQL("ALTER TABLE sessions_tmp RENAME TO sessions");
+
+        Log.d(TAG, "Session migration took " + (System.currentTimeMillis() - start) + " ms");
       }
 
       db.setTransactionSuccessful();

@@ -543,8 +543,9 @@ public class DirectoryHelper {
   }
 
   private static boolean hasCommunicatedWith(@NonNull Context context, @NonNull Recipient recipient) {
-    return DatabaseFactory.getThreadDatabase(context).hasThread(recipient.getId()) ||
-           DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.getId());
+    return DatabaseFactory.getThreadDatabase(context).hasThread(recipient.getId())                                                ||
+           (recipient.hasUuid() && DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.requireUuid().toString())) ||
+           (recipient.hasE164() && DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.requireE164()));
   }
 
   static class DirectoryResult {

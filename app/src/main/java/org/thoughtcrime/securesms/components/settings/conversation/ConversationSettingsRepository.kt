@@ -220,7 +220,14 @@ class ConversationSettingsRepository(
     Preconditions.checkArgument(FeatureFlags.internalUser(), "Internal users only!")
 
     SignalExecutors.BOUNDED.execute {
-      DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipientId)
+      val recipient = Recipient.resolved(recipientId)
+
+      if (recipient.hasUuid()) {
+        DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireUuid().toString())
+      }
+      if (recipient.hasE164()) {
+        DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireE164())
+      }
     }
   }
 

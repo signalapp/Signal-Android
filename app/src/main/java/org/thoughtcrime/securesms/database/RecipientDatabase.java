@@ -2961,17 +2961,19 @@ public class RecipientDatabase extends Database {
     }
 
     // Sessions
-    boolean hasE164Session = DatabaseFactory.getSessionDatabase(context).getAllFor(byE164).size() > 0;
-    boolean hasUuidSession = DatabaseFactory.getSessionDatabase(context).getAllFor(byUuid).size() > 0;
+    SessionDatabase sessionDatabase = DatabaseFactory.getSessionDatabase(context);
+
+    boolean hasE164Session = sessionDatabase.getAllFor(e164Settings.e164).size() > 0;
+    boolean hasUuidSession = sessionDatabase.getAllFor(uuidSettings.uuid.toString()).size() > 0;
 
     if (hasE164Session && hasUuidSession) {
       Log.w(TAG, "Had a session for both users. Deleting the E164.", true);
-      db.delete(SessionDatabase.TABLE_NAME, SessionDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
+      sessionDatabase.deleteAllFor(e164Settings.e164);
     } else if (hasE164Session && !hasUuidSession) {
       Log.w(TAG, "Had a session for E164, but not UUID. Re-assigning to the UUID.", true);
       ContentValues values = new ContentValues();
-      values.put(SessionDatabase.RECIPIENT_ID, byUuid.serialize());
-      db.update(SessionDatabase.TABLE_NAME, values, SessionDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(byE164));
+      values.put(SessionDatabase.ADDRESS, uuidSettings.uuid.toString());
+      db.update(SessionDatabase.TABLE_NAME, values, SessionDatabase.ADDRESS + " = ?", SqlUtil.buildArgs(e164Settings.e164));
     } else if (!hasE164Session && hasUuidSession) {
       Log.w(TAG, "Had a session for UUID, but not E164. No action necessary.", true);
     } else {
