@@ -380,7 +380,7 @@ object TextSecurePreferences {
 
     @JvmStatic
     fun isInThreadNotifications(context: Context): Boolean {
-        return getBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, false)
+        return getBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, true)
     }
 
     @JvmStatic
