@@ -315,7 +315,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
     List<NotificationItem>             notifications  = notificationState.getNotifications();
     Recipient                          recipient      = notifications.get(0).getRecipient();
     int                                notificationId = (int) (SUMMARY_NOTIFICATION_ID + (bundled ? notifications.get(0).getThreadId() : 0));
-    String                             messageIdTag   = String.valueOf(notifications.get(0).getId());
+    String                             messageIdTag   = String.valueOf(notifications.get(0).getTimestamp());
 
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
     for (StatusBarNotification notification: notificationManager.getActiveNotifications()) {
@@ -402,6 +402,16 @@ public class DefaultMessageNotifier implements MessageNotifier {
     builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
     builder.setAutoCancel(true);
 
+    String messageIdTag = String.valueOf(notifications.get(0).getTimestamp());
+
+    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    for (StatusBarNotification notification: notificationManager.getActiveNotifications()) {
+      if (notification.getId() == SUMMARY_NOTIFICATION_ID
+              && messageIdTag.equals(notification.getNotification().extras.getString(LATEST_MESSAGE_ID_TAG))) {
+        return;
+      }
+    }
+
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
 
@@ -420,6 +430,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
       builder.setTicker(notifications.get(0).getIndividualRecipient(),
                         MentionUtilities.highlightMentions(notifications.get(0).getText(), notifications.get(0).getThreadId(), context));
     }
+
+    builder.putStringExtra(LATEST_MESSAGE_ID_TAG, messageIdTag);
 
     Notification notification = builder.build();
     NotificationManagerCompat.from(context).notify(SUMMARY_NOTIFICATION_ID, builder.build());

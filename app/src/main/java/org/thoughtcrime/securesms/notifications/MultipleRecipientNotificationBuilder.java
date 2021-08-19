@@ -16,8 +16,8 @@ import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.recipients.Recipient;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.home.HomeActivity;
 import org.thoughtcrime.securesms.database.SessionContactDatabase;
+import org.thoughtcrime.securesms.home.HomeActivity;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -70,6 +70,10 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
                                             markAsReadIntent);
     addAction(markAllAsReadAction);
     extend(new NotificationCompat.WearableExtender().addAction(markAllAsReadAction));
+  }
+
+  public void putStringExtra(String key, String value) {
+    extras.putString(key,value);
   }
 
   public void addMessageBody(@NonNull Recipient sender, Recipient threadRecipient, @Nullable CharSequence body) {
