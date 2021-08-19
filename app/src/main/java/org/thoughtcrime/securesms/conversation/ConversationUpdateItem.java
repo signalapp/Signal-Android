@@ -232,7 +232,7 @@ public final class ConversationUpdateItem extends FrameLayout
 
   @Override
   public @Nullable View getHorizontalTranslationTarget() {
-    return null;
+    return background;
   }
 
   static final class RecipientObserverManager {
