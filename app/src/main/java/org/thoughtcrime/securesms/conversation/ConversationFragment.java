@@ -1265,6 +1265,20 @@ public class ConversationFragment extends LoggingFragment {
     });
   }
 
+  private @NonNull String calculateSelectedItemCount() {
+    ConversationAdapter adapter = getListAdapter();
+    if (adapter == null || adapter.getSelectedItems().isEmpty()) {
+      return String.valueOf(0);
+    }
+
+    return String.valueOf(adapter.getSelectedItems()
+                                 .stream()
+                                 .map(MultiselectPart::getConversationMessage)
+                                 .distinct()
+                                 .count());
+  }
+
+
   public interface ConversationFragmentListener extends VoiceNoteMediaControllerOwner {
     void setThreadId(long threadId);
     void handleReplyMessage(ConversationMessage conversationMessage);
@@ -1368,7 +1382,7 @@ public class ConversationFragment extends LoggingFragment {
           actionMode.finish();
         } else {
           setCorrectMenuVisibility(actionMode.getMenu());
-          actionMode.setTitle(String.valueOf(getListAdapter().getSelectedItems().size()));
+          actionMode.setTitle(calculateSelectedItemCount());
         }
       }
     }
@@ -1753,7 +1767,7 @@ public class ConversationFragment extends LoggingFragment {
       if (adapter.getSelectedItems().isEmpty()) {
         actionMode.finish();
       } else {
-        actionMode.setTitle(String.valueOf(adapter.getSelectedItems().size()));
+        actionMode.setTitle(calculateSelectedItemCount());
       }
     }
   }
@@ -1845,7 +1859,7 @@ public class ConversationFragment extends LoggingFragment {
       MenuInflater inflater = mode.getMenuInflater();
       inflater.inflate(R.menu.conversation_context, menu);
 
-      mode.setTitle(String.valueOf(getListAdapter().getSelectedItems().size()));
+      mode.setTitle(calculateSelectedItemCount());
 
       if (Build.VERSION.SDK_INT >= 21) {
         Window window = getActivity().getWindow();
