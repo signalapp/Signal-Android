@@ -90,37 +90,8 @@ class MultiselectItemDecoration(
   }
 
   override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-    val adapter = parent.adapter as ConversationAdapter
-    val isLtr = ViewUtil.isLtr(view)
-
-    if (adapter.selectedItems.isNotEmpty() && view is Multiselectable) {
-      val firstPart = view.conversationMessage.multiselectCollection.toSet().first()
-      val target = view.getHorizontalTranslationTarget()
-
-      if (target != null) {
-        val start = if (isLtr) {
-          target.left
-        } else {
-          parent.right - target.right
-        }
-
-        val translation: Float = if (isInitialAnimation()) {
-          max(0, gutter - start) * selectedAnimationProgressProvider(firstPart)
-        } else {
-          max(0, gutter - start).toFloat()
-        }
-
-        view.translationX = if (isLtr) {
-          translation
-        } else {
-          -translation
-        }
-      }
-    } else if (view is Multiselectable) {
-      view.translationX = 0f
-    }
-
     outRect.setEmpty()
+    updateChildOffsets(parent, view)
   }
 
   /**
@@ -141,6 +112,8 @@ class MultiselectItemDecoration(
     }
 
     parent.children.filterIsInstance(Multiselectable::class.java).forEach { child ->
+      updateChildOffsets(parent, child as View)
+
       val parts: MultiselectCollection = child.conversationMessage.multiselectCollection
 
       val projections: List<Projection> = child.colorizerProjections
@@ -275,5 +248,37 @@ class MultiselectItemDecoration(
 
     c.drawCircle(centerX, centerY, circleRadius.toFloat(), unselectedPaint)
     unselectedPaint.alpha = alpha
+  }
+
+  private fun updateChildOffsets(parent: RecyclerView, child: View) {
+    val adapter = parent.adapter as ConversationAdapter
+    val isLtr = ViewUtil.isLtr(child)
+
+    if (adapter.selectedItems.isNotEmpty() && child is Multiselectable) {
+      val firstPart = child.conversationMessage.multiselectCollection.toSet().first()
+      val target = child.getHorizontalTranslationTarget()
+
+      if (target != null) {
+        val start = if (isLtr) {
+          target.left
+        } else {
+          parent.right - target.right
+        }
+
+        val translation: Float = if (isInitialAnimation()) {
+          max(0, gutter - start) * selectedAnimationProgressProvider(firstPart)
+        } else {
+          max(0, gutter - start).toFloat()
+        }
+
+        child.translationX = if (isLtr) {
+          translation
+        } else {
+          -translation
+        }
+      }
+    } else if (child is Multiselectable) {
+      child.translationX = 0f
+    }
   }
 }
