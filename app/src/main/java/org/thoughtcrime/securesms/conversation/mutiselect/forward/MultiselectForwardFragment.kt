@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialog
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.keyboard.findListener
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
@@ -37,7 +38,6 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
 import org.thoughtcrime.securesms.util.visible
 import org.whispersystems.libsignal.util.guava.Optional
-import java.lang.UnsupportedOperationException
 import java.util.function.Consumer
 
 private const val ARG_MULTISHARE_ARGS = "multiselect.forward.fragment.arg.multishare.args"
@@ -57,6 +57,7 @@ class MultiselectForwardFragment :
   private lateinit var selectionFragment: ContactSelectionListFragment
   private lateinit var contactFilterView: ContactFilterView
   private lateinit var addMessage: EditText
+  private lateinit var callback: Callback
 
   private var dismissibleDialog: SimpleProgressDialog.DismissibleDialog? = null
 
@@ -91,6 +92,8 @@ class MultiselectForwardFragment :
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    callback = requireNotNull(findListener())
+
     selectionFragment = childFragmentManager.findFragmentById(R.id.contact_selection_list_fragment) as ContactSelectionListFragment
 
     contactFilterView = view.findViewById(R.id.contact_filter_edit_text)
@@ -217,6 +220,7 @@ class MultiselectForwardFragment :
   private fun dismissAndShowToast(@PluralsRes toastTextResId: Int) {
     val argCount = getMessageCount()
 
+    callback.onFinishForwardAction()
     dismissibleDialog?.dismiss()
     Toast.makeText(requireContext(), requireContext().resources.getQuantityString(toastTextResId, argCount), Toast.LENGTH_SHORT).show()
     dismissAllowingStateLoss()
@@ -226,6 +230,8 @@ class MultiselectForwardFragment :
 
   private fun handleMessageExpired() {
     dismissAllowingStateLoss()
+
+    callback.onFinishForwardAction()
     dismissibleDialog?.dismiss()
     Toast.makeText(requireContext(), resources.getQuantityString(R.plurals.MultiselectForwardFragment__couldnt_forward_messages, getMultiShareArgs().size), Toast.LENGTH_LONG).show()
   }
@@ -293,5 +299,9 @@ class MultiselectForwardFragment :
 
       fragment.show(supportFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
     }
+  }
+
+  interface Callback {
+    fun onFinishForwardAction()
   }
 }

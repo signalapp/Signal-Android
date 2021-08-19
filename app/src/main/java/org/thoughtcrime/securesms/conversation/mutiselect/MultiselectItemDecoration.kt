@@ -123,7 +123,6 @@ class MultiselectItemDecoration(
       canvas.save()
       canvas.clipPath(path, Region.Op.DIFFERENCE)
 
-      val view: View = child as View
       val selectedParts: Set<MultiselectPart> = SetUtil.intersection(parts.toSet(), adapter.selectedItems)
 
       if (selectedParts.isNotEmpty()) {
@@ -131,7 +130,7 @@ class MultiselectItemDecoration(
         val shadeAll = selectedParts.size == parts.size || (selectedPart is MultiselectPart.Text && child.hasNonSelectableMedia())
 
         if (shadeAll) {
-          rect.set(0, view.top, view.right, view.bottom)
+          rect.set(0, child.top, child.right, child.bottom)
         } else {
           rect.set(0, child.getTopBoundaryOfMultiselectPart(selectedPart), parent.right, child.getBottomBoundaryOfMultiselectPart(selectedPart))
         }
@@ -250,6 +249,11 @@ class MultiselectItemDecoration(
     unselectedPaint.alpha = alpha
   }
 
+  /**
+   * Update the start-aligned gutter in which the checks display. This is called in onDraw to
+   * ensure we don't hit situations where we try to set offsets before items are laid out, and
+   * called in getItemOffsets to ensure the gutter goes away when multiselect mode ends.
+   */
   private fun updateChildOffsets(parent: RecyclerView, child: View) {
     val adapter = parent.adapter as ConversationAdapter
     val isLtr = ViewUtil.isLtr(child)

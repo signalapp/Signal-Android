@@ -177,7 +177,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @SuppressLint("StaticFieldLeak")
-public class ConversationFragment extends LoggingFragment {
+public class ConversationFragment extends LoggingFragment implements MultiselectForwardFragment.Callback {
   private static final String TAG = Log.tag(ConversationFragment.class);
 
   private static final int SCROLL_ANIMATION_THRESHOLD = 50;
@@ -976,7 +976,7 @@ public class ConversationFragment extends LoggingFragment {
 
     MultiselectForwardFragmentArgs.create(requireContext(),
                                           multiselectParts,
-                                          args -> MultiselectForwardFragment.show(getParentFragmentManager(), args));
+                                          args -> MultiselectForwardFragment.show(getChildFragmentManager(), args));
   }
 
   private void handleResendMessage(final MessageRecord message) {
@@ -1276,6 +1276,13 @@ public class ConversationFragment extends LoggingFragment {
                                  .map(MultiselectPart::getConversationMessage)
                                  .distinct()
                                  .count());
+  }
+
+  @Override
+  public void onFinishForwardAction() {
+    if (actionMode != null) {
+      actionMode.finish();
+    }
   }
 
 
@@ -1914,7 +1921,6 @@ public class ConversationFragment extends LoggingFragment {
           return true;
         case R.id.menu_context_forward:
           handleForwardMessageParts(getListAdapter().getSelectedItems());
-          actionMode.finish();
           return true;
         case R.id.menu_context_resend:
           handleResendMessage(getSelectedConversationMessage().getMessageRecord());
