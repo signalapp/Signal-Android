@@ -560,10 +560,6 @@ public class PushServiceSocket {
 
       String path = String.format(PREKEY_DEVICE_PATH, destination.getIdentifier(), deviceId);
 
-      if (destination.getRelay().isPresent()) {
-        path = path + "?relay=" + destination.getRelay().get();
-      }
-
       String             responseText = makeServiceRequest(path, "GET", null, NO_HEADERS, unidentifiedAccess);
       PreKeyResponse     response     = JsonUtil.fromJson(responseText, PreKeyResponse.class);
       List<PreKeyBundle> bundles      = new LinkedList<>();
@@ -600,10 +596,6 @@ public class PushServiceSocket {
   public PreKeyBundle getPreKey(SignalServiceAddress destination, int deviceId) throws IOException {
     try {
       String path = String.format(PREKEY_DEVICE_PATH, destination.getIdentifier(), String.valueOf(deviceId));
-
-      if (destination.getRelay().isPresent()) {
-        path = path + "?relay=" + destination.getRelay().get();
-      }
 
       String         responseText = makeServiceRequest(path, "GET", null);
       PreKeyResponse response     = JsonUtil.fromJson(responseText, PreKeyResponse.class);

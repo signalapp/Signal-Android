@@ -792,7 +792,7 @@ public class RecipientDatabase extends Database {
 
     if (id < 0) {
       Log.w(TAG,  "[applyStorageSyncContactInsert] Failed to insert. Possibly merging.");
-      recipientId = getAndPossiblyMerge(insert.getAddress().getUuid().get(), insert.getAddress().getNumber().get(), true);
+      recipientId = getAndPossiblyMerge(insert.getAddress().getUuid(), insert.getAddress().getNumber().get(), true);
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId));
     } else {
       recipientId = RecipientId.from(id);
@@ -827,7 +827,7 @@ public class RecipientDatabase extends Database {
       RecipientId recipientId = getByColumn(STORAGE_SERVICE_ID, Base64.encodeBytes(update.getOld().getId().getRaw())).get();
       Log.w(TAG,  "[applyStorageSyncContactUpdate] Found user " + recipientId + ". Possibly merging.");
 
-      recipientId = getAndPossiblyMerge(update.getNew().getAddress().getUuid().orNull(), update.getNew().getAddress().getNumber().orNull(), true);
+      recipientId = getAndPossiblyMerge(update.getNew().getAddress().getUuid(), update.getNew().getAddress().getNumber().orNull(), true);
       Log.w(TAG,  "[applyStorageSyncContactUpdate] Merged into " + recipientId);
 
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId));
@@ -1019,13 +1019,10 @@ public class RecipientDatabase extends Database {
   private static @NonNull ContentValues getValuesForStorageContact(@NonNull SignalContactRecord contact, boolean isInsert) {
     ContentValues values = new ContentValues();
 
-    if (contact.getAddress().getUuid().isPresent()) {
-      values.put(UUID, contact.getAddress().getUuid().get().toString());
-    }
-
     ProfileName profileName = ProfileName.fromParts(contact.getGivenName().orNull(), contact.getFamilyName().orNull());
     String      username    = contact.getUsername().orNull();
 
+    values.put(UUID, contact.getAddress().getUuid().toString());
     values.put(PHONE, contact.getAddress().getNumber().orNull());
     values.put(PROFILE_GIVEN_NAME, profileName.getGivenName());
     values.put(PROFILE_FAMILY_NAME, profileName.getFamilyName());
@@ -2600,8 +2597,7 @@ public class RecipientDatabase extends Database {
                                      .map(b -> b.getNumber().get())
                                      .toList();
     List<String> blockedUuid = Stream.of(blocked)
-                                     .filter(b -> b.getUuid().isPresent())
-                                     .map(b -> b.getUuid().get().toString().toLowerCase())
+                                     .map(b -> b.getUuid().toString().toLowerCase())
                                      .toList();
 
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();

@@ -78,7 +78,7 @@ public final class MessageDecryptionUtil {
    */
   public static @NonNull DecryptionResult decrypt(@NonNull Context context, @NonNull SignalServiceEnvelope envelope) {
     SignalProtocolStore  axolotlStore = new SignalProtocolStoreImpl(context);
-    SignalServiceAddress localAddress = new SignalServiceAddress(Optional.of(TextSecurePreferences.getLocalUuid(context)), Optional.of(TextSecurePreferences.getLocalNumber(context)));
+    SignalServiceAddress localAddress = new SignalServiceAddress(TextSecurePreferences.getLocalUuid(context), Optional.of(TextSecurePreferences.getLocalNumber(context)));
     SignalServiceCipher  cipher       = new SignalServiceCipher(localAddress, axolotlStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator());
     List<Job>            jobs         = new LinkedList<>();
 

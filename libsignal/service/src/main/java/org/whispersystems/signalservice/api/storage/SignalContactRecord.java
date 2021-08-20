@@ -33,7 +33,7 @@ public final class SignalContactRecord implements SignalRecord {
     this.proto            = proto;
     this.hasUnknownFields = ProtoUtil.hasUnknownFields(proto);
 
-    this.address     = new SignalServiceAddress(UuidUtil.parseOrNull(proto.getServiceUuid()), proto.getServiceE164());
+    this.address     = new SignalServiceAddress(UuidUtil.parseOrUnknown(proto.getServiceUuid()), proto.getServiceE164());
     this.givenName   = OptionalUtil.absentIfEmpty(proto.getGivenName());
     this.familyName  = OptionalUtil.absentIfEmpty(proto.getFamilyName());
     this.profileKey  = OptionalUtil.absentIfEmpty(proto.getProfileKey());
@@ -207,7 +207,7 @@ public final class SignalContactRecord implements SignalRecord {
       this.id      = StorageId.forContact(rawId);
       this.builder = ContactRecord.newBuilder();
 
-      builder.setServiceUuid(address.getUuid().isPresent() ? address.getUuid().get().toString() : "");
+      builder.setServiceUuid(address.getUuid().toString());
       builder.setServiceE164(address.getNumber().or(""));
     }
 

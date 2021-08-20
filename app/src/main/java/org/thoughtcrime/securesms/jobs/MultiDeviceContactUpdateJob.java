@@ -379,10 +379,12 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
     }
   }
 
-  private Optional<VerifiedMessage> getVerifiedMessage(Recipient recipient, Optional<IdentityDatabase.IdentityRecord> identity) throws InvalidNumberException {
+  private Optional<VerifiedMessage> getVerifiedMessage(Recipient recipient, Optional<IdentityDatabase.IdentityRecord> identity)
+      throws InvalidNumberException, IOException
+  {
     if (!identity.isPresent()) return Optional.absent();
 
-    SignalServiceAddress destination = RecipientUtil.toSignalServiceAddressBestEffort(context, recipient);
+    SignalServiceAddress destination = RecipientUtil.toSignalServiceAddress(context, recipient);
     IdentityKey          identityKey = identity.get().getIdentityKey();
 
     VerifiedMessage.VerifiedState state;

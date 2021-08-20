@@ -40,22 +40,6 @@ public class RecipientUtil {
   /**
    * This method will do it's best to craft a fully-populated {@link SignalServiceAddress} based on
    * the provided recipient. This includes performing a possible network request if no UUID is
-   * available. If the request to get a UUID fails, the exception is swallowed an an E164-only
-   * recipient is returned.
-   */
-  @WorkerThread
-  public static @NonNull SignalServiceAddress toSignalServiceAddressBestEffort(@NonNull Context context, @NonNull Recipient recipient) {
-    try {
-      return toSignalServiceAddress(context, recipient);
-    } catch (IOException e) {
-      Log.w(TAG, "Failed to populate address!", e);
-      return new SignalServiceAddress(recipient.getUuid().orNull(), recipient.getE164().orNull());
-    }
-  }
-
-  /**
-   * This method will do it's best to craft a fully-populated {@link SignalServiceAddress} based on
-   * the provided recipient. This includes performing a possible network request if no UUID is
    * available. If the request to get a UUID fails, an IOException is thrown.
    */
   @WorkerThread
@@ -76,7 +60,7 @@ public class RecipientUtil {
       Log.i(TAG, "Successfully performed a UUID fetch for " + recipient.getId() + ". Registered: " + state);
     }
 
-    return new SignalServiceAddress(Optional.fromNullable(recipient.getUuid().orNull()), Optional.fromNullable(recipient.resolve().getE164().orNull()));
+    return new SignalServiceAddress(recipient.requireUuid(), Optional.fromNullable(recipient.resolve().getE164().orNull()));
   }
 
   public static @NonNull List<SignalServiceAddress> toSignalServiceAddresses(@NonNull Context context, @NonNull List<RecipientId> recipients)

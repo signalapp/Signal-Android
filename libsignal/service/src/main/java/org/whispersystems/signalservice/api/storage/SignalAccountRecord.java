@@ -297,9 +297,9 @@ public final class SignalAccountRecord implements SignalRecord {
     private AccountRecord.PinnedConversation toRemote() {
       if (contact.isPresent()) {
         AccountRecord.PinnedConversation.Contact.Builder contactBuilder = AccountRecord.PinnedConversation.Contact.newBuilder();
-        if (contact.get().getUuid().isPresent()) {
-          contactBuilder.setUuid(contact.get().getUuid().get().toString());
-        }
+
+        contactBuilder.setUuid(contact.get().getUuid().toString());
+
         if (contact.get().getNumber().isPresent()) {
           contactBuilder.setE164(contact.get().getNumber().get());
         }

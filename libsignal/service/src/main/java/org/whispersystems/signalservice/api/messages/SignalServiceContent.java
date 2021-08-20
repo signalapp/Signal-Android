@@ -1004,7 +1004,7 @@ public final class SignalServiceContent {
 
     return new SignalServiceDataMessage.Reaction(reaction.getEmoji(),
                         reaction.getRemove(),
-                        new SignalServiceAddress(uuid, null),
+                        new SignalServiceAddress(uuid),
                         reaction.getTargetSentTimestamp());
   }
 

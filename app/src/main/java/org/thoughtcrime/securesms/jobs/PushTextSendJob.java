@@ -177,7 +177,7 @@ public class PushTextSendJob extends PushSendJob {
                                                                            .asEndSessionMessage(message.isEndSession())
                                                                            .build();
 
-      if (Util.equals(TextSecurePreferences.getLocalUuid(context), address.getUuid().orNull())) {
+      if (Util.equals(TextSecurePreferences.getLocalUuid(context), address.getUuid())) {
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
         SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, textSecureMessage, syncAccess);
 

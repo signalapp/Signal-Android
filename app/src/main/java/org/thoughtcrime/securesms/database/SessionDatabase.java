@@ -45,6 +45,10 @@ public class SessionDatabase extends Database {
   }
 
   public void store(@NonNull SignalProtocolAddress address, @NonNull SessionRecord record) {
+    if (address.getName().charAt(0) == '+') {
+      throw new IllegalArgumentException("Cannot insert an e164 into this table!");
+    }
+
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
     try (SQLiteStatement statement = db.compileStatement("INSERT INTO " + TABLE_NAME + " (" + ADDRESS + ", " + DEVICE + ", " + RECORD + ") VALUES (?, ?, ?) " +

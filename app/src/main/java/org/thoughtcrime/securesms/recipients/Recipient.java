@@ -174,7 +174,7 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalPush(@NonNull Context context, @NonNull SignalServiceAddress signalServiceAddress) {
-    return externalPush(context, signalServiceAddress.getUuid().orNull(), signalServiceAddress.getNumber().orNull(), false);
+    return externalPush(context, signalServiceAddress.getUuid(), signalServiceAddress.getNumber().orNull(), false);
   }
 
   /**
@@ -187,7 +187,7 @@ public class Recipient {
     if (address.getNumber().isPresent()) {
       return externalPush(context, null, address.getNumber().get(), false);
     } else {
-      return externalPush(context, address.getUuid().orNull(), null, false);
+      return externalPush(context, address.getUuid(), null, false);
     }
   }
 
@@ -202,7 +202,7 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalHighTrustPush(@NonNull Context context, @NonNull SignalServiceAddress signalServiceAddress) {
-    return externalPush(context, signalServiceAddress.getUuid().orNull(), signalServiceAddress.getNumber().orNull(), true);
+    return externalPush(context, signalServiceAddress.getUuid(), signalServiceAddress.getNumber().orNull(), true);
   }
 
   /**
