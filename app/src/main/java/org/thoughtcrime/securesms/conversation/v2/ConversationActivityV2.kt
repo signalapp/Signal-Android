@@ -248,7 +248,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         searchBottomBar.setEventListener(this)
         setUpSearchResultObserver()
         scrollToFirstUnreadMessageIfNeeded()
-        markAllAsRead()
         showOrHideInputIfNeeded()
         if (this.thread.isOpenGroupRecipient) {
             val openGroup = DatabaseFactory.getLokiThreadDatabase(this).getOpenGroupChat(threadID)
@@ -262,6 +261,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     override fun onResume() {
         super.onResume()
         ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(threadID)
+        markAllAsRead()
     }
 
     override fun onPause() {
@@ -505,7 +505,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
         } else {
             MarkReadReceiver.process(this, messages)
         }
-        ApplicationContext.getInstance(this).messageNotifier.updateNotification(this, threadID)
+        ApplicationContext.getInstance(this).messageNotifier.updateNotification(this, false, 0)
     }
 
     override fun inputBarHeightChanged(newValue: Int) {
@@ -984,7 +984,7 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
     }
 
     private fun showCamera() {
-        attachmentManager.capturePhoto(this, ConversationActivityV2.TAKE_PHOTO)
+        attachmentManager.capturePhoto(this, ConversationActivityV2.TAKE_PHOTO, thread);
     }
 
     override fun onAttachmentChanged() {
@@ -1013,11 +1013,6 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 val uri = intent?.data ?: return
                 prepMediaForSending(uri, AttachmentManager.MediaType.DOCUMENT).addListener(mediaPreppedListener)
             }
-            TAKE_PHOTO -> {
-                if (resultCode != RESULT_OK) { return }
-                val uri = attachmentManager.captureUri ?: return
-                prepMediaForSending(uri, AttachmentManager.MediaType.IMAGE).addListener(mediaPreppedListener)
-            }
             PICK_GIF -> {
                 intent ?: return
                 val uri = intent.data ?: return
@@ -1026,7 +1021,8 @@ class ConversationActivityV2 : PassphraseRequiredActionBarActivity(), InputBarDe
                 val height = intent.getIntExtra(GiphyActivity.EXTRA_HEIGHT, 0)
                 prepMediaForSending(uri, type, width, height).addListener(mediaPreppedListener)
             }
-            PICK_FROM_LIBRARY -> {
+            PICK_FROM_LIBRARY,
+            TAKE_PHOTO -> {
                 intent ?: return
                 val body = intent.getStringExtra(MediaSendActivity.EXTRA_MESSAGE)
                 val media = intent.getParcelableArrayListExtra<Media>(MediaSendActivity.EXTRA_MEDIA) ?: return

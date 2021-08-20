@@ -20,18 +20,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.session.libsession.utilities.Address;
 import org.session.libsession.utilities.MediaTypes;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.concurrent.SimpleTask;
+import org.session.libsession.utilities.recipients.Recipient;
+import org.session.libsignal.utilities.Log;
 import org.session.libsignal.utilities.guava.Optional;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import org.session.libsignal.utilities.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
-
-import org.session.libsession.utilities.Address;
-import org.session.libsession.utilities.recipients.Recipient;
-import org.session.libsession.utilities.concurrent.SimpleTask;
-import org.session.libsession.utilities.Util;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -87,7 +86,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   /**
-   * Get an intent to launch the media send flow starting with the picker.
+   * Get an intent to launch the media send flow starting with the camera.
    */
   public static Intent buildCameraIntent(@NonNull Context context, @NonNull Recipient recipient) {
     Intent intent = buildGalleryIntent(context, recipient, "");

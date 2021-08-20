@@ -92,6 +92,9 @@ object ConversationMenuHelper {
             inflater.inflate(R.menu.menu_conversation_muted, menu)
         } else {
             inflater.inflate(R.menu.menu_conversation_unmuted, menu)
+        }
+
+        if (thread.isGroupRecipient && !thread.isMuted) {
             inflater.inflate(R.menu.menu_conversation_notification_settings, menu)
         }
 
