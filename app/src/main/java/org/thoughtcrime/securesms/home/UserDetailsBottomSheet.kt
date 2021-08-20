@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,9 +15,11 @@ import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_user_details_bottom_sheet.*
 import network.loki.messenger.R
+import org.session.libsession.messaging.MessagingModuleConfiguration
 import org.session.libsession.messaging.contacts.Contact
 import org.session.libsession.utilities.Address
 import org.session.libsession.utilities.recipients.Recipient
+import org.thoughtcrime.securesms.conversation.v2.ConversationActivityV2
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.util.UiModeUtilities
@@ -63,11 +66,23 @@ class UserDetailsBottomSheet : BottomSheetDialogFragment() {
         }
         nameTextView.text = recipient.name ?: publicKey // Uses the Contact API internally
         publicKeyTextView.text = publicKey
-        copyButton.setOnClickListener {
+        publicKeyTextView.setOnLongClickListener {
             val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clip = ClipData.newPlainText("Session ID", publicKey)
             clipboard.setPrimaryClip(clip)
             Toast.makeText(requireContext(), R.string.copied_to_clipboard, Toast.LENGTH_SHORT).show()
+            true
+        }
+        messageButton.setOnClickListener {
+            val threadId = MessagingModuleConfiguration.shared.storage.getThreadId(recipient)
+            val intent = Intent(
+                context,
+                ConversationActivityV2::class.java
+            )
+            intent.putExtra(ConversationActivityV2.ADDRESS, recipient.address)
+            intent.putExtra(ConversationActivityV2.THREAD_ID, threadId ?: -1)
+            startActivity(intent)
+            dismiss()
         }
     }
 
