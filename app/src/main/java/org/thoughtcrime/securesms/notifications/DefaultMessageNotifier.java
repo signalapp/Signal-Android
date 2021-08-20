@@ -284,8 +284,9 @@ public class DefaultMessageNotifier implements MessageNotifier {
         sendMultipleThreadNotification(context, notificationState, signal);
       } else if (notificationState.getMessageCount() > 0){
         sendSingleThreadNotification(context, notificationState, signal, false);
+      } else {
+        cancelActiveNotifications(context);
       }
-
       cancelOrphanedNotifications(context, notificationState);
       updateBadge(context, notificationState.getMessageCount());
 
