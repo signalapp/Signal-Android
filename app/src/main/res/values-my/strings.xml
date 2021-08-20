@@ -274,7 +274,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">သင်သည်လျင်မြန်စွာပြန်လည်ဖြေဆိုရန်မည်သည့်မက်ဆေ့ခ်ျကိုအပေါ်ဘယ်ဘက်အပေါ်ကိုပွတ်ဆွဲနိုင်ပါတယ်</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">အထွက်ကြည့်ရှုခြင်းနှင့်တစ်ပြိုင်နက်မီဒီယာဖိုင်များကိုသူတို့ပေးပို့ပြီးနောက်အလိုအလျောက်ဖယ်ရှားသည်</string>
   <string name="ConversationFragment_you_already_viewed_this_message">သင်ဤမက်ဆေ့ခ်ျကိုကြည့်ပြီးပါပြီ</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ဤစကားပြောဆိုမှုတွင်သင်ကိုယ်တိုင်မှတ်စုများကိုထည့်နိုင်သည်။ \ n သင့်အကောင့်တွင်ချိတ်ဆက်ထားသောကိရိယာများရှိပါကမှတ်စုအသစ်များတစ်ပြိုင်တည်းချိန်ကိုက်လိမ့်မည်။</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ဤစကားပြောဆိုမှုတွင် သင်ကိုယ်တိုင် မှတ်စုများကို ထည့်နိုင်သည်။ \ n သင့်အကောင့်တွင် ချိတ်ဆက်ထားသော ကိရိယာများရှိပါက မှတ်စုအသစ်များ တစ်ပြိုင်တည်း ချိန်ကိုက်လိမ့်မည်။</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dအဖွဲ့ဝင်များသည်တူညီသောနာမည်ရှိသည်။</string>
   <string name="ConversationFragment__tap_to_review">ပြန်လည်သုံးသပ်ရန်ကိုအသာပုတ်ပါ</string>
   <string name="ConversationFragment__review_requests_carefully">တောင်းဆိုမှုများကိုအသေအချာပြန်လည်စစ်ဆေးပါ</string>
@@ -315,7 +315,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">ဓါတ်ပုံတင်ရာတွင် အခက်အခဲရှိ </string>
   <string name="CreateProfileActivity_problem_setting_profile">ကိုယ်ပိုင်အကောင့်ပြုလုပ်ရာတွင် ပြဿနာရှိ </string>
   <string name="CreateProfileActivity_set_up_your_profile">သင့် ပရိုဖိုင်ကိုပြင်ဆင်ပါ</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">သင်၏ပရိုဖိုင်သည်အဆုံးမှအဆုံးသို့စာဝှက်ထားသည်။ သင်၏ပရိုဖိုင်နှင့်၎င်းပြောင်းလဲမှုများကိုသင်အဆက်အသွယ်အသစ်များ၊ သင်စတင်စကားပြောခြင်းသို့မဟုတ်စကားပြောဆိုမှုအသစ်များကိုလက်ခံခြင်းနှင့်အုပ်စုအသစ်များနှင့်ပူးပေါင်းသောအခါမြင်တွေ့ရလိမ့်မည်။</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">သင်၏ပရိုဖိုင်သည် အဆုံးမှအဆုံးသို့ စာဝှက်ထားသည်။ သင်၏ပရိုဖိုင်နှင့် ၎င်းပြောင်းလဲမှုများကို သင်အဆက်အသွယ် အသစ်များ၊ သင်စတင်စကားပြောခြင်း သို့မဟုတ် စကားပြောဆိုမှု အသစ်များကို လက်ခံခြင်းနှင့် အုပ်စုအသစ်များနှင့် ပူးပေါင်းသောအခါ မြင်တွေ့ရလိမ့်မည်။</string>
   <string name="CreateProfileActivity_set_avatar_description">ကိုယ်စားပြုရုပ်ပုံ ကိုသတ်မှတ်ပါ</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">အရံသိမ်းထားသည်များကို ပြန်ရယူမည်လား?</string>
@@ -536,7 +536,7 @@
   <string name="AddGroupDetailsFragment__create_group">အဖွဲ့ ဖွဲ့မယ်</string>
   <string name="AddGroupDetailsFragment__create">ဖန်တီးပါ</string>
   <string name="AddGroupDetailsFragment__members">အဖွဲ့ဝင်များ</string>
-  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">ဤအုပ်စုကိုဖွဲ့ပြီးနောက်သူငယ်ချင်းများကိုသင်ဖိတ်နိုင်သည်။</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">ဤအုပ်စုကို ဖွဲ့ပြီးနောက် သူငယ်ချင်းများကို သင်ဖိတ်နိုင်သည်။</string>
   <string name="AddGroupDetailsFragment__group_name_required">အုပ်စုအမည် (လိုအပ်သည်)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">အုပ်စုအမည် (မလိုအပ်သည်)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">ကွက်လပ်မှာဖြည့်ရန်လိုအပ်ပါသည်။</string>
@@ -2719,6 +2719,7 @@
   <!--QualitySelectorBottomSheetDialog-->
   <string name="QualitySelectorBottomSheetDialog__high">မြင့်သော</string>
   <!--AppSettingsFragment-->
+  <string name="AppSettingsFragment__invite_your_friends">သူငယ်ချင်းများကို ဖိတ်ပါ။</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">အကောင့်</string>
   <!--ChatsSettingsFragment-->
@@ -2729,6 +2730,7 @@
   <string name="NotificationsSettingsFragment__messages">မက်ဆေ့ချ်များ</string>
   <string name="NotificationsSettingsFragment__calls">ဖုန်းခေါ်ဆိုမှုများ</string>
   <string name="NotificationsSettingsFragment__notify_when">ဖြစ်ခဲ့လျှင် အသိပေးပါ…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">အဆက်အသွယ်သည် Signal ပေါ်သို့ တက်ရောက်ပါမည်။</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">ပိတ်ပယ်ထားသည်</string>
   <string name="PrivacySettingsFragment__messaging">မက်ဆေ့ချ်ပေးပို့ခြင်း</string>

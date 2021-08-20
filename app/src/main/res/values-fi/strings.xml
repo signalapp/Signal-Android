@@ -930,6 +930,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s nimitti käyttäjän %2$s ylläpitäjäksi.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s nimitti sinut ylläpitäjäksi.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Poistit käyttäjän %1$s ylläpito-oikeudet.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s peruutti järjestelmänvalvojan oikeutesi.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s poisti ylläpito-oikeudet käyttäjältä %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s on nyt ylläpitäjä.</string>
   <string name="MessageRecord_you_are_now_an_admin">Olet nyt ylläpitäjä.</string>
@@ -3107,6 +3108,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="DSLSettingsToolbar__navigate_up">Siirry ylös</string>
   <string name="MultiselectForwardFragment__forward_to">Välitä kontakteille</string>
   <string name="MultiselectForwardFragment__add_a_message">Lisää viesti</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Nopeammat etenemiset</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Edelleenlähetetyt viestit lähetetään nyt heti.</string>
   <string name="MultiselectForwardFragment__limit_reached">Yläraja saavutettu</string>
   <!--EOF-->
 </resources>

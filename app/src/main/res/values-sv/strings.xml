@@ -930,6 +930,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s gjorde %2$s till administratör.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s gjorde dig till administratör.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Du återkallade administratörsbehörigheter från %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s återkallade dina administratörsbehörigheter.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s återkallade administratörsbehörigheter från %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s är nu en administratör.</string>
   <string name="MessageRecord_you_are_now_an_admin">Du är nu en administratör.</string>
@@ -3107,6 +3108,23 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="DSLSettingsToolbar__navigate_up">Navigera upp</string>
   <string name="MultiselectForwardFragment__forward_to">Vidarebefordra till</string>
   <string name="MultiselectForwardFragment__add_a_message">Lägg till ett meddelande</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Vidarebefordrade meddelanden skickas nu omedelbart.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Skicka %1$d meddelande</item>
+    <item quantity="other">Skicka %1$d meddelanden</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Meddelandet skickat</item>
+    <item quantity="other">Meddelanden skickade</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Det gick inte att skicka meddelande</item>
+    <item quantity="other">Det gick inte att skicka meddelanden</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Det gick inte att vidarebefordra meddelandet eftersom det inte längre är tillgängligt.</item>
+    <item quantity="other">Det gick inte att vidarebefordra meddelanden eftersom de inte längre är tillgängliga.</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Gränsen nådd</string>
   <!--EOF-->
 </resources>

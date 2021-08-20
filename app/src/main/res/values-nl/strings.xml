@@ -2379,7 +2379,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="KbsSplashFragment__disable_pin">Pincode uitschakelen</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">Voer je Signal-pincode in</string>
-  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Om je te helpen je pincode te onthouden vraagt Signal je periodiek om te bewijzen dat je je pincode nog weet. Als je je pincode een aantal keer juist invoert, dan zal Signal je minder vaak deze vraag stellen. Je kunt deze herinneringen uitschakelen via de instellingen.</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Om je te helpen je pincode te onthouden vraagt Signal je periodiek om te bewijzen dat je je pincode nog weet. Als je je pincode een aantal keer juist invoert, dan zal Signal je minder vaak deze vraag stellen. Je kunt deze herinneringen uitschakelen via Instellingen &gt; Jouw registratie.</string>
   <string name="KbsReminderDialog__skip">Overslaan</string>
   <string name="KbsReminderDialog__submit">Bevestigen</string>
   <string name="KbsReminderDialog__forgot_pin">Pincode vergeten?</string>

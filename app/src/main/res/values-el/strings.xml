@@ -209,7 +209,7 @@
   <string name="ConversationActivity_admins">διαχειριστές</string>
   <string name="ConversationActivity_message_an_admin">Αποστολή μηνύματος σε διαχειριστή</string>
   <string name="ConversationActivity_cant_start_group_call">Αδυναμία πραγματοποίησης ομαδικής κλήσης</string>
-  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Μόνο οι διαχειριστές της ομάδας μπορούν να ξεκινήσουν μια κλήση.</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Μόνο οι διαχειριστές της ομάδας μπορούν να ξεκινήσουν κλήσεις.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Δεν έχεις κάποια εφαρμογή στην συσκευή σου που να μπορεί να διαχειριστεί αυτό τον σύνδεσμο.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Το αίτημά σου για να μπεις στην ομάδα στάλθηκε στον διαχειριστή/τρια της ομάδας. Θα ενημερωθείς όταν λάβει απόφαση.</string>
   <string name="ConversationActivity_cancel_request">Ακύρωση αιτήματος</string>
@@ -630,7 +630,7 @@
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Μόνο οι διαχειριστές μπορούν να ενεργοποιούν και να απενεργοποιούν τον σύνδεσμο της ομάδας.</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Μόνο οι διαχειριστές μπορούν να ενεργοποιούν και να απενεργοποιούν την επιλογή της έγκρισης νέων μελών.</string>
-  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Μόνο οι διαχειριστές μπορούν να επαναφέρουν σον σύνδεσμο της ομάδας.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Μόνο οι διαχειριστές μπορούν να επαναφέρουν τον σύνδεσμο της ομάδας.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Δεν έχεις το δικαίωμα να το κάνεις</string>
   <string name="ManageGroupActivity_not_capable">Κάποιος/α που πρόσθεσες δεν υποστηρίζει τις νέες ομάδες και πρέπει να αναβαθμίσει το Signal</string>
   <string name="ManageGroupActivity_not_announcement_capable">Κάποιος που πρόσθεσες δεν έχει υποστήριξη για ομάδες ανακοινώσεων και θα πρέπει να αναβαθμίσει το Signal</string>
@@ -926,6 +926,7 @@
   <string name="MessageRecord_s_made_s_an_admin">Ο/Η %1$s έκανε τον/την %2$s διαχειριστή.</string>
   <string name="MessageRecord_s_made_you_an_admin">Ο/Η %1$s σε έκανε διαχειριστή.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Αφαίρεσες τα δικαιώματα διαχείρισης από τον/την %1$s</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">Ο/Η %1$s αφαίρεσε τα δικαιώματα διαχείρισής σου.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">Ο/Η %1$s αφαίρεσε τα δικαιώματα διαχείρισης του/της %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">Ο/Η %1$s έγινε διαχειριστής.</string>
   <string name="MessageRecord_you_are_now_an_admin">Είσαι πλέον διαχειριστής.</string>
@@ -2971,5 +2972,23 @@
   <!--DSLSettingsToolbar-->
   <string name="MultiselectForwardFragment__forward_to">Προώθηση σε</string>
   <string name="MultiselectForwardFragment__add_a_message">Προσθήκη μηνύματος</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Γρηγορότερες προωθήσεις</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Πλέον τα προωθημένα μηνύματα στέλνονται αμέσως.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Αποστολή %1$d μηνύματος</item>
+    <item quantity="other">Αποστολή %1$d μηνυμάτων</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Το μήνυμα στάλθηκε</item>
+    <item quantity="other">Τα μηνύματα στάλθηκαν</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Αποτυχία αποστολής μηνύματος</item>
+    <item quantity="other">Αποτυχία αποστολής μηνυμάτων</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Αδυναμία προώθησης μηνύματος επειδή δεν είναι πλέον διαθέσιμο.</item>
+    <item quantity="other">Αδυναμία προώθησης μηνυμάτων επειδή δεν είναι πλέον διαθέσιμα.</item>
+  </plurals>
   <!--EOF-->
 </resources>

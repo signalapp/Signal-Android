@@ -930,6 +930,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s gerði %2$s að stjórnanda.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s gerði þig að stjórnanda.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Þú tókst stjórnunarréttindi af %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s afturkallaði stjórnunarréttindi þín.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s tók stjórnunarréttindi af %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s er núna stjórnandi.</string>
   <string name="MessageRecord_you_are_now_an_admin">Þú ert núna stjórnandi.</string>
@@ -990,6 +991,12 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s breytti þeim sem geta sýslað með meðlimi hóps yfir í \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Þeim sem geta sýslað með meðlimi hóps var breytt yfir í \"%1$s\".</string>
   <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Þú breyttir stillingum hóps þannig að allir meðlimir hans geta sent skilaboð.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Þú breyttir stillingum hóps þannig að einungis stjórnendur geta sent skilaboð.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s breytti stillingum hóps þannig að allir meðlimir hans geta sent skilaboð.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s breytti stillingum hóps þannig að einungis stjórnendur geta sent skilaboð.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Stillingum hóps var breytt þannig að allir meðlimir hans geta sent skilaboð.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Stillingum hóps var breytt þannig að einungis stjórnendur geta sent skilaboð.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Þú kveiktir á hóptenglinum með samþykki stjórnanda óvirku.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Þú kveiktir á hóptenglinum með samþykki stjórnanda virku.</string>
@@ -1195,6 +1202,7 @@
   <string name="WebRtcCallActivity__calling">Hringi…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-símtal</string>
+  <string name="WebRtcCallView__signal_video_call">Signal-myndsímtal</string>
   <string name="WebRtcCallView__start_call">Hefja samtal</string>
   <string name="WebRtcCallView__join_call">Taka þátt í símtali</string>
   <string name="WebRtcCallView__call_is_full">Símtal er fullt</string>
@@ -1212,6 +1220,7 @@
     <item quantity="one">%1$s, %2$s og %3$d til viðbótar eru í þessu símtali</item>
     <item quantity="other">%1$s, %2$s og %3$d til viðbótar eru í þessu símtali</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Fletta</string>
   <string name="WebRtcCallView__speaker">Hátalari</string>
   <string name="WebRtcCallView__camera">Myndavél</string>
   <string name="WebRtcCallView__mute">Hljóð af</string>
@@ -2760,7 +2769,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Mistókst að senda til sumra notenda</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Aðeins hægt að deila allt að %1$d spjöllum</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Áframsenda skeyti</string>
+  <string name="ShareInterstitialActivity__forward_message">Áframsenda skilaboð</string>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Bakgrunnsmynd spjalls</string>
   <!--ChatWallpaperFragment-->
@@ -3105,5 +3114,26 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Fara upp</string>
+  <string name="MultiselectForwardFragment__forward_to">Áframsenda til</string>
+  <string name="MultiselectForwardFragment__add_a_message">Bæta við skilaboðum</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Hraðar áframsent</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Áframsend skilaboð eru núna send samstundis.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Senda %1$d skilaboð</item>
+    <item quantity="other">Senda %1$d skilaboð</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Skilaboð send</item>
+    <item quantity="other">Skilaboð send</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Mistókst að senda skilaboð</item>
+    <item quantity="other">Mistókst að senda skilaboð</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Tókst ekki að senda skilaboð því þau eru ekki lengur tiltæk.</item>
+    <item quantity="other">Tókst ekki að senda skilaboð því þau eru ekki lengur tiltæk.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Takmörkum náð</string>
   <!--EOF-->
 </resources>

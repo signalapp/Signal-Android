@@ -3108,6 +3108,12 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="DSLSettingsToolbar__navigate_up">Amunt</string>
   <string name="MultiselectForwardFragment__forward_to">Reenvia a</string>
   <string name="MultiselectForwardFragment__add_a_message">Afegiu-hi un missatge</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Reenviaments més ràpids</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Ara els missatges reenviats s\'envien immediatament.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Envia %1$d missatge</item>
+    <item quantity="other">Envia %1$d missatges</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Missatge enviat</item>
     <item quantity="other">Missatges enviats</item>
@@ -3115,6 +3121,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <plurals name="MultiselectForwardFragment_messages_failed_to_send">
     <item quantity="one">Ha fallat enviar el missatge.</item>
     <item quantity="other">Ha fallat enviar els missatges.</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">No s\'ha pogut reenviar el missatge perquè ja no està disponible.</item>
+    <item quantity="other">No s\'han pogut reenviar els missatges perquè ja no estan disponibles.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">S\'ha arribat al límit.</string>
   <!--EOF-->

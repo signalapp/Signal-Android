@@ -3204,6 +3204,13 @@ prenijeli račun na svoj novi Android uređaj.</string>
   <string name="DSLSettingsToolbar__navigate_up">Prema gore</string>
   <string name="MultiselectForwardFragment__forward_to">Proslijedi za</string>
   <string name="MultiselectForwardFragment__add_a_message">Dopiši poruku</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Brža prosljeđivanja</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Proslijeđene poruke sada se šalju trenutačno.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Pošalji %1$d poruku</item>
+    <item quantity="few">Pošalji %1$d poruke</item>
+    <item quantity="other">Pošalji %1$d poruka</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Poruka poslana</item>
     <item quantity="few">Poruke poslane</item>
@@ -3213,6 +3220,11 @@ prenijeli račun na svoj novi Android uređaj.</string>
     <item quantity="one">Poruka nije poslana</item>
     <item quantity="few">Poruke nisu poslane</item>
     <item quantity="other">Poruke nisu poslane</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Nije uspjelo prosljeđivanje poruke jer više nije dostupna.</item>
+    <item quantity="few">Nije uspjelo prosljeđivanje poruka jer više nisu dostupne.</item>
+    <item quantity="other">Nije uspjelo prosljeđivanje poruka jer više nisu dostupne.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Dosegnut maksimum</string>
   <!--EOF-->

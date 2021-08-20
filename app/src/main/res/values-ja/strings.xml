@@ -3030,6 +3030,9 @@
   <plurals name="MultiselectForwardFragment_messages_failed_to_send">
     <item quantity="other">メッセージ送信失敗</item>
   </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="other">すでにメッセージがないため、転送できませんでした。</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">制限に達しました</string>
   <!--EOF-->
 </resources>

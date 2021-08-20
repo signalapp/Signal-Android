@@ -930,6 +930,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s tornou %2$s num administrador.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s tornou-o num administrador.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Você retirou os privilégios de administrador a %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s revogou os seus privilégios de administrador.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s revogou os privilégios de administrador a %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s é agora um administrador.</string>
   <string name="MessageRecord_you_are_now_an_admin">Você, é agora administrador.</string>
@@ -3112,6 +3113,24 @@
   <string name="DSLSettingsToolbar__navigate_up">Ir para cima</string>
   <string name="MultiselectForwardFragment__forward_to">Reencaminhar para</string>
   <string name="MultiselectForwardFragment__add_a_message">Adicionar uma mensagem</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Reencaminhar mais rapidamente</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">As mensagens reencaminhadas agora são enviadas imediatamente.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Enviar %1$d mensagem</item>
+    <item quantity="other">Enviar %1$d mensagens</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Mensagem enviada</item>
+    <item quantity="other">Mensagens enviadas</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Mensagem com falha de envio</item>
+    <item quantity="other">Mensagens com falha de envio</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Não foi possível reencaminhar a mensagem porque ela já não está disponível.</item>
+    <item quantity="other">Não foi possível reencaminhar as mensagens porque elas já não estão disponíveis.</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Atingido o limite</string>
   <!--EOF-->
 </resources>

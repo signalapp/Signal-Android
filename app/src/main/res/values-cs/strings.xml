@@ -3283,6 +3283,14 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="DSLSettingsToolbar__navigate_up">Přejděte nahoru</string>
   <string name="MultiselectForwardFragment__forward_to">Přeposlat</string>
   <string name="MultiselectForwardFragment__add_a_message">Přidat zprávu</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Rychlejší přeposílání</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Přeposlané zprávy se nyní odesílají okamžitě.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Odeslat %1$d zprávu</item>
+    <item quantity="few">Odeslat %1$d zprávu</item>
+    <item quantity="many">Odeslat %1$d zprávu</item>
+    <item quantity="other">Odeslat %1$d zpráv</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Zpráva odeslána</item>
     <item quantity="few">Zprávy odeslány</item>
@@ -3294,6 +3302,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
     <item quantity="few">Odeslání zpráv selhalo</item>
     <item quantity="many">Odeslání zpráv selhalo</item>
     <item quantity="other">Odeslání zpráv selhalo</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Zprávu nebylo možné přeposlat, protože již není k dispozici.</item>
+    <item quantity="few">Zprávu nebylo možné přeposlat, protože již není k dispozici.</item>
+    <item quantity="many">Zprávu nebylo možné přeposlat, protože již není k dispozici.</item>
+    <item quantity="other">Zprávy nebylo možné přeposlat, protože již nejsou k dispozici.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Dosažen limit</string>
   <!--EOF-->

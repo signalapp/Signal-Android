@@ -928,6 +928,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s го направи %2$s администратор.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s Ве направи администратор.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Ги повлековте администраторските привилегии на %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ги укина вашите администраторски привилегии.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ги повлече администраторските привилегии на %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s е администратор сега.</string>
   <string name="MessageRecord_you_are_now_an_admin">Вие сте сега Администратор.</string>
@@ -1200,6 +1201,7 @@
   <string name="WebRtcCallActivity__calling">Повикувам…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal повик</string>
+  <string name="WebRtcCallView__signal_video_call">Signal видео повик</string>
   <string name="WebRtcCallView__start_call">Започни повик</string>
   <string name="WebRtcCallView__join_call">Приклучи се на повик</string>
   <string name="WebRtcCallView__call_is_full">Повикот е полн</string>
@@ -3021,5 +3023,26 @@
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Отиди нагоре</string>
+  <string name="MultiselectForwardFragment__forward_to">Препрати до</string>
+  <string name="MultiselectForwardFragment__add_a_message">Додади порака</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Побрзо препратување</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Препратените пораки сега се испраќаат веднаш.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Испрати %1$d пораки</item>
+    <item quantity="other">Испрати %1$d пораки</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Пораките се испратени</item>
+    <item quantity="other">Пораките се испратени</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Пораките не може да се испратат</item>
+    <item quantity="other">Пораките не може да се испратат</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Не може да се препратат пораките бидејќи веќе не се достапни.</item>
+    <item quantity="other">Не може да се препратат пораките бидејќи веќе не се достапни.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Постигнат максимум</string>
   <!--EOF-->
 </resources>

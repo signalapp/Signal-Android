@@ -3284,6 +3284,14 @@
   <string name="DSLSettingsToolbar__navigate_up">Naršyti aukštyn</string>
   <string name="MultiselectForwardFragment__forward_to">Kam persiųsti</string>
   <string name="MultiselectForwardFragment__add_a_message">Pridėti žinutę</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Greitesni persiuntimai</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Dabar, persiunčiamos žinutės yra išsiunčiamos nedelsiant.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Išsiųsta %1$d žinutė</item>
+    <item quantity="few">Išsiųstos %1$d žinutės</item>
+    <item quantity="many">Išsiųsta %1$d žinučių</item>
+    <item quantity="other">Išsiųsta %1$d žinutė</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Žinutė išsiųsta</item>
     <item quantity="few">Žinutės išsiųstos</item>
@@ -3295,6 +3303,12 @@
     <item quantity="few">Nepavyko išsiųsti žinučių</item>
     <item quantity="many">Nepavyko išsiųsti žinučių</item>
     <item quantity="other">Nepavyko išsiųsti žinučių</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Nepavyko persiųsti žinutės, nes ji daugiau nebeprieinama.</item>
+    <item quantity="few">Nepavyko persiųsti žinučių, nes jos daugiau nebeprieinamos.</item>
+    <item quantity="many">Nepavyko persiųsti žinučių, nes jos daugiau nebeprieinamos.</item>
+    <item quantity="other">Nepavyko persiųsti žinučių, nes jos daugiau nebeprieinamos.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Pasiekta riba</string>
   <!--EOF-->

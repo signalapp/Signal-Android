@@ -884,6 +884,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s 已擢升 %2$s 為話事人。</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s 已擢升您為話事人。</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">您已免去 %1$s 話事人一職。</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s 已免去您話事人一職。</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s 已免去 %2$s 話事人一職。</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s 而家已經係話事人。</string>
   <string name="MessageRecord_you_are_now_an_admin">您而家已經係話事人。</string>
@@ -1708,7 +1709,7 @@
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">從不想作假 只活這☝️次</string>
   <string name="EditAboutFragment_encrypted">誰人如常 問我今天驚心度</string>
-  <string name="EditAboutFragment_be_kind">活著無對錯</string>
+  <string name="EditAboutFragment_be_kind">有一天相約 我們找烏托邦</string>
   <string name="EditAboutFragment_coffee_lover">茶杯未滿 仍然裝著大半</string>
   <string name="EditAboutFragment_free_to_chat">以咪高風大預言一個十年</string>
   <string name="EditAboutFragment_taking_a_break">不必搜索物證 想一想 神話的要點</string>
@@ -3028,6 +3029,20 @@
   <string name="DSLSettingsToolbar__navigate_up">返番轉頭</string>
   <string name="MultiselectForwardFragment__forward_to">轉寄畀</string>
   <string name="MultiselectForwardFragment__add_a_message">寫番句訊息</string>
+  <string name="MultiselectForwardFragment__faster_forwards">更快趣嘅轉寄傳送門</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">轉寄訊息，而家嗱嗱聲同您迅速純熟送出。</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="other">傳送呢 %1$d 個訊息</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="other">訊息已經送出</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="other">訊息傳送唔到</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="other">轉寄唔到，因為個訊息而家已經冇咗。</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">頂晒櫳喇</string>
   <!--EOF-->
 </resources>
