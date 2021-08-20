@@ -1265,7 +1265,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private void handleResetSecureSession() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(this);
     builder.setTitle(R.string.ConversationActivity_reset_secure_session_question);
     builder.setIcon(R.drawable.ic_warning);
     builder.setCancelable(true);
@@ -2599,7 +2599,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       numberItems[i] = contactData.numbers.get(i).type + ": " + contactData.numbers.get(i).number;
     }
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(this);
     builder.setIcon(R.drawable.ic_account_box);
     builder.setTitle(R.string.ConversationActivity_select_contact_info);
 
