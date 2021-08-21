@@ -316,7 +316,7 @@ public class InputPanel extends LinearLayout
       setBackground(new ColorDrawable(getContext().getResources().getColor(R.color.wallpaper_compose_background)));
       composeContainer.setBackground(Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.compose_background_wallpaper)));
     } else {
-      setBackground(new ColorDrawable(getContext().getResources().getColor(R.color.signal_background_primary)));
+      setBackground(new ColorDrawable(getContext().getResources().getColor(R.color.transparent)));
       composeContainer.setBackground(Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.compose_background)));
     }
   }
