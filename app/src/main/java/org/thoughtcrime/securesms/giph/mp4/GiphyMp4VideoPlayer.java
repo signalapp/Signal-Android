@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.giph.mp4;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
@@ -70,7 +69,8 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
   }
 
   void setVideoSource(@NonNull MediaSource mediaSource) {
-    exoPlayer.prepare(mediaSource);
+    exoPlayer.setMediaSource(mediaSource);
+    exoPlayer.prepare();
   }
 
   void setCorners(@Nullable Projection.Corners corners) {
@@ -91,7 +91,8 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
 
   void stop() {
     if (exoPlayer != null) {
-      exoPlayer.stop(true);
+      exoPlayer.stop();
+      exoPlayer.clearMediaItems();
     }
   }
 

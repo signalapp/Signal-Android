@@ -9,6 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.MediaMetadata;
+
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -24,9 +27,9 @@ import java.util.Locale;
 import java.util.Objects;
 
 /**
- * Factory responsible for building out MediaDescriptionCompat objects for voice notes.
+ * Factory responsible for building out MediaItem objects for voice notes.
  */
-class VoiceNoteMediaDescriptionCompatFactory {
+class VoiceNoteMediaItemFactory {
 
   public static final String EXTRA_MESSAGE_POSITION        = "voice.note.extra.MESSAGE_POSITION";
   public static final String EXTRA_THREAD_RECIPIENT_ID     = "voice.note.extra.RECIPIENT_ID";
@@ -37,13 +40,16 @@ class VoiceNoteMediaDescriptionCompatFactory {
   public static final String EXTRA_MESSAGE_ID              = "voice.note.extra.MESSAGE_ID";
   public static final String EXTRA_MESSAGE_TIMESTAMP       = "voice.note.extra.MESSAGE_TIMESTAMP";
 
-  private static final String TAG = Log.tag(VoiceNoteMediaDescriptionCompatFactory.class);
+  public static final Uri NEXT_URI = Uri.parse("file:///android_asset/sounds/state-change_confirm-down.ogg");
+  public static final Uri END_URI  = Uri.parse("file:///android_asset/sounds/state-change_confirm-up.ogg");
 
-  private VoiceNoteMediaDescriptionCompatFactory() {}
+  private static final String TAG = Log.tag(VoiceNoteMediaItemFactory.class);
 
-  static MediaDescriptionCompat buildMediaDescription(@NonNull Context context,
-                                                      long threadId,
-                                                      @NonNull Uri draftUri)
+  private VoiceNoteMediaItemFactory() {}
+
+  static MediaItem buildMediaItem(@NonNull Context context,
+                                  long threadId,
+                                  @NonNull Uri draftUri)
   {
 
     Recipient threadRecipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
@@ -51,28 +57,28 @@ class VoiceNoteMediaDescriptionCompatFactory {
       threadRecipient = Recipient.UNKNOWN;
     }
 
-    return buildMediaDescription(context,
-                                 threadRecipient,
-                                 Recipient.self(),
-                                 Recipient.self(),
-                                 0,
-                                 threadId,
-                                 -1,
-                                 System.currentTimeMillis(),
-                                 draftUri);
+    return buildMediaItem(context,
+                          threadRecipient,
+                          Recipient.self(),
+                          Recipient.self(),
+                          0,
+                          threadId,
+                          -1,
+                          System.currentTimeMillis(),
+                          draftUri);
   }
 
   /**
-   * Build out a MediaDescriptionCompat for a given voice note. Expects to be run
+   * Build out a MediaItem for a given voice note. Expects to be run
    * on a background thread.
    *
    * @param context       Context.
    * @param messageRecord The MessageRecord of the given voice note.
-   * @return A MediaDescriptionCompat with all the details the service expects.
+   * @return A MediaItem with all the details the service expects.
    */
   @WorkerThread
-  @Nullable static MediaDescriptionCompat buildMediaDescription(@NonNull Context context,
-                                                                @NonNull MessageRecord messageRecord)
+  @Nullable static MediaItem buildMediaItem(@NonNull Context context,
+                                            @NonNull MessageRecord messageRecord)
   {
     int startingPosition = DatabaseFactory.getMmsSmsDatabase(context)
                                           .getMessagePositionInConversation(messageRecord.getThreadId(),
@@ -95,26 +101,26 @@ class VoiceNoteMediaDescriptionCompatFactory {
       return null;
     }
 
-    return buildMediaDescription(context,
-                                 threadRecipient,
-                                 avatarRecipient,
-                                 sender,
-                                 startingPosition,
-                                 messageRecord.getThreadId(),
-                                 messageRecord.getId(),
-                                 messageRecord.getDateReceived(),
-                                 uri);
+    return buildMediaItem(context,
+                          threadRecipient,
+                          avatarRecipient,
+                          sender,
+                          startingPosition,
+                          messageRecord.getThreadId(),
+                          messageRecord.getId(),
+                          messageRecord.getDateReceived(),
+                          uri);
   }
 
-  private static MediaDescriptionCompat buildMediaDescription(@NonNull Context context,
-                                                              @NonNull Recipient threadRecipient,
-                                                              @NonNull Recipient avatarRecipient,
-                                                              @NonNull Recipient sender,
-                                                              int startingPosition,
-                                                              long threadId,
-                                                              long messageId,
-                                                              long dateReceived,
-                                                              @NonNull Uri audioUri)
+  private static MediaItem buildMediaItem(@NonNull Context context,
+                                          @NonNull Recipient threadRecipient,
+                                          @NonNull Recipient avatarRecipient,
+                                          @NonNull Recipient sender,
+                                          int startingPosition,
+                                          long threadId,
+                                          long messageId,
+                                          long dateReceived,
+                                          @NonNull Uri audioUri)
   {
     Bundle extras = new Bundle();
     extras.putString(EXTRA_THREAD_RECIPIENT_ID, threadRecipient.getId().serialize());
@@ -132,17 +138,28 @@ class VoiceNoteMediaDescriptionCompatFactory {
 
     String subtitle = null;
     if (preference.isDisplayContact()) {
-      subtitle = context.getString(R.string.VoiceNoteMediaDescriptionCompatFactory__voice_message,
+      subtitle = context.getString(R.string.VoiceNoteMediaItemFactory__voice_message,
                                    DateUtils.formatDateWithoutDayOfWeek(Locale.getDefault(),
                                                                         dateReceived));
     }
 
-    return new MediaDescriptionCompat.Builder()
-                                     .setMediaUri(audioUri)
-                                     .setTitle(title)
-                                     .setSubtitle(subtitle)
-                                     .setExtras(extras)
-                                     .build();
+    return new MediaItem.Builder()
+        .setUri(audioUri)
+        .setMediaMetadata(
+            new MediaMetadata.Builder()
+                .setTitle(title)
+                .setSubtitle(subtitle)
+                .setExtras(extras)
+                .build()
+        )
+        .setTag(
+            new MediaDescriptionCompat.Builder()
+                .setMediaUri(audioUri)
+                .setTitle(title)
+                .setSubtitle(subtitle)
+                .setExtras(extras)
+                .build())
+        .build();
   }
 
   public static @NonNull String getTitle(@NonNull Context context, @NonNull Recipient sender, @NonNull Recipient threadRecipient, @Nullable NotificationPrivacyPreference notificationPrivacyPreference) {
@@ -154,7 +171,7 @@ class VoiceNoteMediaDescriptionCompatFactory {
     }
 
     if (preference.isDisplayContact() && threadRecipient.isGroup()) {
-      return context.getString(R.string.VoiceNoteMediaDescriptionCompatFactory__s_to_s,
+      return context.getString(R.string.VoiceNoteMediaItemFactory__s_to_s,
                                sender.getDisplayName(context),
                                threadRecipient.getDisplayName(context));
     } else if (preference.isDisplayContact()) {
@@ -162,5 +179,29 @@ class VoiceNoteMediaDescriptionCompatFactory {
     } else {
       return context.getString(R.string.MessageNotifier_signal_message);
     }
+  }
+
+  public static MediaItem buildNextVoiceNoteMediaItem(@NonNull MediaItem source) {
+    return cloneMediaItem(source, "next", NEXT_URI);
+  }
+
+  public static MediaItem buildEndVoiceNoteMediaItem(@NonNull MediaItem source) {
+    return cloneMediaItem(source, "end", END_URI);
+  }
+
+  private static MediaItem cloneMediaItem(MediaItem source, String mediaId, Uri uri) {
+    MediaDescriptionCompat description = source.playbackProperties != null ? (MediaDescriptionCompat) source.playbackProperties.tag : null;
+    return source.buildUpon()
+                 .setMediaId(mediaId)
+                 .setUri(uri)
+                 .setTag(
+                     description != null ?
+                     new MediaDescriptionCompat.Builder()
+                         .setMediaUri(uri)
+                         .setTitle(description.getTitle())
+                         .setSubtitle(description.getSubtitle())
+                         .setExtras(description.getExtras())
+                         .build() : null)
+                 .build();
   }
 }

@@ -9,8 +9,8 @@ dependencyVerification {
         ['androidx.activity:activity:1.2.2',
          'e165fb20f006b77894d349572cc3acd2760baa8416ae4d33cb8de6a84dd6730c'],
 
-        ['androidx.annotation:annotation-experimental:1.0.0',
-         'b219d2b568e7e4ba534e09f8c2fd242343df6ccbdfbbe938846f5d740e6b0b11'],
+        ['androidx.annotation:annotation-experimental:1.1.0',
+         '0157de61a2064047896a058080f3fd67ba57ad9a94857b3f7a363660243e3f90'],
 
         ['androidx.annotation:annotation:1.2.0',
          '9029262bddce116e6d02be499e4afdba21f24c239087b76b3b57d7e98b490a36'],
@@ -72,8 +72,8 @@ dependencyVerification {
         ['androidx.core:core-ktx:1.5.0',
          '5964cfe7a4882da2a00fb6ca3d3a072d04139208186f7bc4b3cb66022764fc42'],
 
-        ['androidx.core:core:1.5.0',
-         '2b279712795689069cfb63e48b3ab63c32a5649bdda44c482eb8f81ca1a72161'],
+        ['androidx.core:core:1.6.0',
+         '875dbec888c91b05521575fd180cc08824d2c4d12b10b0261b4f9d6825214ef1'],
 
         ['androidx.cursoradapter:cursoradapter:1.0.0',
          'a81c8fe78815fa47df5b749deb52727ad11f9397da58b16017f4eb2c11e28564'],
@@ -171,8 +171,8 @@ dependencyVerification {
         ['androidx.localbroadcastmanager:localbroadcastmanager:1.0.0',
          'e71c328ceef5c4a7d76f2d86df1b65d65fe2acf868b1a4efd84a3f34336186d8'],
 
-        ['androidx.media:media:1.0.0',
-         'b23b527b2bac870c4a7451e6982d7132e413e88d7f27dbeb1fc7640a720cd9ee'],
+        ['androidx.media:media:1.4.1',
+         'fdfb2f93b23895341ed547ffb26e1f708d9d20e3cd8e73bb6590e4a7131fd60f'],
 
         ['androidx.multidex:multidex:2.0.1',
          '42dd32ff9f97f85771b82a20003a8d70f68ab7b4ba328964312ce0732693db09'],
@@ -195,8 +195,8 @@ dependencyVerification {
         ['androidx.print:print:1.0.0',
          '1d5c7f3135a1bba661fc373fd72e11eb0a4adbb3396787826dd8e4190d5d9edd'],
 
-        ['androidx.recyclerview:recyclerview:1.1.0',
-         'f0d2b5a67d0a91ee1b1c73ef2b636a81f3563925ddd15a1d4e1c41ec28de7a4f'],
+        ['androidx.recyclerview:recyclerview:1.2.1',
+         'a1ea0329ee6d938305dfd0f8ce5c48dea2aac14e5606d23e7fb60afcfb655d6e'],
 
         ['androidx.savedstate:savedstate-ktx:1.1.0',
          'e44d61347463b0fafeeb649cbcc3d7109b2eb5e11d1522e986105170cdebbf68'],
@@ -297,14 +297,14 @@ dependencyVerification {
         ['com.google.android.datatransport:transport-runtime:3.0.0',
          '691bd6ee2bf93182d29cb8a3a6f735098337e6f35d7fc9c8a79f17fdae604894'],
 
-        ['com.google.android.exoplayer:exoplayer-core:2.9.1',
-         'b6ab34abac36bc2bc6934b7a50008162feca2c0fde91aaf1e8c1c22f2c16e2c0'],
+        ['com.google.android.exoplayer:exoplayer-core:2.15.0',
+         '8ae0c0027108181739e8a008377c8eb7fb93c4e04e3efdb5846662dd1ca9eba2'],
 
-        ['com.google.android.exoplayer:exoplayer-ui:2.9.1',
-         '7a942afcc402ff01e9bf48e8d3942850986710f06562d50a1408aaf04a683151'],
+        ['com.google.android.exoplayer:exoplayer-ui:2.15.0',
+         '9e1869798de1ce16d9feb4fd97097f11c7cd54a2018c91d22aafd793f6a8dadf'],
 
-        ['com.google.android.exoplayer:extension-mediasession:2.9.1',
-         'a7dff433b41b714c6584d925f1438ca890eaa16d66a47c3fb9ce88b39dcf3d52'],
+        ['com.google.android.exoplayer:extension-mediasession:2.15.0',
+         'f7e304c4f38d113e164642478f4f96ad952cc0fa2ab27f2be4a0978587f0eeb3'],
 
         ['com.google.android.gms:play-services-auth-api-phone:16.0.0',
          '19365818b9ceb048ef48db12b5ffadd5eb86dbeb2c7c7b823bfdd89c665f42e5'],

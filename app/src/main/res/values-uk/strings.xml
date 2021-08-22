@@ -2610,7 +2610,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Скопійовано до буфера обміну</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s до %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s до %2$s</string>
   <!--StorageUtil-->
   <string name="BlockedUsersActivity__s_has_been_blocked">Заблоковано \"%1$s\"</string>
   <string name="BlockedUsersActivity__s_has_been_unblocked">Розблоковано \"%1$s\"</string>

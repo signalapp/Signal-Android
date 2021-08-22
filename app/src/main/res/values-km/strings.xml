@@ -2047,7 +2047,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">បានចម្លងទៅ clipboard</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ទៅ%2$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s ទៅ%2$s</string>
   <!--StorageUtil-->
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__remove">លុបចេញ</string>

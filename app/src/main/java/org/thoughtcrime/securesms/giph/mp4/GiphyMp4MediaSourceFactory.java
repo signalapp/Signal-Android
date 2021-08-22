@@ -4,10 +4,9 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.extractor.ExtractorsFactory;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.upstream.DataSource;
 
 import org.thoughtcrime.securesms.video.exo.ChunkedDataSourceFactory;
@@ -19,17 +18,14 @@ import okhttp3.OkHttpClient;
  */
 final class GiphyMp4MediaSourceFactory {
 
-  private final DataSource.Factory           dataSourceFactory;
-  private final ExtractorsFactory            extractorsFactory;
-  private final ExtractorMediaSource.Factory extractorMediaSourceFactory;
+  private final ProgressiveMediaSource.Factory progressiveMediaSourceFactory;
 
   GiphyMp4MediaSourceFactory(@NonNull OkHttpClient okHttpClient) {
-    dataSourceFactory           = new ChunkedDataSourceFactory(okHttpClient, null);
-    extractorsFactory           = new DefaultExtractorsFactory();
-    extractorMediaSourceFactory = new ExtractorMediaSource.Factory(dataSourceFactory).setExtractorsFactory(extractorsFactory);
+    DataSource.Factory dataSourceFactory = new ChunkedDataSourceFactory(okHttpClient, null);
+    progressiveMediaSourceFactory = new ProgressiveMediaSource.Factory(dataSourceFactory);
   }
 
   @NonNull MediaSource create(@NonNull Uri uri) {
-    return extractorMediaSourceFactory.createMediaSource(uri);
+    return progressiveMediaSourceFactory.createMediaSource(MediaItem.fromUri(uri));
   }
 }

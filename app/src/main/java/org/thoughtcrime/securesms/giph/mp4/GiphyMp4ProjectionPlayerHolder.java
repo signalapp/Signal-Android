@@ -15,9 +15,8 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
-import org.signal.glide.Log;
+import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.CornerMask;
 import org.thoughtcrime.securesms.util.Projection;
 
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ import java.util.List;
 /**
  * Object which holds on to an injected video player.
  */
-public final class GiphyMp4ProjectionPlayerHolder implements Player.EventListener {
+public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener {
   private final FrameLayout         container;
   private final GiphyMp4VideoPlayer player;
 
@@ -73,8 +72,7 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.EventListene
     container.setVisibility(View.VISIBLE);
   }
 
-  @Override
-  public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+  @Override public void onPlaybackStateChanged(int playbackState) {
     if (playbackState == Player.STATE_READY) {
       if (onPlaybackReady != null) {
         if (policyEnforcer != null) {
@@ -85,9 +83,11 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.EventListene
     }
   }
 
-  @Override
-  public void onPositionDiscontinuity(int reason) {
-    if (policyEnforcer != null && reason == Player.DISCONTINUITY_REASON_PERIOD_TRANSITION) {
+  @Override public void onPositionDiscontinuity(@NotNull Player.PositionInfo oldPosition,
+                                                @NotNull Player.PositionInfo newPosition,
+                                                int reason)
+  {
+    if (policyEnforcer != null && reason == Player.DISCONTINUITY_REASON_AUTO_TRANSITION) {
       if (policyEnforcer.endPlayback()) {
         player.stop();
       }

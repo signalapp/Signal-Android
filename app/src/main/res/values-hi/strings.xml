@@ -2678,8 +2678,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">वॉइस संदेश चलाने में विफल रहा</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ऑडियो संदेश · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$sसे%2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">ऑडियो संदेश · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$sसे%2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" को ब्लॉक किया गया है </string>
