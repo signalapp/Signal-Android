@@ -2609,8 +2609,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">음성 메시지를 재생하지 못했습니다.</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">음성 메시지 %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s~%2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">음성 메시지 %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s~%2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\'%1$s\' 님이 차단되었습니다.</string>

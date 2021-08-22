@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms;
 
-import android.graphics.Point;
 import android.net.Uri;
-import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -12,7 +10,6 @@ import androidx.lifecycle.Observer;
 
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.contactshare.Contact;
-import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.conversation.colors.Colorizable;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
@@ -29,7 +26,6 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
-import org.thoughtcrime.securesms.video.exo.AttachmentMediaSourceFactory;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
@@ -49,11 +45,10 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
             boolean pulseMention,
             boolean hasWallpaper,
             boolean isMessageRequestAccepted,
-            @NonNull AttachmentMediaSourceFactory attachmentMediaSourceFactory,
             boolean canPlayInline,
             @NonNull Colorizer colorizer);
 
-  ConversationMessage getConversationMessage();
+  @NonNull ConversationMessage getConversationMessage();
 
   void setEventListener(@Nullable EventListener listener);
 

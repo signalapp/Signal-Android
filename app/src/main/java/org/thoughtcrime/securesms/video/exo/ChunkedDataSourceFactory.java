@@ -20,7 +20,7 @@ public class ChunkedDataSourceFactory implements DataSource.Factory {
 
 
   @Override
-  public DataSource createDataSource() {
+  public @NonNull DataSource createDataSource() {
     return new ChunkedDataSource(okHttpClient, listener);
   }
 }

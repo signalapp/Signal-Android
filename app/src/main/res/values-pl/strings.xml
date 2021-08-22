@@ -2873,8 +2873,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Nie udało się odtworzyć wiadomości głosowej</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Wiadomość głosowa · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s do %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Wiadomość głosowa · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s do %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">Zablokowano \"%1$s\".</string>

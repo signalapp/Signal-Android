@@ -49,7 +49,7 @@ public final class GiphyMp4PlaybackPolicy {
     int maxInstances = 0;
 
     try {
-      MediaCodecInfo info = MediaCodecUtil.getDecoderInfo(MimeTypes.VIDEO_H264, false);
+      MediaCodecInfo info = MediaCodecUtil.getDecoderInfo(MimeTypes.VIDEO_H264, false, false);
 
       if (info != null && info.getMaxSupportedInstances() > 0) {
         maxInstances = (int) (info.getMaxSupportedInstances() * ratio);

@@ -37,7 +37,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.MediaItem;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
@@ -59,9 +59,7 @@ import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.video.exo.AttachmentMediaSourceFactory;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.security.MessageDigest;
@@ -119,7 +117,6 @@ public class ConversationAdapter
   private final Set<Long>                    releasedFastRecords;
   private final Calendar                     calendar;
   private final MessageDigest                digest;
-  private final AttachmentMediaSourceFactory attachmentMediaSourceFactory;
 
   private String              searchQuery;
   private ConversationMessage recordToPulse;
@@ -137,7 +134,6 @@ public class ConversationAdapter
                       @NonNull Locale locale,
                       @Nullable ItemClickListener clickListener,
                       @NonNull Recipient recipient,
-                      @NonNull AttachmentMediaSourceFactory attachmentMediaSourceFactory,
                       @NonNull Colorizer colorizer)
   {
     super(new DiffUtil.ItemCallback<ConversationMessage>() {
@@ -166,7 +162,6 @@ public class ConversationAdapter
     this.digest                       = getMessageDigestOrThrow();
     this.hasWallpaper                 = recipient.hasWallpaper();
     this.isMessageRequestAccepted     = true;
-    this.attachmentMediaSourceFactory = attachmentMediaSourceFactory;
     this.colorizer                    = colorizer;
 
     setHasStableIds(true);
@@ -301,7 +296,6 @@ public class ConversationAdapter
                                                   conversationMessage == recordToPulse,
                                                   hasWallpaper,
                                                   isMessageRequestAccepted,
-                                                  attachmentMediaSourceFactory,
                                                   conversationMessage == inlineContent,
                                                   colorizer);
 
@@ -701,8 +695,8 @@ public class ConversationAdapter
     }
 
     @Override
-    public @Nullable MediaSource getMediaSource() {
-      return getBindable().getMediaSource();
+    public @Nullable MediaItem getMediaItem() {
+      return getBindable().getMediaItem();
     }
 
     @Override
@@ -710,8 +704,8 @@ public class ConversationAdapter
       return getBindable().getPlaybackPolicyEnforcer();
     }
 
-    @NonNull
-    public @Override Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerView) {
+    @Override
+    public @NonNull Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerView) {
       return getBindable().getGiphyMp4PlayableProjection(recyclerView);
     }
 

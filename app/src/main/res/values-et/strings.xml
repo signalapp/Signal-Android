@@ -2568,8 +2568,8 @@
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">See link ei ole hetkel aktiivne</string>
   <!--VoiceNotePlaybackPreparer-->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Häälsõnum · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s saajale %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">Häälsõnum · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s saajale %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" on blokitud</string>

@@ -4,7 +4,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.RemoteException;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 
@@ -16,17 +15,13 @@ import com.google.android.exoplayer2.ui.PlayerNotificationManager;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
-import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AvatarUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.Objects;
 
@@ -40,30 +35,22 @@ class VoiceNoteNotificationManager {
 
   VoiceNoteNotificationManager(@NonNull Context context,
                                @NonNull MediaSessionCompat.Token token,
-                               @NonNull PlayerNotificationManager.NotificationListener listener,
-                               @NonNull VoiceNoteQueueDataAdapter dataAdapter)
+                               @NonNull PlayerNotificationManager.NotificationListener listener)
   {
-    this.context  = context;
-
-    try {
-      controller = new MediaControllerCompat(context, token);
-    } catch (RemoteException e) {
-      throw new IllegalArgumentException("Could not create a controller with given token");
-    }
-
-    notificationManager = PlayerNotificationManager.createWithNotificationChannel(context,
-                                                                                  NotificationChannels.VOICE_NOTES,
-                                                                                  R.string.NotificationChannel_voice_notes,
-                                                                                  NOW_PLAYING_NOTIFICATION_ID,
-                                                                                  new DescriptionAdapter());
+    this.context        = context;
+    controller          = new MediaControllerCompat(context, token);
+    notificationManager = new PlayerNotificationManager.Builder(context, NOW_PLAYING_NOTIFICATION_ID, NotificationChannels.VOICE_NOTES)
+                                                       .setChannelNameResourceId(R.string.NotificationChannel_voice_notes)
+                                                       .setMediaDescriptionAdapter(new DescriptionAdapter())
+                                                       .setNotificationListener(listener)
+                                                       .build();
 
     notificationManager.setMediaSessionToken(token);
     notificationManager.setSmallIcon(R.drawable.ic_notification);
-    notificationManager.setRewindIncrementMs(0);
-    notificationManager.setFastForwardIncrementMs(0);
-    notificationManager.setNotificationListener(listener);
     notificationManager.setColorized(true);
-    notificationManager.setControlDispatcher(new VoiceNoteNotificationControlDispatcher(dataAdapter));
+    notificationManager.setUseFastForwardAction(false);
+    notificationManager.setUseRewindAction(false);
+    notificationManager.setUseStopAction(true);
   }
 
   public void hideNotification() {
@@ -90,18 +77,20 @@ class VoiceNoteNotificationManager {
 
     @Override
     public @Nullable PendingIntent createCurrentContentIntent(Player player) {
-      if (!hasMetadata()) return null;
+      if (!hasMetadata()) {
+        return null;
+      }
 
-      String serializedRecipientId = controller.getMetadata().getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_THREAD_RECIPIENT_ID);
+      String serializedRecipientId = controller.getMetadata().getString(VoiceNoteMediaItemFactory.EXTRA_THREAD_RECIPIENT_ID);
       if (serializedRecipientId == null) {
         return null;
       }
 
       RecipientId recipientId      = RecipientId.from(serializedRecipientId);
-      int         startingPosition = (int) controller.getMetadata().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_MESSAGE_POSITION);
-      long        threadId         = controller.getMetadata().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_THREAD_ID);
+      int         startingPosition = (int) controller.getMetadata().getLong(VoiceNoteMediaItemFactory.EXTRA_MESSAGE_POSITION);
+      long        threadId         = controller.getMetadata().getLong(VoiceNoteMediaItemFactory.EXTRA_THREAD_ID);
 
-      int color = (int) controller.getMetadata().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_COLOR);
+      int color = (int) controller.getMetadata().getLong(VoiceNoteMediaItemFactory.EXTRA_COLOR);
 
       if (color == 0) {
         color = ChatColorsPalette.UNKNOWN_CONTACT.asSingleColor();
@@ -138,7 +127,7 @@ class VoiceNoteNotificationManager {
         return null;
       }
 
-      String serializedRecipientId = controller.getMetadata().getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_AVATAR_RECIPIENT_ID);
+      String serializedRecipientId = controller.getMetadata().getString(VoiceNoteMediaItemFactory.EXTRA_AVATAR_RECIPIENT_ID);
       if (serializedRecipientId == null) {
         return null;
       }

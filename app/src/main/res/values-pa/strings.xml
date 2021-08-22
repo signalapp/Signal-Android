@@ -2682,8 +2682,8 @@
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">ਅਵਾਜ਼ ਵਾਲੇ ਸੁਨੇਹਾ ਸੁਣਾਉਣਾ ਅਸਫਲ ਰਿਹਾ</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
-  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ਆਵਾਜ਼ ਸੁਨੇਹਾ · %1$s</string>
-  <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ਤੋਂ %2$s</string>
+  <string name="VoiceNoteMediaItemFactory__voice_message">ਆਵਾਜ਼ ਸੁਨੇਹਾ · %1$s</string>
+  <string name="VoiceNoteMediaItemFactory__s_to_s">%1$s ਤੋਂ %2$s</string>
   <!--StorageUtil-->
   <string name="StorageUtil__s_s">%1$s/%2$s</string>
   <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" ਉੱਤੇ ਪਾਬੰਦੀ ਲਾਈ ਹੈ।</string>
