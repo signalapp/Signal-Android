@@ -30,6 +30,9 @@ data class CallParticipant constructor(
   val isPrimary: Boolean
     get() = deviceOrdinal == DeviceOrdinal.PRIMARY
 
+  val isSelf: Boolean
+    get() = recipient.isSelf
+
   fun getRecipientDisplayName(context: Context): String {
     return if (recipient.isSelf && isPrimary) {
       context.getString(R.string.CallParticipant__you)

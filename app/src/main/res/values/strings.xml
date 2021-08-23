@@ -1415,6 +1415,7 @@
 
     <string name="WebRtcCallView__no_one_else_is_here">No one else is here</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s is in this call</string>
+    <string name="WebRtcCallView__s_are_in_this_call">%1$s are in this call</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s and %2$s are in this call</string>
     <string name="WebRtcCallView__s_is_presenting">%1$s is presenting</string>
 

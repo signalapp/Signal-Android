@@ -113,7 +113,9 @@ public final class CallParticipantsState {
         return context.getString(R.string.WebRtcCallView__no_one_else_is_here);
       case 1: {
         if (callState == WebRtcViewModel.State.CALL_PRE_JOIN && groupCallState.isNotIdle()) {
-          return context.getString(R.string.WebRtcCallView__s_is_in_this_call, remoteParticipants.get(0).getShortRecipientDisplayName(context));
+          return context.getString(remoteParticipants.get(0).isSelf() ? R.string.WebRtcCallView__s_are_in_this_call
+                                                                      : R.string.WebRtcCallView__s_is_in_this_call,
+                                   remoteParticipants.get(0).getShortRecipientDisplayName(context));
         } else {
           if (focusedParticipant != CallParticipant.EMPTY && focusedParticipant.isScreenSharing()) {
             return context.getString(R.string.WebRtcCallView__s_is_presenting, focusedParticipant.getShortRecipientDisplayName(context));
