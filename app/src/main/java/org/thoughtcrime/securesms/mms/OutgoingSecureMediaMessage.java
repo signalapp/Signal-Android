@@ -44,7 +44,7 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                           getAttachments(),
                                           getSentTimeMillis(),
                                           getDistributionType(),
-                                          getExpiresIn(),
+                                          expiresIn,
                                           isViewOnce(),
                                           getOutgoingQuote(),
                                           getSharedContacts(),
