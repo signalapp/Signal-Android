@@ -930,6 +930,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s %2$s-നെ ഒരു അഡ്‌മിൻ ആക്കി.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s നിങ്ങളെ ഒരു അഡ്‌മിൻ ആക്കി.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">നിങ്ങൾ %1$s-ന്റെ അഡ്മിൻ പ്രത്യേകാവകാശങ്ങൾ റദ്ദാക്കി.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s നിങ്ങളുടെ അഡ്‌മിൻ പ്രത്യേകാവകാശങ്ങൾ റദ്ദാക്കിയിരിക്കുന്നു..</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s %2$s-ന്റെ അഡ്മിൻ പ്രത്യേകാവകാശങ്ങൾ റദ്ദാക്കി.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$sഇപ്പോൾ ഒരു അഡ്മിൻ ആണ്</string>
   <string name="MessageRecord_you_are_now_an_admin">നിങ്ങൾ ഇപ്പോൾ ഒരു അഡ്‌മിനാണ്.</string>
@@ -1200,6 +1201,7 @@
   <string name="WebRtcCallActivity__calling">വിളിക്കുന്നു…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal വിളി</string>
+  <string name="WebRtcCallView__signal_video_call">Signal വീഡിയോ കോൾ</string>
   <string name="WebRtcCallView__start_call">കോൾ ആരംഭിക്കുക</string>
   <string name="WebRtcCallView__join_call">കോളിൽ ചേരുക</string>
   <string name="WebRtcCallView__call_is_full">കോൾ നിറഞ്ഞു</string>
@@ -3102,5 +3104,18 @@
   <string name="ContactSelectionListItem__dot_s">. %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">മുകളിലേക്ക് നാവിഗേറ്റ് ചെയ്യുക</string>
+  <string name="MultiselectForwardFragment__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">%1$d സന്ദേശം അയയ്ക്കുക</item>
+    <item quantity="other">%1$d സന്ദേശങ്ങള്‍ അയയ്ക്കുക</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">സന്ദേശം അയച്ചു</item>
+    <item quantity="other">സന്ദേശങ്ങള്‍ അയച്ചു</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">സന്ദേശം അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു.</item>
+    <item quantity="other">സന്ദേശങ്ങള്‍ അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു.</item>
+  </plurals>
   <!--EOF-->
 </resources>

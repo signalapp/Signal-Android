@@ -930,6 +930,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s ने %2$s को एडमिन बना दिया।</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ने आपको एडमिन बना दिया।</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">आपने %1$s के एडमिन अधिकार वापस ले लिए हैं।</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ने आपके एडमिन अधिकार वापस ले लिए हैं।</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ने %2$s के एडमिन अधिकार वापस ले लिए हैं।</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s अब एक एडमिन है।</string>
   <string name="MessageRecord_you_are_now_an_admin">आप अब एक एडमिन हैं।</string>
@@ -1200,6 +1201,7 @@
   <string name="WebRtcCallActivity__calling">कॉल की जा रही है…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal ऑडियो</string>
+  <string name="WebRtcCallView__signal_video_call">Signal वीडियो कॉल</string>
   <string name="WebRtcCallView__start_call">कॉल शुरू करें</string>
   <string name="WebRtcCallView__join_call">कॉल से जुड़ें</string>
   <string name="WebRtcCallView__call_is_full">कॉल पूर्ण है</string>

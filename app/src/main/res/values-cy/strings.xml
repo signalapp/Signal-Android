@@ -3286,6 +3286,14 @@ Send neges heb ei ddiogelu?</string>
   <string name="DSLSettingsToolbar__navigate_up">Symud i fyny</string>
   <string name="MultiselectForwardFragment__forward_to">Ymlaen at</string>
   <string name="MultiselectForwardFragment__add_a_message">Ychwanegu neges</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Anfon ymlaen cynt</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Mae negeseuon sy\'n cael eu hanfon ymlaen yn cael eu hanfon yn syth.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Anfon %1$d neges</item>
+    <item quantity="two">Anfon %1$d neges</item>
+    <item quantity="many">Anfon %1$d neges</item>
+    <item quantity="other">Anfon %1$d neges</item>
+  </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
     <item quantity="one">Neges wedi\'i hanfon</item>
     <item quantity="two">Neges wedi\'u hanfon</item>
@@ -3297,6 +3305,12 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="two">Neges methwyd eu hanfon</item>
     <item quantity="many">Neges methwyd eu hanfon</item>
     <item quantity="other">Neges methwyd eu hanfon</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Methu anfon y neges ymlaen gan nad yw ar gael</item>
+    <item quantity="two">Methu anfon y negeseuon ymlaen gan nad ydyn nhw ar gael</item>
+    <item quantity="many">Methu anfon y negeseuon ymlaen gan nad ydyn nhw ar gael</item>
+    <item quantity="other">Methu anfon y negeseuon ymlaen gan nad ydyn nhw ar gael</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Wedi cyrraedd y terfyn</string>
   <!--EOF-->

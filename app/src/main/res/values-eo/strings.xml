@@ -52,6 +52,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(videaĵo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(loko)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(respondo)</string>
+  <string name="DraftDatabase_Draft_voice_note">(Voĉmesaĝo)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">Galerio</string>
   <string name="AttachmentKeyboard_file">Dosiero</string>
@@ -207,6 +208,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Kunsendaĵo transpasas la grandlimon por tia mesaĝo, kian vi sendas.</string>
   <string name="ConversationActivity_unable_to_record_audio">Ne eblas registri sonaĵon!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Vi ne povas sendi mesaĝojn al tiu grupo, ĉar vi ne plu partoprenas en ĝi.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Nur %1$s povas sendi mesaĝojn.</string>
+  <string name="ConversationActivity_admins">administrantoj</string>
+  <string name="ConversationActivity_message_an_admin">Mesaĝi administranton</string>
+  <string name="ConversationActivity_cant_start_group_call">Ne sukcesis ekigi grupalvokon</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Nur administrantojn de tiu ĉi grupo povas ekigi alvokon.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Estas neniu aplikaĵo disponebla por trakti ĉi tiun ligilon ĉe via aparato.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Via peto por aniĝi sendiĝis al la grupadministranto. Oni diras al vi per sciigo, kiam ŝi aŭ ĝi respondas.</string>
   <string name="ConversationActivity_cancel_request">Nuligi la peton</string>
@@ -324,6 +330,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Kelkaj kontaktoj ne povas esti en malnovtipaj grupoj.</string>
+  <string name="CreateGroupActivity__select_members">Elekti anojn</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profilo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Eraro dum agordo de profila foto</string>
@@ -337,6 +344,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Piktogramo pri restaŭro el savkopio</string>
   <string name="ChooseBackupFragment__choose_backup">Elekti savkopion</string>
   <string name="ChooseBackupFragment__learn_more">Scii pli</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Neniu dosierelektilo disponebla</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Restaŭro plenumita</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Por plu fari savkopiojn, elektu dosierujon. Estontaj savkopioj konserviĝos en ĉi tiun ejon.</string>
@@ -414,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Kunhavigi kun</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Pluraj kunsendaĵoj nur eblas kun bildoj kaj videaĵoj</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Vi ne rajtas sendi al tiu ĉi grupo</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Daŭra miso ĉe Signal-a komunikado!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ne eblis registri kun „Play Services“ de Google. Signal-aj mesaĝoj kaj alvokoj malŝaltiĝis, bonvolu provi re-registriĝi en Agordoj → Speciala.</string>
@@ -556,6 +565,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Farita</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tiu persono ne aldoneblas al malnovtipaj grupoj.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Tiu persono ne aldoneblas al avizgrupoj.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Ĉu aldoni „%1$s“ al „%2$s“?</item>
     <item quantity="other">Ĉu aldoni %3$d anojn al „%2$s“?</item>
@@ -626,6 +636,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Nur administrantoj povas restarigi kunhaveblan grupligilon.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vi ne rajtas fari tion</string>
   <string name="ManageGroupActivity_not_capable">Iu, kiun vi aldonis ne subtenas novajn grupojn kaj bezonas ĝisdatigi sian Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Iu, kiun vi aldonis ne subtenas avizgrupojn kaj bezonas ĝisdatigi sian Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Malsukceso ĝisdatigi la grupon</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Vi ne estas ano de tiu grupo</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Malsukceso ĝisdatigi la grupon. Reprovu poste.</string>
@@ -802,6 +813,7 @@
   <string name="MediaOverviewActivity_audio">Sonaĵo</string>
   <string name="MediaOverviewActivity_video">Videaĵo</string>
   <string name="MediaOverviewActivity_image">Bildo</string>
+  <string name="MediaOverviewActivity_voice_message">Voĉmesaĝo</string>
   <string name="MediaOverviewActivity_sent_by_s">Sendita de %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Sendita de vi</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">Sendita de %1$s al %2$s</string>
@@ -818,6 +830,7 @@
   <string name="Megaphones_invite_friends">Inviti amikojn</string>
   <string name="Megaphones_use_sms">Uzi SMS</string>
   <string name="Megaphones_appearance">Aspekto</string>
+  <string name="Megaphones_add_photo">Aldoni foton</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-alvoko fariĝanta</string>
   <string name="NotificationBarManager__establishing_signal_call">Starigo de Signal-alvoko</string>
@@ -860,6 +873,8 @@
   <string name="MediaRepository_all_media">Ĉiuj aŭvidaĵoj</string>
   <string name="MediaRepository__camera">Fotilo</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">Malsukcesis malĉifri la mesaĝon.</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Tuŝetu por sendi sencimigan protokolon</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Nekonata</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vi ricevis mesaĝon ĉifrita per malnova Signal-a versio, kiu ne plu estas subtenata. Bonvolu peti la sendinton ĝisdatigi al la plej nova versio, kaj resendi la mesaĝon.</string>
@@ -915,6 +930,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$sdonis al %2$s la rolon de administranto.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$sdonis al vi la rolon de administranto.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Vi forigis la rolon de administranto de %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s forigis al vi la rolon de administranto.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s forigis la rolon de administranto de %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s nun estas administranto.</string>
   <string name="MessageRecord_you_are_now_an_admin">Vi nun estas administranto.</string>
@@ -975,6 +991,13 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ŝanĝis, kiu povas modifi la grupan membrecon al „%2$s“.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Tiuj, kiuj povas modifi la grupan membrecon ŝanĝiĝis al „%1$s“.</string>
   <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Vi ŝanĝis la grupagordojn por permesi al ĉiuj grupanoj sendi mesaĝojn.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Vi ŝanĝis la grupagordojn por permesi nur al grupadministrantoj sendi mesaĝojn.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s ŝanĝis la grupagordojn por permesi al ĉiuj grupanoj sendi mesaĝojn.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ŝanĝis la grupagordojn por permesi nur al grupadministrantoj sendi mesaĝojn.</string>
+  <string name="MessageRecord_allow_all_members_to_send">La grupagordoj ŝanĝiĝis por permesi al ĉiuj grupanoj sendi mesaĝojn.
+</string>
+  <string name="MessageRecord_allow_only_admins_to_send">La grupagordoj ŝanĝiĝis por permesi nur al grupadministrantoj sendi mesaĝojn.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Vi ŝaltis la grupligilon sen bezono de administranto-aprobo.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Vi ŝaltis la grupligilon kun administranto-aprobo.</string>
@@ -1180,6 +1203,7 @@
   <string name="WebRtcCallActivity__calling">Konektado…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-alvoko</string>
+  <string name="WebRtcCallView__signal_video_call">Signal-vidalvoko</string>
   <string name="WebRtcCallView__start_call">Ekalvoki</string>
   <string name="WebRtcCallView__join_call">Eniri la alvokon</string>
   <string name="WebRtcCallView__call_is_full">La alvoko plenas</string>
@@ -1197,6 +1221,7 @@
     <item quantity="one">%1$s, %2$s kaj %3$d alia estas en tiu alvoko</item>
     <item quantity="other">%1$s, %2$s kaj %3$d aliaj estas en tiu alvoko</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Baskuli</string>
   <string name="WebRtcCallView__speaker">Laŭtparolilo</string>
   <string name="WebRtcCallView__camera">Fotilo</string>
   <string name="WebRtcCallView__mute">Silentigi</string>
@@ -2892,6 +2917,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ChatColorsMegaphone__not_now">Ne nun</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">Ne nun</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">Aldoni foton</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoĝio</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Malfermi la serĉon de emoĝioj</string>

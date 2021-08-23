@@ -976,6 +976,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$spiešķīra%2$sadministratora tiesības.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$spiešķīra Jums administratora tiesības.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Jūs atsaucāt %1$sadministratora tiesības.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$satsauca Jūsu administratora tiesības.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$satsauca administratora tiesības no %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s tagad ir administrators.</string>
   <string name="MessageRecord_you_are_now_an_admin">Jūs tagad esat administrators.</string>
@@ -1259,6 +1260,7 @@
   <string name="WebRtcCallActivity__calling">Zvana…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Zvana signāls</string>
+  <string name="WebRtcCallView__signal_video_call">Signal videozvans</string>
   <string name="WebRtcCallView__start_call">Sākt zvanu</string>
   <string name="WebRtcCallView__join_call">Pievienoties zvanam/sarunai</string>
   <string name="WebRtcCallView__call_is_full">Zvana/sarunas dalībnieku limits izsmelts</string>
@@ -1277,6 +1279,7 @@
     <item quantity="one">%1$s, %2$s un %3$d cits piedalās šai zvanā</item>
     <item quantity="other">%1$s, %2$s un %3$d citi piedalās šai zvanā</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Pārslēgt</string>
   <string name="WebRtcCallView__speaker">Skaļrunis</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Atspējot ziņas</string>
@@ -3163,6 +3166,10 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ContactFilterView__search_name_or_number">Meklēt vārdu vai numuru</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Pārtraukt atskaņot balss ziņu</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Mainīt balss ziņas atskaņošanas ātrumu</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Apturēt balss ziņu</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Atskaņot balss ziņu</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Avatāra priekšskatījums</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>
@@ -3187,5 +3194,9 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Pārvietoties uz augšu</string>
+  <string name="MultiselectForwardFragment__forward_to">Pārsūtīt</string>
+  <string name="MultiselectForwardFragment__add_a_message">Pievienojiet ziņu</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Pārsūtīt ātrāk</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Pārsūtītas ziņas tagad tiek nosūtītas nekavējoties</string>
   <!--EOF-->
 </resources>

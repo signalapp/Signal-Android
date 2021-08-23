@@ -2664,7 +2664,7 @@
   <string name="PhoneNumberPrivacy_everyone_find_description">Bet kuris žmogus, turintis jūsų telefono numerį savo adresatuose, matys jus kaip Signal adresatą. Kiti žmonės galės rasti jus paieškoje.</string>
   <string name="preferences_app_protection__screen_lock">Ekrano užraktas</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Užrakinti prieigą prie Signal, naudojant Android ekrano užraktą ar piršto atspaudą</string>
-  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekrano užrakto neveiklumui skirtas laikas</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekrano užraktas suveiks po</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN kodas</string>
   <string name="preferences_app_protection__create_a_pin">Sukurti PIN kodą</string>
   <string name="preferences_app_protection__change_your_pin">Keisti PIN kodą</string>

@@ -305,7 +305,7 @@
     <item quantity="other">Seçilmiş danışıqlar silinsin?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">Bu addım seçilmiş söhbətləşməni həmişəlik siləcək.</item>
+    <item quantity="one">Bu, seçilmiş danışığı birdəfəlik siləcək.</item>
     <item quantity="other">Bu, seçilmiş %1$d danışığı birdəfəlik siləcək.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Silinir</string>
@@ -1685,7 +1685,7 @@
   <string name="country_selection_fragment__search">Axtar</string>
   <string name="country_selection_fragment__no_matching_countries">Heç bir ölkə uyğun gəlmir</string>
   <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Cihazla bağlantı qurmaq üçün görüntülənən QR kodu skan edin</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Cihazla əlaqə yaratmaq üçün görüntülənən QR kodu skan edin</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Cihazla əlaqə yarat</string>
   <!--device_list_fragment-->
@@ -2022,7 +2022,7 @@
   <string name="preferences_storage__clear_message_history">Mesaj tarixçəsi təmizlənsin?</string>
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Bu, %1$s  və daha köhnə olan bütün mesaj tarixçəsini və medianı cihazınızdan birdəfəlik siləcək.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Bu, bütün mesajları ən son %1$s mesaja qədər kəsəcək.</string>
-  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Bu, bütün mesaj tarixçəsini və mediaları cihazınızdan birdəfəlik silinəcək.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Bu, bütün mesaj tarixçəsini və mediaları cihazınızdan birdəfəlik siləcək.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Bütün mesaj tarixçənizi silmək istədiyinizə əminsiniz?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Bütün mesaj tarixçəniz birdəfəlik silənəcək. Bu əməliyyatın geri dönüşü yoxdur.</string>
   <string name="preferences_storage__delete_all_now">Hamısını indi sil</string>

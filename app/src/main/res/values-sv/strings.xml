@@ -1265,7 +1265,7 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_i_understand">Jag förstår</string>
   <string name="RegistrationActivity_play_services_error">Fel på Google Play-tjänster</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjänster uppdateras eller är tillfälligt otillgängliga. Vänligen försök igen senare.</string>
-  <string name="RegistrationActivity_terms_and_privacy">Villkor &amp; sekretesspolicy</string>
+  <string name="RegistrationActivity_terms_and_privacy">Villkor &amp; integritetspolicy</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal behöver åtkomst till dina kontakter och media för att få kontakt med vänner, utbyta meddelanden och ringa säkra samtal</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal behöver åtkomst till dina kontakter för att kunna ansluta till vänner, utbyta meddelanden och ringa säkra samtal</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har gjort för många försök att registrera detta nummer. Vänligen försök igen senare.</string>
@@ -1277,7 +1277,7 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Vi måste verifiera att du är en människa.</string>
   <string name="RegistrationActivity_next">Nästa</string>
   <string name="RegistrationActivity_continue">Fortsätt</string>
-  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta med dig sekretess.\nVar dig själv i varje meddelande.</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta med dig integritet.\nVar dig själv i varje meddelande.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Ange ditt telefonnummer för att komma igång</string>
   <string name="RegistrationActivity_enter_your_phone_number">Ange ditt telefonnummer</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du kommer att få en verifieringskod. Din operatör kan ta betalt för det. </string>
@@ -1956,7 +1956,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__help">Hjälp</string>
   <string name="preferences__advanced">Avancerat</string>
   <string name="preferences__donate_to_signal">Donera till Signal</string>
-  <string name="preferences__privacy">Integritetsskydd</string>
+  <string name="preferences__privacy">Integritet</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuella MMS-inställningar</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -2948,7 +2948,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpSettingsFragment__contact_us">Kontakta oss</string>
   <string name="HelpSettingsFragment__version">Version</string>
   <string name="HelpSettingsFragment__debug_log">Felsökningslogg</string>
-  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Villkor &amp; sekretesspolicy</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Villkor &amp; integritetspolicy</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licenserad under GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
@@ -3108,6 +3108,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="DSLSettingsToolbar__navigate_up">Navigera upp</string>
   <string name="MultiselectForwardFragment__forward_to">Vidarebefordra till</string>
   <string name="MultiselectForwardFragment__add_a_message">Lägg till ett meddelande</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Snabbare vidarebefordringar</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Vidarebefordrade meddelanden skickas nu omedelbart.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
     <item quantity="one">Skicka %1$d meddelande</item>

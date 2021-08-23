@@ -585,7 +585,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Dit veld is vereist.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Nieuw groepsgesprek aanmaken is mislukt</string>
   <string name="AddGroupDetailsFragment__try_again_later">Probeer het later opnieuw.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruik maken van mms.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Je hebt een contactpersoon geselecteerd die geen Signal-groepen ondersteunt, dus deze groep zal gebruikmaken van mms.</string>
   <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Zelf ingestelde mms-groepsnamen en groepsafbeeldingen zullen alleen zichtbaar zijn voor jou.</string>
   <string name="AddGroupDetailsFragment__remove">Verwijderen</string>
   <string name="AddGroupDetailsFragment__sms_contact">Sms-contactpersoon</string>
@@ -2051,7 +2051,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_data_and_storage__never">Nooit</string>
   <string name="preferences_data_and_storage__wifi_and_mobile_data">Bij zowel wifi als mobiele-dataoverdracht</string>
   <string name="preferences_data_and_storage__mobile_data_only">Alleen bij mobiele-dataoverdracht</string>
-  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Gebruik maken van minder dataoverdracht bij oproepen kan de kwaliteit van oproepen verbeteren</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Gebruikmaken van minder dataoverdracht bij oproepen kan de kwaliteit van oproepen verbeteren</string>
   <string name="preferences_notifications__messages">Berichten</string>
   <string name="preferences_notifications__events">Gebeurtenissen</string>
   <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopend gesprek</string>
@@ -2433,7 +2433,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ResearchMegaphone_learn_more">Meer leren hierover</string>
   <string name="ResearchMegaphone_dismiss">Sluiten</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal-onderzoek</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>We geloven in privacy.</b></p><p>Signal volgt je gedrag niet en verzamelt je gegevens niet. Om Signal zonder die gegevens toch voor iedereen beter te maken zijn we afhankelijk van terugkoppeling van gebruikers, <b>en we zouden ook graag van je horen wat je van Signal vindt</b>.</p><p>We organiseren een enquête om te begrijpen op welke manier en waarvoor jij Signal gebruikt. Onze enquête verzamelt geen gegevens waarmee jij geïdentificeerd kan worden. Als je graag meer terugkoppeling geeft, dan kun je gebruik maken van de vrijblijvende optie om je contactgegevens in te vullen.</p><p>Als je een aantal minuten tijd vrij hebt, en als je iets hebt om terug te koppelen, dan horen we graag van je.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>We geloven in privacy.</b></p><p>Signal volgt je gedrag niet en verzamelt je gegevens niet. Om Signal zonder die gegevens toch voor iedereen beter te maken zijn we afhankelijk van terugkoppeling van gebruikers, <b>en we zouden ook graag van je horen wat je van Signal vindt</b>.</p><p>We organiseren een enquête om te begrijpen op welke manier en waarvoor jij Signal gebruikt. Onze enquête verzamelt geen gegevens waarmee jij geïdentificeerd kan worden. Als je graag meer terugkoppeling geeft, dan kun je gebruikmaken van de vrijblijvende optie om je contactgegevens in te vullen.</p><p>Als je een aantal minuten tijd vrij hebt, en als je iets hebt om terug te koppelen, dan horen we graag van je.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">De enquête invullen</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nee bedankt</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">De enquête wordt georganiseerd door Alchemer op het beveiligde domein surveys.signalusers.org</string>
@@ -2929,8 +2929,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="PrivacySettingsFragment__app_security">App-beveiliging</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bescherm je gesprekken tegen schermopnames door andere apps door Signals inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle omroepen omleiden en verzegelde afzender</string>
-  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard-tijdspanne voor nieuwe gesprekken</string>
-  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel in dat elk bericht in gesprekken die jij zelf begint een bepaalde tijd nadat het is gezien voor iedereen moet worden gewist.</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard-tijdspanne voor alle nieuwe gesprekken</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel in dat berichten in alle nieuwe gesprekken die jij zelf begint een bepaalde tijd nadat ze gezien zijn voor zowel jou als je gesprekspartner vanzelf worden gewist.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pictogram weergeven</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Laat in de berichtdetails een pictogram zien bij berichten die zijn afgeleverd met een verzegelde afzender</string>

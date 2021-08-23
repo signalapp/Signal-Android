@@ -1021,8 +1021,9 @@
   <string name="MessageRecord_you_made_s_an_admin">עשית את %1$s מנהלן.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s עשה את %2$s מנהלן.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s עשה אותך מנהלן.</string>
-  <string name="MessageRecord_you_revoked_admin_privileges_from_s">שללת זכויות מינהל מן %1$s.</string>
-  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s שלל זכויות מינהל מן %2$s.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">שללת זכויות מנהלן מן %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s שלל/ה את זכויות המנהלן שלך.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s שלל זכויות מנהלן מן %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s מנהלן כעת.</string>
   <string name="MessageRecord_you_are_now_an_admin">אתה מנהלן כעת.</string>
   <string name="MessageRecord_s_is_no_longer_an_admin">%1$s אינו מנהלן יותר.</string>
@@ -3283,6 +3284,32 @@
   <string name="DSLSettingsToolbar__navigate_up">נווט למעלה</string>
   <string name="MultiselectForwardFragment__forward_to">העבר הלאה אל</string>
   <string name="MultiselectForwardFragment__add_a_message">הוסף הודעה</string>
+  <string name="MultiselectForwardFragment__faster_forwards">העברות הלאה מהירות יותר</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">הודעות מועברות הלאה נשלחות כעת באופן מיידי.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">שלח הודעה %1$d</item>
+    <item quantity="two">שלח %1$d הודעות</item>
+    <item quantity="many">שלח %1$d הודעות</item>
+    <item quantity="other">שלח %1$d הודעות</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">הודעה נשלחה</item>
+    <item quantity="two">הודעות נשלחו</item>
+    <item quantity="many">הודעות נשלחו</item>
+    <item quantity="other">הודעות נשלחו</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">הודעה נכשלה להישלח</item>
+    <item quantity="two">הודעות נכשלו להישלח</item>
+    <item quantity="many">הודעות נכשלו להישלח</item>
+    <item quantity="other">הודעות נכשלו להישלח</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">לא היה ניתן להעביר הלאה הודעה מאחר שהיא לא זמינה יותר.</item>
+    <item quantity="two">לא היה ניתן להעביר הלאה הודעות מאחר שהן לא זמינות יותר.</item>
+    <item quantity="many">לא היה ניתן להעביר הלאה הודעות מאחר שהן לא זמינות יותר.</item>
+    <item quantity="other">לא היה ניתן להעביר הלאה הודעות מאחר שהן לא זמינות יותר.</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">מגבלה הושגה</string>
   <!--EOF-->
 </resources>

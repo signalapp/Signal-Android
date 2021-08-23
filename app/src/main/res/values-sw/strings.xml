@@ -34,7 +34,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Kifunga skrini%1$s, Kifunga usajili %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Mandhari %1$s, Lugha %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Nambari za Siri zinahitajika kwenye kufuli ya usajili. Ili kulemaza Nambari za Siri, tafadhali kwanza lemaza kufuli ya usajili.</string>
-  <string name="ApplicationPreferencesActivity_pin_created">Nenosiri limeundwa</string>
+  <string name="ApplicationPreferencesActivity_pin_created">Nenosiri limeundwa.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN imezimwa.</string>
   <string name="ApplicationPreferencesActivity_hide">Ficha</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Ungependa kuficha kikumbusho?</string>
@@ -181,7 +181,7 @@
   <string name="ConversationItem_read_more">  Soma Zaidi</string>
   <string name="ConversationItem_download_more">  Pakua Zaidi</string>
   <string name="ConversationItem_pending">  Inasubiriwa</string>
-  <string name="ConversationItem_this_message_was_deleted">Ujumbe huu umefutwa</string>
+  <string name="ConversationItem_this_message_was_deleted">Ujumbe huu ulifutwa.</string>
   <string name="ConversationItem_you_deleted_this_message">Umefuta ujumbe huu.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Seti upya kipindi salama?</string>
@@ -364,7 +364,7 @@
   <string name="BackupsPreferenceFragment__learn_more">Jifunze zaidi</string>
   <string name="BackupsPreferenceFragment__in_progress">Inaendelea…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d hadi sasa…</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal inahitaji idhini ya hifadhi ya nje ili kuunda nakalahifadhi, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\" na uwezeshe \"Hifadhi\".</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal inahitaji idhini ya hifadhi ya nje ili kuunda nakalahifadhi, lakini imekataliwa kabisa. Tafadhali enda kwenye mipangilio ya programu, chagua \"Ruhusa\" na uwezeshe \"Hifadhi\".</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Inatumia kaida: %s</string>
   <string name="CustomDefaultPreference_using_default">Inatumia chaguo msingi: %s</string>
@@ -515,7 +515,7 @@
   <string name="AddGroupDetailsFragment__this_field_is_required">Sharti ujaze sehemu hii.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Kikundi hakijaundwa.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Jaribu tena baadaye.</string>
-  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Umechagua mwasiliani asiyetumia vikundi vya Signal, kwayo kikundi hiki kitakuwa MMS.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Umechagua mwasiliani asiyetumia vikundi vya Signal, kwa hiyo kikundi hiki kitakuwa MMS.</string>
   <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Ni wewe tu utakayeona majina na picha maalum za kikundi cha MMS zitaonekana.</string>
   <string name="AddGroupDetailsFragment__remove">Ondoa</string>
   <string name="AddGroupDetailsFragment__sms_contact">Mawasiliano ya SMS</string>
@@ -601,7 +601,7 @@
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Je, una hakika unataka kuweka upya kiungo cha kikundi? Watu hawataweza tena kujiunga na kikundi kwa kutumia kiungo cha sasa.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Msimbo wa QR</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Watu ambao watachanganua msimbo huu wataweza kujiunga na kikundi chako. Wasimamizi bado watahitaji kuidhinisha washiriki wapya ikiwa umewasha mipangilio hiyo.</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Watu ambao wataskani msimbo huu wataweza kujiunga na kikundi chako. Wasimamizi bado watahitaji kuidhinisha washiriki wapya ikiwa umewasha mipangilio hiyo.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Shiriki msimbo</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Je, unataka kubatilisha mwaliko uliomtumia %1$s?</string>
@@ -927,7 +927,7 @@
   <string name="MessageRequestBottomView_delete">Futa</string>
   <string name="MessageRequestBottomView_block">Zuia</string>
   <string name="MessageRequestBottomView_unblock">Fungua</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ungependa kumruhusu %1$s akutumie ujumbe na ushiriki naye jina na picha yako? Hawatajua umeona ujumbe wake hadi utakapokubali.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Ungependa kumruhusu %1$s akutumie ujumbe na ushiriki naye jina na picha yako? Hatajua umeona ujumbe wake hadi utakapokubali.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Ungependa kumruhusu %1$s akutumie ujumbe na ushiriki naye jina na picha yako? Hutapokea ujumbe wowote mpaka uache kumzuia.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Ungependa kuendelea kuzungumza na kikundi hiki na ushiriki jina na picha yako na wanachama wake?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Boresha kikundi hiki ili uwezeshe huduma mpya kama vile @kutajwa na kuwa na wasimamizi. Wanachama ambao hawajashiriki jina au picha zao katika kikundi hiki wataalikwa kujiunga.</string>
@@ -1407,7 +1407,7 @@ nambari yako ya simu</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" sio mtumiaji wa Signal. Tafadhali angalia jina la mtumiaji na ujaribu tena.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Huhitaji kujiongeza kwenye kikundi</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Umefikia ukubwa wa juu zaidi wa kikundi</string>
-  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Vikundi vya Signal vinaweza kuwa na kiwango cha juu zaidi cha wanachama %1$d.</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Upeo wa wanachama wa Vikundi vya Signal ni %1$d.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Umefikia idadi juu zaidi ya wanachama iliyopendekezwa</string>
   <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Vikundi vya Signal hufanya vizuri zaidi vikiwa na wanachama wasiozidi %1$d. Kuongeza wanachama zaidi kutasababisha kucheleweshwa kwa kutuma na kupokea ujumbe.</string>
   <!--contact_selection_list_fragment-->
@@ -1590,7 +1590,7 @@ nambari yako ya simu</string>
   <string name="EditAboutFragment_about">Kuhusu</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Andika maneno machache kujihusu…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
-  <string name="EditAboutFragment_speak_freely">Ongea bila vkwazo</string>
+  <string name="EditAboutFragment_speak_freely">Ongea bila vikwazo</string>
   <string name="EditAboutFragment_encrypted">Imesimbwa</string>
   <string name="EditAboutFragment_be_kind">Kuwa mkarimu</string>
   <string name="EditAboutFragment_coffee_lover">Mpenda kahawa</string>
@@ -1815,7 +1815,7 @@ nambari yako ya simu</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ikiwa jumbe zilizosomwa zimemalemezwa, hutaweza kuona jumbe zilizosomwa kutoka kwa wengine</string>
   <string name="preferences__typing_indicators">Viashiria vya kucharaza</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ikiwa viashiria vya kucharaza vimelemazwa, hutaweza kuona viashiria vya kucharaza kutoka kwa wengine.</string>
-  <string name="preferences__request_keyboard_to_disable">Omba kibodi ili uzime kipengele cha kujifunza inavyokufaa.</string>
+  <string name="preferences__request_keyboard_to_disable">Omba kiibodi ili uzime kipengele cha kujifunza inavyokufaa.</string>
   <string name="preferences__this_setting_is_not_a_guarantee">Mpangilio huu sio hakikisho, na kibodi yako inaweza kuipuuza.</string>
   <string name="preferences_app_protection__blocked_users">Watumiaji waliozuiwa</string>
   <string name="preferences_chats__when_using_mobile_data">Wakati unatumia mtandao wa simu</string>
@@ -2483,7 +2483,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="GroupRecipientListItem_approve_description">Idhinisha</string>
   <string name="GroupRecipientListItem_deny_description">Kataa</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
-  <string name="GroupsLearnMore_legacy_vs_new_groups">Vikundi Vizee ikilinganishwa na Vikundi vipya</string>
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Vikundi Awali ikilinganishwa na Vikundi Vipya</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Vikundi Vizee ni nini?</string>
   <string name="GroupsLearnMore_paragraph_1">Vikundi Vizee ni vikundi ambavyo haviingiliani na vipengee vya Vikundi Vipya kama wasimamizi na masasisho ya kikundi yaliyo na maelezo zaidi.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Je, ninaweza kupandisha daraja ya Kikundi Kizee?</string>
@@ -2676,7 +2676,7 @@ Funga ufikiaji wa Signal na ufungaji wa Android au alama za vidole</string>
   <string name="PaymentsRecoveryEntryFragment__next">Ifuatayo</string>
   <string name="PaymentsRecoveryEntryFragment__invalid_word">Neno si sahihi</string>
   <!--ClearClipboardAlarmReceiver-->
-  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Maudhui yaliyo kwenye ubao ya kunakili yamefutwa.</string>
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Maudhui yaliyo kwenye kibao cha kunakili yamefutwa.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">Tazama</string>
   <!--UnreadPayments-->

@@ -931,6 +931,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%2$s نى %1$s باشقۇرغۇچى قىلىپ تەڭشىدى.</string>
   <string name="MessageRecord_s_made_you_an_admin">سىزنى %1$s باشقۇرغۇچى قىلىپ تەڭشىدى.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">سىز %1$s نىڭ باشقۇرغۇچىلىق ھوقۇقىنى بىكار قىلدىڭىز.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">‏%1$s  باشقۇرغۇچىلىق ھوقۇقىڭىزنى  بىكار قىلدى.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%2$s نىڭ باشقۇرغۇچىلىق ھوقۇقىنى %1$s بىكار قىلدى.</string>
   <string name="MessageRecord_s_is_now_an_admin">ھازىر %1$s باشقۇرغۇچى.</string>
   <string name="MessageRecord_you_are_now_an_admin">ئەمدى سىز باشقۇرغۇچى.</string>
@@ -1186,7 +1187,7 @@
   <string name="RecipientProvider_unnamed_group">ئاتسىز گۇرۇپپا</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">جاۋاب بېرىۋاتىدۇ…</string>
-  <string name="RedPhone_ending_call">چاقىرىشنى ئاخىرلاشتۇرۇۋاتىدۇ…</string>
+  <string name="RedPhone_ending_call">چاقىرىقنى ئاخىرلاشتۇرۇۋاتىدۇ…</string>
   <string name="RedPhone_ringing">جىرىڭلاۋاتىدۇ…</string>
   <string name="RedPhone_busy">ئالدىراش</string>
   <string name="RedPhone_recipient_unavailable">چاقىرىلغۇچى جاۋاب بەرمىدى</string>
@@ -1200,7 +1201,8 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">چاقىرىۋاتىدۇ…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_call">‫Signal چاقىرىشى</string>
+  <string name="WebRtcCallView__signal_call">‫Signal چاقىرىقى</string>
+  <string name="WebRtcCallView__signal_video_call">‏Signal سىنلىق چاقىرىقى</string>
   <string name="WebRtcCallView__start_call">چاقىرىق باشلا</string>
   <string name="WebRtcCallView__join_call">چاقىرىققا قېتىل</string>
   <string name="WebRtcCallView__call_is_full">چاقىرىق توشتى</string>
@@ -1218,10 +1220,11 @@
     <item quantity="one">%1$s, %2$s, ۋە %3$d قاتارلىقلار بۇ چاقىرىقتا</item>
     <item quantity="other">%1$s, %2$s, ۋە %3$d قاتارلىقلار بۇ چاقىرىقتا</item>
   </plurals>
+  <string name="WebRtcCallView__flip">چۆرۈڭ</string>
   <string name="WebRtcCallView__speaker">ياڭراتقۇ</string>
   <string name="WebRtcCallView__camera">كامېرا</string>
   <string name="WebRtcCallView__mute">ئۈنسىز</string>
-  <string name="WebRtcCallView__end_call">ئاخىرلاشقان چاقىرىش</string>
+  <string name="WebRtcCallView__end_call">توختات</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">بۇ چاقىرىشتا. %1$d كىشى</item>
@@ -2221,8 +2224,8 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">چاقىر</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Signal چاقىرغىنى</string>
-  <string name="conversation_callable_secure__menu_video">Signal سىنلىق چاقىر</string>
+  <string name="conversation_callable_secure__menu_call">Signal چاقىرىقى</string>
+  <string name="conversation_callable_secure__menu_video">Signal سىنلىق چاقىرىق</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">ئۇچۇر تەپسىلاتى</string>
   <string name="conversation_context__menu_copy_text">تېكىست كۆچۈر</string>
@@ -3108,5 +3111,26 @@
   <string name="ContactSelectionListItem__dot_s">‏· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">يۇقىرىغا يېتەكلە</string>
+  <string name="MultiselectForwardFragment__forward_to">گە ئۇلاپ يوللا</string>
+  <string name="MultiselectForwardFragment__add_a_message">بىز ئۇچۇر قوش</string>
+  <string name="MultiselectForwardFragment__faster_forwards">تېزراق ئۇلاپ يوللاش</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">ئۇلاپ يوللانغان ئۇچۇرلار ئەمدى دەرھال ئەۋەتىلىدۇ.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">‏%1$d ئۇچۇر يوللا</item>
+    <item quantity="other">‏%1$d ئۇچۇر يوللا</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">ئۇچۇر يوللاندى</item>
+    <item quantity="other">ئۇچۇرلار يوللاندى</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">ئۇچۇر يوللانمدى</item>
+    <item quantity="other">ئۇچۇرلار يوللانمىدى</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">ئۇچۇر مەۋجۇت بولمىغاچقا ئۇلاپ يوللىنالمىدى.</item>
+    <item quantity="other">ئۇچۇرلار مەۋجۇت بولمىغاچقا ئۇلاپ يوللىنالمىدى.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">چەككە يەتتى</string>
   <!--EOF-->
 </resources>

@@ -2496,7 +2496,7 @@
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecida</string>
   <string name="preferences_app_protection__see_my_phone_number">Ver meu número de telefone</string>
-  <string name="preferences_app_protection__find_me_by_phone_number">Pode me encontrar pelo número de telefone</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Podem me encontrar por número de telefone</string>
   <string name="PhoneNumberPrivacy_everyone">Todo mundo</string>
   <string name="PhoneNumberPrivacy_my_contacts">Meus contatos</string>
   <string name="PhoneNumberPrivacy_nobody">Ninguém</string>

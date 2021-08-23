@@ -3,7 +3,7 @@
   <string name="yes">ਹਾਂ</string>
   <string name="no">ਨਹੀਂ </string>
   <string name="delete">ਹਟਾਓ</string>
-  <string name="please_wait">ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕੋ…</string>
+  <string name="please_wait">ਉਡੀਕੋ…</string>
   <string name="save">ਸੰਭਾਲੋ</string>
   <string name="note_to_self">ਖੁਦ ਲਈ ਨੋਟ ਕਰੋ</string>
   <!--AbstractNotificationBuilder-->
@@ -14,7 +14,7 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ਇਸ ਵੇਲੇ: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ਤੁਸੀਂ ਅਜੇ ਆਪਣਾ ਪਾਸਫ਼੍ਰੇਜ਼ ਨਹੀਂ ਸੈੱਟ ਕੀਤਾ ਹੈ!</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">ਪਾਸਫ਼੍ਰੇਜ਼ ਨੂੰ ਅਸਮਰੱਥ ਕਰਨਾ ਹੈ?</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">ਵਾਕ ਨੂੰ ਅਸਮਰੱਥ ਕਰਨਾ ਹੈ?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ਇਹ ਹਮੇਸ਼ਾ ਲਈ Signal ਅਤੇ ਸੁਨੇਹਾ ਸੂਚਨਾਵਾਂ ਨੂੰ ਖੋਲ ਦੇਵੇਗਾ</string>
   <string name="ApplicationPreferencesActivity_disable">ਅਸਮਰੱਥ ਕਰੋ</string>
   <string name="ApplicationPreferencesActivity_unregistering">ਅਣ-ਰਜਿਸਟਰ ਹੋ ਰਿਹਾ ਹੈ </string>
@@ -72,8 +72,8 @@
   <!--BackgroundMessageRetriever-->
   <string name="BackgroundMessageRetriever_checking_for_messages">ਸੁਨੇਹਿਆਂ ਦੀ ਜਾਂਚ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
   <!--BlockedUsersActivity-->
-  <string name="BlockedUsersActivity__blocked_users">ਬਲੌਕ ਕੀਤੇ ਵਰਤੋਂਕਾਰ</string>
-  <string name="BlockedUsersActivity__add_blocked_user">ਬਲੌਕ ਕੀਤਾ ਵਰਤੋਂਕਾਰ ਜੋੜੋ</string>
+  <string name="BlockedUsersActivity__blocked_users">ਪਾਬੰਦੀ ਲਾਏ ਵਰਤੋਂਕਾਰ</string>
+  <string name="BlockedUsersActivity__add_blocked_user">ਪਾਬੰਦੀ ਲਾਇਆ ਵਰਤੋਂਕਾਰ ਜੋੜੋ</string>
   <string name="BlockedUsersActivity__blocked_users_will">ਪਾਬੰਦੀਸ਼ੁਦਾ ਸੰਪਰਕ ਤੁਹਾਨੂੰ ਕਾਲ ਨਹੀਂ ਕਰ ਸਕਣਗੇ ਜਾਂ ਸੁਨੇਹੇ ਨਹੀਂ ਭੇਜ ਸਕਣਗੇ।</string>
   <string name="BlockedUsersActivity__no_blocked_users">ਕੋਈ ਪਾਬੰਦੀਸ਼ੁਦਾ ਵਰਤੋਂਕਾਰ ਨਹੀਂ</string>
   <string name="BlockedUsersActivity__block_user">ਵਰਤੋਂਕਾਰ ਉੱਤੇ ਪਾਬੰਦੀ ਲਾਉਣੀ ਹੈ?</string>
@@ -135,7 +135,7 @@
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">ਕੋਈ ਸੈਲੂਲਰ ਕਾਲ ਪਹਿਲਾਂ ਹੀ ਜਾਰੀ ਹੈ।</string>
   <string name="CommunicationActions_start_voice_call">ਆਵਾਜ਼ ਵਾਲੀ ਕਾਲ ਸ਼ੁਰੂ ਕਰਨੀ ਹੈ?</string>
   <string name="CommunicationActions_cancel">ਰੱਦ ਕਰੋ</string>
-  <string name="CommunicationActions_call">ਕਾਲ ਕਰੋ</string>
+  <string name="CommunicationActions_call">ਕਾਲ</string>
   <string name="CommunicationActions_insecure_call">ਅਸੁਰੱਖਿਅਤ ਕਾਲ</string>
   <string name="CommunicationActions_carrier_charges_may_apply">ਸ਼ਾਇਦ ਕੈਰੀਅਰ ਖ਼ਰਚੇ ਲੱਗ ਸਕਦੇ ਹਨ। ਜਿਸ ਨੰਬਰ ਉੱਤੇ ਤੁਸੀਂ ਕਾਲ ਕਰ ਰਹੇ ਹੋ, ਉਹ Signal ਨਾਲ ਰਜਿਸਟਰਡ ਨਹੀਂ ਹੈ। ਇਹ ਕਾਲ ਇੰਟਰਨੈਟ ਰਾਹੀਂ ਨਹੀਂ, ਤੁਹਾਡੇ ਮੋਬਾਈਲ ਕੈਰੀਅਰ ਦੁਆਰਾ ਕੀਤੀ ਜਾਏਗੀ।</string>
   <!--ConfirmIdentityDialog-->
@@ -168,7 +168,7 @@
   <string name="ConversationItem_error_partially_not_delivered">ਅਧੂਰਾ ਭੇਜਿਆ, ਵੇਰਵਿਆਂ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="ConversationItem_error_network_not_delivered">ਭੇਜਣ ਵਿੱਚ ਅਸਫ਼ਲ</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">ਮੁੱਖ ਐਕਸਚੇਂਜ ਸੁਨੇਹਾ ਪ੍ਰਾਪਤ ਕੀਤਾ, ਕਾਰਵਾਈ ਲਈ ਟੈਪ ਕਰੋ।</string>
-  <string name="ConversationItem_group_action_left">%1$s ਨੇ ਗਰੁੱਪ ਛੱਡ ਦਿੱਤਾ ਹੈ।</string>
+  <string name="ConversationItem_group_action_left">%1$s ਨੇ ਗਰੁੱਪ ਛੱਡਿਆ।</string>
   <string name="ConversationItem_send_paused">ਭੇਜਣ ਨੂੰ ਰੋਕਿਆ</string>
   <string name="ConversationItem_click_to_approve_unencrypted">ਭੇਜਣਾ ਅਸਫਲ, ਅਸੁਰੱਖਿਅਤ ਵਾਪਸੀ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">ਇਨਕ੍ਰਿਪਟ ਨਹੀਂ ਕੀਤੇ SMS ਵੱਲ ਵਾਪਸੀ?</string>
@@ -181,8 +181,8 @@
   <string name="ConversationItem_read_more"> ਹੋਰ ਪੜ੍ਹੋ</string>
   <string name="ConversationItem_download_more"> ਹੋਰ ਡਾਊਨਲੋਡ ਕਰੋ</string>
   <string name="ConversationItem_pending"> ਬਕਾਇਆ</string>
-  <string name="ConversationItem_this_message_was_deleted">ਇਹ ਸੁਨੇਹਾ ਮਿਟਾਇਆ ਗਿਆ ਸੀ।</string>
-  <string name="ConversationItem_you_deleted_this_message">ਤੁਸੀਂ ਇਸ ਸੁਨੇਹੇ ਨੂੰ ਮਿਟਾ ਦਿੱਤਾ ਸੀ।</string>
+  <string name="ConversationItem_this_message_was_deleted">ਇਹ ਸੁਨੇਹਾ ਹਟਾਇਆ ਸੀ।</string>
+  <string name="ConversationItem_you_deleted_this_message">ਤੁਸੀਂ ਇਸ ਸੁਨੇਹੇ ਨੂੰ ਹਟਾਇਆ ਹੈ।</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">ਸੁਰੱਖਿਅਤ ਸੈਸ਼ਨ ਰੀਸੈੱਟ ਕਰਨਾ ਹੈ?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ਜੇ ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਗੱਲਬਾਤ ਵਿੱਚ ਇਨਕ੍ਰਿਪਸ਼ਨ ਸਮੱਸਿਆਵਾਂ ਆ ਰਹੀਆਂ ਹਨ ਤਾਂ ਇਸ ਨਾਲ ਸ਼ਾਇਦ ਸਹਾਇਤਾ ਮਿਲ ਸਕਦੀ ਹੈ। ਤੁਹਾਡੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਰੱਖਿਆ ਜਾਵੇਗਾ।</string>
@@ -209,7 +209,7 @@
   <string name="ConversationActivity_unable_to_record_audio">ਆਡੀਓ ਰਿਕਾਰਡ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">ਤੁਸੀਂ ਇਸ ਗਰੁੱਪ ਨੂੰ ਸੁਨੇਹੇ ਨਹੀਂ ਭੇਜ ਸਕਦੇ ਕਿਉਂਕਿ ਤੁਸੀਂ ਹੁਣ ਮੈਂਬਰ ਨਹੀਂ ਰਹੇ।</string>
   <string name="ConversationActivity_only_s_can_send_messages">ਸਿਰਫ਼ %1$s ਸੁਨੇਹੇ ਭੇਜ ਸਕਦੇ ਹਨ।</string>
-  <string name="ConversationActivity_admins">ਐਡਮਿਨਜ਼</string>
+  <string name="ConversationActivity_admins">ਐਡਮਿਨ</string>
   <string name="ConversationActivity_message_an_admin">ਕਿਸੇ ਐਡਮਿਨ ਨੂੰ ਸੁਨੇਹਾ ਭੇਜੋ</string>
   <string name="ConversationActivity_cant_start_group_call">ਗਰੁੱਪ ਕਾਲ ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">ਸਿਰਫ਼ ਇਸ ਗਰੁੱਪ ਦੇ ਐਡਮਿਨ ਹੀ ਕਾਲ ਸ਼ੁਰੂ ਕਰ ਸਕਦੇ ਹਨ।</string>
@@ -278,8 +278,8 @@
   <string name="ConversationFragment_push">ਡੇਟਾ (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
-  <string name="ConversationFragment_deleting">ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ</string>
-  <string name="ConversationFragment_deleting_messages">ਸੁਨੇਹਿਆਂ ਨੂੰ ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
+  <string name="ConversationFragment_deleting">ਹਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ</string>
+  <string name="ConversationFragment_deleting_messages">ਸੁਨੇਹੇ ਹਟਾਏ ਜਾ ਰਹੇ ਹਨ…</string>
   <string name="ConversationFragment_delete_for_me">ਮੇਰੇ ਲਈ ਹਟਾਓ</string>
   <string name="ConversationFragment_delete_for_everyone">ਹਰੇਕ ਲਈ ਹਟਾਓ</string>
   <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ਗੱਲਬਾਤ ਵਿੱਚ ਸ਼ਾਮਲ ਸਾਰੇ ਵਿਅਕਤੀਆਂ ਲਈ ਇਹ ਸੁਨੇਹਾ ਹਟਾਇਆ ਜਾਵੇਗਾ ਜੇ ਉਹ Signal ਦੇ ਤਾਜ਼ਾ ਸੰਸਕਰਣ ’ਤੇ ਹਨ। ਉਹ ਇਹ ਦੇਖ ਸਕਣਗੇ ਕਿ ਤੁਸੀਂ ਸੁਨੇਹਾ ਹਟਾਇਆ ਸੀ।</string>
@@ -333,14 +333,14 @@
   <string name="CreateGroupActivity__select_members">ਮੈਂਬਰ ਚੁਣੋ</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">ਪ੍ਰੋਫ਼ਾਈਲ</string>
-  <string name="CreateProfileActivity_error_setting_profile_photo">ਪ੍ਰੋਫ਼ਾਈਲ ਫੋਟੋ ਨੂੰ ਸੈੱਟ ਕਰਨ ਵਿੱਚ ਤਰੁੱਟੀ</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">ਪ੍ਰੋਫ਼ਾਈਲ ਫੋਟੋ ਨੂੰ ਸੈੱਟ ਕਰਨ ਵਿੱਚ ਗਲਤੀ</string>
   <string name="CreateProfileActivity_problem_setting_profile">ਪ੍ਰੋਫ਼ਾਈਲ ਬਣਾਉਣ ਵਿੱਚ ਸਮੱਸਿਆ</string>
   <string name="CreateProfileActivity_set_up_your_profile">ਆਪਣੀ ਪ੍ਰੋਫ਼ਾਈਲ ਬਣਾਓ</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">ਤੁਹਾਡਾ ਪ੍ਰੋਫ਼ਾਈਲ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟ ਕੀਤਾ ਹੋਇਆ ਹੈ। ਜਦੋਂ ਵੀ ਤੁਸੀਂ ਨਵੀਂ ਗੱਲਬਾਤ ਸ਼ੁਰੂ ਜਾਂ ਮਨਜ਼ੂਰ ਕਰੋਗੇ ਅਤੇ ਜਦੋਂ ਤੁਸੀਂ ਨਵੇਂ ਗਰੁੱਪਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋਗੇ ਤਾਂ ਤੁਹਾਡੇ ਪ੍ਰੋਫ਼ਾਈਲ ਅਤੇ ਇਸ ਵਿੱਚ ਕੀਤੀਆਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਤੁਹਾਡੇ ਸੰਪਰਕ ਵੇਖ ਸਕਣਗੇ।</string>
   <string name="CreateProfileActivity_set_avatar_description">ਅਵਤਾਰ ਤਿਆਰ ਕਰੋ</string>
   <!--ChooseBackupFragment-->
-  <string name="ChooseBackupFragment__restore_from_backup">ਬੈਕਅੱਪ ਤੋਂ ਪੁਨਰ ਸਥਾਪਨ ਕਰਨਾ ਹੈ?</string>
-  <string name="ChooseBackupFragment__restore_your_messages_and_media">ਸਥਾਨਕ ਬੈਕਅੱਪ ਤੋਂ ਆਪਣੇ ਸੁਨੇਹਿਆਂ ਅਤੇ ਮੀਡੀਆ ਨੂੰ ਪੁਨਰ ਸਥਾਪਤ ਕਰੋ | ਜੇਕਰ ਤੁਸੀਂ ਹੁਣ ਪੁਨਰ ਸਥਾਪਨ ਨਹੀਂ ਕਰਦੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਪੁਨਰ ਸਥਾਪਨ ਨਹੀਂ ਕਰ ਸਕੋਗੇ।</string>
+  <string name="ChooseBackupFragment__restore_from_backup">ਬੈਕਅਪ ਤੋਂ ਬਹਾਲ ਕਰਨਾ ਹੈ?</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">ਲੋਕਲ ਬੈਕਅੱਪ ਤੋਂ ਆਪਣੇ ਸੁਨੇਹਿਆਂ ਅਤੇ ਮੀਡੀਆ ਨੂੰ ਬਹਾਲ ਕਰੋ | ਜੇਕਰ ਤੁਸੀਂ ਹੁਣ ਬਹਾਲ ਨਹੀਂ ਕਰਦੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਬਹਾਲ ਨਹੀਂ ਕਰ ਸਕੋਗੇ।</string>
   <string name="ChooseBackupFragment__icon_content_description">ਬੈਕਅੱਪ ਆਈਕੋਨ ਤੋਂ ਬਹਾਲ ਕਰੋ</string>
   <string name="ChooseBackupFragment__choose_backup">ਬੈਕਅੱਪ ਚੁਣੋ</string>
   <string name="ChooseBackupFragment__learn_more">ਹੋਰ ਜਾਣੋ</string>
@@ -432,17 +432,17 @@
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
   <string name="GiphyFragmentPagerAdapter_stickers">ਸਟਿੱਕਰ</string>
   <!--AddToGroupActivity-->
-  <string name="AddToGroupActivity_add_member">ਮੈਂਬਰ ਨੂੰ ਸ਼ਾਮਲ ਕਰਨਾ ਹੈ?</string>
-  <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" ਨੂੰ \"%2$s\" ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨਾ ਹੈ?</string>
-  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" ਨੂੰ \"%2$s\" ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ।</string>
-  <string name="AddToGroupActivity_add_to_group">ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
-  <string name="AddToGroupActivity_add_to_groups">ਗਰੁੱਪਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
+  <string name="AddToGroupActivity_add_member">ਮੈਂਬਰ ਜੋੜਨਾ ਹੈ?</string>
+  <string name="AddToGroupActivity_add_s_to_s">“%1$s” ਨੂੰ “%2$s” ‘ਚ ਜੋੜਨਾ ਹੈ?</string>
+  <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" ਨੂੰ \"%2$s\" ‘ਚ ਜੋੜਿਆ।</string>
+  <string name="AddToGroupActivity_add_to_group">ਗਰੁੱਪ ‘ਚ ਜੋੜੋ</string>
+  <string name="AddToGroupActivity_add_to_groups">ਗਰੁੱਪਾਂ ‘ਚ ਜੋੜੋ</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">ਇਸ ਵਿਅਕਤੀ ਨੂੰ ਲੈਗਸੀ ਗਰੁੱਪਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।</string>
-  <string name="AddToGroupActivity_add">ਸ਼ਾਮਲ ਕਰੋ</string>
-  <string name="AddToGroupActivity_add_to_a_group">ਕਿਸੇ ਗਰੁੱਪ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
+  <string name="AddToGroupActivity_add">ਜੋੜੋ</string>
+  <string name="AddToGroupActivity_add_to_a_group">ਗਰੁੱਪ ਵਿੱਚ ਜੋੜੋ</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">ਨਵਾਂ ਐਡਮਿਨ ਚੁਣੋ</string>
-  <string name="ChooseNewAdminActivity_done">ਹੋ ਗਿਆ</string>
+  <string name="ChooseNewAdminActivity_done">ਮੁਕੰਮਲ</string>
   <string name="ChooseNewAdminActivity_you_left">ਤੁਸੀਂ \"%1$s\" ਛੱਡਿਆ।</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">ਤੁਸੀਂ</string>
@@ -493,7 +493,7 @@
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">ਸਦੱਸ ਸ਼ਾਮਲ ਕਰੋ</item>
-    <item quantity="other">ਮੈਂਬਰ ਸ਼ਾਮਲ ਕਰੋ</item>
+    <item quantity="other">ਮੈਂਬਰ ਜੋੜੋ</item>
   </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
@@ -930,6 +930,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s ਨੇ %2$s ਨੂੰ ਇੱਕ ਐਡਮਿਨ ਬਣਾਇਆ।</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ਨੇ ਤੁਹਾਨੂੰ ਐਡਮਿਨ ਬਣਾਇਆ।</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">ਤੁਸੀਂ %1$s ਦੇ ਐਡਮਿਨ ਅਧਿਕਾਰ ਰੱਦ ਕਰ ਦਿੱਤੇ।</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$sਨੇ ਤੁਹਾਡੇ ਐਡਮਿਨ ਅਧਿਕਾਰ ਰੱਦ ਕਰ ਦਿੱਤੇ ਹਨ।</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ਨੇ %2$s ਦੇ ਐਡਮਿਨ ਅਧਿਕਾਰ ਰੱਦ ਕਰ ਦਿੱਤੇ।</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s ਹੁਣ ਇੱਕ ਐਡਮਿਨ ਹੈ।</string>
   <string name="MessageRecord_you_are_now_an_admin">ਹੁਣ ਤੁਸੀਂ ਇੱਕ ਐਡਮਿਨ ਹੋ।</string>
@@ -1201,6 +1202,7 @@
   <string name="WebRtcCallActivity__calling">ਕਾਲ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal ਕਾਲ </string>
+  <string name="WebRtcCallView__signal_video_call">Signal ਵੀਡੀਓ ਕਾਲ</string>
   <string name="WebRtcCallView__start_call">ਕਾਲ ਸ਼ੁਰੂ ਕਰੋ</string>
   <string name="WebRtcCallView__join_call">ਕਾਲ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ</string>
   <string name="WebRtcCallView__call_is_full">ਕਾਲ ਭਰੀ ਹੋਈ ਹੈ</string>
@@ -1218,6 +1220,7 @@
     <item quantity="one">%1$s, %2$s, ਤੇ %3$d ਹੋਰ ਇਸ ਕਾਲ ਵਿੱਚ ਹਨ</item>
     <item quantity="other">%1$s, %2$s, ਤੇ %3$d ਹੋਰ ਇਸ ਕਾਲ ਵਿੱਚ ਹਨ</item>
   </plurals>
+  <string name="WebRtcCallView__flip">ਪਲਟੋ</string>
   <string name="WebRtcCallView__speaker">ਸਪੀਕਰ</string>
   <string name="WebRtcCallView__camera">ਕੈਮਰਾ </string>
   <string name="WebRtcCallView__mute">ਚੁੱਪ</string>
@@ -3079,6 +3082,11 @@
   <string name="ContactFilterView__search_name_or_number">ਨਾਂ ਜਾਂ ਨੰਬਰ ਖੋਜੋ</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">ਆਵਾਜ਼ ਸੁਨੇਹੇ ਨੂੰ ਰੋਕੋ</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">ਆਵਾਜ਼ ਸੁਨੇਹੇ ਦੀ ਗਤੀ ਨੂੰ ਬਦਲੋ</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">ਆਵਾਜ਼ ਸੁਨੇਹੇ ਨੂੰ ਵਿਰਾਮ ਕਰੋ</string>
+  <string name="VoiceNotePlayerView__play_voice_message">ਆਵਾਜ਼ ਸੁਨੇਹੇ ਨੂੰ ਚਲਾਓ</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">ਆਵਾਜ਼ ਸੁਨੇਹੇ ਉੱਤੇ ਜਾਓ</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">ਅਵਤਾਰ ਦੀ ਝਲਕ</string>
   <string name="AvatarPickerFragment__camera">ਕੈਮਰਾ </string>
@@ -3102,5 +3110,27 @@
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">ਉੱਤੇ ਜਾਓ</string>
+  <string name="MultiselectForwardFragment__forward_to">ਅੱਗੇ ਭੇਜੋ</string>
+  <string name="MultiselectForwardFragment__add_a_message">ਸੁਨੇਹਾ ਜੋੜੋ</string>
+  <string name="MultiselectForwardFragment__faster_forwards">ਵੱਧ ਤੇਜ਼ੀ ਨਾਲ ਅੱਗੇ </string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">ਅੱਗੇ ਭੇਜੇ ਸੁਨੇਹੇ ਹੁਣ ਫ਼ੌਰਨ ਭੇਜੇ ਜਾਂਦੇ ਹਨ।</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">%1$dਸੁਨੇਹਾ ਭੇਜੋ </item>
+    <item quantity="other">%1$d ਸੁਨੇਹੇ ਭੇਜੇ</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">ਸੁਨੇਹਾ ਭੇਜਿਆ</item>
+    <item quantity="other">ਸੁਨੇਹੇ ਭੇਜੇ</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">ਸੁਨੇਹਾ ਭੇਜਣ ਲਈ ਅਸਫ਼ਲ ਹੈ</item>
+    <item quantity="other">ਸੁਨੇਹੇ ਭੇਜਣ ਲਈ ਅਸਫ਼ਲ ਹੈ</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">ਸੁਨੇਹਾ ਅੱਗੇ ਨਹੀਂ ਭੇਜਿਆ ਜਾ ਸਕਿਆ, ਕਿਉਂਕਿ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।</item>
+    <item quantity="other">ਸੁਨੇਹੇ ਅੱਗੇ ਨਹੀਂ ਭੇਜੇ ਜਾ ਸਕੇ, ਕਿਉਂਕਿ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਰਹੇ ਹਨ।</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">ਹੱਦ ਪੁੱਜੀ</string>
   <!--EOF-->
 </resources>
