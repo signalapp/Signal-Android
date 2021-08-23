@@ -14,6 +14,8 @@ import java.util.concurrent.TimeUnit;
 
 public final class IdentityRecordList {
 
+  public static final IdentityRecordList EMPTY = new IdentityRecordList(Collections.emptyList());
+
   private final List<IdentityRecord> identityRecords;
   private final boolean              isVerified;
   private final boolean              isUnverified;
