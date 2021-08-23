@@ -876,7 +876,7 @@
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Share</string>
     <string name="InviteActivity_share_with_contacts">Share with contacts</string>
-    <string name="InviteActivity_choose_how_to_share">Choose how to share</string>
+    <string name="InviteActivity_share_via">Share via…</string>
 
     <string name="InviteActivity_cancel">Cancel</string>
     <string name="InviteActivity_sending">Sending…</string>
@@ -892,7 +892,6 @@
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Let\'s switch to Signal: %1$s</string>
     <string name="InviteActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
-    <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Friends don\'t let friends chat unencrypted.</string>
 
     <!-- LearnMoreTextView -->
     <string name="LearnMoreTextView_learn_more">Learn more</string>

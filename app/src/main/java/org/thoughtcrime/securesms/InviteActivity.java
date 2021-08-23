@@ -14,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.AnimRes;
@@ -97,7 +98,8 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     slideOutAnimation = loadAnimation(R.anim.slide_to_bottom);
 
     View                 shareButton     = findViewById(R.id.share_button);
-    Button               smsButton       = findViewById(R.id.sms_button);
+    TextView             shareText       = findViewById(R.id.share_text);
+    View                 smsButton       = findViewById(R.id.sms_button);
     Button               smsCancelButton = findViewById(R.id.cancel_sms_button);
     Toolbar              smsToolbar      = findViewById(R.id.sms_send_frame_toolbar);
     ContactFilterView    contactFilter   = findViewById(R.id.contact_filter_edit_text);
@@ -127,9 +129,9 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
       shareButton.setOnClickListener(new ShareClickListener());
       smsButton.setOnClickListener(new SmsClickListener());
     } else {
-      shareButton.setVisibility(View.GONE);
-      smsButton.setOnClickListener(new ShareClickListener());
-      smsButton.setText(R.string.InviteActivity_share);
+      smsButton.setVisibility(View.GONE);
+      shareText.setText(R.string.InviteActivity_share);
+      shareButton.setOnClickListener(new ShareClickListener());
     }
   }
 
