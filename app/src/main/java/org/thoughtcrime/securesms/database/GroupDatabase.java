@@ -448,10 +448,19 @@ private static final String[] GROUP_PROJECTION = {
   public GroupId.V2 create(@NonNull GroupMasterKey groupMasterKey,
                            @NonNull DecryptedGroup groupState)
   {
+    return create(groupMasterKey, groupState, false);
+  }
+
+  public GroupId.V2 create(@NonNull GroupMasterKey groupMasterKey,
+                           @NonNull DecryptedGroup groupState,
+                           boolean force)
+  {
     GroupId.V2 groupId = GroupId.v2(groupMasterKey);
 
-    if (getGroupV1ByExpectedV2(groupId).isPresent()) {
+    if (!force && getGroupV1ByExpectedV2(groupId).isPresent()) {
       throw new MissedGroupMigrationInsertException(groupId);
+    } else if (force) {
+      Log.w(TAG, "Forcing the creation of a group even though we already have a V1 ID!");
     }
 
     create(groupId, groupState.getTitle(), Collections.emptyList(), null, null, groupMasterKey, groupState);
@@ -484,9 +493,11 @@ private static final String[] GROUP_PROJECTION = {
 
       if (updated < 1) {
         Log.w(TAG, "No group entry. Creating restore placeholder for " + groupId);
-        create(groupMasterKey, DecryptedGroup.newBuilder()
-                                             .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
-                                             .build());
+        create(groupMasterKey,
+               DecryptedGroup.newBuilder()
+                             .setRevision(GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION)
+                             .build(),
+               true);
       } else {
         Log.w(TAG, "Had a group entry, but it was missing a master key. Updated.");
       }
