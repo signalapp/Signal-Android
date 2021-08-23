@@ -88,11 +88,13 @@ public class VideoPlayer extends FrameLayout {
       exoPlayer = new SimpleExoPlayer.Builder(context).build();
       exoPlayer.addListener(new ExoPlayerListener(this, window, playerStateCallback, playerPositionDiscontinuityCallback));
       exoPlayer.addListener(new Player.Listener() {
-        @Override public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
+        @Override
+        public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
           onPlaybackStateChanged(playWhenReady, exoPlayer.getPlaybackState());
         }
 
-        @Override public void onPlaybackStateChanged(int playbackState) {
+        @Override
+        public void onPlaybackStateChanged(int playbackState) {
           onPlaybackStateChanged(exoPlayer.getPlayWhenReady(), playbackState);
         }
 
@@ -117,7 +119,7 @@ public class VideoPlayer extends FrameLayout {
     AttachmentDataSourceFactory attachmentDataSourceFactory = new AttachmentDataSourceFactory(context, defaultDataSourceFactory, null);
 
     createMediaSource = () -> new ProgressiveMediaSource.Factory(attachmentDataSourceFactory)
-        .createMediaSource(MediaItem.fromUri(videoSource.getUri()));
+                                                        .createMediaSource(MediaItem.fromUri(videoSource.getUri()));
 
     exoPlayer.setMediaSource(createMediaSource.create());
     exoPlayer.prepare();
@@ -259,11 +261,13 @@ public class VideoPlayer extends FrameLayout {
       this.playerPositionDiscontinuityCallback = playerPositionDiscontinuityCallback;
     }
 
-    @Override public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
+    @Override
+    public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
       onPlaybackStateChanged(playWhenReady, videoPlayer.exoPlayer.getPlaybackState());
     }
 
-    @Override public void onPlaybackStateChanged(int playbackState) {
+    @Override
+    public void onPlaybackStateChanged(int playbackState) {
       onPlaybackStateChanged(videoPlayer.exoPlayer.getPlayWhenReady(), playbackState);
     }
 
@@ -291,7 +295,8 @@ public class VideoPlayer extends FrameLayout {
       }
     }
 
-    @Override public void onPositionDiscontinuity(@NotNull Player.PositionInfo oldPosition,
+    @Override
+    public void onPositionDiscontinuity(@NotNull Player.PositionInfo oldPosition,
                                                   @NotNull Player.PositionInfo newPosition,
                                                   int reason) {
       if (playerPositionDiscontinuityCallback != null) {

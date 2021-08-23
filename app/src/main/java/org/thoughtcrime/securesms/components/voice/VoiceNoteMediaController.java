@@ -305,8 +305,8 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
   }
 
   private static boolean canExtractPlaybackInformationFromMetadata(@Nullable MediaMetadataCompat mediaMetadataCompat) {
-    return mediaMetadataCompat != null &&
-           mediaMetadataCompat.getDescription() != null &&
+    return mediaMetadataCompat != null                        &&
+           mediaMetadataCompat.getDescription() != null       &&
            mediaMetadataCompat.getDescription().getMediaUri() != null;
   }
 

@@ -136,11 +136,13 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
 
   private class VoiceNotePlayerEventListener implements Player.Listener {
 
-    @Override public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
+    @Override
+    public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
       onPlaybackStateChanged(playWhenReady, player.getPlaybackState());
     }
 
-    @Override public void onPlaybackStateChanged(int playbackState) {
+    @Override
+    public void onPlaybackStateChanged(int playbackState) {
       onPlaybackStateChanged(player.getPlayWhenReady(), playbackState);
     }
 
@@ -165,7 +167,8 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
       }
     }
 
-    @Override public void onPositionDiscontinuity(@NotNull Player.PositionInfo oldPosition, @NotNull Player.PositionInfo newPosition, int reason) {
+    @Override
+    public void onPositionDiscontinuity(@NotNull Player.PositionInfo oldPosition, @NotNull Player.PositionInfo newPosition, int reason) {
       int currentWindowIndex = newPosition.windowIndex;
       if (currentWindowIndex == C.INDEX_UNSET) {
         return;
@@ -199,7 +202,8 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
       }
     }
 
-    @Override public void onPlayerError(@NotNull PlaybackException error) {
+    @Override
+    public void onPlayerError(@NotNull PlaybackException error) {
       Log.w(TAG, "ExoPlayer error occurred:", error);
     }
   }
@@ -256,7 +260,8 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
 
   private class VoiceNoteNotificationManagerListener implements PlayerNotificationManager.NotificationListener {
 
-    @Override public void onNotificationPosted(int notificationId, Notification notification, boolean ongoing) {
+    @Override
+    public void onNotificationPosted(int notificationId, Notification notification, boolean ongoing) {
       if (ongoing && !isForegroundService) {
         ContextCompat.startForegroundService(getApplicationContext(), new Intent(getApplicationContext(), VoiceNotePlaybackService.class));
         startForeground(notificationId, notification);
@@ -264,7 +269,8 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
       }
     }
 
-    @Override public void onNotificationCancelled(int notificationId, boolean dismissedByUser) {
+    @Override
+    public void onNotificationCancelled(int notificationId, boolean dismissedByUser) {
       stopForeground(true);
       isForegroundService = false;
       stopSelf();

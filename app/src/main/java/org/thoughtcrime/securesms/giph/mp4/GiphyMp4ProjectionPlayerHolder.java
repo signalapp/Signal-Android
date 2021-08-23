@@ -72,7 +72,8 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener {
     container.setVisibility(View.VISIBLE);
   }
 
-  @Override public void onPlaybackStateChanged(int playbackState) {
+  @Override
+  public void onPlaybackStateChanged(int playbackState) {
     if (playbackState == Player.STATE_READY) {
       if (onPlaybackReady != null) {
         if (policyEnforcer != null) {
@@ -83,7 +84,8 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener {
     }
   }
 
-  @Override public void onPositionDiscontinuity(@NotNull Player.PositionInfo oldPosition,
+  @Override
+  public void onPositionDiscontinuity(@NotNull Player.PositionInfo oldPosition,
                                                 @NotNull Player.PositionInfo newPosition,
                                                 int reason)
   {

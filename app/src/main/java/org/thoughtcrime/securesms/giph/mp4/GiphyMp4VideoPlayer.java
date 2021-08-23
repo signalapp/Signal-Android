@@ -55,7 +55,8 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
     super.onDetachedFromWindow();
   }
 
-  @Override protected void dispatchDraw(Canvas canvas) {
+  @Override
+  protected void dispatchDraw(Canvas canvas) {
     super.dispatchDraw(canvas);
 
     if (cornerMask != null) {
@@ -108,7 +109,8 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
     exoView.setResizeMode(resizeMode);
   }
 
-  @Override public void onDestroy(@NonNull LifecycleOwner owner) {
+  @Override
+  public void onDestroy(@NonNull LifecycleOwner owner) {
     if (exoPlayer != null) {
       exoPlayer.release();
     }

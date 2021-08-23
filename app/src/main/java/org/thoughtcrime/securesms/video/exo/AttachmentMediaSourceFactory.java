@@ -52,39 +52,48 @@ public final class AttachmentMediaSourceFactory implements MediaSourceFactory {
     );
   }
 
-  @Override public MediaSourceFactory setStreamKeys(@Nullable List<StreamKey> streamKeys) {
+  @Override
+  public MediaSourceFactory setStreamKeys(@Nullable List<StreamKey> streamKeys) {
     return progressiveMediaSourceFactory.setStreamKeys(streamKeys);
   }
 
-  @Override public MediaSourceFactory setDrmSessionManagerProvider(@Nullable DrmSessionManagerProvider drmSessionManagerProvider) {
+  @Override
+  public MediaSourceFactory setDrmSessionManagerProvider(@Nullable DrmSessionManagerProvider drmSessionManagerProvider) {
     return progressiveMediaSourceFactory.setDrmSessionManagerProvider(drmSessionManagerProvider);
   }
 
-  @Override public MediaSourceFactory setDrmSessionManager(@Nullable DrmSessionManager drmSessionManager) {
+  @Override
+  public MediaSourceFactory setDrmSessionManager(@Nullable DrmSessionManager drmSessionManager) {
     return progressiveMediaSourceFactory.setDrmSessionManager(drmSessionManager);
   }
 
-  @Override public MediaSourceFactory setDrmHttpDataSourceFactory(@Nullable HttpDataSource.Factory drmHttpDataSourceFactory) {
+  @Override
+  public MediaSourceFactory setDrmHttpDataSourceFactory(@Nullable HttpDataSource.Factory drmHttpDataSourceFactory) {
     return progressiveMediaSourceFactory.setDrmHttpDataSourceFactory(drmHttpDataSourceFactory);
   }
 
-  @Override public MediaSourceFactory setDrmUserAgent(@Nullable String userAgent) {
+  @Override
+  public MediaSourceFactory setDrmUserAgent(@Nullable String userAgent) {
     return progressiveMediaSourceFactory.setDrmUserAgent(userAgent);
   }
 
-  @Override public MediaSourceFactory setLoadErrorHandlingPolicy(@Nullable LoadErrorHandlingPolicy loadErrorHandlingPolicy) {
+  @Override
+  public MediaSourceFactory setLoadErrorHandlingPolicy(@Nullable LoadErrorHandlingPolicy loadErrorHandlingPolicy) {
     return progressiveMediaSourceFactory.setLoadErrorHandlingPolicy(loadErrorHandlingPolicy);
   }
 
-  @Override public int[] getSupportedTypes() {
+  @Override
+  public int[] getSupportedTypes() {
     return new int[] { C.TYPE_OTHER };
   }
 
-  @Override public MediaSource createMediaSource(MediaItem mediaItem) {
+  @Override
+  public MediaSource createMediaSource(MediaItem mediaItem) {
     return progressiveMediaSourceFactory.createMediaSource(mediaItem);
   }
 
-  @Override public MediaSource createMediaSource(Uri uri) {
+  @Override
+  public MediaSource createMediaSource(Uri uri) {
     return progressiveMediaSourceFactory.createMediaSource(uri);
   }
 }
