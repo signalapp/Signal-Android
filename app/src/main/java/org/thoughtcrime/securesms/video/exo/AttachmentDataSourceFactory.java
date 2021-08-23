@@ -10,6 +10,8 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.TransferListener;
 
+import org.jetbrains.annotations.NotNull;
+
 public class AttachmentDataSourceFactory implements DataSource.Factory {
 
   private final Context context;
@@ -26,6 +28,7 @@ public class AttachmentDataSourceFactory implements DataSource.Factory {
     this.listener                 = listener;
   }
 
+  @NotNull
   @Override
   public AttachmentDataSource createDataSource() {
     return new AttachmentDataSource(defaultDataSourceFactory.createDataSource(),

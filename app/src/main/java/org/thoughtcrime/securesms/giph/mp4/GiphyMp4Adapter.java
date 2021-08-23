@@ -23,15 +23,13 @@ import java.util.Objects;
 final class GiphyMp4Adapter extends ListAdapter<GiphyImage, GiphyMp4ViewHolder> {
 
   private final Callback                   listener;
-  private final GiphyMp4MediaSourceFactory mediaSourceFactory;
 
   private PagingController pagingController;
 
-  public GiphyMp4Adapter(@NonNull GiphyMp4MediaSourceFactory mediaSourceFactory, @Nullable Callback listener) {
+  public GiphyMp4Adapter(@Nullable Callback listener) {
     super(new GiphyImageDiffUtilCallback());
 
     this.listener           = listener;
-    this.mediaSourceFactory = mediaSourceFactory;
   }
 
   @Override
@@ -39,7 +37,7 @@ final class GiphyMp4Adapter extends ListAdapter<GiphyImage, GiphyMp4ViewHolder> 
     View itemView = LayoutInflater.from(parent.getContext())
                                   .inflate(R.layout.giphy_mp4, parent, false);
 
-    return new GiphyMp4ViewHolder(itemView, listener, mediaSourceFactory);
+    return new GiphyMp4ViewHolder(itemView, listener);
   }
 
   @Override

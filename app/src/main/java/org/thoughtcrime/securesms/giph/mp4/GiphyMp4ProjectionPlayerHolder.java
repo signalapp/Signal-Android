@@ -11,8 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.Lifecycle;
 
 import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
 import org.jetbrains.annotations.NotNull;
@@ -30,7 +30,7 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener {
   private final GiphyMp4VideoPlayer player;
 
   private Runnable                       onPlaybackReady;
-  private MediaSource                    mediaSource;
+  private MediaItem                      mediaItem;
   private GiphyMp4PlaybackPolicyEnforcer policyEnforcer;
 
   private GiphyMp4ProjectionPlayerHolder(@NonNull FrameLayout container, @NonNull GiphyMp4VideoPlayer player) {
@@ -42,22 +42,22 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener {
     return container;
   }
 
-  public void playContent(@NonNull MediaSource mediaSource, @Nullable GiphyMp4PlaybackPolicyEnforcer policyEnforcer) {
-    this.mediaSource    = mediaSource;
+  public void playContent(@NonNull MediaItem mediaItem, @Nullable GiphyMp4PlaybackPolicyEnforcer policyEnforcer) {
+    this.mediaItem      = mediaItem;
     this.policyEnforcer = policyEnforcer;
 
-    player.setVideoSource(mediaSource);
+    player.setVideoItem(mediaItem);
     player.play();
   }
 
   public void clearMedia() {
-    this.mediaSource    = null;
+    this.mediaItem      = null;
     this.policyEnforcer = null;
     player.stop();
   }
 
-  public @Nullable MediaSource getMediaSource() {
-    return mediaSource;
+  public @Nullable MediaItem getMediaItem() {
+    return mediaItem;
   }
 
   public void setOnPlaybackReady(@Nullable Runnable onPlaybackReady) {
@@ -86,8 +86,8 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener {
 
   @Override
   public void onPositionDiscontinuity(@NotNull Player.PositionInfo oldPosition,
-                                                @NotNull Player.PositionInfo newPosition,
-                                                int reason)
+                                      @NotNull Player.PositionInfo newPosition,
+                                      int reason)
   {
     if (policyEnforcer != null && reason == Player.DISCONTINUITY_REASON_AUTO_TRANSITION) {
       if (policyEnforcer.endPlayback()) {

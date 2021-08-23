@@ -14,7 +14,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.annimon.stream.Stream;
-import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.MediaItem;
 
 import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.ThreadUtil;
@@ -28,12 +28,11 @@ import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
-import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.video.exo.AttachmentMediaSourceFactory;
+import org.thoughtcrime.securesms.util.Projection;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.sql.Date;
@@ -120,7 +119,6 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
                           false,
                           false,
                           false,
-                          new AttachmentMediaSourceFactory(conversationItem.getContext()),
                           true,
                           colorizer);
   }
@@ -228,8 +226,8 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   }
 
   @Override
-  public @Nullable MediaSource getMediaSource() {
-    return conversationItem.getMediaSource();
+  public @Nullable MediaItem getMediaItem() {
+    return conversationItem.getMediaItem();
   }
 
   @Override

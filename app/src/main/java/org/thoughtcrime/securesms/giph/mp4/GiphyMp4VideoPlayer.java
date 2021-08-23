@@ -12,7 +12,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerView;
 
@@ -69,8 +69,8 @@ public final class GiphyMp4VideoPlayer extends FrameLayout implements DefaultLif
     this.exoPlayer = exoPlayer;
   }
 
-  void setVideoSource(@NonNull MediaSource mediaSource) {
-    exoPlayer.setMediaSource(mediaSource);
+  void setVideoItem(@NonNull MediaItem mediaItem) {
+    exoPlayer.setMediaItem(mediaItem);
     exoPlayer.prepare();
   }
 
