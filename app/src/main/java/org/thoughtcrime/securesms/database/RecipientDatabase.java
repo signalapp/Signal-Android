@@ -2923,12 +2923,17 @@ public class RecipientDatabase extends Database {
     // Groups
     GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
     for (GroupDatabase.GroupRecord group : groupDatabase.getGroupsContainingMember(byE164, false, true)) {
-      List<RecipientId> newMembers = new ArrayList<>(group.getMembers());
+      LinkedHashSet<RecipientId> newMembers = new LinkedHashSet<>(group.getMembers());
       newMembers.remove(byE164);
+      newMembers.add(byUuid);
 
       ContentValues groupValues = new ContentValues();
       groupValues.put(GroupDatabase.MEMBERS, RecipientId.toSerializedList(newMembers));
       db.update(GroupDatabase.TABLE_NAME, groupValues, GroupDatabase.RECIPIENT_ID + " = ?", SqlUtil.buildArgs(group.getRecipientId()));
+
+      if (group.isV2Group()) {
+        groupDatabase.removeUnmigratedV1Members(group.getId().requireV2(), Collections.singletonList(byE164));
+      }
     }
 
     // Threads
