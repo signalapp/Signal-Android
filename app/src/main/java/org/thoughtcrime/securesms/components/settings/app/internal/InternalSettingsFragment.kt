@@ -74,8 +74,8 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
-        title = DSLSettingsText.from(R.string.preferences__internal_refresh_remote_values),
-        summary = DSLSettingsText.from(R.string.preferences__internal_refresh_remote_values_description),
+        title = DSLSettingsText.from(R.string.preferences__internal_refresh_remote_config),
+        summary = DSLSettingsText.from(R.string.preferences__internal_refresh_remote_config_description),
         onClick = {
           refreshRemoteValues()
         }
@@ -83,7 +83,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       dividerPref()
 
-      sectionHeaderPref(R.string.preferences__internal_display)
+      sectionHeaderPref(R.string.preferences__internal_misc)
 
       switchPref(
         title = DSLSettingsText.from(R.string.preferences__internal_user_details),
@@ -91,6 +91,15 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         isChecked = state.seeMoreUserDetails,
         onClick = {
           viewModel.setSeeMoreUserDetails(!state.seeMoreUserDetails)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_shake_to_report),
+        summary = DSLSettingsText.from(R.string.preferences__internal_shake_to_report_description),
+        isChecked = state.shakeToReport,
+        onClick = {
+          viewModel.setShakeToReport(!state.shakeToReport)
         }
       )
 

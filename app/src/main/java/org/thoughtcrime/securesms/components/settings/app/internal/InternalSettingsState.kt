@@ -4,6 +4,7 @@ import org.thoughtcrime.securesms.emoji.EmojiFiles
 
 data class InternalSettingsState(
   val seeMoreUserDetails: Boolean,
+  val shakeToReport: Boolean,
   val gv2doNotCreateGv2Groups: Boolean,
   val gv2forceInvites: Boolean,
   val gv2ignoreServerChanges: Boolean,
