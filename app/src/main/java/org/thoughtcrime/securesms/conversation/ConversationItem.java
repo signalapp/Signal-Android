@@ -341,7 +341,11 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       lastYDownRelativeToThis = ev.getY();
     }
 
-    return super.onInterceptTouchEvent(ev);
+    if (batchSelected.isEmpty()) {
+      return super.onInterceptTouchEvent(ev);
+    } else {
+      return true;
+    }
   }
 
   @Override
