@@ -1151,7 +1151,7 @@ final class GroupManagerV2 {
       ApplicationDependencies.getJobManager().add(PushGroupSilentUpdateSendJob.create(context, groupId, groupMutation.getNewGroupState(), outgoingMessage));
       return new RecipientAndThread(groupRecipient, -1);
     } else {
-      long threadId = MessageSender.send(context, outgoingMessage, -1, false, null);
+      long threadId = MessageSender.send(context, outgoingMessage, -1, false, null, null);
       return new RecipientAndThread(groupRecipient, threadId);
     }
   }

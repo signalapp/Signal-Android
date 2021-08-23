@@ -1,6 +1,12 @@
 package org.thoughtcrime.securesms.util;
 
 import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * A nice interface for {@link LocalMetrics} that gives us a place to define string constants and nicer method names.
@@ -55,51 +61,12 @@ public final class SignalLocalMetrics {
       if (isConversationList) {
         LocalMetrics.getInstance().split(conversationListId, SPLIT_RENDER);
         LocalMetrics.getInstance().end(conversationListId);
-        LocalMetrics.getInstance().drop(otherId);
+        LocalMetrics.getInstance().cancel(otherId);
       } else {
         LocalMetrics.getInstance().split(otherId, SPLIT_RENDER);
         LocalMetrics.getInstance().end(otherId);
-        LocalMetrics.getInstance().drop(conversationListId);
+        LocalMetrics.getInstance().cancel(conversationListId);
       }
-    }
-  }
-
-  public static final class IndividualMessageSend {
-    private static final String NAME = "individual-message-send";
-
-    private static final String SPLIT_JOB_ENQUEUE      = "job-enqueue";
-    private static final String SPLIT_JOB_PRE_NETWORK  = "job-pre-network";
-    private static final String SPLIT_NETWORK          = "network";
-    private static final String SPLIT_JOB_POST_NETWORK = "job-post-network";
-    private static final String SPLIT_UI_UPDATE        = "ui-update";
-
-    public static void start(long messageId) {
-      LocalMetrics.getInstance().start(buildId(messageId), NAME);
-    }
-
-    public static void onJobStarted(long messageId) {
-      LocalMetrics.getInstance().split(buildId(messageId), SPLIT_JOB_ENQUEUE);
-    }
-
-    public static void onNetworkStarted(long messageId) {
-      LocalMetrics.getInstance().split(buildId(messageId), SPLIT_JOB_PRE_NETWORK);
-    }
-
-    public static void onNetworkFinished(long messageId) {
-      LocalMetrics.getInstance().split(buildId(messageId), SPLIT_NETWORK);
-    }
-
-    public static void onJobFinished(long messageId) {
-      LocalMetrics.getInstance().split(buildId(messageId), SPLIT_JOB_POST_NETWORK);
-    }
-
-    public static void onUiUpdated(long messageId) {
-      LocalMetrics.getInstance().split(buildId(messageId), SPLIT_UI_UPDATE);
-      LocalMetrics.getInstance().end(buildId(messageId));
-    }
-
-    private static String buildId(long messageId) {
-      return NAME + "-" + messageId;
     }
   }
 
@@ -126,42 +93,143 @@ public final class SignalLocalMetrics {
     }
   }
 
-  public static final class GroupMessageSend {
-    private static final String NAME = "group-message-send";
+  public static final class IndividualMessageSend {
+    private static final String NAME = "individual-message-send";
 
+    private static final String SPLIT_DB_INSERT        = "db-insert";
     private static final String SPLIT_JOB_ENQUEUE      = "job-enqueue";
     private static final String SPLIT_JOB_PRE_NETWORK  = "job-pre-network";
     private static final String SPLIT_NETWORK          = "network";
     private static final String SPLIT_JOB_POST_NETWORK = "job-post-network";
     private static final String SPLIT_UI_UPDATE        = "ui-update";
 
-    public static void start(long messageId) {
-      LocalMetrics.getInstance().start(buildId(messageId), NAME);
+    private static final Map<Long, String> ID_MAP = new HashMap<>();
+
+    public static @NonNull String start() {
+      String id = NAME + System.currentTimeMillis();
+      LocalMetrics.getInstance().start(id, NAME);
+      return id;
+    }
+
+    public static void onInsertedIntoDatabase(long messageId, String id) {
+      if (id != null) {
+        ID_MAP.put(messageId, id);
+        LocalMetrics.getInstance().split(requireId(messageId), SPLIT_DB_INSERT);
+      }
     }
 
     public static void onJobStarted(long messageId) {
-      LocalMetrics.getInstance().split(buildId(messageId), SPLIT_JOB_ENQUEUE);
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_ENQUEUE);
     }
 
     public static void onNetworkStarted(long messageId) {
-      LocalMetrics.getInstance().split(buildId(messageId), SPLIT_JOB_PRE_NETWORK);
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_PRE_NETWORK);
     }
 
     public static void onNetworkFinished(long messageId) {
-      LocalMetrics.getInstance().split(buildId(messageId), SPLIT_NETWORK);
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK);
     }
 
     public static void onJobFinished(long messageId) {
-      LocalMetrics.getInstance().split(buildId(messageId), SPLIT_JOB_POST_NETWORK);
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_POST_NETWORK);
     }
 
     public static void onUiUpdated(long messageId) {
-      LocalMetrics.getInstance().split(buildId(messageId), SPLIT_UI_UPDATE);
-      LocalMetrics.getInstance().end(buildId(messageId));
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_UI_UPDATE);
+      LocalMetrics.getInstance().end(requireId(messageId));
+
+      ID_MAP.remove(messageId);
     }
 
-    private static String buildId(long messageId) {
-      return NAME + "-" + messageId;
+    public static void cancel(@Nullable String id) {
+      if (id != null) {
+        LocalMetrics.getInstance().cancel(id);
+      }
+    }
+
+    public static void cancel(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().cancel(requireId(messageId));
+    }
+
+
+    private static @NonNull String requireId(long messageId) {
+      return Objects.requireNonNull(ID_MAP.get(messageId));
+    }
+  }
+
+  public static final class GroupMessageSend {
+    private static final String NAME = "group-message-send";
+
+    private static final String SPLIT_DB_INSERT        = "db-insert";
+    private static final String SPLIT_JOB_ENQUEUE      = "job-enqueue";
+    private static final String SPLIT_JOB_PRE_NETWORK  = "job-pre-network";
+    private static final String SPLIT_NETWORK          = "network";
+    private static final String SPLIT_JOB_POST_NETWORK = "job-post-network";
+    private static final String SPLIT_UI_UPDATE        = "ui-update";
+
+    private static final Map<Long, String> ID_MAP = new HashMap<>();
+
+    public static @NonNull String start() {
+      String id = NAME + System.currentTimeMillis();
+      LocalMetrics.getInstance().start(id, NAME);
+      return id;
+    }
+
+    public static void onInsertedIntoDatabase(long messageId, String id) {
+      if (id != null) {
+        ID_MAP.put(messageId, id);
+        LocalMetrics.getInstance().split(requireId(messageId), SPLIT_DB_INSERT);
+      }
+    }
+
+    public static void onJobStarted(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_ENQUEUE);
+    }
+
+    public static void onNetworkStarted(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_PRE_NETWORK);
+    }
+
+    public static void onNetworkFinished(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK);
+    }
+
+    public static void onJobFinished(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_POST_NETWORK);
+    }
+
+    public static void onUiUpdated(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_UI_UPDATE);
+      LocalMetrics.getInstance().end(requireId(messageId));
+
+      ID_MAP.remove(messageId);
+    }
+
+    public static void cancel(@Nullable String id) {
+      if (id != null) {
+        LocalMetrics.getInstance().cancel(id);
+      }
+    }
+
+    public static void cancel(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().cancel(requireId(messageId));
+    }
+
+
+    private static @NonNull String requireId(long messageId) {
+      return Objects.requireNonNull(ID_MAP.get(messageId));
     }
   }
 }

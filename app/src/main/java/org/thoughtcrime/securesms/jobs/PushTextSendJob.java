@@ -144,6 +144,12 @@ public class PushTextSendJob extends PushSendJob {
   }
 
   @Override
+  public void onRetry() {
+    SignalLocalMetrics.IndividualMessageSend.cancel(messageId);
+    super.onRetry();
+  }
+
+  @Override
   public void onFailure() {
     DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageId);
 

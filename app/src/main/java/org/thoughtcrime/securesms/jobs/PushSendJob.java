@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -125,7 +126,6 @@ public abstract class PushSendJob extends SendJob {
 
   @Override
   public void onRetry() {
-    super.onRetry();
     Log.i(TAG, "onRetry()");
 
     if (getRunAttempt() > 1) {

@@ -1187,6 +1187,8 @@ public class SmsDatabase extends MessageDatabase {
   public long insertMessageOutbox(long threadId, OutgoingTextMessage message,
                                   boolean forceSms, long date, InsertListener insertListener)
   {
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+
     long type = Types.BASE_SENDING_TYPE;
 
     if      (message.isKeyExchange())   type |= Types.KEY_EXCHANGE_BIT;
@@ -1212,20 +1214,27 @@ public class SmsDatabase extends MessageDatabase {
     contentValues.put(EXPIRES_IN, message.getExpiresIn());
     contentValues.put(DELIVERY_RECEIPT_COUNT, Stream.of(earlyDeliveryReceipts.values()).mapToLong(Long::longValue).sum());
 
-    SQLiteDatabase db        = databaseHelper.getSignalWritableDatabase();
-    long           messageId = db.insert(TABLE_NAME, null, contentValues);
+    long messageId;
 
-    if (insertListener != null) {
-      insertListener.onComplete();
+    db.beginTransaction();
+    try {
+      messageId = db.insert(TABLE_NAME, null, contentValues);
+
+      if (insertListener != null) {
+        insertListener.onComplete();
+      }
+
+      if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
+        DatabaseFactory.getThreadDatabase(context).setLastScrolled(threadId, 0);
+        DatabaseFactory.getThreadDatabase(context).updateSilently(threadId, true);
+        DatabaseFactory.getThreadDatabase(context).setLastSeenSilently(threadId);
+      }
+
+      DatabaseFactory.getThreadDatabase(context).setHasSentSilently(threadId, true);
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
     }
-
-    if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
-      DatabaseFactory.getThreadDatabase(context).setLastScrolled(threadId, 0);
-      DatabaseFactory.getThreadDatabase(context).updateSilently(threadId, true);
-      DatabaseFactory.getThreadDatabase(context).setLastSeenSilently(threadId);
-    }
-
-    DatabaseFactory.getThreadDatabase(context).setHasSentSilently(threadId, true);
 
     notifyConversationListeners(threadId);
     notifyConversationListListeners();

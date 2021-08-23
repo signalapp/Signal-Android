@@ -101,6 +101,7 @@ public class MessageSender {
                           final OutgoingTextMessage message,
                           final long threadId,
                           final boolean forceSms,
+                          @Nullable final String metricId,
                           final SmsDatabase.InsertListener insertListener)
   {
     Log.i(TAG, "Sending text message to " + message.getRecipient().getId() + ", thread: " + threadId);
@@ -115,7 +116,7 @@ public class MessageSender {
                                                           System.currentTimeMillis(),
                                                           insertListener);
 
-    SignalLocalMetrics.IndividualMessageSend.start(messageId);
+    SignalLocalMetrics.IndividualMessageSend.onInsertedIntoDatabase(messageId, metricId);
 
     sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
     onMessageSent();
@@ -127,6 +128,7 @@ public class MessageSender {
                           final OutgoingMediaMessage message,
                           final long threadId,
                           final boolean forceSms,
+                          @Nullable final String metricId,
                           final SmsDatabase.InsertListener insertListener)
   {
     Log.i(TAG, "Sending media message to " + message.getRecipient().getId() + ", thread: " + threadId);
@@ -139,7 +141,9 @@ public class MessageSender {
       long      messageId         = database.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId), allocatedThreadId, forceSms, insertListener);
 
       if (message.getRecipient().isGroup() && message.getAttachments().isEmpty() && message.getLinkPreviews().isEmpty() && message.getSharedContacts().isEmpty()) {
-        SignalLocalMetrics.GroupMessageSend.start(messageId);
+        SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
+      } else {
+        SignalLocalMetrics.GroupMessageSend.cancel(metricId);
       }
 
       sendMediaMessage(context, recipient, forceSms, messageId, Collections.emptyList());
@@ -151,7 +155,6 @@ public class MessageSender {
       return threadId;
     }
   }
-
 
   public static long sendPushWithPreUploadedMedia(final Context context,
                                                   final OutgoingMediaMessage message,

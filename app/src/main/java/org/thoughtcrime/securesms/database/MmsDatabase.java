@@ -1470,6 +1470,8 @@ public class MmsDatabase extends MessageDatabase {
                                   @Nullable SmsDatabase.InsertListener insertListener)
       throws MmsException
   {
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+
     long type = Types.BASE_SENDING_TYPE;
 
     if (message.isSecure()) type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
@@ -1529,32 +1531,42 @@ public class MmsDatabase extends MessageDatabase {
     }
 
     MentionUtil.UpdatedBodyAndMentions updatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithPlaceholders(message.getBody(), message.getMentions());
-    long messageId = insertMediaMessage(threadId, updatedBodyAndMentions.getBodyAsString(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), updatedBodyAndMentions.getMentions(), contentValues, insertListener);
 
-    if (message.getRecipient().isGroup()) {
-      OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (message instanceof OutgoingGroupUpdateMessage) ? (OutgoingGroupUpdateMessage) message : null;
+    long messageId;
 
-      GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
-      Set<RecipientId>     members         = new HashSet<>();
+    db.beginTransaction();
+    try {
+      messageId = insertMediaMessage(threadId, updatedBodyAndMentions.getBodyAsString(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), updatedBodyAndMentions.getMentions(), contentValues, insertListener);
 
-      if (outgoingGroupUpdateMessage != null && outgoingGroupUpdateMessage.isV2Group()) {
-        MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupUpdateMessage.requireGroupV2Properties();
-        members.addAll(Stream.of(groupV2Properties.getAllActivePendingAndRemovedMembers())
-                             .distinct()
-                             .map(uuid -> RecipientId.from(uuid, null))
-                             .toList());
-        members.remove(Recipient.self().getId());
-      } else {
-        members.addAll(Stream.of(DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)).map(Recipient::getId).toList());
+      if (message.getRecipient().isGroup()) {
+        OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (message instanceof OutgoingGroupUpdateMessage) ? (OutgoingGroupUpdateMessage) message : null;
+
+        GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
+        Set<RecipientId>     members         = new HashSet<>();
+
+        if (outgoingGroupUpdateMessage != null && outgoingGroupUpdateMessage.isV2Group()) {
+          MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupUpdateMessage.requireGroupV2Properties();
+          members.addAll(Stream.of(groupV2Properties.getAllActivePendingAndRemovedMembers())
+                               .distinct()
+                               .map(uuid -> RecipientId.from(uuid, null))
+                               .toList());
+          members.remove(Recipient.self().getId());
+        } else {
+          members.addAll(Stream.of(DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)).map(Recipient::getId).toList());
+        }
+
+        receiptDatabase.insert(members, messageId, defaultReceiptStatus, message.getSentTimeMillis());
+
+        for (RecipientId recipientId : earlyDeliveryReceipts.keySet()) receiptDatabase.update(recipientId, messageId, GroupReceiptDatabase.STATUS_DELIVERED, -1);
       }
 
-      receiptDatabase.insert(members, messageId, defaultReceiptStatus, message.getSentTimeMillis());
+      DatabaseFactory.getThreadDatabase(context).setLastSeenSilently(threadId);
+      DatabaseFactory.getThreadDatabase(context).setHasSentSilently(threadId, true);
 
-      for (RecipientId recipientId : earlyDeliveryReceipts.keySet()) receiptDatabase.update(recipientId, messageId, GroupReceiptDatabase.STATUS_DELIVERED, -1);
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
     }
-
-    DatabaseFactory.getThreadDatabase(context).setLastSeenSilently(threadId);
-    DatabaseFactory.getThreadDatabase(context).setHasSentSilently(threadId, true);
 
     notifyConversationListeners(threadId);
     notifyConversationListListeners();

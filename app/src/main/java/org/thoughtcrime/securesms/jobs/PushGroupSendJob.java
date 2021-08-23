@@ -267,6 +267,12 @@ public final class PushGroupSendJob extends PushSendJob {
   }
 
   @Override
+  public void onRetry() {
+    SignalLocalMetrics.GroupMessageSend.cancel(messageId);
+    super.onRetry();
+  }
+
+  @Override
   public void onFailure() {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
   }

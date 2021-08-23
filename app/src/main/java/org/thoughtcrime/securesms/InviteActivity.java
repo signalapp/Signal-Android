@@ -283,7 +283,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
         Recipient   recipient      = Recipient.resolved(recipientId);
         int         subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
 
-        MessageSender.send(context, new OutgoingTextMessage(recipient, message, subscriptionId), -1L, true, null);
+        MessageSender.send(context, new OutgoingTextMessage(recipient, message, subscriptionId), -1L, true, null, null);
 
         if (recipient.getContactUri() != null) {
           DatabaseFactory.getRecipientDatabase(context).setHasSentInvite(recipient.getId());

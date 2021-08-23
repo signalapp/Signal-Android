@@ -79,7 +79,7 @@ object LocalMetrics {
   /**
    * Stop tracking an event you were previously tracking. All future calls to [split] and [end] will do nothing for this id.
    */
-  fun drop(id: String) {
+  fun cancel(id: String) {
     executor.execute {
       eventsById.remove(id)
     }

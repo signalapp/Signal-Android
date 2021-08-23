@@ -92,17 +92,17 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
                                                                   Collections.emptyList(),
                                                                   Collections.emptyList(),
                                                                   Collections.emptyList());
-            threadId = MessageSender.send(context, reply, -1, false, null);
+            threadId = MessageSender.send(context, reply, -1, false, null, null);
             break;
           }
           case SecureMessage: {
             OutgoingEncryptedMessage reply = new OutgoingEncryptedMessage(recipient, responseText.toString(), expiresIn);
-            threadId = MessageSender.send(context, reply, -1, false, null);
+            threadId = MessageSender.send(context, reply, -1, false, null, null);
             break;
           }
           case UnsecuredSmsMessage: {
             OutgoingTextMessage reply = new OutgoingTextMessage(recipient, responseText.toString(), expiresIn, subscriptionId);
-            threadId = MessageSender.send(context, reply, -1, true, null);
+            threadId = MessageSender.send(context, reply, -1, true, null, null);
             break;
           }
           default:

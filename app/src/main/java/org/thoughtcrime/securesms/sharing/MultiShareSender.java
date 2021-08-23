@@ -179,9 +179,9 @@ public final class MultiShareSender {
                                                                          validatedMentions);
 
     if (recipient.isRegistered() && !forceSms) {
-      MessageSender.send(context, new OutgoingSecureMediaMessage(outgoingMediaMessage), threadId, false, null);
+      MessageSender.send(context, new OutgoingSecureMediaMessage(outgoingMediaMessage), threadId, false, null, null);
     } else {
-      MessageSender.send(context, outgoingMediaMessage, threadId, forceSms, null);
+      MessageSender.send(context, outgoingMediaMessage, threadId, forceSms, null, null);
     }
 
   }
@@ -202,7 +202,7 @@ public final class MultiShareSender {
       outgoingTextMessage = new OutgoingTextMessage(recipient, multiShareArgs.getDraftText(), expiresIn, subscriptionId);
     }
 
-    MessageSender.send(context, outgoingTextMessage, threadId, forceSms, null);
+    MessageSender.send(context, outgoingTextMessage, threadId, forceSms, null, null);
   }
 
   private static @NonNull SlideDeck buildSlideDeck(@NonNull Context context, @NonNull MultiShareArgs multiShareArgs) throws SlideNotFoundException {
