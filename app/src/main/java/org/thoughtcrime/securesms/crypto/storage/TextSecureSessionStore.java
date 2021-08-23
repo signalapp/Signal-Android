@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.crypto.storage;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -16,6 +17,8 @@ import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.signalservice.api.SignalServiceSessionStore;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class TextSecureSessionStore implements SignalServiceSessionStore {
 
@@ -98,6 +101,17 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
   }
 
   @Override
+  public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) {
+    synchronized (LOCK) {
+      List<SessionDatabase.SessionRow> rows = DatabaseFactory.getSessionDatabase(context).getAllFor(addressNames);
+      return rows.stream()
+                 .filter(row -> isActive(row.getRecord()))
+                 .map(row -> new SignalProtocolAddress(row.getAddress(), row.getDeviceId()))
+                 .collect(Collectors.toSet());
+    }
+  }
+
+  @Override
   public void archiveSession(SignalProtocolAddress address) {
     synchronized (LOCK) {
       SessionRecord session = DatabaseFactory.getSessionDatabase(context).load(address);
@@ -144,5 +158,11 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
         storeSession(new SignalProtocolAddress(row.getAddress(), row.getDeviceId()), row.getRecord());
       }
     }
+  }
+
+  private static boolean isActive(@Nullable SessionRecord record) {
+    return record != null &&
+           record.hasSenderChain() &&
+           record.getSessionVersion() == CiphertextMessage.CURRENT_VERSION;
   }
 }

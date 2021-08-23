@@ -122,7 +122,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -132,7 +131,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 /**
@@ -1667,7 +1665,6 @@ public class SignalServiceMessageSender {
                                                                          .distinct()
                                                                          .map(SignalServiceAddress::new)
                                                                          .collect(Collectors.toList());
-
       if (needsSenderKey.size() > 0) {
         Log.i(TAG, "[sendGroupMessage] Need to send the distribution message to " + needsSenderKey.size() + " addresses.");
         SenderKeyDistributionMessage           message = getOrCreateNewGroupSession(distributionId);
@@ -1767,23 +1764,22 @@ public class SignalServiceMessageSender {
   }
 
   private GroupTargetInfo buildGroupTargetInfo(List<SignalServiceAddress> recipients) {
-    Set<SignalProtocolAddress>               destinations     = new LinkedHashSet<>();
+    List<String>                             addressNames         = recipients.stream().map(SignalServiceAddress::getIdentifier).collect(Collectors.toList());
+    Set<SignalProtocolAddress>               destinations         = store.getAllAddressesWithActiveSessions(addressNames);
+    Map<String, List<Integer>>               devicesByAddressName = new HashMap<>();
+
+    for (SignalProtocolAddress destination : destinations) {
+      List<Integer> devices = devicesByAddressName.containsKey(destination.getName()) ? devicesByAddressName.get(destination.getName()) : new LinkedList<>();
+      devices.add(destination.getDeviceId());
+      devicesByAddressName.put(destination.getName(), devices);
+    }
+
     Map<SignalServiceAddress, List<Integer>> recipientDevices = new HashMap<>();
 
     for (SignalServiceAddress recipient : recipients) {
-      List<Integer> devices = recipientDevices.containsKey(recipient) ? recipientDevices.get(recipient) : new LinkedList<>();
-
-      destinations.add(new SignalProtocolAddress(recipient.getUuid().toString(), SignalServiceAddress.DEFAULT_DEVICE_ID));
-      devices.add(SignalServiceAddress.DEFAULT_DEVICE_ID);
-
-      for (int deviceId : store.getSubDeviceSessions(recipient.getIdentifier())) {
-        if (store.containsSession(new SignalProtocolAddress(recipient.getIdentifier(), deviceId))) {
-          destinations.add(new SignalProtocolAddress(recipient.getUuid().toString(), deviceId));
-          devices.add(deviceId);
-        }
+      if (devicesByAddressName.containsKey(recipient.getIdentifier())) {
+        recipientDevices.put(recipient, devicesByAddressName.get(recipient.getIdentifier()));
       }
-
-      recipientDevices.put(recipient, devices);
     }
 
     return new GroupTargetInfo(new ArrayList<>(destinations), recipientDevices);
@@ -2057,8 +2053,7 @@ public class SignalServiceMessageSender {
     return content;
   }
 
-  public static interface EventListener {
-    public void onSecurityEvent(SignalServiceAddress address);
+  public interface EventListener {
+    void onSecurityEvent(SignalServiceAddress address);
   }
-
 }

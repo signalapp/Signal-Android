@@ -119,7 +119,27 @@ public class SessionDatabase extends Database {
         try {
           results.add(new SessionRow(CursorUtil.requireString(cursor, ADDRESS),
                                      CursorUtil.requireInt(cursor, DEVICE),
-                                     new SessionRecord(cursor.getBlob(cursor.getColumnIndexOrThrow(RECORD)))));
+                                     new SessionRecord(CursorUtil.requireBlob(cursor, RECORD))));
+        } catch (IOException e) {
+          Log.w(TAG, e);
+        }
+      }
+    }
+
+    return results;
+  }
+
+  public @NonNull List<SessionRow> getAllFor(@NonNull List<String> addressNames) {
+    SQLiteDatabase   database = databaseHelper.getSignalReadableDatabase();
+    SqlUtil.Query    query    = SqlUtil.buildCollectionQuery(ADDRESS, addressNames);
+    List<SessionRow> results  = new LinkedList<>();
+
+    try (Cursor cursor = database.query(TABLE_NAME, null, query.getWhere(), query.getWhereArgs(), null, null, null)) {
+      while (cursor.moveToNext()) {
+        try {
+          results.add(new SessionRow(CursorUtil.requireString(cursor, ADDRESS),
+                                     CursorUtil.requireInt(cursor, DEVICE),
+                                     new SessionRecord(CursorUtil.requireBlob(cursor, RECORD))));
         } catch (IOException e) {
           Log.w(TAG, e);
         }

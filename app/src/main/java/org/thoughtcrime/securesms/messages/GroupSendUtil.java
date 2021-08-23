@@ -10,7 +10,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.MessageSendLogDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
@@ -50,10 +49,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 public final class GroupSendUtil {
@@ -228,13 +225,18 @@ public final class GroupSendUtil {
       throw new CancelationException();
     }
 
-    if (legacyTargets.size() > 0 || TextSecurePreferences.isMultiDevice(context)) {
-      Log.i(TAG, "Need to do " + legacyTargets.size() + " legacy sends.");
+    boolean onlyTargetIsSelfWithLinkedDevice = legacyTargets.isEmpty() && senderKeyTargets.isEmpty() && TextSecurePreferences.isMultiDevice(context);
+
+    if (legacyTargets.size() > 0 || onlyTargetIsSelfWithLinkedDevice) {
+      if (legacyTargets.size() > 0) {
+        Log.i(TAG, "Need to do " + legacyTargets.size() + " legacy sends.");
+      } else {
+        Log.i(TAG, "Need to do a legacy send to send a sync message for a group of only ourselves.");
+      }
 
       List<SignalServiceAddress>             targets         = legacyTargets.stream().map(r -> recipients.getAddress(r.getId())).collect(Collectors.toList());
       List<Optional<UnidentifiedAccessPair>> access          = legacyTargets.stream().map(r -> recipients.getAccessPair(r.getId())).collect(Collectors.toList());
       boolean                                recipientUpdate = isRecipientUpdate || allResults.size() > 0;
-
 
       final MessageSendLogDatabase messageLogDatabase  = DatabaseFactory.getMessageLogDatabase(context);
       final AtomicLong             entryId             = new AtomicLong(-1);

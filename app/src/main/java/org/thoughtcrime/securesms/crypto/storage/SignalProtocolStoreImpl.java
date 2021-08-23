@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.crypto.storage;
 
 import android.content.Context;
 
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
@@ -103,6 +104,11 @@ public class SignalProtocolStoreImpl implements SignalServiceDataStore {
   }
 
   @Override
+  public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) {
+    return sessionStore.getAllAddressesWithActiveSessions(addressNames);
+  }
+
+  @Override
   public void storeSession(SignalProtocolAddress axolotlAddress, SessionRecord record) {
     sessionStore.storeSession(axolotlAddress, record);
   }
@@ -180,5 +186,14 @@ public class SignalProtocolStoreImpl implements SignalServiceDataStore {
   @Override
   public boolean isMultiDevice() {
     return TextSecurePreferences.isMultiDevice(context);
+  }
+
+  @Override
+  public Transaction beginTransaction() {
+    DatabaseFactory.getInstance(context).getRawDatabase().beginTransaction();
+    return () -> {
+      DatabaseFactory.getInstance(context).getRawDatabase().setTransactionSuccessful();
+      DatabaseFactory.getInstance(context).getRawDatabase().endTransaction();
+    };
   }
 }
