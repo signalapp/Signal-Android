@@ -793,7 +793,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     });
   }
 
-  private void setCorrectMenuVisibility(@NonNull Menu menu) {
+  private void setCorrectActionModeMenuVisibility(@NonNull Menu menu) {
     Set<MultiselectPart> selectedParts = getListAdapter().getSelectedItems();
 
     if (actionMode != null && selectedParts.size() == 0) {
@@ -810,6 +810,8 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     menu.findItem(R.id.menu_context_resend).setVisible(menuState.shouldShowResendAction());
     menu.findItem(R.id.menu_context_copy).setVisible(menuState.shouldShowCopyAction());
     menu.findItem(R.id.menu_context_delete_message).setVisible(menuState.shouldShowDeleteAction());
+
+    AdaptiveActionsToolbar.adjustMenuActions(menu, 10, requireActivity().getWindow().getDecorView().getMeasuredWidth());
   }
 
   private @Nullable ConversationAdapter getListAdapter() {
@@ -1388,7 +1390,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         if (getListAdapter().getSelectedItems().size() == 0) {
           actionMode.finish();
         } else {
-          setCorrectMenuVisibility(actionMode.getMenu());
+          setCorrectActionModeMenuVisibility(actionMode.getMenu());
           actionMode.setTitle(calculateSelectedItemCount());
         }
       }
@@ -1878,8 +1880,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         WindowUtil.setLightStatusBar(getActivity().getWindow());
       }
 
-      setCorrectMenuVisibility(menu);
-      AdaptiveActionsToolbar.adjustMenuActions(menu, 10, requireActivity().getWindow().getDecorView().getMeasuredWidth());
+      setCorrectActionModeMenuVisibility(menu);
       listener.onMessageActionToolbarOpened();
       return true;
     }
