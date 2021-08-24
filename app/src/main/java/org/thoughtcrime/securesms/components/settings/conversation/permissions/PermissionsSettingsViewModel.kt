@@ -7,7 +7,6 @@ import org.thoughtcrime.securesms.groups.GroupAccessControl
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.LiveGroup
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.SingleLiveEvent
 import org.thoughtcrime.securesms.util.livedata.Store
 
@@ -45,7 +44,7 @@ class PermissionsSettingsViewModel(
 
     store.update(liveGroup.groupRecipient) { groupRecipient, state ->
       val allHaveCapability = groupRecipient.participants.map { it.announcementGroupCapability }.all { it == Recipient.Capability.SUPPORTED }
-      state.copy(announcementGroupPermissionEnabled = (FeatureFlags.announcementGroups() && allHaveCapability) || state.announcementGroup)
+      state.copy(announcementGroupPermissionEnabled = allHaveCapability || state.announcementGroup)
     }
   }
 
