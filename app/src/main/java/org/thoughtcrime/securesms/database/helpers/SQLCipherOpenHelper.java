@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.ChatColorsDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.EmojiSearchDatabase;
+import org.thoughtcrime.securesms.database.GroupCallRingDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -212,8 +213,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int THREAD_CLEANUP                   = 112;
   private static final int SESSION_MIGRATION                = 113;
   private static final int IDENTITY_MIGRATION               = 114;
+  private static final int GROUP_CALL_RING_TABLE            = 115;
 
-  private static final int    DATABASE_VERSION = 114;
+  private static final int    DATABASE_VERSION = 115;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context context;
@@ -255,6 +257,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     db.execSQL(ChatColorsDatabase.CREATE_TABLE);
     db.execSQL(EmojiSearchDatabase.CREATE_TABLE);
     db.execSQL(AvatarPickerDatabase.CREATE_TABLE);
+    db.execSQL(GroupCallRingDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE);
     executeStatements(db, MessageSendLogDatabase.CREATE_TABLE);
@@ -272,6 +275,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     executeStatements(db, MentionDatabase.CREATE_INDEXES);
     executeStatements(db, PaymentDatabase.CREATE_INDEXES);
     executeStatements(db, MessageSendLogDatabase.CREATE_INDEXES);
+    executeStatements(db, GroupCallRingDatabase.CREATE_INDEXES);
 
     executeStatements(db, MessageSendLogDatabase.CREATE_TRIGGERS);
 
@@ -2014,6 +2018,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
         db.execSQL("ALTER TABLE identities_tmp RENAME TO identities");
 
         Log.d(TAG, "Identity migration took " + (System.currentTimeMillis() - start) + " ms");
+      }
+
+      if (oldVersion < GROUP_CALL_RING_TABLE) {
+        db.execSQL("CREATE TABLE group_call_ring (_id INTEGER PRIMARY KEY, ring_id INTEGER UNIQUE, date_received INTEGER, ring_state INTEGER)");
+        db.execSQL("CREATE INDEX date_received_index on group_call_ring (date_received)");
       }
 
       db.setTransactionSuccessful();

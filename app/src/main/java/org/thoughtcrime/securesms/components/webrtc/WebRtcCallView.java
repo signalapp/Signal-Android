@@ -91,6 +91,8 @@ public class WebRtcCallView extends ConstraintLayout {
   private ImageView                     answer;
   private ImageView                     cameraDirectionToggle;
   private TextView                      cameraDirectionToggleLabel;
+  private AccessibleToggleButton        ringToggle;
+  private TextView                      ringToggleLabel;
   private PictureInPictureGestureHelper pictureInPictureGestureHelper;
   private ImageView                     hangup;
   private TextView                      hangupLabel;
@@ -171,6 +173,8 @@ public class WebRtcCallView extends ConstraintLayout {
     answer                        = findViewById(R.id.call_screen_answer_call);
     cameraDirectionToggle         = findViewById(R.id.call_screen_camera_direction_toggle);
     cameraDirectionToggleLabel    = findViewById(R.id.call_screen_camera_direction_toggle_label);
+    ringToggle                    = findViewById(R.id.call_screen_audio_ring_toggle);
+    ringToggleLabel               = findViewById(R.id.call_screen_audio_ring_toggle_label);
     hangup                        = findViewById(R.id.call_screen_end_call);
     hangupLabel                   = findViewById(R.id.call_screen_end_call_label);
     answerWithAudio               = findViewById(R.id.call_screen_answer_with_audio);
@@ -237,6 +241,10 @@ public class WebRtcCallView extends ConstraintLayout {
 
     micToggle.setOnCheckedChangeListener((v, isOn) -> {
       runIfNonNull(controlsListener, listener -> listener.onMicChanged(isOn));
+    });
+
+    ringToggle.setOnCheckedChangeListener((v, isOn) -> {
+      runIfNonNull(controlsListener, listener -> listener.onRingGroupChanged(isOn, ringToggle.isActivated()));
     });
 
     cameraDirectionToggle.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onCameraDirectionChanged));
@@ -358,8 +366,14 @@ public class WebRtcCallView extends ConstraintLayout {
       pages.add(WebRtcCallParticipantsPage.forSingleParticipant(state.getFocusedParticipant(), state.isInPipMode(), isPortrait, isLandscapeEnabled));
     }
 
-    if (state.getCallState() == WebRtcViewModel.State.CALL_PRE_JOIN && state.getGroupCallState().isNotIdle()) {
-      status.setText(state.getRemoteParticipantsDescription(getContext()));
+    if (state.getGroupCallState().isNotIdle()) {
+      if (state.getCallState() == WebRtcViewModel.State.CALL_PRE_JOIN) {
+        status.setText(state.getPreJoinGroupDescription(getContext()));
+      } else if (state.getCallState() == WebRtcViewModel.State.CALL_CONNECTED && state.isInOutgoingRingingMode()) {
+        status.setText(state.getOutgoingRingingGroupDescription(getContext()));
+      } else if (state.getGroupCallState().isRinging()) {
+        status.setText(state.getIncomingRingingGroupDescription(getContext()));
+      }
     }
 
     if (state.getGroupCallState().isNotIdle()) {
@@ -639,6 +653,11 @@ public class WebRtcCallView extends ConstraintLayout {
       visibleViewSet.remove(footerGradient);
     } else {
       fullScreenShade.setVisibility(GONE);
+    }
+
+    if (webRtcControls.displayRingToggle()) {
+      visibleViewSet.add(ringToggle);
+      visibleViewSet.add(ringToggleLabel);
     }
 
     if (webRtcControls.isFadeOutEnabled()) {
@@ -947,6 +966,7 @@ public class WebRtcCallView extends ConstraintLayout {
     micToggle.setBackgroundResource(R.drawable.webrtc_call_screen_mic_toggle);
     videoToggle.setBackgroundResource(R.drawable.webrtc_call_screen_video_toggle);
     audioToggle.setImageResource(R.drawable.webrtc_call_screen_speaker_toggle);
+    ringToggle.setBackgroundResource(R.drawable.webrtc_call_screen_ring_toggle);
   }
 
   private void updateButtonStateForSmallButtons() {
@@ -955,6 +975,7 @@ public class WebRtcCallView extends ConstraintLayout {
     micToggle.setBackgroundResource(R.drawable.webrtc_call_screen_mic_toggle_small);
     videoToggle.setBackgroundResource(R.drawable.webrtc_call_screen_video_toggle_small);
     audioToggle.setImageResource(R.drawable.webrtc_call_screen_speaker_toggle_small);
+    ringToggle.setBackgroundResource(R.drawable.webrtc_call_screen_ring_toggle_small);
   }
 
   private boolean showParticipantsList() {
@@ -966,6 +987,14 @@ public class WebRtcCallView extends ConstraintLayout {
     if (pagerAdapter.getItemCount() > 0) {
       callParticipantsPager.setCurrentItem(pagerAdapter.getItemCount() - 1, false);
     }
+  }
+
+  public void setRingGroup(boolean shouldRingGroup) {
+    ringToggle.setChecked(shouldRingGroup, false);
+  }
+
+  public void enableRingGroup(boolean enabled) {
+    ringToggle.setActivated(enabled);
   }
 
   public interface ControlsListener {
@@ -985,5 +1014,6 @@ public class WebRtcCallView extends ConstraintLayout {
     void onShowParticipantsList();
     void onPageChanged(@NonNull CallParticipantsState.SelectedPage page);
     void onLocalPictureInPictureClicked();
+    void onRingGroupChanged(boolean ringGroup, boolean ringingAllowed);
   }
 }

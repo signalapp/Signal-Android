@@ -58,12 +58,17 @@ public class WebRtcViewModel {
 
   public enum GroupCallState {
     IDLE,
+    RINGING,
     DISCONNECTED,
     CONNECTING,
     RECONNECTING,
     CONNECTED,
     CONNECTED_AND_JOINING,
     CONNECTED_AND_JOINED;
+
+    public boolean isIdle() {
+      return this == IDLE;
+    }
 
     public boolean isNotIdle() {
       return this != IDLE;
@@ -90,6 +95,10 @@ public class WebRtcViewModel {
 
       return false;
     }
+
+    public boolean isRinging() {
+      return this == RINGING;
+    }
   }
 
   private final @NonNull State          state;
@@ -105,6 +114,8 @@ public class WebRtcViewModel {
   private final Set<RecipientId>      identityChangedRecipients;
   private final OptionalLong          remoteDevicesCount;
   private final Long                  participantLimit;
+  private final boolean               ringGroup;
+  private final Recipient             ringerRecipient;
 
   public WebRtcViewModel(@NonNull WebRtcServiceState state) {
     this.state                     = state.getCallInfoState().getCallState();
@@ -117,6 +128,8 @@ public class WebRtcViewModel {
     this.callConnectedTime         = state.getCallInfoState().getCallConnectedTime();
     this.remoteDevicesCount        = state.getCallInfoState().getRemoteDevicesCount();
     this.participantLimit          = state.getCallInfoState().getParticipantLimit();
+    this.ringGroup                 = state.getCallSetupState().shouldRingGroup();
+    this.ringerRecipient           = state.getCallSetupState().getRingerRecipient();
     this.localParticipant          = CallParticipant.createLocal(state.getLocalDeviceState().getCameraState(),
                                                                  state.getVideoState().getLocalSink() != null ? state.getVideoState().getLocalSink()
                                                                                                               : new BroadcastVideoSink(),
@@ -167,8 +180,20 @@ public class WebRtcViewModel {
     return remoteDevicesCount;
   }
 
+  public boolean areRemoteDevicesInCall() {
+    return remoteDevicesCount.isPresent() && remoteDevicesCount.getAsLong() > 0;
+  }
+
   public @Nullable Long getParticipantLimit() {
     return participantLimit;
+  }
+
+  public boolean shouldRingGroup() {
+    return ringGroup;
+  }
+
+  public @NonNull Recipient getRingerRecipient() {
+    return ringerRecipient;
   }
 
   @Override

@@ -34,6 +34,7 @@ import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
+import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
@@ -120,6 +121,22 @@ public final class GroupSendUtil {
       throws IOException, UntrustedIdentityException
   {
     return sendMessage(context, groupId, allTargets, false, new TypingSendOperation(message), cancelationSignal);
+  }
+
+  /**
+   * Handles all of the logic of sending to a group. Will do sender key sends and legacy 1:1 sends as-needed, and give you back a list of
+   * {@link SendMessageResult}s just like we're used to.
+   *
+   * @param groupId The groupId of the group you're sending to, or null if you're sending to a collection of recipients not joined by a group.
+   */
+  @WorkerThread
+  public static List<SendMessageResult> sendCallMessage(@NonNull Context context,
+                                                        @Nullable GroupId.V2 groupId,
+                                                        @NonNull List<Recipient> allTargets,
+                                                        @NonNull SignalServiceCallMessage message)
+      throws IOException, UntrustedIdentityException
+  {
+    return sendMessage(context, groupId, allTargets, false, new CallSendOperation(message), null);
   }
 
   /**
@@ -421,6 +438,58 @@ public final class GroupSendUtil {
     @Override
     public long getSentTimestamp() {
       return message.getTimestamp();
+    }
+
+    @Override
+    public boolean shouldIncludeInMessageLog() {
+      return false;
+    }
+
+    @Override
+    public @NonNull MessageId getRelatedMessageId() {
+      throw new UnsupportedOperationException();
+    }
+  }
+
+  private static class CallSendOperation implements SendOperation {
+
+    private final SignalServiceCallMessage message;
+
+    private CallSendOperation(@NonNull SignalServiceCallMessage message) {
+      this.message = message;
+    }
+
+    @Override
+    public @NonNull List<SendMessageResult> sendWithSenderKey(@NonNull SignalServiceMessageSender messageSender,
+                                                              @NonNull DistributionId distributionId,
+                                                              @NonNull List<SignalServiceAddress> targets,
+                                                              @NonNull List<UnidentifiedAccess> access,
+                                                              boolean isRecipientUpdate)
+        throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException
+    {
+      return messageSender.sendCallMessage(distributionId, targets, access, message);
+    }
+
+    @Override
+    public @NonNull List<SendMessageResult> sendLegacy(@NonNull SignalServiceMessageSender messageSender,
+                                                       @NonNull List<SignalServiceAddress> targets,
+                                                       @NonNull List<Optional<UnidentifiedAccessPair>> access,
+                                                       boolean isRecipientUpdate,
+                                                       @Nullable PartialSendCompleteListener partialListener,
+                                                       @Nullable CancelationSignal cancelationSignal)
+        throws IOException
+    {
+      return messageSender.sendCallMessage(targets, access, message);
+    }
+
+    @Override
+    public @NonNull ContentHint getContentHint() {
+      return ContentHint.IMPLICIT;
+    }
+
+    @Override
+    public long getSentTimestamp() {
+      return message.getTimestamp().get();
     }
 
     @Override

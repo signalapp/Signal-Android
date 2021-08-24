@@ -97,7 +97,8 @@ message CallMessage {
   }
 
   message Opaque {
-    optional bytes data = 1;
+    optional bytes data  = 1;
+    reserved /* urgency */ 2;
   }
 
   optional Offer     offer               = 1;

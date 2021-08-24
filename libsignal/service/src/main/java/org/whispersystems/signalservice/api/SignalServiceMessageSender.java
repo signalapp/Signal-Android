@@ -273,6 +273,27 @@ public class SignalServiceMessageSender {
     sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), System.currentTimeMillis(), envelopeContent, false, null);
   }
 
+  public List<SendMessageResult> sendCallMessage(List<SignalServiceAddress> recipients,
+                                                 List<Optional<UnidentifiedAccessPair>> unidentifiedAccess,
+                                                 SignalServiceCallMessage message)
+      throws IOException
+  {
+    Content         content         = createCallContent(message);
+    EnvelopeContent envelopeContent = EnvelopeContent.encrypted(content, ContentHint.DEFAULT, Optional.absent());
+
+    return sendMessage(recipients, getTargetUnidentifiedAccess(unidentifiedAccess), System.currentTimeMillis(), envelopeContent, false, null, null);
+  }
+
+  public List<SendMessageResult> sendCallMessage(DistributionId distributionId,
+                                                 List<SignalServiceAddress> recipients,
+                                                 List<UnidentifiedAccess> unidentifiedAccess,
+                                                 SignalServiceCallMessage message)
+      throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException
+  {
+    Content content = createCallContent(message);
+    return sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp().get(), content, ContentHint.IMPLICIT, message.getGroupId().get(), false);
+  }
+
   /**
    * Send an http request on behalf of the calling infrastructure.
    *
