@@ -82,7 +82,6 @@ public final class FeatureFlags {
   private static final String RETRY_RECEIPTS                    = "android.retryReceipts";
   private static final String SUGGEST_SMS_BLACKLIST             = "android.suggestSmsBlacklist";
   private static final String ANNOUNCEMENT_GROUPS               = "android.announcementGroups";
-  private static final String FORWARD_MULTIPLE_MESSAGES         = "android.forward.multiple.messages";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -118,8 +117,7 @@ public final class FeatureFlags {
       SENDER_KEY,
       RETRY_RECEIPTS,
       SUGGEST_SMS_BLACKLIST,
-      ANNOUNCEMENT_GROUPS,
-      FORWARD_MULTIPLE_MESSAGES
+      ANNOUNCEMENT_GROUPS
   );
 
   @VisibleForTesting
@@ -383,11 +381,6 @@ public final class FeatureFlags {
   /** A comma-delimited list of country codes that should not be told about SMS during onboarding. */
   public static @NonNull String suggestSmsBlacklist() {
     return getString(SUGGEST_SMS_BLACKLIST, "");
-  }
-
-  /** Whether the user is able to forward multiple messages at once */
-  public static boolean forwardMultipleMessages() {
-    return getBoolean(FORWARD_MULTIPLE_MESSAGES, false);
   }
 
   /** Only for rendering debug info. */

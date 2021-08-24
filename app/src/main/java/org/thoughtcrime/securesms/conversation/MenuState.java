@@ -116,7 +116,7 @@ final class MenuState {
                                       !viewOnce        &&
                                       !remoteDelete    &&
                                       !hasPendingMedia &&
-                                      ((FeatureFlags.forwardMultipleMessages() && selectedParts.size() <= MAX_FORWARDABLE_COUNT) || selectedParts.size() == 1);
+                                      selectedParts.size() <= MAX_FORWARDABLE_COUNT;
 
     int uniqueRecords = selectedParts.stream()
                                      .map(MultiselectPart::getMessageRecord)

@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.mms.TextSlide
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.Util
 
 /**
@@ -28,10 +27,6 @@ object Multiselect {
   @JvmStatic
   fun getParts(conversationMessage: ConversationMessage): MultiselectCollection {
     val messageRecord = conversationMessage.messageRecord
-
-    if (!FeatureFlags.forwardMultipleMessages()) {
-      return MultiselectCollection.Single(MultiselectPart.Message(conversationMessage))
-    }
 
     if (messageRecord.isUpdate) {
       return MultiselectCollection.Single(MultiselectPart.Update(conversationMessage))

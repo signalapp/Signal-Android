@@ -117,11 +117,8 @@ class MultiselectForwardFragment :
     val shareSelectionRecycler: RecyclerView = bottomBar.findViewById(R.id.selected_list)
     val shareSelectionAdapter = ShareSelectionAdapter()
     val sendButton: View = bottomBar.findViewById(R.id.share_confirm)
-    val addMessageWrapper: View = bottomBar.findViewById(R.id.add_message_wrapper)
 
     addMessage = bottomBar.findViewById(R.id.add_message)
-
-    addMessageWrapper.visible = FeatureFlags.forwardMultipleMessages()
 
     sendButton.setOnClickListener {
       sendButton.isEnabled = false
