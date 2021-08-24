@@ -147,6 +147,21 @@ public class IdentityDatabase extends Database {
                                        firstUse,
                                        timestamp,
                                        nonblockingApproval);
+      } else if (addressName.charAt(0) != '+') {
+        if (DatabaseFactory.getRecipientDatabase(context).containsPhoneOrUuid(addressName)) {
+          Recipient recipient = Recipient.external(context, addressName);
+
+          if (recipient.hasE164()) {
+            Log.i(TAG, "Could not find identity for UUID. Attempting E164.");
+            return getIdentityStoreRecord(recipient.requireE164());
+          } else {
+            Log.i(TAG, "Could not find identity for UUID, and our recipient doesn't have an E164.");
+          }
+        } else {
+          Log.i(TAG, "Could not find identity for UUID, and we don't have a recipient.");
+        }
+      } else {
+        Log.i(TAG, "Could not find identity for E164 either.");
       }
     } catch (InvalidKeyException | IOException e) {
       throw new AssertionError(e);

@@ -214,8 +214,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int SESSION_MIGRATION                = 113;
   private static final int IDENTITY_MIGRATION               = 114;
   private static final int GROUP_CALL_RING_TABLE            = 115;
+  private static final int CLEANUP_SESSION_MIGRATION        = 116;
 
-  private static final int    DATABASE_VERSION = 115;
+  private static final int    DATABASE_VERSION = 116;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context context;
@@ -2023,6 +2024,17 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       if (oldVersion < GROUP_CALL_RING_TABLE) {
         db.execSQL("CREATE TABLE group_call_ring (_id INTEGER PRIMARY KEY, ring_id INTEGER UNIQUE, date_received INTEGER, ring_state INTEGER)");
         db.execSQL("CREATE INDEX date_received_index on group_call_ring (date_received)");
+      }
+
+      if (oldVersion < CLEANUP_SESSION_MIGRATION) {
+        int sessionCount = db.delete("sessions", "address LIKE '+%'", null);
+        Log.i(TAG, "Cleaned up " + sessionCount + " sessions.");
+
+        ContentValues storageValues = new ContentValues();
+        storageValues.putNull("storage_service_key");
+
+        int storageCount = db.update("recipient", storageValues, "storage_service_key NOT NULL AND group_id IS NULL AND uuid IS NULL", null);
+        Log.i(TAG, "Cleaned up " + storageCount + " storageIds.");
       }
 
       db.setTransactionSuccessful();
