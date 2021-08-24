@@ -1129,7 +1129,7 @@ public class RecipientDatabase extends Database {
    */
   public @NonNull Map<RecipientId, StorageId> getContactStorageSyncIdsMap() {
     SQLiteDatabase              db    = databaseHelper.getSignalReadableDatabase();
-    String                      query = STORAGE_SERVICE_ID + " NOT NULL AND " + ID + " != ? AND " + GROUP_TYPE + " != ?";
+    String                      query = STORAGE_SERVICE_ID + " NOT NULL AND " + UUID + " NOT NULL AND " + ID + " != ? AND " + GROUP_TYPE + " != ?";
     String[]                    args  = SqlUtil.buildArgs(Recipient.self().getId(), String.valueOf(GroupType.SIGNAL_V2.getId()));
     Map<RecipientId, StorageId> out   = new HashMap<>();
 
@@ -2105,21 +2105,6 @@ public class RecipientDatabase extends Database {
     ContentValues contentValues = new ContentValues(2);
     contentValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
     contentValues.put(UUID, uuid.toString().toLowerCase());
-
-    if (update(id, contentValues)) {
-      setStorageIdIfNotSet(id);
-      Recipient.live(id).refresh();
-    }
-  }
-
-  /**
-   * Marks the user as registered without providing a UUID. This should only be used when one
-   * cannot be reasonably obtained. {@link #markRegistered(RecipientId, UUID)} should be strongly
-   * preferred.
-   */
-  public void markRegistered(@NonNull RecipientId id) {
-    ContentValues contentValues = new ContentValues(1);
-    contentValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
 
     if (update(id, contentValues)) {
       setStorageIdIfNotSet(id);

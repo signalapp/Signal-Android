@@ -228,9 +228,11 @@ public class Recipient {
 
     Recipient resolved = resolved(recipientId);
 
-    if (highTrust && !resolved.isRegistered()) {
+    if (highTrust && !resolved.isRegistered() && uuid != null) {
       Log.w(TAG, "External high-trust push was locally marked unregistered. Marking as registered.");
-      db.markRegistered(recipientId);
+      db.markRegistered(recipientId, uuid);
+    } else if (highTrust && !resolved.isRegistered()) {
+      Log.w(TAG, "External high-trust push was locally marked unregistered, but we don't have a UUID, so we can't do anything.", new Throwable());
     }
 
     return resolved;

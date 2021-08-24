@@ -175,7 +175,7 @@ public class DirectoryHelper {
           recipient = Recipient.resolved(recipientDatabase.getByUuid(uuid).get());
         }
       } else {
-        recipientDatabase.markRegistered(recipient.getId());
+        Log.w(TAG, "Registered number set had a null UUID!");
       }
     } else if (recipient.hasUuid() && recipient.isRegistered() && hasCommunicatedWith(context, recipient)) {
       if (isUuidRegistered(context, recipient)) {
