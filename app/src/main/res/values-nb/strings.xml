@@ -735,7 +735,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Del</string>
   <string name="InviteActivity_share_with_contacts">Del med kontakter</string>
-  <string name="InviteActivity_choose_how_to_share">Velg hvordan du vil dele</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Velg hvordan du vil dele</string> -->
   <string name="InviteActivity_cancel">Avbryt</string>
   <string name="InviteActivity_sending">Sender…</string>
   <string name="InviteActivity_invitations_sent">Invitasjoner sendt.</string>
@@ -750,7 +750,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">La oss bytte til Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Det ser ut som at du ikke har noen programmer å dele denne informasjonen med.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Venner bør ikke prate ukryptert over nettet.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Venner bør ikke prate ukryptert over nettet.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lær mer</string>
   <!--LongMessageActivity-->
@@ -821,7 +821,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Setter opp Signal-anrop</string>
   <string name="NotificationBarManager__incoming_signal_call">Inngående Signal-anrop</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Stopper Signal-tjenesten</string>
-  <string name="NotificationBarManager__deny_call">Avslå anrop</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Avslå anrop</string> -->
   <string name="NotificationBarManager__answer_call">Svar på anrop</string>
   <string name="NotificationBarManager__end_call">Avslutt samtale</string>
   <string name="NotificationBarManager__cancel_call">Avbryt samtale</string>

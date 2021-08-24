@@ -706,7 +706,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Parve bike</string>
   <string name="InviteActivity_share_with_contacts">Bi navnivîskê re parve bike</string>
-  <string name="InviteActivity_choose_how_to_share">Tu yê çawa parve bikî</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Tu yê çawa parve bikî</string> -->
   <string name="InviteActivity_cancel">Betal bike</string>
   <string name="InviteActivity_sending">Tê şandin…</string>
   <string name="InviteActivity_invitations_sent">Vexwendname hatin şandin!</string>
@@ -721,7 +721,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Ka em derbasî Signalê bibin: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Xuya ye ji bo parvekirinê ti sepanên te tune ye.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Heval nahêlin, hevalên wan neşîfrekirî biaxivin.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Heval nahêlin, hevalên wan neşîfrekirî biaxivin.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Zêdetir bizane</string>
   <!--LongMessageActivity-->
@@ -784,7 +784,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Gerîna Signalê dewam dike</string>
   <string name="NotificationBarManager__establishing_signal_call">Gerîna Signalê tê sazkirin</string>
   <string name="NotificationBarManager__incoming_signal_call">Gerîna tê ya Signalê</string>
-  <string name="NotificationBarManager__deny_call">Red bike</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Red bike</string> -->
   <string name="NotificationBarManager__answer_call">Bibersivîne</string>
   <string name="NotificationBarManager__end_call">Gerînê bi dawî bike</string>
   <string name="NotificationBarManager__cancel_call">Gerînê betal bike</string>

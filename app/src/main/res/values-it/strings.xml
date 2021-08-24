@@ -749,7 +749,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Condividi</string>
   <string name="InviteActivity_share_with_contacts">Condividi con i contatti</string>
-  <string name="InviteActivity_choose_how_to_share">Scegli come condividere</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Scegli come condividere</string> -->
   <string name="InviteActivity_cancel">Annulla</string>
   <string name="InviteActivity_sending">Invio in corso…</string>
   <string name="InviteActivity_invitations_sent">Inviti mandati!</string>
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Passiamo a Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Sembra che tu non abbia applicazioni per condividere.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Gli amici non lasciano che gli amici chattino senza crittografia.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Gli amici non lasciano che gli amici chattino senza crittografia.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Scopri di più</string>
   <!--LongMessageActivity-->
@@ -836,7 +836,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Preparazione chiamata Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Chiamata Signal in arrivo</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Interruzione del servizio di chiamata di Signal</string>
-  <string name="NotificationBarManager__deny_call">Rifiuta chiamata</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Rifiuta chiamata</string> -->
   <string name="NotificationBarManager__answer_call">Rispondi</string>
   <string name="NotificationBarManager__end_call">Termina chiamata</string>
   <string name="NotificationBarManager__cancel_call">Annulla chiamata</string>

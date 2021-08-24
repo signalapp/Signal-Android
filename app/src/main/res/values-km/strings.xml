@@ -608,7 +608,7 @@
   <string name="InviteActivity_share">ចែករំលែក</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">ជ្រើសរើសលេខទំនាក់ទំនង</string> -->
   <string name="InviteActivity_share_with_contacts">ចែករំលែកជាមួយបញ្ជីទំនាក់ទំនង</string>
-  <string name="InviteActivity_choose_how_to_share">ជ្រើសរើសរបៀបចែករំលែក</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">ជ្រើសរើសរបៀបចែករំលែក</string> -->
   <string name="InviteActivity_cancel">បោះបង់</string>
   <string name="InviteActivity_sending">កំពុងផ្ញើ…</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">បេះដូង</string> -->
@@ -622,7 +622,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">តោះដូរទៅប្រើSignal ៖ %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">វាហាក់ដូចជាមិនមានកម្មវិធីណាមួយដើម្បីចែករំលែក។</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">មិត្តភក្តិមិនអោយមិត្តភក្តិជជែកដោយមិនកាណាល់កូដសម្ងាត់។</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">មិត្តភក្តិមិនអោយមិត្តភក្តិជជែកដោយមិនកាណាល់កូដសម្ងាត់។</string> -->
   <!--Job-->
   <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">កំពុងដំណើរការសកម្មភាពខាងក្នុង…</string> -->
   <!--LearnMoreTextView-->
@@ -687,7 +687,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">ការហៅចេញSignal កំពុងដំណើរការ</string>
   <string name="NotificationBarManager__establishing_signal_call">ការហៅចេញ តាមSignal</string>
   <string name="NotificationBarManager__incoming_signal_call">ការហៅចូលតាម Signal </string>
-  <string name="NotificationBarManager__deny_call">បដិសេធការហៅ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">បដិសេធការហៅ</string> -->
   <string name="NotificationBarManager__answer_call">ទទួលការហៅ</string>
   <string name="NotificationBarManager__end_call">បិទការហៅ</string>
   <string name="NotificationBarManager__cancel_call">បោះបង់ការហៅ</string>

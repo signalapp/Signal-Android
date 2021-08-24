@@ -749,7 +749,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">साझा करें</string>
   <string name="InviteActivity_share_with_contacts">संपर्कों के साथ शेयर करें</string>
-  <string name="InviteActivity_choose_how_to_share">शेयर करने का तरीका चुनें</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">शेयर करने का तरीका चुनें</string> -->
   <string name="InviteActivity_cancel">रद्द करें</string>
   <string name="InviteActivity_sending">भेजा जा रहा है…</string>
   <string name="InviteActivity_invitations_sent">आमंत्रण भेजा गया</string>
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">चलो Signal पर स्विच करें: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">ऐसा लगता है कि आपके पास साझा करने के लिए कोई ऐप नहीं है।</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">दोस्त अपने दोस्तों को अनएन्क्रिप्टेड चैट नहीं करने देते हैं।</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">दोस्त अपने दोस्तों को अनएन्क्रिप्टेड चैट नहीं करने देते हैं।</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">अधिक जानें</string>
   <!--LongMessageActivity-->
@@ -836,7 +836,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal कॉल की स्थापना की जा रही है</string>
   <string name="NotificationBarManager__incoming_signal_call">आने वाली Signal कॉल</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal कॉल सेवा बंद की जा रही है</string>
-  <string name="NotificationBarManager__deny_call">कॉल अस्वीकार करें</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">कॉल अस्वीकार करें</string> -->
   <string name="NotificationBarManager__answer_call">कॉल का उत्तर दें</string>
   <string name="NotificationBarManager__end_call">कॉल बंद</string>
   <string name="NotificationBarManager__cancel_call">कॉल रद्द करें</string>

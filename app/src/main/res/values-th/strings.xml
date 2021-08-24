@@ -712,7 +712,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">แบ่งปัน</string>
   <string name="InviteActivity_share_with_contacts"> แบ่งปันกับผู้ติดต่อ</string>
-  <string name="InviteActivity_choose_how_to_share">เลือกว่าจะแบ่งปันอย่างไร</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">เลือกว่าจะแบ่งปันอย่างไร</string> -->
   <string name="InviteActivity_cancel">ยกเลิก</string>
   <string name="InviteActivity_sending">กำลังส่ง…</string>
   <string name="InviteActivity_invitations_sent">ส่งคำเชิญแล้ว!</string>
@@ -725,7 +725,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Signal กัน: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">ดูเหมือนว่าคุณไม่มีแอปอะไรที่จะแบ่งปันได้</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">เพื่อนต้องไม่ยอมให้เพื่อนคุยกันโดยไม่มีการเข้ารหัส</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">เพื่อนต้องไม่ยอมให้เพื่อนคุยกันโดยไม่มีการเข้ารหัส</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">เรียนรู้เพิ่มเติม</string>
   <!--LongMessageActivity-->
@@ -793,7 +793,7 @@
   <string name="NotificationBarManager__establishing_signal_call">กำลังต่อสาย Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">สาย Signal เรียกเข้า</string>
   <string name="NotificationBarManager__stopping_signal_call_service">หยุดบริการโทร Signal</string>
-  <string name="NotificationBarManager__deny_call">ไม่รับสาย</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">ไม่รับสาย</string> -->
   <string name="NotificationBarManager__answer_call">รับสาย</string>
   <string name="NotificationBarManager__end_call">วางสาย</string>
   <string name="NotificationBarManager__cancel_call">ยกเลิกการโทร</string>

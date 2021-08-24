@@ -749,7 +749,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Jaa</string>
   <string name="InviteActivity_share_with_contacts">Jaa kontaktien kanssa</string>
-  <string name="InviteActivity_choose_how_to_share">Valitse miten jaat</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Valitse miten jaat</string> -->
   <string name="InviteActivity_cancel">Peruuta</string>
   <string name="InviteActivity_sending">Lähetetään…</string>
   <string name="InviteActivity_invitations_sent">Kutsut lähetetty!</string>
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hei, vaihdetaan Signaliin: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Näyttää siltä, ettei sinulla ole yhtään sovellusta, johon jakaa.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kaveri ei anna kaverin keskustella ilman salausta.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kaveri ei anna kaverin keskustella ilman salausta.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lue lisää</string>
   <!--LongMessageActivity-->
@@ -836,7 +836,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Muodostetaan Signal-puhelua</string>
   <string name="NotificationBarManager__incoming_signal_call">Saapuva Signal-puhelu</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Pysäytetään Signalin puhelupalvelua</string>
-  <string name="NotificationBarManager__deny_call">Hylkää puhelu</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Hylkää puhelu</string> -->
   <string name="NotificationBarManager__answer_call">Vastaa puheluun</string>
   <string name="NotificationBarManager__end_call">Lopeta puhelu</string>
   <string name="NotificationBarManager__cancel_call">Peru puhelu</string>

@@ -705,7 +705,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Chia sẻ</string>
   <string name="InviteActivity_share_with_contacts">Chia sẻ với liên hệ</string>
-  <string name="InviteActivity_choose_how_to_share">Chọn cách chia sẻ</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Chọn cách chia sẻ</string> -->
   <string name="InviteActivity_cancel">Hủy bỏ</string>
   <string name="InviteActivity_sending">Đang gửi…</string>
   <string name="InviteActivity_invitations_sent">Đã gửi lời mời!</string>
@@ -718,7 +718,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Có vẻ như bạn không có bất kỳ ứng dụng nào để chia sẻ.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Một người bạn tốt không để bạn mình nhắn tin không mã hoá.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Một người bạn tốt không để bạn mình nhắn tin không mã hoá.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Tìm hiểu thêm</string>
   <!--LongMessageActivity-->
@@ -785,7 +785,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Đang thiết lập cuộc gọi Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Cuộc gọi đến Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Dừng dịch vụ gọi thoại Signal</string>
-  <string name="NotificationBarManager__deny_call">Từ chối cuộc gọi</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Từ chối cuộc gọi</string> -->
   <string name="NotificationBarManager__answer_call">Trả lời cuộc gọi</string>
   <string name="NotificationBarManager__end_call">Kết thúc cuộc gọi.</string>
   <string name="NotificationBarManager__cancel_call">Huỷ cuộc gọi</string>

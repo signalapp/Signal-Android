@@ -712,7 +712,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">分享</string>
   <string name="InviteActivity_share_with_contacts">與聯絡人分享</string>
-  <string name="InviteActivity_choose_how_to_share">選擇如何分享</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">選擇如何分享</string> -->
   <string name="InviteActivity_cancel">取消</string>
   <string name="InviteActivity_sending">正在傳送…</string>
   <string name="InviteActivity_invitations_sent">邀請已傳送！</string>
@@ -725,7 +725,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">一齊轉用 Signal 啦：%1$s</string>
   <string name="InviteActivity_no_app_to_share_to">您似乎未有任何應用程式可作分享。</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">好友的話，不加密不好說。</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">好友的話，不加密不好說。</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">了解更多</string>
   <!--LongMessageActivity-->
@@ -793,7 +793,7 @@
   <string name="NotificationBarManager__establishing_signal_call">正在建立 Signal 通話</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal 來電</string>
   <string name="NotificationBarManager__stopping_signal_call_service">正在停止 Signal 通話服務</string>
-  <string name="NotificationBarManager__deny_call">拒接通話</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">拒接通話</string> -->
   <string name="NotificationBarManager__answer_call">接聽通話</string>
   <string name="NotificationBarManager__end_call">結束通話</string>
   <string name="NotificationBarManager__cancel_call">取消通話</string>

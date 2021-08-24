@@ -823,7 +823,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Bendrinti</string>
   <string name="InviteActivity_share_with_contacts">Bendrinti su adresatais</string>
-  <string name="InviteActivity_choose_how_to_share">Pasirinkti kaip bendrinti</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Pasirinkti kaip bendrinti</string> -->
   <string name="InviteActivity_cancel">Atsisakyti</string>
   <string name="InviteActivity_sending">Siunčiama…</string>
   <string name="InviteActivity_invitations_sent">Pakvietimai išsiųsti!</string>
@@ -842,7 +842,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Persijunkime į Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Atrodo, kad neturite programėlių su kuriomis bendrinti.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Draugai neleidžia draugams kalbėtis nešifruotai.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Draugai neleidžia draugams kalbėtis nešifruotai.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Sužinoti daugiau</string>
   <!--LongMessageActivity-->
@@ -922,7 +922,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Užmezgiamas Signal skambutis</string>
   <string name="NotificationBarManager__incoming_signal_call">Gaunamasis Signal skambutis</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Stabdoma Signal skambučių paslauga</string>
-  <string name="NotificationBarManager__deny_call">Atmesti skambutį</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Atmesti skambutį</string> -->
   <string name="NotificationBarManager__answer_call">Atsiliepti į skambutį</string>
   <string name="NotificationBarManager__end_call">Baigti skambutį</string>
   <string name="NotificationBarManager__cancel_call">Atsisakyti skambučio</string>
@@ -1341,7 +1341,7 @@
   <string name="WebRtcCallView__flip">Apversti</string>
   <string name="WebRtcCallView__speaker">Garsiakalbis</string>
   <string name="WebRtcCallView__camera">Kamera</string>
-  <string name="WebRtcCallView__mute">Išj. pranešimus</string>
+  <string name="WebRtcCallView__mute">Nutildyti</string>
   <string name="WebRtcCallView__end_call">Baigti skambutį</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

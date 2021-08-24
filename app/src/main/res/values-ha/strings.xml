@@ -398,7 +398,7 @@
   <string name="InviteActivity_share">Tura</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">Zabi lambobi</string> -->
   <string name="InviteActivity_share_with_contacts">Ka/ki turawa lambobin sadarwarka/ki.</string>
-  <string name="InviteActivity_choose_how_to_share">Zabi yadda zaka/ki tura.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Zabi yadda zaka/ki tura.</string> -->
   <string name="InviteActivity_cancel">Katse</string>
   <string name="InviteActivity_sending">Ana turawa……</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Zuciya</string> -->
@@ -414,7 +414,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Mu koma Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kamar babu manhajar da zaka/ki tura zuwa</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Abokai basu barin abokai suyi hira ba tsaro.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Abokai basu barin abokai suyi hira ba tsaro.</string> -->
   <!--Job-->
   <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">Ana karasa aiki a bango…</string> -->
   <!--LearnMoreTextView-->
@@ -478,7 +478,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Ana cikin kira na Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Farawar kiran Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Shigowar kiran Signal</string>
-  <string name="NotificationBarManager__deny_call">Hana kira</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Hana kira</string> -->
   <string name="NotificationBarManager__answer_call">Amsa kira.</string>
   <string name="NotificationBarManager__end_call">Kashe kira</string>
   <string name="NotificationBarManager__cancel_call">Katse kira</string>

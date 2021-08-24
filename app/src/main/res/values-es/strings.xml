@@ -749,7 +749,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Compartir</string>
   <string name="InviteActivity_share_with_contacts">Compartir con contactos</string>
-  <string name="InviteActivity_choose_how_to_share">Seleccionar cómo compartir</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Seleccionar cómo compartir</string> -->
   <string name="InviteActivity_cancel">Cancelar</string>
   <string name="InviteActivity_sending">Enviando …</string>
   <string name="InviteActivity_invitations_sent">¡Invitaciones enviadas!</string>
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Pasémonos a Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Parece que no hay ninguna aplicación con la que compartir.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">La amistad verdadera no se comunica sin cifrar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">La amistad verdadera no se comunica sin cifrar.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saber más</string>
   <!--LongMessageActivity-->
@@ -836,7 +836,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Estableciendo llamada de Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Recibiendo llamada de Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Deteniendo el servicio de llamadas de Signal</string>
-  <string name="NotificationBarManager__deny_call">Denegar llamada</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Denegar llamada</string> -->
   <string name="NotificationBarManager__answer_call">Atender llamada</string>
   <string name="NotificationBarManager__end_call">Finalizar llamada</string>
   <string name="NotificationBarManager__cancel_call">Cancelar llamada</string>

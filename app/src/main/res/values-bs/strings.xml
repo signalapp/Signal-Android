@@ -786,7 +786,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Dijeli</string>
   <string name="InviteActivity_share_with_contacts">Podijelite s kontaktima</string>
-  <string name="InviteActivity_choose_how_to_share">Odaberite način dijeljenja</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Odaberite način dijeljenja</string> -->
   <string name="InviteActivity_cancel">Otkaži</string>
   <string name="InviteActivity_sending">Šaljem…</string>
   <string name="InviteActivity_invitations_sent">Pozivnica poslana!</string>
@@ -803,7 +803,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Pređimo na Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Izgleda da nemate nijednu aplikaciju s kojom je moguće dijeljenje.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prijatelji neće dozvoliti da s prijateljima razgovaraju bez šifriranja.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prijatelji neće dozvoliti da s prijateljima razgovaraju bez šifriranja.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saznajte više</string>
   <!--LongMessageActivity-->
@@ -879,7 +879,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Uspostavljam Signal poziv</string>
   <string name="NotificationBarManager__incoming_signal_call">Dolazni Signal poziv</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Zaustavljam servis za Signal pozive</string>
-  <string name="NotificationBarManager__deny_call">Odbij poziv</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Odbij poziv</string> -->
   <string name="NotificationBarManager__answer_call">Odgovori na poziv</string>
   <string name="NotificationBarManager__end_call">Završi razgovor</string>
   <string name="NotificationBarManager__cancel_call">Prekini poziv</string>

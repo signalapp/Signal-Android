@@ -823,7 +823,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Zdieľať</string>
   <string name="InviteActivity_share_with_contacts">Zdieľať s kontaktmi</string>
-  <string name="InviteActivity_choose_how_to_share">Výber spôsobu zdieľania</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Výber spôsobu zdieľania</string> -->
   <string name="InviteActivity_cancel">Zrušiť</string>
   <string name="InviteActivity_sending">Odosiela sa…</string>
   <string name="InviteActivity_invitations_sent">Pozvánky odoslané!</string>
@@ -842,7 +842,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Prejdime na Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Vyzerá to, že nemáte žiadne aplikácie kam by ste mohli zdieľať.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Priatelia nenechávajú priateľov chatovať nešifrovane.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Priatelia nenechávajú priateľov chatovať nešifrovane.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Dozvedieť sa viac</string>
   <!--LongMessageActivity-->
@@ -922,7 +922,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Príprava na Signal hovor</string>
   <string name="NotificationBarManager__incoming_signal_call">Prichádzajúci Signal hovor</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Zastavenie služby Signal hovoru</string>
-  <string name="NotificationBarManager__deny_call">Odmietnuť hovor</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Odmietnuť hovor</string> -->
   <string name="NotificationBarManager__answer_call">Prijať hovor</string>
   <string name="NotificationBarManager__end_call">Ukončiť hovor</string>
   <string name="NotificationBarManager__cancel_call">Zrušiť hovor</string>

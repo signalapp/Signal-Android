@@ -753,7 +753,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Ndaje</string>
   <string name="InviteActivity_share_with_contacts">Ndajeni me kontaktet</string>
-  <string name="InviteActivity_choose_how_to_share">Zgjidhni si të ndajet</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Zgjidhni si të ndajet</string> -->
   <string name="InviteActivity_cancel">Anuloje</string>
   <string name="InviteActivity_sending">Po dërgohet…</string>
   <string name="InviteActivity_invitations_sent">Ftesat u dërguan!</string>
@@ -768,7 +768,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Le të kalojmë në Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Duket sikur s\’keni aplikacione me të cilat të ndani.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kush të do, s\'të lë të bisedosh në mënyrë të pafshehtëzuar.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kush të do, s\'të lë të bisedosh në mënyrë të pafshehtëzuar.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Mësoni më tepër</string>
   <!--LongMessageActivity-->
@@ -840,7 +840,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="NotificationBarManager__establishing_signal_call">Po bëhet thirrje Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Thirrje ardhëse Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Po ndalet shërbimi Signal i thirrjeve</string>
-  <string name="NotificationBarManager__deny_call">Refuzoje thirrjen</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Refuzoje thirrjen</string> -->
   <string name="NotificationBarManager__answer_call">Përgjigju thirrjes</string>
   <string name="NotificationBarManager__end_call">Përfundoje thirrjen</string>
   <string name="NotificationBarManager__cancel_call">Anuloje thirrjen</string>

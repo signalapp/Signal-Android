@@ -749,7 +749,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">പങ്കിടുക</string>
   <string name="InviteActivity_share_with_contacts">കോൺടാക്റ്റുകളുമായി പങ്കിടുക</string>
-  <string name="InviteActivity_choose_how_to_share">എങ്ങനെ പങ്കിടണമെന്ന് തിരഞ്ഞെടുക്കുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">എങ്ങനെ പങ്കിടണമെന്ന് തിരഞ്ഞെടുക്കുക</string> -->
   <string name="InviteActivity_cancel">റദ്ദാക്കുക</string>
   <string name="InviteActivity_sending">അയയ്ക്കുന്നു…</string>
   <string name="InviteActivity_invitations_sent">ക്ഷണങ്ങൾ അയച്ചു!</string>
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal ലേക്ക് മാറാം: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">നിങ്ങൾക്ക് പങ്കിടാൻ അപ്ലിക്കേഷനുകളൊന്നുമില്ലെന്ന് തോന്നുന്നു.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">എൻക്രിപ്ഷനില്ലാതെ ചാറ്റുചെയ്യാൻ ചങ്ങാതിമാരെ നിങ്ങൾ അനുവദിക്കരുത്.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">എൻക്രിപ്ഷനില്ലാതെ ചാറ്റുചെയ്യാൻ ചങ്ങാതിമാരെ നിങ്ങൾ അനുവദിക്കരുത്.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">കൂടുതൽ അറിയുക</string>
   <!--LongMessageActivity-->
@@ -836,7 +836,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal കോൾ സ്ഥാപിക്കുന്നു</string>
   <string name="NotificationBarManager__incoming_signal_call">ഇൻകമിംഗ് സിഗ്നൽ കോൾ</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal കോൾ സേവനം നിർത്തുന്നു</string>
-  <string name="NotificationBarManager__deny_call">കോൾ നിരസിക്കുക</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">കോൾ നിരസിക്കുക</string> -->
   <string name="NotificationBarManager__answer_call">കോൾ സ്വീകരിക്കുക</string>
   <string name="NotificationBarManager__end_call">കോൾ അവസാനിപ്പിക്കുക</string>
   <string name="NotificationBarManager__cancel_call">കോൾ റദ്ദാക്കുക</string>

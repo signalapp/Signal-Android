@@ -825,7 +825,7 @@ Send neges heb ei ddiogelu?</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Rhannu</string>
   <string name="InviteActivity_share_with_contacts">Rhannu gyda chysylltiadau</string>
-  <string name="InviteActivity_choose_how_to_share">Dewis sut i rannu</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Dewis sut i rannu</string> -->
   <string name="InviteActivity_cancel">Diddymu</string>
   <string name="InviteActivity_sending">Yn anfon…</string>
   <string name="InviteActivity_invitations_sent">Gwahoddiadau wedi\'u anfon!</string>
@@ -844,7 +844,7 @@ Send neges heb ei ddiogelu?</string>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Gadewch i ni newid i Signal %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Mae\'n edrych fel nad oes gennych unrhyw apiau i\'w rhannu.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Dyw ffrindiau ddim yn gadael i ffrindiau sgwrsio heb amgryptiad.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Dyw ffrindiau ddim yn gadael i ffrindiau sgwrsio heb amgryptiad.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Dysgu rhagor</string>
   <!--LongMessageActivity-->
@@ -924,7 +924,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="NotificationBarManager__establishing_signal_call">Sicrhau galwad Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Galwad Signal wedi cyrraedd</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Atal gwasanaeth galw Signal</string>
-  <string name="NotificationBarManager__deny_call">Gwrthod galwad</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Gwrthod galwad</string> -->
   <string name="NotificationBarManager__answer_call">Ateb galwad</string>
   <string name="NotificationBarManager__end_call">Gorffen galwad</string>
   <string name="NotificationBarManager__cancel_call">Diffodd galwad</string>

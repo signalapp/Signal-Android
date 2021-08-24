@@ -814,7 +814,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Поділитися</string>
   <string name="InviteActivity_share_with_contacts">Поділитись з контактами</string>
-  <string name="InviteActivity_choose_how_to_share">Оберіть як поділитись</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Оберіть як поділитись</string> -->
   <string name="InviteActivity_cancel">Скасувати</string>
   <string name="InviteActivity_sending">Надсилання…</string>
   <string name="InviteActivity_invitations_sent">Запрошення надіслано!</string>
@@ -833,7 +833,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Давай перейдемо на Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Схоже, що у вас немає програм, щоб поділитися.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Друзі не мають дозволяти друзям незашифровано спілкуватися!</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Друзі не мають дозволяти друзям незашифровано спілкуватися!</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Дізнатись більше</string>
   <!--LongMessageActivity-->
@@ -913,7 +913,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Встановлення виклику Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Вхідний виклик Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Зупиняємо дзвінки сервісного центру Signal </string>
-  <string name="NotificationBarManager__deny_call">Відхилити виклик</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Відхилити виклик</string> -->
   <string name="NotificationBarManager__answer_call">Відповісти на виклик</string>
   <string name="NotificationBarManager__end_call">Завершити виклик</string>
   <string name="NotificationBarManager__cancel_call">Скасувати виклик</string>

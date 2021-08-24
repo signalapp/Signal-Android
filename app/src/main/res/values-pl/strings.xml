@@ -823,7 +823,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Udostępnij</string>
   <string name="InviteActivity_share_with_contacts">Udostępnij kontaktom</string>
-  <string name="InviteActivity_choose_how_to_share">Wybierz sposób udostępnienia</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Wybierz sposób udostępnienia</string> -->
   <string name="InviteActivity_cancel">Anuluj</string>
   <string name="InviteActivity_sending">Wysyłanie…</string>
   <string name="InviteActivity_invitations_sent">Zaproszenie zostało wysłane!</string>
@@ -842,7 +842,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Zacznij używać Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Wygląda na to, że nie masz żadnych aplikacji z którymi możesz się podzielić.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Nie pozwól znajomym używać nieszyfrowanych połączeń.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Nie pozwól znajomym używać nieszyfrowanych połączeń.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Dowiedz się więcej</string>
   <!--LongMessageActivity-->
@@ -922,7 +922,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Nawiązywanie połączenia Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Przychodzące połączenie Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Zatrzymywanie usługi połączeń Signal</string>
-  <string name="NotificationBarManager__deny_call">Odrzuć</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Odrzuć</string> -->
   <string name="NotificationBarManager__answer_call">Odbierz</string>
   <string name="NotificationBarManager__end_call">Zakończ</string>
   <string name="NotificationBarManager__cancel_call">Anuluj</string>

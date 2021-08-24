@@ -823,7 +823,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Sdílet</string>
   <string name="InviteActivity_share_with_contacts">Sdílet s kontakty</string>
-  <string name="InviteActivity_choose_how_to_share">Vybrat způsob sdílení</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Vybrat způsob sdílení</string> -->
   <string name="InviteActivity_cancel">Storno</string>
   <string name="InviteActivity_sending">Odesílaní…</string>
   <string name="InviteActivity_invitations_sent">Pozvánka odeslána!</string>
@@ -842,7 +842,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Přejít na Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Zdá se, že nemáte žádnou aplikaci pro sdílení.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Přátelé nenechávají přátele komunikovat nešifrovaně.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Přátelé nenechávají přátele komunikovat nešifrovaně.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Zjistit více</string>
   <!--LongMessageActivity-->
@@ -922,7 +922,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Navazuji hovor Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Příchozí hovor Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Zastavuji službu hovorů Signal</string>
-  <string name="NotificationBarManager__deny_call">Zakázat volání</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Zakázat volání</string> -->
   <string name="NotificationBarManager__answer_call">Přijmout hovor</string>
   <string name="NotificationBarManager__end_call">Ukončit hovor</string>
   <string name="NotificationBarManager__cancel_call">Zrušit hovor</string>

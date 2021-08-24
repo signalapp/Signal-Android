@@ -747,7 +747,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Сподели</string>
   <string name="InviteActivity_share_with_contacts">Сподели со контакти</string>
-  <string name="InviteActivity_choose_how_to_share">Одбери како да споделиш</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Одбери како да споделиш</string> -->
   <string name="InviteActivity_cancel">Откажи</string>
   <string name="InviteActivity_sending">Испраќа…</string>
   <string name="InviteActivity_invitations_sent">Покани испратени!</string>
@@ -762,7 +762,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Ајде да се префрлиме на Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Изгледа дека немате апликации преку кои може да споделите.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Пријатели не им дозволуваат на своите пријатели да разговараат без енкрипција.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Пријатели не им дозволуваат на своите пријатели да разговараат без енкрипција.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Дознајте повеќе</string>
   <!--LongMessageActivity-->
@@ -834,7 +834,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Воспоставување на повик на Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Доаѓачки повик на Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Го стопирам Signal сервисот за повикување</string>
-  <string name="NotificationBarManager__deny_call">Одбиј го повикот</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Одбиј го повикот</string> -->
   <string name="NotificationBarManager__answer_call">Одговори на повикот</string>
   <string name="NotificationBarManager__end_call">Заврши го повикот</string>
   <string name="NotificationBarManager__cancel_call">Откажи повик</string>
@@ -2509,12 +2509,15 @@
   <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">На Signal му е потребна дозвола за локацијата за да го открие и да се поврзе на стариот Android уред.</string>
   <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">На Signal му е потребно да се вклучени локациските сервиси за да го открие и да се поврзе на Вашиот стар Android уред.</string>
   <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">На Signal му е потребно Wi-Fi за да го открие и за да се поврзе на Вашиот стар Android уред. Wi-Fi треба да е вклучено, но не мора да сте поврзани на Wi-Fi мрежа.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Извинете, изгледа дека овој уред не поддржува Wi-Fi Direct. Signal користи Wi-Fi Direct за откривање и поврзување со Вашиот стар Android уред. Се уште можете да ги вратите податоците од резервна копија за да ја префрлите сметката од Вашиот стар Android уред.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">Врати резервна копија</string>
   <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Се случи неочекувана грешка при обидот за пристап на Вашиот стар Android уред.</string>
   <!--OldDeviceTransferSetupFragment-->
   <string name="OldDeviceTransferSetup__searching_for_new_android_device">Го барам новиот Android уред…</string>
   <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">На Signal му е потребна дозвола за локација за да го открие и да се поврзе со Вашиот нов Android уред.</string>
   <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">На Signal му е потребно да се вклучени локациските сервиси за да го открие и да се поврзе со Вашиот нов Android уред.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal има потреба од Wi-Fi за да открие и да се поврзе со Вашиот нов Android уред. Wi-Fi мора да биде вклучен, но не мора да биде поврзан со Wi-Fi мрежа.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Извинете, изгледа дека овој уред не поддржува Wi-Fi Direct. Signal користи Wi-Fi Direct за откривање и поврзување со Вашиот нов Android уред. Се уште можете да креирате резервна копија на податоците за да ја префрлите Вашата сметка на Вашиот нов Android уред.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">Креирај резервна копија</string>
   <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Се случи неочекувана грешка при обидот за поврзување со Вашиот нов Android уред.</string>
   <!--DeviceTransferSetupFragment-->
@@ -2539,6 +2542,7 @@
   <string name="DeviceTransferSetup__location_permission">Дозволи за локацијата</string>
   <string name="DeviceTransferSetup__location_services">Локациски сервиси</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">На WiFi Direct екранот, отстранете ги сите запаметени групи и откачете ги сите поканети или поврзани уреди.</string>
   <string name="DeviceTransferSetup__wifi_direct_screen">Директен екран за Wi-Fi</string>
   <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Пробајте да го исклучите и вклучите Wi-Fi и на двата уреда.</string>
   <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Осигурајте се дека и двата уреда се во режим за префрлување.</string>

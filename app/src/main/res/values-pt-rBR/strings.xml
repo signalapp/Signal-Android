@@ -749,7 +749,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Compartilhar</string>
   <string name="InviteActivity_share_with_contacts">Compartilhar com contatos</string>
-  <string name="InviteActivity_choose_how_to_share">Escolher como compartilhar</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Escolher como compartilhar</string> -->
   <string name="InviteActivity_cancel">Cancelar</string>
   <string name="InviteActivity_sending">Enviando…</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Vamos mudar para o Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Parece que você não tem aplicativos para onde compartilhar.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Amigos não deixam amigos conversarem sem criptografia.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Amigos não deixam amigos conversarem sem criptografia.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saiba mais</string>
   <!--LongMessageActivity-->
@@ -836,7 +836,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Estabelecendo chamada Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Recebendo chamada Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Encerrando chamada Signal</string>
-  <string name="NotificationBarManager__deny_call">Recusar chamada</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Recusar chamada</string> -->
   <string name="NotificationBarManager__answer_call">Atender chamada</string>
   <string name="NotificationBarManager__end_call">Terminar chamada</string>
   <string name="NotificationBarManager__cancel_call">Cancelar chamada</string>

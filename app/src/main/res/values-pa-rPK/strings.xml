@@ -409,7 +409,7 @@
   <string name="InviteActivity_share">سانجھا کرو</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">رابطے منتخب کرو</string> -->
   <string name="InviteActivity_share_with_contacts">رابطے نال سانجھا کرو</string>
-  <string name="InviteActivity_choose_how_to_share">سانجھا کرن دا طریقہ منتخب کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">سانجھا کرن دا طریقہ منتخب کرو</string> -->
   <string name="InviteActivity_cancel">منسوخ کرو</string>
   <string name="InviteActivity_sending">گھل رئیا اے…</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">دل</string> -->
@@ -425,7 +425,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">آؤ Signal تے سوئچ کریے: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">انج لگدا اے کہ سانجھا کرن لئی تہاڈے کول ایپ نئیں۔</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوست دوستاں دی چیٹ نوں بغیر خفیہ کیتے نئیں چھڈدے نیں۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوست دوستاں دی چیٹ نوں بغیر خفیہ کیتے نئیں چھڈدے نیں۔</string> -->
   <!--Job-->
   <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">پس منظر اچ کم کرنا…</string> -->
   <!--LearnMoreTextView-->
@@ -490,7 +490,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal کال جاری اے</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal کال ملاؤنا</string>
   <string name="NotificationBarManager__incoming_signal_call">آن والی Signal کال</string>
-  <string name="NotificationBarManager__deny_call">کال مسترد کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">کال مسترد کرو</string> -->
   <string name="NotificationBarManager__answer_call"> کال دا جواب دیو</string>
   <string name="NotificationBarManager__end_call">کال ختم کرو</string>
   <string name="NotificationBarManager__cancel_call">کال منسوخ کرو</string>

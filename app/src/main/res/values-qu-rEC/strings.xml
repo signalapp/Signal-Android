@@ -333,7 +333,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signalman yallipashun: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kaykunata yallichirinkapakka nima aplicación illanmi yarin.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kikinpa alli mashikunaka, mana shinalla rimarichun sakinchu </string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kikinpa alli mashikunaka, mana shinalla rimarichun sakinchu </string> -->
   <!--Job-->
   <!--MessageDetailsRecipient-->
   <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Mana kacharirkachu</string> -->
@@ -358,7 +358,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Kay pachapi Signal kayachikun</string>
   <string name="NotificationBarManager__establishing_signal_call">Signalpi kayachita rurarikun</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal ukuman kayachimukun</string>
-  <string name="NotificationBarManager__deny_call">Kayachita mana chaskina</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Kayachita mana chaskina</string> -->
   <string name="NotificationBarManager__answer_call">Kayachita kutichipay</string>
   <string name="NotificationBarManager__end_call">Kayachita illachipay</string>
   <string name="NotificationBarManager__cancel_call">Kayachita mana kutichina</string>

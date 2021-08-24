@@ -750,7 +750,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">ھەمبەھىرلە</string>
   <string name="InviteActivity_share_with_contacts">ئالاقەداشلار بىلەن ھەمبەھىر</string>
-  <string name="InviteActivity_choose_how_to_share">قانداق ھەمبەھىرلەشنى تاللاڭ</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">قانداق ھەمبەھىرلەشنى تاللاڭ</string> -->
   <string name="InviteActivity_cancel">بىكار قىل</string>
   <string name="InviteActivity_sending">ئەۋەتىلىۋاتىدۇ…</string>
   <string name="InviteActivity_invitations_sent">تەكلىپ يوللاندى!</string>
@@ -765,7 +765,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal دا پاراڭلىشايلى:%1$s</string>
   <string name="InviteActivity_no_app_to_share_to">قارىغاندا ھەمبەھىرلەيدىغان ئەپ يوقتەك تۇرىدۇ.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوستلار شىفىرلىق پاراڭلاشسا ياخشى.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوستلار شىفىرلىق پاراڭلاشسا ياخشى.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">كۆپرەك ئۆگىنىش</string>
   <!--LongMessageActivity-->
@@ -837,7 +837,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal چاقىرىشى قۇرۇلۇۋاتىدۇ</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal چاقىرىلىشى</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal چاقىرىش مۇلازىمىتىنى توختىتىۋاتىدۇ</string>
-  <string name="NotificationBarManager__deny_call">رەت قىلىنغان چاقىرىش</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">رەت قىلىنغان چاقىرىش</string> -->
   <string name="NotificationBarManager__answer_call">سۆزلەشكەن چاقىرىش</string>
   <string name="NotificationBarManager__end_call">ئاخىرلاشقان چاقىرىش</string>
   <string name="NotificationBarManager__cancel_call">چاقىرىشتىن ۋاز كەچ</string>

@@ -754,7 +754,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Del</string>
   <string name="InviteActivity_share_with_contacts">Del med kontaktar</string>
-  <string name="InviteActivity_choose_how_to_share">Vel korleis du vil dela</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Vel korleis du vil dela</string> -->
   <string name="InviteActivity_cancel">Avbryt</string>
   <string name="InviteActivity_sending">Sendar …</string>
   <string name="InviteActivity_invitations_sent">Invitasjonar sendt.</string>
@@ -769,7 +769,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">La oss byta til Signal. %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Det ser ut som at du ikkje har nokon program å dela denne informasjonen med.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vennar burde ikkje prata ukryptert over nettet.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vennar burde ikkje prata ukryptert over nettet.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lær meir</string>
   <!--LongMessageActivity-->
@@ -841,7 +841,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="NotificationBarManager__establishing_signal_call">Set opp Signal-anrop</string>
   <string name="NotificationBarManager__incoming_signal_call">Inngåande Signal-anrop</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Stoppar Signal-samtaleteneste</string>
-  <string name="NotificationBarManager__deny_call">Avslå anrop</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Avslå anrop</string> -->
   <string name="NotificationBarManager__answer_call">Svar på anrop</string>
   <string name="NotificationBarManager__end_call">Avslutt samtale</string>
   <string name="NotificationBarManager__cancel_call">Avbryt samtale</string>

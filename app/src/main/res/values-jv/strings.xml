@@ -395,7 +395,7 @@
   <string name="InviteActivity_share">Unjukaken</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">Pileh kontak</string> -->
   <string name="InviteActivity_share_with_contacts">Unjukaken kaliyan kontak</string>
-  <string name="InviteActivity_choose_how_to_share">Pileh cara kangge ngunjukaken</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Pileh cara kangge ngunjukaken</string> -->
   <string name="InviteActivity_cancel">Batalaken</string>
   <string name="InviteActivity_sending">Taksih ngirimaken…</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Manah</string> -->
@@ -409,7 +409,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Mangga ngginakaken Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kadosipun sampeyan mboten gadhah aplikasi kangge ngunjukaken.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kanca sejatos mboten bakal kersa kanca-kancanipun ngobrol tanpa enkripsi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kanca sejatos mboten bakal kersa kanca-kancanipun ngobrol tanpa enkripsi.</string> -->
   <!--Job-->
   <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">Mlampah ing latar wingking…</string> -->
   <!--LearnMoreTextView-->
@@ -469,7 +469,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Telepon Signal taksih dipuntumindakaken</string>
   <string name="NotificationBarManager__establishing_signal_call">Netapaken telepon Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Telepon Signal ingkang mlebet</string>
-  <string name="NotificationBarManager__deny_call">Tolak telepon</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Tolak telepon</string> -->
   <string name="NotificationBarManager__answer_call">Angkat telepon</string>
   <string name="NotificationBarManager__end_call">Rampungaken telepon</string>
   <string name="NotificationBarManager__cancel_call">Batalaken telepon</string>

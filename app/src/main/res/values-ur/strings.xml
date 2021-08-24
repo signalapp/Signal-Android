@@ -745,7 +745,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">اشتراک کریں</string>
   <string name="InviteActivity_share_with_contacts">رابطوں کے ساتھ شیئر کریں</string>
-  <string name="InviteActivity_choose_how_to_share">اشتراک کرنے کا طریقہ منتخب کریں</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">اشتراک کرنے کا طریقہ منتخب کریں</string> -->
   <string name="InviteActivity_cancel">منسوخ کریں</string>
   <string name="InviteActivity_sending">بھیج رہا ہے۔۔۔</string>
   <string name="InviteActivity_invitations_sent">دعوت نامے بھیجے گئے ہیں!</string>
@@ -760,7 +760,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal میں سو ئچ کریں:%1$s</string>
   <string name="InviteActivity_no_app_to_share_to">ایسا لگتا ہے جیسے آپ کے پاس اشتراک کرنے کیلئے کوئی ایپ نہیں ہے۔</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوست دوست کو بغیر خفیہ گفتگو نہیں کرنے دیتے ہیں۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوست دوست کو بغیر خفیہ گفتگو نہیں کرنے دیتے ہیں۔</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">مزید پڑھیں</string>
   <!--LongMessageActivity-->
@@ -832,7 +832,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal کال قائم ہو رہی ہے</string>
   <string name="NotificationBarManager__incoming_signal_call">signal کال آ رہی ہے</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal کال سروس روکنا</string>
-  <string name="NotificationBarManager__deny_call">کال رد کریں</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">کال رد کریں</string> -->
   <string name="NotificationBarManager__answer_call">کال کا جواب دیں</string>
   <string name="NotificationBarManager__end_call">کال ختم کریں</string>
   <string name="NotificationBarManager__cancel_call">کال منسوخ کریں</string>

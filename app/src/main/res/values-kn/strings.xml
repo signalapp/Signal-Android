@@ -751,7 +751,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">ಹಂಚಿಕೊಳ್ಳಿ </string>
   <string name="InviteActivity_share_with_contacts">ಸಂಪರ್ಕಗಳೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ</string>
-  <string name="InviteActivity_choose_how_to_share">ಹೇಗೆ ಹಂಚಿಕೊಳ್ಳಬೇಕೆಂದು ಆರಿಸಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">ಹೇಗೆ ಹಂಚಿಕೊಳ್ಳಬೇಕೆಂದು ಆರಿಸಿ</string> -->
   <string name="InviteActivity_cancel">ರದ್ದುಗೊಳಿಸಿ</string>
   <string name="InviteActivity_sending">ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…</string>
   <string name="InviteActivity_invitations_sent">ಆಮಂತ್ರಣಗಳನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ!</string>
@@ -766,7 +766,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal ಗೆ ಬದಲಾಯಿಸೋಣ: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">ಹಂಚಿಕೊಳ್ಳಲು ತಾವು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್ ಗಳನ್ನು ಹೊಂದಿಲ್ಲ ಎಂದು ಕಂಡುಬರುತ್ತಿದೆ.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">ಸ್ನೇಹಿತರು ಸ್ನೇಹಿತರನ್ನು ಎನ್‌ಕ್ರಿಪ್ಟ್‌ ಮಾಡದೇ ಚಾಟ್ ಮಾಡಲು ಬಿಡುವುದಿಲ್ಲ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">ಸ್ನೇಹಿತರು ಸ್ನೇಹಿತರನ್ನು ಎನ್‌ಕ್ರಿಪ್ಟ್‌ ಮಾಡದೇ ಚಾಟ್ ಮಾಡಲು ಬಿಡುವುದಿಲ್ಲ.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <!--LongMessageActivity-->
@@ -838,7 +838,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal ಕರೆ ಸ್ಥಾಪಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="NotificationBarManager__incoming_signal_call">ಒಳಬರುವ Signal ಕರೆ</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal ಕಾಲ್ ಸರ್ವೀಸ್ ಅನ್ನು ನಿಲ್ಲಿಸಲಾಗುತ್ತಿದೆ</string>
-  <string name="NotificationBarManager__deny_call">ಕರೆ ನಿರಾಕರಿಸಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">ಕರೆ ನಿರಾಕರಿಸಿ</string> -->
   <string name="NotificationBarManager__answer_call">ಕರೆಗೆ ಉತ್ತರಿಸಿ</string>
   <string name="NotificationBarManager__end_call">ಕರೆ ಅಂತ್ಯಗೊಳಿಸಿ</string>
   <string name="NotificationBarManager__cancel_call">ಕರೆ ರದ್ದುಗೊಳಿಸಿ</string>

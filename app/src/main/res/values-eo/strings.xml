@@ -749,7 +749,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Kunhavigi</string>
   <string name="InviteActivity_share_with_contacts">Kunhavigi kun kontaktoj</string>
-  <string name="InviteActivity_choose_how_to_share">Elekti kiel plusendi</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Elekti kiel plusendi</string> -->
   <string name="InviteActivity_cancel">Nuligi</string>
   <string name="InviteActivity_sending">Sendo…</string>
   <string name="InviteActivity_invitations_sent">Invitoj senditaj!</string>
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Ni transiru al Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Ŝajnas, ke vi ne havas aplikaĵojn, al kiu kunhavigi.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Amikoj ne lasas amikojn babili neĉifrite.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Amikoj ne lasas amikojn babili neĉifrite.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Scii pli</string>
   <!--LongMessageActivity-->
@@ -836,7 +836,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Starigo de Signal-alvoko</string>
   <string name="NotificationBarManager__incoming_signal_call">Envena Signal-alvoko</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Haltigo de la alvokoservo de Signal</string>
-  <string name="NotificationBarManager__deny_call">Rifuzi alvokon</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Rifuzi alvokon</string> -->
   <string name="NotificationBarManager__answer_call">Respondi alvokon</string>
   <string name="NotificationBarManager__end_call">Fini alvokon</string>
   <string name="NotificationBarManager__cancel_call">Nuligi alvokon</string>

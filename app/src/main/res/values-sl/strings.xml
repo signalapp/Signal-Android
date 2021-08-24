@@ -177,7 +177,7 @@
   <string name="ConversationItem_copied_text">Kopirano %s</string>
   <string name="ConversationItem_from_s">od %s</string>
   <string name="ConversationItem_to_s">za %s</string>
-  <string name="ConversationItem_read_more">Več informacij</string>
+  <string name="ConversationItem_read_more">  Več …</string>
   <string name="ConversationItem_download_more">Naloži več</string>
   <string name="ConversationItem_pending">V teku</string>
   <string name="ConversationItem_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
@@ -820,7 +820,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Deli</string>
   <string name="InviteActivity_share_with_contacts">Deli s stiki</string>
-  <string name="InviteActivity_choose_how_to_share">Izbira načina deljenja</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Izbira načina deljenja</string> -->
   <string name="InviteActivity_cancel">Prekliči</string>
   <string name="InviteActivity_sending">Pošiljanje …</string>
   <string name="InviteActivity_invitations_sent">Vabila so bila poslana!</string>
@@ -839,7 +839,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Preklopi na Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kaže, da nimate nameščene nobene primerne aplikacije.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Pametni ljudje uporabljajo šifrirano komunikacijo!</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Pametni ljudje uporabljajo šifrirano komunikacijo!</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Izvedite več</string>
   <!--LongMessageActivity-->
@@ -919,7 +919,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Vzpostavljam klic Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Dohodni klic Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Ustavljanje klicanja Signal</string>
-  <string name="NotificationBarManager__deny_call">Zavrni klic</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Zavrni klic</string> -->
   <string name="NotificationBarManager__answer_call">Sprejmi klic</string>
   <string name="NotificationBarManager__end_call">Zaključi klic</string>
   <string name="NotificationBarManager__cancel_call">Prekini klic</string>

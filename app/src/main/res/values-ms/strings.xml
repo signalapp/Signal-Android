@@ -713,7 +713,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Kongsi</string>
   <string name="InviteActivity_share_with_contacts">Kongsikan dengan kenalan</string>
-  <string name="InviteActivity_choose_how_to_share">Pilih cara untuk berkongsi</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Pilih cara untuk berkongsi</string> -->
   <string name="InviteActivity_cancel">Batal</string>
   <string name="InviteActivity_sending">Menghantar…</string>
   <string name="InviteActivity_invitations_sent">Jemputan dihantar!</string>
@@ -726,7 +726,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Mari tukar ke Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Nampaknya anda tidak mempunyai sebarang aplikasi untuk dikongsi.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kawan tidak akan biarkan kawan berbual tanpa disulitkan.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kawan tidak akan biarkan kawan berbual tanpa disulitkan.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Ketahui lebih lanjut</string>
   <!--LongMessageActivity-->
@@ -794,7 +794,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Mewujudkan panggilan Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Panggilan masuk Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Menghentikan perkhidmatan panggilan Signal</string>
-  <string name="NotificationBarManager__deny_call">Tolak panggilan</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Tolak panggilan</string> -->
   <string name="NotificationBarManager__answer_call">Jawab panggilan </string>
   <string name="NotificationBarManager__end_call">Tamatkan panggilan</string>
   <string name="NotificationBarManager__cancel_call">Batalkan panggilan</string>

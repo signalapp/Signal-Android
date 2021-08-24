@@ -736,7 +736,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Споделяне</string>
   <string name="InviteActivity_share_with_contacts">Споделете с контакти</string>
-  <string name="InviteActivity_choose_how_to_share">Изберете как да споделяте</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Изберете как да споделяте</string> -->
   <string name="InviteActivity_cancel">Отказ</string>
   <string name="InviteActivity_sending">Изпращане…</string>
   <string name="InviteActivity_invitations_sent">Поканите изпратени!</string>
@@ -751,7 +751,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Да преминем към Signal %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Изглежда нямате приложения, с които да можете да сподялите.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Приятелите не оставят приятелите си да чатят без криптиране.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Приятелите не оставят приятелите си да чатят без криптиране.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Научете повече</string>
   <!--LongMessageActivity-->
@@ -823,7 +823,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Установяване на Signal разговор</string>
   <string name="NotificationBarManager__incoming_signal_call">Входящо Signal обаждане</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Спиране на услугата за разговори на Signal</string>
-  <string name="NotificationBarManager__deny_call">Отхвърляне на обаждането</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Отхвърляне на обаждането</string> -->
   <string name="NotificationBarManager__answer_call">Приеми обаждането</string>
   <string name="NotificationBarManager__end_call">Прекрати обаждането</string>
   <string name="NotificationBarManager__cancel_call">Прекратяване на обаждането</string>

@@ -253,7 +253,7 @@
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
-    <item quantity="one">Seçilmiş mesajı silirsən?</item>
+    <item quantity="one">Seçilmiş mesaj silinsin?</item>
     <item quantity="other">Seçilmiş mesajlar silinsin?</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Anbarda saxlanılsın?</string>
@@ -749,7 +749,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Paylaş</string>
   <string name="InviteActivity_share_with_contacts">Əlaqələrlə paylaş</string>
-  <string name="InviteActivity_choose_how_to_share">Necə paylaşacağınızı seçin</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Necə paylaşacağınızı seçin</string> -->
   <string name="InviteActivity_cancel">İmtina</string>
   <string name="InviteActivity_sending">Göndərilir…</string>
   <string name="InviteActivity_invitations_sent">Dəvətlər göndərildi!</string>
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Gəlin Signal-a keçək: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Bunu paylaşmaq üçün heç bir tətbiqiniz yoxdur kimi görünür.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Dostlar, dostlarının şifrəsiz söhbət etməsinə icazə vermir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Dostlar, dostlarının şifrəsiz söhbət etməsinə icazə vermir.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Daha ətraflı</string>
   <!--LongMessageActivity-->
@@ -836,7 +836,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal zəngi edilir</string>
   <string name="NotificationBarManager__incoming_signal_call">Gələn Signal zəngi</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal zəng xidməti dayandırılır</string>
-  <string name="NotificationBarManager__deny_call">Zəngi rədd et</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Zəngi rədd et</string> -->
   <string name="NotificationBarManager__answer_call">Zəngi cavabla</string>
   <string name="NotificationBarManager__end_call">Zəngi bitir</string>
   <string name="NotificationBarManager__cancel_call">Zəngi ləğv et</string>
@@ -2103,7 +2103,7 @@
   <string name="PaymentsHomeFragment__sent_s">%1$s göndərildi</string>
   <string name="PaymentsHomeFragment__received_s">%1$s alındı</string>
   <string name="PaymentsHomeFragment__transfer_to_exchange">Mübadilə üçün köçürmə</string>
-  <string name="PaymentsHomeFragment__currency_conversion">Pul vahidi konversiyası</string>
+  <string name="PaymentsHomeFragment__currency_conversion">Pul vahidi çevirmə</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Ödənişləri deaktiv et</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Bərpa parolu</string>
   <string name="PaymentsHomeFragment__help">Kömək et</string>
@@ -2112,8 +2112,8 @@
   <string name="PaymentsHomeFragment__received_payment">Ödəniş alındı</string>
   <string name="PaymentsHomeFragment__processing_payment">Ödəniş emal olunur</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
-  <string name="PaymentsHomeFragment__currency_conversion_not_available">Pul vahidinin konversiyası əlçatmazdır</string>
-  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Pul vahidinin konversiyası görüntülənə bilmir. Telefonunuzun bağlantısını yoxlayıb yenidən sınayın.</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">Pul vahidinin çevrilməsi əlçatmazdır</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Pul vahidinin çevrilməsi görüntülənə bilmir. Telefonunuzun bağlantısını yoxlayıb yenidən sınayın.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Ödənişlər bölgənizdə əlçatmazdır.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Ödənişlər fəallaşdırıla bilmir. Daha sonra yenidən sınayın.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Ödənişlər deaktiv edilsin?</string>
@@ -2126,7 +2126,7 @@
   <string name="PaymentsHomeFragment__details">Təfsilatlar</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">MobileCoin göndərmək və almaq üçün Signal-ı istifadə edə bilərsiniz. Bütün ödənişlər, MobileCoins və MobileCoin Wallet üçün İstifadə Şərtlərinə tabedir. Bu bir beta özəllikdir, buna görə də bəzi problemlər yaşaya bilərsiniz və itirə biləcəyiniz ödənişlər və ya balanslar bərpa edilə bilmir.</string>
   <string name="PaymentsHomeFragment__activate">Aktivləşdir</string>
-  <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin  şərtlərinə bax</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin şərtlərinə bax</string>
   <string name="PaymentsHomeFragment__payments_not_available">Ödənişlər, Signal-da artıq əlçatmazdır. Yenə də bir birjaya pul köçürə bilərsiniz, ancaq ödəniş göndərə və ala və ya pul əlavə edə bilməzsiniz.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Pul əlavə et</string>
@@ -2191,7 +2191,7 @@
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">Qeyd əlavə et</string>
-  <string name="CreatePaymentFragment__conversions_are_just_estimates">Konversiya sadəcə təxminidir və dəqiq olmaya bilər.</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">Çevrilmə sadəcə təxminidir və dəqiq olmaya bilər.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">Qeyd</string>
   <!--ConfirmPaymentFragment-->

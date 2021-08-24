@@ -695,7 +695,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">မျှဝေရန်</string>
   <string name="InviteActivity_share_with_contacts">အဆက်အသွယ်များနှင့်မျှဝေပါ</string>
-  <string name="InviteActivity_choose_how_to_share">မည်ကဲ့သို့ မျှဝေရန် ရွေးချယ်ပါ</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">မည်ကဲ့သို့ မျှဝေရန် ရွေးချယ်ပါ</string> -->
   <string name="InviteActivity_cancel">မလုပ်တော့ပါ</string>
   <string name="InviteActivity_sending">ပို့နေသည်…</string>
   <string name="InviteActivity_invitations_sent">ဖိတ်ကြားမှု ပြုလုပ်ပြီး!</string>
@@ -708,7 +708,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal ကိုပြောင်းသုံးကြစို့ : %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">သင့်မှာမျှဝေစရာ app များရှိပုံမရပါ။</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">သူငယ်ချင်းမှန်ရင် ကိုယ့်သူငယ်ချင်းကို encrypt လုပ်မထားဘဲ မ chat စေရ။ </string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">သူငယ်ချင်းမှန်ရင် ကိုယ့်သူငယ်ချင်းကို encrypt လုပ်မထားဘဲ မ chat စေရ။ </string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">ထပ်မံလေ့လာရန်</string>
   <!--LongMessageActivity-->
@@ -775,7 +775,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal ဖုန်းခေါ်ဆိုမှုစတင်နေသည်</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal မှဖုန်းဝင်လာသည်</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal ဖုန်းခေါ်ဆိုခြင်း ဝန်ဆောင်မှုကို ရပ်ဆိုင်းနေသည်</string>
-  <string name="NotificationBarManager__deny_call">ဖုန်းမကိုင်ပါ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">ဖုန်းမကိုင်ပါ</string> -->
   <string name="NotificationBarManager__answer_call">ဖုန်းကိုင်မည်</string>
   <string name="NotificationBarManager__end_call">ဖုန်းချမည်</string>
   <string name="NotificationBarManager__cancel_call">ဖုန်းခေါ်နေခြင်း ရပ်ဆိုင်းမည်</string>

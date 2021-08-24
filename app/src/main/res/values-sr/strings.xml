@@ -786,7 +786,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Дели</string>
   <string name="InviteActivity_share_with_contacts">Подели са контактима</string>
-  <string name="InviteActivity_choose_how_to_share">Одабрати начин дељења</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Одабрати начин дељења</string> -->
   <string name="InviteActivity_cancel">Одустани</string>
   <string name="InviteActivity_sending">Шаље се…</string>
   <string name="InviteActivity_invitations_sent">Позивнице послате!</string>
@@ -803,7 +803,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Пребацимо се на Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Изгледа да немате ниједну апликацију преко које бисте могли да делите.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Пријатељи не допуштају пријатељима да ћаскају небезбедно.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Пријатељи не допуштају пријатељима да ћаскају небезбедно.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Сазнај више</string>
   <!--LongMessageActivity-->
@@ -879,7 +879,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Успостављам Signal позив</string>
   <string name="NotificationBarManager__incoming_signal_call">Долазни Signal позив</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Заустављање сервиса позива Signal-а</string>
-  <string name="NotificationBarManager__deny_call">Одбиј позив</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Одбиј позив</string> -->
   <string name="NotificationBarManager__answer_call">Одговори на позив</string>
   <string name="NotificationBarManager__end_call">Окончај позив</string>
   <string name="NotificationBarManager__cancel_call">Откажи позив</string>

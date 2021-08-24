@@ -429,7 +429,7 @@
   <string name="InviteActivity_share">Ibahagi</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">Pumili ng mga kontak</string> -->
   <string name="InviteActivity_share_with_contacts">Ibahagi sa mga kontak</string>
-  <string name="InviteActivity_choose_how_to_share">Piliin kung paano ibabahagi</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Piliin kung paano ibabahagi</string> -->
   <string name="InviteActivity_cancel">Kanselahin</string>
   <string name="InviteActivity_sending">Ipinapadala…</string>
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Puso</string> -->
@@ -445,7 +445,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Lumipat tayo sa Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Mukhang wala kang anumang app na maaaring bahaginan.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Hindi hinahayaan ng magkakaibigan na mag-chat ang mga kaibigan nang unencrypted.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Hindi hinahayaan ng magkakaibigan na mag-chat ang mga kaibigan nang unencrypted.</string> -->
   <!--Job-->
   <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">Gumagana sa background…</string> -->
   <!--LearnMoreTextView-->
@@ -511,7 +511,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Kasalukung may tawag sa Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Nagsisimula ng tawag sa Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Papasok na tawag sa Signal</string>
-  <string name="NotificationBarManager__deny_call">Tanggihan ang tawag</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Tanggihan ang tawag</string> -->
   <string name="NotificationBarManager__answer_call">Sagutin ang tawag</string>
   <string name="NotificationBarManager__end_call">Tapusin ang Tawag</string>
   <string name="NotificationBarManager__cancel_call">Kanselahin ang tawag</string>

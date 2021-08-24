@@ -293,7 +293,7 @@
   <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit eenmaligeweergave-bericht al weergegeven</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit speciale gesprek notities voor jezelf achterlaten.\nAls je de Signal app op een ander apparaat gekoppeld hebt, dan worden alle notities van na het moment van koppelen gesynchroniseerd. Je kunt dus notities toevoegen en teruglezen vanaf al je gekoppelde apparaten.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam.</string>
-  <string name="ConversationFragment__tap_to_review">Tik hier om te vergelijken</string>
+  <string name="ConversationFragment__tap_to_review">Tik hier om ze te vergelijken</string>
   <string name="ConversationFragment__review_requests_carefully">Overweeg dit verzoek zorgvuldig</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal heeft een ander contactpersoon gevonden met dezelfde naam.</string>
   <string name="ConversationFragment_contact_us">Neem contact met ons op</string>
@@ -341,7 +341,7 @@
   <string name="CreateProfileActivity_set_avatar_description">Profielfoto instellen</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Back-upgegevens terugzetten?</string>
-  <string name="ChooseBackupFragment__restore_your_messages_and_media">Je hebt nu de gelegenheid om berichten en media uit een back-upbestand terug te zetten. Let op: Als je de back-upgegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app.</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">Je hebt nu de gelegenheid om berichten en media uit een back-upbestand terug te zetten. Let op: Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app. Als je deze stap overslaat kun je dit niet op een later moment alsnog doen.</string>
   <string name="ChooseBackupFragment__icon_content_description">Back-upgegevens terugzetten pictogram</string>
   <string name="ChooseBackupFragment__choose_backup">Back-upbestand kiezen</string>
   <string name="ChooseBackupFragment__learn_more">Meer leren hierover</string>
@@ -751,7 +751,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Doorsturen via andere app</string>
   <string name="InviteActivity_share_with_contacts">Contactpersonen kiezen (sms)</string>
-  <string name="InviteActivity_choose_how_to_share">Verzenden via andere app</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Verzenden via andere app</string> -->
   <string name="InviteActivity_cancel">Annuleren</string>
   <string name="InviteActivity_sending">Bezig met verzenden …</string>
   <string name="InviteActivity_invitations_sent">Uitnodigingen verzonden!</string>
@@ -766,7 +766,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Laten we Signal gebruiken om een gesprek te voeren: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt waarmee je een uitnodiging kan verzenden.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vrienden laten vrienden geen gesprekken onversleuteld voeren.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vrienden laten vrienden geen gesprekken onversleuteld voeren.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Meer leren hierover</string>
   <!--LongMessageActivity-->
@@ -838,7 +838,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal-oproep aan het opzetten</string>
   <string name="NotificationBarManager__incoming_signal_call">Inkomende Signal-oproep</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal-oproep-ondersteuning wordt gestopt</string>
-  <string name="NotificationBarManager__deny_call">Oproep afwijzen</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Oproep afwijzen</string> -->
   <string name="NotificationBarManager__answer_call">Oproep beantwoorden</string>
   <string name="NotificationBarManager__end_call">Oproep beëindigen</string>
   <string name="NotificationBarManager__cancel_call">Oproep annuleren</string>
@@ -2469,7 +2469,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="RegistrationActivity_checking">Aan het controleren …</string>
   <string name="RegistrationActivity_d_messages_so_far">%d berichten tot nu toe …</string>
   <string name="RegistrationActivity_restore_from_backup">Back-upgegevens terugzetten?</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Je hebt nu de gelegenheid om berichten en media uit een back-upbestand terug te zetten. Let op: Als je de back-upgegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app.</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Je hebt nu de gelegenheid om berichten en media uit een back-upbestand terug te zetten. Let op: Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app. Als je deze stap overslaat kun je dit niet op een later moment alsnog doen.</string>
   <string name="RegistrationActivity_backup_size_s">Back-upbestand-grootte: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Back-upbestand-tijdstip: %s</string>
   <string name="BackupDialog_enable_local_backups">Signal back-upbestanden laten maken?</string>
@@ -2542,7 +2542,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Hiermee zet je all je instellingen, je profielinformatie en al je berichten over vanuit je oude Android apparaat. Je kunt dit alleen doen als je je oude apparaat nog kunt gebruiken.</string>
   <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Je kunt dit alleen doen als je je oude apparaat nog kunt gebruiken.</string>
   <string name="TransferOrRestoreFragment__restore_from_backup">Gegevens vanuit een back-upbestand terugzetten</string>
-  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Je hebt nu de gelegenheid om berichten uit een back-upbestand terug te zetten. Let op: Als je de back-upgegevens wilt terugzetten moet je dit nu doen. Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app.</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Je hebt nu de gelegenheid om berichten en uit een back-upbestand terug te zetten. Let op: Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app. Als je deze stap overslaat kun je dit niet op een later moment alsnog doen.</string>
   <!--NewDeviceTransferInstructionsFragment-->
   <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Open Signal op je oude apparaat</string>
   <string name="NewDeviceTransferInstructions__continue">Doorgaan</string>

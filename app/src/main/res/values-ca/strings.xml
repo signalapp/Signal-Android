@@ -749,7 +749,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Comparteix</string>
   <string name="InviteActivity_share_with_contacts">Comparteix amb els contactes</string>
-  <string name="InviteActivity_choose_how_to_share">Trieu com compartir-ho</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Trieu com compartir-ho</string> -->
   <string name="InviteActivity_cancel">Cancel·la</string>
   <string name="InviteActivity_sending">S\'envia…</string>
   <string name="InviteActivity_invitations_sent">Invitacions enviades!</string>
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Canviem al Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Sembla que no teniu cap aplicació on compartir-ho.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Les amistats no deixen que les seves amistats xerrin sense encriptació.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Les amistats no deixen que les seves amistats xerrin sense encriptació.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Més informació</string>
   <!--LongMessageActivity-->
@@ -836,7 +836,7 @@
   <string name="NotificationBarManager__establishing_signal_call">S\'estableix la trucada del Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Trucada del Signal rebuda</string>
   <string name="NotificationBarManager__stopping_signal_call_service">S\'atura el servei de trucades del Signal</string>
-  <string name="NotificationBarManager__deny_call">Rebutja la trucada</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Rebutja la trucada</string> -->
   <string name="NotificationBarManager__answer_call">Respon la trucada</string>
   <string name="NotificationBarManager__end_call">Acaba la trucada</string>
   <string name="NotificationBarManager__cancel_call">Cancel·la la trucada</string>

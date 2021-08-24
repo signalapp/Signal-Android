@@ -823,7 +823,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Поделиться</string>
   <string name="InviteActivity_share_with_contacts">Поделиться с контактами</string>
-  <string name="InviteActivity_choose_how_to_share">Выбрать, как поделиться</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Выбрать, как поделиться</string> -->
   <string name="InviteActivity_cancel">Отмена</string>
   <string name="InviteActivity_sending">Отправляется…</string>
   <string name="InviteActivity_invitations_sent">Приглашения отправлены!</string>
@@ -842,7 +842,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Давайте перейдем на Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Похоже, что у вас нет приложений, через которые можно поделиться.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Друзья не позволяют друзьям общаться без шифрования.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Друзья не позволяют друзьям общаться без шифрования.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Узнать больше</string>
   <!--LongMessageActivity-->
@@ -922,7 +922,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Начинается звонок через Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Входящий звонок Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Останавливаем сервис звонков Signal</string>
-  <string name="NotificationBarManager__deny_call">Отклонить</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Отклонить</string> -->
   <string name="NotificationBarManager__answer_call">Ответить</string>
   <string name="NotificationBarManager__end_call">Завершить</string>
   <string name="NotificationBarManager__cancel_call">Отменить</string>

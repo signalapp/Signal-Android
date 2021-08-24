@@ -734,7 +734,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">ଅଂଶୀଦାର କରନ୍ତୁ</string>
   <string name="InviteActivity_share_with_contacts">ଯୋଗାଯୋଗଗୁଡି଼କ ସହିତ ଅଂଶୀଦାର କରନ୍ତୁ</string>
-  <string name="InviteActivity_choose_how_to_share">କିପରି ଅଂଶୀଦାର କରିବେ ବାଛନ୍ତୁ</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">କିପରି ଅଂଶୀଦାର କରିବେ ବାଛନ୍ତୁ</string> -->
   <string name="InviteActivity_cancel">ବାତିଲ କରନ୍ତୁ</string>
   <string name="InviteActivity_sending">ପଠାଯାଉଛି…</string>
   <string name="InviteActivity_invitations_sent">ଆମନ୍ତ୍ରଣ ପଠାଯାଇଛି!</string>
@@ -749,7 +749,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">ଚାଲନ୍ତୁ Signal କୁ ଯିବା: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">ଯାହା ଲାଗୁଛି ଅଂଶୀଦାର କରିବାକୁ ଆପଣଙ୍କର କୌଣସି ଆପ୍ ନାହିଁ।</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">ବନ୍ଧୁମାନେ ବନ୍ଧୁମାନଙ୍କୁ ଅସଂଗୁପ୍ତ ଚାଟ୍ କରିବାକୁ ଦିଅନ୍ତି ନାହିଁ</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">ବନ୍ଧୁମାନେ ବନ୍ଧୁମାନଙ୍କୁ ଅସଂଗୁପ୍ତ ଚାଟ୍ କରିବାକୁ ଦିଅନ୍ତି ନାହିଁ</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">ଅଧିକ ଜାଣନ୍ତୁ</string>
   <!--LongMessageActivity-->
@@ -820,7 +820,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal କଲ୍ ସ୍ଥାପନ କରାଯାଉଛି</string>
   <string name="NotificationBarManager__incoming_signal_call">ଆସୁଥିବା Signal କଲ୍</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal କଲ୍ ସେବା ସ୍ଥଗିତ କରୁଅଛି</string>
-  <string name="NotificationBarManager__deny_call">ଅସ୍ୱୀକାର କରନ୍ତୁ</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">ଅସ୍ୱୀକାର କରନ୍ତୁ</string> -->
   <string name="NotificationBarManager__answer_call">ଉତ୍ତର ଦିଅନ୍ତୁ</string>
   <string name="NotificationBarManager__end_call">ସମାପ୍ତ କରନ୍ତୁ</string>
   <string name="NotificationBarManager__cancel_call">ବାତିଲ୍ କରନ୍ତୁ</string>

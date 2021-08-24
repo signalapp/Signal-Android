@@ -749,7 +749,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">શેર કરો</string>
   <string name="InviteActivity_share_with_contacts">સંપર્કો સાથે શેર કરો</string>
-  <string name="InviteActivity_choose_how_to_share">કેવી રીતે શેર કરવું તે પસંદ કરો</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">કેવી રીતે શેર કરવું તે પસંદ કરો</string> -->
   <string name="InviteActivity_cancel">રદ કરો</string>
   <string name="InviteActivity_sending">મોકલી રહ્યો છે…</string>
   <string name="InviteActivity_invitations_sent">આમંત્રણો મોકલ્યા!</string>
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">ચાલો Signal પર સ્વિચ કરીએ: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">એવું લાગે છે કે તમારી પાસે શેર કરવા માટે કોઈ એપ્લિકેશન નથી.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">મિત્રો મિત્રોને અનક્રિપ્ટ વિના ચેટ કરવા દેતા નથી.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">મિત્રો મિત્રોને અનક્રિપ્ટ વિના ચેટ કરવા દેતા નથી.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">વધુ શીખો</string>
   <!--LongMessageActivity-->
@@ -836,7 +836,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal કૉલ સ્થાપિત કરી રહ્યા છીએ</string>
   <string name="NotificationBarManager__incoming_signal_call">આવી રહેલ Signal કૉલ</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal કોલ સેવા બંધ કરી રહ્યા છીએ</string>
-  <string name="NotificationBarManager__deny_call">કૉલ નામંજૂર</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">કૉલ નામંજૂર</string> -->
   <string name="NotificationBarManager__answer_call">કૉલનો જવાબ આપો</string>
   <string name="NotificationBarManager__end_call">કૉલ નો અંત કરો</string>
   <string name="NotificationBarManager__cancel_call">કૉલ ને રદ કરો</string>

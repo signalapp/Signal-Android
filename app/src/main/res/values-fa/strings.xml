@@ -749,7 +749,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">اشتراک‌گذاری</string>
   <string name="InviteActivity_share_with_contacts">اشتراک‌گذاری با مخاطبین</string>
-  <string name="InviteActivity_choose_how_to_share">انتخاب نحوهٔ اشتراک‌گذاری</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">انتخاب نحوهٔ اشتراک‌گذاری</string> -->
   <string name="InviteActivity_cancel">لغو</string>
   <string name="InviteActivity_sending">در حال ارسال…</string>
   <string name="InviteActivity_invitations_sent">دعوت‌نامه‌ها ارسال شدند!</string>
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">بیایید از سیگنال استفاده کنیم:  %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">به نظر می‌رسد شما هیچ برنامه‌ای برای ‌اشتراک‌گذاری ندارید.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوستان واقعی به دوستان خود اجازهٔ گفتگوی رمزگذاری نشده را نمی‌دهند.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوستان واقعی به دوستان خود اجازهٔ گفتگوی رمزگذاری نشده را نمی‌دهند.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">بیشتر یاد بگیرید</string>
   <!--LongMessageActivity-->
@@ -836,7 +836,7 @@
   <string name="NotificationBarManager__establishing_signal_call">در حال برقراری تماس سیگنال</string>
   <string name="NotificationBarManager__incoming_signal_call">تماس ورودی سیگنال</string>
   <string name="NotificationBarManager__stopping_signal_call_service">در حال متوقف کردن سرویس تماس سیگنال</string>
-  <string name="NotificationBarManager__deny_call">رد تماس</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">رد تماس</string> -->
   <string name="NotificationBarManager__answer_call">پاسخ به تماس</string>
   <string name="NotificationBarManager__end_call">پایان تماس</string>
   <string name="NotificationBarManager__cancel_call">لغو تماس</string>

@@ -786,7 +786,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Dijeli</string>
   <string name="InviteActivity_share_with_contacts">Podijelite s kontaktima</string>
-  <string name="InviteActivity_choose_how_to_share">Odaberi način dijeljenja</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Odaberi način dijeljenja</string> -->
   <string name="InviteActivity_cancel">Poništi</string>
   <string name="InviteActivity_sending">Slanje…</string>
   <string name="InviteActivity_invitations_sent">Pozivnice su poslane!</string>
@@ -803,7 +803,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Prebacimo se na Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Izgleda da nemate nijednu aplikaciju za dijeljenje.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prijatelji ne dopuštaju prijateljima da razgovaraju bez šifriranja.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prijatelji ne dopuštaju prijateljima da razgovaraju bez šifriranja.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saznajte više</string>
   <!--LongMessageActivity-->
@@ -879,7 +879,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Uspostavljanje Signal poziva</string>
   <string name="NotificationBarManager__incoming_signal_call">Dolazni Signal poziv</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Zaustavljanje Signalove usluge za pozive</string>
-  <string name="NotificationBarManager__deny_call">Odbij poziv</string>
+  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Odbij poziv</string> -->
   <string name="NotificationBarManager__answer_call">Prihvati poziv</string>
   <string name="NotificationBarManager__end_call">Završi poziv</string>
   <string name="NotificationBarManager__cancel_call">Otkaži poziv</string>
