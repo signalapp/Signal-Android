@@ -126,7 +126,13 @@ public class AutomaticSessionResetJob extends BaseJob {
   }
 
   private void sendNullMessage() throws IOException {
-    Recipient                        recipient          = Recipient.resolved(recipientId);
+    Recipient recipient = Recipient.resolved(recipientId);
+
+    if (recipient.isUnregistered()) {
+      Log.w(TAG, recipient.getId() + " not registered!");
+      return;
+    }
+
     SignalServiceMessageSender       messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
     SignalServiceAddress             address            = RecipientUtil.toSignalServiceAddress(context, recipient);
     Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient);

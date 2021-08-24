@@ -268,7 +268,11 @@ public final class ProfileUtil {
 
   private static @NonNull SignalServiceAddress toSignalServiceAddress(@NonNull Context context, @NonNull Recipient recipient) throws IOException {
     if (recipient.getRegistered() == RecipientDatabase.RegisteredState.NOT_REGISTERED) {
-      return new SignalServiceAddress(recipient.getUuid().orNull(), recipient.getE164().orNull());
+      if (recipient.hasUuid()) {
+        return new SignalServiceAddress(recipient.requireUuid(), recipient.getE164().orNull());
+      } else {
+        throw new IOException(recipient.getId() + " not registered!");
+      }
     } else {
       return RecipientUtil.toSignalServiceAddress(context, recipient);
     }

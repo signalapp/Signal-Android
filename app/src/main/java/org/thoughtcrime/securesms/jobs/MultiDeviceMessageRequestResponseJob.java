@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -110,12 +111,18 @@ public class MultiDeviceMessageRequestResponseJob extends BaseJob {
 
     if (recipient.isGroup()) {
       response = MessageRequestResponseMessage.forGroup(recipient.getGroupId().get().getDecodedId(), localToRemoteType(type));
-    } else {
+    } else if (recipient.isMaybeRegistered()) {
       response = MessageRequestResponseMessage.forIndividual(RecipientUtil.toSignalServiceAddress(context, recipient), localToRemoteType(type));
+    } else {
+      response = null;
     }
 
-    messageSender.sendSyncMessage(SignalServiceSyncMessage.forMessageRequestResponse(response),
-                                  UnidentifiedAccessUtil.getAccessForSync(context));
+    if (response != null) {
+      messageSender.sendSyncMessage(SignalServiceSyncMessage.forMessageRequestResponse(response),
+                                    UnidentifiedAccessUtil.getAccessForSync(context));
+    } else {
+      Log.w(TAG, recipient.getId() + " not registered!");
+    }
   }
 
   private static MessageRequestResponseMessage.Type localToRemoteType(@NonNull Type type) {

@@ -149,6 +149,7 @@ public class SendViewedReceiptJob extends BaseJob {
     }
 
     Recipient recipient = Recipient.resolved(recipientId);
+
     if (recipient.isBlocked()) {
       Log.w(TAG, "Refusing to send receipts to blocked recipient");
       return;
@@ -156,6 +157,11 @@ public class SendViewedReceiptJob extends BaseJob {
 
     if (recipient.isGroup()) {
       Log.w(TAG, "Refusing to send receipts to group");
+      return;
+    }
+
+    if (recipient.isUnregistered()) {
+      Log.w(TAG, recipient.getId() + " not registered!");
       return;
     }
 

@@ -91,6 +91,11 @@ public final class SenderKeyDistributionSendJob extends BaseJob {
       return;
     }
 
+    if (recipient.isUnregistered()) {
+      Log.w(TAG, recipient.getId() + " not registered!");
+      return;
+    }
+
     SignalServiceMessageSender             messageSender  = ApplicationDependencies.getSignalServiceMessageSender();
     List<SignalServiceAddress>             address        = Collections.singletonList(RecipientUtil.toSignalServiceAddress(context, recipient));
     DistributionId                         distributionId = groupDatabase.getOrCreateDistributionId(groupId);

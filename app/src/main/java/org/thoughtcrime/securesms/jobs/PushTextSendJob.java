@@ -167,7 +167,12 @@ public class PushTextSendJob extends PushSendJob {
     try {
       rotateSenderCertificateIfNecessary();
 
-      Recipient                        messageRecipient   = message.getIndividualRecipient().fresh();
+      Recipient messageRecipient = message.getIndividualRecipient().fresh();
+
+      if (messageRecipient.isUnregistered()) {
+        throw new UndeliverableMessageException(messageRecipient.getId() + " not registered!");
+      }
+
       SignalServiceMessageSender       messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
       SignalServiceAddress             address            = RecipientUtil.toSignalServiceAddress(context, messageRecipient);
       Optional<byte[]>                 profileKey         = getProfileKey(messageRecipient);

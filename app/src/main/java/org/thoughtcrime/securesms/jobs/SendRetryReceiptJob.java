@@ -80,7 +80,13 @@ public final class SendRetryReceiptJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    Recipient                        recipient = Recipient.resolved(recipientId);
+    Recipient recipient = Recipient.resolved(recipientId);
+
+    if (recipient.isUnregistered()) {
+      Log.w(TAG, recipient.getId() + " not registered!");
+      return;
+    }
+
     SignalServiceAddress             address   = RecipientUtil.toSignalServiceAddress(context, recipient);
     Optional<UnidentifiedAccessPair> access    = UnidentifiedAccessUtil.getAccessFor(context, recipient);
     Optional<byte[]>                 group     = groupId.transform(GroupId::getDecodedId);

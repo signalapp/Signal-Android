@@ -86,6 +86,11 @@ public class RequestGroupInfoJob extends BaseJob {
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
     Recipient                  recipient     = Recipient.resolved(source);
 
+    if (recipient.isUnregistered()) {
+      Log.w(TAG, recipient.getId() + " is unregistered!");
+      return;
+    }
+
     messageSender.sendDataMessage(RecipientUtil.toSignalServiceAddress(context, recipient),
                                   UnidentifiedAccessUtil.getAccessFor(context, recipient),
                                   ContentHint.IMPLICIT,

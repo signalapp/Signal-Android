@@ -49,6 +49,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
@@ -137,13 +138,16 @@ public final class GroupSendUtil {
                                                      @Nullable CancelationSignal cancelationSignal)
       throws IOException, UntrustedIdentityException
   {
-    RecipientData         recipients  = new RecipientData(context, allTargets);
+    Set<Recipient>  unregisteredTargets = allTargets.stream().filter(Recipient::isUnregistered).collect(Collectors.toSet());
+    List<Recipient> registeredTargets   = allTargets.stream().filter(r -> !unregisteredTargets.contains(r)).collect(Collectors.toList());
+
+    RecipientData         recipients  = new RecipientData(context, registeredTargets);
     Optional<GroupRecord> groupRecord = groupId != null ? DatabaseFactory.getGroupDatabase(context).getGroup(groupId) : Optional.absent();
 
     List<Recipient> senderKeyTargets = new LinkedList<>();
     List<Recipient> legacyTargets    = new LinkedList<>();
 
-    for (Recipient recipient : allTargets) {
+    for (Recipient recipient : registeredTargets) {
       Optional<UnidentifiedAccessPair> access          = recipients.getAccessPair(recipient.getId());
       boolean                          validMembership = groupRecord.isPresent() && groupRecord.get().getMembers().contains(recipient.getId());
 
@@ -260,6 +264,21 @@ public final class GroupSendUtil {
 
       int successCount = (int) results.stream().filter(SendMessageResult::isSuccess).count();
       Log.d(TAG, "Successfully sent using 1:1 to " + successCount + "/" + targets.size() + " legacy targets.");
+    }
+
+    if (unregisteredTargets.size() > 0) {
+      Log.w(TAG, "There are " + unregisteredTargets.size() + " unregistered targets. Including failure results.");
+
+      List<SendMessageResult> unregisteredResults = unregisteredTargets.stream()
+                                                                       .filter(Recipient::hasUuid)
+                                                                       .map(t -> SendMessageResult.unregisteredFailure(new SignalServiceAddress(t.requireUuid(), t.getE164().orNull())))
+                                                                       .collect(Collectors.toList());
+
+      if (unregisteredResults.size() < unregisteredTargets.size()) {
+        Log.w(TAG, "There are " + (unregisteredTargets.size() - unregisteredResults.size()) + " targets that have no UUID! Cannot report a failure for them.");
+      }
+
+      allResults.addAll(unregisteredResults);
     }
 
     return allResults;

@@ -196,7 +196,12 @@ public class PushMediaSendJob extends PushSendJob {
     try {
       rotateSenderCertificateIfNecessary();
 
-      Recipient                                  messageRecipient   = message.getRecipient().fresh();
+      Recipient messageRecipient = message.getRecipient().fresh();
+
+      if (messageRecipient.isUnregistered()) {
+        throw new UndeliverableMessageException(messageRecipient.getId() + " not registered!");
+      }
+
       SignalServiceMessageSender                 messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
       SignalServiceAddress                       address            = RecipientUtil.toSignalServiceAddress(context, messageRecipient);
       List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();

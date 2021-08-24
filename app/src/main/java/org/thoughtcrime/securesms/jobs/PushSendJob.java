@@ -355,9 +355,14 @@ public abstract class PushSendJob extends SendJob {
       }
     }
 
-    Recipient            quoteAuthorRecipient = Recipient.resolved(quoteAuthor);
-    SignalServiceAddress quoteAddress         = RecipientUtil.toSignalServiceAddress(context, quoteAuthorRecipient);
-    return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAddress, quoteBody, quoteAttachments, quoteMentions));
+    Recipient quoteAuthorRecipient = Recipient.resolved(quoteAuthor);
+
+    if (quoteAuthorRecipient.isMaybeRegistered()) {
+      SignalServiceAddress quoteAddress = RecipientUtil.toSignalServiceAddress(context, quoteAuthorRecipient);
+      return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAddress, quoteBody, quoteAttachments, quoteMentions));
+    } else {
+      return Optional.absent();
+    }
   }
 
   protected Optional<SignalServiceDataMessage.Sticker> getStickerFor(OutgoingMediaMessage message) {

@@ -28,10 +28,12 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RecipientUtil {
 
@@ -40,7 +42,7 @@ public class RecipientUtil {
   /**
    * This method will do it's best to craft a fully-populated {@link SignalServiceAddress} based on
    * the provided recipient. This includes performing a possible network request if no UUID is
-   * available. If the request to get a UUID fails, an IOException is thrown.
+   * available. If the request to get a UUID fails or the user is not registered, an IOException is thrown.
    */
   @WorkerThread
   public static @NonNull SignalServiceAddress toSignalServiceAddress(@NonNull Context context, @NonNull Recipient recipient)
@@ -60,7 +62,11 @@ public class RecipientUtil {
       Log.i(TAG, "Successfully performed a UUID fetch for " + recipient.getId() + ". Registered: " + state);
     }
 
-    return new SignalServiceAddress(recipient.requireUuid(), Optional.fromNullable(recipient.resolve().getE164().orNull()));
+    if (recipient.hasUuid()) {
+      return new SignalServiceAddress(recipient.requireUuid(), Optional.fromNullable(recipient.resolve().getE164().orNull()));
+    } else {
+      throw new NotFoundException(recipient.getId() + " is not registered!");
+    }
   }
 
   public static @NonNull List<SignalServiceAddress> toSignalServiceAddresses(@NonNull Context context, @NonNull List<RecipientId> recipients)
@@ -80,6 +86,9 @@ public class RecipientUtil {
                  .toList();
   }
 
+  /**
+   * Ensures that UUIDs are available. If a UUID cannot be retrieved or a user is found to be unregistered, an exception is thrown.
+   */
   public static boolean ensureUuidsAreAvailable(@NonNull Context context, @NonNull Collection<Recipient> recipients)
       throws IOException
   {
@@ -90,6 +99,11 @@ public class RecipientUtil {
 
     if (recipientsWithoutUuids.size() > 0) {
       DirectoryHelper.refreshDirectoryFor(context, recipientsWithoutUuids, false);
+
+      if (recipients.stream().map(Recipient::resolve).anyMatch(Recipient::isUnregistered)) {
+        throw new NotFoundException("1 or more recipients are not registered!");
+      }
+
       return true;
     } else {
       return false;

@@ -81,8 +81,14 @@ public final class PaymentNotificationSendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    PaymentDatabase                  paymentDatabase    = DatabaseFactory.getPaymentDatabase(context);
-    Recipient                        recipient          = Recipient.resolved(recipientId);
+    PaymentDatabase paymentDatabase = DatabaseFactory.getPaymentDatabase(context);
+    Recipient       recipient       = Recipient.resolved(recipientId);
+
+    if (recipient.isUnregistered()) {
+      Log.w(TAG, recipientId + " not registered!");
+      return;
+    }
+
     SignalServiceMessageSender       messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
     SignalServiceAddress             address            = RecipientUtil.toSignalServiceAddress(context, recipient);
     Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient);
