@@ -224,8 +224,6 @@ public class ThreadDatabase extends Database {
         StorageSyncHelper.scheduleSyncForDataChange();
       }
     }
-
-    notifyConversationListListeners();
   }
 
   public void updateSnippet(long threadId, String snippet, @Nullable Uri attachment, long date, long type, boolean unarchive) {

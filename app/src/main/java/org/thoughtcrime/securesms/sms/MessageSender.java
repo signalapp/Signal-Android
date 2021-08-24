@@ -16,6 +16,7 @@
  */
 package org.thoughtcrime.securesms.sms;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -61,6 +62,7 @@ import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.RemoteDeleteSendJob;
 import org.thoughtcrime.securesms.jobs.ResumableUploadSpecJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
+import org.thoughtcrime.securesms.jobs.ThreadUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -120,6 +122,7 @@ public class MessageSender {
 
     sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
     onMessageSent();
+    ThreadUpdateJob.enqueue(threadId);
 
     return allocatedThreadId;
   }

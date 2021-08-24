@@ -102,7 +102,6 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract void markExpireStarted(Collection<Long> messageId, long startTime);
 
   public abstract void markAsEndSession(long id);
-  public abstract void markAsPreKeyBundle(long id);
   public abstract void markAsInvalidVersionKeyExchange(long id);
   public abstract void markAsSecure(long id);
   public abstract void markAsInsecure(long id);
@@ -111,7 +110,6 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract void markAsRateLimited(long id);
   public abstract void clearRateLimitStatus(Collection<Long> ids);
   public abstract void markAsDecryptFailed(long id);
-  public abstract void markAsDecryptDuplicate(long id);
   public abstract void markAsNoSession(long id);
   public abstract void markAsUnsupportedProtocolVersion(long id);
   public abstract void markAsInvalidMessage(long id);
@@ -119,8 +117,8 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
   public abstract void markAsOutbox(long id);
   public abstract void markAsPendingInsecureSmsFallback(long id);
   public abstract void markAsSent(long messageId, boolean secure);
-  public abstract void markAsSentFailed(long id);
   public abstract void markUnidentified(long messageId, boolean unidentified);
+  public abstract void markAsSentFailed(long id);
   public abstract void markAsSending(long messageId);
   public abstract void markAsRemoteDelete(long messageId);
   public abstract void markAsMissedCall(long id, boolean isVideoOffer);

@@ -82,6 +82,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SenderKeyDistributionSendJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
+import org.thoughtcrime.securesms.jobs.ThreadUpdateJob;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -721,10 +722,13 @@ public final class MessageContentProcessor {
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
 
-      long messageId = database.insertMessageOutbox(threadId, outgoingEndSessionMessage,
-          false, message.getTimestamp(),
-          null);
+      long messageId = database.insertMessageOutbox(threadId,
+                                                    outgoingEndSessionMessage,
+                                                    false,
+                                                    message.getTimestamp(),
+                                                    null);
       database.markAsSent(messageId, true);
+      ThreadUpdateJob.enqueue(threadId);
     }
 
     return threadId;
@@ -1555,6 +1559,7 @@ public final class MessageContentProcessor {
       messageId = DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, outgoingTextMessage, false, message.getTimestamp(), null);
       database  = DatabaseFactory.getSmsDatabase(context);
       database.markUnidentified(messageId, isUnidentified(message, recipient));
+      ThreadUpdateJob.enqueue(threadId);
     }
 
     database.markAsSent(messageId, true);

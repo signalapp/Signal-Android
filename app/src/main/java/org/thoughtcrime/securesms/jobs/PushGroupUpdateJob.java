@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -137,7 +138,8 @@ public class PushGroupUpdateJob extends BaseJob {
     messageSender.sendDataMessage(RecipientUtil.toSignalServiceAddress(context, sourceRecipient),
                                   UnidentifiedAccessUtil.getAccessFor(context, sourceRecipient),
                                   ContentHint.DEFAULT,
-                                  message);
+                                  message,
+                                  IndividualSendEvents.EMPTY);
   }
 
   @Override

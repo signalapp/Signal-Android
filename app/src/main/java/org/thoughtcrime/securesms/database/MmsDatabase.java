@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
+import org.thoughtcrime.securesms.jobs.ThreadUpdateJob;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -297,11 +298,6 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public void markAsPreKeyBundle(long id) {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
   public void markAsInvalidVersionKeyExchange(long id) {
     throw new UnsupportedOperationException();
   }
@@ -318,11 +314,6 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public void markAsDecryptFailed(long id) {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public void markAsDecryptDuplicate(long id) {
     throw new UnsupportedOperationException();
   }
 
@@ -759,7 +750,7 @@ public class MmsDatabase extends MessageDatabase {
                    " WHERE " + ID + " = ?", new String[] {id + ""});
 
     if (threadId.isPresent()) {
-      DatabaseFactory.getThreadDatabase(context).update(threadId.get(), false);
+      DatabaseFactory.getThreadDatabase(context).updateSnippetTypeSilently(threadId.get());
     }
   }
 
@@ -1352,7 +1343,7 @@ public class MmsDatabase extends MessageDatabase {
 
     if (!Types.isExpirationTimerUpdate(mailbox)) {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
-      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+      ThreadUpdateJob.enqueue(threadId);
     }
 
     notifyConversationListeners(threadId);
@@ -1445,11 +1436,12 @@ public class MmsDatabase extends MessageDatabase {
   @Override
   public void markIncomingNotificationReceived(long threadId) {
     notifyConversationListeners(threadId);
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
 
     if (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context)) {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
     }
+
+    ThreadUpdateJob.enqueue(threadId);
 
     TrimThreadJob.enqueueAsync(threadId);
   }
@@ -1658,9 +1650,11 @@ public class MmsDatabase extends MessageDatabase {
         insertListener.onComplete();
       }
 
-      notifyConversationListeners(contentValues.getAsLong(THREAD_ID));
-      DatabaseFactory.getThreadDatabase(context).setLastScrolled(contentValues.getAsLong(THREAD_ID), 0);
-      DatabaseFactory.getThreadDatabase(context).update(contentValues.getAsLong(THREAD_ID), true);
+      long contentValuesThreadId = contentValues.getAsLong(THREAD_ID);
+
+      notifyConversationListeners(contentValuesThreadId);
+      DatabaseFactory.getThreadDatabase(context).setLastScrolled(contentValuesThreadId, 0);
+      ThreadUpdateJob.enqueue(contentValuesThreadId);
     }
   }
 

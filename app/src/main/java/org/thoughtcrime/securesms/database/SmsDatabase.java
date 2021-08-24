@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateD
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
+import org.thoughtcrime.securesms.jobs.ThreadUpdateJob;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -58,6 +59,7 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.SqlUtil;
+import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
@@ -177,14 +179,24 @@ public class SmsDatabase extends MessageDatabase {
 
   private void updateTypeBitmask(long id, long maskOff, long maskOn) {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
-    db.execSQL("UPDATE " + TABLE_NAME +
-               " SET " + TYPE + " = (" + TYPE + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
-               " WHERE " + ID + " = ?", SqlUtil.buildArgs(id));
 
-    long threadId = getThreadIdForMessage(id);
-    DatabaseFactory.getThreadDatabase(context).updateSnippetTypeSilently(threadId);
+    long threadId;
 
-    notifyConversationListListeners();
+    db.beginTransaction();
+    try {
+      db.execSQL("UPDATE " + TABLE_NAME +
+                 " SET " + TYPE + " = (" + TYPE + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
+                 " WHERE " + ID + " = ?", SqlUtil.buildArgs(id));
+
+      threadId = getThreadIdForMessage(id);
+
+      DatabaseFactory.getThreadDatabase(context).updateSnippetTypeSilently(threadId);
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
     notifyConversationListeners(threadId);
   }
 
@@ -268,11 +280,6 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
-  public void markAsPreKeyBundle(long id) {
-    updateTypeBitmask(id, Types.KEY_EXCHANGE_MASK, Types.KEY_EXCHANGE_BIT | Types.KEY_EXCHANGE_BUNDLE_BIT);
-  }
-
-  @Override
   public void markAsInvalidVersionKeyExchange(long id) {
     updateTypeBitmask(id, 0, Types.KEY_EXCHANGE_INVALID_VERSION_BIT);
   }
@@ -321,11 +328,6 @@ public class SmsDatabase extends MessageDatabase {
   @Override
   public void markAsDecryptFailed(long id) {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_FAILED_BIT);
-  }
-
-  @Override
-  public void markAsDecryptDuplicate(long id) {
-    updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_DUPLICATE_BIT);
   }
 
   @Override
@@ -656,9 +658,8 @@ public class SmsDatabase extends MessageDatabase {
 
     long threadId = getThreadIdForMessage(messageId);
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    ThreadUpdateJob.enqueue(threadId);
     notifyConversationListeners(threadId);
-    notifyConversationListListeners();
 
     return new InsertResult(messageId, threadId);
   }
@@ -741,7 +742,7 @@ public class SmsDatabase extends MessageDatabase {
         DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
       }
 
-      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+      ThreadUpdateJob.enqueue(threadId);
 
       db.setTransactionSuccessful();
     } finally {
@@ -818,7 +819,7 @@ public class SmsDatabase extends MessageDatabase {
         DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
       }
 
-      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+      ThreadUpdateJob.enqueue(threadId);
 
       db.setTransactionSuccessful();
     } finally {
@@ -883,13 +884,14 @@ public class SmsDatabase extends MessageDatabase {
     values.put(TYPE, type);
     values.put(THREAD_ID, threadId);
 
-    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
-    long messageId    = db.insert(TABLE_NAME, null, values);
+    SQLiteDatabase db        = databaseHelper.getSignalWritableDatabase();
+    long           messageId = db.insert(TABLE_NAME, null, values);
 
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
     if (unread) {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
     }
+
+    ThreadUpdateJob.enqueue(threadId);
 
     notifyConversationListeners(threadId);
     TrimThreadJob.enqueueAsync(threadId);
@@ -1109,7 +1111,7 @@ public class SmsDatabase extends MessageDatabase {
       }
 
       if (!silent) {
-        DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+        ThreadUpdateJob.enqueue(threadId);
       }
 
       if (message.getSubscriptionId() != -1) {
@@ -1152,7 +1154,7 @@ public class SmsDatabase extends MessageDatabase {
     long messageId = db.insert(TABLE_NAME, null, values);
 
     DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    ThreadUpdateJob.enqueue(threadId);
 
     notifyConversationListeners(threadId);
 
@@ -1176,7 +1178,7 @@ public class SmsDatabase extends MessageDatabase {
     databaseHelper.getSignalWritableDatabase().insert(TABLE_NAME, null, values);
 
     DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
-    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    ThreadUpdateJob.enqueue(threadId);
 
     notifyConversationListeners(threadId);
 
@@ -1226,7 +1228,6 @@ public class SmsDatabase extends MessageDatabase {
 
       if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
         DatabaseFactory.getThreadDatabase(context).setLastScrolled(threadId, 0);
-        DatabaseFactory.getThreadDatabase(context).updateSilently(threadId, true);
         DatabaseFactory.getThreadDatabase(context).setLastSeenSilently(threadId);
       }
 
@@ -1237,7 +1238,6 @@ public class SmsDatabase extends MessageDatabase {
     }
 
     notifyConversationListeners(threadId);
-    notifyConversationListListeners();
 
     if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
       TrimThreadJob.enqueueAsync(threadId);

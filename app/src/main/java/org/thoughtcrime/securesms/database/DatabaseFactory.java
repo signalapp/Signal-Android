@@ -36,6 +36,9 @@ import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.io.Closeable;
+import java.io.IOException;
+
 public class DatabaseFactory {
 
   private static final Object lock = new Object();
@@ -310,5 +313,18 @@ public class DatabaseFactory {
 
   public boolean hasTable(String table) {
     return SqlUtil.tableExists(databaseHelper.getRawReadableDatabase(), table);
+  }
+
+  public @NonNull Transaction transaction() {
+    getRawDatabase().beginTransaction();
+    return () -> {
+      getRawDatabase().setTransactionSuccessful();
+      getRawDatabase().endTransaction();
+    };
+  }
+
+  public interface Transaction extends Closeable {
+    @Override
+    void close();
   }
 }

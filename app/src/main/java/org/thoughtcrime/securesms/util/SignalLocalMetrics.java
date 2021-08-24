@@ -99,7 +99,9 @@ public final class SignalLocalMetrics {
     private static final String SPLIT_DB_INSERT        = "db-insert";
     private static final String SPLIT_JOB_ENQUEUE      = "job-enqueue";
     private static final String SPLIT_JOB_PRE_NETWORK  = "job-pre-network";
-    private static final String SPLIT_NETWORK          = "network";
+    private static final String SPLIT_ENCRYPT          = "encrypt";
+    private static final String SPLIT_NETWORK_MAIN     = "network-main";
+    private static final String SPLIT_NETWORK_SYNC     = "network-sync";
     private static final String SPLIT_JOB_POST_NETWORK = "job-post-network";
     private static final String SPLIT_UI_UPDATE        = "ui-update";
 
@@ -123,14 +125,24 @@ public final class SignalLocalMetrics {
       LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_ENQUEUE);
     }
 
-    public static void onNetworkStarted(long messageId) {
+    public static void onDeliveryStarted(long messageId) {
       if (!ID_MAP.containsKey(messageId)) return;
       LocalMetrics.getInstance().split(requireId(messageId), SPLIT_JOB_PRE_NETWORK);
     }
 
-    public static void onNetworkFinished(long messageId) {
+    public static void onMessageEncrypted(long messageId) {
       if (!ID_MAP.containsKey(messageId)) return;
-      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK);
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_ENCRYPT);
+    }
+
+    public static void onMessageSent(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK_MAIN);
+    }
+
+    public static void onSyncMessageSent(long messageId) {
+      if (!ID_MAP.containsKey(messageId)) return;
+      LocalMetrics.getInstance().split(requireId(messageId), SPLIT_NETWORK_SYNC);
     }
 
     public static void onJobFinished(long messageId) {

@@ -319,15 +319,21 @@ public class SignalServiceMessageSender {
   public SendMessageResult sendDataMessage(SignalServiceAddress             recipient,
                                            Optional<UnidentifiedAccessPair> unidentifiedAccess,
                                            ContentHint                      contentHint,
-                                           SignalServiceDataMessage         message)
+                                           SignalServiceDataMessage         message,
+                                           IndividualSendEvents             sendEvents)
       throws UntrustedIdentityException, IOException
   {
     Log.d(TAG, "[" + message.getTimestamp() + "] Sending a data message.");
 
     Content           content         = createMessageContent(message);
     EnvelopeContent   envelopeContent = EnvelopeContent.encrypted(content, contentHint, message.getGroupId());
-    long              timestamp       = message.getTimestamp();
-    SendMessageResult result          = sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, envelopeContent, false, null);
+
+    sendEvents.onMessageEncrypted();
+
+    long              timestamp = message.getTimestamp();
+    SendMessageResult result    = sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, envelopeContent, false, null);
+
+    sendEvents.onMessageSent();
 
     if (result.getSuccess() != null && result.getSuccess().isNeedsSync()) {
       Content         syncMessage        = createMultiDeviceSentTranscriptContent(content, Optional.of(recipient), timestamp, Collections.singletonList(result), false);
@@ -335,6 +341,8 @@ public class SignalServiceMessageSender {
 
       sendMessage(localAddress, Optional.absent(), timestamp, syncMessageContent, false, null);
     }
+
+    sendEvents.onSyncMessageSent();
 
     // TODO [greyson][session] Delete this when we delete the button
     if (message.isEndSession()) {
@@ -2076,5 +2084,22 @@ public class SignalServiceMessageSender {
 
   public interface EventListener {
     void onSecurityEvent(SignalServiceAddress address);
+  }
+
+  public interface IndividualSendEvents {
+    IndividualSendEvents EMPTY = new IndividualSendEvents() {
+      @Override
+      public void onMessageEncrypted() { }
+
+      @Override
+      public void onMessageSent() { }
+
+      @Override
+      public void onSyncMessageSent() { }
+    };
+
+    void onMessageEncrypted();
+    void onMessageSent();
+    void onSyncMessageSent();
   }
 }
