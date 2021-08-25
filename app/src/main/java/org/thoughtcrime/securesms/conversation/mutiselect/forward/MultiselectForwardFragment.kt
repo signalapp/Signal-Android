@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.R
@@ -33,6 +35,7 @@ import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.sharing.ShareSelectionAdapter
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog
@@ -53,6 +56,7 @@ class MultiselectForwardFragment :
   override val peekHeightPercentage: Float = 0.67f
 
   private val viewModel: MultiselectForwardViewModel by viewModels(factoryProducer = this::createViewModelFactory)
+  private val disposables = LifecycleDisposable()
 
   private lateinit var selectionFragment: ContactSelectionListFragment
   private lateinit var contactFilterView: ContactFilterView
@@ -93,6 +97,7 @@ class MultiselectForwardFragment :
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     callback = requireNotNull(findListener())
+    disposables.bindTo(viewLifecycleOwner.lifecycle)
 
     selectionFragment = childFragmentManager.findFragmentById(R.id.contact_selection_list_fragment) as ContactSelectionListFragment
 
@@ -249,9 +254,18 @@ class MultiselectForwardFragment :
 
   override fun onBeforeContactSelected(recipientId: Optional<RecipientId>, number: String?, callback: Consumer<Boolean>) {
     if (recipientId.isPresent) {
-      viewModel.addSelectedContact(recipientId, null)
-      callback.accept(true)
-      contactFilterView.clear()
+      disposables.add(
+        viewModel.addSelectedContact(recipientId, null)
+          .subscribeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe { success ->
+            if (!success) {
+              Toast.makeText(requireContext(), R.string.ShareActivity_you_do_not_have_permission_to_send_to_this_group, Toast.LENGTH_SHORT).show()
+            }
+            callback.accept(success)
+            contactFilterView.clear()
+          }
+      )
     } else {
       Log.w(TAG, "Rejecting non-present recipient. Can't forward to an unknown contact.")
       callback.accept(false)

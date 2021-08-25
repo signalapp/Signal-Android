@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.core.Single
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
@@ -23,8 +24,14 @@ class MultiselectForwardViewModel(
 
   val shareContactMappingModels: LiveData<List<ShareSelectionMappingModel>> = Transformations.map(state) { s -> s.selectedContacts.mapIndexed { i, c -> ShareSelectionMappingModel(c, i == 0) } }
 
-  fun addSelectedContact(recipientId: Optional<RecipientId>, number: String?) {
-    store.update { it.copy(selectedContacts = it.selectedContacts + ShareContact(recipientId, number)) }
+  fun addSelectedContact(recipientId: Optional<RecipientId>, number: String?): Single<Boolean> {
+    return repository
+      .canSelectRecipient(recipientId)
+      .doOnSuccess { allowed ->
+        if (allowed) {
+          store.update { it.copy(selectedContacts = it.selectedContacts + ShareContact(recipientId, number)) }
+        }
+      }
   }
 
   fun removeSelectedContact(recipientId: Optional<RecipientId>, number: String?) {
