@@ -1,7 +1,9 @@
 package org.whispersystems.signalservice.api.storage;
 
 import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.signalservice.api.util.ProtoUtil;
 import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record;
 
@@ -11,6 +13,8 @@ import java.util.List;
 import java.util.Objects;
 
 public final class SignalGroupV1Record implements SignalRecord {
+
+  private static final String TAG = SignalGroupV1Record.class.getSimpleName();
 
   private final StorageId     id;
   private final GroupV1Record proto;
@@ -175,7 +179,11 @@ public final class SignalGroupV1Record implements SignalRecord {
       GroupV1Record proto = builder.build();
 
       if (unknownFields != null) {
-        proto = ProtoUtil.combineWithUnknownFields(proto, unknownFields);
+        try {
+          proto = ProtoUtil.combineWithUnknownFields(proto, unknownFields);
+        } catch (InvalidProtocolBufferException e) {
+          Log.w(TAG, "Failed to combine unknown fields!", e);
+        }
       }
 
       return new SignalGroupV1Record(id, proto);

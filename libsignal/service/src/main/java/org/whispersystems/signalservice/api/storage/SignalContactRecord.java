@@ -1,7 +1,9 @@
 package org.whispersystems.signalservice.api.storage;
 
 import com.google.protobuf.ByteString;
+import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
@@ -16,6 +18,8 @@ import java.util.List;
 import java.util.Objects;
 
 public final class SignalContactRecord implements SignalRecord {
+
+  private static final String TAG = SignalContactRecord.class.getSimpleName();
 
   private final StorageId     id;
   private final ContactRecord proto;
@@ -275,7 +279,11 @@ public final class SignalContactRecord implements SignalRecord {
       ContactRecord proto = builder.build();
 
       if (unknownFields != null) {
-        proto = ProtoUtil.combineWithUnknownFields(proto, unknownFields);
+        try {
+          proto = ProtoUtil.combineWithUnknownFields(proto, unknownFields);
+        } catch (InvalidProtocolBufferException e) {
+          Log.w(TAG, "Failed to combine unknown fields!", e);
+        }
       }
 
       return new SignalContactRecord(id, proto);
