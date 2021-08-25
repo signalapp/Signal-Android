@@ -3677,7 +3677,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   {
     reactionDelegate.setOnToolbarItemClickedListener(toolbarListener);
     reactionDelegate.setOnHideListener(onHideListener);
-    reactionDelegate.show(this, maskTarget, recipient.get(), conversationMessage, inputAreaHeight());
+    reactionDelegate.show(this, maskTarget, recipient.get(), conversationMessage, inputAreaHeight(), groupViewModel.isNonAdminInAnnouncementGroup());
   }
 
   @Override

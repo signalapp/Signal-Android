@@ -64,7 +64,8 @@ final class MenuState {
 
   static MenuState getMenuState(@NonNull Recipient conversationRecipient,
                                 @NonNull Set<MultiselectPart> selectedParts,
-                                boolean shouldShowMessageRequest)
+                                boolean shouldShowMessageRequest,
+                                boolean isNonAdminInAnnouncementGroup)
   {
     
     Builder builder         = new Builder();
@@ -143,7 +144,7 @@ final class MenuState {
                                              ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null)
              .shouldShowForwardAction(shouldShowForwardAction)
              .shouldShowDetailsAction(!actionMessage)
-             .shouldShowReplyAction(canReplyToMessage(conversationRecipient, actionMessage, messageRecord, shouldShowMessageRequest));
+             .shouldShowReplyAction(canReplyToMessage(conversationRecipient, actionMessage, messageRecord, shouldShowMessageRequest, isNonAdminInAnnouncementGroup));
     }
 
     return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText)
@@ -158,8 +159,14 @@ final class MenuState {
                            .allMatch(collection -> multiselectParts.containsAll(collection.toSet()));
   }
 
-  static boolean canReplyToMessage(@NonNull Recipient conversationRecipient, boolean actionMessage, @NonNull MessageRecord messageRecord, boolean isDisplayingMessageRequest) {
+  static boolean canReplyToMessage(@NonNull Recipient conversationRecipient,
+                                   boolean actionMessage,
+                                   @NonNull MessageRecord messageRecord,
+                                   boolean isDisplayingMessageRequest,
+                                   boolean isNonAdminInAnnouncementGroup)
+  {
     return !actionMessage                                                              &&
+           !isNonAdminInAnnouncementGroup                                              &&
            !messageRecord.isRemoteDelete()                                             &&
            !messageRecord.isPending()                                                  &&
            !messageRecord.isFailed()                                                   &&
