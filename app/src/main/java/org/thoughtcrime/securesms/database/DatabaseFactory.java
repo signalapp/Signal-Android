@@ -230,9 +230,6 @@ public class DatabaseFactory {
       getInstance(context).getRawDatabase().execSQL("DROP TABLE IF EXISTS job_spec");
       getInstance(context).getRawDatabase().execSQL("DROP TABLE IF EXISTS constraint_spec");
       getInstance(context).getRawDatabase().execSQL("DROP TABLE IF EXISTS dependency_spec");
-
-      instance.databaseHelper.close();
-      instance = null;
     }
   }
 
