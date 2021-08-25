@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.crypto.storage;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
@@ -36,11 +37,11 @@ public class SignalProtocolStoreImpl implements SignalServiceDataStore {
 
   public SignalProtocolStoreImpl(Context context) {
     this.context           = context;
-    this.preKeyStore       = new TextSecurePreKeyStore(context);
-    this.signedPreKeyStore = new TextSecurePreKeyStore(context);
-    this.identityKeyStore  = new TextSecureIdentityKeyStore(context);
-    this.sessionStore      = new TextSecureSessionStore(context);
-    this.senderKeyStore    = new SignalSenderKeyStore(context);
+    this.preKeyStore       = ApplicationDependencies.getPreKeyStore();
+    this.signedPreKeyStore = ApplicationDependencies.getPreKeyStore();
+    this.identityKeyStore  = ApplicationDependencies.getIdentityStore();
+    this.sessionStore      = ApplicationDependencies.getSessionStore();
+    this.senderKeyStore    = ApplicationDependencies.getSenderKeyStore();
   }
 
   @Override

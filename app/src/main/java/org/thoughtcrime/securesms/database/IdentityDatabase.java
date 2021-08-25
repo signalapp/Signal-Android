@@ -222,12 +222,16 @@ public class IdentityDatabase extends Database {
   }
 
   public void setApproval(@NonNull RecipientId recipientId, boolean nonBlockingApproval) {
+    setApproval(Recipient.resolved(recipientId).requireServiceId(), recipientId, nonBlockingApproval);
+  }
+
+  public void setApproval(@NonNull String addressName, @NonNull RecipientId recipientId, boolean nonBlockingApproval) {
     SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
 
     ContentValues contentValues = new ContentValues(2);
     contentValues.put(NONBLOCKING_APPROVAL, nonBlockingApproval);
 
-    database.update(TABLE_NAME, contentValues, ADDRESS + " = ?", SqlUtil.buildArgs(Recipient.resolved(recipientId).requireServiceId()));
+    database.update(TABLE_NAME, contentValues, ADDRESS + " = ?", SqlUtil.buildArgs(addressName));
 
     DatabaseFactory.getRecipientDatabase(context).markNeedsSync(recipientId);
   }

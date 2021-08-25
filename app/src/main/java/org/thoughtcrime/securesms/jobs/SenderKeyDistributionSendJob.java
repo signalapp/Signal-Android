@@ -111,7 +111,7 @@ public final class SenderKeyDistributionSendJob extends BaseJob {
                                                     .map(device -> new SignalProtocolAddress(recipient.requireServiceId(), device))
                                                     .collect(Collectors.toList());
 
-      new SignalSenderKeyStore(context).markSenderKeySharedWith(distributionId, addresses);
+      ApplicationDependencies.getSenderKeyStore().markSenderKeySharedWith(distributionId, addresses);
     }
   }
 

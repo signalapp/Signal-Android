@@ -8,6 +8,10 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.KbsEnclave;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
+import org.thoughtcrime.securesms.crypto.storage.SignalSenderKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.PendingRetryReceiptCache;
 import org.thoughtcrime.securesms.groups.GroupsV2Authorization;
@@ -90,6 +94,10 @@ public class ApplicationDependencies {
   private static volatile PendingRetryReceiptCache     pendingRetryReceiptCache;
   private static volatile SignalWebSocket              signalWebSocket;
   private static volatile MessageNotifier              messageNotifier;
+  private static volatile TextSecureIdentityKeyStore   identityStore;
+  private static volatile TextSecureSessionStore       sessionStore;
+  private static volatile TextSecurePreKeyStore        preKeyStore;
+  private static volatile SignalSenderKeyStore         senderKeyStore;
 
   @MainThread
   public static void init(@NonNull Application application, @NonNull Provider provider) {
@@ -499,6 +507,50 @@ public class ApplicationDependencies {
     return signalWebSocket;
   }
 
+  public static @NonNull TextSecureIdentityKeyStore getIdentityStore() {
+    if (identityStore == null) {
+      synchronized (LOCK) {
+        if (identityStore == null) {
+          identityStore = provider.provideIdentityStore();
+        }
+      }
+    }
+    return identityStore;
+  }
+
+  public static @NonNull TextSecureSessionStore getSessionStore() {
+    if (sessionStore == null) {
+      synchronized (LOCK) {
+        if (sessionStore == null) {
+          sessionStore = provider.provideSessionStore();
+        }
+      }
+    }
+    return sessionStore;
+  }
+
+  public static @NonNull TextSecurePreKeyStore getPreKeyStore() {
+    if (preKeyStore == null) {
+      synchronized (LOCK) {
+        if (preKeyStore == null) {
+          preKeyStore = provider.providePreKeyStore();
+        }
+      }
+    }
+    return preKeyStore;
+  }
+
+  public static @NonNull SignalSenderKeyStore getSenderKeyStore() {
+    if (senderKeyStore == null) {
+      synchronized (LOCK) {
+        if (senderKeyStore == null) {
+          senderKeyStore = provider.provideSenderKeyStore();
+        }
+      }
+    }
+    return senderKeyStore;
+  }
+
   public interface Provider {
     @NonNull GroupsV2Operations provideGroupsV2Operations();
     @NonNull SignalServiceAccountManager provideSignalServiceAccountManager();
@@ -527,5 +579,9 @@ public class ApplicationDependencies {
     @NonNull PendingRetryReceiptManager providePendingRetryReceiptManager();
     @NonNull PendingRetryReceiptCache providePendingRetryReceiptCache();
     @NonNull SignalWebSocket provideSignalWebSocket();
+    @NonNull TextSecureIdentityKeyStore provideIdentityStore();
+    @NonNull TextSecureSessionStore provideSessionStore();
+    @NonNull TextSecurePreKeyStore providePreKeyStore();
+    @NonNull SignalSenderKeyStore provideSenderKeyStore();
   }
 }

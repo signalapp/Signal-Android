@@ -84,7 +84,7 @@ public class AutomaticSessionResetJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    SessionUtil.archiveSession(context, recipientId, deviceId);
+    SessionUtil.archiveSession(recipientId, deviceId);
     DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(recipientId);
     insertLocalMessage();
 

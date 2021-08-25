@@ -373,7 +373,7 @@ public class RetrieveProfileJob extends BaseJob {
         return;
       }
 
-      IdentityUtil.saveIdentity(context, recipient.requireServiceId(), identityKey);
+      IdentityUtil.saveIdentity(recipient.requireServiceId(), identityKey);
     } catch (InvalidKeyException | IOException e) {
       Log.w(TAG, e);
     }

@@ -694,8 +694,7 @@ public final class MessageContentProcessor {
     }
 
     if (insertResult.isPresent()) {
-      SessionStore sessionStore = new TextSecureSessionStore(context);
-      sessionStore.deleteAllSessions(content.getSender().getIdentifier());
+      ApplicationDependencies.getSessionStore().deleteAllSessions(content.getSender().getIdentifier());
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
       ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
@@ -717,8 +716,7 @@ public final class MessageContentProcessor {
     long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
 
     if (!recipient.isGroup()) {
-      SessionStore sessionStore = new TextSecureSessionStore(context);
-      sessionStore.deleteAllSessions(recipient.requireServiceId());
+      ApplicationDependencies.getSessionStore().deleteAllSessions(recipient.requireServiceId());
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
 
@@ -1884,10 +1882,10 @@ public final class MessageContentProcessor {
 
     if (decryptionErrorMessage.getDeviceId() == SignalServiceAddress.DEFAULT_DEVICE_ID &&
         decryptionErrorMessage.getRatchetKey().isPresent()                             &&
-        SessionUtil.ratchetKeyMatches(context, requester, content.getSenderDevice(), decryptionErrorMessage.getRatchetKey().get()))
+        SessionUtil.ratchetKeyMatches(requester, content.getSenderDevice(), decryptionErrorMessage.getRatchetKey().get()))
     {
       warn(content.getTimestamp(), "[RetryReceipt-I] Ratchet key matches. Archiving the session.");
-      SessionUtil.archiveSession(context, requester.getId(), content.getSenderDevice());
+      SessionUtil.archiveSession(requester.getId(), content.getSenderDevice());
       archivedSession = true;
     }
 

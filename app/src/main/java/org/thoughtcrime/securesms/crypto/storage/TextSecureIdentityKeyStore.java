@@ -10,32 +10,33 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.model.IdentityStoreRecord;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.state.IdentityKeyStore;
-import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class TextSecureIdentityKeyStore implements IdentityKeyStore {
 
-  private static final int TIMESTAMP_THRESHOLD_SECONDS = 5;
-
   private static final String TAG = Log.tag(TextSecureIdentityKeyStore.class);
-  private static final Object LOCK = new Object();
+
+  private static final Object LOCK                        = new Object();
+  private static final int    TIMESTAMP_THRESHOLD_SECONDS = 5;
 
   private final Context context;
+  private final Cache   cache;
 
   public TextSecureIdentityKeyStore(Context context) {
     this.context = context;
+    this.cache   = new Cache(context);
   }
 
   @Override
@@ -48,41 +49,44 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     return TextSecurePreferences.getLocalRegistrationId(context);
   }
 
+  @Override
+  public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
+    return saveIdentity(address, identityKey, false) == SaveResult.UPDATE;
+  }
+
   public @NonNull SaveResult saveIdentity(SignalProtocolAddress address, IdentityKey identityKey, boolean nonBlockingApproval) {
     synchronized (LOCK) {
-      IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-      Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(address.getName());
-      RecipientId              recipientId      = RecipientId.fromExternalPush(address.getName());
+      IdentityStoreRecord identityRecord   = cache.get(address.getName());
+      RecipientId         recipientId      = RecipientId.fromExternalPush(address.getName());
 
-      if (!identityRecord.isPresent()) {
+      if (identityRecord == null) {
         Log.i(TAG, "Saving new identity...");
-        identityDatabase.saveIdentity(address.getName(), recipientId, identityKey, VerifiedStatus.DEFAULT, true, System.currentTimeMillis(), nonBlockingApproval);
+        cache.save(address.getName(), recipientId, identityKey, VerifiedStatus.DEFAULT, true, System.currentTimeMillis(), nonBlockingApproval);
         return SaveResult.NEW;
       }
 
-      if (!identityRecord.get().getIdentityKey().equals(identityKey)) {
-        Log.i(TAG, "Replacing existing identity... Existing: " + identityRecord.get().getIdentityKey().hashCode() + " New: " + identityKey.hashCode());
+      if (!identityRecord.getIdentityKey().equals(identityKey)) {
+        Log.i(TAG, "Replacing existing identity... Existing: " + identityRecord.getIdentityKey().hashCode() + " New: " + identityKey.hashCode());
         VerifiedStatus verifiedStatus;
 
-        if (identityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED ||
-            identityRecord.get().getVerifiedStatus() == VerifiedStatus.UNVERIFIED)
+        if (identityRecord.getVerifiedStatus() == VerifiedStatus.VERIFIED ||
+            identityRecord.getVerifiedStatus() == VerifiedStatus.UNVERIFIED)
         {
           verifiedStatus = VerifiedStatus.UNVERIFIED;
         } else {
           verifiedStatus = VerifiedStatus.DEFAULT;
         }
 
-
-        identityDatabase.saveIdentity(address.getName(), recipientId, identityKey, verifiedStatus, false, System.currentTimeMillis(), nonBlockingApproval);
+        cache.save(address.getName(), recipientId, identityKey, verifiedStatus, false, System.currentTimeMillis(), nonBlockingApproval);
         IdentityUtil.markIdentityUpdate(context, recipientId);
-        SessionUtil.archiveSiblingSessions(context, address);
+        SessionUtil.archiveSiblingSessions(address);
         DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(recipientId);
         return SaveResult.UPDATE;
       }
 
-      if (isNonBlockingApprovalRequired(identityRecord.get())) {
+      if (isNonBlockingApprovalRequired(identityRecord)) {
         Log.i(TAG, "Setting approval status...");
-        identityDatabase.setApproval(recipientId, nonBlockingApproval);
+        cache.setApproval(identityRecord, recipientId, nonBlockingApproval);
         return SaveResult.NON_BLOCKING_APPROVAL_REQUIRED;
       }
 
@@ -91,36 +95,29 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
   }
 
   @Override
-  public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
-    return saveIdentity(address, identityKey, false) == SaveResult.UPDATE;
-  }
-
-  @Override
   public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, Direction direction) {
-    synchronized (LOCK) {
-      boolean isSelf = address.getName().equals(TextSecurePreferences.getLocalUuid(context).toString()) ||
-                       address.getName().equals(TextSecurePreferences.getLocalNumber(context));
+    boolean isSelf = address.getName().equals(TextSecurePreferences.getLocalUuid(context).toString()) ||
+                     address.getName().equals(TextSecurePreferences.getLocalNumber(context));
 
-      if (isSelf) {
-        return identityKey.equals(IdentityKeyUtil.getIdentityKey(context));
-      }
+    if (isSelf) {
+      return identityKey.equals(IdentityKeyUtil.getIdentityKey(context));
+    }
 
-      IdentityStoreRecord record = DatabaseFactory.getIdentityDatabase(context).getIdentityStoreRecord(address.getName());
+    IdentityStoreRecord record = cache.get(address.getName());
 
-      switch (direction) {
-        case SENDING:
-          return isTrustedForSending(identityKey, record);
-        case RECEIVING:
-          return true;
-        default:
-          throw new AssertionError("Unknown direction: " + direction);
-      }
+    switch (direction) {
+      case SENDING:
+        return isTrustedForSending(identityKey, record);
+      case RECEIVING:
+        return true;
+      default:
+        throw new AssertionError("Unknown direction: " + direction);
     }
   }
 
   @Override
   public IdentityKey getIdentity(SignalProtocolAddress address) {
-    IdentityStoreRecord record = DatabaseFactory.getIdentityDatabase(context).getIdentityStoreRecord(address.getName());
+    IdentityStoreRecord record = cache.get(address.getName());
     return record != null ? record.getIdentityKey() : null;
   }
 
@@ -148,18 +145,47 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     return true;
   }
 
-  private boolean isNonBlockingApprovalRequired(IdentityRecord identityRecord) {
-    return isNonBlockingApprovalRequired(identityRecord.isFirstUse(), identityRecord.getTimestamp(), identityRecord.isApprovedNonBlocking());
+  private boolean isNonBlockingApprovalRequired(IdentityStoreRecord record) {
+    return !record.getFirstUse()            &&
+           !record.getNonblockingApproval() &&
+           System.currentTimeMillis() - record.getTimestamp() < TimeUnit.SECONDS.toMillis(TIMESTAMP_THRESHOLD_SECONDS);
   }
 
-  private boolean isNonBlockingApprovalRequired(IdentityStoreRecord identityRecord) {
-    return isNonBlockingApprovalRequired(identityRecord.getFirstUse(), identityRecord.getTimestamp(), identityRecord.getNonblockingApproval());
-  }
+  private static final class Cache {
 
-  private boolean isNonBlockingApprovalRequired(boolean firstUse, long timestamp, boolean nonblockingApproval) {
-    return !firstUse            &&
-           !nonblockingApproval &&
-           System.currentTimeMillis() - timestamp < TimeUnit.SECONDS.toMillis(TIMESTAMP_THRESHOLD_SECONDS);
+    private final Context                          context;
+    private final Map<String, IdentityStoreRecord> cache;
+
+    Cache(@NonNull Context context) {
+      this.context = context;
+      this.cache   = new LRUCache<>(200);
+    }
+
+    public synchronized @Nullable IdentityStoreRecord get(@NonNull String addressName) {
+      if (cache.containsKey(addressName)) {
+        return cache.get(addressName);
+      } else {
+        IdentityStoreRecord record = DatabaseFactory.getIdentityDatabase(context).getIdentityStoreRecord(addressName);
+        cache.put(addressName, record);
+        return record;
+      }
+    }
+
+    public synchronized void save(@NonNull String addressName, @NonNull RecipientId recipientId, @NonNull IdentityKey identityKey, @NonNull VerifiedStatus verifiedStatus, boolean firstUse, long timestamp, boolean nonBlockingApproval) {
+      DatabaseFactory.getIdentityDatabase(context).saveIdentity(addressName, recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval);
+      cache.put(addressName, new IdentityStoreRecord(addressName, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval));
+    }
+
+    public synchronized void setApproval(@NonNull IdentityStoreRecord record, @NonNull RecipientId recipientId, boolean nonblockingApproval) {
+      DatabaseFactory.getIdentityDatabase(context).setApproval(record.getAddressName(), recipientId, nonblockingApproval);
+      cache.put(record.getAddressName(),
+                new IdentityStoreRecord(record.getAddressName(),
+                                        record.getIdentityKey(),
+                                        record.getVerifiedStatus(),
+                                        record.getFirstUse(),
+                                        record.getTimestamp(),
+                                        nonblockingApproval));
+    }
   }
 
   public enum SaveResult {

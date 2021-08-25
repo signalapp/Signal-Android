@@ -469,8 +469,8 @@ public class DirectoryHelper {
 
     for (RecipientId newUser: newUsers) {
       Recipient recipient = Recipient.resolved(newUser);
-      if (!SessionUtil.hasSession(context, recipient.getId()) &&
-          !recipient.isSelf()                                 &&
+      if (!SessionUtil.hasSession(recipient.getId()) &&
+          !recipient.isSelf()                        &&
           recipient.hasAUserSetDisplayName(context))
       {
         IncomingJoinedMessage  message      = new IncomingJoinedMessage(recipient.getId());
