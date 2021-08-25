@@ -239,12 +239,13 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
     return conversationItem.getGiphyMp4PlayableProjection(recyclerview);
   }
 
-  @Override public
-  boolean canPlayContent() {
+  @Override
+  public boolean canPlayContent() {
     return conversationItem.canPlayContent();
   }
 
-  @Override public @NonNull List<Projection> getColorizerProjections() {
+  @Override
+  public @NonNull List<Projection> getColorizerProjections() {
     List<Projection> projections = conversationItem.getColorizerProjections();
     updateProjections();
     return projections;
