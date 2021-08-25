@@ -173,6 +173,12 @@ public final class PushGroupSendJob extends PushSendJob {
       throw new MmsException("No GV1 messages can be sent anymore!");
     }
 
+    Optional<GroupDatabase.GroupRecord> groupRecord = DatabaseFactory.getGroupDatabase(context).getGroup(groupRecipient.requireGroupId());
+
+    if (groupRecord.isPresent() && groupRecord.get().isAnnouncementGroup() && !groupRecord.get().isAdmin(Recipient.self())) {
+      throw new MmsException("Non-admins cannot send messages in announcement groups!");
+    }
+
     try {
       log(TAG, String.valueOf(message.getSentTimeMillis()), "Sending message: " + messageId + ", Recipient: " + message.getRecipient().getId() + ", Thread: " + threadId + ", Attachments: " + buildAttachmentString(message.getAttachments()));
 
