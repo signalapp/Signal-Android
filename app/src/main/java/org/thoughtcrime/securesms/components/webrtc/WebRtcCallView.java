@@ -291,6 +291,7 @@ public class WebRtcCallView extends ConstraintLayout {
     rotatableControls.add(cameraDirectionToggle);
     rotatableControls.add(decline);
     rotatableControls.add(smallLocalRender.findViewById(R.id.call_participant_mic_muted));
+    rotatableControls.add(ringToggle);
 
     smallHeaderConstraints = new ConstraintSet();
     smallHeaderConstraints.clone(getContext(), R.layout.webrtc_call_view_header_small);

@@ -192,6 +192,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                                .groupCallState(WebRtcViewModel.GroupCallState.DISCONNECTED)
                                .commit()
                                .changeCallSetupState()
+                               .isRemoteVideoOffer(false)
                                .enableVideoOnCreate(answerWithVideo)
                                .build();
 
