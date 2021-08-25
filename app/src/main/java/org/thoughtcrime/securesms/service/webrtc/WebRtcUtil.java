@@ -17,6 +17,7 @@ import org.whispersystems.libsignal.ecc.Curve;
 import org.whispersystems.libsignal.ecc.ECPublicKey;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
+import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
 
 /**
  * Calling specific helpers.
@@ -62,6 +63,13 @@ public final class WebRtcUtil {
       default:
         throw new IllegalArgumentException("Unexpected hangup type: " + hangupType);
     }
+  }
+
+  public static OpaqueMessage.Urgency getUrgencyFromCallUrgency(@NonNull CallManager.CallMessageUrgency urgency) {
+    if (urgency == CallManager.CallMessageUrgency.HANDLE_IMMEDIATELY) {
+      return OpaqueMessage.Urgency.HANDLE_IMMEDIATELY;
+    }
+    return OpaqueMessage.Urgency.DROPPABLE;
   }
 
   public static void enableSpeakerPhoneIfNeeded(@NonNull Context context, boolean enable) {

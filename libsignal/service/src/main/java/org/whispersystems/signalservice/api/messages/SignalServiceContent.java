@@ -848,7 +848,7 @@ public final class SignalServiceContent {
       return SignalServiceCallMessage.forBusy(new BusyMessage(busy.getId()), isMultiRing, destinationDeviceId);
     } else if (content.hasOpaque()) {
       SignalServiceProtos.CallMessage.Opaque opaque = content.getOpaque();
-      return SignalServiceCallMessage.forOpaque(new OpaqueMessage(opaque.getData().toByteArray()), isMultiRing, destinationDeviceId);
+      return SignalServiceCallMessage.forOpaque(new OpaqueMessage(opaque.getData().toByteArray(), null), isMultiRing, destinationDeviceId);
     }
 
     return SignalServiceCallMessage.empty();

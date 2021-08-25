@@ -46,6 +46,7 @@ import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
 import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
+import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ConfigurationMessage;
@@ -976,7 +977,11 @@ public class SignalServiceMessageSender {
     } else if (callMessage.getBusyMessage().isPresent()) {
       builder.setBusy(CallMessage.Busy.newBuilder().setId(callMessage.getBusyMessage().get().getId()));
     } else if (callMessage.getOpaqueMessage().isPresent()) {
-      builder.setOpaque(CallMessage.Opaque.newBuilder().setData(ByteString.copyFrom(callMessage.getOpaqueMessage().get().getOpaque())));
+      OpaqueMessage              opaqueMessage = callMessage.getOpaqueMessage().get();
+      ByteString                 data          = ByteString.copyFrom(opaqueMessage.getOpaque());
+      CallMessage.Opaque.Urgency urgency       = opaqueMessage.getUrgency().toProto();
+
+      builder.setOpaque(CallMessage.Opaque.newBuilder().setData(data).setUrgency(urgency));
     }
 
     builder.setMultiRing(callMessage.isMultiRing());

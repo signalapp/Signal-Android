@@ -5,6 +5,7 @@ import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.CALL_INCOM
 import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.NETWORK_FAILURE;
 import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.NO_SUCH_USER;
 import static org.thoughtcrime.securesms.events.WebRtcViewModel.State.UNTRUSTED_IDENTITY;
+import static org.thoughtcrime.securesms.service.webrtc.WebRtcUtil.getUrgencyFromCallUrgency;
 
 import android.app.Application;
 import android.content.Context;
@@ -589,10 +590,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   @Override
-  public void onSendCallMessage(@NonNull UUID uuid, @NonNull byte[] bytes, @NonNull CallManager.CallMessageUrgency unused) {
+  public void onSendCallMessage(@NonNull UUID uuid, @NonNull byte[] bytes, @NonNull CallManager.CallMessageUrgency urgency) {
     Log.i(TAG, "onSendCallMessage():");
 
-    OpaqueMessage            opaqueMessage = new OpaqueMessage(bytes);
+    OpaqueMessage            opaqueMessage = new OpaqueMessage(bytes, getUrgencyFromCallUrgency(urgency));
     SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forOpaque(opaqueMessage, true, null);
 
     networkExecutor.execute(() -> {
@@ -616,7 +617,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   @Override
-  public void onSendCallMessageToGroup(@NonNull byte[] groupIdBytes, @NonNull byte[] message, @NonNull CallManager.CallMessageUrgency unused) {
+  public void onSendCallMessageToGroup(@NonNull byte[] groupIdBytes, @NonNull byte[] message, @NonNull CallManager.CallMessageUrgency urgency) {
     Log.i(TAG, "onSendCallMessageToGroup():");
 
     networkExecutor.execute(() -> {
@@ -629,7 +630,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                                     .filter(r -> !r.isBlocked())
                                                                     .collect(Collectors.toList())));
 
-        OpaqueMessage            opaqueMessage = new OpaqueMessage(message);
+        OpaqueMessage            opaqueMessage = new OpaqueMessage(message, getUrgencyFromCallUrgency(urgency));
         SignalServiceCallMessage callMessage   = SignalServiceCallMessage.forOutgoingGroupOpaque(groupId.getDecodedId(), System.currentTimeMillis(), opaqueMessage, true, null);
         RecipientAccessList      accessList    = new RecipientAccessList(recipients);
 

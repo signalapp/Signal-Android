@@ -97,8 +97,13 @@ message CallMessage {
   }
 
   message Opaque {
-    optional bytes data  = 1;
-    reserved /* urgency */ 2;
+    enum Urgency {
+      DROPPABLE          = 0;
+      HANDLE_IMMEDIATELY = 1;
+    }
+
+    optional bytes   data    = 1;
+    optional Urgency urgency = 2;
   }
 
   optional Offer     offer               = 1;
