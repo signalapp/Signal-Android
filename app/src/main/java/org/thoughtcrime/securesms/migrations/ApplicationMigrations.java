@@ -82,9 +82,10 @@ public class ApplicationMigrations {
     static final int ATTACHMENT_CLEANUP_2          = 40;
     static final int ANNOUNCEMENT_GROUP_CAPABILITY = 41;
     static final int STICKER_MY_DAILY_LIFE         = 42;
+    static final int SENDER_KEY_3                  = 43;
   }
 
-  public static final int CURRENT_VERSION = 42;
+  public static final int CURRENT_VERSION = 43;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -360,6 +361,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.STICKER_MY_DAILY_LIFE) {
       jobs.put(Version.STICKER_MY_DAILY_LIFE, new StickerMyDailyLifeMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.SENDER_KEY_3) {
+      jobs.put(Version.SENDER_KEY_3, new AttributesMigrationJob());
     }
 
     return jobs;

@@ -78,7 +78,7 @@ public final class FeatureFlags {
   private static final String MEDIA_QUALITY_LEVELS              = "android.mediaQuality.levels";
   private static final String RETRY_RECEIPT_LIFESPAN            = "android.retryReceiptLifespan";
   private static final String RETRY_RESPOND_MAX_AGE             = "android.retryRespondMaxAge";
-  private static final String SENDER_KEY                        = "android.senderKey.4";
+  private static final String SENDER_KEY                        = "android.senderKey.5";
   private static final String RETRY_RECEIPTS                    = "android.retryReceipts";
   private static final String SUGGEST_SMS_BLACKLIST             = "android.suggestSmsBlacklist";
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
@@ -374,7 +374,7 @@ public final class FeatureFlags {
 
   /** Whether or not sending using sender key is enabled. */
   public static boolean senderKey() {
-    return getBoolean(SENDER_KEY, false);
+    return getBoolean(SENDER_KEY, true);
   }
 
   /** A comma-delimited list of country codes that should not be told about SMS during onboarding. */
