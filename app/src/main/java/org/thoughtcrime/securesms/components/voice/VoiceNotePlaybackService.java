@@ -27,7 +27,6 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 import com.google.android.exoplayer2.ui.PlayerNotificationManager;
 
-import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -168,7 +167,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
     }
 
     @Override
-    public void onPositionDiscontinuity(@NotNull Player.PositionInfo oldPosition, @NotNull Player.PositionInfo newPosition, int reason) {
+    public void onPositionDiscontinuity(@NonNull Player.PositionInfo oldPosition, @NonNull Player.PositionInfo newPosition, int reason) {
       int currentWindowIndex = newPosition.windowIndex;
       if (currentWindowIndex == C.INDEX_UNSET) {
         return;
@@ -203,7 +202,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
     }
 
     @Override
-    public void onPlayerError(@NotNull PlaybackException error) {
+    public void onPlayerError(@NonNull PlaybackException error) {
       Log.w(TAG, "ExoPlayer error occurred:", error);
     }
   }

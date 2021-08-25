@@ -11,7 +11,6 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.TransferListener;
 
-import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -38,7 +37,7 @@ public class PartDataSource implements DataSource {
   }
 
   @Override
-  public void addTransferListener(@NotNull TransferListener transferListener) {
+  public void addTransferListener(@NonNull TransferListener transferListener) {
   }
 
   @Override
@@ -63,7 +62,7 @@ public class PartDataSource implements DataSource {
   }
 
   @Override
-  public int read(@NotNull byte[] buffer, int offset, int readLength) throws IOException {
+  public int read(@NonNull byte[] buffer, int offset, int readLength) throws IOException {
     int read = inputSteam.read(buffer, offset, readLength);
 
     if (read > 0 && listener != null) {
@@ -78,9 +77,8 @@ public class PartDataSource implements DataSource {
     return uri;
   }
 
-  @NotNull
   @Override
-  public Map<String, List<String>> getResponseHeaders() {
+  public @NonNull Map<String, List<String>> getResponseHeaders() {
     return Collections.emptyMap();
   }
 

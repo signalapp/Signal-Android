@@ -10,7 +10,6 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.TransferListener;
 
-import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.net.ChunkedDataFetcher;
 
 import java.io.EOFException;
@@ -39,11 +38,11 @@ public class ChunkedDataSource implements DataSource {
   }
 
   @Override
-  public void addTransferListener(@NotNull TransferListener transferListener) {
+  public void addTransferListener(@NonNull TransferListener transferListener) {
   }
 
   @Override
-  public long open(@NotNull DataSpec dataSpec) throws IOException {
+  public long open(@NonNull DataSpec dataSpec) throws IOException {
     this.dataSpec  = dataSpec;
     this.exception = null;
 
@@ -96,7 +95,7 @@ public class ChunkedDataSource implements DataSource {
   }
 
   @Override
-  public int read(@NotNull byte[] buffer, int offset, int readLength) throws IOException {
+  public int read(@NonNull byte[] buffer, int offset, int readLength) throws IOException {
     int read = inputStream.read(buffer, offset, readLength);
 
     if (read > 0 && transferListener != null) {

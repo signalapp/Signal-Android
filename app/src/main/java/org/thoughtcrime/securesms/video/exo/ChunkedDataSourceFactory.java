@@ -6,8 +6,6 @@ import androidx.annotation.Nullable;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.TransferListener;
 
-import org.jetbrains.annotations.NotNull;
-
 import okhttp3.OkHttpClient;
 
 public class ChunkedDataSourceFactory implements DataSource.Factory {
@@ -21,8 +19,8 @@ public class ChunkedDataSourceFactory implements DataSource.Factory {
   }
 
 
-  @NotNull @Override
-  public DataSource createDataSource() {
+  @Override
+  public @NonNull DataSource createDataSource() {
     return new ChunkedDataSource(okHttpClient, listener);
   }
 }

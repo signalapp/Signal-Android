@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 
-import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
@@ -49,7 +48,7 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
             boolean canPlayInline,
             @NonNull Colorizer colorizer);
 
-  @NotNull ConversationMessage getConversationMessage();
+  @NonNull ConversationMessage getConversationMessage();
 
   void setEventListener(@Nullable EventListener listener);
 

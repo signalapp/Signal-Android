@@ -144,22 +144,22 @@ class VoiceNoteMediaItemFactory {
     }
 
     return new MediaItem.Builder()
-        .setUri(audioUri)
-        .setMediaMetadata(
-            new MediaMetadata.Builder()
-                .setTitle(title)
-                .setSubtitle(subtitle)
-                .setExtras(extras)
-                .build()
-        )
-        .setTag(
-            new MediaDescriptionCompat.Builder()
-                .setMediaUri(audioUri)
-                .setTitle(title)
-                .setSubtitle(subtitle)
-                .setExtras(extras)
-                .build())
-        .build();
+                        .setUri(audioUri)
+                        .setMediaMetadata(
+                            new MediaMetadata.Builder()
+                                .setTitle(title)
+                                .setSubtitle(subtitle)
+                                .setExtras(extras)
+                                .build()
+                        )
+                        .setTag(
+                            new MediaDescriptionCompat.Builder()
+                                .setMediaUri(audioUri)
+                                .setTitle(title)
+                                .setSubtitle(subtitle)
+                                .setExtras(extras)
+                                .build())
+                        .build();
   }
 
   public static @NonNull String getTitle(@NonNull Context context, @NonNull Recipient sender, @NonNull Recipient threadRecipient, @Nullable NotificationPrivacyPreference notificationPrivacyPreference) {

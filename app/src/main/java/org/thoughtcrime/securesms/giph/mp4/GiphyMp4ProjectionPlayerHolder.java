@@ -15,7 +15,6 @@ import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 
-import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Projection;
 
@@ -85,8 +84,8 @@ public final class GiphyMp4ProjectionPlayerHolder implements Player.Listener {
   }
 
   @Override
-  public void onPositionDiscontinuity(@NotNull Player.PositionInfo oldPosition,
-                                      @NotNull Player.PositionInfo newPosition,
+  public void onPositionDiscontinuity(@NonNull Player.PositionInfo oldPosition,
+                                      @NonNull Player.PositionInfo newPosition,
                                       int reason)
   {
     if (policyEnforcer != null && reason == Player.DISCONTINUITY_REASON_AUTO_TRANSITION) {

@@ -3,12 +3,13 @@ package org.thoughtcrime.securesms.video.exo;
 
 import android.net.Uri;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.DefaultDataSource;
 import com.google.android.exoplayer2.upstream.TransferListener;
 
-import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 
@@ -35,7 +36,7 @@ public class AttachmentDataSource implements DataSource {
   }
 
   @Override
-  public void addTransferListener(@NotNull TransferListener transferListener) {
+  public void addTransferListener(@NonNull TransferListener transferListener) {
   }
 
   @Override
@@ -48,7 +49,7 @@ public class AttachmentDataSource implements DataSource {
   }
 
   @Override
-  public int read(@NotNull byte[] buffer, int offset, int readLength) throws IOException {
+  public int read(@NonNull byte[] buffer, int offset, int readLength) throws IOException {
     return dataSource.read(buffer, offset, readLength);
   }
 
@@ -57,9 +58,8 @@ public class AttachmentDataSource implements DataSource {
     return dataSource.getUri();
   }
 
-  @NotNull
   @Override
-  public Map<String, List<String>> getResponseHeaders() {
+  public @NonNull Map<String, List<String>> getResponseHeaders() {
     return Collections.emptyMap();
   }
 

@@ -36,7 +36,6 @@ import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 
-import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.VideoSlide;
@@ -295,8 +294,8 @@ public class VideoPlayer extends FrameLayout {
     }
 
     @Override
-    public void onPositionDiscontinuity(@NotNull Player.PositionInfo oldPosition,
-                                        @NotNull Player.PositionInfo newPosition,
+    public void onPositionDiscontinuity(@NonNull Player.PositionInfo oldPosition,
+                                        @NonNull Player.PositionInfo newPosition,
                                         int reason)
     {
       if (playerPositionDiscontinuityCallback != null) {

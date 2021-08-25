@@ -20,7 +20,6 @@ import androidx.lifecycle.Observer;
 import com.google.android.material.button.MaterialButton;
 import com.google.common.collect.Sets;
 
-import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
@@ -126,9 +125,8 @@ public final class ConversationUpdateItem extends FrameLayout
     this.eventListener = listener;
   }
 
-  @NotNull
   @Override
-  public ConversationMessage getConversationMessage() {
+  public @NonNull ConversationMessage getConversationMessage() {
     return conversationMessage;
   }
 

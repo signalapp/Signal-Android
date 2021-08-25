@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.annimon.stream.Stream;
 import com.google.android.exoplayer2.MediaItem;
 
-import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
@@ -245,7 +244,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
     return conversationItem.canPlayContent();
   }
 
-  @NotNull @Override public List<Projection> getColorizerProjections() {
+  @Override public @NonNull List<Projection> getColorizerProjections() {
     List<Projection> projections = conversationItem.getColorizerProjections();
     updateProjections();
     return projections;

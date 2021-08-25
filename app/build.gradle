@@ -414,7 +414,6 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-core:2.15.0'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.15.0'
     implementation 'com.google.android.exoplayer:extension-mediasession:2.15.0'
-    implementation 'androidx.media:media:1.4.1'
 
     implementation 'org.conscrypt:conscrypt-android:2.0.0'
     implementation 'org.signal:aesgcmprovider:0.0.3'

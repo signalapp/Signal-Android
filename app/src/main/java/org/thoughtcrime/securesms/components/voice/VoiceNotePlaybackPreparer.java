@@ -20,7 +20,6 @@ import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
 
-import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -74,17 +73,17 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
   }
 
   @Override
-  public void onPrepareFromMediaId(@NotNull String mediaId, boolean playWhenReady, @Nullable Bundle extras) {
+  public void onPrepareFromMediaId(@NonNull String mediaId, boolean playWhenReady, @Nullable Bundle extras) {
     throw new UnsupportedOperationException("VoiceNotePlaybackPreparer does not support onPrepareFromMediaId");
   }
 
   @Override
-  public void onPrepareFromSearch(@NotNull String query, boolean playWhenReady, @Nullable Bundle extras) {
+  public void onPrepareFromSearch(@NonNull String query, boolean playWhenReady, @Nullable Bundle extras) {
     throw new UnsupportedOperationException("VoiceNotePlaybackPreparer does not support onPrepareFromSearch");
   }
 
   @Override
-  public void onPrepareFromUri(@NotNull Uri uri, boolean playWhenReady, @Nullable Bundle extras) {
+  public void onPrepareFromUri(@NonNull Uri uri, boolean playWhenReady, @Nullable Bundle extras) {
     Log.d(TAG, "onPrepareFromUri: " + uri);
     if (extras == null) {
       return;
@@ -120,7 +119,7 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
 
                        player.addListener(new Player.Listener() {
                          @Override
-                         public void onTimelineChanged(@NotNull Timeline timeline, int reason) {
+                         public void onTimelineChanged(@NonNull Timeline timeline, int reason) {
                            if (timeline.getWindowCount() >= window) {
                              player.setPlayWhenReady(false);
                              player.setPlaybackParameters(voiceNotePlaybackParameters.getParameters());
@@ -288,11 +287,11 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
 
   @SuppressWarnings("deprecation")
   @Override
-  public boolean onCommand(@NotNull Player player,
-                                     @NotNull ControlDispatcher controlDispatcher,
-                                     @NotNull String command,
-                                     @Nullable Bundle extras,
-                                     @Nullable ResultReceiver cb)
+  public boolean onCommand(@NonNull Player player,
+                           @NonNull ControlDispatcher controlDispatcher,
+                           @NonNull String command,
+                           @Nullable Bundle extras,
+                           @Nullable ResultReceiver cb)
   {
     return false;
   }

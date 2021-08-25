@@ -24,9 +24,9 @@ import okhttp3.OkHttpClient;
  */
 final class GiphyMp4ExoPlayerProvider implements DefaultLifecycleObserver {
 
-  private final Context context;
-  private final OkHttpClient okHttpClient = ApplicationDependencies.getOkHttpClient().newBuilder().proxySelector(new ContentProxySelector()).build();
-  private final DataSource.Factory dataSourceFactory = new ChunkedDataSourceFactory(okHttpClient, null);
+  private final Context            context;
+  private final OkHttpClient       okHttpClient       = ApplicationDependencies.getOkHttpClient().newBuilder().proxySelector(new ContentProxySelector()).build();
+  private final DataSource.Factory dataSourceFactory  = new ChunkedDataSourceFactory(okHttpClient, null);
   private final MediaSourceFactory mediaSourceFactory = new ProgressiveMediaSource.Factory(dataSourceFactory);
 
   GiphyMp4ExoPlayerProvider(@NonNull Context context) {

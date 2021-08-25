@@ -704,8 +704,8 @@ public class ConversationAdapter
       return getBindable().getPlaybackPolicyEnforcer();
     }
 
-    @NonNull
-    public @Override Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerView) {
+    @Override
+    public @NonNull Projection getGiphyMp4PlayableProjection(@NonNull ViewGroup recyclerView) {
       return getBindable().getGiphyMp4PlayableProjection(recyclerView);
     }
 

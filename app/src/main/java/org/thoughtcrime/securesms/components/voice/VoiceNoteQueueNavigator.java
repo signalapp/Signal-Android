@@ -9,8 +9,6 @@ import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ext.mediasession.TimelineQueueNavigator;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * Navigator to help support seek forward and back.
  */
@@ -21,9 +19,8 @@ final class VoiceNoteQueueNavigator extends TimelineQueueNavigator {
     super(mediaSession);
   }
 
-  @NotNull
   @Override
-  public MediaDescriptionCompat getMediaDescription(@NotNull Player player, int windowIndex) {
+  public @NonNull MediaDescriptionCompat getMediaDescription(@NonNull Player player, int windowIndex) {
     MediaItem mediaItem = windowIndex >= 0 && windowIndex < player.getMediaItemCount() ? player.getMediaItemAt(windowIndex) : null;
 
     if (mediaItem == null || mediaItem.playbackProperties == null) {

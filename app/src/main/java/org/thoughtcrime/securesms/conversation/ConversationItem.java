@@ -63,7 +63,6 @@ import com.annimon.stream.Stream;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.common.collect.Sets;
 
-import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
@@ -126,6 +125,7 @@ import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.StringUtil;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.UrlClickHandler;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VibrateUtil;
@@ -142,8 +142,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
-
-import static org.thoughtcrime.securesms.util.ThemeUtil.isDarkTheme;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -605,9 +603,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     return hasQuote(messageRecord) || hasLinkPreview(messageRecord);
   }
 
-  @NotNull
   @Override
-  public ConversationMessage getConversationMessage() {
+  public @NonNull ConversationMessage getConversationMessage() {
     return conversationMessage;
   }
 
@@ -847,7 +844,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (messageRecord.isOutgoing()) {
         bodyText.setMentionBackgroundTint(ContextCompat.getColor(context, R.color.transparent_black_25));
       } else {
-        bodyText.setMentionBackgroundTint(ContextCompat.getColor(context, isDarkTheme(context) ? R.color.core_grey_60 : R.color.core_grey_20));
+        bodyText.setMentionBackgroundTint(ContextCompat.getColor(context, ThemeUtil.isDarkTheme(context) ? R.color.core_grey_60 : R.color.core_grey_20));
       }
 
       bodyText.setText(StringUtil.trim(styledText));
@@ -1953,7 +1950,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private final class TouchDelegateChangedListener implements ConversationItemFooter.OnTouchDelegateChangedListener {
     @Override
-    public void onTouchDelegateChanged(@NonNull @NotNull Rect delegateRect, @NonNull @NotNull View delegateView) {
+    public void onTouchDelegateChanged(@NonNull Rect delegateRect, @NonNull View delegateView) {
       offsetDescendantRectToMyCoords(footer, delegateRect);
       setTouchDelegate(new TouchDelegate(delegateRect, delegateView));
     }

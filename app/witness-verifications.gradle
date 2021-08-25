@@ -9,8 +9,8 @@ dependencyVerification {
         ['androidx.activity:activity:1.2.2',
          'e165fb20f006b77894d349572cc3acd2760baa8416ae4d33cb8de6a84dd6730c'],
 
-        ['androidx.annotation:annotation-experimental:1.1.0',
-         '0157de61a2064047896a058080f3fd67ba57ad9a94857b3f7a363660243e3f90'],
+        ['androidx.annotation:annotation-experimental:1.0.0',
+         'b219d2b568e7e4ba534e09f8c2fd242343df6ccbdfbbe938846f5d740e6b0b11'],
 
         ['androidx.annotation:annotation:1.2.0',
          '9029262bddce116e6d02be499e4afdba21f24c239087b76b3b57d7e98b490a36'],
@@ -72,8 +72,8 @@ dependencyVerification {
         ['androidx.core:core-ktx:1.5.0',
          '5964cfe7a4882da2a00fb6ca3d3a072d04139208186f7bc4b3cb66022764fc42'],
 
-        ['androidx.core:core:1.6.0',
-         '875dbec888c91b05521575fd180cc08824d2c4d12b10b0261b4f9d6825214ef1'],
+        ['androidx.core:core:1.5.0',
+         '2b279712795689069cfb63e48b3ab63c32a5649bdda44c482eb8f81ca1a72161'],
 
         ['androidx.cursoradapter:cursoradapter:1.0.0',
          'a81c8fe78815fa47df5b749deb52727ad11f9397da58b16017f4eb2c11e28564'],
@@ -171,8 +171,8 @@ dependencyVerification {
         ['androidx.localbroadcastmanager:localbroadcastmanager:1.0.0',
          'e71c328ceef5c4a7d76f2d86df1b65d65fe2acf868b1a4efd84a3f34336186d8'],
 
-        ['androidx.media:media:1.4.1',
-         'fdfb2f93b23895341ed547ffb26e1f708d9d20e3cd8e73bb6590e4a7131fd60f'],
+        ['androidx.media:media:1.3.1',
+         '24c6ca0c281b27dec054a09ae584028266683274ca8f53b230470ff404a7d3f4'],
 
         ['androidx.multidex:multidex:2.0.1',
          '42dd32ff9f97f85771b82a20003a8d70f68ab7b4ba328964312ce0732693db09'],
