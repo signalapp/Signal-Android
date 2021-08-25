@@ -882,10 +882,7 @@
     <string name="InviteActivity_sending">Sending…</string>
     <string name="InviteActivity_invitations_sent">Invitations sent!</string>
     <string name="InviteActivity_invite_to_signal">Invite to Signal</string>
-    <plurals name="InviteActivity_send_sms_to_friends">
-        <item quantity="one">SEND SMS TO %d FRIEND</item>
-        <item quantity="other">SEND SMS TO %d FRIENDS</item>
-    </plurals>
+    <string name="InviteActivity_send_sms">Send SMS (%d)</string>
     <plurals name="InviteActivity_send_sms_invites">
         <item quantity="one">Send %d SMS invite?</item>
         <item quantity="other">Send %d SMS invites?</item>

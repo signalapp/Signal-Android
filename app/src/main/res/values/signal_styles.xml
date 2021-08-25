@@ -18,6 +18,12 @@
         <item name="android:minHeight">48dp</item>
     </style>
 
+    <style name="Signal.Widget.Button.Large.Primary.Inverse" parent="@style/Signal.Widget.Button.Large.Primary">
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textColor">@color/signal_button_primary_inverse_text_selector</item>
+        <item name="background">?attr/selectableItemBackground</item>
+    </style>
+
     <style name="Signal.Widget.Button.Large.Danger" parent="@style/Signal.Widget.Button.Large.Primary">
         <item name="backgroundTint">@color/signal_alert_primary</item>
     </style>

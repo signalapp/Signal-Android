@@ -3,9 +3,7 @@ package org.thoughtcrime.securesms;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,7 +18,6 @@ import android.widget.Toast;
 import androidx.annotation.AnimRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import org.thoughtcrime.securesms.components.ContactFilterView;
@@ -35,10 +32,8 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarInviteTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
@@ -49,14 +44,13 @@ import java.util.function.Consumer;
 
 public class InviteActivity extends PassphraseRequiredActivity implements ContactSelectionListFragment.OnContactSelectedListener {
 
-  private ContactSelectionListFragment contactsFragment;
-  private EditText                     inviteText;
-  private ViewGroup                    smsSendFrame;
-  private Button                       smsSendButton;
-  private Animation                    slideInAnimation;
-  private Animation                    slideOutAnimation;
-  private DynamicTheme                 dynamicTheme = new DynamicNoActionBarInviteTheme();
-  private Toolbar                      primaryToolbar;
+  private       ContactSelectionListFragment contactsFragment;
+  private       EditText                     inviteText;
+  private       ViewGroup                    smsSendFrame;
+  private       Button                       smsSendButton;
+  private       Animation                    slideInAnimation;
+  private       Animation                    slideOutAnimation;
+  private final DynamicTheme                 dynamicTheme = new DynamicNoActionBarInviteTheme();
 
   @Override
   protected void onPreCreate() {
@@ -84,7 +78,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
   }
 
   private void initializeAppBar() {
-    primaryToolbar = findViewById(R.id.toolbar);
+    final Toolbar primaryToolbar = findViewById(R.id.toolbar);
     setSupportActionBar(primaryToolbar);
 
     assert getSupportActionBar() != null;
@@ -101,7 +95,6 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     TextView             shareText       = findViewById(R.id.share_text);
     View                 smsButton       = findViewById(R.id.sms_button);
     Button               smsCancelButton = findViewById(R.id.cancel_sms_button);
-    Toolbar              smsToolbar      = findViewById(R.id.sms_send_frame_toolbar);
     ContactFilterView    contactFilter   = findViewById(R.id.contact_filter_edit_text);
 
     inviteText        = findViewById(R.id.invite_text);
@@ -123,7 +116,6 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     smsCancelButton.setOnClickListener(new SmsCancelClickListener());
     smsSendButton.setOnClickListener(new SmsSendClickListener());
     contactFilter.setOnFilterChangedListener(new ContactFilterChangedListener());
-    smsToolbar.setNavigationIcon(R.drawable.ic_search_conversation_24);
 
     if (Util.isDefaultSmsProvider(this)) {
       shareButton.setOnClickListener(new ShareClickListener());
@@ -164,9 +156,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
   }
 
   private void updateSmsButtonText(int count) {
-    smsSendButton.setText(getResources().getQuantityString(R.plurals.InviteActivity_send_sms_to_friends,
-                                                           count,
-                                                           count));
+    smsSendButton.setText(getResources().getString(R.string.InviteActivity_send_sms, count));
     smsSendButton.setEnabled(count > 0);
   }
 
@@ -178,41 +168,19 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     }
   }
 
+  @Override public boolean onSupportNavigateUp() {
+    if (smsSendFrame.getVisibility() == View.VISIBLE) {
+      cancelSmsSelection();
+      return false;
+    } else {
+      return super.onSupportNavigateUp();
+    }
+  }
+
   private void cancelSmsSelection() {
-    setPrimaryColorsToolbarNormal();
     contactsFragment.reset();
     updateSmsButtonText(contactsFragment.getSelectedContacts().size());
     ViewUtil.animateOut(smsSendFrame, slideOutAnimation, View.GONE);
-  }
-
-  private void setPrimaryColorsToolbarNormal() {
-    primaryToolbar.setBackgroundColor(0);
-    primaryToolbar.getNavigationIcon().setColorFilter(null);
-    primaryToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.signal_text_primary));
-
-    if (Build.VERSION.SDK_INT >= 23) {
-      WindowUtil.setStatusBarColor(getWindow(), ThemeUtil.getThemedColor(this, android.R.attr.statusBarColor));
-      getWindow().setNavigationBarColor(ThemeUtil.getThemedColor(this, android.R.attr.navigationBarColor));
-      WindowUtil.setLightStatusBarFromTheme(this);
-    }
-
-    WindowUtil.setLightNavigationBarFromTheme(this);
-  }
-
-  private void setPrimaryColorsToolbarForSms() {
-    primaryToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.core_ultramarine));
-    primaryToolbar.getNavigationIcon().setColorFilter(ContextCompat.getColor(this, R.color.signal_text_toolbar_subtitle), PorterDuff.Mode.SRC_IN);
-    primaryToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.signal_text_toolbar_title));
-
-    if (Build.VERSION.SDK_INT >= 23) {
-      WindowUtil.setStatusBarColor(getWindow(), ContextCompat.getColor(this, R.color.core_ultramarine));
-      WindowUtil.clearLightStatusBar(getWindow());
-    }
-
-    if (Build.VERSION.SDK_INT >= 27) {
-      getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.core_ultramarine));
-      WindowUtil.clearLightNavigationBar(getWindow());
-    }
   }
 
   private class ShareClickListener implements OnClickListener {
@@ -233,7 +201,6 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
   private class SmsClickListener implements OnClickListener {
     @Override
     public void onClick(View v) {
-      setPrimaryColorsToolbarForSms();
       ViewUtil.animateIn(smsSendFrame, slideInAnimation);
     }
   }
