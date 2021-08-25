@@ -401,9 +401,9 @@
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Manah</string> -->
   <string name="InviteActivity_invitations_sent">Ulem-ulem dipunkirimaken!</string>
   <string name="InviteActivity_invite_to_signal">Ajak ngginakaken Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="other">KIRIMAKEN SMS DHATENG %d KANCA</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">Kirimaken SMS ulem-ulem dhateng %d?</item>
   </plurals>

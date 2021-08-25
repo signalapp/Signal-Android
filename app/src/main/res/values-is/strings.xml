@@ -749,22 +749,20 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Deila</string>
   <string name="InviteActivity_share_with_contacts">Deila með tengiliðum</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Veldu hvernig á að deila</string> -->
   <string name="InviteActivity_cancel">Hætta við</string>
   <string name="InviteActivity_sending">Sendi…</string>
   <string name="InviteActivity_invitations_sent">Boðskort voru send!</string>
   <string name="InviteActivity_invite_to_signal">Bjóða á Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">SENDA SMS TIL %d VINAR</item>
     <item quantity="other">SENDA SMS TIL %d VINA</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Senda %d SMS boð?</item>
     <item quantity="other">Senda %d SMS boð?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Skiptum yfir í Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Það lítur út eins og þú sért ekki með nein forrit sem hægt sé að deila til.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vinir láta vini sína ekki spjalla án dulritunar.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Kanna nánar</string>
   <!--LongMessageActivity-->
@@ -836,10 +834,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Er að tengja hringingu með Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Innhringing með Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Stöðva hringiþjónustu Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Hafna símtali</string> -->
   <string name="NotificationBarManager__answer_call">Svara símtali</string>
   <string name="NotificationBarManager__end_call">Ljúka símtali</string>
   <string name="NotificationBarManager__cancel_call">Hætta við símtal</string>
+  <string name="NotificationBarManager__join_call">Taka þátt í símtali</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Kveikja á tilkynningum?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Misstu aldrei af skilaboðum frá tengiliðunum þinum eða hópum.</string>

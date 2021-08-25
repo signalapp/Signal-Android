@@ -619,7 +619,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Gotowe</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Nie można dodać tej osoby do Starych grup.</string>
-  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Ta osoba nie może być dodana do grup ogłoszeniowych.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Ta osoba nie może być dodana do grup informacyjnych.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Dodać \"%1$s\" do \"%2$s\"?</item>
     <item quantity="few">Dodać %3$d członków do \"%2$s\"?</item>
@@ -702,7 +702,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Tylko administratorzy mogą zresetować link do grupy.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nie masz uprawnień, aby to zrobić</string>
   <string name="ManageGroupActivity_not_capable">Ktoś, kogo dodałeś, nie obsługuje nowych grup i musi zaktualizować Signal.</string>
-  <string name="ManageGroupActivity_not_announcement_capable">Ktoś, kogo dodałeś(aś), nie obsługuje grup ogłoszeniowych i musi zaktualizować Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Ktoś, kogo dodałeś(aś), nie obsługuje grup informacyjnych i musi zaktualizować Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Aktualizacja grupy nie powiodła się</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nie jesteś członkiem tej grupy</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Aktualizacja grupy nie powiodła się, spróbuj później</string>
@@ -823,17 +823,17 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Udostępnij</string>
   <string name="InviteActivity_share_with_contacts">Udostępnij kontaktom</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Wybierz sposób udostępnienia</string> -->
+  <string name="InviteActivity_share_via">Udostępnij przez…</string>
   <string name="InviteActivity_cancel">Anuluj</string>
   <string name="InviteActivity_sending">Wysyłanie…</string>
   <string name="InviteActivity_invitations_sent">Zaproszenie zostało wysłane!</string>
   <string name="InviteActivity_invite_to_signal">Zaproś do używania Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">WYŚLIJ SMS DO %d ZNAJOMEGO</item>
     <item quantity="few">WYŚLIJ SMS DO %d ZNAJOMYCH</item>
     <item quantity="many">WYŚLIJ SMS DO %d ZNAJOMYCH</item>
     <item quantity="other">WYŚLIJ SMS DO %d ZNAJOMYCH</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Wysłać %d zaproszenie SMS?</item>
     <item quantity="few">Wysłać %d zaproszenia SMS?</item>
@@ -842,7 +842,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Zacznij używać Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Wygląda na to, że nie masz żadnych aplikacji z którymi możesz się podzielić.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Nie pozwól znajomym używać nieszyfrowanych połączeń.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Dowiedz się więcej</string>
   <!--LongMessageActivity-->
@@ -921,11 +920,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Połączenie Signal w toku</string>
   <string name="NotificationBarManager__establishing_signal_call">Nawiązywanie połączenia Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Przychodzące połączenie Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Przychodzące połączenie grupowe Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Zatrzymywanie usługi połączeń Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Odrzuć</string> -->
+  <string name="NotificationBarManager__decline_call">Odrzuć połączenie</string>
   <string name="NotificationBarManager__answer_call">Odbierz</string>
   <string name="NotificationBarManager__end_call">Zakończ</string>
   <string name="NotificationBarManager__cancel_call">Anuluj</string>
+  <string name="NotificationBarManager__join_call">Dołącz do rozmowy</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Włączyć powiadomienia?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Nie przegap wiadomości od kontaktów i grup.</string>
@@ -1315,6 +1316,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Aby zadzwonić do %1$s, Signal potrzebuje dostępu do aparatu</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Łączenie…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupa jest zbyt duża, aby powiadomić uczestników dzwonkiem.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Połączenie audio Signal</string>
   <string name="WebRtcCallView__signal_video_call">Połączenie wideo Signal</string>
@@ -1327,8 +1329,42 @@
   <string name="WebRtcCallView__reconnecting">Ponowne łączenie…</string>
   <string name="WebRtcCallView__joining">Dołączanie…</string>
   <string name="WebRtcCallView__disconnected">Niepołączony</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal zadzwoni do %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal zadzwoni do %1$s i %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal zadzwoni do %1$s, %2$s i %3$d innego</item>
+    <item quantity="few">Signal zadzwoni do %1$s, %2$s i %3$d innych</item>
+    <item quantity="many">Signal zadzwoni do %1$s, %2$s i %3$d innych</item>
+    <item quantity="other">Signal zadzwoni do %1$s, %2$s i %3$d innych</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s otrzyma powiadomienie</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s i %2$s otrzymają powiadomienie</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s i %3$d innych otrzyma powiadomienie</item>
+    <item quantity="few">%1$s, %2$s i %3$d innych otrzyma powiadomienie</item>
+    <item quantity="many">%1$s, %2$s i %3$d innych otrzyma powiadomienie</item>
+    <item quantity="other">%1$s, %2$s i %3$d innych otrzyma powiadomienie</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Dzwoni do %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Dzwoni do %1$s i %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Dzwoni do %1$s, %2$s i %3$d innego</item>
+    <item quantity="few">Dzwoni do %1$s, %2$s i %3$d innych</item>
+    <item quantity="many">Dzwoni do %1$s, %2$s i %3$d innych</item>
+    <item quantity="other">Dzwoni do %1$s, %2$s i %3$d innych</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s dzwoni do Ciebie</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s dzwoni do Ciebie i %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s dzwoni do Ciebie, %2$s i %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s dzwoni do Ciebie, %2$s, %3$s i %4$d innego</item>
+    <item quantity="few">%1$s dzwoni do Ciebie, %2$s, %3$s i %4$d innych</item>
+    <item quantity="many">%1$s dzwoni do Ciebie, %2$s, %3$s i %4$d innych</item>
+    <item quantity="other">%1$s dzwoni do Ciebie, %2$s, %3$s i %4$d innych</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Brak innych uczestników rozmowy</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s uczestniczy w rozmowie</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s uczestniczysz w rozmowie</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s i %2$s uczestniczą w rozmowie</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s udostępnia</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1341,6 +1377,7 @@
   <string name="WebRtcCallView__speaker">Głośnik</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Wycisz</string>
+  <string name="WebRtcCallView__ring">Zadzwoń</string>
   <string name="WebRtcCallView__end_call">Zakończ rozmowę</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

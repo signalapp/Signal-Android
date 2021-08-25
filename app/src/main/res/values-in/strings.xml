@@ -712,20 +712,18 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Berbagi</string>
   <string name="InviteActivity_share_with_contacts">Bagikan dengan kontak</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Berbagi melalui</string> -->
   <string name="InviteActivity_cancel">Batal</string>
   <string name="InviteActivity_sending">Mengirimkan…</string>
   <string name="InviteActivity_invitations_sent">Undangan terkirim!</string>
   <string name="InviteActivity_invite_to_signal">Undang ke Signal!</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="other">KIRIM SMS KE %d TEMAN</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">Kirim %d undangan SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Ayo pindah ke Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Teman tidak membiarkan temannya mengobrol tanpa enkripsi.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Pelajari lebih lanjut</string>
   <!--LongMessageActivity-->
@@ -793,10 +791,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Menyiapkan panggilan Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Panggilan masuk Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Menghentikan layanan panggilan Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Tolak panggilan</string> -->
   <string name="NotificationBarManager__answer_call">Terima panggilan</string>
   <string name="NotificationBarManager__end_call">Akhiri panggilan</string>
   <string name="NotificationBarManager__cancel_call">Batalkan panggilan</string>
+  <string name="NotificationBarManager__join_call">Bergabung Panggilan</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Nyalakan Pemberitahuan?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Jangan pernah lewatkan pesan dari kontak dan grup Anda.</string>

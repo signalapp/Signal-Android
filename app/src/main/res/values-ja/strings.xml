@@ -712,20 +712,19 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">共有</string>
   <string name="InviteActivity_share_with_contacts">連絡先と共有</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">共有方法を選択</string> -->
+  <string name="InviteActivity_share_via">共有…</string>
   <string name="InviteActivity_cancel">キャンセル</string>
   <string name="InviteActivity_sending">送信しています…</string>
   <string name="InviteActivity_invitations_sent">招待を送信しました！</string>
   <string name="InviteActivity_invite_to_signal">Signalに招待する</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="other">SMSを友達%d人に送る</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">SMS招待状%d件を送信しますか？</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">メッセージアプリをSignalにしましょう: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">共有先として使えるアプリがないようです。</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">友達とのチャットを暗号化しましょう。</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">詳しく見る</string>
   <!--LongMessageActivity-->
@@ -792,11 +791,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal通話を接続しています</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal通話の着信</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Signalグループ着信</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal通話サービスを停止しています</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">通話を拒否</string> -->
+  <string name="NotificationBarManager__decline_call">拒否する</string>
   <string name="NotificationBarManager__answer_call">通話を開始</string>
   <string name="NotificationBarManager__end_call">通話を終了</string>
   <string name="NotificationBarManager__cancel_call">通話をキャンセル</string>
+  <string name="NotificationBarManager__join_call">通話に参加する</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">通知を有効にしますか？</string>
   <string name="NotificationsMegaphone_never_miss_a_message">連絡先やグループからのメッセージを見逃しません。</string>
@@ -1141,6 +1142,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s と通話するには、Signalにカメラへのアクセスを許可してください。</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">呼び出しています…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">グループが大きすぎるため、参加者を呼べません。</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal通話</string>
   <string name="WebRtcCallView__signal_video_call">Signalビデオ通話</string>
@@ -1153,8 +1155,30 @@
   <string name="WebRtcCallView__reconnecting">再接続しています…</string>
   <string name="WebRtcCallView__joining">参加しています…</string>
   <string name="WebRtcCallView__disconnected">接続していません</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signalは %1$s を呼び出します</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signalは %1$s と %2$s を呼び出します</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="other">Signalは %1$s, %2$s ほか%3$d名を呼び出します</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s には通知されません</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s と %2$s には通知されません</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="other">%1$s, %2$s ほか%3$d名には通知されません</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">%1$s を呼び出しています</string>
+  <string name="WebRtcCallView__ringing_s_and_s">%1$s と %2$s を呼び出しています</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="other">%1$s, %2$s ほか%3$d名を呼び出しています</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s があなたを呼び出しています</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s があなたと %2$s を呼び出しています</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s があなた, %2$s および %3$s を呼び出しています</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="other">%1$s があなた, %2$s, %3$s ほか%4$d名を呼び出しています</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">誰も参加していません</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s が参加中</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s が参加中</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s と %2$s が参加中</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s が画面を共有しています</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1164,7 +1188,8 @@
   <string name="WebRtcCallView__speaker">スピーカー</string>
   <string name="WebRtcCallView__camera">カメラ</string>
   <string name="WebRtcCallView__mute">ミュート</string>
-  <string name="WebRtcCallView__end_call">通話を終了</string>
+  <string name="WebRtcCallView__ring">呼び出し</string>
+  <string name="WebRtcCallView__end_call">通話終了</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">参加者 · %1$d人</item>

@@ -752,22 +752,20 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">పంచుకోండి</string>
   <string name="InviteActivity_share_with_contacts">పరిచయాలతో భాగస్వామ్యం చేయండి</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">ఎలా భాగస్వామ్యం చేయాలో ఎంచుకోండి</string> -->
   <string name="InviteActivity_cancel">రద్దు</string>
   <string name="InviteActivity_sending">పంపుతోంది …</string>
   <string name="InviteActivity_invitations_sent">ఆహ్వనం పంపబడింది!</string>
   <string name="InviteActivity_invite_to_signal">Signal కు  ఆహ్వానించండి</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">1%d స్నేహితులకు SMS పంపండి</item>
     <item quantity="other">%d స్నేహితులకు SMS పంపండి</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">1%d SMS ఆహ్వానాలను పంపాలా?</item>
     <item quantity="other">%d SMS ఆహ్వానాలను పంపాలా?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">మనం Signal కు మారుదాం: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">మీరు పంచుకొనడానికి మీ దగ్గర వేరే యాప్స్ లేనట్టు కనబడుతుంది.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">స్నేహితులారా , ఎన్క్రిప్ట్ చేయకుండా స్నేహితులని సంభాషించనివ్వొద్దు.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">ఇంకా నేర్చుకో</string>
   <!--LongMessageActivity-->
@@ -837,10 +835,10 @@
   <string name="NotificationBarManager_signal_call_in_progress">పురోగతి లో Signal కాల్</string>
   <string name="NotificationBarManager__establishing_signal_call">స్థాపించబడుతున్న Signal కాల్</string>
   <string name="NotificationBarManager__incoming_signal_call">క్రొత్తగా వచ్చిన Signal కాల్</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">కాల్ నిరాకరించండి</string> -->
   <string name="NotificationBarManager__answer_call">కాల్ ఆన్సర్ చేయండి</string>
   <string name="NotificationBarManager__end_call">కాల్ ముగించండి</string>
   <string name="NotificationBarManager__cancel_call">కాల్ రద్దుచేయండి</string>
+  <string name="NotificationBarManager__join_call">కాల్‌లో చేరండి</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">నోటిఫికేషన్‌లను ప్రారంభించండి?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">మీ పరిచయాలు మరియు సమూహాల నుండి సందేశాన్ని ఎప్పటికీ కోల్పోకండి.</string>

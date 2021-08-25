@@ -823,17 +823,17 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Zdieľať</string>
   <string name="InviteActivity_share_with_contacts">Zdieľať s kontaktmi</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Výber spôsobu zdieľania</string> -->
+  <string name="InviteActivity_share_via">Zdieľať prostredníctvom…</string>
   <string name="InviteActivity_cancel">Zrušiť</string>
   <string name="InviteActivity_sending">Odosiela sa…</string>
   <string name="InviteActivity_invitations_sent">Pozvánky odoslané!</string>
   <string name="InviteActivity_invite_to_signal">Pozvať do Signalu</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">ODOSLAŤ SMS %d PRIATEĽOVI</item>
     <item quantity="few">ODOSLAŤ SMS %d PRIATEĽOM</item>
     <item quantity="many">ODOSLAŤ SMS %d PRIATEĽOM</item>
     <item quantity="other">ODOSLAŤ SMS %d PRIATEĽOM</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Odoslať %d SMS pozvánku? </item>
     <item quantity="few">Odoslať %d SMS pozvánky? </item>
@@ -842,7 +842,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Prejdime na Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Vyzerá to, že nemáte žiadne aplikácie kam by ste mohli zdieľať.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Priatelia nenechávajú priateľov chatovať nešifrovane.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Dozvedieť sa viac</string>
   <!--LongMessageActivity-->
@@ -921,11 +920,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Prebieha Signal hovor</string>
   <string name="NotificationBarManager__establishing_signal_call">Príprava na Signal hovor</string>
   <string name="NotificationBarManager__incoming_signal_call">Prichádzajúci Signal hovor</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Prichádzajúci Signal skupinový hovor</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Zastavenie služby Signal hovoru</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Odmietnuť hovor</string> -->
+  <string name="NotificationBarManager__decline_call">Odmietnuť hovor</string>
   <string name="NotificationBarManager__answer_call">Prijať hovor</string>
   <string name="NotificationBarManager__end_call">Ukončiť hovor</string>
   <string name="NotificationBarManager__cancel_call">Zrušiť hovor</string>
+  <string name="NotificationBarManager__join_call">Pripojiť sa k hovoru</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Zapnúť hlásenia?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Nikdy nezmeškajte správu od vašich kontaktov a skupín.</string>
@@ -1315,6 +1316,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Pre volanie %1$s potrebuje Signal prístup k vašej kamere</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Uskutočňovanie hovoru…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Skupina je príliš veľká na to, aby vyzváňala účastníkom.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal hovor</string>
   <string name="WebRtcCallView__signal_video_call">Videohovor Signal</string>
@@ -1327,8 +1329,42 @@
   <string name="WebRtcCallView__reconnecting">Pripájanie…</string>
   <string name="WebRtcCallView__joining">Pripája sa…</string>
   <string name="WebRtcCallView__disconnected">Odpojený</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal zazvoní %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal zazvoní %1$s a %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal zazvoní %1$s, %2$s a %3$d ďalšiemu</item>
+    <item quantity="few">Signal zazvoní %1$s, %2$s a %3$d ďalším</item>
+    <item quantity="many">Signal zazvoní %1$s, %2$s a %3$d ďalším</item>
+    <item quantity="other">Signal zazvoní %1$s, %2$s a %3$d ďalším</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s bude upozornený</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s a %2$s bude upozornený</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s a %3$d ďalší bude upozornený</item>
+    <item quantity="few">%1$s, %2$s a %3$d ďalší budú upozornení</item>
+    <item quantity="many">%1$s, %2$s a %3$d ďalší budú upozornení</item>
+    <item quantity="other">%1$s, %2$s a %3$d ďalší budú upozornení</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Zvoní %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Vyzváňa %1$s a %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Vyzváňa %1$s, %2$s a %3$d ďalšiemu</item>
+    <item quantity="few">Vyzváňa %1$s, %2$s a %3$d ďalším</item>
+    <item quantity="many">Vyzváňa %1$s, %2$s a %3$d ďalším</item>
+    <item quantity="other">Vyzváňa %1$s, %2$s a %3$d ďalším</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s vám volá</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s vám a %2$s volá </string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s vám,%2$s a%3$s volá</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one"> %1$s vám, %2$s, %3$s a %4$d ďalšiemu volá</item>
+    <item quantity="few">%1$s vám, %2$s, %3$s a %4$d ďalším volá </item>
+    <item quantity="many">%1$s vám, %2$s, %3$s a %4$d ďalším volá </item>
+    <item quantity="other">%1$s vám, %2$s, %3$s a %4$d ďalším volá </item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Nikto iný tu nie je</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s je v tomto hovore</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s sú v tomto hovore</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s a %2$s sú v tomto hovore</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s prezentuje</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1341,6 +1377,7 @@
   <string name="WebRtcCallView__speaker">Reproduktor</string>
   <string name="WebRtcCallView__camera">Fotoaparát</string>
   <string name="WebRtcCallView__mute">Stlmiť</string>
+  <string name="WebRtcCallView__ring">Zvoniť</string>
   <string name="WebRtcCallView__end_call">Ukončiť hovor</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

@@ -733,22 +733,20 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Bḍu</string>
   <string name="InviteActivity_share_with_contacts">Bḍu akked yinermisen</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Fren amek ara tebḍuḍ</string> -->
   <string name="InviteActivity_cancel">Sefsex</string>
   <string name="InviteActivity_sending">Tuzna…</string>
   <string name="InviteActivity_invitations_sent">Tinubgiwin ttwaznent!</string>
   <string name="InviteActivity_invite_to_signal">Snubget-d ɣer Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">AZEN SMS I %d UMDAKKEL</item>
     <item quantity="other">AZEN SMS I %d IMDUKKAL</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Yuzen %d n tinubga s SMS?</item>
     <item quantity="other">Yuzen %d n tunbgiwin s SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Rǧu ad nuɣal ɣer Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Akka i d-yettban ur tesεiḍ ula yiwen n usnas ara tebḍuḍ.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Imeddukkal ur ttaǧǧan ara imeddukkal-nsen ad ttmeslayen s war awgelhen.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Issin ugar</string>
   <!--LongMessageActivity-->
@@ -819,10 +817,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Aqεad n usiwel n Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Asiwel n Signal i d-iteddun</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Asens n umeẓlu n usiwel n Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Agi asiwel</string> -->
   <string name="NotificationBarManager__answer_call">Err ɣef usiwel</string>
   <string name="NotificationBarManager__end_call">Fakk asiwel</string>
   <string name="NotificationBarManager__cancel_call">Sefsex asiwel</string>
+  <string name="NotificationBarManager__join_call">Kcem ɣer usiwel</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Rmed ilɣa?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Ur sṛuḥu ula d yiwen yizen seg yinermisen d yigrawen ine·inem.</string>

@@ -736,22 +736,20 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Споделяне</string>
   <string name="InviteActivity_share_with_contacts">Споделете с контакти</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Изберете как да споделяте</string> -->
   <string name="InviteActivity_cancel">Отказ</string>
   <string name="InviteActivity_sending">Изпращане…</string>
   <string name="InviteActivity_invitations_sent">Поканите изпратени!</string>
   <string name="InviteActivity_invite_to_signal">Покани в Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">ИЗПРАЩАНЕ НА SMS НА %d ПРИЯТЕЛ</item>
     <item quantity="other">ИЗПРАЩАНЕ НА SMS НА %d ПРИТЯТЕЛЯ</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Изпащане на %d SMS покана?</item>
     <item quantity="other">Изпащане на %d SMS покани?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Да преминем към Signal %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Изглежда нямате приложения, с които да можете да сподялите.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Приятелите не оставят приятелите си да чатят без криптиране.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Научете повече</string>
   <!--LongMessageActivity-->
@@ -823,10 +821,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Установяване на Signal разговор</string>
   <string name="NotificationBarManager__incoming_signal_call">Входящо Signal обаждане</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Спиране на услугата за разговори на Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Отхвърляне на обаждането</string> -->
   <string name="NotificationBarManager__answer_call">Приеми обаждането</string>
   <string name="NotificationBarManager__end_call">Прекрати обаждането</string>
   <string name="NotificationBarManager__cancel_call">Прекратяване на обаждането</string>
+  <string name="NotificationBarManager__join_call">Присъединете се към разговор</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Включи известия?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Никога не изпускайте съобщение от контактите и групите си.</string>

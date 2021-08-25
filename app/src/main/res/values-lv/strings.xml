@@ -786,16 +786,15 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Kopīgot/koplietot</string>
   <string name="InviteActivity_share_with_contacts">Kopīgot ar kontaktpersonām</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Izvēlieties, kā kopīgot/koplietot</string> -->
   <string name="InviteActivity_cancel">Atcelt</string>
   <string name="InviteActivity_sending">Tiek sūtīts…</string>
   <string name="InviteActivity_invitations_sent">Uzaicinājums nosutīts</string>
   <string name="InviteActivity_invite_to_signal">Uzaicināt uz Signālu</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="zero">SŪTĪT SMS %d DRAUGIEM</item>
     <item quantity="one">SŪTĪT SMS %d DRAUGAM</item>
     <item quantity="other">SŪTĪT SMS %d DRAUGIEM</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="zero">Sūtīt %dSMS ielūgumus?</item>
     <item quantity="one">Sūtīt %d SMS Ielūgumu?</item>
@@ -803,7 +802,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Pārejam uz drošu saziņu, pārejam uz Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Izskatās, ka Tev nav nevienas aplikācijas, caur kuru dalīties.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Draugi neļauj draugiem sazināties nedroši (nešifrēti).</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lasīt vairāk</string>
   <!--LongMessageActivity-->
@@ -879,10 +877,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Signāla zvana savienojuma izveide</string>
   <string name="NotificationBarManager__incoming_signal_call">Ienākošs Signal zvans</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Tiek apturēts Sigāla zvana pakalpojums</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Noraidīt</string> -->
   <string name="NotificationBarManager__answer_call">Atbildēt</string>
   <string name="NotificationBarManager__end_call">Beigt zvanu</string>
   <string name="NotificationBarManager__cancel_call">Atcelt zvanu</string>
+  <string name="NotificationBarManager__join_call">Pievienoties sarunai</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Iespējot Paziņojumus?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Nepalaidiet garām ziņas no Jūsu kontaktiem un grupām.</string>

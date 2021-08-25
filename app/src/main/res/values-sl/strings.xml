@@ -820,17 +820,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Deli</string>
   <string name="InviteActivity_share_with_contacts">Deli s stiki</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Izbira načina deljenja</string> -->
   <string name="InviteActivity_cancel">Prekliči</string>
   <string name="InviteActivity_sending">Pošiljanje …</string>
   <string name="InviteActivity_invitations_sent">Vabila so bila poslana!</string>
   <string name="InviteActivity_invite_to_signal">Povabi k uporabi</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">POŠLJI SMS %d PRIJATELJU/ICI</item>
     <item quantity="two">POŠLJI SMS %d PRIJATELJEMA/ICAMA</item>
     <item quantity="few">POŠLJI SMS %d PRIJATELJEM/ICAM</item>
     <item quantity="other">POŠLJI SMS %d PRIJATELJEM/ICAM</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Send %d vabilo SMS?</item>
     <item quantity="two">Pošljem %d vabili SMS?</item>
@@ -839,7 +838,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Preklopi na Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kaže, da nimate nameščene nobene primerne aplikacije.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Pametni ljudje uporabljajo šifrirano komunikacijo!</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Izvedite več</string>
   <!--LongMessageActivity-->
@@ -919,10 +917,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Vzpostavljam klic Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Dohodni klic Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Ustavljanje klicanja Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Zavrni klic</string> -->
   <string name="NotificationBarManager__answer_call">Sprejmi klic</string>
   <string name="NotificationBarManager__end_call">Zaključi klic</string>
   <string name="NotificationBarManager__cancel_call">Prekini klic</string>
+  <string name="NotificationBarManager__join_call">Pridruži se klicu</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Želite vklopiti obvestila?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Nikdar ne spreglejte sporočila vaših prijateljev in skupin.</string>

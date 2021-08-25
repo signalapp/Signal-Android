@@ -754,22 +754,21 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Del</string>
   <string name="InviteActivity_share_with_contacts">Del med kontaktar</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Vel korleis du vil dela</string> -->
+  <string name="InviteActivity_share_via">Del via …</string>
   <string name="InviteActivity_cancel">Avbryt</string>
   <string name="InviteActivity_sending">Sendar …</string>
   <string name="InviteActivity_invitations_sent">Invitasjonar sendt.</string>
   <string name="InviteActivity_invite_to_signal">Inviter til Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">SEND SMS TIL %d VENN</item>
     <item quantity="other">SEND SMS TIL %d VENNAR</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Send %d SMS-invitasjon?</item>
     <item quantity="other">Send %d SMS-invitasjonar?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">La oss byta til Signal. %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Det ser ut som at du ikkje har nokon program å dela denne informasjonen med.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vennar burde ikkje prata ukryptert over nettet.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lær meir</string>
   <!--LongMessageActivity-->
@@ -840,11 +839,13 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale i gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Set opp Signal-anrop</string>
   <string name="NotificationBarManager__incoming_signal_call">Inngåande Signal-anrop</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Inngåande Signal-gruppesamtale</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Stoppar Signal-samtaleteneste</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Avslå anrop</string> -->
+  <string name="NotificationBarManager__decline_call">Avslå anrop</string>
   <string name="NotificationBarManager__answer_call">Svar på anrop</string>
   <string name="NotificationBarManager__end_call">Avslutt samtale</string>
   <string name="NotificationBarManager__cancel_call">Avbryt samtale</string>
+  <string name="NotificationBarManager__join_call">Bli med i samtalen</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Skru på varsel?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Gå aldri glipp av meldingar frå kontaktane og gruppene dine.</string>
@@ -1206,6 +1207,7 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal treng tilgang til kameraet ditt for å ringa %1$s</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer …</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppa er for stor til å ringa alle deltakarane.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-anrop</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videosamtale</string>
@@ -1218,8 +1220,34 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="WebRtcCallView__reconnecting">Koplar til på nytt …</string>
   <string name="WebRtcCallView__joining">Blir med …</string>
   <string name="WebRtcCallView__disconnected">Kopla frå</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal vil ringa til %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal vil ringa til %1$s og %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal vil ringa til %1$s, %2$s og %3$d til</item>
+    <item quantity="other">Signal vil ringa til %1$s, %2$s og %3$d til</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s vil få eit varsel</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s og %2$s vil bli varsla</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s og %3$d til vil bli varsla</item>
+    <item quantity="other">%1$s, %2$s og %3$d til vil bli varsla</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Ringer til %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Ringer til %1$s og %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Ringer til %1$s, %2$s og %3$d til</item>
+    <item quantity="other">Ringer til %1$s, %2$s og %3$d til</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s ringer deg</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s ringer deg og %2$s </string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s ringer deg, %2$s og %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s ringer deg, %2$s, %3$s, og %4$d til</item>
+    <item quantity="other">%1$s ringer deg, %2$s, %3$s, og %4$d til</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Du er åleine her</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s er i denne samtalen</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s er i denne samtalen</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s og %2$s er i denne samtalen</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s deler skjerm</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1230,6 +1258,7 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="WebRtcCallView__speaker">Høgtalar</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Demp</string>
+  <string name="WebRtcCallView__ring">Ring</string>
   <string name="WebRtcCallView__end_call">Avslutt samtale</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

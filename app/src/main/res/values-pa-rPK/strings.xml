@@ -415,10 +415,10 @@
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">دل</string> -->
   <string name="InviteActivity_invitations_sent">دعوت نامے گھل دتے!</string>
   <string name="InviteActivity_invite_to_signal">Signal تے سدھو</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">%d دوست نوں SMS گھلو</item>
     <item quantity="other">%d دوستاں نوں SMS گھلو</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d نوں SMS سدھا گھلیے؟</item>
     <item quantity="other">%d SMS سدھے گھلیے؟</item>

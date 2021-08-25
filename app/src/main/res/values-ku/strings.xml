@@ -711,10 +711,10 @@
   <string name="InviteActivity_sending">Tê şandin…</string>
   <string name="InviteActivity_invitations_sent">Vexwendname hatin şandin!</string>
   <string name="InviteActivity_invite_to_signal">Vexwîne Signalê</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">JI %d HEVALÊ XWE RE SMS BIŞÎNE</item>
     <item quantity="other">JI %d HEVALÊN XWE RE SMS BIŞÎNE</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d vexwendnameya SMS\'ê bişîne?</item>
     <item quantity="other">%d vexwendnameyên SMS\'ê bişîne?</item>

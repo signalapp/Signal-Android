@@ -751,22 +751,21 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Doorsturen via andere app</string>
   <string name="InviteActivity_share_with_contacts">Contactpersonen kiezen (sms)</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Verzenden via andere app</string> -->
+  <string name="InviteActivity_share_via">Delen via …</string>
   <string name="InviteActivity_cancel">Annuleren</string>
   <string name="InviteActivity_sending">Bezig met verzenden …</string>
   <string name="InviteActivity_invitations_sent">Uitnodigingen verzonden!</string>
   <string name="InviteActivity_invite_to_signal">Uitnodigen voor Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">VERZEND SMS NAAR %d KENNIS</item>
     <item quantity="other">VERZEND SMS NAAR %d KENNISSEN</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d sms-uitnodiging verzenden?</item>
     <item quantity="other">%d sms-uitnodigingen verzenden?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Laten we Signal gebruiken om een gesprek te voeren: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt waarmee je een uitnodiging kan verzenden.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vrienden laten vrienden geen gesprekken onversleuteld voeren.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Meer leren hierover</string>
   <!--LongMessageActivity-->
@@ -837,11 +836,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Je zit nog in een Signal-oproep</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-oproep aan het opzetten</string>
   <string name="NotificationBarManager__incoming_signal_call">Inkomende Signal-oproep</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Binnenkomende Signal-groepsoproep</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal-oproep-ondersteuning wordt gestopt</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Oproep afwijzen</string> -->
+  <string name="NotificationBarManager__decline_call">Oproep afwijzen</string>
   <string name="NotificationBarManager__answer_call">Oproep beantwoorden</string>
   <string name="NotificationBarManager__end_call">Oproep beëindigen</string>
   <string name="NotificationBarManager__cancel_call">Oproep annuleren</string>
+  <string name="NotificationBarManager__join_call">Aan oproep deelnemen</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Meldingen inschakelen?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Mis nooit een melding van je contactpersonen en groepen.</string>
@@ -1202,6 +1203,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal heeft toegang nodig tot je camera om %1$s te bellen</string>
   <string name="WebRtcCallActivity__signal_s">Signal-oproep %1$s</string>
   <string name="WebRtcCallActivity__calling">Oproep aan het starten …</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">De groep is te groot om de leden te bellen.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-oproep</string>
   <string name="WebRtcCallView__signal_video_call">Signal video-oproep</string>
@@ -1214,8 +1216,34 @@
   <string name="WebRtcCallView__reconnecting">Opnieuw aan het verbinden …</string>
   <string name="WebRtcCallView__joining">Verbinden met groep aan het maken …</string>
   <string name="WebRtcCallView__disconnected">Verbinding verbroken</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal zal %1$s bellen</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal zal %1$s en %2$s bellen</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal zal %1$s, %2$s en %3$d ander bellen</item>
+    <item quantity="other">Signal zal %1$s, %2$s en %3$d anderen bellen</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s zal een melding krijgen</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s en %2$s zullen een melding krijgen</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s en %3$d ander zullen een melding krijgen</item>
+    <item quantity="other">%1$s, %2$s en %3$d anderen zullen een melding krijgen</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">%1$s aan het bellen</string>
+  <string name="WebRtcCallView__ringing_s_and_s">%1$s en %2$s aan het bellen</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">%1$s, %2$s en %3$d ander aan het bellen</item>
+    <item quantity="other">%1$s, %2$s en %3$d anderen aan het bellen</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s belt jou</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s belt jou en %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s belt jou, %2$s en %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s belt jou, %2$s, %3$s en %4$d ander</item>
+    <item quantity="other">%1$s belt jou, %2$s, %3$s en %4$d anderen</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Er is niemand behalve jij in dit gesprek</string>
   <string name="WebRtcCallView__s_is_in_this_call">Gesprek met %1$s</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s zijn in deze oproep aanwezig</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">Gesprek met %1$s en %2$s</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s laat zijn of haar scherm zien</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1226,6 +1254,7 @@
   <string name="WebRtcCallView__speaker">Luidspreker</string>
   <string name="WebRtcCallView__camera">Camera</string>
   <string name="WebRtcCallView__mute">Dempen</string>
+  <string name="WebRtcCallView__ring">Bellen</string>
   <string name="WebRtcCallView__end_call">Oproep beëindigen</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

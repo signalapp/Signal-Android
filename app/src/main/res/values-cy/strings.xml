@@ -825,17 +825,17 @@ Send neges heb ei ddiogelu?</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Rhannu</string>
   <string name="InviteActivity_share_with_contacts">Rhannu gyda chysylltiadau</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Dewis sut i rannu</string> -->
+  <string name="InviteActivity_share_via">Rhannu drwy…</string>
   <string name="InviteActivity_cancel">Diddymu</string>
   <string name="InviteActivity_sending">Yn anfon…</string>
   <string name="InviteActivity_invitations_sent">Gwahoddiadau wedi\'u anfon!</string>
   <string name="InviteActivity_invite_to_signal">Gwahodd i Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">ANFON SMS AT %d FFRIND</item>
     <item quantity="two">ANFON SMS AT %d FFRIND</item>
     <item quantity="many">ANFON SMS AT %d FFRIND</item>
     <item quantity="other">ANFON SMS AT %d FFRIND</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Anfon gwahoddiad SMS at %d?</item>
     <item quantity="two">Anfon gwahoddiadau SMS at %d?</item>
@@ -844,7 +844,6 @@ Send neges heb ei ddiogelu?</string>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Gadewch i ni newid i Signal %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Mae\'n edrych fel nad oes gennych unrhyw apiau i\'w rhannu.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Dyw ffrindiau ddim yn gadael i ffrindiau sgwrsio heb amgryptiad.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Dysgu rhagor</string>
   <!--LongMessageActivity-->
@@ -923,11 +922,13 @@ Send neges heb ei ddiogelu?</string>
   <string name="NotificationBarManager_signal_call_in_progress">Ar ganol galwad Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Sicrhau galwad Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Galwad Signal wedi cyrraedd</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Galwad grŵp Signal i mewn</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Atal gwasanaeth galw Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Gwrthod galwad</string> -->
+  <string name="NotificationBarManager__decline_call">Gwrthod galwad</string>
   <string name="NotificationBarManager__answer_call">Ateb galwad</string>
   <string name="NotificationBarManager__end_call">Gorffen galwad</string>
   <string name="NotificationBarManager__cancel_call">Diffodd galwad</string>
+  <string name="NotificationBarManager__join_call">Ymuno â\'r alwad</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Galluogi Hysbysiadau?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Peidiwch byth â methu neges gan eich cysylltiadau a\'ch grwpiau.</string>
@@ -1318,6 +1319,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">I alw %1$s, mae angen i Signal gael mynediad i\'ch camera.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Yn galw…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Mae\'r grŵp yn rhy fawr i ffonio\'r cyfranogwyr.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Galwad Signal</string>
   <string name="WebRtcCallView__signal_video_call">Galwad Fideo Signal</string>
@@ -1330,8 +1332,42 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallView__reconnecting">Yn Ailgysylltu…</string>
   <string name="WebRtcCallView__joining">Yn ymuno…</string>
   <string name="WebRtcCallView__disconnected">Datgysylltwyd</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Bydd y signal yn galw %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Bydd y signal yn galw %1$s a %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Bydd y signal yn galw %1$s, %2$s, a %3$d arall</item>
+    <item quantity="two">Bydd y signal yn galw %1$s, %2$s, a %3$d arall</item>
+    <item quantity="many">Bydd y signal yn galw %1$s, %2$s, a %3$d arall</item>
+    <item quantity="other">Bydd y signal yn galw %1$s, %2$s, a %3$d arall</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">Bydd %1$s yn cael ei hysbysu</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">Bydd %1$s a %2$s yn cael eu hysbysu</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">Bydd %1$s, %2$s, a %3$d yn cael eu hysbysu</item>
+    <item quantity="two">Bydd %1$s, %2$s, a %3$d yn cael eu hysbysu</item>
+    <item quantity="many">Bydd %1$s, %2$s, a %3$d yn cael eu hysbysu</item>
+    <item quantity="other">Bydd %1$s, %2$s, a %3$d yn cael eu hysbysu</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Yn galw %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Yn galw %1$s a %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Yn galw %1$s, %2$s, a %3$d arall</item>
+    <item quantity="two">Yn galw %1$s, %2$s, a %3$d arall</item>
+    <item quantity="many">Yn galw %1$s, %2$s, a %3$d arall</item>
+    <item quantity="other">Yn galw %1$s, %2$s, a %3$d arall</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">Mae %1$s yn eich galw chi</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">Mae %1$s yn eich galw chi a %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">Mae %1$s yn eich galw chi, %2$s, a %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">Mae %1$s yn eich galw chi, %2$s, %3$s, a %4$d arall</item>
+    <item quantity="two">Mae %1$s yn eich galw chi, %2$s, %3$s, a %4$d arall</item>
+    <item quantity="many">Mae %1$s yn eich galw chi, %2$s, %3$s, a %4$d arall</item>
+    <item quantity="other">Mae %1$s yn eich galw chi, %2$s, %3$s, a %4$d arall</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Does neb arall yma</string>
   <string name="WebRtcCallView__s_is_in_this_call">Mae %1$s yn yr alwad hon</string>
+  <string name="WebRtcCallView__s_are_in_this_call">Mae %1$s yn yr alwad hon</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">Mae %1$s a %2$s yn yr alwad hon</string>
   <string name="WebRtcCallView__s_is_presenting">Mae %1$s yn cyflwyno</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1344,6 +1380,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallView__speaker">Uchelseinydd</string>
   <string name="WebRtcCallView__camera">Camera</string>
   <string name="WebRtcCallView__mute">Tewi</string>
+  <string name="WebRtcCallView__ring">Galw</string>
   <string name="WebRtcCallView__end_call">Gorffen galwad</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

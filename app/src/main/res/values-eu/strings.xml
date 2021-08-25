@@ -728,22 +728,20 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Partekatu</string>
   <string name="InviteActivity_share_with_contacts">Partekatu kontaktuekin</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Aukeratu nola partekatu</string> -->
   <string name="InviteActivity_cancel">Utzi</string>
   <string name="InviteActivity_sending">Bidaltzen…</string>
   <string name="InviteActivity_invitations_sent">Gonbidapenak bidali dira!</string>
   <string name="InviteActivity_invite_to_signal">Gonbidatu Signal erabiltzera</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">BIDALI SMS MEZUA LAGUN %dI</item>
     <item quantity="other">BIDALI SMS MEZUA %d LAGUNI</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Bidali SMS gonbidapen %d?</item>
     <item quantity="other">Bidali %d SMS gonbidapen?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signalera alda dezagun: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Dirudienez ez duzu partekatzeko aplikazio bakar bat ere.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Benetako lagunek ez diete beraien lagunei enkriptaziorik gabe txateatzen uzten.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Gehiago jakin</string>
   <!--LongMessageActivity-->
@@ -813,10 +811,10 @@
   <string name="NotificationBarManager_signal_call_in_progress">Uneko Signal deia</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal deia finkatzen</string>
   <string name="NotificationBarManager__incoming_signal_call">Sarrerako Signal deia</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Ukatu deia</string> -->
   <string name="NotificationBarManager__answer_call">Erantzun deia</string>
   <string name="NotificationBarManager__end_call">Amaitu deia</string>
   <string name="NotificationBarManager__cancel_call">Deia utzi</string>
+  <string name="NotificationBarManager__join_call">Deian sartu</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Aktibatu Jakinarazpenak?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Zure kontaktu edo taldeen mezu bat ere ez galdu inoiz.</string>

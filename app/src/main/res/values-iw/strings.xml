@@ -823,17 +823,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">שתף</string>
   <string name="InviteActivity_share_with_contacts">שתף עם אנשי קשר</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">בחר כיצד לשתף</string> -->
   <string name="InviteActivity_cancel">בטל</string>
   <string name="InviteActivity_sending">שולח…</string>
   <string name="InviteActivity_invitations_sent">הזמנות נשלחו!</string>
   <string name="InviteActivity_invite_to_signal">הזמן אל Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">שלח מסרון אל חבר %d</item>
     <item quantity="two">שלח מסרון אל %d חברים</item>
     <item quantity="many">שלח מסרון אל %d חברים</item>
     <item quantity="other">שלח מסרון אל %d חברים</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">לשלוח הזמנה %d במסרון?</item>
     <item quantity="two">לשלוח %d הזמנות במסרון?</item>
@@ -842,7 +841,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">בוא נחליף אל Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">נראה שאין לך יישומים כלשהם לשתף בהם.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">חברים לא נותנים לחברים להתכתב באופן בלתי מוצפן.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">למד עוד</string>
   <!--LongMessageActivity-->
@@ -922,10 +920,10 @@
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">שיחת Signal נכנסת</string>
   <string name="NotificationBarManager__stopping_signal_call_service">עוצר את שירות השיחות של Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">דחה שיחה</string> -->
   <string name="NotificationBarManager__answer_call">ענה לשיחה</string>
   <string name="NotificationBarManager__end_call">סיים שיחה</string>
   <string name="NotificationBarManager__cancel_call">בטל שיחה</string>
+  <string name="NotificationBarManager__join_call">הצטרף לשיחה</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">להפעיל התראות?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">לעולם לא תפספס הודעה מאנשי הקשר והקבוצות שלך.</string>

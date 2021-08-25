@@ -819,12 +819,12 @@
   <string name="InviteActivity_sending">Надсилання…</string>
   <string name="InviteActivity_invitations_sent">Запрошення надіслано!</string>
   <string name="InviteActivity_invite_to_signal">Запросити до Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">НАДІСЛАТИ SMS ДО %d ДРУГА</item>
     <item quantity="few">НАДІСЛАТИ SMS ДО %d ДРУЗІВ</item>
     <item quantity="many">НАДІСЛАТИ SMS ДО %d ДРУЗІВ</item>
     <item quantity="other">НАДІСЛАТИ SMS ДО %d ДРУЗІВ</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Надіслати %d SMS запрошення?</item>
     <item quantity="few">Надіслати %d SMS запрошень?</item>

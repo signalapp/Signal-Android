@@ -435,10 +435,10 @@
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Puso</string> -->
   <string name="InviteActivity_invitations_sent">Naipadala na ang mga imbitasyon!</string>
   <string name="InviteActivity_invite_to_signal">Imbitahan sa Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">MAGPADALA NG SMS SA %d KAIBIGAN</item>
     <item quantity="other">MAGPADALA NG SMS SA %d KAIBIGAN</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Mapadala ng %d SMS na imbitasyon?</item>
     <item quantity="other">Mapadala ng %d SMS na imbitasyon?</item>

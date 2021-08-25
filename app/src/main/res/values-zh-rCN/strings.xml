@@ -705,20 +705,18 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">分享</string>
   <string name="InviteActivity_share_with_contacts">与联系人分享</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">选择分享方式</string> -->
   <string name="InviteActivity_cancel">取消</string>
   <string name="InviteActivity_sending">正在发送…</string>
   <string name="InviteActivity_invitations_sent">邀请已发送！</string>
   <string name="InviteActivity_invite_to_signal">邀请使用 Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="other">发送短袖给 %d 好友</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">发送 %d 个短信邀请？</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">用 Signal 来聊天吧：%1$s</string>
   <string name="InviteActivity_no_app_to_share_to">看起来设备上没有可用于分享的应用。</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">朋友之间需要加密聊天工具。</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">了解更多</string>
   <!--LongMessageActivity-->
@@ -785,10 +783,10 @@
   <string name="NotificationBarManager__establishing_signal_call">正在建立 Signal 呼叫</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal 来电</string>
   <string name="NotificationBarManager__stopping_signal_call_service">正在停止 Signal 通话服务</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">拒听</string> -->
   <string name="NotificationBarManager__answer_call">接听</string>
   <string name="NotificationBarManager__end_call">结束呼叫</string>
   <string name="NotificationBarManager__cancel_call">取消呼叫</string>
+  <string name="NotificationBarManager__join_call">加入通话</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">是否开启通知？</string>
   <string name="NotificationsMegaphone_never_miss_a_message">不错过任何消息。</string>

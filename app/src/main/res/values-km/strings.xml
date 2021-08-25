@@ -614,9 +614,9 @@
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">បេះដូង</string> -->
   <string name="InviteActivity_invitations_sent">លិខិតអញ្ជើញបានផ្ញើ!</string>
   <string name="InviteActivity_invite_to_signal">អញ្ជើញចូលប្រើSignal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="other">ផ្ញើ SMS ទៅកាន់មិត្តភក្តិ​ %d</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">ផ្ញើសារ SMS អញ្ជើញ %d ?</item>
   </plurals>

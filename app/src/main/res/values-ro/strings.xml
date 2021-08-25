@@ -786,16 +786,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Distribuie</string>
   <string name="InviteActivity_share_with_contacts">Distribuie la contacte</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Alegeți cum să distribuiți</string> -->
+  <string name="InviteActivity_share_via">Distribuiți cu…</string>
   <string name="InviteActivity_cancel">Anulați</string>
   <string name="InviteActivity_sending">Se trimite…</string>
   <string name="InviteActivity_invitations_sent">Invitațiile au fost trimise!</string>
   <string name="InviteActivity_invite_to_signal">Invitați la Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">TRIMITE SMS LA %d PRIETEN</item>
     <item quantity="few">TRIMITE SMS LA %d PRIETENI</item>
     <item quantity="other">TRIMITE SMS LA %d DE PRIETENI</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Trimit %d invitație prin SMS?</item>
     <item quantity="few">Trimit %d invitații prin SMS?</item>
@@ -803,7 +803,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hai să folosim Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Se pare că nu ai aplicații cu care să poți distribui.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prietenii nu-și lasă prietenii să converseze necriptat.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Aflați mai multe</string>
   <!--LongMessageActivity-->
@@ -878,11 +877,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
   <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Apel de intrare Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Se primește un apel Signal de grup</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Se oprește serviciul de apelare Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Respingeți apelul</string> -->
+  <string name="NotificationBarManager__decline_call">Respinge apelul</string>
   <string name="NotificationBarManager__answer_call">Răspundeți apelului</string>
   <string name="NotificationBarManager__end_call">Închideți apelul</string>
   <string name="NotificationBarManager__cancel_call">Anulați apelul</string>
+  <string name="NotificationBarManager__join_call">Alăturați-vă apelului</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Activaţi notificările?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Nu rata niciodată un mesaj de la contactele și grupurile tale.</string>
@@ -1258,6 +1259,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Pentru a apela pe %1$s, Signal are nevoie de acces la camera dvs.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Apel în curs…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupul este prea mare pentru a apela participanții.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Apel Signal</string>
   <string name="WebRtcCallView__signal_video_call">Apel Video Signal</string>

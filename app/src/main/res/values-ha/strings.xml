@@ -404,10 +404,10 @@
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Zuciya</string> -->
   <string name="InviteActivity_invitations_sent">An tura gayyata!</string>
   <string name="InviteActivity_invite_to_signal">Gayyace shi/ta Signal.</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">TURA SMS ZUWA %d ABOKI/KAWA</item>
     <item quantity="other">SEND SMS TO %d FRIENDS</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Tura %d gayyatar SMS</item>
     <item quantity="other">Tura gayyata ta hanyar %d SMS?</item>

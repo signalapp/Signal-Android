@@ -323,10 +323,10 @@
   <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Shunku</string> -->
   <string name="InviteActivity_invitations_sent">¡Kumpitaykunata kachashka!</string>
   <string name="InviteActivity_invite_to_signal">Signal ukuman kayachiy</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">MASHIMAN %d KILLKANA SMS</item>
     <item quantity="other">MASHIKUNAMAN %d  SMS KACHAY</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Kayachita SMS %d kachanayanchu</item>
     <item quantity="other">%d SMS kayachikunata kachanayanchu</item>

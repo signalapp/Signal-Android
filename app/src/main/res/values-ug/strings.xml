@@ -750,22 +750,20 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">ھەمبەھىرلە</string>
   <string name="InviteActivity_share_with_contacts">ئالاقەداشلار بىلەن ھەمبەھىر</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">قانداق ھەمبەھىرلەشنى تاللاڭ</string> -->
   <string name="InviteActivity_cancel">بىكار قىل</string>
   <string name="InviteActivity_sending">ئەۋەتىلىۋاتىدۇ…</string>
   <string name="InviteActivity_invitations_sent">تەكلىپ يوللاندى!</string>
   <string name="InviteActivity_invite_to_signal">Signal ئىشلىتىش تەكلىپى</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">كۆپ ۋاسىتە ئۇچۇرنى %d دوستىغا يوللايدۇ</item>
     <item quantity="other">كۆپ ۋاسىتە ئۇچۇرنى %d دوستىغا يوللايدۇ</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d كۆپ ۋاسىتە ئۇچۇر تەكلىپىنى يوللامدۇ؟</item>
     <item quantity="other">%d كۆپ ۋاسىتە ئۇچۇر تەكلىپىنى يوللامدۇ؟</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal دا پاراڭلىشايلى:%1$s</string>
   <string name="InviteActivity_no_app_to_share_to">قارىغاندا ھەمبەھىرلەيدىغان ئەپ يوقتەك تۇرىدۇ.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوستلار شىفىرلىق پاراڭلاشسا ياخشى.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">كۆپرەك ئۆگىنىش</string>
   <!--LongMessageActivity-->
@@ -837,10 +835,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal چاقىرىشى قۇرۇلۇۋاتىدۇ</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal چاقىرىلىشى</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal چاقىرىش مۇلازىمىتىنى توختىتىۋاتىدۇ</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">رەت قىلىنغان چاقىرىش</string> -->
   <string name="NotificationBarManager__answer_call">سۆزلەشكەن چاقىرىش</string>
   <string name="NotificationBarManager__end_call">ئاخىرلاشقان چاقىرىش</string>
   <string name="NotificationBarManager__cancel_call">چاقىرىشتىن ۋاز كەچ</string>
+  <string name="NotificationBarManager__join_call">چاقىرىققا قېتىل</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">ئۇقتۇرۇشنى قوزغىتامدۇ؟</string>
   <string name="NotificationsMegaphone_never_miss_a_message">ئالاقەداش ۋە گۇرۇپپىنىڭ ئۇچۇرلىرىنى ھەرگىز ئۆتكۈزۈۋەتمەيدۇ.</string>

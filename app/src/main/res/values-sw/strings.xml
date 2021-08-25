@@ -645,22 +645,20 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Shiriki</string>
   <string name="InviteActivity_share_with_contacts">Shiriki na wawasiliano wako</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Chagua jinsi ya kushiriki</string> -->
   <string name="InviteActivity_cancel">Ghairi</string>
   <string name="InviteActivity_sending">Inatuma…</string>
   <string name="InviteActivity_invitations_sent">Mialiko imetumwa!</string>
   <string name="InviteActivity_invite_to_signal">Alika kwa Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">TUM SMS KWA MARAFIKI %d </item>
     <item quantity="other">TUMA SMS KWA%dMARAFIKI</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Tuma miwito za SMS 1%d?</item>
     <item quantity="other">Tuma %d mialiko ya SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Wacha tubadili kwa Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Inaonekana huna programu zozote za kushiriki</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Marafiki hawawaachi marafiki kufanya gumzo zisizo na msimbo fiche.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Jifunze zaidi</string>
   <!--LongMessageActivity-->
@@ -732,10 +730,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Inaanzisha simu ya Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Simu ya Signal inayoingia</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Kusimamisha huduma ya mazungumzo ya simu ya Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Ghairi simu</string> -->
   <string name="NotificationBarManager__answer_call">Pokea simu</string>
   <string name="NotificationBarManager__end_call">Mwisho wa kupiga simu</string>
   <string name="NotificationBarManager__cancel_call">Ghairi simu</string>
+  <string name="NotificationBarManager__join_call">Jiunge na mazungumzo ya simu</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Ungependa kuruhusu Arifa?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Usiwahi kukosa ujumbe kutoka kwa waasiliani na vikundi vyako.</string>

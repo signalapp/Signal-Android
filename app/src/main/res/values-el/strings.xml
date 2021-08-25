@@ -745,22 +745,20 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Μοιράσου</string>
   <string name="InviteActivity_share_with_contacts">Μοιράσου με επαφές</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Διάλεξε πως να το μοιραστείς</string> -->
   <string name="InviteActivity_cancel">Ακύρωση</string>
   <string name="InviteActivity_sending">Στέλνεται…</string>
   <string name="InviteActivity_invitations_sent">Οι προσκλήσεις στάλθηκαν!</string>
   <string name="InviteActivity_invite_to_signal">Πρόσκληση στο Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">ΑΠΟΣΤΟΛΗ ΜΗΝΥΜΑΤΟΣ SMS ΣΕ %d ΦΙΛΟ/Η</item>
     <item quantity="other">ΑΠΟΣΤΟΛΗ SMS ΣΕ %d ΦΙΛΟΥΣ/ΕΣ</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Αποστολή %d πρόσκλησης με SMS;</item>
     <item quantity="other">Αποστολή %d προσκλήσεων με SMS;</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Έλα να χρησιμοποιήσουμε το Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Φαίνεται πως δεν έχεις κάποια εφαρμογή στην οποία μπορείς να μοιραστείς.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Οι φίλοι δεν αφήνουν τους φίλους να συνομιλούν χωρίς κρυπτογράφηση.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Μάθε περισσότερα</string>
   <!--LongMessageActivity-->
@@ -832,10 +830,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Εισερχόμενη κλήση Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Η υπηρεσία κλήσεων του Signal σταματάει</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Απόρριψη κλήσης</string> -->
   <string name="NotificationBarManager__answer_call">Απάντηση</string>
   <string name="NotificationBarManager__end_call">Τερματισμός κλήσης</string>
   <string name="NotificationBarManager__cancel_call">Ακύρωση κλήσης</string>
+  <string name="NotificationBarManager__join_call">Είσοδος στην κλήση</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Ενεργοποίηση Ειδοποιήσεων;</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Μην χάσεις κανένα μήνυμα από τις επαφές και τις ομάδες σου.</string>

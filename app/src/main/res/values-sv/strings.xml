@@ -749,22 +749,20 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Dela</string>
   <string name="InviteActivity_share_with_contacts">Dela med kontakter</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Välj hur du delar</string> -->
   <string name="InviteActivity_cancel">Avbryt</string>
   <string name="InviteActivity_sending">Skickar…</string>
   <string name="InviteActivity_invitations_sent">Inbjudningar skickade!</string>
   <string name="InviteActivity_invite_to_signal">Bjud in till Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">SKICKA SMS TILL %d VÄN</item>
     <item quantity="other">SKICKA SMS TILL %d VÄNNER</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Skicka %d SMS-inbjudan?</item>
     <item quantity="other">Skicka %d SMS-inbjudningar?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Låt oss använda Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vänner låter inte varandra chatta okrypterat.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Läs mer</string>
   <!--LongMessageActivity-->
@@ -836,10 +834,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>
   <string name="NotificationBarManager__incoming_signal_call">Inkommande Signal-samtal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Avbryter Signal-samtalstjänsten</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Neka samtal</string> -->
   <string name="NotificationBarManager__answer_call">Svara på samtal</string>
   <string name="NotificationBarManager__end_call">Avsluta samtal</string>
   <string name="NotificationBarManager__cancel_call">Avbryt samtal</string>
+  <string name="NotificationBarManager__join_call">Gå med i samtalet</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Slå på notiser?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Missa aldrig ett meddelande från dina kontakter och grupper.</string>

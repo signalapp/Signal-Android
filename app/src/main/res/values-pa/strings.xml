@@ -749,22 +749,20 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">ਸਾਂਝਾ ਕਰੋ</string>
   <string name="InviteActivity_share_with_contacts">ਸੰਪਰਕਾਂ ਨਾਲ ਸਾਂਝਾ ਕਰੋ</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">ਇਹ ਚੁਣੋ ਕਿ ਸਾਂਝਾ ਕਿਵੇਂ ਕਰਨਾ ਹੈ</string> -->
   <string name="InviteActivity_cancel">ਰੱਦ ਕਰੋ</string>
   <string name="InviteActivity_sending">ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
   <string name="InviteActivity_invitations_sent">ਸੱਦੇ ਭੇਜੇ ਗਏ!</string>
   <string name="InviteActivity_invite_to_signal">Signal ਲਈ ਸੱਦਾ ਦਿਓ</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">%d ਦੋਸਤ ਨੂੰ SMS ਭੇਜੋ</item>
     <item quantity="other">%d ਦੋਸਤਾਂ ਨੂੰ SMS ਭੇਜੋ</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">ਕੀ %d ਨੂੰ SMS ਸੱਦਾ ਭੇਜਣਾ ਹੈ?</item>
     <item quantity="other">ਕੀ %d ਨੂੰ SMS ਸੱਦੇ ਭੇਜਣੇ ਹਨ?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">ਆਓ Signal ਨੂੰ ਅਪਣਾਈਏ: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">ਇੰਜ ਜਾਪਦਾ ਹੈ ਕਿ ਤੁਹਾਡੇ ਕੋਲ ਸਾਂਝੀਆਂ ਕਰਨ ਲਈ ਕੋਈ ਐਪਸ ਨਹੀਂ ਹਨ|</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">ਦੋਸਤ ਦੋਸਤਾਂ ਨੂੰ ਇਨਕ੍ਰਿਪਟ ਕੀਤੇ ਬਿਨਾਂ ਚੈਟ ਨਹੀਂ ਕਰਨ ਦਿੰਦੇ।</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">ਹੋਰ ਜਾਣੋ</string>
   <!--LongMessageActivity-->
@@ -836,10 +834,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal ਕਾਲ ਸਥਾਪਤ ਕਰ ਰਿਹਾ ਹੈ</string>
   <string name="NotificationBarManager__incoming_signal_call">ਆ ਰਹੀ Signal ਕਾਲ</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal ਕਾਲ ਸੇਵਾ ਬੰਦ ਹੋ ਰਹੀ ਹੈ</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">ਕਾਲ ਰੱਦ ਕਰੋ</string> -->
   <string name="NotificationBarManager__answer_call">ਕਾਲ ਦਾ ਜਵਾਬ ਦਿਓ</string>
   <string name="NotificationBarManager__end_call">ਕਾਲ ਖਤਮ ਕਰੋ</string>
   <string name="NotificationBarManager__cancel_call">ਕਾਲ ਰੱਦ ਕਰੋ</string>
+  <string name="NotificationBarManager__join_call">ਕਾਲ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">ਸੂਚਨਾਵਾਂ ਚਾਲੂ ਕਰਨੀਆਂ ਹਨ?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">ਆਪਣੇ ਸੰਪਰਕਾਂ ਤੇ ਗਰੁੱਪਾਂ ਤੋਂ ਸੁਨੇਹਾ ਕਦੇ ਨਾ ਖੁੰਝਾਓ।</string>

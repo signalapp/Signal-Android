@@ -743,22 +743,20 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Megosztás</string>
   <string name="InviteActivity_share_with_contacts">Megosztás kontaktokkal</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Megosztás módjának kiválasztása</string> -->
   <string name="InviteActivity_cancel">Mégse</string>
   <string name="InviteActivity_sending">Küldés…</string>
   <string name="InviteActivity_invitations_sent">Meghívók elküldve!</string>
   <string name="InviteActivity_invite_to_signal">Meghívás a Signal-ba</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">SMS KÜLDÉSE %d BARÁTNAK</item>
     <item quantity="other">SMS KÜLDÉSE %d BARÁTNAK</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Elküldesz %d SMS meghívót?</item>
     <item quantity="other">Elküldesz %d db SMS meghívót?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Válts Signal-ra: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Úgy néz ki, hogy egy alkalmazásod sincs a megosztás kezeléséhez.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Az igaz barátok nem hagyják barátaiknak, hogy titkosítatlanul csevegjenek.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">További információ</string>
   <!--LongMessageActivity-->
@@ -829,10 +827,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal hívás létesítése</string>
   <string name="NotificationBarManager__incoming_signal_call">Bejövő Signal hívás</string>
   <string name="NotificationBarManager__stopping_signal_call_service">A Signal hívás szolgáltatás leállítása</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Hívás elutasítása</string> -->
   <string name="NotificationBarManager__answer_call">Hívás felvétele</string>
   <string name="NotificationBarManager__end_call">Hívás befejezése</string>
   <string name="NotificationBarManager__cancel_call">Hívás megszakítása</string>
+  <string name="NotificationBarManager__join_call">Belépés a hívásba</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Értesítések bekapcsolása?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Ne maradj le kontakjaid és csoportjaid értesítéseiről.</string>

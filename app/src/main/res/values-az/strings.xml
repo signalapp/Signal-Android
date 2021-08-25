@@ -84,13 +84,13 @@
   <string name="BlockedUsersActivity__unblock">Əngəldən çıxart</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s qrupunu əngəlləyərək tərk edirsiniz?</string>
-  <string name="BlockUnblockDialog_block_s">%1$səngəllənsin?</string>
+  <string name="BlockUnblockDialog_block_s">%1$s əngəllənsin?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Artıq bu qrupdan mesaj və ya yeniləmələr almayacaqsınız və üzvlər sizi bu qrupa yenidən əlavə edə bilməyəcək.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Qrup üzvləri, sizi yenidən bu qrupa əlavə edə bilməyəcək.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Qrup üzvləri, sizi bu qrupa yenidən əlavə edə biləcək.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Bir-birinizə mesaj göndərə, zəng edə biləcəksiniz, foto və adınız onlarla paylaşılacaq.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Əngəllənmiş şəxslər sizə zəng edə və ya mesaj göndərə bilməyəcək.</string>
-  <string name="BlockUnblockDialog_unblock_s">%1$səngəldən çıxarılsın?</string>
+  <string name="BlockUnblockDialog_unblock_s">%1$s əngəldən çıxarılsın?</string>
   <string name="BlockUnblockDialog_block">Əngəllə</string>
   <string name="BlockUnblockDialog_block_and_leave">Əngəllə və tərk et</string>
   <string name="BlockUnblockDialog_report_spam_and_block">Spam bildir və əngəllə</string>
@@ -749,22 +749,21 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Paylaş</string>
   <string name="InviteActivity_share_with_contacts">Əlaqələrlə paylaş</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Necə paylaşacağınızı seçin</string> -->
+  <string name="InviteActivity_share_via">Paylaş…</string>
   <string name="InviteActivity_cancel">İmtina</string>
   <string name="InviteActivity_sending">Göndərilir…</string>
   <string name="InviteActivity_invitations_sent">Dəvətlər göndərildi!</string>
   <string name="InviteActivity_invite_to_signal">Signal-a dəvət et</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">%d DOSTUNA SMS GÖNDƏR</item>
     <item quantity="other">%d DOSTUNA SMS GÖNDƏR</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d SMS dəvətnaməsi göndərirsən?</item>
     <item quantity="other">%d SMS dəvəti göndərilsin?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Gəlin Signal-a keçək: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Bunu paylaşmaq üçün heç bir tətbiqiniz yoxdur kimi görünür.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Dostlar, dostlarının şifrəsiz söhbət etməsinə icazə vermir.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Daha ətraflı</string>
   <!--LongMessageActivity-->
@@ -835,11 +834,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal zəngi davam edir</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal zəngi edilir</string>
   <string name="NotificationBarManager__incoming_signal_call">Gələn Signal zəngi</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Gələn Signal görüntülü zəngi</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal zəng xidməti dayandırılır</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Zəngi rədd et</string> -->
+  <string name="NotificationBarManager__decline_call">Zəngi rədd et</string>
   <string name="NotificationBarManager__answer_call">Zəngi cavabla</string>
   <string name="NotificationBarManager__end_call">Zəngi bitir</string>
   <string name="NotificationBarManager__cancel_call">Zəngi ləğv et</string>
+  <string name="NotificationBarManager__join_call">Zəngə qoşul</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Bildirişlər açılsın?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Əlaqələrinizdən və qruplarınızdan gələn heç bir mesajı qaçırmayın.</string>
@@ -1200,6 +1201,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal-ın, %1$s əlaqəsinə zəng etmək üçün kameranıza müraciətinə ehtiyacı var</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Zəng edilir…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Qrup, iştirakçılara zəng etmək üçün çox böyükdür.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal zəngi</string>
   <string name="WebRtcCallView__signal_video_call">Signal görüntülü zəngi</string>
@@ -1212,8 +1214,34 @@
   <string name="WebRtcCallView__reconnecting">Yenidən bağlantı qurulur…</string>
   <string name="WebRtcCallView__joining">Qoşulur…</string>
   <string name="WebRtcCallView__disconnected">Bağlantı kəsildi</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal, %1$s üçün zəng edəcək</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal, %1$s və %2$s üçün zəng edəcək</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal, %1$s, %2$s və digər %3$d nəfərə zəng edəcək</item>
+    <item quantity="other">Signal, %1$s, %2$s və digər %3$d nəfərə zəng edəcək</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s bildiriş alacaq</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s və %2$s bildiriş alacaq</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s və digər %3$d nəfər bildiriş alacaq</item>
+    <item quantity="other">%1$s, %2$s və digər %3$d nəfər bildiriş alacaq</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">%1$s üçün zəng edilir</string>
+  <string name="WebRtcCallView__ringing_s_and_s">%1$s və %2$s üçün zəng edilir</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">%1$s, %2$s və digər %3$d nəfər üçün zəng edilir</item>
+    <item quantity="other">%1$s, %2$s və digər %3$d nəfər üçün zəng edilir</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s sizə zəng edir</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s, sizə və %2$s əlaqəsinə zəng edir</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s, sizə, %2$s və %3$s əlaqələrinə zəng edir</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s, sizə, %2$s, %3$s və digər %4$d nəfərə zəng edir</item>
+    <item quantity="other">%1$s, sizə, %2$s, %3$s və digər %4$d nəfərə zəng edir</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Burada heç kim yoxdur</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s bu zəngdədir</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s bu zəngdədir</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s və %2$s bu zəngdədir</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s təqdim edir</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1224,6 +1252,7 @@
   <string name="WebRtcCallView__speaker">Dinamik</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Səssizə al</string>
+  <string name="WebRtcCallView__ring">Zəng</string>
   <string name="WebRtcCallView__end_call">Zəngi bitir</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

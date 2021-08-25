@@ -737,22 +737,20 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Compartir</string>
   <string name="InviteActivity_share_with_contacts">Compartir con contactos</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Elixir como compartir</string> -->
   <string name="InviteActivity_cancel">Cancelar</string>
   <string name="InviteActivity_sending">A enviar…</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
   <string name="InviteActivity_invite_to_signal">Convidar a Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">ENVIAR SMS A %d AMIZADE</item>
     <item quantity="other">ENVIAR SMS A %d AMIZADES</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Enviar %d SMS de convite?</item>
     <item quantity="other">Enviar %d SMS de convite?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Imos cambiar a Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Semella que non hai ningunha que permita compartir.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Non manteñas coas túas amizades conversas sen cifrar.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saber máis</string>
   <!--LongMessageActivity-->
@@ -823,10 +821,10 @@
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal en progreso</string>
   <string name="NotificationBarManager__establishing_signal_call">Establecendo chamada Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Chamada recibida Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Rexeitar chamada</string> -->
   <string name="NotificationBarManager__answer_call">Responder chamada</string>
   <string name="NotificationBarManager__end_call">Finalizar chamada</string>
   <string name="NotificationBarManager__cancel_call">Cancelar chamada</string>
+  <string name="NotificationBarManager__join_call">Unirse á chamada</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Activar Notificacións?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Non perdas nin unha mensaxe dos teus contactos e grupos.</string>

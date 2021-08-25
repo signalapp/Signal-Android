@@ -749,22 +749,21 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Paylaş</string>
   <string name="InviteActivity_share_with_contacts">Kişilerle paylaş</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Nasıl paylaşılacağını seçin</string> -->
+  <string name="InviteActivity_share_via">Şununla paylaş…</string>
   <string name="InviteActivity_cancel">İptal</string>
   <string name="InviteActivity_sending">Gönderiliyor…</string>
   <string name="InviteActivity_invitations_sent">Davetler gönderildi!</string>
   <string name="InviteActivity_invite_to_signal">Signal\'e davet et</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">%d ARKADAŞINA SMS GÖNDER</item>
     <item quantity="other">%d ARKADAŞINA SMS GÖNDER</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d SMS daveti gönderilsin mi?</item>
     <item quantity="other">%d SMS daveti gönderilsin mi?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hadi Signal\'e geçelim: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Paylaşmak için herhangi bir uygulamanız yok gibi görünüyor.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Arkadaşlar, arkadaşlarının şifresiz konuşmalarına izin vermez.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Dahasını öğrenin</string>
   <!--LongMessageActivity-->
@@ -835,11 +834,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal araması sürüyor</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal araması kuruluyor</string>
   <string name="NotificationBarManager__incoming_signal_call">Gelen Signal araması</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Gelen Signal grup araması</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal\'in arama hizmeti durduruluyor</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Reddet</string> -->
+  <string name="NotificationBarManager__decline_call">Aramayı reddet</string>
   <string name="NotificationBarManager__answer_call">Cevapla</string>
   <string name="NotificationBarManager__end_call">Aramayı sonlandır</string>
   <string name="NotificationBarManager__cancel_call">Aramayı iptal et</string>
+  <string name="NotificationBarManager__join_call">Aramaya katıl</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Bildirimler açılsın mı?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Kişilerinizden ve gruplarınızdan asla herhangi bir ileti kaçırmayın.</string>
@@ -930,6 +931,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s, %2$s kişisini yönetici yaptı.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s sizi yönetici yaptı.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s kişisinin yönetici yetkilerini iptal ettiniz.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s yönetici yetkilerinizi iptal etti.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s, %2$s kişisinin yönetici yetkilerini iptal etti.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s artık bir yönetici.</string>
   <string name="MessageRecord_you_are_now_an_admin">Artık yöneticisiniz.</string>
@@ -1199,8 +1201,10 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s ile arama yapmanız için, Signal\'in kameranıza erişime ihtiyacı var</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Aranıyor…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grup, katılımcıların aranması için çok büyük.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal Araması</string>
+  <string name="WebRtcCallView__signal_video_call">Görüntülü Signal Araması</string>
   <string name="WebRtcCallView__start_call">Arama Başlat</string>
   <string name="WebRtcCallView__join_call">Çağrıya Katıl</string>
   <string name="WebRtcCallView__call_is_full">Arama dolu</string>
@@ -1210,17 +1214,45 @@
   <string name="WebRtcCallView__reconnecting">Yeniden bağlanıyor…</string>
   <string name="WebRtcCallView__joining">Katılınıyor…</string>
   <string name="WebRtcCallView__disconnected">Bağlantı yok</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal %1$s kişisini arayacak</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal %1$s ve %2$s kişilerini arayacak</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal %1$s, %2$s ve %3$d diğer kişiyi arayacak</item>
+    <item quantity="other">Signal %1$s, %2$s ve %3$d diğer kişiyi arayacak</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s bildirim alacak</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s ve %2$s bildirim alacak</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s ve %3$d diğer kişi bildirim alacak</item>
+    <item quantity="other">%1$s, %2$s ve %3$d diğer kişi bildirim alacak</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">%1$s aranıyor</string>
+  <string name="WebRtcCallView__ringing_s_and_s">%1$s ve %2$s aranıyor</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">%1$s, %2$s ve %3$d diğer kişi aranıyor</item>
+    <item quantity="other">%1$s, %2$s ve %3$d diğer kişi aranıyor</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s sizi arıyor</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s sizi ve %2$s kişisini arıyor</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s kişisi siz, %2$s ve %3$s kişilerini arıyor</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s, kişisi siz, %2$s, %3$s ve %4$d diğer kişiyi arıyor</item>
+    <item quantity="other">%1$s, kişisi siz, %2$s, %3$s ve %4$d diğer kişiyi arıyor</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Burada kimse yok</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s bu aramada</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s bu aramada</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ve %2$s bu aramada</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s sunuyor</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s, ve %3$d diğer kişi bu aramada</item>
     <item quantity="other">%1$s, %2$s, ve %3$d diğer kişi bu aramada</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Döndür</string>
   <string name="WebRtcCallView__speaker">Hoparlör</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Sessiz</string>
+  <string name="WebRtcCallView__ring">Ara</string>
   <string name="WebRtcCallView__end_call">Aramayı sonlandır</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -3107,5 +3139,26 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Yukarı git</string>
+  <string name="MultiselectForwardFragment__forward_to">Yönlendir</string>
+  <string name="MultiselectForwardFragment__add_a_message">İleti ekle</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Hızlı yönlendirmeler</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Yönlendirilen iletiler artık anında gidiyor.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">%1$d ileti gönder</item>
+    <item quantity="other">%1$d ileti gönder</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">İleti gönderildi</item>
+    <item quantity="other">İletiler gönderildi</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">İleti gönderilemedi</item>
+    <item quantity="other">İletiler gönderilemedi</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">İleti artık mevcut olmadığı için yönlendirilemedi.</item>
+    <item quantity="other">İletiler artık mevcut olmadığı için yönlendirilemedi.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Sınıra ulaşıldı</string>
   <!--EOF-->
 </resources>

@@ -749,22 +749,21 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">اشتراک‌گذاری</string>
   <string name="InviteActivity_share_with_contacts">اشتراک‌گذاری با مخاطبین</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">انتخاب نحوهٔ اشتراک‌گذاری</string> -->
+  <string name="InviteActivity_share_via">اشتراک‌گذاری از طریق…</string>
   <string name="InviteActivity_cancel">لغو</string>
   <string name="InviteActivity_sending">در حال ارسال…</string>
   <string name="InviteActivity_invitations_sent">دعوت‌نامه‌ها ارسال شدند!</string>
   <string name="InviteActivity_invite_to_signal">دعوت به سیگنال</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">ارسال پیامک به %d دوست</item>
     <item quantity="other">ارسال پیامک به %d دوست</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">ارسال %d پیامک دعوت؟</item>
     <item quantity="other">ارسال %d پیامک دعوت؟</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">بیایید از سیگنال استفاده کنیم:  %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">به نظر می‌رسد شما هیچ برنامه‌ای برای ‌اشتراک‌گذاری ندارید.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوستان واقعی به دوستان خود اجازهٔ گفتگوی رمزگذاری نشده را نمی‌دهند.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">بیشتر یاد بگیرید</string>
   <!--LongMessageActivity-->
@@ -835,11 +834,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">تماس سیگنال در جریان است</string>
   <string name="NotificationBarManager__establishing_signal_call">در حال برقراری تماس سیگنال</string>
   <string name="NotificationBarManager__incoming_signal_call">تماس ورودی سیگنال</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">تماس ورودی گروهی سیگنال</string>
   <string name="NotificationBarManager__stopping_signal_call_service">در حال متوقف کردن سرویس تماس سیگنال</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">رد تماس</string> -->
+  <string name="NotificationBarManager__decline_call">رد کردن تماس</string>
   <string name="NotificationBarManager__answer_call">پاسخ به تماس</string>
   <string name="NotificationBarManager__end_call">پایان تماس</string>
   <string name="NotificationBarManager__cancel_call">لغو تماس</string>
+  <string name="NotificationBarManager__join_call">پیوستن به تماس</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">اعلان‌ها روشن شوند؟</string>
   <string name="NotificationsMegaphone_never_miss_a_message">هیچوقت پیامی از مخاطب‌ها و گروه‌هایتان از دست ندهید.</string>
@@ -1200,6 +1201,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">برای تماس با%1$s، سیگنال به دسترسی دوربین شما نیاز دارد</string>
   <string name="WebRtcCallActivity__signal_s">%1$s سیگنال</string>
   <string name="WebRtcCallActivity__calling">در حال برقراری تماس…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">گروه برای زنگ خوردن همهٔ مشارکت‌کنندگان خیلی بزرگ است.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">تماس سیگنال</string>
   <string name="WebRtcCallView__signal_video_call">تماس ویدئویی سیگنال</string>
@@ -1212,8 +1214,34 @@
   <string name="WebRtcCallView__reconnecting">در حال اتصال دوباره…</string>
   <string name="WebRtcCallView__joining">در حال پیوستن…</string>
   <string name="WebRtcCallView__disconnected">ارتباط قطع شد</string>
+  <string name="WebRtcCallView__signal_will_ring_s">سیگنال به %1$s زنگ خواهد زد</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">سیگنال به %1$s و %2$s زنگ خواهد زد</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">سیگنال به %1$s، %2$s، و %3$d نفر دیگر زنگ خواهد زد</item>
+    <item quantity="other">سیگنال به %1$s، %2$s، و %3$d نفر دیگر زنگ خواهد زد</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s آگاه خواهد شد</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s و %2$s آگاه خواهند شد</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s، %2$s، و %3$d نفر دیگر آگاه خواهند شد</item>
+    <item quantity="other">%1$s، %2$s، و %3$d نفر دیگر آگاه خواهند شد</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">در حال زنگ زدن به %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">در حال زنگ زدن به %1$s و %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">در حال زنگ زدن به %1$s، %2$s، و %3$d نفر دیگر</item>
+    <item quantity="other">در حال زنگ زدن به %1$s، %2$s، و %3$d نفر دیگر</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s در حال تماس گرفتن با شماست</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s در حال تماس گرفتن با شما و %2$s است.</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s در حال تماس گرفتن با شما، %2$s، و %3$s است</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s در حال تماس گرفتن با شما، %2$s، %3$s، و %4$d نفر دیگر است</item>
+    <item quantity="other">%1$s در حال تماس گرفتن با شما، %2$s، %3$s، و %4$d نفر دیگر است</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">هیچ‌کس دیگری اینجا نیست</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s در این تماس حضور دارد</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s نفر در این تماس هستند</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s و %2$s در این تماس حضور دارند</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s در حال ارائه است</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1224,6 +1252,7 @@
   <string name="WebRtcCallView__speaker">بلندگو</string>
   <string name="WebRtcCallView__camera">دوربین</string>
   <string name="WebRtcCallView__mute">بستن</string>
+  <string name="WebRtcCallView__ring">زنگ زدن</string>
   <string name="WebRtcCallView__end_call">پایان دادن به تماس</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

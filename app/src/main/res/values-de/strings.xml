@@ -749,22 +749,21 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Teilen</string>
   <string name="InviteActivity_share_with_contacts">Mit Kontakten teilen (SMS)</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Mit anderer App teilen</string> -->
+  <string name="InviteActivity_share_via">Teilen über …</string>
   <string name="InviteActivity_cancel">Abbrechen</string>
   <string name="InviteActivity_sending">Wird versendet …</string>
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">SMS AN %d FREUND SENDEN</item>
     <item quantity="other">SMS AN %d FREUNDE SENDEN</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d SMS-Einladung senden?</item>
     <item quantity="other">%d SMS-Einladungen senden?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Lass uns zu »Signal« wechseln: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Es sieht so aus, als hättest du keine zum Teilen geeignete Apps installiert.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Freunde lassen Freunde nicht unverschlüsselt kommunizieren.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Mehr erfahren</string>
   <!--LongMessageActivity-->
@@ -835,11 +834,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal-Anruf läuft</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-Anruf wird hergestellt</string>
   <string name="NotificationBarManager__incoming_signal_call">Eingehender Signal-Anruf</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Eingehender Signal-Gruppenanruf</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signals Anrufdienst wird gestoppt</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Anruf ablehnen</string> -->
+  <string name="NotificationBarManager__decline_call">Anruf ablehnen</string>
   <string name="NotificationBarManager__answer_call">Anruf annehmen</string>
   <string name="NotificationBarManager__end_call">Anruf beenden</string>
   <string name="NotificationBarManager__cancel_call">Anruf abbrechen</string>
+  <string name="NotificationBarManager__join_call">Anruf beitreten</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Benachrichtigungen einschalten?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Versäume nie eine Nachricht deiner Kontakte und Gruppen.</string>
@@ -1198,6 +1199,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Um %1$s anzurufen, benötigt Signal Zugriff auf deine Kamera</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Anrufen …</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppe ist zu groß, um die Teilnehmer anzuklingeln.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal-Anruf</string>
   <string name="WebRtcCallView__signal_video_call">Signal-Videoanruf</string>
@@ -1210,18 +1212,45 @@
   <string name="WebRtcCallView__reconnecting">Verbindung wird neu hergestellt …</string>
   <string name="WebRtcCallView__joining">Beitreten …</string>
   <string name="WebRtcCallView__disconnected">Verbindung getrennt</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal wird bei %1$s klingeln</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal wird bei %1$s und %2$s klingeln</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal wird bei %1$s, %2$s und %3$d weiteren Person klingeln</item>
+    <item quantity="other">Signal wird bei %1$s, %2$s und %3$d weiteren Personen klingeln</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s wird benachrichtigt</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s und %2$s werden benachrichtigt</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s und %3$d weitere Person werden benachrichtigt</item>
+    <item quantity="other">%1$s, %2$s und %3$d weitere Personen werden benachrichtigt</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Klingelt bei %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Klingelt bei %1$s und %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Klingelt bei %1$s, %2$s und %3$d weiteren Person</item>
+    <item quantity="other">Klingelt bei %1$s, %2$s und %3$d weiteren Personen</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s ruft dich an</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s ruft %2$s und dich an</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s ruft %2$s, %3$s und dich an</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s ruft %2$s, %3$s, %4$d weitere Person und dich an</item>
+    <item quantity="other">%1$s ruft %2$s, %3$s, %4$d weitere Personen und dich an</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Niemand anderes ist hier</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s nimmt an diesem Anruf teil</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s sind in dem Anruf</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s und %2$s nehmen an diesem Anruf teil</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s präsentiert gerade</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s und %3$d Weiterer nehmen an diesem Anruf teil</item>
     <item quantity="other">%1$s, %2$s und %3$d Weitere nehmen an diesem Anruf teil</item>
   </plurals>
-  <string name="WebRtcCallView__flip">Wechseln</string>
+  <string name="WebRtcCallView__flip">Drehen</string>
   <string name="WebRtcCallView__speaker">Audio</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Stumm​</string>
+  <string name="WebRtcCallView__ring">Klingeln</string>
   <string name="WebRtcCallView__end_call">Auflegen</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

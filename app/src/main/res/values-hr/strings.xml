@@ -786,16 +786,15 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Dijeli</string>
   <string name="InviteActivity_share_with_contacts">Podijelite s kontaktima</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Odaberi način dijeljenja</string> -->
   <string name="InviteActivity_cancel">Poništi</string>
   <string name="InviteActivity_sending">Slanje…</string>
   <string name="InviteActivity_invitations_sent">Pozivnice su poslane!</string>
   <string name="InviteActivity_invite_to_signal">Pozovi u Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">POŠALJI SMS ZA %d PRIJATELJA</item>
     <item quantity="few">POŠALJI SMS ZA %d PRIJATELJA</item>
     <item quantity="other">POŠALJI SMS ZA %d PRIJATELJA</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Pošalji %d SMS pozivnicu?</item>
     <item quantity="few">Pošalji %d SMS pozivnice?</item>
@@ -803,7 +802,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Prebacimo se na Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Izgleda da nemate nijednu aplikaciju za dijeljenje.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prijatelji ne dopuštaju prijateljima da razgovaraju bez šifriranja.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saznajte više</string>
   <!--LongMessageActivity-->
@@ -879,10 +877,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Uspostavljanje Signal poziva</string>
   <string name="NotificationBarManager__incoming_signal_call">Dolazni Signal poziv</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Zaustavljanje Signalove usluge za pozive</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Odbij poziv</string> -->
   <string name="NotificationBarManager__answer_call">Prihvati poziv</string>
   <string name="NotificationBarManager__end_call">Završi poziv</string>
   <string name="NotificationBarManager__cancel_call">Otkaži poziv</string>
+  <string name="NotificationBarManager__join_call">Pridruži se pozivu</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Uključiti obavijesti?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Nikad ne propustite poruku kontakata i grupa.</string>

@@ -712,20 +712,18 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">分享</string>
   <string name="InviteActivity_share_with_contacts">同聯絡人分享</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">選擇要點分享</string> -->
   <string name="InviteActivity_cancel">取消</string>
   <string name="InviteActivity_sending">送緊出去…</string>
   <string name="InviteActivity_invitations_sent">邀請已發送！</string>
   <string name="InviteActivity_invite_to_signal">拉隊嚟 Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="other">發短訊畀 %d 個好友</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">係咪要傳送 %d 個邀請短訊？</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">不如我哋齊齊轉會 Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">似乎您無 app 用嚟去分享噃。</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">共密友齊加密，唔使等伊人擔憂。</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">講多啲畀我聽</string>
   <!--LongMessageActivity-->
@@ -793,10 +791,10 @@
   <string name="NotificationBarManager__establishing_signal_call">籌備緊 Signal 通話</string>
   <string name="NotificationBarManager__incoming_signal_call">打入嚟嘅 Signal 通話</string>
   <string name="NotificationBarManager__stopping_signal_call_service">停止緊 Signal 通話服務</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">拒絕通話</string> -->
   <string name="NotificationBarManager__answer_call">接聽通話</string>
   <string name="NotificationBarManager__end_call">收線</string>
   <string name="NotificationBarManager__cancel_call">取消通話</string>
+  <string name="NotificationBarManager__join_call">加入通話</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">係咪要開啟通知？</string>
   <string name="NotificationsMegaphone_never_miss_a_message">您嘅聯絡人同谷傳過嚟嘅訊息唔再甩漏。</string>

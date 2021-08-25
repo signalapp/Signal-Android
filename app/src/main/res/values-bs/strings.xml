@@ -786,16 +786,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Dijeli</string>
   <string name="InviteActivity_share_with_contacts">Podijelite s kontaktima</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Odaberite način dijeljenja</string> -->
+  <string name="InviteActivity_share_via">Podijeli putem…</string>
   <string name="InviteActivity_cancel">Otkaži</string>
   <string name="InviteActivity_sending">Šaljem…</string>
   <string name="InviteActivity_invitations_sent">Pozivnica poslana!</string>
   <string name="InviteActivity_invite_to_signal">Pozovite na Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">ŠALJI SMS %d PRIJATELJU</item>
     <item quantity="few">ŠALJI SMS %d PRIJATELJA</item>
     <item quantity="other">ŠALJI SMS %d PRIJATELJA</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Poslati %d SMS pozivnicu?</item>
     <item quantity="few">Poslati %d SMS pozivnice?</item>
@@ -803,7 +803,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Pređimo na Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Izgleda da nemate nijednu aplikaciju s kojom je moguće dijeljenje.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prijatelji neće dozvoliti da s prijateljima razgovaraju bez šifriranja.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Saznajte više</string>
   <!--LongMessageActivity-->
@@ -878,11 +877,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal poziv u toku</string>
   <string name="NotificationBarManager__establishing_signal_call">Uspostavljam Signal poziv</string>
   <string name="NotificationBarManager__incoming_signal_call">Dolazni Signal poziv</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Dolazni grupni Signal poziv</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Zaustavljam servis za Signal pozive</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Odbij poziv</string> -->
+  <string name="NotificationBarManager__decline_call">Odbij poziv</string>
   <string name="NotificationBarManager__answer_call">Odgovori na poziv</string>
   <string name="NotificationBarManager__end_call">Završi razgovor</string>
   <string name="NotificationBarManager__cancel_call">Prekini poziv</string>
+  <string name="NotificationBarManager__join_call">Pridruži se pozivu</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Uključiti obavještenja?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Nikad ne propustite poruku od svojih kontakata i grupa.</string>
@@ -1258,6 +1259,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Da biste nazvali %1$s, Signalu je potreban pristup Vašoj kameri</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Pozivam…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupa je prevelika za zazvoniti učesnicima.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal poziv</string>
   <string name="WebRtcCallView__signal_video_call">Signal videopoziv</string>
@@ -1270,8 +1272,38 @@
   <string name="WebRtcCallView__reconnecting">Povezujem iznova…</string>
   <string name="WebRtcCallView__joining">Pristupam…</string>
   <string name="WebRtcCallView__disconnected">Prekinuta veza</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal će zazvoniti %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal će zazvoniti %1$s i %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal će zazvoniti %1$s, %2$s i još %3$d osobi</item>
+    <item quantity="few">Signal će zazvoniti %1$s, %2$s i %3$d drugih</item>
+    <item quantity="other">Signal će zazvoniti %1$s, %2$s i %3$d drugih</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s će biti obaviješten/a</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s i %2$s bit će obaviješteni</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s i još %3$d bit će obaviješteni</item>
+    <item quantity="few">%1$s, %2$s i %3$d drugih bit će obaviješteni</item>
+    <item quantity="other">%1$s, %2$s i %3$d drugih bit će obaviješteni</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Zvoni za %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Zvoni za %1$s i %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Zvoni za %1$s, %2$s i još %3$d osobu</item>
+    <item quantity="few">Zvoni za %1$s, %2$s i %3$d drugih</item>
+    <item quantity="other">Zvoni za %1$s, %2$s i %3$d drugih</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s Vas zove</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s zove Vas i %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s zove Vas, %2$s i %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s zove Vas, %2$s, %3$s i još %4$d osobu</item>
+    <item quantity="few">%1$s zove Vas, %2$s, %3$s i %4$d drugih</item>
+    <item quantity="other">%1$s zove Vas, %2$s, %3$s i %4$d drugih</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Niko drugi nije tu</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s učestvuje u pozivu</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s učestvuje u pozivu</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s i %2$s učestvuju u pozivu</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s prezentuje</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1283,6 +1315,7 @@
   <string name="WebRtcCallView__speaker">Zvučnik</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Stišaj</string>
+  <string name="WebRtcCallView__ring">Zvoni</string>
   <string name="WebRtcCallView__end_call">Završi razgovor</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

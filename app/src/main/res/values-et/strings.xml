@@ -736,22 +736,20 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Jaga</string>
   <string name="InviteActivity_share_with_contacts">Jaga kontaktidega</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_how_to_share">Vali, kuidas jagada</string> -->
   <string name="InviteActivity_cancel">Tühista</string>
   <string name="InviteActivity_sending">Saatmine…</string>
   <string name="InviteActivity_invitations_sent">Kutsed saadetud!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signalisse</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
+  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">SAADA SMS %d SÕBRALE</item>
     <item quantity="other">SAADA SMS %d SÕBRALE</item>
-  </plurals>
+  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Saadad %d SMS-kutse?</item>
     <item quantity="other">Saadad %d SMS-kutset?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Lähme Signalile üle: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Tundub, et sul pole ühtegi rakendust, kuhu jagada.</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Sõbrad ei luba sõpradel krüptimata rääkida.</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Rohkem infot</string>
   <!--LongMessageActivity-->
@@ -822,10 +820,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Alustan Signali kõnet</string>
   <string name="NotificationBarManager__incoming_signal_call">Sissetulev Signali kõne</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signali kõneteenuse peatamine</string>
-  <!-- Removed by excludeNonTranslatables <string name="NotificationBarManager__deny_call">Keeldu kõnest</string> -->
   <string name="NotificationBarManager__answer_call">Vasta kõnele</string>
   <string name="NotificationBarManager__end_call">Lõpeta kõne</string>
   <string name="NotificationBarManager__cancel_call">Tühista kõne</string>
+  <string name="NotificationBarManager__join_call">Liitu kõnega</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Kas lubada teavitused?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Ükski kontaktidelt või gruppidelt saadud sõnum ei jää märkamata.</string>
