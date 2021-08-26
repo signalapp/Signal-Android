@@ -1187,7 +1187,8 @@ public class Recipient {
            Objects.equals(avatarColor, other.avatarColor) &&
            Objects.equals(about, other.about) &&
            Objects.equals(aboutEmoji, other.aboutEmoji) &&
-           Objects.equals(extras, other.extras);
+           Objects.equals(extras, other.extras) &&
+           hasGroupsInCommon == other.hasGroupsInCommon;
   }
 
   private static boolean allContentsAreTheSame(@NonNull List<Recipient> a, @NonNull List<Recipient> b) {
