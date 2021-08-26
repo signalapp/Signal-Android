@@ -81,11 +81,10 @@ class QuoteView : LinearLayout {
         val staticLayout = TextUtilities.getIntrinsicLayout(body, quoteViewBodyTextView.paint, maxContentWidth)
         result += bodyTextViewIntrinsicHeight
         if (!quoteViewAuthorTextView.isVisible) {
-            // We want to at least be as high as the cancel button, and no higher than 56 DP (that's
-            // approximately the height of 3 lines.
-
-            // Calculating height based on proportion of the static layout.
-            return min((result / staticLayout.lineCount) * 3, result)
+            // We want to at least be as high as the cancel button 36DP, and no higher than 3 lines of text.
+            // Height from intrinsic layout is the height of the text before truncation so we shorten
+            // proportionally to our max lines setting.
+            return max(toPx(32, resources) ,min((result / staticLayout.lineCount) * 3, result))
         } else {
             // Because we're showing the author text view, we should have a height of at least 32 DP
             // anyway, so there's no need to constrain to that. We constrain to a max height of 56 DP

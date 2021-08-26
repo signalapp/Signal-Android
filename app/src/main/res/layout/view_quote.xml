@@ -67,11 +67,11 @@
             android:id="@+id/quoteViewBodyTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Yo, I need your help here!"
-            android:textSize="@dimen/small_font_size"
-            android:textColor="@color/text"
+            android:ellipsize="end"
             android:maxLines="3"
-            android:ellipsize="end" />
+            android:text="Yo, I need your help here!"
+            android:textColor="@color/text"
+            android:textSize="@dimen/small_font_size" />
 
     </LinearLayout>
 
