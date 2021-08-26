@@ -3581,7 +3581,7 @@ public class RecipientDatabase extends Database {
                                                    ")";
 
     static final String SIGNAL_CONTACT = REGISTERED + " = ? AND " +
-                                         "(" + SYSTEM_JOINED_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
+                                         "(" + nullIfEmpty(SYSTEM_JOINED_NAME) + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
                                          "(" + SORT_NAME + " NOT NULL OR " + USERNAME + " NOT NULL)";
 
     static final String QUERY_SIGNAL_CONTACT = SIGNAL_CONTACT + " AND (" +
