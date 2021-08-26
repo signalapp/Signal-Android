@@ -712,13 +712,6 @@ public final class SignalServiceContent {
       List<SignalServiceAddress> addresses = new ArrayList<>(numbers.size() + uuids.size());
       List<byte[]>               groupIds  = new ArrayList<>(content.getBlocked().getGroupIdsList().size());
 
-      for (String e164 : numbers) {
-        Optional<SignalServiceAddress> address = SignalServiceAddress.fromRaw(null, e164);
-        if (address.isPresent()) {
-          addresses.add(address.get());
-        }
-      }
-
       for (String uuid : uuids) {
         Optional<SignalServiceAddress> address = SignalServiceAddress.fromRaw(uuid, null);
         if (address.isPresent()) {

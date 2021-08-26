@@ -64,7 +64,7 @@ public class SignalServiceAddress {
   }
 
   public static boolean isValidAddress(String rawUuid, String e164) {
-    return (e164 != null && !e164.isEmpty()) || UuidUtil.parseOrNull(rawUuid) != null;
+    return UuidUtil.parseOrNull(rawUuid) != null;
   }
 
   public static Optional<SignalServiceAddress> fromRaw(String rawUuid, String e164) {
