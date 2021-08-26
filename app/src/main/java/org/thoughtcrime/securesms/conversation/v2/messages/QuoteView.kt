@@ -78,11 +78,14 @@ class QuoteView : LinearLayout {
         }
         val body = quoteViewBodyTextView.text
         val bodyTextViewIntrinsicHeight = TextUtilities.getIntrinsicHeight(body, quoteViewBodyTextView.paint, maxContentWidth)
+        val staticLayout = TextUtilities.getIntrinsicLayout(body, quoteViewBodyTextView.paint, maxContentWidth)
         result += bodyTextViewIntrinsicHeight
         if (!quoteViewAuthorTextView.isVisible) {
             // We want to at least be as high as the cancel button, and no higher than 56 DP (that's
             // approximately the height of 3 lines.
-            return min(max(result, toPx(32, resources)), toPx(56, resources))
+
+            // Calculating height based on proportion of the static layout.
+            return min((result / staticLayout.lineCount) * 3, result)
         } else {
             // Because we're showing the author text view, we should have a height of at least 32 DP
             // anyway, so there's no need to constrain to that. We constrain to a max height of 56 DP
@@ -97,7 +100,7 @@ class QuoteView : LinearLayout {
         // and then center everything inside vertically. This effectively means we're applying padding.
         // Applying padding the regular way results in a clipping issue though due to a bug in
         // RelativeLayout.
-        return getIntrinsicContentHeight(maxContentWidth) + 2 * vPadding
+        return getIntrinsicContentHeight(maxContentWidth)  + (2 * vPadding )
     }
     // endregion
 
