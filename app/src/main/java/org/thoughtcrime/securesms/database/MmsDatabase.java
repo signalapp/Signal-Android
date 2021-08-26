@@ -1524,41 +1524,34 @@ public class MmsDatabase extends MessageDatabase {
 
     MentionUtil.UpdatedBodyAndMentions updatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithPlaceholders(message.getBody(), message.getMentions());
 
-    long messageId;
+    long messageId = insertMediaMessage(threadId, updatedBodyAndMentions.getBodyAsString(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), updatedBodyAndMentions.getMentions(), contentValues, insertListener);
 
-    db.beginTransaction();
-    try {
-      messageId = insertMediaMessage(threadId, updatedBodyAndMentions.getBodyAsString(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), updatedBodyAndMentions.getMentions(), contentValues, insertListener);
+    if (message.getRecipient().isGroup()) {
+      OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (message instanceof OutgoingGroupUpdateMessage) ? (OutgoingGroupUpdateMessage) message : null;
 
-      if (message.getRecipient().isGroup()) {
-        OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (message instanceof OutgoingGroupUpdateMessage) ? (OutgoingGroupUpdateMessage) message : null;
+      GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
+      Set<RecipientId>     members         = new HashSet<>();
 
-        GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
-        Set<RecipientId>     members         = new HashSet<>();
-
-        if (outgoingGroupUpdateMessage != null && outgoingGroupUpdateMessage.isV2Group()) {
-          MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupUpdateMessage.requireGroupV2Properties();
-          members.addAll(Stream.of(groupV2Properties.getAllActivePendingAndRemovedMembers())
-                               .distinct()
-                               .map(uuid -> RecipientId.from(uuid, null))
-                               .toList());
-          members.remove(Recipient.self().getId());
-        } else {
-          members.addAll(Stream.of(DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)).map(Recipient::getId).toList());
-        }
-
-        receiptDatabase.insert(members, messageId, defaultReceiptStatus, message.getSentTimeMillis());
-
-        for (RecipientId recipientId : earlyDeliveryReceipts.keySet()) receiptDatabase.update(recipientId, messageId, GroupReceiptDatabase.STATUS_DELIVERED, -1);
+      if (outgoingGroupUpdateMessage != null && outgoingGroupUpdateMessage.isV2Group()) {
+        MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupUpdateMessage.requireGroupV2Properties();
+        members.addAll(Stream.of(groupV2Properties.getAllActivePendingAndRemovedMembers())
+                             .distinct()
+                             .map(uuid -> RecipientId.from(uuid, null))
+                             .toList());
+        members.remove(Recipient.self().getId());
+      } else {
+        members.addAll(Stream.of(DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF)).map(Recipient::getId).toList());
       }
 
-      DatabaseFactory.getThreadDatabase(context).setLastSeenSilently(threadId);
-      DatabaseFactory.getThreadDatabase(context).setHasSentSilently(threadId, true);
+      receiptDatabase.insert(members, messageId, defaultReceiptStatus, message.getSentTimeMillis());
 
-      db.setTransactionSuccessful();
-    } finally {
-      db.endTransaction();
+      for (RecipientId recipientId : earlyDeliveryReceipts.keySet()) {
+        receiptDatabase.update(recipientId, messageId, GroupReceiptDatabase.STATUS_DELIVERED, -1);
+      }
     }
+
+    DatabaseFactory.getThreadDatabase(context).setLastSeenSilently(threadId);
+    DatabaseFactory.getThreadDatabase(context).setHasSentSilently(threadId, true);
 
     notifyConversationListeners(threadId);
     notifyConversationListListeners();

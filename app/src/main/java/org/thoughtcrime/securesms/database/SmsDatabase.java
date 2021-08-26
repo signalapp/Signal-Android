@@ -1216,26 +1216,19 @@ public class SmsDatabase extends MessageDatabase {
     contentValues.put(EXPIRES_IN, message.getExpiresIn());
     contentValues.put(DELIVERY_RECEIPT_COUNT, Stream.of(earlyDeliveryReceipts.values()).mapToLong(Long::longValue).sum());
 
-    long messageId;
+    long messageId = db.insert(TABLE_NAME, null, contentValues);
 
-    db.beginTransaction();
-    try {
-      messageId = db.insert(TABLE_NAME, null, contentValues);
-
-      if (insertListener != null) {
-        insertListener.onComplete();
-      }
-
-      if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
-        DatabaseFactory.getThreadDatabase(context).setLastScrolled(threadId, 0);
-        DatabaseFactory.getThreadDatabase(context).setLastSeenSilently(threadId);
-      }
-
-      DatabaseFactory.getThreadDatabase(context).setHasSentSilently(threadId, true);
-      db.setTransactionSuccessful();
-    } finally {
-      db.endTransaction();
+    if (insertListener != null) {
+      insertListener.onComplete();
     }
+
+    if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
+      DatabaseFactory.getThreadDatabase(context).setLastScrolled(threadId, 0);
+      DatabaseFactory.getThreadDatabase(context).setLastSeenSilently(threadId);
+    }
+
+    DatabaseFactory.getThreadDatabase(context).setHasSentSilently(threadId, true);
+    db.setTransactionSuccessful();
 
     notifyConversationListeners(threadId);
 
