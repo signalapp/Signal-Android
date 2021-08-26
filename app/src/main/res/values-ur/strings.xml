@@ -749,10 +749,6 @@
   <string name="InviteActivity_sending">بھیج رہا ہے۔۔۔</string>
   <string name="InviteActivity_invitations_sent">دعوت نامے بھیجے گئے ہیں!</string>
   <string name="InviteActivity_invite_to_signal">Signal میں مدعو کریں</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">%d دوست کو ایس ایم ایس بھیجے</item>
-    <item quantity="other">%d دوستوں کو ایس ایم ایس بھیجے </item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d ایس ایم ایس دعوت نامہ بھیجے؟</item>
     <item quantity="other">%d ایس ایم ایس دعوت نامے بھیجے؟</item>

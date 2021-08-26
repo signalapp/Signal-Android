@@ -754,10 +754,7 @@
   <string name="InviteActivity_sending">Enviando …</string>
   <string name="InviteActivity_invitations_sent">¡Invitaciones enviadas!</string>
   <string name="InviteActivity_invite_to_signal">Invitar a Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ENVIAR SMS A %d AMIG@</item>
-    <item quantity="other">ENVIAR SMS A %d AMISTADES</item>
-  </plurals> -->
+  <string name="InviteActivity_send_sms">Enviar SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">¿Enviar %d invitación por SMS?</item>
     <item quantity="other">¿Enviar %d invitaciones por SMS?</item>
@@ -993,9 +990,9 @@
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ahora, «%1$s» pueden añadir participantes al grupo.</string>
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">Has modificado los ajustes del grupo para permitir a cualquiera enviar mensajes.</string>
-  <string name="MessageRecord_you_allow_only_admins_to_send">Has modificado los ajustes del grupo para solo permitir a admins enviar mensajes.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Has modificado los ajustes del grupo para permitir solo a admins enviar mensajes.</string>
   <string name="MessageRecord_s_allow_all_members_to_send">%1$s ha modificado los ajustes del grupo para permitir a cualquiera enviar mensajes.</string>
-  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ha modificado los ajustes del grupo para solo permitir a admins enviar mensajes.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ha modificado los ajustes del grupo para permitir solo a admins enviar mensajes.</string>
   <string name="MessageRecord_allow_all_members_to_send">Los ajustes del grupo han cambiado para permitir a cualquiera enviar mensajes.</string>
   <string name="MessageRecord_allow_only_admins_to_send">Se han modificado los ajustes del grupo para permitir a cualquiera enviar mensajes.</string>
   <!--GV2 group link invite access level change-->

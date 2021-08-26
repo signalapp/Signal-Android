@@ -758,10 +758,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="InviteActivity_sending">Po dërgohet…</string>
   <string name="InviteActivity_invitations_sent">Ftesat u dërguan!</string>
   <string name="InviteActivity_invite_to_signal">Ftojeni në Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">DËRGOJINI SMS %d SHOKU</item>
-    <item quantity="other">DËRGOJINI SMS %d SHOKËVE</item>
-  </plurals> -->
+  <string name="InviteActivity_send_sms">Dërgo SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Të dërgohet %d ftesë SMS?</item>
     <item quantity="other">Të dërgohen %d ftesa SMS?</item>

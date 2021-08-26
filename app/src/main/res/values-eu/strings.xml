@@ -732,10 +732,6 @@
   <string name="InviteActivity_sending">Bidaltzen…</string>
   <string name="InviteActivity_invitations_sent">Gonbidapenak bidali dira!</string>
   <string name="InviteActivity_invite_to_signal">Gonbidatu Signal erabiltzera</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">BIDALI SMS MEZUA LAGUN %dI</item>
-    <item quantity="other">BIDALI SMS MEZUA %d LAGUNI</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Bidali SMS gonbidapen %d?</item>
     <item quantity="other">Bidali %d SMS gonbidapen?</item>

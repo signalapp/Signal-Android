@@ -753,10 +753,6 @@
   <string name="InviteActivity_sending">அனுப்புகிறது …</string>
   <string name="InviteActivity_invitations_sent">அழைப்புகள் அனுப்பட்டது!</string>
   <string name="InviteActivity_invite_to_signal">Signalக்கு அழை</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">%d நண்பருக்கு SMS அனுப்பவும்</item>
-    <item quantity="other">%d  நண்பர்களுக்கு SMS அனுப்பவும்</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d  எஸ்எம்எஸ் அழைப்பை அனுப்பவா?</item>
     <item quantity="other">%d SMS அழைப்புகளை அனுப்பவா?</item>

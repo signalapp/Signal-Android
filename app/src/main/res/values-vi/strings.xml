@@ -709,9 +709,6 @@
   <string name="InviteActivity_sending">Đang gửi…</string>
   <string name="InviteActivity_invitations_sent">Đã gửi lời mời!</string>
   <string name="InviteActivity_invite_to_signal">Mời dùng Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">GỬI SMS ĐẾN %d BẠN</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">GỬI %d LỜI MỜI QUA SMS?</item>
   </plurals>

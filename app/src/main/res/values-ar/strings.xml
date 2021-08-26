@@ -902,14 +902,6 @@
   <string name="InviteActivity_sending">إرسال…</string>
   <string name="InviteActivity_invitations_sent">تم إرسال الدعوات!</string>
   <string name="InviteActivity_invite_to_signal">الدعوة إلى Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="zero">رسالة قصيرة إلى %d مِن أصدقائك</item>
-    <item quantity="one">رسالة قصيرة إلى %d مِن أصدقائك</item>
-    <item quantity="two">رسالة قصيرة إلى %d مِن أصدقائك</item>
-    <item quantity="few">رسالة قصيرة إلى %d مِن أصدقائك</item>
-    <item quantity="many">رسالة قصيرة إلى %d مِن أصادقائك</item>
-    <item quantity="other">إرسال رسالة SMS إلى %d مِن أصدقائك</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="zero">هل تريد إرسال %d دعوات عبر الرسائل القصيرة ؟</item>
     <item quantity="one">هل تريد إرسال %d دعوات عبر الرسائل القصيرة ؟</item>

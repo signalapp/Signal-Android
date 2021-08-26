@@ -716,9 +716,6 @@
   <string name="InviteActivity_sending">Mengirimkan…</string>
   <string name="InviteActivity_invitations_sent">Undangan terkirim!</string>
   <string name="InviteActivity_invite_to_signal">Undang ke Signal!</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">KIRIM SMS KE %d TEMAN</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">Kirim %d undangan SMS?</item>
   </plurals>

@@ -830,12 +830,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="InviteActivity_sending">Yn anfon…</string>
   <string name="InviteActivity_invitations_sent">Gwahoddiadau wedi\'u anfon!</string>
   <string name="InviteActivity_invite_to_signal">Gwahodd i Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ANFON SMS AT %d FFRIND</item>
-    <item quantity="two">ANFON SMS AT %d FFRIND</item>
-    <item quantity="many">ANFON SMS AT %d FFRIND</item>
-    <item quantity="other">ANFON SMS AT %d FFRIND</item>
-  </plurals> -->
+  <string name="InviteActivity_send_sms">Anfon SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Anfon gwahoddiad SMS at %d?</item>
     <item quantity="two">Anfon gwahoddiadau SMS at %d?</item>

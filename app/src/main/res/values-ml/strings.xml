@@ -753,10 +753,6 @@
   <string name="InviteActivity_sending">അയയ്ക്കുന്നു…</string>
   <string name="InviteActivity_invitations_sent">ക്ഷണങ്ങൾ അയച്ചു!</string>
   <string name="InviteActivity_invite_to_signal">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">%d സുഹൃത്തിന് SMS അയയ്‌ക്കുക</item>
-    <item quantity="other">%d സുഹൃത്തുക്കൾക്ക് SMS അയയ്‌ക്കുക</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d SMS ക്ഷണം അയയ്‌ക്കണോ?</item>
     <item quantity="other">%d SMS ക്ഷണങ്ങൾ അയയ്‌ക്കണോ?</item>

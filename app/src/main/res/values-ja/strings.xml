@@ -715,13 +715,11 @@
   <string name="InviteActivity_share_via">共有…</string>
   <string name="InviteActivity_cancel">キャンセル</string>
   <string name="InviteActivity_sending">送信しています…</string>
-  <string name="InviteActivity_invitations_sent">招待を送信しました！</string>
-  <string name="InviteActivity_invite_to_signal">Signalに招待する</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">SMSを友達%d人に送る</item>
-  </plurals> -->
+  <string name="InviteActivity_invitations_sent">招待状を送信しました！</string>
+  <string name="InviteActivity_invite_to_signal">Signalへの招待</string>
+  <string name="InviteActivity_send_sms">SMSを送信する (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="other">SMS招待状%d件を送信しますか？</item>
+    <item quantity="other">%d件のSMS招待状を送信しますか？</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">メッセージアプリをSignalにしましょう: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">共有先として使えるアプリがないようです。</string>
@@ -3050,10 +3048,10 @@
     <item quantity="other">%1$d件のメッセージを送信</item>
   </plurals>
   <plurals name="MultiselectForwardFragment_messages_sent">
-    <item quantity="other">メッセージ送信済み</item>
+    <item quantity="other">メッセージを送信しました</item>
   </plurals>
   <plurals name="MultiselectForwardFragment_messages_failed_to_send">
-    <item quantity="other">メッセージ送信失敗</item>
+    <item quantity="other">メッセージの送信に失敗しました</item>
   </plurals>
   <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
     <item quantity="other">すでにメッセージがないため、転送できませんでした。</item>

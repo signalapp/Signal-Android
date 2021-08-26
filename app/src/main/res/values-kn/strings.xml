@@ -755,10 +755,6 @@
   <string name="InviteActivity_sending">ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…</string>
   <string name="InviteActivity_invitations_sent">ಆಮಂತ್ರಣಗಳನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ!</string>
   <string name="InviteActivity_invite_to_signal">Signalಗೆ ಆಮಂತ್ರಿಸಿ</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ಕಳುಹಿಸು ಎಸ್‌ಎಂಎಸ್ ಗೆ %d ಸ್ನೇಹಿತ</item>
-    <item quantity="other">ಎಸ್‌ಎಂಎಸ್  %d ಸ್ನೇಹಿತರಿಗೆ ಕಳುಹಿಸಿರಿ</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">ಕಳುಹಿಸು %d ಎಸ್‌ಎಂಎಸ್ ಆಹ್ವಾನ?</item>
     <item quantity="other">ಎಸ್‌ಎಂಎಸ್‌ ಆಹ್ವಾನಗಳನ್ನು %dಗೆ ಕಳುಹಿಸುವುದೇ?</item>

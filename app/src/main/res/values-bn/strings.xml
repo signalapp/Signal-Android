@@ -753,10 +753,6 @@
   <string name="InviteActivity_sending">পাঠানো হচ্ছে</string>
   <string name="InviteActivity_invitations_sent">আমন্ত্রণ পাঠানো হয়েছে!</string>
   <string name="InviteActivity_invite_to_signal">Signal এ আমন্ত্রণ জানান</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">%d বন্ধুদের এসএমএস পাঠান</item>
-    <item quantity="other">%d বন্ধুদের এসএমএস পাঠান</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one"> %d টি নিমন্ত্রন এসএমএস পাঠান?</item>
     <item quantity="other">%d টি নিমন্ত্রন এসএমএস পাঠান?</item>

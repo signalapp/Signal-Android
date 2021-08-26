@@ -709,9 +709,6 @@
   <string name="InviteActivity_sending">正在发送…</string>
   <string name="InviteActivity_invitations_sent">邀请已发送！</string>
   <string name="InviteActivity_invite_to_signal">邀请使用 Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">发送短袖给 %d 好友</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">发送 %d 个短信邀请？</item>
   </plurals>

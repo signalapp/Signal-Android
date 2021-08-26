@@ -749,10 +749,6 @@
   <string name="InviteActivity_sending">Στέλνεται…</string>
   <string name="InviteActivity_invitations_sent">Οι προσκλήσεις στάλθηκαν!</string>
   <string name="InviteActivity_invite_to_signal">Πρόσκληση στο Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ΑΠΟΣΤΟΛΗ ΜΗΝΥΜΑΤΟΣ SMS ΣΕ %d ΦΙΛΟ/Η</item>
-    <item quantity="other">ΑΠΟΣΤΟΛΗ SMS ΣΕ %d ΦΙΛΟΥΣ/ΕΣ</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Αποστολή %d πρόσκλησης με SMS;</item>
     <item quantity="other">Αποστολή %d προσκλήσεων με SMS;</item>

@@ -288,7 +288,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Можете да повлечете на лево на било која порака за брз одговор</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Испратени медија датотеки за еден преглед се автоматски отстранети откога ќе се испратат.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Веќе ја видовте оваа порака</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Можете да додадате забелешки во овој разговор.\nАко вашата сметка има поврзани дуреди, новите забелешки ќе бидат синхронизирани.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Можете да додадате белешки во овој разговор.\nАко Вашата сметка има поврзани уреди, новите белешки ќе бидат синхронизирани.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d членови на групата го имаат истото име.</string>
   <string name="ConversationFragment__tap_to_review">Допрете за преглед</string>
   <string name="ConversationFragment__review_requests_carefully">Прегледајте ги барањата внимателно</string>
@@ -751,10 +751,6 @@
   <string name="InviteActivity_sending">Испраќа…</string>
   <string name="InviteActivity_invitations_sent">Покани испратени!</string>
   <string name="InviteActivity_invite_to_signal">Поканете на Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ИСПРАТИ SMS НА %d ПРИЈАТЕЛ</item>
-    <item quantity="other">ИСПРАТИ SMS НА %d ПРИЈАТЕЛИ</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Испрати %d SMS покана?</item>
     <item quantity="other">Испрати %d SMS пораки?</item>
@@ -1141,7 +1137,7 @@
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Вашиот PIN е%1$d+ цифрен код содаден така што може да биде нумерички или алфанумерички.\n\nАко не можете да го запомните Вашиот PIN, можете да создадете нов. Можете да ја регистрирате и користите Вашата сметка, но ќе ги изгубите некои од зачуваните поставувања како што се Вашите информации за профилот.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Ако не можете да го запомните Вашиот PIN, можете да создадете нов. Можете да се регистрирате и да ја користите Вашата сметка но ќе ги изгубите некои од зачуваните поставувања како Вашите информации за профилот.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Создадете Нов PIN</string>
-  <string name="PinRestoreEntryFragment_contact_support">Контактактирајте го тимот за поддршка</string>
+  <string name="PinRestoreEntryFragment_contact_support">Контакт за поддршка</string>
   <string name="PinRestoreEntryFragment_cancel">Откажи</string>
   <string name="PinRestoreEntryFragment_skip">Прескокни</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
@@ -1157,7 +1153,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Создади нов PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Предупредување</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Освен ако не направите рачна резервна копија и го исклучите PIN-от, ќе ги изгубите сите податоци кога повторно ќе се регистирате на Signal. Можете да да ја заклучите регистрацијата додека PIN-от не е исклучен.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Ако го исклучите PIN-от, ќе ги изгубите сите податоци кога повторно ќе се регистрирате на Signal, освен ако рачно не направите резервна копија и ги вратите податоците. Не можете да вклучите „Заклучување на регистрација“ додека PIN-от е исклучен.</string>
   <string name="PinOptOutDialog_disable_pin">Исклучи PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оценете ја апликацијата</string>
@@ -1970,7 +1966,7 @@
   <string name="preferences__chat_color_and_wallpaper">Боја и позадина за разговор</string>
   <string name="preferences__disable_pin">Исклучи PIN</string>
   <string name="preferences__enable_pin">Вклучи PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Освен ако не направите рачна резервна копија и го исклучите PIN-от, ќе ги изгубите сите податоци кога повторно ќе се регистирате на Signal. Можете да да ја заклучите регистрацијата додека PIN-от не е исклучен.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ако го исклучите PIN-от, ќе ги изгубите сите податоци кога повторно ќе се регистрирате на Signal, освен ако рачно не направите резервна копија и ги вратите податоците. Не можете да вклучите „Заклучување на регистрација“ додека PIN-от е исклучен.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN кодовите ги чуваат информациите складирани на Signal енкриптирани, така што само Вие можете да им пристапите. Вашиот профил, поставувања и конакти ќе бидат вратени кога ќе реинсталирате. PIN кодот не Ви е потребен за да ја отворите апликацијата.</string>
   <string name="preferences__system_default">Стандардно</string>
   <string name="preferences__language">Јазик</string>
@@ -1982,8 +1978,8 @@
   <string name="preferences__support_wifi_calling">„WiFi Calling“ режим за компатибилност</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Овозможи доколку уредот користи SMS/MMS достава преку WiFi (овозможи само доколку „WiFi Calling“ е вклучено на уредот)</string>
   <string name="preferences__incognito_keyboard">Инкогнито тастатура</string>
-  <string name="preferences__read_receipts">Потврда за примени пораки</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ако се исклучени потврдите за примени пораки нема да можете да гледате потврди од други луѓе.</string>
+  <string name="preferences__read_receipts">Потврди за прочитани пораки</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ако се исклучени потврдите за прочитани пораки, нема да видите кога некој ќе ги прочита Вашите пораки.</string>
   <string name="preferences__typing_indicators">Индикатори за куцање</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ако се исклучени индикаторите за куцање нема да можете да ги гледате од други луѓе.</string>
   <string name="preferences__request_keyboard_to_disable">Побарајте тастатурата да го исклучи персонализираното учење.</string>
@@ -2246,7 +2242,7 @@
   <string name="text_secure_normal__mark_all_as_read">Обележи сѐ како прочитано</string>
   <string name="text_secure_normal__invite_friends">Покани пријатели</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копирај во табелата со исечоци</string>
+  <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копирај на табелата со исечоци</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Спореди со табелата за исечоци</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">Увези SMS од системот</string>
@@ -2755,7 +2751,7 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Поставете позадина за сите разговори.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Постави позадина за %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Грешка при поставување на позадина.</string>
-  <string name="WallpaperCropActivity__blur_photo">Замагли слика.</string>
+  <string name="WallpaperCropActivity__blur_photo">Замагли слика</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">За MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin е нова дигитална валута фокусирана на приватност.</string>
@@ -2803,7 +2799,7 @@
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Немате заеднички групи со оваа личност. Прегледувајте ги барањата внимателно за да избегнете несакани пораки.</string>
   <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ниту еден од Вашите контакти или луѓе со кои разговарате не се во оваа група. Внимателно прегледајте ги барањата пред да прифатите за да избегнете несакани пораки.</string>
-  <string name="GroupsInCommonMessageRequest__about_message_requests">За барања за пораки</string>
+  <string name="GroupsInCommonMessageRequest__about_message_requests">За барањата за пораки</string>
   <string name="GroupsInCommonMessageRequest__okay">Во ред</string>
   <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Еве преглед на бојата на разговорот.</string>
   <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Бојата е видлива само за Вас.</string>

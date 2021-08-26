@@ -823,16 +823,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Bendrinti</string>
   <string name="InviteActivity_share_with_contacts">Bendrinti su adresatais</string>
+  <string name="InviteActivity_share_via">Bendrinti per…</string>
   <string name="InviteActivity_cancel">Atsisakyti</string>
   <string name="InviteActivity_sending">Siunčiama…</string>
   <string name="InviteActivity_invitations_sent">Pakvietimai išsiųsti!</string>
   <string name="InviteActivity_invite_to_signal">Pakviesti į Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SIŲSTI SMS %d DRAUGUI</item>
-    <item quantity="few">SIŲSTI SMS %d DRAUGAMS</item>
-    <item quantity="many">SIŲSTI SMS %d DRAUGŲ</item>
-    <item quantity="other">SIŲSTI SMS %d DRAUGŲ</item>
-  </plurals> -->
+  <string name="InviteActivity_send_sms">Siųsti SMS žinutę (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Siųsti %d SMS pakvietimą?</item>
     <item quantity="few">Siųsti %d SMS pakvietimus?</item>
@@ -919,7 +915,9 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
   <string name="NotificationBarManager__establishing_signal_call">Užmezgiamas Signal skambutis</string>
   <string name="NotificationBarManager__incoming_signal_call">Gaunamasis Signal skambutis</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Gaunamasis Signal grupės skambutis</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Stabdoma Signal skambučių paslauga</string>
+  <string name="NotificationBarManager__decline_call">Atmesti skambutį</string>
   <string name="NotificationBarManager__answer_call">Atsiliepti į skambutį</string>
   <string name="NotificationBarManager__end_call">Baigti skambutį</string>
   <string name="NotificationBarManager__cancel_call">Atsisakyti skambučio</string>
@@ -1314,6 +1312,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Norint skambinti %1$s, Signal reikia prieigos prie jūsų kameros</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Skambinama…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupė yra per didelė, kad būtų skambinama dalyviams.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">„Signal“ skambutis</string>
   <string name="WebRtcCallView__signal_video_call">Signal vaizdo skambutis</string>
@@ -1326,8 +1325,42 @@
   <string name="WebRtcCallView__reconnecting">Jungiamasi iš naujo…</string>
   <string name="WebRtcCallView__joining">Prisijungiama…</string>
   <string name="WebRtcCallView__disconnected">Atsijungta</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal skambins naudotojui %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal skambins naudotojams %1$s ir %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal skambins naudotojams %1$s, %2$s ir dar %3$d žmogui</item>
+    <item quantity="few">Signal skambins naudotojams %1$s, %2$s ir dar %3$d žmonėms</item>
+    <item quantity="many">Signal skambins naudotojams %1$s, %2$s ir dar %3$d žmonių</item>
+    <item quantity="other">Signal skambins naudotojams %1$s, %2$s ir dar %3$d žmogui</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s gaus pranešimą</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s ir %2$s gaus pranešimą</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s ir dar %3$d žmogus gaus pranešimą</item>
+    <item quantity="few">%1$s, %2$s ir dar %3$d žmonės gaus pranešimą</item>
+    <item quantity="many">%1$s, %2$s ir dar %3$d žmonių gaus pranešimą</item>
+    <item quantity="other">%1$s, %2$s ir dar %3$d žmogus gaus pranešimą</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Skambinama naudotojui %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Skambinama naudotojams %1$s ir %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Skambinama naudotojams %1$s, %2$s ir dar %3$d žmogui</item>
+    <item quantity="few">Skambinama naudotojams %1$s, %2$s ir dar %3$d žmonėms</item>
+    <item quantity="many">Skambinama naudotojams %1$s, %2$s ir dar %3$d žmonių</item>
+    <item quantity="other">Skambinama naudotojams %1$s, %2$s ir dar %3$d žmogui</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">Jums skambina %1$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s skambina jums ir naudotojui %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s skambina jums ir naudotojams %2$s bei %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s skambina jums ir naudotojams %2$s, %3$s bei dar %4$d žmogui</item>
+    <item quantity="few">%1$s skambina jums ir naudotojams %2$s, %3$s bei dar %4$d žmonėms</item>
+    <item quantity="many">%1$s skambina jums ir naudotojams %2$s, %3$s bei dar %4$d žmonių</item>
+    <item quantity="other">%1$s skambina jums ir naudotojams %2$s, %3$s bei dar %4$d žmogui</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Čia daugiau nieko nėra</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s yra šiame skambutyje</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s esate šiame skambutyje</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ir %2$s yra šiame skambutyje</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s pristatinėja</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1340,6 +1373,7 @@
   <string name="WebRtcCallView__speaker">Garsiakalbis</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Nutildyti</string>
+  <string name="WebRtcCallView__ring">Skambinti</string>
   <string name="WebRtcCallView__end_call">Baigti skambutį</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

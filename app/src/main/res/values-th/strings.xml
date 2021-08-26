@@ -716,9 +716,6 @@
   <string name="InviteActivity_sending">กำลังส่ง…</string>
   <string name="InviteActivity_invitations_sent">ส่งคำเชิญแล้ว!</string>
   <string name="InviteActivity_invite_to_signal">เชิญมาใช้ Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">ส่ง SMS ให้เพื่อน %d คน</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">ส่งคำเชิญทาง %dSMS หรือไม่?</item>
   </plurals>

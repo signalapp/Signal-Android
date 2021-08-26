@@ -759,10 +759,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="InviteActivity_sending">Sendar …</string>
   <string name="InviteActivity_invitations_sent">Invitasjonar sendt.</string>
   <string name="InviteActivity_invite_to_signal">Inviter til Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SEND SMS TIL %d VENN</item>
-    <item quantity="other">SEND SMS TIL %d VENNAR</item>
-  </plurals> -->
+  <string name="InviteActivity_send_sms">Send SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Send %d SMS-invitasjon?</item>
     <item quantity="other">Send %d SMS-invitasjonar?</item>

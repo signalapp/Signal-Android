@@ -753,10 +753,6 @@
   <string name="InviteActivity_sending">Lähetetään…</string>
   <string name="InviteActivity_invitations_sent">Kutsut lähetetty!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signaliin</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">LÄHETÄ TEKSTIVIESTI %d YSTÄVÄLLE</item>
-    <item quantity="other">LÄHETÄ TEKSTIVIESTI %d YSTÄVÄLLE</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Lähetetäänkö %d tekstiviestikutsu?</item>
     <item quantity="other">Lähetetäänkö %d tekstiviestikutsua?</item>

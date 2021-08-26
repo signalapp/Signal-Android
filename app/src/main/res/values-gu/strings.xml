@@ -753,10 +753,6 @@
   <string name="InviteActivity_sending">મોકલી રહ્યો છે…</string>
   <string name="InviteActivity_invitations_sent">આમંત્રણો મોકલ્યા!</string>
   <string name="InviteActivity_invite_to_signal">Signal માટે આમંત્રણ આપો</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">મિત્રને %d SMS મોકલો</item>
-    <item quantity="other">મિત્રોને %d SMS મોકલો</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">SMS %dઆમંત્રણ મોકલો?</item>
     <item quantity="other">SMS %d આમંત્રણો મોકલો?</item>

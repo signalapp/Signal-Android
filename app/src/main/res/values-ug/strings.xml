@@ -754,10 +754,6 @@
   <string name="InviteActivity_sending">ئەۋەتىلىۋاتىدۇ…</string>
   <string name="InviteActivity_invitations_sent">تەكلىپ يوللاندى!</string>
   <string name="InviteActivity_invite_to_signal">Signal ئىشلىتىش تەكلىپى</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">كۆپ ۋاسىتە ئۇچۇرنى %d دوستىغا يوللايدۇ</item>
-    <item quantity="other">كۆپ ۋاسىتە ئۇچۇرنى %d دوستىغا يوللايدۇ</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d كۆپ ۋاسىتە ئۇچۇر تەكلىپىنى يوللامدۇ؟</item>
     <item quantity="other">%d كۆپ ۋاسىتە ئۇچۇر تەكلىپىنى يوللامدۇ؟</item>

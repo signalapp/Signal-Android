@@ -828,12 +828,7 @@
   <string name="InviteActivity_sending">Отправляется…</string>
   <string name="InviteActivity_invitations_sent">Приглашения отправлены!</string>
   <string name="InviteActivity_invite_to_signal">Пригласить в Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ОТПРАВИТЬ SMS %d ДРУГУ</item>
-    <item quantity="few">ОТПРАВИТЬ SMS %d ДРУЗЬЯМ</item>
-    <item quantity="many">ОТПРАВИТЬ SMS %d ДРУЗЬЯМ</item>
-    <item quantity="other">ОТПРАВИТЬ SMS %d ДРУЗЬЯМ</item>
-  </plurals> -->
+  <string name="InviteActivity_send_sms">Отправить SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Отправить %d SMS-приглашение?</item>
     <item quantity="few">Отправить %d SMS-приглашения?</item>

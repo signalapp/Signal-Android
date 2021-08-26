@@ -712,13 +712,11 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">공유</string>
   <string name="InviteActivity_share_with_contacts">연락처와 공유</string>
+  <string name="InviteActivity_share_via">공유…</string>
   <string name="InviteActivity_cancel">취소</string>
   <string name="InviteActivity_sending">보내는 중…</string>
   <string name="InviteActivity_invitations_sent">초대를 보냈습니다!</string>
   <string name="InviteActivity_invite_to_signal">Signal로 초대</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">친구 %d명에게 SMS 보내기</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">SMS 초대 %d개를 보내시겠습니까?</item>
   </plurals>
@@ -791,6 +789,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal 전화 연결 중</string>
   <string name="NotificationBarManager__incoming_signal_call">수신 Signal 전화</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal 통화 서비스 중지</string>
+  <string name="NotificationBarManager__decline_call">전화 거절</string>
   <string name="NotificationBarManager__answer_call">전화 수락</string>
   <string name="NotificationBarManager__end_call">전화 종료</string>
   <string name="NotificationBarManager__cancel_call">전화 취소</string>
@@ -1157,9 +1156,10 @@
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s, %2$s 및 %3$d명이 통화에 참여했습니다.</item>
   </plurals>
+  <string name="WebRtcCallView__flip">전환</string>
   <string name="WebRtcCallView__speaker">스피커</string>
   <string name="WebRtcCallView__camera">카메라</string>
-  <string name="WebRtcCallView__mute">알림 끄기</string>
+  <string name="WebRtcCallView__mute">음소거</string>
   <string name="WebRtcCallView__end_call">전화 종료</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -2940,7 +2940,7 @@
   <string name="ConversationSettingsFragment__audio">음성</string>
   <string name="ConversationSettingsFragment__call">전화</string>
   <string name="ConversationSettingsFragment__mute">알림 끄기</string>
-  <string name="ConversationSettingsFragment__muted">알림 끄기</string>
+  <string name="ConversationSettingsFragment__muted">알림 꺼짐</string>
   <string name="ConversationSettingsFragment__search">검색</string>
   <string name="ConversationSettingsFragment__disappearing_messages">사라지는 메시지</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">소리 &amp; 알림</string>

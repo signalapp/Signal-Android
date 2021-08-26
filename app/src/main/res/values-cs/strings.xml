@@ -828,12 +828,7 @@
   <string name="InviteActivity_sending">Odesílaní…</string>
   <string name="InviteActivity_invitations_sent">Pozvánka odeslána!</string>
   <string name="InviteActivity_invite_to_signal">Pozvat do Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">POSLAT SMS %d PŘÍTELI</item>
-    <item quantity="few">POSLAT SMS %d PŘÁTELŮM</item>
-    <item quantity="many">POSLAT SMS %d PŘÁTELŮM</item>
-    <item quantity="other">POSLAT SMS %d PŘÁTELŮM</item>
-  </plurals> -->
+  <string name="InviteActivity_send_sms">Poslat SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Poslat %d SMS pozvánku?</item>
     <item quantity="few">Poslat %d SMS pozvánky?</item>
@@ -1374,8 +1369,8 @@
     <item quantity="other">%1$s, %2$s a %3$d dalších se účastní tohoto hovoru</item>
   </plurals>
   <string name="WebRtcCallView__flip">Překlopit</string>
-  <string name="WebRtcCallView__speaker">Reproduktor</string>
-  <string name="WebRtcCallView__camera">Fotoaparát</string>
+  <string name="WebRtcCallView__speaker">Hlasitě</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Ztlumit</string>
   <string name="WebRtcCallView__ring">Volat</string>
   <string name="WebRtcCallView__end_call">Ukončit hovor</string>
@@ -1723,7 +1718,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">Audio výstup</string>
   <string name="WebRtcAudioOutputToggle__phone_earpiece">Sluchátko</string>
-  <string name="WebRtcAudioOutputToggle__speaker">Reproduktor</string>
+  <string name="WebRtcAudioOutputToggle__speaker">Hlasitě</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <string name="WebRtcCallControls_answer_call_description">Přijmout hovor</string>
   <string name="WebRtcCallControls_reject_call_description">Odmítnout hovor</string>

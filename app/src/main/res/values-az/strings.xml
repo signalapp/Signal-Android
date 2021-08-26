@@ -754,10 +754,7 @@
   <string name="InviteActivity_sending">Göndərilir…</string>
   <string name="InviteActivity_invitations_sent">Dəvətlər göndərildi!</string>
   <string name="InviteActivity_invite_to_signal">Signal-a dəvət et</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">%d DOSTUNA SMS GÖNDƏR</item>
-    <item quantity="other">%d DOSTUNA SMS GÖNDƏR</item>
-  </plurals> -->
+  <string name="InviteActivity_send_sms">SMS göndər (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d SMS dəvətnaməsi göndərirsən?</item>
     <item quantity="other">%d SMS dəvəti göndərilsin?</item>

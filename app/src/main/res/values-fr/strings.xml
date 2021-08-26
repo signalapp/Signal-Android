@@ -754,10 +754,7 @@
   <string name="InviteActivity_sending">Envoi…</string>
   <string name="InviteActivity_invitations_sent">L’invitation a été envoyée.</string>
   <string name="InviteActivity_invite_to_signal">Inviter à Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ENVOYER UN TEXTO À %d AMI</item>
-    <item quantity="other">ENVOYER UN TEXTO À %d AMIS</item>
-  </plurals> -->
+  <string name="InviteActivity_send_sms">Envoyer un texto (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Envoyer %d texto d’invitations ?</item>
     <item quantity="other">Envoyer %d textos d’invitations ?</item>
@@ -1214,17 +1211,23 @@
   <string name="WebRtcCallView__reconnecting">Reconnexion…</string>
   <string name="WebRtcCallView__joining">Connexion…</string>
   <string name="WebRtcCallView__disconnected">L’application est déconnectée</string>
-  <string name="WebRtcCallView__signal_will_ring_s">Signal appellera %1$s</string>
-  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal appellera %1$s et %2$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal sonnera chez %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal sonnera chez %1$s et %2$s</string>
   <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
     <item quantity="one">Signal appellera %1$s, %2$s et %3$d autre</item>
-    <item quantity="other">Signal appellera %1$s, %2$s et %3$d autres</item>
+    <item quantity="other">Signal sonnera chez %1$s, %2$s et %3$d autres</item>
   </plurals>
   <string name="WebRtcCallView__s_will_be_notified">%1$s sera notifié</string>
   <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s et %2$s seront notifiés</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
     <item quantity="one">%1$s, %2$s et %3$d autre seront notifiés</item>
     <item quantity="other">%1$s, %2$s et %3$d autres seront notifiés</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Sonne chez %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Sonne chez %1$s et %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Sonne chez %1$s, %2$s et %3$d autre</item>
+    <item quantity="other">Sonne chez %1$s, %2$s et %3$d autres</item>
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s vous appelle</string>
   <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s vous appelle avec %2$s</string>
@@ -1242,9 +1245,11 @@
     <item quantity="one">%1$s, %2$s et %3$d autre personne font partie de cet appel</item>
     <item quantity="other">%1$s, %2$s et %3$d autres personnes font partie de cet appel</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Basculer</string>
   <string name="WebRtcCallView__speaker">Haut-parleur</string>
   <string name="WebRtcCallView__camera">Appareil photo</string>
   <string name="WebRtcCallView__mute">Sourdine</string>
+  <string name="WebRtcCallView__ring">Sonnerie</string>
   <string name="WebRtcCallView__end_call">Raccrocher</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

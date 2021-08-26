@@ -790,11 +790,6 @@
   <string name="InviteActivity_sending">Slanje…</string>
   <string name="InviteActivity_invitations_sent">Pozivnice su poslane!</string>
   <string name="InviteActivity_invite_to_signal">Pozovi u Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">POŠALJI SMS ZA %d PRIJATELJA</item>
-    <item quantity="few">POŠALJI SMS ZA %d PRIJATELJA</item>
-    <item quantity="other">POŠALJI SMS ZA %d PRIJATELJA</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Pošalji %d SMS pozivnicu?</item>
     <item quantity="few">Pošalji %d SMS pozivnice?</item>

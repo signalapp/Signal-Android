@@ -753,10 +753,6 @@
   <string name="InviteActivity_sending">Sendo…</string>
   <string name="InviteActivity_invitations_sent">Invitoj senditaj!</string>
   <string name="InviteActivity_invite_to_signal">Inviti al Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SENDI SMS AL %d AMIKO</item>
-    <item quantity="other">SENDI SMS AL %d AMIKOJ</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Ĉu sendi %d SMS-inviton?</item>
     <item quantity="other">Ĉu sendi %d SMS-invitojn?</item>

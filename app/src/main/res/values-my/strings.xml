@@ -699,9 +699,6 @@
   <string name="InviteActivity_sending">ပို့နေသည်…</string>
   <string name="InviteActivity_invitations_sent">ဖိတ်ကြားမှု ပြုလုပ်ပြီး!</string>
   <string name="InviteActivity_invite_to_signal">Signal သုံးဖို့ဖိတ်ရန်</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">သူငယ်ချင်းအယောက် %d ထံ SMS ပို့မည်</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">%dစာ SMS ဖြင့် ဖိတ်ခေါ်မလား။</item>
   </plurals>

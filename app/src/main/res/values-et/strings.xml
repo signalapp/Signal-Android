@@ -740,10 +740,6 @@
   <string name="InviteActivity_sending">Saatmine…</string>
   <string name="InviteActivity_invitations_sent">Kutsed saadetud!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signalisse</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SAADA SMS %d SÕBRALE</item>
-    <item quantity="other">SAADA SMS %d SÕBRALE</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Saadad %d SMS-kutse?</item>
     <item quantity="other">Saadad %d SMS-kutset?</item>

@@ -712,13 +712,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">分享</string>
   <string name="InviteActivity_share_with_contacts">與聯絡人分享</string>
+  <string name="InviteActivity_share_via">透過…分享</string>
   <string name="InviteActivity_cancel">取消</string>
   <string name="InviteActivity_sending">傳送中…</string>
   <string name="InviteActivity_invitations_sent">邀請已傳送！</string>
   <string name="InviteActivity_invite_to_signal">邀請至 Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">傳送簡訊給 %d 位朋友</item>
-  </plurals> -->
+  <string name="InviteActivity_send_sms">傳送 SMS(%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">傳送 %d 則簡訊邀請？</item>
   </plurals>
@@ -790,7 +789,9 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal 來電</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Signal 群組來電</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal 來電服務停止中</string>
+  <string name="NotificationBarManager__decline_call">拒接來電</string>
   <string name="NotificationBarManager__answer_call">接聽通話</string>
   <string name="NotificationBarManager__end_call">結束通話</string>
   <string name="NotificationBarManager__cancel_call">取消通話</string>
@@ -1139,6 +1140,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">如要撥電話給 %1$s，Signal 需要存取你的相機</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">撥號中…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">群組太大，無法給參與者打電話。</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal 語音通話</string>
   <string name="WebRtcCallView__signal_video_call">Signal 視訊電話</string>
@@ -1151,8 +1153,30 @@
   <string name="WebRtcCallView__reconnecting">重新連接中…</string>
   <string name="WebRtcCallView__joining">加入中…</string>
   <string name="WebRtcCallView__disconnected">已斷線</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal 將去電給 %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal 將去電給 %1$s 及 %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="other">Signal 將去電給 %1$s、%2$s，和 %3$d 及其他人</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s 將被通知</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s 和 %2$s 將被通知</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="other">%1$s、%2$s，和%3$d 及其他人將被通知</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">去電給 %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">去電給 %1$s 及 %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="other">去電給 %1$s、%2$s，和 %3$d及其他人</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s 正撥電話給你</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s 正撥電話給你和 %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s 正撥電話給你、%2$s，及 %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="other">%1$s 正撥電話給你、%2$s、%3$s，和 %4$d 及其他人</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">沒有人在這裡</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s正在此通話中</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s 正在通話中</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 及 %2$s 正在此通話中</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s 正在展示</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1162,6 +1186,7 @@
   <string name="WebRtcCallView__speaker">喇叭</string>
   <string name="WebRtcCallView__camera">相機</string>
   <string name="WebRtcCallView__mute">靜音對話</string>
+  <string name="WebRtcCallView__ring">撥電話</string>
   <string name="WebRtcCallView__end_call">掛斷</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

@@ -740,10 +740,6 @@
   <string name="InviteActivity_sending">Изпращане…</string>
   <string name="InviteActivity_invitations_sent">Поканите изпратени!</string>
   <string name="InviteActivity_invite_to_signal">Покани в Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ИЗПРАЩАНЕ НА SMS НА %d ПРИЯТЕЛ</item>
-    <item quantity="other">ИЗПРАЩАНЕ НА SMS НА %d ПРИТЯТЕЛЯ</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Изпащане на %d SMS покана?</item>
     <item quantity="other">Изпащане на %d SMS покани?</item>

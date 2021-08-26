@@ -828,12 +828,7 @@
   <string name="InviteActivity_sending">Wysyłanie…</string>
   <string name="InviteActivity_invitations_sent">Zaproszenie zostało wysłane!</string>
   <string name="InviteActivity_invite_to_signal">Zaproś do używania Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">WYŚLIJ SMS DO %d ZNAJOMEGO</item>
-    <item quantity="few">WYŚLIJ SMS DO %d ZNAJOMYCH</item>
-    <item quantity="many">WYŚLIJ SMS DO %d ZNAJOMYCH</item>
-    <item quantity="other">WYŚLIJ SMS DO %d ZNAJOMYCH</item>
-  </plurals> -->
+  <string name="InviteActivity_send_sms">Wyślij SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Wysłać %d zaproszenie SMS?</item>
     <item quantity="few">Wysłać %d zaproszenia SMS?</item>

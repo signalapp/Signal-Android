@@ -738,10 +738,6 @@
   <string name="InviteActivity_sending">ପଠାଯାଉଛି…</string>
   <string name="InviteActivity_invitations_sent">ଆମନ୍ତ୍ରଣ ପଠାଯାଇଛି!</string>
   <string name="InviteActivity_invite_to_signal">Signal କୁ ଆମନ୍ତ୍ରଣ କରନ୍ତୁ</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">%d ବନ୍ଧୁଙ୍କୁ ଏସ୍ଏମ୍ଏସ୍ ପଠାନ୍ତୁ</item>
-    <item quantity="other">%d ବନ୍ଧୁଙ୍କୁ ଏସ୍ଏମ୍ଏସ୍ ପଠାନ୍ତୁ</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%dଟେ SMS ନିମନ୍ତ୍ରଣ ପଠାନ୍ତୁ?</item>
     <item quantity="other">%dଟି SMS ନିମନ୍ତ୍ରଣ ପଠାନ୍ତୁ?</item>

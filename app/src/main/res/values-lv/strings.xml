@@ -790,11 +790,6 @@
   <string name="InviteActivity_sending">Tiek sūtīts…</string>
   <string name="InviteActivity_invitations_sent">Uzaicinājums nosutīts</string>
   <string name="InviteActivity_invite_to_signal">Uzaicināt uz Signālu</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="zero">SŪTĪT SMS %d DRAUGIEM</item>
-    <item quantity="one">SŪTĪT SMS %d DRAUGAM</item>
-    <item quantity="other">SŪTĪT SMS %d DRAUGIEM</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="zero">Sūtīt %dSMS ielūgumus?</item>
     <item quantity="one">Sūtīt %d SMS Ielūgumu?</item>

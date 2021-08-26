@@ -828,12 +828,7 @@
   <string name="InviteActivity_sending">Odosiela sa…</string>
   <string name="InviteActivity_invitations_sent">Pozvánky odoslané!</string>
   <string name="InviteActivity_invite_to_signal">Pozvať do Signalu</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ODOSLAŤ SMS %d PRIATEĽOVI</item>
-    <item quantity="few">ODOSLAŤ SMS %d PRIATEĽOM</item>
-    <item quantity="many">ODOSLAŤ SMS %d PRIATEĽOM</item>
-    <item quantity="other">ODOSLAŤ SMS %d PRIATEĽOM</item>
-  </plurals> -->
+  <string name="InviteActivity_send_sms">Odoslať SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Odoslať %d SMS pozvánku? </item>
     <item quantity="few">Odoslať %d SMS pozvánky? </item>

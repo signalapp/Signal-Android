@@ -737,10 +737,6 @@
   <string name="InviteActivity_sending">Tuzna…</string>
   <string name="InviteActivity_invitations_sent">Tinubgiwin ttwaznent!</string>
   <string name="InviteActivity_invite_to_signal">Snubget-d ɣer Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">AZEN SMS I %d UMDAKKEL</item>
-    <item quantity="other">AZEN SMS I %d IMDUKKAL</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Yuzen %d n tinubga s SMS?</item>
     <item quantity="other">Yuzen %d n tunbgiwin s SMS?</item>

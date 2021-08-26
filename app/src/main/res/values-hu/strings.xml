@@ -747,10 +747,6 @@
   <string name="InviteActivity_sending">Küldés…</string>
   <string name="InviteActivity_invitations_sent">Meghívók elküldve!</string>
   <string name="InviteActivity_invite_to_signal">Meghívás a Signal-ba</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SMS KÜLDÉSE %d BARÁTNAK</item>
-    <item quantity="other">SMS KÜLDÉSE %d BARÁTNAK</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Elküldesz %d SMS meghívót?</item>
     <item quantity="other">Elküldesz %d db SMS meghívót?</item>
@@ -3064,5 +3060,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="MultiselectForwardFragment__add_a_message">Szöveg hozzáadása</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">A továbbított üzenetek azonnal elküldésre kerülnek.</string>
   <!--EOF-->
 </resources>

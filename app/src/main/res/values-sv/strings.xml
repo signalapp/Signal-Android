@@ -753,10 +753,6 @@
   <string name="InviteActivity_sending">Skickar…</string>
   <string name="InviteActivity_invitations_sent">Inbjudningar skickade!</string>
   <string name="InviteActivity_invite_to_signal">Bjud in till Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SKICKA SMS TILL %d VÄN</item>
-    <item quantity="other">SKICKA SMS TILL %d VÄNNER</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Skicka %d SMS-inbjudan?</item>
     <item quantity="other">Skicka %d SMS-inbjudningar?</item>

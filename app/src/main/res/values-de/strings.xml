@@ -754,10 +754,7 @@
   <string name="InviteActivity_sending">Wird versendet …</string>
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SMS AN %d FREUND SENDEN</item>
-    <item quantity="other">SMS AN %d FREUNDE SENDEN</item>
-  </plurals> -->
+  <string name="InviteActivity_send_sms">SMS senden (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d SMS-Einladung senden?</item>
     <item quantity="other">%d SMS-Einladungen senden?</item>
@@ -1239,7 +1236,7 @@
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Niemand anderes ist hier</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s nimmt an diesem Anruf teil</string>
-  <string name="WebRtcCallView__s_are_in_this_call">%1$s sind in dem Anruf</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s bist im Anruf</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s und %2$s nehmen an diesem Anruf teil</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s präsentiert gerade</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">

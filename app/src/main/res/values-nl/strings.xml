@@ -756,10 +756,7 @@
   <string name="InviteActivity_sending">Bezig met verzenden …</string>
   <string name="InviteActivity_invitations_sent">Uitnodigingen verzonden!</string>
   <string name="InviteActivity_invite_to_signal">Uitnodigen voor Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">VERZEND SMS NAAR %d KENNIS</item>
-    <item quantity="other">VERZEND SMS NAAR %d KENNISSEN</item>
-  </plurals> -->
+  <string name="InviteActivity_send_sms">Sms verzenden (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d sms-uitnodiging verzenden?</item>
     <item quantity="other">%d sms-uitnodigingen verzenden?</item>

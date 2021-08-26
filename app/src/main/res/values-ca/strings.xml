@@ -753,10 +753,6 @@
   <string name="InviteActivity_sending">S\'envia…</string>
   <string name="InviteActivity_invitations_sent">Invitacions enviades!</string>
   <string name="InviteActivity_invite_to_signal">Convida al Signal</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ENVIA L\'SMS A %d AMISTAT</item>
-    <item quantity="other">ENVIA L\'SMS A %d AMISTATS</item>
-  </plurals> -->
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Voleu enviar %d invitació SMS?</item>
     <item quantity="other">Voleu enviar %d invitacions SMS?</item>
