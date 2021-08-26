@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.database
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.ContentValues
-import net.zetetic.database.sqlcipher.SQLiteDatabase
-import net.zetetic.database.sqlcipher.SQLiteOpenHelper
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SQLiteOpenHelper
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
@@ -25,16 +25,14 @@ import java.util.concurrent.TimeUnit
  */
 class LocalMetricsDatabase private constructor(
   application: Application,
-  databaseSecret: DatabaseSecret
+  private val databaseSecret: DatabaseSecret
 ) : SQLiteOpenHelper(
     application,
     DATABASE_NAME,
-    databaseSecret.asString(),
     null,
     DATABASE_VERSION,
-    0,
-    SqlCipherDeletingErrorHandler(DATABASE_NAME),
-    SqlCipherDatabaseHook()
+    SqlCipherDatabaseHook(),
+    SqlCipherErrorHandler(DATABASE_NAME)
   ),
   SignalDatabase {
 
@@ -239,6 +237,12 @@ class LocalMetricsDatabase private constructor(
       }
     }
   }
+
+  private val readableDatabase: SQLiteDatabase
+    get() = getReadableDatabase(databaseSecret.asString())
+
+  private val writableDatabase: SQLiteDatabase
+    get() = getWritableDatabase(databaseSecret.asString())
 
   data class EventMetrics(
     val name: String,
