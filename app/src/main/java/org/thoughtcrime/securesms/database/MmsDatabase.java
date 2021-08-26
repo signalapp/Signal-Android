@@ -170,7 +170,8 @@ public class MmsDatabase extends MessageDatabase {
                                                                                   MENTIONS_SELF          + " INTEGER DEFAULT 0, " +
                                                                                   NOTIFIED_TIMESTAMP     + " INTEGER DEFAULT 0, " +
                                                                                   VIEWED_RECEIPT_COUNT   + " INTEGER DEFAULT 0, " +
-                                                                                  SERVER_GUID            + " TEXT DEFAULT NULL);";
+                                                                                  SERVER_GUID            + " TEXT DEFAULT NULL, "+
+                                                                                  RECEIPT_TIMESTAMP      + " INTEGER DEFAULT -1);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_read_and_notified_and_thread_id_index ON " + TABLE_NAME + "(" + READ + "," + NOTIFIED + "," + THREAD_ID + ");",
@@ -617,25 +618,29 @@ public class MmsDatabase extends MessageDatabase {
     SQLiteDatabase    database      = databaseHelper.getSignalWritableDatabase();
     Set<ThreadUpdate> threadUpdates = new HashSet<>();
 
-    try (Cursor cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX, RECIPIENT_ID, receiptType.getColumnName()},
+    try (Cursor cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX, RECIPIENT_ID, receiptType.getColumnName(), RECEIPT_TIMESTAMP},
                                         DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
                                         null, null, null, null))
     {
       while (cursor.moveToNext()) {
-        if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX)))) {
-          RecipientId theirRecipientId = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
+        if (Types.isOutgoingMessageType(CursorUtil.requireLong(cursor, MESSAGE_BOX))) {
+          RecipientId theirRecipientId = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
           RecipientId ourRecipientId   = messageId.getRecipientId();
           String      columnName       = receiptType.getColumnName();
 
           if (ourRecipientId.equals(theirRecipientId) || Recipient.resolved(theirRecipientId).isGroup()) {
-            long    id               = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
-            long    threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
+            long    id               = CursorUtil.requireLong(cursor, ID);
+            long    threadId         = CursorUtil.requireLong(cursor, THREAD_ID);
             int     status           = receiptType.getGroupStatus();
-            boolean isFirstIncrement = cursor.getLong(cursor.getColumnIndexOrThrow(columnName)) == 0;
+            boolean isFirstIncrement = CursorUtil.requireLong(cursor, columnName) == 0;
+            long    savedTimestamp   = CursorUtil.requireLong(cursor, RECEIPT_TIMESTAMP);
+            long    updatedTimestamp = isFirstIncrement ? Math.max(savedTimestamp, timestamp) : savedTimestamp;
 
             database.execSQL("UPDATE " + TABLE_NAME + " SET " +
-                             columnName + " = " + columnName + " + 1 WHERE " + ID + " = ?",
-                             new String[] {String.valueOf(id)});
+                             columnName + " = " + columnName + " + 1, " +
+                             RECEIPT_TIMESTAMP + " = ? WHERE " +
+                             ID + " = ?",
+                             SqlUtil.buildArgs(updatedTimestamp, id));
 
             DatabaseFactory.getGroupReceiptDatabase(context).update(ourRecipientId, id, status, timestamp);
 
@@ -645,7 +650,7 @@ public class MmsDatabase extends MessageDatabase {
       }
 
       if (threadUpdates.size() > 0 && receiptType == ReceiptType.DELIVERY) {
-        earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId());
+        earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId(), timestamp);
       }
 
       return threadUpdates;
@@ -1484,7 +1489,7 @@ public class MmsDatabase extends MessageDatabase {
       type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
-    Map<RecipientId, Long> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(message.getSentTimeMillis());
+    Map<RecipientId, EarlyReceiptCache.Receipt> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(message.getSentTimeMillis());
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(DATE_SENT, message.getSentTimeMillis());
@@ -1498,7 +1503,8 @@ public class MmsDatabase extends MessageDatabase {
     contentValues.put(EXPIRES_IN, message.getExpiresIn());
     contentValues.put(VIEW_ONCE, message.isViewOnce());
     contentValues.put(RECIPIENT_ID, message.getRecipient().getId().serialize());
-    contentValues.put(DELIVERY_RECEIPT_COUNT, Stream.of(earlyDeliveryReceipts.values()).mapToLong(Long::longValue).sum());
+    contentValues.put(DELIVERY_RECEIPT_COUNT, Stream.of(earlyDeliveryReceipts.values()).mapToLong(EarlyReceiptCache.Receipt::getCount).sum());
+    contentValues.put(RECEIPT_TIMESTAMP, Stream.of(earlyDeliveryReceipts.values()).mapToLong(EarlyReceiptCache.Receipt::getTimestamp).max().orElse(-1));
 
     if (message.getRecipient().isSelf() && hasAudioAttachment(message.getAttachments())) {
       contentValues.put(VIEWED_RECEIPT_COUNT, 1L);
