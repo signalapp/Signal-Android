@@ -1228,7 +1228,6 @@ public class SmsDatabase extends MessageDatabase {
     }
 
     DatabaseFactory.getThreadDatabase(context).setHasSentSilently(threadId, true);
-    db.setTransactionSuccessful();
 
     notifyConversationListeners(threadId);
 
