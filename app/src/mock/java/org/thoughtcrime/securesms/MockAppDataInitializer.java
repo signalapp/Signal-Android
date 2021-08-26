@@ -5,7 +5,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteDatabase;
 
 import org.signal.core.util.StreamUtil;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;

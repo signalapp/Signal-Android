@@ -24,7 +24,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
-import net.zetetic.database.sqlcipher.SQLiteQueryBuilder;
+import net.sqlcipher.database.SQLiteQueryBuilder;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;

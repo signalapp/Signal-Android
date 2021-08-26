@@ -7,7 +7,7 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import net.zetetic.database.sqlcipher.SQLiteStatement;
+import net.sqlcipher.database.SQLiteStatement;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 

@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.function.BiFunction;
 
-import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteDatabase;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;

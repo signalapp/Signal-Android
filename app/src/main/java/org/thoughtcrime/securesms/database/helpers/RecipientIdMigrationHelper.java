@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteDatabase;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.groups.GroupId;

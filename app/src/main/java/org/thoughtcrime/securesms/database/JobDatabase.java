@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
-import net.zetetic.database.sqlcipher.SQLiteDatabaseHook;
-import net.zetetic.database.sqlcipher.SQLiteOpenHelper;
-import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteDatabaseHook;
+import net.sqlcipher.database.SQLiteOpenHelper;
+import net.sqlcipher.database.SQLiteDatabase;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -89,7 +89,8 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
 
   private static volatile JobDatabase instance;
 
-  private final Application application;
+  private final Application    application;
+  private final DatabaseSecret databaseSecret;
 
   public static @NonNull JobDatabase getInstance(@NonNull Application context) {
     if (instance == null) {
@@ -104,9 +105,10 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
   }
 
   public JobDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret) {
-    super(application, DATABASE_NAME, databaseSecret.asString(), null, DATABASE_VERSION, 0, new SqlCipherErrorHandler(DATABASE_NAME), new SqlCipherDatabaseHook());
+    super(application, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook(), new SqlCipherErrorHandler(DATABASE_NAME));
 
-    this.application = application;
+    this.application    = application;
+    this.databaseSecret = databaseSecret;
   }
 
   @Override
@@ -427,5 +429,13 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
         newDb.insert(Dependencies.TABLE_NAME, null, values);
       }
     }
+  }
+
+  private SQLiteDatabase getReadableDatabase() {
+    return super.getReadableDatabase(databaseSecret.asString());
+  }
+
+  private SQLiteDatabase getWritableDatabase() {
+    return super.getWritableDatabase(databaseSecret.asString());
   }
 }

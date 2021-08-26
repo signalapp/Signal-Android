@@ -4,9 +4,9 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-import net.zetetic.database.SQLException;
-import net.zetetic.database.sqlcipher.SQLiteStatement;
-import net.zetetic.database.sqlcipher.SQLiteTransactionListener;
+import net.sqlcipher.SQLException;
+import net.sqlcipher.database.SQLiteStatement;
+import net.sqlcipher.database.SQLiteTransactionListener;
 
 import org.signal.core.util.tracing.Tracer;
 
@@ -15,7 +15,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * This is a wrapper around {@link net.zetetic.database.sqlcipher.SQLiteDatabase}. There's difficulties
+ * This is a wrapper around {@link net.sqlcipher.database.SQLiteDatabase}. There's difficulties
  * making a subclass, so instead we just match the interface. Callers should just need to change
  * their import statements.
  */
@@ -34,10 +34,10 @@ public class SQLiteDatabase {
   private static final String NAME_LOCK  = "LOCK";
 
 
-  private final net.zetetic.database.sqlcipher.SQLiteDatabase wrapped;
+  private final net.sqlcipher.database.SQLiteDatabase wrapped;
   private final Tracer                                        tracer;
 
-  public SQLiteDatabase(net.zetetic.database.sqlcipher.SQLiteDatabase wrapped) {
+  public SQLiteDatabase(net.sqlcipher.database.SQLiteDatabase wrapped) {
     this.wrapped = wrapped;
     this.tracer  = Tracer.getInstance();
   }
@@ -98,7 +98,7 @@ public class SQLiteDatabase {
     return result;
   }
 
-  public net.zetetic.database.sqlcipher.SQLiteDatabase getSqlCipherDatabase() {
+  public net.sqlcipher.database.SQLiteDatabase getSqlCipherDatabase() {
     return wrapped;
   }
 
@@ -129,7 +129,7 @@ public class SQLiteDatabase {
     return traceSql("query(9)", table, selection, false, () -> wrapped.query(distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit));
   }
 
-  public Cursor queryWithFactory(net.zetetic.database.sqlcipher.SQLiteDatabase.CursorFactory cursorFactory, boolean distinct, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
+  public Cursor queryWithFactory(net.sqlcipher.database.SQLiteDatabase.CursorFactory cursorFactory, boolean distinct, String table, String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy, String limit) {
     return traceSql("queryWithFactory()", table, selection, false, () -> wrapped.queryWithFactory(cursorFactory, distinct, table, columns, selection, selectionArgs, groupBy, having, orderBy, limit));
   }
 
@@ -149,7 +149,7 @@ public class SQLiteDatabase {
     return traceSql("rawQuery(2b)", sql, false,() -> wrapped.rawQuery(sql, args));
   }
 
-  public Cursor rawQueryWithFactory(net.zetetic.database.sqlcipher.SQLiteDatabase.CursorFactory cursorFactory, String sql, String[] selectionArgs, String editTable) {
+  public Cursor rawQueryWithFactory(net.sqlcipher.database.SQLiteDatabase.CursorFactory cursorFactory, String sql, String[] selectionArgs, String editTable) {
     return traceSql("rawQueryWithFactory()", sql, false, () -> wrapped.rawQueryWithFactory(cursorFactory, sql, selectionArgs, editTable));
   }
 

@@ -28,7 +28,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.NotificationInd;
 
-import net.zetetic.database.sqlcipher.SQLiteStatement;
+import net.sqlcipher.database.SQLiteStatement;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
