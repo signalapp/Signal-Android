@@ -59,6 +59,7 @@ import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseExc
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResumableUploadResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
@@ -1374,7 +1375,7 @@ public class PushServiceSocket {
       } else if (response.code() == 404) {
         throw new ResumeLocationInvalidException();
       } else {
-        throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response);
+        throw new NonSuccessfulResumableUploadResponseCodeException(response.code(), "Response: " + response);
       }
     } finally {
       synchronized (connections) {
