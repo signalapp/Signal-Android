@@ -698,6 +698,11 @@ public final class ContactSelectionListFragment extends LoggingFragment
 
       @Override
       public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
+        if (getView() == null || !requireView().isAttachedToWindow()) {
+          Log.w(TAG, "Fragment's view was detached before the animation completed.");
+          return;
+        }
+
         if (view == chip && transitionType == LayoutTransition.APPEARING) {
           chipGroup.getLayoutTransition().removeTransitionListener(this);
           registerChipRecipientObserver(chip, recipient.live());
