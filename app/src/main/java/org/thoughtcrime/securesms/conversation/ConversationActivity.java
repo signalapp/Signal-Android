@@ -1673,7 +1673,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
             throw new AssertionError();
         }
 
-        if (!leftGroup && selfMembership.isAnnouncementGroup() && selfMembership.getMemberLevel() != GroupDatabase.MemberLevel.ADMINISTRATOR) {
+        if (!leftGroup && !canCancelRequest && selfMembership.isAnnouncementGroup() && selfMembership.getMemberLevel() != GroupDatabase.MemberLevel.ADMINISTRATOR) {
           canSendMessages = false;
           cannotSendInAnnouncementGroupBanner.get().setVisibility(View.VISIBLE);
           cannotSendInAnnouncementGroupBanner.get().setMovementMethod(LinkMovementMethod.getInstance());
