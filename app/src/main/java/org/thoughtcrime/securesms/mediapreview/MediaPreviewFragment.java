@@ -90,8 +90,10 @@ public abstract class MediaPreviewFragment extends Fragment {
       attachmentId = new PartUriParser(Objects.requireNonNull(requireArguments().getParcelable(DATA_URI))).getPartId();
     }
 
+    final Context context = requireContext().getApplicationContext();
+
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(),
-                   () -> DatabaseFactory.getAttachmentDatabase(requireContext()).hasAttachment(attachmentId),
+                   () -> DatabaseFactory.getAttachmentDatabase(context).hasAttachment(attachmentId),
                    hasAttachment -> { if (!hasAttachment) events.mediaNotAvailable(); });
   }
 
