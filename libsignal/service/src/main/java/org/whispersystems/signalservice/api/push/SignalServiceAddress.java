@@ -69,7 +69,7 @@ public class SignalServiceAddress {
 
   public static Optional<SignalServiceAddress> fromRaw(String rawUuid, String e164) {
     if (isValidAddress(rawUuid, e164)) {
-      return Optional.of(new SignalServiceAddress(UuidUtil.parseOrNull(rawUuid), e164));
+      return Optional.of(new SignalServiceAddress(UuidUtil.parseOrThrow(rawUuid), e164));
     } else {
       return Optional.absent();
     }

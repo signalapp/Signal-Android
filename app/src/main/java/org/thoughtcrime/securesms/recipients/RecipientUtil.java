@@ -82,7 +82,7 @@ public class RecipientUtil {
 
     return Stream.of(recipients)
                  .map(Recipient::resolve)
-                 .map(r -> new SignalServiceAddress(r.getUuid().orNull(), r.getE164().orNull()))
+                 .map(r -> new SignalServiceAddress(r.requireUuid(), r.getE164().orNull()))
                  .toList();
   }
 

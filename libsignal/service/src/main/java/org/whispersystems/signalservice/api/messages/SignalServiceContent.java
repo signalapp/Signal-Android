@@ -505,12 +505,11 @@ public final class SignalServiceContent {
                                                                      SignalServiceProtos.DataMessage content)
       throws UnsupportedDataMessageException, InvalidMessageStructureException
   {
-    SignalServiceGroup                  groupInfoV1  = createGroupV1Info(content);
     SignalServiceGroupV2                groupInfoV2  = createGroupV2Info(content);
     Optional<SignalServiceGroupContext> groupContext;
 
     try {
-      groupContext = SignalServiceGroupContext.createOptional(groupInfoV1, groupInfoV2);
+      groupContext = SignalServiceGroupContext.createOptional(null, groupInfoV2);
     } catch (InvalidMessageException e) {
       throw new InvalidMessageStructureException(e);
     }
@@ -559,7 +558,8 @@ public final class SignalServiceContent {
     }
 
     return new SignalServiceDataMessage(metadata.getTimestamp(),
-                                        groupInfoV1, groupInfoV2,
+                                        null,
+                                        groupInfoV2,
                                         attachments,
                                         content.hasBody() ? content.getBody() : null,
                                         endSession,
@@ -588,7 +588,7 @@ public final class SignalServiceContent {
       SignalServiceProtos.SyncMessage.Sent sentContent          = content.getSent();
       SignalServiceDataMessage             dataMessage          = createSignalServiceMessage(metadata, sentContent.getMessage());
       Optional<SignalServiceAddress>       address              = SignalServiceAddress.isValidAddress(sentContent.getDestinationUuid(), sentContent.getDestinationE164())
-                                                                  ? Optional.of(new SignalServiceAddress(UuidUtil.parseOrNull(sentContent.getDestinationUuid()), sentContent.getDestinationE164()))
+                                                                  ? Optional.of(new SignalServiceAddress(UuidUtil.parseOrThrow(sentContent.getDestinationUuid()), sentContent.getDestinationE164()))
                                                                   : Optional.<SignalServiceAddress>absent();
 
       if (!address.isPresent() && !dataMessage.getGroupContext().isPresent()) {
@@ -597,7 +597,7 @@ public final class SignalServiceContent {
 
       for (SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatus status : sentContent.getUnidentifiedStatusList()) {
         if (SignalServiceAddress.isValidAddress(status.getDestinationUuid(), status.getDestinationE164())) {
-          SignalServiceAddress recipient = new SignalServiceAddress(UuidUtil.parseOrNull(status.getDestinationUuid()), status.getDestinationE164());
+          SignalServiceAddress recipient = new SignalServiceAddress(UuidUtil.parseOrThrow(status.getDestinationUuid()), status.getDestinationE164());
           unidentifiedStatuses.put(recipient, status.getUnidentified());
         } else {
           Log.w(TAG, "Encountered an invalid UnidentifiedDeliveryStatus in a SentTranscript! Ignoring.");
@@ -621,7 +621,7 @@ public final class SignalServiceContent {
 
       for (SignalServiceProtos.SyncMessage.Read read : content.getReadList()) {
         if (SignalServiceAddress.isValidAddress(read.getSenderUuid(), read.getSenderE164())) {
-          SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrNull(read.getSenderUuid()), read.getSenderE164());
+          SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrThrow(read.getSenderUuid()), read.getSenderE164());
           readMessages.add(new ReadMessage(address, read.getTimestamp()));
         } else {
           Log.w(TAG, "Encountered an invalid ReadMessage! Ignoring.");
@@ -636,7 +636,7 @@ public final class SignalServiceContent {
 
       for (SignalServiceProtos.SyncMessage.Viewed viewed : content.getViewedList()) {
         if (SignalServiceAddress.isValidAddress(viewed.getSenderUuid(), viewed.getSenderE164())) {
-          SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrNull(viewed.getSenderUuid()), viewed.getSenderE164());
+          SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrThrow(viewed.getSenderUuid()), viewed.getSenderE164());
           viewedMessages.add(new ViewedMessage(address, viewed.getTimestamp()));
         } else {
           Log.w(TAG, "Encountered an invalid ReadMessage! Ignoring.");
@@ -648,7 +648,7 @@ public final class SignalServiceContent {
 
     if (content.hasViewOnceOpen()) {
       if (SignalServiceAddress.isValidAddress(content.getViewOnceOpen().getSenderUuid(), content.getViewOnceOpen().getSenderE164())) {
-        SignalServiceAddress address   = new SignalServiceAddress(UuidUtil.parseOrNull(content.getViewOnceOpen().getSenderUuid()), content.getViewOnceOpen().getSenderE164());
+        SignalServiceAddress address   = new SignalServiceAddress(UuidUtil.parseOrThrow(content.getViewOnceOpen().getSenderUuid()), content.getViewOnceOpen().getSenderE164());
         ViewOnceOpenMessage timerRead = new ViewOnceOpenMessage(address, content.getViewOnceOpen().getTimestamp());
         return SignalServiceSyncMessage.forViewOnceOpen(timerRead);
       } else {
@@ -660,7 +660,7 @@ public final class SignalServiceContent {
       if (SignalServiceAddress.isValidAddress(content.getVerified().getDestinationUuid(), content.getVerified().getDestinationE164())) {
         try {
           SignalServiceProtos.Verified verified    = content.getVerified();
-          SignalServiceAddress destination = new SignalServiceAddress(UuidUtil.parseOrNull(verified.getDestinationUuid()), verified.getDestinationE164());
+          SignalServiceAddress destination = new SignalServiceAddress(UuidUtil.parseOrThrow(verified.getDestinationUuid()), verified.getDestinationE164());
           IdentityKey identityKey = new IdentityKey(verified.getIdentityKey().toByteArray(), 0);
 
           VerifiedMessage.VerifiedState verifiedState;
@@ -898,7 +898,7 @@ public final class SignalServiceContent {
     }
 
     if (SignalServiceAddress.isValidAddress(content.getQuote().getAuthorUuid(), content.getQuote().getAuthorE164())) {
-      SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrNull(content.getQuote().getAuthorUuid()), content.getQuote().getAuthorE164());
+      SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrThrow(content.getQuote().getAuthorUuid()), content.getQuote().getAuthorE164());
 
       return new SignalServiceDataMessage.Quote(content.getQuote().getId(),
                                                 address,
@@ -1160,71 +1160,6 @@ public final class SignalServiceContent {
                                               pointer.hasBlurHash() ? Optional.of(pointer.getBlurHash()) : Optional.<String>absent(),
                                               pointer.hasUploadTimestamp() ? pointer.getUploadTimestamp() : 0);
 
-  }
-
-  private static SignalServiceGroup createGroupV1Info(SignalServiceProtos.DataMessage content) throws InvalidMessageStructureException {
-    if (!content.hasGroup()) return null;
-
-    SignalServiceGroup.Type type;
-
-    switch (content.getGroup().getType()) {
-      case DELIVER:      type = SignalServiceGroup.Type.DELIVER;      break;
-      case UPDATE:       type = SignalServiceGroup.Type.UPDATE;       break;
-      case QUIT:         type = SignalServiceGroup.Type.QUIT;         break;
-      case REQUEST_INFO: type = SignalServiceGroup.Type.REQUEST_INFO; break;
-      default:           type = SignalServiceGroup.Type.UNKNOWN;      break;
-    }
-
-    if (content.getGroup().getType() != DELIVER) {
-      String                         name    = null;
-      List<SignalServiceAddress>     members = null;
-      SignalServiceAttachmentPointer avatar  = null;
-
-      if (content.getGroup().hasName()) {
-        name = content.getGroup().getName();
-      }
-
-      if (content.getGroup().getMembersCount() > 0) {
-        members = new ArrayList<>(content.getGroup().getMembersCount());
-
-        for (SignalServiceProtos.GroupContext.Member member : content.getGroup().getMembersList()) {
-          if (SignalServiceAddress.isValidAddress(null, member.getE164())) {
-            members.add(new SignalServiceAddress(null, member.getE164()));
-          } else {
-            throw new InvalidMessageStructureException("GroupContext.Member had no address!");
-          }
-        }
-      } else if (content.getGroup().getMembersE164Count() > 0) {
-        members = new ArrayList<>(content.getGroup().getMembersE164Count());
-
-        for (String member : content.getGroup().getMembersE164List()) {
-          members.add(new SignalServiceAddress(null, member));
-        }
-      }
-
-      if (content.getGroup().hasAvatar()) {
-        SignalServiceProtos.AttachmentPointer pointer = content.getGroup().getAvatar();
-
-        avatar = new SignalServiceAttachmentPointer(pointer.getCdnNumber(),
-                                                    SignalServiceAttachmentRemoteId.from(pointer),
-                                                    pointer.getContentType(),
-                                                    pointer.getKey().toByteArray(),
-                                                    Optional.of(pointer.getSize()),
-                                                    Optional.<byte[]>absent(), 0, 0,
-                                                    Optional.fromNullable(pointer.hasDigest() ? pointer.getDigest().toByteArray() : null),
-                                                    Optional.<String>absent(),
-                                                    false,
-                                                    false,
-                                                    false,
-                                                    Optional.<String>absent(),
-                                                    Optional.<String>absent(),
-                                                    pointer.hasUploadTimestamp() ? pointer.getUploadTimestamp() : 0);
-      }
-
-      return new SignalServiceGroup(type, content.getGroup().getId().toByteArray(), name, members, avatar);
-    }
-
-    return new SignalServiceGroup(content.getGroup().getId().toByteArray());
   }
 
   private static SignalServiceGroupV2 createGroupV2Info(SignalServiceProtos.DataMessage content) throws InvalidMessageStructureException {

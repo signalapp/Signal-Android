@@ -202,7 +202,7 @@ public class SignalServiceMessageReceiver {
       SignalServiceEnvelope envelope;
 
       if (entity.hasSource() && entity.getSourceDevice() > 0) {
-        SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrNull(entity.getSourceUuid()), entity.getSourceE164());
+        SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrThrow(entity.getSourceUuid()), entity.getSourceE164());
         envelope = new SignalServiceEnvelope(entity.getType(),
                                              Optional.of(address),
                                              entity.getSourceDevice(),

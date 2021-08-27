@@ -271,7 +271,7 @@ public final class SignalAccountRecord implements SignalRecord {
 
     static PinnedConversation fromRemote(AccountRecord.PinnedConversation remote) {
       if (remote.hasContact()) {
-        return forContact(new SignalServiceAddress(UuidUtil.parseOrNull(remote.getContact().getUuid()), remote.getContact().getE164()));
+        return forContact(new SignalServiceAddress(UuidUtil.parseOrThrow(remote.getContact().getUuid()), remote.getContact().getE164()));
       } else if (!remote.getLegacyGroupId().isEmpty()) {
         return forGroupV1(remote.getLegacyGroupId().toByteArray());
       } else if (!remote.getGroupMasterKey().isEmpty()) {
