@@ -205,6 +205,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Размерът на прикачения файл надминава допустимия лимит за типа съобщение, който изпращате.</string>
   <string name="ConversationActivity_unable_to_record_audio">Не може да бъде записано аудио!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Не може да изпращате съобщения на тази група, защото вече не сте нейн член.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Само %1$s могат да изпращат съобщения</string>
+  <string name="ConversationActivity_admins">администратори</string>
+  <string name="ConversationActivity_message_an_admin">Пиши на администратор</string>
+  <string name="ConversationActivity_cant_start_group_call">Не можете да започнете конферентен разговор</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Само администратори на тази група могат да започнат разговор.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Нямате инсталирано приложение, което да може да използва тази препратка.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Заявката ви за присъединяване към групата е изпратена до администратора ѝ. Ще бъдете уведомени, когата те вземат решение.</string>
   <string name="ConversationActivity_cancel_request">Отказване на заявката</string>
@@ -236,6 +241,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Повече настройки в \"Групове настройки\"</string>
   <string name="ConversationActivity_join">Присъедини се</string>
   <string name="ConversationActivity_full">Пълно</string>
+  <string name="ConversationActivity_error_sending_media">Грешка при изпращане на медиен файл</string>
   <string name="ConversationActivity__reported_as_spam_and_blocked">Докладван за спам и блокиран</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -335,6 +341,7 @@
   <string name="ChooseBackupFragment__icon_content_description">Възстановяване от архивна икона</string>
   <string name="ChooseBackupFragment__choose_backup">Избор на архив</string>
   <string name="ChooseBackupFragment__learn_more">Научете повече</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">Няма налична файлова търсачка</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Възстановяването е завършено</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">За да продължите да използвате резервни копия, моля изберете папка. Новите резервни копия ще се записват в нея.</string>
@@ -412,6 +419,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Споделяне с</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Можете да прикачвате повече от един файл само когато са картинки и видео.</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Нямаш разрешение да пращаш на тази група</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Перманентна Signal комуникационна грешка!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не успя да се регистрира с Google Play Services. Signal съообщения и разговори са деактивирани, моля пререгистрирайте през менюто Настройки &gt; Допълнителние.</string>
@@ -554,6 +562,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Готово</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Този човек не може да бъде добавен в стари групи.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Този човек не може да бъде добавен към групи за известия.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Добавяне на %1$s към \"%2$s\"?</item>
     <item quantity="other">Добавяне на %3$d членове към \"%2$s\"?</item>
@@ -624,6 +633,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Само администраторите могат да нулират връзката за споделяне на група.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Нямате права да правите това</string>
   <string name="ManageGroupActivity_not_capable">Някой, когото сте добавили, не поддържа нови групи и трябва да актуализира Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">Някой, когото сте добавили, не поддържа групи за известия и трябва да актуализира Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Актуализирането на групата не бе успешно</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Не сте член на тази група</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Актуализирането на групата не бе успешно, опитайте отново по-късно</string>
@@ -736,10 +746,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Споделяне</string>
   <string name="InviteActivity_share_with_contacts">Споделете с контакти</string>
+  <string name="InviteActivity_share_via">Сподели чрез…</string>
   <string name="InviteActivity_cancel">Отказ</string>
   <string name="InviteActivity_sending">Изпращане…</string>
   <string name="InviteActivity_invitations_sent">Поканите изпратени!</string>
   <string name="InviteActivity_invite_to_signal">Покани в Signal</string>
+  <string name="InviteActivity_send_sms">Изпрати SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Изпащане на %d SMS покана?</item>
     <item quantity="other">Изпащане на %d SMS покани?</item>
@@ -816,7 +828,9 @@
   <string name="NotificationBarManager_signal_call_in_progress">Протича Signal разговор</string>
   <string name="NotificationBarManager__establishing_signal_call">Установяване на Signal разговор</string>
   <string name="NotificationBarManager__incoming_signal_call">Входящо Signal обаждане</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Входящо Signal групово обаждане</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Спиране на услугата за разговори на Signal</string>
+  <string name="NotificationBarManager__decline_call">Отхвърляне на обаждането</string>
   <string name="NotificationBarManager__answer_call">Приеми обаждането</string>
   <string name="NotificationBarManager__end_call">Прекрати обаждането</string>
   <string name="NotificationBarManager__cancel_call">Прекратяване на обаждането</string>
@@ -836,6 +850,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Добави описание…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Един елемент бе премахнат, защото надхвърля ограничението за размер</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Един елемент бе премахнат, защото е от неизвестен тип</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Един елемент бе премахнат, защото надхвърля ограничението за размер или е от неизвестен тип</string>
   <string name="MediaSendActivity_camera_unavailable">Не е открита камера.</string>
   <string name="MediaSendActivity_message_to_s">Изпрати на %s</string>
   <string name="MediaSendActivity_message">Съобщение</string>
@@ -853,6 +869,7 @@
   <string name="MediaRepository__camera">Камера</string>
   <!--MessageDecryptionUtil-->
   <string name="MessageDecryptionUtil_failed_to_decrypt_message">Грешка при декриптиране на съобщението</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Натисни, за да изпратиш данни за отстраняване на грешки</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Непознат</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Получихте съобщение криптирано със стара версия на Signal, която вече не се поддържа. Моля, помолете изпращача да обнови версията си и да препрати съобщението.</string>
@@ -908,6 +925,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s направи %2$s администратор.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ви направи администратор.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Премахнахте администраторските права на %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s премахна вашите администраторски права.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s премахна администраторските права от %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s вече е администратор.</string>
   <string name="MessageRecord_you_are_now_an_admin">Вече сте администратор.</string>
@@ -968,6 +986,12 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s промени кой може да редактира членството в групата на \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Кой може да редактира членството в групата е променено на \"%1$s\".</string>
   <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Вие променихте груповите настройки да позволяват на всички членове да изпращат съобщения.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Вие променихте груповите настройки да позволяват само на администратори да изпращат съобщения.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s промени груповите настройки да позволяват на всички членове да изпращат съобщения</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s промени груповите настройки да позволяват само на администратори да изпращат съобщения.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Груповите настройки бяха променени да позволяват на всички членове да изпращат съобщения.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Груповите настройки бяха променени да позволяват само на администратори да изпращат съобщения.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Включихте връзката към групата с изключено одобрение от администратора.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Включихте връзката към групата с включено одобрение от администратора.</string>
@@ -1171,8 +1195,10 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">За да се обадите на %1$s, Signal се нуждае от достъп до вашата камера</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Обаждане</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Групата е твърде голяма, за да звъннем на присъстващите.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Повикване в Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Видео разговор чрез Signal</string>
   <string name="WebRtcCallView__start_call">Започни разговор</string>
   <string name="WebRtcCallView__join_call">Присъеди се към разговор</string>
   <string name="WebRtcCallView__call_is_full">Обаждането е пълно</string>
@@ -1182,17 +1208,45 @@
   <string name="WebRtcCallView__reconnecting">Повторно свързване…</string>
   <string name="WebRtcCallView__joining">Присъединяване</string>
   <string name="WebRtcCallView__disconnected">Изключен</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal ще звънне на %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal ще звънне на %1$s и %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal ще звънне на %1$s, %2$s и още %3$d</item>
+    <item quantity="other">Signal ще звънне на %1$s, %2$s и още %3$d</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s ще бъде известен</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s и %2$s ще бъдат известени</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s и още %3$d ще бъдат известени</item>
+    <item quantity="other">%1$s, %2$s и още %3$d ще бъдат известени</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Звъним на %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Звъним на %1$s и %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Звъним на %1$s, %2$s и още %3$d</item>
+    <item quantity="other">Звъним на %1$s, %2$s и още %3$d</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s ви звъни</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s звъни на вас и на %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s звъни на вас, на %2$s и на %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s звъни на вас, на %2$s, на %3$s и на още %4$d</item>
+    <item quantity="other">%1$s звъни на вас, на %2$s, на %3$s и на още %4$d</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Никой друг не е тук</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s е в този разговор</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s са в този разговор</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s и %2$s са в този разговор</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s презентира</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s и %3$d друг са в този разговор</item>
     <item quantity="other">%1$s, %2$s и %3$d други за в този разговор</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Обърни</string>
   <string name="WebRtcCallView__speaker">Говорител</string>
   <string name="WebRtcCallView__camera">Камера</string>
   <string name="WebRtcCallView__mute">Заглуши</string>
+  <string name="WebRtcCallView__ring">Звънни</string>
   <string name="WebRtcCallView__end_call">Прекрати обаждането</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1332,6 +1386,7 @@
   <string name="SubmitDebugLogActivity_success">Успех!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Копирайте този URL адрес и го добавете към вашия доклад за проблем или имейл за поддръжка:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Споделяне</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Тези записки ще бъдат публикувани онлайн за разглеждане от доброволци. Може да го прегледате, преди да го качите.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">Филтър:</string>
   <string name="SupportEmailUtil_device_info">Информация за устройството:</string>

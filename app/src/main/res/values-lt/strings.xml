@@ -1372,7 +1372,7 @@
   <string name="WebRtcCallView__flip">Apversti</string>
   <string name="WebRtcCallView__speaker">Garsiakalbis</string>
   <string name="WebRtcCallView__camera">Kamera</string>
-  <string name="WebRtcCallView__mute">Nutildyti</string>
+  <string name="WebRtcCallView__mute">Be garso</string>
   <string name="WebRtcCallView__ring">Skambinti</string>
   <string name="WebRtcCallView__end_call">Baigti skambutį</string>
   <!--CallParticipantsListDialog-->

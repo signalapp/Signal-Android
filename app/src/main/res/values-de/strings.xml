@@ -1053,12 +1053,12 @@
   <string name="MessageRecord_group_call">Gruppenanruf</string>
   <string name="MessageRecord_you">Du</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
-    <item quantity="one">%1$s, %2$s und %3$d Weiterer nehmen am Gruppenanruf teil · %4$s</item>
-    <item quantity="other">%1$s, %2$s und %3$d Weitere nehmen am Gruppenanruf teil · %4$s</item>
+    <item quantity="one">%1$s, %2$s und %3$d weitere Person nehmen am Gruppenanruf teil · %4$s</item>
+    <item quantity="other">%1$s, %2$s und %3$d weitere Personen nehmen am Gruppenanruf teil · %4$s</item>
   </plurals>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
-    <item quantity="one">%1$s, %2$s und %3$d Weiterer nehmen am Gruppenanruf teil</item>
-    <item quantity="other">%1$s, %2$s und %3$d Weitere nehmen am Gruppenanruf teil</item>
+    <item quantity="one">%1$s, %2$s und %3$d weitere Person nehmen am Gruppenanruf teil</item>
+    <item quantity="other">%1$s, %2$s und %3$d weitere Personen nehmen am Gruppenanruf teil</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Annehmen</string>
@@ -1218,21 +1218,21 @@
   <string name="WebRtcCallView__s_will_be_notified">%1$s wird benachrichtigt</string>
   <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s und %2$s werden benachrichtigt</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
-    <item quantity="one">%1$s, %2$s und %3$d weitere Person werden benachrichtigt</item>
-    <item quantity="other">%1$s, %2$s und %3$d weitere Personen werden benachrichtigt</item>
+    <item quantity="one">%1$s, %2$s und %3$d weitere Person werden benachrichtigt</item>
+    <item quantity="other">%1$s, %2$s und %3$d weitere Personen werden benachrichtigt</item>
   </plurals>
   <string name="WebRtcCallView__ringing_s">Klingelt bei %1$s</string>
   <string name="WebRtcCallView__ringing_s_and_s">Klingelt bei %1$s und %2$s</string>
   <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
-    <item quantity="one">Klingelt bei %1$s, %2$s und %3$d weiteren Person</item>
-    <item quantity="other">Klingelt bei %1$s, %2$s und %3$d weiteren Personen</item>
+    <item quantity="one">Klingelt bei %1$s, %2$s und %3$d weiteren Person</item>
+    <item quantity="other">Klingelt bei %1$s, %2$s und %3$d weiteren Personen</item>
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s ruft dich an</string>
-  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s ruft %2$s und dich an</string>
-  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s ruft %2$s, %3$s und dich an</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s ruft dich und %2$s an</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s ruft dich, %2$s und %3$s an</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
-    <item quantity="one">%1$s ruft %2$s, %3$s, %4$d weitere Person und dich an</item>
-    <item quantity="other">%1$s ruft %2$s, %3$s, %4$d weitere Personen und dich an</item>
+    <item quantity="one">%1$s ruft dich, %2$s, %3$s und %4$d weitere Person an</item>
+    <item quantity="other">%1$s ruft dich, %2$s, %3$s und %4$d weitere Personen an</item>
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Niemand anderes ist hier</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s nimmt an diesem Anruf teil</string>
@@ -1240,8 +1240,8 @@
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s und %2$s nehmen an diesem Anruf teil</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s präsentiert gerade</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-    <item quantity="one">%1$s, %2$s und %3$d Weiterer nehmen an diesem Anruf teil</item>
-    <item quantity="other">%1$s, %2$s und %3$d Weitere nehmen an diesem Anruf teil</item>
+    <item quantity="one">%1$s, %2$s und %3$d weitere Person nehmen an diesem Anruf teil</item>
+    <item quantity="other">%1$s, %2$s und %3$d weitere Personen nehmen an diesem Anruf teil</item>
   </plurals>
   <string name="WebRtcCallView__flip">Drehen</string>
   <string name="WebRtcCallView__speaker">Audio</string>
@@ -2742,11 +2742,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s ist beigetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s und %2$s sind beigetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s und %3$s sind beigetreten</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s und %3$d Weitere sind beigetreten</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s und %3$d weitere Personen sind beigetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_left"> %1$s ist ausgetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s und %2$s sind ausgetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s und %3$s sind ausgetreten</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s und %3$d Weitere sind ausgetreten</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s und %3$d weitere Personen sind ausgetreten</string>
   <string name="CallParticipant__you">Du</string>
   <string name="CallParticipant__you_on_another_device">Du (auf einem anderen Gerät)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (auf einem anderen Gerät)</string>

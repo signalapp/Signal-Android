@@ -1212,7 +1212,7 @@
   <string name="WebRtcCallView__joining">Qoşulur…</string>
   <string name="WebRtcCallView__disconnected">Bağlantı kəsildi</string>
   <string name="WebRtcCallView__signal_will_ring_s">Signal, %1$s üçün zəng edəcək</string>
-  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal, %1$s və %2$s üçün zəng edəcək</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal, %1$s və %2$s əlaqələrinə zəng edəcək</string>
   <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
     <item quantity="one">Signal, %1$s, %2$s və digər %3$d nəfərə zəng edəcək</item>
     <item quantity="other">Signal, %1$s, %2$s və digər %3$d nəfərə zəng edəcək</item>
@@ -1224,10 +1224,10 @@
     <item quantity="other">%1$s, %2$s və digər %3$d nəfər bildiriş alacaq</item>
   </plurals>
   <string name="WebRtcCallView__ringing_s">%1$s üçün zəng edilir</string>
-  <string name="WebRtcCallView__ringing_s_and_s">%1$s və %2$s üçün zəng edilir</string>
+  <string name="WebRtcCallView__ringing_s_and_s">%1$s və %2$s əlaqələrinə zəng edilir</string>
   <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
-    <item quantity="one">%1$s, %2$s və digər %3$d nəfər üçün zəng edilir</item>
-    <item quantity="other">%1$s, %2$s və digər %3$d nəfər üçün zəng edilir</item>
+    <item quantity="one">%1$s, %2$s və digər %3$d nəfərə zəng edilir</item>
+    <item quantity="other">%1$s, %2$s və digər %3$d nəfərə zəng edilir</item>
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s sizə zəng edir</string>
   <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s, sizə və %2$s əlaqəsinə zəng edir</string>
