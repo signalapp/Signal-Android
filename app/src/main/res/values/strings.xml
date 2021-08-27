@@ -2153,13 +2153,19 @@
     <string name="recipients_panel__to"><small>Enter a name or number</small></string>
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[If you wish to verify the security of your encryption with %s, compare the number above with the number on their device. Alternatively, you can scan the code on their phone, or ask them to scan your code. <a href="https://signal.org/redirect/safety-numbers">Learn more.</a>]]></string>
+    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[To verify the security of your end-to-end encryption with %s, compare the numbers above with their device. You can also scan the code on their phone. <a href="https://signal.org/redirect/safety-numbers">Learn more.</a>]]></string>
     <string name="verify_display_fragment__tap_to_scan">Tap to scan</string>
+    <string name="verify_display_fragment__successful_match">Successful match</string>
+    <string name="verify_display_fragment__failed_to_verify_safety_number">Failed to verify safety number</string>
     <string name="verify_display_fragment__loading">Loading…</string>
-    <string name="verify_display_fragment__verified">Verified</string>
+    <string name="verify_display_fragment__mark_as_verified">Mark as verified</string>
+    <string name="verify_display_fragment__clear_verification">Clear verification</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">Share safety number</string>
+
+    <!-- verity_scan_fragment -->
+    <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scan the QR Code on your contact\’s device.</string>
 
     <!-- webrtc_answer_decline_button -->
     <string name="webrtc_answer_decline_button__swipe_up_to_answer">Swipe up to answer</string>
