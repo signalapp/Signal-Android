@@ -60,6 +60,7 @@ class ConversationListViewModel extends ViewModel {
   private String       activeQuery;
   private SearchResult activeSearchResult;
   private int          pinnedCount;
+  private boolean      isNewlyCreated;
 
   private ConversationListViewModel(@NonNull Application application, @NonNull SearchRepository searchRepository, boolean isArchived) {
     this.megaphone                = new MutableLiveData<>();
@@ -85,6 +86,7 @@ class ConversationListViewModel extends ViewModel {
         }
         pagedData.getController().onDataInvalidated();
       });
+      this.isNewlyCreated         = true;
     };
 
     this.hasNoConversations = LiveDataUtil.mapAsync(pagedData.getData(), conversations -> {
@@ -141,6 +143,12 @@ class ConversationListViewModel extends ViewModel {
   }
 
   void onStart() {
+    if (!isNewlyCreated) {
+      pagedData.getController().onDataInvalidated();
+    }
+
+    isNewlyCreated = false;
+
     ApplicationDependencies.getDatabaseObserver().registerConversationListObserver(observer);
   }
 
