@@ -752,22 +752,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">పంచుకోండి</string>
   <string name="InviteActivity_share_with_contacts">పరిచయాలతో భాగస్వామ్యం చేయండి</string>
-  <string name="InviteActivity_choose_how_to_share">ఎలా భాగస్వామ్యం చేయాలో ఎంచుకోండి</string>
   <string name="InviteActivity_cancel">రద్దు</string>
   <string name="InviteActivity_sending">పంపుతోంది …</string>
   <string name="InviteActivity_invitations_sent">ఆహ్వనం పంపబడింది!</string>
   <string name="InviteActivity_invite_to_signal">Signal కు  ఆహ్వానించండి</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">1%d స్నేహితులకు SMS పంపండి</item>
-    <item quantity="other">%d స్నేహితులకు SMS పంపండి</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">1%d SMS ఆహ్వానాలను పంపాలా?</item>
     <item quantity="other">%d SMS ఆహ్వానాలను పంపాలా?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">మనం Signal కు మారుదాం: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">మీరు పంచుకొనడానికి మీ దగ్గర వేరే యాప్స్ లేనట్టు కనబడుతుంది.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">స్నేహితులారా , ఎన్క్రిప్ట్ చేయకుండా స్నేహితులని సంభాషించనివ్వొద్దు.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">ఇంకా నేర్చుకో</string>
   <!--LongMessageActivity-->
@@ -837,10 +831,10 @@
   <string name="NotificationBarManager_signal_call_in_progress">పురోగతి లో Signal కాల్</string>
   <string name="NotificationBarManager__establishing_signal_call">స్థాపించబడుతున్న Signal కాల్</string>
   <string name="NotificationBarManager__incoming_signal_call">క్రొత్తగా వచ్చిన Signal కాల్</string>
-  <string name="NotificationBarManager__deny_call">కాల్ నిరాకరించండి</string>
   <string name="NotificationBarManager__answer_call">కాల్ ఆన్సర్ చేయండి</string>
   <string name="NotificationBarManager__end_call">కాల్ ముగించండి</string>
   <string name="NotificationBarManager__cancel_call">కాల్ రద్దుచేయండి</string>
+  <string name="NotificationBarManager__join_call">కాల్‌లో చేరండి</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">నోటిఫికేషన్‌లను ప్రారంభించండి?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">మీ పరిచయాలు మరియు సమూహాల నుండి సందేశాన్ని ఎప్పటికీ కోల్పోకండి.</string>
@@ -927,7 +921,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s %2$sని పరిపాలకుడిని చేశారు</string>
   <string name="MessageRecord_s_made_you_an_admin">మిమ్మల్ని %1$s పరిపాలకుడిని చేశారు</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">మీరు %1$s యొక్క పరిపాలనా యోగ్యతను తొలగించారు.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s మీ పరిపాలనా యోగ్యతను తొలగించారు.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s %2$s యొక్క పరిపాలనా యోగ్యతను తొలగించారు.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s ఇప్పుడు అడ్మిన్.</string>
   <string name="MessageRecord_you_are_now_an_admin">మీరు ఇప్పుడు నిర్వాహకులే.</string>
@@ -1194,13 +1187,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal  %1$s</string>
   <string name="WebRtcCallActivity__calling">కాలింగ్…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal వాయిస్ కాల్…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal వీడియో కాల్</string>
+  <string name="WebRtcCallView__signal_call">Signal కాల్ </string>
   <string name="WebRtcCallView__start_call">కాల్ ప్రారంభించు</string>
   <string name="WebRtcCallView__join_call">కాల్‌లో చేరండి</string>
   <string name="WebRtcCallView__call_is_full">కాల్ నిండింది</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">ఈ కాల్ కోసం గరిష్టంగా %1$d మంది పాల్గొనేవారు చేరుకున్నారు. తరువాత మళ్ళీ ప్రయత్నించండి.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" గ్రూప్ కాల్</string>
   <string name="WebRtcCallView__view_participants_list">పాల్గొనేవారిని చూడు</string>
   <string name="WebRtcCallView__your_video_is_off">మీ వీడియో ఆఫ్‌లో ఉంది</string>
   <string name="WebRtcCallView__reconnecting">తిరిగి కనెక్ట్ చేస్తోంది…</string>
@@ -1213,6 +1204,10 @@
     <item quantity="one">%1$s, %2$s మరియు %3$d ఇతర ఈ కాల్‌లో ఉన్నాయి</item>
     <item quantity="other">%1$s, %2$s, మరియు %3$d ఇతరులు ఈ కాల్‌లో ఉన్నారు</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">స్పీకర్</string>
+  <string name="WebRtcCallView__camera">కెమెరా</string>
+  <string name="WebRtcCallView__mute">నిశబ్ధం</string>
+  <string name="WebRtcCallView__end_call">కాల్ ముగించండి</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">ఈ కాల్‌లో · %1$dవ్యక్తి</item>
@@ -2746,5 +2741,6 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">ఎస్సెమ్మెస్</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

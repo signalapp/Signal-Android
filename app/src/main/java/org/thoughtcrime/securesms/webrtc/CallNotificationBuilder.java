@@ -52,9 +52,9 @@ public class CallNotificationBuilder {
       builder.setContentText(context.getString(R.string.CallNotificationBuilder_connecting));
       builder.setPriority(NotificationCompat.PRIORITY_MIN);
     } else if (type == TYPE_INCOMING_RINGING) {
-      builder.setContentText(context.getString(R.string.NotificationBarManager__incoming_signal_call));
-      builder.addAction(getServiceNotificationAction(context, WebRtcCallService.denyCallIntent(context), R.drawable.ic_close_grey600_32dp, R.string.NotificationBarManager__deny_call));
-      builder.addAction(getActivityNotificationAction(context, WebRtcCallActivity.ANSWER_ACTION, R.drawable.ic_phone_grey600_32dp, R.string.NotificationBarManager__answer_call));
+      builder.setContentText(context.getString(recipient.isGroup() ? R.string.NotificationBarManager__incoming_signal_group_call : R.string.NotificationBarManager__incoming_signal_call));
+      builder.addAction(getServiceNotificationAction(context, WebRtcCallService.denyCallIntent(context), R.drawable.ic_close_grey600_32dp, R.string.NotificationBarManager__decline_call));
+      builder.addAction(getActivityNotificationAction(context, WebRtcCallActivity.ANSWER_ACTION, R.drawable.ic_phone_grey600_32dp, recipient.isGroup() ? R.string.NotificationBarManager__join_call : R.string.NotificationBarManager__answer_call));
 
       if (callActivityRestricted()) {
         builder.setFullScreenIntent(pendingIntent, true);

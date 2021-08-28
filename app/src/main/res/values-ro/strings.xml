@@ -85,7 +85,7 @@
   <string name="BlockedUsersActivity__unblock">Deblochează</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blocați și părăsiți %1$s?</string>
-  <string name="BlockUnblockDialog_block_s">Blochez %1$s?</string>
+  <string name="BlockUnblockDialog_block_s">Blocați %1$s?</string>
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Nu veți mai putea primi mesaje sau actualizări de la acest grup, iar membri nu vă vor mai putea adăuga la acest grup.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Membrii grupului nu vă vor mai putea adăuga din nou la acest grup.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Membrii grupului vă vor putea adăuga din nou la acest grup.</string>
@@ -209,10 +209,10 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Atașamentul depășește limita de mărime pentru tipul de mesaj pe care vreți să-l trimiteți.</string>
   <string name="ConversationActivity_unable_to_record_audio">Nu se poate înregistra audio!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nu puteți trimite mesaje acestui grup, deoarece nu mai sunteți membru.</string>
-  <string name="ConversationActivity_only_s_can_send_messages">Doar %1$s pot trimite mesaje.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Numai %1$s pot trimite mesaje.</string>
   <string name="ConversationActivity_admins">administratori</string>
   <string name="ConversationActivity_message_an_admin">Trimiteți un mesaj unui administrator</string>
-  <string name="ConversationActivity_cant_start_group_call">Nu pot iniția apelul de grup</string>
+  <string name="ConversationActivity_cant_start_group_call">Nu se poate iniția apelul de grup</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Numai administratorii acestui grup pot iniția un apel.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nu există nici o aplicație disponibilă pe dispozitivul tău care să poată deschide acest link.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Solicitarea dvs. de înscriere a fost trimisă administratorului grupului. Veți fi anunțat când vor lua acțiuni.</string>
@@ -251,7 +251,7 @@
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesaj necitit</item>
     <item quantity="few">%d mesaje necitite</item>
-    <item quantity="other">%d mesaje necitite</item>
+    <item quantity="other">%d de mesaje necitite</item>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
@@ -261,9 +261,9 @@
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Salvez pe spațiul de stocare?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="one">Salvarea acestui fişier pe spaţiul de stocare va permite altor aplicaţii de pe dispozitivul tău să le acceseze.\n\nContinui?</item>
-    <item quantity="few">Salvarea tuturor celor %1$d fişiere pe spaţiul de stocare va permite altor aplicaţii de pe dispozitivul tău să le acceseze.\n\nContinui?</item>
-    <item quantity="other">Salvarea tuturor celor %1$d fişiere pe spaţiul de stocare va permite altor aplicaţii de pe dispozitivul tău să le acceseze.\n\nContinuați?</item>
+    <item quantity="one">Salvarea acestui fişier pe spaţiul de stocare va permite altor aplicaţii de pe dispozitivul dvs să le acceseze.\n\nContinui?</item>
+    <item quantity="few">Salvarea tuturor celor %1$d fişiere pe spaţiul de stocare va permite altor aplicaţii de pe dispozitivul dvs. să le acceseze.\n\nContinui?</item>
+    <item quantity="other">Salvarea tuturor celor %1$d de fişiere pe spaţiul de stocare va permite altor aplicaţii de pe dispozitivul dvs. să le acceseze.\n\nContinuați?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">A apărut o eroare în timpul salvării atașamentului pe spațiul de stocare!</item>
@@ -274,12 +274,12 @@
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Se salvează atașamentul</item>
     <item quantity="few">Se salvează %1$d atașamente</item>
-    <item quantity="other">Se salvează %1$d atașamente</item>
+    <item quantity="other">Se salvează %1$d de atașamente</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">Se salvează atașamentul pe spațiul de stocare…</item>
     <item quantity="few">Se salvează %1$d atașamente pe spațiul de stocare…</item>
-    <item quantity="other">Se salvează %1$d atașamente pe spațiul de stocare…</item>
+    <item quantity="other">Se salvează %1$d de atașamente pe spațiul de stocare…</item>
   </plurals>
   <string name="ConversationFragment_pending">În curs…</string>
   <string name="ConversationFragment_push">Date (Signal)</string>
@@ -315,7 +315,7 @@
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">Această acțiune va șterge permanent conversația selectată.</item>
     <item quantity="few">Această acțiune va șterge permanent toate cele %1$d conversații selectate.</item>
-    <item quantity="other">Această acțiune va șterge permanent toate cele %1$d conversații selectate.</item>
+    <item quantity="other">Această acțiune va șterge permanent toate cele %1$d de conversații selectate.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Se șterge</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Se şterg conversaţiile selectate…</string>
@@ -428,7 +428,7 @@
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
     <item quantity="one">%d solicitare de membru în așteptare.</item>
     <item quantity="few">%d solicitări de membru în așteptare.</item>
-    <item quantity="other">%d solicitări de membru în așteptare.</item>
+    <item quantity="other">%d de solicitări de membru în așteptare.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">Vizualizare</string>
   <!--ShareActivity-->
@@ -467,7 +467,7 @@
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="one">Invitație trimisă</item>
     <item quantity="few">%d invitații trimise</item>
-    <item quantity="other">%d invitații trimise</item>
+    <item quantity="other">%d de invitații trimise</item>
   </plurals>
   <string name="GroupManagement_invite_single_user">\"%1$s\" nu poate fi adăugat automat la acest grup de către dvs.\n\nAu fost invitați să se alăture și nu vor vedea niciun mesaj de grup până când nu acceptă.</string>
   <string name="GroupManagement_invite_multiple_users">Acești utilizatori nu pot fi adăugați automat la acest grup de către dvs.\n\nAu fost invitați să se alăture și nu vor vedea niciun mesaj de grup până când nu acceptă.</string>
@@ -477,7 +477,7 @@
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Tot istoricul mesajelor și conținutul media a fost păstrat înainte de actualizare.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Va trebui să acceptați o invitație pentru a vă alătura din nou acestui grup și nu veți primi mesaje de grup până când nu acceptați.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
-    <item quantity="one">Acest membru va trebui să accepte o invitație de a se alătura din nou acestui grup și nu va putea primi mesaj de grup până când nu acceptă:</item>
+    <item quantity="one">Acest membru va trebui să accepte o invitație de a se alătura din nou acestui grup și nu va putea primi mesaje de grup până când nu acceptă:</item>
     <item quantity="few">Acești membri vor trebui să accepte o invitație de a se alătura din nou acestui grup și nu vor primi mesaje de grup până când nu acceptă:</item>
     <item quantity="other">Acești membri vor trebui să accepte o invitație de a se alătura din nou acestui grup și nu vor primi mesaje de grup până când nu acceptă:</item>
   </plurals>
@@ -501,13 +501,13 @@
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">Acești membri nu se pot alătura grupurilor noi și vor fi eliminați din grup:</item>
     <item quantity="few">Acești membri nu se pot alătura grupurilor noi și vor fi eliminați din grup:</item>
-    <item quantity="other">Acest membru nu se poate alătura grupurilor noi și va fi eliminat din grup:</item>
+    <item quantity="other">Acești membri nu se pot alătura grupurilor noi și vor fi eliminați din grup:</item>
   </plurals>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-    <item quantity="one">%1$d membru nu a putut fi adăugat la noul grup. Doriți să-l adăugați acum?</item>
-    <item quantity="few">%1$d membri nu au putut fi adăugați la noul grup. Doriți să-i adăugați acum?</item>
-    <item quantity="other">%1$d membri nu au putut fi adăugați la noul grup. Doriți să-i adăugați acum?</item>
+    <item quantity="one">%1$d membru nu a putut fi adăugat noului grup. Doriți să-l adăugați acum?</item>
+    <item quantity="few">%1$d membri nu au putut fi adăugați noului grup. Doriți să-i adăugați acum?</item>
+    <item quantity="other">%1$d de membri nu au putut fi adăugați noului grup. Doriți să-i adăugați acum?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">Adăugați membru</item>
@@ -560,7 +560,7 @@
   <plurals name="LinkPreviewRepository_d_members">
     <item quantity="one">%1$d membru</item>
     <item quantity="few">%1$d membri</item>
-    <item quantity="other">%1$d membri</item>
+    <item quantity="other">%1$d de membri</item>
   </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_pending_group_invites">Invitații la grup în așteptare</string>
@@ -576,7 +576,7 @@
   <plurals name="PendingMembersActivity_revoke_d_invites">
     <item quantity="one">Revocare invitație</item>
     <item quantity="few">Revocare %1$d invitații</item>
-    <item quantity="other">Revocare %1$d invitații</item>
+    <item quantity="other">Revocare %1$d de invitații</item>
   </plurals>
   <plurals name="PendingMembersActivity_error_revoking_invite">
     <item quantity="one">A apărut o eroare la revocarea invitației</item>
@@ -596,7 +596,7 @@
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Adăugaţi \"%1$s\" la \"%2$s\"?</item>
     <item quantity="few">Adăugați %3$d membri la \"%2$s\"?</item>
-    <item quantity="other">Adăugați %3$d membri la \"%2$s\"?</item>
+    <item quantity="other">Adăugați %3$d de membri la \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Adaugă</string>
   <string name="AddMembersActivity__add_members">Adăugare membri</string>
@@ -618,26 +618,26 @@
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Eliminați pe %1$s din acest grup?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d membru nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
-    <item quantity="few"> %d membri nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
-    <item quantity="other">%d membri nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
+    <item quantity="few">%d membri nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
+    <item quantity="other">%d de membri nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
   </plurals>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d membru nu acceptă grupurile noi, prin urmare acest grup nu poate fi creat.</item>
     <item quantity="few">%d membri nu acceptă grupurile noi, prin urmare acest grup nu poate fi creat.</item>
-    <item quantity="other">%d membri nu acceptă grupurile noi, prin urmare acest grup nu poate fi creat.</item>
+    <item quantity="other">%d de membri nu acceptă grupurile noi, prin urmare acest grup nu poate fi creat.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Un Grup Vechi va fi creat deoarece “%1$s” folosește o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi eliminați înainte de a crea grupul.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Un Grup Vechi ca fi creat deoarece %1$d membru folosește o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îl eliminați înainte de a crea grupul.</item>
     <item quantity="few">Un Grup Vechi ca fi creat deoarece %1$d membri folosesc o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi eliminați înainte de a crea grupul.</item>
-    <item quantity="other">Un Grup Vechi va fi creat deoarece %1$d membri folosesc o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi eliminați înainte de a crea grupul.</item>
+    <item quantity="other">Un Grup Vechi va fi creat deoarece %1$d de membri folosesc o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi eliminați înainte de a crea grupul.</item>
   </plurals>
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Acest grup nu poate fi creat pentru că „%1$s” utilizează o versiune veche a aplicației Signal. Trebuie să-i eliminați înainte de a crea grupul.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">Acest grup nu poate fi creat pentru că %1$d membru utilizează o versiune veche a aplicației Signal. Trebuie să-l eliminați înainte de a crea grupul.</item>
     <item quantity="few">Acest grup nu poate fi creat pentru că %1$d membri utilizează o versiune veche a aplicației Signal. Trebuie să-i eliminați înainte de a crea grupul.</item>
-    <item quantity="other">Acest grup nu poate fi creat pentru că %1$d membri utilizează o versiune veche a aplicației Signal. Trebuie să-i eliminați înainte de a crea grupul.</item>
+    <item quantity="other">Acest grup nu poate fi creat pentru că %1$d de membri utilizează o versiune veche a aplicației Signal. Trebuie să-i eliminați înainte de a crea grupul.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Solicitări și invitații ale membrilor</string>
@@ -662,7 +662,7 @@
   <plurals name="ManageGroupActivity_added">
     <item quantity="one">%d membru adăugat.</item>
     <item quantity="few">%d membri adăugaţi</item>
-    <item quantity="other">%d membri adăugaţi</item>
+    <item quantity="other">%d de membri adăugaţi</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Numai administratorii pot activa sau dezactiva linkul partajabil către grup.</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Numai administratorii pot activa sau dezactiva opțiunea de aprobare a noilor membri.</string>
@@ -687,8 +687,8 @@
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Anunță-mă pentru mențiuni</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Doriți să primiți notificări atunci când sunteți menționat în convorbiri fără sunet?</string>
-  <string name="GroupMentionSettingDialog_always_notify_me">Anunță-mă întotdeauna</string>
-  <string name="GroupMentionSettingDialog_dont_notify_me">Nu mă anunța</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">Notifică-mă întotdeauna</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Nu mă notifica</string>
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">Nume profil</string>
   <string name="ManageProfileFragment_username">Nume utilizator</string>
@@ -702,12 +702,12 @@
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grup în comun</item>
     <item quantity="few">%d grupuri în comun</item>
-    <item quantity="other">%d grupuri în comun</item>
+    <item quantity="other">%d de grupuri în comun</item>
   </plurals>
   <plurals name="GroupMemberList_invited">
     <item quantity="one">%1$s a invitat o persoană</item>
     <item quantity="few"> %1$s a invitat %2$d persoane</item>
-    <item quantity="other">%1$s a invitat %2$d persoane</item>
+    <item quantity="other">%1$s a invitat %2$d de persoane</item>
   </plurals>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Notificări personalizate</string>
@@ -739,10 +739,10 @@
   <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
     <item quantity="one">Doriți să revocați invitația trimisă de %1$s?</item>
     <item quantity="few">Doriți să revocați %2$d invitații trimise de %1$s?</item>
-    <item quantity="other">Doriți să revocați %2$d invitații trimise de %1$s?</item>
+    <item quantity="other">Doriți să revocați %2$d de invitații trimise de %1$s?</item>
   </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
-  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Ești deja membru</string>
+  <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Sunteți deja membru</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Alăturați-vă</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Cerere de înscriere</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Alăturarea la grup nu a reușit. Vă rugăm să încercați din nou mai târziu</string>
@@ -750,17 +750,17 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Acest link de grup nu este activ</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nu s-au putut obține informații despre grup, încercați din nou mai târziu</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Doriți să vă alăturați acestui grup și să vă împărtășiți numele și fotografia cu membrii săi?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un administrator al acestui grup trebuie să vă aprobe solicitarea înainte de a vă putea alătura acestui grup. Când solicitați să vă înscrieți, numele și fotografia dvs. vor fi distribuite membrilor săi.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un administrator al acestui grup trebuie să vă aprobe solicitarea înainte de a vă putea alătura grupului. Când solicitați să vă înscrieți, numele și fotografia dvs. vor fi distribuite membrilor săi.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Grup · %1$d membru</item>
     <item quantity="few">Grup · %1$d membri</item>
-    <item quantity="other">Grup · %1$d membri</item>
+    <item quantity="other">Grup · %1$d de membri</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualizați Signal pentru a folosi link-uri la grupuri</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualizați Signal pentru a folosi linkuri de grupuri</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Versiunea de Signal pe care o folosiți nu suportă linkul către acest grup. Actualizați la ultima versiune pentru a te alătura acestui grup printr-un link.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualizați Signal</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Unul sau mai multe dintre dispozitivele asociate rulează o versiune de Signal care nu acceptă link-uri către grup. Actualizați Signal pe dispozitivele asociate pentru a vă alătura acestui grup.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Unul sau mai multe dintre dispozitivele asociate rulează o versiune de Signal care nu acceptă linkuri de grup. Actualizați Signal pe dispozitivele asociate pentru a vă alătura acestui grup.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Linkul de grup nu este valid</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Invită prieteni</string>
@@ -782,28 +782,23 @@
   <string name="ImageEditorHud_draw_anywhere_to_blur">Desenați oriunde pentru a estompa</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Desenați pentru a estompa fețe sau zone adiționale</string>
   <!--InputPanel-->
-  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Țineți apăsat pentru a înregistra un mesaj vocal, eliberați pentru a-l trimite</string>
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Atingeți lung pentru a înregistra un mesaj vocal, eliberați pentru a-l trimite</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Distribuie</string>
   <string name="InviteActivity_share_with_contacts">Distribuie la contacte</string>
-  <string name="InviteActivity_choose_how_to_share">Alegeți cum să distribuiți</string>
+  <string name="InviteActivity_share_via">Distribuiți cu…</string>
   <string name="InviteActivity_cancel">Anulați</string>
   <string name="InviteActivity_sending">Se trimite…</string>
   <string name="InviteActivity_invitations_sent">Invitațiile au fost trimise!</string>
   <string name="InviteActivity_invite_to_signal">Invitați la Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">TRIMITE SMS LA %d PRIETEN</item>
-    <item quantity="few">TRIMITE SMS LA %d PRIETENI</item>
-    <item quantity="other">TRIMITE SMS LA %d PRIETENI</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">Trimite SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Trimit %d invitație prin SMS?</item>
     <item quantity="few">Trimit %d invitații prin SMS?</item>
-    <item quantity="other">Trimit %d invitații prin SMS?</item>
+    <item quantity="other">Trimit %d de invitații prin SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hai să folosim Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Se pare că nu ai aplicații cu care să poți distribui.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prietenii nu-și lasă prietenii să converseze necriptat.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Aflați mai multe</string>
   <!--LongMessageActivity-->
@@ -827,8 +822,8 @@
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="one">Această acțiune va șterge permanent fișierul selectat. Orice mesaj text asociat cu acest element va fi de asemenea șters.</item>
-    <item quantity="few">Această acțiune va șterge permanent toate cele %1$d fișierele selectate. Orice mesaj text asociat cu aceste elemente vor fi de asemenea șterse.</item>
-    <item quantity="other">Această acțiune va șterge permanent toate cele %1$d fișierele selectate. Orice mesaj text asociat cu aceste elemente vor fi de asemenea șterse.</item>
+    <item quantity="few">Această acțiune va șterge permanent toate cele %1$d fișiere selectate. Orice mesaj text asociat cu aceste elemente vor fi de asemenea șterse.</item>
+    <item quantity="other">Această acțiune va șterge permanent toate cele %1$d de fișiere selectate. Orice mesaj text asociat cu aceste elemente vor fi de asemenea șterse.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Se șterge</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Se șterg mesajele…</string>
@@ -845,12 +840,12 @@
   <plurals name="MediaOverviewActivity_d_items_s">
     <item quantity="one">%1$d element %2$s</item>
     <item quantity="few">%1$d elemente %2$s</item>
-    <item quantity="other">%1$d elemente %2$s</item>
+    <item quantity="other">%1$d de elemente %2$s</item>
   </plurals>
   <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d element</item>
     <item quantity="few">%1$d elemente</item>
-    <item quantity="other">%1$d elemente</item>
+    <item quantity="other">%1$d de elemente</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Fișier</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
@@ -863,7 +858,7 @@
   <string name="MediaOverviewActivity_sent_by_you_to_s">Trimis de dvs. către %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_introducing_reactions">Vă prezentăm \'Reacții\'</string>
-  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Atingeți și mențineți apăsat orice mesaj pentru a distribui rapid cum vă simțiți.</string>
+  <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Atingeți lung orice mesaj pentru a distribui rapid cum vă simțiți.</string>
   <string name="Megaphones_remind_me_later">Amintește-mi mai târziu</string>
   <string name="Megaphones_verify_your_signal_pin">Verificați PIN-ul dvs. Signal.</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Ocazional vă vom solicita să vă confirmați codul PIN pentru a-l reține mai ușor.</string>
@@ -878,11 +873,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
   <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Apel de intrare Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Primire apel Signal de grup</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Se oprește serviciul de apelare Signal</string>
-  <string name="NotificationBarManager__deny_call">Respingeți apelul</string>
+  <string name="NotificationBarManager__decline_call">Respinge apelul</string>
   <string name="NotificationBarManager__answer_call">Răspundeți apelului</string>
   <string name="NotificationBarManager__end_call">Închideți apelul</string>
   <string name="NotificationBarManager__cancel_call">Anulați apelul</string>
+  <string name="NotificationBarManager__join_call">Alăturați-vă apelului</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Activaţi notificările?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Nu rata niciodată un mesaj de la contactele și grupurile tale.</string>
@@ -908,8 +905,8 @@
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru Contacte pentru a putea afișa contactele tale dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Contacte\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nu puteți distribui mai mult de %d element.</item>
-    <item quantity="few">Nu puteți distribui mai mult de %d element.</item>
-    <item quantity="other">Nu puteți distribui mai mult de %d elemente.</item>
+    <item quantity="few">Nu puteți distribui mai mult de %d elemente.</item>
+    <item quantity="other">Nu puteți distribui mai mult de %d de elemente.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Selectați destinatarii</string>
   <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Atingeți aici pentru a face acest mesaj să dispară după ce este vizualizat.</string>
@@ -940,14 +937,14 @@
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Nu ai putut fi adăugat la noul grup și ai fost invitat să te înscrii.</string>
   <string name="MessageRecord_chat_session_refreshed">Sesiunea conversației a fost resetată</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">Un membru nu a putut fi adăugat la grupul nou și a fost invitat să se alăture</item>
-    <item quantity="few">%1$s membri nu au putut fi adăugați la grupul nou și au fost invitați să se alăture.</item>
-    <item quantity="other">%1$s membri nu au putut fi adăugați la grupul nou și au fost invitați să se alăture.</item>
+    <item quantity="one">Un membru nu a putut fi adăugat noului grup și a fost invitat să se alăture.</item>
+    <item quantity="few">%1$s membri nu au putut fi adăugați noului grup și au fost invitați să se alăture.</item>
+    <item quantity="other">%1$s de membri nu au putut fi adăugați noului grup și au fost invitați să se alăture.</item>
   </plurals>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-    <item quantity="one">Un membru nu a putut fi adăugat la grupul nou și a fost eliminat.</item>
-    <item quantity="few">%1$s membri nu au putut fi adăugați la grupul nou și au fost eliminați.</item>
-    <item quantity="other">%1$s membri nu au putut fi adăugați la grupul nou și au fost eliminați.</item>
+    <item quantity="one">Un membru nu a putut fi adăugat noului grup și a fost eliminat.</item>
+    <item quantity="few">%1$s membri nu au putut fi adăugați noului grup și au fost eliminați.</item>
+    <item quantity="other">%1$s de membri nu au putut fi adăugați noului grup și au fost eliminați.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s și-a schimbat numele profilului în %2$s.</string>
@@ -969,14 +966,14 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s v-a scos din grup.</string>
   <string name="MessageRecord_you_left_the_group">Ați părăsit grupul.</string>
   <string name="MessageRecord_s_left_the_group">%1$s a părăsit grupul.</string>
-  <string name="MessageRecord_you_are_no_longer_in_the_group">Nu mai faci parte din grup.</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">Nu mai faceți parte din grup.</string>
   <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s nu mai face parte din grup.</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">L-ați făcut pe %1$s administrator.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s l-a făcut pe %2$s administrator.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s v-a făcut administrator.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Ați revocat privilegiile de administrator de la %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s a revocat privilegiile dvs. de administrator.\"</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s a revocat privilegiile dvs. de administrator.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s a revocat privilegiile de administrator pentru %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s este acum administrator.</string>
   <string name="MessageRecord_you_are_now_an_admin">Sunteți acum administrator.</string>
@@ -988,24 +985,24 @@
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="one">%1$s a invitat o persoană la grup.</item>
     <item quantity="few">%1$s a invitat %2$d persoane la grup.</item>
-    <item quantity="other">%1$s a invitat %2$d persoane la grup.</item>
+    <item quantity="other">%1$s a invitat %2$d de persoane la grup.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Ai fost invitat la grup.</string>
   <plurals name="MessageRecord_d_people_were_invited_to_the_group">
     <item quantity="one">O persoană a fost invitată la grup.</item>
     <item quantity="few">%1$d persoane au fost invitate la grup.</item>
-    <item quantity="other">%1$d persoane au fost invitate la grup.</item>
+    <item quantity="other">%1$d de persoane au fost invitate la grup.</item>
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
     <item quantity="one">Ați revocat o invitație la grup.</item>
     <item quantity="few">Ați revocat %1$d invitații la grup.</item>
-    <item quantity="other">Ați revocat %1$d invitații la grup.</item>
+    <item quantity="other">Ați revocat %1$d de invitații la grup.</item>
   </plurals>
   <plurals name="MessageRecord_s_revoked_invites">
     <item quantity="one">%1$s a revocat o invitație la grup.</item>
     <item quantity="few">%1$s a revocat %2$d invitații la grup.</item>
-    <item quantity="other">%1$s a revocat %2$d invitații la grup.</item>
+    <item quantity="other">%1$s a revocat %2$d de invitații la grup.</item>
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Cineva a refuzat o invitație la grup.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Ați refuzat invitația la grup.</string>
@@ -1013,8 +1010,8 @@
   <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Un administrator a revocat invitația dvs. la grup.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">O invitație la grup a fost revocată.</item>
-    <item quantity="few">%1$d  invitații la grup au fost revocate.</item>
-    <item quantity="other">%1$d invitații la grup au fost revocate.</item>
+    <item quantity="few">%1$d invitații la grup au fost revocate.</item>
+    <item quantity="other">%1$d de invitații la grup au fost revocate.</item>
   </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Ați acceptat invitația la grup.</string>
@@ -1108,12 +1105,12 @@
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s și %3$d sunt în apelul de grup · %4$s</item>
     <item quantity="few">%1$s, %2$s și alte %3$d persoane sunt în apelul de grup · %4$s</item>
-    <item quantity="other">%1$s, %2$s și alte %3$d persoane sunt în apelul de grup · %4$s</item>
+    <item quantity="other">%1$s, %2$s și alte %3$d de persoane sunt în apelul de grup · %4$s</item>
   </plurals>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
     <item quantity="one">%1$s, %2$s și %3$d sunt în apelul de grup</item>
     <item quantity="few">%1$s, %2$s și alte %3$d persoane sunt în apelul de grup</item>
-    <item quantity="other">%1$s, %2$s și alte %3$d persoane sunt în apelul de grup</item>
+    <item quantity="other">%1$s, %2$s și alte %3$d de persoane sunt în apelul de grup</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Acceptați</string>
@@ -1137,7 +1134,7 @@
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d membru</item>
     <item quantity="few">%1$d membri</item>
-    <item quantity="other">%1$d membri</item>
+    <item quantity="other">%1$d de membri</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="one">%1$d membru (+%2$d invitați)</item>
@@ -1147,7 +1144,7 @@
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d grup adițional</item>
     <item quantity="few">%d grupuri adiționale</item>
-    <item quantity="other">%d grupuri adiționale</item>
+    <item quantity="other">%d de grupuri adiționale</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Parolele nu se potrivesc!</string>
@@ -1179,7 +1176,7 @@
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
     <item quantity="one">Această versiune de Signal va expira mâine. Actualizați la cea mai recentă versiune.</item>
     <item quantity="few">Această versiune de Signal va expira în %d zile. Actualizați la cea mai recentă versiune.</item>
-    <item quantity="other">Această versiune de Signal va expira în %d zile. Actualizați la cea mai recentă versiune.</item>
+    <item quantity="other">Această versiune de Signal va expira în %d de zile. Actualizați la cea mai recentă versiune.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduceți parola</string>
@@ -1207,7 +1204,7 @@
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
     <item quantity="one">Mai aveți %1$d încercare rămasă. Dacă rămâneți fără încercări, puteți crea un cod PIN nou. Vă puteți înregistra și utiliza contul, dar veți pierde unele setări salvate, cum ar fi informațiile despre profil.</item>
     <item quantity="few">Mai aveți %1$d încercări rămase. Dacă rămâneți fără încercări, puteți crea un cod PIN nou. Vă puteți înregistra și utiliza contul, dar veți pierde unele setări salvate, cum ar fi informațiile despre profil.</item>
-    <item quantity="other">Mai aveți %1$d încercări rămase. Dacă rămâneți fără încercări, puteți crea un cod PIN nou. Vă puteți înregistra și utiliza contul, dar veți pierde unele setări salvate, cum ar fi informațiile despre profil.</item>
+    <item quantity="other">Mai aveți %1$d de încercări rămase. Dacă rămâneți fără încercări, puteți crea un cod PIN nou. Vă puteți înregistra și utiliza contul, dar veți pierde unele setări salvate, cum ar fi informațiile despre profil.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Înregistrare Signal - Am nevoie de asistență pentru PIN Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Introduceți un PIN alfanumeric</string>
@@ -1258,33 +1255,69 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Pentru a apela pe %1$s, Signal are nevoie de acces la camera dvs.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Apel în curs…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupul este prea mare pentru a apela participanții.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Apel vocal Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">Apel video Signal…</string>
+  <string name="WebRtcCallView__signal_call">Apel Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Apel Video Signal</string>
   <string name="WebRtcCallView__start_call">Începeți apelul</string>
   <string name="WebRtcCallView__join_call">Alătură-te apelului</string>
   <string name="WebRtcCallView__call_is_full">Numărul maxim de participanți a fost atins</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Numărul maxim de %1$d participanți a fost atins pentru acest apel. Încercați mai târziu. </string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Apel de grup</string>
   <string name="WebRtcCallView__view_participants_list">Vizualizați participanții</string>
   <string name="WebRtcCallView__your_video_is_off">Video-ul dvs. este oprit</string>
   <string name="WebRtcCallView__reconnecting">Se reconectează…</string>
   <string name="WebRtcCallView__joining">Se alătură…</string>
   <string name="WebRtcCallView__disconnected">Deconectat</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal va apela %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal va apela %1$s și %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal va apela %1$s, %2$s, și încă %3$d persoană</item>
+    <item quantity="few">Signal va apela %1$s, %2$s, și alte %3$d persoane</item>
+    <item quantity="other">Signal va apela %1$s, %2$s, și alte %3$d de persoane</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s va fi notificat</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s și %2$s vor fi notificați</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s și încă %3$d persoană vor fi notificate</item>
+    <item quantity="few">%1$s, %2$s și alte %3$d persoane vor fi notificate</item>
+    <item quantity="other">%1$s, %2$s și alte %3$d de persoane vor fi notificate</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Se apelează %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Se apelează %1$s și %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Se apelează %1$s, %2$s și încă %3$d persoană</item>
+    <item quantity="few">Se apelează %1$s, %2$s și alte %3$d persoane</item>
+    <item quantity="other">Se apelează %1$s, %2$s și alte %3$d de persoane</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s vă apelează</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s apelează pe dvs. și %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s apelează pe dvs, %2$s, și %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s apelează pe dvs. %2$s, %3$s și încă %4$d persoană</item>
+    <item quantity="few">%1$s apelează pe dvs. %2$s, %3$s și alte %4$d persoane</item>
+    <item quantity="other">%1$s apelează pe dvs. %2$s, %3$s și alte %4$d de persoane</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Nu este nimeni aici</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s este în acest apel </string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s sunteți în acest apel</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s și %2$s sunt în acest apel</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s prezintă</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s și alte %3$d persoane sunt în acest apel</item>
     <item quantity="few">%1$s, %2$s și alte %3$d persoane sunt în acest apel</item>
-    <item quantity="other">%1$s, %2$s și alte %3$d persoane sunt în acest apel</item>
+    <item quantity="other">%1$s, %2$s și alte %3$d de persoane sunt în acest apel</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Comută</string>
+  <string name="WebRtcCallView__speaker">Difuzor</string>
+  <string name="WebRtcCallView__camera">Cameră foto</string>
+  <string name="WebRtcCallView__mute">Silențios</string>
+  <string name="WebRtcCallView__ring">Sună</string>
+  <string name="WebRtcCallView__end_call">Închideți apelul</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">În acest apel · %1$d persoană</item>
     <item quantity="few">În acest apel · %1$d persoane</item>
-    <item quantity="other">În acest apel · %1$d persoane</item>
+    <item quantity="other">În acest apel · %1$d de persoane</item>
   </plurals>
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">%1$s este blocat</string>
@@ -1330,7 +1363,7 @@ furnizat (%s) este invalid.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Ești acum la %d pas de a trimite un jurnal de depanare.</item>
     <item quantity="few">Ești acum la %d pași de a trimite un jurnal de depanare.</item>
-    <item quantity="other">Ești acum la %d pași de a trimite un jurnal de depanare.</item>
+    <item quantity="other">Ești acum la %d de pași de a trimite un jurnal de depanare.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Trebuie să verificăm că ești om.</string>
   <string name="RegistrationActivity_next">Următorul</string>
@@ -1486,7 +1519,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d contact este pe Signal!</item>
     <item quantity="few">%d contacte sunt pe Signal!</item>
-    <item quantity="other">%d contacte sunt pe Signal!</item>
+    <item quantity="other">%d de contacte sunt pe Signal!</item>
   </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Contactul tău folosește o versiune mai veche de Signal. Roagă-l să-și actualizeze versiunea înainte de a verifica numărul tău de siguranță.</string>
@@ -1594,8 +1627,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d articol</item>
-    <item quantity="few">%d  articole</item>
-    <item quantity="other">%d  articole</item>
+    <item quantity="few">%d articole</item>
+    <item quantity="other">%d de articole</item>
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Dispozitivul nu mai este înregistrat</string>
@@ -1650,7 +1683,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d membru</item>
     <item quantity="few">%1$d membri</item>
-    <item quantity="other">%1$d membri</item>
+    <item quantity="other">%1$d de membri</item>
   </plurals>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal are nevoie de acces la contactele tale pentru a le afișa.</string>
@@ -1659,7 +1692,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <plurals name="contact_selection_list_item__number_of_members">
     <item quantity="one">%1$d membru</item>
     <item quantity="few">%1$d membri</item>
-    <item quantity="other">%1$d membri</item>
+    <item quantity="other">%1$d de membri</item>
   </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Mesaj Signal</string>
@@ -1753,31 +1786,31 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <plurals name="expiration_seconds">
     <item quantity="one">%d secundă</item>
     <item quantity="few">%d secunde</item>
-    <item quantity="other">%d secunde</item>
+    <item quantity="other">%d de secunde</item>
   </plurals>
   <string name="expiration_seconds_abbreviated">%ds</string>
   <plurals name="expiration_minutes">
     <item quantity="one">%d minut</item>
     <item quantity="few">%d minute</item>
-    <item quantity="other">%d minute</item>
+    <item quantity="other">%d de minute</item>
   </plurals>
   <string name="expiration_minutes_abbreviated">%dm</string>
   <plurals name="expiration_hours">
     <item quantity="one">%d oră</item>
     <item quantity="few">%d ore</item>
-    <item quantity="other">%d ore</item>
+    <item quantity="other">%d de ore</item>
   </plurals>
   <string name="expiration_hours_abbreviated">%do</string>
   <plurals name="expiration_days">
     <item quantity="one">%d zi</item>
     <item quantity="few">%d zile</item>
-    <item quantity="other">%d zile</item>
+    <item quantity="other">%d de zile</item>
   </plurals>
   <string name="expiration_days_abbreviated">%dz</string>
   <plurals name="expiration_weeks">
     <item quantity="one">%d săptămână</item>
     <item quantity="few">%d săptămâni</item>
-    <item quantity="other">%d săptămâni</item>
+    <item quantity="other">%d de săptămâni</item>
   </plurals>
   <string name="expiration_weeks_abbreviated">%ds</string>
   <string name="expiration_combined">%1$s %2$s</string>
@@ -1829,8 +1862,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pentru a putea trimite mesaje multimedia cât și mesaje într-un grup, apăsați \'OK\' și completați setările solicitate. Setările MMS pentru operatorul tău pot fi găsite căutând după \'APN operatorul tău\'. Această operațiune este necesară o singură dată.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">Problemă de livrare</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Un mesaj, autocolant, reacție sau confirmare de citire nu a putut fi livrată către tine de la %s. Este posibil să fi încercat să trimită direct sau într-un grup.</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Un mesaj, autocolant, reacție sau confirmare de citire nu a putut fi livrată către tine de la %s.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">Un mesaj, autocolant, reacție sau confirmare de citire nu v-a putut fi livrat de la %s. Este posibil ca utilizatorul să fi încercat să vă trimită mesajul direct sau într-un grup.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">Un mesaj, autocolant, reacție sau confirmare de citire nu v-a putut fi livrată de la %s.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Prenume (obligatoriu)</string>
   <string name="CreateProfileActivity_last_name_optional">Nume (opțional)</string>
@@ -2411,12 +2444,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
     <item quantity="one">PIN-ul trebuie să conțină cel puțin %1$d caracter</item>
     <item quantity="few">PIN-ul trebuie să conțină cel puțin %1$d caractere</item>
-    <item quantity="other">PIN-ul trebuie să conțină cel puțin %1$d caractere</item>
+    <item quantity="other">PIN-ul trebuie să conțină cel puțin %1$d de caractere</item>
   </plurals>
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
     <item quantity="one">PIN-ul trebuie să conțină cel puțin %1$d cifre</item>
     <item quantity="few">PIN-ul trebuie să conțină cel puțin %1$d cifre</item>
-    <item quantity="other">PIN-ul trebuie să conțină cel puțin %1$d cifre</item>
+    <item quantity="other">PIN-ul trebuie să conțină cel puțin %1$d de cifre</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Creați un nou PIN</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Puteți schimba codul PIN atât timp cât acest dispozitiv este înregistrat.</string>
@@ -2466,29 +2499,29 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Înregistrare Signal - Am nevoie de asistență pentru PIN Android (PIN v1)</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Înregistrare Signal - Am nevoie de asistență pentru PIN Android (PIN v2)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="one">Pentru confidențialitatea și securitatea dvs., nu există nici o modalitate de a recupera codul PIN. Dacă nu vă mai amintiți codul PIN, puteți verifica din nou cu SMS după %1$d zi de inactivitate. În acest caz, contul dvs. va fi șters și tot conținutul va fi șters.</item>
-    <item quantity="few">Pentru confidențialitatea și securitatea dvs., nu există nici o modalitate de a recupera codul PIN. Dacă nu vă mai amintiți codul PIN, puteți verifica din nou cu SMS după %1$d zile de inactivitate. În acest caz, contul dvs. va fi șters și tot conținutul va fi șters.</item>
-    <item quantity="other">Pentru confidențialitatea și securitatea dvs., nu există nici o modalitate de a recupera codul PIN. Dacă nu vă mai amintiți codul PIN, puteți verifica din nou cu SMS după %1$d zile de inactivitate. În acest caz, contul dvs. va fi șters și tot conținutul va fi șters.</item>
+    <item quantity="one">Pentru confidențialitatea și securitatea dvs., nu există nici o modalitate de a recupera codul PIN. Dacă nu vă mai amintiți codul PIN, puteți verifica din nou cu SMS după %1$d zi de inactivitate. În acest caz, contul dvs. va fi eliminat și tot conținutul va fi șters.</item>
+    <item quantity="few">Pentru confidențialitatea și securitatea dvs., nu există nici o modalitate de a recupera codul PIN. Dacă nu vă mai amintiți codul PIN, puteți verifica din nou cu SMS după %1$d zile de inactivitate. În acest caz, contul dvs. va fi eliminat și tot conținutul va fi șters.</item>
+    <item quantity="other">Pentru confidențialitatea și securitatea dvs., nu există nici o modalitate de a recupera codul PIN. Dacă nu vă mai amintiți codul PIN, puteți verifica din nou cu SMS după %1$d de zile de inactivitate. În acest caz, contul dvs. va fi eliminat și tot conținutul va fi șters.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">PIN incorect. %1$d încercare rămasă.</item>
     <item quantity="few">PIN incorect. %1$d încercări rămase.</item>
-    <item quantity="other">PIN incorect. %1$d încercări rămase.</item>
+    <item quantity="other">PIN incorect. %1$d de încercări rămase.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-    <item quantity="one">Dacă rămâneți fără încercări, contul dvs. va fi blocat timp de %1$d zi. După %1$d zi de inactivitate, vă puteți reînregistra fără PIN. Contul dvs. va fi șters și tot conținutul va fi șters.</item>
-    <item quantity="few">Dacă rămâneți fără încercări, contul dvs. va fi blocat timp de %1$dzile. După %1$d zile de inactivitate, vă puteți reînregistra fără PIN. Contul dvs. va fi șters și tot conținutul va fi șters.</item>
-    <item quantity="other">Dacă rămâneți fără încercări, contul dvs. va fi blocat timp de %1$d zile. După %1$d zile de inactivitate, vă puteți reînregistra fără PIN. Contul dvs. va fi șters și tot conținutul va fi șters.</item>
+    <item quantity="one">Dacă rămâneți fără încercări, contul dvs. va fi blocat timp de %1$d zi. După %1$d zi de inactivitate, vă puteți reînregistra fără PIN. Contul dvs. va fi eliminat și tot conținutul va fi șters.</item>
+    <item quantity="few">Dacă rămâneți fără încercări, contul dvs. va fi blocat timp de %1$d zile. După %1$d zile de inactivitate, vă puteți reînregistra fără PIN. Contul dvs. va fi eliminat și tot conținutul va fi șters.</item>
+    <item quantity="other">Dacă rămâneți fără încercări, contul dvs. va fi blocat timp de %1$d zile. După %1$d zile de inactivitate, vă puteți reînregistra fără PIN. Contul dvs. va fi eliminat și tot conținutul va fi șters.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">Mai aveți %1$d încercare rămasă.</item>
     <item quantity="few">Mai aveți %1$d încercări rămase.</item>
-    <item quantity="other">Mai aveți %1$d încercări rămase.</item>
+    <item quantity="other">Mai aveți %1$d de încercări rămase.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
     <item quantity="one">%1$d încercare rămasă.</item>
     <item quantity="few">%1$d încercări rămase.</item>
-    <item quantity="other">%1$d încercări rămase.</item>
+    <item quantity="other">%1$d de încercări rămase.</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s va primi o solicitare de mesaj de la dvs. Puteți suna odată ce cererea dvs. de mesaj este acceptată. </string>
@@ -2751,8 +2784,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="GroupsLearnMore_paragraph_2">Grupurile vechi nu pot fi încă migrate la cele noi, dar poți crea un Grup Nou cu aceeași membri dacă aceștia folosesc toți ultima versiune de Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal va oferi în viitor o modalitate de actualizare a grupurilor vechi.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
-  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Oricine cu această adresă poate vedea numele și fotografia grupului și poate solicita o cerere de alăturare la grup. Distribuiți adresa cu persoanele de încredere.</string>
-  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Oricine cu această adresă poate vedea numele grupului și membrii săi și se poate alătura grupului. Distribuiți adresa cu persoanele de încredere.</string>
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Oricine cu acest link poate vedea numele și fotografia grupului și poate solicita să se alăture acestuia. Distribuiți linkul persoanelor de încredere.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Oricine cu acest link poate vedea numele și fotografia grupului  și se poate alătura acestuia. Distribuiți linkul persoanelor de încredere.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Distribuire prin Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copy</string>
   <string name="GroupLinkBottomSheet_qr_code">Cod QR</string>
@@ -2779,12 +2812,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
     <item quantity="one">%d grup în comun</item>
     <item quantity="few">%d grupuri în comun</item>
-    <item quantity="other">%d grupuri în comun</item>
+    <item quantity="other">%d de grupuri în comun</item>
   </plurals>
   <plurals name="ReviewCardDialogFragment__d_groups_in_common">
     <item quantity="one">%d grup în comun</item>
     <item quantity="few">%d grupuri în comun</item>
-    <item quantity="other">%d grupuri în comun</item>
+    <item quantity="other">%d de grupuri în comun</item>
   </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">Eliminați pe %1$s din grup?</string>
   <string name="ReviewCardDialogFragment__remove">Eliminați</string>
@@ -2832,7 +2865,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <plurals name="CreateGroupActivity__d_members">
     <item quantity="one">%1$d membru</item>
     <item quantity="few">%1$d membri</item>
-    <item quantity="other">%1$d membri</item>
+    <item quantity="other">%1$d de membri</item>
   </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Distribuiți</string>
@@ -2960,7 +2993,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="UnreadPayments__d_new_payment_notifications">%1$d notificări noi de plată</string>
   <!--CanNotSendPaymentDialog-->
   <string name="CanNotSendPaymentDialog__cant_send_payment">Nu puteți trimite plata</string>
-  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Pentru a trimite o plată acestui utilizator, el trebuie să accepte o solicitare de mesaj din partea dvs. Pentru a crea o solicitare trebuie să-i trimiteți un mesaj.</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Pentru a trimite o plată către acest utilizator, el trebuie să accepte o solicitare de mesaj din partea dvs. Trimiteți-i un mesaj pentru a crea o solicitare.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">Trimite mesaj</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Nu aveți grupuri în comun cu această persoană. Examinați cu atenție solicitările înainte de a accepta pentru a evita mesajele nedorite.</string>
@@ -2987,7 +3020,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ChatsSettingsFragment__keyboard">Tastatură</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Trimitere cu Enter</string>
   <!--SmsSettingsFragment-->
-  <string name="SmsSettingsFragment__use_as_default_sms_app">Utilizează ca și aplicație SMS implicită</string>
+  <string name="SmsSettingsFragment__use_as_default_sms_app">Utilizează ca aplicație SMS implicită</string>
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">Mesaje</string>
   <string name="NotificationsSettingsFragment__calls">Apeluri</string>
@@ -3044,9 +3077,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ChatColorSelectionFragment__delete">Șterge</string>
   <string name="ChatColorSelectionFragment__delete_color">Șterge culoarea</string>
   <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-    <item quantity="one">Această culoare personalizată este utilizată în %1$d conversație. Doriți să o ștergeți pentru toate conversațiile?</item>
-    <item quantity="few">Această culoare personalizată este utilizată în %1$d conversații. Doriți să o ștergeți pentru toate conversațiile?</item>
-    <item quantity="other">Această culoare personalizată este utilizată în %1$d conversații. Doriți să o ștergeți pentru toate conversațiile?</item>
+    <item quantity="one">Această culoare personalizată este utilizată pentru %1$d conversație. Doriți să o ștergeți pentru toate conversațiile?</item>
+    <item quantity="few">Această culoare personalizată este utilizată pentru %1$d conversații. Doriți să o ștergeți pentru toate conversațiile?</item>
+    <item quantity="other">Această culoare personalizată este utilizată pentru %1$d de conversații. Doriți să o ștergeți pentru toate conversațiile?</item>
   </plurals>
   <string name="ChatColorSelectionFragment__delete_chat_color">Ștergeți culoarea conversației?</string>
   <!--CustomChatColorCreatorFragment-->
@@ -3058,9 +3091,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="CustomChatColorCreatorFragmentPage__save">Salvează</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">Editare culoare</string>
   <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
-    <item quantity="one">Această culoare este folosită în %1$d conversații.  Doriți să salvați modificările pentru toate conversațiile?</item>
-    <item quantity="few">Această culoare este folosită în %1$d conversații.  Doriți să salvați modificările pentru toate conversațiile?</item>
-    <item quantity="other">Această culoare este folosită în %1$d conversații.  Doriți să salvați modificările pentru toate conversațiile?</item>
+    <item quantity="one">Această culoare este folosită pentru %1$d conversație. Doriți să salvați modificările pentru toate conversațiile?</item>
+    <item quantity="few">Această culoare este folosită pentru %1$d conversații. Doriți să salvați modificările pentru toate conversațiile?</item>
+    <item quantity="other">Această culoare este folosită pentru %1$d de conversații. Doriți să salvați modificările pentru toate conversațiile?</item>
   </plurals>
   <!--ChatColorGradientTool-->
   <string name="ChatColorGradientTool_top_edge_selector">Selector margine superioară</string>
@@ -3145,7 +3178,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Silențios până la %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Mențiuni</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Notifică întotdeauna</string>
-  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Nu mă anunța</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Nu notifica</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Notificări personalizate</string>
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Utilizate recent</string>
@@ -3161,6 +3194,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ContactFilterView__search_name_or_number">Cautare nume sau număr</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Opriți mesajul vocal</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Schimbați viteza mesajului vocal</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Puneți pauză mesajului vocal</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Redați mesajul vocal</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Mergeți la mesajul vocal</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Previzualizare avatar</string>
   <string name="AvatarPickerFragment__camera">Cameră foto</string>
@@ -3183,5 +3221,32 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Navigați în sus</string>
+  <string name="MultiselectForwardFragment__forward_to">Redirecționați către</string>
+  <string name="MultiselectForwardFragment__add_a_message">Adăugați un mesaj</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Redirecționări mai rapide</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Mesajele redirecționate sunt acum trimise imediat.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Trimite %1$d mesaj</item>
+    <item quantity="few">Trimite %1$d mesaje</item>
+    <item quantity="other">Trimite %1$d de mesaje</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Mesaj trimis</item>
+    <item quantity="few">Mesaje trimise</item>
+    <item quantity="other">Mesaje trimise</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Mesajul nu a putut fi trimis</item>
+    <item quantity="few">Mesajele nu au putut fi trimise</item>
+    <item quantity="other">Mesajele nu au putut fi trimise</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Nu s-a putut redirecționa mesajul deoarece nu mai este disponibil.</item>
+    <item quantity="few">Nu s-au putut redirecționa mesajele deoarece nu mai sunt disponibile.</item>
+    <item quantity="other">Nu s-au putut redirecționa mesajele deoarece nu mai sunt disponibile.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Ați atins limita</string>
   <!--EOF-->
 </resources>

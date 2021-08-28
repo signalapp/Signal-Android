@@ -209,7 +209,7 @@
   <string name="ConversationActivity_admins">διαχειριστές</string>
   <string name="ConversationActivity_message_an_admin">Αποστολή μηνύματος σε διαχειριστή</string>
   <string name="ConversationActivity_cant_start_group_call">Αδυναμία πραγματοποίησης ομαδικής κλήσης</string>
-  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Μόνο οι διαχειριστές της ομάδας μπορούν να ξεκινήσουν μια κλήση.</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Μόνο οι διαχειριστές της ομάδας μπορούν να ξεκινήσουν κλήσεις.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Δεν έχεις κάποια εφαρμογή στην συσκευή σου που να μπορεί να διαχειριστεί αυτό τον σύνδεσμο.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Το αίτημά σου για να μπεις στην ομάδα στάλθηκε στον διαχειριστή/τρια της ομάδας. Θα ενημερωθείς όταν λάβει απόφαση.</string>
   <string name="ConversationActivity_cancel_request">Ακύρωση αιτήματος</string>
@@ -630,7 +630,7 @@
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Μόνο οι διαχειριστές μπορούν να ενεργοποιούν και να απενεργοποιούν τον σύνδεσμο της ομάδας.</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Μόνο οι διαχειριστές μπορούν να ενεργοποιούν και να απενεργοποιούν την επιλογή της έγκρισης νέων μελών.</string>
-  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Μόνο οι διαχειριστές μπορούν να επαναφέρουν σον σύνδεσμο της ομάδας.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Μόνο οι διαχειριστές μπορούν να επαναφέρουν τον σύνδεσμο της ομάδας.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Δεν έχεις το δικαίωμα να το κάνεις</string>
   <string name="ManageGroupActivity_not_capable">Κάποιος/α που πρόσθεσες δεν υποστηρίζει τις νέες ομάδες και πρέπει να αναβαθμίσει το Signal</string>
   <string name="ManageGroupActivity_not_announcement_capable">Κάποιος που πρόσθεσες δεν έχει υποστήριξη για ομάδες ανακοινώσεων και θα πρέπει να αναβαθμίσει το Signal</string>
@@ -745,22 +745,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Μοιράσου</string>
   <string name="InviteActivity_share_with_contacts">Μοιράσου με επαφές</string>
-  <string name="InviteActivity_choose_how_to_share">Διάλεξε πως να το μοιραστείς</string>
   <string name="InviteActivity_cancel">Ακύρωση</string>
   <string name="InviteActivity_sending">Στέλνεται…</string>
   <string name="InviteActivity_invitations_sent">Οι προσκλήσεις στάλθηκαν!</string>
   <string name="InviteActivity_invite_to_signal">Πρόσκληση στο Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ΑΠΟΣΤΟΛΗ ΜΗΝΥΜΑΤΟΣ SMS ΣΕ %d ΦΙΛΟ/Η</item>
-    <item quantity="other">ΑΠΟΣΤΟΛΗ SMS ΣΕ %d ΦΙΛΟΥΣ/ΕΣ</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Αποστολή %d πρόσκλησης με SMS;</item>
     <item quantity="other">Αποστολή %d προσκλήσεων με SMS;</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Έλα να χρησιμοποιήσουμε το Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Φαίνεται πως δεν έχεις κάποια εφαρμογή στην οποία μπορείς να μοιραστείς.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Οι φίλοι δεν αφήνουν τους φίλους να συνομιλούν χωρίς κρυπτογράφηση.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Μάθε περισσότερα</string>
   <!--LongMessageActivity-->
@@ -832,10 +826,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Εισερχόμενη κλήση Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Η υπηρεσία κλήσεων του Signal σταματάει</string>
-  <string name="NotificationBarManager__deny_call">Απόρριψη κλήσης</string>
   <string name="NotificationBarManager__answer_call">Απάντηση</string>
   <string name="NotificationBarManager__end_call">Τερματισμός κλήσης</string>
   <string name="NotificationBarManager__cancel_call">Ακύρωση κλήσης</string>
+  <string name="NotificationBarManager__join_call">Είσοδος στην κλήση</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Ενεργοποίηση Ειδοποιήσεων;</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Μην χάσεις κανένα μήνυμα από τις επαφές και τις ομάδες σου.</string>
@@ -1194,13 +1188,12 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Καλεί…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Κλήση φωνής Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">Βιντεοκλήση Signal…</string>
+  <string name="WebRtcCallView__signal_call">Κλήση Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Βιντεοκλήση Signal</string>
   <string name="WebRtcCallView__start_call">Έναρξη κλήσης</string>
   <string name="WebRtcCallView__join_call">Είσοδος στην κλήση</string>
   <string name="WebRtcCallView__call_is_full">Η κλήση είναι γεμάτη</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Έχει συμπληρωθεί ο μέγιστος αριθμός %1$d συμμετεχόντων για αυτή την κλήση. Δοκίμασε ξανά αργότερα.</string>
-  <string name="WebRtcCallView__s_group_call">Ομαδική κλήση \"%1$s\"</string>
   <string name="WebRtcCallView__view_participants_list">Προβολή συμμετέχοντων</string>
   <string name="WebRtcCallView__your_video_is_off">Το βίντεό σου είναι απενεργοποιημένο</string>
   <string name="WebRtcCallView__reconnecting">Επανασύνδεση…</string>
@@ -1214,6 +1207,10 @@
     <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση</item>
     <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Μεγάφωνο</string>
+  <string name="WebRtcCallView__camera">Κάμερα</string>
+  <string name="WebRtcCallView__mute">Σίγαση</string>
+  <string name="WebRtcCallView__end_call">Τερματισμός κλήσης</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Σε αυτή τη κλήση · %1$d άτομο</item>
@@ -2925,6 +2922,7 @@
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Μη σιγασμένο</string>
   <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Σε σίγαση έως %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Αναφορές</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">Πάντα να ειδοποιούμαι</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Προσαρμογή ειδοποιήσεων</string>
   <!--StickerKeyboard-->
   <!--PlaybackSpeedToggleTextView-->
@@ -2938,6 +2936,11 @@
   <string name="ContactFilterView__search_name_or_number">Αναζήτηση ονόματος ή άριθμού</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Διακοπή αναπαραγωγής μηνύματος φωνής</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Αλλαγή ταχύτητας μηνύματος φωνής</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Παύση μηνύματος φωνής</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Αναπαραγωγή μηνύματος φωνής</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Πλοήγηση στο μήνυμα φωνής</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Προεπισκόπηση εικόνας προφίλ</string>
   <string name="AvatarPickerFragment__camera">Κάμερα</string>
@@ -2960,5 +2963,26 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="MultiselectForwardFragment__forward_to">Προώθηση σε</string>
+  <string name="MultiselectForwardFragment__add_a_message">Προσθήκη μηνύματος</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Γρηγορότερες προωθήσεις</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Πλέον τα προωθημένα μηνύματα στέλνονται αμέσως.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Αποστολή %1$d μηνύματος</item>
+    <item quantity="other">Αποστολή %1$d μηνυμάτων</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Το μήνυμα στάλθηκε</item>
+    <item quantity="other">Τα μηνύματα στάλθηκαν</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Αποτυχία αποστολής μηνύματος</item>
+    <item quantity="other">Αποτυχία αποστολής μηνυμάτων</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Αδυναμία προώθησης μηνύματος επειδή δεν είναι πλέον διαθέσιμο.</item>
+    <item quantity="other">Αδυναμία προώθησης μηνυμάτων επειδή δεν είναι πλέον διαθέσιμα.</item>
+  </plurals>
   <!--EOF-->
 </resources>

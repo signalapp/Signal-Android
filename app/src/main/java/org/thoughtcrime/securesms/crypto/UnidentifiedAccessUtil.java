@@ -41,6 +41,8 @@ public class UnidentifiedAccessUtil {
 
   private static final String TAG = Log.tag(UnidentifiedAccessUtil.class);
 
+  private static final byte[] UNRESTRICTED_KEY = new byte[16];
+
   public static CertificateValidator getCertificateValidator() {
     try {
       ECPublicKey unidentifiedSenderTrustRoot = Curve.decodePoint(Base64.decode(BuildConfig.UNIDENTIFIED_SENDER_TRUST_ROOT), 0);
@@ -86,7 +88,7 @@ public class UnidentifiedAccessUtil {
     byte[] ourUnidentifiedAccessKey = UnidentifiedAccess.deriveAccessKeyFrom(ProfileKeyUtil.getSelfProfileKey());
 
     if (TextSecurePreferences.isUniversalUnidentifiedAccess(context)) {
-      ourUnidentifiedAccessKey = Util.getSecretBytes(16);
+      ourUnidentifiedAccessKey = UNRESTRICTED_KEY;
     }
 
     List<Optional<UnidentifiedAccessPair>> access = new ArrayList<>(recipients.size());
@@ -133,7 +135,7 @@ public class UnidentifiedAccessUtil {
       byte[] ourUnidentifiedAccessCertificate = getUnidentifiedAccessCertificate(Recipient.self());
 
       if (TextSecurePreferences.isUniversalUnidentifiedAccess(context)) {
-        ourUnidentifiedAccessKey = Util.getSecretBytes(16);
+        ourUnidentifiedAccessKey = UNRESTRICTED_KEY;
       }
 
       if (ourUnidentifiedAccessCertificate != null) {
@@ -171,15 +173,21 @@ public class UnidentifiedAccessUtil {
 
     switch (recipient.resolve().getUnidentifiedAccessMode()) {
       case UNKNOWN:
-        if (theirProfileKey == null) return Util.getSecretBytes(16);
-        else                         return UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
+        if (theirProfileKey == null) {
+          return UNRESTRICTED_KEY;
+        } else {
+          return UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
+        }
       case DISABLED:
         return null;
       case ENABLED:
-        if (theirProfileKey == null) return null;
-        else                         return UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
+        if (theirProfileKey == null) {
+          return null;
+        } else {
+          return UnidentifiedAccess.deriveAccessKeyFrom(theirProfileKey);
+        }
       case UNRESTRICTED:
-        return Util.getSecretBytes(16);
+        return UNRESTRICTED_KEY;
       default:
         throw new AssertionError("Unknown mode: " + recipient.getUnidentifiedAccessMode().getMode());
     }

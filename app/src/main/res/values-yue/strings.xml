@@ -712,20 +712,17 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">分享</string>
   <string name="InviteActivity_share_with_contacts">同聯絡人分享</string>
-  <string name="InviteActivity_choose_how_to_share">選擇要點分享</string>
+  <string name="InviteActivity_share_via">分享去…</string>
   <string name="InviteActivity_cancel">取消</string>
   <string name="InviteActivity_sending">送緊出去…</string>
   <string name="InviteActivity_invitations_sent">邀請已發送！</string>
   <string name="InviteActivity_invite_to_signal">拉隊嚟 Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">發短訊畀 %d 個好友</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">發送短訊 (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">係咪要傳送 %d 個邀請短訊？</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">不如我哋齊齊轉會 Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">似乎您無 app 用嚟去分享噃。</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">共密友齊加密，唔使等伊人擔憂。</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">講多啲畀我聽</string>
   <!--LongMessageActivity-->
@@ -756,7 +753,7 @@
   <string name="MediaOverviewActivity_Newest">最新到最舊</string>
   <string name="MediaOverviewActivity_Oldest">最舊到最新</string>
   <string name="MediaOverviewActivity_Storage_used">掗咗幾多空間</string>
-  <string name="MediaOverviewActivity_All_storage_use">所有掗咗啲空間</string>
+  <string name="MediaOverviewActivity_All_storage_use">所有掗咗嘅空間</string>
   <string name="MediaOverviewActivity_Grid_view_description">一格格顯示</string>
   <string name="MediaOverviewActivity_List_view_description">一行行顯示</string>
   <string name="MediaOverviewActivity_Selected_description">已揀選</string>
@@ -792,11 +789,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">籌備緊 Signal 通話</string>
   <string name="NotificationBarManager__incoming_signal_call">打入嚟嘅 Signal 通話</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">打入嚟嘅 Signal 成谷通話</string>
   <string name="NotificationBarManager__stopping_signal_call_service">停止緊 Signal 通話服務</string>
-  <string name="NotificationBarManager__deny_call">拒絕通話</string>
+  <string name="NotificationBarManager__decline_call">拒絕通話</string>
   <string name="NotificationBarManager__answer_call">接聽通話</string>
   <string name="NotificationBarManager__end_call">收線</string>
   <string name="NotificationBarManager__cancel_call">取消通話</string>
+  <string name="NotificationBarManager__join_call">加入通話</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">係咪要開啟通知？</string>
   <string name="NotificationsMegaphone_never_miss_a_message">您嘅聯絡人同谷傳過嚟嘅訊息唔再甩漏。</string>
@@ -1142,26 +1141,54 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">要同 %1$s 通話嘅話，Signal 需要存取您部機嘅相機</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">打緊出去…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">個谷大得滯，冇得逐個人唥鐘。</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal 語音通話…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal 視像通話…</string>
+  <string name="WebRtcCallView__signal_call">Signal 通話</string>
+  <string name="WebRtcCallView__signal_video_call">Signal 視像通話</string>
   <string name="WebRtcCallView__start_call">開始通話</string>
   <string name="WebRtcCallView__join_call">加入通話</string>
   <string name="WebRtcCallView__call_is_full">通話已滿座</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">呢次通話已經頂到盡 %1$d 個參與者爆晒棚。陣間再試下啦。</string>
-  <string name="WebRtcCallView__s_group_call">「%1$s」成谷通話</string>
   <string name="WebRtcCallView__view_participants_list">睇下參與者</string>
   <string name="WebRtcCallView__your_video_is_off">您閂咗視像</string>
   <string name="WebRtcCallView__reconnecting">重新連緊線…</string>
   <string name="WebRtcCallView__joining">加入緊…</string>
   <string name="WebRtcCallView__disconnected">線已斷</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal 將會向 %1$s 唥鐘</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal 將會向 %1$s 同 %2$s 唥鐘</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="other">Signal 將會向 %1$s、%2$s 同其餘 %3$d 人唥鐘</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s 將會收到通知</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s 同 %2$s 將會收到通知</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="other">%1$s、%2$s 同其餘 %3$d 人將會收到通知</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">喺 %1$s 嗰邊唥緊鐘</string>
+  <string name="WebRtcCallView__ringing_s_and_s">喺 %1$s 同 %2$s 嗰邊唥緊鐘</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="other">喺 %1$s、%2$s 同其餘 %3$d 人嗰邊唥緊鐘</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s 打緊畀您</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s 打緊畀您同 %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s 打緊畀您、%2$s 同 %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="other">%1$s 打緊畀您、%2$s、%3$s 同其餘 %4$d 人</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">仲未有人喺度</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s 嚟到呢次通話</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s嚟到呢次通話</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 同 %2$s 嚟到呢次通話</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s 而家簡報緊</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s、%2$s 同其餘 %3$d 人嚟到呢次通話</item>
   </plurals>
+  <string name="WebRtcCallView__flip">前後轉換</string>
+  <string name="WebRtcCallView__speaker">喇叭</string>
+  <string name="WebRtcCallView__camera">相機</string>
+  <string name="WebRtcCallView__mute">靜音</string>
+  <string name="WebRtcCallView__ring">喺人哋度唥鐘</string>
+  <string name="WebRtcCallView__end_call">收線</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">嚟到呢次通話 · %1$d 人</item>
@@ -1429,13 +1456,13 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">開啟 Signal 嚟檢查最近嘅通知。</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">聯絡人</string>
-  <string name="MessageNotifier_reacted_s_to_s">對「%2$s」畀咗心情 %1$s。</string>
-  <string name="MessageNotifier_reacted_s_to_your_video">對您條片畀咗心情 %1$s。</string>
-  <string name="MessageNotifier_reacted_s_to_your_image">對您幅圖畀咗心情 %1$s。</string>
-  <string name="MessageNotifier_reacted_s_to_your_file">對您個檔案畀咗心情 %1$s。</string>
-  <string name="MessageNotifier_reacted_s_to_your_audio">對您嘅音訊畀咗心情 %1$s。</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_media">對您嘅流聲掠影多媒體檔案畀咗心情 %1$s。</string>
-  <string name="MessageNotifier_reacted_s_to_your_sticker">對您嘅貼圖畀咗心情 %1$s。</string>
+  <string name="MessageNotifier_reacted_s_to_s">對「%2$s」畀咗 %1$s 心情。</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">對您條片畀咗 %1$s 心情。</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">對您幅圖畀咗 %1$s 心情。</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">對您個檔案畀咗 %1$s 心情。</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">對您嘅音訊畀咗 %1$s 心情。</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">對您嘅流聲掠影多媒體檔案畀咗 %1$s 心情。</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">對您嘅貼圖畀咗 %1$s 心情。</string>
   <string name="MessageNotifier_this_message_was_deleted">呢個訊息已被刪除。</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">係咪要閂咗聯絡人加入 Signal 嘅通知？您可以喺 Signal &gt; 設定 &gt; 通知 度再啟用番。</string>
   <!--Notification Channels-->
@@ -1703,9 +1730,9 @@
   <string name="EditAboutFragment_about">關於</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">我鏡裡看見了新生…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
-  <string name="EditAboutFragment_speak_freely">從不想作假 只活這一次</string>
+  <string name="EditAboutFragment_speak_freely">從不想作假 只活這☝️次</string>
   <string name="EditAboutFragment_encrypted">誰人如常 問我今天驚心度</string>
-  <string name="EditAboutFragment_be_kind">活著無對錯</string>
+  <string name="EditAboutFragment_be_kind">有一天相約 我們找烏托邦</string>
   <string name="EditAboutFragment_coffee_lover">茶杯未滿 仍然裝著大半</string>
   <string name="EditAboutFragment_free_to_chat">以咪高風大預言一個十年</string>
   <string name="EditAboutFragment_taking_a_break">不必搜索物證 想一想 神話的要點</string>
@@ -1817,7 +1844,7 @@
   <string name="arrays__name_and_message">個名同訊息</string>
   <string name="arrays__name_only">淨係個名</string>
   <string name="arrays__no_name_or_message">名同訊息都唔要</string>
-  <string name="arrays__images">圖</string>
+  <string name="arrays__images">圖片</string>
   <string name="arrays__audio">聲音</string>
   <string name="arrays__video">影片</string>
   <string name="arrays__documents">文件</string>
@@ -1937,7 +1964,7 @@
   <string name="preferences_chats__message_history">訊息紀錄</string>
   <string name="preferences_storage__storage_usage">儲存空間用量</string>
   <string name="preferences_storage__photos">相片</string>
-  <string name="preferences_storage__videos">片</string>
+  <string name="preferences_storage__videos">影片</string>
   <string name="preferences_storage__files">檔案</string>
   <string name="preferences_storage__audio">聲音</string>
   <string name="preferences_storage__review_storage">覆閱儲存空間</string>
@@ -2178,7 +2205,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">[設定] 捷徑</string>
   <string name="conversation_list_search_description">搜尋</string>
-  <string name="conversation_list__pinned">頂已置</string>
+  <string name="conversation_list__pinned">置頂</string>
   <string name="conversation_list__chats">傾偈</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">您淨係可以將最多 %1$d 個傾偈置頂</string>
   <!--conversation_list_item_view-->
@@ -2994,6 +3021,11 @@
   <string name="ContactFilterView__search_name_or_number">查名或者冧把</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">停止語音訊息</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">調整語音訊息速度</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">暫停語音訊息</string>
+  <string name="VoiceNotePlayerView__play_voice_message">播放語音訊息</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">跳去語音訊息嗰個位</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">頭像預覽</string>
   <string name="AvatarPickerFragment__camera">相機</string>
@@ -3016,5 +3048,24 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">短訊</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">返番轉頭</string>
+  <string name="MultiselectForwardFragment__forward_to">轉寄畀</string>
+  <string name="MultiselectForwardFragment__add_a_message">寫番句訊息</string>
+  <string name="MultiselectForwardFragment__faster_forwards">更快趣嘅轉寄傳送門</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">轉寄訊息，而家嗱嗱聲同您迅速純熟送出。</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="other">傳送呢 %1$d 個訊息</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="other">訊息已經送出</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="other">訊息傳送唔到</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="other">轉寄唔到，因為個訊息而家已經冇咗。</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">頂晒櫳喇</string>
   <!--EOF-->
 </resources>

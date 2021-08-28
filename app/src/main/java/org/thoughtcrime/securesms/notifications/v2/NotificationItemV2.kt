@@ -23,9 +23,11 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.MessageRecordUtil
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.Util
+import org.thoughtcrime.securesms.util.hasSharedContact
+import org.thoughtcrime.securesms.util.hasSticker
+import org.thoughtcrime.securesms.util.isMediaMessage
 
 private val TAG: String = Log.tag(NotificationItemV2::class.java)
 private const val EMOJI_REPLACEMENT_STRING = "__EMOJI__"
@@ -269,23 +271,23 @@ class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, va
     val body: CharSequence = MentionUtil.updateBodyWithDisplayNames(context, record)
     val bodyIsEmpty: Boolean = TextUtils.isEmpty(body)
 
-    return if (MessageRecordUtil.hasSharedContact(record)) {
+    return if (record.hasSharedContact()) {
       val contact: Contact = (record as MmsMessageRecord).sharedContacts[0]
       val summary: CharSequence = ContactUtil.getStringSummary(context, contact)
       context.getString(R.string.MessageNotifier_reacted_s_to_s, EMOJI_REPLACEMENT_STRING, summary)
-    } else if (MessageRecordUtil.hasSticker(record)) {
+    } else if (record.hasSticker()) {
       context.getString(R.string.MessageNotifier_reacted_s_to_your_sticker, EMOJI_REPLACEMENT_STRING)
     } else if (record.isMms && record.isViewOnce) {
       context.getString(R.string.MessageNotifier_reacted_s_to_your_view_once_media, EMOJI_REPLACEMENT_STRING)
     } else if (!bodyIsEmpty) {
       context.getString(R.string.MessageNotifier_reacted_s_to_s, EMOJI_REPLACEMENT_STRING, body)
-    } else if (MessageRecordUtil.isMediaMessage(record) && MediaUtil.isVideoType(getMessageContentType((record as MmsMessageRecord)))) {
+    } else if (record.isMediaMessage() && MediaUtil.isVideoType(getMessageContentType((record as MmsMessageRecord)))) {
       context.getString(R.string.MessageNotifier_reacted_s_to_your_video, EMOJI_REPLACEMENT_STRING)
-    } else if (MessageRecordUtil.isMediaMessage(record) && MediaUtil.isImageType(getMessageContentType((record as MmsMessageRecord)))) {
+    } else if (record.isMediaMessage() && MediaUtil.isImageType(getMessageContentType((record as MmsMessageRecord)))) {
       context.getString(R.string.MessageNotifier_reacted_s_to_your_image, EMOJI_REPLACEMENT_STRING)
-    } else if (MessageRecordUtil.isMediaMessage(record) && MediaUtil.isAudioType(getMessageContentType((record as MmsMessageRecord)))) {
+    } else if (record.isMediaMessage() && MediaUtil.isAudioType(getMessageContentType((record as MmsMessageRecord)))) {
       context.getString(R.string.MessageNotifier_reacted_s_to_your_audio, EMOJI_REPLACEMENT_STRING)
-    } else if (MessageRecordUtil.isMediaMessage(record)) {
+    } else if (record.isMediaMessage()) {
       context.getString(R.string.MessageNotifier_reacted_s_to_your_file, EMOJI_REPLACEMENT_STRING)
     } else {
       context.getString(R.string.MessageNotifier_reacted_s_to_s, EMOJI_REPLACEMENT_STRING, body)

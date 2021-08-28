@@ -72,7 +72,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
 
         identityDatabase.saveIdentity(recipientId, identityKey, verifiedStatus, false, System.currentTimeMillis(), nonBlockingApproval);
         IdentityUtil.markIdentityUpdate(context, recipientId);
-        SessionUtil.archiveSiblingSessions(context, address);
+        SessionUtil.archiveSiblingSessions(address);
         DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(recipientId);
         return SaveResult.UPDATE;
       }

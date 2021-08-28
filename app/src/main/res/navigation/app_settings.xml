@@ -372,7 +372,8 @@
     <activity
         android:id="@+id/inviteActivity"
         android:name="org.thoughtcrime.securesms.InviteActivity"
-        android:label="invite_activity" />
+        android:label="invite_activity"
+        tools:layout="@layout/invite_activity" />
 
     <!-- region Direct-To-Page actions -->
 

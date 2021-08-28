@@ -93,10 +93,13 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
   public void onOpen(SQLiteDatabase db) {
     Log.i(TAG, "onOpen()");
 
+    db.enableWriteAheadLogging();
+    db.setForeignKeyConstraintsEnabled(true);
+
     SignalExecutors.BOUNDED.execute(() -> {
       if (DatabaseFactory.getInstance(application).hasTable("megaphone")) {
         Log.i(TAG, "Dropping original megaphone table from the main database.");
-        DatabaseFactory.getInstance(application).getRawDatabase().rawExecSQL("DROP TABLE megaphone");
+        DatabaseFactory.getInstance(application).getRawDatabase().execSQL("DROP TABLE megaphone");
       }
     });
   }
@@ -197,10 +200,6 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
     getWritableDatabase().delete(TABLE_NAME, query, args);
   }
 
-  private @NonNull SQLiteDatabase getWritableDatabase() {
-    return getWritableDatabase(databaseSecret.asString());
-  }
-
   @Override
   public @NonNull SQLiteDatabase getSqlCipherDatabase() {
     return getWritableDatabase();
@@ -220,5 +219,13 @@ public class MegaphoneDatabase extends SQLiteOpenHelper implements SignalDatabas
         newDb.insert(TABLE_NAME, null, values);
       }
     }
+  }
+
+  private SQLiteDatabase getReadableDatabase() {
+    return super.getReadableDatabase(databaseSecret.asString());
+  }
+
+  private SQLiteDatabase getWritableDatabase() {
+    return super.getWritableDatabase(databaseSecret.asString());
   }
 }

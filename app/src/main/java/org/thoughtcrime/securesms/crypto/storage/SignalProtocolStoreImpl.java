@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.crypto.storage;
 
 import android.content.Context;
 
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
@@ -35,11 +37,11 @@ public class SignalProtocolStoreImpl implements SignalServiceDataStore {
 
   public SignalProtocolStoreImpl(Context context) {
     this.context           = context;
-    this.preKeyStore       = new TextSecurePreKeyStore(context);
-    this.signedPreKeyStore = new TextSecurePreKeyStore(context);
-    this.identityKeyStore  = new TextSecureIdentityKeyStore(context);
-    this.sessionStore      = new TextSecureSessionStore(context);
-    this.senderKeyStore    = new SignalSenderKeyStore(context);
+    this.preKeyStore       = ApplicationDependencies.getPreKeyStore();
+    this.signedPreKeyStore = ApplicationDependencies.getPreKeyStore();
+    this.identityKeyStore  = ApplicationDependencies.getIdentityStore();
+    this.sessionStore      = ApplicationDependencies.getSessionStore();
+    this.senderKeyStore    = ApplicationDependencies.getSenderKeyStore();
   }
 
   @Override
@@ -100,6 +102,11 @@ public class SignalProtocolStoreImpl implements SignalServiceDataStore {
   @Override
   public List<Integer> getSubDeviceSessions(String number) {
     return sessionStore.getSubDeviceSessions(number);
+  }
+
+  @Override
+  public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) {
+    return sessionStore.getAllAddressesWithActiveSessions(addressNames);
   }
 
   @Override
@@ -180,5 +187,14 @@ public class SignalProtocolStoreImpl implements SignalServiceDataStore {
   @Override
   public boolean isMultiDevice() {
     return TextSecurePreferences.isMultiDevice(context);
+  }
+
+  @Override
+  public Transaction beginTransaction() {
+    DatabaseFactory.getInstance(context).getRawDatabase().beginTransaction();
+    return () -> {
+      DatabaseFactory.getInstance(context).getRawDatabase().setTransactionSuccessful();
+      DatabaseFactory.getInstance(context).getRawDatabase().endTransaction();
+    };
   }
 }

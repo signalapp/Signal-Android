@@ -90,10 +90,13 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
   public void onOpen(SQLiteDatabase db) {
     Log.i(TAG, "onOpen()");
 
+    db.enableWriteAheadLogging();
+    db.setForeignKeyConstraintsEnabled(true);
+
     SignalExecutors.BOUNDED.execute(() -> {
       if (DatabaseFactory.getInstance(application).hasTable("key_value")) {
         Log.i(TAG, "Dropping original key_value table from the main database.");
-        DatabaseFactory.getInstance(application).getRawDatabase().rawExecSQL("DROP TABLE key_value");
+        DatabaseFactory.getInstance(application).getRawDatabase().execSQL("DROP TABLE key_value");
       }
     });
   }
@@ -181,14 +184,6 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
     }
   }
 
-  private @NonNull SQLiteDatabase getReadableDatabase() {
-    return getReadableDatabase(databaseSecret.asString());
-  }
-
-  private @NonNull SQLiteDatabase getWritableDatabase() {
-    return getWritableDatabase(databaseSecret.asString());
-  }
-
   @Override
   public @NonNull SQLiteDatabase getSqlCipherDatabase() {
     return getWritableDatabase();
@@ -226,6 +221,14 @@ public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase
         newDb.insert(TABLE_NAME, null, values);
       }
     }
+  }
+
+  private SQLiteDatabase getReadableDatabase() {
+    return super.getReadableDatabase(databaseSecret.asString());
+  }
+
+  private SQLiteDatabase getWritableDatabase() {
+    return super.getWritableDatabase(databaseSecret.asString());
   }
 
   private enum Type {

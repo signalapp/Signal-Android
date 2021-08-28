@@ -9,6 +9,7 @@
         android:layout_width="36dp"
         android:layout_height="0dp"
         android:layout_marginStart="6dp"
+        android:contentDescription="@string/VoiceNotePlayerView__pause_voice_message"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="@id/voice_note_player_info"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +44,7 @@
         android:layout_height="36dp"
         android:layout_marginEnd="8dp"
         android:background="?selectableItemBackground"
+        android:contentDescription="@string/VoiceNotePlayerView__change_voice_message_speed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/voice_note_player_close"
         app:layout_constraintTop_toTopOf="parent">
@@ -69,6 +71,7 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginEnd="4dp"
+        android:contentDescription="@string/VoiceNotePlayerView__stop_voice_message"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="@id/voice_note_player_info"
         app:layout_constraintEnd_toEndOf="parent"

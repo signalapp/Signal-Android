@@ -27,6 +27,10 @@ public interface ChatWallpaper extends Parcelable {
 
   void loadInto(@NonNull ImageView imageView);
 
+  default boolean isPhoto() {
+    return false;
+  }
+
   @NonNull Wallpaper serialize();
 
   enum BuiltIns {

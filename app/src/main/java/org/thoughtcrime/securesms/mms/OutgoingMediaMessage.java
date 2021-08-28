@@ -78,23 +78,6 @@ public class OutgoingMediaMessage {
          contacts, linkPreviews, mentions, new LinkedList<>(), new LinkedList<>());
   }
 
-  public OutgoingMediaMessage(OutgoingMediaMessage that, long expiresIn) {
-    this(that.getRecipient(),
-         that.body,
-         that.attachments,
-         that.sentTimeMillis,
-         that.subscriptionId,
-         expiresIn,
-         that.viewOnce,
-         that.distributionType,
-         that.outgoingQuote,
-         that.contacts,
-         that.linkPreviews,
-         that.mentions,
-         that.networkFailures,
-         that.identityKeyMismatches);
-  }
-
   public OutgoingMediaMessage(OutgoingMediaMessage that) {
     this.recipient           = that.getRecipient();
     this.body                = that.body;
@@ -111,6 +94,25 @@ public class OutgoingMediaMessage {
     this.contacts.addAll(that.contacts);
     this.linkPreviews.addAll(that.linkPreviews);
     this.mentions.addAll(that.mentions);
+  }
+
+  public @NonNull OutgoingMediaMessage withExpiry(long expiresIn) {
+    return new OutgoingMediaMessage(
+        getRecipient(),
+        body,
+        attachments,
+        sentTimeMillis,
+        subscriptionId,
+        expiresIn,
+        viewOnce,
+        distributionType,
+        outgoingQuote,
+        contacts,
+        linkPreviews,
+        mentions,
+        networkFailures,
+        identityKeyMismatches
+    );
   }
 
   public Recipient getRecipient() {

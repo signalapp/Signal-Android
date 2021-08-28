@@ -54,7 +54,7 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
 
   @AnyThread
   public static @NonNull RecipientId from(@NonNull SignalServiceAddress address) {
-    return from(address.getUuid().orNull(), address.getNumber().orNull(), false);
+    return from(address.getUuid(), address.getNumber().orNull(), false);
   }
 
   /**
@@ -77,7 +77,7 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
    */
   @AnyThread
   public static @NonNull RecipientId fromHighTrust(@NonNull SignalServiceAddress address) {
-    return from(address.getUuid().orNull(), address.getNumber().orNull(), true);
+    return from(address.getUuid(), address.getNumber().orNull(), true);
   }
 
   /**

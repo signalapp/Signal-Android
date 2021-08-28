@@ -749,22 +749,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">பகிர்</string>
   <string name="InviteActivity_share_with_contacts">தொடர்புகளுடன் பகிரவும்</string>
-  <string name="InviteActivity_choose_how_to_share">பகிர்வது எப்படி என்பதைத் தேர்வுசெய்க</string>
   <string name="InviteActivity_cancel">ரத்து செய் </string>
   <string name="InviteActivity_sending">அனுப்புகிறது …</string>
   <string name="InviteActivity_invitations_sent">அழைப்புகள் அனுப்பட்டது!</string>
   <string name="InviteActivity_invite_to_signal">Signalக்கு அழை</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">%d நண்பருக்கு SMS அனுப்பவும்</item>
-    <item quantity="other">%d  நண்பர்களுக்கு SMS அனுப்பவும்</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d  எஸ்எம்எஸ் அழைப்பை அனுப்பவா?</item>
     <item quantity="other">%d SMS அழைப்புகளை அனுப்பவா?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">%1$s: நாம் Signalக்கு மாறுவோம்</string>
   <string name="InviteActivity_no_app_to_share_to">உங்களிடம் பகிர எந்த பயன்பாடுகளும் இல்லை என்று தெரிகிறது.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">நண்பர்களே, மற்ற நண்பர்களை மறையாக்கப்படாத உரையாடல்கள் செய்யவிடாதீர்கள்.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">மேலும் அறிக</string>
   <!--LongMessageActivity-->
@@ -836,10 +830,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal அழைப்பு நிறுவுப்படுகிறது</string>
   <string name="NotificationBarManager__incoming_signal_call">உள்வரும் Signal அழைப்பு</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal அழைப்பு சேவையை நிறுத்துதல்</string>
-  <string name="NotificationBarManager__deny_call">அழைப்பை மறுதளி</string>
   <string name="NotificationBarManager__answer_call">அழைப்பை எடு</string>
   <string name="NotificationBarManager__end_call">அழைப்பைத் துண்டி</string>
   <string name="NotificationBarManager__cancel_call">அழைப்பு ரத்து</string>
+  <string name="NotificationBarManager__join_call">அழைப்பில் சேரவும்</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">அறிவிப்புகளை இயக்கவா?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">உங்கள் தொடர்புகள் மற்றும் குழுக்களிடமிருந்து எந்த ஒரு செய்தியை ஒருபோதும் தவறவிடாதீர்கள்.</string>
@@ -930,7 +924,7 @@
   <string name="MessageRecord_s_made_s_an_admin"> %1$s அவர்கள் %2$sஅவரை நிர்வாகியாக மாற்றினார்கள்</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s அவர்கள் உங்களை இந்த குழுவிற்கு நிர்வாகியாக மாற்றினர்.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s"> %1$s அவர்களிடமிருந்து நிர்வாக உரிமைகளை நீங்கள் ரத்து செய்தீர்கள்</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$sஅவர்கள் உங்கள் நிர்வாக உரிமைகளை ரத்து செய்தனர். </string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s உங்கள் நிர்வாகி உரிமைகளை ரத்து செய்தது.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%2$sஇதிலிருந்து நிர்வாக உரிமைகளை %1$s அவர்கள் ரத்து செய்தனர் .</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$sஅவர்கள் இப்போது குழுவின் நிர்வாகியாக உள்ளனர்</string>
   <string name="MessageRecord_you_are_now_an_admin">நீங்கள் இப்போது ஒரு நிர்வாகி.</string>
@@ -1202,13 +1196,12 @@
   <string name="WebRtcCallActivity__signal_s">சிக்னல் Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">அழைக்கிறது…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal குரல் அழைப்பு…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal காணொளி அழைப்பு…</string>
+  <string name="WebRtcCallView__signal_call">Signal  அழைப்பு</string>
+  <string name="WebRtcCallView__signal_video_call">Signal காணொளி அழைப்பு</string>
   <string name="WebRtcCallView__start_call">அழைப்பைத் தொடங்கு</string>
   <string name="WebRtcCallView__join_call">அழைப்பில் சேர்</string>
   <string name="WebRtcCallView__call_is_full">அழைப்பு நிரம்பியுள்ளது</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">அதிகபட்ச எண்ணிக்கை %1$d இந்த அழைப்பிற்கு பங்கேற்பாளர்கள் சென்றடைந்துள்ளனர். பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\"  குழு அழைப்பு</string>
   <string name="WebRtcCallView__view_participants_list">பங்கேற்பாளர்களைக் காண்க</string>
   <string name="WebRtcCallView__your_video_is_off">உங்கள் வீடியோ முடக்கப்பட்டுள்ளது</string>
   <string name="WebRtcCallView__reconnecting">மீண்டும் இணைக்கிறது …</string>
@@ -1222,6 +1215,11 @@
     <item quantity="one">%1$s, %2$s, மற்றும் %3$dநபர்கள் அழைப்பில் உள்ளனர்</item>
     <item quantity="other">%1$s, %2$s, மற்றும் கூடுதலாக%3$d நபர்கள் அழைப்பில் உள்ளனர்</item>
   </plurals>
+  <string name="WebRtcCallView__flip">புரட்டவும்</string>
+  <string name="WebRtcCallView__speaker">ஒலி பெருக்கி</string>
+  <string name="WebRtcCallView__camera">புகைப்பட கருவி</string>
+  <string name="WebRtcCallView__mute">முடக்கு</string>
+  <string name="WebRtcCallView__end_call">அழைப்பை முடி </string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">இந்த அழைப்பில் %1$d நபர் இருக்கிறார்</item>
@@ -1477,7 +1475,7 @@
   <string name="MessageNotifier_error_delivering_message">செய்தி விநியோகிப்பதில் பிழை.</string>
   <string name="MessageNotifier_message_delivery_paused">செய்தி டெலிவரி இடைநிறுத்தப்பட்டது.</string>
   <string name="MessageNotifier_verify_to_continue_messaging_on_signal">செய்தியைத் தொடர சரிபார்க்கவும் Signal.</string>
-  <string name="MessageNotifier_mark_all_as_read">அனைத்தையும் படித்தாக குறியிடு</string>
+  <string name="MessageNotifier_mark_all_as_read">அனைத்தையும் படித்ததாக குறியீடு</string>
   <string name="MessageNotifier_mark_read">படித்தாக குறியிடு</string>
   <string name="MessageNotifier_turn_off_these_notifications">இந்த அறிவிப்புகளை முடக்கு</string>
   <string name="MessageNotifier_view_once_photo">காண்க-ஒருமுறை புகைப்படம்</string>
@@ -3082,6 +3080,11 @@
   <string name="ContactFilterView__search_name_or_number">தேடல் பெயர் அல்லது எண்</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">குரல் செய்தியை நிறுத்து</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">மாற்றம் குரல் செய்தி வேகம்</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">குரல் செய்தியை இடைநிறுத்துங்கள்</string>
+  <string name="VoiceNotePlayerView__play_voice_message">குரல் செய்தியை இயக்கவும்</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">குரல் செய்திக்கு செல்லவும்</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">அவதார் முன்னோட்டம்</string>
   <string name="AvatarPickerFragment__camera">புகைப்பட கருவி</string>
@@ -3104,5 +3107,18 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">மேலே செல்லவும்</string>
+  <string name="MultiselectForwardFragment__forward_to">முன்னோக்கி</string>
+  <string name="MultiselectForwardFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">செய்தி அனுப்பப்பட்டது</item>
+    <item quantity="other">செய்திகள் அனுப்பப்பட்டன</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">செய்திதோல்வி அனுப்பு</item>
+    <item quantity="other">செய்திகள் தோல்வி அனுப்பு</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">வரம்பை எட்டியது</string>
   <!--EOF-->
 </resources>

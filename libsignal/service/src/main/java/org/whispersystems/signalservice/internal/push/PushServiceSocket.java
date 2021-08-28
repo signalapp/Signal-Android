@@ -59,6 +59,7 @@ import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseExc
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
 import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResumableUploadResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
@@ -560,10 +561,6 @@ public class PushServiceSocket {
 
       String path = String.format(PREKEY_DEVICE_PATH, destination.getIdentifier(), deviceId);
 
-      if (destination.getRelay().isPresent()) {
-        path = path + "?relay=" + destination.getRelay().get();
-      }
-
       String             responseText = makeServiceRequest(path, "GET", null, NO_HEADERS, unidentifiedAccess);
       PreKeyResponse     response     = JsonUtil.fromJson(responseText, PreKeyResponse.class);
       List<PreKeyBundle> bundles      = new LinkedList<>();
@@ -600,10 +597,6 @@ public class PushServiceSocket {
   public PreKeyBundle getPreKey(SignalServiceAddress destination, int deviceId) throws IOException {
     try {
       String path = String.format(PREKEY_DEVICE_PATH, destination.getIdentifier(), String.valueOf(deviceId));
-
-      if (destination.getRelay().isPresent()) {
-        path = path + "?relay=" + destination.getRelay().get();
-      }
 
       String         responseText = makeServiceRequest(path, "GET", null);
       PreKeyResponse response     = JsonUtil.fromJson(responseText, PreKeyResponse.class);
@@ -1382,7 +1375,7 @@ public class PushServiceSocket {
       } else if (response.code() == 404) {
         throw new ResumeLocationInvalidException();
       } else {
-        throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response);
+        throw new NonSuccessfulResumableUploadResponseCodeException(response.code(), "Response: " + response);
       }
     } finally {
       synchronized (connections) {

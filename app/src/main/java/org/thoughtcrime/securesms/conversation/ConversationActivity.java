@@ -276,6 +276,7 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SmsUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -788,7 +789,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
                        result.isViewOnce(),
                        subscriptionId,
                        initiating,
-                       true).addListener(new AssertedSuccessListener<Void>() {
+                       true,
+                       null).addListener(new AssertedSuccessListener<Void>() {
         @Override
         public void onSuccess(Void result) {
           AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
@@ -1265,7 +1267,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private void handleResetSecureSession() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(this);
     builder.setTitle(R.string.ConversationActivity_reset_secure_session_question);
     builder.setIcon(R.drawable.ic_warning);
     builder.setCancelable(true);
@@ -1280,7 +1282,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
         new AsyncTask<OutgoingEndSessionMessage, Void, Long>() {
           @Override
           protected Long doInBackground(OutgoingEndSessionMessage... messages) {
-            return MessageSender.send(context, messages[0], threadId, false, null);
+            return MessageSender.send(context, messages[0], threadId, false, null, null);
           }
 
           @Override
@@ -1428,7 +1430,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private void handleVideo(final Recipient recipient) {
     if (recipient == null) return;
 
-    if (recipient.isPushV2Group() && groupViewModel.isNonAdminInAnnouncementGroup()) {
+    if (recipient.isPushV2Group() && groupCallViewModel.hasActiveGroupCall().getValue() == Boolean.FALSE && groupViewModel.isNonAdminInAnnouncementGroup()) {
       new MaterialAlertDialogBuilder(this).setTitle(R.string.ConversationActivity_cant_start_group_call)
                                           .setMessage(R.string.ConversationActivity_only_admins_of_this_group_can_start_a_call)
                                           .setPositiveButton(android.R.string.ok, (d, w) -> d.dismiss())
@@ -1526,7 +1528,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     initializeIdentityRecords().addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) {
-        sendMessage();
+        sendMessage(null);
       }
     });
   }
@@ -1671,7 +1673,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
             throw new AssertionError();
         }
 
-        if (selfMembership.isAnnouncementGroup() && selfMembership.getMemberLevel() != GroupDatabase.MemberLevel.ADMINISTRATOR) {
+        if (!leftGroup && !canCancelRequest && selfMembership.isAnnouncementGroup() && selfMembership.getMemberLevel() != GroupDatabase.MemberLevel.ADMINISTRATOR) {
           canSendMessages = false;
           cannotSendInAnnouncementGroupBanner.get().setVisibility(View.VISIBLE);
           cannotSendInAnnouncementGroupBanner.get().setMovementMethod(LinkMovementMethod.getInstance());
@@ -2587,7 +2589,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     boolean    initiating     = threadId == -1;
 
-    sendMediaMessage(recipient.getId(), isSmsForced(), "", attachmentManager.buildSlideDeck(), null, contacts, Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, false);
+    sendMediaMessage(recipient.getId(), isSmsForced(), "", attachmentManager.buildSlideDeck(), null, contacts, Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, false, null);
   }
 
   private void selectContactInfo(ContactData contactData) {
@@ -2599,7 +2601,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       numberItems[i] = contactData.numbers.get(i).type + ": " + contactData.numbers.get(i).number;
     }
 
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(this);
     builder.setIcon(R.drawable.ic_account_box);
     builder.setTitle(R.string.ConversationActivity_select_contact_info);
 
@@ -2846,10 +2848,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
     attachmentManager.cleanup();
 
     updateLinkPreviewState();
-    linkPreviewViewModel.onSend();
   }
 
-  private void sendMessage() {
+  private void sendMessage(@Nullable String metricId) {
     if (inputPanel.isRecordingInLockedMode()) {
       inputPanel.releaseRecordingLock();
       return;
@@ -2893,9 +2894,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
       } else if (!forceSms && (identityRecords.isUnverified(true) || identityRecords.isUntrusted(true))) {
         handleRecentSafetyNumberChange();
       } else if (isMediaMessage) {
-        sendMediaMessage(forceSms, expiresIn, false, subscriptionId, initiating);
+        sendMediaMessage(forceSms, expiresIn, false, subscriptionId, initiating, metricId);
       } else {
-        sendTextMessage(forceSms, expiresIn, subscriptionId, initiating);
+        sendTextMessage(forceSms, expiresIn, subscriptionId, initiating, metricId);
       }
     } catch (RecipientFormattingException ex) {
       Toast.makeText(ConversationActivity.this,
@@ -2923,7 +2924,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     attachmentManager.clear(glideRequests, false);
     silentlySetComposeText("");
 
-    long id = fragment.stageOutgoingMessage(message);
+    long id = fragment.stageOutgoingMessage(secureMessage);
 
     SimpleTask.run(() -> {
       long resultId = MessageSender.sendPushWithPreUploadedMedia(this, secureMessage, result.getPreUploadResults(), thread, () -> fragment.releaseOutgoingMessage(id));
@@ -2935,23 +2936,25 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }, this::sendComplete);
   }
 
-  private void sendMediaMessage(final boolean forceSms, final long expiresIn, final boolean viewOnce, final int subscriptionId, final boolean initiating)
+  private void sendMediaMessage(final boolean forceSms, final long expiresIn, final boolean viewOnce, final int subscriptionId, final boolean initiating, @Nullable String metricId)
       throws InvalidMessageException
   {
     Log.i(TAG, "Sending media message...");
+    List<LinkPreview> linkPreviews = linkPreviewViewModel.onSend();
     sendMediaMessage(recipient.getId(),
                      forceSms,
                      getMessage(),
                      attachmentManager.buildSlideDeck(),
                      inputPanel.getQuote().orNull(),
                      Collections.emptyList(),
-                     linkPreviewViewModel.getActiveLinkPreviews(),
+                     linkPreviews,
                      composeText.getMentions(),
                      expiresIn,
                      viewOnce,
                      subscriptionId,
                      initiating,
-                     true);
+                     true,
+                     metricId);
   }
 
   private ListenableFuture<Void> sendMediaMessage(@NonNull RecipientId recipientId,
@@ -2966,7 +2969,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
                                                   final boolean viewOnce,
                                                   final int subscriptionId,
                                                   final boolean initiating,
-                                                  final boolean clearComposeBox)
+                                                  final boolean clearComposeBox,
+                                                  final @Nullable String metricId)
   {
     if (!isDefaultSms && (!isSecureText || forceSms) && recipient.get().hasSmsAddress()) {
       showDefaultSmsPrompt();
@@ -3013,7 +3017,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                  final long id = fragment.stageOutgoingMessage(outgoingMessage);
 
                  SimpleTask.run(() -> {
-                   return MessageSender.send(context, outgoingMessage, thread, forceSms, () -> fragment.releaseOutgoingMessage(id));
+                   return MessageSender.send(context, outgoingMessage, thread, forceSms, metricId, () -> fragment.releaseOutgoingMessage(id));
                  }, result -> {
                    sendComplete(result);
                    future.set(null);
@@ -3025,7 +3029,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     return future;
   }
 
-  private void sendTextMessage(final boolean forceSms, final long expiresIn, final int subscriptionId, final boolean initiating)
+  private void sendTextMessage(final boolean forceSms, final long expiresIn, final int subscriptionId, final boolean initiating, final @Nullable String metricId)
       throws InvalidMessageException
   {
     if (!isDefaultSms && (!isSecureText || forceSms) && recipient.get().hasSmsAddress()) {
@@ -3054,7 +3058,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                .onAllGranted(() -> {
                  final long id = new SecureRandom().nextLong();
                  SimpleTask.run(() -> {
-                   return MessageSender.send(context, message, thread, forceSms, () -> fragment.releaseOutgoingMessage(id));
+                   return MessageSender.send(context, message, thread, forceSms, metricId, () -> fragment.releaseOutgoingMessage(id));
                  }, this::sendComplete);
 
                  silentlySetComposeText("");
@@ -3283,7 +3287,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
                                                          false,
                                                          subscriptionId,
                                                          initiating,
-                                                         true);
+                                                         true,
+                                                         null);
 
     sendResult.addListener(new AssertedSuccessListener<Void>() {
       @Override
@@ -3319,7 +3324,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     slideDeck.addSlide(stickerSlide);
 
-    sendMediaMessage(recipient.getId(), transport.isSms(), "", slideDeck, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, clearCompose);
+    sendMediaMessage(recipient.getId(), transport.isSms(), "", slideDeck, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, clearCompose, null);
   }
 
   private void silentlySetComposeText(String text) {
@@ -3455,7 +3460,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private class SendButtonListener implements OnClickListener, TextView.OnEditorActionListener {
     @Override
     public void onClick(View v) {
-      sendMessage();
+      String metricId = recipient.get().isGroup() ? SignalLocalMetrics.GroupMessageSend.start()
+                                                  : SignalLocalMetrics.IndividualMessageSend.start();
+      sendMessage(metricId);
     }
 
     @Override
@@ -3664,13 +3671,13 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @Override
   public void handleReaction(@NonNull MaskView.MaskTarget maskTarget,
-                             @NonNull MessageRecord messageRecord,
+                             @NonNull ConversationMessage conversationMessage,
                              @NonNull Toolbar.OnMenuItemClickListener toolbarListener,
                              @NonNull ConversationReactionOverlay.OnHideListener onHideListener)
   {
     reactionDelegate.setOnToolbarItemClickedListener(toolbarListener);
     reactionDelegate.setOnHideListener(onHideListener);
-    reactionDelegate.show(this, maskTarget, recipient.get(), messageRecord, inputAreaHeight());
+    reactionDelegate.show(this, maskTarget, recipient.get(), conversationMessage, inputAreaHeight(), groupViewModel.isNonAdminInAnnouncementGroup());
   }
 
   @Override
@@ -3940,7 +3947,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
                      false,
                      subscriptionId,
                      initiating,
-                     false);
+                     false,
+                     null);
   }
 
   private class UnverifiedDismissedListener implements UnverifiedBannerView.DismissListener {

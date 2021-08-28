@@ -749,22 +749,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Dela</string>
   <string name="InviteActivity_share_with_contacts">Dela med kontakter</string>
-  <string name="InviteActivity_choose_how_to_share">Välj hur du delar</string>
   <string name="InviteActivity_cancel">Avbryt</string>
   <string name="InviteActivity_sending">Skickar…</string>
   <string name="InviteActivity_invitations_sent">Inbjudningar skickade!</string>
   <string name="InviteActivity_invite_to_signal">Bjud in till Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SKICKA SMS TILL %d VÄN</item>
-    <item quantity="other">SKICKA SMS TILL %d VÄNNER</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Skicka %d SMS-inbjudan?</item>
     <item quantity="other">Skicka %d SMS-inbjudningar?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Låt oss använda Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vänner låter inte varandra chatta okrypterat.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Läs mer</string>
   <!--LongMessageActivity-->
@@ -836,10 +830,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>
   <string name="NotificationBarManager__incoming_signal_call">Inkommande Signal-samtal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Avbryter Signal-samtalstjänsten</string>
-  <string name="NotificationBarManager__deny_call">Neka samtal</string>
   <string name="NotificationBarManager__answer_call">Svara på samtal</string>
   <string name="NotificationBarManager__end_call">Avsluta samtal</string>
   <string name="NotificationBarManager__cancel_call">Avbryt samtal</string>
+  <string name="NotificationBarManager__join_call">Gå med i samtalet</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Slå på notiser?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Missa aldrig ett meddelande från dina kontakter och grupper.</string>
@@ -930,7 +924,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s gjorde %2$s till administratör.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s gjorde dig till administratör.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Du återkallade administratörsbehörigheter från %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s återkallade dina administratörsbehörigheter.\"</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s återkallade dina administratörsbehörigheter.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s återkallade administratörsbehörigheter från %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s är nu en administratör.</string>
   <string name="MessageRecord_you_are_now_an_admin">Du är nu en administratör.</string>
@@ -1200,13 +1194,12 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal-röstsamtal…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal-videosamtal…</string>
+  <string name="WebRtcCallView__signal_call">Signal-samtal</string>
+  <string name="WebRtcCallView__signal_video_call">Signal-videosamtal</string>
   <string name="WebRtcCallView__start_call">Starta samtal</string>
   <string name="WebRtcCallView__join_call">Gå med i samtalet</string>
   <string name="WebRtcCallView__call_is_full">Samtalet är fullt</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Det maximala antalet %1$d deltagare har nåtts för detta samtal. Försök igen senare.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" gruppsamtal</string>
   <string name="WebRtcCallView__view_participants_list">Visa deltagare</string>
   <string name="WebRtcCallView__your_video_is_off">Din video är avstängd</string>
   <string name="WebRtcCallView__reconnecting">Återansluter…</string>
@@ -1220,6 +1213,11 @@
     <item quantity="one">%1$s, %2$s och %3$d andra är i detta samtal</item>
     <item quantity="other">%1$s, %2$s och %3$d andra är med i detta samtal</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Vänd</string>
+  <string name="WebRtcCallView__speaker">Högtalare</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__mute">Tysta</string>
+  <string name="WebRtcCallView__end_call">Avsluta samtal</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">I detta samtal · %1$d person</item>
@@ -1261,7 +1259,7 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_i_understand">Jag förstår</string>
   <string name="RegistrationActivity_play_services_error">Fel på Google Play-tjänster</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjänster uppdateras eller är tillfälligt otillgängliga. Vänligen försök igen senare.</string>
-  <string name="RegistrationActivity_terms_and_privacy">Villkor &amp; sekretesspolicy</string>
+  <string name="RegistrationActivity_terms_and_privacy">Villkor &amp; integritetspolicy</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal behöver åtkomst till dina kontakter och media för att få kontakt med vänner, utbyta meddelanden och ringa säkra samtal</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal behöver åtkomst till dina kontakter för att kunna ansluta till vänner, utbyta meddelanden och ringa säkra samtal</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har gjort för många försök att registrera detta nummer. Vänligen försök igen senare.</string>
@@ -1273,7 +1271,7 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Vi måste verifiera att du är en människa.</string>
   <string name="RegistrationActivity_next">Nästa</string>
   <string name="RegistrationActivity_continue">Fortsätt</string>
-  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta med dig sekretess.\nVar dig själv i varje meddelande.</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta med dig integritet.\nVar dig själv i varje meddelande.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Ange ditt telefonnummer för att komma igång</string>
   <string name="RegistrationActivity_enter_your_phone_number">Ange ditt telefonnummer</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du kommer att få en verifieringskod. Din operatör kan ta betalt för det. </string>
@@ -1952,7 +1950,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__help">Hjälp</string>
   <string name="preferences__advanced">Avancerat</string>
   <string name="preferences__donate_to_signal">Donera till Signal</string>
-  <string name="preferences__privacy">Integritetsskydd</string>
+  <string name="preferences__privacy">Integritet</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuella MMS-inställningar</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
@@ -2944,7 +2942,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpSettingsFragment__contact_us">Kontakta oss</string>
   <string name="HelpSettingsFragment__version">Version</string>
   <string name="HelpSettingsFragment__debug_log">Felsökningslogg</string>
-  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Villkor &amp; sekretesspolicy</string>
+  <string name="HelpSettingsFragment__terms_amp_privacy_policy">Villkor &amp; integritetspolicy</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Licenserad under GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
@@ -3073,6 +3071,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ContactFilterView__search_name_or_number">Sök namn eller nummer</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Stoppa röstmeddelandet</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Ändra röstmeddelandets hastighet</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Pausa röstmeddelandet</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Spela röstmeddelandet</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Navigera till röstmeddelande</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Avatar-förhandsgranskning</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>
@@ -3095,5 +3098,28 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Navigera upp</string>
+  <string name="MultiselectForwardFragment__forward_to">Vidarebefordra till</string>
+  <string name="MultiselectForwardFragment__add_a_message">Lägg till ett meddelande</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Snabbare vidarebefordringar</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Vidarebefordrade meddelanden skickas nu omedelbart.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Skicka %1$d meddelande</item>
+    <item quantity="other">Skicka %1$d meddelanden</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Meddelandet skickat</item>
+    <item quantity="other">Meddelanden skickade</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Det gick inte att skicka meddelande</item>
+    <item quantity="other">Det gick inte att skicka meddelanden</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Det gick inte att vidarebefordra meddelandet eftersom det inte längre är tillgängligt.</item>
+    <item quantity="other">Det gick inte att vidarebefordra meddelanden eftersom de inte längre är tillgängliga.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Gränsen nådd</string>
   <!--EOF-->
 </resources>

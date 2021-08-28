@@ -99,6 +99,7 @@ class VoiceNotePlayerView @JvmOverloads constructor(
       background.colorFilter = SimpleColorFilter(ContextCompat.getColor(context, R.color.voice_note_player_view_background))
     }
 
+    contentDescription = context.getString(R.string.VoiceNotePlayerView__navigate_to_voice_message)
     setOnClickListener {
       lastState?.let {
         listener?.onNavigateToMessage(it.threadId, it.threadRecipientId, it.senderId, it.messageTimestamp, it.messagePositionInThread)
@@ -171,6 +172,12 @@ class VoiceNotePlayerView @JvmOverloads constructor(
     }
 
     lottieDirection = direction
+    playPauseToggleView.contentDescription = if (direction == TO_PLAY) {
+      context.getString(R.string.VoiceNotePlayerView__play_voice_message)
+    } else {
+      context.getString(R.string.VoiceNotePlayerView__pause_voice_message)
+    }
+
     playPauseToggleView.pauseAnimation()
     playPauseToggleView.speed = (direction * 2).toFloat()
     playPauseToggleView.resumeAnimation()

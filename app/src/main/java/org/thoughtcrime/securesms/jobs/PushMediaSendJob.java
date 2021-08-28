@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -196,7 +197,12 @@ public class PushMediaSendJob extends PushSendJob {
     try {
       rotateSenderCertificateIfNecessary();
 
-      Recipient                                  messageRecipient   = message.getRecipient().fresh();
+      Recipient messageRecipient = message.getRecipient().fresh();
+
+      if (messageRecipient.isUnregistered()) {
+        throw new UndeliverableMessageException(messageRecipient.getId() + " not registered!");
+      }
+
       SignalServiceMessageSender                 messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
       SignalServiceAddress                       address            = RecipientUtil.toSignalServiceAddress(context, messageRecipient);
       List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
@@ -220,7 +226,7 @@ public class PushMediaSendJob extends PushSendJob {
                                                                                             .asExpirationUpdate(message.isExpirationUpdate())
                                                                                             .build();
 
-      if (Util.equals(TextSecurePreferences.getLocalUuid(context), address.getUuid().orNull())) {
+      if (Util.equals(TextSecurePreferences.getLocalUuid(context), address.getUuid())) {
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
         SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, mediaMessage, syncAccess);
 
@@ -228,7 +234,7 @@ public class PushMediaSendJob extends PushSendJob {
         DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId, true));
         return syncAccess.isPresent();
       } else {
-        SendMessageResult result = messageSender.sendDataMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage);
+        SendMessageResult result = messageSender.sendDataMessage(address, UnidentifiedAccessUtil.getAccessFor(context, messageRecipient), ContentHint.RESENDABLE, mediaMessage, IndividualSendEvents.EMPTY);
         DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId, true));
         return result.getSuccess().isUnidentified();
       }

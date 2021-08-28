@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -82,6 +83,13 @@ public class PushGroupUpdateJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
+    Recipient sourceRecipient = Recipient.resolved(source);
+
+    if (sourceRecipient.isUnregistered()) {
+      Log.w(TAG, sourceRecipient.getId() + " not registered!");
+      return;
+    }
+
     GroupDatabase           groupDatabase = DatabaseFactory.getGroupDatabase(context);
     Optional<GroupRecord>   record        = groupDatabase.getGroup(groupId);
     SignalServiceAttachment avatar        = null;
@@ -103,7 +111,10 @@ public class PushGroupUpdateJob extends BaseJob {
 
     for (RecipientId member : record.get().getMembers()) {
       Recipient recipient = Recipient.resolved(member);
-      members.add(RecipientUtil.toSignalServiceAddress(context, recipient));
+
+      if (recipient.isMaybeRegistered()) {
+        members.add(RecipientUtil.toSignalServiceAddress(context, recipient));
+      }
     }
 
     SignalServiceGroup groupContext = SignalServiceGroup.newBuilder(Type.UPDATE)
@@ -123,12 +134,12 @@ public class PushGroupUpdateJob extends BaseJob {
                                                                .build();
 
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
-    Recipient                  recipient     = Recipient.resolved(source);
 
-    messageSender.sendDataMessage(RecipientUtil.toSignalServiceAddress(context, recipient),
-                                  UnidentifiedAccessUtil.getAccessFor(context, recipient),
+    messageSender.sendDataMessage(RecipientUtil.toSignalServiceAddress(context, sourceRecipient),
+                                  UnidentifiedAccessUtil.getAccessFor(context, sourceRecipient),
                                   ContentHint.DEFAULT,
-                                  message);
+                                  message,
+                                  IndividualSendEvents.EMPTY);
   }
 
   @Override

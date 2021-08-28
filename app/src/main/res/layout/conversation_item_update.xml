@@ -5,7 +5,6 @@
     android:id="@+id/conversation_update_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/conversation_item_background"
     android:focusable="true"
     android:paddingStart="26dp"
     android:paddingEnd="26dp">

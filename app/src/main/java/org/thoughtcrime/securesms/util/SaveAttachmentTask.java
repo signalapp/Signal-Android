@@ -18,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -32,6 +34,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -152,17 +155,53 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     }
   }
 
-  public String getExternalPathToFileForType(String contentType) {
-    File storage;
+  private @Nullable File ensureExternalPath(@Nullable File path) {
+    if (path != null && path.exists()) {
+      return path;
+    }
+
+    if (path == null) {
+      File documents = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
+      if (documents.exists() || documents.mkdirs()) {
+        return documents;
+      } else {
+        return null;
+      }
+    }
+
+    if (path.mkdirs()) {
+      return path;
+    } else {
+      return null;
+    }
+  }
+
+  /**
+   * Returns a path to a shared media (or documents) directory for the type of the file.
+   *
+   * Note that this method attempts to create a directory if the path returned from
+   * Environment object does not exist yet. The attempt may fail in which case it attempts
+   * to return the default "Document" path. It finally returns null if it also fails.
+   * Otherwise it returns the absolute path to the directory.
+   *
+   * @param contentType a MIME type of a file
+   * @return an absolute path to a directory or null
+   */
+  private @Nullable String getExternalPathForType(String contentType) {
+    File storage = null;
     if (contentType.startsWith("video/")) {
       storage = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES);
     } else if (contentType.startsWith("audio/")) {
       storage = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
     } else if (contentType.startsWith("image/")) {
       storage = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-    } else {
-      storage = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
     }
+
+    storage = ensureExternalPath(storage);
+    if (storage == null) {
+      return null;
+    }
+
     return storage.getAbsolutePath();
   }
 
@@ -217,13 +256,18 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
 
       return Uri.fromFile(outputFile);
     } else {
+      String dir = getExternalPathForType(contentType);
+      if (dir == null) {
+        throw new IOException(String.format(Locale.US, "Path for type: %s was not available", contentType));
+      }
+
       String outputFileName = fileName;
-      String dataPath       = String.format("%s/%s", getExternalPathToFileForType(contentType), outputFileName);
+      String dataPath       = String.format("%s/%s", dir, outputFileName);
       int    i              = 0;
       while (pathTaken(outputUri, dataPath)) {
         Log.d(TAG, "The content exists. Rename and check again.");
         outputFileName = base + "-" + (++i) + "." + extension;
-        dataPath       = String.format("%s/%s", getExternalPathToFileForType(contentType), outputFileName);
+        dataPath       = String.format("%s/%s", dir, outputFileName);
       }
       contentValues.put(MediaStore.MediaColumns.DATA, dataPath);
     }
@@ -306,7 +350,7 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
   }
 
   public static void showWarningDialog(Context context, OnClickListener onAcceptListener, int count) {
-    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(context);
     builder.setTitle(R.string.ConversationFragment_save_to_sd_card);
     builder.setIcon(R.drawable.ic_warning);
     builder.setCancelable(true);

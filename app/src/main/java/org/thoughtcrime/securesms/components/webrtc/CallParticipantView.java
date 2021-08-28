@@ -105,6 +105,10 @@ public class CallParticipantView extends ConstraintLayout {
     renderer.setScalingType(scalingType);
   }
 
+  void setScalingType(@NonNull RendererCommon.ScalingType scalingTypeMatchOrientation, @NonNull RendererCommon.ScalingType scalingTypeMismatchOrientation) {
+    renderer.setScalingType(scalingTypeMatchOrientation, scalingTypeMismatchOrientation);
+  }
+
   void setCallParticipant(@NonNull CallParticipant participant) {
     boolean participantChanged = recipientId == null || !recipientId.equals(participant.getRecipient().getId());
     recipientId = participant.getRecipient().getId();
@@ -140,9 +144,9 @@ public class CallParticipantView extends ConstraintLayout {
       renderer.setVisibility(hasContentToRender ? View.VISIBLE : View.GONE);
 
       if (participant.isVideoEnabled()) {
-        if (participant.getVideoSink().getEglBase() != null) {
-          renderer.init(participant.getVideoSink().getEglBase());
-        }
+        participant.getVideoSink().getLockableEglBase().performWithValidEglBase(eglBase -> {
+          renderer.init(eglBase);
+        });
         renderer.attachBroadcastVideoSink(participant.getVideoSink());
       } else {
         renderer.attachBroadcastVideoSink(null);
@@ -190,6 +194,14 @@ public class CallParticipantView extends ConstraintLayout {
 
     avatar.setVisibility(shouldRenderInPip ? View.GONE : View.VISIBLE);
     pipAvatar.setVisibility(shouldRenderInPip ? View.VISIBLE : View.GONE);
+  }
+
+  void hideAvatar() {
+    avatar.setAlpha(0f);
+  }
+
+  void showAvatar() {
+    avatar.setAlpha(1f);
   }
 
   void useLargeAvatar() {

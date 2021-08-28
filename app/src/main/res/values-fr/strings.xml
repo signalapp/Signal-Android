@@ -422,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Partager avec</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Les fichiers joints multiples ne sont pris en charge que pour les images et les vidéos</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Vous n’avez pas l’autorisation d’envoyer à ce groupe</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Échec permanent de communication de Signal.</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal n’a pas réussi à s’inscrire auprès des services Google Play. Les appels et messages Signal ont été désactivés. Veuillez essayer de vous réinscrire dans Paramètres &gt; Avancé.</string>
@@ -748,22 +749,18 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Partager</string>
   <string name="InviteActivity_share_with_contacts">Partager avec des contacts</string>
-  <string name="InviteActivity_choose_how_to_share">Choisir comment partager</string>
+  <string name="InviteActivity_share_via">Partager via…</string>
   <string name="InviteActivity_cancel">Annuler</string>
   <string name="InviteActivity_sending">Envoi…</string>
   <string name="InviteActivity_invitations_sent">L’invitation a été envoyée.</string>
   <string name="InviteActivity_invite_to_signal">Inviter à Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ENVOYER UN TEXTO À %d AMI</item>
-    <item quantity="other">ENVOYER UN TEXTO À %d AMIS</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">Envoyer un texto (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Envoyer %d texto d’invitations ?</item>
     <item quantity="other">Envoyer %d textos d’invitations ?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Passons à Signal : %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Vous semblez n’avoir aucune appli vers laquelle partager.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Les amis ne laissent pas leur amis dialoguer sans chiffrement.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">En apprendre davantage</string>
   <!--LongMessageActivity-->
@@ -834,11 +831,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Appel Signal en cours</string>
   <string name="NotificationBarManager__establishing_signal_call">Établissement de l’appel Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Appel Signal entrant</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Appel de groupe entrant sur Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Arrêt du service d’appel de Signal</string>
-  <string name="NotificationBarManager__deny_call">Refuser l’appel</string>
+  <string name="NotificationBarManager__decline_call">Rejeter l’appel</string>
   <string name="NotificationBarManager__answer_call">Répondre à l’appel</string>
   <string name="NotificationBarManager__end_call">Raccrocher</string>
   <string name="NotificationBarManager__cancel_call">Annuler l’appel</string>
+  <string name="NotificationBarManager__join_call">Me joindre à l’appel</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Activer les notifications ?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Ne manquez jamais un message de vos contacts ni de vos groupes.</string>
@@ -1199,27 +1198,59 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Pour appeler %1$s, Signal a besoin d’accéder à votre appareil photo</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Appel…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Le groupe est trop grand pour appeler tous les participants.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Appel vocal Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal…</string>
+  <string name="WebRtcCallView__signal_call">Appel Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Appel vidéo Signal</string>
   <string name="WebRtcCallView__start_call">Démarrer un appel</string>
   <string name="WebRtcCallView__join_call">Me joindre à l’appel</string>
   <string name="WebRtcCallView__call_is_full">L’appel est complet</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Le nombre maximal de %1$d participants a été atteint pour cet appel. Veuillez réessayer plus tard.</string>
-  <string name="WebRtcCallView__s_group_call">Appel de groupe « %1$s »</string>
   <string name="WebRtcCallView__view_participants_list">Afficher les participants</string>
   <string name="WebRtcCallView__your_video_is_off">La vidéo est désactivée</string>
   <string name="WebRtcCallView__reconnecting">Reconnexion…</string>
   <string name="WebRtcCallView__joining">Connexion…</string>
   <string name="WebRtcCallView__disconnected">L’application est déconnectée</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal sonnera chez %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal sonnera chez %1$s et %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal appellera %1$s, %2$s et %3$d autre</item>
+    <item quantity="other">Signal sonnera chez %1$s, %2$s et %3$d autres</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s sera notifié</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s et %2$s seront notifiés</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s et %3$d autre seront notifiés</item>
+    <item quantity="other">%1$s, %2$s et %3$d autres seront notifiés</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Sonne chez %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Sonne chez %1$s et %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Sonne chez %1$s, %2$s et %3$d autre</item>
+    <item quantity="other">Sonne chez %1$s, %2$s et %3$d autres</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s vous appelle</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s vous appelle avec %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s vous appelle avec %2$s et %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s vous appelle avec %2$s, %3$s et %4$d autre</item>
+    <item quantity="other">%1$s vous appelle avec %2$s, %3$s et %4$d autres</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Il n’y a personne d’autre ici</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s est dans cet appel</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s sont dans cet appel</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s et %2$s font partie de cet appel</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s présente actuellement</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s et %3$d autre personne font partie de cet appel</item>
     <item quantity="other">%1$s, %2$s et %3$d autres personnes font partie de cet appel</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Basculer</string>
+  <string name="WebRtcCallView__speaker">Haut-parleur</string>
+  <string name="WebRtcCallView__camera">Appareil photo</string>
+  <string name="WebRtcCallView__mute">Sourdine</string>
+  <string name="WebRtcCallView__ring">Sonnerie</string>
+  <string name="WebRtcCallView__end_call">Raccrocher</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Dans cet appel · %1$d personne</item>
@@ -3069,6 +3100,11 @@
   <string name="ContactFilterView__search_name_or_number">Chercher un nom ou un numéro</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Arrêter le message vocal</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Changer la vitesse du message vocal</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Mettre le message vocal en pause</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Lire le message vocal</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Naviguer vers le message vocal</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Aperçu de l’avatar</string>
   <string name="AvatarPickerFragment__camera">Appareil photo</string>
@@ -3091,5 +3127,28 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">Texto</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Naviguer vers le haut</string>
+  <string name="MultiselectForwardFragment__forward_to">Transférer à</string>
+  <string name="MultiselectForwardFragment__add_a_message">Ajouter un message</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Transferts plus rapides</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Les messages transférés sont désormais immédiatement envoyés.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Envoyer %1$d message</item>
+    <item quantity="other">Envoyer %1$d messages</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Message envoyé</item>
+    <item quantity="other">Messages envoyés</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Échec de l’envoi du message</item>
+    <item quantity="other">Échec de l’envoi des messages</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Impossible de transférer le message car il n’est plus disponible.</item>
+    <item quantity="other">Impossible de transférer les messages car ils ne sont plus disponibles.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Limite atteinte</string>
   <!--EOF-->
 </resources>

@@ -736,22 +736,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Jaga</string>
   <string name="InviteActivity_share_with_contacts">Jaga kontaktidega</string>
-  <string name="InviteActivity_choose_how_to_share">Vali, kuidas jagada</string>
   <string name="InviteActivity_cancel">Tühista</string>
   <string name="InviteActivity_sending">Saatmine…</string>
   <string name="InviteActivity_invitations_sent">Kutsed saadetud!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signalisse</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SAADA SMS %d SÕBRALE</item>
-    <item quantity="other">SAADA SMS %d SÕBRALE</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Saadad %d SMS-kutse?</item>
     <item quantity="other">Saadad %d SMS-kutset?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Lähme Signalile üle: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Tundub, et sul pole ühtegi rakendust, kuhu jagada.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Sõbrad ei luba sõpradel krüptimata rääkida.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Rohkem infot</string>
   <!--LongMessageActivity-->
@@ -822,10 +816,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Alustan Signali kõnet</string>
   <string name="NotificationBarManager__incoming_signal_call">Sissetulev Signali kõne</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signali kõneteenuse peatamine</string>
-  <string name="NotificationBarManager__deny_call">Keeldu kõnest</string>
   <string name="NotificationBarManager__answer_call">Vasta kõnele</string>
   <string name="NotificationBarManager__end_call">Lõpeta kõne</string>
   <string name="NotificationBarManager__cancel_call">Tühista kõne</string>
+  <string name="NotificationBarManager__join_call">Liitu kõnega</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Kas lubada teavitused?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Ükski kontaktidelt või gruppidelt saadud sõnum ei jää märkamata.</string>
@@ -916,7 +910,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s tegi kasutaja %2$s administraatoriks.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s tegi sind administraatoriks.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Sa tühistasid kasutaja %1$s administraatoriõigused.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s tühistas sinu administraatoriõigused.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s tühistas kasutaja %2$s administraatoriõigused.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s on nüüd administraator.</string>
   <string name="MessageRecord_you_are_now_an_admin">Sa oled nüüd administraator.</string>
@@ -1181,13 +1174,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Helistamine…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signali häälkõne…</string>
-  <string name="WebRtcCallView__signal_video_call">Signali videokõne…</string>
+  <string name="WebRtcCallView__signal_call">Signali kõne</string>
   <string name="WebRtcCallView__start_call">Alusta kõnet</string>
   <string name="WebRtcCallView__join_call">Liitu kõnega</string>
   <string name="WebRtcCallView__call_is_full">Kõne on täis</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Selle kõne maksimaalne osavõtjate arv %1$d on täitunud. Proovi hiljem uuesti.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Grupikõne</string>
   <string name="WebRtcCallView__view_participants_list">Vaata osalejaid</string>
   <string name="WebRtcCallView__your_video_is_off">Sinu video on väljas</string>
   <string name="WebRtcCallView__reconnecting">Ühenduse taastamine…</string>
@@ -1201,6 +1192,10 @@
     <item quantity="one">%1$s, %2$s ja %3$d teine on selles kõnes</item>
     <item quantity="other">%1$s, %2$s ja %3$d teist on selles kõnes</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Valjuhääldi</string>
+  <string name="WebRtcCallView__camera">Kaamera</string>
+  <string name="WebRtcCallView__mute">Vaigista</string>
+  <string name="WebRtcCallView__end_call">Lõpeta kõne</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Selles kõnes · %1$d inimene</item>
@@ -2908,5 +2903,6 @@
   <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

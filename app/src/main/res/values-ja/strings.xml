@@ -712,20 +712,17 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">共有</string>
   <string name="InviteActivity_share_with_contacts">連絡先と共有</string>
-  <string name="InviteActivity_choose_how_to_share">共有方法を選択</string>
+  <string name="InviteActivity_share_via">共有…</string>
   <string name="InviteActivity_cancel">キャンセル</string>
   <string name="InviteActivity_sending">送信しています…</string>
-  <string name="InviteActivity_invitations_sent">招待を送信しました！</string>
-  <string name="InviteActivity_invite_to_signal">Signalに招待する</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">SMSを友達%d人に送る</item>
-  </plurals>
+  <string name="InviteActivity_invitations_sent">招待状を送信しました！</string>
+  <string name="InviteActivity_invite_to_signal">Signalへの招待</string>
+  <string name="InviteActivity_send_sms">SMSを送信する (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="other">SMS招待状%d件を送信しますか？</item>
+    <item quantity="other">%d件のSMS招待状を送信しますか？</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">メッセージアプリをSignalにしましょう: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">共有先として使えるアプリがないようです。</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">友達とのチャットを暗号化しましょう。</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">詳しく見る</string>
   <!--LongMessageActivity-->
@@ -792,11 +789,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal通話を接続しています</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal通話の着信</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Signalグループ着信</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal通話サービスを停止しています</string>
-  <string name="NotificationBarManager__deny_call">通話を拒否</string>
+  <string name="NotificationBarManager__decline_call">拒否する</string>
   <string name="NotificationBarManager__answer_call">通話を開始</string>
   <string name="NotificationBarManager__end_call">通話を終了</string>
   <string name="NotificationBarManager__cancel_call">通話をキャンセル</string>
+  <string name="NotificationBarManager__join_call">通話に参加する</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">通知を有効にしますか？</string>
   <string name="NotificationsMegaphone_never_miss_a_message">連絡先やグループからのメッセージを見逃しません。</string>
@@ -1141,26 +1140,54 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s と通話するには、Signalにカメラへのアクセスを許可してください。</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">呼び出しています…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">グループが大きすぎるため、参加者を呼べません。</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal音声通話…</string>
-  <string name="WebRtcCallView__signal_video_call">Signalビデオ通話…</string>
+  <string name="WebRtcCallView__signal_call">Signal通話</string>
+  <string name="WebRtcCallView__signal_video_call">Signalビデオ通話</string>
   <string name="WebRtcCallView__start_call">通話を開始する</string>
   <string name="WebRtcCallView__join_call">通話に参加する</string>
   <string name="WebRtcCallView__call_is_full">満席です</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">この通話の参加者が、上限の%1$d人に達しました。あとで再度試してください。</string>
-  <string name="WebRtcCallView__s_group_call">「%1$s」グループ通話</string>
   <string name="WebRtcCallView__view_participants_list">参加者を確認する</string>
   <string name="WebRtcCallView__your_video_is_off">あなたの映像はオフです</string>
   <string name="WebRtcCallView__reconnecting">再接続しています…</string>
   <string name="WebRtcCallView__joining">参加しています…</string>
   <string name="WebRtcCallView__disconnected">接続していません</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signalは %1$s を呼び出します</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signalは %1$s と %2$s を呼び出します</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="other">Signalは %1$s, %2$s ほか%3$d名を呼び出します</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s には通知されません</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s と %2$s には通知されません</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="other">%1$s, %2$s ほか%3$d名には通知されません</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">%1$s を呼び出しています</string>
+  <string name="WebRtcCallView__ringing_s_and_s">%1$s と %2$s を呼び出しています</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="other">%1$s, %2$s ほか%3$d名を呼び出しています</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s があなたを呼び出しています</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s があなたと %2$s を呼び出しています</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s があなた, %2$s および %3$s を呼び出しています</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="other">%1$s があなた, %2$s, %3$s ほか%4$d名を呼び出しています</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">誰も参加していません</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s が参加中</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s が参加中</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s と %2$s が参加中</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s が画面を共有しています</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s, %2$s ほか%3$d人が参加中</item>
   </plurals>
+  <string name="WebRtcCallView__flip">切り替え</string>
+  <string name="WebRtcCallView__speaker">スピーカー</string>
+  <string name="WebRtcCallView__camera">カメラ</string>
+  <string name="WebRtcCallView__mute">ミュート</string>
+  <string name="WebRtcCallView__ring">呼び出し</string>
+  <string name="WebRtcCallView__end_call">通話終了</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">参加者 · %1$d人</item>
@@ -2984,6 +3011,11 @@
   <string name="ContactFilterView__search_name_or_number">名前か電話番号で検索</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">音声メッセージを停止</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">音声メッセージの再生速度を変更</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">音声メッセージを一時停止</string>
+  <string name="VoiceNotePlayerView__play_voice_message">音声メッセージを再生</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">音声メッセージへ</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">アバターのプレビュー</string>
   <string name="AvatarPickerFragment__camera">カメラ</string>
@@ -3006,5 +3038,24 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">上へ</string>
+  <string name="MultiselectForwardFragment__forward_to">転送先</string>
+  <string name="MultiselectForwardFragment__add_a_message">メッセージを追加してください</string>
+  <string name="MultiselectForwardFragment__faster_forwards">より速い転送</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">転送メッセージがすぐに送信されるようになりました。</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="other">%1$d件のメッセージを送信</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="other">メッセージを送信しました</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="other">メッセージの送信に失敗しました</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="other">すでにメッセージがないため、転送できませんでした。</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">制限に達しました</string>
   <!--EOF-->
 </resources>

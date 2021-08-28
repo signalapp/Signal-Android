@@ -212,6 +212,7 @@
   <string name="ConversationActivity_admins">അഡ്മിൻസ്</string>
   <string name="ConversationActivity_message_an_admin">ഒരു അഡ്മിനു സന്ദേശം അയക്കുക</string>
   <string name="ConversationActivity_cant_start_group_call">ഗ്രൂപ്പ് കോൾ ആരംഭിക്കാൻ കഴിയില്ല</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">ഈ ഗ്രൂപ്പിന്റെ അഡ്മിൻമാർക്ക് മാത്രമേ ഒരു കോൾ ആരംഭിക്കാൻ കഴിയൂ.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ ഈ ലിങ്ക് കൈകാര്യം ചെയ്യാൻ ഒരു അപ്ലിക്കേഷനും ലഭ്യമല്ല.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">ഗ്രൂപ്പില്‍ ചേരുന്നതിനുള്ള നിങ്ങളുടെ അഭ്യർത്ഥന അഡ്മിന് അയച്ചു. അവർ നടപടിയെടുക്കുമ്പോൾ നിങ്ങളെ അറിയിക്കും.</string>
   <string name="ConversationActivity_cancel_request">അഭ്യർത്ഥന റദ്ദാക്കുക</string>
@@ -244,6 +245,7 @@
   <string name="ConversationActivity_join">ചേരുക</string>
   <string name="ConversationActivity_full">പൂർണ്ണമായി</string>
   <string name="ConversationActivity_error_sending_media">മീഡിയ അയയ്‌ക്കുന്നതിൽ പിശക്</string>
+  <string name="ConversationActivity__reported_as_spam_and_blocked">സ്പാം ആയും ബ്ലോക്ക് ചെയ്തതായും റിപ്പോർട്ട് ചെയ്തു.</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d വായിക്കാത്ത സന്ദേശം</item>
@@ -328,6 +330,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">ചില കോൺ‌ടാക്റ്റുകൾ‌ ലെഗസി ഗ്രൂപ്പുകളിൽ‌ ഉണ്ടാകാനാകില്ല.</string>
+  <string name="CreateGroupActivity__select_members">അംഗങ്ങളെ തിരഞ്ഞെടുക്കുക</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">പ്രൊഫൈൽ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">പ്രൊഫൈൽ ഫോട്ടോ ക്രമീകരിക്കുന്നതിൽ പിശക്</string>
@@ -341,6 +344,7 @@
   <string name="ChooseBackupFragment__icon_content_description">ബാക്കപ്പ് ഐക്കണിൽ നിന്ന് വീണ്ടെടുക്കൂ</string>
   <string name="ChooseBackupFragment__choose_backup">ബാക്കപ്പ് തിരഞ്ഞെടുക്കുക</string>
   <string name="ChooseBackupFragment__learn_more">കൂടുതൽ അറിയുക</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">ഫയൽ ബ്രൗസർ ലഭ്യമല്ല</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">വീണ്ടെടുക്കൽ പൂർത്തിയായി</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">ബാക്കപ്പുകൾ ഉപയോഗിക്കുന്നത് തുടരാൻ, ദയവായി ഒരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക. പുതിയ ബാക്കപ്പുകൾ ഇവിടെ സൂക്ഷിക്കും.</string>
@@ -418,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">പങ്കിടുക</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">ഒന്നിലധികം അറ്റാച്ചുമെന്റുകൾ ചിത്രങ്ങൾക്കും വീഡിയോകൾക്കും മാത്രമേ പിന്തുണയ്‌ക്കൂ</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">ഈ ഗ്രൂപ്പിലേക്ക് അയയ്ക്കാൻ നിങ്ങൾക്ക് അനുമതിയില്ല</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">സ്ഥിരമായ Signal ആശയവിനിമയ പരാജയം!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google Play Services രജിസ്റ്റർ ചെയ്യാൻ Signal ന് കഴിഞ്ഞില്ല. Signal സന്ദേശങ്ങളും കോളുകളും പ്രവർത്തനരഹിതമാക്കി. ക്രമീകരണം &gt; വിപുലമായ ക്രമീകരണം ൽ വീണ്ടും രജിസ്റ്റർ ചെയ്യാൻ ശ്രമിക്കുക.</string>
@@ -560,6 +565,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">ചെയ്‌തു</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ഈ വ്യക്തിയെ ലെഗസി ഗ്രൂപ്പുകളിൽ ചേർക്കാൻ കഴിയില്ല.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">ഈ വ്യക്തിയെ അനൗൺസ്മെന്റ് ഗ്രൂപ്പുകളിൽ ചേർക്കാൻ കഴിയില്ല.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">\"%1$s\"-നെ  \"%2$s\"-ലേക്ക് ചേർക്കുക</item>
     <item quantity="other">\"%2$s\"-ലേക്ക് %3$d അംഗങ്ങളെ ചേർക്കുക?</item>
@@ -630,6 +636,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">അഡ്‌മിനുകൾക്ക് മാത്രമേ പങ്കിടാനാകുന്ന ഗ്രൂപ്പ് ലിങ്ക് പുനഃസജ്ജമാക്കാൻ കഴിയൂ.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ഇത് ചെയ്യുന്നതിന് നിങ്ങൾക്ക് അവകാശമില്ല</string>
   <string name="ManageGroupActivity_not_capable">നിങ്ങൾ ചേർത്ത ഒരാൾ പുതിയ ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കുന്നില്ല, അവർ Signal അപ്‌ഡേറ്റുചെയ്യേണ്ടതുണ്ട്</string>
+  <string name="ManageGroupActivity_not_announcement_capable">നിങ്ങൾ ചേർത്ത ഒരാൾ അനൗൺസ്മെന്റ് ഗ്രൂപ്പുകളെ പിന്തുണയ്ക്കുന്നില്ല കൂടാതെ Signal അപ്ഡേറ്റ് ചെയ്യേണ്ടതുണ്ട്</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">ഗ്രൂപ്പ് അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">നിങ്ങൾ ഗ്രൂപ്പിലെ അംഗമല്ല</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">അഡ്‌മിനുകൾക്ക് മാത്രമേ പങ്കിടാനാകുന്ന ഗ്രൂപ്പ് ലിങ്ക് പുനഃസജ്ജമാക്കാൻ കഴിയൂ.</string>
@@ -742,22 +749,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">പങ്കിടുക</string>
   <string name="InviteActivity_share_with_contacts">കോൺടാക്റ്റുകളുമായി പങ്കിടുക</string>
-  <string name="InviteActivity_choose_how_to_share">എങ്ങനെ പങ്കിടണമെന്ന് തിരഞ്ഞെടുക്കുക</string>
   <string name="InviteActivity_cancel">റദ്ദാക്കുക</string>
   <string name="InviteActivity_sending">അയയ്ക്കുന്നു…</string>
   <string name="InviteActivity_invitations_sent">ക്ഷണങ്ങൾ അയച്ചു!</string>
   <string name="InviteActivity_invite_to_signal">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">%d സുഹൃത്തിന് SMS അയയ്‌ക്കുക</item>
-    <item quantity="other">%d സുഹൃത്തുക്കൾക്ക് SMS അയയ്‌ക്കുക</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d SMS ക്ഷണം അയയ്‌ക്കണോ?</item>
     <item quantity="other">%d SMS ക്ഷണങ്ങൾ അയയ്‌ക്കണോ?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal ലേക്ക് മാറാം: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">നിങ്ങൾക്ക് പങ്കിടാൻ അപ്ലിക്കേഷനുകളൊന്നുമില്ലെന്ന് തോന്നുന്നു.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">എൻക്രിപ്ഷനില്ലാതെ ചാറ്റുചെയ്യാൻ ചങ്ങാതിമാരെ നിങ്ങൾ അനുവദിക്കരുത്.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">കൂടുതൽ അറിയുക</string>
   <!--LongMessageActivity-->
@@ -823,15 +824,16 @@
   <string name="Megaphones_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
   <string name="Megaphones_use_sms">SMS ഉപയോഗിക്കുക</string>
   <string name="Megaphones_appearance">ദൃശ്യത</string>
+  <string name="Megaphones_add_photo">ഫോട്ടോ ചേർക്കുക</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal കോൾ പുരോഗതിയിലാണ്</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal കോൾ സ്ഥാപിക്കുന്നു</string>
   <string name="NotificationBarManager__incoming_signal_call">ഇൻകമിംഗ് സിഗ്നൽ കോൾ</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal കോൾ സേവനം നിർത്തുന്നു</string>
-  <string name="NotificationBarManager__deny_call">കോൾ നിരസിക്കുക</string>
   <string name="NotificationBarManager__answer_call">കോൾ സ്വീകരിക്കുക</string>
   <string name="NotificationBarManager__end_call">കോൾ അവസാനിപ്പിക്കുക</string>
   <string name="NotificationBarManager__cancel_call">കോൾ റദ്ദാക്കുക</string>
+  <string name="NotificationBarManager__join_call">കോളിൽ ചേരുക</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">അറിയിപ്പുകൾ ഓണാക്കണോ?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകളിൽ‌ നിന്നും ഗ്രൂപ്പുകളിൽ‌ നിന്നും ഒരു സന്ദേശം ഒരിക്കലും നഷ്‌ടപ്പെടുത്തരുത്.</string>
@@ -847,6 +849,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">ഒരു അടിക്കുറിപ്പ് ചേർക്കുക…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">വലുപ്പ പരിധി കവിഞ്ഞതിനാൽ ഒരു ഇനം നീക്കംചെയ്‌തു</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">ഒരു ഇനം അജ്ഞാത തരം ഉള്ളതിനാൽ നീക്കം ചെയ്തു</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">വലുപ്പ പരിധി കവിഞ്ഞതുകൊണ്ടോ അജ്ഞാതതരം ഉണ്ടായിരുന്നതുകൊണ്ടോ ഒരു ഇനം നീക്കം ചെയ്തു</string>
   <string name="MediaSendActivity_camera_unavailable">ക്യാമറ ലഭ്യമല്ല.</string>
   <string name="MediaSendActivity_message_to_s">%s-ന് സന്ദേശം</string>
   <string name="MediaSendActivity_message">സന്ദേശം</string>
@@ -863,6 +867,8 @@
   <string name="MediaRepository_all_media">എല്ലാ മീഡിയ</string>
   <string name="MediaRepository__camera">ക്യാമറ</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">സന്ദേശം ഡീക്രിപ്റ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">ഒരു ഡീബഗ് ലോഗ് അയയ്ക്കാൻ തൊടുക</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">അജ്ഞാതം</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ഇപ്പോൾ പിന്തുണയ്‌ക്കാത്ത Signal-ന്റെ പഴയ പതിപ്പ് ഉപയോഗിച്ച് എൻക്രിപ്റ്റുചെയ്‌ത ഒരു സന്ദേശം ലഭിച്ചു. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റ് ചെയ്ത് സന്ദേശം വീണ്ടും അയയ്‌ക്കാൻ അയച്ചയാളോട് ആവശ്യപ്പെടുക.</string>
@@ -918,7 +924,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s %2$s-നെ ഒരു അഡ്‌മിൻ ആക്കി.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s നിങ്ങളെ ഒരു അഡ്‌മിൻ ആക്കി.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">നിങ്ങൾ %1$s-ന്റെ അഡ്മിൻ പ്രത്യേകാവകാശങ്ങൾ റദ്ദാക്കി.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s നിങ്ങളുടെ അഡ്‌മിൻ പ്രത്യേകാവകാശങ്ങൾ റദ്ദാക്കി.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s നിങ്ങളുടെ അഡ്‌മിൻ പ്രത്യേകാവകാശങ്ങൾ റദ്ദാക്കിയിരിക്കുന്നു..</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s %2$s-ന്റെ അഡ്മിൻ പ്രത്യേകാവകാശങ്ങൾ റദ്ദാക്കി.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$sഇപ്പോൾ ഒരു അഡ്മിൻ ആണ്</string>
   <string name="MessageRecord_you_are_now_an_admin">നിങ്ങൾ ഇപ്പോൾ ഒരു അഡ്‌മിനാണ്.</string>
@@ -979,6 +985,12 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">ആർക്കാണ് ഗ്രൂപ്പ് അംഗത്വം എഡിറ്റുചെയ്യാനാകുമെന്ന് %1$s \"%2$s\" എന്നതിലേക്ക് മാറ്റി.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">ഗ്രൂപ്പ് അംഗത്വം ആർക്കൊക്കെ എഡിറ്റുചെയ്യാനാകും എന്നത്  \"%1$s\" ലേക്ക് മാറ്റി.</string>
   <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">എല്ലാ അംഗങ്ങളെയും സന്ദേശങ്ങള്‍ അയയ്ക്കാൻ അനുവദിക്കുന്നതിന് നിങ്ങൾ ഗ്രൂപ്പ് ക്രമീകരണങ്ങൾ മാറ്റി.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">അഡ്മിൻമാർക്ക് സന്ദേശങ്ങള്‍ അയയ്ക്കാൻ മാത്രം അനുവദിക്കുന്നതിന് നിങ്ങൾ ഗ്രൂപ്പ് ക്രമീകരണങ്ങൾ മാറ്റി.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">എല്ലാ അംഗങ്ങളും സന്ദേശങ്ങള്‍ അയയ്ക്കാൻ അനുവദിക്കുന്നതിന് %1$s ഗ്രൂപ്പ് ക്രമീകരണങ്ങൾ മാറ്റി.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">അഡ്മിൻമാർക്ക് സന്ദേശങ്ങള്‍ അയയ്ക്കാൻ മാത്രം അനുവദിക്കുന്നതിന് %1$sഗ്രൂപ്പ് ക്രമീകരണങ്ങൾ മാറ്റി.</string>
+  <string name="MessageRecord_allow_all_members_to_send">എല്ലാ അംഗങ്ങളെയും സന്ദേശങ്ങള്‍ അയയ്ക്കാൻ അനുവദിക്കുന്നതിന് ഗ്രൂപ്പ് ക്രമീകരണങ്ങൾ മാറ്റി.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">അഡ്മിൻമാർക്ക് സന്ദേശങ്ങള്‍ അയയ്ക്കാൻ മാത്രം അനുവദിക്കുന്നതിന് ഗ്രൂപ്പ് ക്രമീകരണങ്ങൾ മാറ്റി.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">അഡ്‌മിൻ അംഗീകാരം ഓഫായിരിക്കെ നിങ്ങൾ ഗ്രൂപ്പ് ലിങ്ക് ഓണാക്കി.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">അഡ്‌മിൻ അംഗീകാരം ഓണായിരിക്കെ നിങ്ങൾ ഗ്രൂപ്പ് ലിങ്ക് ഓണാക്കി.</string>
@@ -1023,6 +1035,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ മറ്റൊരു ഉപകരണത്തിൽ നിന്ന് പരിശോധിച്ചുറപ്പിച്ചതായി അടയാളപ്പെടുത്തി</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ നിങ്ങൾ മറ്റൊരു ഉപകരണത്തിൽ നിന്ന് സ്ഥിരീകരിച്ചിട്ടില്ലതായി അടയാളപ്പെടുത്തി</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%s-ൽ നിന്നുള്ള ഒരു സന്ദേശം ഡെലിവർ ചെയ്യാൻ കഴിഞ്ഞില്ല</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ഒരു ഗ്രൂപ്പ് കോൾ ആരംഭിച്ചു . %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ഗ്രൂപ്പ് കോളിലാണ് · %2$s</string>
@@ -1181,13 +1194,12 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">വിളിക്കുന്നു…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal വോയ്‌സ് കോൾ…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal വീഡിയോ കോൾ…</string>
+  <string name="WebRtcCallView__signal_call">Signal വിളി</string>
+  <string name="WebRtcCallView__signal_video_call">Signal വീഡിയോ കോൾ</string>
   <string name="WebRtcCallView__start_call">കോൾ ആരംഭിക്കുക</string>
   <string name="WebRtcCallView__join_call">കോളിൽ ചേരുക</string>
   <string name="WebRtcCallView__call_is_full">കോൾ നിറഞ്ഞു</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">ഈ കോളില്‍ പങ്കെടുക്കാന്നാവുന്നവരുടെ പരമാവധി എണ്ണമായ %1$d ആയിരിക്കുന്നു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" ഗ്രൂപ്പ് കോൾ</string>
   <string name="WebRtcCallView__view_participants_list">പങ്കെടുക്കുന്നവരെ കാണുക</string>
   <string name="WebRtcCallView__your_video_is_off">നിങ്ങളുടെ വീഡിയോ ഓഫാണ്</string>
   <string name="WebRtcCallView__reconnecting">റീകണക്ടിംഗ്…</string>
@@ -1196,10 +1208,15 @@
   <string name="WebRtcCallView__no_one_else_is_here">മറ്റാരുമില്ല</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s ഈ കോളിലുണ്ട് </string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s - ഉം %2$s - ഉം ഈ കോളിലുണ്ട് </string>
+  <string name="WebRtcCallView__s_is_presenting">%1$sഅവതരിപ്പിക്കുന്നു</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s- ഉം, %2$s - ഉം പിന്നെ %3$d - ഉം ഈ കോളിലുണ്ട്</item>
     <item quantity="other">%1$s - ഉം, %2$s - ഉം പിന്നെ %3$d ആളുകളും ഈ കോളിലുണ്ട്</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">സ്പീക്കർ</string>
+  <string name="WebRtcCallView__camera">ക്യാമറ</string>
+  <string name="WebRtcCallView__mute">നിശബ്ദമാക്കുക</string>
+  <string name="WebRtcCallView__end_call">കോൾ അവസാനിപ്പിക്കൂ</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">ഈ കോളിൽ - %1$d ആളുണ്ട് </item>
@@ -1213,6 +1230,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s നിന്ന് ഓഡിയോയും വീഡിയോയും സ്വീകരിക്കാൻ കഴിയുന്നില്ല </string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറ്റം അവർ സ്ഥിരീകരിക്കാത്തതിനാലോ അവരുടെ ഉപകരണത്തിൽ ഒരു പ്രശ്നമുണ്ടായതിനാലോ അവർ നിങ്ങളെ തടഞ്ഞതിനാലോ ആയിരിക്കാം ഇത്.</string>
   <!--CallToastPopupWindow-->
+  <string name="CallToastPopupWindow__swipe_to_view_screen_share">സ്ക്രീൻ ഷെയർ കാണാൻ സ്വൈപ്പ് ചെയ്യുക</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">പ്രോക്സി സെർവർ</string>
   <string name="ProxyBottomSheetFragment_proxy_address">പ്രോക്സി വിലാസം</string>
@@ -1334,6 +1352,7 @@
   <string name="SubmitDebugLogActivity_success">വിജയം!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ഈ URL പകർത്തി നിങ്ങളുടെ പ്രശ്ന റിപ്പോർട്ടിലേക്കോ പിന്തുണാ ഇമെയിലിലേക്കോ ചേർക്കുക:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">പങ്കിടുക</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">സംഭാവന നൽകുന്നവർക്ക് കാണുന്നതിന് ഈ ലോഗ് പരസ്യമായി ഓൺലൈനിൽ പോസ്റ്റുചെയ്യും. അപ്‌ലോഡ് ചെയ്യുന്നതിന് മുമ്പ് നിങ്ങൾക്ക് ഇത് പരിശോധിക്കാവുന്നതാണ്.</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">ഫിൽട്ടർ:</string>
   <string name="SupportEmailUtil_device_info">ഉപകരണ വിവരം:</string>
@@ -1366,6 +1385,7 @@
   <string name="ThreadRecord_you_marked_verified">നിങ്ങൾ സ്ഥിരീകരിച്ചതായി അടയാളപ്പെടുത്തി</string>
   <string name="ThreadRecord_you_marked_unverified">നിങ്ങൾ സ്ഥിരീകരിക്കാത്തതായി അടയാളപ്പെടുത്തി</string>
   <string name="ThreadRecord_message_could_not_be_processed">സന്ദേശം പ്രോസസ്സ് ചെയ്യാൻ കഴിഞ്ഞില്ല</string>
+  <string name="ThreadRecord_delivery_issue">ഡെലിവറി പ്രശ്നം</string>
   <string name="ThreadRecord_message_request">സന്ദേശത്തിനുള്ള അപേക്ഷ</string>
   <string name="ThreadRecord_photo">ഫോട്ടോ</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1481,6 +1501,7 @@
   <string name="NotificationChannel_missing_display_name">അജ്ഞാതം</string>
   <string name="NotificationChannel_voice_notes">ശബ്ദ കുറിപ്പുകൾ</string>
   <string name="NotificationChannel_contact_joined_signal">കോൺ‌ടാക്റ്റ് Signal-ൽ ചേർന്നു</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">അറിയിപ്പ് ചാനൽ ക്രമീകരണങ്ങൾ തുറക്കാൻ ഒരു പ്രവർത്തനവും ലഭ്യമല്ല.</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal പൂട്ടിയിരിക്കുമ്പോൾ ദ്രുത പ്രതികരണം ലഭ്യമല്ല!</string>
@@ -1496,6 +1517,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">പുതിയ സന്ദേശം</string>
+  <string name="SingleRecipientNotificationBuilder_message_request">സന്ദേശം അഭ്യർത്ഥന</string>
   <string name="SingleRecipientNotificationBuilder_you">നിങ്ങൾ</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">വീഡിയോ പ്ലേ ചെയ്യുക</string>
@@ -1602,9 +1624,11 @@
   <string name="ConversationUpdateItem_return_to_call">കോളിലേക്ക് മടങ്ങുക</string>
   <string name="ConversationUpdateItem_call_is_full">കോൾ നിറഞ്ഞു</string>
   <string name="ConversationUpdateItem_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
+  <string name="ConversationUpdateItem_enable_call_notifications">കോൾ അറിയിപ്പുകൾ പ്രാപ്തമാക്കുക</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">പൊതുവായി ഗ്രൂപ്പുകളൊന്നുമില്ല. അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ഈ ഗ്രൂപ്പിൽ കോൺടാക്റ്റുകളൊന്നുമില്ല. അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
   <string name="ConversationUpdateItem_view">കാണുക</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">നിങ്ങൾ സന്ദേശമയയ്‌ക്കുമ്പോൾ അപ്രത്യക്ഷമാകുന്ന സന്ദേശ സമയം %1$s ആയി സജ്ജീകരിക്കും.</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">പ്ലേ … പോസ്</string>
   <string name="audio_view__download_accessibility_description">ഡൌൺലോഡ്</string>
@@ -1630,7 +1654,17 @@
   <string name="safety_number_change_dialog__view">കാണുക</string>
   <string name="safety_number_change_dialog__previous_verified">മുമ്പ് പരിശോധിച്ചത്</string>
   <!--EnableCallNotificationSettingsDialog__call_notifications_checklist-->
+  <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">കോൾ അറിയിപ്പുകൾ പ്രാപ്തമാക്കി.</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">കോൾ അറിയിപ്പുകൾ പ്രാപ്തമാക്കുക</string>
+  <string name="EnableCallNotificationSettingsDialog__enable_background_activity">പശ്ചാത്തല പ്രവർത്തനം പ്രാപ്തമാക്കുക</string>
+  <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">എല്ലാം ഇപ്പോൾ നന്നായി തോന്നുന്നു!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">കോൾ അറിയിപ്പുകൾ സ്വീകരിക്കുന്നതിന്, ഇവിടെ തൊടുക കൂടാതെ \"അറിയിപ്പുകൾ കാണിക്കുക\" ഓണാക്കുക.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">കോൾ അറിയിപ്പുകൾ സ്വീകരിക്കുന്നതിന്, ഇവിടെ തൊടുക, അറിയിപ്പുകൾ ഓണാക്കുക കൂടാതെ സൗണ്ട്, പോപ്പ്-അപ്പ് എന്നിവ പ്രാപ്തമാണെന്ന് ഉറപ്പാക്കുക.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">കോൾ അറിയിപ്പുകൾ സ്വീകരിക്കുന്നതിന്, ഇവിടെ തൊടുക കൂടാതെ \"ബാറ്ററി\" ക്രമീകരണങ്ങളിൽ പശ്ചാത്തല പ്രവർത്തനം പ്രാപ്തമാക്കുക. </string>
   <string name="EnableCallNotificationSettingsDialog__settings">ക്രമീകരണങ്ങൾ</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">കോൾ അറിയിപ്പുകൾ സ്വീകരിക്കുന്നതിന്, ക്രമീകരണങ്ങൾ തൊടുക കൂടാതെ  \"അറിയിപ്പുകൾ കാണിക്കുക\" ഓണാക്കുക.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">കോൾ അറിയിപ്പുകൾ സ്വീകരിക്കുന്നതിന്, ക്രമീകരണങ്ങൾ തൊടുക കൂടാതെ അറിയിപ്പുകൾ ഓണാക്കുക, സൗണ്ട്, പോപ്പ്-അപ്പ് എന്നിവ പ്രാപ്തമാണെന്ന് ഉറപ്പാക്കുക.</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">കോൾ അറിയിപ്പുകൾ സ്വീകരിക്കുന്നതിന്, ക്രമീകരണങ്ങൾ തൊടുക, \"ബാറ്ററി\" ക്രമീകരണങ്ങളിൽ പശ്ചാത്തല പ്രവർത്തനം പ്രാപ്തമാക്കുക.</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">രാജ്യങ്ങൾ ലഭ്യമാക്കുന്നു…</string>
   <string name="country_selection_fragment__search">തിരയൽ</string>
@@ -1685,6 +1719,7 @@
     <item quantity="other">%d പേർ</item>
   </plurals>
   <!--giphy_activity-->
+  <string name="giphy_activity_toolbar__search_gifs">GIF-കൾ തിരയുക</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ഒന്നും കണ്ടെത്തിയില്ല</string>
   <!--database_migration_activity-->
@@ -1714,6 +1749,9 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">നിങ്ങളുടെ വയർലെസ് കാരിയർ വഴി മീഡിയയും ഗ്രൂപ്പ് സന്ദേശങ്ങളും കൈമാറാൻ Signal-ന് MMS ക്രമീകരണങ്ങൾ ആവശ്യമാണ്. നിങ്ങളുടെ ഉപകരണം ഈ വിവരങ്ങൾ ലഭ്യമാക്കുന്നില്ല, ഇത് ലോക്കുചെയ്‌ത ഉപകരണങ്ങൾക്കും മറ്റ് നിയന്ത്രിത കോൺഫിഗറേഷനുകൾക്കും ഇടയ്ക്കിടെ ശരിയാണ്.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">മീഡിയയും ഗ്രൂപ്പ് സന്ദേശങ്ങളും അയയ്‌ക്കാൻ, \'ശരി\' ടാപ്പുചെയ്‌ത് അഭ്യർത്ഥിച്ച ക്രമീകരണങ്ങൾ പൂർത്തിയാക്കുക. \'നിങ്ങളുടെ കാരിയർ APN\' എന്നതിനായി തിരയുന്നതിലൂടെ നിങ്ങളുടെ കാരിയറിനായുള്ള MMS ക്രമീകരണങ്ങൾ സാധാരണയായി കണ്ടെത്താനാകും. നിങ്ങൾ ഇത് ഒരു തവണ ചെയ്താൽ മതി.</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">ഡെലിവറി പ്രശ്നം</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">%s-ൽ നിന്ന് ഒരു സന്ദേശം, സ്റ്റിക്കർ, പ്രതികരണം, അല്ലെങ്കിൽ വായിച്ച രസീത് എന്നിവ നിങ്ങൾക്ക് വേണ്ടി ഡെലിവർ ചെയ്യാൻ കഴിഞ്ഞില്ല. അവർ അത് നേരിട്ടോ അല്ലെങ്കിൽ ഒരു ഗ്രൂപ്പിലോ നിങ്ങൾക്ക് അയയ്ക്കാൻ ശ്രമിച്ചിരിക്കാം.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">%s-ൽ നിന്ന് ഒരു സന്ദേശം, സ്റ്റിക്കർ, പ്രതികരണം, അല്ലെങ്കിൽ വായിച്ച രസീത് എന്നിവ നിങ്ങൾക്ക് വേണ്ടി ഡെലിവർ ചെയ്യാൻ കഴിഞ്ഞില്ല.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">പേരിൻ്റെ ആദ്യ ഭാഗം (ആവശ്യമാണ്)</string>
   <string name="CreateProfileActivity_last_name_optional">പേരിൻ്റെ അവസാന ഭാഗം (ഓപ്ഷണൽ)</string>
@@ -1770,6 +1808,7 @@
   <string name="message_details_recipient_header__delivered_to">കൈമാറിയത്</string>
   <string name="message_details_recipient_header__read_by">വായിച്ചത്</string>
   <string name="message_details_recipient_header__not_sent">അയച്ചില്ല</string>
+  <string name="message_details_recipient_header__viewed">കണ്ടത്</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">അയയ്‌ക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="message_details_recipient__new_safety_number">പുതിയ സുരക്ഷാ നമ്പർ </string>
@@ -1803,6 +1842,15 @@
   <string name="HelpFragment__debug_log">ഡീബഗ് ലോഗ്:</string>
   <string name="HelpFragment__could_not_upload_logs">ലോഗുകൾ അപ്‌ലോഡുചെയ്യാനായില്ല</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">പ്രശ്നം മനസിലാക്കാൻ ഞങ്ങളെ സഹായിക്കുന്നതിന് ദയവായി കഴിയുന്നത്ര വിവരണാത്മകമായിരിക്കുക.</string>
+  <string-array name="HelpFragment__categories">
+    <item>-- ദയവായി ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക --</item>
+    <item>എന്തോ പ്രവർത്തിക്കുന്നില്ല</item>
+    <item>ഫീച്ചർ അഭ്യർത്ഥന</item>
+    <item>ചോദ്യം</item>
+    <item>ഫീഡ്ബാക്ക്</item>
+    <item>മറ്റ് </item>
+    <item>പേയ്മെന്റുകൾ</item>
+  </string-array>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ഈ സന്ദേശം</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">അടുത്തിടെ ഉപയോഗിച്ചവ</string>
@@ -1820,6 +1868,7 @@
   <string name="arrays__use_default">സ്ഥിരസ്ഥിതി ഉപയോഗിക്കുക</string>
   <string name="arrays__use_custom">ഇഷ്‌ടാനുസൃതം ഉപയോഗിക്കുക</string>
   <string name="arrays__mute_for_one_hour">1 മണിക്കൂറിന് നിശബ്ദമാക്കുക</string>
+  <string name="arrays__mute_for_eight_hours">8 മണിക്കൂർ നിശബ്ദമാക്കുക</string>
   <string name="arrays__mute_for_one_day">1 ദിവസത്തേക്ക്  നിശബ്ദമാക്കുക</string>
   <string name="arrays__mute_for_seven_days">7 ദിവസത്തേക്ക് നിശബ്ദമാക്കുക</string>
   <string name="arrays__always">എല്ലായ്പ്പോഴും</string>
@@ -1846,6 +1895,7 @@
     <item quantity="other">%dh</item>
   </plurals>
   <!--preferences.xml-->
+  <string name="preferences_beta">ബീറ്റ</string>
   <string name="preferences__sms_mms">SMS &amp; MMS</string>
   <string name="preferences__pref_all_sms_title">എല്ലാ SMS-കളും സ്വീകരിക്കുക</string>
   <string name="preferences__pref_all_mms_title">എല്ലാ MMS സ്വീകരിക്കുക</string>
@@ -1909,6 +1959,8 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">നിങ്ങൾ അയയ്ക്കുന്ന ഓരോ SMS സന്ദേശത്തിനും ഒരു ഡെലിവറി റിപ്പോർട്ട് അഭ്യർത്ഥിക്കുക</string>
   <string name="preferences__data_and_storage">ഡാറ്റയും സ്റ്റോറേജും</string>
   <string name="preferences__storage">സ്റ്റോറേജ്</string>
+  <string name="preferences__payments">പേയ്മെന്റുകൾ</string>
+  <string name="preferences__payments_beta">പേയ്‌മെന്റുകൾ (ബീറ്റ)</string>
   <string name="preferences__conversation_length_limit">സംഭാഷണ ദൈർഘ്യ പരിധി</string>
   <string name="preferences__keep_messages">സന്ദേശങ്ങൾ സൂക്ഷിക്കുക</string>
   <string name="preferences__clear_message_history">സന്ദേശ ചരിത്രം മായ്‌ക്കുക</string>
@@ -1978,6 +2030,8 @@
   <string name="preferences_data_and_storage__calls">കോളുകൾ</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">കോളുകള്ക്ക് കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുക</string>
   <string name="preferences_data_and_storage__never">ഒരിക്കലും വേണ്ട</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">വൈഫൈ, മൊബൈൽ ഡാറ്റ</string>
+  <string name="preferences_data_and_storage__mobile_data_only">മൊബൈൽ ഡാറ്റ മാത്രം</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുന്നത് ബലഹീന നെറ്വർക്കിൽ ഗുണമേന്മ ഉയർത്തിയേക്കാം.</string>
   <string name="preferences_notifications__messages">സന്ദേശങ്ങൾ</string>
   <string name="preferences_notifications__events">ഇവന്റുകൾ</string>
@@ -2002,6 +2056,7 @@
   <string name="preferences_off">ഓഫ്</string>
   <string name="preferences_on">ഓൺ</string>
   <string name="preferences_proxy_address">പ്രോക്സി വിലാസം</string>
+  <string name="preferences_only_use_a_proxy_if">മൊബൈൽ ഡാറ്റയിലോ വൈഫൈയിലോ നിങ്ങൾക്ക് Signal-ലേക്ക് കണക്റ്റുചെയ്യാൻ കഴിയുന്നില്ലെങ്കിൽ മാത്രം ഒരു പ്രോക്സി ഉപയോഗിക്കുക.</string>
   <string name="preferences_share">പങ്കിടുക</string>
   <string name="preferences_save">സംരക്ഷിക്കൂ</string>
   <string name="preferences_connecting_to_proxy">പ്രോക്‌സിയിലേക്ക് കണക്റ്റുചെയ്യുന്നു…</string>
@@ -2015,29 +2070,98 @@
   <string name="configurable_single_select__customize_option">ഓപ്ഷൻ ഇച്ഛാനുസൃതമാക്കുക</string>
   <!--Internal only preferences-->
   <!--Payments-->
+  <string name="PaymentsActivityFragment__all_activity">എല്ലാ പ്രവർത്തനങ്ങളും</string>
   <string name="PaymentsAllActivityFragment__all">എല്ലാം</string>
   <string name="PaymentsAllActivityFragment__sent">അയച്ചത്</string>
   <string name="PaymentsAllActivityFragment__received">ലഭിച്ചു</string>
+  <string name="PaymentsHomeFragment__introducing_payments">പേയ്‌മെന്റുകൾ അവതരിപ്പിക്കുന്നു (ബീറ്റ)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">സ്വകാര്യതയിൽ ശ്രദ്ധ കേന്ദ്രീകരിക്കുന്ന ഒരു പുതിയ ഡിജിറ്റൽ കറൻസി മൊബൈൽകോയിൻ അയയ്ക്കാനും സ്വീകരിക്കാനും Signal ഉപയോഗിക്കുക. ആരംഭിക്കാൻ സജീവമാക്കുക.</string>
+  <string name="PaymentsHomeFragment__activate_payments">പേയ്മെന്റുകൾ സജീവമാക്കുക</string>
+  <string name="PaymentsHomeFragment__activating_payments">പേയ്‌മെന്റുകൾ സജീവമാക്കുന്നു…</string>
+  <string name="PaymentsHomeFragment__restore_payments_account">പേയ്മെന്റ് അക്കൗണ്ട് പുനഃസ്ഥാപിക്കുക</string>
+  <string name="PaymentsHomeFragment__no_recent_activity_yet">സമീപകാല പ്രവർത്തനമൊന്നും ഇതുവരെ ഉണ്ടായിട്ടില്ല</string>
+  <string name="PaymentsHomeFragment__pending_requests">തീർച്ചപ്പെടുത്താത്ത അഭ്യർത്ഥനകൾ</string>
+  <string name="PaymentsHomeFragment__recent_activity">സമീപകാല പ്രവർത്തനം</string>
   <string name="PaymentsHomeFragment__see_all">എല്ലാം കാണുക</string>
+  <string name="PaymentsHomeFragment__add_funds">ഫണ്ടുകൾ ചേർക്കുക</string>
   <string name="PaymentsHomeFragment__send">അയയ്‌ക്കുക</string>
+  <string name="PaymentsHomeFragment__sent_s">%1$s അയച്ചു</string>
+  <string name="PaymentsHomeFragment__received_s">%1$s ലഭിച്ചു</string>
+  <string name="PaymentsHomeFragment__transfer_to_exchange">എക്സ്ചേഞ്ചിലേക്ക് കൈമാറുക</string>
+  <string name="PaymentsHomeFragment__currency_conversion">കറൻസി മാറ്റം</string>
+  <string name="PaymentsHomeFragment__deactivate_payments">പേയ്മെന്റുകൾ നിർജ്ജീവമാക്കുക</string>
+  <string name="PaymentsHomeFragment__recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം</string>
   <string name="PaymentsHomeFragment__help">സഹായം</string>
+  <string name="PaymentsHomeFragment__coin_cleanup_fee">നാണയം വൃത്തിയാക്കൽ ഫീസ്</string>
+  <string name="PaymentsHomeFragment__sent_payment">പേയ്മെന്റ് അയച്ചു</string>
+  <string name="PaymentsHomeFragment__received_payment">പേയ്മെന്റ് ലഭിച്ചു</string>
+  <string name="PaymentsHomeFragment__processing_payment">പേയ്മെന്റ് പ്രോസസ് ചെയ്യുന്നു</string>
+  <string name="PaymentsHomeFragment__unknown_amount">---</string>
+  <string name="PaymentsHomeFragment__currency_conversion_not_available">കറൻസി മാറ്റം ലഭ്യമല്ല</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">കറൻസി പരിവർത്തനം പ്രദർശിപ്പിക്കാൻ കഴിയില്ല. നിങ്ങളുടെ ഫോണിന്റെ കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
+  <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">നിങ്ങളുടെ മേഖലയിൽ പേയ്‌മെന്റുകൾ ലഭ്യമല്ല.</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">പേയ്‌മെന്റുകൾ പ്രാപ്തമാക്കാൻ കഴിഞ്ഞില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
+  <string name="PaymentsHomeFragment__deactivate_payments_question">പേയ്‌മെന്റുകൾ നിർജ്ജീവമാക്കണോ?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">നിങ്ങൾ പേയ്മെന്റുകൾ നിർജ്ജീവമാക്കിയാൽ നിങ്ങൾക്ക് Signal-ൽ മൊബൈൽ കോയിൻ അയയ്ക്കാനോ സ്വീകരിക്കാനോ കഴിയില്ല.</string>
+  <string name="PaymentsHomeFragment__deactivate">നിർജ്ജീവമാക്കുക</string>
   <string name="PaymentsHomeFragment__continue">തുടരുക</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">ബാലൻസ് നിലവിൽ ലഭ്യമല്ല.</string>
+  <string name="PaymentsHomeFragment__payments_deactivated">പേയ്‌മെന്റുകൾ നിർജ്ജീവമാക്കി.</string>
+  <string name="PaymentsHomeFragment__payment_failed">പേയ്മെന്റ് പരാജയപ്പെട്ടു</string>
   <string name="PaymentsHomeFragment__details">വിശദാംശങ്ങൾ</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">മൊബൈൽ കോയിൻ അയയ്ക്കാനും സ്വീകരിക്കാനും നിങ്ങൾക്ക് Signal ഉപയോഗിക്കാം. എല്ലാ പേയ്മെന്റുകളും മൊബൈൽ കോയിനുകൾക്കായുള്ള ഉപയോഗ വ്യവസ്ഥകൾക്കും മൊബൈൽ കോയിൻ വാലറ്റിനും വിധേയമാണ്. ഇത് ഒരു ബീറ്റ സവിശേഷതയാണ്, അതിനാൽ നിങ്ങൾക്ക് ചില പ്രശ്നങ്ങൾ നേരിടാം കൂടാതെ പേയ്മെന്റുകളും അല്ലെങ്കിൽ ബാലൻസുകളും വീണ്ടെടുക്കാൻ കഴിയില്ല. </string>
+  <string name="PaymentsHomeFragment__activate">സജീവമാക്കുക</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">മൊബൈൽ കോയിൻ നിബന്ധനകൾ കാണുക</string>
+  <string name="PaymentsHomeFragment__payments_not_available">Signal-ലെ പേയ്‌മെന്റുകൾ ഇനി ലഭ്യമല്ല. നിങ്ങൾക്ക് ഇപ്പോഴും ഒരു എക്സ്ചേഞ്ചിലേക്ക് ഫണ്ടുകൾ ട്രാൻസ്ഫർ ചെയ്യാൻ കഴിയും, എന്നാൽ നിങ്ങൾക്ക് ഇനി പേയ്മെന്റുകൾ അയയ്ക്കാനും കൂടാതെ സ്വീകരിക്കാനും അല്ലെങ്കിൽ ഫണ്ടുകൾ ചേർക്കാനോ കഴിയില്ല.</string>
   <!--PaymentsAddMoneyFragment-->
+  <string name="PaymentsAddMoneyFragment__add_funds">ഫണ്ടുകൾ ചേർക്കുക</string>
+  <string name="PaymentsAddMoneyFragment__your_wallet_address">നിങ്ങളുടെ വാലറ്റ് വിലാസം</string>
   <string name="PaymentsAddMoneyFragment__copy">പകർത്തുക</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">ഫണ്ടുകൾ ചേർക്കുന്നതിന്, നിങ്ങളുടെ വാലറ്റ് വിലാസത്തിലേക്ക് മൊബൈൽ കോയിൻ അയയ്ക്കുക. മൊബൈൽ കോയിൻ പിന്തുണയ്ക്കുന്ന ഒരു എക്സ്ചേഞ്ചിൽ നിങ്ങളുടെ അക്കൗണ്ടിൽ നിന്ന് ഒരു ട്രാൻസാക്ഷൻ ആരംഭിക്കുക, തുടർന്ന് ക്യുആർ കോഡ് സ്കാൻ ചെയ്യുക അല്ലെങ്കിൽ നിങ്ങളുടെ വാലറ്റ് വിലാസം പകർത്തുക.</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">വിശദാംശങ്ങൾ</string>
   <string name="PaymentsDetailsFragment__status">സ്റ്റാറ്റസ്</string>
+  <string name="PaymentsDetailsFragment__submitting_payment">പേയ്മെന്റ് സമർപ്പിക്കുന്നു…</string>
+  <string name="PaymentsDetailsFragment__processing_payment">പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
+  <string name="PaymentsDetailsFragment__payment_complete">പേയ്മെന്റ് പൂർത്തിയായി</string>
+  <string name="PaymentsDetailsFragment__payment_failed">പേയ്മെന്റ് പരാജയപ്പെട്ടു</string>
+  <string name="PaymentsDetailsFragment__network_fee">നെറ്റ്‌വർക്ക് ഫീസ്</string>
+  <string name="PaymentsDetailsFragment__sent_by">കൊണ്ട് അയച്ചത്</string>
+  <string name="PaymentsDetailsFragment__sent_to_s">%1$s-ലേക്ക് അയച്ചു</string>
+  <string name="PaymentsDetailsFragment__you_on_s_at_s">നിങ്ങൾ %1$s-ന് %2$s-യിൽ</string>
+  <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s%2$s-ന് %3$s-യിൽ</string>
   <string name="PaymentsDetailsFragment__to">സ്വീകർത്താവ്:</string>
   <string name="PaymentsDetailsFragment__from">പ്രേഷിതാവ്:</string>
+  <string name="PaymentsDetailsFragment__information">പേയ്മെന്റ് തുകയും ഇടപാടിന്റെ സമയവും ഉൾപ്പെടെയുള്ള ട്രാൻസാക്ഷൻ വിശദാംശങ്ങൾ മൊബൈൽ കോയിൻ ലെഡ്ജറിന്റെ ഭാഗമാണ്. </string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_fee">നാണയം വൃത്തിയാക്കൽ ഫീസ്</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">നിങ്ങളുടെ കൈവശമുള്ള നാണയങ്ങൾ ഒരു ഇടപാട് പൂർത്തിയാക്കാൻ സംയോജിപ്പിക്കാൻ കഴിയാത്തപ്പോൾ ഒരു \"നാണയം വൃത്തിയാക്കൽ ഫീസ്\" ഈടാക്കുന്നു. പേയ്മെന്റുകൾ അയയ്ക്കുന്നത് തുടരാൻ ക്ലീനപ്പ് നിങ്ങളെ അനുവദിക്കും.</string>
+  <string name="PaymentsDetailsFragment__no_details_available">ഈ ഇടപാടിന് കൂടുതൽ വിശദാംശങ്ങൾ ലഭ്യമല്ല</string>
+  <string name="PaymentsDetailsFragment__sent_payment">പേയ്മെന്റ് അയച്ചു</string>
+  <string name="PaymentsDetailsFragment__received_payment">പേയ്മെന്റ് ലഭിച്ചു</string>
+  <string name="PaymentsDeatilsFragment__payment_completed_s">പേയ്മെന്റ് പൂർത്തിയായി %1$s</string>
+  <string name="PaymentsDetailsFragment__block_number">നമ്പർ തടയുക</string>
   <!--PaymentsTransferFragment-->
+  <string name="PaymentsTransferFragment__transfer">കൈമാറ്റം</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR കോഡ് സ്‌കാൻ ചെയ്യുക</string>
+  <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">ഇതിലേക്ക്: വാലറ്റ് വിലാസം സ്കാൻ ചെയ്യുക അല്ലെങ്കിൽ നൽകുക</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">എക്സ്ചേഞ്ച് നൽകുന്ന വാലറ്റ് വിലാസത്തിലേക്ക് ഒരു ട്രാൻസ്ഫർ പൂർത്തിയാക്കി ക്കൊണ്ട് നിങ്ങൾക്ക് മൊബൈൽ കോയിൻ ട്രാൻസ്ഫർ ചെയ്യാം. ക്യുആർ കോഡിന് ഏറ്റവും താഴെ യുള്ള സംഖ്യകളുടെയും അക്ഷരങ്ങളുടെയും സ്ട്രിംഗാണ് വാലറ്റ് വിലാസം.</string>
   <string name="PaymentsTransferFragment__next">അടുത്തത്</string>
+  <string name="PaymentsTransferFragment__invalid_address">അസാധുവായ വിലാസം</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">നിങ്ങൾ ട്രാൻസ്ഫർ ചെയ്യാൻ ശ്രമിക്കുന്ന വാലറ്റ് വിലാസം പരിശോധിക്കുക, വീണ്ടും ശ്രമിക്കുക.</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">നിങ്ങളുടെ സ്വന്തം Signal വാലറ്റ് വിലാസത്തിലേക്ക് നിങ്ങൾക്ക് ട്രാൻസ്ഫർ ചെയ്യാൻ കഴിയില്ല. പിന്തുണയുള്ള എക്സ്ചേഞ്ചിൽ നിങ്ങളുടെ അക്കൗണ്ടിൽ നിന്ന് വാലറ്റ് വിലാസം നൽകുക. </string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">ഒരു ക്യുആർ കോഡ് സ്കാൻ ചെയ്യുന്നതിന്, Signal-ന് ക്യാമറയിലേക്ക് ആക്സസ് ആവശ്യമാണ്.</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">ഒരു ക്യുആർ കോഡ് ക്യാപ്ച്വർ ചെയ്യുന്നതിന് Signal-ന് ക്യാമറയുടെ അനുമതി ആവശ്യമാണ്. ക്രമീകരണങ്ങളിലേക്ക് പോവുക, \"അനുമതികൾ\" തിരഞ്ഞെടുക്കുക, \"ക്യാമറ\" പ്രാപ്തമാക്കുക.</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">ഒരു ക്യുആർ കോഡ് സ്കാൻ ചെയ്യുന്നതിന്, Signal-ന് ക്യാമറയിലേക്ക് ആക്സസ് ആവശ്യമാണ്.</string>
   <string name="PaymentsTransferFragment__settings">ക്രമീകരണങ്ങൾ</string>
   <!--PaymentsTransferQrScanFragment-->
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">വിലാസം ക്യുആർ കോഡ് സ്കാൻ ചെയ്യുക</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">പണമടയ്ക്കുന്നയാളുടെ വിലാസം ക്യുആർ കോഡ് സ്കാൻ ചെയ്യുക</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">അഭ്യർത്ഥിക്കുക</string>
+  <string name="CreatePaymentFragment__pay">പണമടയ്ക്കുക</string>
+  <string name="CreatePaymentFragment__available_balance_s">ലഭ്യമായ ബാലൻസ്: %1$s</string>
+  <string name="CreatePaymentFragment__toggle_content_description">ടോഗിൾ ചെയ്യുക</string>
   <string name="CreatePaymentFragment__1">1</string>
   <string name="CreatePaymentFragment__2">2</string>
   <string name="CreatePaymentFragment__3">3</string>
@@ -2052,13 +2176,30 @@
   <string name="CreatePaymentFragment__lt">&lt;</string>
   <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">കുറിപ്പ് ചേര്ക്കുക</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">പരിവർത്തനങ്ങൾ വെറും എസ്റ്റിമേറ്റുകൾ മാത്രമാണ്, അത് കൃത്യമല്ലായിരിക്കാം.</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">കുറിപ്പ്</string>
   <!--ConfirmPaymentFragment-->
+  <string name="ConfirmPayment__confirm_payment">പേയ്മെന്റ് സ്ഥിരീകരിക്കുക</string>
+  <string name="ConfirmPayment__network_fee">നെറ്റ്‌വർക്ക് ഫീസ്</string>
+  <string name="ConfirmPayment__error_getting_fee">ഫീസ് ലഭിക്കുന്നതിൽ പിശക്</string>
+  <string name="ConfirmPayment__estimated_s">കണക്കാക്കിയ %1$s</string>
   <string name="ConfirmPayment__to">സ്വീകർത്താവ്:</string>
   <string name="ConfirmPayment__total_amount">മൊത്തം തുക</string>
+  <string name="ConfirmPayment__balance_s">ബാലൻസ്: %1$s</string>
+  <string name="ConfirmPayment__submitting_payment">പേയ്മെന്റ് സമർപ്പിക്കുന്നു…</string>
+  <string name="ConfirmPayment__processing_payment">പേയ്‌മെന്റ് പ്രോസസ്സ് ചെയ്യുന്നു…</string>
+  <string name="ConfirmPayment__payment_complete">പേയ്മെന്റ് പൂർത്തിയായി</string>
+  <string name="ConfirmPayment__payment_failed">പേയ്മെന്റ് പരാജയപ്പെട്ടു</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">പേയ്മെന്റ് പ്രോസസ്സിംഗ് തുടരും</string>
+  <string name="ConfirmPaymentFragment__invalid_recipient">അസാധുവായ സ്വീകർത്താവ്</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">ഈ വ്യക്തി പേയ്‌മെന്റുകൾ സജീവമാക്കിയിട്ടില്ല</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">ഒരു നെറ്റ്‌വർക്ക് ഫീസ് അഭ്യർത്ഥിക്കാൻ കഴിയുന്നില്ല. ഈ പേയ്‌മെന്റ് തുടരുന്നതിന് വീണ്ടും ശ്രമിക്കുന്നതിനായി ശരി തൊടുക.</string>
   <!--CurrencyAmountFormatter_s_at_s-->
+  <string name="CurrencyAmountFormatter_s_at_s">%2$s-യിൽ %1$s-ന്</string>
   <!--SetCurrencyFragment-->
+  <string name="SetCurrencyFragment__set_currency">കറൻസി സജ്ജമാക്കുക</string>
+  <string name="SetCurrencyFragment__all_currencies">എല്ലാ കറൻസികളും</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -2379,25 +2520,74 @@
   <!--TransferOrRestoreFragment-->
   <string name="TransferOrRestoreFragment__transfer_or_restore_account">അക്കൗണ്ട് കൈമാറുകയോ പുനസ്ഥാപിക്കുകയോ ചെയ്യുക</string>
   <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">നിങ്ങൾ മുമ്പ് ഒരു സിഗ്നൽ അക്കൗണ്ട് രജിസ്റ്റർ ചെയ്തിട്ടുണ്ടെങ്കിൽ, നിങ്ങളുടെ അക്കൌണ്ടും സന്ദേശങ്ങളും മാറ്റിസ്ഥാപിക്കാനോ പുനസ്ഥാപിക്കാനോ കഴിയും</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">ആൻഡ്രോയിഡ് ഉപകരണത്തിൽ നിന്ന് ട്രാൻസ്ഫർ</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണത്തിൽ നിന്ന് നിങ്ങളുടെ അക്കൗണ്ടും സന്ദേശങ്ങള്‍-ഉം ട്രാൻസ്ഫർ ചെയ്യുക. നിങ്ങളുടെ പഴയ ഉപകരണത്തിലേക്ക് നിങ്ങൾക്ക് ആക്സസ് ആവശ്യമാണ്.</string>
+  <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">നിങ്ങളുടെ പഴയ ഉപകരണത്തിലേക്ക് നിങ്ങൾക്ക് ആക്സസ് ആവശ്യമാണ്.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">ബാക്കപ്പിൽ നിന്ന് പുനഃസ്ഥാപിക്കുക</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">ഒരു പ്രാദേശിക ബാക്കപ്പിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങള്‍ പുന:സ്ഥാപിക്കുക. നിങ്ങൾ ഇപ്പോൾ പുന:സ്ഥാപിക്കുന്നില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് പുന:സ്ഥാപിക്കാൻ കഴിയില്ല.</string>
   <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഫോണിൽ Signal തുറക്കുക</string>
   <string name="NewDeviceTransferInstructions__continue">തുടരുക</string>
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ക്രമീകരണങ്ങൾ തുറക്കുന്നതിന് മുകളിൽ ഇടതുവശത്തുള്ള നിങ്ങളുടെ പ്രൊഫൈൽ ഫോട്ടോയിൽ തൊടുക</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">\'അക്കൗണ്ട്\' എന്നതിൽ തൊടുക</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">\"അക്കൗണ്ട് ട്രാൻസ്ഫർ ചെയ്യുക\" തൊടുക, തുടർന്ന് രണ്ട് ഉപകരണങ്ങളിലും \"തുടരുക\"</string>
   <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">പഴയ ആൻഡ്രോയിഡ് ഉപകരണവുമായി ബന്ധിപ്പിക്കാൻ തയ്യാറെടുക്കുന്നു…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">ഒരു നിമിഷം എടുക്കുന്നു, ഉടൻ തയ്യാറാകണം</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">പഴയ ആൻഡ്രോയിഡ് ഉപകരണം ബന്ധിപ്പിക്കാൻ കാത്തിരിക്കുന്നു…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണവുമായി കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal-ന് ലൊക്കേഷൻ അനുമതി ആവശ്യമാണ്.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും പ്രാപ്തമാക്കിയ ലൊക്കേഷൻ സേവനങ്ങൾ Signal-ന് ആവശ്യമാണ്. </string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal-ന് വൈ-ഫൈ ആവശ്യമാണ്. വൈ-ഫൈ ഓണായിരിക്കേണ്ടതുണ്ട്, പക്ഷേ അത് ഒരു വൈ-ഫൈ നെറ്റ്‌വർക്കുമായി ബന്ധിപ്പിക്കേണ്ടതില്ല.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ക്ഷമിക്കണം, ഈ ഉപകരണം വൈ-ഫൈ ഡയറക്റ്റിനെ പിന്തുണയ്ക്കുന്നില്ലെന്ന് തോന്നുന്നു. നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal വൈ-ഫൈ ഡയറക്റ്റ് ഉപയോഗിക്കുന്നു. നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണത്തിൽ നിന്ന് നിങ്ങളുടെ അക്കൗണ്ട് പുന:സ്ഥാപിക്കുന്നതിന് നിങ്ങൾക്ക് ഇപ്പോഴും ഒരു ബാക്കപ്പ് പുന:സ്ഥാപിക്കാൻ കഴിയും.</string>
   <string name="NewDeviceTransferSetup__restore_a_backup">ഒരു ബാക്കപ്പ് വീണ്ടെടുക്കുക</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">നിങ്ങളുടെ പഴയ ആൻഡ്രോയിഡ് ഉപകരണവുമായി ബന്ധിപ്പിക്കാൻ ശ്രമിക്കുമ്പോൾ അപ്രതീക്ഷിത പിശക് സംഭവിച്ചു.</string>
   <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_new_android_device">പുതിയ ആൻഡ്രോയിഡ് ഉപകരണം തിരയുന്നു…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">നിങ്ങളുടെ പുതിയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal-ന് ലൊക്കേഷൻ അനുമതി ആവശ്യമാണ്.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">നിങ്ങളുടെ പുതിയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും പ്രാപ്തമാക്കിയ ലൊക്കേഷൻ സേവനങ്ങൾ Signal-ന് ആവശ്യമാണ്.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">നിങ്ങളുടെ പുതിയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal-ന് വൈ-ഫൈ ആവശ്യമാണ്. വൈ-ഫൈ ഓണായിരിക്കേണ്ടതുണ്ട്, പക്ഷേ അത് ഒരു വൈ-ഫൈ നെറ്റ്‌വർക്കിലേക്ക് ബന്ധിപ്പിക്കേണ്ടതില്ല.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">ക്ഷമിക്കണം, ഈ ഉപകരണം വൈ-ഫൈ ഡയറക്റ്റിനെ പിന്തുണയ്ക്കുന്നില്ലെന്ന് പ്രത്യക്ഷപ്പെടുന്നു. നിങ്ങളുടെ പുതിയ ആൻഡ്രോയിഡ് ഉപകരണം കണ്ടെത്തുന്നതിനും ബന്ധിപ്പിക്കുന്നതിനും Signal വൈ-ഫൈ ഡയറക്റ്റ് ഉപയോഗിക്കുന്നു. നിങ്ങളുടെ പുതിയ ആൻഡ്രോയിഡ് ഉപകരണത്തിൽ നിങ്ങളുടെ അക്കൗണ്ട് പുന:സ്ഥാപിക്കുന്നതിന് നിങ്ങൾക്ക് ഇപ്പോഴും ഒരു ബാക്കപ്പ് സൃഷ്ടിക്കാൻ കഴിയും.</string>
   <string name="OldDeviceTransferSetup__create_a_backup">ഒരു ബാക്കപ്പ് സൃഷ്ടിക്കുക</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">നിങ്ങളുടെ പുതിയ ആൻഡ്രോയിഡ് ഉപകരണവുമായി ബന്ധിപ്പിക്കാൻ ശ്രമിക്കുമ്പോൾ അപ്രതീക്ഷിത പിശക് സംഭവിച്ചു.</string>
   <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">വൈഫൈ ക്രമീകരണങ്ങൾ തുറക്കാൻ സാധ്യമല്ല. ദയവായി വൈ-ഫൈ മാനുവലായി ഓണാക്കുക.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">സ്ഥലം അനുമതി നൽകുക</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">ലൊക്കേഷൻ സേവനങ്ങൾ ഓണാക്കുക</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">സ്ഥലം ക്രമീകരണങ്ങൾ തുറക്കാൻ കഴിയുന്നില്ല.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">വൈ-ഫൈ ഓണാക്കുക</string>
+  <string name="DeviceTransferSetup__error_connecting">ബന്ധിപ്പിക്കുന്നതിൽ പിശക്</string>
   <string name="DeviceTransferSetup__retry">വീണ്ടും ശ്രമിക്കുക</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">ഡീബഗ് ലോഗുകൾ സമർപ്പിക്കുക</string>
   <string name="DeviceTransferSetup__verify_code">കോഡ് ഉറപ്പാക്കൂ</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">താഴെയുള്ള കോഡ് നിങ്ങളുടെ രണ്ട് ഉപകരണങ്ങളിലും പൊരുത്തപ്പെടുന്നുവെന്ന് സ്ഥിരീകരിക്കുക. തുടർന്ന് തുടരുക തൊടുക.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">അക്കങ്ങൾ പൊരുത്തപ്പെടുന്നില്ല</string>
   <string name="DeviceTransferSetup__continue">തുടരുക</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">നമ്പർ ഒരുപോലെയല്ല</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">നിങ്ങളുടെ ഉപകരണങ്ങളിലെ അക്കങ്ങൾ പൊരുത്തപ്പെടുന്നില്ലെങ്കിൽ, നിങ്ങൾ തെറ്റായ ഉപകരണവുമായി ബന്ധിപ്പിച്ചിരിക്കാൻ സാധ്യതയുണ്ട്. ഇത് പരിഹരിക്കുന്നതിന്, ട്രാൻസ്ഫർ നിർത്തുക, വീണ്ടും ശ്രമിക്കുക, നിങ്ങളുടെ രണ്ട് ഉപകരണങ്ങളും അടുത്ത് വയ്ക്കുക.</string>
   <string name="DeviceTransferSetup__stop_transfer">കൈമാറ്റം നിർത്തുക</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">പഴയ ഉപകരണം കണ്ടെത്താൻ കഴിയുന്നില്ല</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">പുതിയ ഉപകരണം കണ്ടെത്താൻ കഴിയുന്നില്ല</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">ഇനിപ്പറയുന്ന അനുമതികളും സേവനങ്ങളും പ്രാപ്തമാക്കിയതായി ഉറപ്പാക്കുക:</string>
+  <string name="DeviceTransferSetup__location_permission">സ്ഥലം അനുമതി</string>
+  <string name="DeviceTransferSetup__location_services">സ്ഥലം സേവനങ്ങൾ</string>
   <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">വൈഫൈ ഡയറക്റ്റ് സ്ക്രീനിൽ, ഓർമ്മിക്കപ്പെട്ട എല്ലാ ഗ്രൂപ്പുകളും നീക്കംചെയ്യുക, ക്ഷണിക്കപ്പെട്ടതോ ബന്ധിപ്പിച്ചതോ ആയ ഉപകരണങ്ങൾ അൺലിങ്ക് ചെയ്യുക.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">വൈ-ഫൈ ഡയറക്റ്റ് സ്ക്രീൻ </string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">രണ്ട് ഉപകരണങ്ങളിലും വൈ-ഫൈ ഓഫ് ചെയ്യാനും ഓണാക്കാനും ശ്രമിക്കുക.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">രണ്ട് ഉപകരണങ്ങളും ട്രാൻസ്ഫർ മോഡിലാണെന്ന് ഉറപ്പാക്കുക.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">പിന്തുണ പേജിലേക്ക് പോകുക</string>
   <string name="DeviceTransferSetup__try_again">വീണ്ടും ശ്രമിക്കുക</string>
+  <string name="DeviceTransferSetup__waiting_for_other_device">മറ്റ് ഉപകരണത്തിനായി കാത്തിരിക്കുന്നു</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">ട്രാൻസ്ഫർ ആരംഭിക്കുന്നതിന് നിങ്ങളുടെ മറ്റൊരു ഉപകരണത്തിൽ തുടരുക തൊടുക.</string>
+  <string name="DeviceTransferSetup__tap_continue_on_your_other_device">നിങ്ങളുടെ മറ്റ് ഉപകരണത്തിൽ തുടരുക തൊടുക…</string>
   <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Signal-ന്റെ പുതിയ പതിപ്പുകളിൽ നിന്ന് ട്രാൻസ്ഫർ ചെയ്യാൻ സാധ്യമല്ല</string>
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">ഡാറ്റ കൈമാറുന്നു</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">രണ്ട് ഉപകരണങ്ങളും പരസ്പരം അടുത്ത് വയ്ക്കുക. ഉപകരണങ്ങൾ ഓഫ് ചെയ്യരുത്, Signal തുറന്നിടുക. ട്രാൻസ്ഫറുകൾ എൻഡ്-ടു-എൻഡ് എൻക്രിപ്റ്റ് ചെയ്തിരിക്കുന്നു.</string>
   <string name="DeviceTransfer__d_messages_so_far">ഇതുവരെ %1$d സന്ദേശങ്ങൾ</string>
   <string name="DeviceTransfer__cancel">റദ്ദാക്കൂ</string>
   <string name="DeviceTransfer__try_again">വീണ്ടും ശ്രമിക്കുക</string>
@@ -2412,19 +2602,38 @@
   <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
   <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">നിങ്ങളുടെ പുതിയ Android ഉപകരണത്തിൽ Signal ഡൗൺലോഡുചെയ്യുക</string>
   <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">\"അക്കൗണ്ട് ട്രാൻസ്ഫർ അല്ലെങ്കിൽ പുന:സ്ഥാപിക്കുക\" തൊടുക</string>
   <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">പ്രോംപ്റ്റ് ചെയ്യുമ്പോൾ \"ആൻഡ്രോയിഡ് ഉപകരണത്തിൽ നിന്ന് ട്രാൻസ്ഫർ\" തിരഞ്ഞെടുക്കുക, തുടർന്ന് \"തുടരുക\". രണ്ട് ഉപകരണങ്ങളും അടുത്ത് വയ്ക്കുക.</string>
   <string name="OldDeviceTransferInstructions__continue">തുടരുക</string>
   <!--OldDeviceTransferComplete-->
   <string name="OldDeviceTransferComplete__transfer_complete">കൈമാറ്റം പൂർത്തിയായി</string>
   <string name="OldDeviceTransferComplete__go_to_your_new_device">പുതിയ ഉപകരണത്തിലേക്ക് പോകു</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">നിങ്ങളുടെ Signal ഡാറ്റ നിങ്ങളുടെ പുതിയ ഉപകരണത്തിലേക്ക് ട്രാൻസ്ഫർ ചെയ്തിട്ടുണ്ട്. ട്രാൻസ്ഫർ പ്രക്രിയ പൂർത്തിയാക്കുന്നതിന്, നിങ്ങളുടെ പുതിയ ഉപകരണത്തിൽ രജിസ്ട്രേഷൻ തുടരണം.</string>
   <string name="OldDeviceTransferComplete__close">അടയ്ക്കുക</string>
   <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">വിജയകരമായി കൈമാറ്റം</string>
   <string name="NewDeviceTransferComplete__transfer_complete">കൈമാറ്റം പൂർത്തിയായി</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">കൈമാറ്റ പ്രക്രിയ പൂർത്തിയാക്കാൻ, നിങ്ങൾ രജിസ്ട്രേഷൻ തുടരണം.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">രജിസ്ട്രേഷൻ തുടരുക</string>
   <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">അക്കൗണ്ട് കൈമാറ്റം</string>
+  <string name="DeviceToDeviceTransferService_status_ready">നിങ്ങളുടെ മറ്റ് ആൻഡ്രോയിഡ് ഉപകരണവുമായി ബന്ധിപ്പിക്കാൻ തയ്യാറെടുക്കുന്നു…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">നിങ്ങളുടെ മറ്റ് ആൻഡ്രോയിഡ് ഉപകരണവുമായി ബന്ധിപ്പിക്കാൻ തയ്യാറെടുക്കുന്നു…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">നിങ്ങളുടെ മറ്റ് ആൻഡ്രോയിഡ് ഉപകരണം തിരയുന്നു…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">നിങ്ങളുടെ മറ്റ് ആൻഡ്രോയിഡ് ഉപകരണവുമായി ബന്ധിപ്പിക്കുന്നു…</string>
   <string name="DeviceToDeviceTransferService_status_verification_required">പരിശോധന ആവശ്യമാണ്</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">അക്കൗണ്ട് ട്രാൻസ്ഫർ ചെയ്യുന്നു…</string>
   <!--OldDeviceTransferLockedDialog-->
+  <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">നിങ്ങളുടെ പുതിയ ഉപകരണത്തിൽ രജിസ്ട്രേഷൻ പൂർത്തിയാക്കുക</string>
+  <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">നിങ്ങളുടെ Signal അക്കൗണ്ട് നിങ്ങളുടെ പുതിയ ഉപകരണത്തിലേക്ക് ട്രാൻസ്ഫർ ചെയ്തിട്ടുണ്ട്, എന്നാൽ തുടരുന്നതിന് നിങ്ങൾ അതിൽ രജിസ്ട്രേഷൻ പൂർത്തിയാക്കണം. ഈ ഉപകരണത്തിൽ Signal നിഷ്ക്രിയമായിരിക്കും.</string>
   <string name="OldDeviceTransferLockedDialog__done">ചെയ്‌തു</string>
+  <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">ഈ ഉപകരണം റദ്ദാക്കുകയും സജീവമാക്കുകയും ചെയ്യുക</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">എംഓബി ബാലൻസ് ട്രാൻസ്ഫർ ചെയ്യണോ?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">നിങ്ങൾക്ക് %1$s ബാലൻസ് ഉണ്ട്. നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കുന്നതിന് മുമ്പ് മറ്റൊരു വാലറ്റ് വിലാസത്തിലേക്ക് നിങ്ങളുടെ ഫണ്ടുകൾ ട്രാൻസ്ഫർ ചെയ്തില്ലെങ്കിൽ, നിങ്ങൾക്ക് അത് എന്നെന്നേക്കുമായി നഷ്ടപ്പെടും.</string>
+  <string name="AdvancedPreferenceFragment__dont_transfer">ട്രാൻസ്ഫർ ചെയ്യരുത്</string>
+  <string name="AdvancedPreferenceFragment__transfer">കൈമാറ്റം</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">തടയുക</string>
   <string name="RecipientBottomSheet_unblock">തടഞ്ഞത് മാറ്റുക</string>
@@ -2464,6 +2673,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">ലിങ്ക് നിലവിൽ സജീവമല്ല</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">ശബ്ദ സന്ദേശം പ്ലേ ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">വോയിസ് മെസേജ് - %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s %2$s-നോട്</string>
@@ -2517,6 +2727,7 @@
   <string name="DeleteAccountFragment__delete_account">അക്കൗണ്ട് ഇല്ലാതാക്കൂ</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">നിങ്ങളുടെ അക്കൗണ്ട് വിവരവും പ്രൊഫൈൽ ഫോട്ടോയും ഇല്ലാതാക്കൂ</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">നിങ്ങളുടെ സന്ദേശങ്ങള്‍ എല്ലാം ഇല്ലാതാക്കൂ</string>
+  <string name="DeleteAccountFragment__delete_s_in_your_payments_account">നിങ്ങളുടെ പേയ്മെന്റ് അക്കൗണ്ടിലെ %1$s ഇല്ലാതാക്കുക</string>
   <string name="DeleteAccountFragment__no_country_code">രാജ്യ കോഡുകളൊന്നും വ്യക്തമാക്കിയിട്ടില്ല</string>
   <string name="DeleteAccountFragment__no_number">നമ്പർ വ്യക്തമാക്കിയിട്ടില്ല</string>
   <string name="DeleteAccountFragment__the_phone_number">നിങ്ങൾ നൽകിയ ഫോൺ നമ്പർ നിങ്ങളുടെ അക്കൗണ്ടുമായി പൊരുത്തപ്പെടുന്നില്ല.</string>
@@ -2529,9 +2740,14 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">രാജ്യങ്ങൾ തിരയുക</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">ഒഴിവാക്കുക</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="one">%1$d അംഗം</item>
+    <item quantity="other">%1$d അംഗങ്ങൾ</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">പങ്കിടുക</string>
   <string name="ShareActivity__send">അയയ്‌ക്കുക</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">ഒന്നിലധികം ചാറ്റുകളിലേക്ക് പങ്കിടുന്നത് Signal സന്ദേശങ്ങൾക്ക് മാത്രമേ പിന്തുണക്കൂ</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ചില ഉപയോക്താക്കള്‍ക്ക് അയയ്ക്കാന്‍ കഴിഞ്ഞില്ല</string>
@@ -2542,12 +2758,24 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">ചാറ്റ് വാൾപേപ്പർ</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">ചാറ്റ് നിറം</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">ചാറ്റ് നിറങ്ങൾ പുന:സജ്ജമാക്കുക</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">ചാറ്റ് നിറം പുന:സജ്ജമാക്കുക</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">ചാറ്റ് നിറം പുന:സജ്ജീകരിക്കണോ?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">വാള്‍പേപ്പര്‍ സജ്ജമാക്കു</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">ഡാർക്ക് മോഡ് വാള്‍പേപ്പര്‍ മങ്ങിക്കുന്നു</string>
   <string name="ChatWallpaperFragment__contact_name">കോണ്ടാക്ടിന്റെ പേര്</string>
   <string name="ChatWallpaperFragment__reset">പുനഃക്രമീകരിക്കുക</string>
   <string name="ChatWallpaperFragment__clear">മായ്‌ക്കുക</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">വാള്‍പേപ്പറിന്റെ പ്രിവ്യൂ</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">എല്ലാ ചാറ്റ് നിറങ്ങളും അസാധുവാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">എല്ലാ വാള്‍പേപ്പറുകള്‍ അസാധുവാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">സഹജമായ നിറങ്ങൾ പുന:സജ്ജമാക്കുക</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">എല്ലാ നിറങ്ങളും പുന:സജ്ജമാക്കുക</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">ഡിഫോൾട്ട് വാള്‍പേപ്പര്‍ പുന:സജ്ജമാക്കുക</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">വാള്‍പേപ്പറുകള്‍ എല്ലാം പുനഃക്രമീകരിക്കുക</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">വാള്‍പേപ്പറുകള്‍ പുന:സജ്ജമാക്കുക</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">വാള്‍പേപ്പര്‍ പുന:സജ്ജമാക്കുക</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">വാള്‍പേപ്പര്‍ പുന:സജ്ജമാക്കുക?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">ചിത്രങ്ങളില്‍ നിന്നു തിരഞ്ഞെടുക്കൂ</string>
   <string name="ChatWallpaperSelectionFragment__presets">മുന്നമേ ഉള്ളവ</string>
@@ -2568,39 +2796,96 @@
   <string name="WallpaperCropActivity__blur_photo">ചിത്രം അവ്യക്തമാക്കുക</string>
   <!--InfoCard-->
   <string name="payment_info_card_about_mobilecoin">MobileCoin-നെ കുറിച്ച്</string>
+  <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">മൊബൈൽകോയിൻ ഒരു പുതിയ സ്വകാര്യത കേന്ദ്രീകൃത ഡിജിറ്റൽ കറൻസിയാണ്.</string>
+  <string name="payment_info_card_adding_funds">ഫണ്ടുകൾ ചേർക്കുന്നു</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">നിങ്ങളുടെ വാലറ്റ് വിലാസത്തിലേക്ക് മൊബൈൽകോയിൻ അയച്ചുകൊണ്ട് Signal-ൽ ഉപയോഗിക്കുന്നതിനുള്ള ഫണ്ടുകൾ നിങ്ങൾക്ക് ചേർക്കാം.</string>
+  <string name="payment_info_card_cashing_out">പണമാക്കുക</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">മൊബൈൽ കോയിൻ പിന്തുണയ്ക്കുന്ന ഒരു എക്സ്ചേഞ്ചിൽ നിങ്ങൾക്ക് ഏത് സമയത്തും മൊബൈൽ കോയിൻ ക്യാഷ് ചെയ്യാം. ആ എക്സ്ചേഞ്ചിൽ നിങ്ങളുടെ അക്കൗണ്ടിലേക്ക് ഒരു ട്രാൻസ്ഫർ നടത്തുക.</string>
   <string name="payment_info_card_hide_this_card">ഈ കാർഡ് മറയ്ക്കുക</string>
   <string name="payment_info_card_hide">മറയ്ക്കുക</string>
+  <string name="payment_info_card_record_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം രേഖപ്പെടുത്തുക</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">നിങ്ങളുടെ പേയ്മെന്റ് അക്കൗണ്ട് പുന:സ്ഥാപിക്കുന്നതിന് നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യം നിങ്ങൾക്ക് മറ്റൊരു മാർഗം നൽകുന്നു.</string>
+  <string name="payment_info_card_record_your_phrase">നിങ്ങളുടെ വാക്യം രേഖപ്പെടുത്തുക</string>
   <string name="payment_info_card_update_your_pin">നിങ്ങളുടെ PIN പുതുക്കുക</string>
+  <string name="payment_info_card_with_a_high_balance">ഉയർന്ന ബാലൻസ് ഉള്ളതിനാൽ, നിങ്ങളുടെ അക്കൗണ്ടിലേക്ക് കൂടുതൽ പരിരക്ഷ ചേർക്കുന്നതിന് ഒരു ആൽഫാന്യൂമറിക് പിൻ അപ്‌ഡേറ്റ് ചെയ്യാൻ നിങ്ങൾ ആഗ്രഹിച്ചേക്കാം.</string>
   <string name="payment_info_card_update_pin">PIN പുതുക്കുക </string>
   <!--DeactivateWalletFragment-->
+  <string name="DeactivateWalletFragment__deactivate_wallet">വാലറ്റ് നിർജ്ജീവമാക്കുക</string>
+  <string name="DeactivateWalletFragment__your_balance">നിങ്ങളുടെ ബാലൻസ്</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">പേയ്‌മെന്റുകൾ നിർജ്ജീവമാക്കുന്നതിന് മുമ്പ് നിങ്ങളുടെ ഫണ്ടുകൾ മറ്റൊരു വാലറ്റ് വിലാസത്തിലേക്ക് ട്രാൻസ്ഫർ ചെയ്യാൻ ശുപാർശ ചെയ്യുന്നു. നിങ്ങളുടെ ഫണ്ടുകൾ ഇപ്പോൾ ട്രാൻസ്ഫർ ചെയ്യാതിരിക്കാൻ നിങ്ങൾ തീരുമാനിക്കുകയാണെങ്കിൽ, നിങ്ങൾ പേയ്‌മെന്റുകൾ വീണ്ടും സജീവമാക്കുകയാണെങ്കിൽ, Signal-മായി ബന്ധിപ്പിച്ചിട്ടുള്ള നിങ്ങളുടെ വാലറ്റിൽ അവ തുടരും.</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">ബാക്കിയുള്ള ബാലൻസ് ട്രാൻസ്ഫർ ചെയ്യുക</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring">ട്രാൻസ്ഫർ ചെയ്യാതെ നിർജ്ജീവമാക്കുക</string>
+  <string name="DeactivateWalletFragment__deactivate">നിർജ്ജീവമാക്കുക</string>
+  <string name="DeactivateWalletFragment__deactivate_without_transferring_question">ട്രാൻസ്ഫർ ചെയ്യാതെ നിർജ്ജീവമാക്കുക?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">പേയ്‌മെന്റുകൾ വീണ്ടും സജീവമാക്കാൻ നിങ്ങൾ തീരുമാനിക്കുകയാണെങ്കിൽ, Signal-മായി ബന്ധിപ്പിച്ചിട്ടുള്ള നിങ്ങളുടെ വാലറ്റിൽ നിങ്ങളുടെ ബാലൻസ് തുടരും.</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">വാലറ്റ് നിർജ്ജീവമാക്കുന്നതിൽ പിശക്.</string>
   <!--PaymentsRecoveryStartFragment-->
+  <string name="PaymentsRecoveryStartFragment__recovery_phrase">വീണ്ടെടുക്കൽ വാചകം</string>
+  <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം കാണുക</string>
+  <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം നൽകുക</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">നിങ്ങൾ നിങ്ങളുടെ Signal പിൻ സ്ഥിരീകരിക്കുകയാണെങ്കിൽ, നിങ്ങൾ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ നിങ്ങളുടെ ബാലൻസ് സ്വയമേവ പുനഃസ്ഥാപിക്കപ്പെടും. നിങ്ങൾക്ക് വേണ്ടി അതുല്യമായ ഒരു %1$d-വാക്ക് വാക്യമായ ഒരു വീണ്ടെടുക്കൽ വാക്യം ഉപയോഗിച്ച് നിങ്ങൾക്ക് നിങ്ങളുടെ ബാലൻസ് പുന:സ്ഥാപിക്കാനും കഴിയും. അത് എഴുതി സുരക്ഷിതമായ ഒരു സ്ഥലത്ത് സൂക്ഷിക്കുക.</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യം നിങ്ങൾക്ക് അതുല്യമായ ഒരു %1$d-വാക്ക് വാക്യമാണ്. നിങ്ങളുടെ ബാലൻസ് പുന:സ്ഥാപിക്കാൻ ഈ വാക്യം ഉപയോഗിക്കുക.</string>
   <string name="PaymentsRecoveryStartFragment__start">ആരംഭിക്കുക</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">സ്വമേധയാ നൽകുക</string>
+  <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">ക്ലിപ്ബോർഡിൽ നിന്ന് ഒട്ടിക്കുക</string>
   <!--PaymentsRecoveryPasteFragment-->
+  <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം ഒട്ടിക്കുക</string>
+  <string name="PaymentsRecoveryPasteFragment__recovery_phrase">വീണ്ടെടുക്കൽ വാചകം</string>
   <string name="PaymentsRecoveryPasteFragment__next">അടുത്തത്</string>
+  <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">അസാധുവായ വീണ്ടെടുക്കൽ വാക്യം</string>
+  <string name="PaymentsRecoveryPasteFragment__make_sure">നിങ്ങൾ %1$d വാക്കുകൾ നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക, വീണ്ടും ശ്രമിക്കുക.</string>
   <!--PaymentsRecoveryPhraseFragment-->
   <string name="PaymentsRecoveryPhraseFragment__next">അടുത്തത്</string>
   <string name="PaymentsRecoveryPhraseFragment__edit">തിരുത്തുക</string>
+  <string name="PaymentsRecoveryPhraseFragment__previous">മുമ്പത്തെ</string>
+  <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യം</string>
+  <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">ഇനിപ്പറയുന്ന %1$d വാക്കുകൾ ക്രമത്തിൽ എഴുതുക. നിങ്ങളുടെ പട്ടിക സുരക്ഷിതമായ സ്ഥലത്ത് സൂക്ഷിക്കുക.</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">നിങ്ങളുടെ വാക്യം ശരിയായി നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക.</string>
+  <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">സ്ക്രീൻഷോട്ട് അല്ലെങ്കിൽ ഇമെയിൽ വഴി അയയ്ക്കരുത്.</string>
+  <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">പേയ്മെന്റ് അക്കൗണ്ട് പുനഃസ്ഥാപിച്ചു.</string>
+  <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">അസാധുവായ വീണ്ടെടുക്കൽ വാക്യം</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">നിങ്ങൾ നിങ്ങളുടെ വാക്യം ശരിയായി നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക, വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേയ്ക്ക് പകർത്തുക?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യം ഡിജിറ്റലായി സംഭരിക്കാൻ നിങ്ങൾ തീരുമാനിക്കുകയാണെങ്കിൽ, നിങ്ങൾ വിശ്വസിക്കുന്ന എവിടെയെങ്കിലും അത് സുരക്ഷിതമായി സംഭരിക്കപ്പെടുന്നുവെന്ന് ഉറപ്പാക്കുക.</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">പകർത്തുക</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
+  <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം സ്ഥിരീകരിക്കുക</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">നിങ്ങളുടെ വീണ്ടെടുക്കൽ വാക്യത്തിൽ നിന്ന് ഇനിപ്പറയുന്ന വാക്കുകൾ നൽകുക.</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__word_d">വാക്ക് %1$d</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">വാക്യാംശം വീണ്ടും കാണുക</string>
   <string name="PaymentRecoveryPhraseConfirmFragment__done">ചെയ്‌തു</string>
+  <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">വീണ്ടെടുക്കൽ വാക്യം സ്ഥിരീകരിച്ചു</string>
   <!--PaymentsRecoveryEntryFragment-->
+  <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">വീണ്ടെടുക്കൽ വാക്യം നൽകുക</string>
+  <string name="PaymentsRecoveryEntryFragment__enter_word_d">വാക്ക് നൽകുക %1$d</string>
+  <string name="PaymentsRecoveryEntryFragment__word_d">വാക്ക് %1$d</string>
   <string name="PaymentsRecoveryEntryFragment__next">അടുത്തത്</string>
+  <string name="PaymentsRecoveryEntryFragment__invalid_word">അസാധുവായ വാക്ക്</string>
   <!--ClearClipboardAlarmReceiver-->
+  <string name="ClearClipboardAlarmReceiver__clipboard_cleared">ക്ലിപ്പ്ബോർഡ് മായ്ച്ചു.</string>
   <!--PaymentNotificationsView-->
   <string name="PaymentNotificationsView__view">കാണുക</string>
   <!--UnreadPayments-->
+  <string name="UnreadPayments__s_sent_you_s">%1$s നിങ്ങൾക്ക് %2$s അയച്ചു.</string>
+  <string name="UnreadPayments__d_new_payment_notifications">%1$d പുതിയ പേയ്മെന്റ് അറിയിപ്പുകൾ</string>
   <!--CanNotSendPaymentDialog-->
+  <string name="CanNotSendPaymentDialog__cant_send_payment">പേയ്മെന്റ് അയയ്ക്കാൻ കഴിയില്ല</string>
+  <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">ഈ ഉപയോക്താവിന് ഒരു പേയ്മെന്റ് അയയ്ക്കുന്നതിന് അവർ നിത്തിൽ നിന്ന് ഒരു സന്ദേശം അഭ്യർത്ഥന സ്വീകരിക്കേണ്ടതുണ്ട്. ഒരു സന്ദേശം അഭ്യർത്ഥന സൃഷ്ടിക്കുന്നതിന് അവർക്ക് ഒരു സന്ദേശം അയയ്ക്കുക.</string>
   <string name="CanNotSendPaymentDialog__send_a_message">ഒരു മെസ്സേജ് അയക്കുക</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">ഈ വ്യക്തിയുമായി നിങ്ങൾക്ക് പൊതുവായി ഗ്രൂപ്പുകളൊന്നുമില്ല. അനാവശ്യ സന്ദേശങ്ങൾ ഒഴിവാക്കുന്നതിന് സ്വീകരിക്കുന്നതിന് മുമ്പ് അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകൾ, നിങ്ങൾ ചാറ്റ് ചെയ്യുന്ന ആളുകളോ ഈ ഗ്രൂപ്പിൽ ഇല്ല. ആവശ്യമില്ലാത്ത സന്ദേശങ്ങള്‍ ഒഴിവാക്കുന്നതിന് സ്വീകരിക്കുന്നതിന് മുമ്പ് അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക.</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">സന്ദേശ അഭ്യർത്ഥനകളെക്കുറിച്ച് </string>
   <string name="GroupsInCommonMessageRequest__okay">ശരി</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">ചാറ്റ് നിറത്തിന്റെ പ്രിവ്യൂ ഇതാ.</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">നിറം നിങ്ങൾക്ക് മാത്രം ദൃശ്യമാണ്.</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">ഗ്രൂപ്പ് വിവരണം</string>
   <!--QualitySelectorBottomSheetDialog-->
+  <string name="QualitySelectorBottomSheetDialog__standard">സ്റ്റാൻഡേർഡ്</string>
+  <string name="QualitySelectorBottomSheetDialog__faster_less_data">വേഗത്തിൽ, കുറഞ്ഞ ഡാറ്റ</string>
   <string name="QualitySelectorBottomSheetDialog__high">ഉയർന്ന</string>
+  <string name="QualitySelectorBottomSheetDialog__slower_more_data">സാവധാനം, കൂടുതൽ ഡാറ്റ</string>
   <string name="QualitySelectorBottomSheetDialog__photo_quality">ഫോട്ടോ നിലവാരം</string>
   <!--AppSettingsFragment-->
   <string name="AppSettingsFragment__invite_your_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
@@ -2616,12 +2901,18 @@
   <!--NotificationsSettingsFragment-->
   <string name="NotificationsSettingsFragment__messages">സന്ദേശങ്ങൾ</string>
   <string name="NotificationsSettingsFragment__calls">കോളുകൾ</string>
+  <string name="NotificationsSettingsFragment__notify_when">എപ്പോൾ അറിയിക്കുക…</string>
+  <string name="NotificationsSettingsFragment__contact_joins_signal">കോൺടാക്റ്റ് Signal ചേരുന്നു</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">തടഞ്ഞു</string>
+  <string name="PrivacySettingsFragment__d_contacts">%1$d കോൺ‌ടാക്റ്റുകൾ</string>
   <string name="PrivacySettingsFragment__messaging">സന്ദേശ വിനിമയം</string>
   <string name="PrivacySettingsFragment__disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
   <string name="PrivacySettingsFragment__app_security">ആപ്പ് സുരക്ഷ</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">റീസന്റ് ലിസ്റ്റിലും അപ്ലിക്കേഷനിലും സ്‌ക്രീൻഷോട്ടുകൾ തടയുക</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal സന്ദേശങ്ങള്‍ കോളുകളും, എല്ലായ്പ്പോഴും കോളുകള് റിലേ ചെയ്യുക ഒപ്പം സീൽ ചെയ്ത അയച്ചയാൾ</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">പുതിയ ചാറ്റുകൾക്കായുള്ള ഡിഫോൾട്ട് ടൈമർ</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">നിങ്ങൾ ആരംഭിച്ച എല്ലാ പുതിയ ചാറ്റുകൾക്കും ഒരു സ്ഥിരസ്ഥിതി അപ്രത്യക്ഷമാകുന്ന സന്ദേശം ടൈമർ ക്രമീകരിക്കുക.</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">സ്റ്റാറ്റസ് ചിഹ്നം കാണിക്കുക</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">സീൽഡ് സെൻഡർ ഉപയോഗിച്ച് ഡെലിവറി ചെയ്യുമ്പോൾ സന്ദേശ വിശദാംശങ്ങളിൽ ഒരു ചിഹ്നം കാണിക്കുക.</string>
@@ -2637,6 +2928,7 @@
   <string name="ExpireTimerSettingsFragment__5_minutes">5 മിനിറ്റ്</string>
   <string name="ExpireTimerSettingsFragment__30_seconds">30 സെക്കൻഡ്</string>
   <string name="ExpireTimerSettingsFragment__custom_time">ഇഷ്‌ടാനുസൃത സമയം</string>
+  <string name="ExpireTimerSettingsFragment__set">സജ്ജമാക്കുക</string>
   <string name="ExpireTimerSettingsFragment__save">സംരക്ഷിക്കൂ</string>
   <string name="CustomExpireTimerSelectorView__seconds">സെക്കൻഡ്</string>
   <string name="CustomExpireTimerSelectorView__minutes">മിനിറ്റ്</string>
@@ -2649,34 +2941,76 @@
   <string name="HelpSettingsFragment__version">പതിപ്പ്</string>
   <string name="HelpSettingsFragment__debug_log">ഡീബഗ് ലോഗ്</string>
   <string name="HelpSettingsFragment__terms_amp_privacy_policy">നിബന്ധനകളും സ്വകാര്യതാ നയവും</string>
+  <string name="HelpFragment__copyright_signal_messenger">പകർപ്പവകാശ Signal സന്ദേശകന്‍</string>
+  <string name="HelpFragment__licenced_under_the_gplv3">ജിപിഎൽവി3 കീഴിൽ ലൈസൻസ്</string>
   <!--DataAndStorageSettingsFragment-->
   <string name="DataAndStorageSettingsFragment__calls">കോളുകൾ</string>
   <!--ChatColorSelectionFragment-->
+  <string name="ChatColorSelectionFragment__auto">ഓട്ടോ</string>
+  <string name="ChatColorSelectionFragment__use_custom_colors">ഇഷ്‌ടാനുസൃത നിറങ്ങൾ ഉപയോഗിക്കുക</string>
   <string name="ChatColorSelectionFragment__chat_color">ചാറ്റ് നിറം</string>
   <string name="ChatColorSelectionFragment__edit">തിരുത്തുക</string>
+  <string name="ChatColorSelectionFragment__duplicate">തനിപ്പകർപ്പ്</string>
   <string name="ChatColorSelectionFragment__delete">ഇല്ലാതാക്കൂ</string>
   <string name="ChatColorSelectionFragment__delete_color">നിറം ഇല്ലാതാക്കൂ</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="one">ഈ ഇഷ്ടാനുസൃത നിറം %1$d ചാറ്റുകളിൽ ഉപയോഗിക്കുന്നു. എല്ലാ ചാറ്റുകൾക്കും ഇത് ഇല്ലാതാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</item>
+    <item quantity="other">ഈ ഇഷ്ടാനുസൃത നിറം %1$d ചാറ്റുകളിൽ ഉപയോഗിക്കുന്നു. എല്ലാ ചാറ്റുകൾക്കും ഇത് ഇല്ലാതാക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</item>
+  </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">ചാറ്റ് നിറം ഇല്ലാതാക്കണോ?</string>
   <!--CustomChatColorCreatorFragment-->
+  <string name="CustomChatColorCreatorFragment__solid">ഖരം</string>
+  <string name="CustomChatColorCreatorFragment__gradient">ഗ്രേഡിയന്റ്</string>
+  <string name="CustomChatColorCreatorFragment__hue">ഹ്യൂ</string>
+  <string name="CustomChatColorCreatorFragment__saturation">സാച്ചുറേഷൻ</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">സംരക്ഷിക്കൂ</string>
+  <string name="CustomChatColorCreatorFragmentPage__edit_color">നിറം എഡിറ്റ് ചെയ്യുക</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="one">ഈ നിറം %1$d ചാറ്റുകളിൽ ഉപയോഗിക്കുന്നു. എല്ലാ ചാറ്റുകൾക്കും മാറ്റങ്ങൾ സംരക്ഷിക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</item>
+    <item quantity="other">ഈ നിറം %1$d ചാറ്റുകളിൽ ഉപയോഗിക്കുന്നു. എല്ലാ ചാറ്റുകൾക്കും മാറ്റങ്ങൾ സംരക്ഷിക്കാൻ നിങ്ങൾ ആഗ്രഹിക്കുന്നുണ്ടോ?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">ടോപ്പ് എഡ്ജ് സെലക്ടർ</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">താഴെയുള്ള എഡ്ജ് സെലക്ടർ</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">പ്രതികരണങ്ങൾ ഇഷ്ടാനുസൃതമാക്കുക</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">ഒരു ഇമോജി മാറ്റിസ്ഥാപിക്കാൻ തൊടുക</string>
   <string name="EditReactionsFragment__reset">പുനഃക്രമീകരിക്കുക</string>
   <string name="EditReactionsFragment_save">സംരക്ഷിക്കൂ</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">വാള്‍പേപ്പറിന്റെ നിറവുമായി സ്വയമേവ പൊരുത്തപ്പെടുന്നു</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">ഗ്രേഡിയന്റിന്റെ ദിശ മാറ്റാൻ വലിച്ചിടുക</string>
   <!--ChatColorsMegaphone-->
+  <string name="ChatColorsMegaphone__new_chat_colors">പുതിയ ചാറ്റ് നിറങ്ങൾ</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">നിങ്ങൾക്ക് കൂടുതൽ ഓപ്ഷനുകൾ നൽകുന്നതിനും ചാറ്റുകൾ വായിക്കാൻ എളുപ്പമാക്കുന്നതിനും ഞങ്ങൾ ചാറ്റ് നിറങ്ങൾ മാറ്റി.</string>
   <string name="ChatColorsMegaphone__appearance">ദൃശ്യത</string>
   <string name="ChatColorsMegaphone__not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">ഒരു പ്രൊഫൈൽ ഫോട്ടോ ചേർക്കുക</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">ഒരു രൂപം തിരഞ്ഞെടുക്കുക കൂടാതെ നിങ്ങളുടെ ഇനീഷ്യലുകൾ വർണ്ണിക്കുക അല്ലെങ്കിൽ ഇഷ്ടാനുസൃതമാക്കുക.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">ഇപ്പോൾ വേണ്ട</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">ഫോട്ടോ ചേർക്കുക</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">ഇമോജി</string>
+  <string name="KeyboardPagerFragment_open_emoji_search">ഇമോജി തിരയൽ തുറക്കുക</string>
+  <string name="KeyboardPagerFragment_open_sticker_search">സ്റ്റിക്കർ തിരയൽ തുറക്കുക</string>
+  <string name="KeyboardPagerFragment_open_gif_search">ജിഐഎഫ് തിരയൽ തുറക്കുക</string>
   <string name="KeyboardPagerFragment_stickers">സ്റ്റിക്കറുകൾ</string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>
+  <string name="KeyboardPagerFragment_gifs">ജിഐഎഫുകൾ</string>
+  <string name="KeyboardPagerFragment_search_emoji">ഇമോജി തിരയുക</string>
+  <string name="KeyboardPagerfragment_back_to_emoji">ഇമോജി-യിലേക്ക് മടങ്ങുക</string>
+  <string name="KeyboardPagerfragment_clear_search_entry">തിരയൽ എൻട്രി മായ്‌ക്കുക</string>
   <string name="KeyboardPagerFragment_search_giphy">GIPHY തിരയുക</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_search_stickers">സ്റ്റിക്കറുകൾ തിരയുക</string>
   <string name="StickerSearchDialogFragment_no_results_found">ഫലങ്ങളൊന്നുമില്ല.</string>
   <string name="EmojiSearchFragment__no_results_found">ഫലങ്ങളൊന്നുമില്ല.</string>
+  <string name="NotificationsSettingsFragment__unknown_ringtone">അജ്ഞാത റിംഗ്ടോൺ</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">സന്ദേശം അയയ്ക്കുക</string>
+  <string name="ConversationSettingsFragment__start_video_call">വീഡിയോ കോൾ ആരംഭിക്കുക</string>
+  <string name="ConversationSettingsFragment__start_audio_call">ഓഡിയോ കോൾ ആരംഭിക്കുക</string>
   <string name="ConversationSettingsFragment__message">സന്ദേശം</string>
   <string name="ConversationSettingsFragment__video">വീഡിയോ</string>
   <string name="ConversationSettingsFragment__audio">ശബ്ദം</string>
@@ -2685,6 +3019,8 @@
   <string name="ConversationSettingsFragment__muted">നിശബ്ദമാക്കി</string>
   <string name="ConversationSettingsFragment__search">തിരയുക</string>
   <string name="ConversationSettingsFragment__disappearing_messages">അപ്രത്യക്ഷമാകുന്ന സന്ദേശങ്ങൾ</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">ശബ്ദങ്ങൾ &amp; അറിയിപ്പുകൾ</string>
+  <string name="ConversationSettingsFragment__contact_details">കോൺടാക്റ്റ് അറിയിപ്പുകൾ</string>
   <string name="ConversationSettingsFragment__view_safety_number">സുരക്ഷാ നമ്പർ കാണുക</string>
   <string name="ConversationSettingsFragment__block">തടയുക</string>
   <string name="ConversationSettingsFragment__block_group">ഗ്രൂപ്പ് തടയുക</string>
@@ -2694,40 +3030,86 @@
   <string name="ConversationSettingsFragment__see_all">എല്ലാം കാണുക</string>
   <string name="ConversationSettingsFragment__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
   <string name="ConversationSettingsFragment__permissions">അനുമതികൾ</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">അഭ്യർത്ഥനകൾ &amp; ക്ഷണങ്ങൾ</string>
   <string name="ConversationSettingsFragment__group_link">ഗ്രൂപ്പിന്റെ ലിങ്ക് </string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">ഒരു കോൺടാക്റ്റായി ചേർക്കുക</string>
   <string name="ConversationSettingsFragment__unmute">ശബ്‌ദിപ്പിക്കുക</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">%1$s വരെ സംഭാഷണം മ്യൂട്ട് ചെയ്തു</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">സംഭാഷണം എന്നെന്നേക്കുമായി മ്യുട് ചെയ്തു</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ക്ലിപ്ബോർഡിലേക്ക് ഫോൺ നമ്പർ പകർത്തി.</string>
   <string name="ConversationSettingsFragment__phone_number">ഫോൺ നമ്പർ</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
   <string name="PermissionsSettingsFragment__edit_group_info">ഗ്രൂപ്പ് വിവരം തിരുത്തുക</string>
+  <string name="PermissionsSettingsFragment__send_messages">സന്ദേശങ്ങള്‍ അയയ്ക്കുക</string>
   <string name="PermissionsSettingsFragment__all_members">എല്ലാ അംഗങ്ങളും</string>
   <string name="PermissionsSettingsFragment__only_admins">അഡ്‌മിനുകൾ മാത്രം</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">ആർക്കാണ് പുതിയ അംഗങ്ങളെ ചേർക്കാൻ കഴിയുക?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ഈ ഗ്രൂപ്പിന്റെ വിവരങ്ങൾ ആർക്കാണ് എഡിറ്റുചെയ്യാൻ കഴിയുക?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">ആർക്കാണ് സന്ദേശങ്ങള്‍ അയയ്ക്കാൻ കഴിയുക?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">നിശബ്ദമാക്കിയിട്ടില്ല</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">%1$s വരെ മ്യൂട്ട് ചെയ്തു</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">സൂചനകൾ</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">എപ്പോഴും അറിയിക്കുക</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">അറിയിക്കരുത്</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">അടുത്തിടെ ഉപയോഗിച്ചത്</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">പുതിയ പേയ്മെന്റ്</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">പുതിയ സന്ദേശം</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">പേര് അല്ലെങ്കിൽ നമ്പർ തിരയുക</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">ശബ്ദ സന്ദേശം നിർത്തുക</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">ശബ്ദ സന്ദേശം വേഗത മാറ്റുക</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">ശബ്ദ സന്ദേശം താൽക്കാലികമായി നിർത്തുക</string>
+  <string name="VoiceNotePlayerView__play_voice_message">ശബ്ദ സന്ദേശം പ്ലേ ചെയ്യുക</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">ശബ്ദ സന്ദേശം-ത്തിലേക്ക് നാവിഗേറ്റ് ചെയ്യുക</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">അവതാർ പ്രിവ്യൂ</string>
   <string name="AvatarPickerFragment__camera">ക്യാമറ</string>
+  <string name="AvatarPickerFragment__take_a_picture">ഒരു ഫോട്ടോ എടുക്ക്</string>
+  <string name="AvatarPickerFragment__choose_a_photo">ഒരു ചിത്രം തിരഞ്ഞെടുക്കുക</string>
   <string name="AvatarPickerFragment__photo">ഫോട്ടോ</string>
+  <string name="AvatarPickerFragment__text">വാചകം</string>
   <string name="AvatarPickerFragment__save">സംരക്ഷിക്കൂ</string>
+  <string name="AvatarPickerFragment__select_an_avatar">അവതാർ തിരഞ്ഞെടുക്കുക</string>
+  <string name="AvatarPickerFragment__clear_avatar">അവതാർ മായ്‌ക്കുക</string>
   <string name="AvatarPickerFragment__edit">തിരുത്തുക</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">അവതാർ സംരക്ഷിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">പ്രിവ്യൂ</string>
   <string name="TextAvatarCreationFragment__done">ചെയ്‌തു</string>
+  <string name="TextAvatarCreationFragment__text">വാചകം</string>
   <string name="TextAvatarCreationFragment__color">നിറം</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">ഒരു നിറം തിരഞ്ഞെടുക്കുക</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">. %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">മുകളിലേക്ക് നാവിഗേറ്റ് ചെയ്യുക</string>
+  <string name="MultiselectForwardFragment__add_a_message">ഒരു സന്ദേശം ചേര്‍ക്കുക</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">%1$d സന്ദേശം അയയ്ക്കുക</item>
+    <item quantity="other">%1$d സന്ദേശങ്ങള്‍ അയയ്ക്കുക</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">സന്ദേശം അയച്ചു</item>
+    <item quantity="other">സന്ദേശങ്ങള്‍ അയച്ചു</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">സന്ദേശം അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു.</item>
+    <item quantity="other">സന്ദേശങ്ങള്‍ അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു.</item>
+  </plurals>
   <!--EOF-->
 </resources>

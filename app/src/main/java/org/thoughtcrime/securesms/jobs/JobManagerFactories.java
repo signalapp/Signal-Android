@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.migrations.RegistrationPinV2MigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerAdditionMigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerDayByDayMigrationJob;
 import org.thoughtcrime.securesms.migrations.StickerLaunchMigrationJob;
+import org.thoughtcrime.securesms.migrations.StickerMyDailyLifeMigrationJob;
 import org.thoughtcrime.securesms.migrations.StorageCapabilityMigrationJob;
 import org.thoughtcrime.securesms.migrations.StorageServiceMigrationJob;
 import org.thoughtcrime.securesms.migrations.TrimByLengthSettingsMigrationJob;
@@ -161,6 +162,7 @@ public final class JobManagerFactories {
       put(StorageForcePushJob.KEY,                   new StorageForcePushJob.Factory());
       put(StorageSyncJob.KEY,                        new StorageSyncJob.Factory());
       put(SubmitRateLimitPushChallengeJob.KEY,       new SubmitRateLimitPushChallengeJob.Factory());
+      put(ThreadUpdateJob.KEY,                       new ThreadUpdateJob.Factory());
       put(TrimThreadJob.KEY,                         new TrimThreadJob.Factory());
       put(TypingSendJob.KEY,                         new TypingSendJob.Factory());
       put(UpdateApkJob.KEY,                          new UpdateApkJob.Factory());
@@ -190,6 +192,7 @@ public final class JobManagerFactories {
       put(StickerLaunchMigrationJob.KEY,             new StickerLaunchMigrationJob.Factory());
       put(StickerAdditionMigrationJob.KEY,           new StickerAdditionMigrationJob.Factory());
       put(StickerDayByDayMigrationJob.KEY,           new StickerDayByDayMigrationJob.Factory());
+      put(StickerMyDailyLifeMigrationJob.KEY, new StickerMyDailyLifeMigrationJob.Factory());
       put(StorageCapabilityMigrationJob.KEY,         new StorageCapabilityMigrationJob.Factory());
       put(StorageServiceMigrationJob.KEY,            new StorageServiceMigrationJob.Factory());
       put(TrimByLengthSettingsMigrationJob.KEY,      new TrimByLengthSettingsMigrationJob.Factory());

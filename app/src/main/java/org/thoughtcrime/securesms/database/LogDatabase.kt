@@ -106,6 +106,11 @@ class LogDatabase private constructor(
     }
   }
 
+  override fun onOpen(db: SQLiteDatabase) {
+    db.enableWriteAheadLogging()
+    db.setForeignKeyConstraintsEnabled(true)
+  }
+
   override fun getSqlCipherDatabase(): SQLiteDatabase {
     return writableDatabase
   }

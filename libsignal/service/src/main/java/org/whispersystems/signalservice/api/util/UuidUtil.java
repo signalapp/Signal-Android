@@ -27,6 +27,10 @@ public final class UuidUtil {
     return isUuid(uuid) ? parseOrThrow(uuid) : null;
   }
 
+  public static UUID parseOrUnknown(String uuid) {
+    return uuid == null || uuid.isEmpty() ? UNKNOWN_UUID : parseOrThrow(uuid);
+  }
+
   public static UUID parseOrThrow(String uuid) {
     return UUID.fromString(uuid);
   }

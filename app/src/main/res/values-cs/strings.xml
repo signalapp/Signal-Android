@@ -823,17 +823,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Sdílet</string>
   <string name="InviteActivity_share_with_contacts">Sdílet s kontakty</string>
-  <string name="InviteActivity_choose_how_to_share">Vybrat způsob sdílení</string>
+  <string name="InviteActivity_share_via">Sdílet přes…</string>
   <string name="InviteActivity_cancel">Storno</string>
   <string name="InviteActivity_sending">Odesílaní…</string>
   <string name="InviteActivity_invitations_sent">Pozvánka odeslána!</string>
   <string name="InviteActivity_invite_to_signal">Pozvat do Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">POSLAT SMS %d PŘÍTELI</item>
-    <item quantity="few">POSLAT SMS %d PŘÁTELŮM</item>
-    <item quantity="many">POSLAT SMS %d PŘÁTELŮM</item>
-    <item quantity="other">POSLAT SMS %d PŘÁTELŮM</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">Poslat SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Poslat %d SMS pozvánku?</item>
     <item quantity="few">Poslat %d SMS pozvánky?</item>
@@ -842,7 +837,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Přejít na Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Zdá se, že nemáte žádnou aplikaci pro sdílení.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Přátelé nenechávají přátele komunikovat nešifrovaně.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Zjistit více</string>
   <!--LongMessageActivity-->
@@ -921,11 +915,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Probíhá hovor Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Navazuji hovor Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Příchozí hovor Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Příchozí Signal skupinový hovor</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Zastavuji službu hovorů Signal</string>
-  <string name="NotificationBarManager__deny_call">Zakázat volání</string>
+  <string name="NotificationBarManager__decline_call">Odmítnout hovor</string>
   <string name="NotificationBarManager__answer_call">Přijmout hovor</string>
   <string name="NotificationBarManager__end_call">Ukončit hovor</string>
   <string name="NotificationBarManager__cancel_call">Zrušit hovor</string>
+  <string name="NotificationBarManager__join_call">Připojit se k hovoru</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Zapnout Notifikace?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Nezmeškejte žádnou zprávu od svých kontaktů a skupin.</string>
@@ -1315,21 +1311,55 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal potřebuje přístup k vašemu fotoaparátu pro volání %1$s</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Volání…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Skupina je pro volání příliš velká</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal hlasový hovor…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal videohovor…</string>
+  <string name="WebRtcCallView__signal_call">Signal hovor</string>
+  <string name="WebRtcCallView__signal_video_call">Signal video hovor</string>
   <string name="WebRtcCallView__start_call">Zahájit hovor</string>
   <string name="WebRtcCallView__join_call">Připojit se k hovoru</string>
   <string name="WebRtcCallView__call_is_full">Hovor je plný</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Maximální počet účastníků hovoru %1$d byl naplněn. Zkuste to prosím později.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" skupinový hovor</string>
   <string name="WebRtcCallView__view_participants_list">Zobrazit účastníky</string>
   <string name="WebRtcCallView__your_video_is_off">Vaše video je vypnuté</string>
   <string name="WebRtcCallView__reconnecting">Opětovné připojování…</string>
   <string name="WebRtcCallView__joining">Připojování…</string>
   <string name="WebRtcCallView__disconnected">Odpojen</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal zavolá %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal zavolá %1$s a %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal zavolá %1$s , %2$s a %3$d dalším</item>
+    <item quantity="few">Signal zavolá %1$s , %2$s a %3$d dalším</item>
+    <item quantity="many">Signal zavolá %1$s, %2$s a %3$d dalším</item>
+    <item quantity="other">Signal zavolá %1$s , %2$s a %3$d dalším</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s uvidí oznámení</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s a %2$s uvidí oznámení</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s a %3$d další uvidí oznámení</item>
+    <item quantity="few">%1$s, %2$s a %3$d dalších uvidí oznámení</item>
+    <item quantity="many">%1$s, %2$s a %3$d dalších uvidí oznámení</item>
+    <item quantity="other">%1$s, %2$s a %3$d další uvidí oznámení</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Volám %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Volám %1$s a %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Volám %1$s, %2$s a %3$d dalšímu</item>
+    <item quantity="few">Volám %1$s, %2$s a %3$d dalším</item>
+    <item quantity="many">Volám %1$s, %2$s a %3$d dalším </item>
+    <item quantity="other">Volám %1$s, %2$s a %3$d další</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s vám volá</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s volá vám a %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s volá vám, %2$s a %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s volá vám, %2$s, %3$s a %4$d dalšímu</item>
+    <item quantity="few">%1$s volá vám, %2$s, %3$s a %4$d dalším</item>
+    <item quantity="many">%1$s volá vám, %2$s, %3$s a %4$d dalším</item>
+    <item quantity="other">%1$s volá vám, %2$s, %3$s a %4$d další</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Nikdo další tady není</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s se účastní tohoto hovoru</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s jsou v hovoru</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s a %2$s se účastní tohoto hovoru</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s prezentuje</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1338,6 +1368,12 @@
     <item quantity="many">%1$s, %2$s a %3$d dalších se účastní tohoto hovoru</item>
     <item quantity="other">%1$s, %2$s a %3$d dalších se účastní tohoto hovoru</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Překlopit</string>
+  <string name="WebRtcCallView__speaker">Hlasitě</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__mute">Ztlumit</string>
+  <string name="WebRtcCallView__ring">Volat</string>
+  <string name="WebRtcCallView__end_call">Ukončit hovor</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">V tomto hovoru - %1$d člověk</item>
@@ -1682,7 +1718,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">Audio výstup</string>
   <string name="WebRtcAudioOutputToggle__phone_earpiece">Sluchátko</string>
-  <string name="WebRtcAudioOutputToggle__speaker">Reproduktor</string>
+  <string name="WebRtcAudioOutputToggle__speaker">Hlasitě</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <string name="WebRtcCallControls_answer_call_description">Přijmout hovor</string>
   <string name="WebRtcCallControls_reject_call_description">Odmítnout hovor</string>
@@ -3248,6 +3284,11 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ContactFilterView__search_name_or_number">Vyhledat jméno nebo číslo</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s . %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Zastavit hlasovou zprávu</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Změnit rychlost hlasové zprávy</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Pozastavit hlasovou zprávu</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Přehrát hlasovou zprávu</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Navigovat na hlasovou zprávu</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Náhled avataru</string>
   <string name="AvatarPickerFragment__camera">Fotoaparát</string>
@@ -3270,5 +3311,36 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">%1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Přejděte nahoru</string>
+  <string name="MultiselectForwardFragment__forward_to">Přeposlat</string>
+  <string name="MultiselectForwardFragment__add_a_message">Přidat zprávu</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Rychlejší přeposílání</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Přeposlané zprávy se nyní odesílají okamžitě.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Odeslat %1$d zprávu</item>
+    <item quantity="few">Odeslat %1$d zprávu</item>
+    <item quantity="many">Odeslat %1$d zprávu</item>
+    <item quantity="other">Odeslat %1$d zpráv</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Zpráva odeslána</item>
+    <item quantity="few">Zprávy odeslány</item>
+    <item quantity="many">Zprávy odeslány</item>
+    <item quantity="other">Zprávy odeslány</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Odeslání zprávy selhalo</item>
+    <item quantity="few">Odeslání zpráv selhalo</item>
+    <item quantity="many">Odeslání zpráv selhalo</item>
+    <item quantity="other">Odeslání zpráv selhalo</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Zprávu nebylo možné přeposlat, protože již není k dispozici.</item>
+    <item quantity="few">Zprávu nebylo možné přeposlat, protože již není k dispozici.</item>
+    <item quantity="many">Zprávu nebylo možné přeposlat, protože již není k dispozici.</item>
+    <item quantity="other">Zprávy nebylo možné přeposlat, protože již nejsou k dispozici.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Dosažen limit</string>
   <!--EOF-->
 </resources>

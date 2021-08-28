@@ -823,17 +823,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Поделиться</string>
   <string name="InviteActivity_share_with_contacts">Поделиться с контактами</string>
-  <string name="InviteActivity_choose_how_to_share">Выбрать, как поделиться</string>
+  <string name="InviteActivity_share_via">Поделиться через…</string>
   <string name="InviteActivity_cancel">Отмена</string>
   <string name="InviteActivity_sending">Отправляется…</string>
   <string name="InviteActivity_invitations_sent">Приглашения отправлены!</string>
   <string name="InviteActivity_invite_to_signal">Пригласить в Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ОТПРАВИТЬ SMS %d ДРУГУ</item>
-    <item quantity="few">ОТПРАВИТЬ SMS %d ДРУЗЬЯМ</item>
-    <item quantity="many">ОТПРАВИТЬ SMS %d ДРУЗЬЯМ</item>
-    <item quantity="other">ОТПРАВИТЬ SMS %d ДРУЗЬЯМ</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">Отправить SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Отправить %d SMS-приглашение?</item>
     <item quantity="few">Отправить %d SMS-приглашения?</item>
@@ -842,7 +837,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Давайте перейдем на Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Похоже, что у вас нет приложений, через которые можно поделиться.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Друзья не позволяют друзьям общаться без шифрования.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Узнать больше</string>
   <!--LongMessageActivity-->
@@ -921,11 +915,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Идёт звонок через Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Начинается звонок через Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Входящий звонок Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Входящий групповой звонок Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Останавливаем сервис звонков Signal</string>
-  <string name="NotificationBarManager__deny_call">Отклонить</string>
+  <string name="NotificationBarManager__decline_call">Отклонить звонок</string>
   <string name="NotificationBarManager__answer_call">Ответить</string>
   <string name="NotificationBarManager__end_call">Завершить</string>
   <string name="NotificationBarManager__cancel_call">Отменить</string>
+  <string name="NotificationBarManager__join_call">Присоединиться к звонку</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Включить уведомления?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Чтобы не пропускать сообщения от ваших контактов и групп.</string>
@@ -1315,21 +1311,55 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Чтобы позвонить %1$s, Signal необходим доступ к вашей камере</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Подключаемся…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Невозможно звонить участникам: группа слишком большая.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Голосовой звонок Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">Видеозвонок Signal…</string>
+  <string name="WebRtcCallView__signal_call">Звонок Signal</string>
+  <string name="WebRtcCallView__signal_video_call">Видеозвонок Signal</string>
   <string name="WebRtcCallView__start_call">Начать звонок</string>
   <string name="WebRtcCallView__join_call">Присоединиться к звонку</string>
   <string name="WebRtcCallView__call_is_full">Звонок заполнен</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Для этого звонка было достигнуто максимальное количество участников — %1$d. Попробуйте ещё раз позже.</string>
-  <string name="WebRtcCallView__s_group_call">Групповой звонок «%1$s»</string>
   <string name="WebRtcCallView__view_participants_list">Просмотреть участников</string>
   <string name="WebRtcCallView__your_video_is_off">Ваше видео отключено</string>
   <string name="WebRtcCallView__reconnecting">Переподключаемся…</string>
   <string name="WebRtcCallView__joining">Присоединяемся…</string>
   <string name="WebRtcCallView__disconnected">Отключено</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal будет звонить у %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal будет звонить у %1$s и %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal будет звонить у %1$s, %2$s и ещё %3$d человека</item>
+    <item quantity="few">Signal будет звонить у %1$s, %2$s и ещё %3$d человек</item>
+    <item quantity="many">Signal будет звонить у %1$s, %2$s и ещё %3$d человек</item>
+    <item quantity="other">Signal будет звонить у %1$s, %2$s и ещё %3$d человек</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s будет уведомлен(-а)</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s и %2$s будут уведомлены</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s и ещё %3$d человек будут уведомлены</item>
+    <item quantity="few">%1$s, %2$s и ещё %3$d человека будут уведомлены</item>
+    <item quantity="many">%1$s, %2$s и ещё %3$d человек будут уведомлены</item>
+    <item quantity="other">%1$s, %2$s и ещё %3$d человек будут уведомлены</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Звоним %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Звоним %1$s и %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Звоним %1$s, %2$s и ещё %3$d человеку</item>
+    <item quantity="few">Звоним %1$s, %2$s и ещё %3$d людям</item>
+    <item quantity="many">Звоним %1$s, %2$s и ещё %3$d людям</item>
+    <item quantity="other">Звоним %1$s, %2$s и ещё %3$d людям</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s звонит вам</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s звонит вам и %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s звонит вам, %2$s и %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s звонит вам, %2$s, %3$s и ещё %4$d человеку</item>
+    <item quantity="few">%1$s звонит вам, %2$s, %3$s и ещё %4$d людям</item>
+    <item quantity="many">%1$s звонит вам, %2$s, %3$s и ещё %4$d людям</item>
+    <item quantity="other">%1$s звонит вам, %2$s, %3$s и ещё %4$d людям</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Здесь нет никого, кроме вас</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s в этом звонке</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s в этом звонке</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s и %2$s в этом звонке</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s показывает</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1338,6 +1368,12 @@
     <item quantity="many">%1$s, %2$s и ещё %3$d человек в этом звонке</item>
     <item quantity="other">%1$s, %2$s и ещё %3$d человек в этом звонке</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Перекл. камеру</string>
+  <string name="WebRtcCallView__speaker">Громкая связь</string>
+  <string name="WebRtcCallView__camera">Камера</string>
+  <string name="WebRtcCallView__mute">Откл. микрофон</string>
+  <string name="WebRtcCallView__ring">Звонить</string>
+  <string name="WebRtcCallView__end_call">Завершить звонок</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">В этом звонке · %1$d человек</item>
@@ -1934,7 +1970,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Введите имя или номер</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если вы хотите убедиться в надёжности шифрования переписки и звонков с %s, сравните этот код с таким же кодом на устройстве вашего собеседника. Также вы можете отсканировать код на устройстве собеседника или попросить его отсканировать ваш код. <a href="https://whispersystems.org/redirect/safety-numbers">Подробнее</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если вы хотите убедиться в надёжности шифрования переписки и звонков с %s, сравните этот код с таким же кодом на устройстве вашего собеседника. Также вы можете отсканировать код на устройстве собеседника или попросить его отсканировать ваш код.<a href="https://signal.org/redirect/safety-numbers"> Подробнее</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
   <string name="verify_display_fragment__loading">Загружаем…</string>
   <string name="verify_display_fragment__verified">Подтверждён</string>
@@ -3242,6 +3278,11 @@
   <string name="ContactFilterView__search_name_or_number">Поиск по имени или номеру</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Остановить воспроизведение голосового сообщения</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Изменить скорость воспроизведения голосового сообщения</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Приостановить воспроизведение голосового сообщения</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Воспроизвести голосовое сообщение</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Перейти к голосовому сообщению</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Предпросмотр аватара</string>
   <string name="AvatarPickerFragment__camera">Камера</string>
@@ -3264,5 +3305,36 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Перейти назад</string>
+  <string name="MultiselectForwardFragment__forward_to">Переслать</string>
+  <string name="MultiselectForwardFragment__add_a_message">Добавьте сообщение</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Более быстрая пересылка</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Пересылаемые сообщения теперь отправляются сразу.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Отправить %1$d сообщение</item>
+    <item quantity="few">Отправить %1$d сообщения</item>
+    <item quantity="many">Отправить %1$d сообщений</item>
+    <item quantity="other">Отправить %1$d сообщений</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Сообщение отправлено</item>
+    <item quantity="few">Сообщения отправлены</item>
+    <item quantity="many">Сообщения отправлены</item>
+    <item quantity="other">Сообщения отправлены</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Не удалось отправить сообщение</item>
+    <item quantity="few">Не удалось отправить сообщения</item>
+    <item quantity="many">Не удалось отправить сообщения</item>
+    <item quantity="other">Не удалось отправить сообщения</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Не удалось переслать сообщение, потому что оно больше не доступно.</item>
+    <item quantity="few">Не удалось переслать сообщения, потому что они больше не доступны.</item>
+    <item quantity="many">Не удалось переслать сообщения, потому что они больше не доступны.</item>
+    <item quantity="other">Не удалось переслать сообщения, потому что они больше не доступны.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Достигнут предел</string>
   <!--EOF-->
 </resources>

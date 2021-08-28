@@ -76,6 +76,7 @@ import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -113,6 +114,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   public void onCreate() {
     Tracer.getInstance().start("Application#onCreate()");
     AppStartup.getInstance().onApplicationCreate();
+    SignalLocalMetrics.ColdStart.start();
 
     long startTime = System.currentTimeMillis();
 
@@ -178,6 +180,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .execute();
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
+    SignalLocalMetrics.ColdStart.onApplicationCreateFinished();
     Tracer.getInstance().end("Application#onCreate()");
   }
 

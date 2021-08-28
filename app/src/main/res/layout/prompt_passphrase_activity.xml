@@ -6,7 +6,8 @@
                 android:id="@+id/prompt_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:fitsSystemWindows="true">
 
     <View android:id="@+id/shim"
           android:layout_width="match_parent"
@@ -58,7 +59,7 @@
         <ImageView android:id="@+id/fingerprint_auth_container"
                 android:src="@drawable/ic_fingerprint_white_48dp"
                 android:background="@drawable/circle_tintable"
-                android:backgroundTint="@color/core_ultramarine"
+                android:backgroundTint="@color/signal_accent_primary"
                 android:padding="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,7 +71,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
                   android:background="@drawable/rounded_rectangle"
-                  android:backgroundTint="@color/core_ultramarine"
+                  android:backgroundTint="@color/signal_accent_primary"
                   android:textColor="@color/white"
                   android:gravity="center_horizontal"
                   android:elevation="3dp"

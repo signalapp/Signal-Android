@@ -40,6 +40,7 @@
   <string name="ApplicationPreferencesActivity_hide_reminder">ซ่อนการเตือนหรือไม่?</string>
   <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">บันทึกวลีกู้คืนสำหรับการชำระเงิน</string>
   <string name="ApplicationPreferencesActivity_record_phrase">วลีกู้คืน</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">ก่อนที่คุณจะปิดใช้งานรหัส PIN ของคุณได้ คุณต้องจดบันทึกวลีกู้คืนการชำระเงิน เพื่อให้แน่ใจว่าคุณสามารถกู้คืนบัญชีการชำระเงินของคุณได้</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="other">%d นาที</item>
@@ -50,6 +51,7 @@
   <string name="DraftDatabase_Draft_video_snippet">(วิดีโอ)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ตำแหน่งที่ตั้ง)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(ตอบกลับ)</string>
+  <string name="DraftDatabase_Draft_voice_note">(ข้อความเสียง)</string>
   <!--AttachmentKeyboard-->
   <string name="AttachmentKeyboard_gallery">อัลบั้มภาพ</string>
   <string name="AttachmentKeyboard_file">แฟ้ม</string>
@@ -205,6 +207,11 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">แฟ้มแนบมีขนาดใหญ่เกินกำหนดสำหรับชนิดของข้อความที่คุณกำลังจะส่ง</string>
   <string name="ConversationActivity_unable_to_record_audio">ไม่สามารถอัดเสียงได้!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">คุณไม่สามารถส่งข้อความเข้ากลุ่มนี้ได้ เพราะคุณไม่ได้เป็นสมาชิกแล้ว</string>
+  <string name="ConversationActivity_only_s_can_send_messages">เฉพาะ %1$s เท่านั้นที่ส่งข้อความได้</string>
+  <string name="ConversationActivity_admins">ผู้ดูแล</string>
+  <string name="ConversationActivity_message_an_admin">ส่งข้อความถึงผู้ดูแล</string>
+  <string name="ConversationActivity_cant_start_group_call">ไม่สามารถเริ่มต้นการโทรกลุ่ม</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">เฉพาะผู้ดูแลของกลุ่มนี้เท่านั้นที่จะเริ่มต้นการโทรได้</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">อุปกรณ์ของคุณไม่มีแอปที่สามารถจัดการกับลิงก์นี้ได้</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">คำขอเข้ากลุ่มของคุณถูกส่งไปยังผู้ดูแลกลุ่มแล้ว คุณจะได้รับแจ้งเมื่อผู้ดูแลดำเนินการ</string>
   <string name="ConversationActivity_cancel_request">ยกเลิกคำขอ</string>
@@ -312,6 +319,7 @@
   <string name="ConversationTypingView__plus_d">+%1$d</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">รายชื่อผู้ติดต่อบางคนไม่สามารถอยู่ในกลุ่มแบบเก่าได้</string>
+  <string name="CreateGroupActivity__select_members">เลือกสมาชิก</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">โปรไฟล์</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">การตั้งค่ารูปโปรไฟล์ผิดพลาด</string>
@@ -325,6 +333,7 @@
   <string name="ChooseBackupFragment__icon_content_description">กู้คืนจากข้อมูลสำรอง</string>
   <string name="ChooseBackupFragment__choose_backup">เลือกข้อมูลสำรอง</string>
   <string name="ChooseBackupFragment__learn_more">เรียนรู้เพิ่มเติม</string>
+  <string name="ChooseBackupFragment__no_file_browser_available">ไม่พบเบราว์เซอร์แฟ้มให้ใช้งาน</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">กู้คืนเสร็จสิ้น</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">เพื่อจะใช้ข้อมูลสำรอง กรุณาเลือกโฟลเดอร์ ข้อมูลสำรองใหม่จะถูกบันทึกในที่นี้</string>
@@ -401,6 +410,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">แบ่งปันกับ</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">การแนบแฟ้มหลายชิ้นแนบได้เฉพาะรูปภาพและวิดีโอ</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">คุณไม่ได้รับอนุญาตให้ส่งไปยังกลุ่มนี้</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">การสื่อสารของ Signal ล้มเหลวอย่างถาวร!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ไม่สามารถลงทะเบียนกับ Google Play Services การใช้งานข้อความและการโทร Signal ได้ถูกปิดใช้งาน กรุณาลองลงทะเบียนอีกครั้งใน การตั้งค่า &gt; ขั้นสูง</string>
@@ -528,6 +538,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">เสร็จสิ้น</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ไม่สามารถเพิ่มบุคคลนี้เข้ากลุ่มแบบเก่า</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">ไม่สามารถเพิ่มบุคคลนี้ในกลุ่มประกาศ</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="other">เพิ่มสมาชิก %3$d คนเข้า \"%2$s\" หรือไม่?</item>
   </plurals>
@@ -592,6 +603,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">ผู้ดูแลกลุ่มเท่านั้นที่จะล้างค่าตั้งใหม่ให้ลิงก์กลุ่มที่แบ่งปันได้</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">คุณไม่มีสิทธิ์ทำสิ่งนี้</string>
   <string name="ManageGroupActivity_not_capable">บุคคลที่คุณเพิ่มเข้ากลุ่ม ใช้กลุ่มแบบใหม่ไม่ได้ และจะต้องปรับรุ่น Signal</string>
+  <string name="ManageGroupActivity_not_announcement_capable">บุคคลที่คุณเพิ่มไม่รองรับกลุ่มประกาศ และต้องปรับปรุง Signal</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">ปรับปรุงกลุ่มไม่สำเร็จ</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">คุณไม่ใช่สมาชิกของกลุ่มนี้</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">ปรับปรุงกลุ่มไม่สำเร็จ โปรดลองอีกครั้งในภายหลัง</string>
@@ -700,20 +712,15 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">แบ่งปัน</string>
   <string name="InviteActivity_share_with_contacts"> แบ่งปันกับผู้ติดต่อ</string>
-  <string name="InviteActivity_choose_how_to_share">เลือกว่าจะแบ่งปันอย่างไร</string>
   <string name="InviteActivity_cancel">ยกเลิก</string>
   <string name="InviteActivity_sending">กำลังส่ง…</string>
   <string name="InviteActivity_invitations_sent">ส่งคำเชิญแล้ว!</string>
   <string name="InviteActivity_invite_to_signal">เชิญมาใช้ Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">ส่ง SMS ให้เพื่อน %d คน</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">ส่งคำเชิญทาง %dSMS หรือไม่?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Signal กัน: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">ดูเหมือนว่าคุณไม่มีแอปอะไรที่จะแบ่งปันได้</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">เพื่อนต้องไม่ยอมให้เพื่อนคุยกันโดยไม่มีการเข้ารหัส</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">เรียนรู้เพิ่มเติม</string>
   <!--LongMessageActivity-->
@@ -775,15 +782,16 @@
   <string name="Megaphones_invite_friends">เชิญเพื่อน</string>
   <string name="Megaphones_use_sms">ใช้ SMS</string>
   <string name="Megaphones_appearance">หน้าตา</string>
+  <string name="Megaphones_add_photo">เพิ่มรูปภาพ</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">กำลังโทร Signal อยู่</string>
   <string name="NotificationBarManager__establishing_signal_call">กำลังต่อสาย Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">สาย Signal เรียกเข้า</string>
   <string name="NotificationBarManager__stopping_signal_call_service">หยุดบริการโทร Signal</string>
-  <string name="NotificationBarManager__deny_call">ไม่รับสาย</string>
   <string name="NotificationBarManager__answer_call">รับสาย</string>
   <string name="NotificationBarManager__end_call">วางสาย</string>
   <string name="NotificationBarManager__cancel_call">ยกเลิกการโทร</string>
+  <string name="NotificationBarManager__join_call">เข้าร่วมสาย</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">เปิดการแจ้งเตือนหรือไม่?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">คุณจะไม่พลาดข้อความจากผู้ติดต่อและกลุ่มของคุณอีกต่อไป</string>
@@ -799,6 +807,8 @@
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">เพิ่มคำบรรยายภาพ…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">รายการนี้ถูกลบเพราะมีขนาดใหญ่เกินกำหนด</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">รายการถูกลบเพราะเป็นประเภทที่ไม่รู้จัก</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">รายการถูกลบเพราะมีขนาดเกินขีดจำกัดหรือเป็นประเภทที่ไม่รู้จัก</string>
   <string name="MediaSendActivity_camera_unavailable">ใช้กล้องไม่ได้</string>
   <string name="MediaSendActivity_message_to_s">ข้อความถึง %s</string>
   <string name="MediaSendActivity_message">ข้อความ</string>
@@ -814,6 +824,8 @@
   <string name="MediaRepository_all_media">สื่อทั้งหมด</string>
   <string name="MediaRepository__camera">กล้อง</string>
   <!--MessageDecryptionUtil-->
+  <string name="MessageDecryptionUtil_failed_to_decrypt_message">การถอดรหัสข้อความล้มเหลว</string>
+  <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">แตะเพื่อส่งปูมดีบัก</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">ไม่ทราบ</string>
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ได้รับข้อความที่เข้ารหัสลับด้วย Signal รุ่นเก่าที่ไม่รองรับอีกต่อไปแล้ว โปรดขอให้ผู้ส่งปรับปรุงแอปเป็นรุ่นล่าสุดและส่งข้อความอีกครั้ง</string>
@@ -867,7 +879,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s ตั้ง %2$s เป็นผู้ดูแล</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ตั้งคุณเป็นผู้ดูแล</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">คุณได้เพิกถอนสิทธิ์ผู้ดูแลจาก %1$s</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจากคุณ</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจาก %2$s</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s ได้เป็นผู้ดูแลแล้ว</string>
   <string name="MessageRecord_you_are_now_an_admin">ตอนนี้คุณเป็นผู้ดูแลแล้ว</string>
@@ -923,6 +934,12 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ได้เปลี่ยนแปลงว่าใครสามารถแก้ไขสมาชิกภาพกลุ่มเป็น \"%2$s\"</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">บุคคลที่สามารถแก้ไขสมาชิกภาพได้เปลี่ยนเป็น \"%1$s\"</string>
   <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">คุณเปลี่ยนการตั้งค่ากลุ่มเพื่อให้สมาชิกทุกคนส่งข้อความได้</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">คุณเปลี่ยนการตั้งค่ากลุ่มเพื่ออนุญาตให้ผู้ดูแลเท่านั้นที่ส่งข้อความได้</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s เปลี่ยนการตั้งค่ากลุ่มเพื่ออนุญาตให้สมาชิกทุกคนส่งข้อความได้</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s เปลี่ยนการตั้งค่ากลุ่มเพื่ออนุญาตให้ผู้ดูแลเท่านั้นที่ส่งข้อความได้</string>
+  <string name="MessageRecord_allow_all_members_to_send">การตั้งค่ากลุ่มเปลี่ยนเป็นอนุญาตให้สมาชิกทุกคนส่งข้อความได้</string>
+  <string name="MessageRecord_allow_only_admins_to_send">การตั้งค่ากลุ่มเปลี่ยนเป็นอนุญาตให้ผู้ดูแลเท่านั้นที่ส่งข้อความได้</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">คุณได้เปิดลิงก์กลุ่ม โดยการอนุมัติโดยผู้ดูแลปิดอยู่</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">คุณได้เปิดลิงก์กลุ่ม โดยการอนุมัติโดยผู้ดูแลเปิดอยู่</string>
@@ -967,6 +984,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">คุณทำเครื่องหมายจากอีกอุปกรณ์ว่า หมายเลขความปลอดภัยของคุณกับ %s ถูกตรวจยืนยันแล้ว</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">คุณทำเครื่องหมายว่า หมายเลขความปลอดภัยของคุณกับ %s ยังไม่ถูกตรวจยืนยัน</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">คุณทำเครื่องหมายจากอีกอุปกรณ์ว่า หมายเลขความปลอดภัยของคุณกับ %s ยังไม่ถูกตรวจยืนยัน</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">ไม่สามารถส่งข้อความจาก %s ได้</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s ได้เริ่มการโทรแบบกลุ่ม %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s อยู่ในการโทรแบบกลุ่ม %2$s</string>
@@ -1119,13 +1137,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">กำลังโทร…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">โทรเสียง Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">โทรวิดีโอ Signal…</string>
+  <string name="WebRtcCallView__signal_call">โทร Signal</string>
   <string name="WebRtcCallView__start_call">เริ่มโทร</string>
   <string name="WebRtcCallView__join_call">เข้าร่วมการโทร</string>
   <string name="WebRtcCallView__call_is_full">ห้องเต็ม</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">มีผู้เข้าร่วมสายนี้เต็มขีดจำกัดสูงสุด %1$d คนแล้ว โปรดลองใหม่ภายหลัง</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" โทรกลุ่ม</string>
   <string name="WebRtcCallView__view_participants_list">ดูผู้เข้าร่วม</string>
   <string name="WebRtcCallView__your_video_is_off">วิดีโอของคุณปิดอยู่</string>
   <string name="WebRtcCallView__reconnecting">กำลังเชื่อมต่อใหม่…</string>
@@ -1138,6 +1154,10 @@
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s %2$s และ %3$d รวมถึงคนอื่นๆ อยู่ในการโทรนี้</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">ลำโพง</string>
+  <string name="WebRtcCallView__camera">กล้อง</string>
+  <string name="WebRtcCallView__mute">ปิดเสียง</string>
+  <string name="WebRtcCallView__end_call">วางสาย</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">มีผู้เข้าร่วมการโทร %1$d คน</item>
@@ -1278,6 +1298,7 @@
   <string name="SubmitDebugLogActivity_success">สำเร็จ!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">คัดลอก URL และเพิ่มมันในรายงานปัญหาหรืออีเมลปรึกษาปัญหา:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">แบ่งปัน</string>
+  <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">บันทึกนี้จะถูกโพสต์แบบสาธารณะทางออนไลน์เพื่อให้ผู้สนับสนุนสามารถดูได้ คุณอาจจะตรวจสอบก่อนที่จะอัปโหลด</string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_filter">ตัวกรอง:</string>
   <string name="SupportEmailUtil_device_info">ข้อมูลอุปกรณ์:</string>
@@ -1310,6 +1331,7 @@
   <string name="ThreadRecord_you_marked_verified">คุณถูกทำเครื่องหมายว่าได้รับการตรวจยืนยันแล้ว</string>
   <string name="ThreadRecord_you_marked_unverified">คุณถูกทำเครื่องหมายว่ายังไม่ได้รับการตรวจยืนยัน</string>
   <string name="ThreadRecord_message_could_not_be_processed">ไม่สามารถประมวลผลข้อความ</string>
+  <string name="ThreadRecord_delivery_issue">ปัญหาการจัดส่ง</string>
   <string name="ThreadRecord_message_request">คำขอส่งข้อความ</string>
   <string name="ThreadRecord_photo">รูปภาพ</string>
   <string name="ThreadRecord_gif">GIF</string>
@@ -1390,6 +1412,7 @@
   <string name="MessageNotifier_failed_to_deliver_message">ส่งข้อความล้มเหลว</string>
   <string name="MessageNotifier_error_delivering_message">เกิดข้อผิดพลาดระหว่างส่งข้อความ</string>
   <string name="MessageNotifier_message_delivery_paused">การส่งข้อความถูกหยุดชั่วคราว</string>
+  <string name="MessageNotifier_verify_to_continue_messaging_on_signal">ตรวจยืนยันเพื่อรับส่งข้อความต่อใน Signal</string>
   <string name="MessageNotifier_mark_all_as_read">ทำเครื่องหมายทั้งหมดว่าอ่านแล้ว</string>
   <string name="MessageNotifier_mark_read">ทำเครื่องหมายว่าอ่านแล้ว</string>
   <string name="MessageNotifier_turn_off_these_notifications">ปิดการแจ้งเตือนเหล่านี้</string>
@@ -1423,6 +1446,7 @@
   <string name="NotificationChannel_missing_display_name">ไม่ทราบ</string>
   <string name="NotificationChannel_voice_notes">ข้อความเสียง</string>
   <string name="NotificationChannel_contact_joined_signal">มีผู้ติดต่อเริ่มใช้ Signal</string>
+  <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">ไม่มีกิจกรรมเพื่อเปิดการตั้งค่าเปิดการแจ้งเตือนช่อง</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">การตอบด่วนใช้ไม่ได้ถ้า Signal ถูกล็อคอยู่</string>
@@ -1544,7 +1568,9 @@
   <string name="ConversationUpdateItem_invite_friends">เชิญเพื่อน</string>
   <string name="ConversationUpdateItem_enable_call_notifications">เปิดใช้การแจ้งเตือนการโทร</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">ไม่มีกลุ่มที่เหมือนกันเลย โปรดพิจารณาคำขออย่างระวัง</string>
+  <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">ไม่มีผู้ติดต่อในกลุ่มนี้ โปรดพิจารณาคำขออย่างระวัง</string>
   <string name="ConversationUpdateItem_view">ดู</string>
+  <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">เวลาข้อความหายไปจะตั้งค่าเป็น %1$s เมื่อคุณส่งข้อความให้พวกเขา</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">เล่น … หยุดชั่วคราว</string>
   <string name="audio_view__download_accessibility_description">ดาวน์โหลด</string>
@@ -1574,7 +1600,13 @@
   <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">เปิดใช้การแจ้งเตือนการโทร</string>
   <string name="EnableCallNotificationSettingsDialog__enable_background_activity">เปิดใช้กิจกรรมในฉากหลัง</string>
   <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">ทุกอย่างดูดีแล้ว!</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">เพื่อรับการแจ้งเตือนการโทร แตะที่นี่และเปิด \"แสดงการแจ้งเตือน\"</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">เพื่อรับการแจ้งเตือนการโทร แตะที่นี่และเปิดการแจ้งเตือน เพื่อดูให้แน่ใจว่าเสียงและพ็อปอัปเปิดใช้งานอยู่</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">เพื่อรับการแจ้งเตือนการโทร แตะที่นี่และเปิดใช้งานกิจกรรมพื้นหลังในการตั้งค่า \"แบตเตอรี่\"</string>
   <string name="EnableCallNotificationSettingsDialog__settings">การตั้งค่า</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">เพื่อรับการแจ้งเตือนการโทร แตะการตั้งค่าและเปิด \"แสดงการแจ้งเตือน\"</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">เพื่อรับการแจ้งเตือนการโทร แตะการตั้งค่าและเปิดการแจ้งเตือน เพื่อดูให้แน่ใจว่าเสียงและพ็อปอัปเปิดใช้งานอยู่</string>
+  <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">เพื่อรับการแจ้งเตือนการโทร แตะการตั้งค่าและเปิดใช้งานกิจกรรมพื้นหลังในการตั้งค่า \"แบตเตอรี่\"</string>
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">กำลังโหลดประเทศ…</string>
   <string name="country_selection_fragment__search">ค้นหา</string>
@@ -1652,6 +1684,9 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal ต้องการการตั้งค่า MMS เพื่อจะส่งสื่อและข้อความกลุ่มผ่านผู้ให้บริการเครือข่ายไร้สายของคุณ อุปกรณ์ของคุณไม่ได้ให้ข้อมูลนี้ ซึ่งเกิดขึ้นได้สำหรับอุปกรณ์ที่ถูกล็อกหรืออุปกรณ์ที่ถูกจำกัดการใช้งานในรูปแบบอื่น</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">เพื่อจะส่งสื่อและข้อความกลุ่ม ให้แตะ \'ตกลง\' และตั้งค่าตามที่ร้องขอ การตั้งค่า MMS สำหรับผู้ให้บริการของคุณ สามารถหาได้โดยการค้นคำว่า \'APN ของผู้ให้บริการ\' คุณตั้งค่านี้แค่ครั้งเดียวก็เพียงพอ</string>
   <!--BadDecryptLearnMoreDialog-->
+  <string name="BadDecryptLearnMoreDialog_delivery_issue">ปัญหาการจัดส่ง</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">ข้อความ สติกเกอร์ การตอบสนอง การตอบรับเมื่ออ่าน หรือสื่อไม่สามารถส่งให้คุณได้จาก %s พวกเขาอาจลองส่งให้คุณโดยตรงหรือในกลุ่มแล้ว</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">ข้อความ สติกเกอร์ การตอบสนอง หรือการตอบรับเมื่ออ่านไม่สามารถส่งให้คุณจาก %s</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">ชื่อ (ต้องมี)</string>
   <string name="CreateProfileActivity_last_name_optional">นามสกุล (ไม่จำเป็น)</string>
@@ -1659,6 +1694,7 @@
   <string name="CreateProfileActivity__username">ชื่อผู้ใช้</string>
   <string name="CreateProfileActivity__create_a_username">สร้างชื่อผู้ใช้</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">จะมีแต่คุณที่มองเห็นรูปภาพและชื่อกลุ่ม MMS ตั้งเอง</string>
+  <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">คำอธิบายกลุ่มจะแสดงให้เห็นเฉพาะสมาชิกของกลุ่มนี้และผู้ที่ได้รับคำเชิญ</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">เกี่ยวกับ</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">เขียนอะไรบางอย่างเกี่ยวกับตัวคุณ</string>
@@ -1887,6 +1923,8 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ถ้าใบตอบรับเมื่ออ่านถูกปิดใช้งาน คุณจะไม่เห็นใบตอบรับเมื่ออ่านที่ส่งมาจากผู้อื่น</string>
   <string name="preferences__typing_indicators">แสดงว่ากำลังพิมพ์</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ถ้าสัญลักษณ์กำลังพิมพ์อยู่ถูกปิดใช้งาน คุณจะไม่เห็นสัญลักษณ์ว่ากำลังพิมพ์อยู่จากคนอื่น</string>
+  <string name="preferences__request_keyboard_to_disable">ขอให้แป้นพิมพ์ปิดใช้งานการเรียนรู้การแนะนำคำ</string>
+  <string name="preferences__this_setting_is_not_a_guarantee">การตั้งค่านี้ไม่ได้รับการรับประกัน และแป้นพิมพ์ของคุณอาจละเลยไป</string>
   <string name="preferences_app_protection__blocked_users">ผู้ใช้ที่ปิดกั้นอยู่</string>
   <string name="preferences_chats__when_using_mobile_data">เมื่อใช้ข้อมูลมือถือ</string>
   <string name="preferences_chats__when_using_wifi">เมื่อใช้ Wi-Fi</string>
@@ -1926,6 +1964,8 @@
   <string name="preferences_data_and_storage__calls">การโทร</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">ใช้ข้อมูลน้อยลงสำหรับการโทร</string>
   <string name="preferences_data_and_storage__never">ไม่เลย</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi และข้อมูลมือถือ</string>
+  <string name="preferences_data_and_storage__mobile_data_only">ข้อมูลมือถือเท่านั้น</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">การใช้ข้อมูลน้อยลงอาจช่วยปรับปรุงการโทรในเครือข่ายที่ไม่ดี</string>
   <string name="preferences_notifications__messages">ข้อความ</string>
   <string name="preferences_notifications__events">เหตุการณ์</string>
@@ -1950,6 +1990,7 @@
   <string name="preferences_off">ปิด</string>
   <string name="preferences_on">เปิด</string>
   <string name="preferences_proxy_address">ที่อยู่พร็อกซี</string>
+  <string name="preferences_only_use_a_proxy_if">ใช้พร็อกซีเฉพาะเมื่อคุณไม่สามารถเชื่อมต่อ Signal ผ่านข้อมูลมือถือหรือ Wi-Fi เท่านั้น</string>
   <string name="preferences_share">แบ่งปัน</string>
   <string name="preferences_save">บันทึก</string>
   <string name="preferences_connecting_to_proxy">กำลังเชื่อมต่อพร็อกซี…</string>
@@ -1968,6 +2009,7 @@
   <string name="PaymentsAllActivityFragment__sent">ส่งแล้ว</string>
   <string name="PaymentsAllActivityFragment__received">ได้รับแล้ว</string>
   <string name="PaymentsHomeFragment__introducing_payments">แนะนำการชำระเงิน (รุ่นทดสอบ)</string>
+  <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">ใช้ Signal เพื่อส่งและรับ MobileCoin ซึ่งเป็นสกุลเงินดิจิทัลใหม่ที่เน้นความเป็นส่วนตัว เปิดใช้งานเพื่อเริ่มต้น</string>
   <string name="PaymentsHomeFragment__activate_payments">ใช้การชำระเงิน</string>
   <string name="PaymentsHomeFragment__activating_payments">กำลังเปิดใช้การชำระเงิน…</string>
   <string name="PaymentsHomeFragment__restore_payments_account">เรียกคืนบัญชีชำระเงิน</string>
@@ -1990,20 +2032,27 @@
   <string name="PaymentsHomeFragment__processing_payment">กำลังประมวลผลการชำระเงิน</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">ไม่มีการแปลงสกุลเงินให้ใช้</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">ไม่สามารถแสดงการแปลงค่าสกุลเงินได้ ตรวจสอบการเชื่อมต่อของโทรศัพท์และลองอีกครั้ง</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">การชำระเงินไม่มีให้ใช้ในภูมิภาคของคุณ</string>
+  <string name="PaymentsHomeFragment__could_not_enable_payments">ไม่สามารถเปิดใช้งานการชำระเงินได้ ลองอีกครั้งภายหลัง</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">หยุดใช้การจ่ายเงินหรือไม่?</string>
+  <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">คุณจะไม่สามารถส่งหรือรับ Mobilecoin ใน Signal ได้ ถ้าคุณปิดใช้งานการชำระเงิน</string>
   <string name="PaymentsHomeFragment__deactivate">หยุดใช้</string>
   <string name="PaymentsHomeFragment__continue">ทำต่อ</string>
+  <string name="PaymentsHomeFragment__balance_is_not_currently_available">ไม่มียอดคงเหลือในขณะนี้</string>
   <string name="PaymentsHomeFragment__payments_deactivated">การชำระเงินถูกปิดใช้งานแล้ว</string>
   <string name="PaymentsHomeFragment__payment_failed">การชำระเงินล้มเหลว</string>
   <string name="PaymentsHomeFragment__details">รายละเอียด</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">คุณสามารถใช้ Signal เพื่อส่งและรับ MobileCoin การชำระเงินทั้งหมดอยู่ภายใต้เงื่อนไขการใช้งานสำหรับ MobileCoins และ MobileCoin Wallet นี่คือคุณสมบัติเบตา ดังนั้นคุณอาจพบปัญหาบางประการ และการชำระเงินหรือยอดคงเหลืออาจสูญหายไปโดยกู้คืนมาไม่ได้</string>
   <string name="PaymentsHomeFragment__activate">เปิดใช้</string>
   <string name="PaymentsHomeFragment__view_mobile_coin_terms">ดูเงื่อนไข MobileCoin</string>
+  <string name="PaymentsHomeFragment__payments_not_available">ไม่สามารถชำระเงินใน Signal ได้อีกต่อไป คุณยังสามารถโอนเงินไปยังตลาดหลักทรัพย์ได้ แต่คุณจะไม่สามารถส่งและรับการชำระเงินหรือเพิ่มเงินได้อีก</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">เพิ่มเงิน</string>
   <string name="PaymentsAddMoneyFragment__your_wallet_address">ที่อยู่กระเป๋าเงินของคุณ</string>
   <string name="PaymentsAddMoneyFragment__copy">คัดลอก</string>
   <string name="PaymentsAddMoneyFragment__copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
+  <string name="PaymentsAddMoneyFragment__to_add_funds">เพื่อเพิ่มเงิน ส่ง MobileCoin ไปยังที่อยู่กระเป๋าเงินของคุณ เริ่มต้นธุรกรรมจากบัญชีของคุณในตลาดแลกเปลี่ยนที่รองรับ MobileCoin จากนั้นสแกนรหัส QR หรือคัดลอกที่อยู่กระเป๋าเงินของคุณ</string>
   <!--PaymentsDetailsFragment-->
   <string name="PaymentsDetailsFragment__details">รายละเอียด</string>
   <string name="PaymentsDetailsFragment__status">สถานะ</string>
@@ -2018,7 +2067,9 @@
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s บน %2$s เมื่อ %3$s</string>
   <string name="PaymentsDetailsFragment__to">ถึง</string>
   <string name="PaymentsDetailsFragment__from">จาก</string>
+  <string name="PaymentsDetailsFragment__information">รายละเอียดธุรกรรม รวมถึงจำนวนเงินและเวลาของธุรกรรมเป็นส่วนหนึ่งของ MobileCoin Ledger</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">ค่าธรรมเนียมจัดระเบียบเหรียญ</string>
+  <string name="PaymentsDetailsFragment__coin_cleanup_information">\"ค่าธรรมเนียมจัดระเบียบเหรียญ\" มีการเรียกเก็บเมื่อเหรียญที่คุณครอบครองไม่สามารถนำไปรวมเพื่อให้ธุรกรรมเสร็จสมบูรณ์ได้ การจัดระเบียบช่วยให้คุณส่งเงินต่อไปได้</string>
   <string name="PaymentsDetailsFragment__no_details_available">ไม่มีรายละเอียดเพิ่มเติมอีกสำหรับธุรกรรมนี้</string>
   <string name="PaymentsDetailsFragment__sent_payment">การชำระเงินที่ส่งแล้ว</string>
   <string name="PaymentsDetailsFragment__received_payment">การชำระเงินที่ได้รับ</string>
@@ -2028,8 +2079,14 @@
   <string name="PaymentsTransferFragment__transfer">โอน</string>
   <string name="PaymentsTransferFragment__scan_qr_code">สแกนรหัส QR</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">ถึง: สแกนหรือใส่ที่อยู่กระเป๋าเงิน</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">คุณสามารถโอน MobileCoin ได้โดยการโอนเงินไปยังที่อยู่กระเป๋าเงินที่ได้รับจากตลาดหลักทรัพย์ให้เสร็จสมบูรณ์ ที่อยู่กระเป๋าเงินคือชุดตัวเลขและตัวอักษรส่วนใหญ่อยู่ใต้รหัส QR</string>
   <string name="PaymentsTransferFragment__next">ถัดไป</string>
   <string name="PaymentsTransferFragment__invalid_address">ที่อยู่ไม่ถูกต้อง</string>
+  <string name="PaymentsTransferFragment__check_the_wallet_address">ตรวจสอบที่อยู่กระเป๋าเงินที่คุณพยายามจะโอนเงินไปและลองอีกครั้ง</string>
+  <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">คุณไม่สามารถโอนไปยังที่อยู่กระเป๋าเงิน Signal ของคุณเองได้ ป้อนที่อยู่กระเป๋าเงินจากบัญชีของคุณที่ตลาดหลักทรัพย์ที่รองรับ</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">เพื่อสแกนรหัส QR Signal จำเป็นต้องเข้าถึงกล้องของคุณ</string>
+  <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Signal ต้องได้รับอนุญาตให้เข้าถึงกล้องเพื่อจับภาพรหัส QR ไปที่การตั้งค่า เลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
+  <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">เพื่อสแกนรหัส QR Signal จำเป็นต้องเข้าถึงกล้องของคุณ</string>
   <string name="PaymentsTransferFragment__settings">การตั้งค่า</string>
   <!--PaymentsTransferQrScanFragment-->
   <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">สแกนรหัส QR ที่อยู่</string>
@@ -2051,12 +2108,15 @@
   <string name="CreatePaymentFragment__decimal">.</string>
   <string name="CreatePaymentFragment__0">0</string>
   <string name="CreatePaymentFragment__lt">&lt;</string>
+  <string name="CreatePaymentFragment__backspace">Backspace</string>
   <string name="CreatePaymentFragment__add_note">เพิ่มบันทึก</string>
+  <string name="CreatePaymentFragment__conversions_are_just_estimates">เป็นการแปลกค่าโดยประมาณและอาจไม่เที่ยงตรง</string>
   <!--EditNoteFragment-->
   <string name="EditNoteFragment_note">บันทึก</string>
   <!--ConfirmPaymentFragment-->
   <string name="ConfirmPayment__confirm_payment">ยืนยันการจ่ายเงิน</string>
   <string name="ConfirmPayment__network_fee">ค่าธรรมเนียมเครือข่าย</string>
+  <string name="ConfirmPayment__error_getting_fee">เกิดข้อผิดพลาดในการรับค่าธรรมเนียม</string>
   <string name="ConfirmPayment__estimated_s">ประมาณ %1$s</string>
   <string name="ConfirmPayment__to">ถึง</string>
   <string name="ConfirmPayment__total_amount">จำนวนรวม</string>
@@ -2065,7 +2125,10 @@
   <string name="ConfirmPayment__processing_payment">กำลังประมวลผลการชำระเงิน…</string>
   <string name="ConfirmPayment__payment_complete">การชำระเงินสมบูรณ์</string>
   <string name="ConfirmPayment__payment_failed">การชำระเงินล้มเหลว</string>
+  <string name="ConfirmPayment__payment_will_continue_processing">การชำระเงินจะดำเนินการต่อไป</string>
   <string name="ConfirmPaymentFragment__invalid_recipient">ผู้รับไม่ถูกต้อง</string>
+  <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">บุคคลนี้ไม่ได้เปิดใช้การชำระเงิน</string>
+  <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">ไม่สามารถขอคำธรรมเนียมเครือข่ายได้ เพื่อชำระเงินนี้ต่อ แตะตกลงเพื่อลองอีกครั้ง</string>
   <!--CurrencyAmountFormatter_s_at_s-->
   <string name="CurrencyAmountFormatter_s_at_s">%1$s ที่ %2$s</string>
   <!--SetCurrencyFragment-->
@@ -2394,6 +2457,7 @@
   <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
   <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">แตะรูปโปรไฟล์ของคุณบนฝั่งซ้ายบนเพื่อเปิดการตั้งค่า</string>
   <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_account">แตะที่ \"บัญชี\"</string>
   <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
   <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">แตะ \"ถ่ายโอนบัญชี\" แล้วเลือก \"ดำเนินการต่อ\" บนอุปกรณ์ทั้งสองเครื่อง</string>
   <!--NewDeviceTransferSetupFragment-->
@@ -2492,6 +2556,8 @@
   <string name="OldDeviceTransferLockedDialog__done">เสร็จสิ้น</string>
   <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">ยกเลิกและเปิดใช้งานอุปกรณ์เครื่องนี้</string>
   <!--AdvancedPreferenceFragment-->
+  <string name="AdvancedPreferenceFragment__transfer_mob_balance">โอนยอดคงเหลือ MOB หรือไม่?</string>
+  <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">คุณมียอดคงเหลือ %1$s หากคุณไม่โอนเงินของคุณไปยังที่อยู่กระเป๋าเงินอื่นก่อนลบบัญชี เงินจำนวนนี้จะหายไปตลอดกาล</string>
   <string name="AdvancedPreferenceFragment__dont_transfer">ไม่โอน</string>
   <string name="AdvancedPreferenceFragment__transfer">โอน</string>
   <!--RecipientBottomSheet-->
@@ -2533,6 +2599,7 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">ลิงก์นี้ไม่ได้ถูกเปิดใช้ในตอนนี้</string>
   <!--VoiceNotePlaybackPreparer-->
+  <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">การเล่นข้อความเสียงล้มเหลว</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ข้อความเสียง %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s ถึง %2$s</string>
@@ -2597,9 +2664,13 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">ค้นหาประเทศ</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">ข้าม</string>
+  <plurals name="CreateGroupActivity__d_members">
+    <item quantity="other">สมาชิก %1$d คน</item>
+  </plurals>
   <!--ShareActivity-->
   <string name="ShareActivity__share">แบ่งปัน</string>
   <string name="ShareActivity__send">ส่ง</string>
+  <string name="ShareActivity__comma_s">, %1$s</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">การแบ่งปันแชตหลายแชตพร้อมกันนั้นรองรับเฉพาะแค่ข้อความของ Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">การส่งไปยังผู้ใช้อื่นล้มเหลว</string>
@@ -2610,12 +2681,24 @@
   <string name="ChatWallpaperActivity__chat_wallpaper">ภาพพื้นหลังของหน้าแชต</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__chat_color">สีแชต</string>
+  <string name="ChatWallpaperFragment__reset_chat_colors">รีเซ็ตสีแชต</string>
+  <string name="ChatWallpaperFragment__reset_chat_color">รีเซ็ตสีแชต</string>
+  <string name="ChatWallpaperFragment__reset_chat_color_question">รีเซ็ตสีแชตหรือไม่?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">ตั้งภาพพื้นหลัง</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">ภาพพื้นหลังธีมมืดสลัว</string>
   <string name="ChatWallpaperFragment__contact_name">ชื่อผู้ติดต่อ</string>
   <string name="ChatWallpaperFragment__reset">รีเซ็ต</string>
   <string name="ChatWallpaperFragment__clear">ล้าง</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">ภาพตัวอย่างพื้นหลัง</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">คุณต้องการยกเลิกสีแชตทั้งหมดใช่หรือไม่?</string>
+  <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">คุณต้องการยกเลิกภาพพื้นหลังทั้งหมดใช่หรือไม่?</string>
+  <string name="ChatWallpaperFragment__reset_default_colors">รีเซ็ตสีเริ่มต้น</string>
+  <string name="ChatWallpaperFragment__reset_all_colors">รีเซ็ตสีทั้งหมด</string>
+  <string name="ChatWallpaperFragment__reset_default_wallpaper">รีเซ็ตภาพพื้นหลังเริ่มต้น</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">รีเซ็ตภาพพื้นหลังทั้งหมด</string>
+  <string name="ChatWallpaperFragment__reset_wallpapers">รีเซ็ตภาพพื้นหลัง</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper">รีเซ็ตภาพพื้นหลัง</string>
+  <string name="ChatWallpaperFragment__reset_wallpaper_question">รีเซ็ตภาพพื้นหลังหรือไม่?</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">เลือกจากรูปภาพ</string>
   <string name="ChatWallpaperSelectionFragment__presets">ชุดปรับแต่งภาพพื้นหลัง</string>
@@ -2638,23 +2721,33 @@
   <string name="payment_info_card_about_mobilecoin">เกี่ยวกับ MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin เป็นเงินดิจิทัลสกุลใหม่ที่เน้นเรื่องความเป็นส่วนตัว</string>
   <string name="payment_info_card_adding_funds">การเติมเงิน</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">คุณสามารถเพิ่มเงินสำหรับใช้ใน Signal ได้โดยการส่ง MobileCoin ไปยังที่อยู่กระเป๋าเงินของคุณ</string>
   <string name="payment_info_card_cashing_out">การถอนออกเป็นเงินสด</string>
+  <string name="payment_info_card_you_can_cash_out_mobilecoin">คุณสามารถถอน MobileCoin เป็นเงินสดได้ตลอดเวลาในตลาดหลักทรัพย์ที่รองรับ MobileCoin เพียงแค่โอนเงินไปยังบัญชีในตลาดหลักทรัพย์นั้น</string>
   <string name="payment_info_card_hide_this_card">ซ่อนบัตรนี้หรือไม่?</string>
   <string name="payment_info_card_hide">ซ่อน</string>
   <string name="payment_info_card_record_recovery_phrase">บันทึกวลีกู้คืน</string>
+  <string name="payment_info_card_your_recovery_phrase_gives_you">วลีกู้คืนเป็นอีกวิธีหนึ่งในการกู้คืนบัญชีการชำระเงินของคุณ</string>
   <string name="payment_info_card_record_your_phrase">บันทึกวลีของคุณ</string>
   <string name="payment_info_card_update_your_pin">เปลี่ยนรหัส PIN ของคุณ</string>
+  <string name="payment_info_card_with_a_high_balance">เมื่อมียอดคงเหลือสูง คุณอาจต้องการปรับปรุงรหัส PIN ตัวเลขตัวอักษรเพื่อเพิ่มการปกป้องให้กับบัญชีของคุณ</string>
   <string name="payment_info_card_update_pin">เปลี่ยนรหัส PIN</string>
   <!--DeactivateWalletFragment-->
   <string name="DeactivateWalletFragment__deactivate_wallet">หยุดใช้กระเป๋าเงิน</string>
   <string name="DeactivateWalletFragment__your_balance">ยอดของคุณ</string>
+  <string name="DeactivateWalletFragment__its_recommended_that_you">ขอแนะนำให้คุณโอนเงินของคุณไปยังที่อยู่กระเป๋าเงินอื่นก่อนปิดใช้งานการชำระเงิน หากคุณเลือกที่จะไม่โอนเงินตอนนี้ เงินจะคงอยู่ในกระเป๋าเงินที่เชื่อมโยงกับ Signal หากคุณกลับมาเปิดใช้งานการชำระเงินอีกครั้ง</string>
+  <string name="DeactivateWalletFragment__transfer_remaining_balance">โอนยอดคงเหลือที่เหลือ</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring">หยุดใช้งานโดยไม่ถ่ายโอน</string>
   <string name="DeactivateWalletFragment__deactivate">หยุดใช้</string>
   <string name="DeactivateWalletFragment__deactivate_without_transferring_question">หยุดใช้งานโดยไม่ถ่ายโอนหรือไม่?</string>
+  <string name="DeactivateWalletFragment__your_balance_will_remain">ยอดคงเหลือจะคงอยู่ในกระเป๋าเงินของคุณที่เชื่อมโยงกับ Signal หากคุณเลือกกลับมาเปิดใช้งานการชำระเงินอีกครั้ง</string>
+  <string name="DeactivateWalletFragment__error_deactivating_wallet">เกิดข้อผิดพาดในการปิดใช้งานกระเป๋าเงิน</string>
   <!--PaymentsRecoveryStartFragment-->
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">วลีกู้คืน</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">ดูวลีกู้คืน</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">ใส่วลีกู้คืน</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">ยอดคงเหลือของคุณจะกู้คืนมาโดยโดยอัตโนมัติเมื่อคุณติดตั้ง Signal อีกครั้ง หากคุณยืนยันรหัส Signal PIN ของคุณ คุณยังสามารถกู้คืนยอดคงเหลือได้โดยใช้วลีกู้คืน ซึ่งเป็นวลี %1$d คำเฉพาะสำหรับคุณเท่านั้น จดบันทึกวลีนี้และเก็บไว้ในที่ปลอดภัย</string>
+  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">วลีกู้คืนของคุณคือวลี %1$d คำที่เฉพาะเจาะจงกับคุณและไม่ซ้ำใคร ใช้วลีนี้เพื่อกู้คืนยอดคงเหลือของคุณ</string>
   <string name="PaymentsRecoveryStartFragment__start">เริ่ม</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">ใส่ด้วยมือ</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">วางจากคลิปบอร์ด</string>
@@ -2674,7 +2767,9 @@
   <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">อย่าจับภาพหน้าจอหรือส่งด้วยอีเมล</string>
   <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">บัญชีชำระเงินถูกกู้คืนแล้ว</string>
   <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">วลีกู้คืนผิดรูปแบบ</string>
+  <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">ดูให้แน่ใจว่าคุณป้อนวลีถูกต้องและลองอีกครั้ง</string>
   <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">คัดลอกไปคลิปบอร์ดหรือไม่?</string>
+  <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">หากคุณเลือกจัดเก็บวลีกู้คืนในระบบดิจิทัล ตรวจสอบให้แน่ใจว่าเก้บไว้ในที่ปลอดภัยที่คุณไว้วางใจ</string>
   <string name="PaymentsRecoveryPhraseFragment__copy">คัดลอก</string>
   <!--PaymentsRecoveryPhraseConfirmFragment-->
   <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">ยืนยันวลีกู้คืน</string>
@@ -2702,8 +2797,11 @@
   <string name="CanNotSendPaymentDialog__send_a_message">ส่งข้อความ</string>
   <!--GroupsInCommonMessageRequest-->
   <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">คุณไม่ได้อยู่ในกลุ่มใดที่เหมือนกับบุคคลนี้เลย โปรดพิจารณาคำขออย่างถี่ถ้วน ก่อนจะยอมรับ เพื่อเลี่ยงข้อความไม่พึงประสงค์</string>
+  <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">ไม่มีผู้ติดต่อหรือผู้ที่คุณแชตด้วยอยู่ในกลุ่มนี้เลย พิจารณาคำขออย่างถี่ถ้วนก่อนจะยอมรับ เพื่อเลี่ยงข้อความไม่พึงประสงค์</string>
   <string name="GroupsInCommonMessageRequest__about_message_requests">เกี่ยวกับคำขอส่งข้อความ</string>
   <string name="GroupsInCommonMessageRequest__okay">ตกลง</string>
+  <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">นี่คือตัวอย่างสีแชต</string>
+  <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">สีที่คุณเห็นคนเดียว</string>
   <!--GroupDescriptionDialog-->
   <string name="GroupDescriptionDialog__group_description">คำอธิบายกลุ่ม</string>
   <!--QualitySelectorBottomSheetDialog-->
@@ -2716,6 +2814,8 @@
   <string name="AppSettingsFragment__invite_your_friends">เชิญเพื่อนของคุณ</string>
   <!--AccountSettingsFragment-->
   <string name="AccountSettingsFragment__account">บัญชี</string>
+  <string name="AccountSettingsFragment__youll_be_asked_less_frequently">จะมีการสอบถามคุณน้อยลงเมื่อเวลาผ่านไป</string>
+  <string name="AccountSettingsFragment__require_your_signal_pin">ต้องการรหัส SignalPIN ในการลงทะเบียนหมายเลขโทรศัพท์ของคุณกับ Signal อีกครั้ง</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">แป้นพิมพ์</string>
   <string name="ChatsSettingsFragment__enter_key_sends">กด Enter เพื่อส่ง</string>
@@ -2733,9 +2833,15 @@
   <string name="PrivacySettingsFragment__disappearing_messages">ข้อความที่ลบตัวเอง</string>
   <string name="PrivacySettingsFragment__app_security">ความปลอดภัยของแอป</string>
   <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">ไม่อนุญาตให้จับภาพหน้าจอในรายการล่าสุดและภายในแอป</string>
+  <string name="PrivacySettingsFragment__signal_message_and_calls">Signal ส่งข้อความและโทร ถ่ายทอดการโทร และผู้ส่งที่ถูกปกปิด</string>
+  <string name="PrivacySettingsFragment__default_timer_for_new_changes">ตัวจับเวลาค่าเริ่มต้นสำหรับแชตใหม่</string>
+  <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ตั้งค่าเริ่มต้นของตัวจับเวลาข้อความหายไปสำหรับแชตใหม่ที่คุณเริ่มต้น</string>
   <!--AdvancedPrivacySettingsFragment-->
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">แสดงไอคอนสถานะ</string>
+  <string name="AdvancedPrivacySettingsFragment__show_an_icon">แสดงไอคอนในรายละเอียดข้อความเมื่อเป็นข้อความที่ส่งโดยใช้ผู้ส่งที่ถูกปกปิด</string>
   <!--ExpireTimerSettingsFragment-->
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">เมื่อเปิดใช้งาน ข้อความใหม่ที่ส่งและรับในการแชตใหม่ที่คุณเริ่มจะหายไปหลังจากที่ได้เห็นแล้ว</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">เมื่อเปิดใช้งาน ข้อความใหม่ที่ส่งและได้รับในแชตนี้จะหายไปหลังจากที่ได้เห็นแล้ว</string>
   <string name="ExpireTimerSettingsFragment__off">ปิด</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 สัปดาห์</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 สัปดาห์</string>
@@ -2753,6 +2859,7 @@
   <string name="CustomExpireTimerSelectorView__days">วัน</string>
   <string name="CustomExpireTimerSelectorView__weeks">สัปดาห์</string>
   <!--HelpSettingsFragment-->
+  <string name="HelpSettingsFragment__support_center">ศูนย์ความช่วยเหลือ</string>
   <string name="HelpSettingsFragment__contact_us">ติดต่อเรา</string>
   <string name="HelpSettingsFragment__version">รุ่น</string>
   <string name="HelpSettingsFragment__debug_log">ปูมดีบัก</string>
@@ -2769,28 +2876,48 @@
   <string name="ChatColorSelectionFragment__duplicate">ทำซ้ำ</string>
   <string name="ChatColorSelectionFragment__delete">ลบ</string>
   <string name="ChatColorSelectionFragment__delete_color">ลบสี</string>
+  <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+    <item quantity="other">สีกำหนดเองนี้มีการใช้งานใน %1$d แชต คุณต้องการลบสีนี้จากแชตทั้งหมดหรือไม่?</item>
+  </plurals>
+  <string name="ChatColorSelectionFragment__delete_chat_color">ลบสีแชตหรือไม่?</string>
   <!--CustomChatColorCreatorFragment-->
   <string name="CustomChatColorCreatorFragment__solid">ทึบ</string>
   <string name="CustomChatColorCreatorFragment__gradient">ไล่สี</string>
+  <string name="CustomChatColorCreatorFragment__hue">โทนสี</string>
+  <string name="CustomChatColorCreatorFragment__saturation">ความอิ่มสี</string>
   <!--CustomChatColorCreatorFragmentPage-->
   <string name="CustomChatColorCreatorFragmentPage__save">บันทึก</string>
   <string name="CustomChatColorCreatorFragmentPage__edit_color">แก้สี</string>
+  <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+    <item quantity="other">สีนี้มีการใช้งานใน %1$d แชต คุณต้องการบันทึกการเปลี่ยนแปลงสำหรับแชตทั้งหมดหรือไม่?</item>
+  </plurals>
   <!--ChatColorGradientTool-->
+  <string name="ChatColorGradientTool_top_edge_selector">ตัวเลือกขอบบน</string>
+  <string name="ChatColorGradientTool_bottom_edge_selector">ตัวเลือกขอบล่าง</string>
   <!--EditReactionsFragment-->
+  <string name="EditReactionsFragment__customize_reactions">ปรับแต่งการตอบสนอง</string>
+  <string name="EditReactionsFragment__tap_to_replace_an_emoji">แตะเพื่อเปลี่ยนอีโมจิ</string>
   <string name="EditReactionsFragment__reset">รีเซ็ต</string>
   <string name="EditReactionsFragment_save">บันทึก</string>
+  <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">จับคู่สีกับวอลล์เปเปอร์โดยอัตโนมัติ</string>
+  <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">ลากเพื่อเปลี่ยนทิศทางของการไล่สี</string>
   <!--ChatColorsMegaphone-->
   <string name="ChatColorsMegaphone__new_chat_colors">สีแชตใหม่</string>
+  <string name="ChatColorsMegaphone__we_switched_up_chat_colors">เราสลับเปลี่ยนสีแชตเพื่อให้คุณมีตัวเลือกมากขึ้น และทำให้แชตอ่านง่ายขึ้น</string>
   <string name="ChatColorsMegaphone__appearance">หน้าตา</string>
   <string name="ChatColorsMegaphone__not_now">ไม่ใช่ตอนนี้</string>
   <!--AddAProfilePhotoMegaphone-->
+  <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">เพิ่มภาพโปรไฟล์</string>
+  <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">เลือกหน้าตาและสีหรือปรับแต่งหน้าตาเริ่มต้นของคุณ</string>
   <string name="AddAProfilePhotoMegaphone__not_now">ไม่ใช่ตอนนี้</string>
+  <string name="AddAProfilePhotoMegaphone__add_photo">เพิ่มรูปภาพ</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">อีโมจิ</string>
   <string name="KeyboardPagerFragment_open_emoji_search">หาอีโมจิ</string>
   <string name="KeyboardPagerFragment_open_sticker_search">หาสติกเกอร์</string>
   <string name="KeyboardPagerFragment_open_gif_search">หา GIF</string>
   <string name="KeyboardPagerFragment_stickers">สติกเกอร์</string>
+  <string name="KeyboardPagerFragment_backspace">Backspace</string>
   <string name="KeyboardPagerFragment_gifs">GIF</string>
   <string name="KeyboardPagerFragment_search_emoji">หาอีโมจิ</string>
   <string name="KeyboardPagerfragment_back_to_emoji">กลับไปอีโมจิ</string>
@@ -2802,6 +2929,9 @@
   <string name="EmojiSearchFragment__no_results_found">ไม่พบผลลัพธ์</string>
   <string name="NotificationsSettingsFragment__unknown_ringtone">เสียงเรียกเข้าที่ไม่รู้จัก</string>
   <!--ConversationSettingsFragment-->
+  <string name="ConversationSettingsFragment__send_message">ส่งข้อความ</string>
+  <string name="ConversationSettingsFragment__start_video_call">เริ่มโทรวิดีโอ</string>
+  <string name="ConversationSettingsFragment__start_audio_call">เริ่มโทรเสียง</string>
   <string name="ConversationSettingsFragment__message">ข้อความ</string>
   <string name="ConversationSettingsFragment__video">วิดีโอ</string>
   <string name="ConversationSettingsFragment__audio">เสียง</string>
@@ -2810,6 +2940,8 @@
   <string name="ConversationSettingsFragment__muted">ปิดเสียงอยู่</string>
   <string name="ConversationSettingsFragment__search">ค้นหา</string>
   <string name="ConversationSettingsFragment__disappearing_messages">ข้อความที่ลบตัวเอง</string>
+  <string name="ConversationSettingsFragment__sounds_and_notifications">เสียงและการแจ้งเตือน</string>
+  <string name="ConversationSettingsFragment__contact_details">รายละเอียดผู้ติดต่อ</string>
   <string name="ConversationSettingsFragment__view_safety_number">ดูหมายเลขความปลอดภัย</string>
   <string name="ConversationSettingsFragment__block">ปิดกั้น</string>
   <string name="ConversationSettingsFragment__block_group">ปิดกั้นกลุ่ม</string>
@@ -2819,40 +2951,73 @@
   <string name="ConversationSettingsFragment__see_all">ดูทั้งหมด</string>
   <string name="ConversationSettingsFragment__add_members">เพิ่มสมาชิก</string>
   <string name="ConversationSettingsFragment__permissions">สิทธิ์</string>
+  <string name="ConversationSettingsFragment__requests_and_invites">คำขอและคำเชิญ</string>
   <string name="ConversationSettingsFragment__group_link">ลิงก์กลุ่ม</string>
+  <string name="ConversationSettingsFragment__add_as_a_contact">เพิ่มเป็นผู้ติดต่อ</string>
   <string name="ConversationSettingsFragment__unmute">เปิดเสียง</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">ปิดเสียงการสนทนาจนถึง %1$s</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">ปิดเสียงการสนทนาตลอดไป</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">คัดลอกหมายเลขโทรศัพท์ไปยังคลิปบอร์ดแล้ว</string>
   <string name="ConversationSettingsFragment__phone_number">หมายเลขโทรศัพท์</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">เพิ่มสมาชิก</string>
   <string name="PermissionsSettingsFragment__edit_group_info">แก้ไขข้อมูลกลุ่ม</string>
+  <string name="PermissionsSettingsFragment__send_messages">ส่งข้อความ</string>
   <string name="PermissionsSettingsFragment__all_members">สมาชิกทุกคน</string>
   <string name="PermissionsSettingsFragment__only_admins">เฉพาะผู้ดูแล</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">ใครสามารถเพิ่มสมาชิกใหม่?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">ใครสามารถแก้ไขข้อมูลของกลุ่มนี้ได้?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">ใครที่ส่งข้อความได้บ้าง?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">ปิดการแจ้งเตือน</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">ไม่ปิดเสียง</string>
+  <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">ปิดเสียงจนถึง %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">การกล่าวถึง</string>
+  <string name="SoundsAndNotificationsSettingsFragment__always_notify">แจ้งเตือนตลอด</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">ไม่ต้องแจ้งเตือน</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">การแจ้งเตือนที่กำหนดเอง</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">เพิ่งใช้</string>
   <!--PlaybackSpeedToggleTextView-->
+  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
+  <string name="PaymentRecipientSelectionFragment__new_payment">การชำระเงินใหม่</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">ข้อความใหม่</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">ค้นหาชื่อหรือหมายเลข</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">หยุดข้อความเสียง</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">เปลี่ยนความเร็วข้อความเสียง</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">หยุดข้อความเสียงชั่วคราว</string>
+  <string name="VoiceNotePlayerView__play_voice_message">เล่นข้อความเสียง</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">เลื่อนไปที่ข้อความเสียง</string>
   <!--AvatarPickerFragment-->
+  <string name="AvatarPickerFragment__avatar_preview">ตัวอย่างอวตาร</string>
   <string name="AvatarPickerFragment__camera">กล้อง</string>
+  <string name="AvatarPickerFragment__take_a_picture">ถ่ายภาพ</string>
+  <string name="AvatarPickerFragment__choose_a_photo">เลือกรูปภาพ</string>
   <string name="AvatarPickerFragment__photo">รูปถ่าย</string>
+  <string name="AvatarPickerFragment__text">ข้อความ</string>
   <string name="AvatarPickerFragment__save">บันทึก</string>
+  <string name="AvatarPickerFragment__select_an_avatar">เลือกอวตาร</string>
+  <string name="AvatarPickerFragment__clear_avatar">ล้างอวตาร</string>
   <string name="AvatarPickerFragment__edit">แก้ไข</string>
+  <string name="AvatarPickerRepository__failed_to_save_avatar">การบันทึกอวตารล้มเหลว</string>
   <!--TextAvatarCreationFragment-->
   <string name="TextAvatarCreationFragment__preview">ภาพตัวอย่าง</string>
   <string name="TextAvatarCreationFragment__done">เสร็จสิ้น</string>
+  <string name="TextAvatarCreationFragment__text">ข้อความ</string>
   <string name="TextAvatarCreationFragment__color">สี</string>
   <!--VectorAvatarCreationFragment-->
+  <string name="VectorAvatarCreationFragment__select_a_color">เลือกสี</string>
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">เลื่อนขึ้น</string>
   <!--EOF-->
 </resources>

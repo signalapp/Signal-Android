@@ -47,6 +47,7 @@ import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.protocol.DecryptionErrorMessage;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.InvalidMessageStructureException;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
@@ -77,7 +78,7 @@ public final class MessageDecryptionUtil {
    */
   public static @NonNull DecryptionResult decrypt(@NonNull Context context, @NonNull SignalServiceEnvelope envelope) {
     SignalProtocolStore  axolotlStore = new SignalProtocolStoreImpl(context);
-    SignalServiceAddress localAddress = new SignalServiceAddress(Optional.of(TextSecurePreferences.getLocalUuid(context)), Optional.of(TextSecurePreferences.getLocalNumber(context)));
+    SignalServiceAddress localAddress = new SignalServiceAddress(TextSecurePreferences.getLocalUuid(context), Optional.of(TextSecurePreferences.getLocalNumber(context)));
     SignalServiceCipher  cipher       = new SignalServiceCipher(localAddress, axolotlStore, ReentrantSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator());
     List<Job>            jobs         = new LinkedList<>();
 
@@ -96,7 +97,7 @@ public final class MessageDecryptionUtil {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
         Recipient sender = Recipient.external(context, e.getSender());
 
-        if (sender.supportsMessageRetries() && Recipient.self().supportsMessageRetries() && FeatureFlags.senderKey()) {
+        if (sender.supportsMessageRetries() && Recipient.self().supportsMessageRetries() && FeatureFlags.retryReceipts()) {
           jobs.add(handleRetry(context, sender, envelope, e));
           postInternalErrorNotification(context);
         } else {
@@ -110,7 +111,7 @@ public final class MessageDecryptionUtil {
       } catch (ProtocolDuplicateMessageException e) {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
         return DecryptionResult.forError(MessageState.DUPLICATE_MESSAGE, toExceptionMetadata(e), jobs);
-      } catch (InvalidMetadataVersionException | InvalidMetadataMessageException e) {
+      } catch (InvalidMetadataVersionException | InvalidMetadataMessageException | InvalidMessageStructureException e) {
         Log.w(TAG, String.valueOf(envelope.getTimestamp()), e);
         return DecryptionResult.forNoop(jobs);
       } catch (SelfSendException e) {

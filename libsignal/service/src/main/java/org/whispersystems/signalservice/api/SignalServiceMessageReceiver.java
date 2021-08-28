@@ -88,13 +88,13 @@ public class SignalServiceMessageReceiver {
                                                                  Optional<UnidentifiedAccess> unidentifiedAccess,
                                                                  SignalServiceProfile.RequestType requestType)
   {
-    Optional<UUID> uuid = address.getUuid();
+    UUID uuid = address.getUuid();
 
-    if (uuid.isPresent() && profileKey.isPresent()) {
+    if (profileKey.isPresent()) {
       if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
-        return socket.retrieveVersionedProfileAndCredential(uuid.get(), profileKey.get(), unidentifiedAccess);
+        return socket.retrieveVersionedProfileAndCredential(uuid, profileKey.get(), unidentifiedAccess);
       } else {
-        return FutureTransformers.map(socket.retrieveVersionedProfile(uuid.get(), profileKey.get(), unidentifiedAccess), profile -> {
+        return FutureTransformers.map(socket.retrieveVersionedProfile(uuid, profileKey.get(), unidentifiedAccess), profile -> {
           return new ProfileAndCredential(profile,
                                           SignalServiceProfile.RequestType.PROFILE,
                                           Optional.absent());
@@ -202,7 +202,7 @@ public class SignalServiceMessageReceiver {
       SignalServiceEnvelope envelope;
 
       if (entity.hasSource() && entity.getSourceDevice() > 0) {
-        SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrNull(entity.getSourceUuid()), entity.getSourceE164());
+        SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrThrow(entity.getSourceUuid()), entity.getSourceE164());
         envelope = new SignalServiceEnvelope(entity.getType(),
                                              Optional.of(address),
                                              entity.getSourceDevice(),

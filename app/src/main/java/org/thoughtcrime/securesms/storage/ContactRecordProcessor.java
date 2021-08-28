@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState;
 
 import java.util.Arrays;
@@ -49,7 +50,10 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     if (address == null) {
       Log.w(TAG, "No address on the ContentRecord -- marking as invalid.");
       return true;
-    } else if ((self.getUuid().isPresent() && address.getUuid().equals(self.getUuid())) ||
+    } else if (address.getUuid().equals(UuidUtil.UNKNOWN_UUID)) {
+      Log.w(TAG, "Found a ContactRecord without a UUID -- marking as invalid.");
+      return true;
+    } else if ((self.getUuid().isPresent() && address.getUuid().equals(self.requireUuid())) ||
                (self.getE164().isPresent() && address.getNumber().equals(self.getE164())))
     {
       Log.w(TAG, "Found a ContactRecord for ourselves -- marking as invalid.");
@@ -62,7 +66,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
   @Override
   @NonNull Optional<SignalContactRecord> getMatching(@NonNull SignalContactRecord remote, @NonNull StorageKeyGenerator keyGenerator) {
     SignalServiceAddress  address = remote.getAddress();
-    Optional<RecipientId> byUuid  = address.getUuid().isPresent() ? recipientDatabase.getByUuid(address.getUuid().get()) : Optional.absent();
+    Optional<RecipientId> byUuid  = recipientDatabase.getByUuid(address.getUuid());
     Optional<RecipientId> byE164  = address.getNumber().isPresent() ? recipientDatabase.getByE164(address.getNumber().get()) : Optional.absent();
 
     return byUuid.or(byE164).transform(recipientDatabase::getRecipientSettingsForSync)
@@ -91,7 +95,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
     }
 
     byte[]               unknownFields  = remote.serializeUnknownFields();
-    UUID                 uuid           = remote.getAddress().getUuid().or(local.getAddress().getUuid()).orNull();
+    UUID                 uuid           = local.getAddress().getUuid() == UuidUtil.UNKNOWN_UUID ? remote.getAddress().getUuid() : local.getAddress().getUuid();
     String               e164           = remote.getAddress().getNumber().or(local.getAddress().getNumber()).orNull();
     SignalServiceAddress address        = new SignalServiceAddress(uuid, e164);
     byte[]               profileKey     = remote.getProfileKey().or(local.getProfileKey()).orNull();

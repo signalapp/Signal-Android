@@ -705,20 +705,15 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Chia sẻ</string>
   <string name="InviteActivity_share_with_contacts">Chia sẻ với liên hệ</string>
-  <string name="InviteActivity_choose_how_to_share">Chọn cách chia sẻ</string>
   <string name="InviteActivity_cancel">Hủy bỏ</string>
   <string name="InviteActivity_sending">Đang gửi…</string>
   <string name="InviteActivity_invitations_sent">Đã gửi lời mời!</string>
   <string name="InviteActivity_invite_to_signal">Mời dùng Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">GỬI SMS ĐẾN %d BẠN</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">GỬI %d LỜI MỜI QUA SMS?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Có vẻ như bạn không có bất kỳ ứng dụng nào để chia sẻ.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Một người bạn tốt không để bạn mình nhắn tin không mã hoá.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Tìm hiểu thêm</string>
   <!--LongMessageActivity-->
@@ -785,10 +780,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Đang thiết lập cuộc gọi Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Cuộc gọi đến Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Dừng dịch vụ gọi thoại Signal</string>
-  <string name="NotificationBarManager__deny_call">Từ chối cuộc gọi</string>
   <string name="NotificationBarManager__answer_call">Trả lời cuộc gọi</string>
   <string name="NotificationBarManager__end_call">Kết thúc cuộc gọi.</string>
   <string name="NotificationBarManager__cancel_call">Huỷ cuộc gọi</string>
+  <string name="NotificationBarManager__join_call">Tham gia cuộc gọi</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Bật thông báo?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Không bao giờ bỏ lỡ tin nhắn từ liên hệ và nhóm của bạn.</string>
@@ -876,7 +871,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s đã chọn %2$s làm quản trị viên.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s đã chọn bạn làm quản trị viên.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Bạn đã thu hồi quyền quản trị của %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s đã thu hồi quyền quản trị của bạn.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s đã thu hồi quyền quản trị của %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s đã trở thành quản trị viên.</string>
   <string name="MessageRecord_you_are_now_an_admin">Bạn đang là quản trị viên.</string>
@@ -1133,13 +1127,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Đang gọi…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Đang gọi âm thanh Signal</string>
-  <string name="WebRtcCallView__signal_video_call">Đang gọi video Signal…</string>
+  <string name="WebRtcCallView__signal_call">Cuộc gọi Signal</string>
   <string name="WebRtcCallView__start_call">Bắt đầu Cuộc gọi</string>
   <string name="WebRtcCallView__join_call">Tham gia Cuộc gọi</string>
   <string name="WebRtcCallView__call_is_full">Cuộc gọi đã đầy</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Cuộc gọi này đã đạt số thành viên tham dự tối đa là %1$d người. Vui lòng thử lại sau.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Cuộc gọi Nhóm</string>
   <string name="WebRtcCallView__view_participants_list">Xem người tham dự</string>
   <string name="WebRtcCallView__your_video_is_off">Video của bạn đang tắt</string>
   <string name="WebRtcCallView__reconnecting">Đang kết nối lại…</string>
@@ -1152,6 +1144,10 @@
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s, %2$s, và %3$d người khác đang trong cuộc gọi này</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Loa</string>
+  <string name="WebRtcCallView__camera">Máy ảnh</string>
+  <string name="WebRtcCallView__mute">Im lặng</string>
+  <string name="WebRtcCallView__end_call">Kết thúc cuộc gọi</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">Trong cuộc gọi này · %1$d người</item>
@@ -2987,5 +2983,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">. %1$s</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

@@ -786,16 +786,11 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Дели</string>
   <string name="InviteActivity_share_with_contacts">Подели са контактима</string>
-  <string name="InviteActivity_choose_how_to_share">Одабрати начин дељења</string>
+  <string name="InviteActivity_share_via">Дели преко…</string>
   <string name="InviteActivity_cancel">Одустани</string>
   <string name="InviteActivity_sending">Шаље се…</string>
   <string name="InviteActivity_invitations_sent">Позивнице послате!</string>
   <string name="InviteActivity_invite_to_signal">Слање позивнице за Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ПОШАЉИ СМС ЗА %d ПРИЈАТЕЉА</item>
-    <item quantity="few">ПОШАЉИ СМС ЗА %d ПРИЈАТЕЉА</item>
-    <item quantity="other">ПОШАЉИ СМС ЗА %d ПРИЈАТЕЉА</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Послати %d СМС позивницу?</item>
     <item quantity="few">Послати %d СМС позивнице?</item>
@@ -803,7 +798,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Пребацимо се на Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Изгледа да немате ниједну апликацију преко које бисте могли да делите.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Пријатељи не допуштају пријатељима да ћаскају небезбедно.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Сазнај више</string>
   <!--LongMessageActivity-->
@@ -878,11 +872,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Позив преко Signal-a у току</string>
   <string name="NotificationBarManager__establishing_signal_call">Успостављам Signal позив</string>
   <string name="NotificationBarManager__incoming_signal_call">Долазни Signal позив</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Долазни Signal групни позив</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Заустављање сервиса позива Signal-а</string>
-  <string name="NotificationBarManager__deny_call">Одбиј позив</string>
+  <string name="NotificationBarManager__decline_call">Одбиј позив</string>
   <string name="NotificationBarManager__answer_call">Одговори на позив</string>
   <string name="NotificationBarManager__end_call">Окончај позив</string>
   <string name="NotificationBarManager__cancel_call">Откажи позив</string>
+  <string name="NotificationBarManager__join_call">Придружи се позиву</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Укључите обавештења?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Никада не пропустите поруке од ваших контаката и група.</string>
@@ -976,7 +972,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s је поставио/ла %2$s за администратора.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s Вас је поставио за администратора.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Одузели сте администраторске дозволе од %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s вам је одузео администраторске дозволе.\"</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s вам је одузео администраторске дозволе.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s одузео администраторске дозволе за  %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s је сада администратор</string>
   <string name="MessageRecord_you_are_now_an_admin">Постали сте администратор.</string>
@@ -1258,21 +1254,51 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Да бисте позвали %1$s, апликацији Signal је потребан приступ Вашој камери.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Позивам…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Група је превелика да би позвала учеснике.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal гласовни позив…</string>
-  <string name="WebRtcCallView__signal_video_call">Сигнал видео позив</string>
+  <string name="WebRtcCallView__signal_call">Signal позив</string>
+  <string name="WebRtcCallView__signal_video_call">Signal видео позив</string>
   <string name="WebRtcCallView__start_call">Започети позив</string>
   <string name="WebRtcCallView__join_call">Придружи се позиву</string>
   <string name="WebRtcCallView__call_is_full">Позив је пун</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">За овај позив је достигнут максималан број %1$d учесника. Покушајте поново касније.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" групни позив</string>
   <string name="WebRtcCallView__view_participants_list">Погледајте учеснике</string>
   <string name="WebRtcCallView__your_video_is_off">Ваш видео је искључен</string>
   <string name="WebRtcCallView__reconnecting">Обнављање везе…</string>
   <string name="WebRtcCallView__joining">Придружавање…</string>
   <string name="WebRtcCallView__disconnected">Прекинуто</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal ће звонити %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal ће звонити %1$s и %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal ће звонити %1$s, %2$s и још %3$d</item>
+    <item quantity="few">Signal ће звонити %1$s, %2$s и још %3$d</item>
+    <item quantity="other">Signal ће звонити %1$s, %2$s и још %3$d</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s биће обавештен/а</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s и %2$s ће бити обавештени</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s, и још %3$d ће бити обавештен</item>
+    <item quantity="few">%1$s, %2$s, и још %3$d ће бити обавештени</item>
+    <item quantity="other">%1$s, %2$s, и још %3$d ће бити обавештени</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Звоњење %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Звоњење %1$s и %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Звоњење %1$s, %2$s, и још %3$d</item>
+    <item quantity="few">Звоњење %1$s, %2$s, и још %3$d</item>
+    <item quantity="other">Звоњење %1$s, %2$s, и још %3$d</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s вас зове</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s зове вас и %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s зове вас, %2$s и %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s зове вас, %2$s, %3$s и још %4$d</item>
+    <item quantity="few">%1$s зове вас, %2$s, %3$s и још %4$d</item>
+    <item quantity="other">%1$s зове вас, %2$s, %3$s и још %4$d</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Нема никога овде</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s је у овом позиву</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s је у овом позиву</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s и %2$s су у овом позиву</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s презентира</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1280,6 +1306,12 @@
     <item quantity="few">%1$s, %2$s, и још %3$d су у овом позиву</item>
     <item quantity="other">%1$s, %2$s, и још %3$d су у овом позиву</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Обрнути</string>
+  <string name="WebRtcCallView__speaker">Звучник</string>
+  <string name="WebRtcCallView__camera">Камера</string>
+  <string name="WebRtcCallView__mute">Утишај</string>
+  <string name="WebRtcCallView__ring">Звони</string>
+  <string name="WebRtcCallView__end_call">Заврши позив</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">У овом позиву · %1$d особа</item>
@@ -3164,6 +3196,11 @@
   <string name="ContactFilterView__search_name_or_number">Претрага имена или броја</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Заустави гласовну поруку</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Промени брзину гласовне поруке</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Паузирај гласовну поруку</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Пусти гласовну поруку</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Ићи до гласовне поруке</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Преглед аватара</string>
   <string name="AvatarPickerFragment__camera">Камера</string>
@@ -3186,5 +3223,32 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">СМС</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Ићи на горе</string>
+  <string name="MultiselectForwardFragment__forward_to">Напред на</string>
+  <string name="MultiselectForwardFragment__add_a_message">Додати поруку</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Убрзавање прослеђивање</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Прослеђивање поруке је сада урађено сместа.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Слање %1$d поруке</item>
+    <item quantity="few">Слање %1$d поруке/а</item>
+    <item quantity="other">Слање %1$d поруке/а</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Порука је послата</item>
+    <item quantity="few">Поруке су послате</item>
+    <item quantity="other">Поруке су послате</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Порука није послата</item>
+    <item quantity="few">Поруке нису послате</item>
+    <item quantity="other">Поруке нису послате</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Није могуће да се проследи порука јер више није доступна.</item>
+    <item quantity="few">Није могуће да се проследе поруке јер више нису доступне.</item>
+    <item quantity="other">Није могуће да се проследе поруке јер више нису доступне.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Достигнут лимит</string>
   <!--EOF-->
 </resources>

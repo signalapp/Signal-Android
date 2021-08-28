@@ -749,22 +749,18 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Teilen</string>
   <string name="InviteActivity_share_with_contacts">Mit Kontakten teilen (SMS)</string>
-  <string name="InviteActivity_choose_how_to_share">Mit anderer App teilen</string>
+  <string name="InviteActivity_share_via">Teilen über …</string>
   <string name="InviteActivity_cancel">Abbrechen</string>
   <string name="InviteActivity_sending">Wird versendet …</string>
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SMS AN %d FREUND SENDEN</item>
-    <item quantity="other">SMS AN %d FREUNDE SENDEN</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">SMS senden (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d SMS-Einladung senden?</item>
     <item quantity="other">%d SMS-Einladungen senden?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Lass uns zu »Signal« wechseln: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Es sieht so aus, als hättest du keine zum Teilen geeignete Apps installiert.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Freunde lassen Freunde nicht unverschlüsselt kommunizieren.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Mehr erfahren</string>
   <!--LongMessageActivity-->
@@ -835,11 +831,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal-Anruf läuft</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-Anruf wird hergestellt</string>
   <string name="NotificationBarManager__incoming_signal_call">Eingehender Signal-Anruf</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Eingehender Signal-Gruppenanruf</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signals Anrufdienst wird gestoppt</string>
-  <string name="NotificationBarManager__deny_call">Anruf ablehnen</string>
+  <string name="NotificationBarManager__decline_call">Anruf ablehnen</string>
   <string name="NotificationBarManager__answer_call">Anruf annehmen</string>
   <string name="NotificationBarManager__end_call">Anruf beenden</string>
   <string name="NotificationBarManager__cancel_call">Anruf abbrechen</string>
+  <string name="NotificationBarManager__join_call">Anruf beitreten</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Benachrichtigungen einschalten?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Versäume nie eine Nachricht deiner Kontakte und Gruppen.</string>
@@ -1055,12 +1053,12 @@
   <string name="MessageRecord_group_call">Gruppenanruf</string>
   <string name="MessageRecord_you">Du</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
-    <item quantity="one">%1$s, %2$s und %3$d Weiterer nehmen am Gruppenanruf teil · %4$s</item>
-    <item quantity="other">%1$s, %2$s und %3$d Weitere nehmen am Gruppenanruf teil · %4$s</item>
+    <item quantity="one">%1$s, %2$s und %3$d weitere Person nehmen am Gruppenanruf teil · %4$s</item>
+    <item quantity="other">%1$s, %2$s und %3$d weitere Personen nehmen am Gruppenanruf teil · %4$s</item>
   </plurals>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
-    <item quantity="one">%1$s, %2$s und %3$d Weiterer nehmen am Gruppenanruf teil</item>
-    <item quantity="other">%1$s, %2$s und %3$d Weitere nehmen am Gruppenanruf teil</item>
+    <item quantity="one">%1$s, %2$s und %3$d weitere Person nehmen am Gruppenanruf teil</item>
+    <item quantity="other">%1$s, %2$s und %3$d weitere Personen nehmen am Gruppenanruf teil</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Annehmen</string>
@@ -1198,27 +1196,59 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Um %1$s anzurufen, benötigt Signal Zugriff auf deine Kamera</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Anrufen …</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Gruppe ist zu groß, um die Teilnehmer anzuklingeln.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal-Sprachanruf …</string>
-  <string name="WebRtcCallView__signal_video_call">Signal-Videoanruf …</string>
+  <string name="WebRtcCallView__signal_call">Signal-Anruf</string>
+  <string name="WebRtcCallView__signal_video_call">Signal-Videoanruf</string>
   <string name="WebRtcCallView__start_call">Anruf starten</string>
   <string name="WebRtcCallView__join_call">Anruf beitreten</string>
   <string name="WebRtcCallView__call_is_full">Anruf ist voll</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Für diesen Anruf wurde die maximale Anzahl von %1$d Teilnehmern erreicht. Bitte versuche es später erneut.</string>
-  <string name="WebRtcCallView__s_group_call">»%1$s« Gruppenanruf</string>
   <string name="WebRtcCallView__view_participants_list">Teilnehmer anzeigen</string>
   <string name="WebRtcCallView__your_video_is_off">Dein Video ist aus</string>
   <string name="WebRtcCallView__reconnecting">Verbindung wird neu hergestellt …</string>
   <string name="WebRtcCallView__joining">Beitreten …</string>
   <string name="WebRtcCallView__disconnected">Verbindung getrennt</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal wird bei %1$s klingeln</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal wird bei %1$s und %2$s klingeln</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal wird bei %1$s, %2$s und %3$d weiteren Person klingeln</item>
+    <item quantity="other">Signal wird bei %1$s, %2$s und %3$d weiteren Personen klingeln</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s wird benachrichtigt</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s und %2$s werden benachrichtigt</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s und %3$d weitere Person werden benachrichtigt</item>
+    <item quantity="other">%1$s, %2$s und %3$d weitere Personen werden benachrichtigt</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Klingelt bei %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Klingelt bei %1$s und %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Klingelt bei %1$s, %2$s und %3$d weiteren Person</item>
+    <item quantity="other">Klingelt bei %1$s, %2$s und %3$d weiteren Personen</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s ruft dich an</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s ruft dich und %2$s an</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s ruft dich, %2$s und %3$s an</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s ruft dich, %2$s, %3$s und %4$d weitere Person an</item>
+    <item quantity="other">%1$s ruft dich, %2$s, %3$s und %4$d weitere Personen an</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Niemand anderes ist hier</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s nimmt an diesem Anruf teil</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s bist im Anruf</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s und %2$s nehmen an diesem Anruf teil</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s präsentiert gerade</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-    <item quantity="one">%1$s, %2$s und %3$d Weiterer nehmen an diesem Anruf teil</item>
-    <item quantity="other">%1$s, %2$s und %3$d Weitere nehmen an diesem Anruf teil</item>
+    <item quantity="one">%1$s, %2$s und %3$d weitere Person nehmen an diesem Anruf teil</item>
+    <item quantity="other">%1$s, %2$s und %3$d weitere Personen nehmen an diesem Anruf teil</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Drehen</string>
+  <string name="WebRtcCallView__speaker">Audio</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__mute">Stumm​</string>
+  <string name="WebRtcCallView__ring">Klingeln</string>
+  <string name="WebRtcCallView__end_call">Auflegen</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">In diesem Anruf · %1$d Person</item>
@@ -2712,11 +2742,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s ist beigetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s und %2$s sind beigetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s und %3$s sind beigetreten</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s und %3$d Weitere sind beigetreten</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s und %3$d weitere Personen sind beigetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_left"> %1$s ist ausgetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s und %2$s sind ausgetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s und %3$s sind ausgetreten</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s und %3$d Weitere sind ausgetreten</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s und %3$d weitere Personen sind ausgetreten</string>
   <string name="CallParticipant__you">Du</string>
   <string name="CallParticipant__you_on_another_device">Du (auf einem anderen Gerät)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (auf einem anderen Gerät)</string>
@@ -3068,6 +3098,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ContactFilterView__search_name_or_number">Name oder Nummer suchen</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Sprachnachricht stoppen</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Geschwindigkeit der Sprachnachricht ändern</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Sprachnachricht pausieren</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Sprachnachricht abspielen</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Zu Sprachnachricht navigieren</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Avatar-Vorschau</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>
@@ -3090,5 +3125,28 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Nach oben navigieren</string>
+  <string name="MultiselectForwardFragment__forward_to">Weiterleiten an</string>
+  <string name="MultiselectForwardFragment__add_a_message">Eine Nachricht hinzufügen</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Schnellere Weiterleitungen</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Weitergeleitete Nachrichten werden nun sofort gesendet.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">%1$d Nachricht senden</item>
+    <item quantity="other">%1$d Nachrichten senden</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Nachricht gesendet</item>
+    <item quantity="other">Nachrichten gesendet</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Nachricht konnte nicht gesendet werden</item>
+    <item quantity="other">Nachrichten konnten nicht gesendet werden</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Nachricht konnte nicht weitergeleitet werden, da sie nicht mehr verfügbar ist.</item>
+    <item quantity="other">Nachrichten konnten nicht weitergeleitet werden, da sie nicht mehr verfügbar sind.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Höchstzahl erreicht</string>
   <!--EOF-->
 </resources>

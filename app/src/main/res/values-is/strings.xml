@@ -212,6 +212,7 @@
   <string name="ConversationActivity_admins">stjórnendur</string>
   <string name="ConversationActivity_message_an_admin">Senda stjórnanda skilaboð</string>
   <string name="ConversationActivity_cant_start_group_call">Get ekki hafið hópsímtal</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Einungis stjórnendur þessa hóps geta hafið samtal.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Ekkert forrit sem getur meðhöndlað þennan tengil er tiltækt á tækinu þínu.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Beiðni þín um þátttöku hefur verið send til stjórnenda hópsins. Þú munt fá að vita þegar þeir hafa brugðist við.</string>
   <string name="ConversationActivity_cancel_request">Hætta við beiðni</string>
@@ -421,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Deila með</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Að hengja við mörg viðhengi í einu er aðeins stutt fyrir myndir og myndskeið</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Þú hefur ekki heimild til að senda á þennan hóp</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Viðvarandi bilun í Signal-samskiptum!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal náði ekki að skrá sig inn á Google Play þjónustur. Skilaboð og hringingar úr Signal hafa verið gerð óvirk, prófaðu að endurskrá í Stillingar &gt; Ítarlegt.</string>
@@ -747,22 +749,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Deila</string>
   <string name="InviteActivity_share_with_contacts">Deila með tengiliðum</string>
-  <string name="InviteActivity_choose_how_to_share">Veldu hvernig á að deila</string>
   <string name="InviteActivity_cancel">Hætta við</string>
   <string name="InviteActivity_sending">Sendi…</string>
   <string name="InviteActivity_invitations_sent">Boðskort voru send!</string>
   <string name="InviteActivity_invite_to_signal">Bjóða á Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SENDA SMS TIL %d VINAR</item>
-    <item quantity="other">SENDA SMS TIL %d VINA</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Senda %d SMS boð?</item>
     <item quantity="other">Senda %d SMS boð?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Skiptum yfir í Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Það lítur út eins og þú sért ekki með nein forrit sem hægt sé að deila til.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vinir láta vini sína ekki spjalla án dulritunar.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Kanna nánar</string>
   <!--LongMessageActivity-->
@@ -834,10 +830,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Er að tengja hringingu með Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Innhringing með Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Stöðva hringiþjónustu Signal</string>
-  <string name="NotificationBarManager__deny_call">Hafna símtali</string>
   <string name="NotificationBarManager__answer_call">Svara símtali</string>
   <string name="NotificationBarManager__end_call">Ljúka símtali</string>
   <string name="NotificationBarManager__cancel_call">Hætta við símtal</string>
+  <string name="NotificationBarManager__join_call">Taka þátt í símtali</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Kveikja á tilkynningum?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Misstu aldrei af skilaboðum frá tengiliðunum þinum eða hópum.</string>
@@ -928,7 +924,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s gerði %2$s að stjórnanda.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s gerði þig að stjórnanda.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Þú tókst stjórnunarréttindi af %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s tók stjórnunarréttindi af þér.\"</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s afturkallaði stjórnunarréttindi þín.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s tók stjórnunarréttindi af %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s er núna stjórnandi.</string>
   <string name="MessageRecord_you_are_now_an_admin">Þú ert núna stjórnandi.</string>
@@ -989,6 +985,12 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s breytti þeim sem geta sýslað með meðlimi hóps yfir í \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Þeim sem geta sýslað með meðlimi hóps var breytt yfir í \"%1$s\".</string>
   <!--GV2 announcement group change-->
+  <string name="MessageRecord_you_allow_all_members_to_send">Þú breyttir stillingum hóps þannig að allir meðlimir hans geta sent skilaboð.</string>
+  <string name="MessageRecord_you_allow_only_admins_to_send">Þú breyttir stillingum hóps þannig að einungis stjórnendur geta sent skilaboð.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">%1$s breytti stillingum hóps þannig að allir meðlimir hans geta sent skilaboð.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">%1$s breytti stillingum hóps þannig að einungis stjórnendur geta sent skilaboð.</string>
+  <string name="MessageRecord_allow_all_members_to_send">Stillingum hóps var breytt þannig að allir meðlimir hans geta sent skilaboð.</string>
+  <string name="MessageRecord_allow_only_admins_to_send">Stillingum hóps var breytt þannig að einungis stjórnendur geta sent skilaboð.</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Þú kveiktir á hóptenglinum með samþykki stjórnanda óvirku.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Þú kveiktir á hóptenglinum með samþykki stjórnanda virku.</string>
@@ -1193,13 +1195,12 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Hringi…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal-raddsímtal…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal-myndsímtal…</string>
+  <string name="WebRtcCallView__signal_call">Signal-símtal</string>
+  <string name="WebRtcCallView__signal_video_call">Signal-myndsímtal</string>
   <string name="WebRtcCallView__start_call">Hefja samtal</string>
   <string name="WebRtcCallView__join_call">Taka þátt í símtali</string>
   <string name="WebRtcCallView__call_is_full">Símtal er fullt</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Takmörkum á hámarksfjöldanum %1$d þátttakendum í þessu símtali hefur verið náð. Reyndu aftur síðar.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" hópsímtal</string>
   <string name="WebRtcCallView__view_participants_list">Skoða þátttakendur</string>
   <string name="WebRtcCallView__your_video_is_off">Það er slökkt á myndmerkinu</string>
   <string name="WebRtcCallView__reconnecting">Endurtengist….</string>
@@ -1213,6 +1214,11 @@
     <item quantity="one">%1$s, %2$s og %3$d til viðbótar eru í þessu símtali</item>
     <item quantity="other">%1$s, %2$s og %3$d til viðbótar eru í þessu símtali</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Fletta</string>
+  <string name="WebRtcCallView__speaker">Hátalari</string>
+  <string name="WebRtcCallView__camera">Myndavél</string>
+  <string name="WebRtcCallView__mute">Hljóð af</string>
+  <string name="WebRtcCallView__end_call">Ljúka símtali</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Í símtalinu eru · %1$d aðili</item>
@@ -2757,7 +2763,7 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Mistókst að senda til sumra notenda</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Aðeins hægt að deila allt að %1$d spjöllum</string>
   <!--ShareInterstitialActivity-->
-  <string name="ShareInterstitialActivity__forward_message">Áframsenda skeyti</string>
+  <string name="ShareInterstitialActivity__forward_message">Áframsenda skilaboð</string>
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Bakgrunnsmynd spjalls</string>
   <!--ChatWallpaperFragment-->
@@ -3073,6 +3079,11 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <string name="ContactFilterView__search_name_or_number">Leita eftir nafni eða símanúmeri</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Stöðva talskilaboð</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Breyta hraða talskilaboða</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Setja talskilaboð á bið</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Spila talskilaboð</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Fara í talskilaboð</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Forskoðun auðkennismyndar</string>
   <string name="AvatarPickerFragment__camera">Myndavél</string>
@@ -3095,5 +3106,28 @@ PIN-númerið þitt. Ef þú manst ekki PIN-númerið, geturðu endursannvottað
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Fara upp</string>
+  <string name="MultiselectForwardFragment__forward_to">Áframsenda til</string>
+  <string name="MultiselectForwardFragment__add_a_message">Bæta við skilaboðum</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Hraðar áframsent</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Áframsend skilaboð eru núna send samstundis.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Senda %1$d skilaboð</item>
+    <item quantity="other">Senda %1$d skilaboð</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Skilaboð send</item>
+    <item quantity="other">Skilaboð send</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Mistókst að senda skilaboð</item>
+    <item quantity="other">Mistókst að senda skilaboð</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Tókst ekki að senda skilaboð því þau eru ekki lengur tiltæk.</item>
+    <item quantity="other">Tókst ekki að senda skilaboð því þau eru ekki lengur tiltæk.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Takmörkum náð</string>
   <!--EOF-->
 </resources>

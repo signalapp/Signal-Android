@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dd.CircularProgressButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
@@ -225,7 +226,7 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
   }
 
   private void presentResultDialog(@NonNull String url) {
-    AlertDialog.Builder builder = new AlertDialog.Builder(this)
+    AlertDialog.Builder builder = new MaterialAlertDialogBuilder(this)
                                                  .setTitle(R.string.SubmitDebugLogActivity_success)
                                                  .setCancelable(false)
                                                  .setNeutralButton(android.R.string.ok, (d, w) -> finish())

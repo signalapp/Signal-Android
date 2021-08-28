@@ -48,5 +48,4 @@ message MetadataProto {
 message AddressProto {
   optional bytes  uuid  = 1;
   optional string e164  = 2;
-  optional string relay = 3;
 }

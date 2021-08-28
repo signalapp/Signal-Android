@@ -112,6 +112,7 @@
     </declare-styleable>
 
     <declare-styleable name="EmojiTextView">
+        <attr name="measureLastLine" format="boolean" />
         <attr name="scaleEmojis" format="boolean" />
         <attr name="emoji_maxLength" format="integer" />
         <attr name="emoji_forceCustom" format="boolean" />
@@ -226,6 +227,8 @@
     <declare-styleable name="ContactFilterToolbar">
         <attr name="searchTextStyle" format="reference" />
         <attr name="showDialpad" format="boolean" />
+        <attr name="cfv_autoFocus" format="boolean" />
+        <attr name="cfv_background" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="SquareImageView">

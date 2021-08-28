@@ -38,7 +38,7 @@ class ExpireTimerSettingsRepository(val context: Context) {
       } else {
         DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipientId, newExpirationTime)
         val outgoingMessage = OutgoingExpirationUpdateMessage(Recipient.resolved(recipientId), System.currentTimeMillis(), newExpirationTime * 1000L)
-        MessageSender.send(context, outgoingMessage, getThreadId(recipientId), false, null)
+        MessageSender.send(context, outgoingMessage, getThreadId(recipientId), false, null, null)
         consumer.invoke(Result.success(newExpirationTime))
       }
     }

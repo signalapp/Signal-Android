@@ -11,6 +11,10 @@ import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
+import org.thoughtcrime.securesms.crypto.storage.SignalSenderKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.TextSecurePreKeyStore;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.database.PendingRetryReceiptCache;
@@ -54,6 +58,7 @@ import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -257,6 +262,26 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     healthMonitor.monitor(signalWebSocket);
 
     return signalWebSocket;
+  }
+
+  @Override
+  public @NonNull TextSecureIdentityKeyStore provideIdentityStore() {
+    return new TextSecureIdentityKeyStore(context);
+  }
+
+  @Override
+  public @NonNull TextSecureSessionStore provideSessionStore() {
+    return new TextSecureSessionStore(context);
+  }
+
+  @Override
+  public @NonNull TextSecurePreKeyStore providePreKeyStore() {
+    return new TextSecurePreKeyStore(context);
+  }
+
+  @Override
+  public @NonNull SignalSenderKeyStore provideSenderKeyStore() {
+    return new SignalSenderKeyStore(context);
   }
 
   private @NonNull WebSocketFactory provideWebSocketFactory(@NonNull SignalWebSocketHealthMonitor healthMonitor) {

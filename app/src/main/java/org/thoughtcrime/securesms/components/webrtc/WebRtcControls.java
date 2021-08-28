@@ -8,6 +8,7 @@ import androidx.annotation.Px;
 import androidx.annotation.StringRes;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 
 public final class WebRtcControls {
 
@@ -112,7 +113,7 @@ public final class WebRtcControls {
   }
 
   boolean displayGroupMembersButton() {
-    return groupCallState.isAtLeast(GroupCallState.CONNECTING);
+    return (groupCallState.isAtLeast(GroupCallState.CONNECTING) && hasAtLeastOneRemote) || groupCallState.isAtLeast(GroupCallState.FULL);
   }
 
   boolean displayEndCall() {
@@ -156,7 +157,7 @@ public final class WebRtcControls {
   }
 
   boolean isFadeOutEnabled() {
-    return isAtLeastOutgoing() && isRemoteVideoEnabled && foldableState.isFlat();
+    return isAtLeastOutgoing() && isRemoteVideoEnabled;
   }
 
   boolean displaySmallOngoingCallButtons() {
@@ -173,6 +174,18 @@ public final class WebRtcControls {
 
   @NonNull WebRtcAudioOutput getAudioOutput() {
     return audioOutput;
+  }
+
+  boolean showSmallHeader() {
+    return isAtLeastOutgoing();
+  }
+
+  boolean showFullScreenShade() {
+    return isPreJoin() || isIncoming();
+  }
+
+  boolean displayRingToggle() {
+    return FeatureFlags.groupCallRinging() && isPreJoin() && isGroupCall() && !hasAtLeastOneRemote;
   }
 
   private boolean isError() {

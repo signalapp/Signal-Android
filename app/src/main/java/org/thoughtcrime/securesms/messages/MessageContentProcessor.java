@@ -82,6 +82,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SenderKeyDistributionSendJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
+import org.thoughtcrime.securesms.jobs.ThreadUpdateJob;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -693,8 +694,7 @@ public final class MessageContentProcessor {
     }
 
     if (insertResult.isPresent()) {
-      SessionStore sessionStore = new TextSecureSessionStore(context);
-      sessionStore.deleteAllSessions(content.getSender().getIdentifier());
+      ApplicationDependencies.getSessionStore().deleteAllSessions(content.getSender().getIdentifier());
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
       ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
@@ -716,15 +716,17 @@ public final class MessageContentProcessor {
     long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
 
     if (!recipient.isGroup()) {
-      SessionStore sessionStore = new TextSecureSessionStore(context);
-      sessionStore.deleteAllSessions(recipient.requireServiceId());
+      ApplicationDependencies.getSessionStore().deleteAllSessions(recipient.requireServiceId());
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
 
-      long messageId = database.insertMessageOutbox(threadId, outgoingEndSessionMessage,
-          false, message.getTimestamp(),
-          null);
+      long messageId = database.insertMessageOutbox(threadId,
+                                                    outgoingEndSessionMessage,
+                                                    false,
+                                                    message.getTimestamp(),
+                                                    null);
       database.markAsSent(messageId, true);
+      ThreadUpdateJob.enqueue(threadId);
     }
 
     return threadId;
@@ -1298,7 +1300,7 @@ public final class MessageContentProcessor {
       }
 
       ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
-      ApplicationDependencies.getJobManager().add(new TrimThreadJob(insertResult.get().getThreadId()));
+      TrimThreadJob.enqueueAsync(insertResult.get().getThreadId());
 
       if (message.isViewOnce()) {
         ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
@@ -1365,12 +1367,15 @@ public final class MessageContentProcessor {
       handleSynchronizeSentExpirationUpdate(message);
     }
 
-    long threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipients);
+    long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipients);
+
+    long                     messageId;
+    List<DatabaseAttachment> attachments;
+    List<DatabaseAttachment> stickerAttachments;
 
     database.beginTransaction();
-
     try {
-      long messageId = database.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptDatabase.STATUS_UNKNOWN, null);
+      messageId = database.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptDatabase.STATUS_UNKNOWN, null);
 
       if (recipients.isGroup()) {
         updateGroupReceiptStatus(message, messageId, recipients.requireGroupId());
@@ -1380,15 +1385,10 @@ public final class MessageContentProcessor {
 
       database.markAsSent(messageId, true);
 
-      List<DatabaseAttachment> allAttachments     = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageId);
-      List<DatabaseAttachment> stickerAttachments = Stream.of(allAttachments).filter(Attachment::isSticker).toList();
-      List<DatabaseAttachment> attachments        = Stream.of(allAttachments).filterNot(Attachment::isSticker).toList();
+      List<DatabaseAttachment> allAttachments = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageId);
 
-      forceStickerDownloadIfNecessary(messageId, stickerAttachments);
-
-      for (DatabaseAttachment attachment : attachments) {
-        ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(messageId, attachment.getAttachmentId(), false));
-      }
+      stickerAttachments = Stream.of(allAttachments).filter(Attachment::isSticker).toList();
+      attachments        = Stream.of(allAttachments).filterNot(Attachment::isSticker).toList();
 
       if (message.getMessage().getExpiresInSeconds() > 0) {
         database.markExpireStarted(messageId, message.getExpirationStartTimestamp());
@@ -1409,6 +1409,13 @@ public final class MessageContentProcessor {
     } finally {
       database.endTransaction();
     }
+
+    for (DatabaseAttachment attachment : attachments) {
+      ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(messageId, attachment.getAttachmentId(), false));
+    }
+
+    forceStickerDownloadIfNecessary(messageId, stickerAttachments);
+
     return threadId;
   }
 
@@ -1550,6 +1557,7 @@ public final class MessageContentProcessor {
       messageId = DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, outgoingTextMessage, false, message.getTimestamp(), null);
       database  = DatabaseFactory.getSmsDatabase(context);
       database.markUnidentified(messageId, isUnidentified(message, recipient));
+      ThreadUpdateJob.enqueue(threadId);
     }
 
     database.markAsSent(messageId, true);
@@ -1787,14 +1795,14 @@ public final class MessageContentProcessor {
   }
 
   private void handleRetryReceipt(@NonNull SignalServiceContent content, @NonNull DecryptionErrorMessage decryptionErrorMessage, @NonNull Recipient senderRecipient) {
-    if (!FeatureFlags.senderKey()) {
-      warn(String.valueOf(content.getTimestamp()), "[RetryReceipt] Sender key not enabled, skipping retry receipt.");
+    if (!FeatureFlags.retryReceipts()) {
+      warn(String.valueOf(content.getTimestamp()), "[RetryReceipt] Feature flag disabled, skipping retry receipt.");
       return;
     }
 
     long sentTimestamp = decryptionErrorMessage.getTimestamp();
 
-    warn(content.getTimestamp(), "[RetryReceipt] Received a retry receipt from " + senderRecipient.getId() + ", device " + decryptionErrorMessage.getDeviceId() + " for message with timestamp " + sentTimestamp + ".");
+    warn(content.getTimestamp(), "[RetryReceipt] Received a retry receipt from " + senderRecipient.getId() + ", device " + content.getSenderDevice() + " for message with timestamp " + sentTimestamp + ".");
 
     if (!senderRecipient.hasUuid()) {
       warn(content.getTimestamp(), "[RetryReceipt] Requester " + senderRecipient.getId() + " somehow has no UUID! timestamp: " + sentTimestamp);
@@ -1874,10 +1882,10 @@ public final class MessageContentProcessor {
 
     if (decryptionErrorMessage.getDeviceId() == SignalServiceAddress.DEFAULT_DEVICE_ID &&
         decryptionErrorMessage.getRatchetKey().isPresent()                             &&
-        SessionUtil.ratchetKeyMatches(context, requester, content.getSenderDevice(), decryptionErrorMessage.getRatchetKey().get()))
+        SessionUtil.ratchetKeyMatches(requester, content.getSenderDevice(), decryptionErrorMessage.getRatchetKey().get()))
     {
       warn(content.getTimestamp(), "[RetryReceipt-I] Ratchet key matches. Archiving the session.");
-      SessionUtil.archiveSession(context, requester.getId(), content.getSenderDevice());
+      SessionUtil.archiveSession(requester.getId(), content.getSenderDevice());
       archivedSession = true;
     }
 

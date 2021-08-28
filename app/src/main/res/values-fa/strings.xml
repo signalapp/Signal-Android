@@ -749,22 +749,18 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">اشتراک‌گذاری</string>
   <string name="InviteActivity_share_with_contacts">اشتراک‌گذاری با مخاطبین</string>
-  <string name="InviteActivity_choose_how_to_share">انتخاب نحوهٔ اشتراک‌گذاری</string>
+  <string name="InviteActivity_share_via">اشتراک‌گذاری از طریق…</string>
   <string name="InviteActivity_cancel">لغو</string>
   <string name="InviteActivity_sending">در حال ارسال…</string>
   <string name="InviteActivity_invitations_sent">دعوت‌نامه‌ها ارسال شدند!</string>
   <string name="InviteActivity_invite_to_signal">دعوت به سیگنال</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">ارسال پیامک به %d دوست</item>
-    <item quantity="other">ارسال پیامک به %d دوست</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">ارسال پیامک (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">ارسال %d پیامک دعوت؟</item>
     <item quantity="other">ارسال %d پیامک دعوت؟</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">بیایید از سیگنال استفاده کنیم:  %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">به نظر می‌رسد شما هیچ برنامه‌ای برای ‌اشتراک‌گذاری ندارید.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوستان واقعی به دوستان خود اجازهٔ گفتگوی رمزگذاری نشده را نمی‌دهند.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">بیشتر یاد بگیرید</string>
   <!--LongMessageActivity-->
@@ -835,11 +831,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">تماس سیگنال در جریان است</string>
   <string name="NotificationBarManager__establishing_signal_call">در حال برقراری تماس سیگنال</string>
   <string name="NotificationBarManager__incoming_signal_call">تماس ورودی سیگنال</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">تماس ورودی گروهی سیگنال</string>
   <string name="NotificationBarManager__stopping_signal_call_service">در حال متوقف کردن سرویس تماس سیگنال</string>
-  <string name="NotificationBarManager__deny_call">رد تماس</string>
+  <string name="NotificationBarManager__decline_call">رد کردن تماس</string>
   <string name="NotificationBarManager__answer_call">پاسخ به تماس</string>
   <string name="NotificationBarManager__end_call">پایان تماس</string>
   <string name="NotificationBarManager__cancel_call">لغو تماس</string>
+  <string name="NotificationBarManager__join_call">پیوستن به تماس</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">اعلان‌ها روشن شوند؟</string>
   <string name="NotificationsMegaphone_never_miss_a_message">هیچوقت پیامی از مخاطب‌ها و گروه‌هایتان از دست ندهید.</string>
@@ -1200,27 +1198,59 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">برای تماس با%1$s، سیگنال به دسترسی دوربین شما نیاز دارد</string>
   <string name="WebRtcCallActivity__signal_s">%1$s سیگنال</string>
   <string name="WebRtcCallActivity__calling">در حال برقراری تماس…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">گروه برای زنگ خوردن همهٔ مشارکت‌کنندگان خیلی بزرگ است.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">تماس صوتی سیگنال</string>
-  <string name="WebRtcCallView__signal_video_call">تماس تصویری سیگنال</string>
+  <string name="WebRtcCallView__signal_call">تماس سیگنال</string>
+  <string name="WebRtcCallView__signal_video_call">تماس ویدئویی سیگنال</string>
   <string name="WebRtcCallView__start_call">شروع تماس</string>
   <string name="WebRtcCallView__join_call">پیوستن به تماس</string>
   <string name="WebRtcCallView__call_is_full">ظرفیت تماس تکمیل است</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">به حداکثر تعداد %1$d شرکت‌کننده برای این تماس رسیده‌اید، بعد‌اً دوباره امتحان کنید. </string>
-  <string name="WebRtcCallView__s_group_call">تماس گروهی «%1$s»</string>
   <string name="WebRtcCallView__view_participants_list">مشاهدهٔ شرکت‌کنندگان</string>
   <string name="WebRtcCallView__your_video_is_off">ویدئوی شما خاموش است</string>
   <string name="WebRtcCallView__reconnecting">در حال اتصال دوباره…</string>
   <string name="WebRtcCallView__joining">در حال پیوستن…</string>
   <string name="WebRtcCallView__disconnected">ارتباط قطع شد</string>
+  <string name="WebRtcCallView__signal_will_ring_s">سیگنال به %1$s زنگ خواهد زد</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">سیگنال به %1$s و %2$s زنگ خواهد زد</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">سیگنال به %1$s، %2$s، و %3$d نفر دیگر زنگ خواهد زد</item>
+    <item quantity="other">سیگنال به %1$s، %2$s، و %3$d نفر دیگر زنگ خواهد زد</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s آگاه خواهد شد</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s و %2$s آگاه خواهند شد</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s، %2$s، و %3$d نفر دیگر آگاه خواهند شد</item>
+    <item quantity="other">%1$s، %2$s، و %3$d نفر دیگر آگاه خواهند شد</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">در حال زنگ زدن به %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">در حال زنگ زدن به %1$s و %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">در حال زنگ زدن به %1$s، %2$s، و %3$d نفر دیگر</item>
+    <item quantity="other">در حال زنگ زدن به %1$s، %2$s، و %3$d نفر دیگر</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s در حال تماس گرفتن با شماست</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s در حال تماس گرفتن با شما و %2$s است.</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s در حال تماس گرفتن با شما، %2$s، و %3$s است</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s در حال تماس گرفتن با شما، %2$s، %3$s، و %4$d نفر دیگر است</item>
+    <item quantity="other">%1$s در حال تماس گرفتن با شما، %2$s، %3$s، و %4$d نفر دیگر است</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">هیچ‌کس دیگری اینجا نیست</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s در این تماس حضور دارد</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s نفر در این تماس هستند</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s و %2$s در این تماس حضور دارند</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s در حال ارائه است</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s، %2$s و %3$d نفر دیگر در این تماس حضور دارند</item>
     <item quantity="other">%1$s، %2$s و %3$d نفر دیگر در این تماس حضور دارند</item>
   </plurals>
+  <string name="WebRtcCallView__flip">برگرداندن</string>
+  <string name="WebRtcCallView__speaker">بلندگو</string>
+  <string name="WebRtcCallView__camera">دوربین</string>
+  <string name="WebRtcCallView__mute">بستن</string>
+  <string name="WebRtcCallView__ring">زنگ زدن</string>
+  <string name="WebRtcCallView__end_call">پایان دادن به تماس</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">در این تماس · %1$d نفر</item>
@@ -1759,7 +1789,7 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">برای ارسال رسانه و پیام‌های گروهی، روی \'قبول\' ضربه بزنید و تنظیمات خواسته شده را کامل کنید. تنظیمات فراپیام برای اپراتور شما معمولاً با جستجو برای \'APN اپراتور شما\' یافت می‌شود. شما فقط یکبار نیاز به انجام این کار دارید.</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">اشکال تحویل</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">یک پیام، استیکر، واکنش، یا رسید خوانده شدن از %s نتوانست به شما تحویل داده شود. ممکن است آن‌ها آن را به طور مستقیم، یا در یک گروه به شما ارسال کرده باشند.</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">یک پیام، استیکر، واکنش، یا رسید خوانده شدن از %s نتوانست به شما تحویل داده شود. آن‌ها ممکن است آن را به طور مستقیم، یا در یک گروه به شما ارسال کرده باشند.</string>
   <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">یک پیام، استیکر، واکنش، یا رسید خوانده شدن از %s نتوانست به شما تحویل داده شود.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">نام کوچک (الزامی)</string>
@@ -3077,6 +3107,11 @@
   <string name="ContactFilterView__search_name_or_number">نام یا شماره را جستجو کنید</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">توقف پیام صوتی</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">تغییر سرعت پیام صوتی</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">توقف موقت پیام صوتی</string>
+  <string name="VoiceNotePlayerView__play_voice_message">پخش پیام صوتی</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">رفتن به پیام صوتی</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">پیش‌نمایش آواتار</string>
   <string name="AvatarPickerFragment__camera">دوربین</string>
@@ -3099,5 +3134,28 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">پیامک</string>
   <string name="ContactSelectionListItem__dot_s">%1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">حرکت به سمت بالا</string>
+  <string name="MultiselectForwardFragment__forward_to">بازارسال به</string>
+  <string name="MultiselectForwardFragment__add_a_message">افزودن یک پیام</string>
+  <string name="MultiselectForwardFragment__faster_forwards">بازارسال‌های سریع‌تر</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">پیام‌های بازارسال شده حالا بلافاصله ارسال می‌شوند.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">ارسال %1$d پیام</item>
+    <item quantity="other">ارسال %1$d پیام</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">پیام ارسال شد</item>
+    <item quantity="other">پیام‌ها ارسال شدند</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">ارسال پیام ناموفق بود</item>
+    <item quantity="other">ارسال پیام‌ها ناموفق بود</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">امکان بازارسال پیام‌ وجود نداشت، چون پیام دیگر موجود نیست.</item>
+    <item quantity="other">امکان بازارسال پیام‌ها وجود نداشت، چون پیام‌ها دیگر موجود نیستند.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">به محدودیت رسیدید</string>
   <!--EOF-->
 </resources>

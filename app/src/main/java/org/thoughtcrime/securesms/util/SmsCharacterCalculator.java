@@ -41,6 +41,15 @@ public class SmsCharacterCalculator extends CharacterCalculator {
       messagesSpent       = 1;
       charactersSpent     = messageBody.length();
       charactersRemaining = 1000;
+    } catch (RuntimeException e) {
+      if (e.getCause() instanceof SecurityException) {
+        Log.e(TAG, "Security Exception", e);
+        messagesSpent       = 1;
+        charactersSpent     = messageBody.length();
+        charactersRemaining = 1000;
+      } else {
+        throw e;
+      }
     }
 
     int maxMessageSize;
@@ -54,4 +63,3 @@ public class SmsCharacterCalculator extends CharacterCalculator {
     return new CharacterState(messagesSpent, charactersRemaining, maxMessageSize, maxMessageSize);
   }
 }
-

@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
@@ -86,10 +87,16 @@ public class RequestGroupInfoJob extends BaseJob {
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
     Recipient                  recipient     = Recipient.resolved(source);
 
+    if (recipient.isUnregistered()) {
+      Log.w(TAG, recipient.getId() + " is unregistered!");
+      return;
+    }
+
     messageSender.sendDataMessage(RecipientUtil.toSignalServiceAddress(context, recipient),
                                   UnidentifiedAccessUtil.getAccessFor(context, recipient),
                                   ContentHint.IMPLICIT,
-                                  message);
+                                  message,
+                                  IndividualSendEvents.EMPTY);
   }
 
   @Override

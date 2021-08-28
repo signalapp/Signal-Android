@@ -59,7 +59,7 @@ public final class LiveRecipientCache {
     this.localRecipientId  = new AtomicReference<>(null);
     this.unknown           = new LiveRecipient(context, Recipient.UNKNOWN);
     this.db                = DatabaseFactory.getInstance(context).getRawDatabase();
-    this.resolveExecutor   = new FilteredExecutor(SignalExecutors.BOUNDED, () -> !db.isDbLockedByCurrentThread());
+    this.resolveExecutor   = new FilteredExecutor(SignalExecutors.BOUNDED, () -> !db.inTransaction());
   }
 
   @AnyThread

@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.webrtc.audio;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
@@ -19,6 +20,10 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Note: We will need to start handling new permissions once we move to target API 31
+ */
+@SuppressLint("MissingPermission")
 public class BluetoothStateManager {
 
   private static final String TAG = Log.tag(BluetoothStateManager.class);

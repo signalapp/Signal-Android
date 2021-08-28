@@ -197,7 +197,7 @@ public final class PaymentDatabase extends Database {
       throw new AssertionError();
     }
 
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     ContentValues  values   = new ContentValues(15);
 
     values.put(PAYMENT_UUID, uuid.toString());
@@ -247,14 +247,14 @@ public final class PaymentDatabase extends Database {
   }
 
   public void deleteAll() {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     database.delete(TABLE_NAME, null, null);
     Log.i(TAG, "Deleted all records");
   }
 
   @WorkerThread
   public boolean delete(@NonNull UUID uuid) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     String         where    = PAYMENT_UUID + " = ?";
     String[]       args     = {uuid.toString()};
     int            deleted;
@@ -281,7 +281,7 @@ public final class PaymentDatabase extends Database {
 
   @WorkerThread
   public @NonNull List<PaymentTransaction> getAll() {
-    SQLiteDatabase           database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase           database = databaseHelper.getSignalReadableDatabase();
     List<PaymentTransaction> result   = new LinkedList<>();
 
     try (Cursor cursor = database.query(TABLE_NAME, null, null, null, null, null, TIMESTAMP + " DESC")) {
@@ -295,7 +295,7 @@ public final class PaymentDatabase extends Database {
 
   @WorkerThread
   public void markAllSeen() {
-    SQLiteDatabase database         = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database         = databaseHelper.getSignalWritableDatabase();
     ContentValues  values           = new ContentValues(1);
     List<UUID>     unseenIds        = new LinkedList<>();
     String[]       unseenProjection = SqlUtil.buildArgs(PAYMENT_UUID);
@@ -334,7 +334,7 @@ public final class PaymentDatabase extends Database {
 
   @WorkerThread
   public void markPaymentSeen(@NonNull UUID uuid) {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     ContentValues  values   = new ContentValues(1);
     String         where    = PAYMENT_UUID + " = ?";
     String[]       args     = {uuid.toString()};
@@ -349,7 +349,7 @@ public final class PaymentDatabase extends Database {
 
   @WorkerThread
   public @NonNull List<PaymentTransaction> getUnseenPayments() {
-    SQLiteDatabase           db      = databaseHelper.getReadableDatabase();
+    SQLiteDatabase           db      = databaseHelper.getSignalReadableDatabase();
     String                   query   = SEEN + " = 0 AND " + STATE + " = " + State.SUCCESSFUL.serialize();
     List<PaymentTransaction> results = new LinkedList<>();
 
@@ -364,7 +364,7 @@ public final class PaymentDatabase extends Database {
 
   @WorkerThread
   public @Nullable PaymentTransaction getPayment(@NonNull UUID uuid) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     String         select   = PAYMENT_UUID + " = ?";
     String[]       args     = {uuid.toString()};
 
@@ -394,7 +394,7 @@ public final class PaymentDatabase extends Database {
                                       @NonNull Money fee)
       throws PublicKeyConflictException
   {
-    SQLiteDatabase database  = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database  = databaseHelper.getSignalWritableDatabase();
     String         where     = PAYMENT_UUID + " = ?";
     String[]       whereArgs = {uuid.toString()};
     int            updated;
@@ -449,7 +449,7 @@ public final class PaymentDatabase extends Database {
                               @Nullable FailureReason failureReason,
                               @Nullable Long blockIndex)
   {
-    SQLiteDatabase database  = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database  = databaseHelper.getSignalWritableDatabase();
     String         where     = PAYMENT_UUID + " = ?";
     String[]       whereArgs = {uuid.toString()};
     int            updated;
@@ -499,7 +499,7 @@ public final class PaymentDatabase extends Database {
                                     long blockIndex,
                                     long blockTimestamp)
   {
-    SQLiteDatabase database  = databaseHelper.getWritableDatabase();
+    SQLiteDatabase database  = databaseHelper.getSignalWritableDatabase();
     String         where     = PAYMENT_UUID + " = ?";
     String[]       whereArgs = {uuid.toString()};
     int            updated;

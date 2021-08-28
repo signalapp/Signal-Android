@@ -739,22 +739,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Del</string>
   <string name="InviteActivity_share_with_contacts">Del med kontakter</string>
-  <string name="InviteActivity_choose_how_to_share">Vælg delingsmåde</string>
   <string name="InviteActivity_cancel">Afbryd</string>
   <string name="InviteActivity_sending">Sender…</string>
   <string name="InviteActivity_invitations_sent">Invitationer sendt!</string>
   <string name="InviteActivity_invite_to_signal">Invitér til Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SEND SMS TIL %d VENNER</item>
-    <item quantity="other">SEND SMS TIL %d VENNER</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Send %d SMS invitationer?</item>
     <item quantity="other">Send %d SMS invitationer?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Lad os bruge Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Det lader til at du ikke har nogle apps at dele til</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Venner lader ikke rigtige venner chatte ukrypteret</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Læs mere</string>
   <!--LongMessageActivity-->
@@ -825,10 +819,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Foretager Signalopkald</string>
   <string name="NotificationBarManager__incoming_signal_call">Indgående Signal opkald</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal-opkaldstjeneste stopper</string>
-  <string name="NotificationBarManager__deny_call">Afvis opkald</string>
   <string name="NotificationBarManager__answer_call">Svar opkald</string>
   <string name="NotificationBarManager__end_call">Afslut opkald</string>
   <string name="NotificationBarManager__cancel_call">Afbryd opkald</string>
+  <string name="NotificationBarManager__join_call">Deltag i samtalen</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Slå meddelelser til?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Gå aldrig glip af en besked fra dine kontakter og grupper.</string>
@@ -917,7 +911,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s gjorde %2$s til administrator</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s gjorde dig til administrator</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Du tilbagekaldte administratorrettighederne fra %1$s</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s tilbagekaldte dine administratorrettigheder</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s tilbagekaldte administratorrettighederne fra %2$s</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s er nu administrator</string>
   <string name="MessageRecord_you_are_now_an_admin">Du er nu administrator</string>
@@ -1182,13 +1175,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Ringer…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal taleopkald…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal videoopkald…</string>
+  <string name="WebRtcCallView__signal_call">Signal-opkald</string>
   <string name="WebRtcCallView__start_call">Foretag opkald</string>
   <string name="WebRtcCallView__join_call">Deltag i opkaldet</string>
   <string name="WebRtcCallView__call_is_full">Samtalen er fuld</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Det maksimale antal på %1$d deltagere er nået til dette opkald. Prøv igen senere.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Gruppe opkald</string>
   <string name="WebRtcCallView__view_participants_list">Vis deltagere</string>
   <string name="WebRtcCallView__your_video_is_off">Din video er slået fra</string>
   <string name="WebRtcCallView__reconnecting">Genopretter forbindelse…</string>
@@ -1202,6 +1193,10 @@
     <item quantity="one">%1$s, %2$s, og %3$d andre deltager i samtalen</item>
     <item quantity="other">%1$s, %2$s, og %3$d andre deltager i samtalen</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Højttaler</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__mute">Déaktiver lyd</string>
+  <string name="WebRtcCallView__end_call">Afslut opkald</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">I dette opkald · %1$d person</item>
@@ -3040,5 +3035,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

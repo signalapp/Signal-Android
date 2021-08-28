@@ -208,8 +208,10 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">संलग्नचा आकार आपण पाठवत असलेल्या संदेशाच्या प्रकारासाठीच्या मर्यादेपेक्षा जास्त आहे</string>
   <string name="ConversationActivity_unable_to_record_audio">ऑडिओ रेकॉर्ड करण्यास अक्षम!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">आपण या गटास संदेश पाठवू शकत नाही कारण आपण यापुढे सदस्‍य नाही.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">फक्त %1$s संदेश पाठवू शकतात</string>
   <string name="ConversationActivity_admins">प्रशासक</string>
   <string name="ConversationActivity_message_an_admin">प्रशासकाला संदेश पाठवा</string>
+  <string name="ConversationActivity_cant_start_group_call">गट कॉल चालू करू शकत नाही</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">या गटातील फक्त प्रशासक कॉल चालू करू शकतात.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">आपल्या डिव्हाईस वर हा दुवा हाताळण्यासाठी कुठलाही अॅप नाही.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">आपली सामील होण्याची विनंती गट प्रशासकाकडे पाठविली गेली आहे. जेव्हा ते कारवाई करतात तेव्हा आपल्याला सूचित केले जाईल.</string>
@@ -420,6 +422,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">यासोबत सामायिक करा </string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">एकाधिक संलग्नके केवळ प्रतिमा आणि व्हिडिओंसाठी समर्थित आहेत</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">आपल्याला या गटात पाठवण्याची परवानगी नाही</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">स्थायी Signal संदेशन अपयश!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google प्ले सेवांसोबत नोंदणी करण्यात Signal अक्षम झाला. Signal संदेश आणि कॉल अक्षम केले गेले आहेत, कृपया सेटिंग आणि प्रगत मधून पुन्हा-नोंदणी करण्याचा प्रयत्न करा.</string>
@@ -562,6 +565,7 @@
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">ठीक</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">या व्यक्तीस लेगसी गटात जोडले जाऊ शकत नाही.</string>
+  <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">हा व्यक्ती घोषणा गटांत जोडला जाऊ शकत नाही.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">\"%2$s\" ला \"%1$s\" मध्ये जोडायचे?</item>
     <item quantity="other">%3$d सदस्य \"%2$s\" मध्ये जोडायचे?</item>
@@ -632,6 +636,7 @@
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">शेअर करता येणारी गट लिंक फक्त अॅडमिन रीसेट करू शकतात.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">आपल्याकडे हे करण्याचे अधिकार नाहीत</string>
   <string name="ManageGroupActivity_not_capable">आपण जोडलेला कोणीतरी नवीन गटांना समर्थन देत नाही आणि Signal अद्यतनित करण्याची आवश्यकता आहे</string>
+  <string name="ManageGroupActivity_not_announcement_capable">आपण जोडलेला कोणीतरी घोषणा गटांना समर्थन देत नाही आणि Signal अद्यतनित करण्याची आवश्यकता आहे</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">गट अद्यतनित करण्यात अयशस्वी</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">आपण या गटाचे सदस्य नाही</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">गट अद्यतनित करण्यात अयशस्वी कृपया नंतर पुन्हा प्रयत्न करा</string>
@@ -744,22 +749,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">सामायिक करा</string>
   <string name="InviteActivity_share_with_contacts">संपर्कांसोबत सामायिक करा</string>
-  <string name="InviteActivity_choose_how_to_share">सामायिक कसे करायचे ते निवडा</string>
   <string name="InviteActivity_cancel">रद्द करा</string>
   <string name="InviteActivity_sending">पाठवत आहे…</string>
   <string name="InviteActivity_invitations_sent">आमंत्रणे पाठविली!</string>
   <string name="InviteActivity_invite_to_signal">Signal वर आमंत्रित करा</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">%d मित्राला SMS पाठवा</item>
-    <item quantity="other">%d मित्रांना SMS पाठवा</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d SMS आमंत्रण पाठवायचे?</item>
     <item quantity="other">%d SMS आमंत्रणे पाठवायची?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal वर स्विच करूया: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">असे दिसते की आपल्याकडे सामायिक करण्यासाठी कुठलेही अॅप नाहीत.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">मित्र मित्रांना अनएन्क्रिप्टेड चॅट करू देत नाही.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">अधिक जाणा</string>
   <!--LongMessageActivity-->
@@ -831,10 +830,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal कॉल प्रस्थापित करत आहे</string>
   <string name="NotificationBarManager__incoming_signal_call">येणारा Signal कॉल</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal कॉल सेवा बंद करत आहे</string>
-  <string name="NotificationBarManager__deny_call">कॉलला नकार द्या</string>
   <string name="NotificationBarManager__answer_call">कॉलला उत्तर द्या</string>
   <string name="NotificationBarManager__end_call">कॉल संपवा</string>
   <string name="NotificationBarManager__cancel_call">कॉल रद्द करा</string>
+  <string name="NotificationBarManager__join_call">कॉलमध्ये सामील व्हा</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">सूचना चालू करायच्या?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">आपल्या संपर्क आणि गटांकडून एकही संदेश चुकवू नका.</string>
@@ -925,7 +924,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s ने %2$s ला अॅडमिन केले.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s ने आपल्याला अॅडमिन केले.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s कडून आपण अॅडमिन विशेषाधिकार रद्द केले.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ने आपले अॅडमिन विशेषाधिकार रद्द केले.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ने %2$s कडून आपण अॅडमिन विशेषाधिकार रद्द केले.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s आता अॅडमिन आहे.</string>
   <string name="MessageRecord_you_are_now_an_admin">आपण आता प्रशासक आहात.</string>
@@ -988,6 +986,8 @@
   <!--GV2 announcement group change-->
   <string name="MessageRecord_you_allow_all_members_to_send">सर्व सदस्यांना संदेश पाठवण्याची अनुमती देण्यासाठी आपण गट सेटिंग बदलल्या.</string>
   <string name="MessageRecord_you_allow_only_admins_to_send">फक्त प्रशासकांना संदेश पाठवण्याची अनुमती देण्यासाठी आपण गट सेटिंग बदलल्या.</string>
+  <string name="MessageRecord_s_allow_all_members_to_send">सर्व सदस्यांना संदेश पाठवण्याची अनुमती देण्यासाठी %1$s ने गट सेटिंग बदलल्या.</string>
+  <string name="MessageRecord_s_allow_only_admins_to_send">फक्त प्रशासकांना संदेश पाठवण्याची अनुमती देण्यासाठी %1$s ने गट सेटिंग बदलल्या.</string>
   <string name="MessageRecord_allow_all_members_to_send">सर्व सदस्यांना संदेश पाठवण्याची अनुमती देण्यासाठी गट सेटिंग बदलल्या गेल्या.</string>
   <string name="MessageRecord_allow_only_admins_to_send">फक्त प्रशासकांना संदेश पाठवण्याची अनुमती देण्यासाठी गट सेटिंग बदलल्या गेल्या.</string>
   <!--GV2 group link invite access level change-->
@@ -1194,13 +1194,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">कॉलिंग…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal व्हॉईस कॉल…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal व्हिडिओ कॉल…</string>
+  <string name="WebRtcCallView__signal_call">Signal कॉल</string>
   <string name="WebRtcCallView__start_call">कॉल चालू करा</string>
   <string name="WebRtcCallView__join_call">कॉलमध्ये सामील व्हा</string>
   <string name="WebRtcCallView__call_is_full">कॉल पूर्ण आहे</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">या कॉलसाठी सहभागी व्यक्तींची %1$d कमाल संख्या पोहोचली आहे. नंतर पुन्हा प्रयत्न करा.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" गट कॉल</string>
   <string name="WebRtcCallView__view_participants_list">सहभागी पहा</string>
   <string name="WebRtcCallView__your_video_is_off">आपला व्हिडिओ बंद आहे</string>
   <string name="WebRtcCallView__reconnecting">पुनःकनेक्ट करत आहे…</string>
@@ -1214,6 +1212,10 @@
     <item quantity="one">%1$s, %2$s, आणि %3$d इतर व्यक्ती गट कॉलमध्ये आहे</item>
     <item quantity="other">%1$s, %2$s, आणि %3$d इतर व्यक्ती कॉलमध्ये आहेत</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">स्पीकर</string>
+  <string name="WebRtcCallView__camera">कॅमेरा</string>
+  <string name="WebRtcCallView__mute">म्यूट करा</string>
+  <string name="WebRtcCallView__end_call">कॉल संपवा</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">या कॉलमध्ये · %1$d व्यक्ती</item>
@@ -3041,10 +3043,12 @@
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">सदस्य जोडा</string>
   <string name="PermissionsSettingsFragment__edit_group_info">गट माहिती संपादित करा</string>
+  <string name="PermissionsSettingsFragment__send_messages">संदेश पाठवा</string>
   <string name="PermissionsSettingsFragment__all_members">सर्व सदस्य </string>
   <string name="PermissionsSettingsFragment__only_admins">केवळ प्रशासक</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">नवीन सदस्य कोण जोडू शकतो?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">या गटाची माहिती कोण संपादित करू शकतो?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">संदेश कोण पाठवू शकतो?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">सूचना म्यूट करा</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">म्यूट केलेले नाही</string>
@@ -3089,5 +3093,7 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">वर नॅव्हिगेट करा</string>
   <!--EOF-->
 </resources>

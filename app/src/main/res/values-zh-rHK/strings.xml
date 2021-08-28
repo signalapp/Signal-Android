@@ -712,20 +712,17 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">分享</string>
   <string name="InviteActivity_share_with_contacts">與聯絡人分享</string>
-  <string name="InviteActivity_choose_how_to_share">選擇如何分享</string>
+  <string name="InviteActivity_share_via">分享方式…</string>
   <string name="InviteActivity_cancel">取消</string>
   <string name="InviteActivity_sending">正在傳送…</string>
   <string name="InviteActivity_invitations_sent">邀請已傳送！</string>
   <string name="InviteActivity_invite_to_signal">邀請加入 Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="other">傳送短訊給 %d 個好友</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">傳送短訊 (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">要傳送 %d 個短訊邀請嗎？</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">一齊轉用 Signal 啦：%1$s</string>
   <string name="InviteActivity_no_app_to_share_to">您似乎未有任何應用程式可作分享。</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">好友的話，不加密不好說。</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">了解更多</string>
   <!--LongMessageActivity-->
@@ -792,11 +789,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">正在建立 Signal 通話</string>
   <string name="NotificationBarManager__incoming_signal_call">Signal 來電</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Signal 群組來電</string>
   <string name="NotificationBarManager__stopping_signal_call_service">正在停止 Signal 通話服務</string>
-  <string name="NotificationBarManager__deny_call">拒接通話</string>
+  <string name="NotificationBarManager__decline_call">拒接通話</string>
   <string name="NotificationBarManager__answer_call">接聽通話</string>
   <string name="NotificationBarManager__end_call">結束通話</string>
   <string name="NotificationBarManager__cancel_call">取消通話</string>
+  <string name="NotificationBarManager__join_call">加入通話</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">要開啟通知嗎？</string>
   <string name="NotificationsMegaphone_never_miss_a_message">不再錯過任何來自您的聯絡人或群組中的訊息。</string>
@@ -1142,26 +1141,54 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal 需要存取您的相機，以便與 %1$s 通話。</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">正在撥號…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">群組太大，無法給參與者響鈴。</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal 語音通話…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal 視像通話…</string>
+  <string name="WebRtcCallView__signal_call">Signal 通話</string>
+  <string name="WebRtcCallView__signal_video_call">Signal 視像通話</string>
   <string name="WebRtcCallView__start_call">開始通話</string>
   <string name="WebRtcCallView__join_call">加入通話</string>
   <string name="WebRtcCallView__call_is_full">通話已滿座</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">此通話已到達 %1$d 個參與者的人數上限。請稍後再試。</string>
-  <string name="WebRtcCallView__s_group_call">「%1$s」群組通話</string>
   <string name="WebRtcCallView__view_participants_list">檢視參與者</string>
   <string name="WebRtcCallView__your_video_is_off">您的視像已關閉</string>
   <string name="WebRtcCallView__reconnecting">正在重新連線…</string>
   <string name="WebRtcCallView__joining">正在加入…</string>
   <string name="WebRtcCallView__disconnected">已中斷連線</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal 將給 %1$s 響鈴</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal 將給 %1$s 和 %2$s 響鈴</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="other">Signal 將給 %1$s、%2$s 和另 %3$d 人響鈴</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s 將予通知</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s 和 %2$s 將予通知</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="other">%1$s、%2$s 和另 %3$d 人將予通知</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">正在響鈴 %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">正在響鈴 %1$s 和 %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="other">正在響鈴 %1$s、%2$s 和另 %3$d 人</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s 正致電給您</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s 正致電給您和 %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s 正致電給您、%2$s 和 %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="other">%1$s 正致電給您、%2$s、%3$s 和另 %4$d 人</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">目前惟有您一人之境</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s 現已在此通話中</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s現已在此通話中</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 和 %2$s 現已在此通話中</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s 現正展示</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="other">%1$s、%2$s 和另 %3$d 人現已在此通話中</item>
   </plurals>
+  <string name="WebRtcCallView__flip">翻轉</string>
+  <string name="WebRtcCallView__speaker">揚聲器</string>
+  <string name="WebRtcCallView__camera">相機</string>
+  <string name="WebRtcCallView__mute">靜音</string>
+  <string name="WebRtcCallView__ring">響鈴</string>
+  <string name="WebRtcCallView__end_call">結束通話</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="other">現已在此通話中 · %1$d 人</item>
@@ -1688,8 +1715,8 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">輕觸 [確定] 並完成所要求的設定，以便發送媒體和群組訊息。適用於您的電信業者的 MMS 設定，通常可搜尋「您的電信業者 APN」而找到。您只需為此設定一次。</string>
   <!--BadDecryptLearnMoreDialog-->
   <string name="BadDecryptLearnMoreDialog_delivery_issue">送遞問題</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">來自 %s 的一則訊息、貼圖、心情或已讀狀態無法向您送達。未知是直接發送給您，還是發送到某個群組中。</string>
-  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">來自 %s 的一則訊息、貼圖、心情或已讀狀態無法向您送達。</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">來自 %s 的一則訊息、貼圖、心情或已讀標記無法向您送達。未知是直接發送給您，還是發送到某個群組中。</string>
+  <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">來自 %s 的一則訊息、貼圖、心情或已讀標記無法向您送達。</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">名字 (必填)</string>
   <string name="CreateProfileActivity_last_name_optional">姓氏 (選用)</string>
@@ -1704,7 +1731,7 @@
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">☝️息尚存</string>
   <string name="EditAboutFragment_encrypted">清風不識字</string>
-  <string name="EditAboutFragment_be_kind">抬頭尚有天空 埋頭尚有智慧</string>
+  <string name="EditAboutFragment_be_kind">煩擾中抱著希望 抵消每滴失望</string>
   <string name="EditAboutFragment_coffee_lover">無盛世 無亂世 坐在咖啡店</string>
   <string name="EditAboutFragment_free_to_chat">即使要蒙著我嘴 我亦可高呼</string>
   <string name="EditAboutFragment_taking_a_break">人間有味是清歡</string>
@@ -2993,6 +3020,11 @@
   <string name="ContactFilterView__search_name_or_number">搜尋名稱或號碼</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">停止語音訊息</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">變更語音訊息速度</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">暫停語音訊息</string>
+  <string name="VoiceNotePlayerView__play_voice_message">播放語音訊息</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">導覽至語音訊息</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">頭像預覽</string>
   <string name="AvatarPickerFragment__camera">相機</string>
@@ -3015,5 +3047,24 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">短訊</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">向上導覽</string>
+  <string name="MultiselectForwardFragment__forward_to">轉寄給</string>
+  <string name="MultiselectForwardFragment__add_a_message">新增訊息</string>
+  <string name="MultiselectForwardFragment__faster_forwards">轉寄更快速</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">訊息轉寄現將立即傳送。</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="other">傳送 %1$d 則訊息</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="other">訊息已傳送</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="other">訊息傳送失敗</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="other">訊息已不復存在，故無法轉寄。</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">已達上限</string>
   <!--EOF-->
 </resources>

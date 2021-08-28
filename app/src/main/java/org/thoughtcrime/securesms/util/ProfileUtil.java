@@ -74,13 +74,12 @@ public final class ProfileUtil {
                                                                                                @NonNull SignalServiceProfile.RequestType requestType,
                                                                                                @NonNull ProfileService profileService)
   {
-    SignalServiceAddress         address            = toSignalServiceAddress(context, recipient);
     Optional<UnidentifiedAccess> unidentifiedAccess = getUnidentifiedAccess(context, recipient);
     Optional<ProfileKey>         profileKey         = ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey());
 
-    return profileService.getProfile(address, profileKey, unidentifiedAccess, requestType)
-                         .map(p -> new Pair<>(recipient, p))
-                         .onErrorReturn(t -> new Pair<>(recipient, ServiceResponse.forUnknownError(t)));
+    return Single.fromCallable(() -> toSignalServiceAddress(context, recipient))
+                 .flatMap(address -> profileService.getProfile(address, profileKey, unidentifiedAccess, requestType).map(p -> new Pair<>(recipient, p)))
+                 .onErrorReturn(t -> new Pair<>(recipient, ServiceResponse.forUnknownError(t)));
   }
 
   public static @Nullable String decryptString(@NonNull ProfileKey profileKey, @Nullable byte[] encryptedString)
@@ -267,11 +266,15 @@ public final class ProfileUtil {
     return Optional.absent();
   }
 
-  private static @NonNull SignalServiceAddress toSignalServiceAddress(@NonNull Context context, @NonNull Recipient recipient) {
+  private static @NonNull SignalServiceAddress toSignalServiceAddress(@NonNull Context context, @NonNull Recipient recipient) throws IOException {
     if (recipient.getRegistered() == RecipientDatabase.RegisteredState.NOT_REGISTERED) {
-      return new SignalServiceAddress(recipient.getUuid().orNull(), recipient.getE164().orNull());
+      if (recipient.hasUuid()) {
+        return new SignalServiceAddress(recipient.requireUuid(), recipient.getE164().orNull());
+      } else {
+        throw new IOException(recipient.getId() + " not registered!");
+      }
     } else {
-      return RecipientUtil.toSignalServiceAddressBestEffort(context, recipient);
+      return RecipientUtil.toSignalServiceAddress(context, recipient);
     }
   }
 }

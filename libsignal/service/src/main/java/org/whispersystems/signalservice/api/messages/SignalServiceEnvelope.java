@@ -70,9 +70,7 @@ public class SignalServiceEnvelope {
                                        .setServerTimestamp(serverReceivedTimestamp);
 
     if (sender.isPresent()) {
-      if (sender.get().getUuid().isPresent()) {
-        builder.setSourceUuid(sender.get().getUuid().get().toString());
-      }
+      builder.setSourceUuid(sender.get().getUuid().toString());
 
       if (sender.get().getNumber().isPresent()) {
         builder.setSourceE164(sender.get().getNumber().get());
@@ -125,8 +123,8 @@ public class SignalServiceEnvelope {
   /**
    * @return True if either a source E164 or UUID is present.
    */
-  public boolean hasSource() {
-    return envelope.hasSourceE164() || envelope.hasSourceUuid();
+  public boolean hasSourceUuid() {
+    return envelope.hasSourceUuid();
   }
 
   /**

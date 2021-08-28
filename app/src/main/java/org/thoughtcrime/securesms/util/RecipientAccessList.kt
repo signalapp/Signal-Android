@@ -25,8 +25,8 @@ class RecipientAccessList(private val recipients: List<Recipient>) : List<Recipi
   }
 
   fun requireByAddress(address: SignalServiceAddress): Recipient {
-    if (address.uuid.isPresent && byUuid.containsKey(address.uuid.get())) {
-      return byUuid.get(address.uuid.get())!!
+    if (byUuid.containsKey(address.uuid)) {
+      return byUuid.get(address.uuid)!!
     } else if (address.number.isPresent && byE164.containsKey(address.number.get())) {
       return byE164.get(address.number.get())!!
     } else {

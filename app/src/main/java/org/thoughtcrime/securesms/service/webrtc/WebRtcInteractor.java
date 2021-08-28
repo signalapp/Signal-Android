@@ -45,9 +45,9 @@ public class WebRtcInteractor {
                           @NonNull GroupCall.Observer groupCallObserver,
                           @NonNull AppForegroundObserver.Listener foregroundListener)
   {
-    this.context           = context;
-    this.signalCallManager = signalCallManager;
-    this.lockManager       = lockManager;
+    this.context             = context;
+    this.signalCallManager   = signalCallManager;
+    this.lockManager         = lockManager;
     this.audioManager        = audioManager;
     this.cameraEventListener = cameraEventListener;
     this.groupCallObserver   = groupCallObserver;
@@ -154,7 +154,7 @@ public class WebRtcInteractor {
     audioManager.startCommunication(preserveSpeakerphone);
   }
 
-  void peekGroupCall(@NonNull RecipientId recipientId) {
-    signalCallManager.peekGroupCall(recipientId);
+  void peekGroupCallForRingingCheck(@NonNull GroupCallRingCheckInfo groupCallRingCheckInfo) {
+    signalCallManager.peekGroupCallForRingingCheck(groupCallRingCheckInfo);
   }
 }

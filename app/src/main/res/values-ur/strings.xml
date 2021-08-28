@@ -745,22 +745,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">اشتراک کریں</string>
   <string name="InviteActivity_share_with_contacts">رابطوں کے ساتھ شیئر کریں</string>
-  <string name="InviteActivity_choose_how_to_share">اشتراک کرنے کا طریقہ منتخب کریں</string>
   <string name="InviteActivity_cancel">منسوخ کریں</string>
   <string name="InviteActivity_sending">بھیج رہا ہے۔۔۔</string>
   <string name="InviteActivity_invitations_sent">دعوت نامے بھیجے گئے ہیں!</string>
   <string name="InviteActivity_invite_to_signal">Signal میں مدعو کریں</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">%d دوست کو ایس ایم ایس بھیجے</item>
-    <item quantity="other">%d دوستوں کو ایس ایم ایس بھیجے </item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">%d ایس ایم ایس دعوت نامہ بھیجے؟</item>
     <item quantity="other">%d ایس ایم ایس دعوت نامے بھیجے؟</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signal میں سو ئچ کریں:%1$s</string>
   <string name="InviteActivity_no_app_to_share_to">ایسا لگتا ہے جیسے آپ کے پاس اشتراک کرنے کیلئے کوئی ایپ نہیں ہے۔</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوست دوست کو بغیر خفیہ گفتگو نہیں کرنے دیتے ہیں۔</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">مزید پڑھیں</string>
   <!--LongMessageActivity-->
@@ -832,10 +826,10 @@
   <string name="NotificationBarManager__establishing_signal_call">Signal کال قائم ہو رہی ہے</string>
   <string name="NotificationBarManager__incoming_signal_call">signal کال آ رہی ہے</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Signal کال سروس روکنا</string>
-  <string name="NotificationBarManager__deny_call">کال رد کریں</string>
   <string name="NotificationBarManager__answer_call">کال کا جواب دیں</string>
   <string name="NotificationBarManager__end_call">کال ختم کریں</string>
   <string name="NotificationBarManager__cancel_call">کال منسوخ کریں</string>
+  <string name="NotificationBarManager__join_call">کال میں شامل ہوں</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">اطلاعات آن کریں؟</string>
   <string name="NotificationsMegaphone_never_miss_a_message">اپنے رابطوں اور گروپس کا پیغام کبھی بھی مت چھوڑیں۔</string>
@@ -926,7 +920,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s نے %2$s کو ایڈمن بنایا۔</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s نے آپ کو ایڈمن بنایا۔</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">آپ نے%1$sکے ایڈمنسٹریٹو مراعات کو منسوخ کردیا۔</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s نے آپ کے منتظم کے مراعات کو منسوخ کردیا۔ \"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s نے %2$s سے منتظم کے استحقاق کو منسوخ کردیا۔</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s اب ایک ایڈمن ہے۔</string>
   <string name="MessageRecord_you_are_now_an_admin">اب آپ ایڈمن ہیں۔</string>
@@ -1194,13 +1187,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">کالنگ…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal آڈیو کال…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal ویڈیو کال…</string>
+  <string name="WebRtcCallView__signal_call">Signal  کال</string>
   <string name="WebRtcCallView__start_call">کال شروع کریں</string>
   <string name="WebRtcCallView__join_call">کال میں شامل ہوں</string>
   <string name="WebRtcCallView__call_is_full">کال پوری ہے</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">اس کال کے لئے شرکاء کی زیادہ سے زیادہ تعداد%1$d پہنچ چکی ہے۔ بعد میں دوبارہ کوشش کریں۔</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" گروپ کال</string>
   <string name="WebRtcCallView__view_participants_list">شرکاء کو دیکھیں</string>
   <string name="WebRtcCallView__your_video_is_off">آپ کا ویڈیو آف ہے</string>
   <string name="WebRtcCallView__reconnecting">دوبارہ رابطہ ہو رہا ہے۔۔۔</string>
@@ -1214,6 +1205,10 @@
     <item quantity="one">%1$s،%2$s ، اور %3$d دیگر اس کال میں ہیں</item>
     <item quantity="other">%1$s،%2$s ، اور%3$d دیگر اس کال میں ہیں</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">سپیکر</string>
+  <string name="WebRtcCallView__camera">کیمرہ</string>
+  <string name="WebRtcCallView__mute">خاموش</string>
+  <string name="WebRtcCallView__end_call">کال ختم کریں</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">اس کال میں · %1$d شخص</item>
@@ -3083,5 +3078,6 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">ایس ایم ایس</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

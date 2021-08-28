@@ -1,5 +1,9 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
+import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.AnswerMetadata;
+import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.HangupMetadata;
+import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedAnswerMetadata;
+
 import android.content.Context;
 import android.os.ResultReceiver;
 
@@ -10,14 +14,18 @@ import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
+import org.signal.ringrtc.CallManager.RingUpdate;
 import org.signal.ringrtc.GroupCall;
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
+import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
+import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.CallState;
@@ -41,13 +49,10 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.AnswerMetadata;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.HangupMetadata;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.OpaqueMessageMetadata;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedAnswerMetadata;
+import java.util.UUID;
 
 /**
  * Base WebRTC action processor and core of the calling state machine. As actions (as intents)
@@ -616,9 +621,8 @@ public abstract class WebRtcActionProcessor {
   }
 
   protected @NonNull WebRtcServiceState handleGroupMessageSentError(@NonNull WebRtcServiceState currentState,
-                                                                    @NonNull RemotePeer remotePeer,
-                                                                    @NonNull WebRtcViewModel.State errorCallState,
-                                                                    @NonNull Optional<IdentityKey> identityKey)
+                                                                    @NonNull Collection<RecipientId> recipientIds,
+                                                                    @NonNull WebRtcViewModel.State errorCallState)
   {
     Log.i(tag, "handleGroupMessageSentError not processed");
     return currentState;
@@ -631,11 +635,106 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  //endregion
+  protected @NonNull WebRtcServiceState handleReceivedOpaqueMessage(@NonNull WebRtcServiceState currentState, @NonNull WebRtcData.OpaqueMessageMetadata opaqueMessageMetadata) {
+    Log.i(tag, "handleReceivedOpaqueMessage():");
 
-  protected @NonNull WebRtcServiceState handleReceivedOpaqueMessage(@NonNull WebRtcServiceState currentState, @NonNull OpaqueMessageMetadata opaqueMessageMetadata) {
-    Log.i(tag, "handleReceivedOpaqueMessage not processed");
+    try {
+      webRtcInteractor.getCallManager().receivedCallMessage(opaqueMessageMetadata.getUuid(),
+                                                            opaqueMessageMetadata.getRemoteDeviceId(),
+                                                            1,
+                                                            opaqueMessageMetadata.getOpaque(),
+                                                            opaqueMessageMetadata.getMessageAgeSeconds());
+    } catch (CallException e) {
+      return groupCallFailure(currentState, "Unable to receive opaque message", e);
+    }
 
     return currentState;
   }
+
+  protected @NonNull WebRtcServiceState handleGroupCallRingUpdate(@NonNull WebRtcServiceState currentState,
+                                                                  @NonNull RemotePeer remotePeerGroup,
+                                                                  @NonNull GroupId.V2 groupId,
+                                                                  long ringId,
+                                                                  @NonNull UUID uuid,
+                                                                  @NonNull RingUpdate ringUpdate)
+  {
+    Log.i(tag, "handleGroupCallRingUpdate(): recipient: " + remotePeerGroup.getId() + " ring: " + ringId + " update: " + ringUpdate);
+
+    try {
+      if (ringUpdate != RingUpdate.BUSY_LOCALLY && ringUpdate != RingUpdate.BUSY_ON_ANOTHER_DEVICE) {
+        webRtcInteractor.getCallManager().cancelGroupRing(groupId.getDecodedId(), ringId, CallManager.RingCancelReason.Busy);
+      }
+      DatabaseFactory.getGroupCallRingDatabase(context).insertOrUpdateGroupRing(ringId,
+                                                                                System.currentTimeMillis(),
+                                                                                ringUpdate == RingUpdate.REQUESTED ? RingUpdate.BUSY_LOCALLY : ringUpdate);
+    } catch (CallException e) {
+      Log.w(tag, "Unable to cancel ring", e);
+    }
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleSetRingGroup(@NonNull WebRtcServiceState currentState, boolean ringGroup) {
+    Log.i(tag, "handleSetRingGroup not processed");
+
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleReceivedGroupCallPeekForRingingCheck(@NonNull WebRtcServiceState currentState, @NonNull GroupCallRingCheckInfo info, long deviceCount) {
+    Log.i(tag, "handleReceivedGroupCallPeekForRingingCheck not processed");
+
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState groupCallFailure(@NonNull WebRtcServiceState currentState, @NonNull String message, @NonNull Throwable error) {
+    Log.w(tag, "groupCallFailure(): " + message, error);
+
+    GroupCall groupCall = currentState.getCallInfoState().getGroupCall();
+    Recipient recipient = currentState.getCallInfoState().getCallRecipient();
+
+    if (recipient != null && currentState.getCallInfoState().getGroupCallState().isConnected()) {
+      webRtcInteractor.sendGroupCallMessage(recipient, WebRtcUtil.getGroupCallEraId(groupCall));
+    }
+
+    currentState = currentState.builder()
+                               .changeCallInfoState()
+                               .callState(WebRtcViewModel.State.CALL_DISCONNECTED)
+                               .groupCallState(WebRtcViewModel.GroupCallState.DISCONNECTED)
+                               .build();
+
+    webRtcInteractor.postStateUpdate(currentState);
+
+    try {
+      if (groupCall != null) {
+        groupCall.disconnect();
+      }
+      webRtcInteractor.getCallManager().reset();
+    } catch (CallException e) {
+      Log.w(tag, "Unable to reset call manager: ", e);
+    }
+
+    return terminateGroupCall(currentState);
+  }
+
+  protected synchronized @NonNull WebRtcServiceState terminateGroupCall(@NonNull WebRtcServiceState currentState) {
+    return terminateGroupCall(currentState, true);
+  }
+
+  protected synchronized @NonNull WebRtcServiceState terminateGroupCall(@NonNull WebRtcServiceState currentState, boolean terminateVideo) {
+    webRtcInteractor.updatePhoneState(LockManager.PhoneState.PROCESSING);
+    boolean playDisconnectSound = currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_DISCONNECTED;
+    webRtcInteractor.stopAudio(playDisconnectSound);
+    webRtcInteractor.setWantsBluetoothConnection(false);
+    webRtcInteractor.updatePhoneState(LockManager.PhoneState.IDLE);
+    webRtcInteractor.stopForegroundService();
+
+    if (terminateVideo) {
+      WebRtcVideoUtil.deinitializeVideo(currentState);
+    }
+
+    GroupCallSafetyNumberChangeNotificationUtil.cancelNotification(context, currentState.getCallInfoState().getCallRecipient());
+
+    return new WebRtcServiceState(new IdleActionProcessor(webRtcInteractor));
+  }
+
+  //endregion
 }

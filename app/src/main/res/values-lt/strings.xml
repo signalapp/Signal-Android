@@ -823,17 +823,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Bendrinti</string>
   <string name="InviteActivity_share_with_contacts">Bendrinti su adresatais</string>
-  <string name="InviteActivity_choose_how_to_share">Pasirinkti kaip bendrinti</string>
+  <string name="InviteActivity_share_via">Bendrinti per…</string>
   <string name="InviteActivity_cancel">Atsisakyti</string>
   <string name="InviteActivity_sending">Siunčiama…</string>
   <string name="InviteActivity_invitations_sent">Pakvietimai išsiųsti!</string>
   <string name="InviteActivity_invite_to_signal">Pakviesti į Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">SIŲSTI SMS %d DRAUGUI</item>
-    <item quantity="few">SIŲSTI SMS %d DRAUGAMS</item>
-    <item quantity="many">SIŲSTI SMS %d DRAUGŲ</item>
-    <item quantity="other">SIŲSTI SMS %d DRAUGŲ</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">Siųsti SMS žinutę (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Siųsti %d SMS pakvietimą?</item>
     <item quantity="few">Siųsti %d SMS pakvietimus?</item>
@@ -842,7 +837,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Persijunkime į Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Atrodo, kad neturite programėlių su kuriomis bendrinti.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Draugai neleidžia draugams kalbėtis nešifruotai.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Sužinoti daugiau</string>
   <!--LongMessageActivity-->
@@ -921,11 +915,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
   <string name="NotificationBarManager__establishing_signal_call">Užmezgiamas Signal skambutis</string>
   <string name="NotificationBarManager__incoming_signal_call">Gaunamasis Signal skambutis</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Gaunamasis Signal grupės skambutis</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Stabdoma Signal skambučių paslauga</string>
-  <string name="NotificationBarManager__deny_call">Atmesti skambutį</string>
+  <string name="NotificationBarManager__decline_call">Atmesti skambutį</string>
   <string name="NotificationBarManager__answer_call">Atsiliepti į skambutį</string>
   <string name="NotificationBarManager__end_call">Baigti skambutį</string>
   <string name="NotificationBarManager__cancel_call">Atsisakyti skambučio</string>
+  <string name="NotificationBarManager__join_call">Prisijungti prie skambučio</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Įjungti pranešimus?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Niekada nepraleiskite žinučių nuo savo adresatų bei grupių.</string>
@@ -1316,21 +1312,55 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Norint skambinti %1$s, Signal reikia prieigos prie jūsų kameros</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Skambinama…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Grupė yra per didelė, kad būtų skambinama dalyviams.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal balso skambutis…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal vaizdo skambutis…</string>
+  <string name="WebRtcCallView__signal_call">„Signal“ skambutis</string>
+  <string name="WebRtcCallView__signal_video_call">Signal vaizdo skambutis</string>
   <string name="WebRtcCallView__start_call">Pradėti skambutį</string>
   <string name="WebRtcCallView__join_call">Prisijungti prie skambučio</string>
   <string name="WebRtcCallView__call_is_full">Skambutis yra pilnas</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Šiame skambutyje yra pasiektas didžiausias %1$d dalyvių skaičius. Vėliau bandykite dar kartą.</string>
-  <string name="WebRtcCallView__s_group_call">„%1$s“ grupės skambutis</string>
   <string name="WebRtcCallView__view_participants_list">Rodyti dalyvius</string>
   <string name="WebRtcCallView__your_video_is_off">Jūsų vaizdas yra išjungtas</string>
   <string name="WebRtcCallView__reconnecting">Jungiamasi iš naujo…</string>
   <string name="WebRtcCallView__joining">Prisijungiama…</string>
   <string name="WebRtcCallView__disconnected">Atsijungta</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal skambins naudotojui %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal skambins naudotojams %1$s ir %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal skambins naudotojams %1$s, %2$s ir dar %3$d žmogui</item>
+    <item quantity="few">Signal skambins naudotojams %1$s, %2$s ir dar %3$d žmonėms</item>
+    <item quantity="many">Signal skambins naudotojams %1$s, %2$s ir dar %3$d žmonių</item>
+    <item quantity="other">Signal skambins naudotojams %1$s, %2$s ir dar %3$d žmogui</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s gaus pranešimą</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s ir %2$s gaus pranešimą</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s ir dar %3$d žmogus gaus pranešimą</item>
+    <item quantity="few">%1$s, %2$s ir dar %3$d žmonės gaus pranešimą</item>
+    <item quantity="many">%1$s, %2$s ir dar %3$d žmonių gaus pranešimą</item>
+    <item quantity="other">%1$s, %2$s ir dar %3$d žmogus gaus pranešimą</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Skambinama naudotojui %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Skambinama naudotojams %1$s ir %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Skambinama naudotojams %1$s, %2$s ir dar %3$d žmogui</item>
+    <item quantity="few">Skambinama naudotojams %1$s, %2$s ir dar %3$d žmonėms</item>
+    <item quantity="many">Skambinama naudotojams %1$s, %2$s ir dar %3$d žmonių</item>
+    <item quantity="other">Skambinama naudotojams %1$s, %2$s ir dar %3$d žmogui</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">Jums skambina %1$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s skambina jums ir naudotojui %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s skambina jums ir naudotojams %2$s bei %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s skambina jums ir naudotojams %2$s, %3$s bei dar %4$d žmogui</item>
+    <item quantity="few">%1$s skambina jums ir naudotojams %2$s, %3$s bei dar %4$d žmonėms</item>
+    <item quantity="many">%1$s skambina jums ir naudotojams %2$s, %3$s bei dar %4$d žmonių</item>
+    <item quantity="other">%1$s skambina jums ir naudotojams %2$s, %3$s bei dar %4$d žmogui</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Čia daugiau nieko nėra</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s yra šiame skambutyje</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s esate šiame skambutyje</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ir %2$s yra šiame skambutyje</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s pristatinėja</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1339,6 +1369,12 @@
     <item quantity="many">%1$s, %2$s ir dar %3$d žmonių yra šiame skambutyje</item>
     <item quantity="other">%1$s, %2$s ir dar %3$d žmogus yra šiame skambutyje</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Apversti</string>
+  <string name="WebRtcCallView__speaker">Garsiakalbis</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__mute">Be garso</string>
+  <string name="WebRtcCallView__ring">Skambinti</string>
+  <string name="WebRtcCallView__end_call">Baigti skambutį</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Šiame skambutyje · %1$d žmogus</item>
@@ -2660,7 +2696,7 @@
   <string name="PhoneNumberPrivacy_everyone_find_description">Bet kuris žmogus, turintis jūsų telefono numerį savo adresatuose, matys jus kaip Signal adresatą. Kiti žmonės galės rasti jus paieškoje.</string>
   <string name="preferences_app_protection__screen_lock">Ekrano užraktas</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Užrakinti prieigą prie Signal, naudojant Android ekrano užraktą ar piršto atspaudą</string>
-  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekrano užrakto neveiklumui skirtas laikas</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekrano užraktas suveiks po</string>
   <string name="preferences_app_protection__signal_pin">Signal PIN kodas</string>
   <string name="preferences_app_protection__create_a_pin">Sukurti PIN kodą</string>
   <string name="preferences_app_protection__change_your_pin">Keisti PIN kodą</string>
@@ -3249,6 +3285,11 @@
   <string name="ContactFilterView__search_name_or_number">Ieškoti vardo ar numerio</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">Stabdyti balso žinutę</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">Keisti balso žinutės greitį</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">Pristabdyti balso žinutę</string>
+  <string name="VoiceNotePlayerView__play_voice_message">Atkurti garso žinutę</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">Naršyti į garso žinutę</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">Avataro peržiūra</string>
   <string name="AvatarPickerFragment__camera">Kamera</string>
@@ -3271,5 +3312,36 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Naršyti aukštyn</string>
+  <string name="MultiselectForwardFragment__forward_to">Kam persiųsti</string>
+  <string name="MultiselectForwardFragment__add_a_message">Pridėti žinutę</string>
+  <string name="MultiselectForwardFragment__faster_forwards">Greitesni persiuntimai</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">Dabar, persiunčiamos žinutės yra išsiunčiamos nedelsiant.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Išsiųsta %1$d žinutė</item>
+    <item quantity="few">Išsiųstos %1$d žinutės</item>
+    <item quantity="many">Išsiųsta %1$d žinučių</item>
+    <item quantity="other">Išsiųsta %1$d žinutė</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Žinutė išsiųsta</item>
+    <item quantity="few">Žinutės išsiųstos</item>
+    <item quantity="many">Žinutės išsiųstos</item>
+    <item quantity="other">Žinutės išsiųstos</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Nepavyko išsiųsti žinutės</item>
+    <item quantity="few">Nepavyko išsiųsti žinučių</item>
+    <item quantity="many">Nepavyko išsiųsti žinučių</item>
+    <item quantity="other">Nepavyko išsiųsti žinučių</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Nepavyko persiųsti žinutės, nes ji daugiau nebeprieinama.</item>
+    <item quantity="few">Nepavyko persiųsti žinučių, nes jos daugiau nebeprieinamos.</item>
+    <item quantity="many">Nepavyko persiųsti žinučių, nes jos daugiau nebeprieinamos.</item>
+    <item quantity="other">Nepavyko persiųsti žinučių, nes jos daugiau nebeprieinamos.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Pasiekta riba</string>
   <!--EOF-->
 </resources>

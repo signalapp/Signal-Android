@@ -203,7 +203,7 @@ public final class CodeVerificationRequest {
     byte[] unidentifiedAccessKey = UnidentifiedAccess.deriveAccessKeyFrom(profileKey);
 
     TextSecurePreferences.setLocalRegistrationId(context, registrationId);
-    SessionUtil.archiveAllSessions(context);
+    SessionUtil.archiveAllSessions();
     SenderKeyUtil.clearAllState(context);
 
     SignalServiceAccountManager accountManager     = AccountManagerFactory.createUnauthenticated(context, credentials.getE164number(), credentials.getPassword());

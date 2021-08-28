@@ -13,16 +13,7 @@ public final class SignalServiceAddressProtobufSerializerTest {
 
   @Test
   public void serialize_and_deserialize_uuid_address() {
-    SignalServiceAddress address      = new SignalServiceAddress(Optional.fromNullable(UUID.randomUUID()), Optional.<String>absent(), Optional.<String>absent());
-    AddressProto         addressProto = org.whispersystems.signalservice.internal.serialize.SignalServiceAddressProtobufSerializer.toProtobuf(address);
-    SignalServiceAddress deserialized = org.whispersystems.signalservice.internal.serialize.SignalServiceAddressProtobufSerializer.fromProtobuf(addressProto);
-
-    assertEquals(address, deserialized);
-  }
-
-  @Test
-  public void serialize_and_deserialize_e164_address() {
-    SignalServiceAddress address      = new SignalServiceAddress(Optional.<UUID>absent(), Optional.of("+15552345678"), Optional.<String>absent());
+    SignalServiceAddress address      = new SignalServiceAddress(UUID.randomUUID(), Optional.absent());
     AddressProto         addressProto = org.whispersystems.signalservice.internal.serialize.SignalServiceAddressProtobufSerializer.toProtobuf(address);
     SignalServiceAddress deserialized = org.whispersystems.signalservice.internal.serialize.SignalServiceAddressProtobufSerializer.fromProtobuf(addressProto);
 
@@ -31,18 +22,9 @@ public final class SignalServiceAddressProtobufSerializerTest {
 
   @Test
   public void serialize_and_deserialize_both_address() {
-    SignalServiceAddress address      = new SignalServiceAddress(Optional.fromNullable(UUID.randomUUID()), Optional.of("+15552345678"), Optional.<String>absent());
+    SignalServiceAddress address      = new SignalServiceAddress(UUID.randomUUID(), Optional.of("+15552345678"));
     AddressProto         addressProto = org.whispersystems.signalservice.internal.serialize.SignalServiceAddressProtobufSerializer.toProtobuf(address);
     SignalServiceAddress deserialized = org.whispersystems.signalservice.internal.serialize.SignalServiceAddressProtobufSerializer.fromProtobuf(addressProto);
-
-    assertEquals(address, deserialized);
-  }
-
-  @Test
-  public void serialize_and_deserialize_both_address_with_relay() {
-    SignalServiceAddress address      = new SignalServiceAddress(Optional.fromNullable(UUID.randomUUID()), Optional.of("+15552345678"), Optional.of("relay"));
-    AddressProto         addressProto = org.whispersystems.signalservice.internal.serialize.SignalServiceAddressProtobufSerializer.toProtobuf(address);
-    SignalServiceAddress deserialized = SignalServiceAddressProtobufSerializer.fromProtobuf(addressProto);
 
     assertEquals(address, deserialized);
   }

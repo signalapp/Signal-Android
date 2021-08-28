@@ -175,7 +175,7 @@ public class DirectoryHelper {
           recipient = Recipient.resolved(recipientDatabase.getByUuid(uuid).get());
         }
       } else {
-        recipientDatabase.markRegistered(recipient.getId());
+        Log.w(TAG, "Registered number set had a null UUID!");
       }
     } else if (recipient.hasUuid() && recipient.isRegistered() && hasCommunicatedWith(context, recipient)) {
       if (isUuidRegistered(context, recipient)) {
@@ -469,8 +469,8 @@ public class DirectoryHelper {
 
     for (RecipientId newUser: newUsers) {
       Recipient recipient = Recipient.resolved(newUser);
-      if (!SessionUtil.hasSession(context, recipient.getId()) &&
-          !recipient.isSelf()                                 &&
+      if (!SessionUtil.hasSession(recipient.getId()) &&
+          !recipient.isSelf()                        &&
           recipient.hasAUserSetDisplayName(context))
       {
         IncomingJoinedMessage  message      = new IncomingJoinedMessage(recipient.getId());
@@ -543,8 +543,9 @@ public class DirectoryHelper {
   }
 
   private static boolean hasCommunicatedWith(@NonNull Context context, @NonNull Recipient recipient) {
-    return DatabaseFactory.getThreadDatabase(context).hasThread(recipient.getId()) ||
-           DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.getId());
+    return DatabaseFactory.getThreadDatabase(context).hasThread(recipient.getId())                                                ||
+           (recipient.hasUuid() && DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.requireUuid().toString())) ||
+           (recipient.hasE164() && DatabaseFactory.getSessionDatabase(context).hasSessionFor(recipient.requireE164()));
   }
 
   static class DirectoryResult {

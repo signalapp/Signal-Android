@@ -728,22 +728,16 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Partekatu</string>
   <string name="InviteActivity_share_with_contacts">Partekatu kontaktuekin</string>
-  <string name="InviteActivity_choose_how_to_share">Aukeratu nola partekatu</string>
   <string name="InviteActivity_cancel">Utzi</string>
   <string name="InviteActivity_sending">Bidaltzen…</string>
   <string name="InviteActivity_invitations_sent">Gonbidapenak bidali dira!</string>
   <string name="InviteActivity_invite_to_signal">Gonbidatu Signal erabiltzera</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">BIDALI SMS MEZUA LAGUN %dI</item>
-    <item quantity="other">BIDALI SMS MEZUA %d LAGUNI</item>
-  </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Bidali SMS gonbidapen %d?</item>
     <item quantity="other">Bidali %d SMS gonbidapen?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Signalera alda dezagun: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Dirudienez ez duzu partekatzeko aplikazio bakar bat ere.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Benetako lagunek ez diete beraien lagunei enkriptaziorik gabe txateatzen uzten.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Gehiago jakin</string>
   <!--LongMessageActivity-->
@@ -813,10 +807,10 @@
   <string name="NotificationBarManager_signal_call_in_progress">Uneko Signal deia</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal deia finkatzen</string>
   <string name="NotificationBarManager__incoming_signal_call">Sarrerako Signal deia</string>
-  <string name="NotificationBarManager__deny_call">Ukatu deia</string>
   <string name="NotificationBarManager__answer_call">Erantzun deia</string>
   <string name="NotificationBarManager__end_call">Amaitu deia</string>
   <string name="NotificationBarManager__cancel_call">Deia utzi</string>
+  <string name="NotificationBarManager__join_call">Deian sartu</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Aktibatu Jakinarazpenak?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">Zure kontaktu edo taldeen mezu bat ere ez galdu inoiz.</string>
@@ -903,7 +897,6 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s erabiltzaileak %2$s administratzaile bihurtu du.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s erabiltzaileak administratzaile bihurtu zaitu.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">%1$s erabiltzaileari administratzaile eskudibeak kendu dizkiozu.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s erabiltzaileak administratzaile eskubideak kendu dizkizu.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s erabiltzaileak %2$s erabiltzaileari administratzaile eskudibeak kendu dizkio.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s erabiltzailea administratzailea da orain.</string>
   <string name="MessageRecord_you_are_now_an_admin">Orain administratzailea zara.</string>
@@ -1161,13 +1154,11 @@
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Deitzen…</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">Signal ahots deia…</string>
-  <string name="WebRtcCallView__signal_video_call">Signal bideo deia…</string>
+  <string name="WebRtcCallView__signal_call">Signal deia</string>
   <string name="WebRtcCallView__start_call">Hasi Deia</string>
   <string name="WebRtcCallView__join_call">Deira Sartu</string>
   <string name="WebRtcCallView__call_is_full">Deia beteta dago</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Dei hau gehienezko erabiltzaile kopurura, %1$d, iritsi da. Saiatu beranduago.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" Talde-Deia</string>
   <string name="WebRtcCallView__view_participants_list">Kideak ikusi</string>
   <string name="WebRtcCallView__your_video_is_off">Zure bideoa itzalita dago</string>
   <string name="WebRtcCallView__reconnecting">Berriro konektatzen…</string>
@@ -1180,6 +1171,10 @@
     <item quantity="one">%1$s, %2$s, eta beste %3$d dei honetan daude</item>
     <item quantity="other">%1$s, %2$s, eta  beste %3$d dei honetan daude.</item>
   </plurals>
+  <string name="WebRtcCallView__speaker">Bozgorailua</string>
+  <string name="WebRtcCallView__camera">Kamera</string>
+  <string name="WebRtcCallView__mute">Isildu</string>
+  <string name="WebRtcCallView__end_call">Amaitu deia</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">Dei honetan - pertsona %1$d</item>
@@ -2635,5 +2630,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <!--DSLSettingsToolbar-->
   <!--EOF-->
 </resources>

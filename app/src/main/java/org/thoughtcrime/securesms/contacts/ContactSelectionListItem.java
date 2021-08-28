@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -25,7 +26,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-public class ContactSelectionListItem extends LinearLayout implements RecipientForeverObserver {
+public class ContactSelectionListItem extends ConstraintLayout implements RecipientForeverObserver {
 
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(ContactSelectionListItem.class);
@@ -216,7 +217,14 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     if (this.recipient != null && this.recipient.getId().equals(recipient.getId())) {
       contactName   = recipient.getDisplayName(getContext());
       contactAbout  = recipient.getCombinedAboutAndEmoji();
-      contactNumber = PhoneNumberFormatter.prettyPrint(recipient.getE164().or(""));
+
+      if (recipient.isGroup() && recipient.getGroupId().isPresent()) {
+        contactNumber = recipient.getGroupId().get().toString();
+      } else if (recipient.hasE164()) {
+        contactNumber = PhoneNumberFormatter.prettyPrint(recipient.getE164().or(""));
+      } else {
+        contactNumber = recipient.getEmail().or("");
+      }
 
       contactPhotoImage.setAvatar(glideRequests, recipient, false);
       setText(recipient, contactType, contactName, contactNumber, contactLabel, contactAbout);

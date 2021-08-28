@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
+import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.ringrtc.Camera;
-import org.webrtc.EglBase;
 
 import java.util.Objects;
 
@@ -13,7 +13,7 @@ import java.util.Objects;
  * Local device video state and infrastructure.
  */
 public final class VideoState {
-  EglBase            eglBase;
+  EglBaseWrapper     eglBase;
   BroadcastVideoSink localSink;
   Camera             camera;
 
@@ -25,18 +25,14 @@ public final class VideoState {
     this(toCopy.eglBase, toCopy.localSink, toCopy.camera);
   }
 
-  VideoState(@Nullable EglBase eglBase, @Nullable BroadcastVideoSink localSink, @Nullable Camera camera) {
+  VideoState(@NonNull EglBaseWrapper eglBase, @Nullable BroadcastVideoSink localSink, @Nullable Camera camera) {
     this.eglBase   = eglBase;
     this.localSink = localSink;
     this.camera    = camera;
   }
 
-  public @Nullable EglBase getEglBase() {
+  public @NonNull EglBaseWrapper getLockableEglBase() {
     return eglBase;
-  }
-
-  public @NonNull EglBase requireEglBase() {
-    return Objects.requireNonNull(eglBase);
   }
 
   public @Nullable BroadcastVideoSink getLocalSink() {

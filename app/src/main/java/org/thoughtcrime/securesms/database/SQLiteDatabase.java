@@ -2,15 +2,13 @@ package org.thoughtcrime.securesms.database;
 
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
-import net.sqlcipher.Cursor;
 import net.sqlcipher.SQLException;
-import net.sqlcipher.database.SQLiteQueryStats;
 import net.sqlcipher.database.SQLiteStatement;
 import net.sqlcipher.database.SQLiteTransactionListener;
 
 import org.signal.core.util.tracing.Tracer;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -35,8 +33,9 @@ public class SQLiteDatabase {
   private static final String KEY_THREAD = "thread";
   private static final String NAME_LOCK  = "LOCK";
 
+
   private final net.sqlcipher.database.SQLiteDatabase wrapped;
-  private final Tracer                                tracer;
+  private final Tracer                                        tracer;
 
   public SQLiteDatabase(net.sqlcipher.database.SQLiteDatabase wrapped) {
     this.wrapped = wrapped;
@@ -283,10 +282,6 @@ public class SQLiteDatabase {
     return wrapped.compileStatement(sql);
   }
 
-  public SQLiteQueryStats getQueryStats(String sql, Object[] args) {
-    return wrapped.getQueryStats(sql, args);
-  }
-
   public boolean isReadOnly() {
     return wrapped.isReadOnly();
   }
@@ -305,25 +300,5 @@ public class SQLiteDatabase {
 
   public void setLocale(Locale locale) {
     wrapped.setLocale(locale);
-  }
-
-  public boolean isInCompiledSqlCache(String sql) {
-    return wrapped.isInCompiledSqlCache(sql);
-  }
-
-  public void purgeFromCompiledSqlCache(String sql) {
-    wrapped.purgeFromCompiledSqlCache(sql);
-  }
-
-  public void resetCompiledSqlCache() {
-    wrapped.resetCompiledSqlCache();
-  }
-
-  public int getMaxSqlCacheSize() {
-    return wrapped.getMaxSqlCacheSize();
-  }
-
-  public void setMaxSqlCacheSize(int cacheSize) {
-    wrapped.setMaxSqlCacheSize(cacheSize);
   }
 }

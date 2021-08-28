@@ -31,6 +31,7 @@ public class VersionTracker {
         SignalStore.misc().clearClientDeprecated();
         TextSecurePreferences.setLastVersionCode(context, currentVersionCode);
         ApplicationDependencies.getJobManager().add(new RemoteConfigRefreshJob());
+        LocalMetrics.getInstance().clear();
       }
     } catch (IOException ioe) {
       throw new AssertionError(ioe);

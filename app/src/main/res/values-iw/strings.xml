@@ -823,17 +823,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">שתף</string>
   <string name="InviteActivity_share_with_contacts">שתף עם אנשי קשר</string>
-  <string name="InviteActivity_choose_how_to_share">בחר כיצד לשתף</string>
+  <string name="InviteActivity_share_via">שתף באמצעות…</string>
   <string name="InviteActivity_cancel">בטל</string>
   <string name="InviteActivity_sending">שולח…</string>
   <string name="InviteActivity_invitations_sent">הזמנות נשלחו!</string>
   <string name="InviteActivity_invite_to_signal">הזמן אל Signal</string>
-  <plurals name="InviteActivity_send_sms_to_friends">
-    <item quantity="one">שלח מסרון אל חבר %d</item>
-    <item quantity="two">שלח מסרון אל %d חברים</item>
-    <item quantity="many">שלח מסרון אל %d חברים</item>
-    <item quantity="other">שלח מסרון אל %d חברים</item>
-  </plurals>
+  <string name="InviteActivity_send_sms">שלח מסרון (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">לשלוח הזמנה %d במסרון?</item>
     <item quantity="two">לשלוח %d הזמנות במסרון?</item>
@@ -842,7 +837,6 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">בוא נחליף אל Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">נראה שאין לך יישומים כלשהם לשתף בהם.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">חברים לא נותנים לחברים להתכתב באופן בלתי מוצפן.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">למד עוד</string>
   <!--LongMessageActivity-->
@@ -921,11 +915,13 @@
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">שיחת Signal נכנסת</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">שיחה קבוצתית נכנסת של Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">עוצר את שירות השיחות של Signal</string>
-  <string name="NotificationBarManager__deny_call">דחה שיחה</string>
+  <string name="NotificationBarManager__decline_call">דחה שיחה</string>
   <string name="NotificationBarManager__answer_call">ענה לשיחה</string>
   <string name="NotificationBarManager__end_call">סיים שיחה</string>
   <string name="NotificationBarManager__cancel_call">בטל שיחה</string>
+  <string name="NotificationBarManager__join_call">הצטרף לשיחה</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">להפעיל התראות?</string>
   <string name="NotificationsMegaphone_never_miss_a_message">לעולם לא תפספס הודעה מאנשי הקשר והקבוצות שלך.</string>
@@ -1021,9 +1017,9 @@
   <string name="MessageRecord_you_made_s_an_admin">עשית את %1$s מנהלן.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s עשה את %2$s מנהלן.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s עשה אותך מנהלן.</string>
-  <string name="MessageRecord_you_revoked_admin_privileges_from_s">שללת זכויות מינהל מן %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s שלל את זכויות המינהל שלך.</string>
-  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s שלל זכויות מינהל מן %2$s.</string>
+  <string name="MessageRecord_you_revoked_admin_privileges_from_s">שללת זכויות מנהלן מן %1$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s שלל/ה את זכויות המנהלן שלך.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s שלל זכויות מנהלן מן %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s מנהלן כעת.</string>
   <string name="MessageRecord_you_are_now_an_admin">אתה מנהלן כעת.</string>
   <string name="MessageRecord_s_is_no_longer_an_admin">%1$s אינו מנהלן יותר.</string>
@@ -1316,21 +1312,55 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">כדי להתקשר אל %1$s, היישום Signal צריך גישה אל המצלמה שלך</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">מתקשר…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">הקבוצה גדולה מדי כדי לצלצל אל המשתתפים.</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__signal_voice_call">שיחה קולית של Signal…</string>
-  <string name="WebRtcCallView__signal_video_call">שיחת וידאו של Signal…</string>
+  <string name="WebRtcCallView__signal_call">שיחת Signal</string>
+  <string name="WebRtcCallView__signal_video_call">שיחת וידאו של Signal</string>
   <string name="WebRtcCallView__start_call">התחל שיחה</string>
   <string name="WebRtcCallView__join_call">הצטרף לשיחה</string>
   <string name="WebRtcCallView__call_is_full">השיחה מלאה</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">המספר המרבי של %1$d משתתפים הושג עבור שיחה זו. נסה שוב מאוחר יותר.</string>
-  <string name="WebRtcCallView__s_group_call">\"%1$s\" שיחה קבוצתית</string>
   <string name="WebRtcCallView__view_participants_list">הצג משתתפים</string>
   <string name="WebRtcCallView__your_video_is_off">הוידאו שלך כבוי</string>
   <string name="WebRtcCallView__reconnecting">מתחבר מחדש…</string>
   <string name="WebRtcCallView__joining">מצטרף…</string>
   <string name="WebRtcCallView__disconnected">מנותק</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal יצלצל אל %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal יצלצל אל %1$s ואל %2$s</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal יצלצל אל %1$s, %2$s ואל %3$d אחר </item>
+    <item quantity="two">Signal יצלצל אל %1$s, %2$s ואל %3$d אחרים</item>
+    <item quantity="many">Signal יצלצל אל %1$s, %2$s ואל %3$d אחרים</item>
+    <item quantity="other">Signal יצלצל אל %1$s, %2$s ואל %3$d אחרים</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s יוודע/תיוודע</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s וגם %2$s יוודעו</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s, %2$s ועוד %3$d אחר יוודעו</item>
+    <item quantity="two">%1$s, %2$s ועוד %3$d אחרים יוודעו</item>
+    <item quantity="many">%1$s, %2$s ועוד %3$d אחרים יוודעו</item>
+    <item quantity="other">%1$s, %2$s ועוד %3$d אחרים יוודעו</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">מצלצל אל %1$s</string>
+  <string name="WebRtcCallView__ringing_s_and_s">מצלצל אל %1$s ואל %2$s</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">מצלצל אל %1$s, %2$s ועוד %3$d אחר</item>
+    <item quantity="two">מצלצל אל %1$s, %2$s ועוד %3$d אחרים</item>
+    <item quantity="many">מצלצל אל %1$s, %2$s ועוד %3$d אחרים</item>
+    <item quantity="other">מצלצל אל %1$s, %2$s ועוד %3$d אחרים</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s מתקשר/ת אליך</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s מתקשר/ת אליך ואל %2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s מתקשר/ת אליך, %2$s ואל %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s מתקשר/ת אליך, %2$s, %3$s ואל %4$d אחר</item>
+    <item quantity="two">%1$s מתקשר/ת אליך, %2$s, %3$s ואל %4$d אחרים</item>
+    <item quantity="many">%1$s מתקשר/ת אליך, %2$s, %3$s ואל %4$d אחרים</item>
+    <item quantity="other">%1$s מתקשר/ת אליך, %2$s, %3$s ואל %4$d אחרים</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">אף אחד אחר לא כאן</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s בשיחה זו</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s בשיחה זו</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s וגם %2$s בשיחה זו</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s משתף/ת מסך</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1339,6 +1369,12 @@
     <item quantity="many">%1$s, %2$s, ועוד %3$d אחרים בשיחה זו</item>
     <item quantity="other">%1$s, %2$s, ועוד %3$d אחרים בשיחה זו</item>
   </plurals>
+  <string name="WebRtcCallView__flip">החלף</string>
+  <string name="WebRtcCallView__speaker">רמקול</string>
+  <string name="WebRtcCallView__camera">מצלמה</string>
+  <string name="WebRtcCallView__mute">השתק</string>
+  <string name="WebRtcCallView__ring">צלצל</string>
+  <string name="WebRtcCallView__end_call">סיים שיחה</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">
     <item quantity="one">בשיחה זו  · איש %1$d</item>
@@ -3249,6 +3285,11 @@
   <string name="ContactFilterView__search_name_or_number">חפש שם או מספר</string>
   <!--VoiceNotePlayerView-->
   <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__stop_voice_message">הפסק הודעה קולית</string>
+  <string name="VoiceNotePlayerView__change_voice_message_speed">שנה מהירות של הודעה קולית</string>
+  <string name="VoiceNotePlayerView__pause_voice_message">השהה הודעה קולית</string>
+  <string name="VoiceNotePlayerView__play_voice_message">נגן הודעה קולית</string>
+  <string name="VoiceNotePlayerView__navigate_to_voice_message">נווט אל הודעה קולית</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__avatar_preview">תצוגה מקדימה של יצגן</string>
   <string name="AvatarPickerFragment__camera">מצלמה</string>
@@ -3271,5 +3312,36 @@
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">מסרון</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+  <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">נווט למעלה</string>
+  <string name="MultiselectForwardFragment__forward_to">העבר הלאה אל</string>
+  <string name="MultiselectForwardFragment__add_a_message">הוסף הודעה</string>
+  <string name="MultiselectForwardFragment__faster_forwards">העברות הלאה מהירות יותר</string>
+  <string name="MultiselectForwardFragment__forwarded_messages_are_now">הודעות מועברות הלאה נשלחות כעת באופן מיידי.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">שלח הודעה %1$d</item>
+    <item quantity="two">שלח %1$d הודעות</item>
+    <item quantity="many">שלח %1$d הודעות</item>
+    <item quantity="other">שלח %1$d הודעות</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">הודעה נשלחה</item>
+    <item quantity="two">הודעות נשלחו</item>
+    <item quantity="many">הודעות נשלחו</item>
+    <item quantity="other">הודעות נשלחו</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">הודעה נכשלה להישלח</item>
+    <item quantity="two">הודעות נכשלו להישלח</item>
+    <item quantity="many">הודעות נכשלו להישלח</item>
+    <item quantity="other">הודעות נכשלו להישלח</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">לא היה ניתן להעביר הלאה הודעה מאחר שהיא לא זמינה יותר.</item>
+    <item quantity="two">לא היה ניתן להעביר הלאה הודעות מאחר שהן לא זמינות יותר.</item>
+    <item quantity="many">לא היה ניתן להעביר הלאה הודעות מאחר שהן לא זמינות יותר.</item>
+    <item quantity="other">לא היה ניתן להעביר הלאה הודעות מאחר שהן לא זמינות יותר.</item>
+  </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">מגבלה הושגה</string>
   <!--EOF-->
 </resources>

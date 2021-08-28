@@ -50,11 +50,13 @@ public class FlipperSqlCipherAdapter extends DatabaseDriver<FlipperSqlCipherAdap
       SignalDatabase keyValueOpenHelper   = KeyValueDatabase.getInstance((Application) getContext());
       SignalDatabase megaphoneOpenHelper  = MegaphoneDatabase.getInstance((Application) getContext());
       SignalDatabase jobManagerOpenHelper = JobDatabase.getInstance((Application) getContext());
+      SignalDatabase metricsOpenHelper    = LocalMetricsDatabase.getInstance((Application) getContext());
 
       return Arrays.asList(new Descriptor(mainOpenHelper),
                            new Descriptor(keyValueOpenHelper),
                            new Descriptor(megaphoneOpenHelper),
-                           new Descriptor(jobManagerOpenHelper));
+                           new Descriptor(jobManagerOpenHelper),
+                           new Descriptor(metricsOpenHelper));
     } catch (Exception e) {
       Log.i(TAG, "Unable to use reflection to access raw database.", e);
     }
