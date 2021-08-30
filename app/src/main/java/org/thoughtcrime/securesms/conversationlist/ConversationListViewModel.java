@@ -86,8 +86,8 @@ class ConversationListViewModel extends ViewModel {
         }
         pagedData.getController().onDataInvalidated();
       });
-      this.isNewlyCreated         = true;
     };
+    this.isNewlyCreated          = true;
 
     this.hasNoConversations = LiveDataUtil.mapAsync(pagedData.getData(), conversations -> {
       pinnedCount = DatabaseFactory.getThreadDatabase(application).getPinnedConversationListCount();
