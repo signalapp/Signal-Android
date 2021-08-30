@@ -44,6 +44,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:drawablePadding="4dp"
         android:ellipsize="marquee"
         android:singleLine="true"
         android:textAppearance="@style/TextAppearance.Signal.Body1"
@@ -53,6 +54,8 @@
         app:layout_constraintStart_toEndOf="@id/contact_photo_image"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
+        tools:drawableStart="@drawable/ic_bell_24"
+        tools:drawableTint="@color/signal_icon_tint_secondary"
         tools:text="@sample/contacts.json/data/name" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
