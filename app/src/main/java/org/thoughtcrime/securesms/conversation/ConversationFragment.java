@@ -907,7 +907,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   private AlertDialog.Builder buildRemoteDeleteConfirmationDialog(Set<MessageRecord> messageRecords) {
     Context             context       = requireActivity();
     int                 messagesCount = messageRecords.size();
-    AlertDialog.Builder builder       = new MaterialAlertDialogBuilder(getActivity());
+    AlertDialog.Builder builder       = new AlertDialog.Builder(getActivity());
 
     builder.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
@@ -961,7 +961,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     if (SignalStore.uiHints().hasConfirmedDeleteForEveryoneOnce()) {
       deleteForEveryone.run();
     } else {
-      new MaterialAlertDialogBuilder(requireActivity())
+      new AlertDialog.Builder(requireActivity())
                      .setMessage(R.string.ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation)
                      .setPositiveButton(R.string.ConversationFragment_delete_for_everyone, (dialog, which) -> {
                        SignalStore.uiHints().markHasConfirmedDeleteForEveryoneOnce();
