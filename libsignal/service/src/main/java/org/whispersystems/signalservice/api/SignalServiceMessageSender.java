@@ -31,6 +31,7 @@ import org.whispersystems.signalservice.api.crypto.SignalSessionBuilder;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.api.messages.InvalidRegistrationIdException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -249,7 +250,7 @@ public class SignalServiceMessageSender {
                               List<SignalServiceAddress>  recipients,
                               List<UnidentifiedAccess>    unidentifiedAccess,
                               SignalServiceTypingMessage  message)
-      throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException
+      throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
   {
     Content content = createTypingContent(message);
     sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, ContentHint.IMPLICIT, message.getGroupId().orNull(), true);
@@ -289,7 +290,7 @@ public class SignalServiceMessageSender {
                                                  List<SignalServiceAddress> recipients,
                                                  List<UnidentifiedAccess> unidentifiedAccess,
                                                  SignalServiceCallMessage message)
-      throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException
+      throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
   {
     Content content = createCallContent(message);
     return sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp().get(), content, ContentHint.IMPLICIT, message.getGroupId().get(), false);
@@ -420,7 +421,7 @@ public class SignalServiceMessageSender {
                                                       boolean                    isRecipientUpdate,
                                                       ContentHint                contentHint,
                                                       SignalServiceDataMessage   message)
-      throws IOException, UntrustedIdentityException, NoSessionException, InvalidKeyException
+      throws IOException, UntrustedIdentityException, NoSessionException, InvalidKeyException, InvalidRegistrationIdException
   {
     Log.d(TAG, "[" + message.getTimestamp() + "] Sending a group data message to " + recipients.size() + " recipients.");
 
@@ -1673,7 +1674,7 @@ public class SignalServiceMessageSender {
                                                    ContentHint                contentHint,
                                                    byte[]                     groupId,
                                                    boolean                    online)
-      throws IOException, UntrustedIdentityException, NoSessionException, InvalidKeyException
+      throws IOException, UntrustedIdentityException, NoSessionException, InvalidKeyException, InvalidRegistrationIdException
   {
     if (recipients.isEmpty()) {
       Log.w(TAG, "[sendGroupMessage] Empty recipient list!");
@@ -1797,7 +1798,7 @@ public class SignalServiceMessageSender {
     throw new IOException("Failed to resolve conflicts after " + RETRY_COUNT + " attempts!");
   }
 
-  private GroupTargetInfo buildGroupTargetInfo(List<SignalServiceAddress> recipients) {
+  private GroupTargetInfo buildGroupTargetInfo(List<SignalServiceAddress> recipients) throws InvalidRegistrationIdException {
     List<String>                             addressNames         = recipients.stream().map(SignalServiceAddress::getIdentifier).collect(Collectors.toList());
     Set<SignalProtocolAddress>               destinations         = store.getAllAddressesWithActiveSessions(addressNames);
     Map<String, List<Integer>>               devicesByAddressName = new HashMap<>();

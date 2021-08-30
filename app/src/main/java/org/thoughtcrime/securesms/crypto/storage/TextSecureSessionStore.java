@@ -15,6 +15,7 @@ import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.signalservice.api.SignalServiceSessionStore;
+import org.whispersystems.signalservice.api.messages.InvalidRegistrationIdException;
 
 import java.util.List;
 import java.util.Set;
@@ -26,7 +27,7 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
 
   private static final Object LOCK = new Object();
 
-  @NonNull  private final Context context;
+  @NonNull private final Context context;
 
   public TextSecureSessionStore(@NonNull Context context) {
     this.context = context;
@@ -101,9 +102,17 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
   }
 
   @Override
-  public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) {
+  public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) throws InvalidRegistrationIdException {
     synchronized (LOCK) {
       List<SessionDatabase.SessionRow> rows = DatabaseFactory.getSessionDatabase(context).getAllFor(addressNames);
+
+      boolean hasInvalidRegistrationId = rows.stream()
+                                             .map(SessionDatabase.SessionRow::getRecord)
+                                             .anyMatch(record -> !isValidRegistrationId(record.getRemoteRegistrationId()));
+      if (hasInvalidRegistrationId) {
+        throw new InvalidRegistrationIdException();
+      }
+
       return rows.stream()
                  .filter(row -> isActive(row.getRecord()))
                  .map(row -> new SignalProtocolAddress(row.getAddress(), row.getDeviceId()))
@@ -164,5 +173,9 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
     return record != null &&
            record.hasSenderChain() &&
            record.getSessionVersion() == CiphertextMessage.CURRENT_VERSION;
+  }
+
+  private static boolean isValidRegistrationId(int registrationId) {
+    return (registrationId & 0x3fff) == registrationId;
   }
 }

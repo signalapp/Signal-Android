@@ -19,6 +19,7 @@ import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyStore;
 import org.whispersystems.signalservice.api.SignalServiceDataStore;
 import org.whispersystems.signalservice.api.SignalServiceSessionStore;
+import org.whispersystems.signalservice.api.messages.InvalidRegistrationIdException;
 import org.whispersystems.signalservice.api.push.DistributionId;
 
 import java.util.Collection;
@@ -105,7 +106,7 @@ public class SignalProtocolStoreImpl implements SignalServiceDataStore {
   }
 
   @Override
-  public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) {
+  public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) throws InvalidRegistrationIdException {
     return sessionStore.getAllAddressesWithActiveSessions(addressNames);
   }
 
