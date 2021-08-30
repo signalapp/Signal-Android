@@ -163,7 +163,7 @@ public final class PushGroupSendJob extends PushSendJob {
       return;
     }
 
-    Recipient groupRecipient = message.getRecipient().fresh();
+    Recipient groupRecipient = message.getRecipient().resolve();
 
     if (!groupRecipient.isPushGroup()) {
       throw new MmsException("Message recipient isn't a group!");
@@ -188,8 +188,7 @@ public final class PushGroupSendJob extends PushSendJob {
 
       RecipientAccessList accessList = new RecipientAccessList(target);
 
-      List<SendMessageResult>   results = deliver(message, groupRecipient, target);
-      SignalLocalMetrics.GroupMessageSend.onNetworkFinished(messageId);
+      List<SendMessageResult> results = deliver(message, groupRecipient, target);
       Log.i(TAG, JobLogger.format(this, "Finished send."));
 
       List<NetworkFailure>             networkFailures           = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(accessList.requireIdByAddress(result.getAddress()))).toList();
@@ -315,7 +314,6 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                               .withExpiration(groupRecipient.getExpiresInSeconds())
                                                                               .asGroupMessage(group)
                                                                               .build();
-          SignalLocalMetrics.GroupMessageSend.onNetworkStarted(messageId);
           return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId().requireV2(), destinations, isRecipientUpdate, ContentHint.IMPLICIT, new MessageId(messageId, true), groupDataMessage);
         } else {
           throw new UndeliverableMessageException("Messages can no longer be sent to V1 groups!");
@@ -347,7 +345,6 @@ public final class PushGroupSendJob extends PushSendJob {
 
         Log.i(TAG, JobLogger.format(this, "Beginning message send."));
 
-        SignalLocalMetrics.GroupMessageSend.onNetworkStarted(messageId);
         return GroupSendUtil.sendResendableDataMessage(context,
                                                        groupRecipient.getGroupId().transform(GroupId::requireV2).orNull(),
                                                        destinations,

@@ -253,7 +253,7 @@ public class SignalServiceMessageSender {
       throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
   {
     Content content = createTypingContent(message);
-    sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, ContentHint.IMPLICIT, message.getGroupId().orNull(), true);
+    sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, ContentHint.IMPLICIT, message.getGroupId().orNull(), true, SenderKeyGroupEvents.EMPTY);
   }
 
 
@@ -293,7 +293,7 @@ public class SignalServiceMessageSender {
       throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
   {
     Content content = createCallContent(message);
-    return sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp().get(), content, ContentHint.IMPLICIT, message.getGroupId().get(), false);
+    return sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp().get(), content, ContentHint.IMPLICIT, message.getGroupId().get(), false, SenderKeyGroupEvents.EMPTY);
   }
 
   /**
@@ -420,14 +420,17 @@ public class SignalServiceMessageSender {
                                                       List<UnidentifiedAccess>   unidentifiedAccess,
                                                       boolean                    isRecipientUpdate,
                                                       ContentHint                contentHint,
-                                                      SignalServiceDataMessage   message)
+                                                      SignalServiceDataMessage   message,
+                                                      SenderKeyGroupEvents       sendEvents)
       throws IOException, UntrustedIdentityException, NoSessionException, InvalidKeyException, InvalidRegistrationIdException
   {
     Log.d(TAG, "[" + message.getTimestamp() + "] Sending a group data message to " + recipients.size() + " recipients.");
 
     Content                 content = createMessageContent(message);
     Optional<byte[]>        groupId = message.getGroupId();
-    List<SendMessageResult> results = sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, contentHint, groupId.orNull(), false);
+    List<SendMessageResult> results = sendGroupMessage(distributionId, recipients, unidentifiedAccess, message.getTimestamp(), content, contentHint, groupId.orNull(), false, sendEvents);
+
+    sendEvents.onMessageSent();
 
     if (store.isMultiDevice()) {
       Content         syncMessage        = createMultiDeviceSentTranscriptContent(content, Optional.absent(), message.getTimestamp(), results, isRecipientUpdate);
@@ -435,6 +438,8 @@ public class SignalServiceMessageSender {
 
       sendMessage(localAddress, Optional.absent(), message.getTimestamp(), syncMessageContent, false, null);
     }
+
+    sendEvents.onSyncMessageSent();
 
     return results;
   }
@@ -450,6 +455,7 @@ public class SignalServiceMessageSender {
                                                  boolean                                isRecipientUpdate,
                                                  ContentHint                            contentHint,
                                                  SignalServiceDataMessage               message,
+                                                 LegacyGroupEvents                      sendEvents,
                                                  PartialSendCompleteListener            partialListener,
                                                  CancelationSignal                      cancelationSignal)
       throws IOException, UntrustedIdentityException
@@ -461,6 +467,8 @@ public class SignalServiceMessageSender {
     long                    timestamp          = message.getTimestamp();
     List<SendMessageResult> results            = sendMessage(recipients, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, envelopeContent, false, partialListener, cancelationSignal);
     boolean                 needsSyncInResults = false;
+
+    sendEvents.onMessageSent();
 
     for (SendMessageResult result : results) {
       if (result.getSuccess() != null && result.getSuccess().isNeedsSync()) {
@@ -480,6 +488,8 @@ public class SignalServiceMessageSender {
 
       sendMessage(localAddress, Optional.absent(), timestamp, syncMessageContent, false, null);
     }
+
+    sendEvents.onSyncMessageSent();
 
     return results;
   }
@@ -1673,7 +1683,8 @@ public class SignalServiceMessageSender {
                                                    Content                    content,
                                                    ContentHint                contentHint,
                                                    byte[]                     groupId,
-                                                   boolean                    online)
+                                                   boolean                    online,
+                                                   SenderKeyGroupEvents       sendEvents)
       throws IOException, UntrustedIdentityException, NoSessionException, InvalidKeyException, InvalidRegistrationIdException
   {
     if (recipients.isEmpty()) {
@@ -1751,6 +1762,8 @@ public class SignalServiceMessageSender {
         }
       }
 
+      sendEvents.onSenderKeyShared();
+
       SignalServiceCipher cipher            = new SignalServiceCipher(localAddress, store, sessionLock, null);
       SenderCertificate   senderCertificate = unidentifiedAccess.get(0).getUnidentifiedCertificate();
 
@@ -1760,6 +1773,8 @@ public class SignalServiceMessageSender {
       } catch (org.whispersystems.libsignal.UntrustedIdentityException e) {
         throw new UntrustedIdentityException("Untrusted during group encrypt", e.getName(), e.getUntrustedIdentity());
       }
+
+      sendEvents.onMessageEncrypted();
 
       byte[] joinedUnidentifiedAccess = new byte[16];
       for (UnidentifiedAccess access : unidentifiedAccess) {
@@ -2105,6 +2120,40 @@ public class SignalServiceMessageSender {
     };
 
     void onMessageEncrypted();
+    void onMessageSent();
+    void onSyncMessageSent();
+  }
+
+  public interface SenderKeyGroupEvents {
+    SenderKeyGroupEvents EMPTY = new SenderKeyGroupEvents() {
+      @Override
+      public void onSenderKeyShared() { }
+
+      @Override
+      public void onMessageEncrypted() { }
+
+      @Override
+      public void onMessageSent() { }
+
+      @Override
+      public void onSyncMessageSent() { }
+    };
+
+    void onSenderKeyShared();
+    void onMessageEncrypted();
+    void onMessageSent();
+    void onSyncMessageSent();
+  }
+
+  public interface LegacyGroupEvents {
+    LegacyGroupEvents EMPTY = new LegacyGroupEvents() {
+      @Override
+      public void onMessageSent() { }
+
+      @Override
+      public void onSyncMessageSent() { }
+    };
+
     void onMessageSent();
     void onSyncMessageSent();
   }

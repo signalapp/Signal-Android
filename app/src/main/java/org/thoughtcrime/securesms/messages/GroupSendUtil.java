@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.InvalidRegistrationIdException;
@@ -28,6 +29,8 @@ import org.whispersystems.libsignal.NoSessionException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.CancelationException;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender.LegacyGroupEvents;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender.SenderKeyGroupEvents;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -83,7 +86,7 @@ public final class GroupSendUtil {
                                                                   @NonNull SignalServiceDataMessage message)
       throws IOException, UntrustedIdentityException
   {
-    return sendMessage(context, groupId, allTargets, isRecipientUpdate, DataSendOperation.resendable(message, contentHint, messageId), null);
+    return sendMessage(context, groupId, messageId, allTargets, isRecipientUpdate, DataSendOperation.resendable(message, contentHint, messageId), null);
   }
 
   /**
@@ -104,7 +107,7 @@ public final class GroupSendUtil {
                                                                     @NonNull SignalServiceDataMessage message)
       throws IOException, UntrustedIdentityException
   {
-    return sendMessage(context, groupId, allTargets, isRecipientUpdate, DataSendOperation.unresendable(message, contentHint), null);
+    return sendMessage(context, groupId, null, allTargets, isRecipientUpdate, DataSendOperation.unresendable(message, contentHint), null);
   }
 
   /**
@@ -121,7 +124,7 @@ public final class GroupSendUtil {
                                                           @Nullable CancelationSignal cancelationSignal)
       throws IOException, UntrustedIdentityException
   {
-    return sendMessage(context, groupId, allTargets, false, new TypingSendOperation(message), cancelationSignal);
+    return sendMessage(context, groupId, null, allTargets, false, new TypingSendOperation(message), cancelationSignal);
   }
 
   /**
@@ -137,7 +140,7 @@ public final class GroupSendUtil {
                                                         @NonNull SignalServiceCallMessage message)
       throws IOException, UntrustedIdentityException
   {
-    return sendMessage(context, groupId, allTargets, false, new CallSendOperation(message), null);
+    return sendMessage(context, groupId, null, allTargets, false, new CallSendOperation(message), null);
   }
 
   /**
@@ -150,6 +153,7 @@ public final class GroupSendUtil {
   @WorkerThread
   private static List<SendMessageResult> sendMessage(@NonNull Context context,
                                                      @Nullable GroupId.V2 groupId,
+                                                     @Nullable MessageId relatedMessageId,
                                                      @NonNull List<Recipient> allTargets,
                                                      boolean isRecipientUpdate,
                                                      @NonNull SendOperation sendOperation,
@@ -205,6 +209,10 @@ public final class GroupSendUtil {
       senderKeyTargets.clear();
     }
 
+    if (relatedMessageId != null) {
+      SignalLocalMetrics.GroupMessageSend.onSenderKeyStarted(relatedMessageId.getId());
+    }
+
     List<SendMessageResult>    allResults    = new ArrayList<>(allTargets.size());
     SignalServiceMessageSender messageSender  = ApplicationDependencies.getSignalServiceMessageSender();
 
@@ -231,6 +239,10 @@ public final class GroupSendUtil {
         if (sendOperation.shouldIncludeInMessageLog()) {
           DatabaseFactory.getMessageLogDatabase(context).insertIfPossible(sendOperation.getSentTimestamp(), senderKeyTargets, results, sendOperation.getContentHint(), sendOperation.getRelatedMessageId());
         }
+
+        if (relatedMessageId != null) {
+          SignalLocalMetrics.GroupMessageSend.onSenderKeyMslInserted(relatedMessageId.getId());
+        }
       } catch (InvalidUnidentifiedAccessHeaderException e) {
         Log.w(TAG, "Someone had a bad UD header. Falling back to legacy sends.", e);
         legacyTargets.addAll(senderKeyTargets);
@@ -244,6 +256,12 @@ public final class GroupSendUtil {
         Log.w(TAG, "Invalid registrationId. Falling back to legacy sends.", e);
         legacyTargets.addAll(senderKeyTargets);
       }
+    } else if (relatedMessageId != null) {
+      SignalLocalMetrics.GroupMessageSend.onSenderKeyShared(relatedMessageId.getId());
+      SignalLocalMetrics.GroupMessageSend.onSenderKeyEncrypted(relatedMessageId.getId());
+      SignalLocalMetrics.GroupMessageSend.onSenderKeyMessageSent(relatedMessageId.getId());
+      SignalLocalMetrics.GroupMessageSend.onSenderKeySyncSent(relatedMessageId.getId());
+      SignalLocalMetrics.GroupMessageSend.onSenderKeyMslInserted(relatedMessageId.getId());
     }
 
     if (cancelationSignal != null && cancelationSignal.isCanceled()) {
@@ -285,6 +303,9 @@ public final class GroupSendUtil {
 
       int successCount = (int) results.stream().filter(SendMessageResult::isSuccess).count();
       Log.d(TAG, "Successfully sent using 1:1 to " + successCount + "/" + targets.size() + " legacy targets.");
+    } else if (relatedMessageId != null) {
+      SignalLocalMetrics.GroupMessageSend.onLegacyMessageSent(relatedMessageId.getId());
+      SignalLocalMetrics.GroupMessageSend.onLegacySyncFinished(relatedMessageId.getId());
     }
 
     if (unregisteredTargets.size() > 0) {
@@ -361,7 +382,8 @@ public final class GroupSendUtil {
                                                               boolean isRecipientUpdate)
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException, InvalidRegistrationIdException
     {
-      return messageSender.sendGroupDataMessage(distributionId, targets, access, isRecipientUpdate, contentHint, message);
+      SenderKeyGroupEvents listener = relatedMessageId != null ? new SenderKeyMetricEventListener(relatedMessageId.getId()) : SenderKeyGroupEvents.EMPTY;
+      return messageSender.sendGroupDataMessage(distributionId, targets, access, isRecipientUpdate, contentHint, message, listener);
     }
 
     @Override
@@ -373,7 +395,8 @@ public final class GroupSendUtil {
                                                        @Nullable CancelationSignal cancelationSignal)
         throws IOException, UntrustedIdentityException
     {
-      return messageSender.sendDataMessage(targets, access, isRecipientUpdate, contentHint, message, partialListener, cancelationSignal);
+      LegacyGroupEvents listener = relatedMessageId != null ? new LegacyMetricEventListener(relatedMessageId.getId()) : LegacyGroupEvents.EMPTY;
+      return messageSender.sendDataMessage(targets, access, isRecipientUpdate, contentHint, message, listener, partialListener, cancelationSignal);
     }
 
     @Override
@@ -504,6 +527,54 @@ public final class GroupSendUtil {
     @Override
     public @NonNull MessageId getRelatedMessageId() {
       throw new UnsupportedOperationException();
+    }
+  }
+
+  private static final class SenderKeyMetricEventListener implements SenderKeyGroupEvents {
+
+    private final long messageId;
+
+    private SenderKeyMetricEventListener(long messageId) {
+      this.messageId = messageId;
+    }
+
+    @Override
+    public void onSenderKeyShared() {
+      SignalLocalMetrics.GroupMessageSend.onSenderKeyShared(messageId);
+    }
+
+    @Override
+    public void onMessageEncrypted() {
+      SignalLocalMetrics.GroupMessageSend.onSenderKeyEncrypted(messageId);
+    }
+
+    @Override
+    public void onMessageSent() {
+      SignalLocalMetrics.GroupMessageSend.onSenderKeyMessageSent(messageId);
+    }
+
+    @Override
+    public void onSyncMessageSent() {
+      SignalLocalMetrics.GroupMessageSend.onSenderKeySyncSent(messageId);
+    }
+  }
+
+  private static final class LegacyMetricEventListener implements LegacyGroupEvents {
+
+    private final long messageId;
+
+    private LegacyMetricEventListener(long messageId) {
+      this.messageId = messageId;
+    }
+
+    @Override
+    public void onMessageSent() {
+      SignalLocalMetrics.GroupMessageSend.onLegacyMessageSent(messageId);
+    }
+
+    @Override
+    public void onSyncMessageSent() {
+      SignalLocalMetrics.GroupMessageSend.onLegacySyncFinished(messageId);
     }
   }
 
