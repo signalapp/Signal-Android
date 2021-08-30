@@ -158,6 +158,8 @@ public class EmojiTextView extends AppCompatTextView {
       lastLineWidth = -1;
     } else {
       Layout layout = getLayout();
+      // The text in layout might be different than the original text due to transformation.
+      text = layout.getText();
       int    lines  = layout.getLineCount();
       int    start  = layout.getLineStart(lines - 1);
       int    count  = text.length() - start;
