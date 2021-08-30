@@ -3,6 +3,9 @@ package org.thoughtcrime.securesms.messagedetails;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
@@ -48,8 +51,6 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   private final TextView               receivedDate;
   private final TextView               expiresIn;
   private final TextView               transport;
-  private final View                   expiresGroup;
-  private final View                   receivedGroup;
   private final TextView               errorText;
   private final View                   resendButton;
   private final View                   messageMetadata;
@@ -70,9 +71,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
 
     sentDate        = itemView.findViewById(R.id.message_details_header_sent_time);
     receivedDate    = itemView.findViewById(R.id.message_details_header_received_time);
-    receivedGroup   = itemView.findViewById(R.id.message_details_header_received_group);
     expiresIn       = itemView.findViewById(R.id.message_details_header_expires_in);
-    expiresGroup    = itemView.findViewById(R.id.message_details_header_expires_group);
     transport       = itemView.findViewById(R.id.message_details_header_transport);
     errorText       = itemView.findViewById(R.id.message_details_header_error_text);
     resendButton    = itemView.findViewById(R.id.message_details_header_resend_button);
@@ -152,26 +151,26 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
     receivedDate.setOnLongClickListener(null);
 
     if (messageRecord.isPending() || messageRecord.isFailed()) {
-      sentDate.setText("-");
-      receivedGroup.setVisibility(View.GONE);
+      sentDate.setText(formatBoldString(R.string.message_details_header__sent, "-"));
+      receivedDate.setVisibility(View.GONE);
     } else {
       Locale dateLocale    = Locale.getDefault();
       SimpleDateFormat dateFormatter = DateUtils.getDetailedDateFormatter(itemView.getContext(), dateLocale);
-      sentDate.setText(dateFormatter.format(new Date(messageRecord.getDateSent())));
+      sentDate.setText(formatBoldString(R.string.message_details_header__sent, dateFormatter.format(new Date(messageRecord.getDateSent()))));
       sentDate.setOnLongClickListener(v -> {
         copyToClipboard(String.valueOf(messageRecord.getDateSent()));
         return true;
       });
 
       if (messageRecord.getDateReceived() != messageRecord.getDateSent() && !messageRecord.isOutgoing()) {
-        receivedDate.setText(dateFormatter.format(new Date(messageRecord.getDateReceived())));
+        receivedDate.setText(formatBoldString(R.string.message_details_header__received, dateFormatter.format(new Date(messageRecord.getDateReceived()))));
         receivedDate.setOnLongClickListener(v -> {
           copyToClipboard(String.valueOf(messageRecord.getDateReceived()));
           return true;
         });
-        receivedGroup.setVisibility(View.VISIBLE);
+        receivedDate.setVisibility(View.VISIBLE);
       } else {
-        receivedGroup.setVisibility(View.GONE);
+        receivedDate.setVisibility(View.GONE);
       }
     }
   }
@@ -183,11 +182,11 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
     }
 
     if (messageRecord.getExpiresIn() <= 0 || messageRecord.getExpireStarted() <= 0) {
-      expiresGroup.setVisibility(View.GONE);
+      expiresIn.setVisibility(View.GONE);
       return;
     }
 
-    expiresGroup.setVisibility(View.VISIBLE);
+    expiresIn.setVisibility(View.VISIBLE);
     if (running) {
       expiresUpdater = new ExpiresUpdater(messageRecord);
       ThreadUtil.runOnMain(expiresUpdater);
@@ -208,7 +207,18 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
       transportText = itemView.getContext().getString(R.string.ConversationFragment_sms);
     }
 
-    transport.setText(transportText);
+    transport.setText(formatBoldString(R.string.message_details_header__via, transportText));
+  }
+
+  private CharSequence formatBoldString(int boldTextRes, CharSequence otherText) {
+    SpannableStringBuilder builder  = new SpannableStringBuilder();
+    StyleSpan              boldSpan = new StyleSpan(android.graphics.Typeface.BOLD);
+    CharSequence           boldText = itemView.getContext().getString(boldTextRes);
+
+    builder.append(boldText).append(" ").append(otherText);
+    builder.setSpan(boldSpan, 0, boldText.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+
+    return builder;
   }
 
   private void copyToClipboard(String text) {
@@ -286,7 +296,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
       int    expirationTime = Math.max((int) (remaining / 1000), 1);
       String duration       = ExpirationUtil.getExpirationDisplayValue(itemView.getContext(), expirationTime);
 
-      expiresIn.setText(duration);
+      expiresIn.setText(formatBoldString(R.string.message_details_header__disappears, duration));
 
       if (running && expirationTime > 1) {
         ThreadUtil.runOnMainDelayed(this, 500);

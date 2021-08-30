@@ -146,7 +146,7 @@ public class SmsDatabase extends MessageDatabase {
       REPLY_PATH_PRESENT, SUBJECT, BODY, SERVICE_CENTER, DELIVERY_RECEIPT_COUNT,
       MISMATCHED_IDENTITIES, SUBSCRIPTION_ID, EXPIRES_IN, EXPIRE_STARTED,
       NOTIFIED, READ_RECEIPT_COUNT, UNIDENTIFIED, REACTIONS, REACTIONS_UNREAD, REACTIONS_LAST_SEEN,
-      REMOTE_DELETED, NOTIFIED_TIMESTAMP
+      REMOTE_DELETED, NOTIFIED_TIMESTAMP, RECEIPT_TIMESTAMP
   };
 
   private static final long IGNORABLE_TYPESMASK_WHEN_COUNTING = Types.END_SESSION_BIT | Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT | Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
@@ -1591,7 +1591,8 @@ public class SmsDatabase extends MessageDatabase {
                                   false,
                                   Collections.emptyList(),
                                   false,
-                                  0);
+                                  0,
+                                  -1);
     }
   }
 
@@ -1638,6 +1639,7 @@ public class SmsDatabase extends MessageDatabase {
       boolean              remoteDelete         = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.REMOTE_DELETED)) == 1;
       List<ReactionRecord> reactions            = parseReactions(cursor);
       long                 notifiedTimestamp    = CursorUtil.requireLong(cursor, NOTIFIED_TIMESTAMP);
+      long                 receiptTimestamp     = CursorUtil.requireLong(cursor, RECEIPT_TIMESTAMP);
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
         readReceiptCount = 0;
@@ -1653,7 +1655,7 @@ public class SmsDatabase extends MessageDatabase {
                                   threadId, status, mismatches, subscriptionId,
                                   expiresIn, expireStarted,
                                   readReceiptCount, unidentified, reactions, remoteDelete,
-                                  notifiedTimestamp);
+                                  notifiedTimestamp, receiptTimestamp);
     }
 
     private List<IdentityKeyMismatch> getMismatches(String document) {
