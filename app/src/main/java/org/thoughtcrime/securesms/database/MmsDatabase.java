@@ -769,14 +769,14 @@ public class MmsDatabase extends MessageDatabase {
   public void markAsForcedSms(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.PUSH_MESSAGE_BIT, Types.MESSAGE_FORCE_SMS_BIT, Optional.of(threadId));
-    notifyConversationListeners(threadId);
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
   }
 
   @Override
   public void markAsRateLimited(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, 0, Types.MESSAGE_RATE_LIMITED_BIT, Optional.of(threadId));
-    notifyConversationListeners(threadId);
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
   }
 
   @Override
@@ -800,28 +800,28 @@ public class MmsDatabase extends MessageDatabase {
   public void markAsPendingInsecureSmsFallback(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_PENDING_INSECURE_SMS_FALLBACK, Optional.of(threadId));
-    notifyConversationListeners(threadId);
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
   }
 
   @Override
   public void markAsSending(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENDING_TYPE, Optional.of(threadId));
-    notifyConversationListeners(threadId);
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
   }
 
   @Override
   public void markAsSentFailed(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENT_FAILED_TYPE, Optional.of(threadId));
-    notifyConversationListeners(threadId);
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
   }
 
   @Override
   public void markAsSent(long messageId, boolean secure) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENT_TYPE | (secure ? Types.PUSH_MESSAGE_BIT | Types.SECURE_MESSAGE_BIT : 0), Optional.of(threadId));
-    notifyConversationListeners(threadId);
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
   }
 
   @Override
@@ -854,7 +854,7 @@ public class MmsDatabase extends MessageDatabase {
     } finally {
       db.endTransaction();
     }
-    notifyConversationListeners(threadId);
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
   }
 
   @Override
@@ -864,7 +864,7 @@ public class MmsDatabase extends MessageDatabase {
     contentValues.put(STATUS, state);
 
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {messageId + ""});
-    notifyConversationListeners(getThreadIdForMessage(messageId));
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
   }
 
   @Override
@@ -1559,7 +1559,7 @@ public class MmsDatabase extends MessageDatabase {
     DatabaseFactory.getThreadDatabase(context).setLastSeenSilently(threadId);
     DatabaseFactory.getThreadDatabase(context).setHasSentSilently(threadId, true);
 
-    notifyConversationListeners(threadId);
+    ApplicationDependencies.getDatabaseObserver().notifyMessageInsertObservers(threadId, new MessageId(messageId, true));
     notifyConversationListListeners();
 
     TrimThreadJob.enqueueAsync(threadId);
@@ -1651,7 +1651,6 @@ public class MmsDatabase extends MessageDatabase {
 
       long contentValuesThreadId = contentValues.getAsLong(THREAD_ID);
 
-      notifyConversationListeners(contentValuesThreadId);
       DatabaseFactory.getThreadDatabase(context).setLastScrolled(contentValuesThreadId, 0);
       ThreadUpdateJob.enqueue(contentValuesThreadId);
     }

@@ -1055,7 +1055,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     if (getListAdapter() != null) {
       clearHeaderIfNotTyping(getListAdapter());
       setLastSeen(0);
-      getListAdapter().addFastRecord(ConversationMessageFactory.createWithResolvedData(messageRecord, messageRecord.getDisplayBody(requireContext()), message.getMentions()));
       list.post(() -> list.scrollToPosition(0));
     }
 
@@ -1068,17 +1067,10 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     if (getListAdapter() != null) {
       clearHeaderIfNotTyping(getListAdapter());
       setLastSeen(0);
-      getListAdapter().addFastRecord(ConversationMessageFactory.createWithResolvedData(messageRecord));
       list.post(() -> list.scrollToPosition(0));
     }
 
     return messageRecord.getId();
-  }
-
-  public void releaseOutgoingMessage(long id) {
-    if (getListAdapter() != null) {
-      getListAdapter().releaseFastRecord(id);
-    }
   }
 
   private void presentConversationMetadata(@NonNull ConversationData conversation) {

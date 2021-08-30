@@ -2927,7 +2927,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     long id = fragment.stageOutgoingMessage(secureMessage);
 
     SimpleTask.run(() -> {
-      long resultId = MessageSender.sendPushWithPreUploadedMedia(this, secureMessage, result.getPreUploadResults(), thread, () -> fragment.releaseOutgoingMessage(id));
+      long resultId = MessageSender.sendPushWithPreUploadedMedia(this, secureMessage, result.getPreUploadResults(), thread, null);
 
       int deleted = DatabaseFactory.getAttachmentDatabase(this).deleteAbandonedPreuploadedAttachments();
       Log.i(TAG, "Deleted " + deleted + " abandoned attachments.");
@@ -3017,7 +3017,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                  final long id = fragment.stageOutgoingMessage(outgoingMessage);
 
                  SimpleTask.run(() -> {
-                   return MessageSender.send(context, outgoingMessage, thread, forceSms, metricId, () -> fragment.releaseOutgoingMessage(id));
+                   return MessageSender.send(context, outgoingMessage, thread, forceSms, metricId, null);
                  }, result -> {
                    sendComplete(result);
                    future.set(null);
@@ -3058,7 +3058,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                .onAllGranted(() -> {
                  final long id = new SecureRandom().nextLong();
                  SimpleTask.run(() -> {
-                   return MessageSender.send(context, message, thread, forceSms, metricId, () -> fragment.releaseOutgoingMessage(id));
+                   return MessageSender.send(context, message, thread, forceSms, metricId, null);
                  }, this::sendComplete);
 
                  silentlySetComposeText("");

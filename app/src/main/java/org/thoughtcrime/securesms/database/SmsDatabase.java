@@ -59,7 +59,6 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.SqlUtil;
-import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
@@ -198,7 +197,7 @@ public class SmsDatabase extends MessageDatabase {
       db.endTransaction();
     }
 
-    notifyConversationListeners(threadId);
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(id, false));
   }
 
   @Override
@@ -1235,7 +1234,7 @@ public class SmsDatabase extends MessageDatabase {
 
     DatabaseFactory.getThreadDatabase(context).setHasSentSilently(threadId, true);
 
-    notifyConversationListeners(threadId);
+    ApplicationDependencies.getDatabaseObserver().notifyMessageInsertObservers(threadId, new MessageId(messageId, false));
 
     if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
       TrimThreadJob.enqueueAsync(threadId);

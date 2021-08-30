@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.conversation.colors.NameColor;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.LiveGroup;
@@ -64,8 +65,10 @@ public class ConversationViewModel extends ViewModel {
   private final MutableLiveData<Boolean>            showScrollButtons;
   private final MutableLiveData<Boolean>            hasUnreadMentions;
   private final LiveData<Boolean>                   canShowAsBubble;
-  private final ProxyPagingController               pagingController;
-  private final DatabaseObserver.Observer           messageObserver;
+  private final ProxyPagingController<MessageId>    pagingController;
+  private final DatabaseObserver.Observer           conversationObserver;
+  private final DatabaseObserver.MessageObserver    messageUpdateObserver;
+  private final DatabaseObserver.MessageObserver    messageInsertObserver;
   private final MutableLiveData<RecipientId>        recipientId;
   private final LiveData<ChatWallpaper>             wallpaper;
   private final SingleLiveEvent<Event>              events;
@@ -89,8 +92,10 @@ public class ConversationViewModel extends ViewModel {
     this.hasUnreadMentions      = new MutableLiveData<>(false);
     this.recipientId            = new MutableLiveData<>();
     this.events                 = new SingleLiveEvent<>();
-    this.pagingController       = new ProxyPagingController();
-    this.messageObserver        = pagingController::onDataInvalidated;
+    this.pagingController       = new ProxyPagingController<>();
+    this.conversationObserver   = pagingController::onDataInvalidated;
+    this.messageUpdateObserver  = pagingController::onDataItemChanged;
+    this.messageInsertObserver  = messageId -> pagingController.onDataItemInserted(messageId, 0);
     this.toolbarBottom          = new MutableLiveData<>();
     this.inlinePlayerHeight     = new MutableLiveData<>();
     this.scrollDateTopMargin    = Transformations.distinctUntilChanged(LiveDataUtil.combineLatest(toolbarBottom, inlinePlayerHeight, Integer::sum));
@@ -106,7 +111,9 @@ public class ConversationViewModel extends ViewModel {
       return conversationData;
     });
 
-    LiveData<Pair<Long, PagedData<ConversationMessage>>> pagedDataForThreadId = Transformations.map(metadata, data -> {
+    ApplicationDependencies.getDatabaseObserver().registerMessageUpdateObserver(messageUpdateObserver);
+
+    LiveData<Pair<Long, PagedData<MessageId, ConversationMessage>>> pagedDataForThreadId = Transformations.map(metadata, data -> {
       int                                 startPosition;
       ConversationData.MessageRequestData messageRequestData = data.getMessageRequestData();
 
@@ -120,8 +127,10 @@ public class ConversationViewModel extends ViewModel {
         startPosition = data.getThreadSize();
       }
 
-      ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageObserver);
-      ApplicationDependencies.getDatabaseObserver().registerConversationObserver(data.getThreadId(), messageObserver);
+      ApplicationDependencies.getDatabaseObserver().unregisterObserver(conversationObserver);
+      ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageInsertObserver);
+      ApplicationDependencies.getDatabaseObserver().registerConversationObserver(data.getThreadId(), conversationObserver);
+      ApplicationDependencies.getDatabaseObserver().registerMessageInsertObserver(data.getThreadId(), messageInsertObserver);
 
       ConversationDataSource dataSource = new ConversationDataSource(context, data.getThreadId(), messageRequestData, data.showUniversalExpireTimerMessage());
       PagingConfig           config     = new PagingConfig.Builder().setPageSize(25)
@@ -292,7 +301,9 @@ public class ConversationViewModel extends ViewModel {
   @Override
   protected void onCleared() {
     super.onCleared();
-    ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageObserver);
+    ApplicationDependencies.getDatabaseObserver().unregisterObserver(conversationObserver);
+    ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageUpdateObserver);
+    ApplicationDependencies.getDatabaseObserver().unregisterObserver(messageInsertObserver);
     EventBus.getDefault().unregister(this);
   }
 

@@ -45,7 +45,7 @@ class ConversationListViewModel extends ViewModel {
 
   private final MutableLiveData<Megaphone>    megaphone;
   private final MutableLiveData<SearchResult> searchResult;
-  private final PagedData<Conversation>       pagedData;
+  private final PagedData<Long, Conversation> pagedData;
   private final LiveData<Boolean>             hasNoConversations;
   private final SearchRepository              searchRepository;
   private final MegaphoneRepository           megaphoneRepository;
