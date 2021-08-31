@@ -3171,7 +3171,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="PermissionsSettingsFragment__only_admins">Doar administratorii</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Cine poate adăuga membri?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Cine poate edita informațiile grupului?</string>
-  <string name="PermissionsSettingsFragment__who_can_send_messages">Cine poate să trimită mesaje?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Cine poate trimite mesaje?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Notificări fără sunet</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nu este pe silențios</string>

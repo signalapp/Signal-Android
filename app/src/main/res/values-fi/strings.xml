@@ -1194,6 +1194,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Jotta voit soittaa yhteystiedolle %1$s, Signal tarvitsee lupaa käyttää kameraa.</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Soitetaan…</string>
+  <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Ryhmä on liian suuri soittaaksesi osallistujille.</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal -puhelu</string>
   <string name="WebRtcCallView__signal_video_call">Signal-videopuhelu</string>
@@ -1219,6 +1220,7 @@
   <string name="WebRtcCallView__speaker">Kaiutin</string>
   <string name="WebRtcCallView__camera">Kamera</string>
   <string name="WebRtcCallView__mute">Mykistä</string>
+  <string name="WebRtcCallView__ring">Soita</string>
   <string name="WebRtcCallView__end_call">Lopeta puhelu</string>
   <!--CallParticipantsListDialog-->
   <plurals name="CallParticipantsListDialog_in_this_call_d_people">

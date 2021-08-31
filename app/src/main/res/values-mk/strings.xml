@@ -829,6 +829,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Signal повик во тек</string>
   <string name="NotificationBarManager__establishing_signal_call">Воспоставување на повик на Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Доаѓачки повик на Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Дојдовен групен Signal повик</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Го стопирам Signal сервисот за повикување</string>
   <string name="NotificationBarManager__decline_call">Одбиј повик</string>
   <string name="NotificationBarManager__answer_call">Одговори на повикот</string>
