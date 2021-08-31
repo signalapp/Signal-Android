@@ -3073,7 +3073,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationSettingsFragment__add_to_a_group">Aan een groep toevoegen</string>
   <string name="ConversationSettingsFragment__see_all">Alle leden weergeven</string>
   <string name="ConversationSettingsFragment__add_members">Groepsleden toevoegen</string>
-  <string name="ConversationSettingsFragment__permissions">Toestemmingen</string>
+  <string name="ConversationSettingsFragment__permissions">Machtigingen</string>
   <string name="ConversationSettingsFragment__requests_and_invites">Verzoeken &amp; uitnodiging</string>
   <string name="ConversationSettingsFragment__group_link">Groepsverwijzing voor deze groep</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">Als contactpersoon toevoegen</string>

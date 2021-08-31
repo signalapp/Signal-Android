@@ -830,6 +830,7 @@
   <string name="NotificationBarManager__establishing_signal_call">Muodostetaan Signal-puhelua</string>
   <string name="NotificationBarManager__incoming_signal_call">Saapuva Signal-puhelu</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Pysäytetään Signalin puhelupalvelua</string>
+  <string name="NotificationBarManager__decline_call">Hylkää puhelu</string>
   <string name="NotificationBarManager__answer_call">Vastaa puheluun</string>
   <string name="NotificationBarManager__end_call">Lopeta puhelu</string>
   <string name="NotificationBarManager__cancel_call">Peru puhelu</string>
@@ -1205,6 +1206,7 @@
   <string name="WebRtcCallView__reconnecting">Yhdistetään uudelleen…</string>
   <string name="WebRtcCallView__joining">Liittymässä…</string>
   <string name="WebRtcCallView__disconnected">Ei yhteyttä</string>
+  <string name="WebRtcCallView__s_is_calling_you">%1$s soittaa sinulle</string>
   <string name="WebRtcCallView__no_one_else_is_here">Kukaan muu ei ole täällä</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s on tässä puhelussa</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ja %2$s ovat tässä puhelussa</string>

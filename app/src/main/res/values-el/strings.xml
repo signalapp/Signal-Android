@@ -647,6 +647,7 @@
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Αυτή είναι μια ομάδα με μη ασφαλή MMS. Για προστατευμένες ιδιωτικές συνομιλίες, προσκάλεσε τις επαφές σου στο Signal.</string>
   <string name="ManageGroupActivity_invite_now">Πρόσκληση τώρα</string>
   <string name="ManageGroupActivity_more">περισσότερα</string>
+  <string name="ManageGroupActivity_add_group_description">Εισαγωγή περιγραφής της ομάδας…</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Να ειδοποιούμαι για αναφορές</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Θέλεις να λαμβάνεις ειδοποιήσεις όταν σε αναφέρουν σε σιγασμένες συνομιλίες;</string>
@@ -745,10 +746,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Μοιράσου</string>
   <string name="InviteActivity_share_with_contacts">Μοιράσου με επαφές</string>
+  <string name="InviteActivity_share_via">Διαμοιρασμός μέσω…</string>
   <string name="InviteActivity_cancel">Ακύρωση</string>
   <string name="InviteActivity_sending">Στέλνεται…</string>
   <string name="InviteActivity_invitations_sent">Οι προσκλήσεις στάλθηκαν!</string>
   <string name="InviteActivity_invite_to_signal">Πρόσκληση στο Signal</string>
+  <string name="InviteActivity_send_sms">Αποστολή SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Αποστολή %d πρόσκλησης με SMS;</item>
     <item quantity="other">Αποστολή %d προσκλήσεων με SMS;</item>
@@ -825,7 +828,9 @@
   <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal σε εξέλιξη</string>
   <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>
   <string name="NotificationBarManager__incoming_signal_call">Εισερχόμενη κλήση Signal</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Εισερχόμενη ομαδική κλήση Signal</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Η υπηρεσία κλήσεων του Signal σταματάει</string>
+  <string name="NotificationBarManager__decline_call">Απόρριψη κλήσης</string>
   <string name="NotificationBarManager__answer_call">Απάντηση</string>
   <string name="NotificationBarManager__end_call">Τερματισμός κλήσης</string>
   <string name="NotificationBarManager__cancel_call">Ακύρωση κλήσης</string>
@@ -966,6 +971,8 @@
   <string name="MessageRecord_the_group_name_has_changed_to_s">Το όνομα της ομάδας άλλαξε σε \"%1$s\".</string>
   <!--GV2 description change-->
   <string name="MessageRecord_you_changed_the_group_description">Άλλαξες την περιγραφή της ομάδας.</string>
+  <string name="MessageRecord_s_changed_the_group_description">Ο/Η %1$s άλλαξε την περιγραφή της ομάδας.</string>
+  <string name="MessageRecord_the_group_description_has_changed">Η περιγραφή της ομάδας άλλαξε.</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Άλλαξες το εικονίδιο της ομάδας.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">Ο/Η %1$s άλλαξε το εικονίδιο της ομάδας.</string>
@@ -1199,14 +1206,29 @@
   <string name="WebRtcCallView__reconnecting">Επανασύνδεση…</string>
   <string name="WebRtcCallView__joining">Εισέρχεσαι…</string>
   <string name="WebRtcCallView__disconnected">Αποσυνδέθηκε</string>
+  <string name="WebRtcCallView__s_will_be_notified">Ο/Η %1$s θα ειδοποιηθεί</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">Οι %1$s και %2$s θα ειδοποιηθούν</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα θα ειδοποιηθούν</item>
+    <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα θα ειδοποιηθούν</item>
+  </plurals>
+  <string name="WebRtcCallView__s_is_calling_you">Ο/Η %1$s σε καλεί</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">Ο/Η %1$s καλεί εσένα και τον/την%2$s</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">Ο/Η %1$s καλεί εσένα και τους %2$s και %3$s</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">Ο/Η %1$s καλεί εσένα, τους %2$s, %3$s και %4$d ακόμα</item>
+    <item quantity="other">Ο/Η %1$s καλεί εσένα, τους %2$s, %3$s και %4$d ακόμα </item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Δεν είναι κανένας άλλος εδώ</string>
   <string name="WebRtcCallView__s_is_in_this_call">Ο/Η %1$s είναι στην κλήση</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s είσαι στη κλήση</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">Οι %1$s και %2$s είναι στην κλήση</string>
   <string name="WebRtcCallView__s_is_presenting">Ο/Η %1$s παρουσιάζει</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση</item>
     <item quantity="other">Οι %1$s, %2$s και %3$d ακόμα είναι στην κλήση</item>
   </plurals>
+  <string name="WebRtcCallView__flip">Εναλλαγή</string>
   <string name="WebRtcCallView__speaker">Μεγάφωνο</string>
   <string name="WebRtcCallView__camera">Κάμερα</string>
   <string name="WebRtcCallView__mute">Σίγαση</string>
@@ -2040,6 +2062,7 @@
   <string name="preferences_off">Ανενεργό</string>
   <string name="preferences_on">Ενεργό</string>
   <string name="preferences_proxy_address">Διεύθυνση proxy</string>
+  <string name="preferences_only_use_a_proxy_if">Χρησιμοποίησε proxy μόνο αν δεν μπορείς να συνδεθείς στο Signal από δεδομένα κινητής ή Wi-Fi.</string>
   <string name="preferences_share">Μοιράσου</string>
   <string name="preferences_save">Αποθήκευση</string>
   <string name="preferences_connecting_to_proxy">Συνδεόμαστε στο proxy…</string>
@@ -2907,6 +2930,7 @@
   <string name="ConversationSettingsFragment__unmute">Αναίρεση σίγασης</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Η συνομιλία είναι σε σίγαση έως %1$s</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Η συνομιλία είνα σε σίγαση για πάντα</string>
+  <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Ο αριθμός τηλεφώνου αντιγράφτηκε στο πρόχειρο.</string>
   <string name="ConversationSettingsFragment__phone_number">Αριθμός τηλεφώνου</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Προσθήκη μελών</string>
@@ -2923,8 +2947,10 @@
   <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Σε σίγαση έως %1$s</string>
   <string name="SoundsAndNotificationsSettingsFragment__mentions">Αναφορές</string>
   <string name="SoundsAndNotificationsSettingsFragment__always_notify">Πάντα να ειδοποιούμαι</string>
+  <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Να μην ειδοποιούμαι</string>
   <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Προσαρμογή ειδοποιήσεων</string>
   <!--StickerKeyboard-->
+  <string name="StickerKeyboard__recently_used">Πρόσφατα χρησιμοποιημένα</string>
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
@@ -2964,6 +2990,7 @@
   <string name="ContactSelectionListItem__sms">SMS</string>
   <string name="ContactSelectionListItem__dot_s">· %1$s</string>
   <!--DSLSettingsToolbar-->
+  <string name="DSLSettingsToolbar__navigate_up">Μετάβαση προς τα πάνω</string>
   <string name="MultiselectForwardFragment__forward_to">Προώθηση σε</string>
   <string name="MultiselectForwardFragment__add_a_message">Προσθήκη μηνύματος</string>
   <string name="MultiselectForwardFragment__faster_forwards">Γρηγορότερες προωθήσεις</string>
@@ -2984,5 +3011,6 @@
     <item quantity="one">Αδυναμία προώθησης μηνύματος επειδή δεν είναι πλέον διαθέσιμο.</item>
     <item quantity="other">Αδυναμία προώθησης μηνυμάτων επειδή δεν είναι πλέον διαθέσιμα.</item>
   </plurals>
+  <string name="MultiselectForwardFragment__limit_reached">Το όριο ξεπεράστηκε</string>
   <!--EOF-->
 </resources>

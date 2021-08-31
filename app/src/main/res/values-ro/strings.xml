@@ -1264,38 +1264,38 @@
   <string name="WebRtcCallView__call_is_full">Numărul maxim de participanți a fost atins</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Numărul maxim de %1$d participanți a fost atins pentru acest apel. Încercați mai târziu. </string>
   <string name="WebRtcCallView__view_participants_list">Vizualizați participanții</string>
-  <string name="WebRtcCallView__your_video_is_off">Video-ul dvs. este oprit</string>
+  <string name="WebRtcCallView__your_video_is_off">Camera dvs. este oprită</string>
   <string name="WebRtcCallView__reconnecting">Se reconectează…</string>
   <string name="WebRtcCallView__joining">Se alătură…</string>
   <string name="WebRtcCallView__disconnected">Deconectat</string>
-  <string name="WebRtcCallView__signal_will_ring_s">Signal va apela %1$s</string>
-  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal va apela %1$s și %2$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal va suna la %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal va suna la %1$s și %2$s</string>
   <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
-    <item quantity="one">Signal va apela %1$s, %2$s, și încă %3$d persoană</item>
-    <item quantity="few">Signal va apela %1$s, %2$s, și alte %3$d persoane</item>
-    <item quantity="other">Signal va apela %1$s, %2$s, și alte %3$d de persoane</item>
+    <item quantity="one">Signal va suna la %1$s, %2$s, și %3$d altul</item>
+    <item quantity="few">Signal va suna la %1$s, %2$s, și %3$d alții</item>
+    <item quantity="other">Signal va suna la %1$s, %2$s, și %3$d alții</item>
   </plurals>
   <string name="WebRtcCallView__s_will_be_notified">%1$s va fi notificat</string>
   <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s și %2$s vor fi notificați</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
-    <item quantity="one">%1$s, %2$s și încă %3$d persoană vor fi notificate</item>
-    <item quantity="few">%1$s, %2$s și alte %3$d persoane vor fi notificate</item>
-    <item quantity="other">%1$s, %2$s și alte %3$d de persoane vor fi notificate</item>
+    <item quantity="one">%1$s, %2$s și %3$d altul vor fi notificați </item>
+    <item quantity="few">%1$s, %2$s și %3$d alții vor fi notificați</item>
+    <item quantity="other">%1$s, %2$s și %3$d alții vor fi notificați</item>
   </plurals>
   <string name="WebRtcCallView__ringing_s">Se apelează %1$s</string>
   <string name="WebRtcCallView__ringing_s_and_s">Se apelează %1$s și %2$s</string>
   <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
-    <item quantity="one">Se apelează %1$s, %2$s și încă %3$d persoană</item>
-    <item quantity="few">Se apelează %1$s, %2$s și alte %3$d persoane</item>
-    <item quantity="other">Se apelează %1$s, %2$s și alte %3$d de persoane</item>
+    <item quantity="one">Se apelează %1$s, %2$s și %3$d altul</item>
+    <item quantity="few">Se apelează %1$s, %2$s și %3$d alții</item>
+    <item quantity="other">Se apelează %1$s, %2$s și %3$d alții </item>
   </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s vă apelează</string>
   <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s apelează pe dvs. și %2$s</string>
   <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s apelează pe dvs, %2$s, și %3$s</string>
   <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
-    <item quantity="one">%1$s apelează pe dvs. %2$s, %3$s și încă %4$d persoană</item>
-    <item quantity="few">%1$s apelează pe dvs. %2$s, %3$s și alte %4$d persoane</item>
-    <item quantity="other">%1$s apelează pe dvs. %2$s, %3$s și alte %4$d de persoane</item>
+    <item quantity="one">%1$s apelează pe dvs, %2$s, %3$s și %4$d altul</item>
+    <item quantity="few">%1$s apelează pe dvs, %2$s, %3$s și %4$d alții</item>
+    <item quantity="other">%1$s apelează pe dvs, %2$s, %3$s și %4$d alții</item>
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Nu este nimeni aici</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s este în acest apel </string>

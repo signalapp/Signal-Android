@@ -209,7 +209,10 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">A melléklet mérete meghaladja az adott típushoz tartozó mérethatárt.</string>
   <string name="ConversationActivity_unable_to_record_audio">Nem lehet hangot rögzíteni!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nem küldhetsz ebbe a csoportba üzenetet, mivel nem vagy a tagja.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Csak %1$s küldhetnek üzeneteket.</string>
   <string name="ConversationActivity_admins">adminok</string>
+  <string name="ConversationActivity_message_an_admin">Üzenet egy adminnak</string>
+  <string name="ConversationActivity_cant_start_group_call">Nem engedélyezett csoporthívás</string>
   <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Csak adminok indíthatnak hívást ebben a csoportban.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nem található eszközödön megfelelő alkalmazás a hivatkozás kezeléséhez.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">A csatlakozási kérésed el lett küldve a csoportadmin részére. Értesítést fogsz kapni, amint reagálnak rá.</string>
@@ -915,6 +918,7 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s admin jogosultságokat adott neki: %2$s </string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s admin jogosultságokat adott neked.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Visszavontad %1$s admin jogosultságait.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s visszavonta admin jogosultságaidat.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s visszavonta %2$s admin jogosultságait.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s admin jogosultságot kapott.</string>
   <string name="MessageRecord_you_are_now_an_admin">Admin jogosultságot kaptál.</string>
@@ -1184,6 +1188,7 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="WebRtcCallActivity__calling">Hívás…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_call">Signal hívás</string>
+  <string name="WebRtcCallView__signal_video_call">Signal videóhívás</string>
   <string name="WebRtcCallView__start_call">Hívás indítása</string>
   <string name="WebRtcCallView__join_call">Belépés a hívásba</string>
   <string name="WebRtcCallView__call_is_full">A hívás betelt</string>
@@ -3062,5 +3067,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--DSLSettingsToolbar-->
   <string name="MultiselectForwardFragment__add_a_message">Szöveg hozzáadása</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">A továbbított üzenetek azonnal elküldésre kerülnek.</string>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Sikertelen a továbbítás, mert az üzenetek már nem elérhetőek.</item>
+    <item quantity="other">Sikertelen a továbbítás, mert az üzenetek már nem elérhetőek.</item>
+  </plurals>
   <!--EOF-->
 </resources>

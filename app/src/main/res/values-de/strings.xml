@@ -208,7 +208,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang zu groß für die zu sendende Nachrichtenart.</string>
   <string name="ConversationActivity_unable_to_record_audio">Audioaufnahme nicht möglich!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kannst keine Nachrichten an diese Gruppe senden, da du kein Gruppenmitglied mehr bist.</string>
-  <string name="ConversationActivity_only_s_can_send_messages">Nur %1$s können Nachrichten senden.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Nur %1$s dürfen Nachrichten senden.</string>
   <string name="ConversationActivity_admins">Admins</string>
   <string name="ConversationActivity_message_an_admin">Schreib einem Admin</string>
   <string name="ConversationActivity_cant_start_group_call">Starten eines Gruppenanrufs nicht möglich</string>
@@ -1205,7 +1205,7 @@
   <string name="WebRtcCallView__call_is_full">Anruf ist voll</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Für diesen Anruf wurde die maximale Anzahl von %1$d Teilnehmern erreicht. Bitte versuche es später erneut.</string>
   <string name="WebRtcCallView__view_participants_list">Teilnehmer anzeigen</string>
-  <string name="WebRtcCallView__your_video_is_off">Dein Video ist aus</string>
+  <string name="WebRtcCallView__your_video_is_off">Deine Kamera ist ausgeschaltet</string>
   <string name="WebRtcCallView__reconnecting">Verbindung wird neu hergestellt …</string>
   <string name="WebRtcCallView__joining">Beitreten …</string>
   <string name="WebRtcCallView__disconnected">Verbindung getrennt</string>
@@ -1236,7 +1236,7 @@
   </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Niemand anderes ist hier</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s nimmt an diesem Anruf teil</string>
-  <string name="WebRtcCallView__s_are_in_this_call">%1$s bist im Anruf</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s nimmst an diesem Anruf teil</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s und %2$s nehmen an diesem Anruf teil</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s präsentiert gerade</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1244,9 +1244,9 @@
     <item quantity="other">%1$s, %2$s und %3$d weitere Personen nehmen an diesem Anruf teil</item>
   </plurals>
   <string name="WebRtcCallView__flip">Drehen</string>
-  <string name="WebRtcCallView__speaker">Audio</string>
+  <string name="WebRtcCallView__speaker">Laut­sprecher</string>
   <string name="WebRtcCallView__camera">Kamera</string>
-  <string name="WebRtcCallView__mute">Stumm​</string>
+  <string name="WebRtcCallView__mute">Stumm­schalten</string>
   <string name="WebRtcCallView__ring">Klingeln</string>
   <string name="WebRtcCallView__end_call">Auflegen</string>
   <!--CallParticipantsListDialog-->
@@ -2052,7 +2052,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Integrierte Emojis deaktivieren und stattdessen System-Emojis verwenden</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Alle Anrufe über den Signal-Server leiten, um die eigene IP-Adresse gegenüber Kontakten nicht offenzulegen. Dies verringert die Anrufqualität.</string>
   <string name="preferences_advanced__always_relay_calls">Anrufe immer indirekt</string>
-  <string name="preferences_app_protection__who_can">Wer kann …</string>
+  <string name="preferences_app_protection__who_can">Wer darf …</string>
   <string name="preferences_app_protection__app_access">App-Zugriff</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
   <string name="preferences_chats__chats">Unterhaltungen</string>
@@ -3075,7 +3075,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="PermissionsSettingsFragment__only_admins">Nur Admins</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Wer darf neue Mitglieder hinzufügen?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Wer darf die Gruppendetails bearbeiten?</string>
-  <string name="PermissionsSettingsFragment__who_can_send_messages">Wer kann Nachrichten senden?</string>
+  <string name="PermissionsSettingsFragment__who_can_send_messages">Wer darf Nachrichten senden?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Benachrichtigungen stummschalten</string>
   <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nicht stumm</string>
@@ -3128,7 +3128,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--DSLSettingsToolbar-->
   <string name="DSLSettingsToolbar__navigate_up">Nach oben navigieren</string>
   <string name="MultiselectForwardFragment__forward_to">Weiterleiten an</string>
-  <string name="MultiselectForwardFragment__add_a_message">Eine Nachricht hinzufügen</string>
+  <string name="MultiselectForwardFragment__add_a_message">Füge eine Nachricht hinzu</string>
   <string name="MultiselectForwardFragment__faster_forwards">Schnellere Weiterleitungen</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Weitergeleitete Nachrichten werden nun sofort gesendet.</string>
   <plurals name="MultiselectForwardFragment_send_d_messages">
