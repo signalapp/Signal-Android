@@ -104,19 +104,22 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
   @Override
   public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) throws InvalidRegistrationIdException {
     synchronized (LOCK) {
-      List<SessionDatabase.SessionRow> rows = DatabaseFactory.getSessionDatabase(context).getAllFor(addressNames);
+      List<SessionDatabase.SessionRow> activeRows = DatabaseFactory.getSessionDatabase(context)
+                                                                   .getAllFor(addressNames)
+                                                                   .stream()
+                                                                   .filter(row -> isActive(row.getRecord()))
+                                                                   .collect(Collectors.toList());
 
-      boolean hasInvalidRegistrationId = rows.stream()
-                                             .map(SessionDatabase.SessionRow::getRecord)
-                                             .anyMatch(record -> !isValidRegistrationId(record.getRemoteRegistrationId()));
+      boolean hasInvalidRegistrationId = activeRows.stream()
+                                                   .map(SessionDatabase.SessionRow::getRecord)
+                                                   .anyMatch(record -> !isValidRegistrationId(record.getRemoteRegistrationId()));
       if (hasInvalidRegistrationId) {
         throw new InvalidRegistrationIdException();
       }
 
-      return rows.stream()
-                 .filter(row -> isActive(row.getRecord()))
-                 .map(row -> new SignalProtocolAddress(row.getAddress(), row.getDeviceId()))
-                 .collect(Collectors.toSet());
+      return activeRows.stream()
+                       .map(row -> new SignalProtocolAddress(row.getAddress(), row.getDeviceId()))
+                       .collect(Collectors.toSet());
     }
   }
 
