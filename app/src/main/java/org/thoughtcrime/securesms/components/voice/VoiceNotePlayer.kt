@@ -35,5 +35,4 @@ class VoiceNotePlayer @JvmOverloads constructor(
       super.seekTo(windowIndex, positionMs)
     }
   }
-
 }
