@@ -1,0 +1,35 @@
+package org.thoughtcrime.securesms.registration
+
+import org.whispersystems.signalservice.api.push.exceptions.LocalRateLimitException
+import org.whispersystems.signalservice.internal.ServiceResponse
+import org.whispersystems.signalservice.internal.ServiceResponseProcessor
+import org.whispersystems.signalservice.internal.push.RequestVerificationCodeResponse
+
+/**
+ * Process responses from requesting an SMS or Phone code from the server.
+ */
+class RequestVerificationCodeResponseProcessor(response: ServiceResponse<RequestVerificationCodeResponse>) : ServiceResponseProcessor<RequestVerificationCodeResponse>(response) {
+  public override fun captchaRequired(): Boolean {
+    return super.captchaRequired()
+  }
+
+  public override fun rateLimit(): Boolean {
+    return super.rateLimit()
+  }
+
+  public override fun getError(): Throwable? {
+    return super.getError()
+  }
+
+  fun localRateLimit(): Boolean {
+    return error is LocalRateLimitException
+  }
+
+  companion object {
+    @JvmStatic
+    fun forLocalRateLimit(): RequestVerificationCodeResponseProcessor {
+      val response: ServiceResponse<RequestVerificationCodeResponse> = ServiceResponse.forExecutionError(LocalRateLimitException())
+      return RequestVerificationCodeResponseProcessor(response)
+    }
+  }
+}

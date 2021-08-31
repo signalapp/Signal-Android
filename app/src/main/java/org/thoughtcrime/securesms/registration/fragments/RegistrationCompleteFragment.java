@@ -9,16 +9,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.ActivityNavigator;
 
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.pin.PinRestoreActivity;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
+import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 
-public final class RegistrationCompleteFragment extends BaseRegistrationFragment {
+public final class RegistrationCompleteFragment extends LoggingFragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,11 +33,12 @@ public final class RegistrationCompleteFragment extends BaseRegistrationFragment
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    FragmentActivity activity = requireActivity();
+    FragmentActivity      activity  = requireActivity();
+    RegistrationViewModel viewModel = ViewModelProviders.of(activity).get(RegistrationViewModel.class);
 
     if (SignalStore.storageService().needsAccountRestore()) {
       activity.startActivity(new Intent(activity, PinRestoreActivity.class));
-    } else if (!isReregister()) {
+    } else if (!viewModel.isReregister()) {
       final Intent main    = MainActivity.clearTop(activity);
       final Intent profile = EditProfileActivity.getIntentForUserProfile(activity);
 

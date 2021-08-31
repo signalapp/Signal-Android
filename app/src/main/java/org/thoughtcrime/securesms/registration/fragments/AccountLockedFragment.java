@@ -11,12 +11,15 @@ import android.widget.TextView;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
 
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 
 import java.util.concurrent.TimeUnit;
 
-public class AccountLockedFragment extends BaseRegistrationFragment {
+public class AccountLockedFragment extends LoggingFragment {
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,7 +32,8 @@ public class AccountLockedFragment extends BaseRegistrationFragment {
 
     TextView description = view.findViewById(R.id.account_locked_description);
 
-    getModel().getLockedTimeRemaining().observe(getViewLifecycleOwner(),
+    RegistrationViewModel viewModel = ViewModelProviders.of(requireActivity()).get(RegistrationViewModel.class);
+    viewModel.getLockedTimeRemaining().observe(getViewLifecycleOwner(),
       t -> description.setText(getString(R.string.AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy, durationToDays(t)))
     );
 

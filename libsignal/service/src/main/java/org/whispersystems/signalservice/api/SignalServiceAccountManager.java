@@ -45,6 +45,7 @@ import org.whispersystems.signalservice.api.storage.StorageKey;
 import org.whispersystems.signalservice.api.storage.StorageManifestKey;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.StreamDetails;
+import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.contacts.crypto.ContactDiscoveryCipher;
 import org.whispersystems.signalservice.internal.contacts.crypto.Quote;
@@ -61,6 +62,7 @@ import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
 import org.whispersystems.signalservice.internal.push.RemoteConfigResponse;
+import org.whispersystems.signalservice.internal.push.RequestVerificationCodeResponse;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
 import org.whispersystems.signalservice.internal.push.http.ProfileCipherOutputStreamFactory;
@@ -209,10 +211,14 @@ public class SignalServiceAccountManager {
    * @param androidSmsRetrieverSupported
    * @param captchaToken                 If the user has done a CAPTCHA, include this.
    * @param challenge                    If present, it can bypass the CAPTCHA.
-   * @throws IOException
    */
-  public void requestSmsVerificationCode(boolean androidSmsRetrieverSupported, Optional<String> captchaToken, Optional<String> challenge) throws IOException {
-    this.pushServiceSocket.requestSmsVerificationCode(androidSmsRetrieverSupported, captchaToken, challenge);
+  public ServiceResponse<RequestVerificationCodeResponse> requestSmsVerificationCode(boolean androidSmsRetrieverSupported, Optional<String> captchaToken, Optional<String> challenge, Optional<String> fcmToken) {
+    try {
+      this.pushServiceSocket.requestSmsVerificationCode(androidSmsRetrieverSupported, captchaToken, challenge);
+      return ServiceResponse.forResult(new RequestVerificationCodeResponse(fcmToken), 200, null);
+    } catch (IOException e) {
+      return ServiceResponse.forUnknownError(e);
+    }
   }
 
   /**
@@ -222,10 +228,14 @@ public class SignalServiceAccountManager {
    * @param locale
    * @param captchaToken If the user has done a CAPTCHA, include this.
    * @param challenge    If present, it can bypass the CAPTCHA.
-   * @throws IOException
    */
-  public void requestVoiceVerificationCode(Locale locale, Optional<String> captchaToken, Optional<String> challenge) throws IOException {
-    this.pushServiceSocket.requestVoiceVerificationCode(locale, captchaToken, challenge);
+  public ServiceResponse<RequestVerificationCodeResponse> requestVoiceVerificationCode(Locale locale, Optional<String> captchaToken, Optional<String> challenge, Optional<String> fcmToken) {
+    try {
+      this.pushServiceSocket.requestVoiceVerificationCode(locale, captchaToken, challenge);
+      return ServiceResponse.forResult(new RequestVerificationCodeResponse(fcmToken), 200, null);
+    } catch (IOException e) {
+      return ServiceResponse.forUnknownError(e);
+    }
   }
 
   /**
@@ -234,32 +244,76 @@ public class SignalServiceAccountManager {
    * @param verificationCode The verification code received via SMS or Voice
    *                         (see {@link #requestSmsVerificationCode} and
    *                         {@link #requestVoiceVerificationCode}).
-   * @param signalingKey 52 random bytes.  A 32 byte AES key and a 20 byte Hmac256 key,
-   *                     concatenated.
    * @param signalProtocolRegistrationId A random 14-bit number that identifies this Signal install.
    *                                     This value should remain consistent across registrations for the
    *                                     same install, but probabilistically differ across registrations
    *                                     for separate installs.
-   * @param pin Deprecated, only supply the pin if you did not find a registrationLock on KBS.
+   * @return The UUID of the user that was registered.
+   * @throws IOException for various HTTP and networking errors
+   */
+  public ServiceResponse<VerifyAccountResponse> verifyAccount(String verificationCode,
+                                                              int signalProtocolRegistrationId,
+                                                              boolean fetchesMessages,
+                                                              byte[] unidentifiedAccessKey,
+                                                              boolean unrestrictedUnidentifiedAccess,
+                                                              AccountAttributes.Capabilities capabilities,
+                                                              boolean discoverableByPhoneNumber)
+  {
+    try {
+      VerifyAccountResponse response = this.pushServiceSocket.verifyAccountCode(verificationCode,
+                                                                                null,
+                                                                                signalProtocolRegistrationId,
+                                                                                fetchesMessages,
+                                                                                null,
+                                                                                null,
+                                                                                unidentifiedAccessKey,
+                                                                                unrestrictedUnidentifiedAccess,
+                                                                                capabilities,
+                                                                                discoverableByPhoneNumber);
+      return ServiceResponse.forResult(response, 200, null);
+    } catch (IOException e) {
+      return ServiceResponse.forUnknownError(e);
+    }
+  }
+
+  /**
+   * Verify a Signal Service account with a received SMS or voice verification code with
+   * registration lock.
+   *
+   * @param verificationCode The verification code received via SMS or Voice
+   *                         (see {@link #requestSmsVerificationCode} and
+   *                         {@link #requestVoiceVerificationCode}).
+   * @param signalProtocolRegistrationId A random 14-bit number that identifies this Signal install.
+   *                                     This value should remain consistent across registrations for the
+   *                                     same install, but probabilistically differ across registrations
+   *                                     for separate installs.
    * @param registrationLock Only supply if found on KBS.
    * @return The UUID of the user that was registered.
-   * @throws IOException
    */
-  public VerifyAccountResponse verifyAccountWithCode(String verificationCode, String signalingKey, int signalProtocolRegistrationId, boolean fetchesMessages,
-                                                     String pin, String registrationLock,
-                                                     byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess,
-                                                     AccountAttributes.Capabilities capabilities,
-                                                     boolean discoverableByPhoneNumber)
-      throws IOException
+  public ServiceResponse<VerifyAccountResponse> verifyAccountWithRegistrationLockPin(String verificationCode,
+                                                                                     int signalProtocolRegistrationId,
+                                                                                     boolean fetchesMessages,
+                                                                                     String registrationLock,
+                                                                                     byte[] unidentifiedAccessKey,
+                                                                                     boolean unrestrictedUnidentifiedAccess,
+                                                                                     AccountAttributes.Capabilities capabilities,
+                                                                                     boolean discoverableByPhoneNumber)
   {
-    return this.pushServiceSocket.verifyAccountCode(verificationCode, signalingKey,
-                                                    signalProtocolRegistrationId,
-                                                    fetchesMessages,
-                                                    pin, registrationLock,
-                                                    unidentifiedAccessKey,
-                                                    unrestrictedUnidentifiedAccess,
-                                                    capabilities,
-                                                    discoverableByPhoneNumber);
+    try {
+      VerifyAccountResponse response = this.pushServiceSocket.verifyAccountCode(verificationCode,
+                                                                                null,
+                                                                                signalProtocolRegistrationId,
+                                                                                fetchesMessages,
+                                                                                null,
+                                                                                registrationLock,
+                                                                                unidentifiedAccessKey,
+                                                                                unrestrictedUnidentifiedAccess,
+                                                                                capabilities,
+                                                                                discoverableByPhoneNumber);
+      return ServiceResponse.forResult(response, 200, null);
+    } catch (IOException e) {
+      return ServiceResponse.forUnknownError(e);
+    }
   }
 
   /**

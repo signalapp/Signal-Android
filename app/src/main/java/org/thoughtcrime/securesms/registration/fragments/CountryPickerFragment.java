@@ -14,9 +14,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.loaders.CountryListLoader;
@@ -39,7 +41,7 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    model = BaseRegistrationFragment.getRegistrationViewModel(requireActivity());
+    model = ViewModelProviders.of(requireActivity()).get(RegistrationViewModel.class);
 
     countryFilter = view.findViewById(R.id.country_search);
 
@@ -56,7 +58,7 @@ public final class CountryPickerFragment extends ListFragment implements LoaderM
 
     model.onCountrySelected(countryName, countryCode);
 
-    Navigation.findNavController(view).navigate(CountryPickerFragmentDirections.actionCountrySelected());
+    NavHostFragment.findNavController(this).navigateUp();
   }
 
   @Override

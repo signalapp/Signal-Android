@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.registration.service;
+package org.thoughtcrime.securesms.pin;
 
 import androidx.annotation.NonNull;
 

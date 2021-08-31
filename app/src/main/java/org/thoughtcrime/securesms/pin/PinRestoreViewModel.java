@@ -15,15 +15,17 @@ public class PinRestoreViewModel extends ViewModel {
   private final PinRestoreRepository                 repo;
   private final DefaultValueLiveData<TriesRemaining> triesRemaining;
   private final SingleLiveEvent<Event>               event;
+  private final KbsRepository                        kbsRepository;
 
-  private volatile PinRestoreRepository.TokenData tokenData;
+  private volatile TokenData tokenData;
 
   public PinRestoreViewModel() {
     this.repo           = new PinRestoreRepository();
+    this.kbsRepository  = new KbsRepository();
     this.triesRemaining = new DefaultValueLiveData<>(new TriesRemaining(10, false));
     this.event          = new SingleLiveEvent<>();
 
-    repo.getToken(token -> {
+    kbsRepository.getToken(token -> {
       if (token.isPresent()) {
         updateTokenData(token.get(), false);
       } else {
@@ -67,7 +69,7 @@ public class PinRestoreViewModel extends ViewModel {
         }
       });
     } else {
-      repo.getToken(token -> {
+      kbsRepository.getToken(token -> {
         if (token.isPresent()) {
           updateTokenData(token.get(), false);
           onPinSubmitted(pin, pinKeyboardType);
@@ -86,7 +88,7 @@ public class PinRestoreViewModel extends ViewModel {
     return event;
   }
 
-  private void updateTokenData(@NonNull PinRestoreRepository.TokenData tokenData, boolean incorrectGuess) {
+  private void updateTokenData(@NonNull TokenData tokenData, boolean incorrectGuess) {
     this.tokenData = tokenData;
     triesRemaining.postValue(new TriesRemaining(tokenData.getTriesRemaining(), incorrectGuess));
   }
