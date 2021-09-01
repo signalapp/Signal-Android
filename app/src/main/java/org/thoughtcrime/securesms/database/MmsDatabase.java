@@ -750,12 +750,19 @@ public class MmsDatabase extends MessageDatabase {
 
   private void updateMailboxBitmask(long id, long maskOff, long maskOn, Optional<Long> threadId) {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
-    db.execSQL("UPDATE " + TABLE_NAME +
-                   " SET " + MESSAGE_BOX + " = (" + MESSAGE_BOX + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
-                   " WHERE " + ID + " = ?", new String[] {id + ""});
 
-    if (threadId.isPresent()) {
-      DatabaseFactory.getThreadDatabase(context).updateSnippetTypeSilently(threadId.get());
+    db.beginTransaction();
+    try {
+      db.execSQL("UPDATE " + TABLE_NAME +
+                 " SET " + MESSAGE_BOX + " = (" + MESSAGE_BOX + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
+                 " WHERE " + ID + " = ?", new String[] { id + "" });
+
+      if (threadId.isPresent()) {
+        DatabaseFactory.getThreadDatabase(context).updateSnippetTypeSilently(threadId.get());
+      }
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
     }
   }
 
@@ -1344,7 +1351,7 @@ public class MmsDatabase extends MessageDatabase {
       return Optional.absent();
     }
 
-    long messageId = insertMediaMessage(threadId, retrieved.getBody(), retrieved.getAttachments(), quoteAttachments, retrieved.getSharedContacts(), retrieved.getLinkPreviews(), retrieved.getMentions(), contentValues, null);
+    long messageId = insertMediaMessage(threadId, retrieved.getBody(), retrieved.getAttachments(), quoteAttachments, retrieved.getSharedContacts(), retrieved.getLinkPreviews(), retrieved.getMentions(), contentValues, null, true);
 
     if (!Types.isExpirationTimerUpdate(mailbox)) {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
@@ -1530,7 +1537,7 @@ public class MmsDatabase extends MessageDatabase {
 
     MentionUtil.UpdatedBodyAndMentions updatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithPlaceholders(message.getBody(), message.getMentions());
 
-    long messageId = insertMediaMessage(threadId, updatedBodyAndMentions.getBodyAsString(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), updatedBodyAndMentions.getMentions(), contentValues, insertListener);
+    long messageId = insertMediaMessage(threadId, updatedBodyAndMentions.getBodyAsString(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), updatedBodyAndMentions.getMentions(), contentValues, insertListener, false);
 
     if (message.getRecipient().isGroup()) {
       OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (message instanceof OutgoingGroupUpdateMessage) ? (OutgoingGroupUpdateMessage) message : null;
@@ -1556,8 +1563,7 @@ public class MmsDatabase extends MessageDatabase {
       }
     }
 
-    DatabaseFactory.getThreadDatabase(context).setLastSeenSilently(threadId);
-    DatabaseFactory.getThreadDatabase(context).setHasSentSilently(threadId, true);
+    DatabaseFactory.getThreadDatabase(context).updateLastSeenAndMarkSentAndLastScrolledSilenty(threadId);
 
     ApplicationDependencies.getDatabaseObserver().notifyMessageInsertObservers(threadId, new MessageId(messageId, true));
     notifyConversationListListeners();
@@ -1585,7 +1591,8 @@ public class MmsDatabase extends MessageDatabase {
                                   @NonNull List<LinkPreview> linkPreviews,
                                   @NonNull List<Mention> mentions,
                                   @NonNull ContentValues contentValues,
-                                  @Nullable SmsDatabase.InsertListener insertListener)
+                                  @Nullable SmsDatabase.InsertListener insertListener,
+                                  boolean updateThread)
       throws MmsException
   {
     SQLiteDatabase     db              = databaseHelper.getSignalWritableDatabase();
@@ -1651,8 +1658,10 @@ public class MmsDatabase extends MessageDatabase {
 
       long contentValuesThreadId = contentValues.getAsLong(THREAD_ID);
 
-      DatabaseFactory.getThreadDatabase(context).setLastScrolled(contentValuesThreadId, 0);
-      ThreadUpdateJob.enqueue(contentValuesThreadId);
+      if (updateThread) {
+        DatabaseFactory.getThreadDatabase(context).setLastScrolled(contentValuesThreadId, 0);
+        ThreadUpdateJob.enqueue(contentValuesThreadId);
+      }
     }
   }
 
